@@ -6032,7 +6032,7 @@ else self::*/local-name() = $allowed-p-blocks"
   
   <pattern id="element-citation-high-tests">
     
-    <rule context="ref[preceding-sibling::ref]" id="ref">
+    <rule context="ref[preceding-sibling::ref]" id="ref-list-ordering">
       <let name="order-value" value="e:ref-list-string(self::*)"/>
       <let name="preceding-ref-order-value" value="e:ref-list-string(preceding-sibling::ref[1])"/>
       <!-- Included for legacy reasons. can be removed  -->
@@ -6042,6 +6042,9 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert test="($order-value gt $preceding-ref-order-value) or ($kriya1-order-value gt $preceding-ref-kriya1-order-value)" 
         role="error" 
         id="err-elem-cit-high-2-2">The order of &lt;element-citation&gt;s in the reference list should be name and date, arranged alphabetically by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of two authors, the sequence should be arranged by both authors' surnames, then date. For three or more authors, the sequence should be the first author's surname, then date. Reference '<value-of select="@id"/>' appears to be in a different order.</assert>
+    </rule>
+    
+    <rule context="ref" id="ref">
       
       <assert test="count(*) = count(element-citation)" 
         role="error" 

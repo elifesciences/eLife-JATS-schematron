@@ -4280,8 +4280,8 @@
     </rule>
   </pattern>
   
-  <pattern id="ref-pattern">
-    <rule context="ref[preceding-sibling::ref]" id="ref">
+  <pattern id="ref-list-ordering-pattern">
+    <rule context="ref[preceding-sibling::ref]" id="ref-list-ordering">
       <let name="order-value" value="e:ref-list-string(self::*)"/>
       <let name="preceding-ref-order-value" value="e:ref-list-string(preceding-sibling::ref[1])"/>
       <!-- Included for legacy reasons. can be removed  -->
@@ -4289,6 +4289,10 @@
       <let name="preceding-ref-kriya1-order-value" value="e:ref-list-string2(preceding-sibling::ref[1])"/>
       
       <assert test="($order-value gt $preceding-ref-order-value) or ($kriya1-order-value gt $preceding-ref-kriya1-order-value)" role="error" id="err-elem-cit-high-2-2">The order of &lt;element-citation&gt;s in the reference list should be name and date, arranged alphabetically by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of two authors, the sequence should be arranged by both authors' surnames, then date. For three or more authors, the sequence should be the first author's surname, then date. Reference '<value-of select="@id"/>' appears to be in a different order.</assert>
+    </rule>
+  </pattern>
+  <pattern id="ref-pattern">
+    <rule context="ref" id="ref">
       
       <assert test="count(*) = count(element-citation)" role="error" id="err-elem-cit-high-1">The only element that is allowed as a child of &lt;ref&gt; is &lt;element-citation&gt;. Reference '<value-of select="@id"/>' has other elements.</assert>
       
@@ -8192,7 +8196,8 @@
       <assert test="descendant::ref/element-citation/year" role="error" id="elem-citation-year-xspec-assert">ref/element-citation/year must be present.</assert>
       <assert test="descendant::ref/element-citation/source" role="error" id="elem-citation-source-xspec-assert">ref/element-citation/source must be present.</assert>
       <assert test="descendant::ref/element-citation/ext-link" role="error" id="elem-citation-ext-link-xspec-assert">ref/element-citation/ext-link must be present.</assert>
-      <assert test="descendant::ref[preceding-sibling::ref]" role="error" id="ref-xspec-assert">ref[preceding-sibling::ref] must be present.</assert>
+      <assert test="descendant::ref[preceding-sibling::ref]" role="error" id="ref-list-ordering-xspec-assert">ref[preceding-sibling::ref] must be present.</assert>
+      <assert test="descendant::ref" role="error" id="ref-xspec-assert">ref must be present.</assert>
       <assert test="descendant::xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')]" role="error" id="xref-xspec-assert">xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')] must be present.</assert>
       <assert test="descendant::element-citation" role="error" id="elem-citation-xspec-assert">element-citation must be present.</assert>
       <assert test="descendant::element-citation//*" role="error" id="element-citation-descendants-xspec-assert">element-citation//* must be present.</assert>
