@@ -196,6 +196,61 @@
     <xsl:param name="string" as="xs:string"/>
     <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨıɉꝁłøɍŧɏƶ','bcdeghiijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
+  
+  <!-- generates a string from a reference which is used to determine the position the reference should have in the ref list -->
+  <xsl:function name="e:ref-list-string" as="xs:string">
+    <xsl:param name="ref"/>
+    <xsl:choose>
+      <xsl:when test="$ref/element-citation[1]/person-group[1]/* and $ref/element-citation[1]/year">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' ',           $ref/element-citation[1]/year[1],           ' ',           string-join(for $x in $ref/element-citation[1]/person-group[1]/*[position()=(2,3)]           return e:get-collab-or-surname($x),' ')           )"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/person-group[1]/*">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' 9999 ',           string-join(for $x in $ref/element-citation[1]/person-group[1]/*[position()=(2,3)]           return e:get-collab-or-surname($x),' ')           )"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/year">
+        <xsl:value-of select="concat(' ',$ref/element-citation[1]/year[1])"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="'zzzzz 9999'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  
+  <!-- included for legacy reasons. This can be removed after migrating to new vendor platform -->
+  <xsl:function name="e:ref-list-string2" as="xs:string">
+    <xsl:param name="ref"/>
+    <xsl:choose>
+      <xsl:when test="$ref/element-citation[1]/year and count($ref/element-citation[1]/person-group[1]/*) = 2">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' ',           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[2]),           ' ',           $ref/element-citation[1]/year[1])"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/person-group[1]/* and $ref/element-citation[1]/year">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' ',           $ref/element-citation[1]/year[1])"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/person-group[1]/*">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' 9999 ')"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/year">
+        <xsl:value-of select="concat(' ',$ref/element-citation[1]/year[1])"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="'zzzzz 9999'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  
+  <!-- invoked in e:ref-list-string -->
+  <xsl:function name="e:get-collab-or-surname" as="xs:string?">
+    <xsl:param name="collab-or-name"/>
+    <xsl:choose>
+      <xsl:when test="$collab-or-name/name()='collab'">
+        <xsl:value-of select="e:stripDiacritics(lower-case($collab-or-name))"/>
+      </xsl:when>
+      <xsl:when test="$collab-or-name/surname">
+        <xsl:value-of select="e:stripDiacritics(lower-case($collab-or-name/surname[1]))"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
 
   <xsl:function name="e:cite-name-text" as="xs:string">
     <xsl:param name="person-group"/>
@@ -1245,7 +1300,7 @@
 	  <let name="lc" value="normalize-space(lower-case(article-title[1]))"/>
 	  <let name="title" value="replace(article-title[1],'\p{P}','')"/>
 	  <let name="body" value="ancestor::front/following-sibling::body[1]"/>
-	  <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return      if (matches($x,'^[A-Z]') and (string-length($x) gt 1) and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
+	  <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return &#x9;    if (matches($x,'^[A-Z]') and (string-length($x) gt 1) and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
 	
     <report test="ends-with(replace(article-title[1],'\p{Z}',''),'.')" role="error" id="article-title-test-1">[article-title-test-1] Article title must not end with a full stop  - '<value-of select="article-title"/>'.</report>  
    
@@ -1486,7 +1541,7 @@
 	  <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
 		
 		<!-- Subject to change depending of the affiliation markup of group authors and editors. Currently fires for individual group contributors and editors who do not have either a child aff or a child xref pointing to an aff.  -->
-    	<report test="if ($subj-type = $notice-display-types) then ()        else if (collab) then ()        else if (ancestor::collab) then ()        else if ($type != 'author') then ()        else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">[contrib-test-1] Authors should have at least 1 link to an affiliation. <value-of select="$name"/> does not.</report>
+    	<report test="if ($subj-type = $notice-display-types) then ()     &#x9;  else if (collab) then ()     &#x9;  else if (ancestor::collab) then ()     &#x9;  else if ($type != 'author') then ()     &#x9;  else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">[contrib-test-1] Authors should have at least 1 link to an affiliation. <value-of select="$name"/> does not.</report>
 	  
 	  <report test="if ($subj-type = $notice-display-types) then ()      else if ($type != 'author') then ()      else if (collab) then ()      else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)      else ()" role="warning" id="contrib-test-5">[contrib-test-5] Group author members should very likely have an affiliation. <value-of select="$name"/> does not. Is this OK?</report>
 	  
@@ -1496,7 +1551,7 @@
 	  
 	     <report test="name and collab" role="error" id="contrib-test-3">[contrib-test-3] author contains both a child name and a child collab. This is not correct.</report>
 	  
-	     <report test="if (collab) then ()         else count(name) != 1" role="error" id="name-test">[name-test] Contrib contains no collab but has <value-of select="count(name)"/> name(s). This is not correct.</report>
+	     <report test="if (collab) then () &#x9;       else count(name) != 1" role="error" id="name-test">[name-test] Contrib contains no collab but has <value-of select="count(name)"/> name(s). This is not correct.</report>
 	  
 	     <report test="self::*[@corresp='yes'][not(child::*:email)]" role="error" id="contrib-email-1">[contrib-email-1] Corresponding authors must have an email.</report>
 	  
@@ -1527,7 +1582,7 @@
 		  <let name="allowed-contrib-blocks-features" value="($allowed-contrib-blocks, 'bio', 'role')"/>
 		
 		  <!-- Exception included for group authors - subject to change. The capture here may use xrefs instead of affs - if it does then the else if param can simply be removed. -->
-		  <assert test="if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features]       else if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]       else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features]       else self::*[local-name() = $allowed-contrib-blocks]" role="error" id="author-children-test">[author-children-test] <value-of select="self::*/local-name()"/> is not allowed as a child of author.</assert>
+		  <assert test="if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features] &#x9;&#x9;    else if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')] &#x9;&#x9;    else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features] &#x9;&#x9;    else self::*[local-name() = $allowed-contrib-blocks]" role="error" id="author-children-test">[author-children-test] <value-of select="self::*/local-name()"/> is not allowed as a child of author.</assert>
 		
 		</rule>
   </pattern>
@@ -1638,27 +1693,27 @@
 	  <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
 	  <let name="license-type" value="license/@xlink:href"/>
 	
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-1" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-statement)" role="error" id="permissions-test-1">[permissions-test-1] permissions must contain copyright-statement.</report>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-1" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () &#x9;    else not(copyright-statement)" role="error" id="permissions-test-1">[permissions-test-1] permissions must contain copyright-statement.</report>
 	
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-2" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()            else not(matches(copyright-year[1],'^[0-9]{4}$'))" role="error" id="permissions-test-2">[permissions-test-2] permissions must contain copyright-year in the format 0000. Currently it is <value-of select="copyright-year"/>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-2" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () &#x9;          else not(matches(copyright-year[1],'^[0-9]{4}$'))" role="error" id="permissions-test-2">[permissions-test-2] permissions must contain copyright-year in the format 0000. Currently it is <value-of select="copyright-year"/>
       </report>
 	
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-3" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()              else not(copyright-holder)" role="error" id="permissions-test-3">[permissions-test-3] permissions must contain copyright-holder.</report>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-3" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () &#x9;            else not(copyright-holder)" role="error" id="permissions-test-3">[permissions-test-3] permissions must contain copyright-holder.</report>
 	
 	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-4" test="ali:free_to_read" role="error" id="permissions-test-4">[permissions-test-4] permissions must contain an ali:free_to_read element.</assert>
 	
 	<assert test="license" role="error" id="permissions-test-5">[permissions-test-5] permissions must contain license.</assert>
 	
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-6" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()            else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)" role="error" id="permissions-test-6">[permissions-test-6] copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year=<value-of select="copyright-year"/> and pub-date=<value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year"/>.</report>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-6" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () &#x9;          else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)" role="error" id="permissions-test-6">[permissions-test-6] copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year=<value-of select="copyright-year"/> and pub-date=<value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year"/>.</report>
 	
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-7" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else copyright-holder != $copyright-holder" role="error" id="permissions-test-7">[permissions-test-7] copyright-holder is incorrect. If the article has one author then it should be their surname (or collab name). If it has two authors it should be the surname (or collab name) of the first, then ' and ' and then the surname (or collab name) of the second. If three or more, it should be the surname (or collab name) of the first, and then ' et al'. Currently it's '<value-of select="copyright-holder"/>' when based on the author list it should be '<value-of select="$copyright-holder"/>'.</report>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-7" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () &#x9;    else copyright-holder != $copyright-holder" role="error" id="permissions-test-7">[permissions-test-7] copyright-holder is incorrect. If the article has one author then it should be their surname (or collab name). If it has two authors it should be the surname (or collab name) of the first, then ' and ' and then the surname (or collab name) of the second. If three or more, it should be the surname (or collab name) of the first, and then ' et al'. Currently it's '<value-of select="copyright-holder"/>' when based on the author list it should be '<value-of select="$copyright-holder"/>'.</report>
 	
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-8" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-statement = concat('© ',copyright-year,', ',copyright-holder))" role="error" id="permissions-test-8">[permissions-test-8] copyright-statement must contain a concatenation of '© ', copyright-year, and copyright-holder. Currently it is <value-of select="copyright-statement"/> when according to the other values it should be <value-of select="concat('© ',copyright-year,', ',copyright-holder)"/>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-8" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () &#x9;    else not(copyright-statement = concat('© ',copyright-year,', ',copyright-holder))" role="error" id="permissions-test-8">[permissions-test-8] copyright-statement must contain a concatenation of '© ', copyright-year, and copyright-holder. Currently it is <value-of select="copyright-statement"/> when according to the other values it should be <value-of select="concat('© ',copyright-year,', ',copyright-holder)"/>
       </report>
 	  
 	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-9" test="($license-type = 'http://creativecommons.org/publicdomain/zero/1.0/') or ($license-type = 'http://creativecommons.org/licenses/by/4.0/')" role="error" id="permissions-test-9">[permissions-test-9] license does not have an @xlink:href which is equal to 'http://creativecommons.org/publicdomain/zero/1.0/' or 'http://creativecommons.org/licenses/by/4.0/'.</assert>
 	  
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-info" test="license" role="info" id="permissions-info">[permissions-info] This article is licensed under a<value-of select="      if (contains($license-type,'publicdomain/zero')) then ' CC0 1.0'      else if (contains($license-type,'by/4.0')) then ' CC BY 4.0'      else if (contains($license-type,'by/3.0')) then ' CC BY 3.0'      else 'n unknown'"/> license. <value-of select="$license-type"/>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-info" test="license" role="info" id="permissions-info">[permissions-info] This article is licensed under a<value-of select=" &#x9;    if (contains($license-type,'publicdomain/zero')) then ' CC0 1.0' &#x9;    else if (contains($license-type,'by/4.0')) then ' CC BY 4.0' &#x9;    else if (contains($license-type,'by/3.0')) then ' CC BY 3.0' &#x9;    else 'n unknown'"/> license. <value-of select="$license-type"/>
       </report>
 	
 	</rule>
@@ -4099,22 +4154,16 @@
   </pattern>
   
   <pattern id="ref-pattern">
-    <rule context="ref" id="ref">
-      <let name="pre-name" value="lower-case(if (local-name(element-citation/person-group[1]/*[1])='name')         then (element-citation/person-group[1]/name[1]/surname[1])         else (element-citation/person-group[1]/*[1]))"/>
-      <let name="name" value="e:stripDiacritics($pre-name)"/>
+    <rule context="ref[preceding-sibling::ref]" id="ref">
+      <let name="order-value" value="e:ref-list-string(self::*)"/>
+      <let name="preceding-ref-order-value" value="e:ref-list-string(preceding-sibling::ref[1])"/>
+      <!-- Included for legacy reasons. can be removed  -->
+      <let name="kriya1-order-value" value="e:ref-list-string2(self::*)"/>
+      <let name="preceding-ref-kriya1-order-value" value="e:ref-list-string2(preceding-sibling::ref[1])"/>
       
-      <let name="pre-name2" value="lower-case(if (local-name(element-citation/person-group[1]/*[2])='name')         then (element-citation/person-group[1]/*[2]/surname[1])         else (element-citation/person-group[1]/*[2]))"/>
-      <let name="name2" value="e:stripDiacritics($pre-name2)"/>
-      
-      <let name="pre-preceding-name" value="lower-case(if (preceding-sibling::ref[1] and         local-name(preceding-sibling::ref[1]/element-citation/person-group[1]/*[1])='name')         then (preceding-sibling::ref[1]/element-citation/person-group[1]/name[1]/surname[1])         else (preceding-sibling::ref[1]/element-citation/person-group[1]/*[1]))"/>
-      <let name="preceding-name" value="e:stripDiacritics($pre-preceding-name)"/>
-      
-      <let name="pre-preceding-name2" value="lower-case(if (preceding-sibling::ref[1] and         local-name(preceding-sibling::ref[1]/element-citation/person-group[1]/*[2])='name')         then (preceding-sibling::ref[1]/element-citation/person-group[1]/*[2]/surname[1])         else (preceding-sibling::ref[1]/element-citation/person-group[1]/*[2]))"/>
-      <let name="preceding-name2" value="e:stripDiacritics($pre-preceding-name2)"/>
+      <assert test="($order-value gt $preceding-ref-order-value) or ($kriya1-order-value gt $preceding-ref-kriya1-order-value)" role="error" id="err-elem-cit-high-2-2">[err-elem-cit-high-2-2] The order of &lt;element-citation&gt;s in the reference list should be name and date, arranged alphabetically by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of two authors, the sequence should be arranged by both authors' surnames, then date. For three or more authors, the sequence should be the first author's surname, then date. Reference '<value-of select="@id"/>' appears to be in a different order.</assert>
       
       <assert test="count(*) = count(element-citation)" role="error" id="err-elem-cit-high-1">[err-elem-cit-high-1] The only element that is allowed as a child of &lt;ref&gt; is &lt;element-citation&gt;. Reference '<value-of select="@id"/>' has other elements.</assert>
-      
-      <assert test="if (count(element-citation/person-group[1]/*) != 2)         then (count(preceding-sibling::ref) = 0 or ($name &gt; $preceding-name) or ($name = $preceding-name and element-citation/year &gt;= preceding-sibling::ref[1]/element-citation/year))         else (count(preceding-sibling::ref) = 0 or ($name &gt; $preceding-name) or ($name = $preceding-name and $name2 &gt; $preceding-name2)         or ($name = $preceding-name and $name2 = $preceding-name2 and element-citation/year &gt;= preceding-sibling::ref[1]/element-citation/year)         or ($name = $preceding-name and count(preceding-sibling::ref[1]/element-citation/person-group[1]/*) !=2))" role="error" id="err-elem-cit-high-2-2">[err-elem-cit-high-2-2] The order of &lt;element-citation&gt;s in the reference list should be name and date, arranged alphabetically by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of two authors, the sequence should be arranged by both authors' surnames, then date. For three or more authors, the sequence should be the first author's surname, then date. Reference '<value-of select="@id"/>' appears to be in a different order.</assert>
       
       <assert test="@id" role="error" id="err-elem-cit-high-3-1">[err-elem-cit-high-3-1] Each &lt;ref&gt; element must have an @id attribute.</assert>
       

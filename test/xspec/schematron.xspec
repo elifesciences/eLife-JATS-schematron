@@ -8135,16 +8135,6 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="ref">
-      <x:scenario label="err-elem-cit-high-1-pass">
-        <x:context href="../tests/gen/ref/err-elem-cit-high-1/pass.xml"/>
-        <x:expect-not-assert id="err-elem-cit-high-1" role="error"/>
-        <x:expect-not-assert id="ref-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="err-elem-cit-high-1-fail">
-        <x:context href="../tests/gen/ref/err-elem-cit-high-1/fail.xml"/>
-        <x:expect-assert id="err-elem-cit-high-1" role="error"/>
-        <x:expect-not-assert id="ref-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="err-elem-cit-high-2-2-pass">
         <x:context href="../tests/gen/ref/err-elem-cit-high-2-2/pass.xml"/>
         <x:expect-not-assert id="err-elem-cit-high-2-2" role="error"/>
@@ -8153,6 +8143,16 @@
       <x:scenario label="err-elem-cit-high-2-2-fail">
         <x:context href="../tests/gen/ref/err-elem-cit-high-2-2/fail.xml"/>
         <x:expect-assert id="err-elem-cit-high-2-2" role="error"/>
+        <x:expect-not-assert id="ref-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-elem-cit-high-1-pass">
+        <x:context href="../tests/gen/ref/err-elem-cit-high-1/pass.xml"/>
+        <x:expect-not-assert id="err-elem-cit-high-1" role="error"/>
+        <x:expect-not-assert id="ref-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-elem-cit-high-1-fail">
+        <x:context href="../tests/gen/ref/err-elem-cit-high-1/fail.xml"/>
+        <x:expect-assert id="err-elem-cit-high-1" role="error"/>
         <x:expect-not-assert id="ref-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="err-elem-cit-high-3-1-pass">
