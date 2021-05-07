@@ -175,6 +175,55 @@
     <xsl:param name="string" as="xs:string"/>
     <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨıɉꝁłøɍŧɏƶ','bcdeghiijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
+  <xsl:function name="e:ref-list-string" as="xs:string">
+    <xsl:param name="ref"/>
+    <xsl:choose>
+      <xsl:when test="$ref/element-citation[1]/person-group[1]/* and $ref/element-citation[1]/year">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' ',           $ref/element-citation[1]/year[1],           ' ',           string-join(for $x in $ref/element-citation[1]/person-group[1]/*[position()=(2,3)]           return e:get-collab-or-surname($x),' ')           )"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/person-group[1]/*">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' 9999 ',           string-join(for $x in $ref/element-citation[1]/person-group[1]/*[position()=(2,3)]           return e:get-collab-or-surname($x),' ')           )"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/year">
+        <xsl:value-of select="concat(' ',$ref/element-citation[1]/year[1])"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="'zzzzz 9999'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  <xsl:function name="e:ref-list-string2" as="xs:string">
+    <xsl:param name="ref"/>
+    <xsl:choose>
+      <xsl:when test="$ref/element-citation[1]/year and count($ref/element-citation[1]/person-group[1]/*) = 2">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' ',           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[2]),           ' ',           $ref/element-citation[1]/year[1])"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/person-group[1]/* and $ref/element-citation[1]/year">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' ',           $ref/element-citation[1]/year[1])"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/person-group[1]/*">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' 9999 ')"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/year">
+        <xsl:value-of select="concat(' ',$ref/element-citation[1]/year[1])"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="'zzzzz 9999'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  <xsl:function name="e:get-collab-or-surname" as="xs:string?">
+    <xsl:param name="collab-or-name"/>
+    <xsl:choose>
+      <xsl:when test="$collab-or-name/name()='collab'">
+        <xsl:value-of select="e:stripDiacritics(lower-case($collab-or-name))"/>
+      </xsl:when>
+      <xsl:when test="$collab-or-name/surname">
+        <xsl:value-of select="e:stripDiacritics(lower-case($collab-or-name/surname[1]))"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
   <xsl:function name="e:cite-name-text" as="xs:string">
     <xsl:param name="person-group"/>
     <xsl:choose>
@@ -967,14 +1016,6 @@
   </xsl:function>
   <pattern id="element-citation-high-tests">
     <rule context="ref" id="ref">
-      <let name="pre-name" value="lower-case(if (local-name(element-citation/person-group[1]/*[1])='name')         then (element-citation/person-group[1]/name[1]/surname[1])         else (element-citation/person-group[1]/*[1]))"/>
-      <let name="name" value="e:stripDiacritics($pre-name)"/>
-      <let name="pre-name2" value="lower-case(if (local-name(element-citation/person-group[1]/*[2])='name')         then (element-citation/person-group[1]/*[2]/surname[1])         else (element-citation/person-group[1]/*[2]))"/>
-      <let name="name2" value="e:stripDiacritics($pre-name2)"/>
-      <let name="pre-preceding-name" value="lower-case(if (preceding-sibling::ref[1] and         local-name(preceding-sibling::ref[1]/element-citation/person-group[1]/*[1])='name')         then (preceding-sibling::ref[1]/element-citation/person-group[1]/name[1]/surname[1])         else (preceding-sibling::ref[1]/element-citation/person-group[1]/*[1]))"/>
-      <let name="preceding-name" value="e:stripDiacritics($pre-preceding-name)"/>
-      <let name="pre-preceding-name2" value="lower-case(if (preceding-sibling::ref[1] and         local-name(preceding-sibling::ref[1]/element-citation/person-group[1]/*[2])='name')         then (preceding-sibling::ref[1]/element-citation/person-group[1]/*[2]/surname[1])         else (preceding-sibling::ref[1]/element-citation/person-group[1]/*[2]))"/>
-      <let name="preceding-name2" value="e:stripDiacritics($pre-preceding-name2)"/>
       <assert test="count(preceding-sibling::ref)=0 or number(substring(@id,4)) gt number(substring(preceding-sibling::ref[1]/@id,4))" role="error" id="err-elem-cit-high-3-3">The sequence of ids in the &lt;ref&gt; elements must increase monotonically (e.g. 1,2,3,4,5, . . . ,50,51,52,53, . . . etc). Reference '<value-of select="@id"/>' has the value  '<value-of select="@id"/>', which does not fit this pattern.</assert>
     </rule>
   </pattern>
