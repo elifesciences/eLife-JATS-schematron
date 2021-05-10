@@ -1019,7 +1019,7 @@
       <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
       <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
       <let name="license-type" value="license/@xlink:href"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-2" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () &#x9;          else not(matches(copyright-year[1],'^[0-9]{4}$'))" role="error" id="permissions-test-2">permissions must contain copyright-year in the format 0000. Currently it is <value-of select="copyright-year"/>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-2" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()            else not(matches(copyright-year[1],'^[0-9]{4}$'))" role="error" id="permissions-test-2">permissions must contain copyright-year in the format 0000. Currently it is <value-of select="copyright-year"/>
       </report>
     </rule>
   </pattern>

@@ -5811,6 +5811,16 @@ else self::*/local-name() = $allowed-p-blocks"
         flag="dl-ar"
         id="paper-pile-test">In the <value-of select="if (ancestor::sub-article[@article-type='reply']) then 'author response' else 'decision letter'"/> the text '<value-of select="."/>' has an embedded hyperlink to <value-of select="@xlink:href"/>. The hyperlink should be removed (but the text retained).</report>
     </rule>
+    
+    <rule context="sub-article[@article-type='reply']/body/*[last()][name()='p']" 
+      id="sub-article-ref-p-tests">
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#sub-article-ref-p-test" 
+        test="count(tokenize(lower-case(.),'doi\s?:')) gt 2"
+        role="warning" 
+        flag="dl-ar"
+        id="sub-article-ref-p-test">The last paragraph of the author response lookd like it contains various references. Should wach reference be split out into its own paragraph? <value-of select="."/></report>
+    </rule>
   </pattern>
   
   <pattern id="related-articles">

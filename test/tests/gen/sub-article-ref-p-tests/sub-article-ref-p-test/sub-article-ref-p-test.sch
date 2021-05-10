@@ -1014,17 +1014,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="article-metadata">
-    <rule context="front//permissions" id="front-permissions-tests">
-      <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
-      <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
-      <let name="license-type" value="license/@xlink:href"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-1" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-statement)" role="error" id="permissions-test-1">permissions must contain copyright-statement.</report>
+  <pattern id="dec-letter-auth-response">
+    <rule context="sub-article[@article-type='reply']/body/*[last()][name()='p']" id="sub-article-ref-p-tests">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#sub-article-ref-p-test" test="count(tokenize(lower-case(.),'doi\s?:')) gt 2" role="warning" flag="dl-ar" id="sub-article-ref-p-test">The last paragraph of the author response lookd like it contains various references. Should wach reference be split out into its own paragraph? <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front//permissions" role="error" id="front-permissions-tests-xspec-assert">front//permissions must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='reply']/body/*[last()][name()='p']" role="error" id="sub-article-ref-p-tests-xspec-assert">sub-article[@article-type='reply']/body/*[last()][name()='p'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

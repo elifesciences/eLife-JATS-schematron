@@ -1020,7 +1020,7 @@
       <let name="lc" value="normalize-space(lower-case(article-title[1]))"/>
       <let name="title" value="replace(article-title[1],'\p{P}','')"/>
       <let name="body" value="ancestor::front/following-sibling::body[1]"/>
-      <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return &#x9;    if (matches($x,'^[A-Z]') and (string-length($x) gt 1) and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
+      <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return      if (matches($x,'^[A-Z]') and (string-length($x) gt 1) and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
       <report test="article-title[text() != ''] = lower-case(article-title[1])" role="warning" id="article-title-test-2">Article title is entirely in lower case, is this correct? - <value-of select="article-title"/>.</report>
     </rule>
   </pattern>
