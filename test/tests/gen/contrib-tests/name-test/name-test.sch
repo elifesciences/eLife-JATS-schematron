@@ -1035,7 +1035,7 @@
       <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
       <let name="fn" value="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
       <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
-      <report test="if (collab) then () &#x9;       else count(name) != 1" role="error" id="name-test">Contrib contains no collab but has <value-of select="count(name)"/> name(s). This is not correct.</report>
+      <report test="if (collab) then ()         else count(name) != 1" role="error" id="name-test">Contrib contains no collab but has <value-of select="count(name)"/> name(s). This is not correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

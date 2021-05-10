@@ -1308,7 +1308,7 @@
 	  <let name="lc" value="normalize-space(lower-case(article-title[1]))"/>
 	  <let name="title" value="replace(article-title[1],'\p{P}','')"/>
 	  <let name="body" value="ancestor::front/following-sibling::body[1]"/>
-	  <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return &#x9;    if (matches($x,'^[A-Z]') and (string-length($x) gt 1) and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
+	  <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return      if (matches($x,'^[A-Z]') and (string-length($x) gt 1) and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
 	
     <report test="ends-with(replace(article-title[1],'\p{Z}',''),'.')" role="error" id="article-title-test-1">Article title must not end with a full stop  - '<value-of select="article-title"/>'.</report>  
    
@@ -1554,7 +1554,7 @@
 	  <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
 		
 		<!-- Subject to change depending of the affiliation markup of group authors and editors. Currently fires for individual group contributors and editors who do not have either a child aff or a child xref pointing to an aff.  -->
-    	<report test="if ($subj-type = $notice-display-types) then ()     &#x9;  else if (collab) then ()     &#x9;  else if (ancestor::collab) then ()     &#x9;  else if ($type != 'author') then ()     &#x9;  else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">Authors should have at least 1 link to an affiliation. <value-of select="$name"/> does not.</report>
+    	<report test="if ($subj-type = $notice-display-types) then ()        else if (collab) then ()        else if (ancestor::collab) then ()        else if ($type != 'author') then ()        else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">Authors should have at least 1 link to an affiliation. <value-of select="$name"/> does not.</report>
 	  
 	  <report test="if ($subj-type = $notice-display-types) then ()      else if ($type != 'author') then ()      else if (collab) then ()      else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)      else ()" role="warning" id="contrib-test-5">Group author members should very likely have an affiliation. <value-of select="$name"/> does not. Is this OK?</report>
 	  
@@ -1564,7 +1564,7 @@
 	  
 	     <report test="name and collab" role="error" id="contrib-test-3">author contains both a child name and a child collab. This is not correct.</report>
 	  
-	     <report test="if (collab) then () &#x9;       else count(name) != 1" role="error" id="name-test">Contrib contains no collab but has <value-of select="count(name)"/> name(s). This is not correct.</report>
+	     <report test="if (collab) then ()         else count(name) != 1" role="error" id="name-test">Contrib contains no collab but has <value-of select="count(name)"/> name(s). This is not correct.</report>
 	  
 	     <report test="self::*[@corresp='yes'][not(child::*:email)]" role="error" id="contrib-email-1">Corresponding authors must have an email.</report>
 	  
@@ -1599,7 +1599,7 @@
 		  <let name="allowed-contrib-blocks-features" value="($allowed-contrib-blocks, 'bio', 'role')"/>
 		
 		  <!-- Exception included for group authors - subject to change. The capture here may use xrefs instead of affs - if it does then the else if param can simply be removed. -->
-		  <assert test="if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features] &#x9;&#x9;    else if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')] &#x9;&#x9;    else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features] &#x9;&#x9;    else self::*[local-name() = $allowed-contrib-blocks]" role="error" id="author-children-test">
+		  <assert test="if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features]       else if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]       else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features]       else self::*[local-name() = $allowed-contrib-blocks]" role="error" id="author-children-test">
         <value-of select="self::*/local-name()"/> is not allowed as a child of author.</assert>
 		
 		</rule>
@@ -1712,27 +1712,27 @@
 	  <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
 	  <let name="license-type" value="license/@xlink:href"/>
 	
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-1" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () &#x9;    else not(copyright-statement)" role="error" id="permissions-test-1">permissions must contain copyright-statement.</report>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-1" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-statement)" role="error" id="permissions-test-1">permissions must contain copyright-statement.</report>
 	
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-2" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () &#x9;          else not(matches(copyright-year[1],'^[0-9]{4}$'))" role="error" id="permissions-test-2">permissions must contain copyright-year in the format 0000. Currently it is <value-of select="copyright-year"/>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-2" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()            else not(matches(copyright-year[1],'^[0-9]{4}$'))" role="error" id="permissions-test-2">permissions must contain copyright-year in the format 0000. Currently it is <value-of select="copyright-year"/>
       </report>
 	
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-3" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () &#x9;            else not(copyright-holder)" role="error" id="permissions-test-3">permissions must contain copyright-holder.</report>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-3" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()              else not(copyright-holder)" role="error" id="permissions-test-3">permissions must contain copyright-holder.</report>
 	
 	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-4" test="ali:free_to_read" role="error" id="permissions-test-4">permissions must contain an ali:free_to_read element.</assert>
 	
 	<assert test="license" role="error" id="permissions-test-5">permissions must contain license.</assert>
 	
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-6" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () &#x9;          else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)" role="error" id="permissions-test-6">copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year=<value-of select="copyright-year"/> and pub-date=<value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year"/>.</report>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-6" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()            else not(copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year)" role="error" id="permissions-test-6">copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year=<value-of select="copyright-year"/> and pub-date=<value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type='publication']/year"/>.</report>
 	
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-7" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () &#x9;    else copyright-holder != $copyright-holder" role="error" id="permissions-test-7">copyright-holder is incorrect. If the article has one author then it should be their surname (or collab name). If it has two authors it should be the surname (or collab name) of the first, then ' and ' and then the surname (or collab name) of the second. If three or more, it should be the surname (or collab name) of the first, and then ' et al'. Currently it's '<value-of select="copyright-holder"/>' when based on the author list it should be '<value-of select="$copyright-holder"/>'.</report>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-7" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else copyright-holder != $copyright-holder" role="error" id="permissions-test-7">copyright-holder is incorrect. If the article has one author then it should be their surname (or collab name). If it has two authors it should be the surname (or collab name) of the first, then ' and ' and then the surname (or collab name) of the second. If three or more, it should be the surname (or collab name) of the first, and then ' et al'. Currently it's '<value-of select="copyright-holder"/>' when based on the author list it should be '<value-of select="$copyright-holder"/>'.</report>
 	
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-8" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then () &#x9;    else not(copyright-statement = concat('© ',copyright-year,', ',copyright-holder))" role="error" id="permissions-test-8">copyright-statement must contain a concatenation of '© ', copyright-year, and copyright-holder. Currently it is <value-of select="copyright-statement"/> when according to the other values it should be <value-of select="concat('© ',copyright-year,', ',copyright-holder)"/>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-8" test="if (contains($license-type,'creativecommons.org/publicdomain/zero')) then ()      else not(copyright-statement = concat('© ',copyright-year,', ',copyright-holder))" role="error" id="permissions-test-8">copyright-statement must contain a concatenation of '© ', copyright-year, and copyright-holder. Currently it is <value-of select="copyright-statement"/> when according to the other values it should be <value-of select="concat('© ',copyright-year,', ',copyright-holder)"/>
       </report>
 	  
 	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-9" test="($license-type = 'http://creativecommons.org/publicdomain/zero/1.0/') or ($license-type = 'http://creativecommons.org/licenses/by/4.0/')" role="error" id="permissions-test-9">license does not have an @xlink:href which is equal to 'http://creativecommons.org/publicdomain/zero/1.0/' or 'http://creativecommons.org/licenses/by/4.0/'.</assert>
 	  
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-info" test="license" role="info" id="permissions-info">This article is licensed under a<value-of select=" &#x9;    if (contains($license-type,'publicdomain/zero')) then ' CC0 1.0' &#x9;    else if (contains($license-type,'by/4.0')) then ' CC BY 4.0' &#x9;    else if (contains($license-type,'by/3.0')) then ' CC BY 3.0' &#x9;    else 'n unknown'"/> license. <value-of select="$license-type"/>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-info" test="license" role="info" id="permissions-info">This article is licensed under a<value-of select="      if (contains($license-type,'publicdomain/zero')) then ' CC0 1.0'      else if (contains($license-type,'by/4.0')) then ' CC BY 4.0'      else if (contains($license-type,'by/3.0')) then ' CC BY 3.0'      else 'n unknown'"/> license. <value-of select="$license-type"/>
       </report>
 	
 	</rule>
@@ -4113,6 +4113,13 @@
     <rule context="sub-article//ext-link" id="sub-article-ext-link-tests">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#paper-pile-test" test="contains(@xlink:href,'paperpile.com')" role="error" id="paper-pile-test">In the <value-of select="if (ancestor::sub-article[@article-type='reply']) then 'author response' else 'decision letter'"/> the text '<value-of select="."/>' has an embedded hyperlink to <value-of select="@xlink:href"/>. The hyperlink should be removed (but the text retained).</report>
+    </rule>
+  </pattern>
+  <pattern id="sub-article-ref-p-tests-pattern">
+    <rule context="sub-article[@article-type='reply']/body/*[last()][name()='p']" id="sub-article-ref-p-tests">
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#sub-article-ref-p-test" test="count(tokenize(lower-case(.),'doi\s?:')) gt 2" role="warning" id="sub-article-ref-p-test">The last paragraph of the author response lookd like it contains various references. Should wach reference be split out into its own paragraph? <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   
