@@ -1,0 +1,36 @@
+<?oxygen SCHSchema="medicine-abstract-conformance-2.sch"?>
+<!--Context: article[@article-type='research-article']//article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)]
+Test: assert    parent::article-meta/history/date[@date-type='received']/@iso-8601-date lt '2021-04-05'
+Message:  articles submitted after 4th April 2021 should have a structured abstract, but this one does not. eLife please check this with Editorial. Exeter: Please flag this to the eLife Production team. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <article-meta>
+      <article-categories>
+        <subj-group subj-group-type="display-channel">
+          <subject>Research Advance</subject>
+        </subj-group>
+        <subj-group subj-group-type="heading">
+          <subject>Epidemiology and Global Health</subject>
+        </subj-group>
+        <subj-group subj-group-type="heading">
+          <subject>Microbiology and Infectious Disease</subject>
+        </subj-group>
+      </article-categories>
+      <history>
+        <date date-type="received" iso-8601-date="2021-04-06">
+          <day>26</day>
+          <month>03</month>
+          <year>2021</year>
+        </date>
+        <date date-type="accepted" iso-8601-date="2021-04-07">
+          <day>07</day>
+          <month>04</month>
+          <year>2021</year>
+        </date>
+      </history>
+      <abstract>
+        <p>The BNT162b2 mRNA COVID-19 vaccine (Pfizer-BioNTech) is being utilised internationally for mass COVID-19 vaccination. Evidence of single-dose protection against symptomatic disease has encouraged some countries to opt for delayed booster doses of BNT162b2, but the effect of this strategy on rates of asymptomatic SARS-CoV-2 infection remains unknown. We previously demonstrated frequent pauci- and asymptomatic SARS-CoV-2 infection amongst healthcare workers (HCWs) during the UK’s first wave of the COVID-19 pandemic, using a comprehensive PCR-based HCW screening programme (Rivett et al., 2020; Jones et al., 2020). Here, we evaluate the effect of first-dose BNT162b2 vaccination on test positivity rates and find a fourfold reduction in asymptomatic infection amongst HCWs ≥12 days post-vaccination. These data provide real-world evidence of short-term protection against asymptomatic SARS-CoV-2 infection following a single dose of BNT162b2 vaccine, suggesting that mass first-dose vaccination will reduce SARS-CoV-2<italic>transmission</italic>, as well as the burden of COVID-19 <italic>disease</italic>.</p>
+      </abstract>
+    </article-meta>
+  </article>
+</root>

@@ -1892,6 +1892,18 @@
         <x:expect-not-assert id="medicine-abstract-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="medicine-abstract-tests-2">
+      <x:scenario label="medicine-abstract-conformance-2-pass">
+        <x:context href="../tests/gen/medicine-abstract-tests-2/medicine-abstract-conformance-2/pass.xml"/>
+        <x:expect-not-assert id="medicine-abstract-conformance-2" role="error"/>
+        <x:expect-not-assert id="medicine-abstract-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="medicine-abstract-conformance-2-fail">
+        <x:context href="../tests/gen/medicine-abstract-tests-2/medicine-abstract-conformance-2/fail.xml"/>
+        <x:expect-assert id="medicine-abstract-conformance-2" role="error"/>
+        <x:expect-not-assert id="medicine-abstract-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="abstract-children-tests">
       <x:scenario label="abstract-child-test-1-pass">
         <x:context href="../tests/gen/abstract-children-tests/abstract-child-test-1/pass.xml"/>
