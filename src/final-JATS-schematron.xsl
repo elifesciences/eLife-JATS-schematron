@@ -11617,7 +11617,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[supplementary-material-test-7] supplementary-material in additional files sections cannot have the a media element with the attribute mimetype='video'. This should be mimetype='application'</svrl:text>
+            <svrl:text>[supplementary-material-test-7] supplementary-material in additional files sections cannot have a media element with the attribute mimetype='video'. This should be mimetype='application'</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 

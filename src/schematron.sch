@@ -3284,7 +3284,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="(ancestor::sec[@sec-type='supplementary-material']) and (media[@mimetype='video'])" 
         role="error" 
-        id="supplementary-material-test-7">supplementary-material in additional files sections cannot have the a media element with the attribute mimetype='video'. This should be mimetype='application'</report>
+        id="supplementary-material-test-7">supplementary-material in additional files sections cannot have a media element with the attribute mimetype='video'. This should be mimetype='application'</report>
       
       <report test="matches(label[1],'^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])" 
         role="error" 
