@@ -1,0 +1,10 @@
+<?oxygen SCHSchema="pre-duplicate-kr-table-1.sch"?>
+<!--Context: table-wrap[contains(@id,'keyresource')]
+Test: report    following::table-wrap[contains(@id,'keyresource') or contains(lower-case(label[1]),'key resources table')]
+Message: There appears to be more than one key resources table. Exeter please check with Production on how to proceed. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <table-wrap id="keyresource" position="anchor"><label>Key resources table</label></table-wrap>
+    <table-wrap id="inlinetable1" position="anchor"><label>Appendix 1—key resources table</label></table-wrap>
+  </article>
+</root>

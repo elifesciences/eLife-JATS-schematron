@@ -210,9 +210,51 @@
     </xsl:choose>
   </xsl:function>
   
+  <!-- invoked in e:get-collab-or-surname -->
   <xsl:function name="e:stripDiacritics" as="xs:string">
     <xsl:param name="string" as="xs:string"/>
     <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨıɉꝁłøɍŧɏƶ','bcdeghiijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
+  </xsl:function>
+  
+  <!-- generates a string from a reference which is used to determine the position the reference should have in the ref list 
+       ref-list ordering is based on first author surname (↑), then year (↓), then subsequent author surname (↑), e.g.:
+        Baird AH, Zarshall PA, Zarshal PA, 2011a.
+        Baird AH, Marshall PA, Zarshal PA, 2011b.
+        Baird AH, 2012a.
+        Baird AH, 2012b.
+        Baird AH, Marshall PA, 2012.
+        Baird AH, Arshall PA, 2013.
+  -->
+  <xsl:function name="e:ref-list-value" as="xs:string">
+    <xsl:param name="ref"/>
+    <xsl:choose>
+      <xsl:when test="$ref/element-citation[1]/person-group[1]/* and $ref/element-citation[1]/year">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' ',           $ref/element-citation[1]/year[1],           ' ',           string-join(for $x in $ref/element-citation[1]/person-group[1]/*[position()=(2,3)]           return e:get-collab-or-surname($x),' ')           )"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/person-group[1]/*">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' 9999 ',           string-join(for $x in $ref/element-citation[1]/person-group[1]/*[position()=(2,3)]           return e:get-collab-or-surname($x),' ')           )"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/year">
+        <xsl:value-of select="concat(' ',$ref/element-citation[1]/year[1])"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="'zzzzz 9999'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  
+  <!-- invoked in e:ref-list-value -->
+  <xsl:function name="e:get-collab-or-surname" as="xs:string?">
+    <xsl:param name="collab-or-name"/>
+    <xsl:choose>
+      <xsl:when test="$collab-or-name/name()='collab'">
+        <xsl:value-of select="e:stripDiacritics(lower-case($collab-or-name))"/>
+      </xsl:when>
+      <xsl:when test="$collab-or-name/surname">
+        <xsl:value-of select="e:stripDiacritics(lower-case($collab-or-name/surname[1]))"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
   </xsl:function>
 
   <xsl:function name="e:cite-name-text" as="xs:string">
@@ -370,6 +412,11 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>
+  </xsl:function>
+  
+  <xsl:function name="e:get-aff-display" as="xs:string">
+    <xsl:param name="aff" as="element(aff)"/>
+    <xsl:value-of select="string-join(for $x in $aff/*[name()!='label'] return if ($x/name()='institution-wrap') then string-join($x/institution,', ') else $x,', ')"/>
   </xsl:function>
   
   <xsl:function name="e:isbn-sum" as="xs:integer">
@@ -1171,7 +1218,9 @@
   
   
   
-  <pattern id="dec-letter-reply-tests-pattern">
+  
+    
+    <pattern id="dec-letter-reply-tests-pattern">
     <rule context="article/sub-article" id="dec-letter-reply-tests">
       <let name="pos" value="count(parent::article/sub-article) - count(following-sibling::sub-article)"/>
       
@@ -1185,7 +1234,9 @@
       
     </rule>
   </pattern>
-  <pattern id="dec-letter-reply-content-tests-pattern">
+    
+    
+    <pattern id="dec-letter-reply-content-tests-pattern">
     <rule context="article/sub-article//p" id="dec-letter-reply-content-tests">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-5" test="matches(.,'&lt;[/]?[Aa]uthor response')" role="error" flag="dl-ar" id="dec-letter-reply-test-5">
@@ -1195,7 +1246,8 @@
         <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be pseudo-code or tags which should likely be removed - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="dec-letter-front-tests-pattern">
+    
+    <pattern id="dec-letter-front-tests-pattern">
     <rule context="sub-article[@article-type='referee-report']/front-stub" id="dec-letter-front-tests">
       <let name="count" value="count(contrib-group)"/>
       
@@ -1204,7 +1256,8 @@
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-2" test="$count = 2" role="error" flag="dl-ar" id="dec-letter-front-test-2">decision letter front-stub must contain 2 contrib-group elements.</assert>
     </rule>
   </pattern>
-  <pattern id="sub-article-contrib-tests-pattern">
+    
+    <pattern id="sub-article-contrib-tests-pattern">
     <rule context="sub-article/front-stub/contrib-group/contrib" id="sub-article-contrib-tests">
       
       <assert test="@contrib-type='author'" role="error" flag="dl-ar" id="sub-article-contrib-test-1">sub-article contrib must have the attribute contrib-type='author'.</assert>
@@ -1217,7 +1270,8 @@
       
     </rule>
   </pattern>
-  <pattern id="sub-article-role-tests-pattern">
+    
+    <pattern id="sub-article-role-tests-pattern">
     <rule context="sub-article/front-stub/contrib-group/contrib/role" id="sub-article-role-tests">
       <let name="sub-article-type" value="ancestor::sub-article[1]/@article-type"/>
       
@@ -1235,13 +1289,17 @@
       
     </rule>
   </pattern>
-  <pattern id="dec-letter-editor-tests-pattern">
+    
+    <pattern id="dec-letter-editor-tests-pattern">
     <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[1]" id="dec-letter-editor-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-editor-test-1" test="count(contrib[role[@specific-use='editor']]) = 1" role="error" flag="dl-ar" id="dec-letter-editor-test-1">First contrib-group in decision letter must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']).</assert>
     </rule>
   </pattern>
-  <pattern id="dec-letter-reviewer-tests-pattern">
+    
+    
+    
+    <pattern id="dec-letter-reviewer-tests-pattern">
     <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[2]" id="dec-letter-reviewer-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-1" test="count(contrib[role[@specific-use='referee']]) gt 0" role="error" flag="dl-ar" id="dec-letter-reviewer-test-1">Second contrib-group in decision letter must contain a reviewer (a contrib with a child role[@specific-use='referee']).</assert>
@@ -1249,20 +1307,23 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-6" test="count(contrib[role[@specific-use='referee']]) gt 5" role="warning" flag="dl-ar" id="dec-letter-reviewer-test-6">Second contrib-group in decision letter contains more than five reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</report>
     </rule>
   </pattern>
-  <pattern id="dec-letter-body-tests-pattern">
+    
+    <pattern id="dec-letter-body-tests-pattern">
     <rule context="sub-article[@article-type='referee-report']/body" id="dec-letter-body-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-1" test="child::*[1]/local-name() = 'boxed-text'" role="error" flag="dl-ar" id="dec-letter-body-test-1">First child element in decision letter is not boxed-text. This is certainly incorrect.</assert>
     </rule>
   </pattern>
-  <pattern id="dec-letter-body-p-tests-pattern">
+      
+    <pattern id="dec-letter-body-p-tests-pattern">
     <rule context="sub-article[@article-type='referee-report']/body//p" id="dec-letter-body-p-tests">  
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-2" test="contains(lower-case(.),'this paper was reviewed by review commons') and not(child::ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/') and (lower-case(.)='review commons')])" role="error" flag="dl-ar" id="dec-letter-body-test-2">The text 'Review Commons' in '<value-of select="."/>' must contain an embedded link pointing to https://www.reviewcommons.org/.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-3" test="contains(lower-case(.),'reviewed and recommended by peer community in evolutionary biology') and not(child::ext-link[matches(@xlink:href,'doi.org/10.24072/pci.evolbiol')])" role="error" flag="dl-ar" id="dec-letter-body-test-3">The decision letter indicates that this article was reviewed by PCI evol bio, but there is no doi link with the prefix '10.24072/pci.evolbiol' which must be incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="dec-letter-box-tests-pattern">
+    
+    <pattern id="dec-letter-box-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']/body/boxed-text[1]" id="dec-letter-box-tests">  
       <let name="permitted-text-1" value="'Our editorial process produces two outputs: i) public reviews designed to be posted alongside the preprint for the benefit of readers; ii) feedback on the manuscript for the authors, including requests for revisions, shown below.'"/>
       <let name="permitted-text-2" value="'Our editorial process produces two outputs: i) public reviews designed to be posted alongside the preprint for the benefit of readers; ii) feedback on the manuscript for the authors, including requests for revisions, shown below. We also include an acceptance summary that explains what the editors found interesting or important about the work.'"/>
@@ -1275,19 +1336,22 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-boxed-text-test-2" test="(.=($permitted-text-1,$permitted-text-2)) and not(descendant::ext-link[.='the preprint'])" role="error" flag="dl-ar" id="dec-letter-box-test-3">At the top of the decision letter, the text 'the preprint' must contain an embedded link to this article's preprint.</report>
     </rule>
   </pattern>
-  <pattern id="decision-missing-table-tests-pattern">
+    
+    <pattern id="decision-missing-table-tests-pattern">
     <rule context="sub-article[@article-type='referee-report']" id="decision-missing-table-tests">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#decision-missing-table-test" test="contains(.,'letter table') and not(descendant::table-wrap[label])" role="warning" flag="dl-ar" id="decision-missing-table-test">A decision letter table is referred to in the text, but there is no table in the decision letter with a label.</report>
     </rule>
   </pattern>
-  <pattern id="reply-front-tests-pattern">
+    
+    <pattern id="reply-front-tests-pattern">
     <rule context="sub-article[@article-type='author-comment']/front-stub" id="reply-front-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="reply-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
     </rule>
   </pattern>
-  <pattern id="reply-body-tests-pattern">
+    
+    <pattern id="reply-body-tests-pattern">
     <rule context="sub-article[@article-type='author-comment']/body" id="reply-body-tests">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-body-test-1" test="count(disp-quote[@content-type='editor-comment']) = 0" role="warning" flag="dl-ar" id="reply-body-test-1">author response doesn't contain a disp-quote. This is very likely to be incorrect. Please check the original file.</report>
@@ -1295,43 +1359,58 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-body-test-2" test="count(p) = 0" role="error" flag="dl-ar" id="reply-body-test-2">author response doesn't contain a p. This has to be incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="reply-disp-quote-tests-pattern">
+    
+    <pattern id="reply-disp-quote-tests-pattern">
     <rule context="sub-article[@article-type='author-comment']/body//disp-quote" id="reply-disp-quote-tests">
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-disp-quote-test-1" test="@content-type='editor-comment'" role="warning" flag="dl-ar" id="reply-disp-quote-test-1">disp-quote in author reply does not have @content-type='editor-comment'. This is almost certainly incorrect.</assert>
     </rule>
   </pattern>
-  <pattern id="reply-missing-disp-quote-tests-pattern">
+    
+    <pattern id="reply-missing-disp-quote-tests-pattern">
     <rule context="sub-article[@article-type='author-comment']/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-missing-disp-quote-test-1" test="(count(*)=1) and (child::italic) and ($free-text='')" role="warning" flag="dl-ar" id="reply-missing-disp-quote-test-1">para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly?</report>
     </rule>
   </pattern>
-  <pattern id="reply-missing-disp-quote-tests-2-pattern">
+    
+    <pattern id="reply-missing-disp-quote-tests-2-pattern">
     <rule context="sub-article[@article-type='author-comment']//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-missing-disp-quote-test-2" test="string-length(.) ge 50" role="warning" flag="dl-ar" id="reply-missing-disp-quote-test-2">A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '<value-of select="."/>' in '<value-of select="ancestor::*[local-name()='p'][1]"/>'</report>
     </rule>
   </pattern>
-  <pattern id="reply-missing-table-tests-pattern">
+    
+    <pattern id="reply-missing-table-tests-pattern">
     <rule context="sub-article[@article-type='author-comment']" id="reply-missing-table-tests">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-missing-table-test" test="contains(.,'response table') and not(descendant::table-wrap[label])" role="warning" flag="dl-ar" id="reply-missing-table-test">An author response table is referred to in the text, but there is no table in the response with a label.</report>
     </rule>
   </pattern>
-  <pattern id="sub-article-ext-link-tests-pattern">
+    
+    <pattern id="sub-article-ext-link-tests-pattern">
     <rule context="sub-article//ext-link" id="sub-article-ext-link-tests">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#paper-pile-test" test="contains(@xlink:href,'paperpile.com')" role="error" flag="dl-ar" id="paper-pile-test">In the <value-of select="if (ancestor::sub-article[@article-type='author-comment']) then 'author response' else 'decision letter'"/> the text '<value-of select="."/>' has an embedded hyperlink to <value-of select="@xlink:href"/>. The hyperlink should be removed (but the text retained).</report>
     </rule>
   </pattern>
-  <pattern id="anonymous-tests-pattern">
+  
+  <pattern id="sub-article-ref-p-tests-pattern">
+    <rule context="sub-article[@article-type='author-comment']/body/*[last()][name()='p']" id="sub-article-ref-p-tests">
+    
+    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#sub-article-ref-p-test" test="count(tokenize(lower-case(.),'doi\s?:')) gt 2" role="warning" flag="dl-ar" id="sub-article-ref-p-test">The last paragraph of the author response looks like it contains various references. Should each reference be split out into its own paragraph? <value-of select="."/>
+      </report>
+  </rule>
+  </pattern>
+    
+    <pattern id="anonymous-tests-pattern">
     <rule context="anonymous" id="anonymous-tests">
       
       <assert test="parent::contrib[role[@specific-use='referee']]" role="error" flag="dl-ar" id="anonymous-test-1">The anonymous element can only be used for a reviewer who has opted not to reveal their name. It cannot be placed as a child of <value-of select="if (parent::contrib) then 'a non-reviewer contrib' else parent::*/name()"/>.</assert>
     </rule>
   </pattern>
+  
   
   
   
@@ -1385,6 +1464,7 @@
      
    </rule>
   </pattern>
+  
   
   
   

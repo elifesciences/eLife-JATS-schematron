@@ -189,6 +189,35 @@
     <xsl:param name="string" as="xs:string"/>
     <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨıɉꝁłøɍŧɏƶ','bcdeghiijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
+  <xsl:function name="e:ref-list-value" as="xs:string">
+    <xsl:param name="ref"/>
+    <xsl:choose>
+      <xsl:when test="$ref/element-citation[1]/person-group[1]/* and $ref/element-citation[1]/year">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' ',           $ref/element-citation[1]/year[1],           ' ',           string-join(for $x in $ref/element-citation[1]/person-group[1]/*[position()=(2,3)]           return e:get-collab-or-surname($x),' ')           )"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/person-group[1]/*">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' 9999 ',           string-join(for $x in $ref/element-citation[1]/person-group[1]/*[position()=(2,3)]           return e:get-collab-or-surname($x),' ')           )"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/year">
+        <xsl:value-of select="concat(' ',$ref/element-citation[1]/year[1])"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="'zzzzz 9999'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  <xsl:function name="e:get-collab-or-surname" as="xs:string?">
+    <xsl:param name="collab-or-name"/>
+    <xsl:choose>
+      <xsl:when test="$collab-or-name/name()='collab'">
+        <xsl:value-of select="e:stripDiacritics(lower-case($collab-or-name))"/>
+      </xsl:when>
+      <xsl:when test="$collab-or-name/surname">
+        <xsl:value-of select="e:stripDiacritics(lower-case($collab-or-name/surname[1]))"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
   <xsl:function name="e:cite-name-text" as="xs:string">
     <xsl:param name="person-group"/>
     <xsl:choose>
@@ -338,6 +367,10 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>
+  </xsl:function>
+  <xsl:function name="e:get-aff-display" as="xs:string">
+    <xsl:param name="aff" as="element(aff)"/>
+    <xsl:value-of select="string-join(for $x in $aff/*[name()!='label'] return if ($x/name()='institution-wrap') then string-join($x/institution,', ') else $x,', ')"/>
   </xsl:function>
   <xsl:function name="e:isbn-sum" as="xs:integer">
     <xsl:param name="s" as="xs:string"/>
@@ -1013,11 +1046,12 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="dec-letter-auth-response">
-    <rule context="sub-article/front-stub/contrib-group/contrib" id="sub-article-contrib-tests">
-      <assert test="name or anonymous or collab" role="error" flag="dl-ar" id="sub-article-contrib-test-2">sub-article contrib must have either a child name or a child anonymous element.</assert>
-    </rule>
-  </pattern>
+  <rule context="sub-article/front-stub/contrib-group/contrib" id="sub-article-contrib-tests">
+    <assert test="@contrib-type='author'" role="error" flag="dl-ar" id="sub-article-contrib-test-1">sub-article contrib must have the attribute contrib-type='author'.</assert>
+    <assert test="name or anonymous or collab" role="error" flag="dl-ar" id="sub-article-contrib-test-2">sub-article contrib must have either a child name or a child anonymous element.</assert>
+    <report test="(name and anonymous) or (collab and anonymous) or (name and collab)" role="error" flag="dl-ar" id="sub-article-contrib-test-3">sub-article contrib can only have a child name element or a child anonymous element or a child collab element (with descendant group members as required), it cannot have more than one of these elements. This has <value-of select="string-join(for $x in *[name()=('name','anonymous','collab')] return concat('a ',$x/name()),' and ')"/>.</report>
+    <assert test="role" role="error" flag="dl-ar" id="sub-article-contrib-test-4">sub-article contrib must have a child role element.</assert>
+  </rule>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article/front-stub/contrib-group/contrib" role="error" id="sub-article-contrib-tests-xspec-assert">sub-article/front-stub/contrib-group/contrib must be present.</assert>

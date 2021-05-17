@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="table-xref-conformity-5.sch"?>
+<!--Context: xref[@ref-type='table']
+Test: report    (contains($rid,'sa')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–'))
+Message:  - Citation content does not match what it directs to. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article>
+      <xref ref-type="table" rid="sa2table1">Author response image 2.</xref>
+      <table-wrap id="sa2table1"/>
+    </sub-article>
+  </article>
+</root>

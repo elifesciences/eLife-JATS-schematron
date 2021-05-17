@@ -189,6 +189,35 @@
     <xsl:param name="string" as="xs:string"/>
     <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨıɉꝁłøɍŧɏƶ','bcdeghiijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
+  <xsl:function name="e:ref-list-value" as="xs:string">
+    <xsl:param name="ref"/>
+    <xsl:choose>
+      <xsl:when test="$ref/element-citation[1]/person-group[1]/* and $ref/element-citation[1]/year">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' ',           $ref/element-citation[1]/year[1],           ' ',           string-join(for $x in $ref/element-citation[1]/person-group[1]/*[position()=(2,3)]           return e:get-collab-or-surname($x),' ')           )"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/person-group[1]/*">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' 9999 ',           string-join(for $x in $ref/element-citation[1]/person-group[1]/*[position()=(2,3)]           return e:get-collab-or-surname($x),' ')           )"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/year">
+        <xsl:value-of select="concat(' ',$ref/element-citation[1]/year[1])"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="'zzzzz 9999'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  <xsl:function name="e:get-collab-or-surname" as="xs:string?">
+    <xsl:param name="collab-or-name"/>
+    <xsl:choose>
+      <xsl:when test="$collab-or-name/name()='collab'">
+        <xsl:value-of select="e:stripDiacritics(lower-case($collab-or-name))"/>
+      </xsl:when>
+      <xsl:when test="$collab-or-name/surname">
+        <xsl:value-of select="e:stripDiacritics(lower-case($collab-or-name/surname[1]))"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
   <xsl:function name="e:cite-name-text" as="xs:string">
     <xsl:param name="person-group"/>
     <xsl:choose>
@@ -338,6 +367,10 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>
+  </xsl:function>
+  <xsl:function name="e:get-aff-display" as="xs:string">
+    <xsl:param name="aff" as="element(aff)"/>
+    <xsl:value-of select="string-join(for $x in $aff/*[name()!='label'] return if ($x/name()='institution-wrap') then string-join($x/institution,', ') else $x,', ')"/>
   </xsl:function>
   <xsl:function name="e:isbn-sum" as="xs:integer">
     <xsl:param name="s" as="xs:string"/>
@@ -1021,7 +1054,7 @@
       <let name="exceptions" value="('Insight',$notice-display-types)"/>
       <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report','Correction','Retraction',$features-subj)"/>
       <let name="version-type" value="ancestor::article/@specific-use"/>
-      <report test="not($article-type = $notice-article-types) and count(history) != 1" role="error" id="test-history-presence">There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/>
+      <report test="not($article-type = ($notice-article-types,'article-commentary')) and count(history) != 1" role="error" id="test-history-presence">There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/>
       </report>
     </rule>
   </pattern>

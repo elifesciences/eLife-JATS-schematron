@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="aff-inst-wrap-2.sch"?>
+<!--Context: aff/institution-wrap
+Test: assert    count(institution-id[@institution-id-type='ror']) = 1
+Message: institution-wrap must contain a single institution-id element with the attribute institution-id-type="ror". This one has . If there is no ROR id for the institution, then it should be captured as an institution element as a child of aff. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <aff>
+      <institution-wrap/>
+    </aff>
+  </article>
+</root>

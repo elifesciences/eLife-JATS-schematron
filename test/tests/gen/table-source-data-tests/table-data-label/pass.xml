@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="table-data-label.sch"?>
+<!--Context: table-wrap//supplementary-material[contains(label[1],' data ')]
+Test: assert    $label = concat($table-label,'—source data ',$pos,'.')
+Message: Table source data label () is incorrect based on its position. Either it has been placed in the incorrect place, or the label is incorrect. Should the label be  instead? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <table-wrap>
+      <label>Table 1.</label>
+      <caption>
+        <p><supplementary-material id="table1data1"><label>Table 1—source data 1.</label><media mimetype="application" mime-subtype="xlsx" xlink:href="eLife.65897sdata1.xlsx"/></supplementary-material></p>
+      </caption>
+    </table-wrap>
+  </article>
+</root>

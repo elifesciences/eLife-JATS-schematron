@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="ror-id-2.sch"?>
+<!--Context: institution-id[@institution-id-type='ror']
+Test: assert    matches(.,'^https://ror.org/[a-z0-9]+$')
+Message: An institution-id[@institution-id-type='ror'] element must contain a ROR id URI.  is not a ROR id URI. -->
+<root>
+  <article>
+    <aff>
+      <institution-wrap>
+        <institution-id institution-id-type="ror">https://ror.org/01an7q238</institution-id>
+        <institution>University of California, Berkeley</institution>
+      </institution-wrap>
+      <city>Berkeley</city>
+      <state>California</state>
+      <country country="US">United States</country>
+    </aff>
+  </article>
+</root>

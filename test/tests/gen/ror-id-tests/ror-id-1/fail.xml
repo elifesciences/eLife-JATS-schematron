@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="ror-id-1.sch"?>
+<!--Context: institution-id[@institution-id-type='ror']
+Test: assert    parent::institution-wrap
+Message: An institution-id[@institution-id-type='ror'] element must be captured within institution-wrap. This one () is not. -->
+<root>
+  <article>
+    <aff>
+      <institution-id institution-id-type="ror">https://ror.org/01an7q238</institution-id>
+      <institution-wrap>
+        <institution>University of California, Berkeley</institution>
+      </institution-wrap>
+      <city>Berkeley</city>
+      <state>California</state>
+      <country country="US">United States</country>
+    </aff>
+  </article>
+</root>

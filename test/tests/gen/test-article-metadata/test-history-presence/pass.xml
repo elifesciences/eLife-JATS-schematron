@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="test-history-presence.sch"?>
 <!--Context: article/front/article-meta
-Test: report    not($article-type = $notice-article-types) and count(history) != 1
+Test: report    not($article-type = ($notice-article-types,'article-commentary')) and count(history) != 1
 Message: There must be one and only one history element in the article-meta. Currently there are  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">

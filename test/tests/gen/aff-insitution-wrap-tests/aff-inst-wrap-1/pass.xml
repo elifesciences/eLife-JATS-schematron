@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="aff-inst-wrap-1.sch"?>
+<!--Context: aff/institution-wrap
+Test: assert    institution
+Message: institution-wrap must contain an institution element. This one does not. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <aff>
+      <institution-wrap>
+        <institution/>
+      </institution-wrap>
+    </aff>
+  </article>
+</root>

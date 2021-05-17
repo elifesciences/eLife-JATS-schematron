@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="gen-aff-test-6.sch"?>
 <!--Context: aff
 Test: report    text()
-Message: aff elements cannot contain text. They can only contain elements (label, institution, city, country). This one () contains the text '' -->
+Message: aff elements cannot contain text. They can only contain elements (label, institution or institution-wrap, city, country). This one () contains the text '' -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <aff id="aff1"><label>1</label><institution>The Donnelly Centre, University of Toronto</institution><city>Toronto</city><country>Canada</country></aff>
