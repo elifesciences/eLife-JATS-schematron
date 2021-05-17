@@ -1018,7 +1018,7 @@
     <rule context="article-meta/custom-meta-group/custom-meta" id="custom-meta-tests">
       <let name="type" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="pos" value="count(parent::custom-meta-group/custom-meta) - count(following-sibling::custom-meta)"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/impact-statement#custom-meta-test-3" test="count(meta-value) = 1" role="error" id="custom-meta-test-3">One meta-value must be present in custom-meta.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#custom-meta-test-3" test="count(meta-value) = 1" role="error" id="custom-meta-test-3">One meta-value must be present in custom-meta.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
