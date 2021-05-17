@@ -6744,6 +6744,8 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#handbook-presence" test="contains($uc,'HANDBOOK')" role="error" id="handbook-presence">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#elife-check" test="starts-with($doi,'10.7554/eLife.') and (. != 'eLife')" role="error" id="elife-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has an eLife doi <value-of select="$doi"/>, but the journal name is '<value-of select="."/>', when it should be 'eLife'. Either the journal name needs updating to eLife, or the doi is incorrect.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-preprint-test" test="matches($uc,'BIORXIV|ARXIV|CHEMRXIV|MEDRXIV|PEERJ PREPRINTS|PSYARXIV|PALEORXIV|PREPRINTS|ZENODO')" role="error" id="journal-preprint-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a journal, but has a source <value-of select="."/>, which suggests that it is a preprint. Either this needs to be tagged as a preprint, or the source is incorrect/outdated.</report>
     </rule>
   </pattern>
   <pattern id="ref-article-title-tests-pattern">
