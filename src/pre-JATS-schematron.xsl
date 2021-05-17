@@ -19888,11 +19888,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-high-2-2] This: <xsl:text/>
-                  <xsl:value-of select="$kriya1-order-value"/>
-                  <xsl:text/>. Before: <xsl:text/>
-                  <xsl:value-of select="$preceding-ref-kriya1-order-value"/>
-                  <xsl:text/> The order of &lt;element-citation&gt;s in the reference list should be name and date, arranged alphabetically by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of two authors, the sequence should be arranged by both authors' surnames, then date. For three or more authors, the sequence should be the first author's surname, then date. Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-high-2-2] The order of &lt;element-citation&gt;s in the reference list should be name and date, arranged alphabetically by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of two authors, the sequence should be arranged by both authors' surnames, then date. For three or more authors, the sequence should be the first author's surname, then date. Reference '<xsl:text/>
                   <xsl:value-of select="@id"/>
                   <xsl:text/>' appears to be in a different order.</svrl:text>
             </svrl:failed-assert>

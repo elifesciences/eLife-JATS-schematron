@@ -4118,7 +4118,7 @@
       <let name="kriya1-order-value" value="e:ref-list-string2(self::*)"/>
       <let name="preceding-ref-kriya1-order-value" value="e:ref-list-string2(preceding-sibling::ref[1])"/>
       
-      <assert test="($order-value gt $preceding-ref-order-value) or ($kriya1-order-value gt $preceding-ref-kriya1-order-value)" role="error" id="err-elem-cit-high-2-2">[err-elem-cit-high-2-2] This: <value-of select="$kriya1-order-value"/>. Before: <value-of select="$preceding-ref-kriya1-order-value"/> The order of &lt;element-citation&gt;s in the reference list should be name and date, arranged alphabetically by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of two authors, the sequence should be arranged by both authors' surnames, then date. For three or more authors, the sequence should be the first author's surname, then date. Reference '<value-of select="@id"/>' appears to be in a different order.</assert>
+      <assert test="($order-value gt $preceding-ref-order-value) or ($kriya1-order-value gt $preceding-ref-kriya1-order-value)" role="error" id="err-elem-cit-high-2-2">[err-elem-cit-high-2-2] The order of &lt;element-citation&gt;s in the reference list should be name and date, arranged alphabetically by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of two authors, the sequence should be arranged by both authors' surnames, then date. For three or more authors, the sequence should be the first author's surname, then date. Reference '<value-of select="@id"/>' appears to be in a different order.</assert>
     </rule>
   </pattern>
   <pattern id="ref-pattern">
