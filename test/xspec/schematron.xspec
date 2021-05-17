@@ -14913,16 +14913,6 @@
         <x:expect-report id="elife-check" role="error"/>
         <x:expect-not-assert id="journal-title-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="journal-preprint-test-pass">
-        <x:context href="../tests/gen/journal-title-tests/journal-preprint-test/pass.xml"/>
-        <x:expect-not-report id="journal-preprint-test" role="error"/>
-        <x:expect-not-assert id="journal-title-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="journal-preprint-test-fail">
-        <x:context href="../tests/gen/journal-title-tests/journal-preprint-test/fail.xml"/>
-        <x:expect-report id="journal-preprint-test" role="error"/>
-        <x:expect-not-assert id="journal-title-tests-xspec-assert" role="error"/>
-      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-article-title-tests">
       <x:scenario label="article-title-fullstop-check-1-pass">

@@ -31401,23 +31401,6 @@
                <xsl:text/>', when it should be 'eLife'. Either the journal name needs updating to eLife, or the doi is incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT error-->
-      <xsl:if test="matches($uc,'BIORXIV|ARXIV|CHEMRXIV|MEDRXIV|PEERJ PREPRINTS|PSYARXIV|PALEORXIV|PREPRINTS|ZENODO')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($uc,'BIORXIV|ARXIV|CHEMRXIV|MEDRXIV|PEERJ PREPRINTS|PSYARXIV|PALEORXIV|PREPRINTS|ZENODO')">
-            <xsl:attribute name="id">journal-preprint-test</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-preprint-test</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[journal-preprint-test] ref '<xsl:text/>
-               <xsl:value-of select="ancestor::ref/@id"/>
-               <xsl:text/>' is tagged as a journal, but has a source <xsl:text/>
-               <xsl:value-of select="."/>
-               <xsl:text/>, which suggests that it is a preprint. Either this needs to be tagged as a preprint, or the source is incorrect/outdated.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
       <xsl:apply-templates select="*" mode="M415"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M415"/>
@@ -31599,8 +31582,8 @@
       </xsl:choose>
 
 		    <!--REPORT error-->
-      <xsl:if test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^psyarxiv$|^paleorxiv$|^preprints$')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^psyarxiv$|^paleorxiv$|^preprints$')">
+      <xsl:if test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^medrxiv$|^psyarxiv$|^paleorxiv$|^preprints$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^medrxiv$|^psyarxiv$|^paleorxiv$|^preprints$')">
             <xsl:attribute name="id">journal-preprint-check</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-preprint-check</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
