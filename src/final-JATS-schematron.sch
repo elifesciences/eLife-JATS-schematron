@@ -1582,7 +1582,7 @@
 		  <let name="allowed-contrib-blocks-features" value="($allowed-contrib-blocks, 'bio', 'role')"/>
 		
 		  <!-- Exception included for group authors - subject to change. The capture here may use xrefs instead of affs - if it does then the else if param can simply be removed. -->
-		  <assert test="if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features]       else if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]       else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features]       else self::*[local-name() = $allowed-contrib-blocks]" role="error" id="author-children-test">[author-children-test] <value-of select="self::*/local-name()"/> is not allowed as a child of author.</assert>
+		  <assert test="if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]       else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features]       else if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features]       else self::*[local-name() = $allowed-contrib-blocks]" role="error" id="author-children-test">[author-children-test] <value-of select="self::*/local-name()"/> is not allowed as a child of author.</assert>
 		
 		</rule>
   </pattern>
@@ -5324,7 +5324,7 @@
   <pattern id="feature-author-tests-pattern">
     <rule context="article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']" id="feature-author-tests">
      
-     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-author-test-1" test="bio" role="error" id="feature-author-test-1">[feature-author-test-1] Author must contain child bio in feature content.</assert>
+     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-author-test-1" test="collab or ancestor::collab or bio" role="error" id="feature-author-test-1">[feature-author-test-1] Author must contain child bio in feature content.</assert>
    </rule>
   </pattern>
   <pattern id="feature-bio-tests-pattern">

@@ -7435,9 +7435,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features]       else if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]       else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features]       else self::*[local-name() = $allowed-contrib-blocks]"/>
+         <xsl:when test="if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]       else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features]       else if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features]       else self::*[local-name() = $allowed-contrib-blocks]"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features] else if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')] else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features] else self::*[local-name() = $allowed-contrib-blocks]">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')] else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features] else if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features] else self::*[local-name() = $allowed-contrib-blocks]">
                <xsl:attribute name="id">author-children-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
@@ -24892,9 +24892,9 @@
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="bio"/>
+         <xsl:when test="collab or ancestor::collab or bio"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="bio">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="collab or ancestor::collab or bio">
                <xsl:attribute name="id">feature-author-test-1</xsl:attribute>
                <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-author-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
