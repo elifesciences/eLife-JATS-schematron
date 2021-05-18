@@ -175,6 +175,55 @@
     <xsl:param name="string" as="xs:string"/>
     <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨıɉꝁłøɍŧɏƶ','bcdeghiijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
+  <xsl:function name="e:ref-list-string" as="xs:string">
+    <xsl:param name="ref"/>
+    <xsl:choose>
+      <xsl:when test="$ref/element-citation[1]/person-group[1]/* and $ref/element-citation[1]/year">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' ',           $ref/element-citation[1]/year[1],           ' ',           string-join(for $x in $ref/element-citation[1]/person-group[1]/*[position()=(2,3)]           return e:get-collab-or-surname($x),' ')           )"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/person-group[1]/*">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' 9999 ',           string-join(for $x in $ref/element-citation[1]/person-group[1]/*[position()=(2,3)]           return e:get-collab-or-surname($x),' ')           )"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/year">
+        <xsl:value-of select="concat(' ',$ref/element-citation[1]/year[1])"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="'zzzzz 9999'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  <xsl:function name="e:ref-list-string2" as="xs:string">
+    <xsl:param name="ref"/>
+    <xsl:choose>
+      <xsl:when test="$ref/element-citation[1]/year and count($ref/element-citation[1]/person-group[1]/*) = 2">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' ',           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[2]),           ' ',           $ref/element-citation[1]/year[1])"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/person-group[1]/* and $ref/element-citation[1]/year">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' ',           $ref/element-citation[1]/year[1])"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/person-group[1]/*">
+        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' 9999 ')"/>
+      </xsl:when>
+      <xsl:when test="$ref/element-citation/year">
+        <xsl:value-of select="concat(' ',$ref/element-citation[1]/year[1])"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="'zzzzz 9999'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  <xsl:function name="e:get-collab-or-surname" as="xs:string?">
+    <xsl:param name="collab-or-name"/>
+    <xsl:choose>
+      <xsl:when test="$collab-or-name/name()='collab'">
+        <xsl:value-of select="e:stripDiacritics(lower-case($collab-or-name))"/>
+      </xsl:when>
+      <xsl:when test="$collab-or-name/surname">
+        <xsl:value-of select="e:stripDiacritics(lower-case($collab-or-name/surname[1]))"/>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
+  </xsl:function>
   <xsl:function name="e:cite-name-text" as="xs:string">
     <xsl:param name="person-group"/>
     <xsl:choose>
@@ -965,15 +1014,17 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="body">
-    <rule context="article[descendant::article-meta//abstract[not(@abstract-type) and sec]]/body/sec" id="medicine-section-tests">
-      <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
-      <report test="$pos=3 and not(title[1]='Results')" role="warning" id="medicine-results">The third top level section in a Medicine article should be 'Results'. This one is '<value-of select="title[1]"/>'.</report>
+  <pattern id="house-style">
+    <rule context="ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'gitlab.com')]" id="flag-gitlab">
+      <let name="l" value="lower-case(@xlink:href)"/>
+      <let name="substring" value="substring-after($l,'gitlab.com/')"/>
+      <let name="owner-repo" value="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>
+      <assert test="preceding::ext-link[contains(lower-case(@xlink:href),$owner-repo)] or ancestor::article//element-citation[@publication-type=('software','data') and (contains(lower-case(ext-link[1]),$owner-repo) or  contains(lower-case(pub-id[1]/@xlink:href),$owner-repo))]" role="warning" id="gitlab-no-citation">This GitLab link - <value-of select="@xlink:href"/> - is included in the text, but there is no software reference for it. Please add a software reference or, in the event that all the information is not available, query the authors for the reference details.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[descendant::article-meta//abstract[not(@abstract-type) and sec]]/body/sec" role="error" id="medicine-section-tests-xspec-assert">article[descendant::article-meta//abstract[not(@abstract-type) and sec]]/body/sec must be present.</assert>
+      <assert test="descendant::ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'gitlab.com')]" role="error" id="flag-gitlab-xspec-assert">ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'gitlab.com')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

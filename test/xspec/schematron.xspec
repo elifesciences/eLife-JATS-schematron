@@ -17386,6 +17386,30 @@
         <x:expect-not-assert id="break-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="flag-github">
+      <x:scenario label="github-no-citation-pass">
+        <x:context href="../tests/gen/flag-github/github-no-citation/pass.xml"/>
+        <x:expect-not-assert id="github-no-citation" role="warning"/>
+        <x:expect-not-assert id="flag-github-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="github-no-citation-fail">
+        <x:context href="../tests/gen/flag-github/github-no-citation/fail.xml"/>
+        <x:expect-assert id="github-no-citation" role="warning"/>
+        <x:expect-not-assert id="flag-github-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="flag-gitlab">
+      <x:scenario label="gitlab-no-citation-pass">
+        <x:context href="../tests/gen/flag-gitlab/gitlab-no-citation/pass.xml"/>
+        <x:expect-not-assert id="gitlab-no-citation" role="warning"/>
+        <x:expect-not-assert id="flag-gitlab-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="gitlab-no-citation-fail">
+        <x:context href="../tests/gen/flag-gitlab/gitlab-no-citation/fail.xml"/>
+        <x:expect-assert id="gitlab-no-citation" role="warning"/>
+        <x:expect-not-assert id="flag-gitlab-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="doi-journal-ref-checks">
       <x:scenario label="journal-doi-test-1-pass">
         <x:context href="../tests/gen/doi-journal-ref-checks/journal-doi-test-1/pass.xml"/>

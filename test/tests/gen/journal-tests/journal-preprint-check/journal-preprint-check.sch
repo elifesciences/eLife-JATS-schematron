@@ -1016,7 +1016,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='journal']" id="journal-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-preprint-check" test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^psyarxiv$|^paleorxiv$|^preprints$')" role="error" id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source[1]"/>, but it is captured as a journal not a preprint.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-preprint-check" test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^medrxiv$|^psyarxiv$|^paleorxiv$|^preprints$')" role="error" id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source[1]"/>, but it is captured as a journal not a preprint.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

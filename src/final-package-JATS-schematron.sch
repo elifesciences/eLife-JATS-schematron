@@ -6777,7 +6777,7 @@
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#volume-assert" test="volume" role="warning" id="volume-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a volume. Is this right?</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-preprint-check" test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^psyarxiv$|^paleorxiv$|^preprints$')" role="error" id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source[1]"/>, but it is captured as a journal not a preprint.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-preprint-check" test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^medrxiv$|^psyarxiv$|^paleorxiv$|^preprints$')" role="error" id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source[1]"/>, but it is captured as a journal not a preprint.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#elife-ref-check" test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5}$|^10.7554/eLife\.\d{5}\.\d{3}$|^10.7554/eLife\.\d{5}\.sa[12]$'))" role="error" id="elife-ref-check">ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source[1]"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.</report>
       
@@ -7535,6 +7535,26 @@
     <rule context="break" id="break-tests">
       
       <assert test="ancestor::td or ancestor::th" role="error" id="break-placement">The break element is only permitted as a child (or descendant) of a table cell. This one is placed elsewhere (<value-of select="concat(string-join(for $x in ancestor::* return $x/name(),'/'),'/',name())"/>).</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="flag-github-pattern">
+    <rule context="ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'github.com')]" id="flag-github">
+      <let name="l" value="lower-case(@xlink:href)"/>
+      <let name="substring" value="substring-after($l,'github.com/')"/>
+      <let name="owner-repo" value="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>
+      
+      <assert test="preceding::ext-link[contains(lower-case(@xlink:href),$owner-repo)] or ancestor::article//element-citation[@publication-type=('software','data') and (contains(lower-case(ext-link[1]),$owner-repo) or  contains(lower-case(pub-id[1]/@xlink:href),$owner-repo))]" role="warning" id="github-no-citation">This GitHub link - <value-of select="@xlink:href"/> - is included in the text, but there is no software reference for it. Please add a software reference or, in the event that all the information is not available, query the authors for the reference details.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="flag-gitlab-pattern">
+    <rule context="ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'gitlab.com')]" id="flag-gitlab">
+      <let name="l" value="lower-case(@xlink:href)"/>
+      <let name="substring" value="substring-after($l,'gitlab.com/')"/>
+      <let name="owner-repo" value="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>
+      
+      <assert test="preceding::ext-link[contains(lower-case(@xlink:href),$owner-repo)] or ancestor::article//element-citation[@publication-type=('software','data') and (contains(lower-case(ext-link[1]),$owner-repo) or  contains(lower-case(pub-id[1]/@xlink:href),$owner-repo))]" role="warning" id="gitlab-no-citation">This GitLab link - <value-of select="@xlink:href"/> - is included in the text, but there is no software reference for it. Please add a software reference or, in the event that all the information is not available, query the authors for the reference details.</assert>
       
     </rule>
   </pattern>
