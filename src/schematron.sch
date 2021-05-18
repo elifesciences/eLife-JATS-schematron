@@ -11206,6 +11206,30 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="break-placement">The break element is only permitted as a child (or descendant) of a table cell. This one is placed elsewhere (<value-of select="concat(string-join(for $x in ancestor::* return $x/name(),'/'),'/',name())"/>).</assert>
       
     </rule>
+    
+    <rule context="ext-link[not(ancestor::sub-article or ancestor::ref) and contains(lower-case(@xlink:href),'github.com')]" 
+      id="flag-github">
+      <let name="l" value="lower-case(@xlink:href)"/>
+      <let name="substring" value="substring-after($l,'github.com/')"/>
+      <let name="owner-repo" value="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>
+      
+      <assert test="preceding::ext-link[contains(lower-case(@xlink:href),$owner-repo)] or ancestor::article//element-citation[@publication-type=('software','data') and (contains(lower-case(ext-link[1]),$owner-repo) or  contains(lower-case(pub-id[1]/@xlink:href),$owner-repo))]" 
+        role="warning" 
+        id="github-no-citation">This GitHub link - <value-of select="@xlink:href"/> - is included in the text, but there is no software reference for it. Please add a software reference or, in the event that all the information is not available, query the authors for the reference details.</assert>
+      
+    </rule>
+    
+    <rule context="ext-link[not(ancestor::sub-article or ancestor::ref) and contains(lower-case(@xlink:href),'gitlab.com')]" 
+      id="flag-gitlab">
+      <let name="l" value="lower-case(@xlink:href)"/>
+      <let name="substring" value="substring-after($l,'gitlab.com/')"/>
+      <let name="owner-repo" value="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>
+      
+      <assert test="preceding::ext-link[contains(lower-case(@xlink:href),$owner-repo)] or ancestor::article//element-citation[@publication-type=('software','data') and (contains(lower-case(ext-link[1]),$owner-repo) or  contains(lower-case(pub-id[1]/@xlink:href),$owner-repo))]" 
+        role="warning" 
+        id="gitlab-no-citation">This GitLab link - <value-of select="@xlink:href"/> - is included in the text, but there is no software reference for it. Please add a software reference or, in the event that all the information is not available, query the authors for the reference details.</assert>
+      
+    </rule>
   </pattern>
   
   <pattern id="doi-ref-checks">

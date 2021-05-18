@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="gitlab-no-citation.sch"?>
+<!--Context: ext-link[not(ancestor::sub-article or ancestor::ref) and contains(lower-case(@xlink:href),'gitlab.com')]
+Test: assert    preceding::ext-link[contains(lower-case(@xlink:href),$owner-repo)] or ancestor::article//element-citation[@publication-type=('software','data') and (contains(lower-case(ext-link[1]),$owner-repo) or contains(lower-case(pub-id[1]/@xlink:href),$owner-repo))]
+Message: This GitLab link -  - is included in the text, but there is no software reference for it. Please add a software reference or, in the event that all the information is not available, query the authors for the reference details. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <ext-link ext-link-type="uri" xlink:href="https://gitlab.com/example/example">https://gitlab.com/example/example</ext-link>
+      <ext-link ext-link-type="uri" xlink:href="https://gitlab.com/example/example">https://gitlab.com/example/example</ext-link>
+    </body>
+    <back>
+      <ref>
+        <element-citation publication-type="software"><ext-link ext-link-type="uri" xlink:href="https://gitlab.com/example/example">https://gitlab.com/example/example</ext-link></element-citation>
+      </ref>
+    </back>
+  </article>
+</root>
