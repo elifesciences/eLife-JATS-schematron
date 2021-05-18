@@ -7179,7 +7179,7 @@
     </rule>
   </pattern>
   <pattern id="flag-github-pattern">
-    <rule context="ext-link[not(ancestor::sub-article or ancestor::ref) and contains(lower-case(@xlink:href),'github.com')]" id="flag-github">
+    <rule context="ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'github.com')]" id="flag-github">
       <let name="l" value="lower-case(@xlink:href)"/>
       <let name="substring" value="substring-after($l,'github.com/')"/>
       <let name="owner-repo" value="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>
@@ -7189,7 +7189,7 @@
     </rule>
   </pattern>
   <pattern id="flag-gitlab-pattern">
-    <rule context="ext-link[not(ancestor::sub-article or ancestor::ref) and contains(lower-case(@xlink:href),'gitlab.com')]" id="flag-gitlab">
+    <rule context="ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'gitlab.com')]" id="flag-gitlab">
       <let name="l" value="lower-case(@xlink:href)"/>
       <let name="substring" value="substring-after($l,'gitlab.com/')"/>
       <let name="owner-repo" value="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>

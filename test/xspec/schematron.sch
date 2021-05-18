@@ -7558,7 +7558,7 @@
     </rule>
   </pattern>
   <pattern id="flag-github-pattern">
-    <rule context="ext-link[not(ancestor::sub-article or ancestor::ref) and contains(lower-case(@xlink:href),'github.com')]" id="flag-github">
+    <rule context="ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'github.com')]" id="flag-github">
       <let name="l" value="lower-case(@xlink:href)"/>
       <let name="substring" value="substring-after($l,'github.com/')"/>
       <let name="owner-repo" value="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>
@@ -7568,7 +7568,7 @@
     </rule>
   </pattern>
   <pattern id="flag-gitlab-pattern">
-    <rule context="ext-link[not(ancestor::sub-article or ancestor::ref) and contains(lower-case(@xlink:href),'gitlab.com')]" id="flag-gitlab">
+    <rule context="ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'gitlab.com')]" id="flag-gitlab">
       <let name="l" value="lower-case(@xlink:href)"/>
       <let name="substring" value="substring-after($l,'gitlab.com/')"/>
       <let name="owner-repo" value="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>
@@ -8390,8 +8390,8 @@
       <assert test="descendant::italic[matches(lower-case(.),$org-regex)]" role="error" id="italic-org-tests-xspec-assert">italic[matches(lower-case(.),$org-regex)] must be present.</assert>
       <assert test="descendant::sub or descendant::sup" role="error" id="sub-sup-tests-xspec-assert">sub|sup must be present.</assert>
       <assert test="descendant::break" role="error" id="break-tests-xspec-assert">break must be present.</assert>
-      <assert test="descendant::ext-link[not(ancestor::sub-article or ancestor::ref) and contains(lower-case(@xlink:href),'github.com')]" role="error" id="flag-github-xspec-assert">ext-link[not(ancestor::sub-article or ancestor::ref) and contains(lower-case(@xlink:href),'github.com')] must be present.</assert>
-      <assert test="descendant::ext-link[not(ancestor::sub-article or ancestor::ref) and contains(lower-case(@xlink:href),'gitlab.com')]" role="error" id="flag-gitlab-xspec-assert">ext-link[not(ancestor::sub-article or ancestor::ref) and contains(lower-case(@xlink:href),'gitlab.com')] must be present.</assert>
+      <assert test="descendant::ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'github.com')]" role="error" id="flag-github-xspec-assert">ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'github.com')] must be present.</assert>
+      <assert test="descendant::ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'gitlab.com')]" role="error" id="flag-gitlab-xspec-assert">ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'gitlab.com')] must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" role="error" id="doi-journal-ref-checks-xspec-assert">element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source] must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name]" role="error" id="doi-book-ref-checks-xspec-assert">element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name] must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='software') and year and source]" role="error" id="doi-software-ref-checks-xspec-assert">element-citation[(@publication-type='software') and year and source] must be present.</assert>

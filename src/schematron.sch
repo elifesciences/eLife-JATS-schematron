@@ -11207,7 +11207,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
     </rule>
     
-    <rule context="ext-link[not(ancestor::sub-article or ancestor::ref) and contains(lower-case(@xlink:href),'github.com')]" 
+    <rule context="ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'github.com')]" 
       id="flag-github">
       <let name="l" value="lower-case(@xlink:href)"/>
       <let name="substring" value="substring-after($l,'github.com/')"/>
@@ -11219,7 +11219,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
     </rule>
     
-    <rule context="ext-link[not(ancestor::sub-article or ancestor::ref) and contains(lower-case(@xlink:href),'gitlab.com')]" 
+    <rule context="ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'gitlab.com')]" 
       id="flag-gitlab">
       <let name="l" value="lower-case(@xlink:href)"/>
       <let name="substring" value="substring-after($l,'gitlab.com/')"/>

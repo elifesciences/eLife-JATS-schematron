@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="github-no-citation.sch"?>
-<!--Context: ext-link[not(ancestor::sub-article or ancestor::ref) and contains(lower-case(@xlink:href),'github.com')]
+<!--Context: ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'github.com')]
 Test: assert    preceding::ext-link[contains(lower-case(@xlink:href),$owner-repo)] or ancestor::article//element-citation[@publication-type=('software','data') and (contains(lower-case(ext-link[1]),$owner-repo) or contains(lower-case(pub-id[1]/@xlink:href),$owner-repo))]
 Message: This GitHub link -  - is included in the text, but there is no software reference for it. Please add a software reference or, in the event that all the information is not available, query the authors for the reference details. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

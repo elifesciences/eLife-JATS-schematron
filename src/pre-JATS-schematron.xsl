@@ -35527,7 +35527,7 @@
 
 
 	  <!--RULE flag-github-->
-   <xsl:template match="ext-link[not(ancestor::sub-article or ancestor::ref) and contains(lower-case(@xlink:href),'github.com')]" priority="1000" mode="M464">
+   <xsl:template match="ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'github.com')]" priority="1000" mode="M464">
       <xsl:variable name="l" select="lower-case(@xlink:href)"/>
       <xsl:variable name="substring" select="substring-after($l,'github.com/')"/>
       <xsl:variable name="owner-repo" select="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>
@@ -35559,7 +35559,7 @@
 
 
 	  <!--RULE flag-gitlab-->
-   <xsl:template match="ext-link[not(ancestor::sub-article or ancestor::ref) and contains(lower-case(@xlink:href),'gitlab.com')]" priority="1000" mode="M465">
+   <xsl:template match="ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'gitlab.com')]" priority="1000" mode="M465">
       <xsl:variable name="l" select="lower-case(@xlink:href)"/>
       <xsl:variable name="substring" select="substring-after($l,'gitlab.com/')"/>
       <xsl:variable name="owner-repo" select="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>
