@@ -2733,7 +2733,7 @@
       
       <assert test="ancestor::abstract[not(@abstract-type)]" 
         role="error" 
-        id="related-object-ancetsor"><name/> is not allowed outside of the main abstract (abstract[not(@abstract-type)]).</assert>
+        id="related-object-ancestor"><name/> is not allowed outside of the main abstract (abstract[not(@abstract-type)]).</assert>
     </rule>
  </pattern>
   
@@ -8026,7 +8026,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*|identifiers\.org/RRID/.*')])"/>
       <let name="lc" value="lower-case(.)"/>
       <let name="text-count" value="number(count(
-        for $x in tokenize(.,'RRID:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')
+        for $x in tokenize(.,'RRID\s?#?\s?:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')
         return $x)) -1"/>
       <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>
       <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]+')) then $x else (),'; ')"/>
