@@ -1016,7 +1016,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="related-object" id="related-object-tests">
-      <assert test="ancestor::abstract[not(@abstract-type)]" role="error" id="related-object-ancetsor">
+      <assert test="ancestor::abstract[not(@abstract-type)]" role="error" id="related-object-ancestor">
         <name/> is not allowed outside of the main abstract (abstract[not(@abstract-type)]).</assert>
     </rule>
   </pattern>

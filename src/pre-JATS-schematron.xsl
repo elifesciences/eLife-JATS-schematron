@@ -10042,12 +10042,12 @@
          <xsl:when test="ancestor::abstract[not(@abstract-type)]"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::abstract[not(@abstract-type)]">
-               <xsl:attribute name="id">related-object-ancetsor</xsl:attribute>
+               <xsl:attribute name="id">related-object-ancestor</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[related-object-ancetsor] <xsl:text/>
+               <svrl:text>[related-object-ancestor] <xsl:text/>
                   <xsl:value-of select="name(.)"/>
                   <xsl:text/> is not allowed outside of the main abstract (abstract[not(@abstract-type)]).</svrl:text>
             </svrl:failed-assert>
@@ -25531,7 +25531,7 @@
    <xsl:template match="p|td|th" priority="1000" mode="M392">
       <xsl:variable name="count" select="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*|identifiers\.org/RRID/.*')])"/>
       <xsl:variable name="lc" select="lower-case(.)"/>
-      <xsl:variable name="text-count" select="number(count(         for $x in tokenize(.,'RRID:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')         return $x)) -1"/>
+      <xsl:variable name="text-count" select="number(count(         for $x in tokenize(.,'RRID\s?#?\s?:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')         return $x)) -1"/>
       <xsl:variable name="t" select="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>
       <xsl:variable name="code-text" select="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]+')) then $x else (),'; ')"/>
       <xsl:variable name="unequal-equal-text" select="string-join(for $x in tokenize(replace(.,'[&gt;&lt;]',''),' | ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
