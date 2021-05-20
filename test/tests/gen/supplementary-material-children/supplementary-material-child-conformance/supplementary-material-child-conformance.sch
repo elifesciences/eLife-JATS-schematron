@@ -1017,7 +1017,7 @@
   <pattern id="child-conformance">
     <rule context="supplementary-material/*" id="supplementary-material-children">
       <let name="allowed-children" value="('label', 'caption', 'media', 'permissions')"/>
-      <assert test="local-name() = $allowed-children" role="error" id="supplementary-material-child-conformance">
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-child-conformance" test="local-name() = $allowed-children" role="error" id="supplementary-material-child-conformance">
         <name/> is not allowed as a child of supplementary-material.</assert>
     </rule>
   </pattern>
