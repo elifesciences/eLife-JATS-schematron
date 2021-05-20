@@ -1022,7 +1022,7 @@
       <let name="number" value="number(replace(substring-after($label,' data '),'[^\d]',''))"/>
       <let name="sibling-count" value="count(ancestor::table-wrap[1]//supplementary-material[contains(label[1],' data ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::table-wrap[1]/@id=$table-id) and contains(label[1],' data ')])"/>
-      <assert test="$label = concat($table-label,'—source data ',$pos,'.')" role="error" id="table-data-label">Table source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong table or the label is incorrect. Should the label be <value-of select="concat($table-label,'—source data ',$pos,'.')"/> instead?</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#table-data-label" test="$label = concat($table-label,'—source data ',$pos,'.')" role="error" id="table-data-label">Table source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong table or the label is incorrect. Should the label be <value-of select="concat($table-label,'—source data ',$pos,'.')"/> instead?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

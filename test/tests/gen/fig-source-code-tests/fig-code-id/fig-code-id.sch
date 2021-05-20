@@ -1022,7 +1022,7 @@
       <let name="number" value="number(replace(substring-after($label,' code '),'[^\d]',''))"/>
       <let name="sibling-count" value="count(ancestor::fig[1]//supplementary-material[contains(label[1],' code ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::fig[1]/@id=$fig-id) and contains(label[1],' code ')])"/>
-      <assert test="@id=concat($fig-id,'scode',$pos)" role="error" id="fig-code-id">The id for figure level source code must be the id of its ancestor fig, followed by 'scode', followed by its position relative to other source data for the same figure. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($fig-id,'scode',$pos)"/>' instead.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#fig-code-id" test="@id=concat($fig-id,'scode',$pos)" role="error" id="fig-code-id">The id for figure level source code must be the id of its ancestor fig, followed by 'scode', followed by its position relative to other source data for the same figure. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($fig-id,'scode',$pos)"/>' instead.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1018,7 +1018,7 @@
     <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\s ]$',''),'\. '))"/>
-      <report test="matches(.,' vs\.$')" role="warning" id="supplementary-material-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-title-test-3" test="matches(.,' vs\.$')" role="warning" id="supplementary-material-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

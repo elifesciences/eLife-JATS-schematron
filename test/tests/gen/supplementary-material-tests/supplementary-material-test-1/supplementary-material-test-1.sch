@@ -1019,7 +1019,7 @@
       <let name="link" value="media[1]/@xlink:href"/>
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
       <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
-      <assert test="label" role="error" id="supplementary-material-test-1">supplementary-material must have a label.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-1" test="label" role="error" id="supplementary-material-test-1">supplementary-material must have a label.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1019,7 +1019,7 @@
       <let name="link" value="media[1]/@xlink:href"/>
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
       <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
-      <report test="count(media) gt 1" role="error" id="supplementary-material-test-9">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-9" test="count(media) gt 1" role="error" id="supplementary-material-test-9">
         <value-of select="label"/> has <value-of select="count(media)"/> media elements which is incorrect.</report>
     </rule>
   </pattern>

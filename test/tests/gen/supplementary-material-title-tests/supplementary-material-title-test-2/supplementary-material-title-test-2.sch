@@ -1018,7 +1018,7 @@
     <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\s ]$',''),'\. '))"/>
-      <assert test="matches(.,'[\.\?]$')" role="error" id="supplementary-material-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-title-test-2" test="matches(.,'[\.\?]$')" role="error" id="supplementary-material-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
