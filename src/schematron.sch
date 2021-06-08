@@ -51,6 +51,9 @@
           upper-case(substring(substring-after($s,'-'), 1, 1)),
           lower-case(substring(substring-after($s,'-'),2)))"/>
       </xsl:when>
+      <xsl:when test="lower-case($s)='elife'">
+        <xsl:value-of select="'eLife'"/>
+      </xsl:when>
       <xsl:when test="lower-case($s)=('and','or','the','an','of','in','as','at','by','for','a','to','up','but','yet')">
         <xsl:value-of select="lower-case($s)"/>
       </xsl:when>
@@ -73,6 +76,12 @@
         <xsl:variable name="token1" select="substring-before($s,' ')"/>
         <xsl:variable name="token2" select="substring-after($s,$token1)"/>
         <xsl:choose>
+          <xsl:when test="lower-case($token1)='elife'">
+            <xsl:value-of select="concat('eLife',
+              ' ',
+              string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')
+              )"/>
+          </xsl:when>
           <xsl:when test="matches(lower-case($s),'rna|dna|mri|hiv|tor|aids|covid-19|covid')">
             <xsl:value-of select="concat(upper-case($token1),
               ' ',
@@ -96,6 +105,9 @@
               )"/>
           </xsl:otherwise>
         </xsl:choose>
+      </xsl:when>
+      <xsl:when test="lower-case($s)='elife'">
+        <xsl:value-of select="'eLife'"/>
       </xsl:when>
       <xsl:when test="lower-case($s)=('and','or','the','an','of')">
         <xsl:value-of select="lower-case($s)"/>
@@ -9876,7 +9888,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
         <value-of select="."/> - it should be 'G3: Genes, Genomes, Genetics'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#ampersand-check" 
-        test="matches(.,'\s?[Aa]mp[;]?\s?') and (. != 'Hippocampus')" 
+        test="matches(.,'[Aa]mp;')" 
         role="warning" 
         id="ampersand-check">ref '<value-of select="ancestor::ref/@id"/>' appears to contain the text 'amp', is this a broken ampersand?</report>
       

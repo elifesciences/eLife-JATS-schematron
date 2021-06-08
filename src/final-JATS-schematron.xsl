@@ -25,6 +25,9 @@
          <xsl:when test="contains($s,'-')">
             <xsl:value-of select="concat(           upper-case(substring(substring-before($s,'-'), 1, 1)),           lower-case(substring(substring-before($s,'-'),2)),           '-',           upper-case(substring(substring-after($s,'-'), 1, 1)),           lower-case(substring(substring-after($s,'-'),2)))"/>
          </xsl:when>
+         <xsl:when test="lower-case($s)='elife'">
+            <xsl:value-of select="'eLife'"/>
+         </xsl:when>
          <xsl:when test="lower-case($s)=('and','or','the','an','of','in','as','at','by','for','a','to','up','but','yet')">
             <xsl:value-of select="lower-case($s)"/>
          </xsl:when>
@@ -46,6 +49,9 @@
             <xsl:variable name="token1" select="substring-before($s,' ')"/>
             <xsl:variable name="token2" select="substring-after($s,$token1)"/>
             <xsl:choose>
+               <xsl:when test="lower-case($token1)='elife'">
+                  <xsl:value-of select="concat('eLife',               ' ',               string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')               )"/>
+               </xsl:when>
                <xsl:when test="matches(lower-case($s),'rna|dna|mri|hiv|tor|aids|covid-19|covid')">
                   <xsl:value-of select="concat(upper-case($token1),               ' ',               string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')               )"/>
                </xsl:when>
@@ -59,6 +65,9 @@
                   <xsl:value-of select="concat(               concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),               ' ',               string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')               )"/>
                </xsl:otherwise>
             </xsl:choose>
+         </xsl:when>
+         <xsl:when test="lower-case($s)='elife'">
+            <xsl:value-of select="'eLife'"/>
          </xsl:when>
          <xsl:when test="lower-case($s)=('and','or','the','an','of')">
             <xsl:value-of select="lower-case($s)"/>
@@ -31361,8 +31370,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches(.,'\s?[Aa]mp[;]?\s?') and (. != 'Hippocampus')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\s?[Aa]mp[;]?\s?') and (. != 'Hippocampus')">
+      <xsl:if test="matches(.,'[Aa]mp;')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Aa]mp;')">
             <xsl:attribute name="id">ampersand-check</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#ampersand-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
