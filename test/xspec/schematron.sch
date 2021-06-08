@@ -5340,6 +5340,8 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-5" test="pub-id[1] = following::element-citation[ancestor::ref-list]/pub-id[1]" role="warning" id="das-elem-cit-5">The reference in position <value-of select="$pos"/> of the data availability section has a pub-id (<value-of select="pub-id[1]"/>) which is the same as in another reference in the reference list. Is the same reference in both the reference list and data availability section?</report>
       
+      <report test="pub-id and ext-link" role="error" id="das-elem-cit-6">The reference in position <value-of select="$pos"/> of the data availability section has both a pub-id (<value-of select="pub-id[1]"/>) and an ext-link (<value-of select="ext-link[1]"/>), which is not allowed.</report>
+      
     </rule>
   </pattern>
   <pattern id="das-elem-citation-data-pub-id-pattern">
@@ -5351,6 +5353,7 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-pub-id-2" test="@pub-id-type!='doi' and normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))" role="error" id="final-das-pub-id-2">Each pub-id element which is not a doi must have an @xlink-href (which is not empty).</report>
       
+      <report test="@pub-id-type='doi' and (@xlink:href)" role="error" id="das-pub-id-3">A pub-id with the type doi does not need an xlink:href attribute. <value-of select="concat('xlink:href=&quot;',.,'&quot;')"/> should be removed from the pub-id containing <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="das-elem-citation-children-pattern">

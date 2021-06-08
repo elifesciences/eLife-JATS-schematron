@@ -24439,6 +24439,24 @@
                <xsl:text/>) which is the same as in another reference in the reference list. Is the same reference in both the reference list and data availability section?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="pub-id and ext-link">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="pub-id and ext-link">
+            <xsl:attribute name="id">das-elem-cit-6</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[das-elem-cit-6] The reference in position <xsl:text/>
+               <xsl:value-of select="$pos"/>
+               <xsl:text/> of the data availability section has both a pub-id (<xsl:text/>
+               <xsl:value-of select="pub-id[1]"/>
+               <xsl:text/>) and an ext-link (<xsl:text/>
+               <xsl:value-of select="ext-link[1]"/>
+               <xsl:text/>), which is not allowed.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M372"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M372"/>
@@ -24475,6 +24493,22 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[pre-das-pub-id-2] Each pub-id element which is not a doi must have an @xlink-href (which is not empty). If the link is not available please query the authors asking for it.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="@pub-id-type='doi' and (@xlink:href)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@pub-id-type='doi' and (@xlink:href)">
+            <xsl:attribute name="id">das-pub-id-3</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[das-pub-id-3] A pub-id with the type doi does not need an xlink:href attribute. <xsl:text/>
+               <xsl:value-of select="concat('xlink:href=&quot;',.,'&quot;')"/>
+               <xsl:text/> should be removed from the pub-id containing <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M373"/>

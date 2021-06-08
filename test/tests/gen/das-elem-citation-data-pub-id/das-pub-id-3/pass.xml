@@ -1,0 +1,32 @@
+<?oxygen SCHSchema="das-pub-id-3.sch"?>
+<!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id
+Test: report    @pub-id-type='doi' and (@xlink:href)
+Message: A pub-id with the type doi does not need an xlink:href attribute.  should be removed from the pub-id containing . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sec sec-type="data-availability" id="s7">
+      <title>Data availability</title>
+      <element-citation publication-type="data" specific-use="references" id="dataset5">
+        <person-group person-group-type="author">
+          <name>
+            <surname>Guinney</surname>
+            <given-names>J</given-names>
+          </name>
+          <name>
+            <surname>Dienstmann</surname>
+            <given-names>R</given-names>
+          </name>
+          <name>
+            <surname>Wang</surname>
+            <given-names>X</given-names>
+          </name>
+        </person-group>
+        <year iso-8601-date="2014">2014</year>
+        <data-title>Colorectal Cancer Subtyping Consortium</data-title>
+        <source>Synapse</source>
+        <pub-id pub-id-type="doi">10.7303/syn2623706</pub-id>
+      </element-citation>
+    </sec>
+  </article>
+</root>

@@ -7653,6 +7653,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="das-elem-cit-5">The reference in position <value-of select="$pos"/> of the data availability section has a pub-id (<value-of select="pub-id[1]"/>) which is the same as in another reference in the reference list. Is the same reference in both the reference list and data availability section?</report>
       
+      <report test="pub-id and ext-link" 
+        role="error" 
+        id="das-elem-cit-6">The reference in position <value-of select="$pos"/> of the data availability section has both a pub-id (<value-of select="pub-id[1]"/>) and an ext-link (<value-of select="ext-link[1]"/>), which is not allowed.</report>
+      
     </rule>
     
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id" id="das-elem-citation-data-pub-id">
@@ -7672,6 +7676,9 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="final-das-pub-id-2">Each pub-id element which is not a doi must have an @xlink-href (which is not empty).</report>
       
+      <report test="@pub-id-type='doi' and (@xlink:href)" 
+        role="error" 
+        id="das-pub-id-3">A pub-id with the type doi does not need an xlink:href attribute. <value-of select="concat('xlink:href=&quot;',.,'&quot;')"/> should be removed from the pub-id containing <value-of select="."/>.</report>
     </rule>
     
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/source/*|sec[@sec-type='data-availability']//element-citation[@publication-type='data']/data-title/*" id="das-elem-citation-children">
