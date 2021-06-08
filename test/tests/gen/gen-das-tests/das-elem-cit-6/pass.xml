@@ -2,8 +2,7 @@
 <!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']
 Test: report    pub-id and ext-link
 Message: The reference in position  of the data availability section has both a pub-id () and an ext-link (), which is not allowed. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sec sec-type="data-availability" id="s7">
       <title>Data availability</title>

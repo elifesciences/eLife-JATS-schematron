@@ -1025,7 +1025,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="code" id="code-tests">
-      <assert test="parent::p" role="error" id="code-parent-test">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</assert>
+      <assert test="parent::p" role="error" id="code-parent-test">A code element must be contained in a p element. The code element (containing the content <value-of select="."/>) is contained in a <value-of select="parent::*/name()"/> element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

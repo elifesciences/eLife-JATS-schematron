@@ -14153,11 +14153,11 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[code-parent-test] code element (containing the content <xsl:text/>
+               <svrl:text>[code-parent-test] A code element must be contained in a p element. The code element (containing the content <xsl:text/>
                   <xsl:value-of select="."/>
-                  <xsl:text/>) is directly preceded by another code element (containing the content <xsl:text/>
-                  <xsl:value-of select="preceding::*[1]"/>
-                  <xsl:text/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</svrl:text>
+                  <xsl:text/>) is contained in a <xsl:text/>
+                  <xsl:value-of select="parent::*/name()"/>
+                  <xsl:text/> element.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
