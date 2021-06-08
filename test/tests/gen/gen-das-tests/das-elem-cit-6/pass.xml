@@ -1,0 +1,32 @@
+<?oxygen SCHSchema="das-elem-cit-6.sch"?>
+<!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']
+Test: report    pub-id and ext-link
+Message: The reference in position  of the data availability section has both a pub-id () and an ext-link (), which is not allowed. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sec sec-type="data-availability" id="s7">
+      <title>Data availability</title>
+      <element-citation publication-type="data" specific-use="references" id="dataset5">
+        <person-group person-group-type="author">
+          <name>
+            <surname>Guinney</surname>
+            <given-names>J</given-names>
+          </name>
+          <name>
+            <surname>Dienstmann</surname>
+            <given-names>R</given-names>
+          </name>
+          <name>
+            <surname>Wang</surname>
+            <given-names>X</given-names>
+          </name>
+        </person-group>
+        <year iso-8601-date="2014">2014</year>
+        <data-title>Colorectal Cancer Subtyping Consortium</data-title>
+        <source>Synapse</source>
+        <pub-id pub-id-type="doi">10.7303/syn2623706</pub-id>
+      </element-citation>
+    </sec>
+  </article>
+</root>
