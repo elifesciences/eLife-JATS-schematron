@@ -2,8 +2,7 @@
 <!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id
 Test: report    @pub-id-type='doi' and (@xlink:href)
 Message: A pub-id with the type doi does not need an xlink:href attribute.  should be removed from the pub-id containing . -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sec sec-type="data-availability" id="s7">
       <title>Data availability</title>

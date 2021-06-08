@@ -2,8 +2,7 @@
 <!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']
 Test: report    pub-id and ext-link
 Message: The reference in position  of the data availability section has both a pub-id () and an ext-link (), which is not allowed. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sec sec-type="data-availability" id="s7">
       <title>Data availability</title>
@@ -24,13 +23,9 @@ Message: The reference in position  of the data availability section has both a 
         </person-group>
         <year iso-8601-date="2014">2014</year>
         <data-title>Colorectal Cancer Subtyping Consortium</data-title>
-        <ext-link ext-link-type="uri"
-          xlink:href="https://www.synapse.org/#!Synapse:syn2623706/wiki/67246"
-          >https://www.synapse.org/#!Synapse:syn2623706/wiki/67246</ext-link>
+        <ext-link ext-link-type="uri" xlink:href="https://www.synapse.org/#!Synapse:syn2623706/wiki/67246">https://www.synapse.org/#!Synapse:syn2623706/wiki/67246</ext-link>
         <source>Synapse</source>
-        <pub-id pub-id-type="doi"
-          xlink:href="https://www.synapse.org/#!Synapse:syn2623706/wiki/67246"
-          >10.7303/syn2623706</pub-id>
+        <pub-id pub-id-type="doi" xlink:href="https://www.synapse.org/#!Synapse:syn2623706/wiki/67246">10.7303/syn2623706</pub-id>
       </element-citation>
     </sec>
   </article>
