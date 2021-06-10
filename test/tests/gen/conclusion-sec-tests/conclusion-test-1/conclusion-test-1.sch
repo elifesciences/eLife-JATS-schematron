@@ -1024,15 +1024,15 @@
     
   </xsl:function>
   <pattern id="body">
-    <rule context="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature article','Review Article','Short report'))]/body/sec/title" id="conclusion-sec-tests">
+    <rule context="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body/sec/title" id="conclusion-sec-tests">
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="title" value="normalize-space(replace(lower-case(.),' ',' '))"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#conclusion-test-1" test="matches($title,'conclusions?')" role="error" id="conclusion-test-1">Top level section with title - <value-of select="."/> - should either be made a level 2 section. Probably as a child of the <value-of select="preceding-sibling::sec[1]/title"/> section.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#conclusion-test-1" test="matches($title,'conclusions?')" role="error" id="conclusion-test-1">Top level section with title - <value-of select="."/> - should be made a level 2 section. Probably as a child of the <value-of select="preceding-sibling::sec[1]/title"/> section.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature article','Review Article','Short report'))]/body/sec/title" role="error" id="conclusion-sec-tests-xspec-assert">article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature article','Review Article','Short report'))]/body/sec/title must be present.</assert>
+      <assert test="descendant::article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body/sec/title" role="error" id="conclusion-sec-tests-xspec-assert">article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body/sec/title must be present.</assert>
     </rule>
   </pattern>
 </schema>
