@@ -15802,7 +15802,7 @@
 
 
 	  <!--RULE conclusion-sec-tests-->
-   <xsl:template match="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature article','Review Article','Short report'))]/body/sec/title" priority="1000" mode="M209">
+   <xsl:template match="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body/sec/title" priority="1000" mode="M209">
       <xsl:variable name="type" select="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <xsl:variable name="title" select="normalize-space(replace(lower-case(.),' ',' '))"/>
 
@@ -15817,7 +15817,7 @@
             </xsl:attribute>
             <svrl:text>[conclusion-test-1] Top level section with title - <xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/> - should either be made a level 2 section. Probably as a child of the <xsl:text/>
+               <xsl:text/> - should be made a level 2 section. Probably as a child of the <xsl:text/>
                <xsl:value-of select="preceding-sibling::sec[1]/title"/>
                <xsl:text/> section.</svrl:text>
          </svrl:successful-report>
@@ -15833,7 +15833,7 @@
 
 
 	  <!--RULE conclusion-lower-sec-tests-->
-   <xsl:template match="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature article','Review Article','Short report'))]/body//sec/sec//sec/title" priority="1000" mode="M210">
+   <xsl:template match="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body//sec/sec//sec/title" priority="1000" mode="M210">
       <xsl:variable name="type" select="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <xsl:variable name="title" select="normalize-space(replace(lower-case(.),' ',' '))"/>
 
@@ -15850,7 +15850,7 @@
                <xsl:value-of select="count(ancestor::sec) + 1"/>
                <xsl:text/> section with the title '<xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/>' should very likely be made a level 2 section.</svrl:text>
+               <xsl:text/>' should likely be made a level 2 section.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M210"/>

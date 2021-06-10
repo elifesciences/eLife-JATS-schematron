@@ -3294,20 +3294,20 @@
     </rule>
   </pattern>
   <pattern id="conclusion-sec-tests-pattern">
-    <rule context="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature article','Review Article','Short report'))]/body/sec/title" id="conclusion-sec-tests">
+    <rule context="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body/sec/title" id="conclusion-sec-tests">
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="title" value="normalize-space(replace(lower-case(.),' ',' '))"/>
         
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#conclusion-test-1" test="matches($title,'conclusions?')" role="error" id="conclusion-test-1">[conclusion-test-1] Top level section with title - <value-of select="."/> - should either be made a level 2 section. Probably as a child of the <value-of select="preceding-sibling::sec[1]/title"/> section.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#conclusion-test-1" test="matches($title,'conclusions?')" role="error" id="conclusion-test-1">[conclusion-test-1] Top level section with title - <value-of select="."/> - should be made a level 2 section. Probably as a child of the <value-of select="preceding-sibling::sec[1]/title"/> section.</report>
       
     </rule>
   </pattern>
   <pattern id="conclusion-lower-sec-tests-pattern">
-    <rule context="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature article','Review Article','Short report'))]/body//sec/sec//sec/title" id="conclusion-lower-sec-tests">
+    <rule context="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body//sec/sec//sec/title" id="conclusion-lower-sec-tests">
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="title" value="normalize-space(replace(lower-case(.),' ',' '))"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#conclusion-test-2" test="matches($title,'conclusions?')" role="warning" id="conclusion-test-2">[conclusion-test-2] Level <value-of select="count(ancestor::sec) + 1"/> section with the title '<value-of select="."/>' should very likely be made a level 2 section.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#conclusion-test-2" test="matches($title,'conclusions?')" role="warning" id="conclusion-test-2">[conclusion-test-2] Level <value-of select="count(ancestor::sec) + 1"/> section with the title '<value-of select="."/>' should likely be made a level 2 section.</report>
       
     </rule>
   </pattern>

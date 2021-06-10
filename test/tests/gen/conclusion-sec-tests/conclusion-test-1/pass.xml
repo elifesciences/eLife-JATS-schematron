@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="conclusion-test-1.sch"?>
-<!--Context: article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature article','Review Article','Short report'))]/body/sec/title
+<!--Context: article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body/sec/title
 Test: report    matches($title,'conclusions?')
-Message: Top level section with title -  - should either be made a level 2 section. Probably as a child of the  section. -->
+Message: Top level section with title -  - should be made a level 2 section. Probably as a child of the  section. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="research-article">
     <body>
