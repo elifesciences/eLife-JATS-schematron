@@ -1828,6 +1828,38 @@
         <x:expect-not-assert id="license-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="license-p-tests">
+      <x:scenario label="license-p-test-1-pass">
+        <x:context href="../tests/gen/license-p-tests/license-p-test-1/pass.xml"/>
+        <x:expect-not-report id="license-p-test-1" role="error"/>
+        <x:expect-not-assert id="license-p-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="license-p-test-1-fail">
+        <x:context href="../tests/gen/license-p-tests/license-p-test-1/fail.xml"/>
+        <x:expect-report id="license-p-test-1" role="error"/>
+        <x:expect-not-assert id="license-p-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="license-p-test-2-pass">
+        <x:context href="../tests/gen/license-p-tests/license-p-test-2/pass.xml"/>
+        <x:expect-not-report id="license-p-test-2" role="error"/>
+        <x:expect-not-assert id="license-p-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="license-p-test-2-fail">
+        <x:context href="../tests/gen/license-p-tests/license-p-test-2/fail.xml"/>
+        <x:expect-report id="license-p-test-2" role="error"/>
+        <x:expect-not-assert id="license-p-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="license-p-test-3-pass">
+        <x:context href="../tests/gen/license-p-tests/license-p-test-3/pass.xml"/>
+        <x:expect-not-assert id="license-p-test-3" role="error"/>
+        <x:expect-not-assert id="license-p-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="license-p-test-3-fail">
+        <x:context href="../tests/gen/license-p-tests/license-p-test-3/fail.xml"/>
+        <x:expect-assert id="license-p-test-3" role="error"/>
+        <x:expect-not-assert id="license-p-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="abstract-tests">
       <x:scenario label="abstract-test-2-pass">
         <x:context href="../tests/gen/abstract-tests/abstract-test-2/pass.xml"/>

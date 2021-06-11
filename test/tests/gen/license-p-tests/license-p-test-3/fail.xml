@@ -1,0 +1,22 @@
+<?oxygen SCHSchema="license-p-test-3.sch"?>
+<!--Context: front//permissions/license/license-p
+Test: assert    ext-link[1]/@xlink:href = $license-link
+Message: The ext-link link in license-p must match that in the license element. The ext-link has an xlink:href attribute with the value '', but the license link is ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <permissions>
+          <copyright-statement>&#x00A9; 2021, Claus et al</copyright-statement>
+          <copyright-year>2021</copyright-year>
+          <copyright-holder>Claus et al</copyright-holder>
+          <ali:free_to_read/>
+          <license xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">
+            <ali:license_ref>http://creativecommons.org/publicdomain/zero/1.0/</ali:license_ref>
+            <license-p>This is an open-access article, free of all copyright, and may be freely reproduced, distributed, transmitted, modified, built upon, or otherwise used by anyone for any lawful purpose. The work is made available under the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/publicdoman/zero/1.0/">Creative Commons CC0 public domain dedication</ext-link>.</license-p>
+          </license>
+        </permissions>
+      </article-meta>
+    </front>
+  </article>
+</root>

@@ -1,0 +1,22 @@
+<?oxygen SCHSchema="license-p-test-1.sch"?>
+<!--Context: front//permissions/license/license-p
+Test: report    ($license-type='ccby') and .!=$ccby-text
+Message: The text in license-p is incorrect (). Since this article is CCBY licensed, the text should be . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <permissions>
+          <copyright-statement>&#x00A9; 2021, Claus et al</copyright-statement>
+          <copyright-year>2021</copyright-year>
+          <copyright-holder>Claus et al</copyright-holder>
+          <ali:free_to_read/>
+          <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+            <ali:license_ref>http://creativecommons.org/licenses/by/4.0/</ali:license_ref>
+            <license-p>This smarticle is distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use and redistribution provided that the original author and source are credited.</license-p>
+          </license>
+        </permissions>
+      </article-meta>
+    </front>
+  </article>
+</root>
