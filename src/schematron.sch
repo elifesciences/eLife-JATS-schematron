@@ -2141,6 +2141,26 @@
         id="license-test-2">license must contain one and only one license-p.</assert>
 	
 	</rule>
+    
+    <rule context="front//permissions/license/license-p" id="license-p-tests">
+      <let name="license-link" value="parent::license/@xlink:href"/>
+      <let name="license-type" value="if (contains($license-link,'//creativecommons.org/publicdomain/zero/1.0/')) then 'cc0' else if (contains($license-link,'//creativecommons.org/licenses/by/4.0/')) then 'ccby' else ('unknown')"/>
+      
+      <let name="cc0-text" value="'This is an open-access article, free of all copyright, and may be freely reproduced, distributed, transmitted, modified, built upon, or otherwise used by anyone for any lawful purpose. The work is made available under the Creative Commons CC0 public domain dedication.'"/>
+      <let name="ccby-text" value="'This article is distributed under the terms of the Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.'"/>
+      
+      <report test="($license-type='ccby') and .!=$ccby-text" 
+        role="error" 
+        id="license-p-test-1">The text in license-p is incorrect (<value-of select="."/>). Since this article is CCBY licensed, the text should be <value-of select="$ccby-text"/>.</report>
+      
+      <report test="($license-type='cc0') and .!=$cc0-text" 
+        role="error" 
+        id="license-p-test-2">The text in license-p is incorrect (<value-of select="."/>). Since this article is CC0 licensed, the text should be <value-of select="$cc0-text"/>.</report>
+      
+      <assert test="ext-link[1]/@xlink:href = $license-link" 
+        role="error" 
+        id="license-p-test-3">The ext-link link in license-p must match that in the license element. The ext-link has an xlink:href attribute with the value '<value-of select="ext-link[1]/@xlink:href"/>', but the license link is '<value-of select="$license-link"/>'.</assert>
+    </rule>
 	
 	<rule context="front//abstract" id="abstract-tests">
 	  <let name="article-type" value="ancestor::article/@article-type"/>
