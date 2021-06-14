@@ -7,7 +7,7 @@ Message: The ext-link link in license-p must match that in the license element. 
     <front>
       <article-meta>
         <permissions>
-          <copyright-statement>&#x00A9; 2021, Claus et al</copyright-statement>
+          <copyright-statement>© 2021, Claus et al</copyright-statement>
           <copyright-year>2021</copyright-year>
           <copyright-holder>Claus et al</copyright-holder>
           <ali:free_to_read/>

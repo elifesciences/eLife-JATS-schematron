@@ -3960,6 +3960,23 @@
       
     </rule>
   </pattern>
+  <pattern id="additional-files-tests-pattern">
+    <rule context="sec[@sec-type='supplementary-material']" id="additional-files-tests">
+      
+      <assert test="title = 'Additional files'" role="error" id="add-files-1">The additional files section (sec[@sec-type='supplementary-material']) must have a title which is 'Additional files'. This one does not.</assert>
+      
+      <report test="ancestor::article/@article-type='research-article' and not(supplementary-material[contains(lower-case(label[1]),'transparent reporting form')])" role="warning" id="add-files-2">This article does not have a transparent reporting form. Is that correct?</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="additional-files-child-tests-pattern">
+    <rule context="sec[@sec-type='supplementary-material']/*" id="additional-files-child-tests">
+      
+      <assert test="name()=('title','supplementary-material')" role="error" id="add-files-3">
+        <value-of select="name()"/> is not allowed as a child element in the additional files section (sec[@sec-type='supplementary-material']).</assert>
+      
+    </rule>
+  </pattern>
   <pattern id="comp-int-fn-group-tests-pattern">
     <rule context="fn-group[@content-type='competing-interest']" id="comp-int-fn-group-tests">
       
@@ -8222,6 +8239,8 @@
       <assert test="descendant::back/ack/*" role="error" id="ack-child-tests-xspec-assert">back/ack/* must be present.</assert>
       <assert test="descendant::back//app" role="error" id="app-tests-xspec-assert">back//app must be present.</assert>
       <assert test="descendant::sec[@sec-type='additional-information']" role="error" id="additional-info-tests-xspec-assert">sec[@sec-type='additional-information'] must be present.</assert>
+      <assert test="descendant::sec[@sec-type='supplementary-material']" role="error" id="additional-files-tests-xspec-assert">sec[@sec-type='supplementary-material'] must be present.</assert>
+      <assert test="descendant::sec[@sec-type='supplementary-material']/*" role="error" id="additional-files-child-tests-xspec-assert">sec[@sec-type='supplementary-material']/* must be present.</assert>
       <assert test="descendant::fn-group[@content-type='competing-interest']" role="error" id="comp-int-fn-group-tests-xspec-assert">fn-group[@content-type='competing-interest'] must be present.</assert>
       <assert test="descendant::fn-group[@content-type='competing-interest']/fn" role="error" id="comp-int-fn-tests-xspec-assert">fn-group[@content-type='competing-interest']/fn must be present.</assert>
       <assert test="descendant::fn-group[@content-type='author-contribution']/fn" role="error" id="auth-cont-fn-tests-xspec-assert">fn-group[@content-type='author-contribution']/fn must be present.</assert>
