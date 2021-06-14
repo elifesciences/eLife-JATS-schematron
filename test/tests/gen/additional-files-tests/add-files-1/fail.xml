@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="add-files-1.sch"?>
+<!--Context: sec[@sec-type='supplementary-material']
+Test: assert    title = 'Additional files'
+Message: The additional files section (sec[@sec-type='supplementary-material']) must have a title which is 'Additional files'. This one does not. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <sec sec-type="supplementary-material">
+        <title>Additional foiles</title>
+      </sec>
+    </back>
+  </article>
+</root>

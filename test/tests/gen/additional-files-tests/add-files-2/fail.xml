@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="add-files-2.sch"?>
+<!--Context: sec[@sec-type='supplementary-material']
+Test: report    ancestor::article/@article-type='research-article' and not(supplementary-material[contains(lower-case(label[1]),'transparent reporting form')])
+Message: This article does not have a transparent reporting form. Is that correct? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <back>
+      <sec sec-type="supplementary-material">
+        <title>Additional files</title>
+      </sec>
+    </back>
+  </article>
+</root>

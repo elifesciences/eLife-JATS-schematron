@@ -7402,6 +7402,40 @@
         <x:expect-not-assert id="additional-info-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="additional-files-tests">
+      <x:scenario label="add-files-1-pass">
+        <x:context href="../tests/gen/additional-files-tests/add-files-1/pass.xml"/>
+        <x:expect-not-assert id="add-files-1" role="error"/>
+        <x:expect-not-assert id="additional-files-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="add-files-1-fail">
+        <x:context href="../tests/gen/additional-files-tests/add-files-1/fail.xml"/>
+        <x:expect-assert id="add-files-1" role="error"/>
+        <x:expect-not-assert id="additional-files-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="add-files-2-pass">
+        <x:context href="../tests/gen/additional-files-tests/add-files-2/pass.xml"/>
+        <x:expect-not-report id="add-files-2" role="warning"/>
+        <x:expect-not-assert id="additional-files-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="add-files-2-fail">
+        <x:context href="../tests/gen/additional-files-tests/add-files-2/fail.xml"/>
+        <x:expect-report id="add-files-2" role="warning"/>
+        <x:expect-not-assert id="additional-files-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="additional-files-child-tests">
+      <x:scenario label="add-files-3-pass">
+        <x:context href="../tests/gen/additional-files-child-tests/add-files-3/pass.xml"/>
+        <x:expect-not-assert id="add-files-3" role="error"/>
+        <x:expect-not-assert id="additional-files-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="add-files-3-fail">
+        <x:context href="../tests/gen/additional-files-child-tests/add-files-3/fail.xml"/>
+        <x:expect-assert id="add-files-3" role="error"/>
+        <x:expect-not-assert id="additional-files-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="comp-int-fn-group-tests">
       <x:scenario label="comp-int-fn-test-1-pass">
         <x:context href="../tests/gen/comp-int-fn-group-tests/comp-int-fn-test-1/pass.xml"/>
