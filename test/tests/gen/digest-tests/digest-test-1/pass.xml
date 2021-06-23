@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="digest-test-1.sch"?>
 <!--Context: front//abstract[@abstract-type='executive-summary']/p
 Test: report    matches(.,'^\p{Ll}')
-Message: digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two? -->
+Message: digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrectly split into two? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

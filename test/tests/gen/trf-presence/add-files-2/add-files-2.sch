@@ -31,7 +31,7 @@
       <xsl:when test="lower-case($s)=('and','or','the','an','of','in','as','at','by','for','a','to','up','but','yet')">
         <xsl:value-of select="lower-case($s)"/>
       </xsl:when>
-      <xsl:when test="matches(lower-case($s),'rna|dna|mri|hiv|tor|aids|covid-19|covid')">
+      <xsl:when test="matches(lower-case($s),'^rna$|^dna$|^mri$|^hiv$|^tor$|^aids$|^covid-19$|^covid$')">
         <xsl:value-of select="upper-case($s)"/>
       </xsl:when>
       <xsl:when test="matches(lower-case($s),'[1-4]d')">
@@ -52,7 +52,7 @@
           <xsl:when test="lower-case($token1)='elife'">
             <xsl:value-of select="concat('eLife',               ' ',               string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')               )"/>
           </xsl:when>
-          <xsl:when test="matches(lower-case($s),'rna|dna|mri|hiv|tor|aids|covid-19|covid')">
+          <xsl:when test="matches(lower-case($token1),'^rna$|^dna$|^mri$|^hiv$|^tor$|^aids$|^covid-19$|^covid$')">
             <xsl:value-of select="concat(upper-case($token1),               ' ',               string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')               )"/>
           </xsl:when>
           <xsl:when test="matches(lower-case($token1),'[1-4]d')">
@@ -72,7 +72,7 @@
       <xsl:when test="lower-case($s)=('and','or','the','an','of')">
         <xsl:value-of select="lower-case($s)"/>
       </xsl:when>
-      <xsl:when test="matches(lower-case($s),'rna|dna|mri|hiv|tor|aids|covid-19|covid')">
+      <xsl:when test="matches(lower-case($s),'^rna$|^dna$|^mri$|^hiv$|^tor$|^aids$|^covid-19$|^covid$')">
         <xsl:value-of select="upper-case($s)"/>
       </xsl:when>
       <xsl:when test="matches(lower-case($s),'[1-4]d')">
@@ -1024,13 +1024,13 @@
     
   </xsl:function>
   <pattern id="back">
-    <rule context="sec[@sec-type='supplementary-material']" id="additional-files-tests">
-      <report test="ancestor::article/@article-type='research-article' and not(supplementary-material[contains(lower-case(label[1]),'transparent reporting form')])" role="warning" id="add-files-2">This article does not have a transparent reporting form. Is that correct?</report>
+    <rule context="article[@article-type='research-article']" id="trf-presence">
+      <assert test="descendant::supplementary-material[contains(lower-case(label[1]),'transparent reporting form')]" role="warning" id="add-files-2">This article does not have a transparent reporting form. Is that correct?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec[@sec-type='supplementary-material']" role="error" id="additional-files-tests-xspec-assert">sec[@sec-type='supplementary-material'] must be present.</assert>
+      <assert test="descendant::article[@article-type='research-article']" role="error" id="trf-presence-xspec-assert">article[@article-type='research-article'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

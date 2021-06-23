@@ -3965,7 +3965,12 @@
       
       <assert test="title = 'Additional files'" role="error" id="add-files-1">The additional files section (sec[@sec-type='supplementary-material']) must have a title which is 'Additional files'. This one does not.</assert>
       
-      <report test="ancestor::article/@article-type='research-article' and not(supplementary-material[contains(lower-case(label[1]),'transparent reporting form')])" role="warning" id="add-files-2">This article does not have a transparent reporting form. Is that correct?</report>
+    </rule>
+  </pattern>
+  <pattern id="trf-presence-pattern">
+    <rule context="article[@article-type='research-article']" id="trf-presence">
+      
+      <assert test="descendant::supplementary-material[contains(lower-case(label[1]),'transparent reporting form')]" role="warning" id="add-files-2">This article does not have a transparent reporting form. Is that correct?</assert>
       
     </rule>
   </pattern>
@@ -5468,7 +5473,7 @@
   <pattern id="digest-tests-pattern">
     <rule context="front//abstract[@abstract-type='executive-summary']/p" id="digest-tests">
      
-     <report test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two?</report>
+     <report test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrectly split into two?</report>
      
      <report test="matches(.,'\[[Oo][Kk]\??\]')" role="error" id="final-digest-test-2">digest paragraph contains [OK] or [OK?] which should be removed - <value-of select="."/>
       </report>
@@ -8240,6 +8245,7 @@
       <assert test="descendant::back//app" role="error" id="app-tests-xspec-assert">back//app must be present.</assert>
       <assert test="descendant::sec[@sec-type='additional-information']" role="error" id="additional-info-tests-xspec-assert">sec[@sec-type='additional-information'] must be present.</assert>
       <assert test="descendant::sec[@sec-type='supplementary-material']" role="error" id="additional-files-tests-xspec-assert">sec[@sec-type='supplementary-material'] must be present.</assert>
+      <assert test="descendant::article[@article-type='research-article']" role="error" id="trf-presence-xspec-assert">article[@article-type='research-article'] must be present.</assert>
       <assert test="descendant::sec[@sec-type='supplementary-material']/*" role="error" id="additional-files-child-tests-xspec-assert">sec[@sec-type='supplementary-material']/* must be present.</assert>
       <assert test="descendant::fn-group[@content-type='competing-interest']" role="error" id="comp-int-fn-group-tests-xspec-assert">fn-group[@content-type='competing-interest'] must be present.</assert>
       <assert test="descendant::fn-group[@content-type='competing-interest']/fn" role="error" id="comp-int-fn-tests-xspec-assert">fn-group[@content-type='competing-interest']/fn must be present.</assert>

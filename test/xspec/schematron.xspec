@@ -7413,15 +7413,17 @@
         <x:expect-assert id="add-files-1" role="error"/>
         <x:expect-not-assert id="additional-files-tests-xspec-assert" role="error"/>
       </x:scenario>
+    </x:scenario>
+    <x:scenario label="trf-presence">
       <x:scenario label="add-files-2-pass">
-        <x:context href="../tests/gen/additional-files-tests/add-files-2/pass.xml"/>
-        <x:expect-not-report id="add-files-2" role="warning"/>
-        <x:expect-not-assert id="additional-files-tests-xspec-assert" role="error"/>
+        <x:context href="../tests/gen/trf-presence/add-files-2/pass.xml"/>
+        <x:expect-not-assert id="add-files-2" role="warning"/>
+        <x:expect-not-assert id="trf-presence-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="add-files-2-fail">
-        <x:context href="../tests/gen/additional-files-tests/add-files-2/fail.xml"/>
-        <x:expect-report id="add-files-2" role="warning"/>
-        <x:expect-not-assert id="additional-files-tests-xspec-assert" role="error"/>
+        <x:context href="../tests/gen/trf-presence/add-files-2/fail.xml"/>
+        <x:expect-assert id="add-files-2" role="warning"/>
+        <x:expect-not-assert id="trf-presence-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="additional-files-child-tests">
