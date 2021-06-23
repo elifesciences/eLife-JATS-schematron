@@ -5574,9 +5574,13 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="add-files-1">The additional files section (sec[@sec-type='supplementary-material']) must have a title which is 'Additional files'. This one does not.</assert>
       
-      <report test="ancestor::article/@article-type='research-article' and not(supplementary-material[contains(lower-case(label[1]),'transparent reporting form')])" 
+    </rule>
+    
+    <rule context="article[@article-type='research-article']" id="trf-presence">
+      
+      <assert test="descendant::supplementary-material[contains(lower-case(label[1]),'transparent reporting form')]" 
         role="warning" 
-        id="add-files-2">This article does not have a transparent reporting form. Is that correct?</report>
+        id="add-files-2">This article does not have a transparent reporting form. Is that correct?</assert>
       
     </rule>
     
@@ -7843,7 +7847,7 @@ else self::*/local-name() = $allowed-p-blocks"
      
      <report test="matches(.,'^\p{Ll}')" 
        role="warning" 
-       id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two?</report>
+       id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrectly split into two?</report>
      
      <report test="matches(.,'\[[Oo][Kk]\??\]')" 
        role="error" 

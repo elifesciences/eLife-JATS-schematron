@@ -3841,7 +3841,12 @@
       
       <assert test="title = 'Additional files'" role="error" id="add-files-1">[add-files-1] The additional files section (sec[@sec-type='supplementary-material']) must have a title which is 'Additional files'. This one does not.</assert>
       
-      <report test="ancestor::article/@article-type='research-article' and not(supplementary-material[contains(lower-case(label[1]),'transparent reporting form')])" role="warning" id="add-files-2">[add-files-2] This article does not have a transparent reporting form. Is that correct?</report>
+    </rule>
+  </pattern>
+  <pattern id="trf-presence-pattern">
+    <rule context="article[@article-type='research-article']" id="trf-presence">
+      
+      <assert test="descendant::supplementary-material[contains(lower-case(label[1]),'transparent reporting form')]" role="warning" id="add-files-2">[add-files-2] This article does not have a transparent reporting form. Is that correct?</assert>
       
     </rule>
   </pattern>
@@ -5335,7 +5340,7 @@
   <pattern id="digest-tests-pattern">
     <rule context="front//abstract[@abstract-type='executive-summary']/p" id="digest-tests">
      
-     <report test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">[digest-test-1] digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrect split into two?</report>
+     <report test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">[digest-test-1] digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrectly split into two?</report>
      
      <report test="matches(.,'\[[Oo][Kk]\??\]')" role="error" id="final-digest-test-2">[final-digest-test-2] digest paragraph contains [OK] or [OK?] which should be removed - <value-of select="."/>
       </report>
