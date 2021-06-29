@@ -1,4 +1,4 @@
-<?oxygen SCHSchema="video-placement-1.sch"?>
+<?oxygen SCHSchema="final-video-placement-1.sch"?>
 <!--Context: media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]
 Test: report    ($xrefs//*:match) and ($sec-id != $sec1/@id)
 Message:  does not appear in the same section as where it is first cited (sec with title ''), which is incorrect. -->
@@ -10,12 +10,12 @@ Message:  does not appear in the same section as where it is first cited (sec wi
       <media id="video1" mimetype="video">
         <label>Video 1.</label>
       </media>
-    </sec>
-    <sec id="sec2">
-      <title>Section 2</title>
       <media id="video2" mimetype="video">
         <label>Video 2.</label>
       </media>
+    </sec>
+    <sec id="sec2">
+      <title>Section 2</title>
     </sec>
     <sec id="sec3">
       <title>Section 3</title>
@@ -23,15 +23,15 @@ Message:  does not appear in the same section as where it is first cited (sec wi
       <media id="video3" mimetype="video">
         <label>Video 3.</label>
       </media>
+      <media id="video4" mimetype="video">
+        <label>Video 4.</label>
+      </media>
       <media id="video5" mimetype="video">
         <label>Video 5.</label>
       </media>
     </sec>
     <sec id="sec4">
       <title>Section 4</title>
-      <media id="video4" mimetype="video">
-        <label>Video 4.</label>
-      </media>
     </sec>
   </article>
 </root>
