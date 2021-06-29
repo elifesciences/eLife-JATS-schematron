@@ -4747,19 +4747,23 @@ else self::*/local-name() = $allowed-p-blocks"
       id="medicine-section-tests">
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
       
-      <report test="$pos=1 and title[1]!='Introduction'" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-introduction"
+        test="$pos=1 and title[1]!='Introduction'" 
         role="error" 
         id="medicine-introduction">The first top level section in a Medicine article should be 'Introduction'. This one is '<value-of select="title[1]"/>'.</report>
       
-      <report test="$pos=2 and not(title[1]=('Methods','Materials and methods'))" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-methods"
+        test="$pos=2 and not(title[1]=('Methods','Materials and methods'))" 
         role="error" 
         id="medicine-methods">The second top level section in a Medicine article should be 'Methods' or 'Materials and methods'. This one is '<value-of select="title[1]"/>'.</report>
       
-      <report test="$pos=3 and title[1]!='Results'" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-results"
+        test="$pos=3 and title[1]!='Results'" 
         role="error" 
         id="medicine-results">The third top level section in a Medicine article should be 'Results'. This one is '<value-of select="title[1]"/>'.</report>
       
-      <report test="$pos=4 and title[1]!='Discussion'" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-discussion"
+        test="$pos=4 and title[1]!='Discussion'" 
         role="error" 
         id="medicine-discussion">The fourth top level section in a Medicine article should be 'Discussion'. This one is '<value-of select="title[1]"/>'.</report>
       
@@ -7980,15 +7984,25 @@ else self::*/local-name() = $allowed-p-blocks"
           "/>. Please remove any senior/reviewing editors.</report>
      
      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-author-cont"
-        test="back/fn-group[@content-type='author-contribution'] and ($template != '5')" 
-        role="warning" 
-        id="feature-templates-author-cont"><value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should very likely not have any Author contributions. This <value-of select="$type"/> has <value-of select="
+        test="back/fn-group[@content-type='author-contribution'] and $template = ('1','2')" 
+        role="error" 
+        id="feature-templates-author-cont"><value-of select="$type"/> articles should not have any Author contributions. This <value-of select="$type"/> has <value-of select="
           string-join(for $x in back/fn-group[@content-type='author-contribution']/fn
           return concat('&quot;', $x,'&quot;')
           ,
           '; '
           )
-          "/>. Please check with eLife production whether author contributions should be present.</report>
+          "/>. Please remove the author contributions.</report>
+     
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#pre-feature-templates-author-cont-2"
+       test="$template = ('3','4') and not(back/fn-group[@content-type='author-contribution'])" 
+       role="warning" 
+       id="pre-feature-templates-author-cont-2"><value-of select="$type"/>s should have Author contributions. This one does not. Exeter please check with the Production team who will check with the Features team.</report>
+     
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#final-feature-templates-author-cont-2"
+       test="$template = ('3','4') and not(back/fn-group[@content-type='author-contribution'])" 
+       role="error" 
+       id="final-feature-templates-author-cont-2"><value-of select="$type"/>s should have Author contributions. This one does not. Exeter please check with the Production team who will check with the Features team.</report>
    </rule>
    
    <rule context="article[@article-type='article-commentary']//article-meta/abstract" id="insight-asbtract-tests">

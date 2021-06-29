@@ -11081,12 +11081,32 @@
       </x:scenario>
       <x:scenario label="feature-templates-author-cont-pass">
         <x:context href="../tests/gen/feature-template-tests/feature-templates-author-cont/pass.xml"/>
-        <x:expect-not-report id="feature-templates-author-cont" role="warning"/>
+        <x:expect-not-report id="feature-templates-author-cont" role="error"/>
         <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="feature-templates-author-cont-fail">
         <x:context href="../tests/gen/feature-template-tests/feature-templates-author-cont/fail.xml"/>
-        <x:expect-report id="feature-templates-author-cont" role="warning"/>
+        <x:expect-report id="feature-templates-author-cont" role="error"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-feature-templates-author-cont-2-pass">
+        <x:context href="../tests/gen/feature-template-tests/pre-feature-templates-author-cont-2/pass.xml"/>
+        <x:expect-not-report id="pre-feature-templates-author-cont-2" role="warning"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-feature-templates-author-cont-2-fail">
+        <x:context href="../tests/gen/feature-template-tests/pre-feature-templates-author-cont-2/fail.xml"/>
+        <x:expect-report id="pre-feature-templates-author-cont-2" role="warning"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-feature-templates-author-cont-2-pass">
+        <x:context href="../tests/gen/feature-template-tests/final-feature-templates-author-cont-2/pass.xml"/>
+        <x:expect-not-report id="final-feature-templates-author-cont-2" role="error"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-feature-templates-author-cont-2-fail">
+        <x:context href="../tests/gen/feature-template-tests/final-feature-templates-author-cont-2/fail.xml"/>
+        <x:expect-report id="final-feature-templates-author-cont-2" role="error"/>
         <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

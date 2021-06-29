@@ -15887,6 +15887,7 @@
       <xsl:if test="$pos=1 and title[1]!='Introduction'">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$pos=1 and title[1]!='Introduction'">
             <xsl:attribute name="id">medicine-introduction</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-introduction</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -15901,6 +15902,7 @@
       <xsl:if test="$pos=2 and not(title[1]=('Methods','Materials and methods'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$pos=2 and not(title[1]=('Methods','Materials and methods'))">
             <xsl:attribute name="id">medicine-methods</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-methods</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -15915,6 +15917,7 @@
       <xsl:if test="$pos=3 and title[1]!='Results'">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$pos=3 and title[1]!='Results'">
             <xsl:attribute name="id">medicine-results</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-results</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -15929,6 +15932,7 @@
       <xsl:if test="$pos=4 and title[1]!='Discussion'">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$pos=4 and title[1]!='Discussion'">
             <xsl:attribute name="id">medicine-discussion</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-discussion</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25481,24 +25485,37 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT warning-->
-      <xsl:if test="back/fn-group[@content-type='author-contribution'] and ($template != '5')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="back/fn-group[@content-type='author-contribution'] and ($template != '5')">
+		    <!--REPORT error-->
+      <xsl:if test="back/fn-group[@content-type='author-contribution'] and $template = ('1','2')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="back/fn-group[@content-type='author-contribution'] and $template = ('1','2')">
             <xsl:attribute name="id">feature-templates-author-cont</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-author-cont</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[feature-templates-author-cont] <xsl:text/>
                <xsl:value-of select="$type"/>
-               <xsl:text/> is a template <xsl:text/>
-               <xsl:value-of select="$template"/>
-               <xsl:text/>, which means that it should very likely not have any Author contributions. This <xsl:text/>
+               <xsl:text/> articles should not have any Author contributions. This <xsl:text/>
                <xsl:value-of select="$type"/>
                <xsl:text/> has <xsl:text/>
                <xsl:value-of select="           string-join(for $x in back/fn-group[@content-type='author-contribution']/fn           return concat('&quot;', $x,'&quot;')           ,           '; '           )           "/>
-               <xsl:text/>. Please check with eLife production whether author contributions should be present.</svrl:text>
+               <xsl:text/>. Please remove the author contributions.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="$template = ('3','4') and not(back/fn-group[@content-type='author-contribution'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$template = ('3','4') and not(back/fn-group[@content-type='author-contribution'])">
+            <xsl:attribute name="id">pre-feature-templates-author-cont-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#pre-feature-templates-author-cont-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pre-feature-templates-author-cont-2] <xsl:text/>
+               <xsl:value-of select="$type"/>
+               <xsl:text/>s should have Author contributions. This one does not. Exeter please check with the Production team who will check with the Features team.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M390"/>

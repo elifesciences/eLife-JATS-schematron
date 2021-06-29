@@ -1,14 +1,14 @@
-<?oxygen SCHSchema="feature-templates-author-cont.sch"?>
+<?oxygen SCHSchema="pre-feature-templates-author-cont-2.sch"?>
 <!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]
-Test: report    back/fn-group[@content-type='author-contribution'] and $template = ('1','2')
-Message:  articles should not have any Author contributions. This  has . Please remove the author contributions. -->
+Test: report    $template = ('3','4') and not(back/fn-group[@content-type='author-contribution'])
+Message: s should have Author contributions. This one does not. Exeter please check with the Production team who will check with the Features team. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="discussion" dtd-version="1.1">
     <front>
       <article-meta>
         <article-categories>
           <subj-group subj-group-type="display-channel">
-            <subject>Insight</subject>
+            <subject>Feature Article</subject>
           </subj-group>
           <subj-group subj-group-type="sub-display-channel">
             <subject>COVID-19 and the Research Community</subject>
@@ -50,13 +50,10 @@ Message:  articles should not have any Author contributions. This  has . Please 
           </custom-meta>
           <custom-meta specific-use="meta-only">
             <meta-name>Template</meta-name>
-            <meta-value>1</meta-value>
+            <meta-value>3</meta-value>
           </custom-meta>
         </custom-meta-group>
       </article-meta>
     </front>
-    <back>
-      <fn-group content-type="author-contribution"><title>Author contributions</title><fn fn-type="con" id="con1"><p>Writing - original draft, Writing - review and editing</p></fn></fn-group>
-    </back>
   </article>
 </root>
