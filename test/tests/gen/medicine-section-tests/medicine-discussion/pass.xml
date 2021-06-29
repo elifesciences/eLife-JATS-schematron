@@ -1,0 +1,34 @@
+<?oxygen SCHSchema="medicine-discussion.sch"?>
+<!--Context: article[descendant::article-meta//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')]]/body/sec
+Test: report    $pos=4 and title[1]!='Discussion'
+Message: The fourth top level section in a Medicine article should be 'Discussion'. This one is ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Article</subject>
+          </subj-group>
+          <subj-group subj-group-type="heading">
+            <subject>Medicine</subject>
+          </subj-group>
+        </article-categories>
+      </article-meta>
+    </front>
+    <body>
+      <sec id="s1" sec-type="intro">
+        <title>Introduction</title>
+      </sec>
+      <sec id="s2" sec-type="methods">
+        <title>Methods</title>
+      </sec>
+      <sec id="s3" sec-type="results">
+        <title>Results</title>
+      </sec>
+      <sec id="s4" sec-type="discussion">
+        <title>Discussion</title>
+      </sec>
+    </body>
+  </article>
+</root>

@@ -3004,7 +3004,10 @@
       
       <assert test="$xrefs//*:match" role="warning" id="final-video-cite">There is no citation to <value-of select="$label"/>. Ensure this is added.</assert>
       
-      <report test="($xrefs//*:match) and ($sec-id != $sec1/@id)" role="error" id="video-placement-1">
+      <report test="($xrefs//*:match) and ($sec-id != $sec1/@id)" role="warning" id="pre-video-placement-1">
+        <value-of select="$label"/> does not appear in the same section as where it is first cited (sec with title '<value-of select="$sec1/title"/>'), which is incorrect. If videos are cited out of order, please esnure that this issue is raised with the authors.</report>
+      
+      <report test="($xrefs//*:match) and ($sec-id != $sec1/@id)" role="error" id="final-video-placement-1">
         <value-of select="$label"/> does not appear in the same section as where it is first cited (sec with title '<value-of select="$sec1/title"/>'), which is incorrect.</report>
       
       <report test="($xref-sib = 'p') and ($xref1//following::media/@id = $id)" role="warning" id="video-placement-2">
@@ -3412,6 +3415,20 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#ra-sec-test-4" test="if ($type = ('Short Report','Scientific Correspondence')) then ()         else if (sec[@sec-type='results|discussion']) then ()         else $res-disc-count != 2" role="warning" id="ra-sec-test-4">main body in <value-of select="$type"/> content doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</report>
     
+    </rule>
+  </pattern>
+  <pattern id="medicine-section-tests-pattern">
+    <rule context="article[descendant::article-meta//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')]]/body/sec" id="medicine-section-tests">
+      <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
+      
+      <report test="$pos=1 and title[1]!='Introduction'" role="error" id="medicine-introduction">The first top level section in a Medicine article should be 'Introduction'. This one is '<value-of select="title[1]"/>'.</report>
+      
+      <report test="$pos=2 and not(title[1]=('Methods','Materials and methods'))" role="error" id="medicine-methods">The second top level section in a Medicine article should be 'Methods' or 'Materials and methods'. This one is '<value-of select="title[1]"/>'.</report>
+      
+      <report test="$pos=3 and title[1]!='Results'" role="error" id="medicine-results">The third top level section in a Medicine article should be 'Results'. This one is '<value-of select="title[1]"/>'.</report>
+      
+      <report test="$pos=4 and title[1]!='Discussion'" role="error" id="medicine-discussion">The fourth top level section in a Medicine article should be 'Discussion'. This one is '<value-of select="title[1]"/>'.</report>
+      
     </rule>
   </pattern>
   <pattern id="top-level-sec-tests-pattern">
@@ -3860,7 +3877,9 @@
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-1" test="title" role="error" id="sec-test-1">sec must have a title</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-2" test="p or sec or fig or fig-group or media or table-wrap or boxed-text or list or fn-group or supplementary-material or related-object or code" role="error" id="sec-test-2">sec appears to contain no content. This cannot be correct.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#pre-sec-test-2" test="p or sec or fig or fig-group or media or table-wrap or boxed-text or list or fn-group or supplementary-material or related-object or code" role="warning" id="pre-sec-test-2">sec appears to contain no content. This cannot be correct. If the heading is correct and the content is missing, please ensure to query the authors asking for them to update accordingly.</assert>
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#final-sec-test-2" test="p or sec or fig or fig-group or media or table-wrap or boxed-text or list or fn-group or supplementary-material or related-object or code" role="error" id="final-sec-test-2">sec appears to contain no content. This cannot be correct.</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-5" test="count(ancestor::sec) ge 5" role="error" id="sec-test-5">Level <value-of select="count(ancestor::sec) + 1"/> sections are not allowed. Please either make this a level 5 heading, or capture the title as a bolded paragraph in its parent section.</report>
     </rule>
@@ -8186,6 +8205,7 @@
       <assert test="descendant::fig/caption/p[not(child::supplementary-material)]" role="error" id="fig-caption-tests-xspec-assert">fig/caption/p[not(child::supplementary-material)] must be present.</assert>
       <assert test="descendant::fig/caption/p/bold" role="error" id="fig-panel-tests-xspec-assert">fig/caption/p/bold must be present.</assert>
       <assert test="descendant::article[@article-type='research-article']/body" role="error" id="ra-body-tests-xspec-assert">article[@article-type='research-article']/body must be present.</assert>
+      <assert test="descendant::article[descendant::article-meta//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')]]/body/sec" role="error" id="medicine-section-tests-xspec-assert">article[descendant::article-meta//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')]]/body/sec must be present.</assert>
       <assert test="descendant::body/sec" role="error" id="top-level-sec-tests-xspec-assert">body/sec must be present.</assert>
       <assert test="descendant::article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body/sec/title" role="error" id="conclusion-sec-tests-xspec-assert">article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body/sec/title must be present.</assert>
       <assert test="descendant::article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body//sec/sec//sec/title" role="error" id="conclusion-lower-sec-tests-xspec-assert">article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body//sec/sec//sec/title must be present.</assert>

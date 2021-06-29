@@ -1023,22 +1023,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="content-containers">
-    <rule context="media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]" id="general-video">
-      <let name="label" value="replace(label,'\.$','')"/>
-      <let name="id" value="@id"/>
-      <let name="xrefs" value="e:get-xrefs(ancestor::article,$id,'video')"/>
-      <let name="sec1" value="ancestor::article/descendant::sec[@id = $xrefs//*/@sec-id][1]"/>
-      <let name="sec-id" value="ancestor::sec[1]/@id"/>
-      <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::caption)][1]"/>
-      <let name="xref-sib" value="$xref1/parent::*/following-sibling::*[1]/local-name()"/>
-      <report test="($xrefs//*:match) and ($sec-id != $sec1/@id)" role="error" id="video-placement-1">
-        <value-of select="$label"/> does not appear in the same section as where it is first cited (sec with title '<value-of select="$sec1/title"/>'), which is incorrect.</report>
+  <pattern id="body">
+    <rule context="article[descendant::article-meta//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')]]/body/sec" id="medicine-section-tests">
+      <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
+      <report test="$pos=4 and title[1]!='Discussion'" role="error" id="medicine-discussion">The fourth top level section in a Medicine article should be 'Discussion'. This one is '<value-of select="title[1]"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]" role="error" id="general-video-xspec-assert">media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')] must be present.</assert>
+      <assert test="descendant::article[descendant::article-meta//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')]]/body/sec" role="error" id="medicine-section-tests-xspec-assert">article[descendant::article-meta//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')]]/body/sec must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -5261,14 +5261,24 @@
         <x:expect-assert id="final-video-cite" role="warning"/>
         <x:expect-not-assert id="general-video-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="video-placement-1-pass">
-        <x:context href="../tests/gen/general-video/video-placement-1/pass.xml"/>
-        <x:expect-not-report id="video-placement-1" role="error"/>
+      <x:scenario label="pre-video-placement-1-pass">
+        <x:context href="../tests/gen/general-video/pre-video-placement-1/pass.xml"/>
+        <x:expect-not-report id="pre-video-placement-1" role="warning"/>
         <x:expect-not-assert id="general-video-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="video-placement-1-fail">
-        <x:context href="../tests/gen/general-video/video-placement-1/fail.xml"/>
-        <x:expect-report id="video-placement-1" role="error"/>
+      <x:scenario label="pre-video-placement-1-fail">
+        <x:context href="../tests/gen/general-video/pre-video-placement-1/fail.xml"/>
+        <x:expect-report id="pre-video-placement-1" role="warning"/>
+        <x:expect-not-assert id="general-video-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-video-placement-1-pass">
+        <x:context href="../tests/gen/general-video/final-video-placement-1/pass.xml"/>
+        <x:expect-not-report id="final-video-placement-1" role="error"/>
+        <x:expect-not-assert id="general-video-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-video-placement-1-fail">
+        <x:context href="../tests/gen/general-video/final-video-placement-1/fail.xml"/>
+        <x:expect-report id="final-video-placement-1" role="error"/>
         <x:expect-not-assert id="general-video-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="video-placement-2-pass">
@@ -6144,6 +6154,48 @@
         <x:context href="../tests/gen/ra-body-tests/ra-sec-test-4/fail.xml"/>
         <x:expect-report id="ra-sec-test-4" role="warning"/>
         <x:expect-not-assert id="ra-body-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="medicine-section-tests">
+      <x:scenario label="medicine-introduction-pass">
+        <x:context href="../tests/gen/medicine-section-tests/medicine-introduction/pass.xml"/>
+        <x:expect-not-report id="medicine-introduction" role="error"/>
+        <x:expect-not-assert id="medicine-section-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="medicine-introduction-fail">
+        <x:context href="../tests/gen/medicine-section-tests/medicine-introduction/fail.xml"/>
+        <x:expect-report id="medicine-introduction" role="error"/>
+        <x:expect-not-assert id="medicine-section-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="medicine-methods-pass">
+        <x:context href="../tests/gen/medicine-section-tests/medicine-methods/pass.xml"/>
+        <x:expect-not-report id="medicine-methods" role="error"/>
+        <x:expect-not-assert id="medicine-section-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="medicine-methods-fail">
+        <x:context href="../tests/gen/medicine-section-tests/medicine-methods/fail.xml"/>
+        <x:expect-report id="medicine-methods" role="error"/>
+        <x:expect-not-assert id="medicine-section-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="medicine-results-pass">
+        <x:context href="../tests/gen/medicine-section-tests/medicine-results/pass.xml"/>
+        <x:expect-not-report id="medicine-results" role="error"/>
+        <x:expect-not-assert id="medicine-section-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="medicine-results-fail">
+        <x:context href="../tests/gen/medicine-section-tests/medicine-results/fail.xml"/>
+        <x:expect-report id="medicine-results" role="error"/>
+        <x:expect-not-assert id="medicine-section-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="medicine-discussion-pass">
+        <x:context href="../tests/gen/medicine-section-tests/medicine-discussion/pass.xml"/>
+        <x:expect-not-report id="medicine-discussion" role="error"/>
+        <x:expect-not-assert id="medicine-section-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="medicine-discussion-fail">
+        <x:context href="../tests/gen/medicine-section-tests/medicine-discussion/fail.xml"/>
+        <x:expect-report id="medicine-discussion" role="error"/>
+        <x:expect-not-assert id="medicine-section-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="top-level-sec-tests">
@@ -7125,14 +7177,24 @@
         <x:expect-assert id="sec-test-1" role="error"/>
         <x:expect-not-assert id="sec-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="sec-test-2-pass">
-        <x:context href="../tests/gen/sec-tests/sec-test-2/pass.xml"/>
-        <x:expect-not-assert id="sec-test-2" role="error"/>
+      <x:scenario label="pre-sec-test-2-pass">
+        <x:context href="../tests/gen/sec-tests/pre-sec-test-2/pass.xml"/>
+        <x:expect-not-assert id="pre-sec-test-2" role="warning"/>
         <x:expect-not-assert id="sec-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="sec-test-2-fail">
-        <x:context href="../tests/gen/sec-tests/sec-test-2/fail.xml"/>
-        <x:expect-assert id="sec-test-2" role="error"/>
+      <x:scenario label="pre-sec-test-2-fail">
+        <x:context href="../tests/gen/sec-tests/pre-sec-test-2/fail.xml"/>
+        <x:expect-assert id="pre-sec-test-2" role="warning"/>
+        <x:expect-not-assert id="sec-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-sec-test-2-pass">
+        <x:context href="../tests/gen/sec-tests/final-sec-test-2/pass.xml"/>
+        <x:expect-not-assert id="final-sec-test-2" role="error"/>
+        <x:expect-not-assert id="sec-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-sec-test-2-fail">
+        <x:context href="../tests/gen/sec-tests/final-sec-test-2/fail.xml"/>
+        <x:expect-assert id="final-sec-test-2" role="error"/>
         <x:expect-not-assert id="sec-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sec-test-5-pass">

@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="final-sec-test-2.sch"?>
+<!--Context: sec
+Test: assert    p or sec or fig or fig-group or media or table-wrap or boxed-text or list or fn-group or supplementary-material or related-object or code
+Message: sec appears to contain no content. This cannot be correct. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <sec>
+      <title/>
+      <p/>
+    </sec>
+  </article>
+</root>

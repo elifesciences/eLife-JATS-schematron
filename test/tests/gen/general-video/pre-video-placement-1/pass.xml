@@ -1,7 +1,7 @@
-<?oxygen SCHSchema="video-placement-1.sch"?>
+<?oxygen SCHSchema="pre-video-placement-1.sch"?>
 <!--Context: media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]
 Test: report    ($xrefs//*:match) and ($sec-id != $sec1/@id)
-Message:  does not appear in the same section as where it is first cited (sec with title ''), which is incorrect. -->
+Message:  does not appear in the same section as where it is first cited (sec with title ''), which is incorrect. If videos are cited out of order, please esnure that this issue is raised with the authors. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sec id="sec1">
