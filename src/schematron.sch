@@ -4743,7 +4743,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     </rule>
         
-    <rule context="article[descendant::article-meta//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')]]/body/sec" 
+    <rule context="article[descendant::article-meta[//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" 
       id="medicine-section-tests">
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
       
