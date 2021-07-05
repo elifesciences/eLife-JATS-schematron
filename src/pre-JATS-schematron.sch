@@ -1715,7 +1715,7 @@
     </rule>
   </pattern>
   <pattern id="medicine-abstract-tests-pattern">
-    <rule context="article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract" id="medicine-abstract-tests">
+    <rule context="article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract[not(@abstract-type)]" id="medicine-abstract-tests">
       <!-- temporarily a warning. Should be error -->
       <assert test="sec" role="warning" id="medicine-abstract-conformance">[medicine-abstract-conformance] Medicine articles with a colon in their title must have a structured abstract. Either the colon in the title is incorrect, or the abstract should be changed to a structured format.</assert>
       
