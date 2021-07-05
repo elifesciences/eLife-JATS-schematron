@@ -1784,7 +1784,7 @@
     </rule>
   </pattern>
   <pattern id="medicine-abstract-tests-pattern">
-    <rule context="article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract" id="medicine-abstract-tests">
+    <rule context="article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract[not(@abstract-type)]" id="medicine-abstract-tests">
       <!-- temporarily a warning. Should be error -->
       <assert test="sec" role="warning" id="medicine-abstract-conformance">Medicine articles with a colon in their title must have a structured abstract. Either the colon in the title is incorrect, or the abstract should be changed to a structured format.</assert>
       
@@ -8098,7 +8098,7 @@
       <assert test="descendant::front//permissions/license" role="error" id="license-tests-xspec-assert">front//permissions/license must be present.</assert>
       <assert test="descendant::front//permissions/license/license-p" role="error" id="license-p-tests-xspec-assert">front//permissions/license/license-p must be present.</assert>
       <assert test="descendant::front//abstract" role="error" id="abstract-tests-xspec-assert">front//abstract must be present.</assert>
-      <assert test="descendant::article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract" role="error" id="medicine-abstract-tests-xspec-assert">article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract must be present.</assert>
+      <assert test="descendant::article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract[not(@abstract-type)]" role="error" id="medicine-abstract-tests-xspec-assert">article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract[not(@abstract-type)] must be present.</assert>
       <assert test="descendant::article[@article-type='research-article']//article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)]" role="error" id="medicine-abstract-tests-2-xspec-assert">article[@article-type='research-article']//article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)] must be present.</assert>
       <assert test="descendant::front//abstract/*" role="error" id="abstract-children-tests-xspec-assert">front//abstract/* must be present.</assert>
       <assert test="descendant::abstract[not(@abstract-type)]/sec" role="error" id="abstract-sec-titles-xspec-assert">abstract[not(@abstract-type)]/sec must be present.</assert>

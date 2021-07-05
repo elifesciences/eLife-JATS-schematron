@@ -8403,7 +8403,7 @@
 
 
 	  <!--RULE medicine-abstract-tests-->
-   <xsl:template match="article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract" priority="1000" mode="M98">
+   <xsl:template match="article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract[not(@abstract-type)]" priority="1000" mode="M98">
 
 		<!--ASSERT warning-->
       <xsl:choose>

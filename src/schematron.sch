@@ -2187,7 +2187,7 @@
 		
     </rule>
     
-    <rule context="article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract" id="medicine-abstract-tests">
+    <rule context="article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract[not(@abstract-type)]" id="medicine-abstract-tests">
       <!-- temporarily a warning. Should be error -->
       <assert test="sec" 
         role="warning" 
