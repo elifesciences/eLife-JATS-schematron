@@ -1068,6 +1068,12 @@
     </xsl:element>
   </xsl:function>
   
+  <!-- returns integer for day of week 1 = Monday, 2 = Tuesday etc. -->
+  <xsl:function name="e:get-weekday" as="xs:integer?">
+    <xsl:param name="date" as="xs:anyAtomicType?"/>
+    <xsl:sequence select="       if (empty($date)) then ()       else xs:integer((xs:date($date) - xs:date('1901-01-06')) div xs:dayTimeDuration('P1D')) mod 7       "/>
+  </xsl:function>
+  
   <!-- Modification of http://www.xsltfunctions.com/xsl/functx_line-count.html -->
   <xsl:function name="e:line-count" as="xs:integer">
     <xsl:param name="arg" as="xs:string?"/>
@@ -1696,6 +1702,14 @@
       <assert test="matches(month[1],'^[0-9]{2}$')" role="error" id="final-pub-date-test-2">pub-date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
       
       <assert test="matches(year[1],'^[0-9]{4}$')" role="error" id="pub-date-test-3">pub-date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="press-pub-date-pattern">
+    <rule context="pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')]" id="press-pub-date">
+      <let name="date" value="concat(year[1],'-',month[1],'-',day[1])"/>
+      
+      <report test="e:get-weekday($date) != 2" role="warning" id="press-pub-date-check">The publication date for this article is in the future (<value-of select="$date"/>), but the day of publication is not a Tuesday (for Press). Is that correct?</report>
       
     </rule>
   </pattern>
@@ -8093,6 +8107,7 @@
       <assert test="descendant::year[ancestor::article-meta]" role="error" id="year-article-meta-tests-xspec-assert">year[ancestor::article-meta] must be present.</assert>
       <assert test="descendant::year[ancestor::element-citation]" role="error" id="year-element-citation-tests-xspec-assert">year[ancestor::element-citation] must be present.</assert>
       <assert test="descendant::pub-date[not(@pub-type='collection')]" role="error" id="pub-date-tests-1-xspec-assert">pub-date[not(@pub-type='collection')] must be present.</assert>
+      <assert test="descendant::pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')]" role="error" id="press-pub-date-xspec-assert">pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')] must be present.</assert>
       <assert test="descendant::pub-date[@pub-type='collection']" role="error" id="pub-date-tests-2-xspec-assert">pub-date[@pub-type='collection'] must be present.</assert>
       <assert test="descendant::front//permissions" role="error" id="front-permissions-tests-xspec-assert">front//permissions must be present.</assert>
       <assert test="descendant::front//permissions/license" role="error" id="license-tests-xspec-assert">front//permissions/license must be present.</assert>

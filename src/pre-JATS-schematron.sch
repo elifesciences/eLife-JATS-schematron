@@ -1013,6 +1013,12 @@
     </xsl:element>
   </xsl:function>
   
+  <!-- returns integer for day of week 1 = Monday, 2 = Tuesday etc. -->
+  <xsl:function name="e:get-weekday" as="xs:integer?">
+    <xsl:param name="date" as="xs:anyAtomicType?"/>
+    <xsl:sequence select="       if (empty($date)) then ()       else xs:integer((xs:date($date) - xs:date('1901-01-06')) div xs:dayTimeDuration('P1D')) mod 7       "/>
+  </xsl:function>
+  
   <!-- Modification of http://www.xsltfunctions.com/xsl/functx_line-count.html -->
   <xsl:function name="e:line-count" as="xs:integer">
     <xsl:param name="arg" as="xs:string?"/>
@@ -1627,6 +1633,14 @@
       
       
       <assert test="matches(year[1],'^[0-9]{4}$')" role="error" id="pub-date-test-3">[pub-date-test-3] pub-date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="press-pub-date-pattern">
+    <rule context="pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')]" id="press-pub-date">
+      <let name="date" value="concat(year[1],'-',month[1],'-',day[1])"/>
+      
+      <report test="e:get-weekday($date) != 2" role="warning" id="press-pub-date-check">[press-pub-date-check] The publication date for this article is in the future (<value-of select="$date"/>), but the day of publication is not a Tuesday (for Press). Is that correct?</report>
       
     </rule>
   </pattern>

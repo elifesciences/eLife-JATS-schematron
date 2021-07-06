@@ -1672,6 +1672,18 @@
         <x:expect-not-assert id="pub-date-tests-1-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="press-pub-date">
+      <x:scenario label="press-pub-date-check-pass">
+        <x:context href="../tests/gen/press-pub-date/press-pub-date-check/pass.xml"/>
+        <x:expect-not-report id="press-pub-date-check" role="warning"/>
+        <x:expect-not-assert id="press-pub-date-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="press-pub-date-check-fail">
+        <x:context href="../tests/gen/press-pub-date/press-pub-date-check/fail.xml"/>
+        <x:expect-report id="press-pub-date-check" role="warning"/>
+        <x:expect-not-assert id="press-pub-date-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="pub-date-tests-2">
       <x:scenario label="pub-date-test-4-pass">
         <x:context href="../tests/gen/pub-date-tests-2/pub-date-test-4/pass.xml"/>
