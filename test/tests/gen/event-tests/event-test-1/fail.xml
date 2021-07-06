@@ -1,0 +1,19 @@
+<?oxygen SCHSchema="event-test-1.sch"?>
+<!--Context: event
+Test: assert    event-desc
+Message:  must contain an event-desc element. This one does not. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <pub-history>
+      <event>
+        
+        <date date-type="preprint" iso-8601-date="2021-03-02">
+          <day>02</day>
+          <month>03</month>
+          <year>2021</year>
+        </date>
+        <self-uri content-type="preprint" xlink:href="https://doi.org/10.1101/2021.03.01.433461"/>
+      </event>
+    </pub-history>
+  </article>
+</root>
