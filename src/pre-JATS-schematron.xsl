@@ -24778,16 +24778,16 @@
 	  <!--RULE das-elem-citation-data-pub-id-->
    <xsl:template match="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id" priority="1000" mode="M380">
 
-		<!--REPORT error-->
+		<!--REPORT warning-->
       <xsl:if test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'doi'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'doi'))">
-            <xsl:attribute name="id">das-pub-id-1</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-pub-id-1</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="id">pre-das-pub-id-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-pub-id-1</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[das-pub-id-1] Each pub-id element must have an @pub-id-type which is either accession or doi.</svrl:text>
+            <svrl:text>[pre-das-pub-id-1] Each pub-id element must have an @pub-id-type which is either accession or doi. If this identifier is missing, then ensure to query the author for this information.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 

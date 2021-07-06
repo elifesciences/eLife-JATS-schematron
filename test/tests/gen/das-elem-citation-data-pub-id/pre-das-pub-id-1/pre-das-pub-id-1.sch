@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="das-element-citation-tests">
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id" id="das-elem-citation-data-pub-id">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-pub-id-1" test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'doi'))" role="error" id="das-pub-id-1">Each pub-id element must have an @pub-id-type which is either accession or doi.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-pub-id-1" test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'doi'))" role="warning" id="pre-das-pub-id-1">Each pub-id element must have an @pub-id-type which is either accession or doi. If this identifier is missing, then ensure to query the author for this information.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

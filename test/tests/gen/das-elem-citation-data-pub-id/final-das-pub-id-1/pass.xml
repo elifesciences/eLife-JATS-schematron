@@ -1,4 +1,4 @@
-<?oxygen SCHSchema="das-pub-id-1.sch"?>
+<?oxygen SCHSchema="final-das-pub-id-1.sch"?>
 <!--Context: sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id
 Test: report    normalize-space(.)!='' and not(@pub-id-type=('accession', 'doi'))
 Message: Each pub-id element must have an @pub-id-type which is either accession or doi. -->

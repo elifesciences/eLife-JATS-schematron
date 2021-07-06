@@ -5284,7 +5284,9 @@
   <pattern id="das-elem-citation-data-pub-id-pattern">
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id" id="das-elem-citation-data-pub-id">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-pub-id-1" test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'doi'))" role="error" id="das-pub-id-1">[das-pub-id-1] Each pub-id element must have an @pub-id-type which is either accession or doi.</report>
+      
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-pub-id-1" test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'doi'))" role="error" id="final-das-pub-id-1">[final-das-pub-id-1] Each pub-id element must have an @pub-id-type which is either accession or doi.</report>
       
       
       
