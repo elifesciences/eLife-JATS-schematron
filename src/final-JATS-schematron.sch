@@ -1068,6 +1068,12 @@
     </xsl:element>
   </xsl:function>
   
+  <!-- returns integer for day of week 1 = Monday, 2 = Tuesday etc. -->
+  <xsl:function name="e:get-weekday" as="xs:integer?">
+    <xsl:param name="date" as="xs:anyAtomicType?"/>
+    <xsl:sequence select="       if (empty($date)) then ()       else xs:integer((xs:date($date) - xs:date('1901-01-06')) div xs:dayTimeDuration('P1D')) mod 7       "/>
+  </xsl:function>
+  
   <!-- Modification of http://www.xsltfunctions.com/xsl/functx_line-count.html -->
   <xsl:function name="e:line-count" as="xs:integer">
     <xsl:param name="arg" as="xs:string?"/>
@@ -1685,6 +1691,14 @@
       
     </rule>
   </pattern>
+  <pattern id="press-pub-date-pattern">
+    <rule context="pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')]" id="press-pub-date">
+      <let name="date" value="concat(year[1],'-',month[1],'-',day[1])"/>
+      
+      <report test="e:get-weekday($date) != 2" role="warning" id="press-pub-date-check">[press-pub-date-check] The publication date for this article is in the future (<value-of select="$date"/>), but the day of publication is not a Tuesday (for Press). Is that correct?</report>
+      
+    </rule>
+  </pattern>
   <pattern id="pub-date-tests-2-pattern">
     <rule context="pub-date[@pub-type='collection']" id="pub-date-tests-2">
       
@@ -1694,6 +1708,65 @@
       
       <assert test="year[1] = parent::*/pub-date[@publication-format='electronic'][@date-type='publication']/year[1]" role="error" id="pub-date-test-6">[pub-date-test-6] pub-date[@pub-type='collection'] year must be the same as pub-date[@publication-format='electronic'][@date-type='publication'] year.</assert>
       
+    </rule>
+  </pattern>
+  <pattern id="pub-history-tests-pattern">
+    <rule context="pub-history" id="pub-history-tests">
+      
+      <assert test="parent::article-meta" role="error" id="pub-history-parent">[pub-history-parent] <name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
+      
+      <assert test="count(event) = 1" role="error" id="pub-history-child">[pub-history-child] <name/> must have one, and only one, event element. This one has <value-of select="count(event)"/>.</assert>
+    </rule>
+  </pattern>
+  <pattern id="event-tests-pattern">
+    <rule context="event" id="event-tests">
+      
+      <assert test="event-desc" role="error" id="event-test-1">[event-test-1] <name/> must contain an event-desc element. This one does not.</assert>
+      
+      <assert test="date[@date-type='preprint']" role="error" id="event-test-2">[event-test-2] <name/> must contain a date element with the attribute date-type="preprint". This one does not.</assert>
+      
+      <assert test="self-uri" role="error" id="event-test-3">[event-test-3] <name/> must contain a self-uri element. This one does not.</assert>
+    </rule>
+  </pattern>
+  <pattern id="event-child-tests-pattern">
+    <rule context="event/*" id="event-child-tests">
+      <let name="allowed-elems" value="('event-desc','date','self-uri')"/>
+      
+      <assert test="name()=$allowed-elems" role="error" id="event-child">[event-child] <name/> is not allowed in an event element. The only permitted children of event are <value-of select="string-join($allowed-elems,', ')"/>.</assert>
+    </rule>
+  </pattern>
+  <pattern id="event-desc-tests-pattern">
+    <rule context="event-desc" id="event-desc-tests">
+      
+      <assert test="starts-with(.,'This manuscript was published as a preprint at ')" role="error" id="event-desc-content">[event-desc-content] <name/> must contain the text 'This manuscript was published as a preprint at ' followed by the preprint server name. This one does not.</assert>
+      
+      <report test="*" role="error" id="event-desc-elems">[event-desc-elems] <name/> cannot contain elements. This one has the following: <value-of select="string-join(distinct-values(*/name()),', ')"/>.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="event-date-tests-pattern">
+    <rule context="event/date[@date-type='preprint']" id="event-date-tests">
+      
+      <assert test="day and month and year" role="error" id="event-date-child">[event-date-child] <name/> in event must have a day, month and year element. This one does not.</assert>
+      
+      <report test="(day and month and year) and @iso-8601-date!=concat(year[1],'-',month[1],'-',day[1])" role="error" id="event-date-iso">[event-date-iso] <name/> in event must have an iso-8601-date attribute with a value that is equal to the year month and day. This one has <value-of select="@iso-8601-date"/> as its iso-8601-date value when based on the elements, it should be <value-of select="concat(year[1],'-',month[1],'-',day[1])"/>. Either the iso-8601-date is incorrect, or one (or more) of the elements are incorrect, or both of these are incorrect.</report>
+    </rule>
+  </pattern>
+  <pattern id="event-self-uri-tests-pattern">
+    <rule context="event/self-uri" id="event-self-uri-tests">
+      
+      <assert test="@content-type='preprint'" role="error" id="event-self-uri-content-type">[event-self-uri-content-type] <name/> in event must have the attribute content-type="preprint". This one does not.</assert>
+      
+      <assert test="not(*) and normalize-space(.)=''" role="error" id="event-self-uri-content">[event-self-uri-content] <name/> in event must be empty. This one contains elements and/or text.</assert>
+      
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$')" role="error" id="event-self-uri-href-1">[event-self-uri-href-1] <name/> in event must have an xlink:href attribute containing a link to the preprint. This one does not have a valid URI - <value-of select="@xlink:href"/>.</assert>
+      
+      <report test="matches(lower-case(@xlink:href),'(bio|med)rxiv')" role="error" id="event-self-uri-href-2">[event-self-uri-href-2] <name/> in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. bioRxiv and medRxiv preprint have dois, and this one points to one of those, but it is not a doi - <value-of select="@xlink:href"/>.</report>
+      
+      <!-- add this when we can edit preprint event links
+        <report test="matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')" 
+        role="warning" 
+        id="event-self-uri-href-3"><name/> in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. This one is not a doi - <value-of select="@xlink:href"/>. Please check whether there is a doi that can be used instead.</report> -->
     </rule>
   </pattern>
   <pattern id="front-permissions-tests-pattern">
@@ -5270,7 +5343,9 @@
   <pattern id="das-elem-citation-data-pub-id-pattern">
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id" id="das-elem-citation-data-pub-id">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-pub-id-1" test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'doi'))" role="error" id="das-pub-id-1">[das-pub-id-1] Each pub-id element must have an @pub-id-type which is either accession or doi.</report>
+      
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-pub-id-1" test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'doi'))" role="error" id="final-das-pub-id-1">[final-das-pub-id-1] Each pub-id element must have an @pub-id-type which is either accession or doi.</report>
       
       
       
@@ -7529,7 +7604,7 @@
   
   <pattern id="element-allowlist-pattern">
     <rule context="article//*[not(ancestor::mml:math)]" id="element-allowlist">
-      <let name="allowed-elements" value="('abstract', 'ack', 'addr-line', 'aff', 'ali:free_to_read', 'ali:license_ref', 'app', 'app-group', 'article', 'article-categories', 'article-id', 'article-meta', 'article-title', 'attrib', 'author-notes', 'award-group', 'award-id', 'back', 'bio', 'body', 'bold', 'boxed-text', 'break', 'caption', 'chapter-title', 'code', 'collab', 'comment', 'conf-date', 'conf-loc', 'conf-name', 'contrib', 'contrib-group', 'contrib-id', 'copyright-holder', 'copyright-statement', 'copyright-year', 'corresp', 'country', 'custom-meta', 'custom-meta-group', 'data-title', 'date', 'date-in-citation', 'day', 'disp-formula', 'disp-quote', 'edition', 'element-citation', 'elocation-id', 'email', 'ext-link', 'fig', 'fig-group', 'fn', 'fn-group', 'fpage', 'front', 'front-stub', 'funding-group', 'funding-source', 'funding-statement', 'given-names', 'graphic', 'history', 'inline-formula', 'inline-graphic', 'institution', 'institution-id', 'institution-wrap', 'issn', 'issue', 'italic', 'journal-id', 'journal-meta', 'journal-title', 'journal-title-group', 'kwd', 'kwd-group', 'label', 'license', 'license-p', 'list', 'list-item', 'lpage', 'media', 'meta-name', 'meta-value', 'mml:math', 'monospace', 'month', 'name', 'named-content', 'on-behalf-of', 'p', 'patent', 'permissions', 'person-group', 'principal-award-recipient', 'pub-date', 'pub-id', 'publisher', 'publisher-loc', 'publisher-name', 'ref', 'ref-list', 'related-article', 'related-object', 'role', 'sc', 'sec', 'self-uri', 'source', 'strike', 'string-date', 'string-name', 'styled-content', 'sub', 'sub-article', 'subj-group', 'subject', 'suffix', 'sup', 'supplementary-material', 'surname', 'table', 'table-wrap', 'table-wrap-foot', 'tbody', 'td', 'th', 'thead', 'title', 'title-group', 'tr', 'underline', 'version', 'volume', 'xref', 'year')"/>
+      <let name="allowed-elements" value="('abstract',         'ack',         'addr-line',         'aff',         'ali:free_to_read',         'ali:license_ref',         'app',         'app-group',         'article',         'article-categories',         'article-id',         'article-meta',         'article-title',         'attrib',         'author-notes',         'award-group',         'award-id',         'back',         'bio',         'body',         'bold',         'boxed-text',         'break',         'caption',         'chapter-title',         'code',         'collab',         'comment',         'conf-date',         'conf-loc',         'conf-name',         'contrib',         'contrib-group',         'contrib-id',         'copyright-holder',         'copyright-statement',         'copyright-year',         'corresp',         'country',         'custom-meta',         'custom-meta-group',         'data-title',         'date',         'date-in-citation',         'day',         'disp-formula',         'disp-quote',         'edition',         'element-citation',         'elocation-id',         'email',         'event',         'event-desc',         'ext-link',         'fig',         'fig-group',         'fn',         'fn-group',         'fpage',         'front',         'front-stub',         'funding-group',         'funding-source',         'funding-statement',         'given-names',         'graphic',         'history',         'inline-formula',         'inline-graphic',         'institution',         'institution-id',         'institution-wrap',         'issn',         'issue',         'italic',         'journal-id',         'journal-meta',         'journal-title',         'journal-title-group',         'kwd',         'kwd-group',         'label',         'license',         'license-p',         'list',         'list-item',         'lpage',         'media',         'meta-name',         'meta-value',         'mml:math',         'monospace',         'month',         'name',         'named-content',         'on-behalf-of',         'p',         'patent',         'permissions',         'person-group',         'principal-award-recipient',         'pub-date',         'pub-history',         'pub-id',         'publisher',         'publisher-loc',         'publisher-name',         'ref',         'ref-list',         'related-article',         'related-object',         'role',         'sc',         'sec',         'self-uri',         'source',         'strike',         'string-date',         'string-name',         'styled-content',         'sub',         'sub-article',         'subj-group',         'subject',         'suffix',         'sup',         'supplementary-material',         'surname',         'table',         'table-wrap',         'table-wrap-foot',         'tbody',         'td',         'th',         'thead',         'title',         'title-group',         'tr',         'underline',         'version',         'volume',         'xref',         'year')"/>
       
       <assert test="name()=$allowed-elements" role="error" id="element-conformity">[element-conformity] <value-of select="name()"/> element is not allowed.</assert>
       

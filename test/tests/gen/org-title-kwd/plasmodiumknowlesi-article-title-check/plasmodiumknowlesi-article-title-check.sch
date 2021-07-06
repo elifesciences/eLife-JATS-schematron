@@ -1017,6 +1017,10 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-weekday" as="xs:integer?">
+    <xsl:param name="date" as="xs:anyAtomicType?"/>
+    <xsl:sequence select="       if (empty($date)) then ()       else xs:integer((xs:date($date) - xs:date('1901-01-06')) div xs:dayTimeDuration('P1D')) mod 7       "/>
+  </xsl:function>
   <xsl:function name="e:line-count" as="xs:integer">
     <xsl:param name="arg" as="xs:string?"/>
     

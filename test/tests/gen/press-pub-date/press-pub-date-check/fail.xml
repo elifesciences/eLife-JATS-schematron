@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="press-pub-date-check.sch"?>
+<!--Context: pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')]
+Test: report    e:get-weekday($date) != 2
+Message: The publication date for this article is in the future (), but the day of publication is not a Tuesday (for Press). Is that correct? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <pub-date date-type="publication">
+      <year>2090</year>
+      <month>01</month>
+      <day>04</day>
+    </pub-date>
+  </article>
+</root>

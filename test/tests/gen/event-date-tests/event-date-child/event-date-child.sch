@@ -1017,20 +1017,25 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+  <xsl:function name="e:get-weekday" as="xs:integer?">
+    <xsl:param name="date" as="xs:anyAtomicType?"/>
+    <xsl:sequence select="       if (empty($date)) then ()       else xs:integer((xs:date($date) - xs:date('1901-01-06')) div xs:dayTimeDuration('P1D')) mod 7       "/>
+  </xsl:function>
   <xsl:function name="e:line-count" as="xs:integer">
     <xsl:param name="arg" as="xs:string?"/>
     
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="das-element-citation-tests">
-    <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id" id="das-elem-citation-data-pub-id">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-pub-id-1" test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'doi'))" role="error" id="das-pub-id-1">Each pub-id element must have an @pub-id-type which is either accession or doi.</report>
+  <pattern id="article-metadata">
+    <rule context="event/date[@date-type='preprint']" id="event-date-tests">
+      <assert test="day and month and year" role="error" id="event-date-child">
+        <name/> in event must have a day, month and year element. This one does not.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id" role="error" id="das-elem-citation-data-pub-id-xspec-assert">sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id must be present.</assert>
+      <assert test="descendant::event/date[@date-type='preprint']" role="error" id="event-date-tests-xspec-assert">event/date[@date-type='preprint'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

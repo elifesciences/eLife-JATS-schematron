@@ -1013,6 +1013,12 @@
     </xsl:element>
   </xsl:function>
   
+  <!-- returns integer for day of week 1 = Monday, 2 = Tuesday etc. -->
+  <xsl:function name="e:get-weekday" as="xs:integer?">
+    <xsl:param name="date" as="xs:anyAtomicType?"/>
+    <xsl:sequence select="       if (empty($date)) then ()       else xs:integer((xs:date($date) - xs:date('1901-01-06')) div xs:dayTimeDuration('P1D')) mod 7       "/>
+  </xsl:function>
+  
   <!-- Modification of http://www.xsltfunctions.com/xsl/functx_line-count.html -->
   <xsl:function name="e:line-count" as="xs:integer">
     <xsl:param name="arg" as="xs:string?"/>
