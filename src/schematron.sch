@@ -2298,8 +2298,8 @@
     <rule context="article[@article-type='research-article']//article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)]" id="medicine-abstract-tests-2">
       
       <assert test="parent::article-meta/history/date[@date-type='received']/@iso-8601-date lt '2021-04-05'" 
-        role="error" 
-        id="medicine-abstract-conformance-2"><value-of select="parent::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')]"/> articles submitted after 4th April 2021 should have a structured abstract, but this one does not. eLife please check this with Editorial. Exeter: Please flag this to the eLife Production team.</assert>
+        role="warning" 
+        id="medicine-abstract-conformance-2"><value-of select="parent::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')]"/> articles submitted after 4th April 2021 should have a structured abstract, but this one does not. eLife: please check this with Editorial if there are no related notes from eJP. Exeter: Please flag this to the eLife Production team.</assert>
       
     </rule>
     
@@ -3052,7 +3052,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="broken-uri-test">Broken URI in @xlink:href</assert>-->
       
       <!-- Needs further testing. Presume that we want to ensure a url follows certain URI schemes. -->
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" 
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" 
         role="warning" 
         id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
       
@@ -3101,7 +3101,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="ext-link[contains(@xlink:href,'softwareheritage')]" 
       id="software-heritage-tests">
-      <let name="origin" value="substring-before(substring-after(@xlink:href,'origin='),';')"/>
+      <let name="origin" value="lower-case(substring-before(substring-after(@xlink:href,'origin='),';'))"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-1" 
         test="ancestor::sec[@sec-type='data-availability'] and not(matches(@xlink:href,'^https://archive.softwareheritage.org/swh:.:rev:[\da-z]*/?$'))" 
@@ -3119,7 +3119,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="software-heritage-test-3">The text for Software heritage links in the main text must be the revision SWHID without contextual information. '<value-of select="."/>' is not. Based on the link itself, the text that is embedded should be '<value-of select="replace(substring-after(@xlink:href,'anchor='),'/$','')"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-4" 
-        test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies $x/@xlink:href = $origin)" 
+        test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies lower-case($x/@xlink:href) = $origin)" 
         role="warning" 
         id="software-heritage-test-4">A Software heritage link must follow the original link for the software. The Software heritage link with the text '<value-of select="."/>' has '<value-of select="$origin"/>' as its origin URL, but there is no preceding link with that same URL.</report>
       
@@ -4858,18 +4858,18 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-methods"
         test="$pos=2 and not(title[1]=('Methods','Materials and methods'))" 
-        role="error" 
-        id="medicine-methods">The second top level section in a Medicine article should be 'Methods' or 'Materials and methods'. This one is '<value-of select="title[1]"/>'.</report>
+        role="warning" 
+        id="medicine-methods">The second top level section in a Medicine article should be 'Methods' or 'Materials and methods', but this one is '<value-of select="title[1]"/>'. Is that correct?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-results"
         test="$pos=3 and title[1]!='Results'" 
-        role="error" 
-        id="medicine-results">The third top level section in a Medicine article should be 'Results'. This one is '<value-of select="title[1]"/>'.</report>
+        role="warning" 
+        id="medicine-results">The third top level section in a Medicine article should be 'Results', but this one is '<value-of select="title[1]"/>'. Is that correct?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-discussion"
         test="$pos=4 and title[1]!='Discussion'" 
-        role="error" 
-        id="medicine-discussion">The fourth top level section in a Medicine article should be 'Discussion'. This one is '<value-of select="title[1]"/>'.</report>
+        role="warning" 
+        id="medicine-discussion">The fourth top level section in a Medicine article should be 'Discussion', but this one is '<value-of select="title[1]"/>'. Is that correct?</report>
       
     </rule>
     

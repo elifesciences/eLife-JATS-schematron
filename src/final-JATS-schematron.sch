@@ -1852,7 +1852,7 @@
   <pattern id="medicine-abstract-tests-2-pattern">
     <rule context="article[@article-type='research-article']//article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)]" id="medicine-abstract-tests-2">
       
-      <assert test="parent::article-meta/history/date[@date-type='received']/@iso-8601-date lt '2021-04-05'" role="error" id="medicine-abstract-conformance-2">[medicine-abstract-conformance-2] <value-of select="parent::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')]"/> articles submitted after 4th April 2021 should have a structured abstract, but this one does not. eLife please check this with Editorial. Exeter: Please flag this to the eLife Production team.</assert>
+      <assert test="parent::article-meta/history/date[@date-type='received']/@iso-8601-date lt '2021-04-05'" role="warning" id="medicine-abstract-conformance-2">[medicine-abstract-conformance-2] <value-of select="parent::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')]"/> articles submitted after 4th April 2021 should have a structured abstract, but this one does not. eLife: please check this with Editorial if there are no related notes from eJP. Exeter: Please flag this to the eLife Production team.</assert>
       
     </rule>
   </pattern>
@@ -2315,7 +2315,7 @@
         id="broken-uri-test">Broken URI in @xlink:href</assert>-->
       
       <!-- Needs further testing. Presume that we want to ensure a url follows certain URI schemes. -->
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">[url-conformance-test] @xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">[url-conformance-test] @xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
       
       <report test="matches(@xlink:href,'^(ftp|sftp)://\S+:\S+@')" role="warning" id="ftp-credentials-flag">[ftp-credentials-flag] @xlink:href contains what looks like a link to an FTP site which contains credentials (username and password) - '<value-of select="@xlink:href"/>'. If the link without credentials works (<value-of select="concat(substring-before(@xlink:href,'://'),'://',substring-after(@xlink:href,'@'))"/>), then please replace it with that and notify the authors that you have done so. If the link without credentials does not work, please query with the authors in order to obtain a link without credentials.</report>
       
@@ -2340,7 +2340,7 @@
   </pattern>
   <pattern id="software-heritage-tests-pattern">
     <rule context="ext-link[contains(@xlink:href,'softwareheritage')]" id="software-heritage-tests">
-      <let name="origin" value="substring-before(substring-after(@xlink:href,'origin='),';')"/>
+      <let name="origin" value="lower-case(substring-before(substring-after(@xlink:href,'origin='),';'))"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-1" test="ancestor::sec[@sec-type='data-availability'] and not(matches(@xlink:href,'^https://archive.softwareheritage.org/swh:.:rev:[\da-z]*/?$'))" role="error" id="software-heritage-test-1">[software-heritage-test-1] Software heritage links in the data availability statement must be the revision link without contextual information. '<value-of select="."/>' is not a revision link without contextual information.</report>
       
@@ -2348,7 +2348,7 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-3" test="ancestor::body and matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and (. != replace(substring-after(@xlink:href,'anchor='),'/$',''))" role="error" id="software-heritage-test-3">[software-heritage-test-3] The text for Software heritage links in the main text must be the revision SWHID without contextual information. '<value-of select="."/>' is not. Based on the link itself, the text that is embedded should be '<value-of select="replace(substring-after(@xlink:href,'anchor='),'/$','')"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-4" test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies $x/@xlink:href = $origin)" role="warning" id="software-heritage-test-4">[software-heritage-test-4] A Software heritage link must follow the original link for the software. The Software heritage link with the text '<value-of select="."/>' has '<value-of select="$origin"/>' as its origin URL, but there is no preceding link with that same URL.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-4" test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies lower-case($x/@xlink:href) = $origin)" role="warning" id="software-heritage-test-4">[software-heritage-test-4] A Software heritage link must follow the original link for the software. The Software heritage link with the text '<value-of select="."/>' has '<value-of select="$origin"/>' as its origin URL, but there is no preceding link with that same URL.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-5" test="contains(@xlink:href,'[…]')" role="error" id="software-heritage-test-5">[software-heritage-test-5] A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed).</report>
       
@@ -3379,11 +3379,11 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-introduction" test="$pos=1 and title[1]!='Introduction'" role="error" id="medicine-introduction">[medicine-introduction] The first top level section in a Medicine article should be 'Introduction'. This one is '<value-of select="title[1]"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-methods" test="$pos=2 and not(title[1]=('Methods','Materials and methods'))" role="error" id="medicine-methods">[medicine-methods] The second top level section in a Medicine article should be 'Methods' or 'Materials and methods'. This one is '<value-of select="title[1]"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-methods" test="$pos=2 and not(title[1]=('Methods','Materials and methods'))" role="warning" id="medicine-methods">[medicine-methods] The second top level section in a Medicine article should be 'Methods' or 'Materials and methods', but this one is '<value-of select="title[1]"/>'. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-results" test="$pos=3 and title[1]!='Results'" role="error" id="medicine-results">[medicine-results] The third top level section in a Medicine article should be 'Results'. This one is '<value-of select="title[1]"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-results" test="$pos=3 and title[1]!='Results'" role="warning" id="medicine-results">[medicine-results] The third top level section in a Medicine article should be 'Results', but this one is '<value-of select="title[1]"/>'. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-discussion" test="$pos=4 and title[1]!='Discussion'" role="error" id="medicine-discussion">[medicine-discussion] The fourth top level section in a Medicine article should be 'Discussion'. This one is '<value-of select="title[1]"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-discussion" test="$pos=4 and title[1]!='Discussion'" role="warning" id="medicine-discussion">[medicine-discussion] The fourth top level section in a Medicine article should be 'Discussion', but this one is '<value-of select="title[1]"/>'. Is that correct?</report>
       
     </rule>
   </pattern>
