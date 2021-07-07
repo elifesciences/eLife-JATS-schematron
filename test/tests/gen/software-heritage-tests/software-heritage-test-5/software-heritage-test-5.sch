@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="ext-link[contains(@xlink:href,'softwareheritage')]" id="software-heritage-tests">
-      <let name="origin" value="substring-before(substring-after(@xlink:href,'origin='),';')"/>
+      <let name="origin" value="lower-case(substring-before(substring-after(@xlink:href,'origin='),';'))"/>
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-5" test="contains(@xlink:href,'[…]')" role="error" id="software-heritage-test-5">A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed).</report>
     </rule>
   </pattern>

@@ -1029,8 +1029,8 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article[@article-type='research-article']//article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)]" id="medicine-abstract-tests-2">
-      <assert test="parent::article-meta/history/date[@date-type='received']/@iso-8601-date lt '2021-04-05'" role="error" id="medicine-abstract-conformance-2">
-        <value-of select="parent::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')]"/> articles submitted after 4th April 2021 should have a structured abstract, but this one does not. eLife please check this with Editorial. Exeter: Please flag this to the eLife Production team.</assert>
+      <assert test="parent::article-meta/history/date[@date-type='received']/@iso-8601-date lt '2021-04-05'" role="warning" id="medicine-abstract-conformance-2">
+        <value-of select="parent::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')]"/> articles submitted after 4th April 2021 should have a structured abstract, but this one does not. eLife: please check this with Editorial if there are no related notes from eJP. Exeter: Please flag this to the eLife Production team.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

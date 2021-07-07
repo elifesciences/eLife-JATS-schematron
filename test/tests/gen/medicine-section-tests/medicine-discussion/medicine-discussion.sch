@@ -1030,7 +1030,7 @@
   <pattern id="body">
     <rule context="article[descendant::article-meta[//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" id="medicine-section-tests">
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-discussion" test="$pos=4 and title[1]!='Discussion'" role="error" id="medicine-discussion">The fourth top level section in a Medicine article should be 'Discussion'. This one is '<value-of select="title[1]"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-discussion" test="$pos=4 and title[1]!='Discussion'" role="warning" id="medicine-discussion">The fourth top level section in a Medicine article should be 'Discussion', but this one is '<value-of select="title[1]"/>'. Is that correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

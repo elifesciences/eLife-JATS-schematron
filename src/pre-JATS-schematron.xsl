@@ -8767,19 +8767,19 @@
 	  <!--RULE medicine-abstract-tests-2-->
    <xsl:template match="article[@article-type='research-article']//article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)]" priority="1000" mode="M105">
 
-		<!--ASSERT error-->
+		<!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="parent::article-meta/history/date[@date-type='received']/@iso-8601-date lt '2021-04-05'"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="parent::article-meta/history/date[@date-type='received']/@iso-8601-date lt '2021-04-05'">
                <xsl:attribute name="id">medicine-abstract-conformance-2</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
                <svrl:text>[medicine-abstract-conformance-2] <xsl:text/>
                   <xsl:value-of select="parent::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')]"/>
-                  <xsl:text/> articles submitted after 4th April 2021 should have a structured abstract, but this one does not. eLife please check this with Editorial. Exeter: Please flag this to the eLife Production team.</svrl:text>
+                  <xsl:text/> articles submitted after 4th April 2021 should have a structured abstract, but this one does not. eLife: please check this with Editorial if there are no related notes from eJP. Exeter: Please flag this to the eLife Production team.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -11117,9 +11117,9 @@
 
 		    <!--ASSERT warning-->
       <xsl:choose>
-         <xsl:when test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')"/>
+         <xsl:when test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')">
                <xsl:attribute name="id">url-conformance-test</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
@@ -11298,7 +11298,7 @@
 
 	  <!--RULE software-heritage-tests-->
    <xsl:template match="ext-link[contains(@xlink:href,'softwareheritage')]" priority="1000" mode="M141">
-      <xsl:variable name="origin" select="substring-before(substring-after(@xlink:href,'origin='),';')"/>
+      <xsl:variable name="origin" select="lower-case(substring-before(substring-after(@xlink:href,'origin='),';'))"/>
 
 		    <!--REPORT error-->
       <xsl:if test="ancestor::sec[@sec-type='data-availability'] and not(matches(@xlink:href,'^https://archive.softwareheritage.org/swh:.:rev:[\da-z]*/?$'))">
@@ -11348,8 +11348,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies $x/@xlink:href = $origin)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies $x/@xlink:href = $origin)">
+      <xsl:if test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies lower-case($x/@xlink:href) = $origin)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies lower-case($x/@xlink:href) = $origin)">
             <xsl:attribute name="id">software-heritage-test-4</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -16315,48 +16315,48 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT error-->
+		    <!--REPORT warning-->
       <xsl:if test="$pos=2 and not(title[1]=('Methods','Materials and methods'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$pos=2 and not(title[1]=('Methods','Materials and methods'))">
             <xsl:attribute name="id">medicine-methods</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-methods</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[medicine-methods] The second top level section in a Medicine article should be 'Methods' or 'Materials and methods'. This one is '<xsl:text/>
+            <svrl:text>[medicine-methods] The second top level section in a Medicine article should be 'Methods' or 'Materials and methods', but this one is '<xsl:text/>
                <xsl:value-of select="title[1]"/>
-               <xsl:text/>'.</svrl:text>
+               <xsl:text/>'. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT error-->
+		    <!--REPORT warning-->
       <xsl:if test="$pos=3 and title[1]!='Results'">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$pos=3 and title[1]!='Results'">
             <xsl:attribute name="id">medicine-results</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-results</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[medicine-results] The third top level section in a Medicine article should be 'Results'. This one is '<xsl:text/>
+            <svrl:text>[medicine-results] The third top level section in a Medicine article should be 'Results', but this one is '<xsl:text/>
                <xsl:value-of select="title[1]"/>
-               <xsl:text/>'.</svrl:text>
+               <xsl:text/>'. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT error-->
+		    <!--REPORT warning-->
       <xsl:if test="$pos=4 and title[1]!='Discussion'">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$pos=4 and title[1]!='Discussion'">
             <xsl:attribute name="id">medicine-discussion</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-discussion</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[medicine-discussion] The fourth top level section in a Medicine article should be 'Discussion'. This one is '<xsl:text/>
+            <svrl:text>[medicine-discussion] The fourth top level section in a Medicine article should be 'Discussion', but this one is '<xsl:text/>
                <xsl:value-of select="title[1]"/>
-               <xsl:text/>'.</svrl:text>
+               <xsl:text/>'. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M217"/>

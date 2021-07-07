@@ -2091,12 +2091,12 @@
     <x:scenario label="medicine-abstract-tests-2">
       <x:scenario label="medicine-abstract-conformance-2-pass">
         <x:context href="../tests/gen/medicine-abstract-tests-2/medicine-abstract-conformance-2/pass.xml"/>
-        <x:expect-not-assert id="medicine-abstract-conformance-2" role="error"/>
+        <x:expect-not-assert id="medicine-abstract-conformance-2" role="warning"/>
         <x:expect-not-assert id="medicine-abstract-tests-2-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="medicine-abstract-conformance-2-fail">
         <x:context href="../tests/gen/medicine-abstract-tests-2/medicine-abstract-conformance-2/fail.xml"/>
-        <x:expect-assert id="medicine-abstract-conformance-2" role="error"/>
+        <x:expect-assert id="medicine-abstract-conformance-2" role="warning"/>
         <x:expect-not-assert id="medicine-abstract-tests-2-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -6333,32 +6333,32 @@
       </x:scenario>
       <x:scenario label="medicine-methods-pass">
         <x:context href="../tests/gen/medicine-section-tests/medicine-methods/pass.xml"/>
-        <x:expect-not-report id="medicine-methods" role="error"/>
+        <x:expect-not-report id="medicine-methods" role="warning"/>
         <x:expect-not-assert id="medicine-section-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="medicine-methods-fail">
         <x:context href="../tests/gen/medicine-section-tests/medicine-methods/fail.xml"/>
-        <x:expect-report id="medicine-methods" role="error"/>
+        <x:expect-report id="medicine-methods" role="warning"/>
         <x:expect-not-assert id="medicine-section-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="medicine-results-pass">
         <x:context href="../tests/gen/medicine-section-tests/medicine-results/pass.xml"/>
-        <x:expect-not-report id="medicine-results" role="error"/>
+        <x:expect-not-report id="medicine-results" role="warning"/>
         <x:expect-not-assert id="medicine-section-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="medicine-results-fail">
         <x:context href="../tests/gen/medicine-section-tests/medicine-results/fail.xml"/>
-        <x:expect-report id="medicine-results" role="error"/>
+        <x:expect-report id="medicine-results" role="warning"/>
         <x:expect-not-assert id="medicine-section-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="medicine-discussion-pass">
         <x:context href="../tests/gen/medicine-section-tests/medicine-discussion/pass.xml"/>
-        <x:expect-not-report id="medicine-discussion" role="error"/>
+        <x:expect-not-report id="medicine-discussion" role="warning"/>
         <x:expect-not-assert id="medicine-section-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="medicine-discussion-fail">
         <x:context href="../tests/gen/medicine-section-tests/medicine-discussion/fail.xml"/>
-        <x:expect-report id="medicine-discussion" role="error"/>
+        <x:expect-report id="medicine-discussion" role="warning"/>
         <x:expect-not-assert id="medicine-section-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

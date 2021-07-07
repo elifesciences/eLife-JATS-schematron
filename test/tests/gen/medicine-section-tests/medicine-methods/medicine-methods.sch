@@ -1030,7 +1030,7 @@
   <pattern id="body">
     <rule context="article[descendant::article-meta[//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" id="medicine-section-tests">
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-methods" test="$pos=2 and not(title[1]=('Methods','Materials and methods'))" role="error" id="medicine-methods">The second top level section in a Medicine article should be 'Methods' or 'Materials and methods'. This one is '<value-of select="title[1]"/>'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-methods" test="$pos=2 and not(title[1]=('Methods','Materials and methods'))" role="warning" id="medicine-methods">The second top level section in a Medicine article should be 'Methods' or 'Materials and methods', but this one is '<value-of select="title[1]"/>'. Is that correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

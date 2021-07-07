@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="software-heritage-test-4.sch"?>
 <!--Context: ext-link[contains(@xlink:href,'softwareheritage')]
-Test: report    ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies $x/@xlink:href = $origin)
+Test: report    ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies lower-case($x/@xlink:href) = $origin)
 Message: A Software heritage link must follow the original link for the software. The Software heritage link with the text '' has '' as its origin URL, but there is no preceding link with that same URL. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
