@@ -1333,7 +1333,7 @@
       
       <assert test="count(contrib[@contrib-type='senior_editor']) = 1" role="error" id="editor-conformance-1">[editor-conformance-1] contrib-group[@content-type='section'] must contain one (and only 1) Senior Editor (contrib[@contrib-type='senior_editor']).</assert>
       
-      <assert test="count(contrib[@contrib-type='editor']) = 1" role="error" id="editor-conformance-2">[editor-conformance-2] contrib-group[@content-type='section'] must contain one (and only 1) Reviewing Editor (contrib[@contrib-type='editor']).</assert>
+      <assert test="count(contrib[@contrib-type='editor']) = 1" role="warning" id="editor-conformance-2">[editor-conformance-2] contrib-group[@content-type='section'] should contain one (and only 1) Reviewing Editor (contrib[@contrib-type='editor']). This one doesn't which is almost definitely incorrect and needs correcting.</assert>
       
     </rule>
   </pattern>
@@ -1661,6 +1661,8 @@
       <assert test="parent::article-meta" role="error" id="pub-history-parent">[pub-history-parent] <name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
       
       <assert test="count(event) = 1" role="error" id="pub-history-child">[pub-history-child] <name/> must have one, and only one, event element. This one has <value-of select="count(event)"/>.</assert>
+      
+      <report test="event/date[@date-type='preprint']" role="info" id="preprint-flag">[preprint-flag] This article has a preprint date - <value-of select="event/date[@date-type='preprint']/@iso-8601-date"/>. eLife: please check that it is correct.</report>
     </rule>
   </pattern>
   <pattern id="event-tests-pattern">
@@ -1789,8 +1791,7 @@
   </pattern>
   <pattern id="medicine-abstract-tests-pattern">
     <rule context="article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract[not(@abstract-type)]" id="medicine-abstract-tests">
-      <!-- temporarily a warning. Should be error -->
-      <assert test="sec" role="warning" id="medicine-abstract-conformance">[medicine-abstract-conformance] Medicine articles with a colon in their title must have a structured abstract. Either the colon in the title is incorrect, or the abstract should be changed to a structured format.</assert>
+      <assert test="sec" role="warning" id="medicine-abstract-conformance">[medicine-abstract-conformance] Medicine articles with a colon in their title should likely have a structured abstract. If there is no note in eJP about this, either the colon in the title is incorrect, or the abstract should be changed to a structured format.</assert>
       
     </rule>
   </pattern>

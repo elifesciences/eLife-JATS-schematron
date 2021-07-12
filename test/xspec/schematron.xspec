@@ -877,12 +877,12 @@
       </x:scenario>
       <x:scenario label="editor-conformance-2-pass">
         <x:context href="../tests/gen/test-editor-contrib-group/editor-conformance-2/pass.xml"/>
-        <x:expect-not-assert id="editor-conformance-2" role="error"/>
+        <x:expect-not-assert id="editor-conformance-2" role="warning"/>
         <x:expect-not-assert id="test-editor-contrib-group-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="editor-conformance-2-fail">
         <x:context href="../tests/gen/test-editor-contrib-group/editor-conformance-2/fail.xml"/>
-        <x:expect-assert id="editor-conformance-2" role="error"/>
+        <x:expect-assert id="editor-conformance-2" role="warning"/>
         <x:expect-not-assert id="test-editor-contrib-group-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -1735,6 +1735,16 @@
       <x:scenario label="pub-history-child-fail">
         <x:context href="../tests/gen/pub-history-tests/pub-history-child/fail.xml"/>
         <x:expect-assert id="pub-history-child" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-flag-pass">
+        <x:context href="../tests/gen/pub-history-tests/preprint-flag/pass.xml"/>
+        <x:expect-not-report id="preprint-flag" role="info"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-flag-fail">
+        <x:context href="../tests/gen/pub-history-tests/preprint-flag/fail.xml"/>
+        <x:expect-report id="preprint-flag" role="info"/>
         <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

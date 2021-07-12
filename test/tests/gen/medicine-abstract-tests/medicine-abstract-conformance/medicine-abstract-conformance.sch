@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract[not(@abstract-type)]" id="medicine-abstract-tests">
-      <assert test="sec" role="warning" id="medicine-abstract-conformance">Medicine articles with a colon in their title must have a structured abstract. Either the colon in the title is incorrect, or the abstract should be changed to a structured format.</assert>
+      <assert test="sec" role="warning" id="medicine-abstract-conformance">Medicine articles with a colon in their title should likely have a structured abstract. If there is no note in eJP about this, either the colon in the title is incorrect, or the abstract should be changed to a structured format.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
