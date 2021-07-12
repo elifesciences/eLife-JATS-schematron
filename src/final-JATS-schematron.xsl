@@ -6658,17 +6658,17 @@
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--ASSERT error-->
+		    <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="count(contrib[@contrib-type='editor']) = 1"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(contrib[@contrib-type='editor']) = 1">
                <xsl:attribute name="id">editor-conformance-2</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[editor-conformance-2] contrib-group[@content-type='section'] must contain one (and only 1) Reviewing Editor (contrib[@contrib-type='editor']).</svrl:text>
+               <svrl:text>[editor-conformance-2] contrib-group[@content-type='section'] should contain one (and only 1) Reviewing Editor (contrib[@contrib-type='editor']). This one doesn't which is almost definitely incorrect and needs correcting.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -8173,6 +8173,20 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--REPORT info-->
+      <xsl:if test="event/date[@date-type='preprint']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="event/date[@date-type='preprint']">
+            <xsl:attribute name="id">preprint-flag</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[preprint-flag] This article has a preprint date - <xsl:text/>
+               <xsl:value-of select="event/date[@date-type='preprint']/@iso-8601-date"/>
+               <xsl:text/>. eLife: please check that it is correct.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M96"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M96"/>
@@ -8828,7 +8842,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[medicine-abstract-conformance] Medicine articles with a colon in their title must have a structured abstract. Either the colon in the title is incorrect, or the abstract should be changed to a structured format.</svrl:text>
+               <svrl:text>[medicine-abstract-conformance] Medicine articles with a colon in their title should likely have a structured abstract. If there is no note in eJP about this, either the colon in the title is incorrect, or the abstract should be changed to a structured format.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>

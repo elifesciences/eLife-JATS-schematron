@@ -1,0 +1,19 @@
+<?oxygen SCHSchema="preprint-flag.sch"?>
+<!--Context: pub-history
+Test: report    event/date[@date-type='preprint']
+Message: This article has a preprint date - . eLife: please check that it is correct. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <pub-history>
+      <event>
+        <event-desc>This manuscript was published as a preprint at bioRxiv.</event-desc>
+        <date date-type="preprint" iso-8601-date="2021-05-27">
+          <day>27</day>
+          <month>05</month>
+          <year>2021</year>
+        </date>
+        <self-uri content-type="preprint" xlink:href="https://doi.org/10.1101/2021.05.25.445638"/>
+      </event>
+    </pub-history>
+  </article>
+</root>

@@ -1028,13 +1028,13 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article/front/article-meta/contrib-group[@content-type='section']" id="test-editor-contrib-group">
-      <assert test="count(contrib[@contrib-type='editor']) = 1" role="warning" id="editor-conformance-2">contrib-group[@content-type='section'] should contain one (and only 1) Reviewing Editor (contrib[@contrib-type='editor']). This one doesn't which is almost definitely incorrect and needs correcting.</assert>
+    <rule context="pub-history" id="pub-history-tests">
+      <report test="event/date[@date-type='preprint']" role="info" id="preprint-flag">This article has a preprint date - <value-of select="event/date[@date-type='preprint']/@iso-8601-date"/>. eLife: please check that it is correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/article-meta/contrib-group[@content-type='section']" role="error" id="test-editor-contrib-group-xspec-assert">article/front/article-meta/contrib-group[@content-type='section'] must be present.</assert>
+      <assert test="descendant::pub-history" role="error" id="pub-history-tests-xspec-assert">pub-history must be present.</assert>
     </rule>
   </pattern>
 </schema>
