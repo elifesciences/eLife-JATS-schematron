@@ -1027,21 +1027,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="further-fig-tests">
-    <rule context="article/body//fig[@specific-use='child-fig']" id="fig-sup-tests">
-      <let name="article-type" value="ancestor::article/@article-type"/>
-      <let name="count" value="count(parent::fig-group/fig[@specific-use='child-fig'])"/>
-      <let name="pos" value="$count - count(following-sibling::fig[@specific-use='child-fig'])"/>
-      <let name="label-conforms" value="matches(label[1],'^Figure [\d]+—figure supplement [\d]+')"/>
-      <let name="no" value="substring-after(@id,'s')"/>
-      <let name="parent-fig-no" value="substring-after(parent::fig-group/fig[not(@specific-use='child-fig')][1]/@id,'fig')"/>
-      <let name="label-no" value="replace(substring-after(label[1],'supplement'),'[^\d]','')"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-1" test="parent::fig-group" role="error" id="fig-sup-test-1">fig supplement is not a child of fig-group. This cannot be correct.</assert>
+  <pattern id="dec-letter-auth-response">
+    <rule context="article/sub-article//p[not(ancestor::disp-quote)]" id="dec-letter-reply-content-tests-2">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-7" test="matches(.,'\s([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict [Oo]f [Ii]nterest|([Aa]re|[Aa]m) [Ss]hocked|[Ss]trongly [Dd]isagree)[^\p{L}]')" role="warning" flag="dl-ar" id="dec-letter-reply-test-7">
+        <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be inflammatory or offensive language. eLife: please check it to see if it is language that should be removed - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body//fig[@specific-use='child-fig']" role="error" id="fig-sup-tests-xspec-assert">article/body//fig[@specific-use='child-fig'] must be present.</assert>
+      <assert test="descendant::article/sub-article//p[not(ancestor::disp-quote)]" role="error" id="dec-letter-reply-content-tests-2-xspec-assert">article/sub-article//p[not(ancestor::disp-quote)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

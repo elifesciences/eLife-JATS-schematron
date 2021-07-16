@@ -7838,6 +7838,18 @@
         <x:expect-not-assert id="dec-letter-reply-content-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="dec-letter-reply-content-tests-2">
+      <x:scenario label="dec-letter-reply-test-7-pass">
+        <x:context href="../tests/gen/dec-letter-reply-content-tests-2/dec-letter-reply-test-7/pass.xml"/>
+        <x:expect-not-report id="dec-letter-reply-test-7" role="warning"/>
+        <x:expect-not-assert id="dec-letter-reply-content-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dec-letter-reply-test-7-fail">
+        <x:context href="../tests/gen/dec-letter-reply-content-tests-2/dec-letter-reply-test-7/fail.xml"/>
+        <x:expect-report id="dec-letter-reply-test-7" role="warning"/>
+        <x:expect-not-assert id="dec-letter-reply-content-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="dec-letter-front-tests">
       <x:scenario label="dec-letter-front-test-1-pass">
         <x:context href="../tests/gen/dec-letter-front-tests/dec-letter-front-test-1/pass.xml"/>
