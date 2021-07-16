@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="dec-letter-reply-test-7.sch"?>
+<!--Context: article/sub-article//p[not(ancestor::disp-quote)]
+Test: report    matches(.,'\s([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict [Oo]f [Ii]nterest|([Aa]re|[Aa]m) [Ss]hocked|[Ss]trongly [Dd]isagree)[^\p{L}]')
+Message:  paragraph contains what might be inflammatory or offensive language. eLife: please check it to see if it is language that should be removed - . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article>
+      <body>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>I find what you are syaing very offensive.</p>
+        <p>Aliquam sed dignissim lorem.</p>
+      </body>
+    </sub-article>
+  </article>
+</root>
