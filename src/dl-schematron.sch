@@ -1204,9 +1204,11 @@
   </pattern>
   <pattern id="dec-letter-reply-content-tests-2-pattern">
     <rule context="article/sub-article//p[not(ancestor::disp-quote)]" id="dec-letter-reply-content-tests-2">
+      <let name="regex" value="'\s([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict [Oo]f [Ii]nterest|([Aa]re|[Aa]m) [Ss]hocked|[Ss]trongly [Dd]isagree)[^\p{L}]'"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-7" test="matches(.,'\s([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict [Oo]f [Ii]nterest|([Aa]re|[Aa]m) [Ss]hocked|[Ss]trongly [Dd]isagree)[^\p{L}]')" role="warning" flag="dl-ar" id="dec-letter-reply-test-7">
-        <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be inflammatory or offensive language. eLife: please check it to see if it is language that should be removed - <value-of select="."/>.</report>
+      <!-- Need to improve messaging -->
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-7" test="matches(.,$regex)" role="warning" flag="dl-ar" id="dec-letter-reply-test-7">
+        <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be inflammatory or offensive language. eLife: please check it to see if it is language that should be removed. This paragraph was flagged because of the phrase(s) <value-of select="string-join(tokenize(.,'\s')[matches(.,concat('^',substring-before(substring-after($regex,'\s'),'[^\p{L}]')))],'; ')"/> in <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="dec-letter-front-tests-pattern">

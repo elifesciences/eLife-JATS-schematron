@@ -1030,7 +1030,7 @@
   <pattern id="article-metadata">
     <rule context="front//abstract" id="abstract-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report test="child::sec and not(count(sec) = (5,6))" role="error" id="abstract-test-5">If an abstract is structured, then it must have 5 or 6 sections depending on whether it is a clinical trial. An article without a clinical trial should have 5 sections, whereas one with a clinical trial should have 6.</report>
+      <report test="child::sec and not(count(sec) = (5,6))" role="warning" id="pre-abstract-test-5">If an abstract is structured, then it must have 5 or 6 sections depending on whether it is a clinical trial. An article without a clinical trial should have 5 sections, whereas one with a clinical trial should have 6.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

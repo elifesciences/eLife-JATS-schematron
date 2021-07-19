@@ -1365,7 +1365,8 @@
         role="error" 
         id="test-no-digest">'<value-of select="$subj-type"/>' cannot have a digest.</report>
 	 
-    <report test="if ($article-type = $features-article-types) then ()
+    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#test-funding-group-presence" 
+      test="if ($article-type = $features-article-types) then ()
       else if ($subj-type = ('Scientific Correspondence',$notice-display-types)) then ()
       else count(funding-group) != 1" 
         role="error" 
@@ -2136,10 +2137,6 @@
       <assert test="day and month and year" 
         role="error" 
         id="event-date-child"><name/> in event must have a day, month and year element. This one does not.</assert>
-      
-      <report test="(day and month and year) and @iso-8601-date!=concat(year[1],'-',month[1],'-',day[1])" 
-        role="error" 
-        id="event-date-iso"><name/> in event must have an iso-8601-date attribute with a value that is equal to the year month and day. This one has <value-of select="@iso-8601-date"/> as its iso-8601-date value when based on the elements, it should be <value-of select="concat(year[1],'-',month[1],'-',day[1])"/>. Either the iso-8601-date is incorrect, or one (or more) of the elements are incorrect, or both of these are incorrect.</report>
     </rule>
     
     <rule context="event/self-uri" id="event-self-uri-tests">
@@ -2278,8 +2275,12 @@
         id="abstract-test-4">abstracts cannot contain display formulas.</report>
 	  
 	  <report test="child::sec and not(count(sec) = (5,6))" 
+	    role="warning" 
+	    id="pre-abstract-test-5">If an abstract is structured, then it must have 5 or 6 sections depending on whether it is a clinical trial. An article without a clinical trial should have 5 sections, whereas one with a clinical trial should have 6.</report>
+	  
+	  <report test="child::sec and not(count(sec) = (5,6))" 
 	    role="error" 
-	    id="abstract-test-5">If an abstract is structured, then it must have 5 or 6 sections depending on whether it is a clinical trial. An article without a clinical trial should have 5 sections, whereas one with a clinical trial should have 6.</report>
+	    id="final-abstract-test-5">If an abstract is structured, then it must have 5 or 6 sections depending on whether it is a clinical trial. An article without a clinical trial should have 5 sections, whereas one with a clinical trial should have 6.</report>
 	  
 	  <report test="matches(lower-case(.),'^\s*abstract')" 
         role="warning" 
@@ -5818,12 +5819,14 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="article/sub-article//p[not(ancestor::disp-quote)]" id="dec-letter-reply-content-tests-2">
+      <let name="regex" value="'\s([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict [Oo]f [Ii]nterest|([Aa]re|[Aa]m) [Ss]hocked|[Ss]trongly [Dd]isagree)[^\p{L}]'"/>
       
+      <!-- Need to improve messaging -->
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-7" 
-        test="matches(.,'\s([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict [Oo]f [Ii]nterest|([Aa]re|[Aa]m) [Ss]hocked|[Ss]trongly [Dd]isagree)[^\p{L}]')"
+        test="matches(.,$regex)"
         role="warning" 
         flag="dl-ar"
-        id="dec-letter-reply-test-7"><value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be inflammatory or offensive language. eLife: please check it to see if it is language that should be removed - <value-of select="."/>.</report>
+        id="dec-letter-reply-test-7"><value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be inflammatory or offensive language. eLife: please check it to see if it is language that should be removed. This paragraph was flagged because of the phrase(s) <value-of select="string-join(tokenize(.,'\s')[matches(.,concat('^',substring-before(substring-after($regex,'\s'),'[^\p{L}]')))],'; ')"/> in <value-of select="."/>.</report>
     </rule>
     
     <rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">

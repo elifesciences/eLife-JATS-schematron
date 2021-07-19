@@ -5841,6 +5841,7 @@
       <xsl:if test="if ($article-type = $features-article-types) then ()       else if ($subj-type = ('Scientific Correspondence',$notice-display-types)) then ()       else count(funding-group) != 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($article-type = $features-article-types) then () else if ($subj-type = ('Scientific Correspondence',$notice-display-types)) then () else count(funding-group) != 1">
             <xsl:attribute name="id">test-funding-group-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#test-funding-group-presence</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -8365,24 +8366,6 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--REPORT error-->
-      <xsl:if test="(day and month and year) and @iso-8601-date!=concat(year[1],'-',month[1],'-',day[1])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(day and month and year) and @iso-8601-date!=concat(year[1],'-',month[1],'-',day[1])">
-            <xsl:attribute name="id">event-date-iso</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[event-date-iso] <xsl:text/>
-               <xsl:value-of select="name(.)"/>
-               <xsl:text/> in event must have an iso-8601-date attribute with a value that is equal to the year month and day. This one has <xsl:text/>
-               <xsl:value-of select="@iso-8601-date"/>
-               <xsl:text/> as its iso-8601-date value when based on the elements, it should be <xsl:text/>
-               <xsl:value-of select="concat(year[1],'-',month[1],'-',day[1])"/>
-               <xsl:text/>. Either the iso-8601-date is incorrect, or one (or more) of the elements are incorrect, or both of these are incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
       <xsl:apply-templates select="*" mode="M100"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M100"/>
@@ -8790,12 +8773,12 @@
 		    <!--REPORT error-->
       <xsl:if test="child::sec and not(count(sec) = (5,6))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="child::sec and not(count(sec) = (5,6))">
-            <xsl:attribute name="id">abstract-test-5</xsl:attribute>
+            <xsl:attribute name="id">final-abstract-test-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[abstract-test-5] If an abstract is structured, then it must have 5 or 6 sections depending on whether it is a clinical trial. An article without a clinical trial should have 5 sections, whereas one with a clinical trial should have 6.</svrl:text>
+            <svrl:text>[final-abstract-test-5] If an abstract is structured, then it must have 5 or 6 sections depending on whether it is a clinical trial. An article without a clinical trial should have 5 sections, whereas one with a clinical trial should have 6.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -19414,10 +19397,11 @@
 
 	  <!--RULE dec-letter-reply-content-tests-2-->
    <xsl:template match="article/sub-article//p[not(ancestor::disp-quote)]" priority="1000" mode="M288">
+      <xsl:variable name="regex" select="'\s([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict [Oo]f [Ii]nterest|([Aa]re|[Aa]m) [Ss]hocked|[Ss]trongly [Dd]isagree)[^\p{L}]'"/>
 
-		<!--REPORT warning-->
-      <xsl:if test="matches(.,'\s([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict [Oo]f [Ii]nterest|([Aa]re|[Aa]m) [Ss]hocked|[Ss]trongly [Dd]isagree)[^\p{L}]')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\s([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict [Oo]f [Ii]nterest|([Aa]re|[Aa]m) [Ss]hocked|[Ss]trongly [Dd]isagree)[^\p{L}]')">
+		    <!--REPORT warning-->
+      <xsl:if test="matches(.,$regex)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,$regex)">
             <xsl:attribute name="id">dec-letter-reply-test-7</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-7</xsl:attribute>
@@ -19427,7 +19411,9 @@
             </xsl:attribute>
             <svrl:text>[dec-letter-reply-test-7] <xsl:text/>
                <xsl:value-of select="ancestor::sub-article/@article-type"/>
-               <xsl:text/> paragraph contains what might be inflammatory or offensive language. eLife: please check it to see if it is language that should be removed - <xsl:text/>
+               <xsl:text/> paragraph contains what might be inflammatory or offensive language. eLife: please check it to see if it is language that should be removed. This paragraph was flagged because of the phrase(s) <xsl:text/>
+               <xsl:value-of select="string-join(tokenize(.,'\s')[matches(.,concat('^',substring-before(substring-after($regex,'\s'),'[^\p{L}]')))],'; ')"/>
+               <xsl:text/> in <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>

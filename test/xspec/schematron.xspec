@@ -1825,16 +1825,6 @@
         <x:expect-assert id="event-date-child" role="error"/>
         <x:expect-not-assert id="event-date-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="event-date-iso-pass">
-        <x:context href="../tests/gen/event-date-tests/event-date-iso/pass.xml"/>
-        <x:expect-not-report id="event-date-iso" role="error"/>
-        <x:expect-not-assert id="event-date-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="event-date-iso-fail">
-        <x:context href="../tests/gen/event-date-tests/event-date-iso/fail.xml"/>
-        <x:expect-report id="event-date-iso" role="error"/>
-        <x:expect-not-assert id="event-date-tests-xspec-assert" role="error"/>
-      </x:scenario>
     </x:scenario>
     <x:scenario label="event-self-uri-tests">
       <x:scenario label="event-self-uri-content-type-pass">
@@ -2055,14 +2045,24 @@
         <x:expect-report id="abstract-test-4" role="error"/>
         <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="abstract-test-5-pass">
-        <x:context href="../tests/gen/abstract-tests/abstract-test-5/pass.xml"/>
-        <x:expect-not-report id="abstract-test-5" role="error"/>
+      <x:scenario label="pre-abstract-test-5-pass">
+        <x:context href="../tests/gen/abstract-tests/pre-abstract-test-5/pass.xml"/>
+        <x:expect-not-report id="pre-abstract-test-5" role="warning"/>
         <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="abstract-test-5-fail">
-        <x:context href="../tests/gen/abstract-tests/abstract-test-5/fail.xml"/>
-        <x:expect-report id="abstract-test-5" role="error"/>
+      <x:scenario label="pre-abstract-test-5-fail">
+        <x:context href="../tests/gen/abstract-tests/pre-abstract-test-5/fail.xml"/>
+        <x:expect-report id="pre-abstract-test-5" role="warning"/>
+        <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-abstract-test-5-pass">
+        <x:context href="../tests/gen/abstract-tests/final-abstract-test-5/pass.xml"/>
+        <x:expect-not-report id="final-abstract-test-5" role="error"/>
+        <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-abstract-test-5-fail">
+        <x:context href="../tests/gen/abstract-tests/final-abstract-test-5/fail.xml"/>
+        <x:expect-report id="final-abstract-test-5" role="error"/>
         <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="abstract-test-6-pass">
