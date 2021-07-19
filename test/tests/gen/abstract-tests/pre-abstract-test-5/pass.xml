@@ -1,0 +1,40 @@
+<?oxygen SCHSchema="pre-abstract-test-5.sch"?>
+<!--Context: front//abstract
+Test: report    child::sec and not(count(sec) = (5,6))
+Message: If an abstract is structured, then it must have 5 or 6 sections depending on whether it is a clinical trial. An article without a clinical trial should have 5 sections, whereas one with a clinical trial should have 6. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <abstract>
+          <sec id="abs1">
+            <title>Background:</title>
+            <p>Background text.</p>
+          </sec>
+          <sec id="abs2">
+            <title>Methods:</title>
+            <p>Methods text.</p>
+          </sec>
+          <sec id="abs3">
+            <title>Results:</title>
+            <p>Results text.</p>
+          </sec>
+          <sec id="abs4">
+            <title>Conclusions:</title>
+            <p>Conclusions text.</p>
+          </sec>
+          <sec id="abs5">
+            <title>Funding:</title>
+            <p>Funded by X, Y and Z.</p>
+          </sec>
+          <sec id="abs6">
+            <title>Clinical trial number:</title>
+            <related-object id="RO1" source-type="clinical-trials-registry" source-id="ClinicalTrials.gov" source-id-type="registry-name" document-id="NCT02968459" document-id-type="clinical-trial-number" xlink:href="https://clinicaltrials.gov/show/NCT02968459">NCT02968459.</related-object>
+          </sec>
+        </abstract>
+      </article-meta>
+    </front>
+    <body/>
+    <back/>
+  </article>
+</root>

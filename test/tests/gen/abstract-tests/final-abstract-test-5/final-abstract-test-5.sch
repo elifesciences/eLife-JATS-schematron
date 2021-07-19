@@ -1028,14 +1028,14 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="event/date[@date-type='preprint']" id="event-date-tests">
-      <report test="(day and month and year) and @iso-8601-date!=concat(year[1],'-',month[1],'-',day[1])" role="error" id="event-date-iso">
-        <name/> in event must have an iso-8601-date attribute with a value that is equal to the year month and day. This one has <value-of select="@iso-8601-date"/> as its iso-8601-date value when based on the elements, it should be <value-of select="concat(year[1],'-',month[1],'-',day[1])"/>. Either the iso-8601-date is incorrect, or one (or more) of the elements are incorrect, or both of these are incorrect.</report>
+    <rule context="front//abstract" id="abstract-tests">
+      <let name="article-type" value="ancestor::article/@article-type"/>
+      <report test="child::sec and not(count(sec) = (5,6))" role="error" id="final-abstract-test-5">If an abstract is structured, then it must have 5 or 6 sections depending on whether it is a clinical trial. An article without a clinical trial should have 5 sections, whereas one with a clinical trial should have 6.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event/date[@date-type='preprint']" role="error" id="event-date-tests-xspec-assert">event/date[@date-type='preprint'] must be present.</assert>
+      <assert test="descendant::front//abstract" role="error" id="abstract-tests-xspec-assert">front//abstract must be present.</assert>
     </rule>
   </pattern>
 </schema>

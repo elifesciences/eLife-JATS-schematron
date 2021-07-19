@@ -2076,10 +2076,11 @@
 
 	  <!--RULE dec-letter-reply-content-tests-2-->
    <xsl:template match="article/sub-article//p[not(ancestor::disp-quote)]" priority="1000" mode="M66">
+      <xsl:variable name="regex" select="'\s([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict [Oo]f [Ii]nterest|([Aa]re|[Aa]m) [Ss]hocked|[Ss]trongly [Dd]isagree)[^\p{L}]'"/>
 
-		<!--REPORT warning-->
-      <xsl:if test="matches(.,'\s([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict [Oo]f [Ii]nterest|([Aa]re|[Aa]m) [Ss]hocked|[Ss]trongly [Dd]isagree)[^\p{L}]')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\s([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict [Oo]f [Ii]nterest|([Aa]re|[Aa]m) [Ss]hocked|[Ss]trongly [Dd]isagree)[^\p{L}]')">
+		    <!--REPORT warning-->
+      <xsl:if test="matches(.,$regex)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,$regex)">
             <xsl:attribute name="id">dec-letter-reply-test-7</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-7</xsl:attribute>
@@ -2090,7 +2091,9 @@
             <svrl:text>
                <xsl:text/>
                <xsl:value-of select="ancestor::sub-article/@article-type"/>
-               <xsl:text/> paragraph contains what might be inflammatory or offensive language. eLife: please check it to see if it is language that should be removed - <xsl:text/>
+               <xsl:text/> paragraph contains what might be inflammatory or offensive language. eLife: please check it to see if it is language that should be removed. This paragraph was flagged because of the phrase(s) <xsl:text/>
+               <xsl:value-of select="string-join(tokenize(.,'\s')[matches(.,concat('^',substring-before(substring-after($regex,'\s'),'[^\p{L}]')))],'; ')"/>
+               <xsl:text/> in <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
