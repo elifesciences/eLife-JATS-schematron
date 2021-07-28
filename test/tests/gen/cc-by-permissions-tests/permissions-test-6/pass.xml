@@ -1,0 +1,28 @@
+<?oxygen SCHSchema="permissions-test-6.sch"?>
+<!--Context: front//permissions[contains(license[1]/@xlink:href,'creativecommons.org/licenses/by/')]
+Test: assert    copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year
+Message: copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year= and pub-date=. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front>
+      <article-meta>
+        <pub-date date-type="publication" publication-format="electronic">
+          <year>2019</year>
+          <month>09</month>
+          <day>01</day>
+        </pub-date>
+        <permissions>
+          <copyright-statement>© 2019, Smith et al</copyright-statement>
+          <copyright-year>2019</copyright-year>
+          <copyright-holder>Smith et al</copyright-holder>
+          <ali:free_to_read/>
+          <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+            <ali:license_ref>http://creativecommons.org/licenses/by/4.0/</ali:license_ref>
+            <license-p>This article is distributed under the terms of the<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use and
+              redistribution provided that the original author and source are credited.</license-p>
+          </license>
+        </permissions>
+      </article-meta>
+    </front>
+  </article>
+</root>
