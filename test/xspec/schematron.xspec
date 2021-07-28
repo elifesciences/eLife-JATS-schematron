@@ -1867,38 +1867,18 @@
         <x:expect-report id="event-self-uri-href-2" role="error"/>
         <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="event-self-uri-href-3-pass">
+        <x:context href="../tests/gen/event-self-uri-tests/event-self-uri-href-3/pass.xml"/>
+        <x:expect-not-assert id="event-self-uri-href-3" role="warning"/>
+        <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-self-uri-href-3-fail">
+        <x:context href="../tests/gen/event-self-uri-tests/event-self-uri-href-3/fail.xml"/>
+        <x:expect-assert id="event-self-uri-href-3" role="warning"/>
+        <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="front-permissions-tests">
-      <x:scenario label="permissions-test-1-pass">
-        <x:context href="../tests/gen/front-permissions-tests/permissions-test-1/pass.xml"/>
-        <x:expect-not-report id="permissions-test-1" role="error"/>
-        <x:expect-not-assert id="front-permissions-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="permissions-test-1-fail">
-        <x:context href="../tests/gen/front-permissions-tests/permissions-test-1/fail.xml"/>
-        <x:expect-report id="permissions-test-1" role="error"/>
-        <x:expect-not-assert id="front-permissions-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="permissions-test-2-pass">
-        <x:context href="../tests/gen/front-permissions-tests/permissions-test-2/pass.xml"/>
-        <x:expect-not-report id="permissions-test-2" role="error"/>
-        <x:expect-not-assert id="front-permissions-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="permissions-test-2-fail">
-        <x:context href="../tests/gen/front-permissions-tests/permissions-test-2/fail.xml"/>
-        <x:expect-report id="permissions-test-2" role="error"/>
-        <x:expect-not-assert id="front-permissions-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="permissions-test-3-pass">
-        <x:context href="../tests/gen/front-permissions-tests/permissions-test-3/pass.xml"/>
-        <x:expect-not-report id="permissions-test-3" role="error"/>
-        <x:expect-not-assert id="front-permissions-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="permissions-test-3-fail">
-        <x:context href="../tests/gen/front-permissions-tests/permissions-test-3/fail.xml"/>
-        <x:expect-report id="permissions-test-3" role="error"/>
-        <x:expect-not-assert id="front-permissions-tests-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="permissions-test-4-pass">
         <x:context href="../tests/gen/front-permissions-tests/permissions-test-4/pass.xml"/>
         <x:expect-not-assert id="permissions-test-4" role="error"/>
@@ -1917,36 +1897,6 @@
       <x:scenario label="permissions-test-5-fail">
         <x:context href="../tests/gen/front-permissions-tests/permissions-test-5/fail.xml"/>
         <x:expect-assert id="permissions-test-5" role="error"/>
-        <x:expect-not-assert id="front-permissions-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="permissions-test-6-pass">
-        <x:context href="../tests/gen/front-permissions-tests/permissions-test-6/pass.xml"/>
-        <x:expect-not-report id="permissions-test-6" role="error"/>
-        <x:expect-not-assert id="front-permissions-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="permissions-test-6-fail">
-        <x:context href="../tests/gen/front-permissions-tests/permissions-test-6/fail.xml"/>
-        <x:expect-report id="permissions-test-6" role="error"/>
-        <x:expect-not-assert id="front-permissions-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="permissions-test-7-pass">
-        <x:context href="../tests/gen/front-permissions-tests/permissions-test-7/pass.xml"/>
-        <x:expect-not-report id="permissions-test-7" role="error"/>
-        <x:expect-not-assert id="front-permissions-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="permissions-test-7-fail">
-        <x:context href="../tests/gen/front-permissions-tests/permissions-test-7/fail.xml"/>
-        <x:expect-report id="permissions-test-7" role="error"/>
-        <x:expect-not-assert id="front-permissions-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="permissions-test-8-pass">
-        <x:context href="../tests/gen/front-permissions-tests/permissions-test-8/pass.xml"/>
-        <x:expect-not-report id="permissions-test-8" role="error"/>
-        <x:expect-not-assert id="front-permissions-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="permissions-test-8-fail">
-        <x:context href="../tests/gen/front-permissions-tests/permissions-test-8/fail.xml"/>
-        <x:expect-report id="permissions-test-8" role="error"/>
         <x:expect-not-assert id="front-permissions-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="permissions-test-9-pass">
@@ -1968,6 +1918,100 @@
         <x:context href="../tests/gen/front-permissions-tests/permissions-info/fail.xml"/>
         <x:expect-report id="permissions-info" role="info"/>
         <x:expect-not-assert id="front-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="cc-by-permissions-tests">
+      <x:scenario label="permissions-test-1-pass">
+        <x:context href="../tests/gen/cc-by-permissions-tests/permissions-test-1/pass.xml"/>
+        <x:expect-not-assert id="permissions-test-1" role="error"/>
+        <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="permissions-test-1-fail">
+        <x:context href="../tests/gen/cc-by-permissions-tests/permissions-test-1/fail.xml"/>
+        <x:expect-assert id="permissions-test-1" role="error"/>
+        <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="permissions-test-2-pass">
+        <x:context href="../tests/gen/cc-by-permissions-tests/permissions-test-2/pass.xml"/>
+        <x:expect-not-assert id="permissions-test-2" role="error"/>
+        <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="permissions-test-2-fail">
+        <x:context href="../tests/gen/cc-by-permissions-tests/permissions-test-2/fail.xml"/>
+        <x:expect-assert id="permissions-test-2" role="error"/>
+        <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="permissions-test-3-pass">
+        <x:context href="../tests/gen/cc-by-permissions-tests/permissions-test-3/pass.xml"/>
+        <x:expect-not-assert id="permissions-test-3" role="error"/>
+        <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="permissions-test-3-fail">
+        <x:context href="../tests/gen/cc-by-permissions-tests/permissions-test-3/fail.xml"/>
+        <x:expect-assert id="permissions-test-3" role="error"/>
+        <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="permissions-test-6-pass">
+        <x:context href="../tests/gen/cc-by-permissions-tests/permissions-test-6/pass.xml"/>
+        <x:expect-not-assert id="permissions-test-6" role="error"/>
+        <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="permissions-test-6-fail">
+        <x:context href="../tests/gen/cc-by-permissions-tests/permissions-test-6/fail.xml"/>
+        <x:expect-assert id="permissions-test-6" role="error"/>
+        <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="permissions-test-7-pass">
+        <x:context href="../tests/gen/cc-by-permissions-tests/permissions-test-7/pass.xml"/>
+        <x:expect-not-assert id="permissions-test-7" role="error"/>
+        <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="permissions-test-7-fail">
+        <x:context href="../tests/gen/cc-by-permissions-tests/permissions-test-7/fail.xml"/>
+        <x:expect-assert id="permissions-test-7" role="error"/>
+        <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="permissions-test-8-pass">
+        <x:context href="../tests/gen/cc-by-permissions-tests/permissions-test-8/pass.xml"/>
+        <x:expect-not-assert id="permissions-test-8" role="error"/>
+        <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="permissions-test-8-fail">
+        <x:context href="../tests/gen/cc-by-permissions-tests/permissions-test-8/fail.xml"/>
+        <x:expect-assert id="permissions-test-8" role="error"/>
+        <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="cc-0-permissions-tests">
+      <x:scenario label="cc-0-test-1-pass">
+        <x:context href="../tests/gen/cc-0-permissions-tests/cc-0-test-1/pass.xml"/>
+        <x:expect-not-report id="cc-0-test-1" role="error"/>
+        <x:expect-not-assert id="cc-0-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="cc-0-test-1-fail">
+        <x:context href="../tests/gen/cc-0-permissions-tests/cc-0-test-1/fail.xml"/>
+        <x:expect-report id="cc-0-test-1" role="error"/>
+        <x:expect-not-assert id="cc-0-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="cc-0-test-2-pass">
+        <x:context href="../tests/gen/cc-0-permissions-tests/cc-0-test-2/pass.xml"/>
+        <x:expect-not-report id="cc-0-test-2" role="error"/>
+        <x:expect-not-assert id="cc-0-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="cc-0-test-2-fail">
+        <x:context href="../tests/gen/cc-0-permissions-tests/cc-0-test-2/fail.xml"/>
+        <x:expect-report id="cc-0-test-2" role="error"/>
+        <x:expect-not-assert id="cc-0-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="cc-0-test-3-pass">
+        <x:context href="../tests/gen/cc-0-permissions-tests/cc-0-test-3/pass.xml"/>
+        <x:expect-not-report id="cc-0-test-3" role="error"/>
+        <x:expect-not-assert id="cc-0-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="cc-0-test-3-fail">
+        <x:context href="../tests/gen/cc-0-permissions-tests/cc-0-test-3/fail.xml"/>
+        <x:expect-report id="cc-0-test-3" role="error"/>
+        <x:expect-not-assert id="cc-0-permissions-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="license-tests">

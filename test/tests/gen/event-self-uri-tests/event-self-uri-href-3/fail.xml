@@ -1,0 +1,19 @@
+<?oxygen SCHSchema="event-self-uri-href-3.sch"?>
+<!--Context: event/self-uri
+Test: assert    matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')
+Message:  in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. This one is not a doi - . Please check whether there is a doi that can be used instead. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <pub-history>
+      <event>
+        <event-desc>This manuscript was published as a preprint at bioRxiv.</event-desc>
+        <date date-type="preprint" iso-8601-date="2021-03-23">
+          <day>23</day>
+          <month>03</month>
+          <year>2021</year>
+        </date>
+        <self-uri content-type="preprint" xlink:href="https://www.biorxiv.org/content/10.1101/2021.03.23.436661v1"/>
+      </event>
+    </pub-history>
+  </article>
+</root>
