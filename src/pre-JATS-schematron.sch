@@ -3051,6 +3051,23 @@
       </report>
     </rule>
   </pattern>
+  <pattern id="body-box-tests-pattern">
+    <rule context="article/body//boxed-text[not(parent::body) or preceding-sibling::*]" id="body-box-tests">
+      
+      <assert test="matches(label[1],'^Box \d{1,2}\.$')" role="error" id="body-box-label-test">[body-box-label-test] <name/> element must have a label in the format "Box 0.".</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="app-box-tests-pattern">
+    <rule context="app//boxed-text[not(sec)]" id="app-box-tests">
+      <let name="app-title" value="ancestor::app[1]/title"/>
+      
+      <assert test="matches(label[1],'^Appendix \d{1,2}—box \d{1,2}\.$')" role="error" id="app-box-label-test">[app-box-label-test] <name/> element must have a label in the format "Appendix 0—box 0.".</assert>
+      
+      <assert test="starts-with(label[1],$app-title)" role="error" id="app-box-label-test-2">[app-box-label-test-2] <name/> label must start with the title for the appendix it sits in, <value-of select="$app-title"/>. This one does not - "<value-of select="label[1]"/>".</assert>
+      
+    </rule>
+  </pattern>
   
   <pattern id="body-video-specific-pattern">
     <rule context="article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']" id="body-video-specific">

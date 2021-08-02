@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="app-box-label-test.sch"?>
+<!--Context: app//boxed-text[not(sec)]
+Test: assert    matches(label[1],'^Appendix \d{1,2}—box \d{1,2}\.$')
+Message:  element must have a label in the format "Appendix 0—box 0.". -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <app>
+        <title>Appendix 1</title>
+        <p/>
+        <boxed-text><label>Appendix 1—box 1.</label></boxed-text>
+      </app>
+    </back>
+  </article>
+</root>
