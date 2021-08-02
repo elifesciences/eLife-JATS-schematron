@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="final-feat-query-test.sch"?>
+<!--Context: article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//p|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//td|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//th
+Test: report    matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')
+Message:  element contains [Query] or [QUERY] which should be removed -  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Insight</subject>
+          </subj-group>
+        </article-categories>
+      </article-meta>
+    </front>
+    <body>
+      <p/>
+    </body>
+  </article>
+</root>

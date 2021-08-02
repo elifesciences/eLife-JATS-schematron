@@ -5632,6 +5632,10 @@
      <report test="matches(.,'\[[Oo][Kk]\??\]')" role="error" id="final-digest-test-2">digest paragraph contains [OK] or [OK?] which should be removed - <value-of select="."/>
       </report>
      
+     <report test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')" role="error" id="final-digest-query-test">
+        <value-of select="name()"/> element contains [Query] or [QUERY] which should be removed - <value-of select="."/>
+      </report>
+     
    </rule>
   </pattern>
   <pattern id="feature-subj-tests-pattern">
@@ -5743,6 +5747,10 @@
      
      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#final-feat-ok-test" test="matches(.,'\[[Oo][Kk]\??\]')" role="error" id="final-feat-ok-test">
         <value-of select="name()"/> element contains [OK] or [OK?] which should be removed - <value-of select="."/>
+      </report>
+     
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#final-feat-ok-test" test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')" role="error" id="final-feat-query-test">
+        <value-of select="name()"/> element contains [Query] or [QUERY] which should be removed - <value-of select="."/>
       </report>
      
    </rule>

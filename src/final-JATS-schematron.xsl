@@ -25922,6 +25922,23 @@
             </svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')">
+            <xsl:attribute name="id">final-digest-query-test</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[final-digest-query-test] <xsl:text/>
+               <xsl:value-of select="name()"/>
+               <xsl:text/> element contains [Query] or [QUERY] which should be removed - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M400"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M400"/>
@@ -26436,6 +26453,24 @@
             <svrl:text>[final-feat-ok-test] <xsl:text/>
                <xsl:value-of select="name()"/>
                <xsl:text/> element contains [OK] or [OK?] which should be removed - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')">
+            <xsl:attribute name="id">final-feat-query-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#final-feat-ok-test</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[final-feat-query-test] <xsl:text/>
+               <xsl:value-of select="name()"/>
+               <xsl:text/> element contains [Query] or [QUERY] which should be removed - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>
             </svrl:text>
