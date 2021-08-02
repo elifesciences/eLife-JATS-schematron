@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="final-digest-query-test.sch"?>
+<!--Context: front//abstract[@abstract-type='executive-summary']/p
+Test: report    matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')
+Message:  element contains [Query] or [QUERY] which should be removed -  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <abstract abstract-type="executive-summary">
+          <p>[Query: blah blah]</p>
+        </abstract> 
+      </article-meta>
+    </front>
+  </article>
+</root>
