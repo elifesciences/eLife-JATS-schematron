@@ -5686,6 +5686,40 @@
         <x:expect-not-assert id="bracket-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="body-box-tests">
+      <x:scenario label="body-box-label-test-pass">
+        <x:context href="../tests/gen/body-box-tests/body-box-label-test/pass.xml"/>
+        <x:expect-not-assert id="body-box-label-test" role="error"/>
+        <x:expect-not-assert id="body-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="body-box-label-test-fail">
+        <x:context href="../tests/gen/body-box-tests/body-box-label-test/fail.xml"/>
+        <x:expect-assert id="body-box-label-test" role="error"/>
+        <x:expect-not-assert id="body-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="app-box-tests">
+      <x:scenario label="app-box-label-test-pass">
+        <x:context href="../tests/gen/app-box-tests/app-box-label-test/pass.xml"/>
+        <x:expect-not-assert id="app-box-label-test" role="error"/>
+        <x:expect-not-assert id="app-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-box-label-test-fail">
+        <x:context href="../tests/gen/app-box-tests/app-box-label-test/fail.xml"/>
+        <x:expect-assert id="app-box-label-test" role="error"/>
+        <x:expect-not-assert id="app-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-box-label-test-2-pass">
+        <x:context href="../tests/gen/app-box-tests/app-box-label-test-2/pass.xml"/>
+        <x:expect-not-assert id="app-box-label-test-2" role="error"/>
+        <x:expect-not-assert id="app-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-box-label-test-2-fail">
+        <x:context href="../tests/gen/app-box-tests/app-box-label-test-2/fail.xml"/>
+        <x:expect-assert id="app-box-label-test-2" role="error"/>
+        <x:expect-not-assert id="app-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="body-video-specific">
       <x:scenario label="pre-body-video-position-test-1-pass">
         <x:context href="../tests/gen/body-video-specific/pre-body-video-position-test-1/pass.xml"/>

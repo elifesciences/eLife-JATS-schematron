@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="body-box-label-test.sch"?>
+<!--Context: article/body//boxed-text[not(parent::body) or preceding-sibling::*]
+Test: assert    matches(label[1],'^Box \d{1,2}\.$')
+Message:  element must have a label in the format "Box 0.". -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <p/>
+      <boxed-text><label>Box 1.</label></boxed-text>
+    </body>
+  </article>
+</root>

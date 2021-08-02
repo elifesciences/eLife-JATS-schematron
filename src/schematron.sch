@@ -4393,6 +4393,27 @@ else self::*/local-name() = $allowed-p-blocks"
         id="bracket-test-4"><name/> element contains more right ']' than left '[' square brackets (<value-of select="$close-square"/> and <value-of select="$open-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) lt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/></report>
     </rule>
     
+    <rule context="article/body//boxed-text[not(parent::body) or preceding-sibling::*]" id="body-box-tests">
+      
+      <assert test="matches(label[1],'^Box \d{1,2}\.$')"
+        role="error" 
+        id="body-box-label-test"><name/> element must have a label in the format "Box 0.".</assert>
+      
+    </rule>
+    
+    <rule context="app//boxed-text[not(sec)]" id="app-box-tests">
+      <let name="app-title" value="ancestor::app[1]/title"/>
+      
+      <assert test="matches(label[1],'^Appendix \d{1,2}—box \d{1,2}\.$')" 
+        role="error" 
+        id="app-box-label-test"><name/> element must have a label in the format "Appendix 0—box 0.".</assert>
+      
+      <assert test="starts-with(label[1],$app-title)" 
+        role="error" 
+        id="app-box-label-test-2"><name/> label must start with the title for the appendix it sits in, <value-of select="$app-title"/>. This one does not - "<value-of select="label[1]"/>".</assert>
+      
+    </rule>
+    
   </pattern>
   
   <pattern id="video-tests">

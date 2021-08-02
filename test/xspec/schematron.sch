@@ -3211,6 +3211,26 @@
       </report>
     </rule>
   </pattern>
+  <pattern id="body-box-tests-pattern">
+    <rule context="article/body//boxed-text[not(parent::body) or preceding-sibling::*]" id="body-box-tests">
+      
+      <assert test="matches(label[1],'^Box \d{1,2}\.$')" role="error" id="body-box-label-test">
+        <name/> element must have a label in the format "Box 0.".</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="app-box-tests-pattern">
+    <rule context="app//boxed-text[not(sec)]" id="app-box-tests">
+      <let name="app-title" value="ancestor::app[1]/title"/>
+      
+      <assert test="matches(label[1],'^Appendix \d{1,2}—box \d{1,2}\.$')" role="error" id="app-box-label-test">
+        <name/> element must have a label in the format "Appendix 0—box 0.".</assert>
+      
+      <assert test="starts-with(label[1],$app-title)" role="error" id="app-box-label-test-2">
+        <name/> label must start with the title for the appendix it sits in, <value-of select="$app-title"/>. This one does not - "<value-of select="label[1]"/>".</assert>
+      
+    </rule>
+  </pattern>
   
   <pattern id="body-video-specific-pattern">
     <rule context="article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']" id="body-video-specific">
@@ -8315,6 +8335,8 @@
       <assert test="descendant::aff/label" role="error" id="aff-label-tests-xspec-assert">aff/label must be present.</assert>
       <assert test="descendant::disp-quote" role="error" id="disp-quote-tests-xspec-assert">disp-quote must be present.</assert>
       <assert test="descendant::p[matches(.,'[\(\)\[\]]')] or descendant::th[matches(.,'[\(\)\[\]]')] or descendant::td[matches(.,'[\(\)\[\]]')] or descendant::title[matches(.,'[\(\)\[\]]')]" role="error" id="bracket-tests-xspec-assert">p[matches(.,'[\(\)\[\]]')]|th[matches(.,'[\(\)\[\]]')]|td[matches(.,'[\(\)\[\]]')]|title[matches(.,'[\(\)\[\]]')] must be present.</assert>
+      <assert test="descendant::article/body//boxed-text[not(parent::body) or preceding-sibling::*]" role="error" id="body-box-tests-xspec-assert">article/body//boxed-text[not(parent::body) or preceding-sibling::*] must be present.</assert>
+      <assert test="descendant::app//boxed-text[not(sec)]" role="error" id="app-box-tests-xspec-assert">app//boxed-text[not(sec)] must be present.</assert>
       <assert test="descendant::article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']" role="error" id="body-video-specific-xspec-assert">article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::app//media[@mimetype='video']" role="error" id="app-video-specific-xspec-assert">app//media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::fig-group/media[@mimetype='video']" role="error" id="fig-video-specific-xspec-assert">fig-group/media[@mimetype='video'] must be present.</assert>
