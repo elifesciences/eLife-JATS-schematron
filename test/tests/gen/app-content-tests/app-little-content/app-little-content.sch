@@ -1028,15 +1028,14 @@
     
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))]" id="app-box-tests">
-      <let name="app-title" value="ancestor::app[1]/title"/>
-      <assert test="starts-with(label[1],$app-title)" role="error" id="app-box-label-test-2">
-        <name/> label must start with the title for the appendix it sits in, <value-of select="$app-title"/>. This one does not - "<value-of select="label[1]"/>".</assert>
+    <rule context="app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)]" id="app-content-tests">
+      <report test="count(descendant::p) = (0,1)" role="warning" id="app-little-content">
+        <value-of select="title"/> has no sibling appendices, contains no assets (figures, tables, videos, or display formula), and only has one paragraph. Does it need to be an appendix?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))]" role="error" id="app-box-tests-xspec-assert">app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))] must be present.</assert>
+      <assert test="descendant::app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)]" role="error" id="app-content-tests-xspec-assert">app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

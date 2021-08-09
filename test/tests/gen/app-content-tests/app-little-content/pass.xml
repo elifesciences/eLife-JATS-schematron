@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="app-little-content.sch"?>
+<!--Context: app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)]
+Test: report    count(descendant::p) = (0,1)
+Message:  has no sibling appendices, contains no assets (figures, tables, videos, or display formula), and only has one paragraph. Does it need to be an appendix? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <app>
+        <title>Appendix 1.</title>
+        <p/>
+        <p/>
+      </app>
+    </back>
+  </article>
+</root>

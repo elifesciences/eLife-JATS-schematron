@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="app-box-label-test-2.sch"?>
-<!--Context: app//boxed-text[not(sec)]
+<!--Context: app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))]
 Test: assert    starts-with(label[1],$app-title)
 Message:  label must start with the title for the appendix it sits in, . This one does not - "". -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

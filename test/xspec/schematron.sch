@@ -3220,7 +3220,7 @@
     </rule>
   </pattern>
   <pattern id="app-box-tests-pattern">
-    <rule context="app//boxed-text[not(sec)]" id="app-box-tests">
+    <rule context="app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))]" id="app-box-tests">
       <let name="app-title" value="ancestor::app[1]/title"/>
       
       <assert test="matches(label[1],'^Appendix \d{1,2}—box \d{1,2}\.$')" role="error" id="app-box-label-test">
@@ -3228,6 +3228,14 @@
       
       <assert test="starts-with(label[1],$app-title)" role="error" id="app-box-label-test-2">
         <name/> label must start with the title for the appendix it sits in, <value-of select="$app-title"/>. This one does not - "<value-of select="label[1]"/>".</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="app-content-tests-pattern">
+    <rule context="app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)]" id="app-content-tests">
+      
+      <report test="count(descendant::p) = (0,1)" role="warning" id="app-little-content">
+        <value-of select="title"/> has no sibling appendices, contains no assets (figures, tables, videos, or display formula), and only has one paragraph. Does it need to be an appendix?</report>
       
     </rule>
   </pattern>
@@ -8344,7 +8352,8 @@
       <assert test="descendant::disp-quote" role="error" id="disp-quote-tests-xspec-assert">disp-quote must be present.</assert>
       <assert test="descendant::p[matches(.,'[\(\)\[\]]')] or descendant::th[matches(.,'[\(\)\[\]]')] or descendant::td[matches(.,'[\(\)\[\]]')] or descendant::title[matches(.,'[\(\)\[\]]')]" role="error" id="bracket-tests-xspec-assert">p[matches(.,'[\(\)\[\]]')]|th[matches(.,'[\(\)\[\]]')]|td[matches(.,'[\(\)\[\]]')]|title[matches(.,'[\(\)\[\]]')] must be present.</assert>
       <assert test="descendant::article/body//boxed-text[not(parent::body) or preceding-sibling::*]" role="error" id="body-box-tests-xspec-assert">article/body//boxed-text[not(parent::body) or preceding-sibling::*] must be present.</assert>
-      <assert test="descendant::app//boxed-text[not(sec)]" role="error" id="app-box-tests-xspec-assert">app//boxed-text[not(sec)] must be present.</assert>
+      <assert test="descendant::app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))]" role="error" id="app-box-tests-xspec-assert">app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))] must be present.</assert>
+      <assert test="descendant::app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)]" role="error" id="app-content-tests-xspec-assert">app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)] must be present.</assert>
       <assert test="descendant::article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']" role="error" id="body-video-specific-xspec-assert">article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::app//media[@mimetype='video']" role="error" id="app-video-specific-xspec-assert">app//media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::fig-group/media[@mimetype='video']" role="error" id="fig-video-specific-xspec-assert">fig-group/media[@mimetype='video'] must be present.</assert>

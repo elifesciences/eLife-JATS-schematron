@@ -5720,6 +5720,18 @@
         <x:expect-not-assert id="app-box-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="app-content-tests">
+      <x:scenario label="app-little-content-pass">
+        <x:context href="../tests/gen/app-content-tests/app-little-content/pass.xml"/>
+        <x:expect-not-report id="app-little-content" role="warning"/>
+        <x:expect-not-assert id="app-content-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-little-content-fail">
+        <x:context href="../tests/gen/app-content-tests/app-little-content/fail.xml"/>
+        <x:expect-report id="app-little-content" role="warning"/>
+        <x:expect-not-assert id="app-content-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="body-video-specific">
       <x:scenario label="pre-body-video-position-test-1-pass">
         <x:context href="../tests/gen/body-video-specific/pre-body-video-position-test-1/pass.xml"/>
