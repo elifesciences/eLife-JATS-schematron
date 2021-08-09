@@ -1028,7 +1028,7 @@
     
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="app//boxed-text[not(sec)]" id="app-box-tests">
+    <rule context="app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))]" id="app-box-tests">
       <let name="app-title" value="ancestor::app[1]/title"/>
       <assert test="matches(label[1],'^Appendix \d{1,2}—box \d{1,2}\.$')" role="error" id="app-box-label-test">
         <name/> element must have a label in the format "Appendix 0—box 0.".</assert>
@@ -1036,7 +1036,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::app//boxed-text[not(sec)]" role="error" id="app-box-tests-xspec-assert">app//boxed-text[not(sec)] must be present.</assert>
+      <assert test="descendant::app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))]" role="error" id="app-box-tests-xspec-assert">app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))] must be present.</assert>
     </rule>
   </pattern>
 </schema>
