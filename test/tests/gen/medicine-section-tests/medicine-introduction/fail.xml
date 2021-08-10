@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="medicine-introduction.sch"?>
-<!--Context: article[descendant::article-meta[//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec
+<!--Context: article[@article-type='research-article' and descendant::article-meta[//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec
 Test: report    $pos=1 and title[1]!='Introduction'
 Message: The first top level section in a Medicine article should be 'Introduction'. This one is ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

@@ -4903,7 +4903,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     </rule>
         
-    <rule context="article[descendant::article-meta[//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" 
+    <rule context="article[@article-type='research-article' and descendant::article-meta[//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" 
       id="medicine-section-tests">
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
       
@@ -12305,6 +12305,17 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <assert test="java:file-exists(@xlink:href, $base)" 
         role="error" 
         id="graphic-media-presence"><name/> element points to file <value-of select="@xlink:href"/> - but there is no file with that name in the same folder as the XML file. It should be placed here - <value-of select="$base-path"/></assert>
+      
+    </rule>
+    
+    <rule context="article" id="final-package-article-xml">
+      <let name="article-id" value="front//article-id[@pub-id-type='publisher-id']"/>
+      <let name="base" value="base-uri(.)"/>
+      <let name="xml-file-name" value="concat('elife-',$article-id,'.xml')"/>
+      
+      <assert test="ends-with($base,$xml-file-name)" 
+        role="error" 
+        id="article-xml-name">The filename for the article xml file is incorrect. It should be named "<value-of select="$xml-file-name"/>", but instead it is named "<value-of select="tokenize($base,'/')[last()]"/>".</assert>
       
     </rule>
     
