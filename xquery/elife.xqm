@@ -185,7 +185,7 @@ declare function elife:sch2final($sch){
       let $id := ("["||$x/@id||"] ")
       return 
       if (starts-with($x/@id,'pre-')) then delete node $x
-      else if ($x/@id = 'graphic-media-presence') then delete node $x/ancestor::*:pattern
+      else if ($x/@id = ('graphic-media-presence','article-xml-name')) then delete node $x/ancestor::*:pattern
       else if (starts-with($x/data(),('['||$x/@id))) then ()
       else insert node $id as first into $x,
 
@@ -252,10 +252,10 @@ declare function elife:sch2xspec-sch($sch){
         for $y in $copy1//xsl:function[@name="java:file-exists"]
         return delete node $y,
         
-        for $c in $copy1//sch:pattern[@id="final-package-pattern"]
+        for $c in $copy1//sch:pattern[@id=("final-package-pattern","final-package-article-xml")]
         return delete node $c,
         
-        for $c in $copy1//*:pattern[@id!="final-package-pattern"]
+        for $c in $copy1//*:pattern[not(@id=("final-package-pattern","final-package-article-xml"))]
         return replace node $c with $c/*
        )
                           
@@ -300,7 +300,7 @@ declare function elife:sch2xspec($xspec-sch){
   <x:scenario>
   {
     (:Ignore final package rule :)
-    for $x in $xspec-sch//sch:rule[(@id!='final-package') and (@id!='root-rule')]
+    for $x in $xspec-sch//sch:rule[not(@id=('final-package','final-package-article-xml','root-rule'))]
     let $id := elife:get-id($x)  
     return
     <x:scenario label="{$id}">

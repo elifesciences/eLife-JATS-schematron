@@ -16569,7 +16569,7 @@
 
 
 	  <!--RULE medicine-section-tests-->
-   <xsl:template match="article[descendant::article-meta[//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" priority="1000" mode="M222">
+   <xsl:template match="article[@article-type='research-article' and descendant::article-meta[//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" priority="1000" mode="M222">
       <xsl:variable name="pos" select="count(parent::body/sec) - count(following-sibling::sec)"/>
 
 		    <!--REPORT error-->

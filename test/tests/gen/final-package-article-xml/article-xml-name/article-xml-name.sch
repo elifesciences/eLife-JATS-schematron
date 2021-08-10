@@ -1027,15 +1027,17 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="body">
-    <rule context="article[@article-type='research-article' and descendant::article-meta[//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" id="medicine-section-tests">
-      <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-results" test="$pos=3 and title[1]!='Results'" role="warning" id="medicine-results">The third top level section in a Medicine article should be 'Results', but this one is '<value-of select="title[1]"/>'. Is that correct?</report>
+  <pattern id="final-package-pattern">
+    <rule context="article" id="final-package-article-xml">
+      <let name="article-id" value="front//article-id[@pub-id-type='publisher-id']"/>
+      <let name="base" value="base-uri(.)"/>
+      <let name="xml-file-name" value="concat('elife-',$article-id,'.xml')"/>
+      <assert test="ends-with($base,$xml-file-name)" role="error" id="article-xml-name">The filename for the article xml file is incorrect. It should be named "<value-of select="$xml-file-name"/>", but instead it is named "<value-of select="tokenize($base,'/')[last()]"/>".</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='research-article' and descendant::article-meta[//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" role="error" id="medicine-section-tests-xspec-assert">article[@article-type='research-article' and descendant::article-meta[//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec must be present.</assert>
+      <assert test="descendant::article" role="error" id="final-package-article-xml-xspec-assert">article must be present.</assert>
     </rule>
   </pattern>
 </schema>

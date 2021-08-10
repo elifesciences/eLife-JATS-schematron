@@ -3358,7 +3358,7 @@
     </rule>
   </pattern>
   <pattern id="medicine-section-tests-pattern">
-    <rule context="article[descendant::article-meta[//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" id="medicine-section-tests">
+    <rule context="article[@article-type='research-article' and descendant::article-meta[//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" id="medicine-section-tests">
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-introduction" test="$pos=1 and title[1]!='Introduction'" role="error" id="medicine-introduction">[medicine-introduction] The first top level section in a Medicine article should be 'Introduction'. This one is '<value-of select="title[1]"/>'.</report>
