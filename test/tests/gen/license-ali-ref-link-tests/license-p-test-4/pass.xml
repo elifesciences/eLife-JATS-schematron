@@ -5,7 +5,7 @@ Message: If a license contains an ali:license_ref element, there must be a link 
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <permissions>
-      <copyright-statement>&#x00A9; 2018, Nikbakht et al</copyright-statement>
+      <copyright-statement>© 2018, Nikbakht et al</copyright-statement>
       <copyright-year>2018</copyright-year>
       <copyright-holder>Nikbakht et al</copyright-holder>
       <license>

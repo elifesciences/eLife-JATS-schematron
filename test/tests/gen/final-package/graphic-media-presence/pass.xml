@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="graphic-media-presence.sch"?>
-<!--Context: graphic[@xlink:href]|media[@xlink:href]|self-uri[@xlink:href]
+<!--Context: graphic[@xlink:href]|media[@xlink:href]|self-uri[not(parent::event) and @xlink:href]
 Test: assert    java:file-exists(@xlink:href, $base)
 Message:  element points to file  - but there is no file with that name in the same folder as the XML file. It should be placed here -  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

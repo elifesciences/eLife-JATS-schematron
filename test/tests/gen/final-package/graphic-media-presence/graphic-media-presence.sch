@@ -1028,7 +1028,7 @@
     
   </xsl:function>
   <pattern id="final-package-pattern">
-    <rule context="graphic[@xlink:href]|media[@xlink:href]|self-uri[@xlink:href]" id="final-package">
+    <rule context="graphic[@xlink:href]|media[@xlink:href]|self-uri[not(parent::event) and @xlink:href]" id="final-package">
       <let name="article-id" value="ancestor::article/front//article-id[@pub-id-type='publisher-id']"/>
       <let name="base" value="base-uri(.)"/>
       <let name="base-path" value="substring-before(         substring-after($base,'file:'),         concat('elife-',$article-id,'.xml')         )"/>
@@ -1039,7 +1039,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::graphic[@xlink:href] or descendant::media[@xlink:href] or descendant::self-uri[@xlink:href]" role="error" id="final-package-xspec-assert">graphic[@xlink:href]|media[@xlink:href]|self-uri[@xlink:href] must be present.</assert>
+      <assert test="descendant::graphic[@xlink:href] or descendant::media[@xlink:href] or descendant::self-uri[not(parent::event) and @xlink:href]" role="error" id="final-package-xspec-assert">graphic[@xlink:href]|media[@xlink:href]|self-uri[not(parent::event) and @xlink:href] must be present.</assert>
     </rule>
   </pattern>
 </schema>
