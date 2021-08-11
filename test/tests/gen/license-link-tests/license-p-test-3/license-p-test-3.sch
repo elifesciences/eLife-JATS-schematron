@@ -1028,17 +1028,14 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="front//permissions/license/license-p" id="license-p-tests">
+    <rule context="permissions/license[@xlink:href]/license-p" id="license-link-tests">
       <let name="license-link" value="parent::license/@xlink:href"/>
-      <let name="license-type" value="if (contains($license-link,'//creativecommons.org/publicdomain/zero/1.0/')) then 'cc0' else if (contains($license-link,'//creativecommons.org/licenses/by/4.0/')) then 'ccby' else ('unknown')"/>
-      <let name="cc0-text" value="'This is an open-access article, free of all copyright, and may be freely reproduced, distributed, transmitted, modified, built upon, or otherwise used by anyone for any lawful purpose. The work is made available under the Creative Commons CC0 public domain dedication.'"/>
-      <let name="ccby-text" value="'This article is distributed under the terms of the Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.'"/>
-      <assert test="ext-link[1]/@xlink:href = $license-link" role="error" id="license-p-test-3">The ext-link link in license-p must match that in the license element. The ext-link has an xlink:href attribute with the value '<value-of select="ext-link[1]/@xlink:href"/>', but the license link is '<value-of select="$license-link"/>'.</assert>
+      <assert test="some $x in ext-link satisfies $x/@xlink:href = $license-link" role="error" id="license-p-test-3">If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: <value-of select="$license-link"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front//permissions/license/license-p" role="error" id="license-p-tests-xspec-assert">front//permissions/license/license-p must be present.</assert>
+      <assert test="descendant::permissions/license[@xlink:href]/license-p" role="error" id="license-link-tests-xspec-assert">permissions/license[@xlink:href]/license-p must be present.</assert>
     </rule>
   </pattern>
 </schema>

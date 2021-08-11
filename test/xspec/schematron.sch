@@ -1865,7 +1865,20 @@
       
       <report test="($license-type='cc0') and .!=$cc0-text" role="error" id="license-p-test-2">The text in license-p is incorrect (<value-of select="."/>). Since this article is CC0 licensed, the text should be <value-of select="$cc0-text"/>.</report>
       
-      <assert test="ext-link[1]/@xlink:href = $license-link" role="error" id="license-p-test-3">The ext-link link in license-p must match that in the license element. The ext-link has an xlink:href attribute with the value '<value-of select="ext-link[1]/@xlink:href"/>', but the license link is '<value-of select="$license-link"/>'.</assert>
+    </rule>
+  </pattern>
+  <pattern id="license-link-tests-pattern">
+    <rule context="permissions/license[@xlink:href]/license-p" id="license-link-tests">
+      <let name="license-link" value="parent::license/@xlink:href"/>
+      
+      <assert test="some $x in ext-link satisfies $x/@xlink:href = $license-link" role="error" id="license-p-test-3">If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: <value-of select="$license-link"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
+    </rule>
+  </pattern>
+  <pattern id="license-ali-ref-link-tests-pattern">
+    <rule context="permissions/license[ali:license_ref]/license-p" id="license-ali-ref-link-tests">
+      <let name="ali-ref" value="parent::license/ali:license_ref"/>
+      
+      <assert test="some $x in ext-link satisfies $x/@xlink:href = $ali-ref" role="error" id="license-p-test-4">If a license contains an ali:license_ref element, there must be a link in license-p that matches the link in the ali:license_ref element. ali:license_ref link: <value-of select="$ali-ref"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
     </rule>
   </pattern>
   <pattern id="abstract-tests-pattern">
@@ -8257,6 +8270,8 @@
       <assert test="descendant::front//permissions[contains(license[1]/@xlink:href,'creativecommons.org/publicdomain/zero')]" role="error" id="cc-0-permissions-tests-xspec-assert">front//permissions[contains(license[1]/@xlink:href,'creativecommons.org/publicdomain/zero')] must be present.</assert>
       <assert test="descendant::front//permissions/license" role="error" id="license-tests-xspec-assert">front//permissions/license must be present.</assert>
       <assert test="descendant::front//permissions/license/license-p" role="error" id="license-p-tests-xspec-assert">front//permissions/license/license-p must be present.</assert>
+      <assert test="descendant::permissions/license[@xlink:href]/license-p" role="error" id="license-link-tests-xspec-assert">permissions/license[@xlink:href]/license-p must be present.</assert>
+      <assert test="descendant::permissions/license[ali:license_ref]/license-p" role="error" id="license-ali-ref-link-tests-xspec-assert">permissions/license[ali:license_ref]/license-p must be present.</assert>
       <assert test="descendant::front//abstract" role="error" id="abstract-tests-xspec-assert">front//abstract must be present.</assert>
       <assert test="descendant::article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract[not(@abstract-type)]" role="error" id="medicine-abstract-tests-xspec-assert">article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract[not(@abstract-type)] must be present.</assert>
       <assert test="descendant::article[@article-type='research-article']//article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)]" role="error" id="medicine-abstract-tests-2-xspec-assert">article[@article-type='research-article']//article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)] must be present.</assert>

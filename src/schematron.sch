@@ -2281,9 +2281,22 @@
         role="error" 
         id="license-p-test-2">The text in license-p is incorrect (<value-of select="."/>). Since this article is CC0 licensed, the text should be <value-of select="$cc0-text"/>.</report>
       
-      <assert test="ext-link[1]/@xlink:href = $license-link" 
+    </rule>
+    
+    <rule context="permissions/license[@xlink:href]/license-p" id="license-link-tests">
+      <let name="license-link" value="parent::license/@xlink:href"/>
+      
+      <assert test="some $x in ext-link satisfies $x/@xlink:href = $license-link" 
         role="error" 
-        id="license-p-test-3">The ext-link link in license-p must match that in the license element. The ext-link has an xlink:href attribute with the value '<value-of select="ext-link[1]/@xlink:href"/>', but the license link is '<value-of select="$license-link"/>'.</assert>
+        id="license-p-test-3">If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: <value-of select="$license-link"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
+    </rule>
+    
+    <rule context="permissions/license[ali:license_ref]/license-p" id="license-ali-ref-link-tests">
+      <let name="ali-ref" value="parent::license/ali:license_ref"/>
+      
+      <assert test="some $x in ext-link satisfies $x/@xlink:href = $ali-ref" 
+        role="error" 
+        id="license-p-test-4">If a license contains an ali:license_ref element, there must be a link in license-p that matches the link in the ali:license_ref element. ali:license_ref link: <value-of select="$ali-ref"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
     </rule>
 	
 	<rule context="front//abstract" id="abstract-tests">
