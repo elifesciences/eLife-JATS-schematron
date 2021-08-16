@@ -27412,7 +27412,7 @@
 
 	  <!--RULE unlinked-object-cite-->
    <xsl:template match="fig[not(ancestor::sub-article) and label]|       table-wrap[not(ancestor::sub-article) and label[not(contains(.,'ey resources table'))]]|       media[not(ancestor::sub-article) and label]|       supplementary-material[not(ancestor::sub-article) and label]" priority="1000" mode="M418">
-      <xsl:variable name="cite1" select="replace(label[1],'\.','')"/>
+      <xsl:variable name="cite1" select="replace(label[1],'[\(\)\.]','')"/>
       <xsl:variable name="pre-regex" select="replace($cite1,'—','[—–\\-]')"/>
       <xsl:variable name="regex" select="replace($pre-regex,'\s','[\\s ]')"/>
       <xsl:variable name="article-text" select="string-join(         for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return if ($x/local-name()='label') then ()         else if ($x/ancestor::sub-article or $x/local-name()='sub-article') then ()         else if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
