@@ -1028,14 +1028,14 @@
     
   </xsl:function>
   <pattern id="unicode-checks">
-    <rule context="sub-article//p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]" id="unicode-tests">
+    <rule context="sub-article//p[matches(.,'[âÂÅÃËÆ]')]|sub-article//td[matches(.,'[âÂÅÃËÆ]')]|sub-article//th[matches(.,'[âÂÅÃËÆ]')]" id="unicode-tests">
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-3" test="contains(.,'Ã')" role="warning" id="unicode-test-3">
         <name/> element contains 'Ã' - this should instead be the character 'Á'. - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article//p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')] or descendant::       sub-article//td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')] or descendant::       sub-article//th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]" role="error" id="unicode-tests-xspec-assert">sub-article//p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')] must be present.</assert>
+      <assert test="descendant::sub-article//p[matches(.,'[âÂÅÃËÆ]')] or descendant::sub-article//td[matches(.,'[âÂÅÃËÆ]')] or descendant::sub-article//th[matches(.,'[âÂÅÃËÆ]')]" role="error" id="unicode-tests-xspec-assert">sub-article//p[matches(.,'[âÂÅÃËÆ]')]|sub-article//td[matches(.,'[âÂÅÃËÆ]')]|sub-article//th[matches(.,'[âÂÅÃËÆ]')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

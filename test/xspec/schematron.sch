@@ -7895,7 +7895,7 @@
   </pattern>
   
   <pattern id="unicode-tests-pattern">
-    <rule context="sub-article//p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]" id="unicode-tests">
+    <rule context="sub-article//p[matches(.,'[âÂÅÃËÆ]')]|sub-article//td[matches(.,'[âÂÅÃËÆ]')]|sub-article//th[matches(.,'[âÂÅÃËÆ]')]" id="unicode-tests">
       
         <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-1" test="contains(.,'â‚¬')" role="warning" id="unicode-test-1">
         <name/> element contains 'â‚¬' - this should instead be the character '€'. - <value-of select="."/>.</report>
@@ -8171,6 +8171,14 @@
         <name/> element contains 'Ã¿' - this should instead be the character 'ÿ'. - <value-of select="."/>.</report>
 
         </rule>
+  </pattern>
+  <pattern id="private-char-tests-pattern">
+    <rule context="p[not(descendant::p or descendant::td or descendant::th)]|td[not(descendant::p)]|th[not(descendant::p)]" id="private-char-tests">
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/general-content#private-char-test" test="matches(.,'\p{Co}')" role="error" id="private-char-test">
+        <name/> element contains private use character(s). They either need removing or changing to the correct character. Private characters: '<value-of select="string-join(distinct-values(tokenize(.,'\s')[matches(.,'\p{Co}')]),' ')"/>'.</report>
+      
+    </rule>
   </pattern>
   
   <pattern id="element-allowlist-pattern">
@@ -8657,7 +8665,8 @@
       <assert test="descendant::element-citation[(lower-case(source[1])='zenodo') or contains(ext-link[1],'10.5281/zenodo') or contains(pub-id[@pub-id-type='doi'][1],'10.5281/zenodo')]" role="error" id="zenodo-tests-xspec-assert">element-citation[(lower-case(source[1])='zenodo') or contains(ext-link[1],'10.5281/zenodo') or contains(pub-id[@pub-id-type='doi'][1],'10.5281/zenodo')] must be present.</assert>
       <assert test="descendant::element-citation/source  or descendant:: element-citation/article-title  or descendant:: element-citation/chapter-title  or descendant:: element-citation/data-title" role="error" id="link-ref-tests-xspec-assert">element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title must be present.</assert>
       <assert test="descendant::article//ack" role="error" id="fundref-rule-xspec-assert">article//ack must be present.</assert>
-      <assert test="descendant::sub-article//p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')] or descendant::       sub-article//td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')] or descendant::       sub-article//th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]" role="error" id="unicode-tests-xspec-assert">sub-article//p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')] must be present.</assert>
+      <assert test="descendant::sub-article//p[matches(.,'[âÂÅÃËÆ]')] or descendant::sub-article//td[matches(.,'[âÂÅÃËÆ]')] or descendant::sub-article//th[matches(.,'[âÂÅÃËÆ]')]" role="error" id="unicode-tests-xspec-assert">sub-article//p[matches(.,'[âÂÅÃËÆ]')]|sub-article//td[matches(.,'[âÂÅÃËÆ]')]|sub-article//th[matches(.,'[âÂÅÃËÆ]')] must be present.</assert>
+      <assert test="descendant::p[not(descendant::p or descendant::td or descendant::th)] or descendant::td[not(descendant::p)] or descendant::th[not(descendant::p)]" role="error" id="private-char-tests-xspec-assert">p[not(descendant::p or descendant::td or descendant::th)]|td[not(descendant::p)]|th[not(descendant::p)] must be present.</assert>
       <assert test="descendant::article//*[not(ancestor::mml:math)]" role="error" id="element-allowlist-xspec-assert">article//*[not(ancestor::mml:math)] must be present.</assert>
       <assert test="descendant::contrib[@contrib-type]" role="error" id="contrib-id-attribute-test-xspec-assert">contrib[@contrib-type] must be present.</assert>
       <assert test="descendant::*[@content-type]" role="error" id="content-type-attribute-test-xspec-assert">*[@content-type] must be present.</assert>
