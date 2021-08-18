@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="private-char-test.sch"?>
+<!--Context: p[not(descendant::p or descendant::td or descendant::th)]|td[not(descendant::p)]|th[not(descendant::p)]
+Test: report    matches(.,'\p{Co}')
+Message:  element contains private use character(s). They either need removing or changing to the correct character. Private characters: ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <p>measured empathy and whether self-report ratings used to estimate empathy are sufficient for addressing the research question of our study. In the revised Introduction, we addressed these issues by providing details of how previous studies conducted subjective and objective estimations of empathy for others' pain (page 6-7). Specifically, we clarified that previous studies collected self-reports of others' pain and own unpleasantness when observing others' pain as a subjective estimation of empathy for pain (e.g., Bieri et al., 1990; Jackson et al., 2005; Lamm et al., 2007; Fan and Han, 2008; Sheng and Han, 2012). These two measures correspond to understanding and sharing the two components of empathy.</p>
+  </article>
+</root>

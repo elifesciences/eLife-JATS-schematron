@@ -18916,6 +18916,18 @@
         <x:expect-not-assert id="unicode-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="private-char-tests">
+      <x:scenario label="private-char-test-pass">
+        <x:context href="../tests/gen/private-char-tests/private-char-test/pass.xml"/>
+        <x:expect-not-report id="private-char-test" role="error"/>
+        <x:expect-not-assert id="private-char-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="private-char-test-fail">
+        <x:context href="../tests/gen/private-char-tests/private-char-test/fail.xml"/>
+        <x:expect-report id="private-char-test" role="error"/>
+        <x:expect-not-assert id="private-char-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="element-allowlist">
       <x:scenario label="element-conformity-pass">
         <x:context href="../tests/gen/element-allowlist/element-conformity/pass.xml"/>

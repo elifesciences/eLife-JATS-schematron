@@ -11659,7 +11659,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
   
   <pattern id="unicode-checks">
     
-    <rule context="sub-article//p[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//td[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]|       sub-article//th[contains(.,'â') or contains(.,'Â') or contains(.,'Å') or contains(.,'Ã')  or contains(.,'Ë')  or contains(.,'Æ')]" id="unicode-tests">
+    <rule context="sub-article//p[matches(.,'[âÂÅÃËÆ]')]|sub-article//td[matches(.,'[âÂÅÃËÆ]')]|sub-article//th[matches(.,'[âÂÅÃËÆ]')]" id="unicode-tests">
       
         <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-1" 
         test="contains(.,'â‚¬')" 
@@ -12117,6 +12117,16 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="unicode-test-93"><name/> element contains 'Ã¿' - this should instead be the character 'ÿ'. - <value-of select="."/>.</report>
 
         </rule>
+    
+    <rule context="p[not(descendant::p or descendant::td or descendant::th)]|td[not(descendant::p)]|th[not(descendant::p)]" 
+      id="private-char-tests">
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/general-content#private-char-test"
+        test="matches(.,'\p{Co}')" 
+        role="error" 
+        id="private-char-test"><name/> element contains private use character(s). They either need removing or changing to the correct character. Private characters: '<value-of select="string-join(distinct-values(tokenize(.,'\s')[matches(.,'\p{Co}')]),' ')"/>'.</report>
+      
+    </rule>
     
   </pattern>
   
