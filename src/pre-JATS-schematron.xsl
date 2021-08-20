@@ -7313,7 +7313,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[given-names-test-15] given-names contains initials with spaces. Esnure that the space(s) is removed between initials - '<xsl:text/>
+            <svrl:text>[given-names-test-15] given-names contains initials with spaces. Ensure that the space(s) is removed between initials - '<xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
@@ -14855,7 +14855,7 @@
                <xsl:value-of select="$label"/>
                <xsl:text/> does not appear in the same section as where it is first cited (sec with title '<xsl:text/>
                <xsl:value-of select="$sec1/title"/>
-               <xsl:text/>'), which is incorrect. If videos are cited out of order, please esnure that this issue is raised with the authors.</svrl:text>
+               <xsl:text/>'), which is incorrect. If videos are cited out of order, please ensure that this issue is raised with the authors.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 

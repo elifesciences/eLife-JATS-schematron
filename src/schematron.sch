@@ -1800,7 +1800,7 @@
       
       <report test="matches(normalize-space(.),'[A-Za-z]\s[A-za-z]\s[A-za-z]\s[A-za-z]|[A-Za-z]\s[A-za-z]\s[A-za-z]$|^[A-za-z]\s[A-za-z]$')" 
         role="info" 
-        id="given-names-test-15">given-names contains initials with spaces. Esnure that the space(s) is removed between initials - '<value-of select="."/>'.</report>
+        id="given-names-test-15">given-names contains initials with spaces. Ensure that the space(s) is removed between initials - '<value-of select="."/>'.</report>
       
       <report test="matches(.,'[\(\)\[\]]')" 
         role="warning" 
@@ -4282,7 +4282,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="($xrefs//*:match) and ($sec-id != $sec1/@id)" 
         role="warning" 
-        id="pre-video-placement-1"><value-of select="$label"/> does not appear in the same section as where it is first cited (sec with title '<value-of select="$sec1/title"/>'), which is incorrect. If videos are cited out of order, please esnure that this issue is raised with the authors.</report>
+        id="pre-video-placement-1"><value-of select="$label"/> does not appear in the same section as where it is first cited (sec with title '<value-of select="$sec1/title"/>'), which is incorrect. If videos are cited out of order, please ensure that this issue is raised with the authors.</report>
       
       <report test="($xrefs//*:match) and ($sec-id != $sec1/@id)" 
         role="error"

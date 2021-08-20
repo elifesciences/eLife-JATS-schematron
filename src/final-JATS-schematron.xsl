@@ -7393,7 +7393,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[given-names-test-15] given-names contains initials with spaces. Esnure that the space(s) is removed between initials - '<xsl:text/>
+            <svrl:text>[given-names-test-15] given-names contains initials with spaces. Ensure that the space(s) is removed between initials - '<xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>

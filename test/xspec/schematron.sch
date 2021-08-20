@@ -1514,7 +1514,7 @@
       
       <report test="matches(.,'[A-Za-z] [Tt]e[rn]?$')" role="warning" id="given-names-test-14">given-names ends with te, ter, or ten - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
       
-      <report test="matches(normalize-space(.),'[A-Za-z]\s[A-za-z]\s[A-za-z]\s[A-za-z]|[A-Za-z]\s[A-za-z]\s[A-za-z]$|^[A-za-z]\s[A-za-z]$')" role="info" id="given-names-test-15">given-names contains initials with spaces. Esnure that the space(s) is removed between initials - '<value-of select="."/>'.</report>
+      <report test="matches(normalize-space(.),'[A-Za-z]\s[A-za-z]\s[A-za-z]\s[A-za-z]|[A-Za-z]\s[A-za-z]\s[A-za-z]$|^[A-za-z]\s[A-za-z]$')" role="info" id="given-names-test-15">given-names contains initials with spaces. Ensure that the space(s) is removed between initials - '<value-of select="."/>'.</report>
       
       <report test="matches(.,'[\(\)\[\]]')" role="warning" id="pre-given-names-test-16">given-names contains brackets - '<value-of select="."/>'. This will be flagged by Crossref (although will not actually cause any significant problems). Please add the following author query: Please confirm whether you are happy to remove the brackets around (one of) your given names - '<value-of select="."/>'. This will cause minor issues at Crossref, although they can be retained if desired.</report>
       
@@ -3122,7 +3122,7 @@
       <assert test="$xrefs//*:match" role="warning" id="final-video-cite">There is no citation to <value-of select="$label"/>. Ensure this is added.</assert>
       
       <report test="($xrefs//*:match) and ($sec-id != $sec1/@id)" role="warning" id="pre-video-placement-1">
-        <value-of select="$label"/> does not appear in the same section as where it is first cited (sec with title '<value-of select="$sec1/title"/>'), which is incorrect. If videos are cited out of order, please esnure that this issue is raised with the authors.</report>
+        <value-of select="$label"/> does not appear in the same section as where it is first cited (sec with title '<value-of select="$sec1/title"/>'), which is incorrect. If videos are cited out of order, please ensure that this issue is raised with the authors.</report>
       
       <report test="($xrefs//*:match) and ($sec-id != $sec1/@id)" role="error" id="final-video-placement-1">
         <value-of select="$label"/> does not appear in the same section as where it is first cited (sec with title '<value-of select="$sec1/title"/>'), which is incorrect.</report>
