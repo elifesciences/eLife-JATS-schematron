@@ -1031,7 +1031,7 @@
     <rule context="front//abstract[not(@abstract-type) and not(sec)]" id="abstract-word-count">
       <let name="p-words" value="string-join(child::p[not(starts-with(.,'DOI:') or starts-with(.,'Editorial note:'))],' ')"/>
       <let name="count" value="count(tokenize(normalize-space(replace($p-words,'\p{P}','')),' '))"/>
-      <report test="($count gt 280)" role="warning" id="pre-abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the usual upper limit is 280. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#pre-abstract-word-count-restriction" test="($count gt 280)" role="warning" id="pre-abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the usual upper limit is 280. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1028,15 +1028,13 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
-      <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-3" test="@source-id" role="error" id="clintrial-related-object-3">
-        <name/> must have an @source-id.</assert>
+    <rule context="funding-group//principal-award-recipient/name" id="par-name-tests">
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#par-name-test-2" test="surname or given-names" role="error" id="par-name-test-2">name in principal-award-recipient cannot be empty.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::abstract[not(@abstract-type) and sec]//related-object" role="error" id="clintrial-related-object-xspec-assert">abstract[not(@abstract-type) and sec]//related-object must be present.</assert>
+      <assert test="descendant::funding-group//principal-award-recipient/name" role="error" id="par-name-tests-xspec-assert">funding-group//principal-award-recipient/name must be present.</assert>
     </rule>
   </pattern>
 </schema>

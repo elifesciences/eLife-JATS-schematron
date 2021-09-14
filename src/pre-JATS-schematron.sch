@@ -1166,9 +1166,9 @@
     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#test-permissions-presence" test="count(permissions) = 1" role="error" id="test-permissions-presence">[test-permissions-presence] There must be one and only one permissions element in the article-meta. Currently there are <value-of select="count(permissions)"/>
       </assert>
 		  
-    <report test="not($article-type = $notice-article-types) and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))" role="error" id="test-abstracts">[test-abstracts] There must either be only one abstract or one abstract and one abstract[@abstract-type="executive-summary]. No other variations are allowed.</report>
+    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#test-abstracts" test="not($article-type = $notice-article-types) and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))" role="error" id="test-abstracts">[test-abstracts] There must either be only one abstract or one abstract and one abstract[@abstract-type="executive-summary]. No other variations are allowed.</report>
     
-    <report test="($subj-type= $no-digest) and abstract[@abstract-type='executive-summary']" role="error" id="test-no-digest">[test-no-digest] '<value-of select="$subj-type"/>' cannot have a digest.</report>
+    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#test-no-digest" test="($subj-type= $no-digest) and abstract[@abstract-type='executive-summary']" role="error" id="test-no-digest">[test-no-digest] '<value-of select="$subj-type"/>' cannot have a digest.</report>
 	 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#test-funding-group-presence" test="if ($article-type = $features-article-types) then ()       else if ($subj-type = ('Scientific Correspondence',$notice-display-types)) then ()       else count(funding-group) != 1" role="error" id="test-funding-group-presence">[test-funding-group-presence] There must be one and only one funding-group element in the article-meta. Currently there are <value-of select="count(funding-group)"/>.</report>
     
@@ -1802,32 +1802,32 @@
     <rule context="front//abstract" id="abstract-tests">
 	  <let name="article-type" value="ancestor::article/@article-type"/>
 	
-	<report test="(count(p) + count(sec[descendant::p])) lt 1" role="error" id="abstract-test-2">[abstract-test-2] At least 1 p element or sec element (with descendant p) must be present in abstract.</report>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#abstract-test-2" test="(count(p) + count(sec[descendant::p])) lt 1" role="error" id="abstract-test-2">[abstract-test-2] At least 1 p element or sec element (with descendant p) must be present in abstract.</report>
 	
-	<report test="descendant::disp-formula" role="error" id="abstract-test-4">[abstract-test-4] abstracts cannot contain display formulas.</report>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#abstract-test-4" test="descendant::disp-formula" role="error" id="abstract-test-4">[abstract-test-4] abstracts cannot contain display formulas.</report>
 	  
-	  <report test="child::sec and not(count(sec) = (5,6))" role="warning" id="pre-abstract-test-5">[pre-abstract-test-5] If an abstract is structured, then it must have 5 or 6 sections depending on whether it is a clinical trial. An article without a clinical trial should have 5 sections, whereas one with a clinical trial should have 6.</report>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#pre-abstract-test-5" test="child::sec and not(count(sec) = (5,6))" role="warning" id="pre-abstract-test-5">[pre-abstract-test-5] If an abstract is structured, then it must have 5 or 6 sections depending on whether it is a clinical trial. An article without a clinical trial should have 5 sections, whereas one with a clinical trial should have 6.</report>
 	  
 	  
 	  
-	  <report test="matches(lower-case(.),'^\s*abstract')" role="warning" id="abstract-test-6">[abstract-test-6] Abstract starts with the word 'Abstract', which is almost certainly incorrect - <value-of select="."/>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#abstract-test-6" test="matches(lower-case(.),'^\s*abstract')" role="warning" id="abstract-test-6">[abstract-test-6] Abstract starts with the word 'Abstract', which is almost certainly incorrect - <value-of select="."/>
       </report>
 	  
-	    <report test="some $x in child::p satisfies (starts-with($x,'Background:') or starts-with($x,'Methods:') or starts-with($x,'Results:') or starts-with($x,'Conclusion:') or starts-with($x,'Trial registration:') or starts-with($x,'Clinical trial number:'))" role="warning" id="abstract-test-7">[abstract-test-7] Abstract looks like it should instead be captured as a structured abstract (using sections) - <value-of select="."/>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#abstract-test-7" test="some $x in child::p satisfies (starts-with($x,'Background:') or starts-with($x,'Methods:') or starts-with($x,'Results:') or starts-with($x,'Conclusion:') or starts-with($x,'Trial registration:') or starts-with($x,'Clinical trial number:'))" role="warning" id="abstract-test-7">[abstract-test-7] Abstract looks like it should instead be captured as a structured abstract (using sections) - <value-of select="."/>
       </report>
 		
     </rule>
   </pattern>
   <pattern id="medicine-abstract-tests-pattern">
     <rule context="article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract[not(@abstract-type)]" id="medicine-abstract-tests">
-      <assert test="sec" role="warning" id="medicine-abstract-conformance">[medicine-abstract-conformance] Medicine articles with a colon in their title should likely have a structured abstract. If there is no note in eJP about this, either the colon in the title is incorrect, or the abstract should be changed to a structured format.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#medicine-abstract-conformance" test="sec" role="warning" id="medicine-abstract-conformance">[medicine-abstract-conformance] Medicine articles with a colon in their title should likely have a structured abstract. If there is no note in eJP about this, either the colon in the title is incorrect, or the abstract should be changed to a structured format.</assert>
       
     </rule>
   </pattern>
   <pattern id="medicine-abstract-tests-2-pattern">
     <rule context="article[@article-type='research-article']//article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)]" id="medicine-abstract-tests-2">
       
-      <assert test="parent::article-meta/history/date[@date-type='received']/@iso-8601-date lt '2021-04-05'" role="warning" id="medicine-abstract-conformance-2">[medicine-abstract-conformance-2] <value-of select="parent::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')]"/> articles submitted after 4th April 2021 should have a structured abstract, but this one does not. eLife: please check this with Editorial if there are no related notes from eJP. Exeter: Please flag this to the eLife Production team.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#medicine-abstract-conformance-2" test="parent::article-meta/history/date[@date-type='received']/@iso-8601-date lt '2021-04-05'" role="warning" id="medicine-abstract-conformance-2">[medicine-abstract-conformance-2] <value-of select="parent::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')]"/> articles submitted after 4th April 2021 should have a structured abstract, but this one does not. eLife: please check this with Editorial if there are no related notes from eJP. Exeter: Please flag this to the eLife Production team.</assert>
       
     </rule>
   </pattern>
@@ -1835,65 +1835,65 @@
     <rule context="front//abstract/*" id="abstract-children-tests">
       <let name="allowed-elems" value="('p','sec','title')"/>
       
-      <assert test="local-name() = $allowed-elems" role="error" id="abstract-child-test-1">[abstract-child-test-1] <name/> is not allowed as a child of abstract.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#abstract-child-test-1" test="local-name() = $allowed-elems" role="error" id="abstract-child-test-1">[abstract-child-test-1] <name/> is not allowed as a child of abstract.</assert>
     </rule>
   </pattern>
   <pattern id="abstract-sec-titles-pattern">
     <rule context="abstract[not(@abstract-type)]/sec" id="abstract-sec-titles">
       <let name="pos" value="count(ancestor::abstract/sec) - count(following-sibling::sec)"/>
       
-      <report test="($pos = 1) and (title != 'Background:')" role="error" id="clintrial-conformance-1">[clintrial-conformance-1] First section title is '<value-of select="title"/>' - but the only allowed value is 'Background:'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-1" test="($pos = 1) and (title != 'Background:')" role="error" id="clintrial-conformance-1">[clintrial-conformance-1] First section title is '<value-of select="title"/>' - but the only allowed value is 'Background:'.</report>
       
-      <report test="($pos = 2) and (title != 'Methods:')" role="error" id="clintrial-conformance-2">[clintrial-conformance-2] Second section title is '<value-of select="title"/>' - but the only allowed value is 'Methods:'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-2" test="($pos = 2) and (title != 'Methods:')" role="error" id="clintrial-conformance-2">[clintrial-conformance-2] Second section title is '<value-of select="title"/>' - but the only allowed value is 'Methods:'.</report>
       
-      <report test="($pos = 3) and (title != 'Results:')" role="error" id="clintrial-conformance-3">[clintrial-conformance-3] Third section title is '<value-of select="title"/>' - but the only allowed value is 'Results:'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-3" test="($pos = 3) and (title != 'Results:')" role="error" id="clintrial-conformance-3">[clintrial-conformance-3] Third section title is '<value-of select="title"/>' - but the only allowed value is 'Results:'.</report>
       
-      <report test="($pos = 4) and (title != 'Conclusions:')" role="error" id="clintrial-conformance-4">[clintrial-conformance-4] Fourth section title is '<value-of select="title"/>' - but the only allowed value is 'Conclusions:'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-4" test="($pos = 4) and (title != 'Conclusions:')" role="error" id="clintrial-conformance-4">[clintrial-conformance-4] Fourth section title is '<value-of select="title"/>' - but the only allowed value is 'Conclusions:'.</report>
       
-      <report test="($pos = 6) and (title != 'Clinical trial number:')" role="error" id="clintrial-conformance-5">[clintrial-conformance-5] Sixth section title is '<value-of select="title"/>' - but the only allowed value is 'Clinical trial number:'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-5" test="($pos = 6) and (title != 'Clinical trial number:')" role="error" id="clintrial-conformance-5">[clintrial-conformance-5] Sixth section title is '<value-of select="title"/>' - but the only allowed value is 'Clinical trial number:'.</report>
       
-      <report test="($pos = 5) and (title != 'Funding:')" role="error" id="clintrial-conformance-6">[clintrial-conformance-6] Fifth section title is '<value-of select="title"/>' - but the only allowed value is 'Funding:'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-6" test="($pos = 5) and (title != 'Funding:')" role="error" id="clintrial-conformance-6">[clintrial-conformance-6] Fifth section title is '<value-of select="title"/>' - but the only allowed value is 'Funding:'.</report>
       
-      <report test="child::sec" role="error" id="clintrial-conformance-7">[clintrial-conformance-7] Nested secs are not allowed in abstracts. Sec with the id <value-of select="@id"/> and title '<value-of select="title"/>' has child sections.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-7" test="child::sec" role="error" id="clintrial-conformance-7">[clintrial-conformance-7] Nested secs are not allowed in abstracts. Sec with the id <value-of select="@id"/> and title '<value-of select="title"/>' has child sections.</report>
       
-      <assert test="matches(@id,'^abs[1-9]$')" role="error" id="clintrial-conformance-8">[clintrial-conformance-8] <name/> must have an @id in the format 'abs1'. <value-of select="@id"/> does not conform to this convention.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-8" test="matches(@id,'^abs[1-9]$')" role="error" id="clintrial-conformance-8">[clintrial-conformance-8] <name/> must have an @id in the format 'abs1'. <value-of select="@id"/> does not conform to this convention.</assert>
     </rule>
   </pattern>
   <pattern id="clintrial-related-object-pattern">
     <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
       <let name="registries" value="'clinical-trial-registries.xml'"/>
       
-      <assert test="ancestor::sec[title = 'Clinical trial number:']" role="error" id="clintrial-related-object-1">[clintrial-related-object-1] <name/> in abstract must be placed in a section whose title is 'Clinical trial number:'</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-1" test="ancestor::sec[title = 'Clinical trial number:']" role="error" id="clintrial-related-object-1">[clintrial-related-object-1] <name/> in abstract must be placed in a section whose title is 'Clinical trial number:'</assert>
       
-      <assert test="@source-type='clinical-trials-registry'" role="error" id="clintrial-related-object-2">[clintrial-related-object-2] <name/> must have an @source-type='clinical-trials-registry'.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-2" test="@source-type='clinical-trials-registry'" role="error" id="clintrial-related-object-2">[clintrial-related-object-2] <name/> must have an @source-type='clinical-trials-registry'.</assert>
       
-      <assert test="@source-id" role="error" id="clintrial-related-object-3">[clintrial-related-object-3] <name/> must have an @source-id.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-3" test="@source-id" role="error" id="clintrial-related-object-3">[clintrial-related-object-3] <name/> must have an @source-id.</assert>
       
-      <assert test="@source-id-type='registry-name'" role="error" id="clintrial-related-object-4">[clintrial-related-object-4] <name/> must have an @source-id-type='registry-name'.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-4" test="@source-id-type='registry-name'" role="error" id="clintrial-related-object-4">[clintrial-related-object-4] <name/> must have an @source-id-type='registry-name'.</assert>
       
-      <assert test="@document-id-type='clinical-trial-number'" role="error" id="clintrial-related-object-5">[clintrial-related-object-5] <name/> must have an @document-id-type='clinical-trial-number'.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-5" test="@document-id-type='clinical-trial-number'" role="error" id="clintrial-related-object-5">[clintrial-related-object-5] <name/> must have an @document-id-type='clinical-trial-number'.</assert>
       
-      <assert test="@document-id" role="error" id="clintrial-related-object-6">[clintrial-related-object-6] <name/> must have an @document-id.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-6" test="@document-id" role="error" id="clintrial-related-object-6">[clintrial-related-object-6] <name/> must have an @document-id.</assert>
       
-      <assert test="@xlink:href" role="error" id="clintrial-related-object-7">[clintrial-related-object-7] <name/> must have an @xlink:href.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-7" test="@xlink:href" role="error" id="clintrial-related-object-7">[clintrial-related-object-7] <name/> must have an @xlink:href.</assert>
       
-      <assert test="contains(.,@document-id/string())" role="warning" id="clintrial-related-object-8">[clintrial-related-object-8] <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not in the text, which is likely incorrect - <value-of select="."/>.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-8" test="contains(.,@document-id/string())" role="warning" id="clintrial-related-object-8">[clintrial-related-object-8] <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not in the text, which is likely incorrect - <value-of select="."/>.</assert>
       
-      <assert test="matches(@id,'^RO[1-9]')" role="error" id="clintrial-related-object-9">[clintrial-related-object-9] <name/> must have an @id in the format 'RO1'. '<value-of select="@id"/>' does not conform to this convention.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-9" test="matches(@id,'^RO[1-9]')" role="error" id="clintrial-related-object-9">[clintrial-related-object-9] <name/> must have an @id in the format 'RO1'. '<value-of select="@id"/>' does not conform to this convention.</assert>
       
-      <assert test="parent::p" role="error" id="clintrial-related-object-10">[clintrial-related-object-10] <name/> in abstract must be a child of a &lt;p&gt; element.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-10" test="parent::p" role="error" id="clintrial-related-object-10">[clintrial-related-object-10] <name/> in abstract must be a child of a &lt;p&gt; element.</assert>
       
-      <assert test="some $x in document($registries)/registries/registry satisfies ($x/subtitle/string()=@source-id)" role="error" id="clintrial-related-object-11">[clintrial-related-object-11] <name/> @source-id value must be one of the subtitles of the Crossref clinical trial registries. "<value-of select="@source-id"/>" is not one of the following <value-of select="string-join(for $x in document($registries)/registries/registry return concat('&quot;',$x/subtitle/string(),'&quot; (',$x/doi/string(),')'),', ')"/>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-11" test="some $x in document($registries)/registries/registry satisfies ($x/subtitle/string()=@source-id)" role="error" id="clintrial-related-object-11">[clintrial-related-object-11] <name/> @source-id value must be one of the subtitles of the Crossref clinical trial registries. "<value-of select="@source-id"/>" is not one of the following <value-of select="string-join(for $x in document($registries)/registries/registry return concat('&quot;',$x/subtitle/string(),'&quot; (',$x/doi/string(),')'),', ')"/>
       </assert>
       
-      <report test="@source-id='ClinicalTrials.gov' and @xlink:href!=concat('https://clinicaltrials.gov/show/',@document-id)" role="error" id="clintrial-related-object-12">[clintrial-related-object-12] ClinicalTrials.gov trial links are in the format https://clinicaltrials.gov/show/{number}. This <name/> has the link '<value-of select="@xlink:href"/>', which based on the clinical trial registry (<value-of select="@source-id"/>) and @document-id (<value-of select="@document-id"/>) is not right. Either the xlink:href is wrong (should it be <value-of select="concat('https://clinicaltrials.gov/show/',@document-id)"/> instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these).</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-12" test="@source-id='ClinicalTrials.gov' and @xlink:href!=concat('https://clinicaltrials.gov/show/',@document-id)" role="error" id="clintrial-related-object-12">[clintrial-related-object-12] ClinicalTrials.gov trial links are in the format https://clinicaltrials.gov/show/{number}. This <name/> has the link '<value-of select="@xlink:href"/>', which based on the clinical trial registry (<value-of select="@source-id"/>) and @document-id (<value-of select="@document-id"/>) is not right. Either the xlink:href is wrong (should it be <value-of select="concat('https://clinicaltrials.gov/show/',@document-id)"/> instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these).</report>
       
     </rule>
   </pattern>
   <pattern id="clintrial-related-object-p-pattern">
     <rule context="abstract[not(@abstract-type)]/sec[//related-object[@document-id-type='clinical-trial-number']]" id="clintrial-related-object-p">
       
-      <report test="count(descendant::related-object[@document-id-type='clinical-trial-number']) gt 3" role="warning" id="clintrial-related-object-13">[clintrial-related-object-13] There are <value-of select="count(descendant::related-object)"/> clinical trial numbers tagged in the structured abstract, which seems like a large number. Please check that this is correct and has not been mistagged.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-13" test="count(descendant::related-object[@document-id-type='clinical-trial-number']) gt 3" role="warning" id="clintrial-related-object-13">[clintrial-related-object-13] There are <value-of select="count(descendant::related-object)"/> clinical trial numbers tagged in the structured abstract, which seems like a large number. Please check that this is correct and has not been mistagged.</report>
       
     </rule>
   </pattern>
@@ -1902,7 +1902,7 @@
       <let name="p-words" value="string-join(child::p[not(starts-with(.,'DOI:') or starts-with(.,'Editorial note:'))],' ')"/>
 	    <let name="count" value="count(tokenize(normalize-space(replace($p-words,'\p{P}','')),' '))"/>
 	     
-      <report test="($count gt 280)" role="warning" id="pre-abstract-word-count-restriction">[pre-abstract-word-count-restriction] The abstract contains <value-of select="$count"/> words, when the usual upper limit is 280. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#pre-abstract-word-count-restriction" test="($count gt 280)" role="warning" id="pre-abstract-word-count-restriction">[pre-abstract-word-count-restriction] The abstract contains <value-of select="$count"/> words, when the usual upper limit is 280. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
 	     
       
 	   </rule>
@@ -2039,10 +2039,19 @@
       
     </rule>
   </pattern>
+  <pattern id="par-tests-pattern">
+    <rule context="funding-group//principal-award-recipient" id="par-tests">
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#par-test-1" test="normalize-space(.)='' and not(*)" role="error" id="par-test-1">[par-test-1] <name/> cannot be empty.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="par-name-tests-pattern">
     <rule context="funding-group//principal-award-recipient/name" id="par-name-tests">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#par-name-test-1" test="contains(.,'.')" role="error" id="par-name-test-1">[par-name-test-1] Author name in funding entry contains a full stop - <value-of select="e:get-name(.)"/>. Please remove the full stop.</report>
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#par-name-test-2" test="surname or given-names" role="error" id="par-name-test-2">[par-name-test-2] name in principal-award-recipient cannot be empty.</assert>
       
     </rule>
   </pattern>
@@ -2171,7 +2180,7 @@
   <pattern id="related-object-tests-pattern">
     <rule context="related-object" id="related-object-tests">
       
-      <assert test="ancestor::abstract[not(@abstract-type)]" role="error" id="related-object-ancestor">[related-object-ancestor] <name/> is not allowed outside of the main abstract (abstract[not(@abstract-type)]).</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#related-object-ancestor" test="ancestor::abstract[not(@abstract-type)]" role="error" id="related-object-ancestor">[related-object-ancestor] <name/> is not allowed outside of the main abstract (abstract[not(@abstract-type)]).</assert>
     </rule>
   </pattern>
   
@@ -4348,7 +4357,7 @@
       
       
       
-      <report test="(@publication-type='periodical') and not(string-date)" role="warning" id="pre-element-cite-string-date">[pre-element-cite-string-date] '<value-of select="@publication-type"/>' type references must have a year. Reference '<value-of select="../@id"/>' does not. If you are unable to determine this, please ensure to add an author query asking for the year of publication.</report>
+      <report test="(@publication-type='periodical') and not(string-date)" role="warning" id="pre-element-cite-string-date">[pre-element-cite-string-date] '<value-of select="@publication-type"/>' type references must have a string-date. Reference '<value-of select="../@id"/>' does not. If you are unable to determine this, please ensure to add an author query asking for the string-date of publication.</report>
       
       
       
@@ -5394,7 +5403,10 @@
       
       <report test="(@pub-id-type != 'doi') and matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')" role="error" id="pub-id-doi-test-1">[pub-id-doi-test-1] pub-id has a doi link - <value-of select="@xlink:href"/> - but its pub-id-type is <value-of select="@pub-id-type"/> instead of doi.</report>
       
-      <report test="matches(@xlink:href,'https?://(dx.doi.org|doi.org)/') and not(contains(.,substring-after(@xlink:href,'doi.org/')))" role="error" id="pub-id-doi-test-2">[pub-id-doi-test-2] pub id has a doi link - <value-of select="@xlink:href"/> - but the identifier is not the doi - '<value-of select="."/>', which is incorrect. Either the doi link is correct, and the identifier needs changing, or the identifier is correct and needs adding after 'https://doi.org/' in order to create the real doi link.</report>
+      <!-- This is not needed 
+        <report test="matches(@xlink:href,'https?://(dx.doi.org|doi.org)/') and not(contains(.,substring-after(@xlink:href,'doi.org/')))" 
+        role="error" 
+        id="pub-id-doi-test-2">pub id has a doi link - <value-of select="@xlink:href"/> - but the identifier is not the doi - '<value-of select="."/>', which is incorrect. Either the doi link is correct, and the identifier needs changing, or the identifier is correct and needs adding after 'https://doi.org/' in order to create the real doi link.</report>-->
       
       <report test="contains(.,' ')" role="warning" id="pub-id-test-4">[pub-id-test-4] pub id contains whitespace - <value-of select="."/> - which is very likely to be incorrect.</report>
       
@@ -5427,9 +5439,9 @@
   <pattern id="feature-abstract-tests-pattern">
     <rule context="front//abstract[@abstract-type='executive-summary']" id="feature-abstract-tests">
      
-     <assert test="count(title) = 1" role="error" id="feature-abstract-test-1">[feature-abstract-test-1] abstract must contain one and only one title.</assert>
+     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#feature-abstract-test-1" test="count(title) = 1" role="error" id="feature-abstract-test-1">[feature-abstract-test-1] abstract must contain one and only one title.</assert>
      
-     <assert test="title = 'eLife digest'" role="error" id="feature-abstract-test-2">[feature-abstract-test-2] abstract title must contain 'eLife digest'. Possible superfluous characters - <value-of select="replace(title,'eLife digest','')"/>
+     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#feature-abstract-test-2" test="title = 'eLife digest'" role="error" id="feature-abstract-test-2">[feature-abstract-test-2] abstract title must contain 'eLife digest'. Possible superfluous characters - <value-of select="replace(title,'eLife digest','')"/>
       </assert>
      
    </rule>
@@ -5437,7 +5449,7 @@
   <pattern id="digest-tests-pattern">
     <rule context="front//abstract[@abstract-type='executive-summary']/p" id="digest-tests">
      
-     <report test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">[digest-test-1] digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrectly split into two?</report>
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#digest-test-1" test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">[digest-test-1] digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrectly split into two?</report>
      
      
      
@@ -5559,7 +5571,7 @@
       
       <report test="descendant::self-uri" role="error" id="corr-self-uri-presence">[corr-self-uri-presence] Correction notices should not contain a self-uri element (as the PDF is not published).</report>
       
-      <report test="descendant::abstract" role="error" id="corr-abstract-presence">[corr-abstract-presence] Correction notices should not contain abstracts.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#corr-abstract-presence" test="descendant::abstract" role="error" id="corr-abstract-presence">[corr-abstract-presence] Correction notices should not contain abstracts.</report>
       
       <report test="(back/sec[not(@sec-type='supplementary-material')]) or (count(back/sec) gt 1)" role="error" id="corr-back-sec">[corr-back-sec] Correction notices should not contain any sections in the backmatter which are not for supplementary files.</report>
       
@@ -5579,7 +5591,7 @@
       
       <report test="descendant::self-uri" role="error" id="retr-self-uri-presence">[retr-self-uri-presence] <value-of select="$display-subject"/> notices should not contain a self-uri element (as the PDF is not published).</report>
       
-      <report test="descendant::abstract" role="error" id="retr-abstract-presence">[retr-abstract-presence] <value-of select="$display-subject"/> notices should not contain abstracts.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#retr-abstract-presence" test="descendant::abstract" role="error" id="retr-abstract-presence">[retr-abstract-presence] <value-of select="$display-subject"/> notices should not contain abstracts.</report>
       
       <report test="back/*" role="error" id="retr-back">[retr-back] <value-of select="$display-subject"/> notices should not contain any content in the back.</report>
       
@@ -6975,13 +6987,13 @@
     <rule context="abstract[not(@*)]" id="abstract-house-tests">
       <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
-      <report test="descendant::xref[@ref-type='bibr']" role="warning" id="xref-bibr-presence">[xref-bibr-presence] Abstract contains a citation - '<value-of select="descendant::xref[@ref-type='bibr'][1]"/>' - which isn't usually allowed. Check that this is correct.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#xref-bibr-presence" test="descendant::xref[@ref-type='bibr']" role="warning" id="xref-bibr-presence">[xref-bibr-presence] Abstract contains a citation - '<value-of select="descendant::xref[@ref-type='bibr'][1]"/>' - which isn't usually allowed. Check that this is correct.</report>
       
-      <report test="($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))" role="warning" id="pre-res-comm-test">[pre-res-comm-test] '<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect. Please ensure to check with eLife staff for the required wording.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#pre-res-comm-test" test="($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))" role="warning" id="pre-res-comm-test">[pre-res-comm-test] '<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect. Please ensure to check with eLife staff for the required wording.</report>
       
       
      
-      <report test="(count(p) &gt; 1) and ($subj = 'Research Article')" role="warning" id="res-art-test">[res-art-test] '<value-of select="$subj"/>' has more than one paragraph in its abstract, is this correct?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#res-art-test" test="(count(p) &gt; 1) and ($subj = 'Research Article')" role="warning" id="res-art-test">[res-art-test] '<value-of select="$subj"/>' has more than one paragraph in its abstract, is this correct?</report>
     </rule>
   </pattern>
   <pattern id="KRT-xref-tests-pattern">
@@ -7322,7 +7334,7 @@
       <let name="substring" value="substring-after($l,'github.com/')"/>
       <let name="owner-repo" value="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>
       
-      <assert test="preceding::ext-link[contains(lower-case(@xlink:href),$owner-repo)] or ancestor::article//element-citation[@publication-type=('software','data') and (contains(lower-case(ext-link[1]),$owner-repo) or  contains(lower-case(pub-id[1]/@xlink:href),$owner-repo))]" role="warning" id="github-no-citation">[github-no-citation] This GitHub link - <value-of select="@xlink:href"/> - is included in the text, but there is no software reference for it. Please add a software reference or, in the event that all the information is not available, query the authors for the reference details.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#github-no-citation" test="preceding::ext-link[contains(lower-case(@xlink:href),$owner-repo)] or ancestor::article//element-citation[@publication-type=('software','data') and (contains(lower-case(ext-link[1]),$owner-repo) or  contains(lower-case(pub-id[1]/@xlink:href),$owner-repo))]" role="warning" id="github-no-citation">[github-no-citation] This GitHub link - <value-of select="@xlink:href"/> - is included in the text, but there is no software reference for it. Please add a software reference or, in the event that all the information is not available, query the authors for the reference details.</assert>
       
     </rule>
   </pattern>
@@ -7332,7 +7344,7 @@
       <let name="substring" value="substring-after($l,'gitlab.com/')"/>
       <let name="owner-repo" value="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>
       
-      <assert test="preceding::ext-link[contains(lower-case(@xlink:href),$owner-repo)] or ancestor::article//element-citation[@publication-type=('software','data') and (contains(lower-case(ext-link[1]),$owner-repo) or  contains(lower-case(pub-id[1]/@xlink:href),$owner-repo))]" role="warning" id="gitlab-no-citation">[gitlab-no-citation] This GitLab link - <value-of select="@xlink:href"/> - is included in the text, but there is no software reference for it. Please add a software reference or, in the event that all the information is not available, query the authors for the reference details.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#gitlab-no-citation" test="preceding::ext-link[contains(lower-case(@xlink:href),$owner-repo)] or ancestor::article//element-citation[@publication-type=('software','data') and (contains(lower-case(ext-link[1]),$owner-repo) or  contains(lower-case(pub-id[1]/@xlink:href),$owner-repo))]" role="warning" id="gitlab-no-citation">[gitlab-no-citation] This GitLab link - <value-of select="@xlink:href"/> - is included in the text, but there is no software reference for it. Please add a software reference or, in the event that all the information is not available, query the authors for the reference details.</assert>
       
     </rule>
   </pattern>

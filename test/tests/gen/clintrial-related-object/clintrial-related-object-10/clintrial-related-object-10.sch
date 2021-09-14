@@ -1030,7 +1030,7 @@
   <pattern id="article-metadata">
     <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
       <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
-      <assert test="parent::p" role="error" id="clintrial-related-object-10">
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-10" test="parent::p" role="error" id="clintrial-related-object-10">
         <name/> in abstract must be a child of a &lt;p&gt; element.</assert>
     </rule>
   </pattern>

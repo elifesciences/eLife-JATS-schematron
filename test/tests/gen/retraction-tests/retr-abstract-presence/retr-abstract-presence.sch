@@ -1030,7 +1030,7 @@
   <pattern id="correction-retraction">
     <rule context="article[@article-type = ('retraction','expression-of-concern')]" id="retraction-tests">
       <let name="display-subject" value="article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <report test="descendant::abstract" role="error" id="retr-abstract-presence">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#retr-abstract-presence" test="descendant::abstract" role="error" id="retr-abstract-presence">
         <value-of select="$display-subject"/> notices should not contain abstracts.</report>
     </rule>
   </pattern>

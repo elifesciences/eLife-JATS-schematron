@@ -1030,7 +1030,7 @@
   <pattern id="article-metadata">
     <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
       <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
-      <assert test="ancestor::sec[title = 'Clinical trial number:']" role="error" id="clintrial-related-object-1">
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-1" test="ancestor::sec[title = 'Clinical trial number:']" role="error" id="clintrial-related-object-1">
         <name/> in abstract must be placed in a section whose title is 'Clinical trial number:'</assert>
     </rule>
   </pattern>

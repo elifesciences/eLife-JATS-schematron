@@ -1030,7 +1030,7 @@
   <pattern id="article-metadata">
     <rule context="abstract[not(@abstract-type)]/sec" id="abstract-sec-titles">
       <let name="pos" value="count(ancestor::abstract/sec) - count(following-sibling::sec)"/>
-      <report test="($pos = 1) and (title != 'Background:')" role="error" id="clintrial-conformance-1">First section title is '<value-of select="title"/>' - but the only allowed value is 'Background:'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-1" test="($pos = 1) and (title != 'Background:')" role="error" id="clintrial-conformance-1">First section title is '<value-of select="title"/>' - but the only allowed value is 'Background:'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

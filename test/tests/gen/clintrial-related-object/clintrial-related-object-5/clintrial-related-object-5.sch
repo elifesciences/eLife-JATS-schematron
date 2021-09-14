@@ -1030,7 +1030,7 @@
   <pattern id="article-metadata">
     <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
       <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
-      <assert test="@document-id-type='clinical-trial-number'" role="error" id="clintrial-related-object-5">
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-5" test="@document-id-type='clinical-trial-number'" role="error" id="clintrial-related-object-5">
         <name/> must have an @document-id-type='clinical-trial-number'.</assert>
     </rule>
   </pattern>

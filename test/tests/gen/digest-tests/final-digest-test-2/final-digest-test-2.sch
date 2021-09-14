@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="features">
     <rule context="front//abstract[@abstract-type='executive-summary']/p" id="digest-tests">
-      <report test="matches(.,'\[[Oo][Kk]\??\]')" role="error" id="final-digest-test-2">digest paragraph contains [OK] or [OK?] which should be removed - <value-of select="."/>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#final-digest-test-2" test="matches(.,'\[[Oo][Kk]\??\]')" role="error" id="final-digest-test-2">digest paragraph contains [OK] or [OK?] which should be removed - <value-of select="."/>
       </report>
     </rule>
   </pattern>
