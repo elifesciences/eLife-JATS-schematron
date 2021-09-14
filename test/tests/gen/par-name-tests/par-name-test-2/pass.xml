@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="par-name-test-2.sch"?>
+<!--Context: funding-group//principal-award-recipient/name
+Test: assert    surname or given-names
+Message: name in principal-award-recipient cannot be empty. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <funding-group>
+      <principal-award-recipient><name><surname/><given-names/></name></principal-award-recipient>
+    </funding-group>
+  </article>
+</root>

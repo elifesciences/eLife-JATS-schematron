@@ -1030,7 +1030,7 @@
   <pattern id="house-style">
     <rule context="abstract[not(@*)]" id="abstract-house-tests">
       <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <report test="($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))" role="error" id="final-res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#final-res-comm-test" test="($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))" role="error" id="final-res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

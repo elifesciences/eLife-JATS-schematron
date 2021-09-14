@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="related-object" id="related-object-tests">
-      <assert test="ancestor::abstract[not(@abstract-type)]" role="error" id="related-object-ancestor">
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#related-object-ancestor" test="ancestor::abstract[not(@abstract-type)]" role="error" id="related-object-ancestor">
         <name/> is not allowed outside of the main abstract (abstract[not(@abstract-type)]).</assert>
     </rule>
   </pattern>

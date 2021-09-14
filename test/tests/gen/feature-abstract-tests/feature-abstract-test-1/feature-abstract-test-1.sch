@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="features">
     <rule context="front//abstract[@abstract-type='executive-summary']" id="feature-abstract-tests">
-      <assert test="count(title) = 1" role="error" id="feature-abstract-test-1">abstract must contain one and only one title.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#feature-abstract-test-1" test="count(title) = 1" role="error" id="feature-abstract-test-1">abstract must contain one and only one title.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -2830,6 +2830,18 @@
         <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="par-tests">
+      <x:scenario label="par-test-1-pass">
+        <x:context href="../tests/gen/par-tests/par-test-1/pass.xml"/>
+        <x:expect-not-report id="par-test-1" role="error"/>
+        <x:expect-not-assert id="par-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="par-test-1-fail">
+        <x:context href="../tests/gen/par-tests/par-test-1/fail.xml"/>
+        <x:expect-report id="par-test-1" role="error"/>
+        <x:expect-not-assert id="par-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="par-name-tests">
       <x:scenario label="par-name-test-1-pass">
         <x:context href="../tests/gen/par-name-tests/par-name-test-1/pass.xml"/>
@@ -2839,6 +2851,16 @@
       <x:scenario label="par-name-test-1-fail">
         <x:context href="../tests/gen/par-name-tests/par-name-test-1/fail.xml"/>
         <x:expect-report id="par-name-test-1" role="error"/>
+        <x:expect-not-assert id="par-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="par-name-test-2-pass">
+        <x:context href="../tests/gen/par-name-tests/par-name-test-2/pass.xml"/>
+        <x:expect-not-assert id="par-name-test-2" role="error"/>
+        <x:expect-not-assert id="par-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="par-name-test-2-fail">
+        <x:context href="../tests/gen/par-name-tests/par-name-test-2/fail.xml"/>
+        <x:expect-assert id="par-name-test-2" role="error"/>
         <x:expect-not-assert id="par-name-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -11079,16 +11101,6 @@
       <x:scenario label="pub-id-doi-test-1-fail">
         <x:context href="../tests/gen/pub-id-tests/pub-id-doi-test-1/fail.xml"/>
         <x:expect-report id="pub-id-doi-test-1" role="error"/>
-        <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="pub-id-doi-test-2-pass">
-        <x:context href="../tests/gen/pub-id-tests/pub-id-doi-test-2/pass.xml"/>
-        <x:expect-not-report id="pub-id-doi-test-2" role="error"/>
-        <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="pub-id-doi-test-2-fail">
-        <x:context href="../tests/gen/pub-id-tests/pub-id-doi-test-2/fail.xml"/>
-        <x:expect-report id="pub-id-doi-test-2" role="error"/>
         <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="pub-id-test-4-pass">

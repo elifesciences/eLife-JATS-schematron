@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="features">
     <rule context="front//abstract[@abstract-type='executive-summary']" id="feature-abstract-tests">
-      <assert test="title = 'eLife digest'" role="error" id="feature-abstract-test-2">abstract title must contain 'eLife digest'. Possible superfluous characters - <value-of select="replace(title,'eLife digest','')"/>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#feature-abstract-test-2" test="title = 'eLife digest'" role="error" id="feature-abstract-test-2">abstract title must contain 'eLife digest'. Possible superfluous characters - <value-of select="replace(title,'eLife digest','')"/>
       </assert>
     </rule>
   </pattern>
