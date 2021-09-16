@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="software-heritage-test-2.sch"?>
 <!--Context: ext-link[contains(@xlink:href,'softwareheritage')]
-Test: report    ancestor::body and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))
-Message: Software heritage links in the main text must be the directory link with contextual information. '' is not a directory link with contextual information. -->
+Test: report    (ancestor::body or ancestor::ref) and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))
+Message: Software heritage links in the main text or references must be the directory link with contextual information. '' is not a directory link with contextual information. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <body>

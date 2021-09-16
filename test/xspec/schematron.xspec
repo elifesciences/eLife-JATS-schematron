@@ -11765,6 +11765,16 @@
         <x:expect-report id="final-missing-url-test" role="error"/>
         <x:expect-not-assert id="rrid-org-code-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="git-protocol-pass">
+        <x:context href="../tests/gen/rrid-org-code/git-protocol/pass.xml"/>
+        <x:expect-not-report id="git-protocol" role="error"/>
+        <x:expect-not-assert id="rrid-org-code-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="git-protocol-fail">
+        <x:context href="../tests/gen/rrid-org-code/git-protocol/fail.xml"/>
+        <x:expect-report id="git-protocol" role="error"/>
+        <x:expect-not-assert id="rrid-org-code-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="duplicate-ref">
       <x:scenario label="duplicate-ref-test-1-pass">

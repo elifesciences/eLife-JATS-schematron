@@ -1027,14 +1027,23 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="element-citation-high-tests">
-    <rule context="xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')]" id="xref">
-      <assert test="some $x in preceding::xref satisfies (substring(normalize-space(.),string-length(.)) gt substring(normalize-space($x),string-length(.)))" role="error" id="err-xref-high-2-1">Citations in the text to references with the same author(s) in the same year must be arranged in the same order as the reference list. The xref with the value '<value-of select="."/>' is in the wrong order in the text. Check all the references to citations for the same authors to determine which need to be changed.</assert>
+  <pattern id="rrid-org-pattern">
+    <rule context="p|td|th" id="rrid-org-code">
+      <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*|identifiers\.org/RRID/.*')])"/>
+      <let name="lc" value="lower-case(.)"/>
+      <let name="text-count" value="number(count(         for $x in tokenize(.,'RRID\s?#?\s?:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')         return $x)) -1"/>
+      <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>
+      <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]+')) then $x else (),'; ')"/>
+      <let name="unequal-equal-text" value="string-join(for $x in tokenize(replace(.,'[&gt;&lt;]',''),' | ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
+      <let name="link-strip-text" value="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
+      <let name="url-text" value="string-join(for $x in tokenize($link-strip-text,' ')         return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\s]?|\.com[\s]?|\.co.uk[\s]?|\.us[\s]?|\.net[\s]?|\.edu[\s]?|\.gov[\s]?|\.io[\s]?')) then $x         else (),'; ')"/>
+      <report test="contains(.,'git://')" role="error" id="git-protocol">
+        <name/> contains the git:// protocol - <value-of select="."/>. This is no longer widely supported, and should be replaced with the appropriate https:// protocol (or similar) equivalent.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')]" role="error" id="xref-xspec-assert">xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')] must be present.</assert>
+      <assert test="descendant::p or descendant::td or descendant::th" role="error" id="rrid-org-code-xspec-assert">p|td|th must be present.</assert>
     </rule>
   </pattern>
 </schema>

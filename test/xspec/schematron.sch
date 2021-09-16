@@ -2409,7 +2409,7 @@
         id="broken-uri-test">Broken URI in @xlink:href</assert>-->
       
       <!-- Needs further testing. Presume that we want to ensure a url follows certain URI schemes. -->
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
       
       <report test="matches(@xlink:href,'^(ftp|sftp)://\S+:\S+@')" role="warning" id="ftp-credentials-flag">@xlink:href contains what looks like a link to an FTP site which contains credentials (username and password) - '<value-of select="@xlink:href"/>'. If the link without credentials works (<value-of select="concat(substring-before(@xlink:href,'://'),'://',substring-after(@xlink:href,'@'))"/>), then please replace it with that and notify the authors that you have done so. If the link without credentials does not work, please query with the authors in order to obtain a link without credentials.</report>
       
@@ -2438,11 +2438,11 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-1" test="ancestor::sec[@sec-type='data-availability'] and not(matches(@xlink:href,'^https://archive.softwareheritage.org/swh:.:rev:[\da-z]*/?$'))" role="error" id="software-heritage-test-1">Software heritage links in the data availability statement must be the revision link without contextual information. '<value-of select="."/>' is not a revision link without contextual information.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-2" test="ancestor::body and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))" role="error" id="software-heritage-test-2">Software heritage links in the main text must be the directory link with contextual information. '<value-of select="@xlink:href"/>' is not a directory link with contextual information.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-2" test="(ancestor::body or ancestor::ref) and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))" role="error" id="software-heritage-test-2">Software heritage links in the main text or references must be the directory link with contextual information. '<value-of select="@xlink:href"/>' is not a directory link with contextual information.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-3" test="ancestor::body and matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and (. != replace(substring-after(@xlink:href,'anchor='),'/$',''))" role="error" id="software-heritage-test-3">The text for Software heritage links in the main text must be the revision SWHID without contextual information. '<value-of select="."/>' is not. Based on the link itself, the text that is embedded should be '<value-of select="replace(substring-after(@xlink:href,'anchor='),'/$','')"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-4" test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies lower-case($x/@xlink:href) = $origin)" role="warning" id="software-heritage-test-4">A Software heritage link must follow the original link for the software. The Software heritage link with the text '<value-of select="."/>' has '<value-of select="$origin"/>' as its origin URL, but there is no preceding link with that same URL.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-4" test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies replace(lower-case($x/@xlink:href),'/$','') = $origin)" role="warning" id="software-heritage-test-4">A Software heritage link must follow the original link for the software. The Software heritage link with the text '<value-of select="."/>' has '<value-of select="$origin"/>' as its origin URL, but there is no preceding link with that same URL.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-5" test="contains(@xlink:href,'[…]')" role="error" id="software-heritage-test-5">A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed).</report>
       
@@ -2560,7 +2560,7 @@
       
       <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,15}$')" role="error" id="media-test-3">media must have an @xlink:href which contains a file reference.</assert>
       
-      <report test="if ($file='octet-stream') then ()         else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))         else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))         else if ($file='x-m') then not(ends-with(@xlink:href,'.m'))         else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv'))         else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))         else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))         else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex'))         else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz'))         else if ($file='html') then not(ends-with(@xlink:href,'.html'))         else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav'))         else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff'))         else if ($file='x-macbinary') then not(ends-with(@xlink:href,'.bin'))         else if ($file='x-pdb') then not(ends-with(@xlink:href,'.pdb'))         else if ($file='fasta') then not(ends-with(@xlink:href,'.fasta'))         else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))         else not(ends-with(@xlink:href,concat('.',$file)))" role="warning" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
+      <report test="if ($file='octet-stream') then ()         else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))         else if ($file = 'gif') then not(matches(@xlink:href,'\.mp4$'))         else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))         else if ($file='x-m') then not(ends-with(@xlink:href,'.m'))         else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv'))         else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))         else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))         else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex'))         else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz'))         else if ($file='html') then not(ends-with(@xlink:href,'.html'))         else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav'))         else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff'))         else if ($file='x-macbinary') then not(ends-with(@xlink:href,'.bin'))         else if ($file='x-pdb') then not(ends-with(@xlink:href,'.pdb'))         else if ($file='fasta') then not(ends-with(@xlink:href,'.fasta'))         else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))         else not(ends-with(@xlink:href,concat('.',$file)))" role="warning" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
       
       <report test="matches(label[1],'[Aa]nimation') and not(@mime-subtype='gif')" role="error" id="media-test-5">
         <value-of select="label"/> media with animation type label must have a @mime-subtype='gif'.</report>    
@@ -4519,7 +4519,7 @@
       
       <assert test="(normalize-space(@xlink:href)=normalize-space(.)) and (normalize-space(.)!='')" role="error" id="ext-link-attribute-content-match">&lt;ext-link&gt; must contain content and have an @xlink:href, the value of which must be the same as the content of &lt;ext-link&gt;. The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
-      <assert test="matches(@xlink:href,'^https?://|^ftp://')" role="error" id="link-href-conformance">@xlink:href must start with either "http://", "https://",  or "ftp://". The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' is '<value-of select="@xlink:href"/>', which does not.</assert>
+      <assert test="matches(@xlink:href,'^https?://|^s?ftp://')" role="error" id="link-href-conformance">@xlink:href must start with either "http://", "https://", "sftp://" or "ftp://". The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' is '<value-of select="@xlink:href"/>', which does not.</assert>
       
     </rule>
   </pattern>
@@ -4551,7 +4551,7 @@
   <pattern id="xref-pattern">
     <rule context="xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')]" id="xref">
       
-      <assert test="some $x in preceding::xref satisfies (substring(normalize-space(.),string-length(.)) gt substring(normalize-space($x),string-length(.)))" role="error" id="err-xref-high-2-1">Citations in the text to references with the same author(s) in the same year must be arranged in the same  order as the reference list. The xref with the value '<value-of select="."/>' is in the wrong order in the text. Check all the references to citations for the same authors to determine which need to be changed.</assert>
+      <assert test="some $x in preceding::xref satisfies (substring(normalize-space(.),string-length(.)) gt substring(normalize-space($x),string-length(.)))" role="error" id="err-xref-high-2-1">Citations in the text to references with the same author(s) in the same year must be arranged in the same order as the reference list. The xref with the value '<value-of select="."/>' is in the wrong order in the text. Check all the references to citations for the same authors to determine which need to be changed.</assert>
       
     </rule>
   </pattern>
@@ -5600,9 +5600,9 @@
   <pattern id="pub-id-tests-pattern">
     <rule context="element-citation/pub-id" id="pub-id-tests">
       
-      <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))" role="warning" id="pre-pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol. - <value-of select="@xlink:href"/> does not. If this information is missing, please ensure to query it with the authors.</report>
+      <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^s?ftp://'))" role="warning" id="pre-pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol. - <value-of select="@xlink:href"/> does not. If this information is missing, please ensure to query it with the authors.</report>
       
-      <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))" role="error" id="final-pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol. - <value-of select="@xlink:href"/> does not.</report>
+      <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^s?ftp://'))" role="error" id="final-pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol. - <value-of select="@xlink:href"/> does not.</report>
       
       <report test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="warning" id="pre-pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/>. If this information is missing, please ensure to query it with the authors.</report>
       
@@ -5887,6 +5887,9 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#final-missing-url-test" test="contains(lower-case(.),'url to be added')" role="error" id="final-missing-url-test">
         <name/> element contains the text 'URL to be added' - <value-of select="."/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL, then the eLife team should check with the authors to determine what needs to be added.</report>
+      
+      <report test="contains(.,'git://')" role="error" id="git-protocol">
+        <name/> contains the git:// protocol - <value-of select="."/>. This is no longer widely supported, and should be replaced with the appropriate https:// protocol (or similar) equivalent.</report>
     </rule>
   </pattern>
   
@@ -5989,7 +5992,7 @@
       <let name="cite1.5" value="e:citation-format2(.)"/>
       <let name="cite2" value="concat(substring-before($cite1.5,'('),'\(',descendant::year[1],'\)')"/>
       <let name="regex" value="concat(replace(replace($cite1,'\.','\\.?'),',',',?'),'|',replace(replace($cite2,'\.','\\.?'),',',',?'))"/>
-      <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return         if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
+      <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return         if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::ack or local-name()='ack') then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
       
       <report test="matches($article-text,$regex)" role="error" id="text-v-cite-test">ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite1.5"/>.</report>
       
@@ -6014,8 +6017,8 @@
   
   <pattern id="vid-xref-conformance-pattern">
     <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
-      <let name="rid" value="tokenize(@rid,'\s')[1]"/>
-      <let name="target-no" value="substring-after($rid,'video')"/>
+      <let name="rids" value="tokenize(@rid,'\s')"/>
+      <let name="target-nos" value="for $rid in $rids return substring-after($rid,'video')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
@@ -6023,13 +6026,13 @@
         <value-of select="."/> - video citation does not contain any numbers which must be incorrect.</assert>
       
       <!-- Workaround for animations -->
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-conformity-2" test="not(contains(.,'nimation')) and not(contains(.,$target-no))" role="error" id="vid-xref-conformity-2">video citation does not match the video that it links to. Target video label number is <value-of select="$target-no"/>, but that number is not in the citation text - <value-of select="."/>.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-conformity-2" test="not(contains(.,'nimation')) and (count($rids) gt 1 and not(contains(.,$target-nos[1])) or not(contains(.,$target-nos[last()]))) or (count($rids)=1 and not(contains(.,$target-nos)))" role="error" id="vid-xref-conformity-2">video citation does not match the video that it links to. Target video label number(s) are <value-of select="$target-nos"/>, but <value-of select="if (count($rids) gt 1) then concat($target-nos[1],' and ',$target-nos[last()],' are') else concat($target-nos,' is')"/> not in the citation text - <value-of select="."/>.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-2" test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="vid-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-3" test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="vid-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-4" test="(ancestor::media[@mimetype='video']/@id = $rid)" role="warning" id="vid-xref-test-4">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-4" test="(ancestor::media[@mimetype='video']/@id = $rids)" role="warning" id="vid-xref-test-4">
         <value-of select="."/> - video citation is in the caption of the video that it links to. Is it correct or necessary?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-5" test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="vid-xref-test-5">

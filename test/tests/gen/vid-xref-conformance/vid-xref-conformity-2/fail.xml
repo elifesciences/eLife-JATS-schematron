@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="vid-xref-conformity-2.sch"?>
 <!--Context: xref[@ref-type='video']
-Test: report    not(contains(.,'nimation')) and not(contains(.,$target-no))
-Message: video citation does not match the video that it links to. Target video label number is , but that number is not in the citation text - . -->
+Test: report    not(contains(.,'nimation')) and (count($rids) gt 1 and not(contains(.,$target-nos[1])) or not(contains(.,$target-nos[last()]))) or (count($rids)=1 and not(contains(.,$target-nos)))
+Message: video citation does not match the video that it links to. Target video label number(s) are , but  not in the citation text - . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <p>See <xref ref-type="video" rid="video1">Video 2</xref>.</p>
