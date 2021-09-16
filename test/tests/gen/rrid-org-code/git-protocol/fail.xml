@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="git-protocol.sch"?>
+<!--Context: p|td|th
+Test: report    contains(.,'git://')
+Message:  contains the git:// protocol - . This is no longer widely supported, and should be replaced with the appropriate https:// protocol (or similar) equivalent. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <p>git clone git://github.com/elifesciences/elife-article-xml.git</p>
+  </article>
+</root>

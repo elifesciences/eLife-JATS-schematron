@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="element-citation-general-tests">
     <rule context="ref/element-citation/ext-link" id="elem-citation-ext-link">
-      <assert test="matches(@xlink:href,'^https?://|^ftp://')" role="error" id="link-href-conformance">@xlink:href must start with either "http://", "https://",  or "ftp://". The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' is '<value-of select="@xlink:href"/>', which does not.</assert>
+      <assert test="matches(@xlink:href,'^https?://|^s?ftp://')" role="error" id="link-href-conformance">@xlink:href must start with either "http://", "https://", "sftp://" or "ftp://". The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' is '<value-of select="@xlink:href"/>', which does not.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

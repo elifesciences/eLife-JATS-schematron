@@ -11520,9 +11520,9 @@
 
 		    <!--ASSERT warning-->
       <xsl:choose>
-         <xsl:when test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')"/>
+         <xsl:when test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^tel:.|^mailto:.')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^tel:.|^mailto:.')">
                <xsl:attribute name="id">url-conformance-test</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
@@ -11719,15 +11719,15 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="ancestor::body and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::body and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))">
+      <xsl:if test="(ancestor::body or ancestor::ref) and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(ancestor::body or ancestor::ref) and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))">
             <xsl:attribute name="id">software-heritage-test-2</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[software-heritage-test-2] Software heritage links in the main text must be the directory link with contextual information. '<xsl:text/>
+            <svrl:text>[software-heritage-test-2] Software heritage links in the main text or references must be the directory link with contextual information. '<xsl:text/>
                <xsl:value-of select="@xlink:href"/>
                <xsl:text/>' is not a directory link with contextual information.</svrl:text>
          </svrl:successful-report>
@@ -11751,8 +11751,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies lower-case($x/@xlink:href) = $origin)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies lower-case($x/@xlink:href) = $origin)">
+      <xsl:if test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies replace(lower-case($x/@xlink:href),'/$','') = $origin)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies replace(lower-case($x/@xlink:href),'/$','') = $origin)">
             <xsl:attribute name="id">software-heritage-test-4</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -12254,8 +12254,8 @@
       </xsl:choose>
 
 		    <!--REPORT warning-->
-      <xsl:if test="if ($file='octet-stream') then ()         else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))         else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))         else if ($file='x-m') then not(ends-with(@xlink:href,'.m'))         else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv'))         else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))         else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))         else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex'))         else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz'))         else if ($file='html') then not(ends-with(@xlink:href,'.html'))         else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav'))         else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff'))         else if ($file='x-macbinary') then not(ends-with(@xlink:href,'.bin'))         else if ($file='x-pdb') then not(ends-with(@xlink:href,'.pdb'))         else if ($file='fasta') then not(ends-with(@xlink:href,'.fasta'))         else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))         else not(ends-with(@xlink:href,concat('.',$file)))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($file='octet-stream') then () else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$')) else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$')) else if ($file='x-m') then not(ends-with(@xlink:href,'.m')) else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv')) else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$')) else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$')) else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex')) else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz')) else if ($file='html') then not(ends-with(@xlink:href,'.html')) else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav')) else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff')) else if ($file='x-macbinary') then not(ends-with(@xlink:href,'.bin')) else if ($file='x-pdb') then not(ends-with(@xlink:href,'.pdb')) else if ($file='fasta') then not(ends-with(@xlink:href,'.fasta')) else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$')) else not(ends-with(@xlink:href,concat('.',$file)))">
+      <xsl:if test="if ($file='octet-stream') then ()         else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))         else if ($file = 'gif') then not(matches(@xlink:href,'\.mp4$'))         else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))         else if ($file='x-m') then not(ends-with(@xlink:href,'.m'))         else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv'))         else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))         else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))         else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex'))         else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz'))         else if ($file='html') then not(ends-with(@xlink:href,'.html'))         else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav'))         else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff'))         else if ($file='x-macbinary') then not(ends-with(@xlink:href,'.bin'))         else if ($file='x-pdb') then not(ends-with(@xlink:href,'.pdb'))         else if ($file='fasta') then not(ends-with(@xlink:href,'.fasta'))         else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))         else not(ends-with(@xlink:href,concat('.',$file)))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($file='octet-stream') then () else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$')) else if ($file = 'gif') then not(matches(@xlink:href,'\.mp4$')) else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$')) else if ($file='x-m') then not(ends-with(@xlink:href,'.m')) else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv')) else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$')) else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$')) else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex')) else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz')) else if ($file='html') then not(ends-with(@xlink:href,'.html')) else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav')) else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff')) else if ($file='x-macbinary') then not(ends-with(@xlink:href,'.bin')) else if ($file='x-pdb') then not(ends-with(@xlink:href,'.pdb')) else if ($file='fasta') then not(ends-with(@xlink:href,'.fasta')) else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$')) else not(ends-with(@xlink:href,concat('.',$file)))">
             <xsl:attribute name="id">media-test-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -21137,15 +21137,15 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(@xlink:href,'^https?://|^ftp://')"/>
+         <xsl:when test="matches(@xlink:href,'^https?://|^s?ftp://')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'^https?://|^ftp://')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'^https?://|^s?ftp://')">
                <xsl:attribute name="id">link-href-conformance</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[link-href-conformance] @xlink:href must start with either "http://", "https://",  or "ftp://". The &lt;ext-link&gt; element in Reference '<xsl:text/>
+               <svrl:text>[link-href-conformance] @xlink:href must start with either "http://", "https://", "sftp://" or "ftp://". The &lt;ext-link&gt; element in Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' is '<xsl:text/>
                   <xsl:value-of select="@xlink:href"/>
@@ -21291,7 +21291,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-xref-high-2-1] Citations in the text to references with the same author(s) in the same year must be arranged in the same  order as the reference list. The xref with the value '<xsl:text/>
+               <svrl:text>[err-xref-high-2-1] Citations in the text to references with the same author(s) in the same year must be arranged in the same order as the reference list. The xref with the value '<xsl:text/>
                   <xsl:value-of select="."/>
                   <xsl:text/>' is in the wrong order in the text. Check all the references to citations for the same authors to determine which need to be changed.</svrl:text>
             </svrl:failed-assert>
@@ -25827,8 +25827,8 @@
    <xsl:template match="element-citation/pub-id" priority="1000" mode="M400">
 
 		<!--REPORT error-->
-      <xsl:if test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))">
+      <xsl:if test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^s?ftp://'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^s?ftp://'))">
             <xsl:attribute name="id">final-pub-id-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -27101,6 +27101,22 @@
                <xsl:text/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL, then the eLife team should check with the authors to determine what needs to be added.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="contains(.,'git://')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'git://')">
+            <xsl:attribute name="id">git-protocol</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[git-protocol] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains the git:// protocol - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. This is no longer widely supported, and should be replaced with the appropriate https:// protocol (or similar) equivalent.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M416"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M416"/>
@@ -27600,7 +27616,7 @@
       <xsl:variable name="cite1.5" select="e:citation-format2(.)"/>
       <xsl:variable name="cite2" select="concat(substring-before($cite1.5,'('),'\(',descendant::year[1],'\)')"/>
       <xsl:variable name="regex" select="concat(replace(replace($cite1,'\.','\\.?'),',',',?'),'|',replace(replace($cite2,'\.','\\.?'),',',',?'))"/>
-      <xsl:variable name="article-text" select="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return         if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
+      <xsl:variable name="article-text" select="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return         if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::ack or local-name()='ack') then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
 
 		    <!--REPORT error-->
       <xsl:if test="matches($article-text,$regex)">
@@ -27692,8 +27708,8 @@
 
 	  <!--RULE vid-xref-conformance-->
    <xsl:template match="xref[@ref-type='video']" priority="1000" mode="M422">
-      <xsl:variable name="rid" select="tokenize(@rid,'\s')[1]"/>
-      <xsl:variable name="target-no" select="substring-after($rid,'video')"/>
+      <xsl:variable name="rids" select="tokenize(@rid,'\s')"/>
+      <xsl:variable name="target-nos" select="for $rid in $rids return substring-after($rid,'video')"/>
       <xsl:variable name="pre-text" select="preceding-sibling::text()[1]"/>
       <xsl:variable name="post-text" select="following-sibling::text()[1]"/>
 
@@ -27716,17 +27732,19 @@
       </xsl:choose>
 
 		    <!--REPORT error-->
-      <xsl:if test="not(contains(.,'nimation')) and not(contains(.,$target-no))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(contains(.,'nimation')) and not(contains(.,$target-no))">
+      <xsl:if test="not(contains(.,'nimation')) and (count($rids) gt 1 and not(contains(.,$target-nos[1])) or not(contains(.,$target-nos[last()]))) or (count($rids)=1 and not(contains(.,$target-nos)))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(contains(.,'nimation')) and (count($rids) gt 1 and not(contains(.,$target-nos[1])) or not(contains(.,$target-nos[last()]))) or (count($rids)=1 and not(contains(.,$target-nos)))">
             <xsl:attribute name="id">vid-xref-conformity-2</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-conformity-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[vid-xref-conformity-2] video citation does not match the video that it links to. Target video label number is <xsl:text/>
-               <xsl:value-of select="$target-no"/>
-               <xsl:text/>, but that number is not in the citation text - <xsl:text/>
+            <svrl:text>[vid-xref-conformity-2] video citation does not match the video that it links to. Target video label number(s) are <xsl:text/>
+               <xsl:value-of select="$target-nos"/>
+               <xsl:text/>, but <xsl:text/>
+               <xsl:value-of select="if (count($rids) gt 1) then concat($target-nos[1],' and ',$target-nos[last()],' are') else concat($target-nos,' is')"/>
+               <xsl:text/> not in the citation text - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
@@ -27763,8 +27781,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="(ancestor::media[@mimetype='video']/@id = $rid)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(ancestor::media[@mimetype='video']/@id = $rid)">
+      <xsl:if test="(ancestor::media[@mimetype='video']/@id = $rids)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(ancestor::media[@mimetype='video']/@id = $rids)">
             <xsl:attribute name="id">vid-xref-test-4</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>

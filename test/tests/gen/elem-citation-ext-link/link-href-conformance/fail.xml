@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="link-href-conformance.sch"?>
 <!--Context: ref/element-citation/ext-link
-Test: assert    matches(@xlink:href,'^https?://|^ftp://')
-Message: @xlink:href must start with either "http://", "https://",  or "ftp://". The <ext-link> element in Reference '' is '', which does not. -->
+Test: assert    matches(@xlink:href,'^https?://|^s?ftp://')
+Message: @xlink:href must start with either "http://", "https://", "sftp://" or "ftp://". The <ext-link> element in Reference '' is '', which does not. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <ref-list>

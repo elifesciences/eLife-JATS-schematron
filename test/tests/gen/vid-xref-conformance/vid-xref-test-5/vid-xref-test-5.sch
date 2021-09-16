@@ -1029,8 +1029,8 @@
   </xsl:function>
   <pattern id="video-xref-pattern">
     <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
-      <let name="rid" value="tokenize(@rid,'\s')[1]"/>
-      <let name="target-no" value="substring-after($rid,'video')"/>
+      <let name="rids" value="tokenize(@rid,'\s')"/>
+      <let name="target-nos" value="for $rid in $rids return substring-after($rid,'video')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-5" test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="vid-xref-test-5">

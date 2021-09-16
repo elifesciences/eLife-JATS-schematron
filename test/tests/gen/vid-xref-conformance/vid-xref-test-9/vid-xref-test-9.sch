@@ -1029,8 +1029,8 @@
   </xsl:function>
   <pattern id="video-xref-pattern">
     <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
-      <let name="rid" value="tokenize(@rid,'\s')[1]"/>
-      <let name="target-no" value="substring-after($rid,'video')"/>
+      <let name="rids" value="tokenize(@rid,'\s')"/>
+      <let name="target-nos" value="for $rid in $rids return substring-after($rid,'video')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-9" test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s\p{P}][\s]?$')" role="error" id="vid-xref-test-9">Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to a figure level video - '<value-of select="concat($pre-text,.)"/>'.</report>

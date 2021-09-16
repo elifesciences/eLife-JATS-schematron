@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="pre-pub-id-test-1.sch"?>
 <!--Context: element-citation/pub-id
-Test: report    (@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^ftp://'))
+Test: report    (@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^s?ftp://'))
 Message: @xlink:href must start with an http:// or ftp:// protocol. -  does not. If this information is missing, please ensure to query it with the authors. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
