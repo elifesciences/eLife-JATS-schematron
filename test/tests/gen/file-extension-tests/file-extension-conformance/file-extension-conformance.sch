@@ -1028,14 +1028,13 @@
     
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="ext-link[contains(@xlink:href,'softwareheritage')]" id="software-heritage-tests">
-      <let name="origin" value="lower-case(substring-before(substring-after(@xlink:href,'origin='),';'))"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-1" test="ancestor::sec[@sec-type='data-availability'] and not(matches(@xlink:href,'^https://archive.softwareheritage.org/swh:.:rev:[\da-z]*/?$'))" role="error" id="software-heritage-test-1">Software heritage links in the data availability statement must be the revision link without contextual information. '<value-of select="."/>' is not a revision link without contextual information.</report>
+    <rule context="graphic[@xlink:href]|media[@xlink:href]" id="file-extension-tests">
+      <assert test="matches(@xlink:href,'\.[a-z0-9]+$')" role="error" id="file-extension-conformance">The file extenstion for a file must be in lower case. This <name/> element has an xlink:href which does not end with a lowercase file extension (<value-of select="tokenize(@xlink:href,'\.')[last()]"/> in <value-of select="@xlink:href"/>).</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ext-link[contains(@xlink:href,'softwareheritage')]" role="error" id="software-heritage-tests-xspec-assert">ext-link[contains(@xlink:href,'softwareheritage')] must be present.</assert>
+      <assert test="descendant::graphic[@xlink:href] or descendant::media[@xlink:href]" role="error" id="file-extension-tests-xspec-assert">graphic[@xlink:href]|media[@xlink:href] must be present.</assert>
     </rule>
   </pattern>
 </schema>

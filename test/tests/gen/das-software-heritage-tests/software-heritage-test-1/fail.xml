@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="software-heritage-test-1.sch"?>
+<!--Context: sec[@sec-type='data-availability']//ext-link[contains(@xlink:href,'softwareheritage')]
+Test: assert    matches(@xlink:href,'^https://archive.softwareheritage.org/swh:.:rev:[\da-z]*/?$') or (matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$',''))
+Message: Software heritage links in the data availability statement must be either the revision link without contextual information for Kriya 1, or they must be the full contextual link, with the revision SWHID as the text of the link for Kriya 2. '' is not either of these. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <sec id="s7" sec-type="data-availability">
+        <title>Data availability</title>
+        <p>A list of R codes used for the analyses are available on Github (<ext-link ext-link-type="uri" xlink:href="https://github.com/lifan36/Zhan-Fan-et-al-2019-scRNAseq">https://github.com/lifan36/Zhan-Fan-et-al-2019-scRNAseq</ext-link>; copy archived at <ext-link ext-link-type="uri" xlink:href="https://archive.softwareheritage.org/swh:1:dir:89513b41bd021137c72fa7cf3e57bcef4bf6c933/">https://archive.softwareheritage.org/swh:1:dir:89513b41bd021137c72fa7cf3e57bcef4bf6c933/</ext-link>).</p>
+        <p>A list of R codes used for the analyses are available on Github (<ext-link ext-link-type="uri" xlink:href="https://github.com/lifan36/Zhan-Fan-et-al-2019-scRNAseq">https://github.com/lifan36/Zhan-Fan-et-al-2019-scRNAseq</ext-link>; copy archived at <ext-link ext-link-type="uri" xlink:href="https://archive.softwareheritage.org/swh:1:dir:89513b41bd021137c72fa7cf3e57bcef4bf6c933;origin=https://github.com/lifan36/Zhan-Fan-et-al-2019-scRNAseq;visit=swh:1:snp:7166156ca6702a41990236e9da386c44440b6609;anchor=swh:1:rev:c008b3ff49d567a1abe9d9eed42afed4e9a27b42">swh:1:snp:7166156ca6702a41990236e9da386c44440b6609</ext-link>).</p></sec>
+    </back>
+  </article>
+</root>
