@@ -3640,17 +3640,19 @@
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
-    <x:scenario label="software-heritage-tests">
+    <x:scenario label="das-software-heritage-tests">
       <x:scenario label="software-heritage-test-1-pass">
-        <x:context href="../tests/gen/software-heritage-tests/software-heritage-test-1/pass.xml"/>
-        <x:expect-not-report id="software-heritage-test-1" role="error"/>
-        <x:expect-not-assert id="software-heritage-tests-xspec-assert" role="error"/>
+        <x:context href="../tests/gen/das-software-heritage-tests/software-heritage-test-1/pass.xml"/>
+        <x:expect-not-assert id="software-heritage-test-1" role="error"/>
+        <x:expect-not-assert id="das-software-heritage-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="software-heritage-test-1-fail">
-        <x:context href="../tests/gen/software-heritage-tests/software-heritage-test-1/fail.xml"/>
-        <x:expect-report id="software-heritage-test-1" role="error"/>
-        <x:expect-not-assert id="software-heritage-tests-xspec-assert" role="error"/>
+        <x:context href="../tests/gen/das-software-heritage-tests/software-heritage-test-1/fail.xml"/>
+        <x:expect-assert id="software-heritage-test-1" role="error"/>
+        <x:expect-not-assert id="das-software-heritage-tests-xspec-assert" role="error"/>
       </x:scenario>
+    </x:scenario>
+    <x:scenario label="software-heritage-tests">
       <x:scenario label="software-heritage-test-2-pass">
         <x:context href="../tests/gen/software-heritage-tests/software-heritage-test-2/pass.xml"/>
         <x:expect-not-report id="software-heritage-test-2" role="error"/>
@@ -4084,6 +4086,18 @@
         <x:context href="../tests/gen/media-tests/media-test-11/fail.xml"/>
         <x:expect-report id="media-test-11" role="error"/>
         <x:expect-not-assert id="media-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="file-extension-tests">
+      <x:scenario label="file-extension-conformance-pass">
+        <x:context href="../tests/gen/file-extension-tests/file-extension-conformance/pass.xml"/>
+        <x:expect-not-assert id="file-extension-conformance" role="error"/>
+        <x:expect-not-assert id="file-extension-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="file-extension-conformance-fail">
+        <x:context href="../tests/gen/file-extension-tests/file-extension-conformance/fail.xml"/>
+        <x:expect-assert id="file-extension-conformance" role="error"/>
+        <x:expect-not-assert id="file-extension-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="video-test">

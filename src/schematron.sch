@@ -3188,14 +3188,23 @@ else self::*/local-name() = $allowed-p-blocks"
         id="ext-link-text">The text for a URL is '<value-of select="."/>' (which looks like a URL), but it is not the same as the actual embedded link, which is '<value-of select="@xlink:href"/>'.</report>
     </rule>
     
+    <rule context="sec[@sec-type='data-availability']//ext-link[contains(@xlink:href,'softwareheritage')]" 
+      id="das-software-heritage-tests">
+      
+      <!-- Change to just the latter condition when fully transition to new vendor platform -->
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-1" 
+        test="matches(@xlink:href,'^https://archive.softwareheritage.org/swh:.:rev:[\da-z]*/?$')
+        or 
+        (matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') 
+            and 
+         . = replace(substring-after(@xlink:href,'anchor='),'/$',''))" 
+        role="error" 
+        id="software-heritage-test-1">Software heritage links in the data availability statement must be either the revision link without contextual information for Kriya 1, or they must be the full contextual link, with the revision SWHID as the text of the link for Kriya 2. '<value-of select="."/>' is not either of these.</assert>
+      
+    </rule>
     <rule context="ext-link[contains(@xlink:href,'softwareheritage')]" 
       id="software-heritage-tests">
       <let name="origin" value="lower-case(substring-before(substring-after(@xlink:href,'origin='),';'))"/>
-      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-1" 
-        test="ancestor::sec[@sec-type='data-availability'] and not(matches(@xlink:href,'^https://archive.softwareheritage.org/swh:.:rev:[\da-z]*/?$'))" 
-        role="error" 
-        id="software-heritage-test-1">Software heritage links in the data availability statement must be the revision link without contextual information. '<value-of select="."/>' is not a revision link without contextual information.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-2" 
         test="(ancestor::body or ancestor::ref) and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))" 
@@ -3404,7 +3413,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="if ($file='octet-stream') then ()
         else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))
-        else if ($file = 'gif') then not(matches(@xlink:href,'\.mp4$'))
+        else if ($file = 'gif') then not(matches(@xlink:href,'\.mp4$|\.gif$'))
         else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))
         else if ($file='x-m') then not(ends-with(@xlink:href,'.m'))
         else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv'))
@@ -3454,6 +3463,14 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="contains($link,'&amp;')" 
         role="error" 
         id="media-test-11">Media filename for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> contains an ampersand - <value-of select="tokenize($link,'/')[last()]"/>. Please rename the file so that this ampersand is removed.</report>
+    </rule>
+    
+    <rule context="graphic[@xlink:href]|media[@xlink:href]" id="file-extension-tests">
+      
+      <assert test="matches(@xlink:href,'\.[a-z0-9]+$')" 
+        role="error"
+        id="file-extension-conformance">The file extenstion for a file must be in lower case. This <name/> element has an xlink:href which does not end with a lowercase file extension (<value-of select="tokenize(@xlink:href,'\.')[last()]"/> in <value-of select="@xlink:href"/>).</assert>
+      
     </rule>
     
     <rule context="media[child::label]" id="video-test">
@@ -4946,19 +4963,19 @@ else self::*/local-name() = $allowed-p-blocks"
         id="ra-sec-test-1">At least one sec should be present in body for research-article content.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#ra-sec-test-2"
-        test="if ($type = ('Short Report','Scientific Correspondence')) then ()
+        test="if ($type = ('Short Report','Scientific Correspondence','Feature Article')) then ()
         else count(sec[@sec-type='intro']) != 1" 
         role="warning" 
         id="ra-sec-test-2"><value-of select="$type"/> doesn't have child sec[@sec-type='intro'] in the main body. Is this correct?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#ra-sec-test-3"
-        test="if ($type = ('Short Report','Scientific Correspondence')) then ()
+        test="if ($type = ('Short Report','Scientific Correspondence','Feature Article')) then ()
         else $method-count != 1" 
         role="warning" 
         id="ra-sec-test-3">main body in <value-of select="$type"/> content doesn't have a child sec with @sec-type whose value is either 'materials|methods', 'methods' or 'model'. Is this correct?.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#ra-sec-test-4"
-        test="if ($type = ('Short Report','Scientific Correspondence')) then ()
+        test="if ($type = ('Short Report','Scientific Correspondence','Feature Article')) then ()
         else if (sec[@sec-type='results|discussion']) then ()
         else $res-disc-count != 2" 
         role="warning" 

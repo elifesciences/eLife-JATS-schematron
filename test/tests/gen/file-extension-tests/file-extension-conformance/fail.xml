@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="file-extension-conformance.sch"?>
+<!--Context: graphic[@xlink:href]|media[@xlink:href]
+Test: assert    matches(@xlink:href,'\.[a-z0-9]+$')
+Message: The file extenstion for a file must be in lower case. This  element has an xlink:href which does not end with a lowercase file extension ( in ). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <graphic xlink:href="fig1.JPG"/>
+    <media xlink:href="video1.MP4"/>
+    <media xlink:href="sourcedata1.RData"/>
+  </article>
+</root>

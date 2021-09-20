@@ -1027,17 +1027,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="body">
-    <rule context="article[@article-type='research-article']/body" id="ra-body-tests">
-      <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <let name="method-count" value="count(sec[@sec-type='materials|methods']) + count(sec[@sec-type='methods']) + count(sec[@sec-type='model'])"/>
-      <let name="res-disc-count" value="count(sec[@sec-type='results']) + count(sec[@sec-type='discussion'])"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#ra-sec-test-4" test="if ($type = ('Short Report','Scientific Correspondence','Feature Article')) then ()         else if (sec[@sec-type='results|discussion']) then ()         else $res-disc-count != 2" role="warning" id="ra-sec-test-4">main body in <value-of select="$type"/> content doesn't have either a child sec[@sec-type='results|discussion'] or a sec[@sec-type='results'] and a sec[@sec-type='discussion']. Is this correct?</report>
+  <pattern id="content-containers">
+    <rule context="sec[@sec-type='data-availability']//ext-link[contains(@xlink:href,'softwareheritage')]" id="das-software-heritage-tests">
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-1" test="matches(@xlink:href,'^https://archive.softwareheritage.org/swh:.:rev:[\da-z]*/?$')         or          (matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*')              and           . = replace(substring-after(@xlink:href,'anchor='),'/$',''))" role="error" id="software-heritage-test-1">Software heritage links in the data availability statement must be either the revision link without contextual information for Kriya 1, or they must be the full contextual link, with the revision SWHID as the text of the link for Kriya 2. '<value-of select="."/>' is not either of these.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='research-article']/body" role="error" id="ra-body-tests-xspec-assert">article[@article-type='research-article']/body must be present.</assert>
+      <assert test="descendant::sec[@sec-type='data-availability']//ext-link[contains(@xlink:href,'softwareheritage')]" role="error" id="das-software-heritage-tests-xspec-assert">sec[@sec-type='data-availability']//ext-link[contains(@xlink:href,'softwareheritage')] must be present.</assert>
     </rule>
   </pattern>
 </schema>
