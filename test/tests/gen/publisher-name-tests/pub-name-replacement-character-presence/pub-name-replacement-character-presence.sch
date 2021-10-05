@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation/publisher-name" id="publisher-name-tests">
-      <report test="matches(.,'�')" role="error" id="pub-name-replacement-character-presence">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-name-replacement-character-presence" test="matches(.,'�')" role="error" id="pub-name-replacement-character-presence">
         <name/> contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
     </rule>

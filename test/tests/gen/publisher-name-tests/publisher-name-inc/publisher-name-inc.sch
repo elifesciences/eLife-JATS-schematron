@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation/publisher-name" id="publisher-name-tests">
-      <report test="matches(.,'[Ii]nc\.')" role="warning" id="publisher-name-inc">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing the text 'Inc.' Should the fullstop be removed? <value-of select="."/>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#publisher-name-inc" test="matches(.,'[Ii]nc\.')" role="warning" id="publisher-name-inc">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing the text 'Inc.' Should the fullstop be removed? <value-of select="."/>
       </report>
     </rule>
   </pattern>

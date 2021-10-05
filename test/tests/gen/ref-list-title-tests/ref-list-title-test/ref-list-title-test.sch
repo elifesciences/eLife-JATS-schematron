@@ -1031,7 +1031,7 @@
     <rule context="ref-list" id="ref-list-title-tests">
       <let name="cite-list" value="e:ref-cite-list(.)"/>
       <let name="non-distinct" value="e:non-distinct-citations($cite-list)"/>
-      <assert test="title = 'References'" role="warning" id="ref-list-title-test">reference list usually has a title that is 'References', but currently it is '<value-of select="title"/>' - is that correct?</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ref-list-title-test" test="title = 'References'" role="warning" id="ref-list-title-test">reference list usually has a title that is 'References', but currently it is '<value-of select="title"/>' - is that correct?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -2,7 +2,7 @@
 <!--Context: element-citation[@publication-type='periodical']/string-date/year
 Test: assert    (1700 le number($YYYY)) and (number($YYYY) le $current-year)
 Message: [err-elem-cit-periodical-7-4-2]
-        The numeric value of the first 4 digits of the <year> element must be between 1700 and the current year (inclusive).
+        The numeric value of the 4 digits in the <year> element must be between 1700 and the current year (inclusive).
         Reference '' does not meet this requirement as it contains
         the value ''.
        -->

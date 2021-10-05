@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="element-citation-general-tests">
     <rule context="element-citation" id="elem-citation-general">
-      <report test="(fpage) and not(lpage)" role="warning" id="fpage-lpage-test-1">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#fpage-lpage-test-1" test="(fpage) and not(lpage)" role="warning" id="fpage-lpage-test-1">
         <value-of select="e:citation-format1(.)"/> has a first page <value-of select="fpage"/>, but no last page. Is this correct? Should it be an elocation-id instead?</report>
     </rule>
   </pattern>

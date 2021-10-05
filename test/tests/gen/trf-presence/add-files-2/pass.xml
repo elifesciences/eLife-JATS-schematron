@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="add-files-2.sch"?>
 <!--Context: article[@article-type='research-article']
-Test: assert    descendant::supplementary-material[contains(lower-case(label[1]),'transparent reporting form')]
-Message: This article does not have a transparent reporting form. Is that correct? -->
+Test: assert    descendant::supplementary-material[matches(lower-case(label[1]),'transparent reporting form|mdar checklist')]
+Message: This article does not have a transparent reporting form or MDAR checklist. Is that correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="research-article">
     <back>
