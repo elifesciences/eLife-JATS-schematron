@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="element-citation-general-tests">
     <rule context="element-citation/person-group" id="elem-citation-gen-name-3-1">
-      <report test=".[not (name or collab)]" role="error" id="err-elem-cit-gen-name-3-1">[err-elem-cit-gen-name-3-1]
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-name-3-1" test=".[not (name or collab)]" role="error" id="err-elem-cit-gen-name-3-1">[err-elem-cit-gen-name-3-1]
         Each &lt;person-group&gt; element in a reference must contain at least one
         &lt;name&gt; or, if allowed, &lt;collab&gt; element. 
         Reference '<value-of select="ancestor::ref/@id"/>' does not.</report>

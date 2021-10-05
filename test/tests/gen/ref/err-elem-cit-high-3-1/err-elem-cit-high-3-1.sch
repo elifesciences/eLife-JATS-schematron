@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="element-citation-high-tests">
     <rule context="ref" id="ref">
-      <assert test="@id" role="error" id="err-elem-cit-high-3-1">Each &lt;ref&gt; element must have an @id attribute.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-high-3-1" test="@id" role="error" id="err-elem-cit-high-3-1">Each &lt;ref&gt; element must have an @id attribute.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

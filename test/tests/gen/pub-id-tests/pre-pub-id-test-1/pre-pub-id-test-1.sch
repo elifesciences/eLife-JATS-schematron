@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="pub-id-pattern">
     <rule context="element-citation/pub-id" id="pub-id-tests">
-      <report test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^s?ftp://'))" role="warning" id="pre-pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol. - <value-of select="@xlink:href"/> does not. If this information is missing, please ensure to query it with the authors.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pre-pub-id-test-1" test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^s?ftp://'))" role="warning" id="pre-pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol. - <value-of select="@xlink:href"/> does not. If this information is missing, please ensure to query it with the authors.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

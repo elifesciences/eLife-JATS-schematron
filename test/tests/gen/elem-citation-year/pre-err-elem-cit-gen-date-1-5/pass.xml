@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pre-err-elem-cit-gen-date-1-5.sch"?>
 <!--Context: ref/element-citation/year
 Test: assert    not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY
-Message: The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the  <year> element. Reference '' does not meet this requirement as the element contains the value '' and the attribute contains the value ''. If there is no year, and you are unable to determine this, please query with the authors. -->
+Message: The numeric value of the 4 digits in the @iso-8601-date attribute must match the first 4 digits on the  <year> element. Reference '' does not meet this requirement as the element contains the value '' and the attribute contains the value ''. If there is no year, and you are unable to determine this, please query with the authors. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <back>

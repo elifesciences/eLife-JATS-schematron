@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="pub-id-pattern">
     <rule context="element-citation/pub-id" id="pub-id-tests">
-      <report test="ends-with(.,'.')" role="error" id="pub-id-test-5">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-id-test-5" test="ends-with(.,'.')" role="error" id="pub-id-test-5">
         <value-of select="@pub-id-type"/> pub-id ends with a full stop - <value-of select="."/> - which is not correct. Please remove the full stop.</report>
     </rule>
   </pattern>

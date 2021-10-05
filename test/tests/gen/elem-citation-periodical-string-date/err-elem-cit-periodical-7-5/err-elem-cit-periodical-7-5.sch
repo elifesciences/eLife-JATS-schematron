@@ -1031,7 +1031,7 @@
     <rule context="element-citation[@publication-type='periodical']/string-date" id="elem-citation-periodical-string-date">
       <let name="YYYY" value="substring(normalize-space(year[1]), 1, 4)"/>
       <report test="not(@iso-8601-date) or (substring(normalize-space(@iso-8601-date),1,4) != $YYYY)" role="error" id="err-elem-cit-periodical-7-5">[err-elem-cit-periodical-7-5]
-        The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the 
+        The numeric value of the 4 digits in the @iso-8601-date attribute must match the first 4 digits on the 
         &lt;year&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the element contains
         the value '<value-of select="."/>' and the attribute contains the value 

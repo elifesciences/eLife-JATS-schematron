@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="element-citation-high-tests">
     <rule context="element-citation" id="elem-citation">
-      <report test="(@publication-type='periodical') and not(string-date)" role="error" id="final-element-cite-string-date">'<value-of select="@publication-type"/>' type references must have a string-date. Reference '<value-of select="../@id"/>' does not. If you are unable to determine this, please ensure to query the authors for the string-date of publication.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-element-cite-string-date" test="(@publication-type='periodical') and not(string-date)" role="error" id="final-element-cite-string-date">'<value-of select="@publication-type"/>' type references must have a string-date. Reference '<value-of select="../@id"/>' does not. If you are unable to determine this, please ensure to query the authors for the string-date of publication.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

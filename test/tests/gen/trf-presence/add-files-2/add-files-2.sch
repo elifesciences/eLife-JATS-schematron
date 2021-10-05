@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="back">
     <rule context="article[@article-type='research-article']" id="trf-presence">
-      <assert test="descendant::supplementary-material[contains(lower-case(label[1]),'transparent reporting form')]" role="warning" id="add-files-2">This article does not have a transparent reporting form. Is that correct?</assert>
+      <assert test="descendant::supplementary-material[matches(lower-case(label[1]),'transparent reporting form|mdar checklist')]" role="warning" id="add-files-2">This article does not have a transparent reporting form or MDAR checklist. Is that correct?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

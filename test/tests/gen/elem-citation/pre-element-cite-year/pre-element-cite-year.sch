@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="element-citation-high-tests">
     <rule context="element-citation" id="elem-citation">
-      <report test="(@publication-type!='periodical') and not(year)" role="warning" id="pre-element-cite-year">'<value-of select="@publication-type"/>' type references must have a year. Reference '<value-of select="../@id"/>' does not. If you are unable to determine this, please ensure to add an author query asking for the year of publication.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pre-element-cite-year" test="(@publication-type!='periodical') and not(year)" role="warning" id="pre-element-cite-year">'<value-of select="@publication-type"/>' type references must have a year. Reference '<value-of select="../@id"/>' does not. If you are unable to determine this, please ensure to add an author query asking for the year of publication.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

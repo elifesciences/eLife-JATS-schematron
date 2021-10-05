@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="element-citation-high-tests">
     <rule context="element-citation//*" id="element-citation-descendants">
-      <report test="matches(.,'&lt;/?[a-z]*/?&gt;')" role="error" id="tagging-elem-cit-des">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#tagging-elem-cit-des" test="matches(.,'&lt;/?[a-z]*/?&gt;')" role="error" id="tagging-elem-cit-des">
         <name/> element contains tagging, which should be removed - '<value-of select="."/>'.</report>
     </rule>
   </pattern>

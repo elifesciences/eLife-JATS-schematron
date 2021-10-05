@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="element-citation-high-tests">
     <rule context="element-citation//*" id="element-citation-descendants">
-      <report test="not(*) and (normalize-space(.)='')" role="warning" id="pre-empty-elem-cit-des">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pre-empty-elem-cit-des" test="not(*) and (normalize-space(.)='')" role="warning" id="pre-empty-elem-cit-des">
         <name/> element is empty - this is not allowed. It must contain content. If the details are missing and cannot be determined, please query the authors.</report>
     </rule>
   </pattern>

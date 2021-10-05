@@ -8078,6 +8078,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')">
                <xsl:attribute name="id">final-year-element-citation-conformity</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-year-element-citation-conformity</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -12490,8 +12491,8 @@
       </xsl:choose>
 
 		    <!--REPORT warning-->
-      <xsl:if test="if (contains(label,'Transparent reporting form')) then ()         else not(caption)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (contains(label,'Transparent reporting form')) then () else not(caption)">
+      <xsl:if test="not(matches(label[1],'Transparent reporting form|MDAR')) and not(caption)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(matches(label[1],'Transparent reporting form|MDAR')) and not(caption)">
             <xsl:attribute name="id">supplementary-material-test-2</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -12539,9 +12540,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(label[1],'^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$|^Audio file \d{1,4}\.$')"/>
+         <xsl:when test="matches(label[1],'^MDAR Checklist$|^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$|^Audio file \d{1,4}\.$')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(label[1],'^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$|^Audio file \d{1,4}\.$')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(label[1],'^MDAR Checklist$|^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$|^Audio file \d{1,4}\.$')">
                <xsl:attribute name="id">supplementary-material-test-6</xsl:attribute>
                <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-6</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
@@ -12569,8 +12570,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="matches(label[1],'^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(label[1],'^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])">
+      <xsl:if test="matches(label[1],'^MDAR Checklist$|^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(label[1],'^MDAR Checklist$|^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])">
             <xsl:attribute name="id">supplementary-material-test-8</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-8</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
@@ -17602,6 +17603,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="title = 'References'">
                <xsl:attribute name="id">ref-list-title-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ref-list-title-test</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17617,6 +17619,7 @@
       <xsl:if test="$non-distinct//*:item">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$non-distinct//*:item">
             <xsl:attribute name="id">ref-list-distinct-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ref-list-distinct-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -19513,15 +19516,15 @@
 
 		<!--ASSERT warning-->
       <xsl:choose>
-         <xsl:when test="descendant::supplementary-material[contains(lower-case(label[1]),'transparent reporting form')]"/>
+         <xsl:when test="descendant::supplementary-material[matches(lower-case(label[1]),'transparent reporting form|mdar checklist')]"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::supplementary-material[contains(lower-case(label[1]),'transparent reporting form')]">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::supplementary-material[matches(lower-case(label[1]),'transparent reporting form|mdar checklist')]">
                <xsl:attribute name="id">add-files-2</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[add-files-2] This article does not have a transparent reporting form. Is that correct?</svrl:text>
+               <svrl:text>[add-files-2] This article does not have a transparent reporting form or MDAR checklist. Is that correct?</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -20869,6 +20872,7 @@
       <xsl:if test="descendant::etal">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::etal">
             <xsl:attribute name="id">err-elem-cit-gen-name-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-name-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -20883,6 +20887,7 @@
       <xsl:if test="count(year) &gt; 1 ">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(year) &gt; 1">
             <xsl:attribute name="id">err-elem-cit-gen-date-1-9</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-date-1-9</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -20899,6 +20904,7 @@
       <xsl:if test="(fpage) and not(lpage)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(fpage) and not(lpage)">
             <xsl:attribute name="id">fpage-lpage-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#fpage-lpage-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -20927,6 +20933,7 @@
       <xsl:if test=".[not (name or collab)]">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".[not (name or collab)]">
             <xsl:attribute name="id">err-elem-cit-gen-name-3-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-name-3-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -20958,6 +20965,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(*) = count(italic | sub | sup)">
                <xsl:attribute name="id">err-elem-cit-gen-name-3-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-name-3-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -20990,6 +20998,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".=('Jr','Jnr', 'Sr','Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')">
                <xsl:attribute name="id">err-elem-cit-gen-name-4</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-name-4</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21028,11 +21037,12 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(1700 le number($YYYY)) and (number($YYYY) le ($current-year + 5))">
                <xsl:attribute name="id">err-elem-cit-gen-date-1-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-date-1-2</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-gen-date-1-2] The numeric value of the first 4 digits of the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive). Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-gen-date-1-2] The numeric value of the 4 digits in the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive). Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' does not meet this requirement as it contains the value '<xsl:text/>
                   <xsl:value-of select="."/>
@@ -21047,6 +21057,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="./@iso-8601-date">
                <xsl:attribute name="id">err-elem-cit-gen-date-1-3</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-date-1-3</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21064,11 +21075,12 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(./@iso-8601-date) or (1700 le number(substring(normalize-space(@iso-8601-date),1,4)) and number(substring(normalize-space(@iso-8601-date),1,4)) le ($current-year + 5))">
                <xsl:attribute name="id">err-elem-cit-gen-date-1-4</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-date-1-4</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-gen-date-1-4] The numeric value of the first 4 digits of the @iso-8601-date attribute on the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive). Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-gen-date-1-4] The numeric value of the 4 digits in the @iso-8601-date attribute on the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive). Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' does not meet this requirement as the attribute contains the value '<xsl:text/>
                   <xsl:value-of select="./@iso-8601-date"/>
@@ -21083,11 +21095,12 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY">
                <xsl:attribute name="id">final-err-elem-cit-gen-date-1-5</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-err-elem-cit-gen-date-1-5</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[final-err-elem-cit-gen-date-1-5] The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the &lt;year&gt; element. Reference '<xsl:text/>
+               <svrl:text>[final-err-elem-cit-gen-date-1-5] The numeric value of the 4 digits in the @iso-8601-date attribute must match the first 4 digits on the &lt;year&gt; element. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' does not meet this requirement as the element contains the value '<xsl:text/>
                   <xsl:value-of select="."/>
@@ -21104,6 +21117,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and (some $y in //element-citation/descendant::year satisfies (normalize-space($y) = concat($YYYY,'b')) and (ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1] )))">
                <xsl:attribute name="id">err-elem-cit-gen-date-1-6</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-date-1-6</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21121,6 +21135,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(starts-with(.,$YYYY) and matches(normalize-space(.),('\d{4}[b-z]'))) or (some $y in //element-citation/descendant::year satisfies (normalize-space($y) = concat($YYYY,translate(substring(normalize-space(.),5,1),'bcdefghijklmnopqrstuvwxyz', 'abcdefghijklmnopqrstuvwxy'))) and (ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1] ))">
                <xsl:attribute name="id">err-elem-cit-gen-date-1-7</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-date-1-7</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21153,6 +21168,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="string-length(normalize-space(.)) ge 2">
                <xsl:attribute name="id">elem-cit-source</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#elem-cit-source</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21186,6 +21202,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(normalize-space(@xlink:href)=normalize-space(.)) and (normalize-space(.)!='')">
                <xsl:attribute name="id">ext-link-attribute-content-match</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ext-link-attribute-content-match</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21207,6 +21224,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'^https?://|^s?ftp://')">
                <xsl:attribute name="id">link-href-conformance</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#link-href-conformance</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21242,6 +21260,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($order-value gt $preceding-ref-order-value) or ($kriya1-order-value gt $preceding-ref-kriya1-order-value)">
                <xsl:attribute name="id">err-elem-cit-high-2-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-high-2-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21271,6 +21290,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(*) = count(element-citation)">
                <xsl:attribute name="id">err-elem-cit-high-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-high-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21288,6 +21308,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@id">
                <xsl:attribute name="id">err-elem-cit-high-3-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-high-3-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21303,6 +21324,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(normalize-space(@id) ,'^bib\d+$')">
                <xsl:attribute name="id">err-elem-cit-high-3-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-high-3-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21322,6 +21344,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(preceding-sibling::ref)=0 or number(substring(@id,4)) gt number(substring(preceding-sibling::ref[1]/@id,4))">
                <xsl:attribute name="id">err-elem-cit-high-3-3</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-high-3-3</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21353,6 +21376,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $x in preceding::xref satisfies (substring(normalize-space(.),string-length(.)) gt substring(normalize-space($x),string-length(.)))">
                <xsl:attribute name="id">err-xref-high-2-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-xref-high-2-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21382,6 +21406,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@publication-type = ('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'periodical', 'report', 'confproc', 'thesis')">
                <xsl:attribute name="id">err-elem-cit-high-6-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-high-6-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21399,6 +21424,7 @@
       <xsl:if test="(@publication-type!='periodical') and not(year)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@publication-type!='periodical') and not(year)">
             <xsl:attribute name="id">final-element-cite-year</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-element-cite-year</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21415,6 +21441,7 @@
       <xsl:if test="(@publication-type='periodical') and not(string-date)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@publication-type='periodical') and not(string-date)">
             <xsl:attribute name="id">final-element-cite-string-date</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-element-cite-string-date</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21443,6 +21470,7 @@
       <xsl:if test="not(*) and (normalize-space(.)='')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(*) and (normalize-space(.)='')">
             <xsl:attribute name="id">final-empty-elem-cit-des</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-empty-elem-cit-des</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21457,6 +21485,7 @@
       <xsl:if test="matches(.,'&lt;/?[a-z]*/?&gt;')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'&lt;/?[a-z]*/?&gt;')">
             <xsl:attribute name="id">tagging-elem-cit-des</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#tagging-elem-cit-des</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25070,7 +25099,7 @@
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
                <svrl:text>[err-elem-cit-periodical-7-4-2]
-        The numeric value of the first 4 digits of the &lt;year&gt; element must be between 1700 and the current year (inclusive).
+        The numeric value of the 4 digits in the &lt;year&gt; element must be between 1700 and the current year (inclusive).
         Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' does not meet this requirement as it contains
@@ -25361,7 +25390,7 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[err-elem-cit-periodical-7-5]
-        The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the 
+        The numeric value of the 4 digits in the @iso-8601-date attribute must match the first 4 digits on the 
         &lt;year&gt; element.
         Reference '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
@@ -25896,6 +25925,7 @@
       <xsl:if test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^s?ftp://'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^s?ftp://'))">
             <xsl:attribute name="id">final-pub-id-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-pub-id-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25910,6 +25940,7 @@
       <xsl:if test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))">
             <xsl:attribute name="id">final-pub-id-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-pub-id-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25925,6 +25956,7 @@
       <xsl:if test="(@pub-id-type='pmid') and matches(.,'\D')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type='pmid') and matches(.,'\D')">
             <xsl:attribute name="id">pub-id-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-id-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25940,6 +25972,7 @@
       <xsl:if test="(@pub-id-type != 'doi') and matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type != 'doi') and matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')">
             <xsl:attribute name="id">pub-id-doi-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-id-doi-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25956,6 +25989,7 @@
       <xsl:if test="contains(.,' ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,' ')">
             <xsl:attribute name="id">pub-id-test-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-id-test-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25970,6 +26004,7 @@
       <xsl:if test="ends-with(.,'.')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ends-with(.,'.')">
             <xsl:attribute name="id">pub-id-test-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-id-test-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -27205,6 +27240,7 @@
       <xsl:if test="(element-citation/@publication-type != 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(element-citation/@publication-type != 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])">
             <xsl:attribute name="id">duplicate-ref-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#duplicate-ref-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -27219,6 +27255,7 @@
       <xsl:if test="(element-citation/@publication-type = 'book') and  ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(element-citation/@publication-type = 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])">
             <xsl:attribute name="id">duplicate-ref-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#duplicate-ref-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -27233,6 +27270,7 @@
       <xsl:if test="some $x in preceding-sibling::ref/element-citation satisfies (         (($x/article-title = $a-title) and ($x/source = $source))         or         (($x/chapter-title = $c-title) and ($x/source = $source))         )">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $x in preceding-sibling::ref/element-citation satisfies ( (($x/article-title = $a-title) and ($x/source = $source)) or (($x/chapter-title = $c-title) and ($x/source = $source)) )">
             <xsl:attribute name="id">duplicate-ref-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#duplicate-ref-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -27251,6 +27289,7 @@
       <xsl:if test="some $x in preceding-sibling::ref/element-citation satisfies (         (($x/article-title = $a-title) and not($x/source = $source))         or         (($x/chapter-title = $c-title) and not($x/source = $source))         )">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $x in preceding-sibling::ref/element-citation satisfies ( (($x/article-title = $a-title) and not($x/source = $source)) or (($x/chapter-title = $c-title) and not($x/source = $source)) )">
             <xsl:attribute name="id">duplicate-ref-test-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#duplicate-ref-test-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -27267,6 +27306,7 @@
       <xsl:if test="$top-doi = $doi">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$top-doi = $doi">
             <xsl:attribute name="id">duplicate-ref-test-6</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#duplicate-ref-test-6</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28848,6 +28888,7 @@
       <xsl:if test="matches($lc,'b\.\s?subtilis') and not(italic[contains(text() ,'B. subtilis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'b\.\s?subtilis') and not(italic[contains(text() ,'B. subtilis')])">
             <xsl:attribute name="id">bssubtilis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#bssubtilis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28862,6 +28903,7 @@
       <xsl:if test="matches($lc,'bacillus\s?subtilis') and not(italic[contains(text() ,'Bacillus subtilis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'bacillus\s?subtilis') and not(italic[contains(text() ,'Bacillus subtilis')])">
             <xsl:attribute name="id">bacillusssubtilis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#bacillusssubtilis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28876,6 +28918,7 @@
       <xsl:if test="matches($lc,'d\.\s?melanogaster') and not(italic[contains(text() ,'D. melanogaster')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'d\.\s?melanogaster') and not(italic[contains(text() ,'D. melanogaster')])">
             <xsl:attribute name="id">dsmelanogaster-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#dsmelanogaster-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28890,6 +28933,7 @@
       <xsl:if test="matches($lc,'drosophila\s?melanogaster') and not(italic[contains(text() ,'Drosophila melanogaster')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'drosophila\s?melanogaster') and not(italic[contains(text() ,'Drosophila melanogaster')])">
             <xsl:attribute name="id">drosophilasmelanogaster-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drosophilasmelanogaster-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28904,6 +28948,7 @@
       <xsl:if test="matches($lc,'e\.\s?coli') and not(italic[contains(text() ,'E. coli')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'e\.\s?coli') and not(italic[contains(text() ,'E. coli')])">
             <xsl:attribute name="id">escoli-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#escoli-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28918,6 +28963,7 @@
       <xsl:if test="matches($lc,'escherichia\s?coli') and not(italic[contains(text() ,'Escherichia coli')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'escherichia\s?coli') and not(italic[contains(text() ,'Escherichia coli')])">
             <xsl:attribute name="id">escherichiascoli-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#escherichiascoli-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28932,6 +28978,7 @@
       <xsl:if test="matches($lc,'s\.\s?pombe') and not(italic[contains(text() ,'S. pombe')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'s\.\s?pombe') and not(italic[contains(text() ,'S. pombe')])">
             <xsl:attribute name="id">sspombe-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#sspombe-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28946,6 +28993,7 @@
       <xsl:if test="matches($lc,'schizosaccharomyces\s?pombe') and not(italic[contains(text() ,'Schizosaccharomyces pombe')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'schizosaccharomyces\s?pombe') and not(italic[contains(text() ,'Schizosaccharomyces pombe')])">
             <xsl:attribute name="id">schizosaccharomycesspombe-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#schizosaccharomycesspombe-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28960,6 +29008,7 @@
       <xsl:if test="matches($lc,'s\.\s?cerevisiae') and not(italic[contains(text() ,'S. cerevisiae')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'s\.\s?cerevisiae') and not(italic[contains(text() ,'S. cerevisiae')])">
             <xsl:attribute name="id">sscerevisiae-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#sscerevisiae-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28974,6 +29023,7 @@
       <xsl:if test="matches($lc,'saccharomyces\s?cerevisiae') and not(italic[contains(text() ,'Saccharomyces cerevisiae')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'saccharomyces\s?cerevisiae') and not(italic[contains(text() ,'Saccharomyces cerevisiae')])">
             <xsl:attribute name="id">saccharomycesscerevisiae-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#saccharomycesscerevisiae-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28988,6 +29038,7 @@
       <xsl:if test="matches($lc,'c\.\s?elegans') and not(italic[contains(text() ,'C. elegans')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'c\.\s?elegans') and not(italic[contains(text() ,'C. elegans')])">
             <xsl:attribute name="id">cselegans-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#cselegans-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29002,6 +29053,7 @@
       <xsl:if test="matches($lc,'caenorhabditis\s?elegans') and not(italic[contains(text() ,'Caenorhabditis elegans')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'caenorhabditis\s?elegans') and not(italic[contains(text() ,'Caenorhabditis elegans')])">
             <xsl:attribute name="id">caenorhabditisselegans-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#caenorhabditisselegans-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29016,6 +29068,7 @@
       <xsl:if test="matches($lc,'a\.\s?thaliana') and not(italic[contains(text() ,'A. thaliana')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'a\.\s?thaliana') and not(italic[contains(text() ,'A. thaliana')])">
             <xsl:attribute name="id">asthaliana-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#asthaliana-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29030,6 +29083,7 @@
       <xsl:if test="matches($lc,'arabidopsis\s?thaliana') and not(italic[contains(text() ,'Arabidopsis thaliana')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'arabidopsis\s?thaliana') and not(italic[contains(text() ,'Arabidopsis thaliana')])">
             <xsl:attribute name="id">arabidopsissthaliana-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#arabidopsissthaliana-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29044,6 +29098,7 @@
       <xsl:if test="matches($lc,'m\.\s?thermophila') and not(italic[contains(text() ,'M. thermophila')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\s?thermophila') and not(italic[contains(text() ,'M. thermophila')])">
             <xsl:attribute name="id">msthermophila-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#msthermophila-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29058,6 +29113,7 @@
       <xsl:if test="matches($lc,'myceliophthora\s?thermophila') and not(italic[contains(text() ,'Myceliophthora thermophila')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'myceliophthora\s?thermophila') and not(italic[contains(text() ,'Myceliophthora thermophila')])">
             <xsl:attribute name="id">myceliophthorasthermophila-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#myceliophthorasthermophila-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29072,6 +29128,7 @@
       <xsl:if test="matches($lc,'dictyostelium') and not(italic[contains(text() ,'Dictyostelium')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'dictyostelium') and not(italic[contains(text() ,'Dictyostelium')])">
             <xsl:attribute name="id">dictyostelium-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#dictyostelium-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29086,6 +29143,7 @@
       <xsl:if test="matches($lc,'p\.\s?falciparum') and not(italic[contains(text() ,'P. falciparum')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\s?falciparum') and not(italic[contains(text() ,'P. falciparum')])">
             <xsl:attribute name="id">psfalciparum-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#psfalciparum-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29100,6 +29158,7 @@
       <xsl:if test="matches($lc,'plasmodium\s?falciparum') and not(italic[contains(text() ,'Plasmodium falciparum')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'plasmodium\s?falciparum') and not(italic[contains(text() ,'Plasmodium falciparum')])">
             <xsl:attribute name="id">plasmodiumsfalciparum-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#plasmodiumsfalciparum-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29114,6 +29173,7 @@
       <xsl:if test="matches($lc,'s\.\s?enterica') and not(italic[contains(text() ,'S. enterica')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'s\.\s?enterica') and not(italic[contains(text() ,'S. enterica')])">
             <xsl:attribute name="id">ssenterica-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ssenterica-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29128,6 +29188,7 @@
       <xsl:if test="matches($lc,'salmonella\s?enterica') and not(italic[contains(text() ,'Salmonella enterica')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'salmonella\s?enterica') and not(italic[contains(text() ,'Salmonella enterica')])">
             <xsl:attribute name="id">salmonellasenterica-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#salmonellasenterica-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29142,6 +29203,7 @@
       <xsl:if test="matches($lc,'s\.\s?pyogenes') and not(italic[contains(text() ,'S. pyogenes')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'s\.\s?pyogenes') and not(italic[contains(text() ,'S. pyogenes')])">
             <xsl:attribute name="id">sspyogenes-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#sspyogenes-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29156,6 +29218,7 @@
       <xsl:if test="matches($lc,'streptococcus\s?pyogenes') and not(italic[contains(text() ,'Streptococcus pyogenes')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'streptococcus\s?pyogenes') and not(italic[contains(text() ,'Streptococcus pyogenes')])">
             <xsl:attribute name="id">streptococcusspyogenes-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#streptococcusspyogenes-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29170,6 +29233,7 @@
       <xsl:if test="matches($lc,'p\.\s?dumerilii') and not(italic[contains(text() ,'P. dumerilii')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\s?dumerilii') and not(italic[contains(text() ,'P. dumerilii')])">
             <xsl:attribute name="id">psdumerilii-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#psdumerilii-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29184,6 +29248,7 @@
       <xsl:if test="matches($lc,'platynereis\s?dumerilii') and not(italic[contains(text() ,'Platynereis dumerilii')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'platynereis\s?dumerilii') and not(italic[contains(text() ,'Platynereis dumerilii')])">
             <xsl:attribute name="id">platynereissdumerilii-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#platynereissdumerilii-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29198,6 +29263,7 @@
       <xsl:if test="matches($lc,'p\.\s?cynocephalus') and not(italic[contains(text() ,'P. cynocephalus')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\s?cynocephalus') and not(italic[contains(text() ,'P. cynocephalus')])">
             <xsl:attribute name="id">pscynocephalus-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pscynocephalus-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29212,6 +29278,7 @@
       <xsl:if test="matches($lc,'papio\s?cynocephalus') and not(italic[contains(text() ,'Papio cynocephalus')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'papio\s?cynocephalus') and not(italic[contains(text() ,'Papio cynocephalus')])">
             <xsl:attribute name="id">papioscynocephalus-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#papioscynocephalus-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29226,6 +29293,7 @@
       <xsl:if test="matches($lc,'o\.\s?fasciatus') and not(italic[contains(text() ,'O. fasciatus')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'o\.\s?fasciatus') and not(italic[contains(text() ,'O. fasciatus')])">
             <xsl:attribute name="id">osfasciatus-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#osfasciatus-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29240,6 +29308,7 @@
       <xsl:if test="matches($lc,'oncopeltus\s?fasciatus') and not(italic[contains(text() ,'Oncopeltus fasciatus')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'oncopeltus\s?fasciatus') and not(italic[contains(text() ,'Oncopeltus fasciatus')])">
             <xsl:attribute name="id">oncopeltussfasciatus-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#oncopeltussfasciatus-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29254,6 +29323,7 @@
       <xsl:if test="matches($lc,'n\.\s?crassa') and not(italic[contains(text() ,'N. crassa')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'n\.\s?crassa') and not(italic[contains(text() ,'N. crassa')])">
             <xsl:attribute name="id">nscrassa-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#nscrassa-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29268,6 +29338,7 @@
       <xsl:if test="matches($lc,'neurospora\s?crassa') and not(italic[contains(text() ,'Neurospora crassa')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'neurospora\s?crassa') and not(italic[contains(text() ,'Neurospora crassa')])">
             <xsl:attribute name="id">neurosporascrassa-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#neurosporascrassa-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29282,6 +29353,7 @@
       <xsl:if test="matches($lc,'c\.\s?intestinalis') and not(italic[contains(text() ,'C. intestinalis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'c\.\s?intestinalis') and not(italic[contains(text() ,'C. intestinalis')])">
             <xsl:attribute name="id">csintestinalis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#csintestinalis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29296,6 +29368,7 @@
       <xsl:if test="matches($lc,'ciona\s?intestinalis') and not(italic[contains(text() ,'Ciona intestinalis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'ciona\s?intestinalis') and not(italic[contains(text() ,'Ciona intestinalis')])">
             <xsl:attribute name="id">cionasintestinalis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#cionasintestinalis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29310,6 +29383,7 @@
       <xsl:if test="matches($lc,'e\.\s?cuniculi') and not(italic[contains(text() ,'E. cuniculi')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'e\.\s?cuniculi') and not(italic[contains(text() ,'E. cuniculi')])">
             <xsl:attribute name="id">escuniculi-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#escuniculi-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29324,6 +29398,7 @@
       <xsl:if test="matches($lc,'encephalitozoon\s?cuniculi') and not(italic[contains(text() ,'Encephalitozoon cuniculi')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'encephalitozoon\s?cuniculi') and not(italic[contains(text() ,'Encephalitozoon cuniculi')])">
             <xsl:attribute name="id">encephalitozoonscuniculi-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#encephalitozoonscuniculi-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29338,6 +29413,7 @@
       <xsl:if test="matches($lc,'h\.\s?salinarum') and not(italic[contains(text() ,'H. salinarum')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'h\.\s?salinarum') and not(italic[contains(text() ,'H. salinarum')])">
             <xsl:attribute name="id">hssalinarum-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#hssalinarum-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29352,6 +29428,7 @@
       <xsl:if test="matches($lc,'halobacterium\s?salinarum') and not(italic[contains(text() ,'Halobacterium salinarum')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'halobacterium\s?salinarum') and not(italic[contains(text() ,'Halobacterium salinarum')])">
             <xsl:attribute name="id">halobacteriumssalinarum-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#halobacteriumssalinarum-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29366,6 +29443,7 @@
       <xsl:if test="matches($lc,'s\.\s?solfataricus') and not(italic[contains(text() ,'S. solfataricus')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'s\.\s?solfataricus') and not(italic[contains(text() ,'S. solfataricus')])">
             <xsl:attribute name="id">sssolfataricus-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#sssolfataricus-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29380,6 +29458,7 @@
       <xsl:if test="matches($lc,'sulfolobus\s?solfataricus') and not(italic[contains(text() ,'Sulfolobus solfataricus')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'sulfolobus\s?solfataricus') and not(italic[contains(text() ,'Sulfolobus solfataricus')])">
             <xsl:attribute name="id">sulfolobusssolfataricus-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#sulfolobusssolfataricus-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29394,6 +29473,7 @@
       <xsl:if test="matches($lc,'s\.\s?mediterranea') and not(italic[contains(text() ,'S. mediterranea')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'s\.\s?mediterranea') and not(italic[contains(text() ,'S. mediterranea')])">
             <xsl:attribute name="id">ssmediterranea-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ssmediterranea-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29408,6 +29488,7 @@
       <xsl:if test="matches($lc,'schmidtea\s?mediterranea') and not(italic[contains(text() ,'Schmidtea mediterranea')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'schmidtea\s?mediterranea') and not(italic[contains(text() ,'Schmidtea mediterranea')])">
             <xsl:attribute name="id">schmidteasmediterranea-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#schmidteasmediterranea-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29422,6 +29503,7 @@
       <xsl:if test="matches($lc,'s\.\s?rosetta') and not(italic[contains(text() ,'S. rosetta')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'s\.\s?rosetta') and not(italic[contains(text() ,'S. rosetta')])">
             <xsl:attribute name="id">ssrosetta-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ssrosetta-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29436,6 +29518,7 @@
       <xsl:if test="matches($lc,'salpingoeca\s?rosetta') and not(italic[contains(text() ,'Salpingoeca rosetta')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'salpingoeca\s?rosetta') and not(italic[contains(text() ,'Salpingoeca rosetta')])">
             <xsl:attribute name="id">salpingoecasrosetta-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#salpingoecasrosetta-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29450,6 +29533,7 @@
       <xsl:if test="matches($lc,'n\.\s?vectensis') and not(italic[contains(text() ,'N. vectensis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'n\.\s?vectensis') and not(italic[contains(text() ,'N. vectensis')])">
             <xsl:attribute name="id">nsvectensis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#nsvectensis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29464,6 +29548,7 @@
       <xsl:if test="matches($lc,'nematostella\s?vectensis') and not(italic[contains(text() ,'Nematostella vectensis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'nematostella\s?vectensis') and not(italic[contains(text() ,'Nematostella vectensis')])">
             <xsl:attribute name="id">nematostellasvectensis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#nematostellasvectensis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29478,6 +29563,7 @@
       <xsl:if test="matches($lc,'s\.\s?aureus') and not(italic[contains(text() ,'S. aureus')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'s\.\s?aureus') and not(italic[contains(text() ,'S. aureus')])">
             <xsl:attribute name="id">ssaureus-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ssaureus-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29492,6 +29578,7 @@
       <xsl:if test="matches($lc,'staphylococcus\s?aureus') and not(italic[contains(text() ,'Staphylococcus aureus')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'staphylococcus\s?aureus') and not(italic[contains(text() ,'Staphylococcus aureus')])">
             <xsl:attribute name="id">staphylococcussaureus-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#staphylococcussaureus-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29506,6 +29593,7 @@
       <xsl:if test="matches($lc,'v\.\s?cholerae') and not(italic[contains(text() ,'V. cholerae')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'v\.\s?cholerae') and not(italic[contains(text() ,'V. cholerae')])">
             <xsl:attribute name="id">vscholerae-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#vscholerae-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29520,6 +29608,7 @@
       <xsl:if test="matches($lc,'vibrio\s?cholerae') and not(italic[contains(text() ,'Vibrio cholerae')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'vibrio\s?cholerae') and not(italic[contains(text() ,'Vibrio cholerae')])">
             <xsl:attribute name="id">vibrioscholerae-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#vibrioscholerae-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29534,6 +29623,7 @@
       <xsl:if test="matches($lc,'t\.\s?thermophila') and not(italic[contains(text() ,'T. thermophila')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'t\.\s?thermophila') and not(italic[contains(text() ,'T. thermophila')])">
             <xsl:attribute name="id">tsthermophila-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#tsthermophila-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29548,6 +29638,7 @@
       <xsl:if test="matches($lc,'tetrahymena\s?thermophila') and not(italic[contains(text() ,'Tetrahymena thermophila')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'tetrahymena\s?thermophila') and not(italic[contains(text() ,'Tetrahymena thermophila')])">
             <xsl:attribute name="id">tetrahymenasthermophila-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#tetrahymenasthermophila-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29562,6 +29653,7 @@
       <xsl:if test="matches($lc,'c\.\s?reinhardtii') and not(italic[contains(text() ,'C. reinhardtii')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'c\.\s?reinhardtii') and not(italic[contains(text() ,'C. reinhardtii')])">
             <xsl:attribute name="id">csreinhardtii-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#csreinhardtii-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29576,6 +29668,7 @@
       <xsl:if test="matches($lc,'chlamydomonas\s?reinhardtii') and not(italic[contains(text() ,'Chlamydomonas reinhardtii')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'chlamydomonas\s?reinhardtii') and not(italic[contains(text() ,'Chlamydomonas reinhardtii')])">
             <xsl:attribute name="id">chlamydomonassreinhardtii-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#chlamydomonassreinhardtii-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29590,6 +29683,7 @@
       <xsl:if test="matches($lc,'n\.\s?attenuata') and not(italic[contains(text() ,'N. attenuata')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'n\.\s?attenuata') and not(italic[contains(text() ,'N. attenuata')])">
             <xsl:attribute name="id">nsattenuata-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#nsattenuata-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29604,6 +29698,7 @@
       <xsl:if test="matches($lc,'nicotiana\s?attenuata') and not(italic[contains(text() ,'Nicotiana attenuata')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'nicotiana\s?attenuata') and not(italic[contains(text() ,'Nicotiana attenuata')])">
             <xsl:attribute name="id">nicotianasattenuata-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#nicotianasattenuata-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29618,6 +29713,7 @@
       <xsl:if test="matches($lc,'e\.\s?carotovora') and not(italic[contains(text() ,'E. carotovora')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'e\.\s?carotovora') and not(italic[contains(text() ,'E. carotovora')])">
             <xsl:attribute name="id">escarotovora-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#escarotovora-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29632,6 +29728,7 @@
       <xsl:if test="matches($lc,'erwinia\s?carotovora') and not(italic[contains(text() ,'Erwinia carotovora')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'erwinia\s?carotovora') and not(italic[contains(text() ,'Erwinia carotovora')])">
             <xsl:attribute name="id">erwiniascarotovora-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#erwiniascarotovora-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29646,6 +29743,7 @@
       <xsl:if test="matches($lc,'e\.\s?faecalis') and not(italic[contains(text() ,'E. faecalis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'e\.\s?faecalis') and not(italic[contains(text() ,'E. faecalis')])">
             <xsl:attribute name="id">esfaecalis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#esfaecalis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29660,6 +29758,7 @@
       <xsl:if test="matches($lc,'h\.\s?sapiens') and not(italic[contains(text() ,'H. sapiens')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'h\.\s?sapiens') and not(italic[contains(text() ,'H. sapiens')])">
             <xsl:attribute name="id">hsapiens-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#hsapiens-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29674,6 +29773,7 @@
       <xsl:if test="matches($lc,'homo\s?sapiens') and not(italic[contains(text() ,'Homo sapiens')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'homo\s?sapiens') and not(italic[contains(text() ,'Homo sapiens')])">
             <xsl:attribute name="id">homosapiens-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#homosapiens-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29688,6 +29788,7 @@
       <xsl:if test="matches($lc,'c\.\s?trachomatis') and not(italic[contains(text() ,'C. trachomatis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'c\.\s?trachomatis') and not(italic[contains(text() ,'C. trachomatis')])">
             <xsl:attribute name="id">ctrachomatis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ctrachomatis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29702,6 +29803,7 @@
       <xsl:if test="matches($lc,'chlamydia\s?trachomatis') and not(italic[contains(text() ,'Chlamydia trachomatis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'chlamydia\s?trachomatis') and not(italic[contains(text() ,'Chlamydia trachomatis')])">
             <xsl:attribute name="id">chlamydiatrachomatis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#chlamydiatrachomatis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29716,6 +29818,7 @@
       <xsl:if test="matches($lc,'enterococcus\s?faecalis') and not(italic[contains(text() ,'Enterococcus faecalis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'enterococcus\s?faecalis') and not(italic[contains(text() ,'Enterococcus faecalis')])">
             <xsl:attribute name="id">enterococcussfaecalis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#enterococcussfaecalis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -29730,11 +29833,13 @@
       <xsl:if test="matches($lc,'x\.\s?laevis') and not(italic[contains(text() ,'X. laevis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'x\.\s?laevis') and not(italic[contains(text() ,'X. laevis')])">
             <xsl:attribute name="id">xlaevis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#xlaevis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[xlaevis-ref-article-title-check] <xsl:text/>
+            <svrl:text>[xlaevis-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'X. laevis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29744,11 +29849,13 @@
       <xsl:if test="matches($lc,'xenopus\s?laevis') and not(italic[contains(text() ,'Xenopus laevis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'xenopus\s?laevis') and not(italic[contains(text() ,'Xenopus laevis')])">
             <xsl:attribute name="id">xenopuslaevis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#xenopuslaevis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[xenopuslaevis-ref-article-title-check] <xsl:text/>
+            <svrl:text>[xenopuslaevis-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Xenopus laevis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29758,11 +29865,13 @@
       <xsl:if test="matches($lc,'x\.\s?tropicalis') and not(italic[contains(text() ,'X. tropicalis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'x\.\s?tropicalis') and not(italic[contains(text() ,'X. tropicalis')])">
             <xsl:attribute name="id">xtropicalis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#xtropicalis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[xtropicalis-ref-article-title-check] <xsl:text/>
+            <svrl:text>[xtropicalis-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'X. tropicalis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29772,11 +29881,13 @@
       <xsl:if test="matches($lc,'xenopus\s?tropicalis') and not(italic[contains(text() ,'Xenopus tropicalis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'xenopus\s?tropicalis') and not(italic[contains(text() ,'Xenopus tropicalis')])">
             <xsl:attribute name="id">xenopustropicalis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#xenopustropicalis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[xenopustropicalis-ref-article-title-check] <xsl:text/>
+            <svrl:text>[xenopustropicalis-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Xenopus tropicalis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29786,11 +29897,13 @@
       <xsl:if test="matches($lc,'m\.\s?musculus') and not(italic[contains(text() ,'M. musculus')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\s?musculus') and not(italic[contains(text() ,'M. musculus')])">
             <xsl:attribute name="id">mmusculus-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mmusculus-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[mmusculus-ref-article-title-check] <xsl:text/>
+            <svrl:text>[mmusculus-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'M. musculus' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29800,11 +29913,13 @@
       <xsl:if test="matches($lc,'mus\s?musculus') and not(italic[contains(text() ,'Mus musculus')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'mus\s?musculus') and not(italic[contains(text() ,'Mus musculus')])">
             <xsl:attribute name="id">musmusculus-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#musmusculus-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[musmusculus-ref-article-title-check] <xsl:text/>
+            <svrl:text>[musmusculus-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Mus musculus' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29814,11 +29929,13 @@
       <xsl:if test="matches($lc,'d\.\s?immigrans') and not(italic[contains(text() ,'D. immigrans')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'d\.\s?immigrans') and not(italic[contains(text() ,'D. immigrans')])">
             <xsl:attribute name="id">dimmigrans-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#dimmigrans-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[dimmigrans-ref-article-title-check] <xsl:text/>
+            <svrl:text>[dimmigrans-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'D. immigrans' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29828,11 +29945,13 @@
       <xsl:if test="matches($lc,'drosophila\s?immigrans') and not(italic[contains(text() ,'Drosophila immigrans')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'drosophila\s?immigrans') and not(italic[contains(text() ,'Drosophila immigrans')])">
             <xsl:attribute name="id">drosophilaimmigrans-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drosophilaimmigrans-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[drosophilaimmigrans-ref-article-title-check] <xsl:text/>
+            <svrl:text>[drosophilaimmigrans-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Drosophila immigrans' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29842,11 +29961,13 @@
       <xsl:if test="matches($lc,'d\.\s?subobscura') and not(italic[contains(text() ,'D. subobscura')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'d\.\s?subobscura') and not(italic[contains(text() ,'D. subobscura')])">
             <xsl:attribute name="id">dsubobscura-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#dsubobscura-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[dsubobscura-ref-article-title-check] <xsl:text/>
+            <svrl:text>[dsubobscura-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'D. subobscura' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29856,11 +29977,13 @@
       <xsl:if test="matches($lc,'drosophila\s?subobscura') and not(italic[contains(text() ,'Drosophila subobscura')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'drosophila\s?subobscura') and not(italic[contains(text() ,'Drosophila subobscura')])">
             <xsl:attribute name="id">drosophilasubobscura-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drosophilasubobscura-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[drosophilasubobscura-ref-article-title-check] <xsl:text/>
+            <svrl:text>[drosophilasubobscura-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Drosophila subobscura' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29870,11 +29993,13 @@
       <xsl:if test="matches($lc,'d\.\s?affinis') and not(italic[contains(text() ,'D. affinis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'d\.\s?affinis') and not(italic[contains(text() ,'D. affinis')])">
             <xsl:attribute name="id">daffinis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#daffinis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[daffinis-ref-article-title-check] <xsl:text/>
+            <svrl:text>[daffinis-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'D. affinis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29884,11 +30009,13 @@
       <xsl:if test="matches($lc,'drosophila\s?affinis') and not(italic[contains(text() ,'Drosophila affinis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'drosophila\s?affinis') and not(italic[contains(text() ,'Drosophila affinis')])">
             <xsl:attribute name="id">drosophilaaffinis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drosophilaaffinis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[drosophilaaffinis-ref-article-title-check] <xsl:text/>
+            <svrl:text>[drosophilaaffinis-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Drosophila affinis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29898,11 +30025,13 @@
       <xsl:if test="matches($lc,'d\.\s?obscura') and not(italic[contains(text() ,'D. obscura')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'d\.\s?obscura') and not(italic[contains(text() ,'D. obscura')])">
             <xsl:attribute name="id">dobscura-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#dobscura-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[dobscura-ref-article-title-check] <xsl:text/>
+            <svrl:text>[dobscura-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'D. obscura' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29912,11 +30041,13 @@
       <xsl:if test="matches($lc,'drosophila\s?obscura') and not(italic[contains(text() ,'Drosophila obscura')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'drosophila\s?obscura') and not(italic[contains(text() ,'Drosophila obscura')])">
             <xsl:attribute name="id">drosophilaobscura-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drosophilaobscura-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[drosophilaobscura-ref-article-title-check] <xsl:text/>
+            <svrl:text>[drosophilaobscura-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Drosophila obscura' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29926,11 +30057,13 @@
       <xsl:if test="matches($lc,'f\.\s?tularensis') and not(italic[contains(text() ,'F. tularensis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'f\.\s?tularensis') and not(italic[contains(text() ,'F. tularensis')])">
             <xsl:attribute name="id">ftularensis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ftularensis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[ftularensis-ref-article-title-check] <xsl:text/>
+            <svrl:text>[ftularensis-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29940,11 +30073,13 @@
       <xsl:if test="matches($lc,'francisella\s?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'francisella\s?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])">
             <xsl:attribute name="id">francisellatularensis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#francisellatularensis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[francisellatularensis-ref-article-title-check] <xsl:text/>
+            <svrl:text>[francisellatularensis-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29954,11 +30089,13 @@
       <xsl:if test="matches($lc,'p\.\s?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\s?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])">
             <xsl:attribute name="id">pplantaginis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pplantaginis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[pplantaginis-ref-article-title-check] <xsl:text/>
+            <svrl:text>[pplantaginis-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'P. plantaginis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29968,11 +30105,13 @@
       <xsl:if test="matches($lc,'podosphaera\s?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'podosphaera\s?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])">
             <xsl:attribute name="id">podosphaeraplantaginis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#podosphaeraplantaginis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[podosphaeraplantaginis-ref-article-title-check] <xsl:text/>
+            <svrl:text>[podosphaeraplantaginis-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Podosphaera plantaginis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29982,11 +30121,13 @@
       <xsl:if test="matches($lc,'p\.\s?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\s?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])">
             <xsl:attribute name="id">planceolata-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#planceolata-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[planceolata-ref-article-title-check] <xsl:text/>
+            <svrl:text>[planceolata-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'P. lanceolata' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -29996,11 +30137,13 @@
       <xsl:if test="matches($lc,'plantago\s?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'plantago\s?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])">
             <xsl:attribute name="id">plantagolanceolata-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#plantagolanceolata-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[plantagolanceolata-ref-article-title-check] <xsl:text/>
+            <svrl:text>[plantagolanceolata-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Plantago lanceolata' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -30010,11 +30153,13 @@
       <xsl:if test="matches($lc,'m\.\s?trossulus') and not(italic[contains(text() ,'M. trossulus')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\s?trossulus') and not(italic[contains(text() ,'M. trossulus')])">
             <xsl:attribute name="id">mtrossulus-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mtrossulus-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[mtrossulus-ref-article-title-check] <xsl:text/>
+            <svrl:text>[mtrossulus-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'M. trossulus' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -30024,11 +30169,13 @@
       <xsl:if test="matches($lc,'mytilus\s?trossulus') and not(italic[contains(text() ,'Mytilus trossulus')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'mytilus\s?trossulus') and not(italic[contains(text() ,'Mytilus trossulus')])">
             <xsl:attribute name="id">mytilustrossulus-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mytilustrossulus-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[mytilustrossulus-ref-article-title-check] <xsl:text/>
+            <svrl:text>[mytilustrossulus-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Mytilus trossulus' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -30038,11 +30185,13 @@
       <xsl:if test="matches($lc,'m\.\s?edulis') and not(italic[contains(text() ,'M. edulis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\s?edulis') and not(italic[contains(text() ,'M. edulis')])">
             <xsl:attribute name="id">medulis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#medulis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[medulis-ref-article-title-check] <xsl:text/>
+            <svrl:text>[medulis-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'M. edulis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -30052,11 +30201,13 @@
       <xsl:if test="matches($lc,'mytilus\s?edulis') and not(italic[contains(text() ,'Mytilus edulis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'mytilus\s?edulis') and not(italic[contains(text() ,'Mytilus edulis')])">
             <xsl:attribute name="id">mytilusedulis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mytilusedulis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[mytilusedulis-ref-article-title-check] <xsl:text/>
+            <svrl:text>[mytilusedulis-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Mytilus edulis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -30066,11 +30217,13 @@
       <xsl:if test="matches($lc,'m\.\s?chilensis') and not(italic[contains(text() ,'M. chilensis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\s?chilensis') and not(italic[contains(text() ,'M. chilensis')])">
             <xsl:attribute name="id">mchilensis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mchilensis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[mchilensis-ref-article-title-check] <xsl:text/>
+            <svrl:text>[mchilensis-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'M. chilensis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -30080,11 +30233,13 @@
       <xsl:if test="matches($lc,'mytilus\s?chilensis') and not(italic[contains(text() ,'Mytilus chilensis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'mytilus\s?chilensis') and not(italic[contains(text() ,'Mytilus chilensis')])">
             <xsl:attribute name="id">mytiluschilensis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mytiluschilensis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[mytiluschilensis-ref-article-title-check] <xsl:text/>
+            <svrl:text>[mytiluschilensis-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Mytilus chilensis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -30094,11 +30249,13 @@
       <xsl:if test="matches($lc,'u\.\s?maydis') and not(italic[contains(text() ,'U. maydis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'u\.\s?maydis') and not(italic[contains(text() ,'U. maydis')])">
             <xsl:attribute name="id">umaydis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#umaydis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[umaydis-ref-article-title-check] <xsl:text/>
+            <svrl:text>[umaydis-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'U. maydis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -30108,11 +30265,13 @@
       <xsl:if test="matches($lc,'ustilago\s?maydis') and not(italic[contains(text() ,'Ustilago maydis')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'ustilago\s?maydis') and not(italic[contains(text() ,'Ustilago maydis')])">
             <xsl:attribute name="id">ustilagomaydis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ustilagomaydis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[ustilagomaydis-ref-article-title-check] <xsl:text/>
+            <svrl:text>[ustilagomaydis-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Ustilago maydis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -30122,11 +30281,13 @@
       <xsl:if test="matches($lc,'p\.\s?knowlesi') and not(italic[contains(text() ,'P. knowlesi')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\s?knowlesi') and not(italic[contains(text() ,'P. knowlesi')])">
             <xsl:attribute name="id">pknowlesi-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pknowlesi-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[pknowlesi-ref-article-title-check] <xsl:text/>
+            <svrl:text>[pknowlesi-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'P. knowlesi' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -30136,11 +30297,13 @@
       <xsl:if test="matches($lc,'plasmodium\s?knowlesi') and not(italic[contains(text() ,'Plasmodium knowlesi')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'plasmodium\s?knowlesi') and not(italic[contains(text() ,'Plasmodium knowlesi')])">
             <xsl:attribute name="id">plasmodiumknowlesi-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#plasmodiumknowlesi-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[plasmodiumknowlesi-ref-article-title-check] <xsl:text/>
+            <svrl:text>[plasmodiumknowlesi-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Plasmodium knowlesi' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -30150,11 +30313,13 @@
       <xsl:if test="matches($lc,'p\.\s?aeruginosa') and not(italic[contains(text() ,'P. aeruginosa')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\s?aeruginosa') and not(italic[contains(text() ,'P. aeruginosa')])">
             <xsl:attribute name="id">paeruginosa-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#paeruginosa-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[paeruginosa-ref-article-title-check] <xsl:text/>
+            <svrl:text>[paeruginosa-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'P. aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -30164,11 +30329,13 @@
       <xsl:if test="matches($lc,'pseudomonas\s?aeruginosa') and not(italic[contains(text() ,'Pseudomonas aeruginosa')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'pseudomonas\s?aeruginosa') and not(italic[contains(text() ,'Pseudomonas aeruginosa')])">
             <xsl:attribute name="id">pseudomonasaeruginosa-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pseudomonasaeruginosa-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[pseudomonasaeruginosa-ref-article-title-check] <xsl:text/>
+            <svrl:text>[pseudomonasaeruginosa-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Pseudomonas aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -30178,11 +30345,13 @@
       <xsl:if test="matches($lc,'t\.\s?brucei') and not(italic[contains(text() ,'T. brucei')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'t\.\s?brucei') and not(italic[contains(text() ,'T. brucei')])">
             <xsl:attribute name="id">tbrucei-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#tbrucei-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[tbrucei-ref-article-title-check] <xsl:text/>
+            <svrl:text>[tbrucei-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'T. brucei' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -30192,11 +30361,13 @@
       <xsl:if test="matches($lc,'trypanosoma\s?brucei') and not(italic[contains(text() ,'Trypanosoma brucei')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'trypanosoma\s?brucei') and not(italic[contains(text() ,'Trypanosoma brucei')])">
             <xsl:attribute name="id">trypanosomabrucei-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#trypanosomabrucei-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[trypanosomabrucei-ref-article-title-check] <xsl:text/>
+            <svrl:text>[trypanosomabrucei-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Trypanosoma brucei' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -30206,11 +30377,13 @@
       <xsl:if test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])">
             <xsl:attribute name="id">drerio-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drerio-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[drerio-ref-article-title-check] <xsl:text/>
+            <svrl:text>[drerio-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -30220,11 +30393,13 @@
       <xsl:if test="matches($lc,'danio\s?rerio') and not(italic[contains(text() ,'Danio rerio')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'danio\s?rerio') and not(italic[contains(text() ,'Danio rerio')])">
             <xsl:attribute name="id">daniorerio-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#daniorerio-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[daniorerio-ref-article-title-check] <xsl:text/>
+            <svrl:text>[daniorerio-ref-article-title-check] 
+        <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Danio rerio' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
@@ -30234,6 +30409,7 @@
       <xsl:if test="matches($lc,'drosophila') and not(italic[contains(text(),'Drosophila')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'drosophila') and not(italic[contains(text(),'Drosophila')])">
             <xsl:attribute name="id">drosophila-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drosophila-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -30248,6 +30424,7 @@
       <xsl:if test="matches($lc,'xenopus') and not(italic[contains(text() ,'Xenopus')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'xenopus') and not(italic[contains(text() ,'Xenopus')])">
             <xsl:attribute name="id">xenopus-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#xenopus-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -34776,6 +34953,7 @@
       <xsl:if test="matches(.,':')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,':')">
             <xsl:attribute name="id">publisher-name-colon</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#publisher-name-colon</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -34792,6 +34970,7 @@
       <xsl:if test="matches(.,'[Ii]nc\.')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Ii]nc\.')">
             <xsl:attribute name="id">publisher-name-inc</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#publisher-name-inc</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -34809,6 +34988,7 @@
       <xsl:if test="matches(.,'�')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'�')">
             <xsl:attribute name="id">pub-name-replacement-character-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-name-replacement-character-presence</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -34826,6 +35006,7 @@
       <xsl:if test="matches(lower-case(.),'guardian|the independent|times|post|news')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'guardian|the independent|times|post|news')">
             <xsl:attribute name="id">pub-name-newspaper</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-name-newspaper</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -34855,6 +35036,7 @@
       <xsl:if test="matches(.,'[Aa]uthor')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Aa]uthor')">
             <xsl:attribute name="id">author-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#author-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -34869,6 +35051,7 @@
       <xsl:if test="matches(.,'[Ed]itor')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Ed]itor')">
             <xsl:attribute name="id">author-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#author-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -34883,6 +35066,7 @@
       <xsl:if test="matches(.,'[Pp]ress')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Pp]ress')">
             <xsl:attribute name="id">author-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#author-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -34897,6 +35081,7 @@
       <xsl:if test="matches(surname[1],'^[A-Z]*$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(surname[1],'^[A-Z]*$')">
             <xsl:attribute name="id">all-caps-surname</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#all-caps-surname</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -34915,6 +35100,7 @@
       <xsl:if test="matches(.,'[0-9]')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[0-9]')">
             <xsl:attribute name="id">surname-number-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#surname-number-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -34931,6 +35117,7 @@
       <xsl:if test="matches(surname[1],'^\s*?…|^\s*?\.\s?\.\s?\.')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(surname[1],'^\s*?…|^\s*?\.\s?\.\s?\.')">
             <xsl:attribute name="id">surname-ellipsis-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#surname-ellipsis-check</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -34939,7 +35126,7 @@
                <xsl:value-of select="ancestor::ref/@id"/>
                <xsl:text/>' begins with an ellipsis which is wrong - <xsl:text/>
                <xsl:value-of select="surname"/>
-               <xsl:text/>. Are there preceding author missing from the list?</svrl:text>
+               <xsl:text/>. Are there preceding authors missing from the list?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -34949,6 +35136,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(surname) = 1">
                <xsl:attribute name="id">surname-count</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#surname-count</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -34970,6 +35158,7 @@
       <xsl:if test="count(given-names) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(given-names) gt 1">
             <xsl:attribute name="id">given-names-count</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#given-names-count</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -34990,6 +35179,7 @@
       <xsl:if test="count(given-names) lt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(given-names) lt 1">
             <xsl:attribute name="id">given-names-count-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#given-names-count-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -35055,6 +35245,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$sum = 0">
                <xsl:attribute name="id">isbn-conformity-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#isbn-conformity-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36212,6 +36403,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::article//xref[@rid = $id]">
                <xsl:attribute name="id">final-ref-link-presence</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-ref-link-presence</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36625,6 +36817,7 @@
       <xsl:if test="string-length(.) gt 4">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="string-length(.) gt 4">
             <xsl:attribute name="id">ref-given-names-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ref-given-names-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -37153,6 +37346,7 @@
       <xsl:if test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9]+|\s10\.\d{4,9}/[-._;()/:A-Za-z0-9]+')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9]+|\s10\.\d{4,9}/[-._;()/:A-Za-z0-9]+')">
             <xsl:attribute name="id">doi-in-display-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#doi-in-display-test</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -37169,6 +37363,7 @@
       <xsl:if test="matches(.,'https?:|ftp://|git://|tel:|mailto:')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'https?:|ftp://|git://|tel:|mailto:')">
             <xsl:attribute name="id">link-in-display-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#link-in-display-test</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>

@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="element-citation-general-tests">
     <rule context="element-citation" id="elem-citation-general">
-      <report test="descendant::etal" role="error" id="err-elem-cit-gen-name-5">The &lt;etal&gt; element in a reference is not allowed. Reference '<value-of select="ancestor::ref/@id"/>' contains it.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-name-5" test="descendant::etal" role="error" id="err-elem-cit-gen-name-5">The &lt;etal&gt; element in a reference is not allowed. Reference '<value-of select="ancestor::ref/@id"/>' contains it.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -2,7 +2,7 @@
 <!--Context: element-citation[@publication-type='periodical']/string-date
 Test: report    not(@iso-8601-date) or (substring(normalize-space(@iso-8601-date),1,4) != $YYYY)
 Message: [err-elem-cit-periodical-7-5]
-        The numeric value of the first 4 digits of the @iso-8601-date attribute must match the first 4 digits on the 
+        The numeric value of the 4 digits in the @iso-8601-date attribute must match the first 4 digits on the 
         <year> element.
         Reference '' does not meet this requirement as the element contains
         the value '' and the attribute contains the value 
