@@ -6,6 +6,6 @@ Message: Equation likely contains a broken unicode - . -->
   <article>
     <mml:math>&lt;</mml:math>
     <mml:math>&gt;</mml:math>
-    <mml:math>&#x3A9;</mml:math>
+    <mml:math>Ω</mml:math>
   </article>
 </root>

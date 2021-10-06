@@ -959,7 +959,7 @@
           <xsl:element name="list">
             <xsl:attribute name="list-type">roman</xsl:attribute>
             <xsl:for-each select="tokenize($regex,'\|')">
-              <xsl:variable name="display" select="replace(replace(.,'\\p{Zs}\+',' '),'^ | $','')"/>
+              <xsl:variable name="display" select="replace(replace(.,'\s\+',' '),'^ | $','')"/>
               <xsl:element name="match">
                 <xsl:attribute name="count">
                   <xsl:value-of select="count(tokenize($roman-text,.)) - 1"/>
@@ -980,7 +980,7 @@
           <xsl:element name="list">
             <xsl:attribute name="list-type">italic</xsl:attribute>
             <xsl:for-each select="tokenize($regex,'\|')">
-              <xsl:variable name="display" select="replace(.,'\\p{Zs}\+',' ')"/>
+              <xsl:variable name="display" select="replace(.,'\s\+',' ')"/>
               <xsl:element name="match">
                 <xsl:attribute name="count">
                   <xsl:value-of select="count(tokenize($italic-text,.)) - 1"/>
