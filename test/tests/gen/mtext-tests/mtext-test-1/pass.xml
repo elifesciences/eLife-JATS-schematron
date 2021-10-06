@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="mtext-test-1.sch"?>
 <!--Context: mml:mtext
-Test: report    matches(.,'^\s*\\')
+Test: report    matches(.,'^\p{Zs}*\\')
 Message: math ( element) contains '' which looks suspiciously like LaTeX markup. Is it correct? Or is there missing content or content which has been processed incompletely? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

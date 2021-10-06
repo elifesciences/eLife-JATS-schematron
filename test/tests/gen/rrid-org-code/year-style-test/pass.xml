@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="year-style-test.sch"?>
 <!--Context: p|td|th
-Test: report    matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]') and not(descendant::p[matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]')]) and not(descendant::td) and not(descendant::th)
+Test: report    matches(.,'\p{Zs}[1-2][0-9][0-9]0\p{Zs}s[\p{Zs}\.]') and not(descendant::p[matches(.,'\p{Zs}[1-2][0-9][0-9]0\p{Zs}s[\p{Zs}\.]')]) and not(descendant::td) and not(descendant::th)
 Message: '' element contains the following string(s) - . If this refers to years, then the space should be removed after the number, i.e. . If the text is referring to a unit then this is fine. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

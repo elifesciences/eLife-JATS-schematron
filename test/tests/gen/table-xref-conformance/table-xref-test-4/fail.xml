@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="table-xref-test-4.sch"?>
 <!--Context: xref[@ref-type='table']
-Test: report    matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')
+Test: report    matches($post-text,'^[\p{Zs}]?[\p{Zs}—\-][\p{Zs}]?[Ss]ource')
 Message: Incomplete citation. Table citation is followed by text which suggests it should instead be a link to source data or code - '. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

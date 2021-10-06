@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="plus-minus-presence.sch"?>
 <!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link
-Test: report    matches(translate(.,' ',' '),'[\+\-]\s+/\s?[\+\-]|[\+\-]\s?/\s+[\+\-]')
+Test: report    matches(translate(.,' ',' '),'[\+\-]\p{Zs}+/\p{Zs}?[\+\-]|[\+\-]\p{Zs}?/\p{Zs}+[\+\-]')
 Message:  element contains two plus or minus signs separated by a space and a forward slash (such as '+ /-'). Should the space be removed? -  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

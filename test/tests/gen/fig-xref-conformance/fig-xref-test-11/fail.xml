@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="fig-xref-test-11.sch"?>
 <!--Context: xref[@ref-type='fig' and @rid]
-Test: report    matches($post-text,'^[\s]?[\s\p{P}][\s]?[Vv]ideo')
+Test: report    matches($post-text,'^[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?[Vv]ideo')
 Message: Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - '. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

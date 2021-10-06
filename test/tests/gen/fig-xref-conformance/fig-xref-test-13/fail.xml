@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="fig-xref-test-13.sch"?>
 <!--Context: xref[@ref-type='fig' and @rid]
-Test: report    matches($post-text,'^[\s]?[Ss]upplement|^[\s]?[Ff]igure [Ss]upplement|^[\s]?[Ss]ource|^[\s]?[Vv]ideo')
+Test: report    matches($post-text,'^[\p{Zs}]?[Ss]upplement|^[\p{Zs}]?[Ff]igure [Ss]upplement|^[\p{Zs}]?[Ss]ource|^[\p{Zs}]?[Vv]ideo')
 Message: Figure citation is followed by text which suggests it could be an incomplete citation - '. Is this OK? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

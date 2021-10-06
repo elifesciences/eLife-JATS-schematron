@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="ref-xref-test-13.sch"?>
 <!--Context: xref[@ref-type='bibr']
-Test: report    matches($pre-sentence,'\(\[\s?$')
+Test: report    matches($pre-sentence,'\(\[\p{Zs}?$')
 Message: citation is preceded by '(['. Is the square bracket unnecessary? - . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

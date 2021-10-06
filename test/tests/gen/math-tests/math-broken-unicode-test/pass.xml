@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="math-broken-unicode-test.sch"?>
+<!--Context: mml:math
+Test: report    matches(.,'&#x\d|&lt;|&gt;')
+Message: Equation likely contains a broken unicode - . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <mml:math>&lt;</mml:math>
+    <mml:math>&gt;</mml:math>
+    <mml:math>Ω</mml:math>
+  </article>
+</root>

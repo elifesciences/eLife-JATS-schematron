@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="ref-xref-test-18.sch"?>
 <!--Context: xref[@ref-type='bibr']
-Test: report    matches($pre-sentence,'\(\s?$') and matches($post-sentence,'^\s?\);') and (following-sibling::*[1]/name()='xref')
+Test: report    matches($pre-sentence,'\(\p{Zs}?$') and matches($post-sentence,'^\p{Zs}?\);') and (following-sibling::*[1]/name()='xref')
 Message: citation is preceded by '(', and followed by ');'. Should the brackets be removed? - . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

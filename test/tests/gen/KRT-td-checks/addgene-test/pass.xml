@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="addgene-test.sch"?>
 <!--Context: table-wrap[@id='keyresource']//td
-Test: report    matches(lower-case(.),'addgene\s?#?\s?\d') and not(ext-link[contains(@xlink:href,'scicrunch.org/resolver')])
+Test: report    matches(lower-case(.),'addgene\p{Zs}?#?\p{Zs}?\d') and not(ext-link[contains(@xlink:href,'scicrunch.org/resolver')])
 Message: td element containing - '' - looks like it contains an addgene number. Should this be changed to an RRID with a https://scicrunch.org/resolver/RRID:addgene_{number} link? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

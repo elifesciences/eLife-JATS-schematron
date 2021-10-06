@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="given-names-test-8.sch"?>
 <!--Context: contrib-group//name/given-names
-Test: report    matches(.,'^\s')
+Test: report    matches(.,'^\p{Zs}')
 Message: given-names starts with a space, which cannot be correct - ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

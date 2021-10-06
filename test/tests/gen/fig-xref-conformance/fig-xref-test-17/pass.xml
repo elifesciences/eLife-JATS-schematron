@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="fig-xref-test-17.sch"?>
 <!--Context: xref[@ref-type='fig' and @rid]
-Test: report    matches(.,'[A-Z]$') and matches($post-text,'^\s?and [A-Z] |^\s?and [A-Z]\.')
+Test: report    matches(.,'[A-Z]$') and matches($post-text,'^\p{Zs}?and [A-Z] |^\p{Zs}?and [A-Z]\.')
 Message: Figure citation - '' - is followed by the text '' - should this text be included in the link text too (i.e. '')? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
