@@ -79,29 +79,29 @@
           <xsl:when test="lower-case($token1)='elife'">
             <xsl:value-of select="concat('eLife',
               ' ',
-              string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')
+              string-join(for $x in tokenize(substring-after($token2,' '),'\p{Zs}') return e:titleCaseToken($x),' ')
               )"/>
           </xsl:when>
           <xsl:when test="matches(lower-case($token1),'^rna$|^dna$|^mri$|^hiv$|^tor$|^aids$|^covid-19$|^covid$')">
             <xsl:value-of select="concat(upper-case($token1),
               ' ',
-              string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')
+              string-join(for $x in tokenize(substring-after($token2,' '),'\p{Zs}') return e:titleCaseToken($x),' ')
               )"/>
           </xsl:when>
           <xsl:when test="matches(lower-case($token1),'[1-4]d')">
             <xsl:value-of select="concat(upper-case($token1),
               ' ',
-              string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')
+              string-join(for $x in tokenize(substring-after($token2,' '),'\p{Zs}') return e:titleCaseToken($x),' ')
               )"/>
           </xsl:when>
           <xsl:when test="contains($token1,'-')">
-            <xsl:value-of select="string-join(for $x in tokenize($s,'\s') return e:titleCaseToken($x),' ')"/>
+            <xsl:value-of select="string-join(for $x in tokenize($s,'\p{Zs}') return e:titleCaseToken($x),' ')"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="concat(
               concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),
               ' ',
-              string-join(for $x in tokenize(substring-after($token2,' '),'\s') return e:titleCaseToken($x),' ')
+              string-join(for $x in tokenize(substring-after($token2,' '),'\p{Zs}') return e:titleCaseToken($x),' ')
               )"/>
           </xsl:otherwise>
         </xsl:choose>
@@ -535,7 +535,7 @@
   </xsl:function>
   
   <!-- Global variable included here for convenience -->
-  <let name="org-regex" value="'b\.\s?subtilis|bacillus\s?subtilis|d\.\s?melanogaster|drosophila\s?melanogaster|e\.\s?coli|escherichia\s?coli|s\.\s?pombe|schizosaccharomyces\s?pombe|s\.\s?cerevisiae|saccharomyces\s?cerevisiae|c\.\s?elegans|caenorhabditis\s?elegans|a\.\s?thaliana|arabidopsis\s?thaliana|m\.\s?thermophila|myceliophthora\s?thermophila|dictyostelium|p\.\s?falciparum|plasmodium\s?falciparum|s\.\s?enterica|salmonella\s?enterica|s\.\s?pyogenes|streptococcus\s?pyogenes|p\.\s?dumerilii|platynereis\s?dumerilii|p\.\s?cynocephalus|papio\s?cynocephalus|o\.\s?fasciatus|oncopeltus\s?fasciatus|n\.\s?crassa|neurospora\s?crassa|c\.\s?intestinalis|ciona\s?intestinalis|e\.\s?cuniculi|encephalitozoon\s?cuniculi|h\.\s?salinarum|halobacterium\s?salinarum|s\.\s?solfataricus|sulfolobus\s?solfataricus|s\.\s?mediterranea|schmidtea\s?mediterranea|s\.\s?rosetta|salpingoeca\s?rosetta|n\.\s?vectensis|nematostella\s?vectensis|s\.\s?aureus|staphylococcus\s?aureus|v\.\s?cholerae|vibrio\s?cholerae|t\.\s?thermophila|tetrahymena\s?thermophila|c\.\s?reinhardtii|chlamydomonas\s?reinhardtii|n\.\s?attenuata|nicotiana\s?attenuata|e\.\s?carotovora|erwinia\s?carotovora|e\.\s?faecalis|h\.\s?sapiens|homo\s?sapiens|c\.\s?trachomatis|chlamydia\s?trachomatis|enterococcus\s?faecalis|x\.\s?laevis|xenopus\s?laevis|x\.\s?tropicalis|xenopus\s?tropicalis|m\.\s?musculus|mus\s?musculus|d\.\s?immigrans|drosophila\s?immigrans|d\.\s?subobscura|drosophila\s?subobscura|d\.\s?affinis|drosophila\s?affinis|d\.\s?obscura|drosophila\s?obscura|f\.\s?tularensis|francisella\s?tularensis|p\.\s?plantaginis|podosphaera\s?plantaginis|p\.\s?lanceolata|plantago\s?lanceolata|m\.\s?trossulus|mytilus\s?trossulus|m\.\s?edulis|mytilus\s?edulis|m\.\s?chilensis|mytilus\s?chilensis|u\.\s?maydis|ustilago\s?maydis|p\.\s?knowlesi|plasmodium\s?knowlesi|p\.\s?aeruginosa|pseudomonas\s?aeruginosa|t\.\s?brucei|trypanosoma\s?brucei|caulobacter\s?crescentus|c\.\s?crescentus|d\.\s?rerio|danio\s?rerio|drosophila|xenopus'"/>
+  <let name="org-regex" value="'b\.\p{Zs}?subtilis|bacillus\p{Zs}?subtilis|d\.\p{Zs}?melanogaster|drosophila\p{Zs}?melanogaster|e\.\p{Zs}?coli|escherichia\p{Zs}?coli|s\.\p{Zs}?pombe|schizosaccharomyces\p{Zs}?pombe|s\.\p{Zs}?cerevisiae|saccharomyces\p{Zs}?cerevisiae|c\.\p{Zs}?elegans|caenorhabditis\p{Zs}?elegans|a\.\p{Zs}?thaliana|arabidopsis\p{Zs}?thaliana|m\.\p{Zs}?thermophila|myceliophthora\p{Zs}?thermophila|dictyostelium|p\.\p{Zs}?falciparum|plasmodium\p{Zs}?falciparum|s\.\p{Zs}?enterica|salmonella\p{Zs}?enterica|s\.\p{Zs}?pyogenes|streptococcus\p{Zs}?pyogenes|p\.\p{Zs}?dumerilii|platynereis\p{Zs}?dumerilii|p\.\p{Zs}?cynocephalus|papio\p{Zs}?cynocephalus|o\.\p{Zs}?fasciatus|oncopeltus\p{Zs}?fasciatus|n\.\p{Zs}?crassa|neurospora\p{Zs}?crassa|c\.\p{Zs}?intestinalis|ciona\p{Zs}?intestinalis|e\.\p{Zs}?cuniculi|encephalitozoon\p{Zs}?cuniculi|h\.\p{Zs}?salinarum|halobacterium\p{Zs}?salinarum|s\.\p{Zs}?solfataricus|sulfolobus\p{Zs}?solfataricus|s\.\p{Zs}?mediterranea|schmidtea\p{Zs}?mediterranea|s\.\p{Zs}?rosetta|salpingoeca\p{Zs}?rosetta|n\.\p{Zs}?vectensis|nematostella\p{Zs}?vectensis|s\.\p{Zs}?aureus|staphylococcus\p{Zs}?aureus|v\.\p{Zs}?cholerae|vibrio\p{Zs}?cholerae|t\.\p{Zs}?thermophila|tetrahymena\p{Zs}?thermophila|c\.\p{Zs}?reinhardtii|chlamydomonas\p{Zs}?reinhardtii|n\.\p{Zs}?attenuata|nicotiana\p{Zs}?attenuata|e\.\p{Zs}?carotovora|erwinia\p{Zs}?carotovora|e\.\p{Zs}?faecalis|h\.\p{Zs}?sapiens|homo\p{Zs}?sapiens|c\.\p{Zs}?trachomatis|chlamydia\p{Zs}?trachomatis|enterococcus\p{Zs}?faecalis|x\.\p{Zs}?laevis|xenopus\p{Zs}?laevis|x\.\p{Zs}?tropicalis|xenopus\p{Zs}?tropicalis|m\.\p{Zs}?musculus|mus\p{Zs}?musculus|d\.\p{Zs}?immigrans|drosophila\p{Zs}?immigrans|d\.\p{Zs}?subobscura|drosophila\p{Zs}?subobscura|d\.\p{Zs}?affinis|drosophila\p{Zs}?affinis|d\.\p{Zs}?obscura|drosophila\p{Zs}?obscura|f\.\p{Zs}?tularensis|francisella\p{Zs}?tularensis|p\.\p{Zs}?plantaginis|podosphaera\p{Zs}?plantaginis|p\.\p{Zs}?lanceolata|plantago\p{Zs}?lanceolata|m\.\p{Zs}?trossulus|mytilus\p{Zs}?trossulus|m\.\p{Zs}?edulis|mytilus\p{Zs}?edulis|m\.\p{Zs}?chilensis|mytilus\p{Zs}?chilensis|u\.\p{Zs}?maydis|ustilago\p{Zs}?maydis|p\.\p{Zs}?knowlesi|plasmodium\p{Zs}?knowlesi|p\.\p{Zs}?aeruginosa|pseudomonas\p{Zs}?aeruginosa|t\.\p{Zs}?brucei|trypanosoma\p{Zs}?brucei|caulobacter\p{Zs}?crescentus|c\.\p{Zs}?crescentus|d\.\p{Zs}?rerio|danio\p{Zs}?rerio|drosophila|xenopus'"/>
   
   <let name="sec-title-regex" value="string-join(
     for $x in tokenize($org-regex,'\|')
@@ -545,313 +545,313 @@
   <xsl:function name="e:org-conform" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
-      <xsl:when test="matches($s,'b\.\s?subtilis')">
+      <xsl:when test="matches($s,'b\.\p{Zs}?subtilis')">
         <xsl:value-of select="'B. subtilis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'bacillus\s?subtilis')">
+      <xsl:when test="matches($s,'bacillus\p{Zs}?subtilis')">
         <xsl:value-of select="'Bacillus subtilis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'d\.\s?melanogaster')">
+      <xsl:when test="matches($s,'d\.\p{Zs}?melanogaster')">
         <xsl:value-of select="'D. melanogaster'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'drosophila\s?melanogaster')">
+      <xsl:when test="matches($s,'drosophila\p{Zs}?melanogaster')">
         <xsl:value-of select="'Drosophila melanogaster'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'e\.\s?coli')">
+      <xsl:when test="matches($s,'e\.\p{Zs}?coli')">
         <xsl:value-of select="'E. coli'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'escherichia\s?coli')">
+      <xsl:when test="matches($s,'escherichia\p{Zs}?coli')">
         <xsl:value-of select="'Escherichia coli'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'s\.\s?pombe')">
+      <xsl:when test="matches($s,'s\.\p{Zs}?pombe')">
         <xsl:value-of select="'S. pombe'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'schizosaccharomyces\s?pombe')">
+      <xsl:when test="matches($s,'schizosaccharomyces\p{Zs}?pombe')">
         <xsl:value-of select="'Schizosaccharomyces pombe'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'s\.\s?cerevisiae')">
+      <xsl:when test="matches($s,'s\.\p{Zs}?cerevisiae')">
         <xsl:value-of select="'S. cerevisiae'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'saccharomyces\s?cerevisiae')">
+      <xsl:when test="matches($s,'saccharomyces\p{Zs}?cerevisiae')">
         <xsl:value-of select="'Saccharomyces cerevisiae'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'c\.\s?elegans')">
+      <xsl:when test="matches($s,'c\.\p{Zs}?elegans')">
         <xsl:value-of select="'C. elegans'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'caenorhabditis\s?elegans')">
+      <xsl:when test="matches($s,'caenorhabditis\p{Zs}?elegans')">
         <xsl:value-of select="'Caenorhabditis elegans'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'a\.\s?thaliana')">
+      <xsl:when test="matches($s,'a\.\p{Zs}?thaliana')">
         <xsl:value-of select="'A. thaliana'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'arabidopsis\s?thaliana')">
+      <xsl:when test="matches($s,'arabidopsis\p{Zs}?thaliana')">
         <xsl:value-of select="'Arabidopsis thaliana'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'m\.\s?thermophila')">
+      <xsl:when test="matches($s,'m\.\p{Zs}?thermophila')">
         <xsl:value-of select="'M. thermophila'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'myceliophthora\s?thermophila')">
+      <xsl:when test="matches($s,'myceliophthora\p{Zs}?thermophila')">
         <xsl:value-of select="'Myceliophthora thermophila'"/>
       </xsl:when>
       <xsl:when test="matches($s,'dictyostelium')">
         <xsl:value-of select="'Dictyostelium'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'p\.\s?falciparum')">
+      <xsl:when test="matches($s,'p\.\p{Zs}?falciparum')">
         <xsl:value-of select="'P. falciparum'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'plasmodium\s?falciparum')">
+      <xsl:when test="matches($s,'plasmodium\p{Zs}?falciparum')">
         <xsl:value-of select="'Plasmodium falciparum'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'s\.\s?enterica')">
+      <xsl:when test="matches($s,'s\.\p{Zs}?enterica')">
         <xsl:value-of select="'S. enterica'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'salmonella\s?enterica')">
+      <xsl:when test="matches($s,'salmonella\p{Zs}?enterica')">
         <xsl:value-of select="'Salmonella enterica'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'s\.\s?pyogenes')">
+      <xsl:when test="matches($s,'s\.\p{Zs}?pyogenes')">
         <xsl:value-of select="'S. pyogenes'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'streptococcus\s?pyogenes')">
+      <xsl:when test="matches($s,'streptococcus\p{Zs}?pyogenes')">
         <xsl:value-of select="'Streptococcus pyogenes'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'p\.\s?dumerilii')">
+      <xsl:when test="matches($s,'p\.\p{Zs}?dumerilii')">
         <xsl:value-of select="'P. dumerilii'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'platynereis\s?dumerilii')">
+      <xsl:when test="matches($s,'platynereis\p{Zs}?dumerilii')">
         <xsl:value-of select="'Platynereis dumerilii'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'p\.\s?cynocephalus')">
+      <xsl:when test="matches($s,'p\.\p{Zs}?cynocephalus')">
         <xsl:value-of select="'P. cynocephalus'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'papio\s?cynocephalus')">
+      <xsl:when test="matches($s,'papio\p{Zs}?cynocephalus')">
         <xsl:value-of select="'Papio cynocephalus'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'o\.\s?fasciatus')">
+      <xsl:when test="matches($s,'o\.\p{Zs}?fasciatus')">
         <xsl:value-of select="'O. fasciatus'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'oncopeltus\s?fasciatus')">
+      <xsl:when test="matches($s,'oncopeltus\p{Zs}?fasciatus')">
         <xsl:value-of select="'Oncopeltus fasciatus'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'n\.\s?crassa')">
+      <xsl:when test="matches($s,'n\.\p{Zs}?crassa')">
         <xsl:value-of select="'N. crassa'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'neurospora\s?crassa')">
+      <xsl:when test="matches($s,'neurospora\p{Zs}?crassa')">
         <xsl:value-of select="'Neurospora crassa'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'c\.\s?intestinalis')">
+      <xsl:when test="matches($s,'c\.\p{Zs}?intestinalis')">
         <xsl:value-of select="'C. intestinalis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'ciona\s?intestinalis')">
+      <xsl:when test="matches($s,'ciona\p{Zs}?intestinalis')">
         <xsl:value-of select="'Ciona intestinalis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'e\.\s?cuniculi')">
+      <xsl:when test="matches($s,'e\.\p{Zs}?cuniculi')">
         <xsl:value-of select="'E. cuniculi'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'encephalitozoon\s?cuniculi')">
+      <xsl:when test="matches($s,'encephalitozoon\p{Zs}?cuniculi')">
         <xsl:value-of select="'Encephalitozoon cuniculi'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'h\.\s?salinarum')">
+      <xsl:when test="matches($s,'h\.\p{Zs}?salinarum')">
         <xsl:value-of select="'H. salinarum'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'halobacterium\s?salinarum')">
+      <xsl:when test="matches($s,'halobacterium\p{Zs}?salinarum')">
         <xsl:value-of select="'Halobacterium salinarum'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'s\.\s?solfataricus')">
+      <xsl:when test="matches($s,'s\.\p{Zs}?solfataricus')">
         <xsl:value-of select="'S. solfataricus'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'sulfolobus\s?solfataricus')">
+      <xsl:when test="matches($s,'sulfolobus\p{Zs}?solfataricus')">
         <xsl:value-of select="'Sulfolobus solfataricus'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'s\.\s?mediterranea')">
+      <xsl:when test="matches($s,'s\.\p{Zs}?mediterranea')">
         <xsl:value-of select="'S. mediterranea'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'schmidtea\s?mediterranea')">
+      <xsl:when test="matches($s,'schmidtea\p{Zs}?mediterranea')">
         <xsl:value-of select="'Schmidtea mediterranea'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'s\.\s?rosetta')">
+      <xsl:when test="matches($s,'s\.\p{Zs}?rosetta')">
         <xsl:value-of select="'S. rosetta'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'salpingoeca\s?rosetta')">
+      <xsl:when test="matches($s,'salpingoeca\p{Zs}?rosetta')">
         <xsl:value-of select="'Salpingoeca rosetta'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'n\.\s?vectensis')">
+      <xsl:when test="matches($s,'n\.\p{Zs}?vectensis')">
         <xsl:value-of select="'N. vectensis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'nematostella\s?vectensis')">
+      <xsl:when test="matches($s,'nematostella\p{Zs}?vectensis')">
         <xsl:value-of select="'Nematostella vectensis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'s\.\s?aureus')">
+      <xsl:when test="matches($s,'s\.\p{Zs}?aureus')">
         <xsl:value-of select="'S. aureus'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'staphylococcus\s?aureus')">
+      <xsl:when test="matches($s,'staphylococcus\p{Zs}?aureus')">
         <xsl:value-of select="'Staphylococcus aureus'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'a\.\s?thaliana')">
+      <xsl:when test="matches($s,'a\.\p{Zs}?thaliana')">
         <xsl:value-of select="'A. thaliana'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'arabidopsis\s?thaliana')">
+      <xsl:when test="matches($s,'arabidopsis\p{Zs}?thaliana')">
         <xsl:value-of select="'Arabidopsis thaliana'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'v\.\s?cholerae')">
+      <xsl:when test="matches($s,'v\.\p{Zs}?cholerae')">
         <xsl:value-of select="'V. cholerae'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'vibrio\s?cholerae')">
+      <xsl:when test="matches($s,'vibrio\p{Zs}?cholerae')">
         <xsl:value-of select="'Vibrio cholerae'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'t\.\s?thermophila')">
+      <xsl:when test="matches($s,'t\.\p{Zs}?thermophila')">
         <xsl:value-of select="'T. thermophila'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'tetrahymena\s?thermophila')">
+      <xsl:when test="matches($s,'tetrahymena\p{Zs}?thermophila')">
         <xsl:value-of select="'Tetrahymena thermophila'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'c\.\s?reinhardtii')">
+      <xsl:when test="matches($s,'c\.\p{Zs}?reinhardtii')">
         <xsl:value-of select="'C. reinhardtii'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'chlamydomonas\s?reinhardtii')">
+      <xsl:when test="matches($s,'chlamydomonas\p{Zs}?reinhardtii')">
         <xsl:value-of select="'Chlamydomonas reinhardtii'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'n\.\s?attenuata')">
+      <xsl:when test="matches($s,'n\.\p{Zs}?attenuata')">
         <xsl:value-of select="'N. attenuata'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'nicotiana\s?attenuata')">
+      <xsl:when test="matches($s,'nicotiana\p{Zs}?attenuata')">
         <xsl:value-of select="'Nicotiana attenuata'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'e\.\s?carotovora')">
+      <xsl:when test="matches($s,'e\.\p{Zs}?carotovora')">
         <xsl:value-of select="'E. carotovora'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'erwinia\s?carotovora')">
+      <xsl:when test="matches($s,'erwinia\p{Zs}?carotovora')">
         <xsl:value-of select="'Erwinia carotovora'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'h\.\s?sapiens')">
+      <xsl:when test="matches($s,'h\.\p{Zs}?sapiens')">
         <xsl:value-of select="'H. sapiens'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'homo\s?sapiens')">
+      <xsl:when test="matches($s,'homo\p{Zs}?sapiens')">
         <xsl:value-of select="'Homo sapiens'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'e\.\s?faecalis')">
+      <xsl:when test="matches($s,'e\.\p{Zs}?faecalis')">
         <xsl:value-of select="'E. faecalis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'enterococcus\s?faecalis')">
+      <xsl:when test="matches($s,'enterococcus\p{Zs}?faecalis')">
         <xsl:value-of select="'Enterococcus faecalis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'c\.\s?trachomatis')">
+      <xsl:when test="matches($s,'c\.\p{Zs}?trachomatis')">
         <xsl:value-of select="'C. trachomatis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'chlamydia\s?trachomatis')">
+      <xsl:when test="matches($s,'chlamydia\p{Zs}?trachomatis')">
         <xsl:value-of select="'Chlamydia trachomatis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'x\.\s?laevis')">
+      <xsl:when test="matches($s,'x\.\p{Zs}?laevis')">
         <xsl:value-of select="'X. laevis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'xenopus\s?laevis')">
+      <xsl:when test="matches($s,'xenopus\p{Zs}?laevis')">
         <xsl:value-of select="'Xenopus laevis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'x\.\s?tropicalis')">
+      <xsl:when test="matches($s,'x\.\p{Zs}?tropicalis')">
         <xsl:value-of select="'X. tropicalis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'xenopus\s?tropicalis')">
+      <xsl:when test="matches($s,'xenopus\p{Zs}?tropicalis')">
         <xsl:value-of select="'Xenopus tropicalis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'m\.\s?musculus')">
+      <xsl:when test="matches($s,'m\.\p{Zs}?musculus')">
         <xsl:value-of select="'M. musculus'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'mus\s?musculus')">
+      <xsl:when test="matches($s,'mus\p{Zs}?musculus')">
         <xsl:value-of select="'Mus musculus'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'d\.\s?immigrans')">
+      <xsl:when test="matches($s,'d\.\p{Zs}?immigrans')">
         <xsl:value-of select="'D. immigrans'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'drosophila\s?immigrans')">
+      <xsl:when test="matches($s,'drosophila\p{Zs}?immigrans')">
         <xsl:value-of select="'Drosophila immigrans'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'d\.\s?subobscura')">
+      <xsl:when test="matches($s,'d\.\p{Zs}?subobscura')">
         <xsl:value-of select="'D. subobscura'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'drosophila\s?subobscura')">
+      <xsl:when test="matches($s,'drosophila\p{Zs}?subobscura')">
         <xsl:value-of select="'Drosophila subobscura'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'d\.\s?affinis')">
+      <xsl:when test="matches($s,'d\.\p{Zs}?affinis')">
         <xsl:value-of select="'D. affinis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'drosophila\s?affinis')">
+      <xsl:when test="matches($s,'drosophila\p{Zs}?affinis')">
         <xsl:value-of select="'Drosophila affinis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'d\.\s?obscura')">
+      <xsl:when test="matches($s,'d\.\p{Zs}?obscura')">
         <xsl:value-of select="'D. obscura'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'drosophila\s?obscura')">
+      <xsl:when test="matches($s,'drosophila\p{Zs}?obscura')">
         <xsl:value-of select="'Drosophila obscura'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'f\.\s?tularensis')">
+      <xsl:when test="matches($s,'f\.\p{Zs}?tularensis')">
         <xsl:value-of select="'F. tularensis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'francisella\s?tularensis')">
+      <xsl:when test="matches($s,'francisella\p{Zs}?tularensis')">
         <xsl:value-of select="'Francisella tularensis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'p\.\s?plantaginis')">
+      <xsl:when test="matches($s,'p\.\p{Zs}?plantaginis')">
         <xsl:value-of select="'P. plantaginis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'podosphaera\s?plantaginis')">
+      <xsl:when test="matches($s,'podosphaera\p{Zs}?plantaginis')">
         <xsl:value-of select="'Podosphaera plantaginis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'p\.\s?lanceolata')">
+      <xsl:when test="matches($s,'p\.\p{Zs}?lanceolata')">
         <xsl:value-of select="'P. lanceolata'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'plantago\s?lanceolata')">
+      <xsl:when test="matches($s,'plantago\p{Zs}?lanceolata')">
         <xsl:value-of select="'Plantago lanceolata'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'m\.\s?edulis')">
+      <xsl:when test="matches($s,'m\.\p{Zs}?edulis')">
         <xsl:value-of select="'M. edulis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'mytilus\s?edulis')">
+      <xsl:when test="matches($s,'mytilus\p{Zs}?edulis')">
         <xsl:value-of select="'Mytilus edulis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'m\.\s?chilensis')">
+      <xsl:when test="matches($s,'m\.\p{Zs}?chilensis')">
         <xsl:value-of select="'M. chilensis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'mytilus\s?chilensis')">
+      <xsl:when test="matches($s,'mytilus\p{Zs}?chilensis')">
         <xsl:value-of select="'Mytilus chilensis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'m\.\s?trossulus')">
+      <xsl:when test="matches($s,'m\.\p{Zs}?trossulus')">
         <xsl:value-of select="'M. trossulus'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'mytilus\s?trossulus')">
+      <xsl:when test="matches($s,'mytilus\p{Zs}?trossulus')">
         <xsl:value-of select="'Mytilus trossulus'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'u\.\s?maydis')">
+      <xsl:when test="matches($s,'u\.\p{Zs}?maydis')">
         <xsl:value-of select="'U. maydis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'ustilago\s?maydis')">
+      <xsl:when test="matches($s,'ustilago\p{Zs}?maydis')">
         <xsl:value-of select="'Ustilago maydis'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'p\.\s?knowlesi')">
+      <xsl:when test="matches($s,'p\.\p{Zs}?knowlesi')">
         <xsl:value-of select="'P. knowlesi'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'plasmodium\s?knowlesi')">
+      <xsl:when test="matches($s,'plasmodium\p{Zs}?knowlesi')">
         <xsl:value-of select="'Plasmodium knowlesi'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'p\.\s?aeruginosa')">
+      <xsl:when test="matches($s,'p\.\p{Zs}?aeruginosa')">
         <xsl:value-of select="'P. aeruginosa'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'pseudomonas\s?aeruginosa')">
+      <xsl:when test="matches($s,'pseudomonas\p{Zs}?aeruginosa')">
         <xsl:value-of select="'Pseudomonas aeruginosa'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'t\.\s?brucei')">
+      <xsl:when test="matches($s,'t\.\p{Zs}?brucei')">
         <xsl:value-of select="'T. brucei'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'trypanosoma\s?brucei')">
+      <xsl:when test="matches($s,'trypanosoma\p{Zs}?brucei')">
         <xsl:value-of select="'Trypanosoma brucei'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'c\.\s?crescentus')">
+      <xsl:when test="matches($s,'c\.\p{Zs}?crescentus')">
         <xsl:value-of select="'C. crescentus'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'caulobacter\s?crescentus')">
+      <xsl:when test="matches($s,'caulobacter\p{Zs}?crescentus')">
         <xsl:value-of select="'Caulobacter crescentus'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'d\.\s?rerio')">
+      <xsl:when test="matches($s,'d\.\p{Zs}?rerio')">
         <xsl:value-of select="'D. rerio'"/>
       </xsl:when>
-      <xsl:when test="matches($s,'danio\s?rerio')">
+      <xsl:when test="matches($s,'danio\p{Zs}?rerio')">
         <xsl:value-of select="'Danio rerio'"/>
       </xsl:when>
       <xsl:when test="matches($s,'drosophila')">
@@ -910,7 +910,7 @@
     <xsl:element name="matches">
       <xsl:for-each select="$article//xref[(@ref-type=$object-type) and not(ancestor::caption)]">
         <xsl:variable name="rid-no" select="replace(./@rid,'[^0-9]','')"/>
-        <xsl:variable name="text-no" select="tokenize(normalize-space(replace(.,'[^0-9]',' ')),'\s')[last()]"/>
+        <xsl:variable name="text-no" select="tokenize(normalize-space(replace(.,'[^0-9]',' ')),'\p{Zs}')[last()]"/>
         <xsl:choose>
           <xsl:when test="./@rid = $object-id">
             <xsl:element name="match">
@@ -1017,7 +1017,7 @@
     <xsl:variable name="box-text" select="substring-after(substring-after($box,'article'),' ')"/> 
     
     <xsl:element name="list">
-      <xsl:for-each select="tokenize($cite-text,'\s')">
+      <xsl:for-each select="tokenize($cite-text,'\p{Zs}')">
         <xsl:choose>
           <xsl:when test="contains($box-text,.)"/>
           <xsl:otherwise>
@@ -1028,7 +1028,7 @@
           </xsl:otherwise>
         </xsl:choose>
       </xsl:for-each>
-      <xsl:for-each select="tokenize($box-text,'\s')">
+      <xsl:for-each select="tokenize($box-text,'\p{Zs}')">
         <xsl:choose>
           <xsl:when test="contains($cite-text,.)"/>
           <xsl:otherwise>
@@ -1042,7 +1042,7 @@
     </xsl:element>
   </xsl:function>
   
-  <let name="latin-regex" value="'in\s+vitro|ex\s+vitro|in\s+vivo|ex\s+vivo|a\s+priori|a\s+posteriori|de\s+novo|in\s+utero|in\s+natura|in\s+situ|in\s+planta|in\s+cellulo|rete\s+mirabile|nomen\s+novum| sensu |ad\s+libitum|in\s+ovo'"/>
+  <let name="latin-regex" value="'in\p{Zs}+vitro|ex\p{Zs}+vitro|in\p{Zs}+vivo|ex\p{Zs}+vivo|a\p{Zs}+priori|a\p{Zs}+posteriori|de\p{Zs}+novo|in\p{Zs}+utero|in\p{Zs}+natura|in\p{Zs}+situ|in\p{Zs}+planta|in\p{Zs}+cellulo|rete\p{Zs}+mirabile|nomen\p{Zs}+novum| sensu |ad\p{Zs}+libitum|in\p{Zs}+ovo'"/>
   
   <xsl:function name="e:get-latin-terms" as="element()">
     <xsl:param name="article" as="element()"/>
@@ -1064,7 +1064,7 @@
           <xsl:element name="list">
             <xsl:attribute name="list-type">roman</xsl:attribute>
             <xsl:for-each select="tokenize($regex,'\|')">
-              <xsl:variable name="display" select="replace(replace(.,'\\s\+',' '),'^ | $','')"/>
+              <xsl:variable name="display" select="replace(replace(.,'\\p{Zs}\+',' '),'^ | $','')"/>
               <xsl:element name="match">
                 <xsl:attribute name="count">
                   <xsl:value-of select="count(tokenize($roman-text,.)) - 1"/>
@@ -1085,7 +1085,7 @@
           <xsl:element name="list">
             <xsl:attribute name="list-type">italic</xsl:attribute>
             <xsl:for-each select="tokenize($regex,'\|')">
-              <xsl:variable name="display" select="replace(.,'\\s\+',' ')"/>
+              <xsl:variable name="display" select="replace(.,'\\p{Zs}\+',' ')"/>
               <xsl:element name="match">
                 <xsl:attribute name="count">
                   <xsl:value-of select="count(tokenize($italic-text,.)) - 1"/>
@@ -1116,8 +1116,8 @@
   <xsl:function name="e:list-panels">
     <xsl:param name="caption" as="xs:string"/>
     <xsl:element name="list">
-      <xsl:for-each select="tokenize($caption,'\.\s+')">
-        <xsl:if test="matches(.,'^[B-K]\p{P}?[A-K]?\.?\s+')">
+      <xsl:for-each select="tokenize($caption,'\.\p{Zs}+')">
+        <xsl:if test="matches(.,'^[B-K]\p{P}?[A-K]?\.?\p{Zs}+')">
           <xsl:element name="item">
             <xsl:attribute name="token">
               <xsl:value-of select="substring-before(.,' ')"/>
@@ -1732,15 +1732,15 @@
         role="warning" 
         id="surname-test-5">surname doesn't begin with a capital letter - <value-of select="."/>. Is this correct?</report>
 	  
-	  <report test="matches(.,'^\s')" 
+	  <report test="matches(.,'^\p{Zs}')" 
         role="error" 
         id="surname-test-6">surname starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
-	  <report test="matches(.,'\s$')" 
+	  <report test="matches(.,'\p{Zs}$')" 
         role="error" 
         id="surname-test-7">surname ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	    
-	    <report test="matches(.,'^[A-Z]{1,2}\s') and (string-length(.) gt 3)" 
+	    <report test="matches(.,'^[A-Z]{1,2}\p{Zs}') and (string-length(.) gt 3)" 
         role="warning" 
         id="surname-test-8">surname looks to start with initial - '<value-of select="."/>'. Should '<value-of select="substring-before(.,' ')"/>' be placed in the given-names field?</report>
 	    
@@ -1768,15 +1768,15 @@
         role="warning" 
         id="given-names-test-6">given-names doesn't begin with a capital letter - '<value-of select="."/>'. Is this correct?</assert>
 	  
-	  <report test="matches(.,'^[\p{L}]{1}\.$|^[\p{L}]{1}\.\s?[\p{L}]{1}\.\s?$')" 
+    <report test="matches(.,'^[\p{L}]{1}\.$|^[\p{L}]{1}\.\p{Zs}?[\p{L}]{1}\.\p{Zs}?$')" 
         role="error" 
         id="given-names-test-7">given-names contains initialised full stop(s) which is incorrect - <value-of select="."/></report>
 	  
-	  <report test="matches(.,'^\s')" 
+    <report test="matches(.,'^\p{Zs}')" 
         role="error" 
         id="given-names-test-8">given-names starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
-	  <report test="matches(.,'\s$')" 
+    <report test="matches(.,'\p{Zs}$')" 
         role="error" 
         id="given-names-test-9">given-names ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
@@ -1800,7 +1800,7 @@
         role="warning" 
         id="given-names-test-14">given-names ends with te, ter, or ten - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
       
-      <report test="matches(normalize-space(.),'[A-Za-z]\s[A-za-z]\s[A-za-z]\s[A-za-z]|[A-Za-z]\s[A-za-z]\s[A-za-z]$|^[A-za-z]\s[A-za-z]$')" 
+      <report test="matches(normalize-space(.),'[A-Za-z]\p{Zs}[A-za-z]\p{Zs}[A-za-z]\p{Zs}[A-za-z]|[A-Za-z]\p{Zs}[A-za-z]\p{Zs}[A-za-z]$|^[A-za-z]\p{Zs}[A-za-z]$')" 
         role="info" 
         id="given-names-test-15">given-names contains initials with spaces. Ensure that the space(s) is removed between initials - '<value-of select="."/>'.</report>
       
@@ -2327,7 +2327,7 @@
 	    id="final-abstract-test-5">If an abstract is structured, then it must have 5 or 6 sections depending on whether it is a clinical trial. An article without a clinical trial should have 5 sections, whereas one with a clinical trial should have 6.</report>
 	  
 	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#abstract-test-6" 
-	    test="matches(lower-case(.),'^\s*abstract')" 
+	    test="matches(lower-case(.),'^\p{Zs}*abstract')" 
         role="warning" 
         id="abstract-test-6">Abstract starts with the word 'Abstract', which is almost certainly incorrect - <value-of select="."/></report>
 	  
@@ -2670,12 +2670,12 @@
         id="award-id-test-1">Funding entry with id <value-of select="$id"/> has a comma or semi-colon in the award id. Should this be separated out into several funding entries? - <value-of select="."/>.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-2" 
-        test="matches(.,'^\s?[Nn][/]?[\.]?[Aa][.]?\s?$')" 
+        test="matches(.,'^\p{Zs}?[Nn][/]?[\.]?[Aa][.]?\p{Zs}?$')" 
         role="error" 
         id="award-id-test-2">Award id contains - <value-of select="."/> - This entry should be empty.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-3" 
-        test="matches(.,'^\s?[Nn]one[\.]?\s?$')" 
+        test="matches(.,'^\p{Zs}?[Nn]one[\.]?\p{Zs}?$')" 
         role="error" 
         id="award-id-test-3">Award id contains - <value-of select="."/> - This entry should be empty.</report>
       
@@ -3009,7 +3009,7 @@
         role="warning" 
         id="p-test-6">Should this be captured as a list-item in a list? p element is less than 100 characters long, and is preceded by another p element less than 100 characters long.</report>
       
-      <report test="matches(.,'^\s?•') and not(ancestor::sub-article)" 
+      <report test="matches(.,'^\p{Zs}?•') and not(ancestor::sub-article)" 
         role="warning" 
         id="p-test-7">p element starts with a bullet point. It is very likely that this should instead be captured as a list-item in a list[@list-type='bullet']. - <value-of select="."/></report>
     </rule>
@@ -3155,7 +3155,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a full stop which is incorrect.</report>
       
-      <report test="matches(@xlink:href,'[\s ]')" 
+      <report test="matches(@xlink:href,'[\p{Zs}]')" 
         role="error" 
         id="url-space-report">'<value-of select="@xlink:href"/>' - Link contains a space which is incorrect.</report>
       
@@ -3176,7 +3176,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="ext-link-child-test-3">ext-link - <value-of select="."/> - contains the phrase 'copy archived', which is incorrect.</report>
       
-      <report test="matches(.,'^[Dd][Oo][Ii]:|^[Dd][Oo][Ii]\s')" 
+      <report test="matches(.,'^[Dd][Oo][Ii]:|^[Dd][Oo][Ii]\p{Zs}')" 
         role="warning" 
         id="ext-link-child-test-4">ext-link text - <value-of select="."/> - appears to start with the string 'Doi:' or 'Doi ' (or similar), which is unnecessary.</report>
       
@@ -3821,7 +3821,7 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="mml:math" id="math-tests">
-      <let name="data" value="replace(normalize-space(.),'\s','')"/>
+      <let name="data" value="replace(normalize-space(.),'\p{Zs}','')"/>
       <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-1"
@@ -3918,6 +3918,11 @@ else self::*/local-name() = $allowed-p-blocks"
         test="descendant::mml:mi[(.='') and preceding-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')] and following-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')]]" 
         role="warning" 
         id="math-test-19">Maths containing '<value-of select="."/>' has what looks like words or terms which need separating with a space. With it's current markup the space will not be preserved on the eLife website. Please add in the space(s) using the latext '\;' in the appropriate place(s), so that the space is preserved in the HTML.</report>
+      
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-broken-unicode-test" 
+        test="matches(.,'&amp;#x\d|&amp;lt;|&amp;gt;')" 
+        role="warning" 
+        id="math-broken-unicode-test">Equation likely contains a broken unicode - <value-of select="."/>.</report>
     </rule>
     
     <rule context="disp-formula/*" id="disp-formula-child-tests">
@@ -4016,7 +4021,7 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="table-wrap/caption/title" id="table-title-tests-2">
-      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\s ]$',''),'\. '))"/>
+      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-2" 
         test="not(*) and normalize-space(.)=''" 
@@ -4242,7 +4247,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="table-wrap-foot//fn/p" id="table-fn-label-tests"> 
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-fn-label-test-1" 
-        test="not(matches(.,'^\s?[*†‡§¶]')) and matches(.,'^\s?[\p{Ps}]?[\da-z][\p{Pe}]?\s+[\p{Lu}\d]')" 
+        test="not(matches(.,'^\p{Zs}?[*†‡§¶]')) and matches(.,'^\p{Zs}?[\p{Ps}]?[\da-z][\p{Pe}]?\p{Zs}+[\p{Lu}\d]')" 
         role="warning" 
         id="table-fn-label-test-1">Footnote starts with what might be a label which is not in line with house style - <value-of select="."/>. If it is a label, then it should changed to one of the allowed symbols, so that the order of labels in the footnotes follows this sequence *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc.</report>
     </rule>
@@ -4278,55 +4283,55 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="list-item" id="list-item-tests">
       <let name="type" value="ancestor::list[1]/@list-type"/>
       
-      <report test="($type='bullet') and matches(.,'^\s?•')" 
+      <report test="($type='bullet') and matches(.,'^\p{Zs}?•')" 
         role="error" 
         id="bullet-test-1">list-item is part of bullet list, but it also begins with a '•', which means that two will output. Remove the unnecessary '•' from the beginning of the list-item.</report>
       
-      <report test="($type='simple') and matches(.,'^\s?•')" 
+      <report test="($type='simple') and matches(.,'^\p{Zs}?•')" 
         role="error" 
         id="bullet-test-2">list-item is part of simple list, but it begins with a '•'. Remove the unnecessary '•' and capture the list as a bullet type list.</report>
       
-      <report test="($type='order') and matches(.,'^\s?\d+')" 
+      <report test="($type='order') and matches(.,'^\p{Zs}?\d+')" 
         role="warning" 
         id="order-test-1">list-item is part of an ordered list, but it begins with a number. Is this correct? <value-of select="."/></report>
       
-      <report test="($type='alpha-lower') and matches(.,'^\s?[a-h|j-w|y-z][\.|\)]? ')" 
+      <report test="($type='alpha-lower') and matches(.,'^\p{Zs}?[a-h|j-w|y-z][\.|\)]? ')" 
         role="warning" 
         id="alpha-lower-test-1">list-item is part of an alpha-lower list, but it begins with a single lower-case letter. Is this correct? <value-of select="."/></report>
       
-      <report test="($type='alpha-upper') and matches(.,'^\s?[A-H|J-W|Y-Z][\.|\)]? ')" 
+      <report test="($type='alpha-upper') and matches(.,'^\p{Zs}?[A-H|J-W|Y-Z][\.|\)]? ')" 
         role="warning" 
         id="alpha-upper-test-1">list-item is part of an alpha-upper list, but it begins with a single upper-case letter. Is this correct? <value-of select="."/></report>
       
-      <report test="($type='roman-lower') and matches(.,'^\s?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" 
+      <report test="($type='roman-lower') and matches(.,'^\p{Zs}?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" 
         role="warning" 
         id="roman-lower-test-1">list-item is part of an roman-lower list, but it begins with a single roman-lower letter. Is this correct? <value-of select="."/></report>
       
-      <report test="($type='roman-upper') and matches(.,'^\s?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" 
+      <report test="($type='roman-upper') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" 
         role="warning" 
         id="roman-upper-test-1">list-item is part of an roman-upper list, but it begins with a single roman-upper letter. Is this correct? <value-of select="."/></report>
       
-      <report test="($type='simple') and matches(.,'^\s?[1-9][\.|\)]? ')" 
+      <report test="($type='simple') and matches(.,'^\p{Zs}?[1-9][\.|\)]? ')" 
         role="warning" 
         id="simple-test-1">list-item is part of a simple list, but it begins with a number. Should the list-type be updated to ordered and this number removed? <value-of select="."/></report>
       
-      <report test="($type='simple') and matches(.,'^\s?[a-h|j-w|y-z][\.|\)] ')" 
+      <report test="($type='simple') and matches(.,'^\p{Zs}?[a-h|j-w|y-z][\.|\)] ')" 
         role="warning" 
         id="simple-test-2">list-item is part of a simple list, but it begins with a single lower-case letter. Should the list-type be updated to 'alpha-lower' and this first letter removed? <value-of select="."/></report>
       
-      <report test="($type='simple') and matches(.,'^\s?[A-H|J-W|Y-Z][\.|\)] ')" 
+      <report test="($type='simple') and matches(.,'^\p{Zs}?[A-H|J-W|Y-Z][\.|\)] ')" 
         role="warning" 
         id="simple-test-3">list-item is part of a simple list, but it begins with a single upper-case letter. Should the list-type be updated to 'alpha-upper' and this first letter removed? <value-of select="."/></report>
       
-      <report test="($type='simple') and matches(.,'^\s?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" 
+      <report test="($type='simple') and matches(.,'^\p{Zs}?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" 
         role="warning" 
         id="simple-test-4">list-item is part of a simple list, but it begins with a single roman-lower letter. Should the list-type be updated to 'roman-lower' and this first letter removed? <value-of select="."/></report>
       
-      <report test="($type='simple') and matches(.,'^\s?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" 
+      <report test="($type='simple') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" 
         role="warning" 
         id="simple-test-5">list-item is part of a simple list, but it begins with a single roman-upper letter. Should the list-type be updated to 'roman-upper' and this first letter removed? <value-of select="."/></report>
       
-      <report test="matches(.,'^\s?\p{Ll}[\s\)\.]')" 
+      <report test="matches(.,'^\p{Zs}?\p{Ll}[\p{Zs}\)\.]')" 
         role="warning" 
         id="list-item-test-1">list-item begins with a single lowercase letter, is this correct? - <value-of select="."/></report>
     </rule>
@@ -4461,7 +4466,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="bracket-test-1"><name/> element contains more left '(' than right ')' parentheses (<value-of select="$open-curly"/> and <value-of select="$close-curly"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(]','')) gt string-length(replace($sentence,'[^\)]',''))) then $sentence else (),' ---- ')"/></report>
       
-      <report test="not(matches(.,'^\s?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\)')) and ($open-curly lt $close-curly)" 
+      <report test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\)')) and ($open-curly lt $close-curly)" 
         role="warning" 
         id="bracket-test-2"><name/> element contains more right ')' than left '(' parentheses (<value-of select="$close-curly"/> and <value-of select="$open-curly"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(]','')) lt string-length(replace($sentence,'[^\)]',''))) then $sentence else (),' ---- ')"/></report>
       
@@ -4469,7 +4474,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="bracket-test-3"><name/> element contains more left '[' than right ']' square brackets (<value-of select="$open-square"/> and <value-of select="$close-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) gt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/></report>
       
-      <report test="not(matches(.,'^\s?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\]')) and ($open-square lt $close-square)" 
+      <report test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\]')) and ($open-square lt $close-square)" 
         role="warning" 
         id="bracket-test-4"><name/> element contains more right ']' than left '[' square brackets (<value-of select="$close-square"/> and <value-of select="$open-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) lt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/></report>
     </rule>
@@ -4682,12 +4687,12 @@ else self::*/local-name() = $allowed-p-blocks"
         id="feat-fig-specific-test-4">There is no citation to <value-of select="if (label) then label else 'figure.'"/> Is this correct?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-specific-test-6" 
-        test="($fol-sib/local-name() = 'p') and ($fol-sib/*/local-name() = 'disp-formula') and (count($fol-sib/*[1]/preceding-sibling::text()) = 0) and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))" 
+        test="($fol-sib/local-name() = 'p') and ($fol-sib/*/local-name() = 'disp-formula') and (count($fol-sib/*[1]/preceding-sibling::text()) = 0) and (not(matches($pre-sib,'\.\p{Zs}*?$|\?\p{Zs}*?$|!\p{Zs}*?$')))" 
         role="warning" 
         id="fig-specific-test-6"><value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-specific-test-5" 
-        test="($fol-sib/local-name() = 'disp-formula') and (not(matches($pre-sib,'\.\s*?$|\?\s*?$|!\s*?$')))" 
+        test="($fol-sib/local-name() = 'disp-formula') and (not(matches($pre-sib,'\.\p{Zs}*?$|\?\p{Zs}*?$|!\p{Zs}*?$')))" 
         role="warning" 
         id="fig-specific-test-5"><value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
       
@@ -4919,7 +4924,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="no-panels" value="replace(.,'\([a-zA-Z]\)|\([a-zA-Z]\-[a-zA-Z]\)','')"/>
       <let name="text-tokens" value="for $x in tokenize($no-panels,'\. ') return
         if (string-length($x) lt 3) then ()
-        else if (matches($x,'^\s{1,3}?[a-z]')) then $x
+        else if (matches($x,'^\p{Zs}{1,3}?[a-z]')) then $x
         else ()"/>
       <let name="panel-list" value="e:list-panels(.)"/>
       
@@ -5090,7 +5095,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="fig/caption/title" id="fig-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
-      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\s ]$',''),'\. '))"/>
+      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-1" 
         test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" 
@@ -5108,7 +5113,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="fig-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-4" 
-        test="matches(.,'^\s')" 
+        test="matches(.,'^\p{Zs}')" 
         role="error" 
         id="fig-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
       
@@ -5135,7 +5140,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
-      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\s ]$',''),'\. '))"/>
+      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-title-test-1"
         test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" 
@@ -5153,7 +5158,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="supplementary-material-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-title-test-4"
-        test="matches(.,'^\s')" 
+        test="matches(.,'^\p{Zs}')" 
         role="error" 
         id="supplementary-material-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
       
@@ -5170,7 +5175,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="media/caption/title" id="video-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
-      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\s ]$',''),'\. '))"/>
+      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
       
       <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" 
         role="warning" 
@@ -5184,7 +5189,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="video-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
       
-      <report test="matches(.,'^\s')" 
+      <report test="matches(.,'^\p{Zs}')" 
         role="error" 
         id="video-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
       
@@ -5303,15 +5308,6 @@ else self::*/local-name() = $allowed-p-blocks"
   </pattern>
   
   <pattern id="id-conformance">
-    
-    <rule context="article-meta//contrib[@contrib-type='author']" id="author-contrib-ids">
-      
-      <report test="if (collab) then ()
-        else if (ancestor::collab) then ()
-        else not(matches(@id,'^[a-z]+-[0-9]+$'))" 
-        role="error" 
-        id="author-id-1">contrib[@contrib-type="author"] must have an @id which is an alpha-numeric string. <value-of select="@id"/> does not conform to this.</report>
-    </rule>
     
     <rule context="funding-group/award-group" id="award-group-ids">
       
@@ -5947,21 +5943,21 @@ else self::*/local-name() = $allowed-p-blocks"
         id="dec-letter-reply-test-5"><value-of select="ancestor::sub-article/@article-type"/> paragraph contains what looks like pseudo-code - <value-of select="."/>.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-6" 
-        test="matches(.,'&lt;\s?/?\s?[a-z]*\s?/?\s?&gt;')" 
+        test="matches(.,'&lt;\p{Zs}?/?\p{Zs}?[a-z]*\p{Zs}?/?\p{Zs}?&gt;')" 
         role="warning" 
         flag="dl-ar"
         id="dec-letter-reply-test-6"><value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be pseudo-code or tags which should likely be removed - <value-of select="."/>.</report>
     </rule>
     
     <rule context="article/sub-article//p[not(ancestor::disp-quote)]" id="dec-letter-reply-content-tests-2">
-      <let name="regex" value="'\s([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict [Oo]f [Ii]nterest|([Aa]re|[Aa]m) [Ss]hocked|[Ss]trongly [Dd]isagree)[^\p{L}]'"/>
+      <let name="regex" value="'\p{Zs}([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict\p{Zs}[Oo]f\p{Zs}[Ii]nterest|([Aa]re|[Aa]m)\p{Zs}[Ss]hocked|[Ss]trongly\p{Zs}[Dd]isagree)[^\p{L}]'"/>
       
       <!-- Need to improve messaging -->
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-7" 
         test="matches(.,$regex)"
         role="warning" 
         flag="dl-ar"
-        id="dec-letter-reply-test-7"><value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be inflammatory or offensive language. eLife: please check it to see if it is language that should be removed. This paragraph was flagged because of the phrase(s) <value-of select="string-join(tokenize(.,'\s')[matches(.,concat('^',substring-before(substring-after($regex,'\s'),'[^\p{L}]')))],'; ')"/> in <value-of select="."/>.</report>
+        id="dec-letter-reply-test-7"><value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be inflammatory or offensive language. eLife: please check it to see if it is language that should be removed. This paragraph was flagged because of the phrase(s) <value-of select="string-join(tokenize(.,'\p{Zs}')[matches(.,concat('^',substring-before(substring-after($regex,'\p{Zs}'),'[^\p{L}]')))],'; ')"/> in <value-of select="."/>.</report>
     </rule>
     
     <rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
@@ -6190,10 +6186,10 @@ else self::*/local-name() = $allowed-p-blocks"
       id="sub-article-ref-p-tests">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#sub-article-ref-p-test" 
-        test="count(tokenize(lower-case(.),'doi\s?:')) gt 2"
+        test="count(tokenize(lower-case(.),'doi\p{Zs}?:')) gt 2"
         role="warning" 
         flag="dl-ar"
-        id="sub-article-ref-p-test">The last paragraph of the author response lookd like it contains various references. Should wach reference be split out into its own paragraph? <value-of select="."/></report>
+        id="sub-article-ref-p-test">The last paragraph of the author response looks like it contains various references. Should each reference be split out into its own paragraph? <value-of select="."/></report>
     </rule>
   </pattern>
   
@@ -7210,12 +7206,12 @@ else self::*/local-name() = $allowed-p-blocks"
         The format of the element content must match month, space, day, comma, year.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="."/>.</assert>
       
-      <assert test="(matches(@iso-8601-date,replace($date-regex,'\s','')))" 
+      <assert test="(matches(@iso-8601-date,replace($date-regex,'\p{Zs}','')))" 
         role="error" 
         id="err-elem-cit-web-11-5">
         The @iso-8601-date value on accessed date must be a valid date value. <value-of select="@iso-8601-date"/> in reference '<value-of select="ancestor::ref/@id"/>' is not valid.</assert>
       
-      <report test="if (matches(@iso-8601-date,replace($date-regex,'\s',''))) then format-date(xs:date(@iso-8601-date), '[MNn] [D], [Y]')!=.
+      <report test="if (matches(@iso-8601-date,replace($date-regex,'\p{Zs}',''))) then format-date(xs:date(@iso-8601-date), '[MNn] [D], [Y]')!=.
         else ()" 
         role="error" 
         id="err-elem-cit-web-11-4">
@@ -8120,7 +8116,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="pub-id-url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a full stop which is incorrect.</report>
       
-      <report test="matches(@xlink:href,'[\s ]')" 
+      <report test="matches(@xlink:href,'[\p{Zs}]')" 
         role="error" 
         id="pub-id-url-space-report">'<value-of select="@xlink:href"/>' - Link contains a space which is incorrect.</report>
       
@@ -8469,14 +8465,14 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'scicrunch\.org.*|identifiers\.org/RRID/.*')])"/>
       <let name="lc" value="lower-case(.)"/>
       <let name="text-count" value="number(count(
-        for $x in tokenize(.,'RRID\s?#?\s?:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')
+        for $x in tokenize(.,'RRID\p{Zs}?#?\p{Zs}?:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')
         return $x)) -1"/>
       <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>
       <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]+')) then $x else (),'; ')"/>
       <let name="unequal-equal-text" value="string-join(for $x in tokenize(replace(.,'[&gt;&lt;]',''),' | ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
       <let name="link-strip-text" value="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
       <let name="url-text" value="string-join(for $x in tokenize($link-strip-text,' ')
-        return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\s]?|\.com[\s]?|\.co.uk[\s]?|\.us[\s]?|\.net[\s]?|\.edu[\s]?|\.gov[\s]?|\.io[\s]?')) then $x
+        return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\p{Zs}]?|\.com[\p{Zs}]?|\.co.uk[\p{Zs}]?|\.us[\p{Zs}]?|\.net[\p{Zs}]?|\.edu[\p{Zs}]?|\.gov[\p{Zs}]?|\.io[\p{Zs}]?')) then $x
         else (),'; ')"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/rrids#rrid-test" 
@@ -8505,11 +8501,11 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="ring-diacritic-symbol-test">'<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
       
-      <report test="matches(.,'[Tt]ype\s?[Oo]ne\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Tt]ype\s?[Oo]ne\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Tt]ype\s?[Oo]ne\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Tt]ype\s?[Oo]ne\s?[Dd]iabetes')])" 
+      <report test="matches(.,'[Tt]ype\p{Zs}?[Oo]ne\p{Zs}?[Dd]iabetes') and not(descendant::p[matches(.,'[Tt]ype\p{Zs}?[Oo]ne\p{Zs}?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Tt]ype\p{Zs}?[Oo]ne\p{Zs}?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Tt]ype\p{Zs}?[Oo]ne\p{Zs}?[Dd]iabetes')])" 
         role="error" 
         id="diabetes-1-test">'<name/>' element contains the phrase 'Type one diabetes'. The number should not be spelled out, this should be 'Type 1 diabetes'.</report>
       
-      <report test="matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes') and not(descendant::p[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Tt]ype\s?[Tt]wo\s?[Dd]iabetes')])" 
+      <report test="matches(.,'[Tt]ype\p{Zs}?[Tt]wo\p{Zs}?[Dd]iabetes') and not(descendant::p[matches(.,'[Tt]ype\p{Zs}?[Tt]wo\p{Zs}?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Tt]ype\p{Zs}?[Tt]wo\p{Zs}?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Tt]ype\p{Zs}?[Tt]wo\p{Zs}?[Dd]iabetes')])" 
         role="error" 
         id="diabetes-2-test">'<name/>' element contains the phrase 'Type two diabetes'. The number should not be spelled out, this should be 'Type 2 diabetes'</report>
       
@@ -8517,7 +8513,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="unlinked-url">'<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/></report>
       
-      <report test="matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]') and not(descendant::p[matches(.,'\s[1-2][0-9][0-9]0\ss[\s\.]')]) and not(descendant::td) and not(descendant::th)" 
+      <report test="matches(.,'\p{Zs}[1-2][0-9][0-9]0\p{Zs}s[\p{Zs}\.]') and not(descendant::p[matches(.,'\p{Zs}[1-2][0-9][0-9]0\p{Zs}s[\p{Zs}\.]')]) and not(descendant::td) and not(descendant::th)" 
         role="warning" 
         id="year-style-test">'<name/>' element contains the following string(s) - <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,' s'),'; ')"/>. If this refers to years, then the space should be removed after the number, i.e. <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,'s'),'; ')"/>. If the text is referring to a unit then this is fine.</report>
       
@@ -8634,12 +8630,12 @@ else self::*/local-name() = $allowed-p-blocks"
         id="ref-xref-test-7">citation is preceded by text containing 2 or more open brackets, '('. eLife style is that parenthetical citations already in brackets should be contained in square brackets, '['. Either there is a superfluous '(' in the preceding text, or the '(' needs changing to a '['  - <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.,substring($post-text,1,10))"/>.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-11" 
-        test="matches($pre-sentence,' from\s*[\(]+$| in\s*[\(]+$| by\s*[\(]+$| of\s*[\(]+$| on\s*[\(]+$| to\s*[\(]+$| see\s*[\(]+$| see also\s*[\(]+$| at\s*[\(]+$| per\s*[\(]+$| follows\s*[\(]+$| following\s*[\(]+$')" 
+        test="matches($pre-sentence,' from\p{Zs}*[\(]+$| in\p{Zs}*[\(]+$| by\p{Zs}*[\(]+$| of\p{Zs}*[\(]+$| on\p{Zs}*[\(]+$| to\p{Zs}*[\(]+$| see\p{Zs}*[\(]+$| see also\p{Zs}*[\(]+$| at\p{Zs}*[\(]+$| per\p{Zs}*[\(]+$| follows\p{Zs}*[\(]+$| following\p{Zs}*[\(]+$')" 
         role="warning" 
         id="ref-xref-test-11">'<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>' - citation is preceded by text ending with a possessive, preposition or verb and bracket which suggests the bracket should be removed.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-12" 
-        test="matches($post-text,'^[\)]+\s*who|^[\)]+\s*have|^[\)]+\s*found|^[\)]+\s*used|^[\)]+\s*demonstrate|^[\)]+\s*follow[s]?|^[\)]+\s*followed')" 
+        test="matches($post-text,'^[\)]+\p{Zs}*who|^[\)]+\p{Zs}*have|^[\)]+\p{Zs}*found|^[\)]+\p{Zs}*used|^[\)]+\p{Zs}*demonstrate|^[\)]+\p{Zs}*follow[s]?|^[\)]+\p{Zs}*followed')" 
         role="warning" 
         id="ref-xref-test-12">'<value-of select="concat(.,substring($post-text,1,10))"/>' - citation is followed by a bracket and a possessive, preposition or verb which suggests the bracket is unnecessary.</report>
       
@@ -8654,27 +8650,27 @@ else self::*/local-name() = $allowed-p-blocks"
         id="ref-xref-test-15">citation is followed by text containing much of the citation text. Is this correct? - '<value-of select="concat(.,$post-sentence)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-13" 
-        test="matches($pre-sentence,'\(\[\s?$')" 
+        test="matches($pre-sentence,'\(\[\p{Zs}?$')" 
         role="warning" 
         id="ref-xref-test-13">citation is preceded by '(['. Is the square bracket unnecessary? - <value-of select="concat($pre-sentence,.)"/>.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-16" 
-        test="matches($post-sentence,'^\s?\)\)')" 
+        test="matches($post-sentence,'^\p{Zs}?\)\)')" 
         role="error" 
         id="ref-xref-test-16">citation is followed by '))'. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - <value-of select="concat(.,$post-sentence)"/>.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-17" 
-        test="matches($pre-sentence,'\(\(\s?$')" 
+        test="matches($pre-sentence,'\(\(\p{Zs}?$')" 
         role="error" 
         id="ref-xref-test-17">citation is preceded by '(('. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - <value-of select="concat($pre-sentence,.)"/>.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-10" 
-        test="matches($pre-sentence,'\(\s?$') and ((string-length(replace($pre-sentence,'[^\(]','')) - string-length(replace($pre-sentence,'[^\)]',''))) gt 1)" 
+        test="matches($pre-sentence,'\(\p{Zs}?$') and ((string-length(replace($pre-sentence,'[^\(]','')) - string-length(replace($pre-sentence,'[^\)]',''))) gt 1)" 
         role="warning" 
         id="ref-xref-test-10">citation is preceded by '(', and appears to already be in a brackets. Should the bracket(s) around the citation be removed? Or replaced with square brackets? - <value-of select="concat($pre-sentence,.,$post-sentence)"/>.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-18" 
-        test="matches($pre-sentence,'\(\s?$') and matches($post-sentence,'^\s?\);') and (following-sibling::*[1]/name()='xref')" 
+        test="matches($pre-sentence,'\(\p{Zs}?$') and matches($post-sentence,'^\p{Zs}?\);') and (following-sibling::*[1]/name()='xref')" 
         role="warning" 
         id="ref-xref-test-18">citation is preceded by '(', and followed by ');'. Should the brackets be removed? - <value-of select="concat($pre-sentence,.,$post-sentence)"/>.</report>
       
@@ -8689,7 +8685,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="final-ref-xref-test-19"><value-of select="."/> - citation doesn't start with an author's name which is incorrect.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-20" 
-        test="matches($post-text,'^\);\s?$') and (following-sibling::*[1]/local-name() = 'xref')" 
+        test="matches($post-text,'^\);\p{Zs}?$') and (following-sibling::*[1]/local-name() = 'xref')" 
         role="error" 
         id="ref-xref-test-20">citation is followed by ');', which in turn is followed by another link. This must be incorrect (the bracket should be removed) - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'.</report>
       
@@ -8709,17 +8705,17 @@ else self::*/local-name() = $allowed-p-blocks"
         id="ref-xref-test-26">citation is preceded by '; [' - '<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.,substring($post-text,1,1))"/>' - Are the square bracket(s) surrounding the citation required? If this citation is already in a bracketed sentence, then it's very likely they can be removed.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-27" 
-        test="matches($post-text,'^\)\s?\($') and (following-sibling::*[1]/local-name() = 'xref')" 
+        test="matches($post-text,'^\)\p{Zs}?\($') and (following-sibling::*[1]/local-name() = 'xref')" 
         role="warning" 
         id="ref-xref-test-27">citation is followed by ') (', which in turn is followed by another link - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(.,'; ',following-sibling::*[1])"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-28" 
-        test="matches($pre-text,'^\)\s?\($') and (preceding-sibling::*[1]/local-name() = 'xref')" 
+        test="matches($pre-text,'^\)\p{Zs}?\($') and (preceding-sibling::*[1]/local-name() = 'xref')" 
         role="warning" 
         id="ref-xref-test-28">citation is preceded by ') (', which in turn is preceded by another link - '<value-of select="concat(preceding-sibling::*[1],$pre-sentence,.)"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(preceding-sibling::*[1],'; ',.)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-29" 
-        test="matches($post-text,'^\);\s?$') and (starts-with(following-sibling::*[1]/following-sibling::text()[1],')') or starts-with(following-sibling::*[1]/following-sibling::text()[1],';)'))" 
+        test="matches($post-text,'^\);\p{Zs}?$') and (starts-with(following-sibling::*[1]/following-sibling::text()[1],')') or starts-with(following-sibling::*[1]/following-sibling::text()[1],';)'))" 
         role="warning" 
         id="ref-xref-test-29">citation is followed by ');', which in turn is followed by something else followed by ')'. Is this punctuation correct? - '<value-of select="concat(.,$post-text,following-sibling::*[1],tokenize(following-sibling::*[1]/following-sibling::text()[1],'\. ')[position() = 1])"/>'.</report>
     </rule>
@@ -8846,17 +8842,17 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="vid-xref-test-7">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-8"
-        test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ss]ource')" 
+        test="matches($post-text,'^[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?[Ss]ource')" 
         role="error" 
         id="vid-xref-test-8">Incomplete citation. Video citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-9"
-        test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\s]?[\s\p{P}][\s]?$')" 
+        test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?$')" 
         role="error" 
         id="vid-xref-test-9">Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to a figure level video - '<value-of select="concat($pre-text,.)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-10"
-        test="matches($pre-text,'cf[\.]?\s?[\(]?$')" 
+        test="matches($pre-text,'cf[\.]?\p{Zs}?[\(]?$')" 
         role="warning" 
         id="vid-xref-test-10">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
@@ -8899,7 +8895,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="fig-xref-conformity-4"><value-of select="."/> - figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-conformity-5"
-        test="($type = 'Figure supplement') and (not(matches(.,'[Ss]upplement'))) and (not(matches(preceding-sibling::text()[1],'–[\s]?$| and $| or $|,[\s]?$')))" 
+        test="($type = 'Figure supplement') and (not(matches(.,'[Ss]upplement'))) and (not(matches(preceding-sibling::text()[1],'–[\p{Zs}]?$| and $| or $|,[\p{Zs}]?$')))" 
         role="warning" 
         id="fig-xref-conformity-5">figure citation stands alone, contains the text <value-of select="."/>, and links to a figure supplement, but it does not contain the string 'supplement'. Is it correct? Preceding text - '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'</report>
       
@@ -8949,27 +8945,27 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="fig-xref-test-9">Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-10"
-        test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ff]igure supplement')" 
+        test="matches($post-text,'^[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?[Ff]igure supplement')" 
         role="error" 
         id="fig-xref-test-10">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a Figure supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-11"
-        test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Vv]ideo')" 
+        test="matches($post-text,'^[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?[Vv]ideo')" 
         role="warning" 
         id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-12"
-        test="matches($post-text,'^[\s]?[\s\p{P}][\s]?[Ss]ource')" 
+        test="matches($post-text,'^[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?[Ss]ource')" 
         role="warning" 
         id="fig-xref-test-12">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-13"
-        test="matches($post-text,'^[\s]?[Ss]upplement|^[\s]?[Ff]igure [Ss]upplement|^[\s]?[Ss]ource|^[\s]?[Vv]ideo')" 
+        test="matches($post-text,'^[\p{Zs}]?[Ss]upplement|^[\p{Zs}]?[Ff]igure [Ss]upplement|^[\p{Zs}]?[Ss]ource|^[\p{Zs}]?[Vv]ideo')" 
         role="warning" 
         id="fig-xref-test-13">Figure citation is followed by text which suggests it could be an incomplete citation - <value-of select="concat(.,$post-text)"/>'. Is this OK?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-14"
-        test="matches($pre-text,'cf[\.]?\s?[\(]?$')" 
+        test="matches($pre-text,'cf[\.]?\p{Zs}?[\(]?$')" 
         role="warning" 
         id="fig-xref-test-14">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
@@ -8979,12 +8975,12 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="fig-xref-test-15">Link - '<value-of select="."/>' - is incomplete. It should have 'figure' or 'Figure' spelt out.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-16"
-        test="matches($pre-text,'[Ss]uppl?[\.]?\s?$|[Ss]upp?l[ea]mental\s?$|[Ss]upp?l[ea]mentary\s?$|[Ss]upp?l[ea]ment\s?$')" 
+        test="matches($pre-text,'[Ss]uppl?[\.]?\p{Zs}?$|[Ss]upp?l[ea]mental\p{Zs}?$|[Ss]upp?l[ea]mentary\p{Zs}?$|[Ss]upp?l[ea]ment\p{Zs}?$')" 
         role="warning" 
         id="fig-xref-test-16">Figure citation - '<value-of select="."/>' - is preceded by the text '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>' - should it be a figure supplement citation instead?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-17"
-        test="matches(.,'[A-Z]$') and matches($post-text,'^\s?and [A-Z] |^\s?and [A-Z]\.')" 
+        test="matches(.,'[A-Z]$') and matches($post-text,'^\p{Zs}?and [A-Z] |^\p{Zs}?and [A-Z]\.')" 
         role="warning" 
         id="fig-xref-test-17">Figure citation - '<value-of select="."/>' - is followed by the text '<value-of select="substring($post-text,1,7)"/>' - should this text be included in the link text too (i.e. '<value-of select="concat(.,substring($post-text,1,6))"/>')?</report>
       
@@ -9044,17 +9040,17 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="table-xref-test-3">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-4" 
-        test="matches($post-text,'^[\s]?[\s—\-][\s]?[Ss]ource')" 
+        test="matches($post-text,'^[\p{Zs}]?[\p{Zs}—\-][\p{Zs}]?[Ss]ource')" 
         role="error" 
         id="table-xref-test-4">Incomplete citation. Table citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-5" 
-        test="matches($pre-text,'cf[\.]?\s?[\(]?$')" 
+        test="matches($pre-text,'cf[\.]?\p{Zs}?[\(]?$')" 
         role="warning" 
         id="table-xref-test-5">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-6" 
-        test="matches($pre-text,'[Ss]uppl?[\.]?\s?$|[Ss]upp?l[ea]mental\s?$|[Ss]upp?l[ea]mentary\s?$|[Ss]upp?l[ea]ment\s?$')" 
+        test="matches($pre-text,'[Ss]uppl?[\.]?\p{Zs}?$|[Ss]upp?l[ea]mental\p{Zs}?$|[Ss]upp?l[ea]mentary\p{Zs}?$|[Ss]upp?l[ea]ment\p{Zs}?$')" 
         role="warning" 
         id="table-xref-test-6">Table citation - '<value-of select="."/>' - is preceded by the text '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>' - should it be a Supplementary file citation instead?</report>
     </rule>
@@ -9113,12 +9109,12 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="supp-xref-test-3">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-xref-test-4"
-        test="matches($pre-text,'[Ff]igure [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Vv]ideo [\d]{1,2}[\s]?[\s\p{P}][\s]?$|[Tt]able [\d]{1,2}[\s]?[\s\p{P}][\s]?$')" 
+        test="matches($pre-text,'[Ff]igure [\d]{1,2}[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?$|[Vv]ideo [\d]{1,2}[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?$|[Tt]able [\d]{1,2}[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?$')" 
         role="error" 
         id="supp-xref-test-4">Incomplete citation. <value-of select="."/> citation is preceded by text which suggests it should instead be a link to Figure/Video/Table level source data or code - <value-of select="concat($pre-text,.)"/>'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-xref-test-5"
-        test="matches($pre-text,'cf[\.]?\s?[\(]?$')" 
+        test="matches($pre-text,'cf[\.]?\p{Zs}?[\(]?$')" 
         role="warning" 
         id="supp-xref-test-5">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
@@ -9164,7 +9160,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="equ-xref-conformity-3"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Equation citation appears to be a reference to an equation from a different paper, and therefore must be unlinked.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-4"
-        test="matches($prec-text,'cf[\.]?\s?[\(]?$')" 
+        test="matches($prec-text,'cf[\.]?\p{Zs}?[\(]?$')" 
         role="warning" 
         id="equ-xref-conformity-4">citation is preceded by '<value-of select="substring($prec-text,string-length($prec-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
     </rule>
@@ -9179,82 +9175,82 @@ tokenize(substring-after($text,' et al'),' ')[2]
     <let name="lc" value="lower-case(.)"/>
     
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#bssubtilis-ref-article-title-check" 
-        test="matches($lc,'b\.\s?subtilis') and not(italic[contains(text() ,'B. subtilis')])" 
+        test="matches($lc,'b\.\p{Zs}?subtilis') and not(italic[contains(text() ,'B. subtilis')])" 
         role="info" 
         id="bssubtilis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'B. subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#bacillusssubtilis-ref-article-title-check" 
-        test="matches($lc,'bacillus\s?subtilis') and not(italic[contains(text() ,'Bacillus subtilis')])" 
+        test="matches($lc,'bacillus\p{Zs}?subtilis') and not(italic[contains(text() ,'Bacillus subtilis')])" 
         role="info" 
         id="bacillusssubtilis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Bacillus subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#dsmelanogaster-ref-article-title-check" 
-        test="matches($lc,'d\.\s?melanogaster') and not(italic[contains(text() ,'D. melanogaster')])" 
+        test="matches($lc,'d\.\p{Zs}?melanogaster') and not(italic[contains(text() ,'D. melanogaster')])" 
         role="info" 
         id="dsmelanogaster-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'D. melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drosophilasmelanogaster-ref-article-title-check" 
-        test="matches($lc,'drosophila\s?melanogaster') and not(italic[contains(text() ,'Drosophila melanogaster')])" 
+        test="matches($lc,'drosophila\p{Zs}?melanogaster') and not(italic[contains(text() ,'Drosophila melanogaster')])" 
         role="info" 
         id="drosophilasmelanogaster-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Drosophila melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#escoli-ref-article-title-check" 
-        test="matches($lc,'e\.\s?coli') and not(italic[contains(text() ,'E. coli')])" 
+        test="matches($lc,'e\.\p{Zs}?coli') and not(italic[contains(text() ,'E. coli')])" 
         role="info" 
         id="escoli-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. coli' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#escherichiascoli-ref-article-title-check" 
-        test="matches($lc,'escherichia\s?coli') and not(italic[contains(text() ,'Escherichia coli')])" 
+        test="matches($lc,'escherichia\p{Zs}?coli') and not(italic[contains(text() ,'Escherichia coli')])" 
         role="info" 
         id="escherichiascoli-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Escherichia coli' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#sspombe-ref-article-title-check" 
-        test="matches($lc,'s\.\s?pombe') and not(italic[contains(text() ,'S. pombe')])" 
+        test="matches($lc,'s\.\p{Zs}?pombe') and not(italic[contains(text() ,'S. pombe')])" 
         role="info" 
         id="sspombe-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#schizosaccharomycesspombe-ref-article-title-check" 
-        test="matches($lc,'schizosaccharomyces\s?pombe') and not(italic[contains(text() ,'Schizosaccharomyces pombe')])" 
+        test="matches($lc,'schizosaccharomyces\p{Zs}?pombe') and not(italic[contains(text() ,'Schizosaccharomyces pombe')])" 
         role="info" 
         id="schizosaccharomycesspombe-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Schizosaccharomyces pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#sscerevisiae-ref-article-title-check" 
-        test="matches($lc,'s\.\s?cerevisiae') and not(italic[contains(text() ,'S. cerevisiae')])" 
+        test="matches($lc,'s\.\p{Zs}?cerevisiae') and not(italic[contains(text() ,'S. cerevisiae')])" 
         role="info" 
         id="sscerevisiae-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#saccharomycesscerevisiae-ref-article-title-check" 
-        test="matches($lc,'saccharomyces\s?cerevisiae') and not(italic[contains(text() ,'Saccharomyces cerevisiae')])" 
+        test="matches($lc,'saccharomyces\p{Zs}?cerevisiae') and not(italic[contains(text() ,'Saccharomyces cerevisiae')])" 
         role="info" 
         id="saccharomycesscerevisiae-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Saccharomyces cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#cselegans-ref-article-title-check" 
-        test="matches($lc,'c\.\s?elegans') and not(italic[contains(text() ,'C. elegans')])" 
+        test="matches($lc,'c\.\p{Zs}?elegans') and not(italic[contains(text() ,'C. elegans')])" 
         role="info" 
         id="cselegans-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#caenorhabditisselegans-ref-article-title-check" 
-        test="matches($lc,'caenorhabditis\s?elegans') and not(italic[contains(text() ,'Caenorhabditis elegans')])" 
+        test="matches($lc,'caenorhabditis\p{Zs}?elegans') and not(italic[contains(text() ,'Caenorhabditis elegans')])" 
         role="info" 
         id="caenorhabditisselegans-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Caenorhabditis elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#asthaliana-ref-article-title-check" 
-        test="matches($lc,'a\.\s?thaliana') and not(italic[contains(text() ,'A. thaliana')])" 
+        test="matches($lc,'a\.\p{Zs}?thaliana') and not(italic[contains(text() ,'A. thaliana')])" 
         role="info" 
         id="asthaliana-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'A. thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#arabidopsissthaliana-ref-article-title-check" 
-        test="matches($lc,'arabidopsis\s?thaliana') and not(italic[contains(text() ,'Arabidopsis thaliana')])" 
+        test="matches($lc,'arabidopsis\p{Zs}?thaliana') and not(italic[contains(text() ,'Arabidopsis thaliana')])" 
         role="info" 
         id="arabidopsissthaliana-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Arabidopsis thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#msthermophila-ref-article-title-check" 
-        test="matches($lc,'m\.\s?thermophila') and not(italic[contains(text() ,'M. thermophila')])" 
+        test="matches($lc,'m\.\p{Zs}?thermophila') and not(italic[contains(text() ,'M. thermophila')])" 
         role="info" 
         id="msthermophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'M. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#myceliophthorasthermophila-ref-article-title-check" 
-        test="matches($lc,'myceliophthora\s?thermophila') and not(italic[contains(text() ,'Myceliophthora thermophila')])" 
+        test="matches($lc,'myceliophthora\p{Zs}?thermophila') and not(italic[contains(text() ,'Myceliophthora thermophila')])" 
         role="info" 
         id="myceliophthorasthermophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Myceliophthora thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
 
@@ -9264,447 +9260,447 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="dictyostelium-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Dictyostelium' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#psfalciparum-ref-article-title-check" 
-        test="matches($lc,'p\.\s?falciparum') and not(italic[contains(text() ,'P. falciparum')])" 
+        test="matches($lc,'p\.\p{Zs}?falciparum') and not(italic[contains(text() ,'P. falciparum')])" 
         role="info" 
         id="psfalciparum-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#plasmodiumsfalciparum-ref-article-title-check" 
-        test="matches($lc,'plasmodium\s?falciparum') and not(italic[contains(text() ,'Plasmodium falciparum')])" 
+        test="matches($lc,'plasmodium\p{Zs}?falciparum') and not(italic[contains(text() ,'Plasmodium falciparum')])" 
         role="info" 
         id="plasmodiumsfalciparum-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Plasmodium falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ssenterica-ref-article-title-check" 
-        test="matches($lc,'s\.\s?enterica') and not(italic[contains(text() ,'S. enterica')])" 
+        test="matches($lc,'s\.\p{Zs}?enterica') and not(italic[contains(text() ,'S. enterica')])" 
         role="info" 
         id="ssenterica-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#salmonellasenterica-ref-article-title-check" 
-        test="matches($lc,'salmonella\s?enterica') and not(italic[contains(text() ,'Salmonella enterica')])" 
+        test="matches($lc,'salmonella\p{Zs}?enterica') and not(italic[contains(text() ,'Salmonella enterica')])" 
         role="info" 
         id="salmonellasenterica-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Salmonella enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#sspyogenes-ref-article-title-check" 
-        test="matches($lc,'s\.\s?pyogenes') and not(italic[contains(text() ,'S. pyogenes')])" 
+        test="matches($lc,'s\.\p{Zs}?pyogenes') and not(italic[contains(text() ,'S. pyogenes')])" 
         role="info" 
         id="sspyogenes-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#streptococcusspyogenes-ref-article-title-check" 
-        test="matches($lc,'streptococcus\s?pyogenes') and not(italic[contains(text() ,'Streptococcus pyogenes')])" 
+        test="matches($lc,'streptococcus\p{Zs}?pyogenes') and not(italic[contains(text() ,'Streptococcus pyogenes')])" 
         role="info" 
         id="streptococcusspyogenes-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Streptococcus pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#psdumerilii-ref-article-title-check" 
-        test="matches($lc,'p\.\s?dumerilii') and not(italic[contains(text() ,'P. dumerilii')])" 
+        test="matches($lc,'p\.\p{Zs}?dumerilii') and not(italic[contains(text() ,'P. dumerilii')])" 
         role="info" 
         id="psdumerilii-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#platynereissdumerilii-ref-article-title-check" 
-        test="matches($lc,'platynereis\s?dumerilii') and not(italic[contains(text() ,'Platynereis dumerilii')])" 
+        test="matches($lc,'platynereis\p{Zs}?dumerilii') and not(italic[contains(text() ,'Platynereis dumerilii')])" 
         role="info" 
         id="platynereissdumerilii-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Platynereis dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pscynocephalus-ref-article-title-check" 
-        test="matches($lc,'p\.\s?cynocephalus') and not(italic[contains(text() ,'P. cynocephalus')])" 
+        test="matches($lc,'p\.\p{Zs}?cynocephalus') and not(italic[contains(text() ,'P. cynocephalus')])" 
         role="info" 
         id="pscynocephalus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#papioscynocephalus-ref-article-title-check" 
-        test="matches($lc,'papio\s?cynocephalus') and not(italic[contains(text() ,'Papio cynocephalus')])" 
+        test="matches($lc,'papio\p{Zs}?cynocephalus') and not(italic[contains(text() ,'Papio cynocephalus')])" 
         role="info" 
         id="papioscynocephalus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Papio cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#osfasciatus-ref-article-title-check" 
-        test="matches($lc,'o\.\s?fasciatus') and not(italic[contains(text() ,'O. fasciatus')])" 
+        test="matches($lc,'o\.\p{Zs}?fasciatus') and not(italic[contains(text() ,'O. fasciatus')])" 
         role="info" 
         id="osfasciatus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'O. fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#oncopeltussfasciatus-ref-article-title-check" 
-        test="matches($lc,'oncopeltus\s?fasciatus') and not(italic[contains(text() ,'Oncopeltus fasciatus')])" 
+        test="matches($lc,'oncopeltus\p{Zs}?fasciatus') and not(italic[contains(text() ,'Oncopeltus fasciatus')])" 
         role="info" 
         id="oncopeltussfasciatus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Oncopeltus fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#nscrassa-ref-article-title-check" 
-        test="matches($lc,'n\.\s?crassa') and not(italic[contains(text() ,'N. crassa')])" 
+        test="matches($lc,'n\.\p{Zs}?crassa') and not(italic[contains(text() ,'N. crassa')])" 
         role="info" 
         id="nscrassa-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'N. crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#neurosporascrassa-ref-article-title-check" 
-        test="matches($lc,'neurospora\s?crassa') and not(italic[contains(text() ,'Neurospora crassa')])" 
+        test="matches($lc,'neurospora\p{Zs}?crassa') and not(italic[contains(text() ,'Neurospora crassa')])" 
         role="info" 
         id="neurosporascrassa-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Neurospora crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#csintestinalis-ref-article-title-check" 
-        test="matches($lc,'c\.\s?intestinalis') and not(italic[contains(text() ,'C. intestinalis')])" 
+        test="matches($lc,'c\.\p{Zs}?intestinalis') and not(italic[contains(text() ,'C. intestinalis')])" 
         role="info" 
         id="csintestinalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#cionasintestinalis-ref-article-title-check" 
-        test="matches($lc,'ciona\s?intestinalis') and not(italic[contains(text() ,'Ciona intestinalis')])" 
+        test="matches($lc,'ciona\p{Zs}?intestinalis') and not(italic[contains(text() ,'Ciona intestinalis')])" 
         role="info" 
         id="cionasintestinalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Ciona intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#escuniculi-ref-article-title-check" 
-        test="matches($lc,'e\.\s?cuniculi') and not(italic[contains(text() ,'E. cuniculi')])" 
+        test="matches($lc,'e\.\p{Zs}?cuniculi') and not(italic[contains(text() ,'E. cuniculi')])" 
         role="info" 
         id="escuniculi-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#encephalitozoonscuniculi-ref-article-title-check" 
-        test="matches($lc,'encephalitozoon\s?cuniculi') and not(italic[contains(text() ,'Encephalitozoon cuniculi')])" 
+        test="matches($lc,'encephalitozoon\p{Zs}?cuniculi') and not(italic[contains(text() ,'Encephalitozoon cuniculi')])" 
         role="info" 
         id="encephalitozoonscuniculi-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Encephalitozoon cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#hssalinarum-ref-article-title-check" 
-        test="matches($lc,'h\.\s?salinarum') and not(italic[contains(text() ,'H. salinarum')])" 
+        test="matches($lc,'h\.\p{Zs}?salinarum') and not(italic[contains(text() ,'H. salinarum')])" 
         role="info" 
         id="hssalinarum-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'H. salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#halobacteriumssalinarum-ref-article-title-check" 
-        test="matches($lc,'halobacterium\s?salinarum') and not(italic[contains(text() ,'Halobacterium salinarum')])" 
+        test="matches($lc,'halobacterium\p{Zs}?salinarum') and not(italic[contains(text() ,'Halobacterium salinarum')])" 
         role="info" 
         id="halobacteriumssalinarum-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Halobacterium salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#sssolfataricus-ref-article-title-check" 
-        test="matches($lc,'s\.\s?solfataricus') and not(italic[contains(text() ,'S. solfataricus')])" 
+        test="matches($lc,'s\.\p{Zs}?solfataricus') and not(italic[contains(text() ,'S. solfataricus')])" 
         role="info" 
         id="sssolfataricus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#sulfolobusssolfataricus-ref-article-title-check" 
-        test="matches($lc,'sulfolobus\s?solfataricus') and not(italic[contains(text() ,'Sulfolobus solfataricus')])" 
+        test="matches($lc,'sulfolobus\p{Zs}?solfataricus') and not(italic[contains(text() ,'Sulfolobus solfataricus')])" 
         role="info" 
         id="sulfolobusssolfataricus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Sulfolobus solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ssmediterranea-ref-article-title-check" 
-        test="matches($lc,'s\.\s?mediterranea') and not(italic[contains(text() ,'S. mediterranea')])" 
+        test="matches($lc,'s\.\p{Zs}?mediterranea') and not(italic[contains(text() ,'S. mediterranea')])" 
         role="info" 
         id="ssmediterranea-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#schmidteasmediterranea-ref-article-title-check" 
-        test="matches($lc,'schmidtea\s?mediterranea') and not(italic[contains(text() ,'Schmidtea mediterranea')])" 
+        test="matches($lc,'schmidtea\p{Zs}?mediterranea') and not(italic[contains(text() ,'Schmidtea mediterranea')])" 
         role="info" 
         id="schmidteasmediterranea-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Schmidtea mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ssrosetta-ref-article-title-check" 
-        test="matches($lc,'s\.\s?rosetta') and not(italic[contains(text() ,'S. rosetta')])" 
+        test="matches($lc,'s\.\p{Zs}?rosetta') and not(italic[contains(text() ,'S. rosetta')])" 
         role="info" 
         id="ssrosetta-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#salpingoecasrosetta-ref-article-title-check" 
-        test="matches($lc,'salpingoeca\s?rosetta') and not(italic[contains(text() ,'Salpingoeca rosetta')])" 
+        test="matches($lc,'salpingoeca\p{Zs}?rosetta') and not(italic[contains(text() ,'Salpingoeca rosetta')])" 
         role="info" 
         id="salpingoecasrosetta-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Salpingoeca rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#nsvectensis-ref-article-title-check" 
-        test="matches($lc,'n\.\s?vectensis') and not(italic[contains(text() ,'N. vectensis')])" 
+        test="matches($lc,'n\.\p{Zs}?vectensis') and not(italic[contains(text() ,'N. vectensis')])" 
         role="info" 
         id="nsvectensis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'N. vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#nematostellasvectensis-ref-article-title-check" 
-        test="matches($lc,'nematostella\s?vectensis') and not(italic[contains(text() ,'Nematostella vectensis')])" 
+        test="matches($lc,'nematostella\p{Zs}?vectensis') and not(italic[contains(text() ,'Nematostella vectensis')])" 
         role="info" 
         id="nematostellasvectensis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Nematostella vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ssaureus-ref-article-title-check" 
-        test="matches($lc,'s\.\s?aureus') and not(italic[contains(text() ,'S. aureus')])" 
+        test="matches($lc,'s\.\p{Zs}?aureus') and not(italic[contains(text() ,'S. aureus')])" 
         role="info" 
         id="ssaureus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#staphylococcussaureus-ref-article-title-check" 
-        test="matches($lc,'staphylococcus\s?aureus') and not(italic[contains(text() ,'Staphylococcus aureus')])" 
+        test="matches($lc,'staphylococcus\p{Zs}?aureus') and not(italic[contains(text() ,'Staphylococcus aureus')])" 
         role="info" 
         id="staphylococcussaureus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Staphylococcus aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#vscholerae-ref-article-title-check" 
-        test="matches($lc,'v\.\s?cholerae') and not(italic[contains(text() ,'V. cholerae')])" 
+        test="matches($lc,'v\.\p{Zs}?cholerae') and not(italic[contains(text() ,'V. cholerae')])" 
         role="info" 
         id="vscholerae-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'V. cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#vibrioscholerae-ref-article-title-check" 
-        test="matches($lc,'vibrio\s?cholerae') and not(italic[contains(text() ,'Vibrio cholerae')])" 
+        test="matches($lc,'vibrio\p{Zs}?cholerae') and not(italic[contains(text() ,'Vibrio cholerae')])" 
         role="info" 
         id="vibrioscholerae-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Vibrio cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#tsthermophila-ref-article-title-check" 
-        test="matches($lc,'t\.\s?thermophila') and not(italic[contains(text() ,'T. thermophila')])" 
+        test="matches($lc,'t\.\p{Zs}?thermophila') and not(italic[contains(text() ,'T. thermophila')])" 
         role="info" 
         id="tsthermophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'T. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#tetrahymenasthermophila-ref-article-title-check" 
-        test="matches($lc,'tetrahymena\s?thermophila') and not(italic[contains(text() ,'Tetrahymena thermophila')])" 
+        test="matches($lc,'tetrahymena\p{Zs}?thermophila') and not(italic[contains(text() ,'Tetrahymena thermophila')])" 
         role="info" 
         id="tetrahymenasthermophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Tetrahymena thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#csreinhardtii-ref-article-title-check" 
-        test="matches($lc,'c\.\s?reinhardtii') and not(italic[contains(text() ,'C. reinhardtii')])" 
+        test="matches($lc,'c\.\p{Zs}?reinhardtii') and not(italic[contains(text() ,'C. reinhardtii')])" 
         role="info" 
         id="csreinhardtii-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#chlamydomonassreinhardtii-ref-article-title-check" 
-        test="matches($lc,'chlamydomonas\s?reinhardtii') and not(italic[contains(text() ,'Chlamydomonas reinhardtii')])" 
+        test="matches($lc,'chlamydomonas\p{Zs}?reinhardtii') and not(italic[contains(text() ,'Chlamydomonas reinhardtii')])" 
         role="info" 
         id="chlamydomonassreinhardtii-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Chlamydomonas reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#nsattenuata-ref-article-title-check" 
-        test="matches($lc,'n\.\s?attenuata') and not(italic[contains(text() ,'N. attenuata')])" 
+        test="matches($lc,'n\.\p{Zs}?attenuata') and not(italic[contains(text() ,'N. attenuata')])" 
         role="info" 
         id="nsattenuata-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'N. attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#nicotianasattenuata-ref-article-title-check" 
-        test="matches($lc,'nicotiana\s?attenuata') and not(italic[contains(text() ,'Nicotiana attenuata')])" 
+        test="matches($lc,'nicotiana\p{Zs}?attenuata') and not(italic[contains(text() ,'Nicotiana attenuata')])" 
         role="info" 
         id="nicotianasattenuata-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Nicotiana attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#escarotovora-ref-article-title-check" 
-        test="matches($lc,'e\.\s?carotovora') and not(italic[contains(text() ,'E. carotovora')])" 
+        test="matches($lc,'e\.\p{Zs}?carotovora') and not(italic[contains(text() ,'E. carotovora')])" 
         role="info" 
         id="escarotovora-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#erwiniascarotovora-ref-article-title-check" 
-        test="matches($lc,'erwinia\s?carotovora') and not(italic[contains(text() ,'Erwinia carotovora')])" 
+        test="matches($lc,'erwinia\p{Zs}?carotovora') and not(italic[contains(text() ,'Erwinia carotovora')])" 
         role="info" 
         id="erwiniascarotovora-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Erwinia carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#esfaecalis-ref-article-title-check" 
-        test="matches($lc,'e\.\s?faecalis') and not(italic[contains(text() ,'E. faecalis')])" 
+        test="matches($lc,'e\.\p{Zs}?faecalis') and not(italic[contains(text() ,'E. faecalis')])" 
         role="info" 
         id="esfaecalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#hsapiens-ref-article-title-check" 
-        test="matches($lc,'h\.\s?sapiens') and not(italic[contains(text() ,'H. sapiens')])" 
+        test="matches($lc,'h\.\p{Zs}?sapiens') and not(italic[contains(text() ,'H. sapiens')])" 
         role="info" 
         id="hsapiens-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'H. sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#homosapiens-ref-article-title-check" 
-        test="matches($lc,'homo\s?sapiens') and not(italic[contains(text() ,'Homo sapiens')])" 
+        test="matches($lc,'homo\p{Zs}?sapiens') and not(italic[contains(text() ,'Homo sapiens')])" 
         role="info" 
         id="homosapiens-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Homo sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ctrachomatis-ref-article-title-check" 
-        test="matches($lc,'c\.\s?trachomatis') and not(italic[contains(text() ,'C. trachomatis')])" 
+        test="matches($lc,'c\.\p{Zs}?trachomatis') and not(italic[contains(text() ,'C. trachomatis')])" 
         role="info" 
         id="ctrachomatis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#chlamydiatrachomatis-ref-article-title-check" 
-        test="matches($lc,'chlamydia\s?trachomatis') and not(italic[contains(text() ,'Chlamydia trachomatis')])" 
+        test="matches($lc,'chlamydia\p{Zs}?trachomatis') and not(italic[contains(text() ,'Chlamydia trachomatis')])" 
         role="info" 
         id="chlamydiatrachomatis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Chlamydia trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#enterococcussfaecalis-ref-article-title-check" 
-        test="matches($lc,'enterococcus\s?faecalis') and not(italic[contains(text() ,'Enterococcus faecalis')])" 
+        test="matches($lc,'enterococcus\p{Zs}?faecalis') and not(italic[contains(text() ,'Enterococcus faecalis')])" 
         role="info" 
         id="enterococcussfaecalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Enterococcus faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#xlaevis-ref-article-title-check" 
-        test="matches($lc,'x\.\s?laevis') and not(italic[contains(text() ,'X. laevis')])" 
+        test="matches($lc,'x\.\p{Zs}?laevis') and not(italic[contains(text() ,'X. laevis')])" 
         role="info" 
         id="xlaevis-ref-article-title-check">
         <name/> contains an organism - 'X. laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#xenopuslaevis-ref-article-title-check" 
-        test="matches($lc,'xenopus\s?laevis') and not(italic[contains(text() ,'Xenopus laevis')])" 
+        test="matches($lc,'xenopus\p{Zs}?laevis') and not(italic[contains(text() ,'Xenopus laevis')])" 
         role="info" 
         id="xenopuslaevis-ref-article-title-check">
         <name/> contains an organism - 'Xenopus laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#xtropicalis-ref-article-title-check" 
-        test="matches($lc,'x\.\s?tropicalis') and not(italic[contains(text() ,'X. tropicalis')])" 
+        test="matches($lc,'x\.\p{Zs}?tropicalis') and not(italic[contains(text() ,'X. tropicalis')])" 
         role="info" 
         id="xtropicalis-ref-article-title-check">
         <name/> contains an organism - 'X. tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#xenopustropicalis-ref-article-title-check" 
-        test="matches($lc,'xenopus\s?tropicalis') and not(italic[contains(text() ,'Xenopus tropicalis')])" 
+        test="matches($lc,'xenopus\p{Zs}?tropicalis') and not(italic[contains(text() ,'Xenopus tropicalis')])" 
         role="info" 
         id="xenopustropicalis-ref-article-title-check">
         <name/> contains an organism - 'Xenopus tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mmusculus-ref-article-title-check" 
-        test="matches($lc,'m\.\s?musculus') and not(italic[contains(text() ,'M. musculus')])" 
+        test="matches($lc,'m\.\p{Zs}?musculus') and not(italic[contains(text() ,'M. musculus')])" 
         role="info" 
         id="mmusculus-ref-article-title-check">
         <name/> contains an organism - 'M. musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#musmusculus-ref-article-title-check" 
-        test="matches($lc,'mus\s?musculus') and not(italic[contains(text() ,'Mus musculus')])" 
+        test="matches($lc,'mus\p{Zs}?musculus') and not(italic[contains(text() ,'Mus musculus')])" 
         role="info" 
         id="musmusculus-ref-article-title-check">
         <name/> contains an organism - 'Mus musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#dimmigrans-ref-article-title-check" 
-        test="matches($lc,'d\.\s?immigrans') and not(italic[contains(text() ,'D. immigrans')])" 
+        test="matches($lc,'d\.\p{Zs}?immigrans') and not(italic[contains(text() ,'D. immigrans')])" 
         role="info" 
         id="dimmigrans-ref-article-title-check">
         <name/> contains an organism - 'D. immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drosophilaimmigrans-ref-article-title-check" 
-        test="matches($lc,'drosophila\s?immigrans') and not(italic[contains(text() ,'Drosophila immigrans')])" 
+        test="matches($lc,'drosophila\p{Zs}?immigrans') and not(italic[contains(text() ,'Drosophila immigrans')])" 
         role="info" 
         id="drosophilaimmigrans-ref-article-title-check">
         <name/> contains an organism - 'Drosophila immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#dsubobscura-ref-article-title-check" 
-        test="matches($lc,'d\.\s?subobscura') and not(italic[contains(text() ,'D. subobscura')])" 
+        test="matches($lc,'d\.\p{Zs}?subobscura') and not(italic[contains(text() ,'D. subobscura')])" 
         role="info" 
         id="dsubobscura-ref-article-title-check">
         <name/> contains an organism - 'D. subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drosophilasubobscura-ref-article-title-check" 
-        test="matches($lc,'drosophila\s?subobscura') and not(italic[contains(text() ,'Drosophila subobscura')])" 
+        test="matches($lc,'drosophila\p{Zs}?subobscura') and not(italic[contains(text() ,'Drosophila subobscura')])" 
         role="info" 
         id="drosophilasubobscura-ref-article-title-check">
         <name/> contains an organism - 'Drosophila subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#daffinis-ref-article-title-check" 
-        test="matches($lc,'d\.\s?affinis') and not(italic[contains(text() ,'D. affinis')])" 
+        test="matches($lc,'d\.\p{Zs}?affinis') and not(italic[contains(text() ,'D. affinis')])" 
         role="info" 
         id="daffinis-ref-article-title-check">
         <name/> contains an organism - 'D. affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drosophilaaffinis-ref-article-title-check" 
-        test="matches($lc,'drosophila\s?affinis') and not(italic[contains(text() ,'Drosophila affinis')])" 
+        test="matches($lc,'drosophila\p{Zs}?affinis') and not(italic[contains(text() ,'Drosophila affinis')])" 
         role="info" 
         id="drosophilaaffinis-ref-article-title-check">
         <name/> contains an organism - 'Drosophila affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#dobscura-ref-article-title-check" 
-        test="matches($lc,'d\.\s?obscura') and not(italic[contains(text() ,'D. obscura')])" 
+        test="matches($lc,'d\.\p{Zs}?obscura') and not(italic[contains(text() ,'D. obscura')])" 
         role="info" 
         id="dobscura-ref-article-title-check">
         <name/> contains an organism - 'D. obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drosophilaobscura-ref-article-title-check" 
-        test="matches($lc,'drosophila\s?obscura') and not(italic[contains(text() ,'Drosophila obscura')])" 
+        test="matches($lc,'drosophila\p{Zs}?obscura') and not(italic[contains(text() ,'Drosophila obscura')])" 
         role="info" 
         id="drosophilaobscura-ref-article-title-check">
         <name/> contains an organism - 'Drosophila obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ftularensis-ref-article-title-check" 
-        test="matches($lc,'f\.\s?tularensis') and not(italic[contains(text() ,'F. tularensis')])" 
+        test="matches($lc,'f\.\p{Zs}?tularensis') and not(italic[contains(text() ,'F. tularensis')])" 
         role="info" 
         id="ftularensis-ref-article-title-check">
         <name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#francisellatularensis-ref-article-title-check" 
-        test="matches($lc,'francisella\s?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])" 
+        test="matches($lc,'francisella\p{Zs}?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])" 
         role="info" 
         id="francisellatularensis-ref-article-title-check">
         <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pplantaginis-ref-article-title-check" 
-        test="matches($lc,'p\.\s?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])" 
+        test="matches($lc,'p\.\p{Zs}?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])" 
         role="info" 
         id="pplantaginis-ref-article-title-check">
         <name/> contains an organism - 'P. plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#podosphaeraplantaginis-ref-article-title-check" 
-        test="matches($lc,'podosphaera\s?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])" 
+        test="matches($lc,'podosphaera\p{Zs}?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])" 
         role="info" 
         id="podosphaeraplantaginis-ref-article-title-check">
         <name/> contains an organism - 'Podosphaera plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#planceolata-ref-article-title-check" 
-        test="matches($lc,'p\.\s?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])" 
+        test="matches($lc,'p\.\p{Zs}?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])" 
         role="info" 
         id="planceolata-ref-article-title-check">
         <name/> contains an organism - 'P. lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#plantagolanceolata-ref-article-title-check" 
-        test="matches($lc,'plantago\s?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])" 
+        test="matches($lc,'plantago\p{Zs}?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])" 
         role="info" 
         id="plantagolanceolata-ref-article-title-check">
         <name/> contains an organism - 'Plantago lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mtrossulus-ref-article-title-check" 
-        test="matches($lc,'m\.\s?trossulus') and not(italic[contains(text() ,'M. trossulus')])" 
+        test="matches($lc,'m\.\p{Zs}?trossulus') and not(italic[contains(text() ,'M. trossulus')])" 
         role="info" 
         id="mtrossulus-ref-article-title-check">
         <name/> contains an organism - 'M. trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mytilustrossulus-ref-article-title-check" 
-        test="matches($lc,'mytilus\s?trossulus') and not(italic[contains(text() ,'Mytilus trossulus')])" 
+        test="matches($lc,'mytilus\p{Zs}?trossulus') and not(italic[contains(text() ,'Mytilus trossulus')])" 
         role="info" 
         id="mytilustrossulus-ref-article-title-check">
         <name/> contains an organism - 'Mytilus trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#medulis-ref-article-title-check" 
-        test="matches($lc,'m\.\s?edulis') and not(italic[contains(text() ,'M. edulis')])" 
+        test="matches($lc,'m\.\p{Zs}?edulis') and not(italic[contains(text() ,'M. edulis')])" 
         role="info" 
         id="medulis-ref-article-title-check">
         <name/> contains an organism - 'M. edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mytilusedulis-ref-article-title-check" 
-        test="matches($lc,'mytilus\s?edulis') and not(italic[contains(text() ,'Mytilus edulis')])" 
+        test="matches($lc,'mytilus\p{Zs}?edulis') and not(italic[contains(text() ,'Mytilus edulis')])" 
         role="info" 
         id="mytilusedulis-ref-article-title-check">
         <name/> contains an organism - 'Mytilus edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mchilensis-ref-article-title-check" 
-        test="matches($lc,'m\.\s?chilensis') and not(italic[contains(text() ,'M. chilensis')])" 
+        test="matches($lc,'m\.\p{Zs}?chilensis') and not(italic[contains(text() ,'M. chilensis')])" 
         role="info" 
         id="mchilensis-ref-article-title-check">
         <name/> contains an organism - 'M. chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mytiluschilensis-ref-article-title-check" 
-        test="matches($lc,'mytilus\s?chilensis') and not(italic[contains(text() ,'Mytilus chilensis')])" 
+        test="matches($lc,'mytilus\p{Zs}?chilensis') and not(italic[contains(text() ,'Mytilus chilensis')])" 
         role="info" 
         id="mytiluschilensis-ref-article-title-check">
         <name/> contains an organism - 'Mytilus chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#umaydis-ref-article-title-check" 
-        test="matches($lc,'u\.\s?maydis') and not(italic[contains(text() ,'U. maydis')])" 
+        test="matches($lc,'u\.\p{Zs}?maydis') and not(italic[contains(text() ,'U. maydis')])" 
         role="info" 
         id="umaydis-ref-article-title-check">
         <name/> contains an organism - 'U. maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ustilagomaydis-ref-article-title-check" 
-        test="matches($lc,'ustilago\s?maydis') and not(italic[contains(text() ,'Ustilago maydis')])" 
+        test="matches($lc,'ustilago\p{Zs}?maydis') and not(italic[contains(text() ,'Ustilago maydis')])" 
         role="info" 
         id="ustilagomaydis-ref-article-title-check">
         <name/> contains an organism - 'Ustilago maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pknowlesi-ref-article-title-check" 
-        test="matches($lc,'p\.\s?knowlesi') and not(italic[contains(text() ,'P. knowlesi')])" 
+        test="matches($lc,'p\.\p{Zs}?knowlesi') and not(italic[contains(text() ,'P. knowlesi')])" 
         role="info" 
         id="pknowlesi-ref-article-title-check">
         <name/> contains an organism - 'P. knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#plasmodiumknowlesi-ref-article-title-check" 
-        test="matches($lc,'plasmodium\s?knowlesi') and not(italic[contains(text() ,'Plasmodium knowlesi')])" 
+        test="matches($lc,'plasmodium\p{Zs}?knowlesi') and not(italic[contains(text() ,'Plasmodium knowlesi')])" 
         role="info" 
         id="plasmodiumknowlesi-ref-article-title-check">
         <name/> contains an organism - 'Plasmodium knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#paeruginosa-ref-article-title-check" 
-        test="matches($lc,'p\.\s?aeruginosa') and not(italic[contains(text() ,'P. aeruginosa')])" 
+        test="matches($lc,'p\.\p{Zs}?aeruginosa') and not(italic[contains(text() ,'P. aeruginosa')])" 
         role="info" 
         id="paeruginosa-ref-article-title-check">
         <name/> contains an organism - 'P. aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pseudomonasaeruginosa-ref-article-title-check" 
-        test="matches($lc,'pseudomonas\s?aeruginosa') and not(italic[contains(text() ,'Pseudomonas aeruginosa')])" 
+        test="matches($lc,'pseudomonas\p{Zs}?aeruginosa') and not(italic[contains(text() ,'Pseudomonas aeruginosa')])" 
         role="info" 
         id="pseudomonasaeruginosa-ref-article-title-check">
         <name/> contains an organism - 'Pseudomonas aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#tbrucei-ref-article-title-check" 
-        test="matches($lc,'t\.\s?brucei') and not(italic[contains(text() ,'T. brucei')])" 
+        test="matches($lc,'t\.\p{Zs}?brucei') and not(italic[contains(text() ,'T. brucei')])" 
         role="info" 
         id="tbrucei-ref-article-title-check">
         <name/> contains an organism - 'T. brucei' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#trypanosomabrucei-ref-article-title-check" 
-        test="matches($lc,'trypanosoma\s?brucei') and not(italic[contains(text() ,'Trypanosoma brucei')])" 
+        test="matches($lc,'trypanosoma\p{Zs}?brucei') and not(italic[contains(text() ,'Trypanosoma brucei')])" 
         role="info" 
         id="trypanosomabrucei-ref-article-title-check">
         <name/> contains an organism - 'Trypanosoma brucei' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drerio-ref-article-title-check" 
-        test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])" 
+        test="matches($lc,'d\.\p{Zs}?rerio') and not(italic[contains(text() ,'D. rerio')])" 
         role="info" 
         id="drerio-ref-article-title-check">
         <name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#daniorerio-ref-article-title-check" 
-        test="matches($lc,'danio\s?rerio') and not(italic[contains(text() ,'Danio rerio')])" 
+        test="matches($lc,'danio\p{Zs}?rerio') and not(italic[contains(text() ,'Danio rerio')])" 
         role="info" 
         id="daniorerio-ref-article-title-check">
         <name/> contains an organism - 'Danio rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
@@ -9724,67 +9720,67 @@ tokenize(substring-after($text,' et al'),' ')[2]
     <rule context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd" id="org-title-kwd">		
       <let name="lc" value="lower-case(.)"/>
       
-      <report test="matches($lc,'b\.\s?subtilis') and not(italic[contains(text() ,'B. subtilis')])" 
+      <report test="matches($lc,'b\.\p{Zs}?subtilis') and not(italic[contains(text() ,'B. subtilis')])" 
         role="warning" 
         id="bssubtilis-article-title-check"><name/> contains an organism - 'B. subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'bacillus\s?subtilis') and not(italic[contains(text() ,'Bacillus subtilis')])" 
+      <report test="matches($lc,'bacillus\p{Zs}?subtilis') and not(italic[contains(text() ,'Bacillus subtilis')])" 
         role="warning" 
         id="bacillusssubtilis-article-title-check"><name/> contains an organism - 'Bacillus subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?melanogaster') and not(italic[contains(text() ,'D. melanogaster')])" 
+      <report test="matches($lc,'d\.\p{Zs}?melanogaster') and not(italic[contains(text() ,'D. melanogaster')])" 
         role="warning" 
         id="dsmelanogaster-article-title-check"><name/> contains an organism - 'D. melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila\s?melanogaster') and not(italic[contains(text() ,'Drosophila melanogaster')])" 
+      <report test="matches($lc,'drosophila\p{Zs}?melanogaster') and not(italic[contains(text() ,'Drosophila melanogaster')])" 
         role="warning" 
         id="drosophilasmelanogaster-article-title-check"><name/> contains an organism - 'Drosophila melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'e\.\s?coli') and not(italic[contains(text() ,'E. coli')])" 
+      <report test="matches($lc,'e\.\p{Zs}?coli') and not(italic[contains(text() ,'E. coli')])" 
         role="warning" 
         id="escoli-article-title-check"><name/> contains an organism - 'E. coli' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'escherichia\s?coli') and not(italic[contains(text() ,'Escherichia coli')])" 
+      <report test="matches($lc,'escherichia\p{Zs}?coli') and not(italic[contains(text() ,'Escherichia coli')])" 
         role="warning" 
         id="escherichiascoli-article-title-check"><name/> contains an organism - 'Escherichia coli' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?pombe') and not(italic[contains(text() ,'S. pombe')])" 
+      <report test="matches($lc,'s\.\p{Zs}?pombe') and not(italic[contains(text() ,'S. pombe')])" 
         role="warning" 
         id="sspombe-article-title-check"><name/> contains an organism - 'S. pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'schizosaccharomyces\s?pombe') and not(italic[contains(text() ,'Schizosaccharomyces pombe')])" 
+      <report test="matches($lc,'schizosaccharomyces\p{Zs}?pombe') and not(italic[contains(text() ,'Schizosaccharomyces pombe')])" 
         role="warning" 
         id="schizosaccharomycesspombe-article-title-check"><name/> contains an organism - 'Schizosaccharomyces pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?cerevisiae') and not(italic[contains(text() ,'S. cerevisiae')])" 
+      <report test="matches($lc,'s\.\p{Zs}?cerevisiae') and not(italic[contains(text() ,'S. cerevisiae')])" 
         role="warning" 
         id="sscerevisiae-article-title-check"><name/> contains an organism - 'S. cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'saccharomyces\s?cerevisiae') and not(italic[contains(text() ,'Saccharomyces cerevisiae')])" 
+      <report test="matches($lc,'saccharomyces\p{Zs}?cerevisiae') and not(italic[contains(text() ,'Saccharomyces cerevisiae')])" 
         role="warning" 
         id="saccharomycesscerevisiae-article-title-check"><name/> contains an organism - 'Saccharomyces cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'c\.\s?elegans') and not(italic[contains(text() ,'C. elegans')])" 
+      <report test="matches($lc,'c\.\p{Zs}?elegans') and not(italic[contains(text() ,'C. elegans')])" 
         role="warning" 
         id="cselegans-article-title-check"><name/> contains an organism - 'C. elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'caenorhabditis\s?elegans') and not(italic[contains(text() ,'Caenorhabditis elegans')])" 
+      <report test="matches($lc,'caenorhabditis\p{Zs}?elegans') and not(italic[contains(text() ,'Caenorhabditis elegans')])" 
         role="warning" 
         id="caenorhabditisselegans-article-title-check"><name/> contains an organism - 'Caenorhabditis elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'a\.\s?thaliana') and not(italic[contains(text() ,'A. thaliana')])" 
+      <report test="matches($lc,'a\.\p{Zs}?thaliana') and not(italic[contains(text() ,'A. thaliana')])" 
         role="warning" 
         id="asthaliana-article-title-check"><name/> contains an organism - 'A. thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'arabidopsis\s?thaliana') and not(italic[contains(text() ,'Arabidopsis thaliana')])" 
+      <report test="matches($lc,'arabidopsis\p{Zs}?thaliana') and not(italic[contains(text() ,'Arabidopsis thaliana')])" 
         role="warning" 
         id="arabidopsissthaliana-article-title-check"><name/> contains an organism - 'Arabidopsis thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'m\.\s?thermophila') and not(italic[contains(text() ,'M. thermophila')])" 
+      <report test="matches($lc,'m\.\p{Zs}?thermophila') and not(italic[contains(text() ,'M. thermophila')])" 
         role="warning" 
         id="msthermophila-article-title-check"><name/> contains an organism - 'M. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'myceliophthora\s?thermophila') and not(italic[contains(text() ,'Myceliophthora thermophila')])" 
+      <report test="matches($lc,'myceliophthora\p{Zs}?thermophila') and not(italic[contains(text() ,'Myceliophthora thermophila')])" 
         role="warning" 
         id="myceliophthorasthermophila-article-title-check"><name/> contains an organism - 'Myceliophthora thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
       
@@ -9792,331 +9788,331 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="dictyostelium-article-title-check"><name/> contains an organism - 'Dictyostelium' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?falciparum') and not(italic[contains(text() ,'P. falciparum')])" 
+      <report test="matches($lc,'p\.\p{Zs}?falciparum') and not(italic[contains(text() ,'P. falciparum')])" 
         role="warning" 
         id="psfalciparum-article-title-check"><name/> contains an organism - 'P. falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'plasmodium\s?falciparum') and not(italic[contains(text() ,'Plasmodium falciparum')])" 
+      <report test="matches($lc,'plasmodium\p{Zs}?falciparum') and not(italic[contains(text() ,'Plasmodium falciparum')])" 
         role="warning" 
         id="plasmodiumsfalciparum-article-title-check"><name/> contains an organism - 'Plasmodium falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?enterica') and not(italic[contains(text() ,'S. enterica')])" 
+      <report test="matches($lc,'s\.\p{Zs}?enterica') and not(italic[contains(text() ,'S. enterica')])" 
         role="warning" 
         id="ssenterica-article-title-check"><name/> contains an organism - 'S. enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'salmonella\s?enterica') and not(italic[contains(text() ,'Salmonella enterica')])" 
+      <report test="matches($lc,'salmonella\p{Zs}?enterica') and not(italic[contains(text() ,'Salmonella enterica')])" 
         role="warning" 
         id="salmonellasenterica-article-title-check"><name/> contains an organism - 'Salmonella enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?pyogenes') and not(italic[contains(text() ,'S. pyogenes')])" 
+      <report test="matches($lc,'s\.\p{Zs}?pyogenes') and not(italic[contains(text() ,'S. pyogenes')])" 
         role="warning" 
         id="sspyogenes-article-title-check"><name/> contains an organism - 'S. pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'streptococcus\s?pyogenes') and not(italic[contains(text() ,'Streptococcus pyogenes')])" 
+      <report test="matches($lc,'streptococcus\p{Zs}?pyogenes') and not(italic[contains(text() ,'Streptococcus pyogenes')])" 
         role="warning" 
         id="streptococcusspyogenes-article-title-check"><name/> contains an organism - 'Streptococcus pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?dumerilii') and not(italic[contains(text() ,'P. dumerilii')])" 
+      <report test="matches($lc,'p\.\p{Zs}?dumerilii') and not(italic[contains(text() ,'P. dumerilii')])" 
         role="warning" 
         id="psdumerilii-article-title-check"><name/> contains an organism - 'P. dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'platynereis\s?dumerilii') and not(italic[contains(text() ,'Platynereis dumerilii')])" 
+      <report test="matches($lc,'platynereis\p{Zs}?dumerilii') and not(italic[contains(text() ,'Platynereis dumerilii')])" 
         role="warning" 
         id="platynereissdumerilii-article-title-check"><name/> contains an organism - 'Platynereis dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?cynocephalus') and not(italic[contains(text() ,'P. cynocephalus')])" 
+      <report test="matches($lc,'p\.\p{Zs}?cynocephalus') and not(italic[contains(text() ,'P. cynocephalus')])" 
         role="warning" 
         id="pscynocephalus-article-title-check"><name/> contains an organism - 'P. cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'papio\s?cynocephalus') and not(italic[contains(text() ,'Papio cynocephalus')])" 
+      <report test="matches($lc,'papio\p{Zs}?cynocephalus') and not(italic[contains(text() ,'Papio cynocephalus')])" 
         role="warning" 
         id="papioscynocephalus-article-title-check"><name/> contains an organism - 'Papio cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'o\.\s?fasciatus') and not(italic[contains(text() ,'O. fasciatus')])" 
+      <report test="matches($lc,'o\.\p{Zs}?fasciatus') and not(italic[contains(text() ,'O. fasciatus')])" 
         role="warning" 
         id="osfasciatus-article-title-check"><name/> contains an organism - 'O. fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'oncopeltus\s?fasciatus') and not(italic[contains(text() ,'Oncopeltus fasciatus')])" 
+      <report test="matches($lc,'oncopeltus\p{Zs}?fasciatus') and not(italic[contains(text() ,'Oncopeltus fasciatus')])" 
         role="warning" 
         id="oncopeltussfasciatus-article-title-check"><name/> contains an organism - 'Oncopeltus fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'n\.\s?crassa') and not(italic[contains(text() ,'N. crassa')])" 
+      <report test="matches($lc,'n\.\p{Zs}?crassa') and not(italic[contains(text() ,'N. crassa')])" 
         role="warning" 
         id="nscrassa-article-title-check"><name/> contains an organism - 'N. crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'neurospora\s?crassa') and not(italic[contains(text() ,'Neurospora crassa')])" 
+      <report test="matches($lc,'neurospora\p{Zs}?crassa') and not(italic[contains(text() ,'Neurospora crassa')])" 
         role="warning" 
         id="neurosporascrassa-article-title-check"><name/> contains an organism - 'Neurospora crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'c\.\s?intestinalis') and not(italic[contains(text() ,'C. intestinalis')])" 
+      <report test="matches($lc,'c\.\p{Zs}?intestinalis') and not(italic[contains(text() ,'C. intestinalis')])" 
         role="warning" 
         id="csintestinalis-article-title-check"><name/> contains an organism - 'C. intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'ciona\s?intestinalis') and not(italic[contains(text() ,'Ciona intestinalis')])" 
+      <report test="matches($lc,'ciona\p{Zs}?intestinalis') and not(italic[contains(text() ,'Ciona intestinalis')])" 
         role="warning" 
         id="cionasintestinalis-article-title-check"><name/> contains an organism - 'Ciona intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'e\.\s?cuniculi') and not(italic[contains(text() ,'E. cuniculi')])" 
+      <report test="matches($lc,'e\.\p{Zs}?cuniculi') and not(italic[contains(text() ,'E. cuniculi')])" 
         role="warning" 
         id="escuniculi-article-title-check"><name/> contains an organism - 'E. cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'encephalitozoon\s?cuniculi') and not(italic[contains(text() ,'Encephalitozoon cuniculi')])" 
+      <report test="matches($lc,'encephalitozoon\p{Zs}?cuniculi') and not(italic[contains(text() ,'Encephalitozoon cuniculi')])" 
         role="warning" 
         id="encephalitozoonscuniculi-article-title-check"><name/> contains an organism - 'Encephalitozoon cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'h\.\s?salinarum') and not(italic[contains(text() ,'H. salinarum')])" 
+      <report test="matches($lc,'h\.\p{Zs}?salinarum') and not(italic[contains(text() ,'H. salinarum')])" 
         role="warning" 
         id="hssalinarum-article-title-check"><name/> contains an organism - 'H. salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'halobacterium\s?salinarum') and not(italic[contains(text() ,'Halobacterium salinarum')])" 
+      <report test="matches($lc,'halobacterium\p{Zs}?salinarum') and not(italic[contains(text() ,'Halobacterium salinarum')])" 
         role="warning" 
         id="halobacteriumssalinarum-article-title-check"><name/> contains an organism - 'Halobacterium salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?solfataricus') and not(italic[contains(text() ,'S. solfataricus')])" 
+      <report test="matches($lc,'s\.\p{Zs}?solfataricus') and not(italic[contains(text() ,'S. solfataricus')])" 
         role="warning" 
         id="sssolfataricus-article-title-check"><name/> contains an organism - 'S. solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'sulfolobus\s?solfataricus') and not(italic[contains(text() ,'Sulfolobus solfataricus')])" 
+      <report test="matches($lc,'sulfolobus\p{Zs}?solfataricus') and not(italic[contains(text() ,'Sulfolobus solfataricus')])" 
         role="warning" 
         id="sulfolobusssolfataricus-article-title-check"><name/> contains an organism - 'Sulfolobus solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?mediterranea') and not(italic[contains(text() ,'S. mediterranea')])" 
+      <report test="matches($lc,'s\.\p{Zs}?mediterranea') and not(italic[contains(text() ,'S. mediterranea')])" 
         role="warning" 
         id="ssmediterranea-article-title-check"><name/> contains an organism - 'S. mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'schmidtea\s?mediterranea') and not(italic[contains(text() ,'Schmidtea mediterranea')])" 
+      <report test="matches($lc,'schmidtea\p{Zs}?mediterranea') and not(italic[contains(text() ,'Schmidtea mediterranea')])" 
         role="warning" 
         id="schmidteasmediterranea-article-title-check"><name/> contains an organism - 'Schmidtea mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?rosetta') and not(italic[contains(text() ,'S. rosetta')])" 
+      <report test="matches($lc,'s\.\p{Zs}?rosetta') and not(italic[contains(text() ,'S. rosetta')])" 
         role="warning" 
         id="ssrosetta-article-title-check"><name/> contains an organism - 'S. rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'salpingoeca\s?rosetta') and not(italic[contains(text() ,'Salpingoeca rosetta')])" 
+      <report test="matches($lc,'salpingoeca\p{Zs}?rosetta') and not(italic[contains(text() ,'Salpingoeca rosetta')])" 
         role="warning" 
         id="salpingoecasrosetta-article-title-check"><name/> contains an organism - 'Salpingoeca rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'n\.\s?vectensis') and not(italic[contains(text() ,'N. vectensis')])" 
+      <report test="matches($lc,'n\.\p{Zs}?vectensis') and not(italic[contains(text() ,'N. vectensis')])" 
         role="warning" 
         id="nsvectensis-article-title-check"><name/> contains an organism - 'N. vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'nematostella\s?vectensis') and not(italic[contains(text() ,'Nematostella vectensis')])" 
+      <report test="matches($lc,'nematostella\p{Zs}?vectensis') and not(italic[contains(text() ,'Nematostella vectensis')])" 
         role="warning" 
         id="nematostellasvectensis-article-title-check"><name/> contains an organism - 'Nematostella vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\s?aureus') and not(italic[contains(text() ,'S. aureus')])" 
+      <report test="matches($lc,'s\.\p{Zs}?aureus') and not(italic[contains(text() ,'S. aureus')])" 
         role="warning" 
         id="ssaureus-article-title-check"><name/> contains an organism - 'S. aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'staphylococcus\s?aureus') and not(italic[contains(text() ,'Staphylococcus aureus')])" 
+      <report test="matches($lc,'staphylococcus\p{Zs}?aureus') and not(italic[contains(text() ,'Staphylococcus aureus')])" 
         role="warning" 
         id="staphylococcussaureus-article-title-check"><name/> contains an organism - 'Staphylococcus aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'v\.\s?cholerae') and not(italic[contains(text() ,'V. cholerae')])" 
+      <report test="matches($lc,'v\.\p{Zs}?cholerae') and not(italic[contains(text() ,'V. cholerae')])" 
         role="warning" 
         id="vscholerae-article-title-check"><name/> contains an organism - 'V. cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'vibrio\s?cholerae') and not(italic[contains(text() ,'Vibrio cholerae')])" 
+      <report test="matches($lc,'vibrio\p{Zs}?cholerae') and not(italic[contains(text() ,'Vibrio cholerae')])" 
         role="warning" 
         id="vibrioscholerae-article-title-check"><name/> contains an organism - 'Vibrio cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'t\.\s?thermophila') and not(italic[contains(text() ,'T. thermophila')])" 
+      <report test="matches($lc,'t\.\p{Zs}?thermophila') and not(italic[contains(text() ,'T. thermophila')])" 
         role="warning" 
         id="tsthermophila-article-title-check"><name/> contains an organism - 'T. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'tetrahymena\s?thermophila') and not(italic[contains(text() ,'Tetrahymena thermophila')])" 
+      <report test="matches($lc,'tetrahymena\p{Zs}?thermophila') and not(italic[contains(text() ,'Tetrahymena thermophila')])" 
         role="warning" 
         id="tetrahymenasthermophila-article-title-check"><name/> contains an organism - 'Tetrahymena thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'c\.\s?reinhardtii') and not(italic[contains(text() ,'C. reinhardtii')])" 
+      <report test="matches($lc,'c\.\p{Zs}?reinhardtii') and not(italic[contains(text() ,'C. reinhardtii')])" 
         role="warning" 
         id="csreinhardtii-article-title-check"><name/> contains an organism - 'C. reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'chlamydomonas\s?reinhardtii') and not(italic[contains(text() ,'Chlamydomonas reinhardtii')])" 
+      <report test="matches($lc,'chlamydomonas\p{Zs}?reinhardtii') and not(italic[contains(text() ,'Chlamydomonas reinhardtii')])" 
         role="warning" 
         id="chlamydomonassreinhardtii-article-title-check"><name/> contains an organism - 'Chlamydomonas reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'n\.\s?attenuata') and not(italic[contains(text() ,'N. attenuata')])" 
+      <report test="matches($lc,'n\.\p{Zs}?attenuata') and not(italic[contains(text() ,'N. attenuata')])" 
         role="warning" 
         id="nsattenuata-article-title-check"><name/> contains an organism - 'N. attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'nicotiana\s?attenuata') and not(italic[contains(text() ,'Nicotiana attenuata')])" 
+      <report test="matches($lc,'nicotiana\p{Zs}?attenuata') and not(italic[contains(text() ,'Nicotiana attenuata')])" 
         role="warning" 
         id="nicotianasattenuata-article-title-check"><name/> contains an organism - 'Nicotiana attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'e\.\s?carotovora') and not(italic[contains(text() ,'E. carotovora')])" 
+      <report test="matches($lc,'e\.\p{Zs}?carotovora') and not(italic[contains(text() ,'E. carotovora')])" 
         role="warning" 
         id="escarotovora-article-title-check"><name/> contains an organism - 'E. carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'erwinia\s?carotovora') and not(italic[contains(text() ,'Erwinia carotovora')])" 
+      <report test="matches($lc,'erwinia\p{Zs}?carotovora') and not(italic[contains(text() ,'Erwinia carotovora')])" 
         role="warning" 
         id="erwiniascarotovora-article-title-check"><name/> contains an organism - 'Erwinia carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'h\.\s?sapiens') and not(italic[contains(text() ,'H. sapiens')])" 
+      <report test="matches($lc,'h\.\p{Zs}?sapiens') and not(italic[contains(text() ,'H. sapiens')])" 
         role="warning" 
         id="hsapiens-article-title-check"><name/> contains an organism - 'H. sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'homo\s?sapiens') and not(italic[contains(text() ,'Homo sapiens')])" 
+      <report test="matches($lc,'homo\p{Zs}?sapiens') and not(italic[contains(text() ,'Homo sapiens')])" 
         role="warning" 
         id="homosapiens-article-title-check"><name/> contains an organism - 'Homo sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'c\.\s?trachomatis') and not(italic[contains(text() ,'C. trachomatis')])" 
+      <report test="matches($lc,'c\.\p{Zs}?trachomatis') and not(italic[contains(text() ,'C. trachomatis')])" 
         role="warning" 
         id="ctrachomatis-article-title-check"><name/> contains an organism - 'C. trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'chlamydia\s?trachomatis') and not(italic[contains(text() ,'Chlamydia trachomatis')])" 
+      <report test="matches($lc,'chlamydia\p{Zs}?trachomatis') and not(italic[contains(text() ,'Chlamydia trachomatis')])" 
         role="warning" 
         id="chlamydiatrachomatis-article-title-check"><name/> contains an organism - 'Chlamydia trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'e\.\s?faecalis') and not(italic[contains(text() ,'E. faecalis')])" 
+      <report test="matches($lc,'e\.\p{Zs}?faecalis') and not(italic[contains(text() ,'E. faecalis')])" 
         role="warning" 
         id="esfaecalis-article-title-check"><name/> contains an organism - 'E. faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'enterococcus\s?faecalis') and not(italic[contains(text() ,'Enterococcus faecalis')])" 
+      <report test="matches($lc,'enterococcus\p{Zs}?faecalis') and not(italic[contains(text() ,'Enterococcus faecalis')])" 
         role="warning" 
         id="enterococcussfaecalis-article-title-check"><name/> contains an organism - 'Enterococcus faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'x\.\s?laevis') and not(italic[contains(text() ,'X. laevis')])" 
+      <report test="matches($lc,'x\.\p{Zs}?laevis') and not(italic[contains(text() ,'X. laevis')])" 
         role="warning" 
         id="xlaevis-article-title-check"><name/> contains an organism - 'X. laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'xenopus\s?laevis') and not(italic[contains(text() ,'Xenopus laevis')])" 
+      <report test="matches($lc,'xenopus\p{Zs}?laevis') and not(italic[contains(text() ,'Xenopus laevis')])" 
         role="warning" 
         id="xenopuslaevis-article-title-check"><name/> contains an organism - 'Xenopus laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'x\.\s?tropicalis') and not(italic[contains(text() ,'X. tropicalis')])" 
+      <report test="matches($lc,'x\.\p{Zs}?tropicalis') and not(italic[contains(text() ,'X. tropicalis')])" 
         role="warning" 
         id="xtropicalis-article-title-check"><name/> contains an organism - 'X. tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'xenopus\s?tropicalis') and not(italic[contains(text() ,'Xenopus tropicalis')])" 
+      <report test="matches($lc,'xenopus\p{Zs}?tropicalis') and not(italic[contains(text() ,'Xenopus tropicalis')])" 
         role="warning" 
         id="xenopustropicalis-article-title-check"><name/> contains an organism - 'Xenopus tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'m\.\s?musculus') and not(italic[contains(text() ,'M. musculus')])" 
+      <report test="matches($lc,'m\.\p{Zs}?musculus') and not(italic[contains(text() ,'M. musculus')])" 
         role="warning" 
         id="mmusculus-article-title-check"><name/> contains an organism - 'M. musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'mus\s?musculus') and not(italic[contains(text() ,'Mus musculus')])" 
+      <report test="matches($lc,'mus\p{Zs}?musculus') and not(italic[contains(text() ,'Mus musculus')])" 
         role="warning" 
         id="musmusculus-article-title-check"><name/> contains an organism - 'Mus musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?immigrans') and not(italic[contains(text() ,'D. immigrans')])" 
+      <report test="matches($lc,'d\.\p{Zs}?immigrans') and not(italic[contains(text() ,'D. immigrans')])" 
         role="warning" 
         id="dimmigrans-article-title-check"><name/> contains an organism - 'D. immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila\s?immigrans') and not(italic[contains(text() ,'Drosophila immigrans')])" 
+      <report test="matches($lc,'drosophila\p{Zs}?immigrans') and not(italic[contains(text() ,'Drosophila immigrans')])" 
         role="warning" 
         id="drosophilaimmigrans-article-title-check"><name/> contains an organism - 'Drosophila immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?subobscura') and not(italic[contains(text() ,'D. subobscura')])" 
+      <report test="matches($lc,'d\.\p{Zs}?subobscura') and not(italic[contains(text() ,'D. subobscura')])" 
         role="warning" 
         id="dsubobscura-article-title-check"><name/> contains an organism - 'D. subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila\s?subobscura') and not(italic[contains(text() ,'Drosophila subobscura')])" 
+      <report test="matches($lc,'drosophila\p{Zs}?subobscura') and not(italic[contains(text() ,'Drosophila subobscura')])" 
         role="warning" 
         id="drosophilasubobscura-article-title-check"><name/> contains an organism - 'Drosophila subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?affinis') and not(italic[contains(text() ,'D. affinis')])" 
+      <report test="matches($lc,'d\.\p{Zs}?affinis') and not(italic[contains(text() ,'D. affinis')])" 
         role="warning" 
         id="daffinis-article-title-check"><name/> contains an organism - 'D. affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila\s?affinis') and not(italic[contains(text() ,'Drosophila affinis')])" 
+      <report test="matches($lc,'drosophila\p{Zs}?affinis') and not(italic[contains(text() ,'Drosophila affinis')])" 
         role="warning" 
         id="drosophilaaffinis-article-title-check"><name/> contains an organism - 'Drosophila affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?obscura') and not(italic[contains(text() ,'D. obscura')])" 
+      <report test="matches($lc,'d\.\p{Zs}?obscura') and not(italic[contains(text() ,'D. obscura')])" 
         role="warning" 
         id="dobscura-article-title-check"><name/> contains an organism - 'D. obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'drosophila\s?obscura') and not(italic[contains(text() ,'Drosophila obscura')])" 
+      <report test="matches($lc,'drosophila\p{Zs}?obscura') and not(italic[contains(text() ,'Drosophila obscura')])" 
         role="warning" 
         id="drosophilaobscura-article-title-check"><name/> contains an organism - 'Drosophila obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'f\.\s?tularensis') and not(italic[contains(text() ,'F. tularensis')])" 
+      <report test="matches($lc,'f\.\p{Zs}?tularensis') and not(italic[contains(text() ,'F. tularensis')])" 
         role="warning" 
         id="ftularensis-article-title-check"><name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'francisella\s?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])" 
+      <report test="matches($lc,'francisella\p{Zs}?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])" 
         role="warning" 
         id="francisellatularensis-article-title-check"><name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])" 
+      <report test="matches($lc,'p\.\p{Zs}?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])" 
         role="warning" 
         id="pplantaginis-article-title-check"><name/> contains an organism - 'P. plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'podosphaera\s?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])" 
+      <report test="matches($lc,'podosphaera\p{Zs}?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])" 
         role="warning" 
         id="podosphaeraplantaginis-article-title-check"><name/> contains an organism - 'Podosphaera plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])" 
+      <report test="matches($lc,'p\.\p{Zs}?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])" 
         role="warning" 
         id="planceolata-article-title-check"><name/> contains an organism - 'P. lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'plantago\s?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])" 
+      <report test="matches($lc,'plantago\p{Zs}?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])" 
         role="warning" 
         id="plantagolanceolata-article-title-check"><name/> contains an organism - 'Plantago lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'m\.\s?trossulus') and not(italic[contains(text() ,'M. trossulus')])" 
+      <report test="matches($lc,'m\.\p{Zs}?trossulus') and not(italic[contains(text() ,'M. trossulus')])" 
         role="info" 
         id="mtrossulus-article-title-check"><name/> contains an organism - 'M. trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'mytilus\s?trossulus') and not(italic[contains(text() ,'Mytilus trossulus')])" 
+      <report test="matches($lc,'mytilus\p{Zs}?trossulus') and not(italic[contains(text() ,'Mytilus trossulus')])" 
         role="info" 
         id="mytilustrossulus-article-title-check"><name/> contains an organism - 'Mytilus trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'m\.\s?edulis') and not(italic[contains(text() ,'M. edulis')])" 
+      <report test="matches($lc,'m\.\p{Zs}?edulis') and not(italic[contains(text() ,'M. edulis')])" 
         role="info" 
         id="medulis-article-title-check"><name/> contains an organism - 'M. edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'mytilus\s?edulis') and not(italic[contains(text() ,'Mytilus edulis')])" 
+      <report test="matches($lc,'mytilus\p{Zs}?edulis') and not(italic[contains(text() ,'Mytilus edulis')])" 
         role="info" 
         id="mytilusedulis-article-title-check"><name/> contains an organism - 'Mytilus edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'m\.\s?chilensis') and not(italic[contains(text() ,'M. chilensis')])" 
+      <report test="matches($lc,'m\.\p{Zs}?chilensis') and not(italic[contains(text() ,'M. chilensis')])" 
         role="info" 
         id="mchilensis-article-title-check"><name/> contains an organism - 'M. chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'mytilus\s?chilensis') and not(italic[contains(text() ,'Mytilus chilensis')])" 
+      <report test="matches($lc,'mytilus\p{Zs}?chilensis') and not(italic[contains(text() ,'Mytilus chilensis')])" 
         role="info" 
         id="mytiluschilensis-article-title-check"><name/> contains an organism - 'Mytilus chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'u\.\s?maydis') and not(italic[contains(text() ,'U. maydis')])" 
+      <report test="matches($lc,'u\.\p{Zs}?maydis') and not(italic[contains(text() ,'U. maydis')])" 
         role="info" 
         id="umaydis-article-title-check"><name/> contains an organism - 'U. maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'ustilago\s?maydis') and not(italic[contains(text() ,'Ustilago maydis')])" 
+      <report test="matches($lc,'ustilago\p{Zs}?maydis') and not(italic[contains(text() ,'Ustilago maydis')])" 
         role="info" 
         id="ustilagomaydis-article-title-check"><name/> contains an organism - 'Ustilago maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?knowlesi') and not(italic[contains(text() ,'P. knowlesi')])" 
+      <report test="matches($lc,'p\.\p{Zs}?knowlesi') and not(italic[contains(text() ,'P. knowlesi')])" 
         role="info" 
         id="pknowlesi-article-title-check"><name/> contains an organism - 'P. knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'plasmodium\s?knowlesi') and not(italic[contains(text() ,'Plasmodium knowlesi')])" 
+      <report test="matches($lc,'plasmodium\p{Zs}?knowlesi') and not(italic[contains(text() ,'Plasmodium knowlesi')])" 
         role="info" 
         id="plasmodiumknowlesi-article-title-check"><name/> contains an organism - 'Plasmodium knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'p\.\s?aeruginosa') and not(italic[contains(text() ,'P. aeruginosa')])" 
+      <report test="matches($lc,'p\.\p{Zs}?aeruginosa') and not(italic[contains(text() ,'P. aeruginosa')])" 
         role="info" 
         id="paeruginosa-article-title-check"><name/> contains an organism - 'P. aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'pseudomonas\s?aeruginosa') and not(italic[contains(text() ,'Pseudomonas aeruginosa')])" 
+      <report test="matches($lc,'pseudomonas\p{Zs}?aeruginosa') and not(italic[contains(text() ,'Pseudomonas aeruginosa')])" 
         role="info" 
         id="pseudomonasaeruginosa-article-title-check"><name/> contains an organism - 'Pseudomonas aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'t\.\s?brucei') and not(italic[contains(text() ,'T. brucei')])" 
+      <report test="matches($lc,'t\.\p{Zs}?brucei') and not(italic[contains(text() ,'T. brucei')])" 
         role="warning" 
         id="tbrucei-article-title-check"><name/> contains an organism - 'T. brucei' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'trypanosoma\s?brucei') and not(italic[contains(text() ,'Trypanosoma brucei')])" 
+      <report test="matches($lc,'trypanosoma\p{Zs}?brucei') and not(italic[contains(text() ,'Trypanosoma brucei')])" 
         role="warning" 
         id="trypanosomabrucei-article-title-check"><name/> contains an organism - 'Trypanosoma brucei' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'d\.\s?rerio') and not(italic[contains(text() ,'D. rerio')])" 
+      <report test="matches($lc,'d\.\p{Zs}?rerio') and not(italic[contains(text() ,'D. rerio')])" 
         role="warning" 
         id="drerio-article-title-check"><name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'danio\s?rerio') and not(italic[contains(text() ,'Danio rerio')])" 
+      <report test="matches($lc,'danio\p{Zs}?rerio') and not(italic[contains(text() ,'Danio rerio')])" 
         role="warning" 
         id="daniorerio-article-title-check"><name/> contains an organism - 'Danio rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
       
@@ -10161,27 +10157,27 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="figurefigure-presence"><name/> element contains ' figure figure ' which is very likely to be incorrect.</report>
       
-      <report test="matches(translate(.,'—– ','-- '),'[\+\-]\s+/\s?[\+\-]|[\+\-]\s?/\s+[\+\-]')" 
+      <report test="matches(translate(.,'—– ','-- '),'[\+\-]\p{Zs}+/\p{Zs}?[\+\-]|[\+\-]\p{Zs}?/\p{Zs}+[\+\-]')" 
         role="warning" 
         id="plus-minus-presence"><name/> element contains two plus or minus signs separated by a space and a forward slash (such as '+ /-'). Should the space be removed? - <value-of select="."/></report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supplementalfigure-presence"
-        test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]igure')" 
+        test="not(ancestor::sub-article) and matches(.,'\p{Zs}?[Ss]upplemental [Ff]igure')" 
         role="warning" 
         id="supplementalfigure-presence"><name/> element contains the phrase ' Supplemental figure ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supplementalfile-presence"
-        test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplemental [Ff]ile')" 
+        test="not(ancestor::sub-article) and matches(.,'\p{Zs}?[Ss]upplemental [Ff]ile')" 
         role="warning" 
         id="supplementalfile-presence"><name/> element contains the phrase ' Supplemental file ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supplementaryfigure-presence"
-        test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplementary [Ff]igure')" 
+        test="not(ancestor::sub-article) and matches(.,'\p{Zs}?[Ss]upplementary [Ff]igure')" 
         role="warning" 
         id="supplementaryfigure-presence"><name/> element contains the phrase ' Supplementary figure ' which almost certainly needs updating. If it's unclear which figure/figure supplement should be cited, please query the authors. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supplement-table-presence"
-        test="not(ancestor::sub-article) and matches(.,'\s?[Ss]upplementa(l|ry) [Tt]able')" 
+        test="not(ancestor::sub-article) and matches(.,'\p{Zs}?[Ss]upplementa(l|ry) [Tt]able')" 
         role="warning" 
         id="supplement-table-presence"><name/> element contains the phrase 'Supplementary table' or 'Supplemental table'. Does it need updating? If it's unclear what should be cited, please query the authors. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
       
@@ -10271,7 +10267,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
     
     <rule context="p[not(descendant::mml:math)]|td[not(descendant::mml:math)]|th[not(descendant::mml:math)]|monospace|code" id="latex-tests">
       
-      <report test="matches(.,'\s*\\[a-z]*\p{Ps}')" 
+      <report test="matches(.,'\p{Zs}*\\[a-z]*\p{Ps}')" 
         role="warning" 
         id="latex-test"><name/> element contains what looks like possible LaTeX. Please check that this is correct (i.e. that it is not the case that the authors included LaTeX markup expecting the content to be rendered as it would be in LaTeX. Content - "<value-of select="."/>"</report>
       
@@ -10307,7 +10303,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="error" 
         id="singapore-test-1"><value-of select="ancestor::aff/@id"/> has 'Singapore' as its country but '<value-of select="$city"/>' as its city, which must be incorrect.</report>
       
-      <report test="(. != 'Taiwan') and  (matches(lower-case($city),'ta[i]?pei|tai\s?chung|kaohsiung|taoyuan|tainan|hsinchu|keelung|chiayi|changhua|jhongli|tao-yuan|hualien'))" 
+      <report test="(. != 'Taiwan') and  (matches(lower-case($city),'ta[i]?pei|tai\p{Zs}?chung|kaohsiung|taoyuan|tainan|hsinchu|keelung|chiayi|changhua|jhongli|tao-yuan|hualien'))" 
         role="warning" 
         id="taiwan-test">Affiliation has a Taiwanese city - <value-of select="$city"/> - but its country is '<value-of select="."/>'. Please check the original manuscript. If it has 'Taiwan' as the country in the original manuscript then ensure it is changed to 'Taiwan'.</report>
       
@@ -10522,7 +10518,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="journal-conference-ref-check-1">Journal ref '<value-of select="ancestor::ref/@id"/>' has the journal name <value-of select="source[1]"/>. Should it be a conference type reference instead?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-conference-ref-check-2" 
-        test="matches(source[1],'^[1][7-9][0-9][0-9] |\([1][7-9][0-9][0-9][\)\s]| [1][7-9][0-9][0-9] | [1][7-9][0-9][0-9]$|^[2][0-2][0-9][0-9] |\([2][0-2][0-9][0-9][\)\s]| [2][0-2][0-9][0-9] | [2][0-2][0-9][0-9]$')" 
+        test="matches(source[1],'^[1][7-9][0-9][0-9] |\([1][7-9][0-9][0-9][\)\p{Zs}]| [1][7-9][0-9][0-9] | [1][7-9][0-9][0-9]$|^[2][0-2][0-9][0-9] |\([2][0-2][0-9][0-9][\)\p{Zs}]| [2][0-2][0-9][0-9] | [2][0-2][0-9][0-9]$')" 
         role="warning" 
         id="journal-conference-ref-check-2">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name containing a year - <value-of select="source[1]"/>. Should it be a conference type reference instead? Or should the year be removed from the journal name?</report>
       
@@ -10542,7 +10538,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
     
     <rule context="element-citation[@publication-type='book']/chapter-title" id="ref-chapter-title-tests">
       
-      <report test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\s\p{P}]?$')" 
+      <report test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\p{Zs}\p{P}]?$')" 
         role="warning" 
         id="report-chapter-title-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a book reference, but the chapter title is <value-of select="."/>. Should it be captured as a report type reference instead?</report>
       
@@ -10550,7 +10546,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
     
     <rule context="element-citation[@publication-type='book']/source" id="ref-book-source-tests">
       
-      <report test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\s\p{P}]?$')" 
+      <report test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\p{Zs}\p{P}]?$')" 
         role="warning" 
         id="report-book-source-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a book reference, but the book title is <value-of select="."/>. Should it be captured as a report type reference instead?</report>
       
@@ -11088,7 +11084,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="surname-number-check">name in ref '<value-of select="ancestor::ref/@id"/>' contains numbers - <value-of select="."/>. Should this be captured as a collab?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#surname-ellipsis-check"
-        test="matches(surname[1],'^\s*?…|^\s*?\.\s?\.\s?\.')" 
+        test="matches(surname[1],'^\p{Zs}*?…|^\p{Zs}*?\.\p{Zs}?\.\p{Zs}?\.')" 
         role="error" 
         id="surname-ellipsis-check">surname in ref '<value-of select="ancestor::ref/@id"/>' begins with an ellipsis which is wrong - <value-of select="surname"/>. Are there preceding authors missing from the list?</report>
       
@@ -11204,7 +11200,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-list-check"
-        test="matches(.,'^\s?[A-Za-z]{1,3}\)|^\s?\([A-Za-z]{1,3}')" 
+        test="matches(.,'^\p{Zs}?[A-Za-z]{1,3}\)|^\p{Zs}?\([A-Za-z]{1,3}')" 
         role="warning" 
         id="sec-title-list-check">Section title might start with a list indicator - '<value-of select="."/>'. Is this correct?</report>
       
@@ -11229,7 +11225,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="sec-title-content-mandate">Section title must not be empty.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-full-stop"
-        test="matches(replace(.,' ',' '),'\.[\s]*$')" 
+        test="matches(replace(.,' ',' '),'\.[\p{Zs}]*$')" 
         role="warning" 
         id="sec-title-full-stop">Section title ends with full stop, which is very likely to be incorrect - <value-of select="."/></report>
       
@@ -11322,17 +11318,17 @@ tokenize(substring-after($text,' et al'),' ')[2]
         id="doi-link-test">td element containing - '<value-of select="."/>' - looks like it contains a doi, but it contains no link with 'doi.org', which is incorrect.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#PMID-link-test" 
-        test="matches(.,'[Pp][Mm][Ii][Dd][:]?\s?[0-9][0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed/') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov/')]) = 0)" 
+        test="matches(.,'[Pp][Mm][Ii][Dd][:]?\p{Zs}?[0-9][0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed/') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov/')]) = 0)" 
         role="error" 
         id="PMID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMID, but it contains no link pointing to PubMed, which is incorrect.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#PMCID-link-test" 
-        test="matches(.,'PMCID[:]?\s?PMC[0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)" 
+        test="matches(.,'PMCID[:]?\p{Zs}?PMC[0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)" 
         role="error" 
         id="PMCID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect.</report>
       
       <report
-        test="matches(lower-case(.),'addgene\s?#?\s?\d') and not(ext-link[contains(@xlink:href,'scicrunch.org/resolver')])" 
+        test="matches(lower-case(.),'addgene\p{Zs}?#?\p{Zs}?\d') and not(ext-link[contains(@xlink:href,'scicrunch.org/resolver')])" 
         role="warning" 
         id="addgene-test">td element containing - '<value-of select="."/>' - looks like it contains an addgene number. Should this be changed to an RRID with a https://scicrunch.org/resolver/RRID:addgene_{number} link?</report>
       
@@ -11436,7 +11432,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
     <rule context="mml:mtext" id="mtext-tests">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#mtext-test-1"
-        test="matches(.,'^\s*\\')" 
+        test="matches(.,'^\p{Zs}*\\')" 
         role="warning" 
         id="mtext-test-1">math (<value-of select="name()"/> element) contains '<value-of select="."/>' which looks suspiciously like LaTeX markup. Is it correct? Or is there missing content or content which has been processed incompletely?</report>
       
@@ -11456,11 +11452,11 @@ tokenize(substring-after($text,' et al'),' ')[2]
       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]" id="p-punctuation">
       <let name="para" value="replace(.,' ',' ')"/>
       
-      <assert test="matches($para,'\p{P}\s*?$')" 
+      <assert test="matches($para,'\p{P}\p{Zs}*?$')" 
         role="warning" 
         id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</assert>
       
-      <assert test="matches($para,'\.\)?\s*?$|:\s*?$|\?\s*?$|!\s*?$|\.”\s*?|\.&quot;\s*?')" 
+      <assert test="matches($para,'\.\)?\p{Zs}*?$|:\p{Zs}*?$|\?\p{Zs}*?$|!\p{Zs}*?$|\.”\p{Zs}*?|\.&quot;\p{Zs}*?')" 
         role="warning" 
         id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</assert>
     </rule>
@@ -11729,7 +11725,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="auth-kwd-check-5">Keyword contains 'and' - <value-of select="."/>. These should be split out into two keywords.</report>
       
-      <report test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\s')) gt 4" 
+      <report test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\p{Zs}')) gt 4" 
         role="warning" 
         id="auth-kwd-check-6">Keyword contains more than 4 words - <value-of select="."/>. Should these be split out into separate keywords?</report>
       
@@ -11768,7 +11764,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <let name="following-text" value="following-sibling::text()[1]"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#section-title-test-1"
-        test="(name()=('italic','bold','underline')) and (ends-with(.,'.') or matches($following-text,'^\s?\.|^[\p{P}]?\s?[A-Z]|^[\p{P}]?\s?\d')) and not((name()='italic') and matches(lower-case(.),$sec-title-regex))" 
+        test="(name()=('italic','bold','underline')) and (ends-with(.,'.') or matches($following-text,'^\p{Zs}?\.|^[\p{P}]?\p{Zs}?[A-Z]|^[\p{P}]?\p{Zs}?\d')) and not((name()='italic') and matches(lower-case(.),$sec-title-regex))" 
         role="warning" 
         id="section-title-test-1"><name/> text begins a paragraph - <value-of select="."/> - Should it be marked up as a section title (Heading level <value-of select="count(ancestor::sec) + 1"/>)?</report>
       
@@ -11796,11 +11792,11 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <let name="pre-token" value="substring($pre-text, string-length($pre-text), 1)"/>
       <let name="post-token" value="substring($post-text, 1, 1)"/>
       
-      <assert test="(substring(.,1,1) = (' ',' ')) or ($pre-token='') or matches($pre-token,'[\s\p{P}]')" 
+      <assert test="(substring(.,1,1) = (' ',' ')) or ($pre-token='') or matches($pre-token,'[\p{Zs}\p{P}]')" 
         role="warning" 
         id="italic-org-test-1">There is no space between the organism name '<value-of select="."/>' and its preceeding text - '<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>'. Is this correct or is there a missing space?</assert>
       
-      <assert test="(substring(., string-length(.), 1) = (' ',' ')) or ($post-token='') or matches($post-token,'[\s\p{P}]')" 
+      <assert test="(substring(., string-length(.), 1) = (' ',' ')) or ($post-token='') or matches($post-token,'[\p{Zs}\p{P}]')" 
         role="warning" 
         id="italic-org-test-2">There is no space between the organism name '<value-of select="."/>' and its following text - '<value-of select="concat(.,substring($post-text,1,10))"/>'. Is this correct or is there a missing space?</assert>
     </rule>
@@ -11919,7 +11915,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       id="link-ref-tests">
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#doi-in-display-test"
-        test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9]+|\s10\.\d{4,9}/[-._;()/:A-Za-z0-9]+')" 
+        test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9]+|\p{Zs}10\.\d{4,9}/[-._;()/:A-Za-z0-9]+')" 
         role="error" 
         id="doi-in-display-test"><value-of select="name()"/> element contains a doi - <value-of select="."/>. The doi must be moved to the appropriate field, and the correct information should be included in this element (or queried if the information is missing).</report>
       
@@ -12413,7 +12409,7 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/general-content#private-char-test"
         test="matches(.,'\p{Co}')" 
         role="error" 
-        id="private-char-test"><name/> element contains private use character(s). They either need removing or changing to the correct character. Private characters: '<value-of select="string-join(distinct-values(tokenize(.,'\s')[matches(.,'\p{Co}')]),' ')"/>'.</report>
+        id="private-char-test"><name/> element contains private use character(s). They either need removing or changing to the correct character. Private characters: '<value-of select="string-join(distinct-values(tokenize(.,'\p{Zs}')[matches(.,'\p{Co}')]),' ')"/>'.</report>
       
     </rule>
     

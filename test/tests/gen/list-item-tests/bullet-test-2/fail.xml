@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="bullet-test-2.sch"?>
 <!--Context: list-item
-Test: report    ($type='simple') and matches(.,'^\s?•')
+Test: report    ($type='simple') and matches(.,'^\p{Zs}?•')
 Message: list-item is part of simple list, but it begins with a '•'. Remove the unnecessary '•' and capture the list as a bullet type list. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

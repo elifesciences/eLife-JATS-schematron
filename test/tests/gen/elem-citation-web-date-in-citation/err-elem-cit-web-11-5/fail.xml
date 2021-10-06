@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-web-11-5.sch"?>
 <!--Context: element-citation[@publication-type='web']/date-in-citation
-Test: assert    (matches(@iso-8601-date,replace($date-regex,'\s','')))
+Test: assert    (matches(@iso-8601-date,replace($date-regex,'\p{Zs}','')))
 Message: 
         The @iso-8601-date value on accessed date must be a valid date value.  in reference '' is not valid. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

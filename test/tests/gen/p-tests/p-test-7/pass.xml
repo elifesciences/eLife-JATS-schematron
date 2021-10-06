@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="p-test-7.sch"?>
 <!--Context: p
-Test: report    matches(.,'^\s?•') and not(ancestor::sub-article)
+Test: report    matches(.,'^\p{Zs}?•') and not(ancestor::sub-article)
 Message: p element starts with a bullet point. It is very likely that this should instead be captured as a list-item in a list[@list-type='bullet']. -  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="section-title-test-1.sch"?>
 <!--Context: sec/p/*[1][not(preceding-sibling::text()) or (normalize-space(preceding-sibling::text())='')]
-Test: report    (name()=('italic','bold','underline')) and (ends-with(.,'.') or matches($following-text,'^\s?\.|^[\p{P}]?\s?[A-Z]|^[\p{P}]?\s?\d')) and not((name()='italic') and matches(lower-case(.),$sec-title-regex))
+Test: report    (name()=('italic','bold','underline')) and (ends-with(.,'.') or matches($following-text,'^\p{Zs}?\.|^[\p{P}]?\p{Zs}?[A-Z]|^[\p{P}]?\p{Zs}?\d')) and not((name()='italic') and matches(lower-case(.),$sec-title-regex))
 Message:  text begins a paragraph -  - Should it be marked up as a section title (Heading level )? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

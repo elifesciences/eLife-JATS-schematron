@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-web-11-4.sch"?>
 <!--Context: element-citation[@publication-type='web']/date-in-citation
-Test: report    if (matches(@iso-8601-date,replace($date-regex,'\s',''))) then format-date(xs:date(@iso-8601-date), '[MNn] [D], [Y]')!=. else ()
+Test: report    if (matches(@iso-8601-date,replace($date-regex,'\p{Zs}',''))) then format-date(xs:date(@iso-8601-date), '[MNn] [D], [Y]')!=. else ()
 Message: 
         The Accessed date value must match the @iso-8601-date value in the format 'January 1, 2020'.
         Reference '' has element content of 

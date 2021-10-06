@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="ref-xref-test-29.sch"?>
 <!--Context: xref[@ref-type='bibr']
-Test: report    matches($post-text,'^\);\s?$') and (starts-with(following-sibling::*[1]/following-sibling::text()[1],')') or starts-with(following-sibling::*[1]/following-sibling::text()[1],';)'))
+Test: report    matches($post-text,'^\);\p{Zs}?$') and (starts-with(following-sibling::*[1]/following-sibling::text()[1],')') or starts-with(following-sibling::*[1]/following-sibling::text()[1],';)'))
 Message: citation is followed by ');', which in turn is followed by something else followed by ')'. Is this punctuation correct? - ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

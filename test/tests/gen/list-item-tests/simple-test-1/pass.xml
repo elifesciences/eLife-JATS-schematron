@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="simple-test-1.sch"?>
 <!--Context: list-item
-Test: report    ($type='simple') and matches(.,'^\s?[1-9][\.|\)]? ')
+Test: report    ($type='simple') and matches(.,'^\p{Zs}?[1-9][\.|\)]? ')
 Message: list-item is part of a simple list, but it begins with a number. Should the list-type be updated to ordered and this number removed?  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
