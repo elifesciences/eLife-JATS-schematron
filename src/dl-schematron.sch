@@ -1046,6 +1046,15 @@
 	
 	</rule>
   </pattern>
+  <pattern id="research-article-sub-article-pattern">
+    <rule context="article[@article-type='research-article' and sub-article]" id="research-article-sub-article">
+     <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/> 
+     
+   <report test="($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type!='reply'])" flag="dl-ar" role="error" id="r-article-sub-articles">
+        <value-of select="$disp-channel"/> type articles cannot have only an Author response. The following combinations of peer review-material are permitted: Editor's evaluation, Decision letter, and Author response; Decision letter, and Author response; Editor's evaluation and Decision letter; Editor's evaluation and Author response; or Decision letter.</report>
+     
+   </rule>
+  </pattern>
 
   
 
@@ -1123,6 +1132,12 @@
   
   
   
+  <pattern id="ed-eval-title-tests-pattern">
+    <rule context="sub-article[@article-type='editor-report']/front-stub/title-group" id="ed-eval-title-tests">
+      
+      <assert test="article-title = &quot;Editor's evaluation&quot;" role="error" flag="dl-ar" id="ed-eval-title-test">title-group must contain article-title which contains "Editor's evaluation". Currently it is <value-of select="article-title"/>.</assert>
+    </rule>
+  </pattern>
   <pattern id="dec-letter-title-tests-pattern">
     <rule context="sub-article[@article-type='decision-letter']/front-stub/title-group" id="dec-letter-title-tests">
       
@@ -1180,11 +1195,11 @@
   
   <pattern id="dec-letter-reply-tests-pattern">
     <rule context="article/sub-article" id="dec-letter-reply-tests">
-      <let name="pos" value="count(parent::article/sub-article) - count(following-sibling::sub-article)"/>
+      <let name="id-convention" value="if (@article-type='editor-report') then 'sa0'         else if (@article-type='decision-letter') then 'sa1'         else if (@article-type='reply') then 'sa2'         else 'unknown'"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-1" test="if ($pos = 1) then @article-type='decision-letter'         else @article-type='reply'" role="error" flag="dl-ar" id="dec-letter-reply-test-1">1st sub-article must be the decision letter. 2nd sub-article must be the author response.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-1" test="@article-type=('editor-report','decision-letter','reply')" role="error" flag="dl-ar" id="dec-letter-reply-test-1">sub-article must must have an article-type which is equal to one of the following values: 'editor-report','decision-letter', or 'reply'.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-2" test="@id = concat('sa',$pos)" role="error" flag="dl-ar" id="dec-letter-reply-test-2">sub-article id must be in the format 'sa0', where '0' is its position (1 or 2).</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-2" test="@id = $id-convention" role="error" flag="dl-ar" id="dec-letter-reply-test-2">sub-article id is <value-of select="@id"/> when based on it's article-type it should be <value-of select="$id-convention"/>.</assert>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-3" test="count(front-stub) = 1" role="error" flag="dl-ar" id="dec-letter-reply-test-3">sub-article must contain one and only one front-stub.</assert>
       
@@ -1209,6 +1224,57 @@
       <!-- Need to improve messaging -->
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-7" test="matches(.,$regex)" role="warning" flag="dl-ar" id="dec-letter-reply-test-7">
         <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be inflammatory or offensive language. eLife: please check it to see if it is language that should be removed. This paragraph was flagged because of the phrase(s) <value-of select="string-join(tokenize(.,'\p{Zs}')[matches(.,concat('^',substring-before(substring-after($regex,'\p{Zs}'),'[^\p{L}]')))],'; ')"/> in <value-of select="."/>.</report>
+    </rule>
+  </pattern>
+  <pattern id="ed-eval-front-tests-pattern">
+    <rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-eval-front-tests">
+      
+      <assert test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="ed-eval-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
+      
+      <assert test="count(contrib-group) = 1" role="error" flag="dl-ar" id="ed-eval-front-test-2">editor evaluation front-stub must contain 1 (and only 1) contrib-group element. This one has <value-of select="count(contrib-group)"/>.</assert>
+      
+      <report test="count(related-object) gt 1" role="error" flag="dl-ar" id="ed-eval-front-test-3">editor evaluation front-stub must contain 1 or 0 related-object elements. This one has <value-of select="count(related-object)"/>.</report>
+    </rule>
+  </pattern>
+  <pattern id="ed-eval-front-child-tests-pattern">
+    <rule context="sub-article[@article-type='editor-report']/front-stub/*" id="ed-eval-front-child-tests">
+      
+      <assert test="name()=('article-id','title-group','contrib-group','related-object')" role="error" flag="dl-ar" id="ed-eval-front-child-test-1">
+        <name/> element is not allowed in the front-stub for an Editor's evaluation. Only the following elements are permitted: article-id, title-group, contrib-group, related-object.</assert>
+    </rule>
+  </pattern>
+  <pattern id="ed-eval-contrib-group-tests-pattern">
+    <rule context="sub-article[@article-type='editor-report']/front-stub/contrib-group" id="ed-eval-contrib-group-tests">
+      
+      <assert test="count(contrib[@contrib-type='author']) = 1" role="error" flag="dl-ar" id="ed-eval-contrib-group-test-1">editor evaluation contrib-group must contain 1 contrib[@contrib-type='author'].</assert>
+    </rule>
+  </pattern>
+  <pattern id="ed-eval-author-tests-pattern">
+    <rule context="sub-article[@article-type='editor-report']/front-stub/contrib-group/contrib[@contrib-type='author' and name]" id="ed-eval-author-tests">
+      <let name="rev-ed-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section'][1]/contrib[@contrib-type='editor'][1]/name[1])"/>
+      <let name="name" value="e:get-name(name[1])"/>
+      
+      <assert test="$name = $rev-ed-name" role="error" flag="dl-ar" id="ed-eval-author-test-1">The author of the editor evaluation must be the same as the Reviewing editor for the article. The Reviewing editor is <value-of select="$rev-ed-name"/>, but the editor evaluation author is <value-of select="$name"/>.</assert>
+    </rule>
+  </pattern>
+  <pattern id="ed-eval-rel-obj-tests-pattern">
+    <rule context="sub-article[@article-type='editor-report']/front-stub/related-object" id="ed-eval-rel-obj-tests">
+      <let name="event-preprint-doi" value="for $x in ancestor::article//article-meta/pub-history/event[1]/self-uri[@content-type='preprint'][1]/@xlink:href                                         return substring-after($x,'.org/')"/>
+      
+      <assert test="matches(@id,'^sa0ro\d$')" role="error" flag="dl-ar" id="ed-eval-rel-obj-test-1">related-object in editor's evaluation must have an id in the format sa0ro1. <value-of select="@id"/> does not meet this convention.</assert>
+      
+      <assert test="@object-id-type='id'" role="error" flag="dl-ar" id="ed-eval-rel-obj-test-2">related-object in editor's evaluation must have an object-id-type="id" attribute.</assert>
+      
+      <assert test="@link-type='continued-by'" role="error" flag="dl-ar" id="ed-eval-rel-obj-test-3">related-object in editor's evaluation must have a link-type="continued-by" attribute.</assert>
+      
+      <assert test="matches(@object-id,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')" role="error" flag="dl-ar" id="ed-eval-rel-obj-test-4">related-object in editor's evaluation must have an object-id attribute which is a doi. '<value-of select="@object-id"/>' is not a valid doi.</assert>
+      
+      <assert test="@object-id = $event-preprint-doi" role="error" flag="dl-ar" id="ed-eval-rel-obj-test-5">related-object in editor's evaluation must have an object-id attribute whose value is the same as the preprint doi in the article's pub-history. object-id '<value-of select="@object-id"/>' is not the same as the preprint doi in the event history, '<value-of select="$event-preprint-doi"/>'.</assert>
+      
+      <assert test="@xlink:href = concat('https://sciety.org/articles/activity/',@object-id)" role="error" flag="dl-ar" id="ed-eval-rel-obj-test-6">related-object in editor's evaluation must have an xlink:href attribute whose value is 'https://sciety.org/articles/activity/' followed by the object-id attribute value (which must be a doi). '<value-of select="@xlink:href"/>' is not equal to <value-of select="concat('https://sciety.org/articles/activity/',@object-id)"/>. Which is correct?</assert>
+      
+      <assert test="@xlink:href = concat('https://sciety.org/articles/activity/',$event-preprint-doi)" role="error" flag="dl-ar" id="ed-eval-rel-obj-test-7">related-object in editor's evaluation must have an xlink:href attribute whose value is 'https://sciety.org/articles/activity/' followed by the preprint doi in the article's pub-history. xlink:href '<value-of select="@xlink:href"/>' is not the same as '<value-of select="concat('https://sciety.org/articles/activity/',$event-preprint-doi)"/>'. Which is correct?</assert>
+      
     </rule>
   </pattern>
   <pattern id="dec-letter-front-tests-pattern">

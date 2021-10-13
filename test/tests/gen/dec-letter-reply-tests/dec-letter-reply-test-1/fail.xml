@@ -1,15 +1,20 @@
 <?oxygen SCHSchema="dec-letter-reply-test-1.sch"?>
 <!--Context: article/sub-article
-Test: assert    if ($pos = 1) then @article-type='decision-letter' else @article-type='reply'
-Message: 1st sub-article must be the decision letter. 2nd sub-article must be the author response. -->
+Test: assert    @article-type=('editor-report','decision-letter','reply')
+Message: sub-article must must have an article-type which is equal to one of the following values: 'editor-report','decision-letter', or 'reply'. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
-    <sub-article article-type="reply">
+    <sub-article article-type="editor-sreport">
       <front-stub>
         <contrib-group/>
       </front-stub>
     </sub-article>
-    <sub-article article-type="decision-letter">
+    <sub-article article-type="decision-sletter">
+      <front-stub>
+        <contrib-group/>
+      </front-stub>
+    </sub-article>
+    <sub-article article-type="sreply">
       <front-stub>
         <contrib-group/>
       </front-stub>

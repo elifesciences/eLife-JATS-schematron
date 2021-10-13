@@ -4,11 +4,11 @@ Test: report    ($text-count gt $count)
 Message: '' element contains what looks like  unlinked RRID(s). These should always be linked using 'https://identifiers.org/RRID/RRID:'. Element begins with . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
-    <p><ext-link xlink:href="https://scicrunch.org/resolver/RRID:AB_0001">RRID:AB_0001</ext-link></p>
-    <p><ext-link xlink:href="https://scicrunch.org/resolver/RRID:AB_0001">RRID: AB_0001</ext-link></p>
-    <p><ext-link xlink:href="https://scicrunch.org/resolver/RRID:AB_0001">RRID: AB_0001</ext-link></p>
-    <p><ext-link xlink:href="https://scicrunch.org/resolver/RRID:CVCL_0001">RRID CVCL_0001</ext-link></p>
-    <p><ext-link xlink:href="https://scicrunch.org/resolver/RRID:SCR_0001">RRID SCR_0001</ext-link></p>
-    <p><ext-link xlink:href="https://scicrunch.org/resolver/RRID:ISMR_JAX:_0001">RRID ISMR_JAX:_0001</ext-link></p>
+    <p><ext-link xlink:href="https://identifiers.org/RRID/RRID:AB_0001">RRID:AB_0001</ext-link></p>
+    <p><ext-link xlink:href="https://identifiers.org/RRID/RRID:AB_0001">RRID: AB_0001</ext-link></p>
+    <p><ext-link xlink:href="https://identifiers.org/RRID/RRID:AB_0001">RRID: AB_0001</ext-link></p>
+    <p><ext-link xlink:href="https://identifiers.org/RRID/RRID:CVCL_0001">RRID CVCL_0001</ext-link></p>
+    <p><ext-link xlink:href="https://identifiers.org/RRID/RRID:SCR_0001">RRID SCR_0001</ext-link></p>
+    <p><ext-link xlink:href="https://identifiers.org/RRID/RRID:ISMR_JAX:_0001">RRID ISMR_JAX:_0001</ext-link></p>
   </article>
 </root>

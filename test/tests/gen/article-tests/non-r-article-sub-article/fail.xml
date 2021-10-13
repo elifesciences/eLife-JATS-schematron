@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="non-r-article-sub-article.sch"?>
+<!--Context: article
+Test: report    @article-type!='research-article' and sub-article
+Message:  type articles cannot have sub-articles (peer review materials). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="review-article">
+    <sub-article/>
+  </article>
+</root>
