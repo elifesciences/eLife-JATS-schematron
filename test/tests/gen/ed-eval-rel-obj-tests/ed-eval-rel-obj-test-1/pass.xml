@@ -1,0 +1,62 @@
+<?oxygen SCHSchema="ed-eval-rel-obj-test-1.sch"?>
+<!--Context: sub-article[@article-type='editor-report']/front-stub/related-object
+Test: assert    matches(@id,'^sa0ro\d$')
+Message: related-object in editor's evaluation must have an id in the format sa0ro1.  does not meet this convention. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group/>
+        <contrib-group content-type="section">
+          <contrib contrib-type="editor">
+            <name><surname>Zoolander</surname><given-names>Derek</given-names></name>
+            <role>Reviewing Editor</role>
+            <aff>
+              <institution>the Derek Zoolander Center for Kids Who Can't Read Good and Who Wanna Learn to Do Other Stuff Good Too</institution>
+              <country>United States</country>
+            </aff>
+          </contrib>
+        </contrib-group>
+        <pub-history>
+          <event>
+            <event-desc>This manuscript was published as a preprint at bioRxiv.</event-desc>
+            <date date-type="preprint" iso-8601-date="2021-07-19">
+              <day>19</day>
+              <month>07</month>
+              <year>2021</year>
+            </date>
+            <self-uri content-type="preprint" xlink:href="https://doi.org/10.1101/2021.07.19.452535"/></event></pub-history>
+      </article-meta>
+    </front>
+    <sub-article article-type="editor-report" id="sa0">
+      <front-stub>
+        <article-id pub-id-type="doi">10.7554/eLife.1234567890.sa0</article-id>
+        <title-group>
+          <article-title>Editor's evaluation</article-title>
+        </title-group>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <name><surname>Zoolander</surname><given-names>Derek</given-names></name>
+            <role specific-use="editor">Reviewing Editor</role>
+            <aff>
+              <institution>Suzhou Institute of Systems Medicine</institution>
+              <country>China</country>
+            </aff>
+          </contrib>
+        </contrib-group>
+        <related-object id="sa0ro1" object-id="10.1101/2021.07.19.452535" object-id-type="id" link-type="continued-by" xlink:href="https://sciety.org/articles/activity/10.1101/2021.07.19.452535"/>
+      </front-stub>
+      <body>
+        <p>Collagen is a major component of extracellular matrix. The authors have identified a
+          high-affinity inhibitory collagen receptor LAIR-1 and a soluble decoy receptor LAIR-2
+          (with even higher binding affinity to collagen), which can be therapeutically targeted to
+          block tumor progression. Dr Meyaard and colleagues have also generated a dimeric LAIR-2
+          human IgG1 Fc fusion protein NC410 for therapeutic use. With humanized mouse models
+          engrafted with functional human immune systems (PBMC), they have explored the anti-cancer
+          efficacy of NC410 and revealed its impact on modulating immune responses. Furthermore,
+          they extended this study to identify biomarkers of predictive value for NC410-based
+          anti-cancer therapy.</p>
+      </body>
+    </sub-article>
+  </article>
+</root>

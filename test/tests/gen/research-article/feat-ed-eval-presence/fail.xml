@@ -1,0 +1,7 @@
+<?oxygen SCHSchema="feat-ed-eval-presence.sch"?>
+<!--Context: article[@article-type='research-article']
+Test: report    ($disp-channel = ($features-subj,$notice-display-types)) and sub-article[@article-type='editor-report']
+Message:  type articles cannot have editor evaluations (sub-article[@article-type='editor-report']). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article/>
+</root>

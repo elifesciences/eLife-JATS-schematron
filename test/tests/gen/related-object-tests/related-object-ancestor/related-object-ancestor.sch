@@ -1029,8 +1029,8 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="related-object" id="related-object-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#related-object-ancestor" test="ancestor::abstract[not(@abstract-type)]" role="error" id="related-object-ancestor">
-        <name/> is not allowed outside of the main abstract (abstract[not(@abstract-type)]).</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#related-object-ancestor" test="ancestor::abstract[not(@abstract-type)] or parent::front-stub/parent::sub-article[@article-type='editor-report']" role="error" id="related-object-ancestor">
+        <name/> is not allowed outside of the main abstract (abstract[not(@abstract-type)]) or in the front-stub for an editor's evaluation.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

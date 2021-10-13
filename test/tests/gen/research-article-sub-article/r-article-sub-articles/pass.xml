@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="r-article-sub-articles.sch"?>
+<!--Context: article[@article-type='research-article' and sub-article]
+Test: report    ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type!='reply'])
+Message:  type articles cannot have only an Author response. The following combinations of peer review-material are permitted: Editor's evaluation, Decision letter, and Author response; Decision letter, and Author response; Editor's evaluation and Decision letter; Editor's evaluation and Author response; or Decision letter. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Article</subject>
+          </subj-group>
+        </article-categories>
+      </article-meta>
+    </front>
+    <sub-article article-type="editor-report"/>
+    <sub-article article-type="decision-letter"/>
+    <sub-article article-type="reply"/>
+  </article>
+</root>
