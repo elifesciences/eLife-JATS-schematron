@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-high-6-2.sch"?>
 <!--Context: element-citation
-Test: assert    @publication-type = ('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'periodical', 'report', 'confproc', 'thesis')
-Message: element-citation must have a publication-type attribute with one of these values: 'journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'periodical', 'report', 'confproc', or 'thesis'. Reference '' has ''. -->
+Test: assert    @publication-type = ('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis')
+Message: element-citation must have a publication-type attribute with one of these values: 'journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', or 'thesis'. Reference '' has ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <element-citation publication-type="journal"/>

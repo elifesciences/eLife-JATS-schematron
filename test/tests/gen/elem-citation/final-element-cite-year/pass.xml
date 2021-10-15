@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="final-element-cite-year.sch"?>
 <!--Context: element-citation
-Test: report    (@publication-type!='periodical') and not(year)
+Test: report    not(year)
 Message: '' type references must have a year. Reference '' does not. If you are unable to determine this, please ensure to query the authors for the year of publication. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

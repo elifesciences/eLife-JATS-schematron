@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="element-citation-high-tests">
     <rule context="element-citation" id="elem-citation">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-high-6-2" test="@publication-type = ('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'periodical', 'report', 'confproc', 'thesis')" role="error" id="err-elem-cit-high-6-2">element-citation must have a publication-type attribute with one of these values: 'journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'periodical', 'report', 'confproc', or 'thesis'. Reference '<value-of select="../@id"/>' has '<value-of select="if (@publication-type) then concat('a @publication-type with the value ',@publication-type) else ('no @publication-type')"/>'.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-high-6-2" test="@publication-type = ('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis')" role="error" id="err-elem-cit-high-6-2">element-citation must have a publication-type attribute with one of these values: 'journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', or 'thesis'. Reference '<value-of select="../@id"/>' has '<value-of select="if (@publication-type) then concat('a @publication-type with the value ',@publication-type) else ('no @publication-type')"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
