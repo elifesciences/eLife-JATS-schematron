@@ -11,7 +11,6 @@ Message: element-citation must have a publication-type attribute with one of the
     <element-citation publication-type="software"/>
     <element-citation publication-type="preprint"/>
     <element-citation publication-type="web"/>
-    <element-citation publication-type="periodical"/>
     <element-citation publication-type="report"/>
     <element-citation publication-type="confproc"/>
     <element-citation publication-type="thesis"/>
