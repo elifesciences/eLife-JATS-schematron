@@ -3577,6 +3577,19 @@ else self::*/local-name() = $allowed-p-blocks"
         test="contains(label[1],'ource code') and not(($file=('tar','gz','zip','tgz','rar')))" 
         role="warning" 
         id="source-code-test-2">Source code files should always be zipped. The file type for <value-of select="if (self::*/label) then replace(label,'\.$','') else self::*/local-name()"/> is '<value-of select="$file"/>'. Please zip this file, and replace it with the zipped version.</report>
+      
+      <report test="not(ancestor::article/@article-type='correction') and not(parent::p/parent::caption/parent::*[name()=('fig','table-wrap','media')]
+        or parent::sec[@sec-type='supplementary-material'])" 
+        role="error" 
+        id="supp-mat-placement">supplementary-material must be either a child of a caption p for a fig, table or video, or it must be plaed in the additional files section (sec[@sec-type='supplementary-material']). This one with the label <value-of select="label[1]"/> is not.</report>
+    </rule>
+    
+    <rule context="article/body//boxed-text//fig[not(@specific-use='child-fig')]//supplementary-material/label" id="box-supp-tests"> 
+      <let name="fig-label" value="replace(ancestor::fig[1]/label,'\.$','')"/>
+      
+      <assert test="matches(.,concat('^',$fig-label,'—(source data \d|source code \d)\.$'))" 
+        role="error" 
+        id="box-fig-sup-test-1">label for supplementary-material for a fig inside boxed-text must begin with the label from its parent fig. '<value-of select="."/>' is not in one of the following formats: '<value-of select="concat($fig-label,'—source data 0')"/>' or '<value-of select="concat($fig-label,'—source code 0')"/>'.</assert>
     </rule>
     
     <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')]" 

@@ -4285,6 +4285,28 @@
         <x:expect-report id="source-code-test-2" role="warning"/>
         <x:expect-not-assert id="supplementary-material-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="supp-mat-placement-pass">
+        <x:context href="../tests/gen/supplementary-material-tests/supp-mat-placement/pass.xml"/>
+        <x:expect-not-report id="supp-mat-placement" role="error"/>
+        <x:expect-not-assert id="supplementary-material-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="supp-mat-placement-fail">
+        <x:context href="../tests/gen/supplementary-material-tests/supp-mat-placement/fail.xml"/>
+        <x:expect-report id="supp-mat-placement" role="error"/>
+        <x:expect-not-assert id="supplementary-material-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="box-supp-tests">
+      <x:scenario label="box-fig-sup-test-1-pass">
+        <x:context href="../tests/gen/box-supp-tests/box-fig-sup-test-1/pass.xml"/>
+        <x:expect-not-assert id="box-fig-sup-test-1" role="error"/>
+        <x:expect-not-assert id="box-supp-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="box-fig-sup-test-1-fail">
+        <x:context href="../tests/gen/box-supp-tests/box-fig-sup-test-1/fail.xml"/>
+        <x:expect-assert id="box-fig-sup-test-1" role="error"/>
+        <x:expect-not-assert id="box-supp-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="back-supplementary-file-tests">
       <x:scenario label="back-supplementary-file-position-pass">
