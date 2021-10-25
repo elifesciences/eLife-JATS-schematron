@@ -1,0 +1,23 @@
+<?oxygen SCHSchema="box-fig-sup-test-1.sch"?>
+<!--Context: article/body//boxed-text//fig[not(@specific-use='child-fig')]//supplementary-material/label
+Test: assert    matches(.,concat('^',$fig-label,'—(source data \d|source code \d)\.$'))
+Message: label for supplementary-material for a fig inside boxed-text must begin with the label from its parent fig. '' is not in one of the following formats: '' or ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <boxed-text>
+        <label>Box 1.</label>
+        <fig>
+          <label>Box 1—figure 1.</label>
+          <caption>
+            <p>
+              <supplementary-material>
+                <label>Box 1—source data 1.</label>
+              </supplementary-material>
+            </p>
+          </caption>
+        </fig>
+      </boxed-text>
+    </body>
+  </article>
+</root>

@@ -1,0 +1,45 @@
+<?oxygen SCHSchema="supp-mat-placement.sch"?>
+<!--Context: supplementary-material
+Test: report    not(ancestor::article/@article-type='correction') and not(parent::p/parent::caption/parent::*[name()=('fig','table-wrap','media')] or parent::sec[@sec-type='supplementary-material'])
+Message: supplementary-material must be either a child of a caption p for a fig, table or video, or it must be plaed in the additional files section (sec[@sec-type='supplementary-material']). This one with the label  is not. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <boxed-text>
+        <label>Box 1.</label>
+        <fig>
+          <label>Box 1—figure 1.</label>
+          <caption>
+            <p>
+              <supplementary-material>
+                <label>Box 1—figure 1—source data 1.</label>
+              </supplementary-material>
+            </p>
+          </caption>
+        </fig>
+      </boxed-text>
+      <sec>
+        <fig>
+          <caption>
+            <p><supplementary-material/></p>
+          </caption>
+        </fig>
+        <media mimetype="video">
+          <caption>
+            <p><supplementary-material/></p>
+          </caption>
+        </media>
+        <table-wrap>
+          <caption>
+            <p><supplementary-material/></p>
+          </caption>
+        </table-wrap>
+      </sec>
+    </body>
+    <back>
+      <sec sec-type="supplementary-material">
+        <supplementary-material/>
+      </sec>
+    </back>
+  </article>
+</root>
