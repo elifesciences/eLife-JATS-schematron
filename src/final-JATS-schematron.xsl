@@ -14222,6 +14222,22 @@
                <xsl:text/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="matches(.,'\p{Zs}$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Zs}$')">
+            <xsl:attribute name="id">table-title-test-7</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[table-title-test-7] The title for <xsl:text/>
+               <xsl:value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/>
+               <xsl:text/> ends with space(s) which is incorrect - '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M179"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M179"/>
@@ -17391,6 +17407,22 @@
                <xsl:text/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="matches(.,'\p{Zs}$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Zs}$')">
+            <xsl:attribute name="id">fig-title-test-9</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[fig-title-test-9] The title for <xsl:text/>
+               <xsl:value-of select="$label"/>
+               <xsl:text/> ends with space(s) which is incorrect - '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M237"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M237"/>
@@ -17500,6 +17532,22 @@
                <xsl:text/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="matches(.,'\p{Zs}$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Zs}$')">
+            <xsl:attribute name="id">supplementary-material-title-test-9</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[supplementary-material-title-test-9] title for <xsl:text/>
+               <xsl:value-of select="$label"/>
+               <xsl:text/> ends with space(s), which is not allowed - '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M238"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M238"/>
@@ -17601,6 +17649,22 @@
                <xsl:text/> contains <xsl:text/>
                <xsl:value-of select="$sentence-count"/>
                <xsl:text/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="matches(.,'\p{Zs}$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Zs}$')">
+            <xsl:attribute name="id">video-title-test-9</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[video-title-test-9] The title for <xsl:text/>
+               <xsl:value-of select="$label"/>
+               <xsl:text/> ends with space(s) which is incorrect - '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M239"/>
@@ -25606,6 +25670,22 @@
                <xsl:text/> - which is not correct. Please remove the full stop.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="matches(.,'\p{Zs}$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Zs}$')">
+            <xsl:attribute name="id">pub-id-test-6</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pub-id-test-6] <xsl:text/>
+               <xsl:value-of select="@pub-id-type"/>
+               <xsl:text/> pub-id ends with space(s) which is incorrect - '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M401"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M401"/>
@@ -33100,6 +33180,22 @@
                <xsl:text/>'. Should it be captured as a book type reference instead?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="matches($lc,'africarxiv') and not(. = 'AfricArXiv')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'africarxiv') and not(. = 'AfricArXiv')">
+            <xsl:attribute name="id">africarxiv-test</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[africarxiv-test] ref '<xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>' has a source <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>, which is not the correct proprietary capitalisation - 'AfricArXiv'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M444"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M444"/>
@@ -35129,6 +35225,20 @@
       </xsl:if>
 
 		    <!--REPORT error-->
+      <xsl:if test="matches(.,'\p{Zs}$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Zs}$')">
+            <xsl:attribute name="id">sec-title-space</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[sec-title-space] Section title ends with space(s). Please remove the space '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
       <xsl:if test="(count(*) = 1) and child::bold and ($free-text='')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count(*) = 1) and child::bold and ($free-text='')">
             <xsl:attribute name="id">sec-title-bold</xsl:attribute>
@@ -35774,6 +35884,20 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--REPORT warning-->
+      <xsl:if test="matches(.,'\p{Zs}$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Zs}$')">
+            <xsl:attribute name="id">p-space-test</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[p-space-test] paragraph ends with space(s). Is this correct? '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M469"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M469"/>

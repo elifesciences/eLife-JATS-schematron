@@ -4074,6 +4074,10 @@ else self::*/local-name() = $allowed-p-blocks"
         test="$sentence-count gt 1" 
         role="warning" 
         id="table-title-test-6">title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
+      
+      <report test="matches(.,'\p{Zs}$')" 
+        role="error" 
+        id="table-title-test-7">The title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> ends with space(s) which is incorrect - '<value-of select="."/>'.</report>
     </rule>
     
     <rule context="table-wrap[contains(@id,'keyresource')]/table/thead[1]" id="kr-table-heading-tests">
@@ -5163,6 +5167,10 @@ else self::*/local-name() = $allowed-p-blocks"
         test="$sentence-count gt 1" 
         role="warning" 
         id="fig-title-test-8">title for <value-of select="$label"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
+      
+      <report test="matches(.,'\p{Zs}$')" 
+        role="error" 
+        id="fig-title-test-9">The title for <value-of select="$label"/> ends with space(s) which is incorrect - '<value-of select="."/>'.</report>
     </rule>
     
     <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests"> 
@@ -5198,6 +5206,10 @@ else self::*/local-name() = $allowed-p-blocks"
         test="$sentence-count gt 1" 
         role="warning" 
         id="supplementary-material-title-test-8">title for <value-of select="$label"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
+      
+      <report test="matches(.,'\p{Zs}$')" 
+        role="error" 
+        id="supplementary-material-title-test-9">title for <value-of select="$label"/> ends with space(s), which is not allowed - '<value-of select="."/>'</report>
     </rule>
     
     <rule context="media/caption/title" id="video-title-tests"> 
@@ -5227,6 +5239,10 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="$sentence-count gt 1" 
         role="warning" 
         id="video-title-test-8">title for <value-of select="$label"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
+      
+      <report test="matches(.,'\p{Zs}$')" 
+        role="error" 
+        id="video-title-test-9">The title for <value-of select="$label"/> ends with space(s) which is incorrect - '<value-of select="."/>'.</report>
     </rule>
     
     <rule context="ack" id="ack-title-tests">
@@ -7921,6 +7937,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="pub-id-test-5"><value-of select="@pub-id-type"/> pub-id ends with a full stop - <value-of select="."/> - which is not correct. Please remove the full stop.</report>
       
+      <report test="matches(.,'\p{Zs}$')" 
+        role="error" 
+        id="pub-id-test-6"><value-of select="@pub-id-type"/> pub-id ends with space(s) which is incorrect - '<value-of select="."/>'.</report>
+      
     </rule>
     
     <rule context="pub-id[@xlink:href]" 
@@ -10432,6 +10452,10 @@ tokenize(substring-after($text,' et al'),' ')[2]
         test="contains(.,'handbook')" 
         role="error" 
         id="preprint-handbook-presence">Preprint ref '<value-of select="ancestor::ref/@id"/>' has a source '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
+      
+      <report test="matches($lc,'africarxiv') and not(. = 'AfricArXiv')" 
+        role="error" 
+        id="africarxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'AfricArXiv'.</report>
     </rule>
     
     <rule context="element-citation[@publication-type='web']" id="website-tests">
@@ -11051,6 +11075,10 @@ tokenize(substring-after($text,' et al'),' ')[2]
         role="warning" 
         id="sec-title-full-stop">Section title ends with full stop, which is very likely to be incorrect - <value-of select="."/></report>
       
+      <report test="matches(.,'\p{Zs}$')" 
+        role="error" 
+        id="sec-title-space">Section title ends with space(s). Please remove the space '<value-of select="."/>'</report>
+      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-bold" 
         test="(count(*) = 1) and child::bold and ($free-text='')" 
         role="error" 
@@ -11281,6 +11309,10 @@ tokenize(substring-after($text,' et al'),' ')[2]
       <assert test="matches($para,'\.\)?\p{Zs}*?$|:\p{Zs}*?$|\?\p{Zs}*?$|!\p{Zs}*?$|\.”\p{Zs}*?|\.&quot;\p{Zs}*?')" 
         role="warning" 
         id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</assert>
+      
+      <report test="matches(.,'\p{Zs}$')" 
+        role="warning" 
+        id="p-space-test">paragraph ends with space(s). Is this correct? '<value-of select="."/>'</report>
     </rule>
     
     <rule context="italic[not(ancestor::ref) and not(ancestor::sub-article)]" id="italic-house-style">  

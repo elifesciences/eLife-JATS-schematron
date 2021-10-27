@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="p-space-test.sch"?>
+<!--Context: article[not(@article-type=($notice-article-types,'article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]
+Test: report    matches(.,'\p{Zs}$')
+Message: paragraph ends with space(s). Is this correct? '' -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <p>Text </p>
+    </body>
+  </article>
+</root>

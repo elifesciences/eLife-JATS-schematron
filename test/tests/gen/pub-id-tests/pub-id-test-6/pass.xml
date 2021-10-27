@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="pub-id-test-6.sch"?>
+<!--Context: element-citation/pub-id
+Test: report    matches(.,'\p{Zs}$')
+Message:  pub-id ends with space(s) which is incorrect - ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation>
+      <pub-id>11.009</pub-id>
+    </element-citation>
+  </article>
+</root>
