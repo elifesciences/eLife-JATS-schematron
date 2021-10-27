@@ -2953,6 +2953,8 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-5" test="string-length(.) gt 250" role="warning" id="table-title-test-5">title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> is longer than 250 characters. Is it a caption instead?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-6" test="$sentence-count gt 1" role="warning" id="table-title-test-6">title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
+      
+      <report test="matches(.,'\p{Zs}$')" role="error" id="table-title-test-7">The title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> ends with space(s) which is incorrect - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="kr-table-heading-tests-pattern">
@@ -3699,6 +3701,8 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-7" test="string-length(.) gt 250" role="warning" id="fig-title-test-7">title for <value-of select="$label"/> is longer than 250 characters. Is it a caption instead?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-8" test="$sentence-count gt 1" role="warning" id="fig-title-test-8">title for <value-of select="$label"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
+      
+      <report test="matches(.,'\p{Zs}$')" role="error" id="fig-title-test-9">The title for <value-of select="$label"/> ends with space(s) which is incorrect - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="supplementary-material-title-tests-pattern">
@@ -3717,6 +3721,8 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-title-test-7" test="string-length(.) gt 250" role="warning" id="supplementary-material-title-test-7">title for <value-of select="$label"/> is longer than 250 characters. Is it a caption instead?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-title-test-8" test="$sentence-count gt 1" role="warning" id="supplementary-material-title-test-8">title for <value-of select="$label"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
+      
+      <report test="matches(.,'\p{Zs}$')" role="error" id="supplementary-material-title-test-9">title for <value-of select="$label"/> ends with space(s), which is not allowed - '<value-of select="."/>'</report>
     </rule>
   </pattern>
   <pattern id="video-title-tests-pattern">
@@ -3735,6 +3741,8 @@
       <report test="string-length(.) gt 250" role="warning" id="video-title-test-7">title for <value-of select="$label"/> is longer than 250 characters. Is it a caption instead?</report>
       
       <report test="$sentence-count gt 1" role="warning" id="video-title-test-8">title for <value-of select="$label"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
+      
+      <report test="matches(.,'\p{Zs}$')" role="error" id="video-title-test-9">The title for <value-of select="$label"/> ends with space(s) which is incorrect - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="ack-title-tests-pattern">
@@ -5486,6 +5494,9 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-id-test-5" test="ends-with(.,'.')" role="error" id="pub-id-test-5">
         <value-of select="@pub-id-type"/> pub-id ends with a full stop - <value-of select="."/> - which is not correct. Please remove the full stop.</report>
       
+      <report test="matches(.,'\p{Zs}$')" role="error" id="pub-id-test-6">
+        <value-of select="@pub-id-type"/> pub-id ends with space(s) which is incorrect - '<value-of select="."/>'.</report>
+      
     </rule>
   </pattern>
   <pattern id="pub-id-xlink-href-tests-pattern">
@@ -6955,6 +6966,8 @@
       
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#preprint-handbook-presence" test="contains(.,'handbook')" role="error" id="preprint-handbook-presence">Preprint ref '<value-of select="ancestor::ref/@id"/>' has a source '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
+      
+      <report test="matches($lc,'africarxiv') and not(. = 'AfricArXiv')" role="error" id="africarxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'AfricArXiv'.</report>
     </rule>
   </pattern>
   <pattern id="website-tests-pattern">
@@ -7264,6 +7277,8 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-full-stop" test="matches(replace(.,' ',' '),'\.[\p{Zs}]*$')" role="warning" id="sec-title-full-stop">Section title ends with full stop, which is very likely to be incorrect - <value-of select="."/>
       </report>
       
+      <report test="matches(.,'\p{Zs}$')" role="error" id="sec-title-space">Section title ends with space(s). Please remove the space '<value-of select="."/>'</report>
+      
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-bold" test="(count(*) = 1) and child::bold and ($free-text='')" role="error" id="sec-title-bold">All section title content is captured in bold. This is incorrect - <value-of select="."/>
       </report>
       
@@ -7419,6 +7434,8 @@
       <assert test="matches($para,'\p{P}\p{Zs}*?$')" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</assert>
       
       <assert test="matches($para,'\.\)?\p{Zs}*?$|:\p{Zs}*?$|\?\p{Zs}*?$|!\p{Zs}*?$|\.”\p{Zs}*?|\.&quot;\p{Zs}*?')" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</assert>
+      
+      <report test="matches(.,'\p{Zs}$')" role="warning" id="p-space-test">paragraph ends with space(s). Is this correct? '<value-of select="."/>'</report>
     </rule>
   </pattern>
   <pattern id="italic-house-style-pattern">

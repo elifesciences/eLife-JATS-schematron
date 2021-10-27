@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="fig-title-test-9.sch"?>
+<!--Context: fig/caption/title
+Test: report    matches(.,'\p{Zs}$')
+Message: The title for  ends with space(s) which is incorrect - ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig>
+      <caption>
+        <title>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</title>
+      </caption>
+    </fig>
+  </article>
+</root>
