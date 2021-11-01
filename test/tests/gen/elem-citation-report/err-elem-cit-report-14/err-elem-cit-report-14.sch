@@ -959,7 +959,7 @@
           <xsl:element name="list">
             <xsl:attribute name="list-type">roman</xsl:attribute>
             <xsl:for-each select="tokenize($regex,'\|')">
-              <xsl:variable name="display" select="replace(replace(.,'\s\+',' '),'^ | $','')"/>
+              <xsl:variable name="display" select="replace(replace(.,'\\p\{Zs\}\+',' '),'^ | $','')"/>
               <xsl:element name="match">
                 <xsl:attribute name="count">
                   <xsl:value-of select="count(tokenize($roman-text,.)) - 1"/>
@@ -980,7 +980,7 @@
           <xsl:element name="list">
             <xsl:attribute name="list-type">italic</xsl:attribute>
             <xsl:for-each select="tokenize($regex,'\|')">
-              <xsl:variable name="display" select="replace(.,'\s\+',' ')"/>
+              <xsl:variable name="display" select="replace(.,'\\p\{Zs\}\+',' ')"/>
               <xsl:element name="match">
                 <xsl:attribute name="count">
                   <xsl:value-of select="count(tokenize($italic-text,.)) - 1"/>
@@ -1030,7 +1030,7 @@
   <pattern id="element-citation-report-tests">
     <rule context="element-citation[@publication-type='report']" id="elem-citation-report">
       <let name="publisher-locations" value="'../../../../../src/publisher-locations.xml'"/>
-      <report test="ext-link and pub-id[@pub-id-type='doi']" role="error" id="err-elem-cit-report-14">Report reference cannot have both a doi and a URL. Reference '<value-of select="ancestor::ref/@id"/>' has a doi (<value-of select="pub-id[@pub-id-type='doi']"/>) and a URL (<value-of select="ext-link"/>).</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-14" test="ext-link and pub-id[@pub-id-type='doi']" role="error" id="err-elem-cit-report-14">Report reference cannot have both a doi and a URL. Reference '<value-of select="ancestor::ref/@id"/>' has a doi (<value-of select="pub-id[@pub-id-type='doi']"/>) and a URL (<value-of select="ext-link"/>).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

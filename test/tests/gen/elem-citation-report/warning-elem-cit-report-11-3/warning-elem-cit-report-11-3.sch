@@ -959,7 +959,7 @@
           <xsl:element name="list">
             <xsl:attribute name="list-type">roman</xsl:attribute>
             <xsl:for-each select="tokenize($regex,'\|')">
-              <xsl:variable name="display" select="replace(replace(.,'\s\+',' '),'^ | $','')"/>
+              <xsl:variable name="display" select="replace(replace(.,'\\p\{Zs\}\+',' '),'^ | $','')"/>
               <xsl:element name="match">
                 <xsl:attribute name="count">
                   <xsl:value-of select="count(tokenize($roman-text,.)) - 1"/>
@@ -980,7 +980,7 @@
           <xsl:element name="list">
             <xsl:attribute name="list-type">italic</xsl:attribute>
             <xsl:for-each select="tokenize($regex,'\|')">
-              <xsl:variable name="display" select="replace(.,'\s\+',' ')"/>
+              <xsl:variable name="display" select="replace(.,'\\p\{Zs\}\+',' ')"/>
               <xsl:element name="match">
                 <xsl:attribute name="count">
                   <xsl:value-of select="count(tokenize($italic-text,.)) - 1"/>
@@ -1030,7 +1030,7 @@
   <pattern id="element-citation-report-tests">
     <rule context="element-citation[@publication-type='report']" id="elem-citation-report">
       <let name="publisher-locations" value="'../../../../../src/publisher-locations.xml'"/>
-      <report test="some $p in document($publisher-locations)/locations/location/text()         satisfies ends-with(publisher-name[1],$p)" role="warning" id="warning-elem-cit-report-11-3">[warning-elem-cit-report-11-3]
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#warning-elem-cit-report-11-3" test="some $p in document($publisher-locations)/locations/location/text()         satisfies ends-with(publisher-name[1],$p)" role="warning" id="warning-elem-cit-report-11-3">[warning-elem-cit-report-11-3]
         The content of &lt;publisher-name&gt; may not end with a publisher location. 
         Reference '<value-of select="ancestor::ref/@id"/>' contains the string <value-of select="publisher-name"/>,
         which ends with a publisher location.</report>
