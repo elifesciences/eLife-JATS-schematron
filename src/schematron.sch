@@ -1064,7 +1064,7 @@
           <xsl:element name="list">
             <xsl:attribute name="list-type">roman</xsl:attribute>
             <xsl:for-each select="tokenize($regex,'\|')">
-              <xsl:variable name="display" select="replace(replace(.,'\s\+',' '),'^ | $','')"/>
+              <xsl:variable name="display" select="replace(replace(.,'\\p\{Zs\}\+',' '),'^ | $','')"/>
               <xsl:element name="match">
                 <xsl:attribute name="count">
                   <xsl:value-of select="count(tokenize($roman-text,.)) - 1"/>
@@ -1085,7 +1085,7 @@
           <xsl:element name="list">
             <xsl:attribute name="list-type">italic</xsl:attribute>
             <xsl:for-each select="tokenize($regex,'\|')">
-              <xsl:variable name="display" select="replace(.,'\s\+',' ')"/>
+              <xsl:variable name="display" select="replace(.,'\\p\{Zs\}\+',' ')"/>
               <xsl:element name="match">
                 <xsl:attribute name="count">
                   <xsl:value-of select="count(tokenize($italic-text,.)) - 1"/>
@@ -7355,14 +7355,16 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="element-citation[@publication-type='report']" id="elem-citation-report">
       <let name="publisher-locations" value="'publisher-locations.xml'"/> 
       
-      <assert test="count(person-group)=1" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-2-1"
+        test="count(person-group)=1" 
         role="error" 
         id="err-elem-cit-report-2-1">[err-elem-cit-report-2-1]
         One and only one person-group element is allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
-      <assert test="count(source)=1" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-9-1"
+        test="count(source)=1" 
         role="error" 
         id="err-elem-cit-report-9-1">[err-elem-report-report-9-1]
         Each  &lt;element-citation&gt; of type 'report' must contain one and
@@ -7370,14 +7372,16 @@ else self::*/local-name() = $allowed-p-blocks"
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
-      <assert test="count(publisher-name)=1" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-11-1"
+        test="count(publisher-name)=1" 
         role="error" 
         id="err-elem-cit-report-11-1">[err-elem-cit-report-11-1]
         &lt;publisher-name&gt; is required.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(publisher-name)"/>
         &lt;publisher-name&gt; elements.</assert>
       
-      <report test="some $p in document($publisher-locations)/locations/location/text()
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#warning-elem-cit-report-11-3"
+        test="some $p in document($publisher-locations)/locations/location/text()
         satisfies ends-with(publisher-name[1],$p)" 
         role="warning" 
         id="warning-elem-cit-report-11-3">[warning-elem-cit-report-11-3]
@@ -7385,21 +7389,24 @@ else self::*/local-name() = $allowed-p-blocks"
         Reference '<value-of select="ancestor::ref/@id"/>' contains the string <value-of select="publisher-name"/>,
         which ends with a publisher location.</report>
       
-      <assert test="count(*) = count(person-group| year| source| publisher-loc|publisher-name| ext-link| pub-id)" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-15"
+        test="count(*) = count(person-group| year| source| publisher-loc|publisher-name| ext-link| pub-id)" 
         role="error" 
         id="err-elem-cit-report-15">[err-elem-cit-report-15]
         The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="report" are:
         &lt;person-group&gt;, &lt;year&gt;, &lt;source&gt;, &lt;publisher-loc&gt;, &lt;publisher-name&gt;, &lt;ext-link&gt;, and &lt;pub-id&gt;.
         Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
-      <report test="ext-link and pub-id[@pub-id-type='doi']" 
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-14"
+        test="ext-link and pub-id[@pub-id-type='doi']" 
         role="error" 
         id="err-elem-cit-report-14">Report reference cannot have both a doi and a URL. Reference '<value-of select="ancestor::ref/@id"/>' has a doi (<value-of select="pub-id[@pub-id-type='doi']"/>) and a URL (<value-of select="ext-link"/>).</report>
       
     </rule>
     
     <rule context="element-citation[@publication-type='report']/person-group" id="elem-citation-report-preson-group">
-      <assert test="@person-group-type='author'" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-2-2"
+        test="@person-group-type='author'" 
         role="error" 
         id="err-elem-cit-report-2-2">[err-elem-cit-report-2-2]
         Each &lt;person-group&gt; must have a @person-group-type attribute of type 'author'.
@@ -7409,7 +7416,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='report']/source" id="elem-citation-report-source">
       
-      <assert test="count(*)=count(italic | sub | sup)" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-9-2-2"
+        test="count(*)=count(italic | sub | sup)" 
         role="error" 
         id="err-elem-cit-report-9-2-2">[err-elem-cit-report-9-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'report' may only contain the child 
@@ -7420,7 +7428,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='report']/publisher-name" id="elem-citation-report-publisher-name">
       
-      <assert test="count(*)=0" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-11-2"
+        test="count(*)=0" 
         role="error" 
         id="err-elem-cit-report-11-2">[err-elem-cit-report-11-2]
         No elements are allowed inside &lt;publisher-name&gt;.
@@ -7431,7 +7440,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='report']/pub-id" id="elem-citation-report-pub-id">
       
-      <assert test="@pub-id-type='doi' or @pub-id-type='isbn'" 
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-12-2"
+        test="@pub-id-type='doi' or @pub-id-type='isbn'" 
         role="error" 
         id="err-elem-cit-report-12-2">[err-elem-cit-report-12-2]
         The only allowed pub-id types are 'doi' and 'isbn'.
@@ -7439,26 +7449,6 @@ else self::*/local-name() = $allowed-p-blocks"
         '<value-of select="@pub-id-type"/>'.</assert>
       
     </rule>
-    
-    <!-- Genercised in  elem-citation-ext-link
-    <rule context="element-citation[@publication-type='report']/ext-link" id="elem-citation-report-ext-link"> 
-      
-      <assert test="@xlink:href" role="error" id="err-elem-cit-report-14-1">[err-elem-cit-report-14-1]
-        Each &lt;ext-link&gt; element must contain @xlink:href. The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' 
-        does not.</assert>
-      
-      <assert test="starts-with(@xlink:href, 'http://') or starts-with(@xlink:href, 'https://')" role="error" id="err-elem-cit-report-14-2">[err-elem-cit-report-14-2]
-        The value of @xlink:href must start with either "http://" or "https://". 
-        The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' 
-        is '<value-of select="@xlink:href"/>', which does not.</assert>  
-        
-      <assert test="normalize-space(@xlink:href)=normalize-space(.)" role="error" id="err-elem-cit-report-14-3">[err-elem-cit-report-14-3]
-        The value of @xlink:href must be the same as the element content of &lt;ext-link&gt;.
-        The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' 
-        has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
-      
-    </rule>-->
-    
   </pattern>
   
   <pattern id="element-citation-confproc-tests">
