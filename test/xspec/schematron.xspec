@@ -11323,6 +11323,16 @@
         <x:expect-report id="feature-templates-author-cont" role="error"/>
         <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="feature-templates-author-cont-3-pass">
+        <x:context href="../tests/gen/feature-template-tests/feature-templates-author-cont-3/pass.xml"/>
+        <x:expect-not-report id="feature-templates-author-cont-3" role="warning"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="feature-templates-author-cont-3-fail">
+        <x:context href="../tests/gen/feature-template-tests/feature-templates-author-cont-3/fail.xml"/>
+        <x:expect-report id="feature-templates-author-cont-3" role="warning"/>
+        <x:expect-not-assert id="feature-template-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="pre-feature-templates-author-cont-2-pass">
         <x:context href="../tests/gen/feature-template-tests/pre-feature-templates-author-cont-2/pass.xml"/>
         <x:expect-not-report id="pre-feature-templates-author-cont-2" role="warning"/>

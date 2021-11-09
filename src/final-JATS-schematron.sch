@@ -2440,19 +2440,19 @@
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-2" test="@position" role="error" id="fig-test-2">[fig-test-2] fig must have a @position.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-3" test="if ($article-type = ($features-article-types,$notice-article-types)) then ()         else not(label)" role="error" id="fig-test-3">[fig-test-3] fig must have a label.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-3" test="not($article-type = ($features-article-types,$notice-article-types)) and not(label)" role="error" id="fig-test-3">[fig-test-3] fig must have a label.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#feat-fig-test-3" test="($article-type = $features-article-types) and not(label)" role="warning" id="feat-fig-test-3">[feat-fig-test-3] fig doesn't have a label. Is this correct?</report>
       
       
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-4" test="if ($article-type = $notice-article-types) then ()         else not(caption)" role="error" id="final-fig-test-4">[final-fig-test-4] <value-of select="label"/> has no title or caption (caption element).</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-4" test="not($article-type = ('discussion',$notice-article-types)) and not(caption)" role="error" id="final-fig-test-4">[final-fig-test-4] <value-of select="label"/> has no title or caption (caption element).</report>
       
       
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-5" test="if ($article-type = $notice-article-types) then ()         else not(caption/title)" role="error" id="final-fig-test-5">[final-fig-test-5] fig caption must have a title.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-5" test="not($article-type = ('discussion',$notice-article-types)) and not(caption/title)" role="error" id="final-fig-test-5">[final-fig-test-5] fig caption must have a title.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-6" test="if ($article-type = $notice-article-types) then ()         else (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))" role="warning" id="fig-test-6">[fig-test-6] Figure does not have a legend, which is very unorthodox. Is this correct?</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-6" test="not($article-type = $notice-article-types) and (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))" role="warning" id="fig-test-6">[fig-test-6] Figure does not have a legend, which is very unorthodox. Is this correct?</report>
       
       
       
@@ -5452,7 +5452,9 @@
      
      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-no-bre" test="front/article-meta/contrib-group[@content-type='section'] and ($template != '5')" role="error" id="feature-templates-no-bre">[feature-templates-no-bre] <value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should not have any BREs. This <value-of select="$type"/> has <value-of select="           string-join(           for $x in front/article-meta/contrib-group[@content-type='section']/contrib           return concat(e:get-name($x/name[1]),' as ',$x/role[1])           ,           ' and '           )           "/>. Please remove any senior/reviewing editors.</report>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-author-cont" test="back/fn-group[@content-type='author-contribution'] and $template = ('1','2')" role="error" id="feature-templates-author-cont">[feature-templates-author-cont] <value-of select="$type"/> articles should not have any Author contributions. This <value-of select="$type"/> has <value-of select="           string-join(for $x in back/fn-group[@content-type='author-contribution']/fn           return concat('&quot;', $x,'&quot;')           ,           '; '           )           "/>. Please remove the author contributions.</report>
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-author-cont" test="back/fn-group[@content-type='author-contribution'] and $template = '1'" role="error" id="feature-templates-author-cont">[feature-templates-author-cont] <value-of select="$type"/> articles should not have any Author contributions. This <value-of select="$type"/> has <value-of select="           string-join(for $x in back/fn-group[@content-type='author-contribution']/fn           return concat('&quot;', $x,'&quot;')           ,           '; '           )           "/>. Please remove the author contributions.</report>
+     
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-author-cont" test="back/fn-group[@content-type='author-contribution'] and $template = '2'" role="warning" id="feature-templates-author-cont-3">[feature-templates-author-cont-3] <value-of select="$type"/> articles should not usually have any Author contributions. This <value-of select="$type"/> has <value-of select="          string-join(for $x in back/fn-group[@content-type='author-contribution']/fn          return concat('&quot;', $x,'&quot;')          ,          '; '          )          "/>. Are they required?</report>
      
      
      
