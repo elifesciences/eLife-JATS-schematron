@@ -1027,15 +1027,17 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="content-containers">
-    <rule context="fig[not(ancestor::sub-article)]" id="fig-tests">
-      <let name="article-type" value="ancestor::article/@article-type"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-3" test="not($article-type = ($features-article-types,$notice-article-types)) and not(label)" role="error" id="fig-test-3">fig must have a label.</report>
+  <pattern id="features">
+    <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-template-tests">
+      <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
+      <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-author-cont" test="back/fn-group[@content-type='author-contribution'] and $template = '2'" role="warning" id="feature-templates-author-cont-3">
+        <value-of select="$type"/> articles should not usually have any Author contributions. This <value-of select="$type"/> has <value-of select="          string-join(for $x in back/fn-group[@content-type='author-contribution']/fn          return concat('&quot;', $x,'&quot;')          ,          '; '          )          "/>. Are they required?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig[not(ancestor::sub-article)]" role="error" id="fig-tests-xspec-assert">fig[not(ancestor::sub-article)] must be present.</assert>
+      <assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" role="error" id="feature-template-tests-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj] must be present.</assert>
     </rule>
   </pattern>
 </schema>

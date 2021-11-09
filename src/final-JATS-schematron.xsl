@@ -11989,8 +11989,8 @@
       </xsl:choose>
 
 		    <!--REPORT error-->
-      <xsl:if test="if ($article-type = ($features-article-types,$notice-article-types)) then ()         else not(label)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($article-type = ($features-article-types,$notice-article-types)) then () else not(label)">
+      <xsl:if test="not($article-type = ($features-article-types,$notice-article-types)) and not(label)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($article-type = ($features-article-types,$notice-article-types)) and not(label)">
             <xsl:attribute name="id">fig-test-3</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
@@ -12015,8 +12015,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="if ($article-type = $notice-article-types) then ()         else not(caption)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($article-type = $notice-article-types) then () else not(caption)">
+      <xsl:if test="not($article-type = ('discussion',$notice-article-types)) and not(caption)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($article-type = ('discussion',$notice-article-types)) and not(caption)">
             <xsl:attribute name="id">final-fig-test-4</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-4</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
@@ -12030,8 +12030,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="if ($article-type = $notice-article-types) then ()         else not(caption/title)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($article-type = $notice-article-types) then () else not(caption/title)">
+      <xsl:if test="not($article-type = ('discussion',$notice-article-types)) and not(caption/title)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($article-type = ('discussion',$notice-article-types)) and not(caption/title)">
             <xsl:attribute name="id">final-fig-test-5</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
@@ -12043,8 +12043,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="if ($article-type = $notice-article-types) then ()         else (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($article-type = $notice-article-types) then () else (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))">
+      <xsl:if test="not($article-type = $notice-article-types) and (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($article-type = $notice-article-types) and (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))">
             <xsl:attribute name="id">fig-test-6</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-6</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -26242,8 +26242,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="back/fn-group[@content-type='author-contribution'] and $template = ('1','2')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="back/fn-group[@content-type='author-contribution'] and $template = ('1','2')">
+      <xsl:if test="back/fn-group[@content-type='author-contribution'] and $template = '1'">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="back/fn-group[@content-type='author-contribution'] and $template = '1'">
             <xsl:attribute name="id">feature-templates-author-cont</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-author-cont</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
@@ -26257,6 +26257,25 @@
                <xsl:text/> has <xsl:text/>
                <xsl:value-of select="           string-join(for $x in back/fn-group[@content-type='author-contribution']/fn           return concat('&quot;', $x,'&quot;')           ,           '; '           )           "/>
                <xsl:text/>. Please remove the author contributions.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="back/fn-group[@content-type='author-contribution'] and $template = '2'">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="back/fn-group[@content-type='author-contribution'] and $template = '2'">
+            <xsl:attribute name="id">feature-templates-author-cont-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-author-cont</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[feature-templates-author-cont-3] <xsl:text/>
+               <xsl:value-of select="$type"/>
+               <xsl:text/> articles should not usually have any Author contributions. This <xsl:text/>
+               <xsl:value-of select="$type"/>
+               <xsl:text/> has <xsl:text/>
+               <xsl:value-of select="          string-join(for $x in back/fn-group[@content-type='author-contribution']/fn          return concat('&quot;', $x,'&quot;')          ,          '; '          )          "/>
+               <xsl:text/>. Are they required?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 

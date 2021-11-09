@@ -1030,7 +1030,7 @@
   <pattern id="content-containers">
     <rule context="fig[not(ancestor::sub-article)]" id="fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-4" test="if ($article-type = $notice-article-types) then ()         else not(caption)" role="error" id="final-fig-test-4">
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-4" test="not($article-type = ('discussion',$notice-article-types)) and not(caption)" role="error" id="final-fig-test-4">
         <value-of select="label"/> has no title or caption (caption element).</report>
     </rule>
   </pattern>

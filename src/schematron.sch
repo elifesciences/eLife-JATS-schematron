@@ -3290,8 +3290,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="fig-test-2">fig must have a @position.</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-3" 
-        test="if ($article-type = ($features-article-types,$notice-article-types)) then ()
-        else not(label)" 
+        test="not($article-type = ($features-article-types,$notice-article-types)) and not(label)" 
         role="error" 
         id="fig-test-3">fig must have a label.</report>
       
@@ -3301,32 +3300,27 @@ else self::*/local-name() = $allowed-p-blocks"
         id="feat-fig-test-3">fig doesn't have a label. Is this correct?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-test-4" 
-        test="if ($article-type = $notice-article-types) then ()
-        else not(caption)" 
+        test="not($article-type = ('discussion',$notice-article-types)) and not(caption)" 
         role="warning" 
         id="pre-fig-test-4"><value-of select="label"/> has no title or caption (caption element). Ensure this is queried with the author.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-4" 
-        test="if ($article-type = $notice-article-types) then ()
-        else not(caption)" 
+        test="not($article-type = ('discussion',$notice-article-types)) and not(caption)" 
         role="error" 
         id="final-fig-test-4"><value-of select="label"/> has no title or caption (caption element).</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-test-5" 
-        test="if ($article-type = $notice-article-types) then ()
-        else not(caption/title)" 
+        test="not($article-type = ('discussion',$notice-article-types)) and not(caption/title)" 
         role="warning" 
         id="pre-fig-test-5"><value-of select="label"/> does not have a title.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-5" 
-        test="if ($article-type = $notice-article-types) then ()
-        else not(caption/title)" 
+        test="not($article-type = ('discussion',$notice-article-types)) and not(caption/title)" 
         role="error" 
         id="final-fig-test-5">fig caption must have a title.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-6" 
-        test="if ($article-type = $notice-article-types) then ()
-        else (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))" 
+        test="not($article-type = $notice-article-types) and (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))" 
         role="warning" 
         id="fig-test-6">Figure does not have a legend, which is very unorthodox. Is this correct?</report>
       
@@ -8119,7 +8113,7 @@ else self::*/local-name() = $allowed-p-blocks"
           "/>. Please remove any senior/reviewing editors.</report>
      
      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-author-cont"
-        test="back/fn-group[@content-type='author-contribution'] and $template = ('1','2')" 
+        test="back/fn-group[@content-type='author-contribution'] and $template = '1'" 
         role="error" 
         id="feature-templates-author-cont"><value-of select="$type"/> articles should not have any Author contributions. This <value-of select="$type"/> has <value-of select="
           string-join(for $x in back/fn-group[@content-type='author-contribution']/fn
@@ -8128,6 +8122,17 @@ else self::*/local-name() = $allowed-p-blocks"
           '; '
           )
           "/>. Please remove the author contributions.</report>
+     
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-author-cont"
+       test="back/fn-group[@content-type='author-contribution'] and $template = '2'" 
+       role="warning" 
+       id="feature-templates-author-cont-3"><value-of select="$type"/> articles should not usually have any Author contributions. This <value-of select="$type"/> has <value-of select="
+         string-join(for $x in back/fn-group[@content-type='author-contribution']/fn
+         return concat('&quot;', $x,'&quot;')
+         ,
+         '; '
+         )
+         "/>. Are they required?</report>
      
      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#pre-feature-templates-author-cont-2"
        test="$template = ('3','4') and not(back/fn-group[@content-type='author-contribution'])" 

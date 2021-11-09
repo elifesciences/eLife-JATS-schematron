@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="final-fig-test-4.sch"?>
 <!--Context: fig[not(ancestor::sub-article)]
-Test: report    if ($article-type = $notice-article-types) then () else not(caption)
+Test: report    not($article-type = ('discussion',$notice-article-types)) and not(caption)
 Message:  has no title or caption (caption element). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
