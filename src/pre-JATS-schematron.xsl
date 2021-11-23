@@ -9072,7 +9072,7 @@
 
 
 	  <!--RULE medicine-abstract-tests-2-->
-   <xsl:template match="article[@article-type='research-article']//article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)]" priority="1000" mode="M110">
+   <xsl:template match="article[@article-type='research-article']//article-meta[article-categories[not(subj-group[@subj-group-type='display-channel']/subject[lower-case(.)='feature article'])]/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)]" priority="1000" mode="M110">
 
 		<!--ASSERT warning-->
       <xsl:choose>
@@ -9929,8 +9929,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="(count(award-group) != 0) and not(matches(funding-statement[1],'^The funders? had no role in study design, data collection and interpretation, or the decision to submit the work for publication\.$'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count(award-group) != 0) and not(matches(funding-statement[1],'^The funders? had no role in study design, data collection and interpretation, or the decision to submit the work for publication\.$'))">
+      <xsl:if test="(count(award-group) != 0) and not(matches(funding-statement[1],'^The funders? had no role in study design, data collection,? and interpretation, or the decision to submit the work for publication\.$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count(award-group) != 0) and not(matches(funding-statement[1],'^The funders? had no role in study design, data collection,? and interpretation, or the decision to submit the work for publication\.$'))">
             <xsl:attribute name="id">funding-group-test-4</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -16905,7 +16905,7 @@
 
 
 	  <!--RULE medicine-section-tests-->
-   <xsl:template match="article[@article-type='research-article' and descendant::article-meta[//subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" priority="1000" mode="M229">
+   <xsl:template match="article[@article-type='research-article' and descendant::article-meta[not(//subj-group[@subj-group-type='display-channel']/subject[lower-case(.)='feature article']) and //subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" priority="1000" mode="M229">
       <xsl:variable name="pos" select="count(parent::body/sec) - count(following-sibling::sec)"/>
 
 		    <!--REPORT error-->
@@ -18699,16 +18699,16 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$|^keyresource$')"/>
+         <xsl:when test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$|^app[0-9]{1,3}keyresource$|^keyresource$')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$|^keyresource$')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$|^app[0-9]{1,3}keyresource$|^keyresource$')">
                <xsl:attribute name="id">app-table-wrap-id-test-1</xsl:attribute>
                <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#app-table-wrap-id-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[app-table-wrap-id-test-1] table-wrap @id in appendix must be in the format 'app0table0' for normal tables, or 'keyresource' for key resources tables in appendices. <xsl:text/>
+               <svrl:text>[app-table-wrap-id-test-1] table-wrap @id in appendix must be in the format 'app0table0' for normal tables, or 'app0keyresource' or 'keyresource' for key resources tables in appendices. <xsl:text/>
                   <xsl:value-of select="@id"/>
                   <xsl:text/> does not conform to this.</svrl:text>
             </svrl:failed-assert>

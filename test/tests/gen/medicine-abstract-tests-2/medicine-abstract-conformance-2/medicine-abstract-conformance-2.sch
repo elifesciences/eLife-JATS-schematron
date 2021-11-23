@@ -1028,14 +1028,14 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article[@article-type='research-article']//article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)]" id="medicine-abstract-tests-2">
+    <rule context="article[@article-type='research-article']//article-meta[article-categories[not(subj-group[@subj-group-type='display-channel']/subject[lower-case(.)='feature article'])]/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)]" id="medicine-abstract-tests-2">
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#medicine-abstract-conformance-2" test="parent::article-meta/history/date[@date-type='received']/@iso-8601-date lt '2021-04-05'" role="warning" id="medicine-abstract-conformance-2">
         <value-of select="parent::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')]"/> articles submitted after 4th April 2021 should have a structured abstract, but this one does not. eLife: please check this with Editorial if there are no related notes from eJP. Exeter: Please flag this to the eLife Production team.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='research-article']//article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)]" role="error" id="medicine-abstract-tests-2-xspec-assert">article[@article-type='research-article']//article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)] must be present.</assert>
+      <assert test="descendant::article[@article-type='research-article']//article-meta[article-categories[not(subj-group[@subj-group-type='display-channel']/subject[lower-case(.)='feature article'])]/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)]" role="error" id="medicine-abstract-tests-2-xspec-assert">article[@article-type='research-article']//article-meta[article-categories[not(subj-group[@subj-group-type='display-channel']/subject[lower-case(.)='feature article'])]/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

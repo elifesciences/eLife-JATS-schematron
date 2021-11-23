@@ -1029,7 +1029,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/funding-group" id="funding-group-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-4" test="(count(award-group) != 0) and not(matches(funding-statement[1],'^The funders? had no role in study design, data collection and interpretation, or the decision to submit the work for publication\.$'))" role="warning" id="funding-group-test-4">Is the funding-statement correct? There are funders, but the statement is '<value-of select="funding-statement[1]"/>'. If there are funders it should usually be 'The funders had no role in study design, data collection and interpretation, or the decision to submit the work for publication.'</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-4" test="(count(award-group) != 0) and not(matches(funding-statement[1],'^The funders? had no role in study design, data collection,? and interpretation, or the decision to submit the work for publication\.$'))" role="warning" id="funding-group-test-4">Is the funding-statement correct? There are funders, but the statement is '<value-of select="funding-statement[1]"/>'. If there are funders it should usually be 'The funders had no role in study design, data collection and interpretation, or the decision to submit the work for publication.'</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

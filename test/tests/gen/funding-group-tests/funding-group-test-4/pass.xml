@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="funding-group-test-4.sch"?>
 <!--Context: article-meta/funding-group
-Test: report    (count(award-group) != 0) and not(matches(funding-statement[1],'^The funders? had no role in study design, data collection and interpretation, or the decision to submit the work for publication\.$'))
+Test: report    (count(award-group) != 0) and not(matches(funding-statement[1],'^The funders? had no role in study design, data collection,? and interpretation, or the decision to submit the work for publication\.$'))
 Message: Is the funding-statement correct? There are funders, but the statement is ''. If there are funders it should usually be 'The funders had no role in study design, data collection and interpretation, or the decision to submit the work for publication.' -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
