@@ -7951,6 +7951,16 @@
         <x:expect-report id="comp-int-fn-test-3" role="error"/>
         <x:expect-not-assert id="comp-int-fn-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="comp-int-fn-test-4-pass">
+        <x:context href="../tests/gen/comp-int-fn-tests/comp-int-fn-test-4/pass.xml"/>
+        <x:expect-not-report id="comp-int-fn-test-4" role="error"/>
+        <x:expect-not-assert id="comp-int-fn-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="comp-int-fn-test-4-fail">
+        <x:context href="../tests/gen/comp-int-fn-tests/comp-int-fn-test-4/fail.xml"/>
+        <x:expect-report id="comp-int-fn-test-4" role="error"/>
+        <x:expect-not-assert id="comp-int-fn-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="auth-cont-fn-tests">
       <x:scenario label="auth-cont-fn-test-1-pass">
@@ -8943,6 +8953,26 @@
       <x:scenario label="final-element-cite-year-fail">
         <x:context href="../tests/gen/elem-citation/final-element-cite-year/fail.xml"/>
         <x:expect-report id="final-element-cite-year" role="error"/>
+        <x:expect-not-assert id="elem-citation-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="self-cite-1-pass">
+        <x:context href="../tests/gen/elem-citation/self-cite-1/pass.xml"/>
+        <x:expect-not-report id="self-cite-1" role="error"/>
+        <x:expect-not-assert id="elem-citation-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="self-cite-1-fail">
+        <x:context href="../tests/gen/elem-citation/self-cite-1/fail.xml"/>
+        <x:expect-report id="self-cite-1" role="error"/>
+        <x:expect-not-assert id="elem-citation-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="self-cite-2-pass">
+        <x:context href="../tests/gen/elem-citation/self-cite-2/pass.xml"/>
+        <x:expect-not-report id="self-cite-2" role="error"/>
+        <x:expect-not-assert id="elem-citation-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="self-cite-2-fail">
+        <x:context href="../tests/gen/elem-citation/self-cite-2/fail.xml"/>
+        <x:expect-report id="self-cite-2" role="error"/>
         <x:expect-not-assert id="elem-citation-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

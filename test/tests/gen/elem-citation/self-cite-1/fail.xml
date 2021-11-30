@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="self-cite-1.sch"?>
+<!--Context: element-citation
+Test: report    lower-case(pub-id[@pub-id-type='doi'][1]) = $article-doi
+Message: '' type references has a doi which is the same as this article - . Is the reference correct? If it is intention, please remove the reference, and replace citations in the text with the text 'current work' or similar. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <article-id pub-id-type="doi">10.7554/eLife.71662</article-id>
+    </article-meta>
+    <element-citation publication-type="something">
+      <pub-id pub-id-type="doi">10.7554/eLife.71662</pub-id>
+    </element-citation>
+  </article>
+</root>
