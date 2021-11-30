@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="comp-int-fn-test-4.sch"?>
+<!--Context: fn-group[@content-type='competing-interest']/fn
+Test: report    matches(.,'\.\p{Zs}*$')
+Message: Competing interests footnote ends with full stop -  - Please remove the full stop. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fn-group content-type="competing-interest">
+      <fn>This is a competing interest statement</fn>
+    </fn-group>
+  </article>
+</root>
