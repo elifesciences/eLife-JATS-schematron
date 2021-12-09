@@ -21195,9 +21195,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(@xlink:href,'^10\.7554/eLife\.[\d]{5}$')"/>
+         <xsl:when test="matches(@xlink:href,'^10\.7554/e[lL]ife\.[\d]{5}$')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'^10\.7554/eLife\.[\d]{5}$')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'^10\.7554/e[lL]ife\.[\d]{5}$')">
                <xsl:attribute name="id">related-articles-test-6</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
@@ -21862,9 +21862,9 @@
             </xsl:attribute>
             <svrl:text>[self-cite-1] '<xsl:text/>
                <xsl:value-of select="@publication-type"/>
-               <xsl:text/>' type references has a doi which is the same as this article - <xsl:text/>
+               <xsl:text/>' type reference has a doi which is the same as this article - <xsl:text/>
                <xsl:value-of select="pub-id[@pub-id-type='doi']"/>
-               <xsl:text/>. Is the reference correct? If it is intention, please remove the reference, and replace citations in the text with the text 'current work' or similar.</svrl:text>
+               <xsl:text/>. Is the reference correct? If it is intentional, please remove the reference, and replace citations in the text with the text 'current work' or similar.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -21879,7 +21879,7 @@
             </xsl:attribute>
             <svrl:text>[self-cite-2] '<xsl:text/>
                <xsl:value-of select="@publication-type"/>
-               <xsl:text/>' type references looks to possibly be citing itself. If that's the case (and this isn't an error within the reference), please delete the reference and replace any citations in the text with the text 'current work'.</svrl:text>
+               <xsl:text/>' type reference looks to possibly be citing itself. If that's the case (and this isn't an error within the reference), please delete the reference and replace any citations in the text with the text 'current work'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M339"/>

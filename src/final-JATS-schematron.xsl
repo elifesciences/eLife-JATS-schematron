@@ -12486,22 +12486,33 @@
 	  <!--RULE video-test-->
    <xsl:template match="media[child::label]" priority="1000" mode="M159">
 
-		<!--ASSERT error-->
-      <xsl:choose>
-         <xsl:when test="caption/title"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="caption/title">
-               <xsl:attribute name="id">final-video-title</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[final-video-title] <xsl:text/>
-                  <xsl:value-of select="replace(label,'\.$,','')"/>
-                  <xsl:text/> does not have a title, which is incorrect.</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
+		<!--REPORT error-->
+      <xsl:if test="not(ancestor::sub-article) and not(caption/title)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(ancestor::sub-article) and not(caption/title)">
+            <xsl:attribute name="id">final-video-title</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[final-video-title] <xsl:text/>
+               <xsl:value-of select="replace(label,'\.$,','')"/>
+               <xsl:text/> does not have a title, which is incorrect.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="ancestor::sub-article and not(caption/title)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::sub-article and not(caption/title)">
+            <xsl:attribute name="id">final-video-title-sa</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[final-video-title-sa] <xsl:text/>
+               <xsl:value-of select="replace(label,'\.$,','')"/>
+               <xsl:text/> does not have a title, which is incorrect.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M159"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M159"/>
@@ -21270,9 +21281,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(@xlink:href,'^10\.7554/eLife\.[\d]{5}$')"/>
+         <xsl:when test="matches(@xlink:href,'^10\.7554/e[lL]ife\.[\d]{5}$')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'^10\.7554/eLife\.[\d]{5}$')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'^10\.7554/e[lL]ife\.[\d]{5}$')">
                <xsl:attribute name="id">related-articles-test-6</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
@@ -21937,9 +21948,9 @@
             </xsl:attribute>
             <svrl:text>[self-cite-1] '<xsl:text/>
                <xsl:value-of select="@publication-type"/>
-               <xsl:text/>' type references has a doi which is the same as this article - <xsl:text/>
+               <xsl:text/>' type reference has a doi which is the same as this article - <xsl:text/>
                <xsl:value-of select="pub-id[@pub-id-type='doi']"/>
-               <xsl:text/>. Is the reference correct? If it is intention, please remove the reference, and replace citations in the text with the text 'current work' or similar.</svrl:text>
+               <xsl:text/>. Is the reference correct? If it is intentional, please remove the reference, and replace citations in the text with the text 'current work' or similar.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -21954,7 +21965,7 @@
             </xsl:attribute>
             <svrl:text>[self-cite-2] '<xsl:text/>
                <xsl:value-of select="@publication-type"/>
-               <xsl:text/>' type references looks to possibly be citing itself. If that's the case (and this isn't an error within the reference), please delete the reference and replace any citations in the text with the text 'current work'.</svrl:text>
+               <xsl:text/>' type reference looks to possibly be citing itself. If that's the case (and this isn't an error within the reference), please delete the reference and replace any citations in the text with the text 'current work'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M341"/>
@@ -26502,7 +26513,7 @@
       <xsl:if test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')">
             <xsl:attribute name="id">final-feat-query-test</xsl:attribute>
-            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#final-feat-ok-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/production-checklist#final-feat-query-test</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>

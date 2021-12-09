@@ -1038,16 +1038,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="element-citation-high-tests">
-    <rule context="element-citation" id="elem-citation">
-      <let name="article-doi" value="lower-case(ancestor::article/descendant::article-meta[1]/article-id[@pub-id-type='doi'][1])"/>
-      <let name="title" value="lower-case(ancestor::article/descendant::article-meta[1]/descendant::article-title[1])"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#self-cite-1" test="(lower-case(pub-id[@pub-id-type='doi']) != $article-doi) and                (lower-case(source[1]) = 'elife') and                ((lower-case(article-title[1]) = $title) or (lower-case(chapter-title[1]) = $title)) " role="error" id="self-cite-2">'<value-of select="@publication-type"/>' type reference looks to possibly be citing itself. If that's the case (and this isn't an error within the reference), please delete the reference and replace any citations in the text with the text 'current work'.</report>
+  <pattern id="content-containers">
+    <rule context="media[child::label]" id="video-test">
+      <report test="ancestor::sub-article and not(caption/title)" role="warning" id="final-video-title-sa">
+        <value-of select="replace(label,'\.$,','')"/> does not have a title, which is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation" role="error" id="elem-citation-xspec-assert">element-citation must be present.</assert>
+      <assert test="descendant::media[child::label]" role="error" id="video-test-xspec-assert">media[child::label] must be present.</assert>
     </rule>
   </pattern>
 </schema>

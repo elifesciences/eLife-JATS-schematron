@@ -1042,7 +1042,7 @@
     <rule context="element-citation" id="elem-citation">
       <let name="article-doi" value="lower-case(ancestor::article/descendant::article-meta[1]/article-id[@pub-id-type='doi'][1])"/>
       <let name="title" value="lower-case(ancestor::article/descendant::article-meta[1]/descendant::article-title[1])"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#self-cite-1" test="lower-case(pub-id[@pub-id-type='doi'][1]) = $article-doi" role="error" id="self-cite-1">'<value-of select="@publication-type"/>' type references has a doi which is the same as this article - <value-of select="pub-id[@pub-id-type='doi']"/>. Is the reference correct? If it is intention, please remove the reference, and replace citations in the text with the text 'current work' or similar.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#self-cite-1" test="lower-case(pub-id[@pub-id-type='doi'][1]) = $article-doi" role="error" id="self-cite-1">'<value-of select="@publication-type"/>' type reference has a doi which is the same as this article - <value-of select="pub-id[@pub-id-type='doi']"/>. Is the reference correct? If it is intentional, please remove the reference, and replace citations in the text with the text 'current work' or similar.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
