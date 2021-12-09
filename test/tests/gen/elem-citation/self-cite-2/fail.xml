@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="self-cite-2.sch"?>
 <!--Context: element-citation
 Test: report    (lower-case(pub-id[@pub-id-type='doi']) != $article-doi) and (lower-case(source[1]) = 'elife') and ((lower-case(article-title[1]) = $title) or (lower-case(chapter-title[1]) = $title))
-Message: '' type references looks to possibly be citing itself. If that's the case (and this isn't an error within the reference), please delete the reference and replace any citations in the text with the text 'current work'. -->
+Message: '' type reference looks to possibly be citing itself. If that's the case (and this isn't an error within the reference), please delete the reference and replace any citations in the text with the text 'current work'. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <article-meta>

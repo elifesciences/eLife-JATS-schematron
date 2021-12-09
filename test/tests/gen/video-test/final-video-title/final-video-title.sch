@@ -1040,8 +1040,8 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="media[child::label]" id="video-test">
-      <assert test="caption/title" role="error" id="final-video-title">
-        <value-of select="replace(label,'\.$,','')"/> does not have a title, which is incorrect.</assert>
+      <report test="not(ancestor::sub-article) and not(caption/title)" role="error" id="final-video-title">
+        <value-of select="replace(label,'\.$,','')"/> does not have a title, which is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

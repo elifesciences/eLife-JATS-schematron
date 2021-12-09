@@ -4135,12 +4135,22 @@
       </x:scenario>
       <x:scenario label="final-video-title-pass">
         <x:context href="../tests/gen/video-test/final-video-title/pass.xml"/>
-        <x:expect-not-assert id="final-video-title" role="error"/>
+        <x:expect-not-report id="final-video-title" role="error"/>
         <x:expect-not-assert id="video-test-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="final-video-title-fail">
         <x:context href="../tests/gen/video-test/final-video-title/fail.xml"/>
-        <x:expect-assert id="final-video-title" role="error"/>
+        <x:expect-report id="final-video-title" role="error"/>
+        <x:expect-not-assert id="video-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-video-title-sa-pass">
+        <x:context href="../tests/gen/video-test/final-video-title-sa/pass.xml"/>
+        <x:expect-not-report id="final-video-title-sa" role="warning"/>
+        <x:expect-not-assert id="video-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-video-title-sa-fail">
+        <x:context href="../tests/gen/video-test/final-video-title-sa/fail.xml"/>
+        <x:expect-report id="final-video-title-sa" role="warning"/>
         <x:expect-not-assert id="video-test-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

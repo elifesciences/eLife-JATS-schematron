@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="final-video-title-sa.sch"?>
+<!--Context: media[child::label]
+Test: report    ancestor::sub-article and not(caption/title)
+Message:  does not have a title, which is incorrect. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article>
+      <media>
+        <label>Decision letter video 1.</label>
+        <caption><p>This is not a title.</p></caption>
+      </media>
+    </sub-article>
+  </article>
+</root>

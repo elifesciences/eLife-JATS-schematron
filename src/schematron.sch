@@ -3500,9 +3500,13 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="pre-video-title"><value-of select="replace(label,'\.$,','')"/> does not have a title. Please query the authors for one.</assert>
       
-      <assert test="caption/title" 
+      <report test="not(ancestor::sub-article) and not(caption/title)" 
         role="error" 
-        id="final-video-title"><value-of select="replace(label,'\.$,','')"/> does not have a title, which is incorrect.</assert>
+        id="final-video-title"><value-of select="replace(label,'\.$,','')"/> does not have a title, which is incorrect.</report>
+      
+      <report test="ancestor::sub-article and not(caption/title)" 
+        role="warning" 
+        id="final-video-title-sa"><value-of select="replace(label,'\.$,','')"/> does not have a title, which is incorrect.</report>
       
     </rule>
     
@@ -6406,7 +6410,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="related-articles-test-5">related-article element must contain a @ext-link-type='doi'.</assert>
       
-      <assert test="matches(@xlink:href,'^10\.7554/eLife\.[\d]{5}$')" 
+      <assert test="matches(@xlink:href,'^10\.7554/e[lL]ife\.[\d]{5}$')" 
         role="error" 
         id="related-articles-test-6">related-article element must contain a @xlink:href, the value of which should be in the form 10.7554/eLife.00000.</assert>
       
@@ -6643,14 +6647,14 @@ else self::*/local-name() = $allowed-p-blocks"
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#self-cite-1"
         test="lower-case(pub-id[@pub-id-type='doi'][1]) = $article-doi" 
         role="error" 
-        id="self-cite-1">'<value-of select="@publication-type"/>' type references has a doi which is the same as this article - <value-of select="pub-id[@pub-id-type='doi']"/>. Is the reference correct? If it is intention, please remove the reference, and replace citations in the text with the text 'current work' or similar.</report>
+        id="self-cite-1">'<value-of select="@publication-type"/>' type reference has a doi which is the same as this article - <value-of select="pub-id[@pub-id-type='doi']"/>. Is the reference correct? If it is intentional, please remove the reference, and replace citations in the text with the text 'current work' or similar.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#self-cite-1"
         test="(lower-case(pub-id[@pub-id-type='doi']) != $article-doi) and 
               (lower-case(source[1]) = 'elife') and 
               ((lower-case(article-title[1]) = $title) or (lower-case(chapter-title[1]) = $title)) "
         role="error" 
-        id="self-cite-2">'<value-of select="@publication-type"/>' type references looks to possibly be citing itself. If that's the case (and this isn't an error within the reference), please delete the reference and replace any citations in the text with the text 'current work'.</report>
+        id="self-cite-2">'<value-of select="@publication-type"/>' type reference looks to possibly be citing itself. If that's the case (and this isn't an error within the reference), please delete the reference and replace any citations in the text with the text 'current work'.</report>
       
     </rule>
     
@@ -8232,7 +8236,7 @@ else self::*/local-name() = $allowed-p-blocks"
        role="error" 
        id="final-feat-ok-test"><value-of select="name()"/> element contains [OK] or [OK?] which should be removed - <value-of select="."/></report>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#final-feat-ok-test"
+     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/production-checklist#final-feat-query-test"
        test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')" 
        role="error" 
        id="final-feat-query-test"><value-of select="name()"/> element contains [Query] or [QUERY] which should be removed - <value-of select="."/></report>
