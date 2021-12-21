@@ -16,9 +16,6 @@
   <ns uri="http://www.java.com/" prefix="java"/>
 
   <!--=== Global Variables ===-->
-  <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article','expression-of-concern')"/>
-  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article', 'Expression of Concern')"/> 
-
   <!-- Features specific values included here for convenience -->
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
@@ -27,6 +24,10 @@
   <!-- Notice type articles -->
   <let name="notice-article-types" value="('correction','retraction','expression-of-concern')"/>
   <let name="notice-display-types" value="('Correction','Retraction','Expression of Concern')"/>
+  
+  <!-- All article types -->
+  <let name="allowed-article-types" value="('research-article','review-article',$features-article-types, $notice-article-types)"/>
+  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Scientific Correspondence', 'Review Article', $features-subj, $notice-display-types)"/> 
   
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   

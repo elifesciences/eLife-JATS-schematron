@@ -510,6 +510,18 @@
         <x:expect-not-assert id="editorial-metadata-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="article-metadata-exceptions">
+      <x:scenario label="funding-exception-pass">
+        <x:context href="../tests/gen/article-metadata-exceptions/funding-exception/pass.xml"/>
+        <x:expect-not-report id="funding-exception" role="error"/>
+        <x:expect-not-assert id="article-metadata-exceptions-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="funding-exception-fail">
+        <x:context href="../tests/gen/article-metadata-exceptions/funding-exception/fail.xml"/>
+        <x:expect-report id="funding-exception" role="error"/>
+        <x:expect-not-assert id="article-metadata-exceptions-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="test-article-categories">
       <x:scenario label="disp-subj-test-pass">
         <x:context href="../tests/gen/test-article-categories/disp-subj-test/pass.xml"/>

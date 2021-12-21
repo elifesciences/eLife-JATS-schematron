@@ -16,9 +16,6 @@
   <ns uri="http://www.java.com/" prefix="java"/>
 
   <!--=== Global Variables ===-->
-  <let name="allowed-article-types" value="('article-commentary', 'correction', 'discussion', 'editorial', 'research-article', 'retraction','review-article','expression-of-concern')"/>
-  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Feature Article', 'Insight', 'Editorial', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article', 'Expression of Concern')"/> 
-
   <!-- Features specific values included here for convenience -->
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
@@ -27,6 +24,10 @@
   <!-- Notice type articles -->
   <let name="notice-article-types" value="('correction','retraction','expression-of-concern')"/>
   <let name="notice-display-types" value="('Correction','Retraction','Expression of Concern')"/>
+  
+  <!-- All article types -->
+  <let name="allowed-article-types" value="('research-article','review-article',$features-article-types, $notice-article-types)"/>
+  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Scientific Correspondence', 'Review Article', $features-subj, $notice-display-types)"/> 
   
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   
@@ -1282,6 +1283,14 @@
     <rule context="article[@article-type='editorial']/front/article-meta" id="editorial-metadata">
       
       <report test="contrib-group[@content-type='section']" role="error" id="editorial-editors-presence">Editorials cannot contain Editors and/or Reviewers. This one has a contrib-group[@content-type='section'] containing <value-of select="string-join(for $x in contrib-group[@content-type='section']/contrib return concat('&quot;',e:get-name($x/*[1][name()=('name','collab')]),'&quot;',' as ','&quot;',$x/role[1],'&quot;'),' and ')"/>.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="article-metadata-exceptions-pattern">
+    <rule context="article[@article-type=('article-commentary',$notice-article-types)]/front/article-meta" id="article-metadata-exceptions">
+      
+      <report test="funding-group" role="error" id="funding-exception">
+        <value-of select="descendant::subj-group[@subj-group-type='display-channel'][1]/subject[1]"/>s cannot have funding, but this one has a funding-group element. Please remove it.</report>
       
     </rule>
   </pattern>
