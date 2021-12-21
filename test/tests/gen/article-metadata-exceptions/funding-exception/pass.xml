@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="funding-exception.sch"?>
+<!--Context: article[@article-type=('article-commentary',$notice-article-types)]/front/article-meta
+Test: report    funding-group
+Message: s cannot have funding, but this one has a funding-group element. Please remove it. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="article-commentary">
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Insight</subject>
+          </subj-group>
+        </article-categories>
+      </article-meta>
+    </front>
+  </article>
+</root>
