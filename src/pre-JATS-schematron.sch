@@ -5657,7 +5657,7 @@
       <let name="regex" value="replace(replace(concat(replace(replace($cite-name,'\)','\\)'),'\(','\\('),' (',./year[1],'|','\(',./year[1],'\)',')'),'\.','\\.?'),',',',?')"/>
       <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return         if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::ack or local-name()='ack') then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
       
-      <report test="matches($article-text,$regex)" role="error" id="text-v-cite-test">[text-v-cite-test] ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite2"/>.</report>
+      <report test="matches($article-text,$regex)" role="warning" id="text-v-cite-test">[text-v-cite-test] ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite2"/>.</report>
       
     </rule>
   </pattern>
