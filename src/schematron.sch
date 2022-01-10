@@ -6584,6 +6584,14 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
+    <rule context="ref/element-citation//collab" id="collab-content">
+      
+      <report test="matches(.,'[\[\]\(\)]')" 
+        role="warning" 
+        id="collab-brackets">collab in reference '<value-of select="ancestor::ref/@id"/>' contains brackets - <value-of select="."/>. Are the brackets necessary?</report>
+      
+    </rule>
+    
   </pattern>
   
   <pattern id="element-citation-high-tests">
@@ -8619,7 +8627,7 @@ else self::*/local-name() = $allowed-p-blocks"
         else $x/text(),'')"/>
       
       <report test="matches($article-text,$regex)" 
-        role="warning" 
+        role="error" 
         id="text-v-cite-test">ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite2"/>.</report>
       
     </rule>

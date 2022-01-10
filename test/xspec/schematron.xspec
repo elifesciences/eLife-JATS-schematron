@@ -8880,6 +8880,18 @@
         <x:expect-not-assert id="elem-citation-ext-link-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="collab-content">
+      <x:scenario label="collab-brackets-pass">
+        <x:context href="../tests/gen/collab-content/collab-brackets/pass.xml"/>
+        <x:expect-not-report id="collab-brackets" role="warning"/>
+        <x:expect-not-assert id="collab-content-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-brackets-fail">
+        <x:context href="../tests/gen/collab-content/collab-brackets/fail.xml"/>
+        <x:expect-report id="collab-brackets" role="warning"/>
+        <x:expect-not-assert id="collab-content-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="ref-list-ordering">
       <x:scenario label="err-elem-cit-high-2-2-pass">
         <x:context href="../tests/gen/ref-list-ordering/err-elem-cit-high-2-2/pass.xml"/>
@@ -12067,12 +12079,12 @@
     <x:scenario label="unlinked-ref-cite">
       <x:scenario label="text-v-cite-test-pass">
         <x:context href="../tests/gen/unlinked-ref-cite/text-v-cite-test/pass.xml"/>
-        <x:expect-not-report id="text-v-cite-test" role="warning"/>
+        <x:expect-not-report id="text-v-cite-test" role="error"/>
         <x:expect-not-assert id="unlinked-ref-cite-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="text-v-cite-test-fail">
         <x:context href="../tests/gen/unlinked-ref-cite/text-v-cite-test/fail.xml"/>
-        <x:expect-report id="text-v-cite-test" role="warning"/>
+        <x:expect-report id="text-v-cite-test" role="error"/>
         <x:expect-not-assert id="unlinked-ref-cite-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
