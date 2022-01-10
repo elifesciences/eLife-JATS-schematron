@@ -6584,6 +6584,14 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
+    <rule context="ref/element-citation//collab" id="collab-content">
+      
+      <report test="matches(.,'[\[\]\(\)]')" 
+        role="warning" 
+        id="collab-brackets">collab in reference '<value-of select="ancestor::ref/@id"/>' contains brackets - <value-of select="."/>. Are the brackets necessary?</report>
+      
+    </rule>
+    
   </pattern>
   
   <pattern id="element-citation-high-tests">
@@ -8604,10 +8612,11 @@ else self::*/local-name() = $allowed-p-blocks"
   <pattern id="unlinked-ref-cite-pattern">
     <rule context="ref-list/ref/element-citation[year]" id="unlinked-ref-cite">
       <let name="id" value="parent::ref/@id"/>
+      <let name="cite-name" value="e:cite-name-text(person-group[@person-group-type='author'][1])"/>
       <let name="cite1" value="e:citation-format1(.)"/>
-      <let name="cite1.5" value="e:citation-format2(.)"/>
-      <let name="cite2" value="concat(substring-before($cite1.5,'('),'\(',descendant::year[1],'\)')"/>
-      <let name="regex" value="concat(replace(replace($cite1,'\.','\\.?'),',',',?'),'|',replace(replace($cite2,'\.','\\.?'),',',',?'))"/>
+      <let name="cite2" value="e:citation-format2(.)"/>
+      <!-- generates regex in the style of Smith et al\.? (2021|\(2021\)) -->
+      <let name="regex" value="replace(replace(concat(replace(replace($cite-name,'\)','\\)'),'\(','\\('),' (',./year[1],'|','\(',./year[1],'\)',')'),'\.','\\.?'),',',',?')"/>
       <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*
         return
         if ($x/ancestor::sec[@sec-type='data-availability']) then ()
@@ -8619,7 +8628,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="matches($article-text,$regex)" 
         role="error" 
-        id="text-v-cite-test">ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite1.5"/>.</report>
+        id="text-v-cite-test">ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite2"/>.</report>
       
     </rule>
   </pattern>

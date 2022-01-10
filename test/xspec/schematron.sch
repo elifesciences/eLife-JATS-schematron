@@ -4643,6 +4643,13 @@
       
     </rule>
   </pattern>
+  <pattern id="collab-content-pattern">
+    <rule context="ref/element-citation//collab" id="collab-content">
+      
+      <report test="matches(.,'[\[\]\(\)]')" role="warning" id="collab-brackets">collab in reference '<value-of select="ancestor::ref/@id"/>' contains brackets - <value-of select="."/>. Are the brackets necessary?</report>
+      
+    </rule>
+  </pattern>
   
   <pattern id="ref-list-ordering-pattern">
     <rule context="ref[preceding-sibling::ref]" id="ref-list-ordering">
@@ -5895,13 +5902,14 @@
   <pattern id="unlinked-ref-cite-pattern">
     <rule context="ref-list/ref/element-citation[year]" id="unlinked-ref-cite">
       <let name="id" value="parent::ref/@id"/>
+      <let name="cite-name" value="e:cite-name-text(person-group[@person-group-type='author'][1])"/>
       <let name="cite1" value="e:citation-format1(.)"/>
-      <let name="cite1.5" value="e:citation-format2(.)"/>
-      <let name="cite2" value="concat(substring-before($cite1.5,'('),'\(',descendant::year[1],'\)')"/>
-      <let name="regex" value="concat(replace(replace($cite1,'\.','\\.?'),',',',?'),'|',replace(replace($cite2,'\.','\\.?'),',',',?'))"/>
+      <let name="cite2" value="e:citation-format2(.)"/>
+      <!-- generates regex in the style of Smith et al\.? (2021|\(2021\)) -->
+      <let name="regex" value="replace(replace(concat(replace(replace($cite-name,'\)','\\)'),'\(','\\('),' (',./year[1],'|','\(',./year[1],'\)',')'),'\.','\\.?'),',',',?')"/>
       <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return         if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::ack or local-name()='ack') then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
       
-      <report test="matches($article-text,$regex)" role="error" id="text-v-cite-test">ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite1.5"/>.</report>
+      <report test="matches($article-text,$regex)" role="error" id="text-v-cite-test">ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite2"/>.</report>
       
     </rule>
   </pattern>
@@ -8440,6 +8448,7 @@
       <assert test="descendant::ref/element-citation/year" role="error" id="elem-citation-year-xspec-assert">ref/element-citation/year must be present.</assert>
       <assert test="descendant::ref/element-citation/source" role="error" id="elem-citation-source-xspec-assert">ref/element-citation/source must be present.</assert>
       <assert test="descendant::ref/element-citation/ext-link" role="error" id="elem-citation-ext-link-xspec-assert">ref/element-citation/ext-link must be present.</assert>
+      <assert test="descendant::ref/element-citation//collab" role="error" id="collab-content-xspec-assert">ref/element-citation//collab must be present.</assert>
       <assert test="descendant::ref[preceding-sibling::ref]" role="error" id="ref-list-ordering-xspec-assert">ref[preceding-sibling::ref] must be present.</assert>
       <assert test="descendant::ref" role="error" id="ref-xspec-assert">ref must be present.</assert>
       <assert test="descendant::xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')]" role="error" id="xref-xspec-assert">xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')] must be present.</assert>
