@@ -27344,17 +27344,17 @@
 	  <!--RULE unlinked-ref-cite-->
    <xsl:template match="ref-list/ref/element-citation[year]" priority="1000" mode="M419">
       <xsl:variable name="id" select="parent::ref/@id"/>
+      <xsl:variable name="cite-name" select="e:cite-name-text(person-group[@person-group-type='author'][1])"/>
       <xsl:variable name="cite1" select="e:citation-format1(.)"/>
-      <xsl:variable name="cite1.5" select="e:citation-format2(.)"/>
-      <xsl:variable name="cite2" select="concat(substring-before($cite1.5,'('),'\(',descendant::year[1],'\)')"/>
-      <xsl:variable name="regex" select="concat(replace(replace($cite1,'\.','\\.?'),',',',?'),'|',replace(replace($cite2,'\.','\\.?'),',',',?'))"/>
+      <xsl:variable name="cite2" select="e:citation-format2(.)"/>
+      <xsl:variable name="regex" select="replace(replace(concat(replace(replace($cite-name,'\)','\\)'),'\(','\\('),' (',./year[1],'|','\(',./year[1],'\)',')'),'\.','\\.?'),',',',?')"/>
       <xsl:variable name="article-text" select="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return         if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::ack or local-name()='ack') then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
 
-		    <!--REPORT error-->
+		    <!--REPORT warning-->
       <xsl:if test="matches($article-text,$regex)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($article-text,$regex)">
             <xsl:attribute name="id">text-v-cite-test</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
@@ -27363,7 +27363,7 @@
                <xsl:text/> has unlinked citations in the text - search <xsl:text/>
                <xsl:value-of select="$cite1"/>
                <xsl:text/> or <xsl:text/>
-               <xsl:value-of select="$cite1.5"/>
+               <xsl:value-of select="$cite2"/>
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>

@@ -12067,12 +12067,12 @@
     <x:scenario label="unlinked-ref-cite">
       <x:scenario label="text-v-cite-test-pass">
         <x:context href="../tests/gen/unlinked-ref-cite/text-v-cite-test/pass.xml"/>
-        <x:expect-not-report id="text-v-cite-test" role="error"/>
+        <x:expect-not-report id="text-v-cite-test" role="warning"/>
         <x:expect-not-assert id="unlinked-ref-cite-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="text-v-cite-test-fail">
         <x:context href="../tests/gen/unlinked-ref-cite/text-v-cite-test/fail.xml"/>
-        <x:expect-report id="text-v-cite-test" role="error"/>
+        <x:expect-report id="text-v-cite-test" role="warning"/>
         <x:expect-not-assert id="unlinked-ref-cite-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
