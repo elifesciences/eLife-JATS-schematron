@@ -3227,15 +3227,10 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sec[@sec-type='data-availability']//ext-link[contains(@xlink:href,'softwareheritage')]" 
       id="das-software-heritage-tests">
       
-      <!-- Change to just the latter condition when fully transition to new vendor platform -->
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-1" 
-        test="matches(@xlink:href,'^https://archive.softwareheritage.org/swh:.:rev:[\da-z]*/?$')
-        or 
-        (matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') 
-            and 
-         . = replace(substring-after(@xlink:href,'anchor='),'/$',''))" 
+        test="(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$',''))" 
         role="error" 
-        id="software-heritage-test-1">Software heritage links in the data availability statement must be either the revision link without contextual information for Kriya 1, or they must be the full contextual link, with the revision SWHID as the text of the link for Kriya 2. '<value-of select="."/>' is not either of these.</assert>
+        id="software-heritage-test-1">Software heritage links in the data availability statement must be the full contextual link, with the revision SWHID as the text of the link for Kriya 2. '<value-of select="."/>' is not either of these.</assert>
       
     </rule>
     <rule context="ext-link[contains(@xlink:href,'softwareheritage')]" 
@@ -8640,15 +8635,15 @@ else self::*/local-name() = $allowed-p-blocks"
         return if ($x/local-name()='xref') then ()
         else string($x),'')"/>
       <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?, [1][7-9][0-9][0-9]|[A-Z][A-Za-z]+ et al\.?, [2][0-2][0-9][0-9]|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?'"/>
+      <let name="missing-file-regex" value="'figures? (supplements?\s?)?\d|source (data|code)s? \d|(audio|supplementary) files? \d|tables? \d'"/>
       
       <report test="matches($text,$missing-ref-regex)" 
         role="warning" 
-        id="missing-ref-in-text-test"><name/> element contains possible citation which is unlinked or a missing reference - search - <value-of select="concat(
-
-tokenize(substring-before($text,' et al'),' ')[last()],
-' et al ',
-tokenize(substring-after($text,' et al'),' ')[2]
-)"/></report>
+        id="missing-ref-in-text-test"><name/> element contains possible citation which is unlinked or a missing reference - search - <value-of select="concat(tokenize(substring-before($text,' et al'),' ')[last()],' et al ',tokenize(substring-after($text,' et al'),' ')[2])"/></report>
+      
+      <report test="matches(lower-case($text),$missing-file-regex)" 
+        role="warning" 
+        id="missing-file-in-text-test"><name/> element contains possible citation to a file which is unlinked or missing. If you are unsure what object needs to be cited then please add the following author query (replacing XXXX as appropriate): Please confirm which XXXXXX this refers to, or confirm that this citation refers to another article.</report>
       
     </rule>
     

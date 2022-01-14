@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="software-heritage-test-1.sch"?>
 <!--Context: sec[@sec-type='data-availability']//ext-link[contains(@xlink:href,'softwareheritage')]
-Test: assert    matches(@xlink:href,'^https://archive.softwareheritage.org/swh:.:rev:[\da-z]*/?$') or (matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$',''))
-Message: Software heritage links in the data availability statement must be either the revision link without contextual information for Kriya 1, or they must be the full contextual link, with the revision SWHID as the text of the link for Kriya 2. '' is not either of these. -->
+Test: assert    (matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$',''))
+Message: Software heritage links in the data availability statement must be the full contextual link, with the revision SWHID as the text of the link for Kriya 2. '' is not either of these. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <back>
