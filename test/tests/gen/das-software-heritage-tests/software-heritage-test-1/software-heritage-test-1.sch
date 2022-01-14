@@ -1040,7 +1040,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="sec[@sec-type='data-availability']//ext-link[contains(@xlink:href,'softwareheritage')]" id="das-software-heritage-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-1" test="matches(@xlink:href,'^https://archive.softwareheritage.org/swh:.:rev:[\da-z]*/?$')         or          (matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*')              and           . = replace(substring-after(@xlink:href,'anchor='),'/$',''))" role="error" id="software-heritage-test-1">Software heritage links in the data availability statement must be either the revision link without contextual information for Kriya 1, or they must be the full contextual link, with the revision SWHID as the text of the link for Kriya 2. '<value-of select="."/>' is not either of these.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-1" test="(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$',''))" role="error" id="software-heritage-test-1">Software heritage links in the data availability statement must be the full contextual link, with the revision SWHID as the text of the link for Kriya 2. '<value-of select="."/>' is not either of these.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

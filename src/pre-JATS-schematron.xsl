@@ -11731,16 +11731,16 @@
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(@xlink:href,'^https://archive.softwareheritage.org/swh:.:rev:[\da-z]*/?$')         or          (matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*')              and           . = replace(substring-after(@xlink:href,'anchor='),'/$',''))"/>
+         <xsl:when test="(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$',''))"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'^https://archive.softwareheritage.org/swh:.:rev:[\da-z]*/?$') or (matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$',''))">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$',''))">
                <xsl:attribute name="id">software-heritage-test-1</xsl:attribute>
                <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[software-heritage-test-1] Software heritage links in the data availability statement must be either the revision link without contextual information for Kriya 1, or they must be the full contextual link, with the revision SWHID as the text of the link for Kriya 2. '<xsl:text/>
+               <svrl:text>[software-heritage-test-1] Software heritage links in the data availability statement must be the full contextual link, with the revision SWHID as the text of the link for Kriya 2. '<xsl:text/>
                   <xsl:value-of select="."/>
                   <xsl:text/>' is not either of these.</svrl:text>
             </svrl:failed-assert>
@@ -27418,6 +27418,7 @@
    <xsl:template match="p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]" priority="1000" mode="M421">
       <xsl:variable name="text" select="string-join(for $x in self::*/(*|text())         return if ($x/local-name()='xref') then ()         else string($x),'')"/>
       <xsl:variable name="missing-ref-regex" select="'[A-Z][A-Za-z]+ et al\.?, [1][7-9][0-9][0-9]|[A-Z][A-Za-z]+ et al\.?, [2][0-2][0-9][0-9]|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?'"/>
+      <xsl:variable name="missing-file-regex" select="'figures? (supplements?\s?)?\d|source (data|code)s? \d|(audio|supplementary) files? \d|tables? \d'"/>
 
 		    <!--REPORT warning-->
       <xsl:if test="matches($text,$missing-ref-regex)">
@@ -27430,9 +27431,23 @@
             <svrl:text>[missing-ref-in-text-test] <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> element contains possible citation which is unlinked or a missing reference - search - <xsl:text/>
-               <xsl:value-of select="concat(  tokenize(substring-before($text,' et al'),' ')[last()], ' et al ', tokenize(substring-after($text,' et al'),' ')[2] )"/>
+               <xsl:value-of select="concat(tokenize(substring-before($text,' et al'),' ')[last()],' et al ',tokenize(substring-after($text,' et al'),' ')[2])"/>
                <xsl:text/>
             </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="matches(lower-case($text),$missing-file-regex)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case($text),$missing-file-regex)">
+            <xsl:attribute name="id">missing-file-in-text-test</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[missing-file-in-text-test] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element contains possible citation to a file which is unlinked or missing. If you are unsure what object needs to be cited then please add the following author query (replacing XXXX as appropriate): Please confirm which XXXXXX this refers to, or confirm that this citation refers to another article.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M421"/>
