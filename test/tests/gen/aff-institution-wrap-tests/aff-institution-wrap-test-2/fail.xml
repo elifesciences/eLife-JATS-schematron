@@ -1,0 +1,19 @@
+<?oxygen SCHSchema="aff-institution-wrap-test-2.sch"?>
+<!--Context: aff//institution-wrap
+Test: assert    parent::aff
+Message: institution-wrap must be a child of aff. This one has  as its parent. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <aff id="aff2">
+      <label>2</label>
+      <italic>
+        <institution-wrap>
+          <institution-id institution-id-type="ror">https://ror.org/046rm7j60</institution-id>
+          <institution>JATS4R</institution>
+        </institution-wrap>
+      </italic>
+      <addr-line><named-content content-type="city">Bethesda</named-content></addr-line>
+      <country country="US">United States</country>
+    </aff>
+  </article>
+</root>

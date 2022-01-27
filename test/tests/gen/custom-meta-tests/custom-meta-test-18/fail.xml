@@ -1,0 +1,31 @@
+<?oxygen SCHSchema="custom-meta-test-18.sch"?>
+<!--Context: article-meta/custom-meta-group/custom-meta
+Test: report    ($type = $features-subj) and ($pos=3) and (meta-name != 'schema-version')
+Message: The value of the 3rd meta-name can only be 'schema-version'. Currently it is . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Feature Article</subject>
+          </subj-group>
+        </article-categories>
+        <custom-meta-group>
+          <custom-meta>
+            <meta-name>Author impact statement</meta-name>
+            <meta-value>Some text</meta-value>
+          </custom-meta>
+          <custom-meta>
+            <meta-name>schema-version</meta-name>
+            <meta-value>2.0.0</meta-value>
+          </custom-meta>
+          <custom-meta>
+            <meta-name>pdft template</meta-name>
+            <meta-value>5</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

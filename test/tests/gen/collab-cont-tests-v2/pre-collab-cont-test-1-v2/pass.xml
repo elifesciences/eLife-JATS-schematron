@@ -1,0 +1,22 @@
+<?oxygen SCHSchema="pre-collab-cont-test-1-v2.sch"?>
+<!--Context: article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and child::collab]
+Test: assert    role
+Message:  has no contributions. Please ensure to query this with the authors. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <contrib contrib-type="author">
+          <collab>Derek Zoolander Center for Kids Who Can't Read Good and Who Wanna Learn to Do Other Stuff Good Too</collab>
+          <role vocab="credit" vocab-identifier="http://credit.niso.org/" vocab-term="Resources" vocab-term-identifier="http://credit.niso.org/contributor-roles/resources/">Resources</role>
+        </contrib>
+        <custom-meta-group>
+          <custom-meta>
+            <meta-name>schema-version</meta-name>
+            <meta-value>2.0.0</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

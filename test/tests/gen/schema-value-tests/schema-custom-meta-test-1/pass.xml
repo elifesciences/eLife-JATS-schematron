@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="schema-custom-meta-test-1.sch"?>
+<!--Context: article-meta/custom-meta-group/custom-meta[meta-name='schema-version']/meta-value
+Test: assert    .='2.0.0'
+Message: The meta-value element for schema-version must have a value of '2.0.0'. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>schema-version</meta-name>
+          <meta-value>2.0.0</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </article>
+</root>

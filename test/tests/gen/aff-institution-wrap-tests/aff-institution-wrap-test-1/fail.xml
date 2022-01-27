@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="aff-institution-wrap-test-1.sch"?>
+<!--Context: aff//institution-wrap
+Test: assert    institution-id and institution[not(@*)]
+Message: If an affiliation has an institution wrap, then it must have both an institution-id and an institution. If there is no ROR for this institution, then it should be captured as a single institution element without institution-wrap. This institution-wrap does not have both elements -  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <aff id="aff2">
+      <label>2</label>
+      <institution-wrap>
+        <institution>JATS4R</institution>
+      </institution-wrap>
+      <addr-line><named-content content-type="city">Bethesda</named-content></addr-line>
+      <country country="US">United States</country>
+    </aff>
+  </article>
+</root>

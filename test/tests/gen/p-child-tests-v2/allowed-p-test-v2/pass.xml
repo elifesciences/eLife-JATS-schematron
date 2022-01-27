@@ -1,0 +1,36 @@
+<?oxygen SCHSchema="allowed-p-test-v2.sch"?>
+<!--Context: article[e:get-version(.)!='1']//p/*
+Test: assert    name() = $allowed-p-blocks
+Message: p element cannot contain . only contain the following elements are allowed - . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>schema-version</meta-name>
+          <meta-value>2.0.0</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+    <p>
+      <bold/>
+      <sup/>
+      <sub/>
+      <sc/>
+      <italic/>
+      <underline/>
+      <xref/>
+      <inline-formula/>
+      <disp-formula/>
+      <supplementary-material/>
+      <code/>
+      <ext-link/>
+      <named-content/>
+      <inline-graphic/>
+      <monospace/>
+      <related-object/>
+      <table-wrap/>
+      <styled-content/>
+    </p>
+  </article>
+</root>

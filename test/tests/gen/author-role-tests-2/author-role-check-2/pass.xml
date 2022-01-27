@@ -1,0 +1,25 @@
+<?oxygen SCHSchema="author-role-check-2.sch"?>
+<!--Context: article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[not(@vocab='credit')]
+Test: report    matches(lower-case(.),'^\p{Zs}*(conceptuali[sz]ation|data\p{Zs}+curation|formal\p{Zs}+analysis|funding\p{Zs}+acquisition|investigation|methodology|project\p{Zs}+administration|resources|software|supervision|validation|visualization|writing\p{Zs}+[—]\p{Zs}+original\p{Zs}+draft|writing\p{Zs}+[—]\p{Zs}+review(ing)?\p{Zs}+(&|and)\p{Zs}+editing)\p{Zs}*$')
+Message: role with content '' exactly matches one of the CRediT taxonomy terms, but it does not have a vocab="credit" attribute. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zoolander</surname>
+            <given-names>Derek</given-names>
+          </name>
+          <role/>
+        </contrib>
+        <custom-meta-group>
+          <custom-meta>
+            <meta-name>schema-version</meta-name>
+            <meta-value>2.0.0</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

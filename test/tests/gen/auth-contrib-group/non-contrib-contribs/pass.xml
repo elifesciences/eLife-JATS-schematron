@@ -1,0 +1,27 @@
+<?oxygen SCHSchema="non-contrib-contribs.sch"?>
+<!--Context: article/front/article-meta/contrib-group[1]
+Test: report    $article-type=$non-contribs and descendant::contrib[@contrib-type='author' and role]
+Message:  type articles should not contain author contributions. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <name>
+              <surname>Zoolander</surname>
+              <given-names>Derek</given-names>
+            </name>
+            <role vocab="credit"/>
+          </contrib>
+        </contrib-group>
+        <custom-meta-group>
+          <custom-meta>
+            <meta-name>schema-version</meta-name>
+            <meta-value>2.0.0</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>
