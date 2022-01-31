@@ -38196,6 +38196,34 @@
                <xsl:text/>. Please italicise the organism name in the keyword.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="contains(.,', ')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,', ')">
+            <xsl:attribute name="id">auth-kwd-check-8</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[auth-kwd-check-8] Keyword contains a comma - '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'. Should this be split into multiple keywords?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="matches(.,'[”“‘’&quot;]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[”“‘’&quot;]')">
+            <xsl:attribute name="id">auth-kwd-check-9</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[auth-kwd-check-9] Keyword contains a quotation mark - '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'. Should this be removed and/or should the keyword be split into multiple keywords?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M503"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M503"/>

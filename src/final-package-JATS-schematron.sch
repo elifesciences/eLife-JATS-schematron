@@ -7957,6 +7957,10 @@
       <report test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\p{Zs}')) gt 4" role="warning" id="auth-kwd-check-6">Keyword contains more than 4 words - <value-of select="."/>. Should these be split out into separate keywords?</report>
       
       <report test="not(italic) and matches($lower,$org-regex)" role="warning" id="auth-kwd-check-7">Keyword contains an organism name which is not in italics - <value-of select="."/>. Please italicise the organism name in the keyword.</report>
+      
+      <report test="contains(.,', ')" role="warning" id="auth-kwd-check-8">Keyword contains a comma - '<value-of select="."/>'. Should this be split into multiple keywords?</report>
+      
+      <report test="matches(.,'[”“‘’&quot;]')" role="warning" id="auth-kwd-check-9">Keyword contains a quotation mark - '<value-of select="."/>'. Should this be removed and/or should the keyword be split into multiple keywords?</report>
     </rule>
   </pattern>
   <pattern id="ref-given-names-pattern">

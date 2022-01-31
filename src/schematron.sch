@@ -12115,6 +12115,14 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="not(italic) and matches($lower,$org-regex)" 
         role="warning" 
         id="auth-kwd-check-7">Keyword contains an organism name which is not in italics - <value-of select="."/>. Please italicise the organism name in the keyword.</report>
+      
+      <report test="contains(.,', ')" 
+        role="warning" 
+        id="auth-kwd-check-8">Keyword contains a comma - '<value-of select="."/>'. Should this be split into multiple keywords?</report>
+      
+      <report test="matches(.,'[”“‘’&quot;]')" 
+        role="warning" 
+        id="auth-kwd-check-9">Keyword contains a quotation mark - '<value-of select="."/>'. Should this be removed and/or should the keyword be split into multiple keywords?</report>
     </rule>
     
     <rule context="ref-list//element-citation/person-group[@person-group-type='author']//given-names" id="ref-given-names">
