@@ -1,0 +1,48 @@
+<?oxygen SCHSchema="ref-report-reviewer-test-1.sch"?>
+<!--Context: sub-article[@article-type='referee-report']/front-stub/contrib-group[2]
+Test: assert    count(contrib[role[@specific-use='referee']]) gt 0
+Message: Second contrib-group in decision letter must contain a reviewer (a contrib with a child role[@specific-use='referee']). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>schema-version</meta-name>
+            <meta-value>2.0.0</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+    <sub-article article-type="referee-report">
+      <front-stub>
+        <article-id pub-id-type="doi"/>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <name>
+              <surname>Claus</surname>
+              <given-names>Santa</given-names>
+            </name>
+            <role specific-use="editor">Reviewing Editor</role>
+          </contrib>
+        </contrib-group>
+        <contrib-group/>
+      </front-stub>
+    </sub-article>
+    <sub-article article-type="author-comment">
+      <front-stub>
+        <article-id pub-id-type="doi"/>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <name/>
+            <role specific-use="author">Author</role>
+          </contrib>
+          <contrib contrib-type="author">
+            <name/>
+            <role specific-use="author">Author</role>
+          </contrib>
+        </contrib-group>
+      </front-stub>
+    </sub-article>
+  </article>
+</root>

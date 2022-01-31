@@ -1,0 +1,10 @@
+<?oxygen SCHSchema="sub-article-2.sch"?>
+<!--Context: article/sub-article
+Test: report    $version='1' and @article-type='author-comment'
+Message: '' is not permitted as the article-type for a sub-article in version 1 xml. Either, this needs to be made version 2 xml, or 'reply' should be used in place of ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    
+    <sub-article article-type="author-comment"/>
+  </article>
+</root>

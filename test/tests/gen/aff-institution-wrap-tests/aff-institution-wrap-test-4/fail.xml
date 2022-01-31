@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="aff-institution-wrap-test-4.sch"?>
+<!--Context: aff//institution-wrap
+Test: assert    count(institution-id) = 1
+Message: institution-wrap must contain 1 and only 1 institution-id elements. This one has . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <aff>
+      <institution-wrap>
+        <institution>JATS4R</institution>
+      </institution-wrap>
+      <institution-wrap>
+        <institution-id institution-id-type="ror">https://ror.org/046rm7j60</institution-id>
+        <institution-id institution-id-type="ror">https://ror.org/046rm7j60</institution-id>
+        <institution>JATS4R</institution>
+      </institution-wrap>
+    </aff>
+  </article>
+</root>

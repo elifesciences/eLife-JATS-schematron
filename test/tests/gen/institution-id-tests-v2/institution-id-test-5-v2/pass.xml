@@ -1,0 +1,23 @@
+<?oxygen SCHSchema="institution-id-test-5-v2.sch"?>
+<!--Context: article[e:get-version(.)!='1']//award-group//institution-wrap/institution-id
+Test: report    (normalize-space(.) != '') and not(matches(.,'^10.13039/\d*$'))
+Message:  element in funding entry for  contains the following text -  - which is not a fundref doi. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <award-group>
+          <institution-wrap>
+            <institution-id institution-id-type="doi" vocab="open-funder-registry" vocab-identifier="10.13039/open-funder-registry">10.13039/100000002</institution-id>
+          </institution-wrap>
+        </award-group>
+        <custom-meta-group>
+          <custom-meta>
+            <meta-name>schema-version</meta-name>
+            <meta-value>2.0.0</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

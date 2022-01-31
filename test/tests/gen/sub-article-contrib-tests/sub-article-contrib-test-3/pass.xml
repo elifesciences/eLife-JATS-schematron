@@ -1,0 +1,33 @@
+<?oxygen SCHSchema="sub-article-contrib-test-3.sch"?>
+<!--Context: sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib
+Test: report    (name and anonymous) or (collab and anonymous) or (name and collab)
+Message: sub-article contrib can only have a child name element or a child anonymous element or a child collab element (with descendant group members as required), it cannot have more than one of these elements. This has . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>schema-version</meta-name>
+            <meta-value>2.0.0</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+    <sub-article article-type="referee-report">
+      <front-stub>
+        <article-id pub-id-type="doi"/>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <name/>
+          </contrib>
+        </contrib-group>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <anonymous/>
+          </contrib>
+        </contrib-group>
+      </front-stub>
+    </sub-article>
+  </article>
+</root>

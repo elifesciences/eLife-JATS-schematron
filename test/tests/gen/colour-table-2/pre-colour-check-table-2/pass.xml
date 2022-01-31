@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="pre-colour-check-table-2.sch"?>
 <!--Context: th[@style]|td[@style]
-Test: assert    @style=$allowed-values
+Test: assert    @style=($old-allowed-values,$allowed-values)
 Message:  element containing '' has an @style with an unallowed value - ''. The only allowed values are 'author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8' for blue, green orange, yellow, purple, red, pink and grey respectively. Please ensure one of these is used. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for table cells - blue, green orange, yellow, purple, red, pink and grey. Please confirm how you would like the colour(s) here captured given this information.'. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="aff-institution-id-test-3.sch"?>
+<!--Context: aff//institution-id
+Test: report    *
+Message: institution-id in aff cannot contain elements, only text (which is a valid ROR id). This one contains the following element(s): . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <aff>
+      <institution-wrap>
+        <institution-id institution-id-type="ror"><italic/>https://ror.org/046rm7j60<bold/></institution-id>
+      </institution-wrap>
+    </aff>
+  </article>
+</root>

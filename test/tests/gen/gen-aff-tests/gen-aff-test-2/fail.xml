@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="gen-aff-test-2.sch"?>
 <!--Context: aff
-Test: report    count(institution[@content-type='dept']) ge 1
+Test: report    count(institution[@content-type='dept']) + count(institution-wrap/institution[@content-type='dept']) ge 1
 Message: Affiliation has  department field(s) - . Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

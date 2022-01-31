@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="err-elem-cit-data-1-v2.sch"?>
+<!--Context: article[e:get-version(.)!='1']//element-citation[@publication-type='data']
+Test: assert    @specific-use=('generated','analyzed')
+Message: element-citation[@publication-type='data'] must have a specific-use attribute is either 'generated' or 'analyzed'. Reference '' does not have this attribute or the value is incorrect. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <custom-meta-group>
+          <custom-meta>
+            <meta-name>schema-version</meta-name>
+            <meta-value>2.0.0</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+    <element-citation publication-type="data" specific-use="isSupplementedBy"/>
+    <element-citation publication-type="data"/>
+  </article>
+</root>

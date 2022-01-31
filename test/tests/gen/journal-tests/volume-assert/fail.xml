@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="volume-assert.sch"?>
 <!--Context: element-citation[@publication-type='journal']
-Test: assert    volume
+Test: report    not(comment[.='In press']) and not(volume)
 Message: ref '' is a journal, but it doesn't have a volume. Is this right? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

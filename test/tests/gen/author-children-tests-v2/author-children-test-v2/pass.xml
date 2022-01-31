@@ -1,0 +1,25 @@
+<?oxygen SCHSchema="author-children-test-v2.sch"?>
+<!--Context: article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/*
+Test: assert    if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')] else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features] else if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features] else self::*[local-name() = $allowed-contrib-blocks]
+Message:  is not allowed as a child of author. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zoolander</surname>
+            <given-names>Derek</given-names>
+          </name>
+          <role vocab="credit"/>
+        </contrib>
+        <custom-meta-group>
+          <custom-meta>
+            <meta-name>schema-version</meta-name>
+            <meta-value>2.0.0</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

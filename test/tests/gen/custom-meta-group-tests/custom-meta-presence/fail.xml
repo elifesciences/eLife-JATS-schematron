@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="custom-meta-presence.sch"?>
 <!--Context: article-meta/custom-meta-group
-Test: report    ($type = $research-subj) and count(custom-meta[@specific-use='meta-only']) != 1
-Message: 1 and only 1 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for . -->
+Test: report    ($type = $research-subj) and not(count(custom-meta[@specific-use='meta-only'])=(1,2))
+Message: Only 1 or 2 custom-meta[@specific-use='meta-only'] elements are permitted in custom-meta-group for . This one has . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <article-meta>
@@ -11,6 +11,7 @@ Message: 1 and only 1 custom-meta[@specific-use='meta-only'] must be present in 
         </subj-group>
       </article-categories>
       <custom-meta-group>
+        <custom-meta specific-use="meta-only"/>
         <custom-meta specific-use="meta-only"/>
         <custom-meta specific-use="meta-only"/>
       </custom-meta-group>

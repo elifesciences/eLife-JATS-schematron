@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="surname-test-10.sch"?>
+<!--Context: contrib-group//name/surname
+Test: report    matches(.,'\p{Zs}(III?|I?V)$')
+Message: surname ends with what might be roman numerals - ''. Should these be placed in a suffix element instead? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <contrib-group>
+      <name>
+        <surname>Zoolander</surname>
+      </name>
+    </contrib-group>
+  </article>
+</root>

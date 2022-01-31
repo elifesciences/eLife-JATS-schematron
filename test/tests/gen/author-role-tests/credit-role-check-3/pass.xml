@@ -1,0 +1,25 @@
+<?oxygen SCHSchema="credit-role-check-3.sch"?>
+<!--Context: article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[@vocab='credit']
+Test: report    not(@vocab-term) or ((count($credit-role) = 1) and ($vocab-term != $credit-role/@term))
+Message: A CRediT taxonomy role must have a @vocab-term, the value of which must be one of the CRediT terms - . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zoolander</surname>
+            <given-names>Derek</given-names>
+          </name>
+          <role vocab="credit" vocab-identifier="http://credit.niso.org/" vocab-term="Resources" vocab-term-identifier="http://credit.niso.org/contributor-roles/resources/">Resources</role>
+        </contrib>
+        <custom-meta-group>
+          <custom-meta>
+            <meta-name>schema-version</meta-name>
+            <meta-value>2.0.0</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

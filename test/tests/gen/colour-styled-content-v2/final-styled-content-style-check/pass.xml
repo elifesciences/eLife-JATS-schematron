@@ -1,0 +1,21 @@
+<?oxygen SCHSchema="final-styled-content-style-check.sch"?>
+<!--Context: article[e:get-version(.)!='1']//styled-content
+Test: assert    @style = $allowed-values
+Message:  - text in  element is captured in a <styled-content style="">. The only allowed values for the @style are . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <custom-meta-group>
+          <custom-meta>
+            <meta-name>schema-version</meta-name>
+            <meta-value>2.0.0</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+    <body>
+      <p>Some <styled-content style="color: #366BFB;">text</styled-content></p>
+    </body>
+  </article>
+</root>

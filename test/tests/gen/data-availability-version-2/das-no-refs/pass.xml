@@ -1,0 +1,24 @@
+<?oxygen SCHSchema="das-no-refs.sch"?>
+<!--Context: article[e:get-version(.)!='1']//sec[@sec-type='data-availability']
+Test: report    descendant::element-citation
+Message: Version 2 xml cannot have references in the data availability section. Data references must instead be cited from the data availability section. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <custom-meta-group>
+          <custom-meta>
+            <meta-name>schema-version</meta-name>
+            <meta-value>2.0.0</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+    <back>
+      <sec sec-type="data-availability">
+        <title>Data availability</title>
+        <p>Something</p>
+      </sec>
+    </back>
+  </article>
+</root>
