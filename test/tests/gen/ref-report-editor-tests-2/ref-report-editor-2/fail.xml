@@ -1,0 +1,80 @@
+<?oxygen SCHSchema="ref-report-editor-2.sch"?>
+<!--Context: sub-article[@article-type='referee-report']/front-stub/contrib-group[1]/contrib[role[@specific-use='editor']]
+Test: report    ($top-name!='') and ($top-name!=$name)
+Message: In decision letter '' is a '', but in the top-level article details '' is the ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group/>
+        <contrib-group content-type="section">
+          <contrib contrib-type="senior_editor">
+            <name>
+              <surname>Claus</surname>
+              <given-names>Ms</given-names>
+            </name>
+            <role>Senior Editor</role>
+            <aff>
+              <institution>Santa's workshop</institution>
+              <addr-line><named-content content-type="city">Santa's Grotto</named-content></addr-line>
+              <country>North Pole</country>
+            </aff>
+          </contrib>
+          <contrib contrib-type="editor">
+            <name>
+              <surname>Claus</surname>
+              <given-names>Santa</given-names>
+            </name>
+            <role>Reviewing editor</role>
+            <aff>
+              <institution>Santa's workshop</institution>
+              <addr-line><named-content content-type="city">Santa's Grotto</named-content></addr-line>
+              <country>North Pole</country>
+            </aff>
+          </contrib>
+        </contrib-group>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>schema-version</meta-name>
+            <meta-value>2.0.0</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+    <sub-article article-type="referee-report">
+      <front-stub>
+        <article-id pub-id-type="doi"/>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <name>
+              <surname>Claus</surname>
+              <given-names>Ms</given-names>
+            </name>
+            <role specific-use="editor">Reviewing editor</role>
+          </contrib>
+        </contrib-group>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <anonymous/>
+            <role specific-use="referee">Reviewer</role>
+          </contrib>
+        </contrib-group>
+      </front-stub>
+    </sub-article>
+    <sub-article article-type="author-comment">
+      <front-stub>
+        <article-id pub-id-type="doi"/>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <name/>
+            <role specific-use="author">Author</role>
+          </contrib>
+          <contrib contrib-type="author">
+            <name/>
+            <role specific-use="author">Author</role>
+          </contrib>
+        </contrib-group>
+      </front-stub>
+    </sub-article>
+  </article>
+</root>

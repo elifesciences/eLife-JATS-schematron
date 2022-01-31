@@ -1,0 +1,50 @@
+<?oxygen SCHSchema="sub-article-role-test-6.sch"?>
+<!--Context: sub-article/front-stub/contrib-group/contrib/role
+Test: report    @specific-use='referee' and .!='Reviewer'
+Message: A role element with the attribute specific-use='referee' must contain the text 'Reviewer'. This one has ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>schema-version</meta-name>
+            <meta-value>2.0.0</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+    <sub-article article-type="referee-report">
+      <front-stub>
+        <article-id pub-id-type="doi"/>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <name/>
+            <role specific-use="editor">Reviewing Editor</role>
+          </contrib>
+        </contrib-group>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <anonymous/>
+            <role specific-use="referee">Reviewer</role>
+          </contrib>
+        </contrib-group>
+      </front-stub>
+    </sub-article>
+    <sub-article article-type="author-comment">
+      <front-stub>
+        <article-id pub-id-type="doi"/>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <name/>
+            <role specific-use="author">Author</role>
+          </contrib>
+          <contrib contrib-type="author">
+            <name/>
+            <role specific-use="author">Author</role>
+          </contrib>
+        </contrib-group>
+      </front-stub>
+    </sub-article>
+  </article>
+</root>

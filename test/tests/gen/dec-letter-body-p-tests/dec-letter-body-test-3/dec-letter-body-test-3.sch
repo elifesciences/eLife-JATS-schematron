@@ -17,7 +17,7 @@
   <let name="notice-article-types" value="('correction','retraction','expression-of-concern')"/>
   <let name="notice-display-types" value="('Correction','Retraction','Expression of Concern')"/>
   <let name="allowed-article-types" value="('research-article','review-article',$features-article-types, $notice-article-types)"/>
-  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Scientific Correspondence', 'Review Article', $features-subj, $notice-display-types)"/>
+  <let name="allowed-disp-subj" value="($research-subj, $features-subj)"/>
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   <xsl:function name="e:get-version" as="xs:string">
     <xsl:param name="elem" as="node()"/>
@@ -1061,13 +1061,13 @@
     
   </xsl:function>
   <pattern id="dec-letter-auth-response">
-    <rule context="sub-article[@article-type='decision-letter']/body//p" id="dec-letter-body-p-tests">
+    <rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//p" id="dec-letter-body-p-tests">
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-3" test="contains(lower-case(.),'reviewed and recommended by peer community in evolutionary biology') and not(child::ext-link[matches(@xlink:href,'doi.org/10.24072/pci.evolbiol')])" role="error" flag="dl-ar" id="dec-letter-body-test-3">The decision letter indicates that this article was reviewed by PCI evol bio, but there is no doi link with the prefix '10.24072/pci.evolbiol' which must be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='decision-letter']/body//p" role="error" id="dec-letter-body-p-tests-xspec-assert">sub-article[@article-type='decision-letter']/body//p must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('decision-letter','referee-report')]/body//p" role="error" id="dec-letter-body-p-tests-xspec-assert">sub-article[@article-type=('decision-letter','referee-report')]/body//p must be present.</assert>
     </rule>
   </pattern>
 </schema>

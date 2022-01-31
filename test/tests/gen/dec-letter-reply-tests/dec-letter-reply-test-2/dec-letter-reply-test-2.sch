@@ -17,7 +17,7 @@
   <let name="notice-article-types" value="('correction','retraction','expression-of-concern')"/>
   <let name="notice-display-types" value="('Correction','Retraction','Expression of Concern')"/>
   <let name="allowed-article-types" value="('research-article','review-article',$features-article-types, $notice-article-types)"/>
-  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Scientific Correspondence', 'Review Article', $features-subj, $notice-display-types)"/>
+  <let name="allowed-disp-subj" value="($research-subj, $features-subj)"/>
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   <xsl:function name="e:get-version" as="xs:string">
     <xsl:param name="elem" as="node()"/>
@@ -1062,6 +1062,7 @@
   </xsl:function>
   <pattern id="dec-letter-auth-response">
     <rule context="article/sub-article" id="dec-letter-reply-tests">
+      <let name="version" value="e:get-version(.)"/>
       <let name="id-convention" value="if (@article-type='editor-report') then 'sa0'         else if (@article-type=('decision-letter','referee-report')) then 'sa1'         else if (@article-type=('reply','author-comment')) then 'sa2'         else 'unknown'"/>
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-2" test="@id = $id-convention" role="error" flag="dl-ar" id="dec-letter-reply-test-2">sub-article id is <value-of select="@id"/> when based on it's article-type it should be <value-of select="$id-convention"/>.</assert>
     </rule>

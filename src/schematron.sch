@@ -35,7 +35,7 @@
   
   <!-- All article types -->
   <let name="allowed-article-types" value="('research-article','review-article',$features-article-types, $notice-article-types)"/>
-  <let name="allowed-disp-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Scientific Correspondence', 'Review Article', $features-subj, $notice-display-types)"/> 
+  <let name="allowed-disp-subj" value="($research-subj, $features-subj)"/> 
   
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   
@@ -1455,6 +1455,10 @@
       else ()" 
         role="warning" 
         id="test-ro-kwd-group-presence-2"><value-of select="$subj-type"/> does not contain a Research Organism keyword group. Is this correct?</report>
+    
+    <report test="($subj-type=('Research Article','Research Advance','Tools and Resources','Short Report')) and (history/date[@date-type='received']/@iso-8601-date gt '2021-07-01') and not(pub-history[event[self-uri[@content-type='preprint']]])"
+      role="warning"
+      id="preprint-presence">This <value-of select="$subj-type"/> was received on '<value-of select="history/date[@date-type='received']/@iso-8601-date"/>' (after the preprint mandate) but does not have preprint information. Is that correct?</report>
    </rule>
    
    <rule context="article[@article-type='research-article']/front/article-meta" id="test-research-article-metadata">
@@ -6245,6 +6249,7 @@ else self::*/local-name() = $allowed-p-blocks"
   <pattern id="dec-letter-auth-response">
     
     <rule context="article/sub-article" id="dec-letter-reply-tests">
+      <let name="version" value="e:get-version(.)"/>
       <let name="id-convention" value="if (@article-type='editor-report') then 'sa0'
         else if (@article-type=('decision-letter','referee-report')) then 'sa1'
         else if (@article-type=('reply','author-comment')) then 'sa2'
@@ -6273,6 +6278,26 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         flag="dl-ar"
         id="dec-letter-reply-test-4">sub-article must contain one and only one body.</assert>
+      
+      <report test="$version='1' and @article-type='referee-report'" 
+        role="warning" 
+        flag="dl-ar"
+        id="sub-article-1">'<value-of select="@article-type"/>' is not permitted as the article-type for a sub-article in version 1 xml. Either, this needs to be made version 2 xml, or 'decision-letter' should be used in place of <value-of select="@article-type"/>.</report>
+      
+      <report test="$version='1' and @article-type='author-comment'" 
+        role="warning" 
+        flag="dl-ar"
+        id="sub-article-2">'<value-of select="@article-type"/>' is not permitted as the article-type for a sub-article in version 1 xml. Either, this needs to be made version 2 xml, or 'reply' should be used in place of '<value-of select="@article-type"/>'.</report>
+      
+      <report test="$version!='1' and @article-type='decision-letter'" 
+        role="warning" 
+        flag="dl-ar"
+        id="sub-article-3">'<value-of select="@article-type"/>' is not permitted as the article-type for a sub-article in version 2 xml. Either, this needs to be made version 1 xml, or 'referee-report' should be used in place of <value-of select="@article-type"/>.</report>
+      
+      <report test="$version!='1' and @article-type='reply'" 
+        role="warning" 
+        flag="dl-ar"
+        id="sub-article-4">'<value-of select="@article-type"/>' is not permitted as the article-type for a sub-article in version 2 xml. Either, this needs to be made version 1 xml, or 'author-comment' should be used in place of <value-of select="@article-type"/>.</report>
       
     </rule>
     
@@ -6488,7 +6513,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="dec-letter-body-test-1">First child element in decision letter is not boxed-text. This is certainly incorrect.</assert>
     </rule>
       
-    <rule context="sub-article[@article-type='decision-letter']/body//p" id="dec-letter-body-p-tests">  
+    <rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//p" id="dec-letter-body-p-tests">  
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-2" 
         test="contains(lower-case(.),'this paper was reviewed by review commons') and not(child::ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/') and (lower-case(.)='review commons')])" 
         role="error" 
@@ -6619,6 +6644,126 @@ else self::*/local-name() = $allowed-p-blocks"
         flag="dl-ar"
         id="sub-article-ref-p-test">The last paragraph of the author response looks like it contains various references. Should each reference be split out into its own paragraph? <value-of select="."/></report>
     </rule>
+  </pattern>
+  
+  <pattern id="sub-article-version-2">
+    
+    <rule context="sub-article[@article-type='referee-report']/front-stub" id="ref-report-front">
+      <let name="count" value="count(contrib-group)"/>
+      
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-1" 
+        test="count(article-id[@pub-id-type='doi']) = 1" 
+        role="error" 
+        flag="dl-ar"
+        id="ref-report-front-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
+      
+      <assert test="$count = 2" 
+        role="error" 
+        flag="dl-ar"
+        id="ref-report-front-2">sub-article front-stub must contain 2 contrib-group elements.</assert>
+    </rule>
+    
+    <rule context="sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib" 
+      id="sub-article-contrib-tests">
+      
+      <assert test="@contrib-type='author'" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-contrib-test-1">contrib inside sub-article with article-type '<value-of select="ancestor::sub-article/@article-type"/>' must have the attribute contrib-type='author'.</assert>
+      
+      <assert test="name or anonymous or collab" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-contrib-test-2">sub-article contrib must have either a child name or a child anonymous element.</assert>
+      
+      <report test="(name and anonymous) or (collab and anonymous) or (name and collab)" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-contrib-test-3">sub-article contrib can only have a child name element or a child anonymous element or a child collab element (with descendant group members as required), it cannot have more than one of these elements. This has <value-of select="string-join(for $x in *[name()=('name','anonymous','collab')] return concat('a ',$x/name()),' and ')"/>.</report>
+      
+      <assert test="role" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-contrib-test-4">contrib inside sub-article with article-type '<value-of select="ancestor::sub-article/@article-type"/>' must have a child role element.</assert>
+      
+    </rule>
+    
+    <rule context="sub-article/front-stub/contrib-group/contrib/role" 
+      id="sub-article-role-tests">
+      <let name="sub-article-type" value="ancestor::sub-article[1]/@article-type"/>
+      
+      <report test="$sub-article-type='referee-report' and parent::contrib/parent::contrib-group[not(preceding-sibling::contrib-group)] and not(@specific-use='editor')" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-role-test-1">The role element for contributors in the first contrib-group in the decision letter must have the attribute specific-use='editor'.</report>
+      
+      <report test="$sub-article-type='referee-report' and parent::contrib/parent::contrib-group[not(following-sibling::contrib-group)] and not(@specific-use='referee')" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-role-test-2">The role element for contributors in the second contrib-group in the decision letter must have the attribute specific-use='referee'.</report>
+      
+      <report test="$sub-article-type='author-comment' and not(@specific-use='author')" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-role-test-3">The role element for contributors in the author response must have the attribute specific-use='author'.</report>
+      
+      <report test="@specific-use='author' and .!='Author'" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-role-test-4">A role element with the attribute specific-use='author' must contain the text 'Author'. This one has '<value-of select="."/>'.</report>
+      
+      <report test="@specific-use='editor' and not(.=('Senior and Reviewing Editor','Reviewing Editor'))" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-role-test-5">A role element with the attribute specific-use='editor' must contain the text 'Senior and Reviewing Editor' or 'Reviewing Editor'. This one has '<value-of select="."/>'.</report>
+      
+      <report test="@specific-use='referee' and .!='Reviewer'" 
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-role-test-6">A role element with the attribute specific-use='referee' must contain the text 'Reviewer'. This one has '<value-of select="."/>'.</report>
+      
+    </rule>
+    
+    <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[1]" id="ref-report-editor-tests">
+      
+      <assert test="count(contrib[role[@specific-use='editor']]) = 1" 
+        role="error" 
+        flag="dl-ar"
+        id="ref-report-editor-1">First contrib-group in decision letter must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']).</assert>
+    </rule>
+    
+    <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[1]/contrib[role[@specific-use='editor']]" id="ref-report-editor-tests-2">
+      <let name="name" value="e:get-name(name[1])"/>
+      <let name="role" value="role[1]"/>
+      <let name="top-contrib" value="ancestor::article//article-meta/contrib-group[2]/contrib[lower-case(role[1])=lower-case($role)]"/>
+      <let name="top-name" value="if ($top-contrib) then e:get-name($top-contrib/name[1]) else ''"/>
+      
+      <report test="($top-name!='') and ($top-name!=$name)"
+        role="error"
+        id="ref-report-editor-2">In decision letter '<value-of select="$name"/>' is a '<value-of select="$role"/>', but in the top-level article details '<value-of select="$top-name"/>' is the '<value-of select="$top-contrib/role[1]"/>'.</report>
+    </rule>
+    
+    <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[2]" id="ref-report-reviewer-tests">
+      
+      <assert test="count(contrib[role[@specific-use='referee']]) gt 0" 
+        role="error" 
+        flag="dl-ar"
+        id="ref-report-reviewer-test-1">Second contrib-group in decision letter must contain a reviewer (a contrib with a child role[@specific-use='referee']).</assert>
+      
+      <report test="count(contrib[role[@specific-use='referee']]) gt 5" 
+        role="warning" 
+        flag="dl-ar"
+        id="ref-report-reviewer-test-6">Second contrib-group in decision letter contains more than five reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</report>
+    </rule>
+    
+    <rule context="anonymous" 
+      id="anonymous-tests">
+      
+      <assert test="parent::contrib[role[@specific-use='referee']]"
+        role="error" 
+        id="anonymous-test-1">The anonymous element can only be used for a reviewer who has opted not to reveal their name. It cannot be placed as a child of <value-of select="if (parent::contrib) then 'a non-reviewer contrib' else parent::*/name()"/>.</assert>
+    </rule>
+    
   </pattern>
   
   <pattern id="related-articles">

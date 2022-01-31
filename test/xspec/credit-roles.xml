@@ -1,7 +1,7 @@
 <credit-roles>
     <item term="Conceptualization" uri="http://credit.niso.org/contributor-roles/conceptualization/"/>
     <item term="Data curation" uri="http://credit.niso.org/contributor-roles/data-curation/"/>
-    <item term="Formal Analysis" uri="http://credit.niso.org/contributor-roles/formal-analysis/"/>
+    <item term="Formal analysis" uri="http://credit.niso.org/contributor-roles/formal-analysis/"/>
     <item term="Funding acquisition" uri="http://credit.niso.org/contributor-roles/funding-acquisition/"/>
     <item term="Investigation" uri="http://credit.niso.org/contributor-roles/investigation/"/>
     <item term="Methodology" uri="http://credit.niso.org/contributor-roles/methodology/"/>
