@@ -2163,6 +2163,23 @@
       
     </rule>
   </pattern>
+  <pattern id="aff-ror-tests-pattern">
+    <rule context="aff[institution-wrap/institution-id[@institution-id-type='ror']]" id="aff-ror-tests">
+      <let name="rors" value="'rors.xml'"/>
+      <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
+      <let name="matching-ror" value="document($rors)//*:ror[*:id=$ror]"/>
+      <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
+      
+      <assert test="exists($matching-ror)" role="warning" id="aff-ror">[aff-ror] Affiliation (<value-of select="$display"/>) has a ROR id - <value-of select="$ror"/> - but it does not look like a correct one.</assert>
+      
+      <report test="exists($matching-ror) and not(contains(institution-wrap[1]/institution[1],$matching-ror/*:name))" role="warning" id="aff-ror-name">[aff-ror-name] Affiliation has a ROR id, but it does not contain the name of the institution as captured in the ROR data within its institution. Is that OK? ROR has '<value-of select="$matching-ror/*:name"/>', but the institution is <value-of select="institution-wrap[1]/institution[1]"/>.</report>
+      
+      <report test="exists($matching-ror) and not(contains(addr-line[1]/named-content[@content-type='city'][1],$matching-ror/*:city))" role="warning" id="aff-ror-city">[aff-ror-city] Affiliation has a ROR id, but its city is not the same one as in the ROR data. Is that OK? ROR has '<value-of select="$matching-ror/*:city"/>', but the affiliation city is <value-of select="addr-line[1]/named-content[@content-type='city'][1]"/>.</report>
+      
+      <report test="exists($matching-ror) and not(contains(country[1],$matching-ror/*:country))" role="warning" id="aff-ror-country">[aff-ror-country] Affiliation has a ROR id, but its country is not the same one as in the ROR data. Is that OK? ROR has '<value-of select="$matching-ror/*:country"/>', but the affiliation country is <value-of select="country[1]"/>.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="addr-line-parent-test-pattern">
     <rule context="addr-line" id="addr-line-parent-test">
       
@@ -2200,6 +2217,8 @@
 		
 	  
 	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#final-award-group-test-3" test="if ($version = '1') then not(principal-award-recipient)      else ()" role="error" id="final-award-group-test-3">[final-award-group-test-3] award-group must contain a principal-award-recipient.</report>
+	  
+	  <report test="if ($version != '1') then principal-award-recipient      else ()" role="error" id="award-group-test-3-v2">[award-group-test-3-v2] award-group must not contain a principal-award-recipient in <value-of select="$version"/> version XML.</report>
 		
 		<report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-4" test="count(award-id) gt 1" role="error" id="award-group-test-4">[award-group-test-4] award-group may contain one and only one award-id.</report>
 		
@@ -3369,6 +3388,29 @@
     <rule context="app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)]" id="app-content-tests">
       
       <report test="count(descendant::p) = (0,1)" role="warning" id="app-little-content">[app-little-content] <value-of select="title"/> has no sibling appendices, contains no assets (figures, tables, videos, or display formula), and only has one paragraph. Does it need to be an appendix?</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="attrib-tests-pattern">
+    <rule context="attrib" id="attrib-tests">
+      <let name="parent" value="parent::*/name()"/>
+      <let name="allowed-parents" value="('fig','media','table-wrap','boxed-text','disp-quote')"/>
+      
+      <assert test="$parent=$allowed-parents" role="error" id="attrib-parent">[attrib-parent] attrib is a child of <value-of select="$parent"/>, which is not allowed. It can only be a child of the following elements: <value-of select="string-join($allowed-parents,'; ')"/>
+      </assert>
+      
+      <report test="preceding-sibling::attrib" role="warning" id="attrib-sibling">[attrib-sibling] attrib has a preceding sibling. Does the <value-of select="$parent"/> really need more than one attrib?</report>
+      
+      <assert test="* or normalize-space(.)!=''" role="error" id="attrib-content">[attrib-content] attrib cannot be empty.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="attrib-child-tests-pattern">
+    <rule context="attrib/*" id="attrib-child-tests">
+      <let name="allowed-children" value="('ext-link', 'xref', 'inline-graphic', 'italic', 'sub', 'bold', 'sup')"/>
+      
+      <assert test="name()=$allowed-children" role="error" id="attrib-child">[attrib-child] <value-of select="name()"/> is not permitted as a child of attrib. Only the following elements are: <value-of select="string-join($allowed-children,'; ')"/>
+      </assert>
       
     </rule>
   </pattern>
@@ -7588,6 +7630,10 @@
       <report test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\p{Zs}')) gt 4" role="warning" id="auth-kwd-check-6">[auth-kwd-check-6] Keyword contains more than 4 words - <value-of select="."/>. Should these be split out into separate keywords?</report>
       
       <report test="not(italic) and matches($lower,$org-regex)" role="warning" id="auth-kwd-check-7">[auth-kwd-check-7] Keyword contains an organism name which is not in italics - <value-of select="."/>. Please italicise the organism name in the keyword.</report>
+    </rule>
+  </pattern>
+  <pattern id="general-kwd-pattern">
+    <rule context="kwd" id="general-kwd">
       
       <report test="contains(.,', ')" role="warning" id="auth-kwd-check-8">[auth-kwd-check-8] Keyword contains a comma - '<value-of select="."/>'. Should this be split into multiple keywords?</report>
       

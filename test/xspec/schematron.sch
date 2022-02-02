@@ -2217,6 +2217,23 @@
       
     </rule>
   </pattern>
+  <pattern id="aff-ror-tests-pattern">
+    <rule context="aff[institution-wrap/institution-id[@institution-id-type='ror']]" id="aff-ror-tests">
+      <let name="rors" value="'rors.xml'"/>
+      <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
+      <let name="matching-ror" value="document($rors)//*:ror[*:id=$ror]"/>
+      <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
+      
+      <assert test="exists($matching-ror)" role="warning" id="aff-ror">Affiliation (<value-of select="$display"/>) has a ROR id - <value-of select="$ror"/> - but it does not look like a correct one.</assert>
+      
+      <report test="exists($matching-ror) and not(contains(institution-wrap[1]/institution[1],$matching-ror/*:name))" role="warning" id="aff-ror-name">Affiliation has a ROR id, but it does not contain the name of the institution as captured in the ROR data within its institution. Is that OK? ROR has '<value-of select="$matching-ror/*:name"/>', but the institution is <value-of select="institution-wrap[1]/institution[1]"/>.</report>
+      
+      <report test="exists($matching-ror) and not(contains(addr-line[1]/named-content[@content-type='city'][1],$matching-ror/*:city))" role="warning" id="aff-ror-city">Affiliation has a ROR id, but its city is not the same one as in the ROR data. Is that OK? ROR has '<value-of select="$matching-ror/*:city"/>', but the affiliation city is <value-of select="addr-line[1]/named-content[@content-type='city'][1]"/>.</report>
+      
+      <report test="exists($matching-ror) and not(contains(country[1],$matching-ror/*:country))" role="warning" id="aff-ror-country">Affiliation has a ROR id, but its country is not the same one as in the ROR data. Is that OK? ROR has '<value-of select="$matching-ror/*:country"/>', but the affiliation country is <value-of select="country[1]"/>.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="addr-line-parent-test-pattern">
     <rule context="addr-line" id="addr-line-parent-test">
       
@@ -2257,6 +2274,8 @@
 		<report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#pre-award-group-test-3" test="if ($version = '1') then not(principal-award-recipient)         else ()" role="warning" id="pre-award-group-test-3">award-group must contain a principal-award-recipient. If it is not clear which author(s) are associated with this funding, please add an author query.</report>
 	  
 	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#final-award-group-test-3" test="if ($version = '1') then not(principal-award-recipient)      else ()" role="error" id="final-award-group-test-3">award-group must contain a principal-award-recipient.</report>
+	  
+	  <report test="if ($version != '1') then principal-award-recipient      else ()" role="error" id="award-group-test-3-v2">award-group must not contain a principal-award-recipient in <value-of select="$version"/> version XML.</report>
 		
 		<report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-4" test="count(award-id) gt 1" role="error" id="award-group-test-4">award-group may contain one and only one award-id.</report>
 		
@@ -3493,6 +3512,30 @@
       
       <report test="count(descendant::p) = (0,1)" role="warning" id="app-little-content">
         <value-of select="title"/> has no sibling appendices, contains no assets (figures, tables, videos, or display formula), and only has one paragraph. Does it need to be an appendix?</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="attrib-tests-pattern">
+    <rule context="attrib" id="attrib-tests">
+      <let name="parent" value="parent::*/name()"/>
+      <let name="allowed-parents" value="('fig','media','table-wrap','boxed-text','disp-quote')"/>
+      
+      <assert test="$parent=$allowed-parents" role="error" id="attrib-parent">attrib is a child of <value-of select="$parent"/>, which is not allowed. It can only be a child of the following elements: <value-of select="string-join($allowed-parents,'; ')"/>
+      </assert>
+      
+      <report test="preceding-sibling::attrib" role="warning" id="attrib-sibling">attrib has a preceding sibling. Does the <value-of select="$parent"/> really need more than one attrib?</report>
+      
+      <assert test="* or normalize-space(.)!=''" role="error" id="attrib-content">attrib cannot be empty.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="attrib-child-tests-pattern">
+    <rule context="attrib/*" id="attrib-child-tests">
+      <let name="allowed-children" value="('ext-link', 'xref', 'inline-graphic', 'italic', 'sub', 'bold', 'sup')"/>
+      
+      <assert test="name()=$allowed-children" role="error" id="attrib-child">
+        <value-of select="name()"/> is not permitted as a child of attrib. Only the following elements are: <value-of select="string-join($allowed-children,'; ')"/>
+      </assert>
       
     </rule>
   </pattern>
@@ -7978,6 +8021,10 @@
       <report test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\p{Zs}')) gt 4" role="warning" id="auth-kwd-check-6">Keyword contains more than 4 words - <value-of select="."/>. Should these be split out into separate keywords?</report>
       
       <report test="not(italic) and matches($lower,$org-regex)" role="warning" id="auth-kwd-check-7">Keyword contains an organism name which is not in italics - <value-of select="."/>. Please italicise the organism name in the keyword.</report>
+    </rule>
+  </pattern>
+  <pattern id="general-kwd-pattern">
+    <rule context="kwd" id="general-kwd">
       
       <report test="contains(.,', ')" role="warning" id="auth-kwd-check-8">Keyword contains a comma - '<value-of select="."/>'. Should this be split into multiple keywords?</report>
       
@@ -8561,6 +8608,7 @@
       <assert test="descendant::aff//institution-id" role="error" id="aff-institution-id-tests-xspec-assert">aff//institution-id must be present.</assert>
       <assert test="descendant::aff" role="error" id="gen-aff-tests-xspec-assert">aff must be present.</assert>
       <assert test="descendant::aff/*" role="error" id="aff-child-tests-xspec-assert">aff/* must be present.</assert>
+      <assert test="descendant::aff[institution-wrap/institution-id[@institution-id-type='ror']]" role="error" id="aff-ror-tests-xspec-assert">aff[institution-wrap/institution-id[@institution-id-type='ror']] must be present.</assert>
       <assert test="descendant::addr-line" role="error" id="addr-line-parent-test-xspec-assert">addr-line must be present.</assert>
       <assert test="descendant::addr-line/*" role="error" id="addr-line-child-tests-xspec-assert">addr-line/* must be present.</assert>
       <assert test="descendant::article-meta/funding-group" role="error" id="funding-group-tests-xspec-assert">article-meta/funding-group must be present.</assert>
@@ -8653,6 +8701,8 @@
       <assert test="descendant::article/body//boxed-text[not(parent::body) or preceding-sibling::*]" role="error" id="body-box-tests-xspec-assert">article/body//boxed-text[not(parent::body) or preceding-sibling::*] must be present.</assert>
       <assert test="descendant::app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))]" role="error" id="app-box-tests-xspec-assert">app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))] must be present.</assert>
       <assert test="descendant::app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)]" role="error" id="app-content-tests-xspec-assert">app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)] must be present.</assert>
+      <assert test="descendant::attrib" role="error" id="attrib-tests-xspec-assert">attrib must be present.</assert>
+      <assert test="descendant::attrib/*" role="error" id="attrib-child-tests-xspec-assert">attrib/* must be present.</assert>
       <assert test="descendant::article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']" role="error" id="body-video-specific-xspec-assert">article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::app//media[@mimetype='video']" role="error" id="app-video-specific-xspec-assert">app//media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::fig-group/media[@mimetype='video']" role="error" id="fig-video-specific-xspec-assert">fig-group/media[@mimetype='video'] must be present.</assert>
@@ -8934,6 +8984,7 @@
       <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-formatting-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
       <assert test="descendant::article" role="error" id="code-fork-xspec-assert">article must be present.</assert>
       <assert test="descendant::kwd-group[@kwd-group-type='author-keywords']/kwd" role="error" id="auth-kwd-style-xspec-assert">kwd-group[@kwd-group-type='author-keywords']/kwd must be present.</assert>
+      <assert test="descendant::kwd" role="error" id="general-kwd-xspec-assert">kwd must be present.</assert>
       <assert test="descendant::ref-list//element-citation/person-group[@person-group-type='author']//given-names" role="error" id="ref-given-names-xspec-assert">ref-list//element-citation/person-group[@person-group-type='author']//given-names must be present.</assert>
       <assert test="descendant::sec[@sec-type='data-availability']//element-citation/person-group[@person-group-type='author']//given-names" role="error" id="data-ref-given-names-xspec-assert">sec[@sec-type='data-availability']//element-citation/person-group[@person-group-type='author']//given-names must be present.</assert>
       <assert test="descendant::fig[ancestor::sub-article]/caption/title" role="error" id="ar-fig-title-tests-xspec-assert">fig[ancestor::sub-article]/caption/title must be present.</assert>
