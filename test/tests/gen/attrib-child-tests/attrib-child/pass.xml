@@ -1,0 +1,19 @@
+<?oxygen SCHSchema="attrib-child.sch"?>
+<!--Context: attrib/*
+Test: assert    name()=$allowed-children
+Message:  is not permitted as a child of attrib. Only the following elements are:  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig>
+      <attrib>
+        <bold/>
+        <italic/>
+        <sup/>
+        <sub/>
+        <xref/>
+        <ext-link/>
+        <inline-graphic/>
+      </attrib>
+    </fig>
+  </article>
+</root>
