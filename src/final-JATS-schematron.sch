@@ -7272,6 +7272,33 @@
       
     </rule>
   </pattern>
+  <pattern id="data-availability-generated-p-pattern">
+    <rule context="article[e:get-version(.)='1']//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use='isSupplementedBy']]]" id="data-availability-generated-p">
+      <let name="ref-count" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@specific-use='isSupplementedBy'])"/>
+      
+      <report test="$ref-count = 1 and not(matches(.,'^The following dataset was generated:\s?$'))" role="error" id="das-generated-p-1">[das-generated-p-1] p element before generated datasets in data availability sections that contain 1 generated dataset should contain 'The following dataset was generated:', but this one contains '<value-of select="."/>'.</report>
+      
+      <report test="($ref-count gt 1) and not(matches(.,'^The following datasets were generated:\s?$'))" role="error" id="das-generated-p-2">[das-generated-p-2] p element before generated datasets in data availability sections that contain more than 1 generated dataset should contain 'The following datasets were generated:', but this one contains '<value-of select="."/>'.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="data-availability-used-p-pattern">
+    <rule context="article[e:get-version(.)='1']//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use='isSupplementedBy']]) and following-sibling::p[element-citation[@specific-use='references']]]" id="data-availability-used-p">
+      <let name="ref-count" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@specific-use='references'])"/>
+      
+      <report test="$ref-count = 1 and not(matches(.,'^The following previously published dataset was used:\s?$'))" role="error" id="das-used-p-1">[das-used-p-1] p element before used datasets in data availability sections that contain 1 used dataset should contain 'The following previously published dataset was used:', but this one contains '<value-of select="."/>'.</report>
+      
+      <report test="($ref-count gt 1) and not(matches(.,'^The following previously published datasets were used:\s?$'))" role="error" id="das-used-p-2">[das-used-p-2] p element before used datasets in data availability sections that contain more than 1 used dataset should contain 'The following previously published datasets were used:', but this one contains '<value-of select="."/>'.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="data-availability-extra-p-pattern">
+    <rule context="sec[@sec-type='data-availability' and not(descendant::element-citation)]/p" id="data-availability-extra-p">
+      
+      <report test="preceding-sibling::p" role="warning" id="das-extra-p">[das-extra-p] Is this extra p element in the data availability section required? There are no dataset references within the section.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="ethics-info-pattern">
     <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-info">
       

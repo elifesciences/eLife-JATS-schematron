@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="das-extra-p.sch"?>
+<!--Context: sec[@sec-type='data-availability' and not(descendant::element-citation)]/p
+Test: report    preceding-sibling::p
+Message: Is this extra p element in the data availability section required? There are no dataset references within the section. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sec id="s7" sec-type="data-availability">
+      <title>Data availability</title>
+      <p>Statement.</p>
+    </sec>
+  </article>
+</root>
