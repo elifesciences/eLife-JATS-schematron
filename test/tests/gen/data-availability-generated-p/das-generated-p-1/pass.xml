@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="das-generated-p-1.sch"?>
+<!--Context: article[e:get-version(.)='1']//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use='isSupplementedBy']]]
+Test: report    $ref-count = 1 and not(matches(.,'^The following dataset was generated:\s?$'))
+Message: p element before generated datasets in data availability sections that contain 1 generated dataset should contain 'The following dataset was generated:', but this one contains ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sec id="s7" sec-type="data-availability">
+      <title>Data availability</title>
+      <p>Statement.</p>
+      <p>The following dataset was generated:</p>
+      <p><element-citation publication-type="data" specific-use="isSupplementedBy"/></p>
+      <p>The following previously published datasets were used:</p>
+      <p><element-citation publication-type="data" specific-use="references"/></p>
+    </sec>
+  </article>
+</root>

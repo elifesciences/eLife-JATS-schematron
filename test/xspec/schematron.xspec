@@ -17602,6 +17602,62 @@
         <x:expect-not-assert id="data-availability-p-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="data-availability-generated-p">
+      <x:scenario label="das-generated-p-1-pass">
+        <x:context href="../tests/gen/data-availability-generated-p/das-generated-p-1/pass.xml"/>
+        <x:expect-not-report id="das-generated-p-1" role="error"/>
+        <x:expect-not-assert id="data-availability-generated-p-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="das-generated-p-1-fail">
+        <x:context href="../tests/gen/data-availability-generated-p/das-generated-p-1/fail.xml"/>
+        <x:expect-report id="das-generated-p-1" role="error"/>
+        <x:expect-not-assert id="data-availability-generated-p-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="das-generated-p-2-pass">
+        <x:context href="../tests/gen/data-availability-generated-p/das-generated-p-2/pass.xml"/>
+        <x:expect-not-report id="das-generated-p-2" role="error"/>
+        <x:expect-not-assert id="data-availability-generated-p-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="das-generated-p-2-fail">
+        <x:context href="../tests/gen/data-availability-generated-p/das-generated-p-2/fail.xml"/>
+        <x:expect-report id="das-generated-p-2" role="error"/>
+        <x:expect-not-assert id="data-availability-generated-p-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="data-availability-used-p">
+      <x:scenario label="das-used-p-1-pass">
+        <x:context href="../tests/gen/data-availability-used-p/das-used-p-1/pass.xml"/>
+        <x:expect-not-report id="das-used-p-1" role="error"/>
+        <x:expect-not-assert id="data-availability-used-p-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="das-used-p-1-fail">
+        <x:context href="../tests/gen/data-availability-used-p/das-used-p-1/fail.xml"/>
+        <x:expect-report id="das-used-p-1" role="error"/>
+        <x:expect-not-assert id="data-availability-used-p-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="das-used-p-2-pass">
+        <x:context href="../tests/gen/data-availability-used-p/das-used-p-2/pass.xml"/>
+        <x:expect-not-report id="das-used-p-2" role="error"/>
+        <x:expect-not-assert id="data-availability-used-p-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="das-used-p-2-fail">
+        <x:context href="../tests/gen/data-availability-used-p/das-used-p-2/fail.xml"/>
+        <x:expect-report id="das-used-p-2" role="error"/>
+        <x:expect-not-assert id="data-availability-used-p-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="data-availability-extra-p">
+      <x:scenario label="das-extra-p-pass">
+        <x:context href="../tests/gen/data-availability-extra-p/das-extra-p/pass.xml"/>
+        <x:expect-not-report id="das-extra-p" role="warning"/>
+        <x:expect-not-assert id="data-availability-extra-p-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="das-extra-p-fail">
+        <x:context href="../tests/gen/data-availability-extra-p/das-extra-p/fail.xml"/>
+        <x:expect-report id="das-extra-p" role="warning"/>
+        <x:expect-not-assert id="data-availability-extra-p-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="ethics-info">
       <x:scenario label="ethics-info-conformity-pass">
         <x:context href="../tests/gen/ethics-info/ethics-info-conformity/pass.xml"/>

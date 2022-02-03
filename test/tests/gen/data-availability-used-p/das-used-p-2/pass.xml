@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="das-used-p-2.sch"?>
+<!--Context: article[e:get-version(.)='1']//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use='isSupplementedBy']]) and following-sibling::p[element-citation[@specific-use='references']]]
+Test: report    ($ref-count gt 1) and not(matches(.,'^The following previously published datasets were used:\s?$'))
+Message: p element before used datasets in data availability sections that contain more than 1 used dataset should contain 'The following previously published datasets were used:', but this one contains ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sec id="s7" sec-type="data-availability">
+      <title>Data availability</title>
+      <p>Statement.</p>
+      <p>The following datasets were generated:</p>
+      <p><element-citation publication-type="data" specific-use="isSupplementedBy"/></p>
+      <p><element-citation publication-type="data" specific-use="isSupplementedBy"/></p>
+      <p>The following previously published datasets were used:</p>
+      <p><element-citation publication-type="data" specific-use="references"/></p>
+      <p><element-citation publication-type="data" specific-use="references"/></p>
+    </sec>
+  </article>
+</root>
