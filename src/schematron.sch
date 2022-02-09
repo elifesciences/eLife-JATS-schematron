@@ -4752,7 +4752,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="article[@article-type!='correction']//disp-formula/label" id="equation-label-tests">
+    <rule context="article[not(@article-type) or @article-type!='correction']//disp-formula/label" id="equation-label-tests">
       <let name="label-2" value="replace(.,'\p{P}','')"/>
       <let name="app-id" value="ancestor::app/@id"/>
       

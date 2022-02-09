@@ -16410,7 +16410,7 @@
 
 
 	  <!--RULE equation-label-tests-->
-   <xsl:template match="article[@article-type!='correction']//disp-formula/label" priority="1000" mode="M216">
+   <xsl:template match="article[not(@article-type) or @article-type!='correction']//disp-formula/label" priority="1000" mode="M216">
       <xsl:variable name="label-2" select="replace(.,'\p{P}','')"/>
       <xsl:variable name="app-id" select="ancestor::app/@id"/>
 

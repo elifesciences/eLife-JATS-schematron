@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="equation-label-conformance-1.sch"?>
-<!--Context: article[@article-type!='correction']//disp-formula/label
+<!--Context: article[not(@article-type) or @article-type!='correction']//disp-formula/label
 Test: report    (ancestor::app) and (some $x in preceding::disp-formula/label[ancestor::app[@id=$app-id]] satisfies (replace($x,'\p{P}','') = $label-2))
 Message: Duplicated display formula labels -  is present more than once in the same appendix. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

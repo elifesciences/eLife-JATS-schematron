@@ -1061,7 +1061,7 @@
     
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="article[@article-type!='correction']//disp-formula/label" id="equation-label-tests">
+    <rule context="article[not(@article-type) or @article-type!='correction']//disp-formula/label" id="equation-label-tests">
       <let name="label-2" value="replace(.,'\p{P}','')"/>
       <let name="app-id" value="ancestor::app/@id"/>
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#equation-label-conformance-2" test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article] and not(ancestor::fig)] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-2">Duplicated display formula labels - <value-of select="."/> is present more than once in the main body of the text.</report>
@@ -1069,7 +1069,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type!='correction']//disp-formula/label" role="error" id="equation-label-tests-xspec-assert">article[@article-type!='correction']//disp-formula/label must be present.</assert>
+      <assert test="descendant::article[not(@article-type) or @article-type!='correction']//disp-formula/label" role="error" id="equation-label-tests-xspec-assert">article[not(@article-type) or @article-type!='correction']//disp-formula/label must be present.</assert>
     </rule>
   </pattern>
 </schema>
