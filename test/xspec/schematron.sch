@@ -3436,7 +3436,7 @@
     </rule>
   </pattern>
   <pattern id="equation-label-tests-pattern">
-    <rule context="disp-formula/label" id="equation-label-tests">
+    <rule context="article[@article-type!='correction']//disp-formula/label" id="equation-label-tests">
       <let name="label-2" value="replace(.,'\p{P}','')"/>
       <let name="app-id" value="ancestor::app/@id"/>
       
@@ -8721,7 +8721,7 @@
       <assert test="descendant::p[count(code) gt 1]/code[2]" role="error" id="code-tests-2-xspec-assert">p[count(code) gt 1]/code[2] must be present.</assert>
       <assert test="descendant::p[count(code) = 1]/code" role="error" id="code-tests-3-xspec-assert">p[count(code) = 1]/code must be present.</assert>
       <assert test="descendant::fig/label or descendant::supplementary-material/label or descendant::media/label or descendant::table-wrap/label or descendant::boxed-text/label" role="error" id="generic-label-tests-xspec-assert">fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label must be present.</assert>
-      <assert test="descendant::disp-formula/label" role="error" id="equation-label-tests-xspec-assert">disp-formula/label must be present.</assert>
+      <assert test="descendant::article[@article-type!='correction']//disp-formula/label" role="error" id="equation-label-tests-xspec-assert">article[@article-type!='correction']//disp-formula/label must be present.</assert>
       <assert test="descendant::aff/label" role="error" id="aff-label-tests-xspec-assert">aff/label must be present.</assert>
       <assert test="descendant::disp-quote" role="error" id="disp-quote-tests-xspec-assert">disp-quote must be present.</assert>
       <assert test="descendant::p[matches(.,'[\(\)\[\]]')] or descendant::th[matches(.,'[\(\)\[\]]')] or descendant::td[matches(.,'[\(\)\[\]]')] or descendant::title[matches(.,'[\(\)\[\]]')]" role="error" id="bracket-tests-xspec-assert">p[matches(.,'[\(\)\[\]]')]|th[matches(.,'[\(\)\[\]]')]|td[matches(.,'[\(\)\[\]]')]|title[matches(.,'[\(\)\[\]]')] must be present.</assert>
