@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="aff-ror-city.sch"?>
 <!--Context: aff[institution-wrap/institution-id[@institution-id-type='ror']]
-Test: report    exists($matching-ror) and not(contains(addr-line[1]/named-content[@content-type='city'][1],$matching-ror/*:city))
+Test: report    (addr-line/named-content[@content-type='city'] or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(addr-line[1]/named-content[@content-type='city'][1],$matching-ror/*:city))
 Message: Affiliation has a ROR id, but its city is not the same one as in the ROR data. Is that OK? ROR has '', but the affiliation city is . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
