@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="aff-ror-country.sch"?>
 <!--Context: aff[institution-wrap/institution-id[@institution-id-type='ror']]
-Test: report    (country or ancestor::contrib[@contrib-type='author']) and exists($matching-ror) and not(contains(country[1],$matching-ror/*:country))
+Test: report    (country or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(country[1],$matching-ror/*:country))
 Message: Affiliation has a ROR id, but its country is not the same one as in the ROR data. Is that OK? ROR has '', but the affiliation country is . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
