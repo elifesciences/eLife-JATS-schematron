@@ -10606,8 +10606,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="(addr-line/named-content[@content-type='city'] or ancestor::contrib[@contrib-type='author']) and exists($matching-ror) and not(contains(addr-line[1]/named-content[@content-type='city'][1],$matching-ror/*:city))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(addr-line/named-content[@content-type='city'] or ancestor::contrib[@contrib-type='author']) and exists($matching-ror) and not(contains(addr-line[1]/named-content[@content-type='city'][1],$matching-ror/*:city))">
+      <xsl:if test="(addr-line/named-content[@content-type='city'] or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(addr-line[1]/named-content[@content-type='city'][1],$matching-ror/*:city))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(addr-line/named-content[@content-type='city'] or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(addr-line[1]/named-content[@content-type='city'][1],$matching-ror/*:city))">
             <xsl:attribute name="id">aff-ror-city</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -10622,8 +10622,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="(country or ancestor::contrib[@contrib-type='author']) and exists($matching-ror) and not(contains(country[1],$matching-ror/*:country))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(country or ancestor::contrib[@contrib-type='author']) and exists($matching-ror) and not(contains(country[1],$matching-ror/*:country))">
+      <xsl:if test="(country or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(country[1],$matching-ror/*:country))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(country or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(country[1],$matching-ror/*:country))">
             <xsl:attribute name="id">aff-ror-country</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
