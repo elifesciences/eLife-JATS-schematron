@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="fn-content-type-1.sch"?>
+<!--Context: fn-group
+Test: assert    @content-type
+Message: fn-group that is descendant of back must have a content-type attribute. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <fn-group content-type="something"/>
+    </back>
+  </article>
+</root>

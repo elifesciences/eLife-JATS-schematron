@@ -1,0 +1,25 @@
+<?oxygen SCHSchema="fn-parent.sch"?>
+<!--Context: fn-group
+Test: assert    parent::back or parent::sec[@sec-type='additional-information' and parent::back]
+Message: fn-group is only allowed as a child of back or as a child of sec[@sec-type='additional-information'] (which in turn is in back). This one is placed as a child of  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <fig>
+        <fn-group/>
+      </fig>
+      <fn-group/>
+      <sec>
+        <fn-group/>
+      </sec>
+    </body>
+    <back>
+      <sec sec-type="additional-information">
+        <fn-group/>
+      </sec>
+      <sec>
+        <fn-group/>
+      </sec>
+    </back>
+  </article>
+</root>

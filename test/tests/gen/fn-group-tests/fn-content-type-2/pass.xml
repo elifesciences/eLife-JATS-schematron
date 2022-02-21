@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="fn-content-type-2.sch"?>
+<!--Context: fn-group
+Test: report    @content-type and not(@content-type=$allowed-content-types)
+Message: fn-group with content-type '' is not permitted. The only permitted fn-group types are . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <fn-group content-type="competing-interest"/>
+    </back>
+  </article>
+</root>
