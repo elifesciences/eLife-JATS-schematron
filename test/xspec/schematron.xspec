@@ -7510,6 +7510,38 @@
         <x:expect-not-assert id="app-title-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="fn-group-tests">
+      <x:scenario label="fn-content-type-1-pass">
+        <x:context href="../tests/gen/fn-group-tests/fn-content-type-1/pass.xml"/>
+        <x:expect-not-assert id="fn-content-type-1" role="error"/>
+        <x:expect-not-assert id="fn-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fn-content-type-1-fail">
+        <x:context href="../tests/gen/fn-group-tests/fn-content-type-1/fail.xml"/>
+        <x:expect-assert id="fn-content-type-1" role="error"/>
+        <x:expect-not-assert id="fn-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fn-content-type-2-pass">
+        <x:context href="../tests/gen/fn-group-tests/fn-content-type-2/pass.xml"/>
+        <x:expect-not-report id="fn-content-type-2" role="error"/>
+        <x:expect-not-assert id="fn-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fn-content-type-2-fail">
+        <x:context href="../tests/gen/fn-group-tests/fn-content-type-2/fail.xml"/>
+        <x:expect-report id="fn-content-type-2" role="error"/>
+        <x:expect-not-assert id="fn-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fn-parent-pass">
+        <x:context href="../tests/gen/fn-group-tests/fn-parent/pass.xml"/>
+        <x:expect-not-assert id="fn-parent" role="error"/>
+        <x:expect-not-assert id="fn-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fn-parent-fail">
+        <x:context href="../tests/gen/fn-group-tests/fn-parent/fail.xml"/>
+        <x:expect-assert id="fn-parent" role="error"/>
+        <x:expect-not-assert id="fn-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="comp-int-title-tests">
       <x:scenario label="comp-int-title-test-pass">
         <x:context href="../tests/gen/comp-int-title-tests/comp-int-title-test/pass.xml"/>

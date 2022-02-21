@@ -4034,6 +4034,19 @@
       
     </rule>
   </pattern>
+  <pattern id="fn-group-tests-pattern">
+    <rule context="fn-group" id="fn-group-tests">
+      <let name="allowed-content-types" value="('competing-interest','author-contribution','ethics-information')"/>
+      
+      <assert test="@content-type" role="error" id="fn-content-type-1">fn-group that is descendant of back must have a content-type attribute.</assert>
+      
+      <report test="@content-type and not(@content-type=$allowed-content-types)" role="error" id="fn-content-type-2">fn-group with content-type '<value-of select="@content-type"/>' is not permitted. The only permitted fn-group types are <value-of select="string-join($allowed-content-types,'; ')"/>.</report>
+      
+      <assert test="parent::back or parent::sec[@sec-type='additional-information' and parent::back]" role="error" id="fn-parent">fn-group is only allowed as a child of back or as a child of sec[@sec-type='additional-information'] (which in turn is in back). This one is placed as a child of <value-of select="parent::*/name()"/>
+      </assert>
+      
+    </rule>
+  </pattern>
   <pattern id="comp-int-title-tests-pattern">
     <rule context="fn-group[@content-type='competing-interest']" id="comp-int-title-tests">
       
@@ -8764,6 +8777,7 @@
       <assert test="descendant::ack//p" role="error" id="ack-content-tests-xspec-assert">ack//p must be present.</assert>
       <assert test="descendant::ref-list" role="error" id="ref-list-title-tests-xspec-assert">ref-list must be present.</assert>
       <assert test="descendant::app/title" role="error" id="app-title-tests-xspec-assert">app/title must be present.</assert>
+      <assert test="descendant::fn-group" role="error" id="fn-group-tests-xspec-assert">fn-group must be present.</assert>
       <assert test="descendant::fn-group[@content-type='competing-interest']" role="error" id="comp-int-title-tests-xspec-assert">fn-group[@content-type='competing-interest'] must be present.</assert>
       <assert test="descendant::fn-group[@content-type='author-contribution']" role="error" id="auth-cont-title-tests-xspec-assert">fn-group[@content-type='author-contribution'] must be present.</assert>
       <assert test="descendant::fn-group[@content-type='ethics-information']" role="error" id="ethics-title-tests-xspec-assert">fn-group[@content-type='ethics-information'] must be present.</assert>

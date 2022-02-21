@@ -3879,6 +3879,19 @@
       
     </rule>
   </pattern>
+  <pattern id="fn-group-tests-pattern">
+    <rule context="fn-group" id="fn-group-tests">
+      <let name="allowed-content-types" value="('competing-interest','author-contribution','ethics-information')"/>
+      
+      <assert test="@content-type" role="error" id="fn-content-type-1">[fn-content-type-1] fn-group that is descendant of back must have a content-type attribute.</assert>
+      
+      <report test="@content-type and not(@content-type=$allowed-content-types)" role="error" id="fn-content-type-2">[fn-content-type-2] fn-group with content-type '<value-of select="@content-type"/>' is not permitted. The only permitted fn-group types are <value-of select="string-join($allowed-content-types,'; ')"/>.</report>
+      
+      <assert test="parent::back or parent::sec[@sec-type='additional-information' and parent::back]" role="error" id="fn-parent">[fn-parent] fn-group is only allowed as a child of back or as a child of sec[@sec-type='additional-information'] (which in turn is in back). This one is placed as a child of <value-of select="parent::*/name()"/>
+      </assert>
+      
+    </rule>
+  </pattern>
   <pattern id="comp-int-title-tests-pattern">
     <rule context="fn-group[@content-type='competing-interest']" id="comp-int-title-tests">
       
