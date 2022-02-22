@@ -825,7 +825,7 @@
         <xsl:value-of select="'A. tumefaciens'"/>
       </xsl:when>
       <xsl:when test="matches($s,'agrobacterium\.\p{Zs}?tumefaciens')">
-        <xsl:value-of select="'Agrobacterium. tumefaciens'"/>
+        <xsl:value-of select="'Agrobacterium tumefaciens'"/>
       </xsl:when>
       <xsl:when test="matches($s,'d\.\p{Zs}?rerio')">
         <xsl:value-of select="'D. rerio'"/>
