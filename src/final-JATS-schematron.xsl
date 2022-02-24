@@ -10889,8 +10889,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="(count(award-group) != 0) and not(matches(funding-statement[1],'^The funders? had no role in study design, data collection,? and interpretation, or the decision to submit the work for publication\.$'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count(award-group) != 0) and not(matches(funding-statement[1],'^The funders? had no role in study design, data collection,? and interpretation, or the decision to submit the work for publication\.$'))">
+      <xsl:if test="(count(award-group) != 0) and not(matches(funding-statement[1],'^The funders? had no role in study design, data collection,? and interpretation, or the decision to submit the work for publication\.( For the purpose of Open Access, the authors have applied a CC BY public copyright license to any Author Accepted Manuscript version arising from this submission\.)?$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count(award-group) != 0) and not(matches(funding-statement[1],'^The funders? had no role in study design, data collection,? and interpretation, or the decision to submit the work for publication\.( For the purpose of Open Access, the authors have applied a CC BY public copyright license to any Author Accepted Manuscript version arising from this submission\.)?$'))">
             <xsl:attribute name="id">funding-group-test-4</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -15020,8 +15020,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches(.,'&amp;#x\d|&amp;lt;|&amp;gt;')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'&amp;#x\d|&amp;lt;|&amp;gt;')">
+      <xsl:if test="matches(.,'(&amp;|§)#x\d|(&amp;|§)lt;|(&amp;|§)gt;')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'(&amp;|§)#x\d|(&amp;|§)lt;|(&amp;|§)gt;')">
             <xsl:attribute name="id">math-broken-unicode-test</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-broken-unicode-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>

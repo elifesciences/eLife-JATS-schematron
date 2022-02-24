@@ -2854,7 +2854,7 @@
         id="funding-group-test-3">Is this funding-statement correct? - '<value-of select="funding-statement"/>' Usually it should be 'No external funding was received for this work.'</report>
 	  
 	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-4" 
-	    test="(count(award-group) != 0) and not(matches(funding-statement[1],'^The funders? had no role in study design, data collection,? and interpretation, or the decision to submit the work for publication\.$'))" 
+	    test="(count(award-group) != 0) and not(matches(funding-statement[1],'^The funders? had no role in study design, data collection,? and interpretation, or the decision to submit the work for publication\.( For the purpose of Open Access, the authors have applied a CC BY public copyright license to any Author Accepted Manuscript version arising from this submission\.)?$'))" 
 	    role="warning" 
 	    id="funding-group-test-4">Is the funding-statement correct? There are funders, but the statement is '<value-of select="funding-statement[1]"/>'. If there are funders it should usually be 'The funders had no role in study design, data collection and interpretation, or the decision to submit the work for publication.'</report>
     </rule>
@@ -4249,7 +4249,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="math-test-19">Maths containing '<value-of select="."/>' has what looks like words or terms which need separating with a space. With it's current markup the space will not be preserved on the eLife website. Please add in the space(s) using the latext '\;' in the appropriate place(s), so that the space is preserved in the HTML.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-broken-unicode-test" 
-        test="matches(.,'&amp;#x\d|&amp;lt;|&amp;gt;')" 
+        test="matches(.,'(&amp;|§)#x\d|(&amp;|§)lt;|(&amp;|§)gt;')" 
         role="warning" 
         id="math-broken-unicode-test">Equation likely contains a broken unicode - <value-of select="."/>.</report>
     </rule>
