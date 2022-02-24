@@ -15020,8 +15020,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches(.,'&amp;#x\d|&amp;lt;|&amp;gt;')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'&amp;#x\d|&amp;lt;|&amp;gt;')">
+      <xsl:if test="matches(.,'(&amp;|§)#x\d|(&amp;|§)lt;|(&amp;|§)gt;')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'(&amp;|§)#x\d|(&amp;|§)lt;|(&amp;|§)gt;')">
             <xsl:attribute name="id">math-broken-unicode-test</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-broken-unicode-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
