@@ -11734,6 +11734,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="sec-title-hiv">Section title contains the word HIV, but it is not in all caps - <value-of select="."/></report>
       
+      <report test="matches(.,'^[\p{Zs}\p{P}]*[Aa][ck][ck]n?ow[le][le]?[dg][dg]?e?ments?[\p{Zs}\p{P}]*$')" 
+        role="error" 
+        id="sec-title-ack">Section title indicates that it is an acknowledgements section - <value-of select="."/>. Acknowledgements must be tagged as an &lt;ack> element in the back of the article.</report>
+      
     </rule>
     
     <rule context="abstract[not(@*)]" id="abstract-house-tests">
