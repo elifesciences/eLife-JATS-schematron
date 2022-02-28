@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="sec-title-ack.sch"?>
+<!--Context: sec/title
+Test: report    matches(.,'^[\p{Zs}\p{P}]*[Aa][ck][ck]n?ow[le][le]?[dg][dg]?e?ments?[\p{Zs}\p{P}]*$')
+Message: Section title indicates that it is an acknowledgements section - . Acknowledgements must be tagged as an <ack> element in the back of the article. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <sec><title>Something</title></sec>
+    </body>
+    <back>
+      <ack><title>Acknowledgements</title></ack>
+    </back>
+  </article>
+</root>

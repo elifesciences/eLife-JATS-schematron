@@ -7303,6 +7303,8 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-hiv" test="matches(upper-case($no-link-text),'^HIV | HIV | HIV') and not(matches($no-link-text,'^HIV | HIV | HIV'))" role="warning" id="sec-title-hiv">[sec-title-hiv] Section title contains the word HIV, but it is not in all caps - <value-of select="."/>
       </report>
       
+      <report test="matches(.,'^[\p{Zs}\p{P}]*[Aa][ck][ck]n?ow[le][le]?[dg][dg]?e?ments?[\p{Zs}\p{P}]*$')" role="error" id="sec-title-ack">[sec-title-ack] Section title indicates that it is an acknowledgements section - <value-of select="."/>. Acknowledgements must be tagged as an &lt;ack&gt; element in the back of the article.</report>
+      
     </rule>
   </pattern>
   <pattern id="abstract-house-tests-pattern">
