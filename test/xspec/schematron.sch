@@ -1160,9 +1160,7 @@
 	  <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/> 
 	  <let name="version" value="e:get-version(.)"/>
 	  
-	  <report test="if ($version='1') then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])      else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])" role="warning" flag="dl-ar" id="pre-test-r-article-d-letter">A decision letter should be present for research articles.</report>
-	  
-	  <report test="if ($version='1') then not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='decision-letter'])      else not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='referee-report'])" role="error" flag="dl-ar" id="final-test-r-article-d-letter">A decision letter must be present for research articles.</report>
+	  <report test="if ($version='1') then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])      else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])" role="warning" flag="dl-ar" id="test-r-article-d-letter">A decision letter should almost always be present for research articles. This one doesn't have one. Check that this is correct.</report>
 	  
 	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#final-test-r-article-d-letter-feat" test="if ($version='1') then ($disp-channel = 'Feature Article') and not(sub-article[@article-type='decision-letter'])      else ($disp-channel = 'Feature Article') and not(sub-article[@article-type='referee-report'])" role="warning" flag="dl-ar" id="final-test-r-article-d-letter-feat">A decision letter should be present for research articles. Feature template 5s almost always have a decision letter, but this one does not. Is that correct?</report>
 		
@@ -3098,7 +3096,7 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-19" test="descendant::mml:mi[(.='') and preceding-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')] and following-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')]]" role="warning" id="math-test-19">Maths containing '<value-of select="."/>' has what looks like words or terms which need separating with a space. With it's current markup the space will not be preserved on the eLife website. Please add in the space(s) using the latext '\;' in the appropriate place(s), so that the space is preserved in the HTML.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-broken-unicode-test" test="matches(.,'(&amp;|§)#x\d|(&amp;|§)lt;|(&amp;|§)gt;')" role="warning" id="math-broken-unicode-test">Equation likely contains a broken unicode - <value-of select="."/>.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-broken-unicode-test" test="matches(.,'(&amp;|§|§amp;)#x\d|[^\p{L}\p{N}][gl]t;')" role="warning" id="math-broken-unicode-test">Equation likely contains a broken unicode - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="disp-formula-child-tests-pattern">

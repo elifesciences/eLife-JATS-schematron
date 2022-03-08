@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="missing-file-in-text-test.sch"?>
-<!--Context: p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]
+<!--Context: article[not(@article-type=('correction','retraction'))]//p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]
 Test: report    matches(lower-case($text),$missing-file-regex)
 Message:  element contains possible citation to a file which is unlinked or missing. If you are unsure what object needs to be cited then please add the following author query (replacing XXXX as appropriate): Please confirm which XXXXXX this refers to, or confirm that this citation refers to another article. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

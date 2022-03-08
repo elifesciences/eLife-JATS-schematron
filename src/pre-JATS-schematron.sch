@@ -1104,9 +1104,7 @@
 	  <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/> 
 	  <let name="version" value="e:get-version(.)"/>
 	  
-	  <report test="if ($version='1') then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])      else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])" role="warning" flag="dl-ar" id="pre-test-r-article-d-letter">[pre-test-r-article-d-letter] A decision letter should be present for research articles.</report>
-	  
-	  
+	  <report test="if ($version='1') then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])      else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])" role="warning" flag="dl-ar" id="test-r-article-d-letter">[test-r-article-d-letter] A decision letter should almost always be present for research articles. This one doesn't have one. Check that this is correct.</report>
 	  
 	  
 		
@@ -2940,7 +2938,7 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-19" test="descendant::mml:mi[(.='') and preceding-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')] and following-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')]]" role="warning" id="math-test-19">[math-test-19] Maths containing '<value-of select="."/>' has what looks like words or terms which need separating with a space. With it's current markup the space will not be preserved on the eLife website. Please add in the space(s) using the latext '\;' in the appropriate place(s), so that the space is preserved in the HTML.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-broken-unicode-test" test="matches(.,'(&amp;|§)#x\d|(&amp;|§)lt;|(&amp;|§)gt;')" role="warning" id="math-broken-unicode-test">[math-broken-unicode-test] Equation likely contains a broken unicode - <value-of select="."/>.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-broken-unicode-test" test="matches(.,'(&amp;|§|§amp;)#x\d|[^\p{L}\p{N}][gl]t;')" role="warning" id="math-broken-unicode-test">[math-broken-unicode-test] Equation likely contains a broken unicode - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="disp-formula-child-tests-pattern">
@@ -5978,7 +5976,7 @@
   </pattern>
   
   <pattern id="missing-ref-cited-pattern">
-    <rule context="p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]" id="missing-ref-cited">
+    <rule context="article[not(@article-type=('correction','retraction'))]//p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]" id="missing-ref-cited">
       <let name="text" value="string-join(for $x in self::*/(*|text())         return if ($x/local-name()='xref') then ()         else string($x),'')"/>
       <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?, [1][7-9][0-9][0-9]|[A-Z][A-Za-z]+ et al\.?, [2][0-2][0-9][0-9]|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?'"/>
       <let name="missing-file-regex" value="'figures? (supplements?\s?)?\d|source (data|code)s? \d|(audio|supplementary) files? \d|tables? \d'"/>

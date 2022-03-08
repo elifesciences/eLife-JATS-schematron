@@ -1064,7 +1064,7 @@
     <rule context="article[@article-type='research-article']" id="research-article">
       <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="version" value="e:get-version(.)"/>
-      <report test="if ($version='1') then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])      else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])" role="warning" flag="dl-ar" id="pre-test-r-article-d-letter">A decision letter should be present for research articles.</report>
+      <report test="if ($version='1') then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])      else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])" role="warning" flag="dl-ar" id="test-r-article-d-letter">A decision letter should almost always be present for research articles. This one doesn't have one. Check that this is correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

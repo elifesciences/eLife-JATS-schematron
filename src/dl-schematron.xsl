@@ -1600,26 +1600,13 @@
 		    <!--REPORT warning-->
       <xsl:if test="if ($version='1') then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])      else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($version='1') then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter']) else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])">
-            <xsl:attribute name="id">pre-test-r-article-d-letter</xsl:attribute>
+            <xsl:attribute name="id">test-r-article-d-letter</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>A decision letter should be present for research articles.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT error-->
-      <xsl:if test="if ($version='1') then not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='decision-letter'])      else not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='referee-report'])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($version='1') then not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='decision-letter']) else not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='referee-report'])">
-            <xsl:attribute name="id">final-test-r-article-d-letter</xsl:attribute>
-            <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>A decision letter must be present for research articles.</svrl:text>
+            <svrl:text>A decision letter should almost always be present for research articles. This one doesn't have one. Check that this is correct.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 

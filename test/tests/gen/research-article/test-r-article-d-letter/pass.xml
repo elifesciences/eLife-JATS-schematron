@@ -1,7 +1,7 @@
-<?oxygen SCHSchema="final-test-r-article-d-letter.sch"?>
+<?oxygen SCHSchema="test-r-article-d-letter.sch"?>
 <!--Context: article[@article-type='research-article']
-Test: report    if ($version='1') then not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='decision-letter']) else not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='referee-report'])
-Message: A decision letter must be present for research articles. -->
+Test: report    if ($version='1') then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter']) else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])
+Message: A decision letter should almost always be present for research articles. This one doesn't have one. Check that this is correct. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>
@@ -14,6 +14,6 @@ Message: A decision letter must be present for research articles. -->
         <related-article related-article-type="article-reference"/>
       </article-meta>
     </front>
-    
+    <sub-article article-type="decision-letter"/>
   </article>
 </root>
