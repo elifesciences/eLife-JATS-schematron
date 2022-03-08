@@ -1248,13 +1248,7 @@
 	    else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])" 
         role="warning"
         flag="dl-ar"
-        id="pre-test-r-article-d-letter">A decision letter should be present for research articles.</report>
-	  
-	  <report test="if ($version='1') then not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='decision-letter'])
-	    else not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='referee-report'])" 
-        role="error" 
-        flag="dl-ar"
-        id="final-test-r-article-d-letter">A decision letter must be present for research articles.</report>
+        id="test-r-article-d-letter">A decision letter should almost always be present for research articles. This one doesn't have one. Check that this is correct.</report>
 	  
 	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#final-test-r-article-d-letter-feat"
 	    test="if ($version='1') then ($disp-channel = 'Feature Article') and not(sub-article[@article-type='decision-letter'])
@@ -4249,7 +4243,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="math-test-19">Maths containing '<value-of select="."/>' has what looks like words or terms which need separating with a space. With it's current markup the space will not be preserved on the eLife website. Please add in the space(s) using the latext '\;' in the appropriate place(s), so that the space is preserved in the HTML.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-broken-unicode-test" 
-        test="matches(.,'(&amp;|§)#x\d|(&amp;|§)lt;|(&amp;|§)gt;')" 
+        test="matches(.,'(&amp;|§|§amp;)#x\d|[^\p{L}\p{N}][gl]t;')" 
         role="warning" 
         id="math-broken-unicode-test">Equation likely contains a broken unicode - <value-of select="."/>.</report>
     </rule>
@@ -9130,7 +9124,7 @@ else self::*/local-name() = $allowed-p-blocks"
   
   <pattern id="missing-ref-cited-pattern">
     
-    <rule context="p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]" id="missing-ref-cited">
+    <rule context="article[not(@article-type=('correction','retraction'))]//p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]" id="missing-ref-cited">
       <let name="text" value="string-join(for $x in self::*/(*|text())
         return if ($x/local-name()='xref') then ()
         else string($x),'')"/>

@@ -95,24 +95,14 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="research-article">
-      <x:scenario label="pre-test-r-article-d-letter-pass">
-        <x:context href="../tests/gen/research-article/pre-test-r-article-d-letter/pass.xml"/>
-        <x:expect-not-report id="pre-test-r-article-d-letter" role="warning"/>
+      <x:scenario label="test-r-article-d-letter-pass">
+        <x:context href="../tests/gen/research-article/test-r-article-d-letter/pass.xml"/>
+        <x:expect-not-report id="test-r-article-d-letter" role="warning"/>
         <x:expect-not-assert id="research-article-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="pre-test-r-article-d-letter-fail">
-        <x:context href="../tests/gen/research-article/pre-test-r-article-d-letter/fail.xml"/>
-        <x:expect-report id="pre-test-r-article-d-letter" role="warning"/>
-        <x:expect-not-assert id="research-article-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="final-test-r-article-d-letter-pass">
-        <x:context href="../tests/gen/research-article/final-test-r-article-d-letter/pass.xml"/>
-        <x:expect-not-report id="final-test-r-article-d-letter" role="error"/>
-        <x:expect-not-assert id="research-article-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="final-test-r-article-d-letter-fail">
-        <x:context href="../tests/gen/research-article/final-test-r-article-d-letter/fail.xml"/>
-        <x:expect-report id="final-test-r-article-d-letter" role="error"/>
+      <x:scenario label="test-r-article-d-letter-fail">
+        <x:context href="../tests/gen/research-article/test-r-article-d-letter/fail.xml"/>
+        <x:expect-report id="test-r-article-d-letter" role="warning"/>
         <x:expect-not-assert id="research-article-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="final-test-r-article-d-letter-feat-pass">

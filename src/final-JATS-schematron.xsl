@@ -5756,16 +5756,16 @@
       <xsl:variable name="disp-channel" select="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <xsl:variable name="version" select="e:get-version(.)"/>
 
-		    <!--REPORT error-->
-      <xsl:if test="if ($version='1') then not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='decision-letter'])      else not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='referee-report'])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($version='1') then not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='decision-letter']) else not($disp-channel = ('Scientific Correspondence','Feature Article')) and not(sub-article[@article-type='referee-report'])">
-            <xsl:attribute name="id">final-test-r-article-d-letter</xsl:attribute>
+		    <!--REPORT warning-->
+      <xsl:if test="if ($version='1') then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])      else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($version='1') then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter']) else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])">
+            <xsl:attribute name="id">test-r-article-d-letter</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[final-test-r-article-d-letter] A decision letter must be present for research articles.</svrl:text>
+            <svrl:text>[test-r-article-d-letter] A decision letter should almost always be present for research articles. This one doesn't have one. Check that this is correct.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -15020,8 +15020,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches(.,'(&amp;|§)#x\d|(&amp;|§)lt;|(&amp;|§)gt;')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'(&amp;|§)#x\d|(&amp;|§)lt;|(&amp;|§)gt;')">
+      <xsl:if test="matches(.,'(&amp;|§|§amp;)#x\d|[^\p{L}\p{N}][gl]t;')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'(&amp;|§|§amp;)#x\d|[^\p{L}\p{N}][gl]t;')">
             <xsl:attribute name="id">math-broken-unicode-test</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-broken-unicode-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -29318,7 +29318,7 @@
 
 
 	  <!--RULE missing-ref-cited-->
-   <xsl:template match="p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]" priority="1000" mode="M448">
+   <xsl:template match="article[not(@article-type=('correction','retraction'))]//p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]" priority="1000" mode="M448">
       <xsl:variable name="text" select="string-join(for $x in self::*/(*|text())         return if ($x/local-name()='xref') then ()         else string($x),'')"/>
       <xsl:variable name="missing-ref-regex" select="'[A-Z][A-Za-z]+ et al\.?, [1][7-9][0-9][0-9]|[A-Z][A-Za-z]+ et al\.?, [2][0-2][0-9][0-9]|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?'"/>
       <xsl:variable name="missing-file-regex" select="'figures? (supplements?\s?)?\d|source (data|code)s? \d|(audio|supplementary) files? \d|tables? \d'"/>
