@@ -8315,6 +8315,26 @@
         <x:expect-assert id="data-p-presence" role="error"/>
         <x:expect-not-assert id="data-content-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="data-gen-p-presence-pass">
+        <x:context href="../tests/gen/data-content-tests/data-gen-p-presence/pass.xml"/>
+        <x:expect-not-report id="data-gen-p-presence" role="error"/>
+        <x:expect-not-assert id="data-content-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="data-gen-p-presence-fail">
+        <x:context href="../tests/gen/data-content-tests/data-gen-p-presence/fail.xml"/>
+        <x:expect-report id="data-gen-p-presence" role="error"/>
+        <x:expect-not-assert id="data-content-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="data-used-p-presence-pass">
+        <x:context href="../tests/gen/data-content-tests/data-used-p-presence/pass.xml"/>
+        <x:expect-not-report id="data-used-p-presence" role="error"/>
+        <x:expect-not-assert id="data-content-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="data-used-p-presence-fail">
+        <x:context href="../tests/gen/data-content-tests/data-used-p-presence/fail.xml"/>
+        <x:expect-report id="data-used-p-presence" role="error"/>
+        <x:expect-not-assert id="data-content-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ack-tests">
       <x:scenario label="ack-test-1-pass">
