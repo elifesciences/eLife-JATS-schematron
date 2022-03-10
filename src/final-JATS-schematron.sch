@@ -4238,6 +4238,10 @@
     <rule context="back/sec[@sec-type='data-availability']" id="data-content-tests">
       
       <assert test="count(p) gt 0" role="error" id="data-p-presence">[data-p-presence] At least one p element must be present in sec[@sec-type='data=availability'].</assert>
+      
+      <report test="count(p[matches(.,'^The following datasets? w(as|ere) generated:\s?$')]) gt 1" role="error" id="data-gen-p-presence">[data-gen-p-presence] Data availabilty section contains more than one p element describing that the datasets were generated. Either the content of one (or more) is incorrect, or the duplicated sentence needs removing.</report>
+      
+      <report test="count(p[matches(.,'^The following previously published datasets? w(as|ere) used:\s?$')]) gt 1" role="error" id="data-used-p-presence">[data-used-p-presence] Data availabilty section contains more than one p element describing that previously published datasets were used. Either the content of one (or more) is incorrect, or the duplicated sentence needs removing.</report>
     </rule>
   </pattern>
   <pattern id="ack-tests-pattern">

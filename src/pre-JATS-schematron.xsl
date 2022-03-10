@@ -20693,6 +20693,30 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--REPORT error-->
+      <xsl:if test="count(p[matches(.,'^The following datasets? w(as|ere) generated:\s?$')]) gt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(p[matches(.,'^The following datasets? w(as|ere) generated:\s?$')]) gt 1">
+            <xsl:attribute name="id">data-gen-p-presence</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[data-gen-p-presence] Data availabilty section contains more than one p element describing that the datasets were generated. Either the content of one (or more) is incorrect, or the duplicated sentence needs removing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="count(p[matches(.,'^The following previously published datasets? w(as|ere) used:\s?$')]) gt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(p[matches(.,'^The following previously published datasets? w(as|ere) used:\s?$')]) gt 1">
+            <xsl:attribute name="id">data-used-p-presence</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[data-used-p-presence] Data availabilty section contains more than one p element describing that previously published datasets were used. Either the content of one (or more) is incorrect, or the duplicated sentence needs removing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M301"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M301"/>

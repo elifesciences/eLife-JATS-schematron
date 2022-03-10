@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="data-gen-p-presence.sch"?>
+<!--Context: back/sec[@sec-type='data-availability']
+Test: report    count(p[matches(.,'^The following datasets? w(as|ere) generated:\s?$')]) gt 1
+Message: Data availabilty section contains more than one p element describing that the datasets were generated. Either the content of one (or more) is incorrect, or the duplicated sentence needs removing. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <sec sec-type="data-availability">
+        <p>statement</p>
+        <p>The following datasets were generated:</p>
+        <p><element-citation specific-use="isSupplementedBy"/></p>
+        <p>The following datasets were generated:</p>
+        <p><element-citation specific-use="isSupplementedBy"/></p>
+      </sec>
+    </back>
+  </article>
+</root>

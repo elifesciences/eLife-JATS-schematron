@@ -6168,6 +6168,14 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert test="count(p) gt 0" 
         role="error" 
         id="data-p-presence">At least one p element must be present in sec[@sec-type='data=availability'].</assert>
+      
+      <report test="count(p[matches(.,'^The following datasets? w(as|ere) generated:\s?$')]) gt 1"
+        role="error" 
+        id="data-gen-p-presence">Data availabilty section contains more than one p element describing that the datasets were generated. Either the content of one (or more) is incorrect, or the duplicated sentence needs removing.</report>
+      
+      <report test="count(p[matches(.,'^The following previously published datasets? w(as|ere) used:\s?$')]) gt 1"
+        role="error" 
+        id="data-used-p-presence">Data availabilty section contains more than one p element describing that previously published datasets were u. Either the content of one (or more) is incorrect, or the duplicated sentence needs removing.</report>
     </rule>
     
     <rule context="back/ack" id="ack-tests">
