@@ -6175,7 +6175,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="count(p[matches(.,'^The following previously published datasets? w(as|ere) used:\s?$')]) gt 1"
         role="error" 
-        id="data-used-p-presence">Data availabilty section contains more than one p element describing that previously published datasets were u. Either the content of one (or more) is incorrect, or the duplicated sentence needs removing.</report>
+        id="data-used-p-presence">Data availabilty section contains more than one p element describing that previously published datasets were used. Either the content of one (or more) is incorrect, or the duplicated sentence needs removing.</report>
     </rule>
     
     <rule context="back/ack" id="ack-tests">
@@ -11438,6 +11438,14 @@ else self::*/local-name() = $allowed-p-blocks"
         test="contains(pub-id[1]/@xlink:href,'www.emdataresource.org') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
         role="warning" 
         id="data-emdr-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has an EMDataResource 'www.emdataresource.org' type link, but is not marked as an accession type link.</report>
+      
+    </rule>
+    
+    <rule context="element-citation[@publication-type='data']/pub-id[@pub-id-type='accession' and contains(@xlink:href,'.ncbi.nlm.nih.gov')]" id="ncbi-pub-id-checks">
+      
+      <assert test="contains(lower-case(@xlink:href),lower-case(.))" 
+        role="warning" 
+        id="ncbi-pub-id-1">Dataset reference is an NCBI dataset, but the link for the dataset - <value-of select="@xlink:href"/> - does not contain the accession number - <value-of select="."/> - which is particularly unusual, and its likely that one of these is incorrect.</assert>
       
     </rule>
     

@@ -7544,6 +7544,13 @@
       
     </rule>
   </pattern>
+  <pattern id="ncbi-pub-id-checks-pattern">
+    <rule context="element-citation[@publication-type='data']/pub-id[@pub-id-type='accession' and contains(@xlink:href,'.ncbi.nlm.nih.gov')]" id="ncbi-pub-id-checks">
+      
+      <assert test="contains(lower-case(@xlink:href),lower-case(.))" role="warning" id="ncbi-pub-id-1">Dataset reference is an NCBI dataset, but the link for the dataset - <value-of select="@xlink:href"/> - does not contain the accession number - <value-of select="."/> - which is particularly unusual, and its likely that one of these is incorrect.</assert>
+      
+    </rule>
+  </pattern>
   <pattern id="publisher-name-tests-pattern">
     <rule context="element-citation/publisher-name" id="publisher-name-tests">
       

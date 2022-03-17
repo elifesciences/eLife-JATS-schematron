@@ -17366,6 +17366,18 @@
         <x:expect-not-assert id="data-ref-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="ncbi-pub-id-checks">
+      <x:scenario label="ncbi-pub-id-1-pass">
+        <x:context href="../tests/gen/ncbi-pub-id-checks/ncbi-pub-id-1/pass.xml"/>
+        <x:expect-not-assert id="ncbi-pub-id-1" role="warning"/>
+        <x:expect-not-assert id="ncbi-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ncbi-pub-id-1-fail">
+        <x:context href="../tests/gen/ncbi-pub-id-checks/ncbi-pub-id-1/fail.xml"/>
+        <x:expect-assert id="ncbi-pub-id-1" role="warning"/>
+        <x:expect-not-assert id="ncbi-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="publisher-name-tests">
       <x:scenario label="publisher-name-colon-pass">
         <x:context href="../tests/gen/publisher-name-tests/publisher-name-colon/pass.xml"/>
