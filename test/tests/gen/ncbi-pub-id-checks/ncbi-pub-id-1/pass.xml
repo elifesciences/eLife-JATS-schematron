@@ -1,0 +1,44 @@
+<?oxygen SCHSchema="ncbi-pub-id-1.sch"?>
+<!--Context: element-citation[@publication-type='data']/pub-id[@pub-id-type='accession' and contains(@xlink:href,'.ncbi.nlm.nih.gov')]
+Test: assert    contains(lower-case(@xlink:href),lower-case(.))
+Message: Dataset reference is an NCBI dataset, but the link for the dataset -  - does not contain the accession number -  - which is particularly unusual, and its likely that one of these is incorrect. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation id="dataset1" publication-type="data" specific-use="isSupplementedBy">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Kasatskaya</surname>
+          <given-names>SA</given-names>
+        </name>
+        <name>
+          <surname>Ladell</surname>
+          <given-names>K</given-names>
+        </name>
+        <name>
+          <surname>Miners</surname>
+          <given-names>KL</given-names>
+        </name>
+        <name>
+          <surname>Davydov</surname>
+          <given-names>AN</given-names>
+        </name>
+        <name>
+          <surname>Britanova</surname>
+          <given-names>OV</given-names>
+        </name>
+        <name>
+          <surname>Price</surname>
+          <given-names>DA</given-names>
+        </name>
+        <name>
+          <surname>Chudakov</surname>
+          <given-names>DM</given-names>
+        </name>
+      </person-group>
+      <year iso-8601-date="2020">2020</year>
+      <data-title>Human effector/memory CD4+ T cell subsets: deep TCR profiling.</data-title>
+      <source>NCBI Gene Expression Omnibus</source>
+      <pub-id assigning-authority="NCBI" pub-id-type="accession" xlink:href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE158848">GSE158848</pub-id>
+    </element-citation>
+  </article>
+</root>

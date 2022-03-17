@@ -1,0 +1,56 @@
+<?oxygen SCHSchema="ncbi-pub-id-1.sch"?>
+<!--Context: element-citation[@publication-type='data']/pub-id[@pub-id-type='accession' and contains(@xlink:href,'.ncbi.nlm.nih.gov')]
+Test: assert    contains(lower-case(@xlink:href),lower-case(.))
+Message: Dataset reference is an NCBI dataset, but the link for the dataset -  - does not contain the accession number -  - which is particularly unusual, and its likely that one of these is incorrect. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation id="dataset3" publication-type="data" specific-use="references">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Gökmen</surname>
+          <given-names>MR</given-names>
+        </name>
+        <name>
+          <surname>Dong</surname>
+          <given-names>R</given-names>
+        </name>
+        <name>
+          <surname>Kanhere</surname>
+          <given-names>A</given-names>
+        </name>
+        <name>
+          <surname>Powell</surname>
+          <given-names>N</given-names>
+        </name>
+        <name>
+          <surname>Perucha</surname>
+          <given-names>E</given-names>
+        </name>
+        <name>
+          <surname>Jackson</surname>
+          <given-names>I</given-names>
+        </name>
+        <name>
+          <surname>Howard</surname>
+          <given-names>JK</given-names>
+        </name>
+        <name>
+          <surname>Hernandez-Fuentes</surname>
+          <given-names>M</given-names>
+        </name>
+        <name>
+          <surname>Jenner</surname>
+          <given-names>RG</given-names>
+        </name>
+        <name>
+          <surname>Lord</surname>
+          <given-names>GM</given-names>
+        </name>
+      </person-group>
+      <year iso-8601-date="2013">2013</year>
+      <data-title>ChIP-seq analysis of T-bet in WT mice (Th1 cells)</data-title>
+      <source>NCBI Gene Expression Omnibus</source>
+      <pub-id assigning-authority="NCBI" pub-id-type="accession" xlink:href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE77695">GSE40623</pub-id>
+    </element-citation>
+  </article>
+</root>

@@ -7546,6 +7546,13 @@
       
     </rule>
   </pattern>
+  <pattern id="ncbi-pub-id-checks-pattern">
+    <rule context="element-citation[@publication-type='data']/pub-id[@pub-id-type='accession' and contains(@xlink:href,'.ncbi.nlm.nih.gov')]" id="ncbi-pub-id-checks">
+      
+      <assert test="contains(lower-case(@xlink:href),lower-case(.))" role="warning" id="ncbi-pub-id-1">Dataset reference is an NCBI dataset, but the link for the dataset - <value-of select="@xlink:href"/> - does not contain the accession number - <value-of select="."/> - which is particularly unusual, and its likely that one of these is incorrect.</assert>
+      
+    </rule>
+  </pattern>
   <pattern id="publisher-name-tests-pattern">
     <rule context="element-citation/publisher-name" id="publisher-name-tests">
       
@@ -8994,6 +9001,7 @@
       <assert test="descendant::element-citation[@publication-type='web']" role="error" id="website-tests-xspec-assert">element-citation[@publication-type='web'] must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='software']" role="error" id="software-ref-tests-xspec-assert">element-citation[@publication-type='software'] must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='data']" role="error" id="data-ref-tests-xspec-assert">element-citation[@publication-type='data'] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='data']/pub-id[@pub-id-type='accession' and contains(@xlink:href,'.ncbi.nlm.nih.gov')]" role="error" id="ncbi-pub-id-checks-xspec-assert">element-citation[@publication-type='data']/pub-id[@pub-id-type='accession' and contains(@xlink:href,'.ncbi.nlm.nih.gov')] must be present.</assert>
       <assert test="descendant::element-citation/publisher-name" role="error" id="publisher-name-tests-xspec-assert">element-citation/publisher-name must be present.</assert>
       <assert test="descendant::element-citation//name" role="error" id="ref-name-tests-xspec-assert">element-citation//name must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='journal') and (fpage or lpage)]" role="error" id="page-conformity-xspec-assert">element-citation[(@publication-type='journal') and (fpage or lpage)] must be present.</assert>
