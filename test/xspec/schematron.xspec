@@ -8056,6 +8056,30 @@
         <x:expect-not-assert id="app-ids-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="mdar-ids">
+      <x:scenario label="mdar-id-pass">
+        <x:context href="../tests/gen/mdar-ids/mdar-id/pass.xml"/>
+        <x:expect-not-assert id="mdar-id" role="error"/>
+        <x:expect-not-assert id="mdar-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mdar-id-fail">
+        <x:context href="../tests/gen/mdar-ids/mdar-id/fail.xml"/>
+        <x:expect-assert id="mdar-id" role="error"/>
+        <x:expect-not-assert id="mdar-ids-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="transrep-ids">
+      <x:scenario label="transrep-id-pass">
+        <x:context href="../tests/gen/transrep-ids/transrep-id/pass.xml"/>
+        <x:expect-not-assert id="transrep-id" role="error"/>
+        <x:expect-not-assert id="transrep-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="transrep-id-fail">
+        <x:context href="../tests/gen/transrep-ids/transrep-id/fail.xml"/>
+        <x:expect-assert id="transrep-id" role="error"/>
+        <x:expect-not-assert id="transrep-ids-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="fig-children">
       <x:scenario label="fig-child-conformance-pass">
         <x:context href="../tests/gen/fig-children/fig-child-conformance/pass.xml"/>
