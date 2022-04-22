@@ -470,7 +470,7 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
-  <let name="org-regex" value="'b\.\p{Zs}?subtilis|bacillus\p{Zs}?subtilis|d\.\p{Zs}?melanogaster|drosophila\p{Zs}?melanogaster|e\.\p{Zs}?coli|escherichia\p{Zs}?coli|s\.\p{Zs}?pombe|schizosaccharomyces\p{Zs}?pombe|s\.\p{Zs}?cerevisiae|saccharomyces\p{Zs}?cerevisiae|c\.\p{Zs}?elegans|caenorhabditis\p{Zs}?elegans|a\.\p{Zs}?thaliana|arabidopsis\p{Zs}?thaliana|m\.\p{Zs}?thermophila|myceliophthora\p{Zs}?thermophila|dictyostelium|p\.\p{Zs}?falciparum|plasmodium\p{Zs}?falciparum|s\.\p{Zs}?enterica|salmonella\p{Zs}?enterica|s\.\p{Zs}?pyogenes|streptococcus\p{Zs}?pyogenes|p\.\p{Zs}?dumerilii|platynereis\p{Zs}?dumerilii|p\.\p{Zs}?cynocephalus|papio\p{Zs}?cynocephalus|o\.\p{Zs}?fasciatus|oncopeltus\p{Zs}?fasciatus|n\.\p{Zs}?crassa|neurospora\p{Zs}?crassa|c\.\p{Zs}?intestinalis|ciona\p{Zs}?intestinalis|e\.\p{Zs}?cuniculi|encephalitozoon\p{Zs}?cuniculi|h\.\p{Zs}?salinarum|halobacterium\p{Zs}?salinarum|s\.\p{Zs}?solfataricus|sulfolobus\p{Zs}?solfataricus|s\.\p{Zs}?mediterranea|schmidtea\p{Zs}?mediterranea|s\.\p{Zs}?rosetta|salpingoeca\p{Zs}?rosetta|n\.\p{Zs}?vectensis|nematostella\p{Zs}?vectensis|s\.\p{Zs}?aureus|staphylococcus\p{Zs}?aureus|v\.\p{Zs}?cholerae|vibrio\p{Zs}?cholerae|t\.\p{Zs}?thermophila|tetrahymena\p{Zs}?thermophila|c\.\p{Zs}?reinhardtii|chlamydomonas\p{Zs}?reinhardtii|n\.\p{Zs}?attenuata|nicotiana\p{Zs}?attenuata|e\.\p{Zs}?carotovora|erwinia\p{Zs}?carotovora|e\.\p{Zs}?faecalis|h\.\p{Zs}?sapiens|homo\p{Zs}?sapiens|c\.\p{Zs}?trachomatis|chlamydia\p{Zs}?trachomatis|enterococcus\p{Zs}?faecalis|x\.\p{Zs}?laevis|xenopus\p{Zs}?laevis|x\.\p{Zs}?tropicalis|xenopus\p{Zs}?tropicalis|m\.\p{Zs}?musculus|mus\p{Zs}?musculus|d\.\p{Zs}?immigrans|drosophila\p{Zs}?immigrans|d\.\p{Zs}?subobscura|drosophila\p{Zs}?subobscura|d\.\p{Zs}?affinis|drosophila\p{Zs}?affinis|d\.\p{Zs}?obscura|drosophila\p{Zs}?obscura|f\.\p{Zs}?tularensis|francisella\p{Zs}?tularensis|p\.\p{Zs}?plantaginis|podosphaera\p{Zs}?plantaginis|p\.\p{Zs}?lanceolata|plantago\p{Zs}?lanceolata|m\.\p{Zs}?trossulus|mytilus\p{Zs}?trossulus|m\.\p{Zs}?edulis|mytilus\p{Zs}?edulis|m\.\p{Zs}?chilensis|mytilus\p{Zs}?chilensis|u\.\p{Zs}?maydis|ustilago\p{Zs}?maydis|p\.\p{Zs}?knowlesi|plasmodium\p{Zs}?knowlesi|p\.\p{Zs}?aeruginosa|pseudomonas\p{Zs}?aeruginosa|t\.\p{Zs}?brucei|trypanosoma\p{Zs}?brucei|caulobacter\p{Zs}?crescentus|c\.\p{Zs}?crescentus|agrobacterium\p{Zs}?tumefaciens|a\.\p{Zs}?tumefaciens|t\.\p{Zs}?gondii|toxoplasma\p{Zs}?gondii|d\.\p{Zs}?rerio|danio\p{Zs}?rerio|drosophila|xenopus'"/>
+  <let name="org-regex" value="'b\.\p{Zs}?subtilis|bacillus\p{Zs}?subtilis|d\.\p{Zs}?melanogaster|drosophila\p{Zs}?melanogaster|e\.\p{Zs}?coli|escherichia\p{Zs}?coli|s\.\p{Zs}?pombe|schizosaccharomyces\p{Zs}?pombe|s\.\p{Zs}?cerevisiae|saccharomyces\p{Zs}?cerevisiae|c\.\p{Zs}?elegans|caenorhabditis\p{Zs}?elegans|a\.\p{Zs}?thaliana|arabidopsis\p{Zs}?thaliana|m\.\p{Zs}?thermophila|myceliophthora\p{Zs}?thermophila|dictyostelium|p\.\p{Zs}?falciparum|plasmodium\p{Zs}?falciparum|s\.\p{Zs}?enterica|salmonella\p{Zs}?enterica|s\.\p{Zs}?pyogenes|streptococcus\p{Zs}?pyogenes|p\.\p{Zs}?dumerilii|platynereis\p{Zs}?dumerilii|p\.\p{Zs}?cynocephalus|papio\p{Zs}?cynocephalus|o\.\p{Zs}?fasciatus|oncopeltus\p{Zs}?fasciatus|n\.\p{Zs}?crassa|neurospora\p{Zs}?crassa|c\.\p{Zs}?intestinalis|ciona\p{Zs}?intestinalis|e\.\p{Zs}?cuniculi|encephalitozoon\p{Zs}?cuniculi|h\.\p{Zs}?salinarum|halobacterium\p{Zs}?salinarum|s\.\p{Zs}?solfataricus|sulfolobus\p{Zs}?solfataricus|s\.\p{Zs}?mediterranea|schmidtea\p{Zs}?mediterranea|s\.\p{Zs}?rosetta|salpingoeca\p{Zs}?rosetta|n\.\p{Zs}?vectensis|nematostella\p{Zs}?vectensis|s\.\p{Zs}?aureus|staphylococcus\p{Zs}?aureus|v\.\p{Zs}?cholerae|vibrio\p{Zs}?cholerae|t\.\p{Zs}?thermophila|tetrahymena\p{Zs}?thermophila|c\.\p{Zs}?reinhardtii|chlamydomonas\p{Zs}?reinhardtii|n\.\p{Zs}?attenuata|nicotiana\p{Zs}?attenuata|e\.\p{Zs}?carotovora|erwinia\p{Zs}?carotovora|e\.\p{Zs}?faecalis|h\.\p{Zs}?sapiens|homo\p{Zs}?sapiens|c\.\p{Zs}?trachomatis|chlamydia\p{Zs}?trachomatis|enterococcus\p{Zs}?faecalis|x\.\p{Zs}?laevis|xenopus\p{Zs}?laevis|x\.\p{Zs}?tropicalis|xenopus\p{Zs}?tropicalis|m\.\p{Zs}?musculus|mus\p{Zs}?musculus|d\.\p{Zs}?immigrans|drosophila\p{Zs}?immigrans|d\.\p{Zs}?subobscura|drosophila\p{Zs}?subobscura|d\.\p{Zs}?affinis|drosophila\p{Zs}?affinis|d\.\p{Zs}?obscura|drosophila\p{Zs}?obscura|f\.\p{Zs}?tularensis|francisella\p{Zs}?tularensis|p\.\p{Zs}?plantaginis|podosphaera\p{Zs}?plantaginis|p\.\p{Zs}?lanceolata|plantago\p{Zs}?lanceolata|m\.\p{Zs}?trossulus|mytilus\p{Zs}?trossulus|m\.\p{Zs}?edulis|mytilus\p{Zs}?edulis|m\.\p{Zs}?chilensis|mytilus\p{Zs}?chilensis|u\.\p{Zs}?maydis|ustilago\p{Zs}?maydis|p\.\p{Zs}?knowlesi|plasmodium\p{Zs}?knowlesi|p\.\p{Zs}?aeruginosa|pseudomonas\p{Zs}?aeruginosa|t\.\p{Zs}?brucei|trypanosoma\p{Zs}?brucei|caulobacter\p{Zs}?crescentus|c\.\p{Zs}?crescentus|agrobacterium\p{Zs}?tumefaciens|a\.\p{Zs}?tumefaciens|t\.\p{Zs}?gondii|toxoplasma\p{Zs}?gondii|d\.\p{Zs}?rerio|danio\p{Zs}?rerio|drosophila|yimenosaurus|lesothosaurus\p{Zs}?diagnosticus|l.\p{Zs}?diagnosticus|scelidosaurus\p{Zs}?harrisonii|s.\p{Zs}?harrisonii|haya\p{Zs}?griva|h.\p{Zs}?griva|polacanthus\p{Zs}?foxii|p.\p{Zs}?foxii|scutellosaurus\p{Zs}?lawleri|s.\p{Zs}?lawleri|saichania\p{Zs}?chulsanensis|s.\p{Zs}?chulsanensis|gargoyleosaurus\p{Zs}?parkpinorum|g.\p{Zs}?parkpinorum|europelta\p{Zs}?carbonensis|e.\p{Zs}?carbonensis|stegosaurus\p{Zs}?stenops|s.\p{Zs}?stenops|pinacosaurus\p{Zs}?grangeri|p.\p{Zs}?grangeri|tatisaurus\p{Zs}?oehleri|t.\p{Zs}?oehleri|hungarosaurus\p{Zs}?tormai|h.\p{Zs}?tormai|lesothosaurus\p{Zs}?diagnosticus|l.\p{Zs}?diagnosticus|bienosaurus\p{Zs}?lufengensis|b.\p{Zs}?lufengensis|fabrosaurus\p{Zs}?australis|f.\p{Zs}?australis|chinshakiangosaurus\p{Zs}?chunghoensis|c.\p{Zs}?chunghoensis|euoplocephalus\p{Zs}?tutus|e.\p{Zs}?tutus|xenopus'"/>
   <let name="sec-title-regex" value="string-join(     for $x in tokenize($org-regex,'\|')     return concat('^',$x,'$')     ,'|')"/>
   <xsl:function name="e:org-conform" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
@@ -790,6 +790,111 @@
       <xsl:when test="matches($s,'danio\p{Zs}?rerio')">
         <xsl:value-of select="'Danio rerio'"/>
       </xsl:when>
+      <xsl:when test="matches($s,'yimenosaurus')">
+        <xsl:value-of select="'Yimenosaurus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'lesothosaurus\p{Zs}?diagnosticus')">
+        <xsl:value-of select="'Lesothosaurus diagnosticus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'l\.\p{Zs}?diagnosticus')">
+        <xsl:value-of select="'L. diagnosticus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'scelidosaurus\p{Zs}?harrisonii')">
+        <xsl:value-of select="'Scelidosaurus harrisonii'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'s\.\p{Zs}?harrisonii')">
+        <xsl:value-of select="'S. harrisonii'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'haya\p{Zs}?griva')">
+        <xsl:value-of select="'Haya griva'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'h\.\p{Zs}?griva')">
+        <xsl:value-of select="'H. griva'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'polacanthus\p{Zs}?foxii')">
+        <xsl:value-of select="'Polacanthus foxii'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'p\.\p{Zs}?foxii')">
+        <xsl:value-of select="'P. foxii'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'scutellosaurus\p{Zs}?lawleri')">
+        <xsl:value-of select="'Scutellosaurus lawleri'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'s\.\p{Zs}?lawleri')">
+        <xsl:value-of select="'S. lawleri'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'saichania\p{Zs}?chulsanensis')">
+        <xsl:value-of select="'Saichania chulsanensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'s\.\p{Zs}?chulsanensis')">
+        <xsl:value-of select="'S. chulsanensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'gargoyleosaurus\p{Zs}?parkpinorum')">
+        <xsl:value-of select="'Gargoyleosaurus parkpinorum'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'g\.\p{Zs}?parkpinorum')">
+        <xsl:value-of select="'G. parkpinorum'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'europelta\p{Zs}?carbonensis')">
+        <xsl:value-of select="'Europelta carbonensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'e\.\p{Zs}?carbonensis')">
+        <xsl:value-of select="'E. carbonensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'stegosaurus\p{Zs}?stenops')">
+        <xsl:value-of select="'Stegosaurus stenops'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'s\.\p{Zs}?stenops')">
+        <xsl:value-of select="'S. stenops'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'pinacosaurus\p{Zs}?grangeri')">
+        <xsl:value-of select="'Pinacosaurus grangeri'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'p\.\p{Zs}?grangeri')">
+        <xsl:value-of select="'P. grangeri'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'tatisaurus\p{Zs}?oehleri')">
+        <xsl:value-of select="'Tatisaurus oehleri'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'t\.\p{Zs}?oehleri')">
+        <xsl:value-of select="'T. oehleri'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'hungarosaurus\p{Zs}?tormai')">
+        <xsl:value-of select="'Hungarosaurus tormai'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'h\.\p{Zs}?tormai')">
+        <xsl:value-of select="'H. tormai'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'lesothosaurus\p{Zs}?diagnosticus')">
+        <xsl:value-of select="'Lesothosaurus diagnosticus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'l\.\p{Zs}?diagnosticus')">
+        <xsl:value-of select="'L. diagnosticus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'bienosaurus\p{Zs}?lufengensis')">
+        <xsl:value-of select="'Bienosaurus lufengensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'b\.\p{Zs}?lufengensis')">
+        <xsl:value-of select="'B. lufengensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'fabrosaurus\p{Zs}?australis')">
+        <xsl:value-of select="'Fabrosaurus australis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'f\.\p{Zs}?australis')">
+        <xsl:value-of select="'F. australis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'chinshakiangosaurus\p{Zs}?chunghoensis')">
+        <xsl:value-of select="'Chinshakiangosaurus chunghoensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'c\.\p{Zs}?chunghoensis')">
+        <xsl:value-of select="'C. chunghoensis'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'euoplocephalus\p{Zs}?tutus')">
+        <xsl:value-of select="'Euoplocephalus tutus'"/>
+      </xsl:when>
+      <xsl:when test="matches($s,'e\.\p{Zs}?tutus')">
+        <xsl:value-of select="'E. tutus'"/>
+      </xsl:when>
       <xsl:when test="matches($s,'drosophila')">
         <xsl:value-of select="'Drosophila'"/>
       </xsl:when>
@@ -1061,7 +1166,7 @@
     
   </xsl:function>
   <pattern id="fundref-pattern">
-    <rule context="article//ack" id="fundref-rule">
+    <rule context="article[not(@article-type='article-commentary')]//ack" id="fundref-rule">
       <let name="ack" value="."/>
       <let name="funding-group" value="distinct-values(ancestor::article//funding-group//institution-id)"/>
       <let name="funders" value="'../../../../../src/funders.xml'"/>
@@ -1070,7 +1175,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article//ack" role="error" id="fundref-rule-xspec-assert">article//ack must be present.</assert>
+      <assert test="descendant::article[not(@article-type='article-commentary')]//ack" role="error" id="fundref-rule-xspec-assert">article[not(@article-type='article-commentary')]//ack must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="kr-table-head-presence.sch"?>
+<!--Context: table-wrap[contains(@id,'keyresource')]
+Test: assert    table/thead
+Message: Key resources table must have a header (thead). This one does not have a header. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <table-wrap id="keyresource">
+      <table/>
+    </table-wrap>
+  </article>
+</root>
