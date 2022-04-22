@@ -4,5 +4,11 @@ Test: report    matches($lc,'e\.\p{Zs}?carbonensis') and not(italic[contains(tex
 Message: 
          contains an organism - 'E. carbonensis' - but there is no italic element with that correct capitalisation or spacing. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
-  <article/>
+  <article>
+    <body>
+      <sec>
+        <title>E. carbonensis</title>
+      </sec>
+    </body>
+  </article>
 </root>

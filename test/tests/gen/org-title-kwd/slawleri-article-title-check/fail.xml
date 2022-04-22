@@ -1,8 +1,14 @@
 <?oxygen SCHSchema="slawleri-article-title-check.sch"?>
 <!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
-Test: report    matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. Lawleri')])
+Test: report    matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. lawleri')])
 Message: 
-         contains an organism - 'S. Lawleri' - but there is no italic element with that correct capitalisation or spacing. -->
+         contains an organism - 'S. lawleri' - but there is no italic element with that correct capitalisation or spacing. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
-  <article/>
+  <article>
+    <body>
+      <sec>
+        <title>S. lawleri</title>
+      </sec>
+    </body>
+  </article>
 </root>

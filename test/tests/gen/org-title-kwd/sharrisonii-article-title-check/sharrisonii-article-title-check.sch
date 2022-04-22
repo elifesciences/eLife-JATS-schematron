@@ -1168,8 +1168,8 @@
   <pattern id="org-pattern">
     <rule context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd" id="org-title-kwd">
       <let name="lc" value="lower-case(.)"/>
-      <report test="matches($lc,'s\.\p{Zs}?harrisonii') and not(italic[contains(text() ,'S. Harrisonii')])" role="warning" id="sharrisonii-article-title-check">
-        <name/> contains an organism - 'S. Harrisonii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\p{Zs}?harrisonii') and not(italic[contains(text() ,'S. harrisonii')])" role="warning" id="sharrisonii-article-title-check">
+        <name/> contains an organism - 'S. harrisonii' - but there is no italic element with that correct capitalisation or spacing.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

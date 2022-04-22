@@ -1,7 +1,13 @@
 <?oxygen SCHSchema="slawleri-ref-article-title-check.sch"?>
 <!--Context: element-citation/article-title|element-citation/chapter-title|element-citation/source|element-citation/data-title
-Test: report    matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. Lawleri')])
-Message: ref  references an organism - 'S. Lawleri' - but there is no italic element with that correct capitalisation or spacing. -->
+Test: report    matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. lawleri')])
+Message: ref  references an organism - 'S. lawleri' - but there is no italic element with that correct capitalisation or spacing. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
-  <article/>
+  <article>
+    <element-citation>
+      <article-title>
+        <italic>S. lawleri</italic>
+      </article-title>
+    </element-citation>
+  </article>
 </root>

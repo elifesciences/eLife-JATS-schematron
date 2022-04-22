@@ -6621,9 +6621,9 @@
       
       <report test="matches($lc,'l\.\p{Zs}?diagnosticus') and not(italic[contains(text() ,'L. diagnosticus')])" role="info" id="ldiagnosticus-ref-article-title-check">[ldiagnosticus-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'L. diagnosticus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'scelidosaurus\p{Zs}?harrisonii') and not(italic[contains(text() ,'Scelidosaurus Harrisonii')])" role="info" id="scelidosaurusHarrisonii-ref-article-title-check">[scelidosaurusHarrisonii-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Scelidosaurus Harrisonii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'scelidosaurus\p{Zs}?harrisonii') and not(italic[contains(text() ,'Scelidosaurus harrisonii')])" role="info" id="scelidosaurusHarrisonii-ref-article-title-check">[scelidosaurusHarrisonii-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Scelidosaurus harrisonii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\p{Zs}?harrisonii') and not(italic[contains(text() ,'S. Harrisonii')])" role="info" id="sharrisonii-ref-article-title-check">[sharrisonii-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. Harrisonii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\p{Zs}?harrisonii') and not(italic[contains(text() ,'S. harrisonii')])" role="info" id="sharrisonii-ref-article-title-check">[sharrisonii-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. harrisonii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'haya\p{Zs}?griva') and not(italic[contains(text() ,'Haya griva')])" role="info" id="hayagriva-ref-article-title-check">[hayagriva-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Haya griva' - but there is no italic element with that correct capitalisation or spacing.</report>
       
@@ -6633,9 +6633,9 @@
       
       <report test="matches($lc,'p\.\p{Zs}?foxii') and not(italic[contains(text() ,'P. foxii')])" role="info" id="pfoxii-ref-article-title-check">[pfoxii-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. foxii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'scutellosaurus\p{Zs}?lawleri') and not(italic[contains(text() ,'Scutellosaurus Lawleri')])" role="info" id="scutellosaurusLawleri-ref-article-title-check">[scutellosaurusLawleri-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Scutellosaurus Lawleri' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'scutellosaurus\p{Zs}?lawleri') and not(italic[contains(text() ,'Scutellosaurus lawleri')])" role="info" id="scutellosaurusLawleri-ref-article-title-check">[scutellosaurusLawleri-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Scutellosaurus lawleri' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. Lawleri')])" role="info" id="slawleri-ref-article-title-check">[slawleri-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. Lawleri' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. lawleri')])" role="info" id="slawleri-ref-article-title-check">[slawleri-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. lawleri' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       
       <report test="matches($lc,'saichania\p{Zs}?chulsanensis') and not(italic[contains(text() ,'Saichania chulsanensis')])" role="info" id="saichaniachulsanensis-ref-article-title-check">[saichaniachulsanensis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Saichania chulsanensis' - but there is no italic element with that correct capitalisation or spacing.</report>
@@ -6900,11 +6900,11 @@
       <report test="matches($lc,'yimenosaurus') and not(italic[contains(text() ,'Yimenosaurus')])" role="warning" id="yimenosaurus-article-title-check">[yimenosaurus-article-title-check] 
         <name/> contains an organism - 'Yimenosaurus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'scelidosaurus\p{Zs}?harrisonii') and not(italic[contains(text() ,'Scelidosaurus Harrisonii')])" role="warning" id="scelidosaurusharrisonii-article-title-check">[scelidosaurusharrisonii-article-title-check] 
-        <name/> contains an organism - 'Scelidosaurus Harrisonii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'scelidosaurus\p{Zs}?harrisonii') and not(italic[contains(text() ,'Scelidosaurus harrisonii')])" role="warning" id="scelidosaurusharrisonii-article-title-check">[scelidosaurusharrisonii-article-title-check] 
+        <name/> contains an organism - 'Scelidosaurus harrisonii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\p{Zs}?harrisonii') and not(italic[contains(text() ,'S. Harrisonii')])" role="warning" id="sharrisonii-article-title-check">[sharrisonii-article-title-check] 
-        <name/> contains an organism - 'S. Harrisonii' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\p{Zs}?harrisonii') and not(italic[contains(text() ,'S. harrisonii')])" role="warning" id="sharrisonii-article-title-check">[sharrisonii-article-title-check] 
+        <name/> contains an organism - 'S. harrisonii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'haya\p{Zs}?griva') and not(italic[contains(text() ,'Haya griva')])" role="warning" id="hayagriva-article-title-check">[hayagriva-article-title-check] 
         <name/> contains an organism - 'Haya griva' - but there is no italic element with that correct capitalisation or spacing.</report>
@@ -6918,11 +6918,11 @@
       <report test="matches($lc,'p\.\p{Zs}?foxii') and not(italic[contains(text() ,'P. foxii')])" role="warning" id="pfoxii-article-title-check">[pfoxii-article-title-check] 
         <name/> contains an organism - 'P. foxii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'scutellosaurus\p{Zs}?lawleri') and not(italic[contains(text() ,'Scutellosaurus Lawleri')])" role="warning" id="scutellosauruslawleri-article-title-check">[scutellosauruslawleri-article-title-check] 
-        <name/> contains an organism - 'Scutellosaurus Lawleri' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'scutellosaurus\p{Zs}?lawleri') and not(italic[contains(text() ,'Scutellosaurus lawleri')])" role="warning" id="scutellosauruslawleri-article-title-check">[scutellosauruslawleri-article-title-check] 
+        <name/> contains an organism - 'Scutellosaurus lawleri' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report test="matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. Lawleri')])" role="warning" id="slawleri-article-title-check">[slawleri-article-title-check] 
-        <name/> contains an organism - 'S. Lawleri' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. lawleri')])" role="warning" id="slawleri-article-title-check">[slawleri-article-title-check] 
+        <name/> contains an organism - 'S. lawleri' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'saichania\p{Zs}?chulsanensis') and not(italic[contains(text() ,'Saichania chulsanensis')])" role="warning" id="saichaniachulsanensis-article-title-check">[saichaniachulsanensis-article-title-check] 
         <name/> contains an organism - 'Saichania chulsanensis' - but there is no italic element with that correct capitalisation or spacing.</report>

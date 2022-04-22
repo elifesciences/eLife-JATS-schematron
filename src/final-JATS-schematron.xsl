@@ -32296,8 +32296,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'scelidosaurus\p{Zs}?harrisonii') and not(italic[contains(text() ,'Scelidosaurus Harrisonii')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'scelidosaurus\p{Zs}?harrisonii') and not(italic[contains(text() ,'Scelidosaurus Harrisonii')])">
+      <xsl:if test="matches($lc,'scelidosaurus\p{Zs}?harrisonii') and not(italic[contains(text() ,'Scelidosaurus harrisonii')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'scelidosaurus\p{Zs}?harrisonii') and not(italic[contains(text() ,'Scelidosaurus harrisonii')])">
             <xsl:attribute name="id">scelidosaurusHarrisonii-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -32305,13 +32305,13 @@
             </xsl:attribute>
             <svrl:text>[scelidosaurusHarrisonii-ref-article-title-check] ref <xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
-               <xsl:text/> references an organism - 'Scelidosaurus Harrisonii' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+               <xsl:text/> references an organism - 'Scelidosaurus harrisonii' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'s\.\p{Zs}?harrisonii') and not(italic[contains(text() ,'S. Harrisonii')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'s\.\p{Zs}?harrisonii') and not(italic[contains(text() ,'S. Harrisonii')])">
+      <xsl:if test="matches($lc,'s\.\p{Zs}?harrisonii') and not(italic[contains(text() ,'S. harrisonii')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'s\.\p{Zs}?harrisonii') and not(italic[contains(text() ,'S. harrisonii')])">
             <xsl:attribute name="id">sharrisonii-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -32319,7 +32319,7 @@
             </xsl:attribute>
             <svrl:text>[sharrisonii-ref-article-title-check] ref <xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
-               <xsl:text/> references an organism - 'S. Harrisonii' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+               <xsl:text/> references an organism - 'S. harrisonii' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -32380,8 +32380,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'scutellosaurus\p{Zs}?lawleri') and not(italic[contains(text() ,'Scutellosaurus Lawleri')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'scutellosaurus\p{Zs}?lawleri') and not(italic[contains(text() ,'Scutellosaurus Lawleri')])">
+      <xsl:if test="matches($lc,'scutellosaurus\p{Zs}?lawleri') and not(italic[contains(text() ,'Scutellosaurus lawleri')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'scutellosaurus\p{Zs}?lawleri') and not(italic[contains(text() ,'Scutellosaurus lawleri')])">
             <xsl:attribute name="id">scutellosaurusLawleri-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -32389,13 +32389,13 @@
             </xsl:attribute>
             <svrl:text>[scutellosaurusLawleri-ref-article-title-check] ref <xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
-               <xsl:text/> references an organism - 'Scutellosaurus Lawleri' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+               <xsl:text/> references an organism - 'Scutellosaurus lawleri' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. Lawleri')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. Lawleri')])">
+      <xsl:if test="matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. lawleri')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. lawleri')])">
             <xsl:attribute name="id">slawleri-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -32403,7 +32403,7 @@
             </xsl:attribute>
             <svrl:text>[slawleri-ref-article-title-check] ref <xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
-               <xsl:text/> references an organism - 'S. Lawleri' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+               <xsl:text/> references an organism - 'S. lawleri' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -34188,8 +34188,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'scelidosaurus\p{Zs}?harrisonii') and not(italic[contains(text() ,'Scelidosaurus Harrisonii')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'scelidosaurus\p{Zs}?harrisonii') and not(italic[contains(text() ,'Scelidosaurus Harrisonii')])">
+      <xsl:if test="matches($lc,'scelidosaurus\p{Zs}?harrisonii') and not(italic[contains(text() ,'Scelidosaurus harrisonii')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'scelidosaurus\p{Zs}?harrisonii') and not(italic[contains(text() ,'Scelidosaurus harrisonii')])">
             <xsl:attribute name="id">scelidosaurusharrisonii-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -34198,13 +34198,13 @@
             <svrl:text>[scelidosaurusharrisonii-article-title-check] 
         <xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/> contains an organism - 'Scelidosaurus Harrisonii' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+               <xsl:text/> contains an organism - 'Scelidosaurus harrisonii' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'s\.\p{Zs}?harrisonii') and not(italic[contains(text() ,'S. Harrisonii')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'s\.\p{Zs}?harrisonii') and not(italic[contains(text() ,'S. Harrisonii')])">
+      <xsl:if test="matches($lc,'s\.\p{Zs}?harrisonii') and not(italic[contains(text() ,'S. harrisonii')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'s\.\p{Zs}?harrisonii') and not(italic[contains(text() ,'S. harrisonii')])">
             <xsl:attribute name="id">sharrisonii-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -34213,7 +34213,7 @@
             <svrl:text>[sharrisonii-article-title-check] 
         <xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/> contains an organism - 'S. Harrisonii' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+               <xsl:text/> contains an organism - 'S. harrisonii' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -34278,8 +34278,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'scutellosaurus\p{Zs}?lawleri') and not(italic[contains(text() ,'Scutellosaurus Lawleri')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'scutellosaurus\p{Zs}?lawleri') and not(italic[contains(text() ,'Scutellosaurus Lawleri')])">
+      <xsl:if test="matches($lc,'scutellosaurus\p{Zs}?lawleri') and not(italic[contains(text() ,'Scutellosaurus lawleri')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'scutellosaurus\p{Zs}?lawleri') and not(italic[contains(text() ,'Scutellosaurus lawleri')])">
             <xsl:attribute name="id">scutellosauruslawleri-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -34288,13 +34288,13 @@
             <svrl:text>[scutellosauruslawleri-article-title-check] 
         <xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/> contains an organism - 'Scutellosaurus Lawleri' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+               <xsl:text/> contains an organism - 'Scutellosaurus lawleri' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. Lawleri')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. Lawleri')])">
+      <xsl:if test="matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. lawleri')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. lawleri')])">
             <xsl:attribute name="id">slawleri-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -34303,7 +34303,7 @@
             <svrl:text>[slawleri-article-title-check] 
         <xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/> contains an organism - 'S. Lawleri' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+               <xsl:text/> contains an organism - 'S. lawleri' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 

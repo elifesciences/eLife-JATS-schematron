@@ -4,5 +4,13 @@ Test: report    matches($lc,'l\.\p{Zs}?diagnosticus') and not(italic[contains(te
 Message: 
          contains an organism - 'L. diagnosticus' - but there is no italic element with that correct capitalisation or spacing. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
-  <article/>
+  <article>
+    <body>
+      <sec>
+        <title>
+          <italic>L. diagnosticus</italic>
+        </title>
+      </sec>
+    </body>
+  </article>
 </root>
