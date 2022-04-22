@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="bienosauruslufengensis-ref-article-title-check.sch"?>
+<!--Context: element-citation/article-title|element-citation/chapter-title|element-citation/source|element-citation/data-title
+Test: report    matches($lc,'bienosaurus\p{Zs}?lufengensis') and not(italic[contains(text() ,'Bienosaurus lufengensis')])
+Message: ref  references an organism - 'Bienosaurus lufengensis' - but there is no italic element with that correct capitalisation or spacing. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation>
+      <article-title>Bienosaurus lufengensis</article-title>
+    </element-citation>
+  </article>
+</root>

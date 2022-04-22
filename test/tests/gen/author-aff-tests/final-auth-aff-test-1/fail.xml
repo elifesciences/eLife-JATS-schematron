@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="final-auth-aff-test-1.sch"?>
-<!--Context: article-meta/contrib-group[not(@*)]/aff
+<!--Context: article-meta/contrib-group[not(@*)]//aff
 Test: assert    country
 Message: Author affiliations must have a country. This one does not - . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="europeltacarbonensis-ref-article-title-check.sch"?>
+<!--Context: element-citation/article-title|element-citation/chapter-title|element-citation/source|element-citation/data-title
+Test: report    matches($lc,'europelta\p{Zs}?carbonensis') and not(italic[contains(text() ,'Europelta carbonensis')])
+Message: ref  references an organism - 'Europelta carbonensis' - but there is no italic element with that correct capitalisation or spacing. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation>
+      <article-title>
+        <italic>Europelta carbonensis</italic>
+      </article-title>
+    </element-citation>
+  </article>
+</root>

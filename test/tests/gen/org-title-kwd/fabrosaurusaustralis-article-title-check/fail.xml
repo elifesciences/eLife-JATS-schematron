@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="fabrosaurusaustralis-article-title-check.sch"?>
+<!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
+Test: report    matches($lc,'fabrosaurus\p{Zs}?australis') and not(italic[contains(text() ,'Fabrosaurus australis')])
+Message: 
+         contains an organism - 'Fabrosaurus australis' - but there is no italic element with that correct capitalisation or spacing. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <sec>
+        <title>Fabrosaurus australis</title>
+      </sec>
+    </body>
+  </article>
+</root>

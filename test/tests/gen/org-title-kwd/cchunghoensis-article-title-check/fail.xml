@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="cchunghoensis-article-title-check.sch"?>
+<!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
+Test: report    matches($lc,'c\.\p{Zs}?chunghoensis') and not(italic[contains(text() ,'C. chunghoensis')])
+Message: 
+         contains an organism - 'C. chunghoensis' - but there is no italic element with that correct capitalisation or spacing. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <body>
+      <sec>
+        <title>C. chunghoensis</title>
+      </sec>
+    </body>
+  </article>
+</root>

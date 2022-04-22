@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="final-auth-aff-test-3.sch"?>
-<!--Context: article-meta/contrib-group[not(@*)]/aff
+<!--Context: article-meta/contrib-group[not(@*)]//aff
 Test: assert    institution[not(@*)] or institution-wrap[institution[not(@*)]]
 Message: Author affiliations must have a top level institution. This one (with the id ) does not -  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
