@@ -5332,6 +5332,28 @@
         <x:expect-not-assert id="inline-formula-child-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="math-overset-tests">
+      <x:scenario label="math-overset-bar-test-pass">
+        <x:context href="../tests/gen/math-overset-tests/math-overset-bar-test/pass.xml"/>
+        <x:expect-not-report id="math-overset-bar-test" role="warning"/>
+        <x:expect-not-assert id="math-overset-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-overset-bar-test-fail">
+        <x:context href="../tests/gen/math-overset-tests/math-overset-bar-test/fail.xml"/>
+        <x:expect-report id="math-overset-bar-test" role="warning"/>
+        <x:expect-not-assert id="math-overset-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-overset-missing-test-pass">
+        <x:context href="../tests/gen/math-overset-tests/math-overset-missing-test/pass.xml"/>
+        <x:expect-not-report id="math-overset-missing-test" role="warning"/>
+        <x:expect-not-assert id="math-overset-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-overset-missing-test-fail">
+        <x:context href="../tests/gen/math-overset-tests/math-overset-missing-test/fail.xml"/>
+        <x:expect-report id="math-overset-missing-test" role="warning"/>
+        <x:expect-not-assert id="math-overset-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="table-wrap-tests">
       <x:scenario label="table-wrap-test-1-pass">
         <x:context href="../tests/gen/table-wrap-tests/table-wrap-test-1/pass.xml"/>
@@ -17161,6 +17183,16 @@
       <x:scenario label="medrxiv-test-fail">
         <x:context href="../tests/gen/preprint-title-tests/medrxiv-test/fail.xml"/>
         <x:expect-report id="medrxiv-test" role="error"/>
+        <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="osfpreprints-test-pass">
+        <x:context href="../tests/gen/preprint-title-tests/osfpreprints-test/pass.xml"/>
+        <x:expect-not-report id="osfpreprints-test" role="error"/>
+        <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="osfpreprints-test-fail">
+        <x:context href="../tests/gen/preprint-title-tests/osfpreprints-test/fail.xml"/>
+        <x:expect-report id="osfpreprints-test" role="error"/>
         <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="peerjpreprints-test-pass">

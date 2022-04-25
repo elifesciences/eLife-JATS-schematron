@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="math-overset-missing-test.sch"?>
+<!--Context: mml:mover
+Test: report    (mml:mtext or mml:mi) and not(mml:mo or */mml:mo)
+Message:  contains character(s) that have possibly missing character(s) directly above them (). Has the \overset{}{} function been used, and if so should the appropriate equivalent latex function be used instead (such as \bar{}, \tilde{}, \dot{}, or \hat{})? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <mml:math>
+      <mml:mrow><mml:mover><mml:mi>g</mml:mi><mml:mtext>&#x00A0;</mml:mtext></mml:mover></mml:mrow>
+    </mml:math>
+  </article>
+</root>

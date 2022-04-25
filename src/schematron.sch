@@ -4369,6 +4369,18 @@ else self::*/local-name() = $allowed-p-blocks"
         id="inline-formula-child-test-1"><name/> element is not allowed as a child of inline-formula.</report>
     </rule>
     
+    <rule context="mml:mover" id="math-overset-tests">
+      
+      <report test="mml:mo='&#x2212;'" 
+        role="warning" 
+        id="math-overset-bar-test"><value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> contains character(s) that are overset by a minus sign (<value-of select="."/>). Has the latex \overset{}{} function been used, and should the \bar{} function (or \overline{} if covering numerous characters) be used instead?</report>
+      
+      <report test="(mml:mtext or mml:mi) and not(mml:mo or */mml:mo)" 
+        role="warning" 
+        id="math-overset-missing-test"><value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> contains character(s) that have possibly missing character(s) directly above them (<value-of select="."/>). Has the \overset{}{} function been used, and if so should the appropriate equivalent latex function be used instead (such as \bar{}, \tilde{}, \dot{}, or \hat{})?</report>
+      
+    </rule>
+    
     <rule context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
       <let name="lab" value="label[1]"/>
@@ -11388,7 +11400,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="lc" value="lower-case(.)"/>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#not-rxiv-test" 
-        test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|peerj preprints|psyarxiv|paleorxiv|preprints|zenodo')" 
+        test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|zenodo')" 
         role="warning" 
         id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
       
@@ -11416,6 +11428,10 @@ else self::*/local-name() = $allowed-p-blocks"
         test="matches($lc,'medrxiv') and not(. = 'medRxiv')" 
         role="error" 
         id="medrxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'medRxiv'.</report>
+      
+      <report test="matches($lc,'osf preprints') and not(. = 'OSF Preprints')" 
+        role="error" 
+        id="osfpreprints-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'OSF Preprints'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#peerjpreprints-test" 
         test="matches($lc,'peerj preprints') and not(. = 'PeerJ Preprints')" 

@@ -3115,6 +3115,15 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-child-test-1" test="local-name()!='math'" role="error" id="inline-formula-child-test-1">[inline-formula-child-test-1] <name/> element is not allowed as a child of inline-formula.</report>
     </rule>
   </pattern>
+  <pattern id="math-overset-tests-pattern">
+    <rule context="mml:mover" id="math-overset-tests">
+      
+      <report test="mml:mo='−'" role="warning" id="math-overset-bar-test">[math-overset-bar-test] <value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> contains character(s) that are overset by a minus sign (<value-of select="."/>). Has the latex \overset{}{} function been used, and should the \bar{} function (or \overline{} if covering numerous characters) be used instead?</report>
+      
+      <report test="(mml:mtext or mml:mi) and not(mml:mo or */mml:mo)" role="warning" id="math-overset-missing-test">[math-overset-missing-test] <value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> contains character(s) that have possibly missing character(s) directly above them (<value-of select="."/>). Has the \overset{}{} function been used, and if so should the appropriate equivalent latex function be used instead (such as \bar{}, \tilde{}, \dot{}, or \hat{})?</report>
+      
+    </rule>
+  </pattern>
   <pattern id="table-wrap-tests-pattern">
     <rule context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
@@ -7263,7 +7272,7 @@
     <rule context="element-citation[@publication-type='preprint']/source" id="preprint-title-tests">
       <let name="lc" value="lower-case(.)"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#not-rxiv-test" test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|peerj preprints|psyarxiv|paleorxiv|preprints|zenodo')" role="warning" id="not-rxiv-test">[not-rxiv-test] ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#not-rxiv-test" test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|zenodo')" role="warning" id="not-rxiv-test">[not-rxiv-test] ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#biorxiv-test" test="matches($lc,'biorxiv') and not(. = 'bioRxiv')" role="error" id="biorxiv-test">[biorxiv-test] ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'bioRxiv'.</report>
       
@@ -7274,6 +7283,8 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#chemrxiv-test" test="matches($lc,'chemrxiv') and not(. = 'ChemRxiv')" role="error" id="chemrxiv-test">[chemrxiv-test] ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'ChemRxiv'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#medrxiv-test" test="matches($lc,'medrxiv') and not(. = 'medRxiv')" role="error" id="medrxiv-test">[medrxiv-test] ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'medRxiv'.</report>
+      
+      <report test="matches($lc,'osf preprints') and not(. = 'OSF Preprints')" role="error" id="osfpreprints-test">[osfpreprints-test] ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'OSF Preprints'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#peerjpreprints-test" test="matches($lc,'peerj preprints') and not(. = 'PeerJ Preprints')" role="error" id="peerjpreprints-test">[peerjpreprints-test] ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PeerJ Preprints'.</report>
       
