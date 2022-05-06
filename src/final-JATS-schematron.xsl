@@ -35480,8 +35480,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')">
+      <xsl:if test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')">
             <xsl:attribute name="id">city-street-presence</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -35575,8 +35575,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')">
+      <xsl:if test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')">
             <xsl:attribute name="id">institution-street-presence</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36701,7 +36701,7 @@
                <xsl:value-of select="ancestor::ref/@id"/>
                <xsl:text/>' with the title '<xsl:text/>
                <xsl:value-of select="data-title"/>
-               <xsl:text/>' must have a publisher-name element (Software host) which contains 'R Foundation for Statistical Computing'.</svrl:text>
+               <xsl:text/>' must have a publisher-name element which contains 'R Foundation for Statistical Computing'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -36731,9 +36731,9 @@
             </xsl:attribute>
             <svrl:text>[ref-software-test-1] software ref '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
-               <xsl:text/>' has both a source (Software name) - <xsl:text/>
+               <xsl:text/>' has both a source - <xsl:text/>
                <xsl:value-of select="source[1]"/>
-               <xsl:text/> - and a publisher-name (Software host) - <xsl:text/>
+               <xsl:text/> - and a publisher-name - <xsl:text/>
                <xsl:value-of select="publisher-name[1]"/>
                <xsl:text/> - which is incorrect. It should have either one or the other.</svrl:text>
          </svrl:successful-report>
@@ -36754,7 +36754,7 @@
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' with the title - <xsl:text/>
                   <xsl:value-of select="data-title"/>
-                  <xsl:text/> - must contain either one source element (Software name) or one publisher-name element (Software host).</svrl:text>
+                  <xsl:text/> - must contain either one source element or one publisher-name element.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -36770,9 +36770,9 @@
             </xsl:attribute>
             <svrl:text>[ref-software-test-3] software ref '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
-               <xsl:text/>' has a publisher-name (Software host) - <xsl:text/>
+               <xsl:text/>' has a publisher-name - <xsl:text/>
                <xsl:value-of select="publisher-name[1]"/>
-               <xsl:text/>. Since this is a software source, it should be captured in a source element. Please move into the Software name field (rather than Software host).</svrl:text>
+               <xsl:text/>. Since this is a software source, it should be captured in a source element. Please move into the source field (rather than publisher).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -36787,9 +36787,9 @@
             </xsl:attribute>
             <svrl:text>[ref-software-test-4] software ref '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
-               <xsl:text/>' has a source (Software name) - <xsl:text/>
+               <xsl:text/>' has a source - <xsl:text/>
                <xsl:value-of select="source[1]"/>
-               <xsl:text/>. Since this is a software publisher, it should be captured in a publisher-name element. Please move into the Software host field.</svrl:text>
+               <xsl:text/>. Since this is a software publisher, it should be captured in a publisher-name element. Please move into the Software publisher field.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -40502,7 +40502,7 @@
             </xsl:attribute>
             <svrl:text>[software-doi-test-1] <xsl:text/>
                <xsl:value-of select="$cite"/>
-               <xsl:text/> is a software ref with a host (<xsl:text/>
+               <xsl:text/> is a software ref with a source (<xsl:text/>
                <xsl:value-of select="source[1]"/>
                <xsl:text/>) known to register dois starting with '10.5281/zenodo'. Should it have a link in the format 'https://doi.org/10.5281/zenodo...'?</svrl:text>
          </svrl:successful-report>
@@ -40519,7 +40519,7 @@
             </xsl:attribute>
             <svrl:text>[software-doi-test-2] <xsl:text/>
                <xsl:value-of select="$cite"/>
-               <xsl:text/> is a software ref with a host (<xsl:text/>
+               <xsl:text/> is a software ref with a source (<xsl:text/>
                <xsl:value-of select="source[1]"/>
                <xsl:text/>) known to register dois starting with '10.6084/m9.figshare'. Should it have a link in the format 'https://doi.org/10.6084/m9.figshare...'?</svrl:text>
          </svrl:successful-report>
