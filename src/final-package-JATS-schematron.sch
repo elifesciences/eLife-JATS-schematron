@@ -7491,7 +7491,7 @@
       
       <report test="matches(.,'\d')" role="warning" id="city-number-presence">city contains a number, which is almost certainly incorrect - <value-of select="."/>.</report>
       
-      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')" role="warning" id="city-street-presence">city likely contains a street or building name, which is almost certainly incorrect - <value-of select="."/>.</report>
+      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')" role="warning" id="city-street-presence">city likely contains a street or building name, which is almost certainly incorrect - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="institution-tests-pattern">
@@ -7510,7 +7510,7 @@
       <report test="matches(.,'�')" role="error" id="institution-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed.</report>
       
-      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex ')" role="warning" id="institution-street-presence">institution likely contains a street or building name, which is likely to be incorrect - <value-of select="."/>.</report>
+      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')" role="warning" id="institution-street-presence">institution likely contains a street or building name, which is likely to be incorrect - <value-of select="."/>.</report>
       
     </rule>
   </pattern>
@@ -7702,17 +7702,17 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-6" test="matches(lower-case(publisher-name[1]),'r: a language and environment for statistical computing')" role="error" id="R-test-6">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name '<value-of select="publisher-name"/>' but this is the data-title.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-7" test="matches($lc,'r: a language and environment for statistical computing') and (lower-case(publisher-name[1]) != 'r foundation for statistical computing')" role="error" id="R-test-7">software ref '<value-of select="ancestor::ref/@id"/>' with the title '<value-of select="data-title"/>' must have a publisher-name element (Software host) which contains 'R Foundation for Statistical Computing'.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-7" test="matches($lc,'r: a language and environment for statistical computing') and (lower-case(publisher-name[1]) != 'r foundation for statistical computing')" role="error" id="R-test-7">software ref '<value-of select="ancestor::ref/@id"/>' with the title '<value-of select="data-title"/>' must have a publisher-name element which contains 'R Foundation for Statistical Computing'.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-replacement-character-presence" test="matches(.,'�')" role="error" id="software-replacement-character-presence">software reference contains the replacement character '�' which is unallowed - <value-of select="."/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-1" test="source and publisher-name" role="error" id="ref-software-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has both a source (Software name) - <value-of select="source[1]"/> - and a publisher-name (Software host) - <value-of select="publisher-name[1]"/> - which is incorrect. It should have either one or the other.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-1" test="source and publisher-name" role="error" id="ref-software-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has both a source - <value-of select="source[1]"/> - and a publisher-name - <value-of select="publisher-name[1]"/> - which is incorrect. It should have either one or the other.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-2" test="source or publisher-name" role="error" id="ref-software-test-2">software ref '<value-of select="ancestor::ref/@id"/>' with the title - <value-of select="data-title"/> - must contain either one source element (Software name) or one publisher-name element (Software host).</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-2" test="source or publisher-name" role="error" id="ref-software-test-2">software ref '<value-of select="ancestor::ref/@id"/>' with the title - <value-of select="data-title"/> - must contain either one source element or one publisher-name element.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-3" test="matches(lower-case(publisher-name[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab')" role="error" id="ref-software-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name (Software host) - <value-of select="publisher-name[1]"/>. Since this is a software source, it should be captured in a source element. Please move into the Software name field (rather than Software host).</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-3" test="matches(lower-case(publisher-name[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab')" role="error" id="ref-software-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name - <value-of select="publisher-name[1]"/>. Since this is a software source, it should be captured in a source element. Please move into the source field (rather than publisher).</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-4" test="matches(lower-case(source[1]),'schr[öo]dinger|r foundation|rstudio ,? inc|mathworks| llc| ltd')" role="error" id="ref-software-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a source (Software name) - <value-of select="source[1]"/>. Since this is a software publisher, it should be captured in a publisher-name element. Please move into the Software host field.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-4" test="matches(lower-case(source[1]),'schr[öo]dinger|r foundation|rstudio ,? inc|mathworks| llc| ltd')" role="error" id="ref-software-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a source - <value-of select="source[1]"/>. Since this is a software publisher, it should be captured in a publisher-name element. Please move into the Software publisher field.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-5" test="(normalize-space(lower-case(source[1]))='github') and not(version)" role="warning" id="ref-software-test-5">
         <value-of select="source[1]"/> software ref (with id '<value-of select="ancestor::ref/@id"/>') does not have a version number. Is this correct?</report>
@@ -8487,10 +8487,10 @@
       <let name="host" value="lower-case(source[1])"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-doi-test-1" test="$host='zenodo' and not(contains(ext-link,'10.5281/zenodo'))" role="warning" id="software-doi-test-1">
-        <value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>) known to register dois starting with '10.5281/zenodo'. Should it have a link in the format 'https://doi.org/10.5281/zenodo...'?</report>
+        <value-of select="$cite"/> is a software ref with a source (<value-of select="source[1]"/>) known to register dois starting with '10.5281/zenodo'. Should it have a link in the format 'https://doi.org/10.5281/zenodo...'?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-doi-test-2" test="$host='figshare' and not(contains(ext-link,'10.6084/m9.figshare'))" role="warning" id="software-doi-test-2">
-        <value-of select="$cite"/> is a software ref with a host (<value-of select="source[1]"/>) known to register dois starting with '10.6084/m9.figshare'. Should it have a link in the format 'https://doi.org/10.6084/m9.figshare...'?</report>
+        <value-of select="$cite"/> is a software ref with a source (<value-of select="source[1]"/>) known to register dois starting with '10.6084/m9.figshare'. Should it have a link in the format 'https://doi.org/10.6084/m9.figshare...'?</report>
       
     </rule>
   </pattern>

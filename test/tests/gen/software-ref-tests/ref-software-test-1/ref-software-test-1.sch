@@ -1168,7 +1168,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
       <let name="lc" value="lower-case(data-title[1])"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-1" test="source and publisher-name" role="error" id="ref-software-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has both a source (Software name) - <value-of select="source[1]"/> - and a publisher-name (Software host) - <value-of select="publisher-name[1]"/> - which is incorrect. It should have either one or the other.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-1" test="source and publisher-name" role="error" id="ref-software-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has both a source - <value-of select="source[1]"/> - and a publisher-name - <value-of select="publisher-name[1]"/> - which is incorrect. It should have either one or the other.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

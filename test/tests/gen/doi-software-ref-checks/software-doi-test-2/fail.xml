@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="software-doi-test-2.sch"?>
 <!--Context: element-citation[(@publication-type='software') and year and source]
 Test: report    $host='figshare' and not(contains(ext-link,'10.6084/m9.figshare'))
-Message:  is a software ref with a host () known to register dois starting with '10.6084/m9.figshare'. Should it have a link in the format 'https://doi.org/10.6084/m9.figshare...'? -->
+Message:  is a software ref with a source () known to register dois starting with '10.6084/m9.figshare'. Should it have a link in the format 'https://doi.org/10.6084/m9.figshare...'? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <element-citation publication-type="software">

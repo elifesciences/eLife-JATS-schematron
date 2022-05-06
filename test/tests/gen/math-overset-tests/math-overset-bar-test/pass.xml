@@ -4,6 +4,6 @@ Test: report    mml:mo='−'
 Message:  contains character(s) that are overset by a minus sign (). Has the latex \overset{}{} function been used, and should the \bar{} function (or \overline{} if covering numerous characters) be used instead? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <mml:mrow><mml:mover><mml:mi>g</mml:mi><mml:mo stretchy="false">&#x00AF;</mml:mo></mml:mover></mml:mrow>
+    <mml:mrow><mml:mover><mml:mi>g</mml:mi><mml:mo stretchy="false">¯</mml:mo></mml:mover></mml:mrow>
   </article>
 </root>
