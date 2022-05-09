@@ -2962,6 +2962,18 @@
         <x:expect-not-assert id="funding-group-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="wellcome-fund-statement-tests">
+      <x:scenario label="wellcome-fund-statement-pass">
+        <x:context href="../tests/gen/wellcome-fund-statement-tests/wellcome-fund-statement/pass.xml"/>
+        <x:expect-not-assert id="wellcome-fund-statement" role="warning"/>
+        <x:expect-not-assert id="wellcome-fund-statement-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="wellcome-fund-statement-fail">
+        <x:context href="../tests/gen/wellcome-fund-statement-tests/wellcome-fund-statement/fail.xml"/>
+        <x:expect-assert id="wellcome-fund-statement" role="warning"/>
+        <x:expect-not-assert id="wellcome-fund-statement-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="award-group-tests">
       <x:scenario label="award-group-test-2-pass">
         <x:context href="../tests/gen/award-group-tests/award-group-test-2/pass.xml"/>

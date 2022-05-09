@@ -1165,19 +1165,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="table-xref-pattern">
-    <rule context="xref[@ref-type='table']" id="table-xref-conformance">
-      <let name="rid" value="tokenize(@rid,'\s')[1]"/>
-      <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
-      <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
-      <let name="pre-text" value="preceding-sibling::text()[1]"/>
-      <let name="post-text" value="following-sibling::text()[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-3" test="matches($post-text,'^[\)][A-Za-z0-9]')" role="error" id="table-xref-test-3">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+  <pattern id="article-metadata">
+    <rule context="article-meta/funding-group[descendant::institution[lower-case(.)=('wellcome','wellcome trust')]]/funding-statement" id="wellcome-fund-statement-tests">
+      <assert test="matches(lower-case(.),'for the purpose of open access, the authors have applied a cc by public copyright license to any author accepted manuscript version arising from this submission\.$')" role="warning" id="wellcome-fund-statement">This article has Wellcome funding declared, but the funding statement does not end with "For the purpose of Open Access, the authors have applied a CC BY public copyright license to any Author Accepted Manuscript version arising from this submission." is that correct? The funding statement is currently <value-of select="."/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='table']" role="error" id="table-xref-conformance-xspec-assert">xref[@ref-type='table'] must be present.</assert>
+      <assert test="descendant::article-meta/funding-group[descendant::institution[lower-case(.)=('wellcome','wellcome trust')]]/funding-statement" role="error" id="wellcome-fund-statement-tests-xspec-assert">article-meta/funding-group[descendant::institution[lower-case(.)=('wellcome','wellcome trust')]]/funding-statement must be present.</assert>
     </rule>
   </pattern>
 </schema>

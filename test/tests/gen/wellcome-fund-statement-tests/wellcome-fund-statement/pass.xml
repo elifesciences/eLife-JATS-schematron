@@ -1,0 +1,21 @@
+<?oxygen SCHSchema="wellcome-fund-statement.sch"?>
+<!--Context: article-meta/funding-group[descendant::institution[lower-case(.)=('wellcome','wellcome trust')]]/funding-statement
+Test: assert    matches(lower-case(.),'for the purpose of open access, the authors have applied a cc by public copyright license to any author accepted manuscript version arising from this submission\.$')
+Message: This article has Wellcome funding declared, but the funding statement does not end with "For the purpose of Open Access, the authors have applied a CC BY public copyright license to any Author Accepted Manuscript version arising from this submission." is that correct? The funding statement is currently . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <funding-group>
+        <award-group id="fund1">
+          <funding-source>
+            <institution-wrap>
+              <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100010269</institution-id>
+              <institution>Wellcome Trust</institution>
+            </institution-wrap>
+          </funding-source>
+          </award-group>
+        <funding-statement>The funders had no role in study design, data collection and interpretation, or the decision to submit the work for publication. For the purpose of Open Access, the authors have applied a CC BY public copyright license to any Author Accepted Manuscript version arising from this submission.</funding-statement>
+      </funding-group>
+    </article-meta>
+  </article>
+</root>

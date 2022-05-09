@@ -1167,7 +1167,7 @@
   </xsl:function>
   <pattern id="table-xref-pattern">
     <rule context="xref[@ref-type='table']" id="table-xref-conformance">
-      <let name="rid" value="@rid"/>
+      <let name="rid" value="tokenize(@rid,'\s')[1]"/>
       <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
       <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
