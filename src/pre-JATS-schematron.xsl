@@ -15081,6 +15081,34 @@
          </svrl:successful-report>
       </xsl:if>
 
+		    <!--REPORT error-->
+      <xsl:if test="matches(.,'\p{Zs}\p{Zs}\p{Zs}\p{Zs}+$') and not(matches(.,'\s\s\s\s+$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Zs}\p{Zs}\p{Zs}\p{Zs}+$') and not(matches(.,'\s\s\s\s+$'))">
+            <xsl:attribute name="id">math-test-20</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[math-test-20] <xsl:text/>
+               <xsl:value-of select="parent::*/name()"/>
+               <xsl:text/> ends with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the left. Please esnure they are removed.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="matches(.,'^\p{Zs}\p{Zs}\p{Zs}\p{Zs}+') and not(matches(.,'^\s\s\s\s+'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^\p{Zs}\p{Zs}\p{Zs}\p{Zs}+') and not(matches(.,'^\s\s\s\s+'))">
+            <xsl:attribute name="id">math-test-21</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[math-test-21] <xsl:text/>
+               <xsl:value-of select="parent::*/name()"/>
+               <xsl:text/> starts with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the right. Please esnure they are removed.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
 		    <!--REPORT warning-->
       <xsl:if test="matches(.,'(&amp;|§|§amp;)#x\d|[^\p{L}\p{N}][gl]t;')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'(&amp;|§|§amp;)#x\d|[^\p{L}\p{N}][gl]t;')">

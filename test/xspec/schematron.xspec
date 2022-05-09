@@ -5309,6 +5309,26 @@
         <x:expect-report id="math-test-19" role="warning"/>
         <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="math-test-20-pass">
+        <x:context href="../tests/gen/math-tests/math-test-20/pass.xml"/>
+        <x:expect-not-report id="math-test-20" role="error"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-test-20-fail">
+        <x:context href="../tests/gen/math-tests/math-test-20/fail.xml"/>
+        <x:expect-report id="math-test-20" role="error"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-test-21-pass">
+        <x:context href="../tests/gen/math-tests/math-test-21/pass.xml"/>
+        <x:expect-not-report id="math-test-21" role="error"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-test-21-fail">
+        <x:context href="../tests/gen/math-tests/math-test-21/fail.xml"/>
+        <x:expect-report id="math-test-21" role="error"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="math-broken-unicode-test-pass">
         <x:context href="../tests/gen/math-tests/math-broken-unicode-test/pass.xml"/>
         <x:expect-not-report id="math-broken-unicode-test" role="warning"/>
