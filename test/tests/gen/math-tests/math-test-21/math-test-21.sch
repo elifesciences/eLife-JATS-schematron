@@ -1169,7 +1169,7 @@
     <rule context="mml:math" id="math-tests">
       <let name="data" value="replace(normalize-space(.),'\p{Zs}','')"/>
       <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
-      <report test="matches(.,'^\p{Zs}{4,}') and not(matches(.,'^\s{4,}'))" role="error" id="math-test-21">
+      <report test="matches(.,'^\p{Zs}\p{Zs}\p{Zs}\p{Zs}+') and not(matches(.,'^\s\s\s\s+'))" role="error" id="math-test-21">
         <value-of select="parent::*/name()"/> starts with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the right. Please esnure they are removed.</report>
     </rule>
   </pattern>

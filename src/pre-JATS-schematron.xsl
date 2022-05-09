@@ -15082,8 +15082,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="matches(.,'\p{Zs}{4,}$') and not(matches(.,'\s{4,}$'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Zs}{4,}$') and not(matches(.,'\s{4,}$'))">
+      <xsl:if test="matches(.,'\p{Zs}\p{Zs}\p{Zs}\p{Zs}+$') and not(matches(.,'\s\s\s\s+$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Zs}\p{Zs}\p{Zs}\p{Zs}+$') and not(matches(.,'\s\s\s\s+$'))">
             <xsl:attribute name="id">math-test-20</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -15096,8 +15096,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="matches(.,'^\p{Zs}{4,}') and not(matches(.,'^\s{4,}'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^\p{Zs}{4,}') and not(matches(.,'^\s{4,}'))">
+      <xsl:if test="matches(.,'^\p{Zs}\p{Zs}\p{Zs}\p{Zs}+') and not(matches(.,'^\s\s\s\s+'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^\p{Zs}\p{Zs}\p{Zs}\p{Zs}+') and not(matches(.,'^\s\s\s\s+'))">
             <xsl:attribute name="id">math-test-21</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">

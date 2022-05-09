@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="math-test-21.sch"?>
 <!--Context: mml:math
-Test: report    matches(.,'^\p{Zs}{4,}') and not(matches(.,'^\s{4,}'))
+Test: report    matches(.,'^\p{Zs}\p{Zs}\p{Zs}\p{Zs}+') and not(matches(.,'^\s\s\s\s+'))
 Message:  starts with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the right. Please esnure they are removed. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
