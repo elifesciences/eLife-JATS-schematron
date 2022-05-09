@@ -2957,6 +2957,14 @@
 	    role="warning" 
 	    id="funding-group-test-4">Is the funding-statement correct? There are funders, but the statement is '<value-of select="funding-statement[1]"/>'. If there are funders it should usually be 'The funders had no role in study design, data collection and interpretation, or the decision to submit the work for publication.'</report>
     </rule>
+    
+    <rule context="article-meta/funding-group[descendant::institution[lower-case(.)=('wellcome','wellcome trust')]]/funding-statement" id="wellcome-fund-statement-tests">
+      
+      <assert test="matches(lower-case(.),'for the purpose of open access, the authors have applied a cc by public copyright license to any author accepted manuscript version arising from this submission\.$')" 
+        role="warning" 
+        id="wellcome-fund-statement">This article has Wellcome funding declared, but the funding statement does not end with "For the purpose of Open Access, the authors have applied a CC BY public copyright license to any Author Accepted Manuscript version arising from this submission." is that correct? The funding statement is currently <value-of select="."/>.</assert>
+      
+    </rule>
 	
 	<rule context="funding-group/award-group" id="award-group-tests">
 	  <let name="id" value="@id"/>
@@ -9517,14 +9525,14 @@ else self::*/local-name() = $allowed-p-blocks"
   
   <pattern id="table-xref-pattern">
     <rule context="xref[@ref-type='table']" id="table-xref-conformance">
-      <let name="rid" value="@rid"/>
+      <let name="rid" value="tokenize(@rid,'\s')[1]"/>
       <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
       <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-1" 
-        test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app')) and not(contains($rid,'resp'))" 
+        test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app')) and not(contains($rid,'resp')) and not(contains($rid,'sa'))" 
         role="warning" 
         id="table-xref-conformity-1"><value-of select="."/> - citation points to table, but does not include the string 'Table', which is very unusual.</report>
       
@@ -9534,7 +9542,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="table-xref-conformity-2"><value-of select="."/> - citation points to an Appendix table, but does not include the string 'table', which is very unusual.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-3" 
-        test="(not(contains($rid,'app') or contains($rid,'sa'))) and ($text-no != $rid-no) and not(contains(.,'–'))" 
+        test="(not(contains($rid,'app') or contains($rid,'sa'))) and ($text-no != $rid-no) and not(contains(.,'–')) and not(contains(.,' and '))" 
         role="warning" 
         id="table-xref-conformity-3"><value-of select="."/> - Citation content does not match what it directs to.</report>
       
@@ -9544,7 +9552,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="table-xref-conformity-4"><value-of select="."/> - Citation content does not match what it directs to.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-5" 
-        test="(contains($rid,'sa')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–'))" 
+        test="(contains($rid,'sa')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–')) and not(contains(.,' and '))" 
         role="warning" 
         id="table-xref-conformity-5"><value-of select="."/> - Citation content does not match what it directs to.</report>
       
