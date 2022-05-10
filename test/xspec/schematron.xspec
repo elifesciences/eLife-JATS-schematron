@@ -964,35 +964,37 @@
         <x:expect-not-assert id="auth-cont-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="duplicated-cont-tests">
+      <x:scenario label="dupe-cont-test-1-pass">
+        <x:context href="../tests/gen/duplicated-cont-tests/dupe-cont-test-1/pass.xml"/>
+        <x:expect-not-assert id="dupe-cont-test-1" role="error"/>
+        <x:expect-not-assert id="duplicated-cont-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dupe-cont-test-1-fail">
+        <x:context href="../tests/gen/duplicated-cont-tests/dupe-cont-test-1/fail.xml"/>
+        <x:expect-assert id="dupe-cont-test-1" role="error"/>
+        <x:expect-not-assert id="duplicated-cont-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="auth-cont-tests-v2">
-      <x:scenario label="pre-auth-cont-test-1-v2-pass">
-        <x:context href="../tests/gen/auth-cont-tests-v2/pre-auth-cont-test-1-v2/pass.xml"/>
-        <x:expect-not-assert id="pre-auth-cont-test-1-v2" role="warning"/>
+      <x:scenario label="auth-cont-test-1-v2-pass">
+        <x:context href="../tests/gen/auth-cont-tests-v2/auth-cont-test-1-v2/pass.xml"/>
+        <x:expect-not-assert id="auth-cont-test-1-v2" role="warning"/>
         <x:expect-not-assert id="auth-cont-tests-v2-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="pre-auth-cont-test-1-v2-fail">
-        <x:context href="../tests/gen/auth-cont-tests-v2/pre-auth-cont-test-1-v2/fail.xml"/>
-        <x:expect-assert id="pre-auth-cont-test-1-v2" role="warning"/>
+      <x:scenario label="auth-cont-test-1-v2-fail">
+        <x:context href="../tests/gen/auth-cont-tests-v2/auth-cont-test-1-v2/fail.xml"/>
+        <x:expect-assert id="auth-cont-test-1-v2" role="warning"/>
         <x:expect-not-assert id="auth-cont-tests-v2-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="final-auth-cont-test-1-v2-pass">
-        <x:context href="../tests/gen/auth-cont-tests-v2/final-auth-cont-test-1-v2/pass.xml"/>
-        <x:expect-not-assert id="final-auth-cont-test-1-v2" role="error"/>
+      <x:scenario label="auth-cont-test-2-v2-pass">
+        <x:context href="../tests/gen/auth-cont-tests-v2/auth-cont-test-2-v2/pass.xml"/>
+        <x:expect-not-report id="auth-cont-test-2-v2" role="warning"/>
         <x:expect-not-assert id="auth-cont-tests-v2-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="final-auth-cont-test-1-v2-fail">
-        <x:context href="../tests/gen/auth-cont-tests-v2/final-auth-cont-test-1-v2/fail.xml"/>
-        <x:expect-assert id="final-auth-cont-test-1-v2" role="error"/>
-        <x:expect-not-assert id="auth-cont-tests-v2-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="final-auth-cont-test-2-v2-pass">
-        <x:context href="../tests/gen/auth-cont-tests-v2/final-auth-cont-test-2-v2/pass.xml"/>
-        <x:expect-not-report id="final-auth-cont-test-2-v2" role="warning"/>
-        <x:expect-not-assert id="auth-cont-tests-v2-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="final-auth-cont-test-2-v2-fail">
-        <x:context href="../tests/gen/auth-cont-tests-v2/final-auth-cont-test-2-v2/fail.xml"/>
-        <x:expect-report id="final-auth-cont-test-2-v2" role="warning"/>
+      <x:scenario label="auth-cont-test-2-v2-fail">
+        <x:context href="../tests/gen/auth-cont-tests-v2/auth-cont-test-2-v2/fail.xml"/>
+        <x:expect-report id="auth-cont-test-2-v2" role="warning"/>
         <x:expect-not-assert id="auth-cont-tests-v2-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -1038,6 +1040,18 @@
         <x:context href="../tests/gen/collab-cont-tests-v2/final-collab-cont-test-2-v2/fail.xml"/>
         <x:expect-report id="final-collab-cont-test-2-v2" role="warning"/>
         <x:expect-not-assert id="collab-cont-tests-v2-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="duplicated-cont-tests-v2">
+      <x:scenario label="dupe-cont-test-v2-pass">
+        <x:context href="../tests/gen/duplicated-cont-tests-v2/dupe-cont-test-v2/pass.xml"/>
+        <x:expect-not-assert id="dupe-cont-test-v2" role="error"/>
+        <x:expect-not-assert id="duplicated-cont-tests-v2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dupe-cont-test-v2-fail">
+        <x:context href="../tests/gen/duplicated-cont-tests-v2/dupe-cont-test-v2/fail.xml"/>
+        <x:expect-assert id="dupe-cont-test-v2" role="error"/>
+        <x:expect-not-assert id="duplicated-cont-tests-v2-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="collab-tests">
@@ -2173,6 +2187,16 @@
       <x:scenario label="permissions-test-8-fail">
         <x:context href="../tests/gen/cc-by-permissions-tests/permissions-test-8/fail.xml"/>
         <x:expect-assert id="permissions-test-8" role="error"/>
+        <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="permissions-test-16-pass">
+        <x:context href="../tests/gen/cc-by-permissions-tests/permissions-test-16/pass.xml"/>
+        <x:expect-not-report id="permissions-test-16" role="warning"/>
+        <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="permissions-test-16-fail">
+        <x:context href="../tests/gen/cc-by-permissions-tests/permissions-test-16/fail.xml"/>
+        <x:expect-report id="permissions-test-16" role="warning"/>
         <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

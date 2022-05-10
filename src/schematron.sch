@@ -1818,22 +1818,29 @@
         id="auth-cont-test-1"><value-of select="e:get-name(name[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
     </rule>
     
+    <rule context="article[e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]]" id="duplicated-cont-tests">
+      <let name="cont-rid" value="xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]/@rid"/>
+      <let name="cont-fn" value="ancestor::article//back//fn[@id=$cont-rid]/p"/>
+      <let name="con-vals" value="for $x in tokenize(string-join($cont-fn,', '),', ') return replace(lower-case($x),'\p{Zs}$|^\p{Zs}','')"/>
+      <let name="indistinct-conts" value="for $val in distinct-values($con-vals) return $val[count($con-vals[. = $val]) gt 1]"/>
+      
+      <assert test="empty($indistinct-conts)" 
+        role="error"
+        flag="version-1"
+        id="dupe-cont-test-1">Author <value-of select="if (name) then e:get-name(name[1]) else if (collab) then (e:get-collab(collab[1])) else ('with no name')"/> has duplicated contributions which is incorrect. The indistinct contributions are: <value-of select="string-join($indistinct-conts,'; ')"/>.</assert>
+    </rule>
+    
     <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and not(child::collab) and not(ancestor::collab)]" id="auth-cont-tests-v2">
       
       <assert test="role" 
         role="warning" 
         flag="version-2"
-        id="pre-auth-cont-test-1-v2"><value-of select="e:get-name(name[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
-      
-      <assert test="role" 
-        role="error" 
-        flag="version-2"
-        id="final-auth-cont-test-1-v2"><value-of select="e:get-name(name[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
+        id="auth-cont-test-1-v2"><value-of select="e:get-name(name[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
       
       <report test="role and not(role[@vocab='credit'])" 
         role="warning" 
         flag="version-2"
-        id="final-auth-cont-test-2-v2"><value-of select="e:get-name(name[1])"/> has no CRediT contributions. Is that correct?</report>
+        id="auth-cont-test-2-v2"><value-of select="e:get-name(name[1])"/> has no CRediT contributions. Is that correct?</report>
     </rule>
     
     <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and child::collab]" id="collab-cont-tests">
@@ -1860,6 +1867,16 @@
         role="warning" 
         flag="version-2"
         id="final-collab-cont-test-2-v2"><value-of select="e:get-collab(child::collab[1])"/> has no CRediT contributions. Is that correct?</report>
+    </rule>
+    
+    <rule context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']" id="duplicated-cont-tests-v2">
+      <let name="roles" value="for $x in role return lower-case($x/data())"/>
+      <let name="indistinct-conts" value="for $role in distinct-values($roles) return $role[count($roles[. = $role]) gt 1]"/>
+     
+      <assert test="empty($indistinct-conts)" 
+        role="error" 
+        id="dupe-cont-test-v2">Author <value-of select="if (name) then e:get-name(name[1]) else if (collab) then (e:get-collab(collab[1])) else ('with no name')"/> has duplicated contributions - <value-of select="$indistinct-conts"/> - which is incorrect.</assert>
+      
     </rule>
     
     <rule context="article//article-meta/contrib-group[1]/contrib[@contrib-type='author']/collab/contrib-group" 
@@ -2514,6 +2531,10 @@
         test="copyright-statement = concat('© ',copyright-year,', ',copyright-holder)" 
         role="error" 
         id="permissions-test-8">copyright-statement must contain a concatenation of '© ', copyright-year, and copyright-holder. Currently it is <value-of select="copyright-statement"/> when according to the other values it should be <value-of select="concat('© ',copyright-year,', ',copyright-holder)"/></assert>
+      
+      <report test="ancestor::article-meta/contrib-group[1]/aff[country='United States']//institution[matches(lower-case(.),'national institutes of health|office of the director|national cancer institute|^nci$|national eye institute|^nei$|national heart,? lung,? and blood institute|^nhlbi$|national human genome research institute|^nhgri$|national institute on aging|^nia$|national institute on alcohol abuse and alcoholism|^niaaa$|national institute of allergy and infectious diseases|^niaid$|national institute of arthritis and musculoskeletal and skin diseases|^niams$|national institute of biomedical imaging and bioengineering|^nibib$|national institute of child health and human development|^nichd$|national institute on deafness and other communication disorders|^nidcd$|national institute of dental and craniofacial research|^nidcr$|national institute of diabetes and digestive and kidney diseases|^niddk$|national institute on drug abuse|^nida$|national institute of environmental health sciences|^niehs$|national institute of general medical sciences|^nigms$|national institute of mental health|^nimh$|national institute on minority health and health disparities|^nimhd$|national institute of neurological disorders and stroke|^ninds$|national institute of nursing research|^ninr$|national library of medicine|^nlm$|center for information technology|^cit$|center for scientific review|^csr$|fogarty international center|^fic$|national center for advancing translational sciences|^ncats$|national center for complementary and integrative health|^nccih$|nih clinical center|^nih cc$')]" 
+        role="warning" 
+        id="permissions-test-16">This article is CC-BY, but one or more of the authors is affiliation with the NIH (<value-of select="string-join(for $x in ancestor::article-meta/contrib-group[1]/aff[country='United States']//institution[matches(lower-case(.),'national institutes of health|office of the director|national cancer institute|^nci$|national eye institute|^nei$|national heart,? lung,? and blood institute|^nhlbi$|national human genome research institute|^nhgri$|national institute on aging|^nia$|national institute on alcohol abuse and alcoholism|^niaaa$|national institute of allergy and infectious diseases|^niaid$|national institute of arthritis and musculoskeletal and skin diseases|^niams$|national institute of biomedical imaging and bioengineering|^nibib$|national institute of child health and human development|^nichd$|national institute on deafness and other communication disorders|^nidcd$|national institute of dental and craniofacial research|^nidcr$|national institute of diabetes and digestive and kidney diseases|^niddk$|national institute on drug abuse|^nida$|national institute of environmental health sciences|^niehs$|national institute of general medical sciences|^nigms$|national institute of mental health|^nimh$|national institute on minority health and health disparities|^nimhd$|national institute of neurological disorders and stroke|^ninds$|national institute of nursing research|^ninr$|national library of medicine|^nlm$|center for information technology|^cit$|center for scientific review|^csr$|fogarty international center|^fic$|national center for advancing translational sciences|^ncats$|national center for complementary and integrative health|^nccih$|nih clinical center|^nih cc$')] return $x,'; ')"/>). Should it be CC0 instead?</report>
       
     </rule>
     

@@ -1,0 +1,26 @@
+<?oxygen SCHSchema="dupe-cont-test-v2.sch"?>
+<!--Context: article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']
+Test: assert    empty($indistinct-conts)
+Message: Author  has duplicated contributions -  - which is incorrect. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Claus</surname>
+            <given-names>Santa</given-names>
+          </name>
+          <role vocab="credit" vocab-identifier="http://credit.niso.org/" vocab-term="Conceptualization" vocab-term-identifier="http://credit.niso.org/contributor-roles/conceptualization/">Conceptualization</role>
+          <role vocab="credit" vocab-identifier="http://credit.niso.org/" vocab-term="Conceptualization" vocab-term-identifier="http://credit.niso.org/contributor-roles/conceptualization/">Conceptualization</role>
+        </contrib>
+      </contrib-group>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>schema-version</meta-name>
+          <meta-value>2.0.0</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </article>
+</root>

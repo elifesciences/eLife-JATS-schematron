@@ -1,0 +1,43 @@
+<?oxygen SCHSchema="dupe-cont-test-1.sch"?>
+<!--Context: article[e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]]
+Test: assert    empty($indistinct-conts)
+Message: Author  has duplicated contributions which is incorrect. The indistinct contributions are: . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zoolander</surname>
+            <given-names>Derek</given-names>
+          </name>
+          <xref ref-type="fn" rid="con1"/>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hansen</surname>
+          </name>
+          <xref ref-type="fn" rid="con2"/>
+          <xref ref-type="fn" rid="con3"/>
+        </contrib>
+      </contrib-group>
+    </article-meta>
+    <back>
+      <sec sec-type="additional-information" id="s5">
+        <title>Additional information</title>
+        <fn-group content-type="author-contribution">
+          <title>Author contributions</title>
+          <fn fn-type="con" id="con1">
+            <p>Visualization, Writing - original draft, Writing - review and editing, Writing - review and editing, Visualization</p>
+          </fn>
+          <fn fn-type="con" id="con2">
+            <p>Conceptualization, Visualization</p>
+          </fn>
+          <fn fn-type="con" id="con3">
+            <p>Visualization</p>
+          </fn>
+        </fn-group>
+      </sec>
+    </back>
+  </article>
+</root>
