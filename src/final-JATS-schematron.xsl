@@ -15541,8 +15541,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="if (contains($id,'keyresource')) then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,$notice-article-types)) then ()         else if (ancestor::app or ancestor::sub-article) then ()         else not(ancestor::article//xref[@rid = $id])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (contains($id,'keyresource')) then () else if (contains($id,'inline')) then () else if ($article-type = ($features-article-types,$notice-article-types)) then () else if (ancestor::app or ancestor::sub-article) then () else not(ancestor::article//xref[@rid = $id])">
+      <xsl:if test="if (contains($id,'keyresource')) then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,$notice-article-types)) then ()         else if (ancestor::app or ancestor::sub-article) then ()         else not(ancestor::article//xref[tokenize(@rid,'\s') = $id])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (contains($id,'keyresource')) then () else if (contains($id,'inline')) then () else if ($article-type = ($features-article-types,$notice-article-types)) then () else if (ancestor::app or ancestor::sub-article) then () else not(ancestor::article//xref[tokenize(@rid,'\s') = $id])">
             <xsl:attribute name="id">final-table-wrap-cite-1</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#final-table-wrap-cite-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -15556,8 +15556,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="if (contains($id,'inline')) then ()         else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))         else ()">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (contains($id,'inline')) then () else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id])) else ()">
+      <xsl:if test="if (contains($id,'inline')) then ()         else if ($article-type = $features-article-types) then (not(ancestor::article//xref[tokenize(@rid,'\s') = $id]))         else ()">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (contains($id,'inline')) then () else if ($article-type = $features-article-types) then (not(ancestor::article//xref[tokenize(@rid,'\s') = $id])) else ()">
             <xsl:attribute name="id">feat-table-wrap-cite-1</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#feat-table-wrap-cite-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
