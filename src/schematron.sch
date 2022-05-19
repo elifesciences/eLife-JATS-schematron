@@ -4452,7 +4452,7 @@ else self::*/local-name() = $allowed-p-blocks"
         test="if (contains($id,'keyresource')) then ()
         else if (contains($id,'inline')) then ()
         else if ($article-type = ($features-article-types,$notice-article-types)) then ()
-        else not(ancestor::article//xref[@rid = $id])" 
+        else not(ancestor::article//xref[tokenize(@rid,'\s') = $id])" 
         role="warning" 
         id="pre-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure to query the author asking for a citation.</report>
       
@@ -4461,13 +4461,13 @@ else self::*/local-name() = $allowed-p-blocks"
         else if (contains($id,'inline')) then ()
         else if ($article-type = ($features-article-types,$notice-article-types)) then ()
         else if (ancestor::app or ancestor::sub-article) then ()
-        else not(ancestor::article//xref[@rid = $id])" 
+        else not(ancestor::article//xref[tokenize(@rid,'\s') = $id])" 
         role="warning" 
         id="final-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#feat-table-wrap-cite-1" 
         test="if (contains($id,'inline')) then ()
-        else if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))
+        else if ($article-type = $features-article-types) then (not(ancestor::article//xref[tokenize(@rid,'\s') = $id]))
         else ()" 
         role="warning" 
         id="feat-table-wrap-cite-1">There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct?</report>

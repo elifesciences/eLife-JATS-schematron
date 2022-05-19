@@ -1170,7 +1170,7 @@
       <let name="id" value="@id"/>
       <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#final-table-wrap-cite-1" test="if (contains($id,'keyresource')) then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,$notice-article-types)) then ()         else if (ancestor::app or ancestor::sub-article) then ()         else not(ancestor::article//xref[@rid = $id])" role="warning" id="final-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#final-table-wrap-cite-1" test="if (contains($id,'keyresource')) then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,$notice-article-types)) then ()         else if (ancestor::app or ancestor::sub-article) then ()         else not(ancestor::article//xref[tokenize(@rid,'\s') = $id])" role="warning" id="final-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
