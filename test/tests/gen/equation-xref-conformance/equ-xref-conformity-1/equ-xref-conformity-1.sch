@@ -1167,8 +1167,8 @@
   </xsl:function>
   <pattern id="equation-xref-pattern">
     <rule context="xref[@ref-type='disp-formula']" id="equation-xref-conformance">
-      <let name="rid" value="@rid"/>
-      <let name="label" value="translate(ancestor::article//disp-formula[@id = $rid]/label,'()','')"/>
+      <let name="rids" value="replace(@rid,'^\s|\s$','')"/>
+      <let name="labels" value="for $rid in tokenize($rids,'\s')[position()=(1,last())] return translate(ancestor::article//disp-formula[@id = $rid]/label,'()','')"/>
       <let name="prec-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-1" test="not(matches(.,'[Ee]quation')) and ($prec-text != ' and ') and ($prec-text != '–')" role="warning" id="equ-xref-conformity-1">

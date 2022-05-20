@@ -11652,8 +11652,10 @@
 
 	  <!--RULE par-tests-->
    <xsl:template match="funding-group//principal-award-recipient" priority="1000" mode="M144">
+      <xsl:variable name="authors" select="for $x in ancestor::article//article-meta/contrib-group[1]/contrib[@contrib-type='author']         return if ($x/name) then e:get-name($x/name[1])         else if ($x/collab) then e:get-collab($x/collab[1])         else ''"/>
+      <xsl:variable name="par-text" select="if (name) then e:get-name(name[1]) else e:get-collab(collab[1])"/>
 
-		<!--REPORT error-->
+		    <!--REPORT error-->
       <xsl:if test="normalize-space(.)='' and not(*)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)='' and not(*)">
             <xsl:attribute name="id">par-test-1</xsl:attribute>
@@ -11667,6 +11669,25 @@
                <xsl:text/> cannot be empty.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="$par-text = $authors"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$par-text = $authors">
+               <xsl:attribute name="id">par-test-2</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[par-test-2] Author name in funding section (<xsl:text/>
+                  <xsl:value-of select="$par-text"/>
+                  <xsl:text/>) does not match any of the author names in the author list: <xsl:text/>
+                  <xsl:value-of select="string-join($authors,', ')"/>
+                  <xsl:text/>.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M144"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M144"/>
@@ -30093,7 +30114,7 @@
 
 	  <!--RULE fig-xref-conformance-->
    <xsl:template match="xref[@ref-type='fig' and @rid]" priority="1000" mode="M458">
-      <xsl:variable name="rid" select="@rid"/>
+      <xsl:variable name="rid" select="tokenize(@rid,'\s')[1]"/>
       <xsl:variable name="type" select="e:fig-id-type($rid)"/>
       <xsl:variable name="no" select="normalize-space(replace(.,'[^0-9]+',''))"/>
       <xsl:variable name="target-no" select="replace($rid,'[^0-9]+','')"/>
@@ -30655,7 +30676,7 @@
 
 	  <!--RULE supp-file-xref-conformance-->
    <xsl:template match="xref[@ref-type='supplementary-material']" priority="1000" mode="M460">
-      <xsl:variable name="rid" select="@rid"/>
+      <xsl:variable name="rid" select="tokenize(@rid,'\s')[1]"/>
       <xsl:variable name="text-no" select="normalize-space(replace(.,'[^0-9]+',''))"/>
       <xsl:variable name="last-text-no" select="substring($text-no,string-length($text-no), 1)"/>
       <xsl:variable name="rid-no" select="replace($rid,'[^0-9]+','')"/>
@@ -30877,8 +30898,8 @@
 
 	  <!--RULE equation-xref-conformance-->
    <xsl:template match="xref[@ref-type='disp-formula']" priority="1000" mode="M461">
-      <xsl:variable name="rid" select="@rid"/>
-      <xsl:variable name="label" select="translate(ancestor::article//disp-formula[@id = $rid]/label,'()','')"/>
+      <xsl:variable name="rids" select="replace(@rid,'^\s|\s$','')"/>
+      <xsl:variable name="labels" select="for $rid in tokenize($rids,'\s')[position()=(1,last())] return translate(ancestor::article//disp-formula[@id = $rid]/label,'()','')"/>
       <xsl:variable name="prec-text" select="preceding-sibling::text()[1]"/>
       <xsl:variable name="post-text" select="following-sibling::text()[1]"/>
 
@@ -30897,25 +30918,22 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--ASSERT warning-->
-      <xsl:choose>
-         <xsl:when test="contains(.,$label)"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,$label)">
-               <xsl:attribute name="id">equ-xref-conformity-2</xsl:attribute>
-               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-2</xsl:attribute>
-               <xsl:attribute name="role">warning</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[equ-xref-conformity-2] equation link content does not match what it directs to (content = <xsl:text/>
-                  <xsl:value-of select="."/>
-                  <xsl:text/>; label = <xsl:text/>
-                  <xsl:value-of select="$label"/>
-                  <xsl:text/>). Is this correct?</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
+		    <!--REPORT warning-->
+      <xsl:if test="if (count($labels) gt 1) then (some $label in $labels satisfies not(contains(.,$label)))               else not(contains(.,$labels))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (count($labels) gt 1) then (some $label in $labels satisfies not(contains(.,$label))) else not(contains(.,$labels))">
+            <xsl:attribute name="id">equ-xref-conformity-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[equ-xref-conformity-2] equation link content does not match what it directs to (content = <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>; label(s) = <xsl:text/>
+               <xsl:value-of select="string-join($labels,'; ')"/>
+               <xsl:text/>). Is this correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
 
 		    <!--REPORT error-->
       <xsl:if test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')">

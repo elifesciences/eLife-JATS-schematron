@@ -2358,8 +2358,12 @@
   </pattern>
   <pattern id="par-tests-pattern">
     <rule context="funding-group//principal-award-recipient" id="par-tests">
+      <let name="authors" value="for $x in ancestor::article//article-meta/contrib-group[1]/contrib[@contrib-type='author']         return if ($x/name) then e:get-name($x/name[1])         else if ($x/collab) then e:get-collab($x/collab[1])         else ''"/>
+      <let name="par-text" value="if (name) then e:get-name(name[1]) else e:get-collab(collab[1])"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#par-test-1" test="normalize-space(.)='' and not(*)" role="error" id="par-test-1">[par-test-1] <name/> cannot be empty.</report>
+      
+      <assert test="$par-text = $authors" role="error" id="par-test-2">[par-test-2] Author name in funding section (<value-of select="$par-text"/>) does not match any of the author names in the author list: <value-of select="string-join($authors,', ')"/>.</assert>
       
     </rule>
   </pattern>
@@ -6213,7 +6217,7 @@
   
   <pattern id="fig-xref-conformance-pattern">
     <rule context="xref[@ref-type='fig' and @rid]" id="fig-xref-conformance">
-      <let name="rid" value="@rid"/>
+      <let name="rid" value="tokenize(@rid,'\s')[1]"/>
       <let name="type" value="e:fig-id-type($rid)"/>
       <let name="no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
@@ -6302,7 +6306,7 @@
   
   <pattern id="supp-file-xref-conformance-pattern">
     <rule context="xref[@ref-type='supplementary-material']" id="supp-file-xref-conformance">
-      <let name="rid" value="@rid"/>
+      <let name="rid" value="tokenize(@rid,'\s')[1]"/>
       <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
       <let name="last-text-no" value="substring($text-no,string-length($text-no), 1)"/>
       <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
@@ -6341,14 +6345,14 @@
   
   <pattern id="equation-xref-conformance-pattern">
     <rule context="xref[@ref-type='disp-formula']" id="equation-xref-conformance">
-      <let name="rid" value="@rid"/>
-      <let name="label" value="translate(ancestor::article//disp-formula[@id = $rid]/label,'()','')"/>
+      <let name="rids" value="replace(@rid,'^\s|\s$','')"/>
+      <let name="labels" value="for $rid in tokenize($rids,'\s')[position()=(1,last())] return translate(ancestor::article//disp-formula[@id = $rid]/label,'()','')"/>
       <let name="prec-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-1" test="not(matches(.,'[Ee]quation')) and ($prec-text != ' and ') and ($prec-text != '–')" role="warning" id="equ-xref-conformity-1">[equ-xref-conformity-1] <value-of select="."/> - link points to equation, but does not include the string 'Equation', which is unusual. Is it correct?</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-2" test="contains(.,$label)" role="warning" id="equ-xref-conformity-2">[equ-xref-conformity-2] equation link content does not match what it directs to (content = <value-of select="."/>; label = <value-of select="$label"/>). Is this correct?</assert>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-2" test="if (count($labels) gt 1) then (some $label in $labels satisfies not(contains(.,$label)))               else not(contains(.,$labels))" role="warning" id="equ-xref-conformity-2">[equ-xref-conformity-2] equation link content does not match what it directs to (content = <value-of select="."/>; label(s) = <value-of select="string-join($labels,'; ')"/>). Is this correct?</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-3" test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="equ-xref-conformity-3">[equ-xref-conformity-3] <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Equation citation appears to be a reference to an equation from a different paper, and therefore must be unlinked.</report>
       

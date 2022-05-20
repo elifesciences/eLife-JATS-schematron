@@ -1,0 +1,42 @@
+<?oxygen SCHSchema="par-test-2.sch"?>
+<!--Context: funding-group//principal-award-recipient
+Test: assert    $par-text = $authors
+Message: Author name in funding section () does not match any of the author names in the author list: . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zoolander</surname>
+            <given-names>Derek</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hansen</surname>
+          </name>
+        </contrib>
+      </contrib-group>
+      <funding-group>
+        <award-group id="fund1">
+          <principal-award-recipient>
+            <name>
+              <surname>Zoolander</surname>
+              <given-names>Dereks</given-names>
+            </name>
+          </principal-award-recipient>
+        </award-group>
+        <award-group id="fund1">
+          <principal-award-recipient>
+            <name>
+              <surname>Hansen</surname>
+              <given-names>S</given-names>
+            </name>
+          </principal-award-recipient>
+        </award-group>
+        <funding-statement>The funders had no role in study design, data collection and interpretation, or the decision to submit the work for publication.</funding-statement>
+      </funding-group>
+    </article-meta>
+  </article>
+</root>
