@@ -1167,7 +1167,7 @@
   </xsl:function>
   <pattern id="supp-xref-pattern">
     <rule context="xref[@ref-type='supplementary-material']" id="supp-file-xref-conformance">
-      <let name="rid" value="@rid"/>
+      <let name="rid" value="tokenize(@rid,'\s')[1]"/>
       <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
       <let name="last-text-no" value="substring($text-no,string-length($text-no), 1)"/>
       <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>

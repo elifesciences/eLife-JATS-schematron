@@ -1167,7 +1167,7 @@
   </xsl:function>
   <pattern id="figure-xref-pattern">
     <rule context="xref[@ref-type='fig' and @rid]" id="fig-xref-conformance">
-      <let name="rid" value="@rid"/>
+      <let name="rid" value="tokenize(@rid,'\s')[1]"/>
       <let name="type" value="e:fig-id-type($rid)"/>
       <let name="no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>

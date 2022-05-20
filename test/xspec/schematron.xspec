@@ -3269,6 +3269,16 @@
         <x:expect-report id="par-test-1" role="error"/>
         <x:expect-not-assert id="par-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="par-test-2-pass">
+        <x:context href="../tests/gen/par-tests/par-test-2/pass.xml"/>
+        <x:expect-not-assert id="par-test-2" role="error"/>
+        <x:expect-not-assert id="par-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="par-test-2-fail">
+        <x:context href="../tests/gen/par-tests/par-test-2/fail.xml"/>
+        <x:expect-assert id="par-test-2" role="error"/>
+        <x:expect-not-assert id="par-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="par-name-tests">
       <x:scenario label="par-name-test-1-pass">
@@ -13611,12 +13621,12 @@
       </x:scenario>
       <x:scenario label="equ-xref-conformity-2-pass">
         <x:context href="../tests/gen/equation-xref-conformance/equ-xref-conformity-2/pass.xml"/>
-        <x:expect-not-assert id="equ-xref-conformity-2" role="warning"/>
+        <x:expect-not-report id="equ-xref-conformity-2" role="warning"/>
         <x:expect-not-assert id="equation-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="equ-xref-conformity-2-fail">
         <x:context href="../tests/gen/equation-xref-conformance/equ-xref-conformity-2/fail.xml"/>
-        <x:expect-assert id="equ-xref-conformity-2" role="warning"/>
+        <x:expect-report id="equ-xref-conformity-2" role="warning"/>
         <x:expect-not-assert id="equation-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="equ-xref-conformity-3-pass">

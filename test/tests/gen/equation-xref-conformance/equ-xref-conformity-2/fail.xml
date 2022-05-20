@@ -1,12 +1,19 @@
 <?oxygen SCHSchema="equ-xref-conformity-2.sch"?>
 <!--Context: xref[@ref-type='disp-formula']
-Test: assert    contains(.,$label)
-Message: equation link content does not match what it directs to (content = ; label = ). Is this correct? -->
+Test: report    if (count($labels) gt 1) then (some $label in $labels satisfies not(contains(.,$label))) else not(contains(.,$labels))
+Message: equation link content does not match what it directs to (content = ; label(s) = ). Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
-    <xref ref-type="disp-formula" rid="equ1">Equation 1</xref>
+    <p><xref ref-type="disp-formula" rid="equ1">Equation 1</xref> test test</p>
+    <p><xref ref-type="disp-formula" rid="equ1 equ2">Equation 1-3</xref> test test</p>
     <disp-formula id="equ1">
+      <label>1</label>
+    </disp-formula>
+    <disp-formula id="equ2">
       <label>2</label>
+    </disp-formula>
+    <disp-formula id="equ3">
+      <label>3</label>
     </disp-formula>
   </article>
 </root>
