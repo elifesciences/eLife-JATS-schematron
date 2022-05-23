@@ -1,0 +1,24 @@
+<?oxygen SCHSchema="block-permish-license-link.sch"?>
+<!--Context: permissions[not(parent::article-meta)]//license
+Test: report    @xlink:href=$article-license
+Message: license link (the xlink:href attribute value on the license element) in permissions for  is the same as the license link for the article -  - which is incorrect. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <permissions>
+        <ali:license_ref>http://creativecommons.org/licenses/by/4.0/</ali:license_ref>
+      </permissions>
+    </article-meta>
+    <fig>
+      <permissions>
+        <copyright-statement>© 2007 West and Odorizzi</copyright-statement>
+        <copyright-year>2007</copyright-year>
+        <copyright-holder>West and Odorizzi</copyright-holder>
+        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <ali:license_ref>https://creativecommons.org/licenses/by-nc-sa/3.0/</ali:license_ref>
+          <license-p>This cover image for the February 2007 issue of Molecular Biology of the Cell ..., under the terms of a <ext-link ext-link-type="uri" xlink:href="https://creativecommons.org/licenses/by-nc-sa/3.0/">CC-BY-NC-SA 3.0</ext-link> license. This image is not covered by the CC-BY 4.0 license, and further reproduction must adhere to the terms of the CC-BY-NC-SA 3.0 license ().</license-p>
+        </license>
+      </permissions>
+    </fig>
+  </article>
+</root>

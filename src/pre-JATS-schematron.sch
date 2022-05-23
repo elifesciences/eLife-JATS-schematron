@@ -3756,6 +3756,33 @@
       
     </rule>
   </pattern>
+  <pattern id="permissions-3a-pattern">
+    <rule context="permissions[not(parent::article-meta)]//ali:license_ref" id="permissions-3a">
+      <let name="article-license" value="ancestor::article//article-meta//permissions//ali:license_ref"/>
+      <let name="label" value="if (ancestor::permissions[1]/parent::*/label[1]) then replace(ancestor::permissions[1]/parent::*/label[1],'\.$','') else ancestor::permissions[1]/parent::*/local-name()"/>
+      
+      <report test=".=$article-license" role="error" id="block-permish-ali-license">[block-permish-ali-license] ali:license_ref in permissions for <value-of select="$label"/> is the same as the license link for the article - <value-of select="."/> - which is incorrect.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="permissions-3b-pattern">
+    <rule context="permissions[not(parent::article-meta)]//license-p//ext-link" id="permissions-3b">
+      <let name="article-license" value="ancestor::article//article-meta//permissions//ali:license_ref"/>
+      <let name="label" value="if (ancestor::permissions[1]/parent::*/label[1]) then replace(ancestor::permissions[1]/parent::*/label[1],'\.$','') else ancestor::permissions[1]/parent::*/local-name()"/>
+      
+      <report test=".=$article-license or @xlink:href=$article-license" role="error" id="block-permish-license-p-link">[block-permish-license-p-link] ext-link in license text in permissions for <value-of select="$label"/> is the same as the license link for the article - <value-of select="$article-license"/> - which is incorrect.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="permissions-3c-pattern">
+    <rule context="permissions[not(parent::article-meta)]//license" id="permissions-3c">
+      <let name="article-license" value="ancestor::article//article-meta//permissions//ali:license_ref"/>
+      <let name="label" value="if (ancestor::permissions[1]/parent::*/label[1]) then replace(ancestor::permissions[1]/parent::*/label[1],'\.$','') else ancestor::permissions[1]/parent::*/local-name()"/>
+      
+      <report test="@xlink:href=$article-license" role="error" id="block-permish-license-link">[block-permish-license-link] license link (the xlink:href attribute value on the license element) in permissions for <value-of select="$label"/> is the same as the license link for the article - <value-of select="$article-license"/> - which is incorrect.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="fig-caption-tests-pattern">
     <rule context="fig/caption/p[not(child::supplementary-material)]" id="fig-caption-tests">
       <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>

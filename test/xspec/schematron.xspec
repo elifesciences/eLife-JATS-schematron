@@ -7056,6 +7056,42 @@
         <x:expect-not-assert id="permissions-2-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="permissions-3a">
+      <x:scenario label="block-permish-ali-license-pass">
+        <x:context href="../tests/gen/permissions-3a/block-permish-ali-license/pass.xml"/>
+        <x:expect-not-report id="block-permish-ali-license" role="error"/>
+        <x:expect-not-assert id="permissions-3a-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="block-permish-ali-license-fail">
+        <x:context href="../tests/gen/permissions-3a/block-permish-ali-license/fail.xml"/>
+        <x:expect-report id="block-permish-ali-license" role="error"/>
+        <x:expect-not-assert id="permissions-3a-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="permissions-3b">
+      <x:scenario label="block-permish-license-p-link-pass">
+        <x:context href="../tests/gen/permissions-3b/block-permish-license-p-link/pass.xml"/>
+        <x:expect-not-report id="block-permish-license-p-link" role="error"/>
+        <x:expect-not-assert id="permissions-3b-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="block-permish-license-p-link-fail">
+        <x:context href="../tests/gen/permissions-3b/block-permish-license-p-link/fail.xml"/>
+        <x:expect-report id="block-permish-license-p-link" role="error"/>
+        <x:expect-not-assert id="permissions-3b-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="permissions-3c">
+      <x:scenario label="block-permish-license-link-pass">
+        <x:context href="../tests/gen/permissions-3c/block-permish-license-link/pass.xml"/>
+        <x:expect-not-report id="block-permish-license-link" role="error"/>
+        <x:expect-not-assert id="permissions-3c-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="block-permish-license-link-fail">
+        <x:context href="../tests/gen/permissions-3c/block-permish-license-link/fail.xml"/>
+        <x:expect-report id="block-permish-license-link" role="error"/>
+        <x:expect-not-assert id="permissions-3c-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="fig-caption-tests">
       <x:scenario label="fig-caption-test-1-pass">
         <x:context href="../tests/gen/fig-caption-tests/fig-caption-test-1/pass.xml"/>
