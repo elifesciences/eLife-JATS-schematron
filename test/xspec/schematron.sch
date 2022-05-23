@@ -3970,6 +3970,33 @@
       
     </rule>
   </pattern>
+  <pattern id="permissions-3a-pattern">
+    <rule context="permissions[not(parent::article-meta)]//ali:license_ref" id="permissions-3a">
+      <let name="article-license" value="ancestor::article//article-meta//permissions//ali:license_ref"/>
+      <let name="label" value="if (ancestor::permissions[1]/parent::*/label[1]) then replace(ancestor::permissions[1]/parent::*/label[1],'\.$','') else ancestor::permissions[1]/parent::*/local-name()"/>
+      
+      <report test=".=$article-license" role="error" id="block-permish-ali-license">ali:license_ref in permissions for <value-of select="$label"/> is the same as the license link for the article - <value-of select="."/> - which is incorrect.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="permissions-3b-pattern">
+    <rule context="permissions[not(parent::article-meta)]//license-p//ext-link" id="permissions-3b">
+      <let name="article-license" value="ancestor::article//article-meta//permissions//ali:license_ref"/>
+      <let name="label" value="if (ancestor::permissions[1]/parent::*/label[1]) then replace(ancestor::permissions[1]/parent::*/label[1],'\.$','') else ancestor::permissions[1]/parent::*/local-name()"/>
+      
+      <report test=".=$article-license or @xlink:href=$article-license" role="error" id="block-permish-license-p-link">ext-link in license text in permissions for <value-of select="$label"/> is the same as the license link for the article - <value-of select="$article-license"/> - which is incorrect.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="permissions-3c-pattern">
+    <rule context="permissions[not(parent::article-meta)]//license" id="permissions-3c">
+      <let name="article-license" value="ancestor::article//article-meta//permissions//ali:license_ref"/>
+      <let name="label" value="if (ancestor::permissions[1]/parent::*/label[1]) then replace(ancestor::permissions[1]/parent::*/label[1],'\.$','') else ancestor::permissions[1]/parent::*/local-name()"/>
+      
+      <report test="@xlink:href=$article-license" role="error" id="block-permish-license-link">license link (the xlink:href attribute value on the license element) in permissions for <value-of select="$label"/> is the same as the license link for the article - <value-of select="$article-license"/> - which is incorrect.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="fig-caption-tests-pattern">
     <rule context="fig/caption/p[not(child::supplementary-material)]" id="fig-caption-tests">
       <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>
@@ -9125,6 +9152,9 @@
       <assert test="descendant::permissions[not(parent::article-meta)]" role="error" id="fig-permissions-xspec-assert">permissions[not(parent::article-meta)] must be present.</assert>
       <assert test="descendant::permissions[not(parent::article-meta) and copyright-year and copyright-holder]/copyright-statement" role="error" id="fig-permissions-2-xspec-assert">permissions[not(parent::article-meta) and copyright-year and copyright-holder]/copyright-statement must be present.</assert>
       <assert test="descendant::permissions[not(parent::article-meta) and copyright-statement and not(license[1]/ali:license_ref[1][contains(.,'creativecommons.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org'))]" role="error" id="permissions-2-xspec-assert">permissions[not(parent::article-meta) and copyright-statement and not(license[1]/ali:license_ref[1][contains(.,'creativecommons.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org'))] must be present.</assert>
+      <assert test="descendant::permissions[not(parent::article-meta)]//ali:license_ref" role="error" id="permissions-3a-xspec-assert">permissions[not(parent::article-meta)]//ali:license_ref must be present.</assert>
+      <assert test="descendant::permissions[not(parent::article-meta)]//license-p//ext-link" role="error" id="permissions-3b-xspec-assert">permissions[not(parent::article-meta)]//license-p//ext-link must be present.</assert>
+      <assert test="descendant::permissions[not(parent::article-meta)]//license" role="error" id="permissions-3c-xspec-assert">permissions[not(parent::article-meta)]//license must be present.</assert>
       <assert test="descendant::fig/caption/p[not(child::supplementary-material)]" role="error" id="fig-caption-tests-xspec-assert">fig/caption/p[not(child::supplementary-material)] must be present.</assert>
       <assert test="descendant::fig/caption/p/bold" role="error" id="fig-panel-tests-xspec-assert">fig/caption/p/bold must be present.</assert>
       <assert test="descendant::article[@article-type='research-article']/body" role="error" id="ra-body-tests-xspec-assert">article[@article-type='research-article']/body must be present.</assert>
