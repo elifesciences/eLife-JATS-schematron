@@ -1041,7 +1041,7 @@
          <xsl:otherwise>
             <xsl:choose>
                <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab">
-                  <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1],' et al')"/>
+                  <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/collab[1]/text()[1],' et al')"/>
                </xsl:when>
                <xsl:otherwise>
                   <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' et al')"/>
