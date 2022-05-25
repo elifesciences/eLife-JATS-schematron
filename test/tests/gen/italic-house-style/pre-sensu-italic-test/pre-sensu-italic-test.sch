@@ -1167,7 +1167,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="italic[not(ancestor::ref) and not(ancestor::sub-article)]" id="italic-house-style">
-      <report test="matches(.,'^[Ss]ensu$| [Ss]ensu$|^[Ss]ensu | [Ss]ensu ')" role="error" id="pre-sensu-italic-test">
+      <report test="matches(.,'^[Ss]ensu$| [Ss]ensu$|^[Ss]ensu | [Ss]ensu ')" role="warning" id="pre-sensu-italic-test">
         <name/> element contains 'sensu' - this should not be in italics (eLife house style).</report>
     </rule>
   </pattern>

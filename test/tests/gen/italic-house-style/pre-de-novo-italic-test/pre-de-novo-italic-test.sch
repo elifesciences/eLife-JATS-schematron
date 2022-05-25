@@ -1167,7 +1167,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="italic[not(ancestor::ref) and not(ancestor::sub-article)]" id="italic-house-style">
-      <report test="matches(.,'[Dd]e [Nn]ovo')" role="error" id="pre-de-novo-italic-test">
+      <report test="matches(.,'[Dd]e [Nn]ovo')" role="warning" id="pre-de-novo-italic-test">
         <name/> element contains 'de novo' - this should not be in italics (eLife house style).</report>
     </rule>
   </pattern>

@@ -1167,7 +1167,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="italic[not(ancestor::ref) and not(ancestor::sub-article)]" id="italic-house-style">
-      <report test="matches(.,'[Aa]d [Ll]ibitum')" role="error" id="pre-ad-libitum-italic-test">
+      <report test="matches(.,'[Aa]d [Ll]ibitum')" role="warning" id="pre-ad-libitum-italic-test">
         <name/> element contains 'ad libitum' - this should not be in italics (eLife house style).</report>
     </rule>
   </pattern>
