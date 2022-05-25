@@ -1041,14 +1041,45 @@
       </xsl:when>
       
       <xsl:otherwise>
+        <xsl:variable name="is-equal-contrib" select="if ($contrib-group/contrib[@contrib-type='author'][1]/@equal-contrib='yes') then true() else false()"/>
         <xsl:choose>
-          <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab">
-            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/collab[1]/text()[1],' et al')"/>
+          <xsl:when test="$is-equal-contrib">
+            
+            <xsl:variable name="equal-contrib-rid" select="$contrib-group/contrib[@contrib-type='author'][1]/xref[starts-with(@rid,'equal-contrib')]/@rid"/>
+            <xsl:variable name="first-authors" select="$contrib-group/contrib[@contrib-type='author' and @equal-contrib='yes' and xref[@rid=$equal-contrib-rid] and (not(preceding-sibling::contrib) or preceding-sibling::contrib[1][@equal-contrib='yes' and xref[@rid=$equal-contrib-rid]])]"/>
+            <xsl:choose>
+              
+              <xsl:when test="$author-count = 3 and count($first-authors) = 3">
+                <xsl:value-of select="concat(e:get-surname($contrib-group/contrib[@contrib-type='author'][1]),                                              ', ',                                              e:get-surname($contrib-group/contrib[@contrib-type='author'][2]),                                              ' and ',                                              e:get-surname($contrib-group/contrib[@contrib-type='author'][3]))"/>
+              </xsl:when>
+              
+              <xsl:when test="count($first-authors) gt 3">
+                <xsl:variable name="first-auth-string" select="string-join(for $auth in $contrib-group/contrib[@contrib-type='author'][position() lt 4] return e:get-surname($auth),', ')"/>
+                <xsl:value-of select="concat($first-auth-string,' et al')"/>
+              </xsl:when>
+              
+              <xsl:otherwise>
+                <xsl:variable name="first-auth-string" select="string-join(for $auth in $first-authors return e:get-surname($auth),', ')"/>
+                <xsl:value-of select="concat($first-auth-string,' et al')"/>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:when>
+          
           <xsl:otherwise>
-            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' et al')"/>
+            <xsl:value-of select="concat(e:get-surname($contrib-group/contrib[@contrib-type='author'][1]),' et al')"/>
           </xsl:otherwise>
         </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  <xsl:function name="e:get-surname" as="text()">
+    <xsl:param name="contrib"/>
+    <xsl:choose>
+      <xsl:when test="$contrib/collab">
+        <xsl:value-of select="$contrib/collab[1]/text()[1]"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$contrib//name[1]/surname[1]"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
