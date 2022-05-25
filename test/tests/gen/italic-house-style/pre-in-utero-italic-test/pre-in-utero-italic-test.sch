@@ -1167,7 +1167,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="italic[not(ancestor::ref) and not(ancestor::sub-article)]" id="italic-house-style">
-      <report test="matches(.,'[Ii]n [Uu]tero')" role="error" id="pre-in-utero-italic-test">
+      <report test="matches(.,'[Ii]n [Uu]tero')" role="warning" id="pre-in-utero-italic-test">
         <name/> element contains 'in utero' - this should not be in italics (eLife house style).</report>
     </rule>
   </pattern>

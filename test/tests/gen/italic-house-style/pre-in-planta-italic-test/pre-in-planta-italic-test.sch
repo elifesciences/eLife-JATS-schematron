@@ -1167,7 +1167,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="italic[not(ancestor::ref) and not(ancestor::sub-article)]" id="italic-house-style">
-      <report test="matches(.,'[Ii]n [Pp]lanta')" role="error" id="pre-in-planta-italic-test">
+      <report test="matches(.,'[Ii]n [Pp]lanta')" role="warning" id="pre-in-planta-italic-test">
         <name/> element contains 'in planta' - this should not be in italics (eLife house style).</report>
     </rule>
   </pattern>

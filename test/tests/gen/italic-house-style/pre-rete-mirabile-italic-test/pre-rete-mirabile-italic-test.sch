@@ -1167,7 +1167,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="italic[not(ancestor::ref) and not(ancestor::sub-article)]" id="italic-house-style">
-      <report test="matches(.,'[Rr]ete [Mm]irabile')" role="error" id="pre-rete-mirabile-italic-test">
+      <report test="matches(.,'[Rr]ete [Mm]irabile')" role="warning" id="pre-rete-mirabile-italic-test">
         <name/> element contains 'rete mirabile' - this should not be in italics (eLife house style).</report>
     </rule>
   </pattern>

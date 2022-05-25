@@ -1167,7 +1167,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="italic[not(ancestor::ref) and not(ancestor::sub-article)]" id="italic-house-style">
-      <report test="matches(.,'[Aa] [Pp]riori')" role="error" id="pre-a-priori-italic-test">
+      <report test="matches(.,'[Aa] [Pp]riori')" role="warning" id="pre-a-priori-italic-test">
         <name/> element contains 'a priori' - this should not be in italics (eLife house style).</report>
     </rule>
   </pattern>

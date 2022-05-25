@@ -1167,7 +1167,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="italic[not(ancestor::ref) and not(ancestor::sub-article)]" id="italic-house-style">
-      <report test="matches(.,'[Ii]n [Nn]atura')" role="error" id="pre-in-natura-italic-test">
+      <report test="matches(.,'[Ii]n [Nn]atura')" role="warning" id="pre-in-natura-italic-test">
         <name/> element contains 'in natura' - this should not be in italics (eLife house style).</report>
     </rule>
   </pattern>
