@@ -3897,6 +3897,7 @@ else self::*/local-name() = $allowed-p-blocks"
         else if ($file='x-m') then not(ends-with(@xlink:href,'.m'))
         else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv'))
         else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))
+        else if ($file='tiff') then not(matches(@xlink:href,'\.tiff?$'))
         else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))
         else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex'))
         else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz'))
@@ -4430,9 +4431,17 @@ else self::*/local-name() = $allowed-p-blocks"
         id="math-test-21"><value-of select="parent::*/name()"/> starts with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the right. Please esnure they are removed.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-broken-unicode-test" 
-        test="matches(.,'(&amp;|§|§amp;)#x\d|[^\p{L}\p{N}][gl]t;')" 
+        test="matches(.,'(&amp;|§|§amp;)#x?\d|[^\p{L}\p{N}][gl]t;')" 
         role="warning" 
         id="math-broken-unicode-test">Equation likely contains a broken unicode - <value-of select="."/>.</report>
+    </rule>
+    
+    <rule context="mml:math//*[contains(@class,'font') and matches(.,'[A-Za-z]')]" id="math-descendant-tests">
+      
+      <assert test="@mathvariant" 
+        role="error" 
+        id="math-descendant-test-1">Equation has character(s) - <value-of select="."/> - which have a font in a class element - <value-of select="@class"/> - but the element does not have a mathvariant attribute. This means that while the font will display in the PDF, it will not display on continuum. Either it needs a mathvariant attribute, or the specific unicode for that character in the script/font should be used.</assert>
+      
     </rule>
     
     <rule context="disp-formula/*" id="disp-formula-child-tests">

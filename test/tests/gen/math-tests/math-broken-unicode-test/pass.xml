@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="math-broken-unicode-test.sch"?>
 <!--Context: mml:math
-Test: report    matches(.,'(&|§|§amp;)#x\d|[^\p{L}\p{N}][gl]t;')
+Test: report    matches(.,'(&|§|§amp;)#x?\d|[^\p{L}\p{N}][gl]t;')
 Message: Equation likely contains a broken unicode - . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
