@@ -1197,15 +1197,13 @@
     
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="mml:math" id="math-tests">
-      <let name="data" value="replace(normalize-space(.),'\p{Zs}','')"/>
-      <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-broken-unicode-test" test="matches(.,'(&amp;|§|§amp;)#x?\d|[^\p{L}\p{N}][gl]t;')" role="warning" id="math-broken-unicode-test">Equation likely contains a broken unicode - <value-of select="."/>.</report>
+    <rule context="mml:math//*[contains(@class,'font') and matches(.,'[A-Za-z]')]" id="math-descendant-tests">
+      <assert test="@mathvariant" role="error" id="math-descendant-test-1">Equation has character(s) - <value-of select="."/> - which have a font in a class element - <value-of select="@class"/> - but the element does not have a mathvariant attribute. This means that while the font will display in the PDF, it will not display on continuum. Either it needs a mathvariant attribute, or the specific unicode for that character in the script/font should be used.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mml:math" role="error" id="math-tests-xspec-assert">mml:math must be present.</assert>
+      <assert test="descendant::mml:math//*[contains(@class,'font') and matches(.,'[A-Za-z]')]" role="error" id="math-descendant-tests-xspec-assert">mml:math//*[contains(@class,'font') and matches(.,'[A-Za-z]')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

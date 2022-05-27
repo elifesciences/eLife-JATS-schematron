@@ -5374,6 +5374,18 @@
         <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="math-descendant-tests">
+      <x:scenario label="math-descendant-test-1-pass">
+        <x:context href="../tests/gen/math-descendant-tests/math-descendant-test-1/pass.xml"/>
+        <x:expect-not-assert id="math-descendant-test-1" role="error"/>
+        <x:expect-not-assert id="math-descendant-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-descendant-test-1-fail">
+        <x:context href="../tests/gen/math-descendant-tests/math-descendant-test-1/fail.xml"/>
+        <x:expect-assert id="math-descendant-test-1" role="error"/>
+        <x:expect-not-assert id="math-descendant-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="disp-formula-child-tests">
       <x:scenario label="disp-formula-child-test-1-pass">
         <x:context href="../tests/gen/disp-formula-child-tests/disp-formula-child-test-1/pass.xml"/>
