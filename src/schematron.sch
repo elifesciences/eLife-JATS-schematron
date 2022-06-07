@@ -1719,7 +1719,7 @@
 	
     <report test="ends-with(replace(article-title[1],'\p{Z}',''),'.')" 
         role="error" 
-        id="article-title-test-1">Article title must not end with a full stop  - '<value-of select="article-title"/>'.</report>  
+        id="article-title-test-1">Article title must not end with a full stop - '<value-of select="article-title"/>'.</report>  
    
     <report test="article-title[text() != ''] = lower-case(article-title[1])" 
         role="warning" 
@@ -1727,7 +1727,7 @@
    
     <report test="article-title[text() != ''] = upper-case(article-title[1])" 
         role="error" 
-        id="article-title-test-3">Article title must not be entirely in upper case  - <value-of select="article-title"/>.</report>
+        id="article-title-test-3">Article title must not be entirely in upper case - <value-of select="article-title"/>.</report>
 	  
 	  <report test="not(article-title/*) and normalize-space(article-title[1])=''" 
         role="error" 
@@ -1751,7 +1751,7 @@
 	  
 	  <report test="matches(article-title[1],'-Based ')" 
         role="error" 
-        id="article-title-test-9">Article title contains the string '-Based '. this should be lower-case, '-based '.  - <value-of select="article-title"/></report>
+        id="article-title-test-9">Article title contains the string '-Based '. this should be lower-case, '-based '. - <value-of select="article-title"/></report>
 	  
 	  <!-- exception for articles with structured abstracts -->
 	  <report test="($subj-type = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Research Communication', 'Feature article', 'Insight', 'Editorial', 'Scientific Correspondence')) and not(ancestor::article-meta/abstract[not(@abstract-type) and sec]) and contains(article-title[1],':')" 
@@ -1764,7 +1764,7 @@
 	  
 	  <report test="matches(article-title[1],' [Bb]ased ') and not(matches(article-title[1],' [Bb]ased on '))" 
         role="warning" 
-        id="article-title-test-12">Article title contains the string ' based'. Should the preceding space be replaced by a hyphen - '-based'.  - <value-of select="article-title"/></report>
+        id="article-title-test-12">Article title contains the string ' based'. Should the preceding space be replaced by a hyphen - '-based'. - <value-of select="article-title"/></report>
 	
 	</rule>
     
@@ -2147,7 +2147,7 @@
 	  
 	  <report test="($type = 'editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" 
         role="error" 
-        id="contrib-test-4">The  <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation. - is this correct?</report>
+        id="contrib-test-4">The <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation. - is this correct?</report>
 	  
 	     <report test="name and collab" 
         role="error" 
@@ -3990,7 +3990,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-2"
         test="not(matches(label[1],'Transparent reporting form|MDAR checklist')) and not(caption)" 
         role="warning" 
-        id="supplementary-material-test-2"><value-of select="label"/> is missing a title/caption - is this correct?  (supplementary-material should have a child caption.)</report>
+        id="supplementary-material-test-2"><value-of select="label"/> is missing a title/caption - is this correct? (supplementary-material should have a child caption.)</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#pre-supplementary-material-test-3"
         test="if (caption) then not(caption/title)
@@ -4320,7 +4320,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-test-4"
         test="parent::p or parent::td or parent::th or parent::title" 
         role="error" 
-        id="inline-formula-test-4"><name/> must be a child of p, td,  th or title. The formula containing <value-of select="."/> is a child of <value-of select="parent::*/local-name()"/></assert>
+        id="inline-formula-test-4"><name/> must be a child of p, td, th or title. The formula containing <value-of select="."/> is a child of <value-of select="parent::*/local-name()"/></assert>
     </rule>
     
     <rule context="mml:math" id="math-tests">
@@ -4766,7 +4766,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#th-child-test-1" 
         test="self::*/local-name() = ($allowed-blocks)" 
         role="error" 
-        id="th-child-test-1">th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace',  'code', 'inline-graphic', and 'inline-formula'.</assert>
+        id="th-child-test-1">th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code', 'inline-graphic', and 'inline-formula'.</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#th-child-test-2" 
         test="self::*/local-name() = 'bold'" 
@@ -5466,7 +5466,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-parent" 
         test="parent::*/local-name() = ('fig', 'media', 'table-wrap', 'boxed-text', 'supplementary-material')" 
         role="error" 
-        id="permissions-parent">permissions  is not allowed as a child of <value-of select="parent::*/local-name()"/></assert>
+        id="permissions-parent">permissions is not allowed as a child of <value-of select="parent::*/local-name()"/></assert>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-14" 
         test="copyright-statement" 
