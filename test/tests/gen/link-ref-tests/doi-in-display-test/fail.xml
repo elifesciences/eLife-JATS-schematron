@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="doi-in-display-test.sch"?>
 <!--Context: element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title
-Test: report    matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9<>\+#&'`~–−]+|\p{Zs}10\.\d{4,9}/[-._;()/:A-Za-z0-9<>\+#&'`~–−]+')
+Test: report    matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9<>\+#&`~–−]+|\p{Zs}10\.\d{4,9}/[-._;()/:A-Za-z0-9<>\+#&`~–−]+')
 Message:  element contains a doi - . The doi must be moved to the appropriate field, and the correct information should be included in this element (or queried if the information is missing). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
