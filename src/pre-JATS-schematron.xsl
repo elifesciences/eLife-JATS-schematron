@@ -6989,7 +6989,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[article-title-test-1] Article title must not end with a full stop  - '<xsl:text/>
+            <svrl:text>[article-title-test-1] Article title must not end with a full stop - '<xsl:text/>
                <xsl:value-of select="article-title"/>
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
@@ -7017,7 +7017,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[article-title-test-3] Article title must not be entirely in upper case  - <xsl:text/>
+            <svrl:text>[article-title-test-3] Article title must not be entirely in upper case - <xsl:text/>
                <xsl:value-of select="article-title"/>
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
@@ -7091,7 +7091,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[article-title-test-9] Article title contains the string '-Based '. this should be lower-case, '-based '.  - <xsl:text/>
+            <svrl:text>[article-title-test-9] Article title contains the string '-Based '. this should be lower-case, '-based '. - <xsl:text/>
                <xsl:value-of select="article-title"/>
                <xsl:text/>
             </svrl:text>
@@ -7138,7 +7138,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[article-title-test-12] Article title contains the string ' based'. Should the preceding space be replaced by a hyphen - '-based'.  - <xsl:text/>
+            <svrl:text>[article-title-test-12] Article title contains the string ' based'. Should the preceding space be replaced by a hyphen - '-based'. - <xsl:text/>
                <xsl:value-of select="article-title"/>
                <xsl:text/>
             </svrl:text>
@@ -8336,7 +8336,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[contrib-test-4] The  <xsl:text/>
+            <svrl:text>[contrib-test-4] The <xsl:text/>
                <xsl:value-of select="role[1]"/>
                <xsl:text/> (<xsl:text/>
                <xsl:value-of select="$name"/>
@@ -13952,7 +13952,7 @@
             </xsl:attribute>
             <svrl:text>[supplementary-material-test-2] <xsl:text/>
                <xsl:value-of select="label"/>
-               <xsl:text/> is missing a title/caption - is this correct?  (supplementary-material should have a child caption.)</svrl:text>
+               <xsl:text/> is missing a title/caption - is this correct? (supplementary-material should have a child caption.)</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -15005,7 +15005,7 @@
                </xsl:attribute>
                <svrl:text>[inline-formula-test-4] <xsl:text/>
                   <xsl:value-of select="name(.)"/>
-                  <xsl:text/> must be a child of p, td,  th or title. The formula containing <xsl:text/>
+                  <xsl:text/> must be a child of p, td, th or title. The formula containing <xsl:text/>
                   <xsl:value-of select="."/>
                   <xsl:text/> is a child of <xsl:text/>
                   <xsl:value-of select="parent::*/local-name()"/>
@@ -16318,7 +16318,7 @@
                </xsl:attribute>
                <svrl:text>[th-child-test-1] th cannot contain <xsl:text/>
                   <xsl:value-of select="self::*/local-name()"/>
-                  <xsl:text/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace',  'code', 'inline-graphic', and 'inline-formula'.</svrl:text>
+                  <xsl:text/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code', 'inline-graphic', and 'inline-formula'.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -18358,7 +18358,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[permissions-parent] permissions  is not allowed as a child of <xsl:text/>
+               <svrl:text>[permissions-parent] permissions is not allowed as a child of <xsl:text/>
                   <xsl:value-of select="parent::*/local-name()"/>
                   <xsl:text/>
                </svrl:text>
@@ -38523,8 +38523,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$') and not(matches(.,'http[s]?://doi.org/'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$') and not(matches(.,'http[s]?://doi.org/'))">
+      <xsl:if test="matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+$') and not(matches(.,'http[s]?://doi.org/'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+$') and not(matches(.,'http[s]?://doi.org/'))">
             <xsl:attribute name="id">das-doi-conformity-1</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-doi-conformity-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
@@ -40930,8 +40930,8 @@
    <xsl:template match="element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title" priority="1000" mode="M541">
 
 		<!--REPORT error-->
-      <xsl:if test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9]+|\p{Zs}10\.\d{4,9}/[-._;()/:A-Za-z0-9]+')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9]+|\p{Zs}10\.\d{4,9}/[-._;()/:A-Za-z0-9]+')">
+      <xsl:if test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+|\p{Zs}10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+|\p{Zs}10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+')">
             <xsl:attribute name="id">doi-in-display-test</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#doi-in-display-test</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>

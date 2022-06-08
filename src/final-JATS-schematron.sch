@@ -1509,11 +1509,11 @@
 	  <let name="body" value="ancestor::front/following-sibling::body[1]"/>
 	  <let name="tokens" value="string-join(for $x in tokenize($title,' ')[position() &gt; 1] return      if (matches($x,'^[A-Z]') and (string-length($x) gt 1) and matches($body,concat(' ',lower-case($x),' '))) then $x      else (),', ')"/>
 	
-    <report test="ends-with(replace(article-title[1],'\p{Z}',''),'.')" role="error" id="article-title-test-1">[article-title-test-1] Article title must not end with a full stop  - '<value-of select="article-title"/>'.</report>  
+    <report test="ends-with(replace(article-title[1],'\p{Z}',''),'.')" role="error" id="article-title-test-1">[article-title-test-1] Article title must not end with a full stop - '<value-of select="article-title"/>'.</report>  
    
     <report test="article-title[text() != ''] = lower-case(article-title[1])" role="warning" id="article-title-test-2">[article-title-test-2] Article title is entirely in lower case, is this correct? - <value-of select="article-title"/>.</report>
    
-    <report test="article-title[text() != ''] = upper-case(article-title[1])" role="error" id="article-title-test-3">[article-title-test-3] Article title must not be entirely in upper case  - <value-of select="article-title"/>.</report>
+    <report test="article-title[text() != ''] = upper-case(article-title[1])" role="error" id="article-title-test-3">[article-title-test-3] Article title must not be entirely in upper case - <value-of select="article-title"/>.</report>
 	  
 	  <report test="not(article-title/*) and normalize-space(article-title[1])=''" role="error" id="article-title-test-4">[article-title-test-4] Article title must not be empty.</report>
 	  
@@ -1525,7 +1525,7 @@
 	  
 	  <report test="article-title//break" role="error" id="article-title-test-8">[article-title-test-8] Article title must not contain a line break (the element 'break').</report>
 	  
-	  <report test="matches(article-title[1],'-Based ')" role="error" id="article-title-test-9">[article-title-test-9] Article title contains the string '-Based '. this should be lower-case, '-based '.  - <value-of select="article-title"/>
+	  <report test="matches(article-title[1],'-Based ')" role="error" id="article-title-test-9">[article-title-test-9] Article title contains the string '-Based '. this should be lower-case, '-based '. - <value-of select="article-title"/>
       </report>
 	  
 	  <!-- exception for articles with structured abstracts -->
@@ -1535,7 +1535,7 @@
 	  <report test="not($subj-type = ($notice-display-types,'Scientific Correspondence','Replication Study')) and matches($tokens,'[A-Za-z]')" role="warning" id="article-title-test-11">[article-title-test-11] Article title contains a capitalised word(s) which is not capitalised in the body of the article - <value-of select="$tokens"/> - is this correct? - <value-of select="article-title"/>
       </report>
 	  
-	  <report test="matches(article-title[1],' [Bb]ased ') and not(matches(article-title[1],' [Bb]ased on '))" role="warning" id="article-title-test-12">[article-title-test-12] Article title contains the string ' based'. Should the preceding space be replaced by a hyphen - '-based'.  - <value-of select="article-title"/>
+	  <report test="matches(article-title[1],' [Bb]ased ') and not(matches(article-title[1],' [Bb]ased on '))" role="warning" id="article-title-test-12">[article-title-test-12] Article title contains the string ' based'. Should the preceding space be replaced by a hyphen - '-based'. - <value-of select="article-title"/>
       </report>
 	
 	</rule>
@@ -1797,7 +1797,7 @@
 	  
 	  <report test="($type = 'senior_editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="warning" id="contrib-test-2">[contrib-test-2] The <value-of select="role[1]"/> doesn't have an affiliation - <value-of select="$name"/> - is this correct?</report>
 	  
-	  <report test="($type = 'editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="error" id="contrib-test-4">[contrib-test-4] The  <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation. - is this correct?</report>
+	  <report test="($type = 'editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="error" id="contrib-test-4">[contrib-test-4] The <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation. - is this correct?</report>
 	  
 	     <report test="name and collab" role="error" id="contrib-test-3">[contrib-test-3] author contains both a child name and a child collab. This is not correct.</report>
 	  
@@ -2916,7 +2916,7 @@
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-1" test="label" role="error" id="supplementary-material-test-1">[supplementary-material-test-1] supplementary-material must have a label.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-2" test="not(matches(label[1],'Transparent reporting form|MDAR checklist')) and not(caption)" role="warning" id="supplementary-material-test-2">[supplementary-material-test-2] <value-of select="label"/> is missing a title/caption - is this correct?  (supplementary-material should have a child caption.)</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-2" test="not(matches(label[1],'Transparent reporting form|MDAR checklist')) and not(caption)" role="warning" id="supplementary-material-test-2">[supplementary-material-test-2] <value-of select="label"/> is missing a title/caption - is this correct? (supplementary-material should have a child caption.)</report>
       
       
       
@@ -3115,7 +3115,7 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-test-3" test="not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and matches($post-text,'^[\p{L}\p{N}\p{M}]')" role="warning" id="inline-formula-test-3">[inline-formula-test-3] There is no space between inline-formula and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-test-4" test="parent::p or parent::td or parent::th or parent::title" role="error" id="inline-formula-test-4">[inline-formula-test-4] <name/> must be a child of p, td,  th or title. The formula containing <value-of select="."/> is a child of <value-of select="parent::*/local-name()"/>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-test-4" test="parent::p or parent::td or parent::th or parent::title" role="error" id="inline-formula-test-4">[inline-formula-test-4] <name/> must be a child of p, td, th or title. The formula containing <value-of select="."/> is a child of <value-of select="parent::*/local-name()"/>
       </assert>
     </rule>
   </pattern>
@@ -3365,7 +3365,7 @@
     <rule context="th/*" id="th-child-tests">
       <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic', 'list')"/> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#th-child-test-1" test="self::*/local-name() = ($allowed-blocks)" role="error" id="th-child-test-1">[th-child-test-1] th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace',  'code', 'inline-graphic', and 'inline-formula'.</assert>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#th-child-test-1" test="self::*/local-name() = ($allowed-blocks)" role="error" id="th-child-test-1">[th-child-test-1] th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code', 'inline-graphic', and 'inline-formula'.</assert>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#th-child-test-2" test="self::*/local-name() = 'bold'" role="warning" id="th-child-test-2">[th-child-test-2] th contains bold. Is this correct?</report>
     </rule>
@@ -3827,7 +3827,7 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-notification" test="." role="info" id="permissions-notification">[permissions-notification] <value-of select="$label"/> has permissions - '<value-of select="if (license/license-p) then license/license-p else if (copyright-statement) then copyright-statement else ()"/>'.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-parent" test="parent::*/local-name() = ('fig', 'media', 'table-wrap', 'boxed-text', 'supplementary-material')" role="error" id="permissions-parent">[permissions-parent] permissions  is not allowed as a child of <value-of select="parent::*/local-name()"/>
+      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-parent" test="parent::*/local-name() = ('fig', 'media', 'table-wrap', 'boxed-text', 'supplementary-material')" role="error" id="permissions-parent">[permissions-parent] permissions is not allowed as a child of <value-of select="parent::*/local-name()"/>
       </assert>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-14" test="copyright-statement" role="warning" id="fig-permissions-test-14">[fig-permissions-test-14] permissions for <value-of select="$label"/> does not contain a &lt;copyright-statement&gt; element. Is this correct? This would usually only be the case in CC0 licenses.</assert>
@@ -7679,7 +7679,7 @@
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-request-conformity-1" test="matches(.,'[Rr]equest')" role="warning" id="das-request-conformity-1">[das-request-conformity-1] Data Availability Statement contains the phrase 'request'. Does it state data is available upon request, and if so, has this been approved by editorial?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-doi-conformity-1" test="matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+$') and not(matches(.,'http[s]?://doi.org/'))" role="error" id="das-doi-conformity-1">[das-doi-conformity-1] Data Availability Statement contains a doi, but it does not contain the 'https://doi.org/' proxy. All dois should be updated to include a full 'https://doi.org/...' type link.</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-doi-conformity-1" test="matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+$') and not(matches(.,'http[s]?://doi.org/'))" role="error" id="das-doi-conformity-1">[das-doi-conformity-1] Data Availability Statement contains a doi, but it does not contain the 'https://doi.org/' proxy. All dois should be updated to include a full 'https://doi.org/...' type link.</report>
       
     </rule>
   </pattern>
@@ -8245,7 +8245,7 @@
   <pattern id="link-ref-tests-pattern">
     <rule context="element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title" id="link-ref-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#doi-in-display-test" test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9]+|\p{Zs}10\.\d{4,9}/[-._;()/:A-Za-z0-9]+')" role="error" id="doi-in-display-test">[doi-in-display-test] <value-of select="name()"/> element contains a doi - <value-of select="."/>. The doi must be moved to the appropriate field, and the correct information should be included in this element (or queried if the information is missing).</report>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#doi-in-display-test" test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+|\p{Zs}10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+')" role="error" id="doi-in-display-test">[doi-in-display-test] <value-of select="name()"/> element contains a doi - <value-of select="."/>. The doi must be moved to the appropriate field, and the correct information should be included in this element (or queried if the information is missing).</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#link-in-display-test" test="matches(.,'https?:|ftp://|git://|tel:|mailto:')" role="error" id="link-in-display-test">[link-in-display-test] <value-of select="name()"/> element contains a url - <value-of select="."/>. The url must be moved to the appropriate field (if it is a doi, then it should be captured as a doi without the 'https://doi.org/' prefix), and the correct information should be included in this element (or queried if the information is missing).</report>
       
