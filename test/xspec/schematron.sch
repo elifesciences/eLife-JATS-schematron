@@ -5342,13 +5342,6 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-journal-pub-id-pmid-pattern">
-    <rule context="element-citation[@publication-type='journal']/pub-id[@pub-id-type='pmid']" id="elem-citation-journal-pub-id-pmid">
-      
-      <report test="matches(.,'\D')" role="error" id="err-elem-cit-journal-10">If &lt;pub-id pub-id-type="pmid"&gt; is present, the content must be all numeric. The content of &lt;pub-id pub-id-type="pmid"&gt; in Reference '<value-of select="ancestor::ref/@id"/>' is <value-of select="."/>.</report>
-      
-    </rule>
-  </pattern>
   <pattern id="elem-citation-journal-pub-id-pattern">
     <rule context="element-citation[@publication-type='journal']/pub-id" id="elem-citation-journal-pub-id">
       
@@ -5420,13 +5413,6 @@
     <rule context="element-citation[@publication-type='book']/edition" id="elem-citation-book-edition">
       
       <assert test="count(*)=0" role="error" id="err-elem-cit-book-15">No elements are allowed inside &lt;edition&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has child elements within the &lt;edition&gt; element.</assert>
-      
-    </rule>
-  </pattern>
-  <pattern id="elem-citation-book-pub-id-pmid-pattern">
-    <rule context="element-citation[@publication-type='book']/pub-id[@pub-id-type='pmid']" id="elem-citation-book-pub-id-pmid">
-      
-      <report test="matches(.,'\D')" role="error" id="err-elem-cit-book-18">If &lt;pub-id pub-id-type="pmid"&gt; is present, the content must be all numeric. The content of &lt;pub-id pub-id-type="pmid"&gt; in Reference '<value-of select="ancestor::ref/@id"/>' is <value-of select="."/>.</report>
       
     </rule>
   </pattern>
@@ -6092,7 +6078,7 @@
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-pub-id-test-2" test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="error" id="final-pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/>
       </report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-id-test-3" test="(@pub-id-type='pmid') and matches(.,'\D')" role="error" id="pub-id-test-3">pub-id is tagged as a pmid, but it contains a character(s) which is not a digit - <value-of select="."/>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-id-test-3" test="(@pub-id-type='pmid') and not(matches(.,'^\d{3,10}$'))" role="error" id="pub-id-test-3">pub-id is tagged as a pmid, but it is not a number made up of between 3 and 10 digits - <value-of select="."/>
       </report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-id-doi-test-1" test="(@pub-id-type != 'doi') and matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')" role="error" id="pub-id-doi-test-1">pub-id has a doi link - <value-of select="@xlink:href"/> - but its pub-id-type is <value-of select="@pub-id-type"/> instead of doi.</report>
@@ -9327,14 +9313,12 @@
       <assert test="descendant::element-citation[@publication-type='journal']/fpage" role="error" id="elem-citation-journal-fpage-xspec-assert">element-citation[@publication-type='journal']/fpage must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='journal']/elocation-id" role="error" id="elem-citation-journal-elocation-id-xspec-assert">element-citation[@publication-type='journal']/elocation-id must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='journal']/comment" role="error" id="elem-citation-journal-comment-xspec-assert">element-citation[@publication-type='journal']/comment must be present.</assert>
-      <assert test="descendant::element-citation[@publication-type='journal']/pub-id[@pub-id-type='pmid']" role="error" id="elem-citation-journal-pub-id-pmid-xspec-assert">element-citation[@publication-type='journal']/pub-id[@pub-id-type='pmid'] must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='journal']/pub-id" role="error" id="elem-citation-journal-pub-id-xspec-assert">element-citation[@publication-type='journal']/pub-id must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='book']" role="error" id="elem-citation-book-xspec-assert">element-citation[@publication-type='book'] must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='book']/person-group" role="error" id="elem-citation-book-person-group-xspec-assert">element-citation[@publication-type='book']/person-group must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='book']/chapter-title" role="error" id="elem-citation-book-chapter-title-xspec-assert">element-citation[@publication-type='book']/chapter-title must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='book']/publisher-name" role="error" id="elem-citation-book-publisher-name-xspec-assert">element-citation[@publication-type='book']/publisher-name must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='book']/edition" role="error" id="elem-citation-book-edition-xspec-assert">element-citation[@publication-type='book']/edition must be present.</assert>
-      <assert test="descendant::element-citation[@publication-type='book']/pub-id[@pub-id-type='pmid']" role="error" id="elem-citation-book-pub-id-pmid-xspec-assert">element-citation[@publication-type='book']/pub-id[@pub-id-type='pmid'] must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='book']/pub-id" role="error" id="elem-citation-book-pub-id-xspec-assert">element-citation[@publication-type='book']/pub-id must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='book']/comment" role="error" id="elem-citation-book-comment-xspec-assert">element-citation[@publication-type='book']/comment must be present.</assert>
       <assert test="descendant::ref/element-citation[@publication-type='data']" role="error" id="elem-citation-data-xspec-assert">ref/element-citation[@publication-type='data'] must be present.</assert>

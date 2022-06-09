@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pub-id-test-3.sch"?>
 <!--Context: element-citation/pub-id
-Test: report    (@pub-id-type='pmid') and matches(.,'\D')
-Message: pub-id is tagged as a pmid, but it contains a character(s) which is not a digit -  -->
+Test: report    (@pub-id-type='pmid') and not(matches(.,'^\d{3,10}$'))
+Message: pub-id is tagged as a pmid, but it is not a number made up of between 3 and 10 digits -  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <element-citation>

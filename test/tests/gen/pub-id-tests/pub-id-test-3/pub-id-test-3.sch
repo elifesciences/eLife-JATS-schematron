@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="pub-id-pattern">
     <rule context="element-citation/pub-id" id="pub-id-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-id-test-3" test="(@pub-id-type='pmid') and matches(.,'\D')" role="error" id="pub-id-test-3">pub-id is tagged as a pmid, but it contains a character(s) which is not a digit - <value-of select="."/>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-id-test-3" test="(@pub-id-type='pmid') and not(matches(.,'^\d{3,10}$'))" role="error" id="pub-id-test-3">pub-id is tagged as a pmid, but it is not a number made up of between 3 and 10 digits - <value-of select="."/>
       </report>
     </rule>
   </pattern>
