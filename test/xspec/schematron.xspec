@@ -10198,18 +10198,6 @@
         <x:expect-not-assert id="elem-citation-journal-comment-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
-    <x:scenario label="elem-citation-journal-pub-id-pmid">
-      <x:scenario label="err-elem-cit-journal-10-pass">
-        <x:context href="../tests/gen/elem-citation-journal-pub-id-pmid/err-elem-cit-journal-10/pass.xml"/>
-        <x:expect-not-report id="err-elem-cit-journal-10" role="error"/>
-        <x:expect-not-assert id="elem-citation-journal-pub-id-pmid-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="err-elem-cit-journal-10-fail">
-        <x:context href="../tests/gen/elem-citation-journal-pub-id-pmid/err-elem-cit-journal-10/fail.xml"/>
-        <x:expect-report id="err-elem-cit-journal-10" role="error"/>
-        <x:expect-not-assert id="elem-citation-journal-pub-id-pmid-xspec-assert" role="error"/>
-      </x:scenario>
-    </x:scenario>
     <x:scenario label="elem-citation-journal-pub-id">
       <x:scenario label="err-elem-cit-journal-9-1-pass">
         <x:context href="../tests/gen/elem-citation-journal-pub-id/err-elem-cit-journal-9-1/pass.xml"/>
@@ -10440,18 +10428,6 @@
         <x:context href="../tests/gen/elem-citation-book-edition/err-elem-cit-book-15/fail.xml"/>
         <x:expect-assert id="err-elem-cit-book-15" role="error"/>
         <x:expect-not-assert id="elem-citation-book-edition-xspec-assert" role="error"/>
-      </x:scenario>
-    </x:scenario>
-    <x:scenario label="elem-citation-book-pub-id-pmid">
-      <x:scenario label="err-elem-cit-book-18-pass">
-        <x:context href="../tests/gen/elem-citation-book-pub-id-pmid/err-elem-cit-book-18/pass.xml"/>
-        <x:expect-not-report id="err-elem-cit-book-18" role="error"/>
-        <x:expect-not-assert id="elem-citation-book-pub-id-pmid-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="err-elem-cit-book-18-fail">
-        <x:context href="../tests/gen/elem-citation-book-pub-id-pmid/err-elem-cit-book-18/fail.xml"/>
-        <x:expect-report id="err-elem-cit-book-18" role="error"/>
-        <x:expect-not-assert id="elem-citation-book-pub-id-pmid-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="elem-citation-book-pub-id">
