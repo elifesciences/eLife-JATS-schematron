@@ -2021,8 +2021,6 @@
       
       <assert test="count(event) = 1" role="error" id="pub-history-child">
         <name/> must have one, and only one, event element. This one has <value-of select="count(event)"/>.</assert>
-      
-      <report test="event/date[@date-type='preprint']" role="info" id="preprint-flag">This article has a preprint date - <value-of select="event/date[@date-type='preprint']/@iso-8601-date"/>. eLife: please check that it is correct.</report>
     </rule>
   </pattern>
   <pattern id="event-tests-pattern">
