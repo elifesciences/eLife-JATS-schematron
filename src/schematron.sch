@@ -11405,10 +11405,16 @@ else self::*/local-name() = $allowed-p-blocks"
         test="starts-with($doi,'10.7554/eLife.') and (. != 'eLife')" 
         role="error" 
         id="elife-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has an eLife doi <value-of select="$doi"/>, but the journal name is '<value-of select="."/>', when it should be 'eLife'. Either the journal name needs updating to eLife, or the doi is incorrect.</report>
+      
+      <report test="matches(.,'\[|\(|\)|\]')" 
+        role="warning" 
+        id="journal-bracket-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name which contains brackets '<value-of select="."/>'. It is very unlikely that the content in the brackets is required.</report>
     </rule>
     
     <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
       <let name="rep" value="replace(.,' [Ii]{1,3}\. | IV\. | V. | [Cc]\. [Ee]legans| vs\. | sp\. ','')"/>
+      <let name="word-count" value="count(tokenize(.,'\p{Zs}'))"/>
+      <let name="title-word-count" value="count(tokenize(.,'\p{Zs}')[.=concat(upper-case(substring(.,1,1)),substring(.,2))])"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-fullstop-check-1" 
         test="(matches($rep,'[A-Za-z][A-Za-z]+\. [A-Za-z]'))" 
@@ -11444,6 +11450,10 @@ else self::*/local-name() = $allowed-p-blocks"
         test="matches(.,'�')" 
         role="error" 
         id="a-title-replacement-character-presence"><name/> element contains the replacement character '�' which is unallowed - <value-of select="."/></report>
+      
+      <report test="($word-count gt 4) and ($title-word-count gt ($word-count div 2))" 
+        role="warning" 
+        id="article-title-case">Journal ref has <name/> in mostly title case. Is that correct? eLife style is to use sentence case. "<value-of select="."/>"</report>
       
     </rule>
     
@@ -11506,6 +11516,10 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\p{Zs}\p{P}]?$')" 
         role="warning" 
         id="report-book-source-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a book reference, but the book title is <value-of select="."/>. Should it be captured as a report type reference instead?</report>
+      
+      <report test="matches(.,'\[|\(|\)|\]')" 
+        role="warning" 
+        id="book-bracket-check">Book ref '<value-of select="ancestor::ref/@id"/>' has a book name which contains brackets '<value-of select="."/>'. Is the content in the brackets is required?</report>
       
     </rule>
     

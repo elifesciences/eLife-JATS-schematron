@@ -1,0 +1,92 @@
+<?oxygen SCHSchema="journal-bracket-check.sch"?>
+<!--Context: element-citation[@publication-type='journal']/source
+Test: report    matches(.,'\[|\(|\)|\]')
+Message: Journal ref '' has a journal name which contains brackets ''. It is very unlikely that the content in the brackets is required. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <element-citation publication-type="journal">
+      <person-group person-group-type="author">
+        <name>
+          <surname>Thoms</surname>
+          <given-names>M</given-names>
+        </name>
+        <name>
+          <surname>Buschauer</surname>
+          <given-names>R</given-names>
+        </name>
+        <name>
+          <surname>Ameismeier</surname>
+          <given-names>M</given-names>
+        </name>
+        <name>
+          <surname>Koepke</surname>
+          <given-names>L</given-names>
+        </name>
+        <name>
+          <surname>Denk</surname>
+          <given-names>T</given-names>
+        </name>
+        <name>
+          <surname>Hirschenberger</surname>
+          <given-names>M</given-names>
+        </name>
+        <name>
+          <surname>Kratzat</surname>
+          <given-names>H</given-names>
+        </name>
+        <name>
+          <surname>Hayn</surname>
+          <given-names>M</given-names>
+        </name>
+        <name>
+          <surname>Mackens-Kiani</surname>
+          <given-names>T</given-names>
+        </name>
+        <name>
+          <surname>Cheng</surname>
+          <given-names>J</given-names>
+        </name>
+        <name>
+          <surname>Straub</surname>
+          <given-names>JH</given-names>
+        </name>
+        <name>
+          <surname>Stürzel</surname>
+          <given-names>CM</given-names>
+        </name>
+        <name>
+          <surname>Fröhlich</surname>
+          <given-names>T</given-names>
+        </name>
+        <name>
+          <surname>Berninghausen</surname>
+          <given-names>O</given-names>
+        </name>
+        <name>
+          <surname>Becker</surname>
+          <given-names>T</given-names>
+        </name>
+        <name>
+          <surname>Kirchhoff</surname>
+          <given-names>F</given-names>
+        </name>
+        <name>
+          <surname>Sparrer</surname>
+          <given-names>KMJ</given-names>
+        </name>
+        <name>
+          <surname>Beckmann</surname>
+          <given-names>R</given-names>
+        </name>
+      </person-group>
+      <year iso-8601-date="2020">2020</year>
+      <article-title>Structural basis for translational shutdown and immune evasion by the Nsp1 protein of SARS-CoV-2</article-title>
+      <source>Science (New York, N.Y.)</source>
+      <volume>369</volume>
+      <fpage>1249</fpage>
+      <lpage>1255</lpage>
+      <pub-id pub-id-type="doi">10.1126/science.abc8665</pub-id>
+      <pub-id pub-id-type="pmid">32680882</pub-id>
+    </element-citation>
+  </article>
+</root>

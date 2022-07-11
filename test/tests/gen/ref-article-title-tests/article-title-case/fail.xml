@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="article-title-case.sch"?>
+<!--Context: element-citation[@publication-type='journal']/article-title
+Test: report    ($word-count gt 4) and ($title-word-count gt ($word-count div 2))
+Message: Journal ref has  in mostly title case. Is that correct? eLife style is to use sentence case. "" -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ref id="bib10">
+      <element-citation publication-type="journal">
+        <article-title>Deep Mutational Scanning of SARS-CoV-2 Receptor Binding Domain Reveals Constraints on Folding and ACE2 Binding</article-title>
+      </element-citation>
+    </ref>
+  </article>
+</root>
