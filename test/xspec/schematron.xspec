@@ -17035,6 +17035,16 @@
         <x:expect-report id="elife-check" role="error"/>
         <x:expect-not-assert id="journal-title-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="journal-bracket-check-pass">
+        <x:context href="../tests/gen/journal-title-tests/journal-bracket-check/pass.xml"/>
+        <x:expect-not-report id="journal-bracket-check" role="warning"/>
+        <x:expect-not-assert id="journal-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="journal-bracket-check-fail">
+        <x:context href="../tests/gen/journal-title-tests/journal-bracket-check/fail.xml"/>
+        <x:expect-report id="journal-bracket-check" role="warning"/>
+        <x:expect-not-assert id="journal-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-article-title-tests">
       <x:scenario label="article-title-fullstop-check-1-pass">
@@ -17105,6 +17115,16 @@
       <x:scenario label="a-title-replacement-character-presence-fail">
         <x:context href="../tests/gen/ref-article-title-tests/a-title-replacement-character-presence/fail.xml"/>
         <x:expect-report id="a-title-replacement-character-presence" role="error"/>
+        <x:expect-not-assert id="ref-article-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-title-case-pass">
+        <x:context href="../tests/gen/ref-article-title-tests/article-title-case/pass.xml"/>
+        <x:expect-not-report id="article-title-case" role="warning"/>
+        <x:expect-not-assert id="ref-article-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-title-case-fail">
+        <x:context href="../tests/gen/ref-article-title-tests/article-title-case/fail.xml"/>
+        <x:expect-report id="article-title-case" role="warning"/>
         <x:expect-not-assert id="ref-article-title-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -17213,6 +17233,16 @@
       <x:scenario label="report-book-source-test-fail">
         <x:context href="../tests/gen/ref-book-source-tests/report-book-source-test/fail.xml"/>
         <x:expect-report id="report-book-source-test" role="warning"/>
+        <x:expect-not-assert id="ref-book-source-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="book-bracket-check-pass">
+        <x:context href="../tests/gen/ref-book-source-tests/book-bracket-check/pass.xml"/>
+        <x:expect-not-report id="book-bracket-check" role="warning"/>
+        <x:expect-not-assert id="ref-book-source-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="book-bracket-check-fail">
+        <x:context href="../tests/gen/ref-book-source-tests/book-bracket-check/fail.xml"/>
+        <x:expect-report id="book-bracket-check" role="warning"/>
         <x:expect-not-assert id="ref-book-source-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

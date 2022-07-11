@@ -1197,17 +1197,13 @@
     
   </xsl:function>
   <pattern id="house-style">
-    <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
-      <let name="rep" value="replace(.,' [Ii]{1,3}\. | IV\. | V. | [Cc]\. [Ee]legans| vs\. | sp\. ','')"/>
-      <let name="word-count" value="count(tokenize(.,'\p{Zs}'))"/>
-      <let name="title-word-count" value="count(tokenize(.,'\p{Zs}')[.=concat(upper-case(substring(.,1,1)),substring(.,2))])"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-child-1" test="(count(child::*) = 1) and (count(child::text()) = 0)" role="warning" id="article-title-child-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with one child <value-of select="*/local-name()"/> element, and no text. This is almost certainly incorrect. - <value-of select="."/>
-      </report>
+    <rule context="element-citation[@publication-type='book']/source" id="ref-book-source-tests">
+      <report test="matches(.,'\[|\(|\)|\]')" role="warning" id="book-bracket-check">Book ref '<value-of select="ancestor::ref/@id"/>' has a book name which contains brackets '<value-of select="."/>'. Is the content in the brackets is required?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='journal']/article-title" role="error" id="ref-article-title-tests-xspec-assert">element-citation[@publication-type='journal']/article-title must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='book']/source" role="error" id="ref-book-source-tests-xspec-assert">element-citation[@publication-type='book']/source must be present.</assert>
     </rule>
   </pattern>
 </schema>

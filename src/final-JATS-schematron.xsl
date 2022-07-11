@@ -36163,6 +36163,22 @@
                <xsl:text/>', when it should be 'eLife'. Either the journal name needs updating to eLife, or the doi is incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="matches(.,'\[|\(|\)|\]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\[|\(|\)|\]')">
+            <xsl:attribute name="id">journal-bracket-check</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[journal-bracket-check] Journal ref '<xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>' has a journal name which contains brackets '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'. It is very unlikely that the content in the brackets is required.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M475"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M475"/>
@@ -36176,6 +36192,8 @@
 	  <!--RULE ref-article-title-tests-->
    <xsl:template match="element-citation[@publication-type='journal']/article-title" priority="1000" mode="M476">
       <xsl:variable name="rep" select="replace(.,' [Ii]{1,3}\. | IV\. | V. | [Cc]\. [Ee]legans| vs\. | sp\. ','')"/>
+      <xsl:variable name="word-count" select="count(tokenize(.,'\p{Zs}'))"/>
+      <xsl:variable name="title-word-count" select="count(tokenize(.,'\p{Zs}')[.=concat(upper-case(substring(.,1,1)),substring(.,2))])"/>
 
 		    <!--REPORT info-->
       <xsl:if test="(matches($rep,'[A-Za-z][A-Za-z]+\. [A-Za-z]'))">
@@ -36295,6 +36313,22 @@
                <xsl:value-of select="."/>
                <xsl:text/>
             </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="($word-count gt 4) and ($title-word-count gt ($word-count div 2))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($word-count gt 4) and ($title-word-count gt ($word-count div 2))">
+            <xsl:attribute name="id">article-title-case</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[article-title-case] Journal ref has <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in mostly title case. Is that correct? eLife style is to use sentence case. "<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>"</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M476"/>
@@ -36511,6 +36545,22 @@
                <xsl:text/>' is tagged as a book reference, but the book title is <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>. Should it be captured as a report type reference instead?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="matches(.,'\[|\(|\)|\]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\[|\(|\)|\]')">
+            <xsl:attribute name="id">book-bracket-check</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[book-bracket-check] Book ref '<xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>' has a book name which contains brackets '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'. Is the content in the brackets is required?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M480"/>
