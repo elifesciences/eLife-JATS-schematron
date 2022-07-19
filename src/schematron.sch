@@ -3855,7 +3855,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <!-- Should this just be image? application included because during proofing stages non-web image files are referenced, e.g postscript -->
       <assert test="@mimetype=('image','application')" 
         role="error" 
-        id="graphic-test-4"><name/> must have a @mimetype='image'.</assert>
+        id="graphic-test-4"><name/> must have a @mimetype='image' or 'application'.</assert>
       
       <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" 
         role="error" 
@@ -11176,7 +11176,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="contains(.,'&#x9D;')" 
         role="error" 
-        id="operating-system-command-presence"><name/> element contains a operating system command character '&#x9D;' which should very likely be replaced/removed. - <value-of select="."/></report>
+        id="operating-system-command-presence"><name/> element contains an operating system command character '&#x9D;' (unicode string: &amp;#x9D;) which should very likely be replaced/removed. - <value-of select="."/></report>
     </rule>
     
     <rule context="sup" id="unallowed-symbol-tests-sup">		
