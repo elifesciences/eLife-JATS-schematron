@@ -1199,7 +1199,7 @@
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
       <report test="contains(.,'&#x9D;')" role="error" id="operating-system-command-presence">
-        <name/> element contains a operating system command character '&#x9D;' which should very likely be replaced/removed. - <value-of select="."/>
+        <name/> element contains an operating system command character '&#x9D;' (unicode string: &amp;#x9D;) which should very likely be replaced/removed. - <value-of select="."/>
       </report>
     </rule>
   </pattern>

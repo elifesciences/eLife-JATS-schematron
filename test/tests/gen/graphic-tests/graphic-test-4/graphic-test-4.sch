@@ -1201,7 +1201,7 @@
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
       <assert test="@mimetype=('image','application')" role="error" id="graphic-test-4">
-        <name/> must have a @mimetype='image'.</assert>
+        <name/> must have a @mimetype='image' or 'application'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

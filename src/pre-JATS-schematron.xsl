@@ -13563,7 +13563,7 @@
                </xsl:attribute>
                <svrl:text>[graphic-test-4] <xsl:text/>
                   <xsl:value-of select="name(.)"/>
-                  <xsl:text/> must have a @mimetype='image'.</svrl:text>
+                  <xsl:text/> must have a @mimetype='image' or 'application'.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -35217,7 +35217,7 @@
             </xsl:attribute>
             <svrl:text>[operating-system-command-presence] <xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/> element contains a operating system command character '&#x9D;' which should very likely be replaced/removed. - <xsl:text/>
+               <xsl:text/> element contains an operating system command character '&#x9D;' (unicode string: &amp;#x9D;) which should very likely be replaced/removed. - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>
             </svrl:text>
