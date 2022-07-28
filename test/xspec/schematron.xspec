@@ -10875,6 +10875,16 @@
         <x:expect-assert id="err-elem-cit-software-16" role="error"/>
         <x:expect-not-assert id="elem-citation-software-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="elem-cit-software-pub-id-ext-link-pass">
+        <x:context href="../tests/gen/elem-citation-software/elem-cit-software-pub-id-ext-link/pass.xml"/>
+        <x:expect-not-report id="elem-cit-software-pub-id-ext-link" role="error"/>
+        <x:expect-not-assert id="elem-citation-software-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="elem-cit-software-pub-id-ext-link-fail">
+        <x:context href="../tests/gen/elem-citation-software/elem-cit-software-pub-id-ext-link/fail.xml"/>
+        <x:expect-report id="elem-cit-software-pub-id-ext-link" role="error"/>
+        <x:expect-not-assert id="elem-citation-software-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="elem-citation-software-data-title">
       <x:scenario label="err-elem-cit-software-10-2-pass">
@@ -17599,6 +17609,16 @@
       <x:scenario label="ref-software-test-6-fail">
         <x:context href="../tests/gen/software-ref-tests/ref-software-test-6/fail.xml"/>
         <x:expect-report id="ref-software-test-6" role="error"/>
+        <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-software-test-7-pass">
+        <x:context href="../tests/gen/software-ref-tests/ref-software-test-7/pass.xml"/>
+        <x:expect-not-report id="ref-software-test-7" role="error"/>
+        <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-software-test-7-fail">
+        <x:context href="../tests/gen/software-ref-tests/ref-software-test-7/fail.xml"/>
+        <x:expect-report id="ref-software-test-7" role="error"/>
         <x:expect-not-assert id="software-ref-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

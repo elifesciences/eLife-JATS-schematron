@@ -1,0 +1,22 @@
+<?oxygen SCHSchema="elem-cit-software-pub-id-ext-link.sch"?>
+<!--Context: element-citation[@publication-type = 'software']
+Test: report    pub-id and ext-link
+Message: Software reference '' has both <pub-id> <ext-link> elements. There can only be one or the other, not both. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ref id="bib67">
+      <element-citation publication-type="software">
+        <person-group person-group-type="author">
+          ...
+        </person-group>
+        <year iso-8601-date="2021">2021</year>
+        <data-title>....</data-title>
+        <source>Zenodo</source>
+        <pub-id pub-id-type="doi">10.5281/zenodo.gfiewpguipreguwigfirue</pub-id>
+        <ext-link ext-link-type="uri" xlink:href="https://basex-validator.elifesciences.org/"
+          >https://basex-validator.elifesciences.org/</ext-link>
+      </element-citation>
+    </ref>
+  </article>
+</root>
