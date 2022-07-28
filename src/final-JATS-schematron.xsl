@@ -25946,21 +25946,35 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="count(*) = count(person-group | year | data-title | source | version | publisher-name | publisher-loc | ext-link)"/>
+         <xsl:when test="count(*) = count(person-group | year | data-title | source | version | publisher-name | publisher-loc | ext-link | pub-id)"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(*) = count(person-group | year | data-title | source | version | publisher-name | publisher-loc | ext-link)">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(*) = count(person-group | year | data-title | source | version | publisher-name | publisher-loc | ext-link | pub-id)">
                <xsl:attribute name="id">err-elem-cit-software-16</xsl:attribute>
                <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-16</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-software-16] The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="software" are: &lt;person-group&gt;, &lt;year&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;version&gt;, &lt;publisher-name&gt;, &lt;publisher-loc&gt;, and &lt;ext-link&gt; Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-software-16] The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="software" are: &lt;person-group&gt;, &lt;year&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;version&gt;, &lt;publisher-name&gt;, &lt;publisher-loc&gt;, &lt;ext-link&gt;, and &lt;pub-id&gt;. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has other elements.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--REPORT error-->
+      <xsl:if test="pub-id and ext-link">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="pub-id and ext-link">
+            <xsl:attribute name="id">elem-cit-software-pub-id-ext-link</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[elem-cit-software-pub-id-ext-link] Software reference '<xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>' has both &lt;pub-id&gt; &lt;ext-link&gt; elements. There can only be one or the other, not both.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M404"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M404"/>
@@ -37186,8 +37200,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="matches(lower-case(source[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab') and not(ext-link)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(source[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab') and not(ext-link)">
+      <xsl:if test="matches(lower-case(source[1]),'github|gitlab|bitbucket|sourceforge|matlab') and not(ext-link)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(source[1]),'github|gitlab|bitbucket|sourceforge|matlab') and not(ext-link)">
             <xsl:attribute name="id">ref-software-test-6</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-6</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
@@ -37199,6 +37213,22 @@
                <xsl:text/> software ref (with id '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
                <xsl:text/>') does not have a URL which is incorrect.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="matches(lower-case(source[1]),'^osf$|open science framework|zenodo|figshare') and not(ext-link) and not(pub-id)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(source[1]),'^osf$|open science framework|zenodo|figshare') and not(ext-link) and not(pub-id)">
+            <xsl:attribute name="id">ref-software-test-7</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-software-test-7] <xsl:text/>
+               <xsl:value-of select="source[1]"/>
+               <xsl:text/> software ref (with id '<xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>') does not have a URL or a DOI which is incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M483"/>

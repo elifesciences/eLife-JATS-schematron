@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="ref-software-test-6.sch"?>
 <!--Context: element-citation[@publication-type='software']
-Test: report    matches(lower-case(source[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab') and not(ext-link)
+Test: report    matches(lower-case(source[1]),'github|gitlab|bitbucket|sourceforge|matlab') and not(ext-link)
 Message:  software ref (with id '') does not have a URL which is incorrect. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

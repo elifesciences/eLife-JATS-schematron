@@ -1,0 +1,24 @@
+<?oxygen SCHSchema="ref-software-test-7.sch"?>
+<!--Context: element-citation[@publication-type='software']
+Test: report    matches(lower-case(source[1]),'^osf$|open science framework|zenodo|figshare') and not(ext-link) and not(pub-id)
+Message:  software ref (with id '') does not have a URL or a DOI which is incorrect. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+      xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+      <article>
+        <ref id="bib67">
+          <element-citation publication-type="software">
+            <person-group person-group-type="author">
+              ...
+            </person-group>
+            <year iso-8601-date="2021">2021</year>
+            <data-title>....</data-title>
+            <source>Zenodo</source>
+            <pub-id pub-id-type="doi">10.5281/zenodo.gfiewpguipreguwigfirue</pub-id>
+          </element-citation>
+        </ref>
+      </article>
+    </root>
+  </article>
+</root>
