@@ -12033,6 +12033,16 @@
         <x:expect-report id="pub-id-test-6" role="error"/>
         <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="indistinct-pub-ids-pass">
+        <x:context href="../tests/gen/pub-id-tests/indistinct-pub-ids/pass.xml"/>
+        <x:expect-not-report id="indistinct-pub-ids" role="error"/>
+        <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="indistinct-pub-ids-fail">
+        <x:context href="../tests/gen/pub-id-tests/indistinct-pub-ids/fail.xml"/>
+        <x:expect-report id="indistinct-pub-ids" role="error"/>
+        <x:expect-not-assert id="pub-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="pub-id-xlink-href-tests">
       <x:scenario label="pub-id-url-conformance-test-pass">

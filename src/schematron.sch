@@ -7411,7 +7411,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="self-cite-1">'<value-of select="@publication-type"/>' type reference has a doi which is the same as this article - <value-of select="pub-id[@pub-id-type='doi']"/>. Is the reference correct? If it is intentional, please remove the reference, and replace citations in the text with the text 'current work' or similar.</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#self-cite-1"
-        test="(lower-case(pub-id[@pub-id-type='doi']) != $article-doi) and 
+        test="(lower-case(pub-id[@pub-id-type='doi'][1]) != $article-doi) and 
               (lower-case(source[1]) = 'elife') and 
               ((lower-case(article-title[1]) = $title) or (lower-case(chapter-title[1]) = $title)) "
         role="error" 
@@ -8726,6 +8726,10 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="matches(.,'\p{Zs}$')" 
         role="error" 
         id="pub-id-test-6"><value-of select="@pub-id-type"/> pub-id ends with space(s) which is incorrect - '<value-of select="."/>'.</report>
+      
+      <report test="preceding-sibling::pub-id/@pub-id-type = @pub-id-type" 
+        role="error" 
+        id="indistinct-pub-ids">element-citation for <value-of select="e:citation-format1(parent::element-citation)"/> has more than one pub-id with the type <value-of select="@pub-id-type"/>, which cannot be correct - <value-of select="."/>.</report>
       
     </rule>
     
