@@ -24263,8 +24263,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="(lower-case(pub-id[@pub-id-type='doi']) != $article-doi) and                (lower-case(source[1]) = 'elife') and                ((lower-case(article-title[1]) = $title) or (lower-case(chapter-title[1]) = $title)) ">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(lower-case(pub-id[@pub-id-type='doi']) != $article-doi) and (lower-case(source[1]) = 'elife') and ((lower-case(article-title[1]) = $title) or (lower-case(chapter-title[1]) = $title))">
+      <xsl:if test="(lower-case(pub-id[@pub-id-type='doi'][1]) != $article-doi) and                (lower-case(source[1]) = 'elife') and                ((lower-case(article-title[1]) = $title) or (lower-case(chapter-title[1]) = $title)) ">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(lower-case(pub-id[@pub-id-type='doi'][1]) != $article-doi) and (lower-case(source[1]) = 'elife') and ((lower-case(article-title[1]) = $title) or (lower-case(chapter-title[1]) = $title))">
             <xsl:attribute name="id">self-cite-2</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#self-cite-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
@@ -28090,6 +28090,24 @@
                <xsl:text/> pub-id ends with space(s) which is incorrect - '<xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="preceding-sibling::pub-id/@pub-id-type = @pub-id-type">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="preceding-sibling::pub-id/@pub-id-type = @pub-id-type">
+            <xsl:attribute name="id">indistinct-pub-ids</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[indistinct-pub-ids] element-citation for <xsl:text/>
+               <xsl:value-of select="e:citation-format1(parent::element-citation)"/>
+               <xsl:text/> has more than one pub-id with the type <xsl:text/>
+               <xsl:value-of select="@pub-id-type"/>
+               <xsl:text/>, which cannot be correct - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M436"/>

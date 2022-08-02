@@ -1,0 +1,46 @@
+<?oxygen SCHSchema="indistinct-pub-ids.sch"?>
+<!--Context: element-citation/pub-id
+Test: report    preceding-sibling::pub-id/@pub-id-type = @pub-id-type
+Message: element-citation for  has more than one pub-id with the type , which cannot be correct - . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ref id="bib19">
+      <element-citation publication-type="report">
+        <person-group person-group-type="author">
+          <name>
+            <surname>Imai</surname>
+            <given-names>N</given-names>
+          </name>
+          <name>
+            <surname>Cori</surname>
+            <given-names>A</given-names>
+          </name>
+          <name>
+            <surname>Dorigatti</surname>
+            <given-names>I</given-names>
+          </name>
+          <name>
+            <surname>Baguelin</surname>
+            <given-names>M</given-names>
+          </name>
+          <name>
+            <surname>Donnelly</surname>
+            <given-names>C</given-names>
+          </name>
+          <name>
+            <surname>Riley</surname>
+            <given-names>S</given-names>
+          </name>
+          <name>
+            <surname>Ferguson</surname>
+            <given-names>N</given-names>
+          </name>
+        </person-group>
+        <year iso-8601-date="2020">2020</year>
+        <source>Report 3: Transmissibility of 2019-nCoV</source>
+        <publisher-name>Imperial College London</publisher-name>
+        <pub-id pub-id-type="doi">10.25561/77148</pub-id>
+      </element-citation>
+    </ref>
+  </article>
+</root>
