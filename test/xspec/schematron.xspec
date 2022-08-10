@@ -2351,6 +2351,16 @@
         <x:expect-report id="abstract-test-7" role="warning"/>
         <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="abstract-test-9-pass">
+        <x:context href="../tests/gen/abstract-tests/abstract-test-9/pass.xml"/>
+        <x:expect-not-report id="abstract-test-9" role="error"/>
+        <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-test-9-fail">
+        <x:context href="../tests/gen/abstract-tests/abstract-test-9/fail.xml"/>
+        <x:expect-report id="abstract-test-9" role="error"/>
+        <x:expect-not-assert id="abstract-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="medicine-abstract-tests">
       <x:scenario label="medicine-abstract-conformance-pass">
@@ -3268,6 +3278,18 @@
         <x:context href="../tests/gen/par-tests/par-test-2/fail.xml"/>
         <x:expect-assert id="par-test-2" role="error"/>
         <x:expect-not-assert id="par-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="multi-par-tests">
+      <x:scenario label="multi-par-test-1-pass">
+        <x:context href="../tests/gen/multi-par-tests/multi-par-test-1/pass.xml"/>
+        <x:expect-not-assert id="multi-par-test-1" role="error"/>
+        <x:expect-not-assert id="multi-par-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="multi-par-test-1-fail">
+        <x:context href="../tests/gen/multi-par-tests/multi-par-test-1/fail.xml"/>
+        <x:expect-assert id="multi-par-test-1" role="error"/>
+        <x:expect-not-assert id="multi-par-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="par-name-tests">

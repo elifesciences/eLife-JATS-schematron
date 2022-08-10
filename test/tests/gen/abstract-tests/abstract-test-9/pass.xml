@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="abstract-test-9.sch"?>
+<!--Context: front//abstract
+Test: report    matches(.,'_{5}')
+Message: Abstract contains a series of underscores directly next to each other. These are replacement characters input by the bot when the export from eJP contains an unknown or unsupported unicode character. Check the original abstract where these underscores are and ensure that they are replaced with whatever character should be present, or that the underscores are simply removed - . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <abstract>
+        <p>What is this??? A CENTER FOR ANTS!?</p>
+      </abstract>
+    </front>
+  </article>
+</root>

@@ -2183,6 +2183,8 @@
 	  
 	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#abstract-test-7" test="some $x in child::p satisfies (starts-with($x,'Background:') or starts-with($x,'Methods:') or starts-with($x,'Results:') or starts-with($x,'Conclusion:') or starts-with($x,'Trial registration:') or starts-with($x,'Clinical trial number:'))" role="warning" id="abstract-test-7">Abstract looks like it should instead be captured as a structured abstract (using sections) - <value-of select="."/>
       </report>
+	  
+	  <report test="matches(.,'_{5}')" role="error" id="abstract-test-9">Abstract contains a series of underscores directly next to each other. These are replacement characters input by the bot when the export from eJP contains an unknown or unsupported unicode character. Check the original abstract where these underscores are and ensure that they are replaced with whatever character should be present, or that the underscores are simply removed - <value-of select="."/>.</report>
 		
     </rule>
   </pattern>
@@ -2514,6 +2516,15 @@
         <name/> cannot be empty.</report>
       
       <assert test="$par-text = $authors" role="error" id="par-test-2">Author name in funding section (<value-of select="$par-text"/>) does not match any of the author names in the author list: <value-of select="string-join($authors,', ')"/>.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="multi-par-tests-pattern">
+    <rule context="funding-group//principal-award-recipient[count(name) gt 1]" id="multi-par-tests">
+      <let name="names" value="for $name in name return e:get-name($name)"/>
+      <let name="indistinct-names" value="for $name in distinct-values($names) return $name[count($names[. = $name]) gt 1]"/>
+      
+      <assert test="empty($indistinct-names)" role="error" id="multi-par-test-1">Funding entry from <value-of select="ancestor::award-group[1]/funding-source[1]/descendant::institution[1]"/> has duplicate author names associated - <value-of select="string-join($indistinct-names,';')"/>.</assert>
       
     </rule>
   </pattern>
@@ -9086,6 +9097,7 @@
       <assert test="descendant::article[e:get-version(.)='1']//award-group//institution-wrap/institution-id" role="error" id="institution-id-tests-xspec-assert">article[e:get-version(.)='1']//award-group//institution-wrap/institution-id must be present.</assert>
       <assert test="descendant::article[e:get-version(.)!='1']//award-group//institution-wrap/institution-id" role="error" id="institution-id-tests-v2-xspec-assert">article[e:get-version(.)!='1']//award-group//institution-wrap/institution-id must be present.</assert>
       <assert test="descendant::funding-group//principal-award-recipient" role="error" id="par-tests-xspec-assert">funding-group//principal-award-recipient must be present.</assert>
+      <assert test="descendant::funding-group//principal-award-recipient[count(name) gt 1]" role="error" id="multi-par-tests-xspec-assert">funding-group//principal-award-recipient[count(name) gt 1] must be present.</assert>
       <assert test="descendant::funding-group//principal-award-recipient/name" role="error" id="par-name-tests-xspec-assert">funding-group//principal-award-recipient/name must be present.</assert>
       <assert test="descendant::article-meta/kwd-group[not(@kwd-group-type='research-organism')]" role="error" id="kwd-group-tests-xspec-assert">article-meta/kwd-group[not(@kwd-group-type='research-organism')] must be present.</assert>
       <assert test="descendant::article-meta/kwd-group[@kwd-group-type='research-organism']" role="error" id="ro-kwd-group-tests-xspec-assert">article-meta/kwd-group[@kwd-group-type='research-organism'] must be present.</assert>
