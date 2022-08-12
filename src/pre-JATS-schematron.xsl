@@ -40994,8 +40994,10 @@
 
 	  <!--RULE link-ref-tests-->
    <xsl:template match="element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title" priority="1000" mode="M540">
+      <xsl:variable name="lc" select="lower-case(.)"/>
+      <xsl:variable name="t" select="tokenize($lc,'\s')[not(.=('of','the'))]"/>
 
-		<!--REPORT error-->
+		    <!--REPORT error-->
       <xsl:if test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+|\p{Zs}10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+|\p{Zs}10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+')">
             <xsl:attribute name="id">doi-in-display-test</xsl:attribute>
@@ -41028,6 +41030,28 @@
                <xsl:text/>. The url must be moved to the appropriate field (if it is a doi, then it should be captured as a doi without the 'https://doi.org/' prefix), and the correct information should be included in this element (or queried if the information is missing).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--ASSERT warning-->
+      <xsl:choose>
+         <xsl:when test="(count(distinct-values($t)) div count($t)) gt 0.75"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count(distinct-values($t)) div count($t)) gt 0.75">
+               <xsl:attribute name="id">duplicated-content</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[duplicated-content] Does <xsl:text/>
+                  <xsl:value-of select="name(.)"/>
+                  <xsl:text/> in <xsl:text/>
+                  <xsl:value-of select="e:citation-format1(parent::element-citation)"/>
+                  <xsl:text/> have duplicated content? <xsl:text/>
+                  <xsl:value-of select="."/>
+                  <xsl:text/>
+               </svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M540"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M540"/>

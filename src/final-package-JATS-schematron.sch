@@ -8637,12 +8637,18 @@
   
   <pattern id="link-ref-tests-pattern">
     <rule context="element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title" id="link-ref-tests">
+      <let name="lc" value="lower-case(.)"/>
+      <!-- Get tokens in the string which are not common. Distinct values can then be compared to determine if there is duplication -->
+      <let name="t" value="tokenize($lc,'\s')[not(.=('of','the'))]"/>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#doi-in-display-test" test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+|\p{Zs}10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+')" role="error" id="doi-in-display-test">
         <value-of select="name()"/> element contains a doi - <value-of select="."/>. The doi must be moved to the appropriate field, and the correct information should be included in this element (or queried if the information is missing).</report>
       
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#link-in-display-test" test="matches(.,'https?:|ftp://|git://|tel:|mailto:')" role="error" id="link-in-display-test">
         <value-of select="name()"/> element contains a url - <value-of select="."/>. The url must be moved to the appropriate field (if it is a doi, then it should be captured as a doi without the 'https://doi.org/' prefix), and the correct information should be included in this element (or queried if the information is missing).</report>
+      
+      <assert test="(count(distinct-values($t)) div count($t)) gt 0.75" role="warning" id="duplicated-content">Does <value-of select="name(.)"/> in <value-of select="e:citation-format1(parent::element-citation)"/> have duplicated content? <value-of select="."/>
+      </assert>
       
     </rule>
   </pattern>
