@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="duplicated-content.sch"?>
+<!--Context: element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title
+Test: assert    ($d-count div $t-count) gt 0.75
+Message: Does  in  have duplicated content?  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <ref id="bib69"><element-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Wang</surname><given-names>M</given-names></name><name><surname>Stidham</surname><given-names>TA</given-names></name><name><surname>Zhou</surname><given-names>Z</given-names></name></person-group><year iso-8601-date="2018">2018</year><article-title>A new clade of basal Early Cretaceous pygostylian birds and developmental plasticity of the avian shoulder girdle</article-title><source>PNAS</source><volume>115</volume><fpage>10708</fpage><lpage>10713</lpage><pub-id pub-id-type="doi">10.1073/pnas.1812176115</pub-id><pub-id pub-id-type="pmid">30249638</pub-id></element-citation></ref>
+  </article>
+</root>
