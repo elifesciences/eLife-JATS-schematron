@@ -1200,7 +1200,9 @@
     <rule context="element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title" id="link-ref-tests">
       <let name="lc" value="lower-case(.)"/>
       <let name="t" value="tokenize($lc,'\s')[not(.=('of','the'))]"/>
-      <assert test="(count(distinct-values($t)) div count($t)) gt 0.75" role="warning" id="duplicated-content">Does <value-of select="name(.)"/> in <value-of select="e:citation-format1(parent::element-citation)"/> have duplicated content? <value-of select="."/>
+      <let name="t-count" value="if (count($t) lt 1) then 1                                  else count($t)"/>
+      <let name="d-count" value="if ($t-count = 1) then 1                                  else count(distinct-values($t))"/>
+      <assert test="($d-count div $t-count) gt 0.75" role="warning" id="duplicated-content">Does <value-of select="name(.)"/> in <value-of select="e:citation-format1(parent::element-citation)"/> have duplicated content? <value-of select="."/>
       </assert>
     </rule>
   </pattern>

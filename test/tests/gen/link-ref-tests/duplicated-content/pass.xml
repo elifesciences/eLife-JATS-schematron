@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="duplicated-content.sch"?>
 <!--Context: element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title
-Test: assert    (count(distinct-values($t)) div count($t)) gt 0.75
+Test: assert    ($d-count div $t-count) gt 0.75
 Message: Does  in  have duplicated content?  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

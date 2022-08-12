@@ -41078,6 +41078,8 @@
    <xsl:template match="element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title" priority="1000" mode="M543">
       <xsl:variable name="lc" select="lower-case(.)"/>
       <xsl:variable name="t" select="tokenize($lc,'\s')[not(.=('of','the'))]"/>
+      <xsl:variable name="t-count" select="if (count($t) lt 1) then 1                                  else count($t)"/>
+      <xsl:variable name="d-count" select="if ($t-count = 1) then 1                                  else count(distinct-values($t))"/>
 
 		    <!--REPORT error-->
       <xsl:if test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+|\p{Zs}10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+')">
@@ -41115,9 +41117,9 @@
 
 		    <!--ASSERT warning-->
       <xsl:choose>
-         <xsl:when test="(count(distinct-values($t)) div count($t)) gt 0.75"/>
+         <xsl:when test="($d-count div $t-count) gt 0.75"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count(distinct-values($t)) div count($t)) gt 0.75">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($d-count div $t-count) gt 0.75">
                <xsl:attribute name="id">duplicated-content</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
