@@ -204,7 +204,7 @@
   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:stripDiacritics" as="xs:string">
       <xsl:param name="string" as="xs:string"/>
-      <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨıɉꝁłøɍŧɏƶ','bcdeghiijklortyz'),'\p{M}',''),'æ','ae'),'ß','ss')"/>
+      <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨıɉꝁłøɍŧɏƶ','bcdeghiijklortyz'),'[\p{M}’]',''),'æ','ae'),'ß','ss')"/>
   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:ref-list-string" as="xs:string">
       <xsl:param name="ref"/>
@@ -8455,7 +8455,7 @@
             </xsl:attribute>
             <svrl:text>[corresp-author-initial-test] <xsl:text/>
                <xsl:value-of select="$name"/>
-               <xsl:text/> has a name with letters that have diacritics or marks. Please ensure that their initials display correctly in the PDF in the 'For correspondence' section on the first page.</svrl:text>
+               <xsl:text/> has a name with letters that have diacritics, marks, or a name with special characters. Please ensure that their initials display correctly in the PDF in the 'For correspondence' section on the first page.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M90"/>
