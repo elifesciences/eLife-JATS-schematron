@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="test-no-digest.sch"?>
 <!--Context: article/front/article-meta
-Test: report    ($subj-type= $no-digest) and abstract[@abstract-type='executive-summary']
+Test: report    ($subj-type= $no-digest) and abstract[@abstract-type=('executive-summary','plain-language-summary')]
 Message: '' cannot have a digest. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="article-commentary">

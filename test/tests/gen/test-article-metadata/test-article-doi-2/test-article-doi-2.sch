@@ -1203,6 +1203,9 @@
       <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="exceptions" value="('Insight',$notice-display-types)"/>
       <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report',$notice-display-types,$features-subj)"/>
+      <let name="abs-count" value="count(abstract)"/>
+      <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
+      <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
       <assert test="substring-after(article-id[@pub-id-type='doi'][1],'10.7554/eLife.') = $article-id" role="error" id="test-article-doi-2">Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is <value-of select="article-id[@pub-id-type='doi']"/>
       </assert>
     </rule>

@@ -1203,6 +1203,9 @@
       <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="exceptions" value="('Insight',$notice-display-types)"/>
       <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report',$notice-display-types,$features-subj)"/>
+      <let name="abs-count" value="count(abstract)"/>
+      <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
+      <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
       <report test="if ($subj-type = $exceptions) then ()       else count(custom-meta-group) != 1" role="error" id="test-custom-meta-group-presence">One custom-meta-group should be present in article-meta for all article types except Insights, Retractions, Corrections and Expressions of Concern.</report>
     </rule>
   </pattern>

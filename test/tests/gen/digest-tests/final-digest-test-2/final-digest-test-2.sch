@@ -1197,14 +1197,14 @@
     
   </xsl:function>
   <pattern id="features">
-    <rule context="front//abstract[@abstract-type='executive-summary']/p" id="digest-tests">
+    <rule context="front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p" id="digest-tests">
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#final-digest-test-2" test="matches(.,'\[[Oo][Kk]\??\]')" role="error" id="final-digest-test-2">digest paragraph contains [OK] or [OK?] which should be removed - <value-of select="."/>
       </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front//abstract[@abstract-type='executive-summary']/p" role="error" id="digest-tests-xspec-assert">front//abstract[@abstract-type='executive-summary']/p must be present.</assert>
+      <assert test="descendant::front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p" role="error" id="digest-tests-xspec-assert">front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p must be present.</assert>
     </rule>
   </pattern>
 </schema>

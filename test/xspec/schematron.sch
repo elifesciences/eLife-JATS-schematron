@@ -1361,6 +1361,9 @@
     <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
     <let name="exceptions" value="('Insight',$notice-display-types)"/>
     <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report',$notice-display-types,$features-subj)"/>
+    <let name="abs-count" value="count(abstract)"/>
+    <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
+    <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
     
 	<assert test="matches($article-id,'^\d{5}$')" role="error" id="test-article-id">article-id must consist only of 5 digits. Currently it is <value-of select="article-id[@pub-id-type='publisher-id']"/>
       </assert> 
@@ -1406,9 +1409,9 @@
     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#test-permissions-presence" test="count(permissions) = 1" role="error" id="test-permissions-presence">There must be one and only one permissions element in the article-meta. Currently there are <value-of select="count(permissions)"/>
       </assert>
 		  
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#test-abstracts" test="not($article-type = $notice-article-types) and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))" role="error" id="test-abstracts">There must either be only one abstract or one abstract and one abstract[@abstract-type="executive-summary]. No other variations are allowed.</report>
+    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#test-abstracts" test="not($article-type = $notice-article-types) and ($abs-count gt 2 or $abs-standard-count != 1 or $digest-count gt 1 or ($abs-count != $abs-standard-count + $digest-count))" role="error" id="test-abstracts">There must either be only one abstract or one abstract and one abstract[@abstract-type="plain-language-summary"]. No other variations are allowed.</report>
     
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#test-no-digest" test="($subj-type= $no-digest) and abstract[@abstract-type='executive-summary']" role="error" id="test-no-digest">'<value-of select="$subj-type"/>' cannot have a digest.</report>
+    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#test-no-digest" test="($subj-type= $no-digest) and abstract[@abstract-type=('executive-summary','plain-language-summary')]" role="error" id="test-no-digest">'<value-of select="$subj-type"/>' cannot have a digest.</report>
 	 
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#test-funding-group-presence" test="if ($article-type = $features-article-types) then ()       else if ($subj-type = ('Scientific Correspondence',$notice-display-types)) then ()       else count(funding-group) != 1" role="error" id="test-funding-group-presence">There must be one and only one funding-group element in the article-meta. Currently there are <value-of select="count(funding-group)"/>.</report>
     
@@ -6134,7 +6137,7 @@
    </rule>
   </pattern>
   <pattern id="feature-abstract-tests-pattern">
-    <rule context="front//abstract[@abstract-type='executive-summary']" id="feature-abstract-tests">
+    <rule context="front//abstract[@abstract-type=('executive-summary','plain-language-summary')]" id="feature-abstract-tests">
      
      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#feature-abstract-test-1" test="count(title) = 1" role="error" id="feature-abstract-test-1">abstract must contain one and only one title.</assert>
      
@@ -6144,7 +6147,7 @@
    </rule>
   </pattern>
   <pattern id="digest-tests-pattern">
-    <rule context="front//abstract[@abstract-type='executive-summary']/p" id="digest-tests">
+    <rule context="front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p" id="digest-tests">
      
      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#digest-test-1" test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrectly split into two?</report>
      
@@ -9401,8 +9404,8 @@
       <assert test="descendant::element-citation/pub-id" role="error" id="pub-id-tests-xspec-assert">element-citation/pub-id must be present.</assert>
       <assert test="descendant::pub-id[@xlink:href]" role="error" id="pub-id-xlink-href-tests-xspec-assert">pub-id[@xlink:href] must be present.</assert>
       <assert test="descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title" role="error" id="feature-title-tests-xspec-assert">article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title must be present.</assert>
-      <assert test="descendant::front//abstract[@abstract-type='executive-summary']" role="error" id="feature-abstract-tests-xspec-assert">front//abstract[@abstract-type='executive-summary'] must be present.</assert>
-      <assert test="descendant::front//abstract[@abstract-type='executive-summary']/p" role="error" id="digest-tests-xspec-assert">front//abstract[@abstract-type='executive-summary']/p must be present.</assert>
+      <assert test="descendant::front//abstract[@abstract-type=('executive-summary','plain-language-summary')]" role="error" id="feature-abstract-tests-xspec-assert">front//abstract[@abstract-type=('executive-summary','plain-language-summary')] must be present.</assert>
+      <assert test="descendant::front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p" role="error" id="digest-tests-xspec-assert">front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p must be present.</assert>
       <assert test="descendant::subj-group[@subj-group-type='sub-display-channel']/subject" role="error" id="feature-subj-tests-xspec-assert">subj-group[@subj-group-type='sub-display-channel']/subject must be present.</assert>
       <assert test="descendant::article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" role="error" id="feature-article-category-tests-xspec-assert">article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj] must be present.</assert>
       <assert test="descendant::article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']" role="error" id="feature-author-tests-xspec-assert">article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author'] must be present.</assert>

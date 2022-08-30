@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="final-digest-test-2.sch"?>
-<!--Context: front//abstract[@abstract-type='executive-summary']/p
+<!--Context: front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p
 Test: report    matches(.,'\[[Oo][Kk]\??\]')
 Message: digest paragraph contains [OK] or [OK?] which should be removed -  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

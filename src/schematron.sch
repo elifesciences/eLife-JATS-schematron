@@ -1477,6 +1477,9 @@
     <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
     <let name="exceptions" value="('Insight',$notice-display-types)"/>
     <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report',$notice-display-types,$features-subj)"/>
+    <let name="abs-count" value="count(abstract)"/>
+    <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
+    <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
     
 	<assert test="matches($article-id,'^\d{5}$')" 
         role="error" 
@@ -1550,12 +1553,12 @@
         id="test-permissions-presence">There must be one and only one permissions element in the article-meta. Currently there are <value-of select="count(permissions)"/></assert>
 		  
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#test-abstracts" 
-      test="not($article-type = $notice-article-types) and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))" 
+      test="not($article-type = $notice-article-types) and ($abs-count gt 2 or $abs-standard-count != 1 or $digest-count gt 1 or ($abs-count != $abs-standard-count + $digest-count))" 
         role="error" 
-        id="test-abstracts">There must either be only one abstract or one abstract and one abstract[@abstract-type="executive-summary]. No other variations are allowed.</report>
+        id="test-abstracts">There must either be only one abstract or one abstract and one abstract[@abstract-type="plain-language-summary"]. No other variations are allowed.</report>
     
     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#test-no-digest" 
-      test="($subj-type= $no-digest) and abstract[@abstract-type='executive-summary']" 
+      test="($subj-type= $no-digest) and abstract[@abstract-type=('executive-summary','plain-language-summary')]" 
         role="error" 
         id="test-no-digest">'<value-of select="$subj-type"/>' cannot have a digest.</report>
 	 
@@ -8782,7 +8785,7 @@ else self::*/local-name() = $allowed-p-blocks"
      
    </rule>
    
-   <rule context="front//abstract[@abstract-type='executive-summary']" id="feature-abstract-tests">
+   <rule context="front//abstract[@abstract-type=('executive-summary','plain-language-summary')]" id="feature-abstract-tests">
      
      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#feature-abstract-test-1"
        test="count(title) = 1" 
@@ -8796,7 +8799,7 @@ else self::*/local-name() = $allowed-p-blocks"
      
    </rule>
    
-   <rule context="front//abstract[@abstract-type='executive-summary']/p" id="digest-tests">
+   <rule context="front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p" id="digest-tests">
      
      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#digest-test-1"
        test="matches(.,'^\p{Ll}')" 

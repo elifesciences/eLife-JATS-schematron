@@ -1203,7 +1203,10 @@
       <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="exceptions" value="('Insight',$notice-display-types)"/>
       <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report',$notice-display-types,$features-subj)"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#test-no-digest" test="($subj-type= $no-digest) and abstract[@abstract-type='executive-summary']" role="error" id="test-no-digest">'<value-of select="$subj-type"/>' cannot have a digest.</report>
+      <let name="abs-count" value="count(abstract)"/>
+      <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
+      <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
+      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#test-no-digest" test="($subj-type= $no-digest) and abstract[@abstract-type=('executive-summary','plain-language-summary')]" role="error" id="test-no-digest">'<value-of select="$subj-type"/>' cannot have a digest.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

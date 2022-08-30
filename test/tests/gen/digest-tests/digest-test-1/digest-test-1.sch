@@ -1197,13 +1197,13 @@
     
   </xsl:function>
   <pattern id="features">
-    <rule context="front//abstract[@abstract-type='executive-summary']/p" id="digest-tests">
+    <rule context="front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p" id="digest-tests">
       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#digest-test-1" test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrectly split into two?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front//abstract[@abstract-type='executive-summary']/p" role="error" id="digest-tests-xspec-assert">front//abstract[@abstract-type='executive-summary']/p must be present.</assert>
+      <assert test="descendant::front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p" role="error" id="digest-tests-xspec-assert">front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p must be present.</assert>
     </rule>
   </pattern>
 </schema>
