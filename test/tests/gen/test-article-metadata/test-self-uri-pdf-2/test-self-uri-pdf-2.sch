@@ -1203,6 +1203,9 @@
       <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="exceptions" value="('Insight',$notice-display-types)"/>
       <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report',$notice-display-types,$features-subj)"/>
+      <let name="abs-count" value="count(abstract)"/>
+      <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
+      <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
       <report test="not($article-type = $notice-article-types) and not(self-uri[matches(@xlink:href, '^elife-[\d]{5}\.pdf$|^elife-[\d]{5}-v[0-9]{1,2}\.pdf$')])" role="error" id="test-self-uri-pdf-2">self-uri does not conform.</report>
     </rule>
   </pattern>

@@ -1203,6 +1203,9 @@
       <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="exceptions" value="('Insight',$notice-display-types)"/>
       <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report',$notice-display-types,$features-subj)"/>
+      <let name="abs-count" value="count(abstract)"/>
+      <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
+      <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
       <report test="if ($subj-type = $notice-display-types) then (count(kwd-group[@kwd-group-type='author-keywords']) != 0)       else ()" role="error" id="test-auth-kwd-group-presence-2">
         <value-of select="$subj-type"/> articles must not have any author keywords</report>
     </rule>

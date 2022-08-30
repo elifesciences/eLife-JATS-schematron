@@ -6172,6 +6172,9 @@
       <xsl:variable name="subj-type" select="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <xsl:variable name="exceptions" select="('Insight',$notice-display-types)"/>
       <xsl:variable name="no-digest" select="('Scientific Correspondence','Replication Study','Research Advance','Registered Report',$notice-display-types,$features-subj)"/>
+      <xsl:variable name="abs-count" select="count(abstract)"/>
+      <xsl:variable name="abs-standard-count" select="count(abstract[not(@abstract-type)])"/>
+      <xsl:variable name="digest-count" select="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>
@@ -6422,21 +6425,21 @@
       </xsl:choose>
 
 		    <!--REPORT error-->
-      <xsl:if test="not($article-type = $notice-article-types) and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($article-type = $notice-article-types) and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))">
+      <xsl:if test="not($article-type = $notice-article-types) and ($abs-count gt 2 or $abs-standard-count != 1 or $digest-count gt 1 or ($abs-count != $abs-standard-count + $digest-count))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($article-type = $notice-article-types) and ($abs-count gt 2 or $abs-standard-count != 1 or $digest-count gt 1 or ($abs-count != $abs-standard-count + $digest-count))">
             <xsl:attribute name="id">test-abstracts</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#test-abstracts</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[test-abstracts] There must either be only one abstract or one abstract and one abstract[@abstract-type="executive-summary]. No other variations are allowed.</svrl:text>
+            <svrl:text>[test-abstracts] There must either be only one abstract or one abstract and one abstract[@abstract-type="plain-language-summary"]. No other variations are allowed.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="($subj-type= $no-digest) and abstract[@abstract-type='executive-summary']">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($subj-type= $no-digest) and abstract[@abstract-type='executive-summary']">
+      <xsl:if test="($subj-type= $no-digest) and abstract[@abstract-type=('executive-summary','plain-language-summary')]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($subj-type= $no-digest) and abstract[@abstract-type=('executive-summary','plain-language-summary')]">
             <xsl:attribute name="id">test-no-digest</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#test-no-digest</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
@@ -28276,7 +28279,7 @@
 
 
 	  <!--RULE feature-abstract-tests-->
-   <xsl:template match="front//abstract[@abstract-type='executive-summary']" priority="1000" mode="M440">
+   <xsl:template match="front//abstract[@abstract-type=('executive-summary','plain-language-summary')]" priority="1000" mode="M440">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -28323,7 +28326,7 @@
 
 
 	  <!--RULE digest-tests-->
-   <xsl:template match="front//abstract[@abstract-type='executive-summary']/p" priority="1000" mode="M441">
+   <xsl:template match="front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p" priority="1000" mode="M441">
 
 		<!--REPORT warning-->
       <xsl:if test="matches(.,'^\p{Ll}')">

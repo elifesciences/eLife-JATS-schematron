@@ -1203,6 +1203,9 @@
       <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="exceptions" value="('Insight',$notice-display-types)"/>
       <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report',$notice-display-types,$features-subj)"/>
+      <let name="abs-count" value="count(abstract)"/>
+      <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
+      <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
       <assert test="count(article-categories) = 1" role="error" id="test-article-presence">There must be one article-categories element in the article-meta. Currently there are <value-of select="count(article-categories)"/>
       </assert>
     </rule>

@@ -1203,6 +1203,9 @@
       <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="exceptions" value="('Insight',$notice-display-types)"/>
       <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report',$notice-display-types,$features-subj)"/>
+      <let name="abs-count" value="count(abstract)"/>
+      <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
+      <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
       <report test="($subj-type=('Research Article','Research Advance','Tools and Resources','Short Report')) and (history/date[@date-type='received']/@iso-8601-date gt '2021-07-01') and not(pub-history[event[self-uri[@content-type='preprint']]])" role="warning" id="preprint-presence">This <value-of select="$subj-type"/> was received on '<value-of select="history/date[@date-type='received']/@iso-8601-date"/>' (after the preprint mandate) but does not have preprint information. Is that correct?</report>
     </rule>
   </pattern>

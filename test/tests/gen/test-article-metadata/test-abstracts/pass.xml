@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="test-abstracts.sch"?>
 <!--Context: article/front/article-meta
-Test: report    not($article-type = $notice-article-types) and (count(abstract[not(@abstract-type='executive-summary')]) != 1 or (count(abstract[not(@abstract-type='executive-summary')]) != 1 and count(abstract[@abstract-type='executive-summary']) != 1))
-Message: There must either be only one abstract or one abstract and one abstract[@abstract-type="executive-summary]. No other variations are allowed. -->
+Test: report    not($article-type = $notice-article-types) and ($abs-count gt 2 or $abs-standard-count != 1 or $digest-count gt 1 or ($abs-count != $abs-standard-count + $digest-count))
+Message: There must either be only one abstract or one abstract and one abstract[@abstract-type="plain-language-summary"]. No other variations are allowed. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
     <front>

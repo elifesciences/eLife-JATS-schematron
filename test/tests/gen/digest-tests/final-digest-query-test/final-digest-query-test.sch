@@ -1197,7 +1197,7 @@
     
   </xsl:function>
   <pattern id="features">
-    <rule context="front//abstract[@abstract-type='executive-summary']/p" id="digest-tests">
+    <rule context="front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p" id="digest-tests">
       <report test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')" role="error" id="final-digest-query-test">
         <value-of select="name()"/> element contains [Query] or [QUERY] which should be removed - <value-of select="."/>
       </report>
@@ -1205,7 +1205,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front//abstract[@abstract-type='executive-summary']/p" role="error" id="digest-tests-xspec-assert">front//abstract[@abstract-type='executive-summary']/p must be present.</assert>
+      <assert test="descendant::front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p" role="error" id="digest-tests-xspec-assert">front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p must be present.</assert>
     </rule>
   </pattern>
 </schema>
