@@ -40892,8 +40892,8 @@
       <xsl:variable name="host" select="lower-case(source[1])"/>
 
 		    <!--REPORT warning-->
-      <xsl:if test="$host='zenodo' and not(contains(ext-link,'10.5281/zenodo'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$host='zenodo' and not(contains(ext-link,'10.5281/zenodo'))">
+      <xsl:if test="$host='zenodo' and not(contains(ext-link[1],'10.5281/zenodo'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$host='zenodo' and not(contains(ext-link[1],'10.5281/zenodo'))">
             <xsl:attribute name="id">software-doi-test-1</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-doi-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -40909,8 +40909,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="$host='figshare' and not(contains(ext-link,'10.6084/m9.figshare'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$host='figshare' and not(contains(ext-link,'10.6084/m9.figshare'))">
+      <xsl:if test="$host='figshare' and not(contains(ext-link[1],'10.6084/m9.figshare'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$host='figshare' and not(contains(ext-link[1],'10.6084/m9.figshare'))">
             <xsl:attribute name="id">software-doi-test-2</xsl:attribute>
             <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-doi-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>

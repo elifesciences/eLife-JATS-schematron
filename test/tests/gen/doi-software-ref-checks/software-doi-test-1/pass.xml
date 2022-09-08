@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="software-doi-test-1.sch"?>
 <!--Context: element-citation[(@publication-type='software') and year and source]
-Test: report    $host='zenodo' and not(contains(ext-link,'10.5281/zenodo'))
+Test: report    $host='zenodo' and not(contains(ext-link[1],'10.5281/zenodo'))
 Message:  is a software ref with a source () known to register dois starting with '10.5281/zenodo'. Should it have a link in the format 'https://doi.org/10.5281/zenodo...'? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
