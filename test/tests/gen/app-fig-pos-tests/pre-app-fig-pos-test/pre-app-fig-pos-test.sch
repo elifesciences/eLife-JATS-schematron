@@ -1196,17 +1196,20 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="article-metadata">
-    <rule context="funding-group/award-group" id="award-group-tests">
+  <pattern id="further-fig-tests">
+    <rule context="article//app//fig[not(@specific-use='child-fig')]" id="app-fig-pos-tests">
       <let name="id" value="@id"/>
-      <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
-      <let name="version" value="e:get-version(.)"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#final-award-group-test-7" test="if ($version = '1') then not(ancestor::article//article-meta//contrib//xref/@rid = $id)      else ()" role="warning" id="final-award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;).</report>
+      <let name="app-id" value="ancestor::app/@id"/>
+      <let name="count" value="count(ancestor::app//fig[matches(label[1],'figure \d{1,4}\.$')])"/>
+      <let name="pos" value="$count - count(following::fig[ancestor::app/@id = $app-id and matches(label[1],'figure \d{1,4}\.$')])"/>
+      <let name="no" value="substring-after($id,'fig')"/>
+      <report test="if ($count = 0) then ()         else if (not(matches($id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))) then ()         else $no != string($pos)" role="warning" id="pre-app-fig-pos-test">
+        <value-of select="replace(label[1],'\.','')"/> does not appear in sequence. Relative to the other figures in the same appendix it is placed in position <value-of select="$pos"/>. Please query this with the author.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group/award-group" role="error" id="award-group-tests-xspec-assert">funding-group/award-group must be present.</assert>
+      <assert test="descendant::article//app//fig[not(@specific-use='child-fig')]" role="error" id="app-fig-pos-tests-xspec-assert">article//app//fig[not(@specific-use='child-fig')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

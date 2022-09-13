@@ -1,0 +1,26 @@
+<?oxygen SCHSchema="pre-app-fig-pos-test.sch"?>
+<!--Context: article//app//fig[not(@specific-use='child-fig')]
+Test: report    if ($count = 0) then () else if (not(matches($id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))) then () else $no != string($pos)
+Message:  does not appear in sequence. Relative to the other figures in the same appendix it is placed in position . Please query this with the author. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <back>
+      <app id="app1">
+        <fig id="app1fig1">
+          <label>Appendix 1&#x2014;figure 1.</label>
+        </fig>
+        <fig id="app1fig2">
+          <label>Appendix 1&#x2014;figure 2.</label>
+        </fig>
+      </app>
+      <app id="app2">
+        <fig id="app2fig1">
+          <label>Appendix 1&#x2014;figure 1.</label>
+        </fig>
+        <fig id="app2fig2">
+          <label>Appendix 1&#x2014;figure 2.</label>
+        </fig>
+      </app>
+    </back>
+  </article>
+</root>

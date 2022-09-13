@@ -2392,7 +2392,7 @@
 	  
 	  
 	  
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#final-award-group-test-7" test="if ($version = '1') then not(ancestor::article//article-meta//contrib//xref/@rid = $id)      else ()" role="error" id="final-award-group-test-7">[final-award-group-test-7] There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;).</report>
+	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#final-award-group-test-7" test="if ($version = '1') then not(ancestor::article//article-meta//contrib//xref/@rid = $id)      else ()" role="warning" id="final-award-group-test-7">[final-award-group-test-7] There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;).</report>
 	  
 	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-8" test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">[award-group-test-8] Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>.</report>
 	</rule>
@@ -3809,6 +3809,20 @@
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-sup-test-1" test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}—figure supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure supplement \d{1,4}\.$')" role="error" id="app-fig-sup-test-1">[app-fig-sup-test-1] label for fig inside appendix must be in the format 'Appendix 1—figure 1—figure supplement 1.'.</assert>
       
       <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-sup-test-2" test="starts-with(.,ancestor::app/title)" role="error" id="app-fig-sup-test-2">[app-fig-sup-test-2] label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</assert>
+    </rule>
+  </pattern>
+  <pattern id="app-fig-pos-tests-pattern">
+    <rule context="article//app//fig[not(@specific-use='child-fig')]" id="app-fig-pos-tests"> 
+      <let name="id" value="@id"/>
+      <let name="app-id" value="ancestor::app/@id"/>
+      <let name="count" value="count(ancestor::app//fig[matches(label[1],'figure \d{1,4}\.$')])"/>
+      <let name="pos" value="$count - count(following::fig[ancestor::app/@id = $app-id and matches(label[1],'figure \d{1,4}\.$')])"/>
+      <let name="no" value="substring-after($id,'fig')"/>
+      
+      
+      
+      <report test="if ($count = 0) then ()         else if (not(matches($id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))) then ()         else $no != string($pos)" role="error" id="final-app-fig-pos-test">[final-app-fig-pos-test] <value-of select="replace(label[1],'\.','')"/> does not appear in sequence which is incorrect. Relative to the other figures in the same appendix it is placed in position <value-of select="$pos"/>.</report>
+      
     </rule>
   </pattern>
   <pattern id="fig-permissions-pattern">
