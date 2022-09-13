@@ -3081,12 +3081,12 @@
       </x:scenario>
       <x:scenario label="final-award-group-test-7-pass">
         <x:context href="../tests/gen/award-group-tests/final-award-group-test-7/pass.xml"/>
-        <x:expect-not-report id="final-award-group-test-7" role="error"/>
+        <x:expect-not-report id="final-award-group-test-7" role="warning"/>
         <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="final-award-group-test-7-fail">
         <x:context href="../tests/gen/award-group-tests/final-award-group-test-7/fail.xml"/>
-        <x:expect-report id="final-award-group-test-7" role="error"/>
+        <x:expect-report id="final-award-group-test-7" role="warning"/>
         <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="award-group-test-8-pass">
@@ -6904,6 +6904,28 @@
         <x:context href="../tests/gen/app-fig-sup-tests/app-fig-sup-test-2/fail.xml"/>
         <x:expect-assert id="app-fig-sup-test-2" role="error"/>
         <x:expect-not-assert id="app-fig-sup-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="app-fig-pos-tests">
+      <x:scenario label="pre-app-fig-pos-test-pass">
+        <x:context href="../tests/gen/app-fig-pos-tests/pre-app-fig-pos-test/pass.xml"/>
+        <x:expect-not-report id="pre-app-fig-pos-test" role="warning"/>
+        <x:expect-not-assert id="app-fig-pos-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-app-fig-pos-test-fail">
+        <x:context href="../tests/gen/app-fig-pos-tests/pre-app-fig-pos-test/fail.xml"/>
+        <x:expect-report id="pre-app-fig-pos-test" role="warning"/>
+        <x:expect-not-assert id="app-fig-pos-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-app-fig-pos-test-pass">
+        <x:context href="../tests/gen/app-fig-pos-tests/final-app-fig-pos-test/pass.xml"/>
+        <x:expect-not-report id="final-app-fig-pos-test" role="error"/>
+        <x:expect-not-assert id="app-fig-pos-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-app-fig-pos-test-fail">
+        <x:context href="../tests/gen/app-fig-pos-tests/final-app-fig-pos-test/fail.xml"/>
+        <x:expect-report id="final-app-fig-pos-test" role="error"/>
+        <x:expect-not-assert id="app-fig-pos-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="fig-permissions">
