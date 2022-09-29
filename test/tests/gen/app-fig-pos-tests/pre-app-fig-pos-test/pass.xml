@@ -7,18 +7,18 @@ Message:  does not appear in sequence. Relative to the other figures in the same
     <back>
       <app id="app1">
         <fig id="app1fig1">
-          <label>Appendix 1&#x2014;figure 1.</label>
+          <label>Appendix 1—figure 1.</label>
         </fig>
         <fig id="app1fig2">
-          <label>Appendix 1&#x2014;figure 2.</label>
+          <label>Appendix 1—figure 2.</label>
         </fig>
       </app>
       <app id="app2">
         <fig id="app2fig1">
-          <label>Appendix 1&#x2014;figure 1.</label>
+          <label>Appendix 1—figure 1.</label>
         </fig>
         <fig id="app2fig2">
-          <label>Appendix 1&#x2014;figure 2.</label>
+          <label>Appendix 1—figure 2.</label>
         </fig>
       </app>
     </back>

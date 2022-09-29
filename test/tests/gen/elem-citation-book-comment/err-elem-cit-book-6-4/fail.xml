@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-book-6-4.sch"?>
 <!--Context: element-citation[@publication-type='book']/comment
-Test: assert    count(../fpage) eq 0 and count(../elocation-id) eq 0
-Message: If <comment>In press</comment> is present, neither <fpage> nor <elocation-id> may be present. Reference '' has one of those elements. -->
+Test: assert    count(../fpage) eq 0
+Message: If <comment>In press</comment> is present, <fpage> cannot be present. Reference '' has one of those elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <element-citation publication-type="book">

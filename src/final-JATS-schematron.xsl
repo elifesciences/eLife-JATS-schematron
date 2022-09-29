@@ -24580,7 +24580,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(article-title)=1">
                <xsl:attribute name="id">final-err-elem-cit-journal-3-1</xsl:attribute>
-               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-referencesn#final-err-elem-cit-journal-3-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#final-err-elem-cit-journal-3-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25333,15 +25333,15 @@
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="count(../fpage) eq 0 and count(../elocation-id) eq 0"/>
+         <xsl:when test="count(../fpage) eq 0"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(../fpage) eq 0 and count(../elocation-id) eq 0">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(../fpage) eq 0">
                <xsl:attribute name="id">err-elem-cit-book-6-4</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-book-6-4] If &lt;comment&gt;In press&lt;/comment&gt; is present, neither &lt;fpage&gt; nor &lt;elocation-id&gt; may be present. Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-book-6-4] If &lt;comment&gt;In press&lt;/comment&gt; is present, &lt;fpage&gt; cannot be present. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has one of those elements.</svrl:text>
             </svrl:failed-assert>
@@ -30070,7 +30070,7 @@
    <xsl:template match="article[not(@article-type=('correction','retraction'))]//p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]]" priority="1000" mode="M460">
       <xsl:variable name="text" select="string-join(for $x in self::*/(*|text())         return if ($x/local-name()='xref') then ()         else string($x),'')"/>
       <xsl:variable name="missing-ref-regex" select="'[A-Z][A-Za-z]+ et al\.?, [1][7-9][0-9][0-9]|[A-Z][A-Za-z]+ et al\.?, [2][0-2][0-9][0-9]|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?'"/>
-      <xsl:variable name="missing-file-regex" select="'figures? (supplements?\s?)?\d|source (data|code)s? \d|(audio|supplementary) files? \d|tables? \d'"/>
+      <xsl:variable name="missing-file-regex" select="' figures? (supplements?\s?)?\d| source (data|code)s? \d| (audio|supplementary) files? \d| tables? \d'"/>
 
 		    <!--REPORT warning-->
       <xsl:if test="matches($text,$missing-ref-regex)">
