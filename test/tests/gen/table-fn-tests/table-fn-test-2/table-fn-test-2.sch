@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="table-wrap-foot//fn" id="table-fn-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-fn-test-2" test="@id and not(label)" role="error" id="table-fn-test-2">Table footnotes with an id must have a label (or the id should be removed). This one has the id '<value-of select="@id"/>' but no label. If a lable should not be present, then please remove the id.</report>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-test-2" test="@id and not(label)" role="error" id="table-fn-test-2">Table footnotes with an id must have a label (or the id should be removed). This one has the id '<value-of select="@id"/>' but no label. If a lable should not be present, then please remove the id.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

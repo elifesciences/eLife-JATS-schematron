@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="code" id="code-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/code-blocks#code-parent-test" test="parent::p" role="error" id="code-parent-test">A code element must be contained in a p element. The code element (containing the content <value-of select="."/>) is contained in a <value-of select="parent::*/name()"/> element.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/code-blocks-947pcamv#code-parent-test" test="parent::p" role="error" id="code-parent-test">A code element must be contained in a p element. The code element (containing the content <value-of select="."/>) is contained in a <value-of select="parent::*/name()"/> element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

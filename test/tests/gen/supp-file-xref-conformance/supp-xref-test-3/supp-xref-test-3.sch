@@ -1205,7 +1205,7 @@
       <let name="last-rid-no" value="substring($rid-no,string-length($rid-no))"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-xref-test-3" test="matches($post-text,'^[\)][A-Za-z0-9]')" role="error" id="supp-xref-test-3">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-xref-test-3" test="matches($post-text,'^[\)][A-Za-z0-9]')" role="error" id="supp-xref-test-3">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

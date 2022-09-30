@@ -1199,7 +1199,7 @@
   <pattern id="org-pattern">
     <rule context="element-citation/article-title|element-citation/chapter-title|element-citation/source|element-citation/data-title" id="org-ref-article-book-title">
       <let name="lc" value="lower-case(.)"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ustilagomaydis-ref-article-title-check" test="matches($lc,'ustilago\p{Zs}?maydis') and not(italic[contains(text() ,'Ustilago maydis')])" role="info" id="ustilagomaydis-ref-article-title-check">
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#ustilagomaydis-ref-article-title-check" test="matches($lc,'ustilago\p{Zs}?maydis') and not(italic[contains(text() ,'Ustilago maydis')])" role="info" id="ustilagomaydis-ref-article-title-check">
         <name/> contains an organism - 'Ustilago maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
     </rule>
   </pattern>

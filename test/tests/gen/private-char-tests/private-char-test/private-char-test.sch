@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="unicode-checks">
     <rule context="p[not(descendant::p or descendant::td or descendant::th)]|td[not(descendant::p)]|th[not(descendant::p)]" id="private-char-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/general-content#private-char-test" test="matches(.,'\p{Co}')" role="error" id="private-char-test">
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#private-char-test" test="matches(.,'\p{Co}')" role="error" id="private-char-test">
         <name/> element contains private use character(s). They either need removing or changing to the correct character. Private characters: '<value-of select="string-join(distinct-values(tokenize(.,'\p{Zs}')[matches(.,'\p{Co}')]),' ')"/>'.</report>
     </rule>
   </pattern>

@@ -1199,7 +1199,7 @@
   <pattern id="content-containers">
     <rule context="td/*" id="td-child-tests">
       <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'styled-content', 'monospace', 'code','inline-graphic','underline','inline-formula', 'list')"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#td-child-test" test="self::*/local-name() = $allowed-blocks" role="error" id="td-child-test">td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline', and 'inline-formula'.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#td-child-test" test="self::*/local-name() = $allowed-blocks" role="error" id="td-child-test">td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline', and 'inline-formula'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

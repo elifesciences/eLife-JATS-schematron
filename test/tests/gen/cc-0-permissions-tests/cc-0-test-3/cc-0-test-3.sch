@@ -1199,7 +1199,7 @@
   <pattern id="article-metadata">
     <rule context="front//permissions[contains(license[1]/@xlink:href,'creativecommons.org/publicdomain/zero')]" id="cc-0-permissions-tests">
       <let name="license-type" value="license/@xlink:href"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#cc-0-test-3" test="copyright-holder" role="error" id="cc-0-test-3">This is a CC0 licensed article (<value-of select="$license-type"/>), but there is a copyright-holder (<value-of select="copyright-holder"/>) which is not correct.</report>
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#cc-0-test-3" test="copyright-holder" role="error" id="cc-0-test-3">This is a CC0 licensed article (<value-of select="$license-type"/>), but there is a copyright-holder (<value-of select="copyright-holder"/>) which is not correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

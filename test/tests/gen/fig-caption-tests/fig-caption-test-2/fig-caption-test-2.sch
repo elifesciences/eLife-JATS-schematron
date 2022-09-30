@@ -1202,7 +1202,7 @@
       <let name="no-panels" value="replace(.,'\([a-zA-Z]\)|\([a-zA-Z]\-[a-zA-Z]\)','')"/>
       <let name="text-tokens" value="for $x in tokenize($no-panels,'\. ') return         if (string-length($x) lt 3) then ()         else if (matches($x,'^\p{Zs}{1,3}?[a-z]')) then $x         else ()"/>
       <let name="panel-list" value="e:list-panels(.)"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-caption-test-2" test="contains(lower-case(.),'image credit') and not(parent::caption/parent::fig/attrib)" role="warning" id="fig-caption-test-2">Caption for <value-of select="$label"/> contains what looks like an image credit. It's quite likely that this should be captured in an &lt;attrib&gt; element instead - <value-of select="."/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-caption-test-2" test="contains(lower-case(.),'image credit') and not(parent::caption/parent::fig/attrib)" role="warning" id="fig-caption-test-2">Caption for <value-of select="$label"/> contains what looks like an image credit. It's quite likely that this should be captured in an &lt;attrib&gt; element instead - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

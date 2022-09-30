@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="features">
     <rule context="front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p" id="digest-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#digest-test-1" test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrectly split into two?</report>
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#digest-test-1" test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrectly split into two?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

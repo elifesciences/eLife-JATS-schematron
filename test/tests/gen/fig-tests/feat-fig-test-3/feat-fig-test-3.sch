@@ -1199,7 +1199,7 @@
   <pattern id="content-containers">
     <rule context="fig[not(ancestor::sub-article)]" id="fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#feat-fig-test-3" test="($article-type = $features-article-types) and not(label)" role="warning" id="feat-fig-test-3">fig doesn't have a label. Is this correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#feat-fig-test-3" test="($article-type = $features-article-types) and not(label)" role="warning" id="feat-fig-test-3">fig doesn't have a label. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="sec-specific">
     <rule context="sec" id="sec-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-1" test="title" role="error" id="sec-test-1">sec must have a title</assert>
+      <assert see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-test-1" test="title" role="error" id="sec-test-1">sec must have a title</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

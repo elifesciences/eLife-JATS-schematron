@@ -1205,7 +1205,7 @@
       <let name="last-rid-no" value="substring($rid-no,string-length($rid-no))"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-1" test="contains($rid,'data') and not(matches(.,'[Ss]ource data')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" role="warning" id="supp-file-xref-conformity-1">
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-file-xref-conformity-1" test="contains($rid,'data') and not(matches(.,'[Ss]ource data')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" role="warning" id="supp-file-xref-conformity-1">
         <value-of select="."/> - citation points to source data, but does not include the string 'source data', which is very unusual.</report>
     </rule>
   </pattern>

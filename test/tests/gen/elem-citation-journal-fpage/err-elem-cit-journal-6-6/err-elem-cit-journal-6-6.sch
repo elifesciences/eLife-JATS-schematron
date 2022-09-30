@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="element-citation-journal-tests">
     <rule context="element-citation[@publication-type='journal']/fpage" id="elem-citation-journal-fpage">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-6" test="matches(normalize-space(.),'^\D\d') and ../lpage and not(starts-with(../lpage[1],substring(.,1,1)))" role="error" id="err-elem-cit-journal-6-6">If the content of &lt;fpage&gt; begins with a letter and digit, then the content of  &lt;lpage&gt; must begin with the same letter. Reference '<value-of select="ancestor::ref/@id"/>' does not.</report>
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-6-6" test="matches(normalize-space(.),'^\D\d') and ../lpage and not(starts-with(../lpage[1],substring(.,1,1)))" role="error" id="err-elem-cit-journal-6-6">If the content of &lt;fpage&gt; begins with a letter and digit, then the content of  &lt;lpage&gt; must begin with the same letter. Reference '<value-of select="ancestor::ref/@id"/>' does not.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1199,7 +1199,7 @@
   <pattern id="das-element-citation-tests">
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/source/*|sec[@sec-type='data-availability']//element-citation[@publication-type='data']/data-title/*" id="das-elem-citation-children">
       <let name="allowed-elems" value="('sup','sub','italic')"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-citation-child-1" test="name()=$allowed-elems" role="error" id="das-elem-citation-child-1">Reference in the data availability section has a <value-of select="name()"/> element in a <value-of select="parent::*/name()"/> element which is not allowed.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-citation-child-1" test="name()=$allowed-elems" role="error" id="das-elem-citation-child-1">Reference in the data availability section has a <value-of select="name()"/> element in a <value-of select="parent::*/name()"/> element which is not allowed.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

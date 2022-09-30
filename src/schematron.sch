@@ -1367,7 +1367,7 @@
         role="error" 
         id="test-article-back">Article must have one child back. Currently there are <value-of select="count(back)"/></report>
 		
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/code-blocks#line-count" 
+      <report see="https://elifeproduction.slab.com/posts/code-blocks-947pcamv#line-count" 
         test="not(descendant::code) and ($line-count gt 1)" 
         role="error" 
         id="line-count">Articles without code blocks must only have one line in the xml. The xml for this article has <value-of select="$line-count"/>.</report>
@@ -1391,7 +1391,7 @@
         flag="dl-ar"
         id="test-r-article-d-letter">A decision letter should almost always be present for research articles. This one doesn't have one. Check that this is correct.</report>
 	  
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#final-test-r-article-d-letter-feat"
+	  <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#final-test-r-article-d-letter-feat"
 	    test="if ($version='1') then ($disp-channel = 'Feature Article') and not(sub-article[@article-type='decision-letter'])
 	    else ($disp-channel = 'Feature Article') and not(sub-article[@article-type='referee-report'])" 
         role="warning" 
@@ -1547,22 +1547,22 @@
       role="error" 
       id="test-history-presence-2"><value-of select="$subj-type"/> cannot have a history element in the article-meta. Currently there are <value-of select="count(history)"/></report> -->
 		  
-    <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#test-permissions-presence" 
+    <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#test-permissions-presence" 
         test="count(permissions) = 1" 
         role="error" 
         id="test-permissions-presence">There must be one and only one permissions element in the article-meta. Currently there are <value-of select="count(permissions)"/></assert>
 		  
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#test-abstracts" 
+    <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#test-abstracts" 
       test="not($article-type = $notice-article-types) and ($abs-count gt 2 or $abs-standard-count != 1 or $digest-count gt 1 or ($abs-count != $abs-standard-count + $digest-count))" 
         role="error" 
         id="test-abstracts">There must either be only one abstract or one abstract and one abstract[@abstract-type="plain-language-summary"]. No other variations are allowed.</report>
     
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#test-no-digest" 
+    <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#test-no-digest" 
       test="($subj-type= $no-digest) and abstract[@abstract-type=('executive-summary','plain-language-summary')]" 
         role="error" 
         id="test-no-digest">'<value-of select="$subj-type"/>' cannot have a digest.</report>
 	 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#test-funding-group-presence" 
+    <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#test-funding-group-presence" 
       test="if ($article-type = $features-article-types) then ()
       else if ($subj-type = ('Scientific Correspondence',$notice-display-types)) then ()
       else count(funding-group) != 1" 
@@ -2173,12 +2173,12 @@
         role="warning" 
         id="COI-test"><value-of select="$name"/> is affiliated with what looks like a company, but contains no COI statement. Is this correct?</report>
 	  
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/people/deceased-status#deceased-test-1" 
+	  <report see="https://elifeproduction.slab.com/posts/deceased-status-8gs60uqk#deceased-test-1" 
 	      test="matches($fn,'[Dd]eceased') and not(@deceased='yes')" 
         role="error" 
         id="deceased-test-1"><value-of select="$name"/> has a linked footnote '<value-of select="$fn"/>', but not @deceased="yes" which is incorrect.</report>
 	  
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/people/deceased-status#deceased-test-2" 
+	  <report see="https://elifeproduction.slab.com/posts/deceased-status-8gs60uqk#deceased-test-2" 
 	      test="(@deceased='yes') and not(matches($fn,'[Dd]eceased'))" 
         role="error" 
         id="deceased-test-2"><value-of select="$name"/> has the attribute deceased="yes", but no footnote which contains the text 'Deceased', which is incorrect.</report>
@@ -2363,12 +2363,12 @@
     
     <rule context="year[ancestor::element-citation]" id="year-element-citation-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pre-year-element-citation-conformity"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-year-element-citation-conformity"
         test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')" 
         role="warning" 
         id="pre-year-element-citation-conformity">year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement. If there is no year, and this cannot be determined yourself, please query this with the authors.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-year-element-citation-conformity"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-year-element-citation-conformity"
         test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')" 
         role="error" 
         id="final-year-element-citation-conformity">year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement. If there is no year, and this cannot be determined yourself, please query this with the authors.</assert>
@@ -2506,7 +2506,7 @@
 	  <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
 	  <let name="license-type" value="license/@xlink:href"/>
 	
-	  <assert see ="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-4" 
+	  <assert see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-4" 
 	      test="ali:free_to_read" 
         role="error" 
         id="permissions-test-4">permissions must contain an ali:free_to_read element.</assert>
@@ -2515,12 +2515,12 @@
         role="error" 
         id="permissions-test-5">permissions must contain license.</assert>
 	  
-	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-9" 
+	  <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-9" 
 	    test="($license-type = 'http://creativecommons.org/publicdomain/zero/1.0/') or ($license-type = 'http://creativecommons.org/licenses/by/4.0/')" 
         role="error" 
         id="permissions-test-9">license does not have an @xlink:href which is equal to 'http://creativecommons.org/publicdomain/zero/1.0/' or 'http://creativecommons.org/licenses/by/4.0/'.</assert>
 	  
-	  <report see ="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-info" 
+	  <report see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-info" 
 	      test="license" 
         role="info" 
         id="permissions-info">This article is licensed under a<value-of select="
@@ -2537,32 +2537,32 @@
       <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
       <let name="license-type" value="license/@xlink:href"/>
       
-      <assert see ="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-1" 
+      <assert see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-1" 
         test="copyright-statement" 
         role="error" 
         id="permissions-test-1">permissions must contain copyright-statement in CC BY licensed articles.</assert>
       
-      <assert see ="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-2" 
+      <assert see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-2" 
         test="matches(copyright-year[1],'^[0-9]{4}$')" 
         role="error" 
         id="permissions-test-2">permissions must contain copyright-year in the format 0000 in CC BY licensed articles. Currently it is <value-of select="copyright-year"/>.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-3" 
+      <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-3" 
         test="copyright-holder" 
         role="error" 
         id="permissions-test-3">permissions must contain copyright-holder in CC BY licensed articles.</assert>
       
-      <assert see ="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-6" 
+      <assert see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-6" 
         test="copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year" 
         role="error" 
         id="permissions-test-6">copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year=<value-of select="copyright-year"/> and pub-date=<value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year"/>.</assert>
       
-      <assert see ="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-7" 
+      <assert see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-7" 
         test="copyright-holder = $copyright-holder" 
         role="error" 
         id="permissions-test-7">copyright-holder is incorrect. If the article has one author then it should be their surname (or collab name). If it has two authors it should be the surname (or collab name) of the first, then ' and ' and then the surname (or collab name) of the second. If three or more, it should be the surname (or collab name) of the first, and then ' et al'. Currently it's '<value-of select="copyright-holder"/>' when based on the author list it should be '<value-of select="$copyright-holder"/>'.</assert>
       
-      <assert see ="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-8" 
+      <assert see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-8" 
         test="copyright-statement = concat('© ',copyright-year,', ',copyright-holder)" 
         role="error" 
         id="permissions-test-8">copyright-statement must contain a concatenation of '© ', copyright-year, and copyright-holder. Currently it is <value-of select="copyright-statement"/> when according to the other values it should be <value-of select="concat('© ',copyright-year,', ',copyright-holder)"/></assert>
@@ -2577,17 +2577,17 @@
     <rule context="front//permissions[contains(license[1]/@xlink:href,'creativecommons.org/publicdomain/zero')]" id="cc-0-permissions-tests">
       <let name="license-type" value="license/@xlink:href"/>
       
-      <report see ="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#cc-0-test-1" 
+      <report see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#cc-0-test-1" 
         test="copyright-statement" 
         role="error" 
         id="cc-0-test-1">This is a CC0 licensed article (<value-of select="$license-type"/>), but there is a copyright-statement (<value-of select="copyright-statement"/>) which is not correct.</report>
       
-      <report see ="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#cc-0-test-2" 
+      <report see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#cc-0-test-2" 
         test="copyright-year" 
         role="error" 
         id="cc-0-test-2">This is a CC0 licensed article (<value-of select="$license-type"/>), but there is a copyright-year (<value-of select="copyright-year"/>) which is not correct.</report>
       
-      <report see ="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#cc-0-test-3" 
+      <report see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#cc-0-test-3" 
         test="copyright-holder" 
         role="error" 
         id="cc-0-test-3">This is a CC0 licensed article (<value-of select="$license-type"/>), but there is a copyright-holder (<value-of select="copyright-holder"/>) which is not correct.</report>
@@ -2596,12 +2596,12 @@
 	
 	<rule context="front//permissions/license" id="license-tests">
 	
-	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#license-test-1" 
+	  <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#license-test-1" 
 	      test="ali:license_ref" 
         role="error" 
         id="license-test-1">license must contain ali:license_ref.</assert>
 	
-	  <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#license-test-2" 
+	  <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#license-test-2" 
 	      test="count(license-p) = 1" 
         role="error" 
         id="license-test-2">license must contain one and only one license-p.</assert>
@@ -2644,32 +2644,32 @@
 	<rule context="front//abstract" id="abstract-tests">
 	  <let name="article-type" value="ancestor::article/@article-type"/>
 	
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#abstract-test-2"
+	  <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#abstract-test-2"
 	  test="(count(p) + count(sec[descendant::p])) lt 1" 
         role="error" 
         id="abstract-test-2">At least 1 p element or sec element (with descendant p) must be present in abstract.</report>
 	
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#abstract-test-4"
+	  <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#abstract-test-4"
 	      test="descendant::disp-formula" 
         role="error" 
         id="abstract-test-4">abstracts cannot contain display formulas.</report>
 	  
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#pre-abstract-test-5" 
+	  <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-abstract-test-5" 
 	    test="child::sec and not(count(sec) = (5,6))" 
 	    role="warning" 
 	    id="pre-abstract-test-5">If an abstract is structured, then it must have 5 or 6 sections depending on whether it is a clinical trial. An article without a clinical trial should have 5 sections, whereas one with a clinical trial should have 6.</report>
 	  
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#final-abstract-test-5" 
+	  <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#final-abstract-test-5" 
 	    test="child::sec and not(count(sec) = (5,6))" 
 	    role="error" 
 	    id="final-abstract-test-5">If an abstract is structured, then it must have 5 or 6 sections depending on whether it is a clinical trial. An article without a clinical trial should have 5 sections, whereas one with a clinical trial should have 6.</report>
 	  
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#abstract-test-6" 
+	  <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#abstract-test-6" 
 	    test="matches(lower-case(.),'^\p{Zs}*abstract')" 
         role="warning" 
         id="abstract-test-6">Abstract starts with the word 'Abstract', which is almost certainly incorrect - <value-of select="."/></report>
 	  
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#abstract-test-7" 
+	  <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#abstract-test-7" 
 	    test="some $x in child::p satisfies (starts-with($x,'Background:') or starts-with($x,'Methods:') or starts-with($x,'Results:') or starts-with($x,'Conclusion:') or starts-with($x,'Trial registration:') or starts-with($x,'Clinical trial number:'))" 
         role="warning" 
         id="abstract-test-7">Abstract looks like it should instead be captured as a structured abstract (using sections) - <value-of select="."/></report>
@@ -2681,7 +2681,7 @@
     </rule>
     
     <rule context="article[@article-type='research-article']//article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract[not(@abstract-type)]" id="medicine-abstract-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#medicine-abstract-conformance"
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#medicine-abstract-conformance"
         test="sec" 
         role="warning" 
         id="medicine-abstract-conformance">Medicine articles with a colon in their title should likely have a structured abstract. If there is no note in eJP about this, either the colon in the title is incorrect, or the abstract should be changed to a structured format.</assert>
@@ -2690,7 +2690,7 @@
     
     <rule context="article[@article-type='research-article']//article-meta[article-categories[not(subj-group[@subj-group-type='display-channel']/subject[lower-case(.)='feature article'])]/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)]" id="medicine-abstract-tests-2">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#medicine-abstract-conformance-2"
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#medicine-abstract-conformance-2"
         test="parent::article-meta/history/date[@date-type='received']/@iso-8601-date lt '2021-04-05'" 
         role="warning" 
         id="medicine-abstract-conformance-2"><value-of select="parent::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')]"/> articles submitted after 4th April 2021 should have a structured abstract, but this one does not. eLife: please check this with Editorial if there are no related notes from eJP. Exeter: Please flag this to the eLife Production team.</assert>
@@ -2700,7 +2700,7 @@
     <rule context="front//abstract/*" id="abstract-children-tests">
       <let name="allowed-elems" value="('p','sec','title')"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#abstract-child-test-1"
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#abstract-child-test-1"
         test="local-name() = $allowed-elems" 
         role="error" 
         id="abstract-child-test-1"><name/> is not allowed as a child of abstract.</assert>
@@ -2709,42 +2709,42 @@
     <rule context="abstract[not(@abstract-type)]/sec" id="abstract-sec-titles">
       <let name="pos" value="count(ancestor::abstract/sec) - count(following-sibling::sec)"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-1"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-1"
         test="($pos = 1) and (title != 'Background:')" 
         role="error" 
         id="clintrial-conformance-1">First section title is '<value-of select="title"/>' - but the only allowed value is 'Background:'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-2"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-2"
         test="($pos = 2) and (title != 'Methods:')" 
         role="error" 
         id="clintrial-conformance-2">Second section title is '<value-of select="title"/>' - but the only allowed value is 'Methods:'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-3"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-3"
         test="($pos = 3) and (title != 'Results:')" 
         role="error" 
         id="clintrial-conformance-3">Third section title is '<value-of select="title"/>' - but the only allowed value is 'Results:'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-4"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-4"
         test="($pos = 4) and (title != 'Conclusions:')" 
         role="error" 
         id="clintrial-conformance-4">Fourth section title is '<value-of select="title"/>' - but the only allowed value is 'Conclusions:'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-5"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-5"
         test="($pos = 6) and (title != 'Clinical trial number:')" 
         role="error" 
         id="clintrial-conformance-5">Sixth section title is '<value-of select="title"/>' - but the only allowed value is 'Clinical trial number:'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-6"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-6"
         test="($pos = 5) and (title != 'Funding:')" 
         role="error" 
         id="clintrial-conformance-6">Fifth section title is '<value-of select="title"/>' - but the only allowed value is 'Funding:'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-7"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-7"
         test="child::sec" 
         role="error" 
         id="clintrial-conformance-7">Nested secs are not allowed in abstracts. Sec with the id <value-of select="@id"/> and title '<value-of select="title"/>' has child sections.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-8"
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-8"
         test="matches(@id,'^abs[1-9]$')" 
         role="error" 
         id="clintrial-conformance-8"><name/> must have an @id in the format 'abs1'. <value-of select="@id"/> does not conform to this convention.</assert>
@@ -2753,62 +2753,62 @@
     <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
       <let name="registries" value="'clinical-trial-registries.xml'"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-1"
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-1"
         test="ancestor::sec[title = 'Clinical trial number:']" 
         role="error" 
         id="clintrial-related-object-1"><name/> in abstract must be placed in a section whose title is 'Clinical trial number:'</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-2"
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-2"
         test="@source-type='clinical-trials-registry'" 
         role="error" 
         id="clintrial-related-object-2"><name/> must have an @source-type='clinical-trials-registry'.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-3"
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-3"
         test="@source-id" 
         role="error" 
         id="clintrial-related-object-3"><name/> must have an @source-id.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-4"
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-4"
         test="@source-id-type='registry-name'" 
         role="error" 
         id="clintrial-related-object-4"><name/> must have an @source-id-type='registry-name'.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-5"
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-5"
         test="@document-id-type='clinical-trial-number'" 
         role="error" 
         id="clintrial-related-object-5"><name/> must have an @document-id-type='clinical-trial-number'.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-6"
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-6"
         test="@document-id" 
         role="error" 
         id="clintrial-related-object-6"><name/> must have an @document-id.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-7"
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-7"
         test="@xlink:href" 
         role="error" 
         id="clintrial-related-object-7"><name/> must have an @xlink:href.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-8"
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-8"
         test="contains(.,@document-id/string())" 
         role="warning" 
         id="clintrial-related-object-8"><name/> has an @document-id '<value-of select="@document-id"/>'. But this is not in the text, which is likely incorrect - <value-of select="."/>.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-9"
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-9"
         test="matches(@id,'^RO[1-9]')" 
         role="error" 
         id="clintrial-related-object-9"><name/> must have an @id in the format 'RO1'. '<value-of select="@id"/>' does not conform to this convention.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-10"
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-10"
         test="parent::p" 
         role="error" 
         id="clintrial-related-object-10"><name/> in abstract must be a child of a &lt;p&gt; element.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-11"
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-11"
         test="some $x in document($registries)/registries/registry satisfies ($x/subtitle/string()=@source-id)" 
         role="error" 
         id="clintrial-related-object-11"><name/> @source-id value must be one of the subtitles of the Crossref clinical trial registries. "<value-of select="@source-id"/>" is not one of the following <value-of select="string-join(for $x in document($registries)/registries/registry return concat('&quot;',$x/subtitle/string(),'&quot; (',$x/doi/string(),')'),', ')"/></assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-12"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-12"
         test="@source-id='ClinicalTrials.gov' and @xlink:href!=concat('https://clinicaltrials.gov/show/',@document-id)" 
         role="error" 
         id="clintrial-related-object-12">ClinicalTrials.gov trial links are in the format https://clinicaltrials.gov/show/{number}. This <name/> has the link '<value-of select="@xlink:href"/>', which based on the clinical trial registry (<value-of select="@source-id"/>) and @document-id (<value-of select="@document-id"/>) is not right. Either the xlink:href is wrong (should it be <value-of select="concat('https://clinicaltrials.gov/show/',@document-id)"/> instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these).</report>
@@ -2817,7 +2817,7 @@
     
     <rule context="abstract[not(@abstract-type)]/sec[//related-object[@document-id-type='clinical-trial-number']]" id="clintrial-related-object-p">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-13"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-13"
         test="count(descendant::related-object[@document-id-type='clinical-trial-number']) gt 3" 
         role="warning" 
         id="clintrial-related-object-13">There are <value-of select="count(descendant::related-object)"/> clinical trial numbers tagged in the structured abstract, which seems like a large number. Please check that this is correct and has not been mistagged.</report>
@@ -2829,12 +2829,12 @@
       <let name="p-words" value="string-join(child::p[not(starts-with(.,'DOI:') or starts-with(.,'Editorial note:'))],' ')"/>
 	    <let name="count" value="count(tokenize(normalize-space(replace($p-words,'\p{P}','')),' '))"/>
 	     
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#pre-abstract-word-count-restriction" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-abstract-word-count-restriction" 
         test="($count gt 280)" 
         role="warning" 
         id="pre-abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the usual upper limit is 280. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
 	     
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#final-abstract-word-count-restriction" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#final-abstract-word-count-restriction" 
         test="($count gt 280)" 
         role="warning" 
         id="final-abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the usual upper limit is 280. Abstracts with more than 280 words should be checked with the eLife Editorial team.</report>
@@ -2997,22 +2997,22 @@
     
 	<rule context="article-meta/funding-group" id="funding-group-tests">
 		
-		<assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-1" 
+		<assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#funding-group-test-1" 
         test="count(funding-statement) = 1" 
         role="error" 
         id="funding-group-test-1">One funding-statement should be present in funding-group.</assert>
 		
-		<report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-2" 
+		<report see="https://elifeproduction.slab.com/posts/funding-3sv64358#funding-group-test-2" 
         test="count(award-group) = 0" 
         role="warning" 
         id="funding-group-test-2">There is no funding for this article. Is this correct?</report>
 		
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-3" 
+	  <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#funding-group-test-3" 
         test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" 
         role="warning" 
         id="funding-group-test-3">Is this funding-statement correct? - '<value-of select="funding-statement"/>' Usually it should be 'No external funding was received for this work.'</report>
 	  
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#funding-group-test-4" 
+	  <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#funding-group-test-4" 
 	    test="(count(award-group) != 0) and not(matches(funding-statement[1],'^The funders? had no role in study design, data collection,? and interpretation, or the decision to submit the work for publication\.( For the purpose of Open Access, the authors have applied a CC BY public copyright license to any Author Accepted Manuscript version arising from this submission\.)?$'))" 
 	    role="warning" 
 	    id="funding-group-test-4">Is the funding-statement correct? There are funders, but the statement is '<value-of select="funding-statement[1]"/>'. If there are funders it should usually be 'The funders had no role in study design, data collection and interpretation, or the decision to submit the work for publication.'</report>
@@ -3031,18 +3031,18 @@
 	  <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
 		<let name="version" value="e:get-version(.)"/>
 		
-		<assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-2" 
+		<assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-2" 
         test="funding-source" 
         role="error" 
         id="award-group-test-2">award-group must contain a funding-source.</assert>
 	  
-		<report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#pre-award-group-test-3" 
+		<report see="https://elifeproduction.slab.com/posts/funding-3sv64358#pre-award-group-test-3" 
         test="if ($version = '1') then not(principal-award-recipient)
         else ()" 
         role="warning" 
         id="pre-award-group-test-3">award-group must contain a principal-award-recipient. If it is not clear which author(s) are associated with this funding, please add an author query.</report>
 	  
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#final-award-group-test-3" 
+	  <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#final-award-group-test-3" 
 	    test="if ($version = '1') then not(principal-award-recipient)
 	    else ()" 
         role="error" 
@@ -3053,34 +3053,34 @@
 	    role="error" 
 	    id="award-group-test-3-v2">award-group must not contain a principal-award-recipient in <value-of select="$version"/> version XML.</report>
 		
-		<report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-4" 
+		<report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-4" 
         test="count(award-id) gt 1" 
         role="error" 
         id="award-group-test-4">award-group may contain one and only one award-id.</report>
 		
-		<assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-5" 
+		<assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-5" 
         test="funding-source/institution-wrap" 
         role="error" 
         id="award-group-test-5">funding-source must contain an institution-wrap.</assert>
 		
-		<report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-6" 
+		<report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-6" 
         test="count(funding-source/institution-wrap/institution) = 0" 
         role="error" 
         id="award-group-test-6">Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one.</report>
 	  
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#pre-award-group-test-7" 
+	  <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#pre-award-group-test-7" 
 	    test="if ($version = '1') then not(ancestor::article//article-meta//contrib//xref/@rid = $id)
 	    else ()" 
         role="warning" 
         id="pre-award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). If you are unable to determine which author(s) are associated with this funding, please add an author query.</report>
 	  
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#final-award-group-test-7" 
+	  <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#final-award-group-test-7" 
 	    test="if ($version = '1') then not(ancestor::article//article-meta//contrib//xref/@rid = $id)
 	    else ()" 
         role="warning" 
         id="final-award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;).</report>
 	  
-	  <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-group-test-8" 
+	  <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-8" 
         test="count(funding-source/institution-wrap/institution) gt 1" 
         role="error" 
         id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>.</report>
@@ -3089,22 +3089,22 @@
     <rule context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-1" 
         test="matches(.,',|;')" 
         role="warning" 
         id="award-id-test-1">Funding entry with id <value-of select="$id"/> has a comma or semi-colon in the award id. Should this be separated out into several funding entries? - <value-of select="."/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-2" 
         test="matches(.,'^\p{Zs}?[Nn][/]?[\.]?[Aa][.]?\p{Zs}?$')" 
         role="error" 
         id="award-id-test-2">Award id contains - <value-of select="."/> - This entry should be empty.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-3" 
         test="matches(.,'^\p{Zs}?[Nn]one[\.]?\p{Zs}?$')" 
         role="error" 
         id="award-id-test-3">Award id contains - <value-of select="."/> - This entry should be empty.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#award-id-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-4" 
         test="matches(.,'&amp;#x\d')" 
         role="warning" 
         id="award-id-test-4">Award id contains what looks like a broken unicode - <value-of select="."/>.</report>
@@ -3113,7 +3113,7 @@
     
     <rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test" 
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test" 
         test="institution-id[@institution-id-type='FundRef']" 
         role="warning" 
         id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap).</assert>
@@ -3122,22 +3122,22 @@
     
     <rule context="article[e:get-version(.)='1']//award-group//institution-wrap/institution-id" id="institution-id-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test-2" 
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-2" 
         test="@institution-id-type='FundRef'" 
         role="error" 
         id="institution-id-test-2"><name/> element must have the attribute institution-id-type="FundRef".</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test-3" 
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-3" 
         test="normalize-space(.) != ''" 
         role="error" 
         id="institution-id-test-3">The funding entry for <value-of select="parent::institution-wrap/institution"/> has an empty <name/> element, which is not allowed.</assert>
       
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test-4" 
+        <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-4" 
         test="*" 
         role="error" 
         id="institution-id-test-4">The <name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains child element(s) (<value-of select="string-join(distinct-values(*/name()),', ')"/>) which is not allowed.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-5" 
         test="(normalize-space(.) != '') and not(matches(.,'^http[s]?://d?x?\.?doi.org/10.13039/\d*$'))" 
         role="error" 
         id="institution-id-test-5"><name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains the following text - <value-of select="."/> - which is not a fundref doi.</report>
@@ -3150,12 +3150,12 @@
         role="error" 
         id="institution-id-test-2-v2"><name/> element must have the attribute institution-id-type="doi".</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test-3" 
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-3" 
         test="normalize-space(.) != ''" 
         role="error" 
         id="institution-id-test-3-v2">The funding entry for <value-of select="parent::institution-wrap/institution"/> has an empty <name/> element, which is not allowed.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-4" 
         test="*" 
         role="error" 
         id="institution-id-test-4-v2">The <name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains child element(s) (<value-of select="string-join(distinct-values(*/name()),', ')"/>) which is not allowed.</report>
@@ -3181,7 +3181,7 @@
         else ''"/>
       <let name="par-text" value="if (name) then e:get-name(name[1]) else e:get-collab(collab[1])"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#par-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#par-test-1" 
         test="normalize-space(.)='' and not(*)"
         role="error" 
         id="par-test-1"><name/> cannot be empty.</report>
@@ -3204,12 +3204,12 @@
     
     <rule context="funding-group//principal-award-recipient/name" id="par-name-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#par-name-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#par-name-test-1" 
         test="contains(.,'.')" 
         role="error" 
         id="par-name-test-1">Author name in funding entry contains a full stop - <value-of select="e:get-name(.)"/>. Please remove the full stop.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#par-name-test-2"
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#par-name-test-2"
         test="surname or given-names" 
         role="error" 
         id="par-name-test-2">name in principal-award-recipient cannot be empty.</assert>
@@ -3258,7 +3258,7 @@
         role="error" 
         id="custom-meta-presence">Only 1 or 2 custom-meta[@specific-use='meta-only'] elements are permitted in custom-meta-group for <value-of select="$type"/>. This one has <value-of select="count(custom-meta[@specific-use='meta-only'])"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#features-custom-meta-presence"
+      <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#features-custom-meta-presence"
         test="($type = $features-subj) and not(count(custom-meta[@specific-use='meta-only']) = (2,3))" 
         role="error" 
         id="features-custom-meta-presence">2 or 3 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>. This one has <value-of select="count(custom-meta[@specific-use='meta-only'])"/>.</report>
@@ -3269,12 +3269,12 @@
       <let name="type" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="pos" value="count(parent::custom-meta-group/custom-meta) - count(following-sibling::custom-meta)"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#custom-meta-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-1" 
         test="count(meta-name) = 1" 
         role="error" 
         id="custom-meta-test-1">One meta-name must be present in custom-meta.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#custom-meta-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-2" 
         test="($type = $research-subj) and not(meta-name = ('Author impact statement','schema-version'))" 
         role="error" 
         id="custom-meta-test-2">The value of meta-name can only be 'Author impact statement' or 'schema-version'. Currently it is <value-of select="meta-name"/>.</report>
@@ -3283,17 +3283,17 @@
         role="error" 
         id="custom-meta-test-17">The value of the 2nd meta-name can only be 'schema-version'. Currently it is <value-of select="meta-name"/>.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#custom-meta-test-3" 
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-3" 
         test="count(meta-value) = 1" 
         role="error" 
         id="custom-meta-test-3">One meta-value must be present in custom-meta.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#custom-meta-test-14" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-14" 
         test="($type = $features-subj) and ($pos=1) and  (meta-name != 'Author impact statement')" 
         role="error" 
         id="custom-meta-test-14">The value of the 1st meta-name can only be 'Author impact statement'. Currently it is <value-of select="meta-name"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#custom-meta-test-15" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-15" 
         test="($type = $features-subj) and ($pos=2) and  (meta-name != 'Template')" 
         role="error" 
         id="custom-meta-test-15">The value of the 2nd meta-name can only be 'Template'. Currently it is <value-of select="meta-name"/>.</report>
@@ -3314,67 +3314,67 @@
         role="error" 
         id="custom-meta-test-4">The value of meta-value cannot be empty</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#custom-meta-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-5" 
         test="($count gt 40)" 
         role="warning" 
         id="custom-meta-test-5">Impact statement contains more than 40 words (<value-of select="$count"/>). This is not allowed.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#pre-custom-meta-test-6" 
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-custom-meta-test-6" 
         test="matches(.,'[\.|\?]$')" 
         role="warning" 
         id="pre-custom-meta-test-6">Impact statement must end with a full stop or question mark.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#final-custom-meta-test-6" 
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#final-custom-meta-test-6" 
         test="matches(.,'[\.|\?]$')" 
         role="error" 
         id="final-custom-meta-test-6">Impact statement must end with a full stop or question mark.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#custom-meta-test-7" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-7" 
         test="matches(replace(.,' et al\. ',' et al '),'[\p{L}][\p{L}]+\. .*$|[\p{L}\p{N}][\p{L}\p{N}]+\? .*$|[\p{L}\p{N}][\p{L}\p{N}]+! .*$')" 
         role="warning" 
         id="custom-meta-test-7">Impact statement appears to be made up of more than one sentence. Please check, as more than one sentence is not allowed.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#custom-meta-test-8" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-8" 
         test="not($subj = 'Replication Study') and matches(.,'[:;]')" 
         role="warning" 
         id="custom-meta-test-8">Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#pre-custom-meta-test-9" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-custom-meta-test-9" 
         test="matches(.,'[Ww]e show|[Ww]e present|[Tt]his study|[Tt]his paper')" 
         role="warning" 
         id="pre-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#final-custom-meta-test-9" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#final-custom-meta-test-9" 
         test="matches(.,'[Ww]e show|[Ww]e present|[Tt]his study|[Tt]his paper')" 
         role="error" 
         id="final-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#custom-meta-test-10" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-10" 
         test="matches(.,'^[\d]+$')" 
         role="error" 
         id="custom-meta-test-10">Impact statement is comprised entirely of numbers, which must be incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#custom-meta-test-11" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-11" 
         test="matches(.,' [Oo]ur |^[Oo]ur ')" 
         role="warning" 
         id="custom-meta-test-11">Impact statement contains 'our'. Is this possessive langauge relating to the article or research itself (which should be removed)?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#custom-meta-test-13" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-13" 
         test="matches(.,' study ') and not(matches(.,'[Tt]his study'))" 
         role="warning" 
         id="custom-meta-test-13">Impact statement contains 'study'. Is this a third person description of this article? If so, it should be changed to not include this.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#pre-rep-study-custom-meta-test" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-rep-study-custom-meta-test" 
         test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" 
         role="warning" 
         id="pre-rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#final-rep-study-custom-meta-test" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#final-rep-study-custom-meta-test" 
         test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" 
         role="error" 
         id="final-rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#custom-meta-test-16" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-16" 
         test="$we-token = $verbs" 
         role="warning" 
         id="custom-meta-test-16">Impact statement contains 'we' followed by a verb - '<value-of select="concat('we ',$we-token)"/>' in '<value-of select="."/>'. Is this possessive language relating to the article or research itself (which should be removed)?</report>
@@ -3383,7 +3383,7 @@
     <rule context="article-meta/custom-meta-group/custom-meta/meta-value/*" id="meta-value-child-tests">
       <let name="allowed-elements" value="('italic','sup','sub')"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#custom-meta-child-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-child-test-1" 
         test="local-name() = $allowed-elements" 
         role="error" 
         id="custom-meta-child-test-1"><name/> is not allowed in impact statement.</assert>
@@ -3393,32 +3393,32 @@
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" id="featmeta-value-tests">
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-1"
+      <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feat-custom-meta-test-1"
         test="child::*" 
         role="error" 
         id="feat-custom-meta-test-1"><value-of select="child::*[1]/name()"/> is not allowed in a Template type meta-value.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-2"
+      <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feat-custom-meta-test-2"
         test=". = ('1','2','3','4','5')" 
         role="error" 
         id="feat-custom-meta-test-2">Template type meta-value must one of '1','2','3','4', or '5'.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-info"
+      <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feat-custom-meta-test-info"
         test=". = ('1','2','3','4','5')" 
         role="info" 
         id="feat-custom-meta-test-info">Template <value-of select="."/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-3"
+      <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feat-custom-meta-test-3"
         test="($type='Insight') and (. != '1')" 
         role="error" 
         id="feat-custom-meta-test-3"><value-of select="$type"/> must be a template 1. Currently it is a template <value-of select="."/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-4"
+      <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feat-custom-meta-test-4"
         test="($type='Editorial') and (. != '2')" 
         role="error" 
         id="feat-custom-meta-test-4"><value-of select="$type"/> must be a template 2. Currently it is a template <value-of select="."/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-5"
+      <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feat-custom-meta-test-5"
         test="($type='Feature Article') and not(.=('3','4','5'))" 
         role="error" 
         id="feat-custom-meta-test-5"><value-of select="$type"/> must be a template 3, 4, or 5. Currently it is a template <value-of select="."/>.</report>
@@ -3443,7 +3443,7 @@
     
     <rule context="related-object" id="related-object-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#related-object-ancestor"
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#related-object-ancestor"
         test="ancestor::abstract[not(@abstract-type)] or parent::front-stub/parent::sub-article[@article-type='editor-report']" 
         role="error" 
         id="related-object-ancestor"><name/> is not allowed outside of the main abstract (abstract[not(@abstract-type)]) or in the front-stub for an editor's evaluation.</assert>
@@ -3546,12 +3546,12 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="fn-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-target-test"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-target-test"
         test="(@ref-type='fig') and ($target/local-name() != 'fig')" 
         role="error" 
         id="fig-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-target-test"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-target-test"
         test="(@ref-type='video') and (($target/local-name() != 'media') or not($target/@mimetype='video'))" 
         role="error" 
         id="vid-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' must point to a media[@mimetype="video"] element. Either this links to the incorrect location or the xref/@ref-type is incorrect.</report>
@@ -3560,17 +3560,17 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="bibr-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supplementary-material-xref-target-test"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supplementary-material-xref-target-test"
         test="(@ref-type='supplementary-material') and ($target/local-name() != 'supplementary-material')" 
         role="error" 
         id="supplementary-material-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#other-xref-target-test"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#other-xref-target-test"
         test="(@ref-type='other') and not($target/local-name() = 'award-group')" 
         role="error" 
         id="other-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-target-test"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#table-xref-target-test"
         test="(@ref-type='table') and ($target/local-name() != 'table-wrap') and ($target/local-name() != 'table')" 
         role="error" 
         id="table-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
@@ -3579,7 +3579,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="table-fn-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#box-xref-target-test"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#box-xref-target-test"
         test="(@ref-type='box') and ($target/local-name() != 'boxed-text')" 
         role="error" 
         id="box-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
@@ -3596,7 +3596,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="decision-letter-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#disp-formula-xref-target-test"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#disp-formula-xref-target-test"
         test="(@ref-type='disp-formula') and ($target/local-name() != 'disp-formula')" 
         role="error" 
         id="disp-formula-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
@@ -3605,7 +3605,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="xref-ref-type-conformance">@ref-type='<value-of select="@ref-type"/>' is not allowed . The only allowed values are 'aff', 'fn', 'fig', 'video', 'bibr', 'supplementary-material', 'other', 'table', 'table-fn', 'box', 'sec', 'app', 'decision-letter', 'disp-formula'.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#xref-target-conformance"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#xref-target-conformance"
         test="boolean($target) = false()" 
         role="error" 
         id="xref-target-conformance">xref with @ref-type='<value-of select="@ref-type"/>' points to an element with an @id='<value-of select="$rid"/>', but no such element exists.</report>
@@ -3613,12 +3613,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="body//xref" id="body-xref-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#empty-xref-test"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#empty-xref-test"
         test="not(child::*) and normalize-space(.)=''" 
         role="error" 
         id="empty-xref-test">Empty xref in the body is not allowed. Its position is here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#semi-colon-xref-test"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#semi-colon-xref-test"
         test="ends-with(.,';') or ends-with(.,'; ')" 
         role="error" 
         id="semi-colon-xref-test">xref ends with semi-colon - '<value-of select="."/>' - which is incorrect. The semi-colon should be placed after the link as 'normal' text.</report>
@@ -3672,7 +3672,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="ext-link-child-test-2">ext-link - <value-of select="."/> - has a non-formatting child element - <value-of select="$non-form-children"/> - which is not correct.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#ext-link-child-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#ext-link-child-test-3" 
         test="contains(.,'copy archived')" 
         role="error" 
         id="ext-link-child-test-3">ext-link - <value-of select="."/> - contains the phrase 'copy archived', which is incorrect.</report>
@@ -3681,7 +3681,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="ext-link-child-test-4">ext-link text - <value-of select="."/> - appears to start with the string 'Doi:' or 'Doi ' (or similar), which is unnecessary.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#ext-link-child-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#ext-link-child-test-5" 
         test="contains(@xlink:href,'datadryad.org/review?')" 
         role="warning" 
         id="ext-link-child-test-5">ext-link looks like it points to a review dryad dataset - <value-of select="."/>. Should it be updated?</report>
@@ -3694,7 +3694,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sec[@sec-type='data-availability']//ext-link[contains(@xlink:href,'softwareheritage')]" 
       id="das-software-heritage-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-1" 
         test="(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$',''))" 
         role="error" 
         id="software-heritage-test-1">Software heritage links in the data availability statement must be the full contextual link, with the revision SWHID as the text of the link for Kriya 2. '<value-of select="."/>' is not either of these.</assert>
@@ -3704,22 +3704,22 @@ else self::*/local-name() = $allowed-p-blocks"
       id="software-heritage-tests">
       <let name="origin" value="lower-case(substring-before(substring-after(@xlink:href,'origin='),';'))"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-2" 
         test="(ancestor::body or ancestor::ref) and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))" 
         role="error" 
         id="software-heritage-test-2">Software heritage links in the main text or references must be the directory link with contextual information. '<value-of select="@xlink:href"/>' is not a directory link with contextual information.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-3" 
         test="ancestor::body and matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and (. != replace(substring-after(@xlink:href,'anchor='),'/$',''))" 
         role="error" 
         id="software-heritage-test-3">The text for Software heritage links in the main text must be the revision SWHID without contextual information. '<value-of select="."/>' is not. Based on the link itself, the text that is embedded should be '<value-of select="replace(substring-after(@xlink:href,'anchor='),'/$','')"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-4" 
         test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies replace(lower-case($x/@xlink:href),'/$','') = $origin)" 
         role="warning" 
         id="software-heritage-test-4">A Software heritage link must follow the original link for the software. The Software heritage link with the text '<value-of select="."/>' has '<value-of select="$origin"/>' as its origin URL, but there is no preceding link with that same URL.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-5" 
         test="contains(@xlink:href,'[…]')" 
         role="error" 
         id="software-heritage-test-5">A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed).</report>
@@ -3737,12 +3737,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="fig-group" id="fig-group-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-group-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-test-1" 
         test="count(child::fig[not(@specific-use='child-fig')]) = 1" 
         role="error" 
         id="fig-group-test-1">fig-group must have one and only one main figure.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-group-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-test-2" 
         test="not(child::fig[@specific-use='child-fig']) and not(descendant::media[@mimetype='video'])" 
         role="error" 
         id="fig-group-test-2">fig-group does not contain a figure supplement or a figure-level video, which must be incorrect.</report>
@@ -3751,12 +3751,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="fig-group/*" id="fig-group-child-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-group-child-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-child-test-1" 
         test="local-name() = ('fig','media')" 
         role="error" 
         id="fig-group-child-test-1"><name/> is not allowed as a child of fig-group.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-group-child-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-child-test-2" 
         test="(local-name() = 'media') and not(@mimetype='video')" 
         role="error" 
         id="fig-group-child-test-2"><name/> which is a child of fig-group, must have an @mimetype='video' - i.e. only video type media is allowed as a child of fig-group.</report>
@@ -3766,52 +3766,52 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="fig[not(ancestor::sub-article)]" id="fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-2" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-test-2" 
         test="@position" 
         role="error" 
         id="fig-test-2">fig must have a @position.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-test-3" 
         test="not($article-type = ($features-article-types,$notice-article-types)) and not(label)" 
         role="error" 
         id="fig-test-3">fig must have a label.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#feat-fig-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#feat-fig-test-3" 
         test="($article-type = $features-article-types) and not(label)" 
         role="warning" 
         id="feat-fig-test-3">fig doesn't have a label. Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#pre-fig-test-4" 
         test="not($article-type = ('discussion',$notice-article-types)) and not(caption)" 
         role="warning" 
         id="pre-fig-test-4"><value-of select="label"/> has no title or caption (caption element). Ensure this is queried with the author.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#final-fig-test-4" 
         test="not($article-type = ('discussion',$notice-article-types)) and not(caption)" 
         role="error" 
         id="final-fig-test-4"><value-of select="label"/> has no title or caption (caption element).</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#pre-fig-test-5" 
         test="not($article-type = ('discussion',$notice-article-types)) and not(caption/title)" 
         role="warning" 
         id="pre-fig-test-5"><value-of select="label"/> does not have a title.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#final-fig-test-5" 
         test="not($article-type = ('discussion',$notice-article-types)) and not(caption/title)" 
         role="error" 
         id="final-fig-test-5">fig caption must have a title.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-test-6" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-test-6" 
         test="not($article-type = $notice-article-types) and (matches(@id,'^fig[0-9]{1,3}$') and not(caption/p))" 
         role="warning" 
         id="fig-test-6">Figure does not have a legend, which is very unorthodox. Is this correct?</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-test-7" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#pre-fig-test-7" 
         test="graphic" 
         role="warning" 
         id="pre-fig-test-7">fig does not have graphic. Ensure author query is added asking for file.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-test-7" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#final-fig-test-7" 
         test="graphic" 
         role="error" 
         id="final-fig-test-7">fig must have a graphic.</assert>
@@ -3823,31 +3823,31 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="pos" value="$count - count(following::fig)"/>
       <let name="no" value="substring-after(@id,'fig')"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#ar-fig-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#ar-fig-test-2" 
         test="if ($article-type = ($features-article-types,$notice-article-types)) then ()
         else not(label)" 
         role="error" 
         flag="dl-ar"
         id="ar-fig-test-2">Author Response fig must have a label.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-ar-fig-test-3" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#pre-ar-fig-test-3" 
         test="graphic" 
         role="warning" 
         flag="dl-ar"
         id="pre-ar-fig-test-3">Author Response fig does not have graphic. Ensure author query is added asking for file.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-ar-fig-test-3" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#final-ar-fig-test-3" 
         test="graphic" 
         role="error" 
         id="final-ar-fig-test-3">Author Response fig must have a graphic.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-ar-fig-position-test" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#pre-ar-fig-position-test" 
         test="$no = string($pos)" 
         role="warning" 
         flag="dl-ar"
         id="pre-ar-fig-position-test"><value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR images it is placed in position <value-of select="$pos"/>.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-ar-fig-position-test" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#final-ar-fig-position-test" 
         test="$no = string($pos)" 
         role="error" 
         id="final-ar-fig-position-test"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR images it is placed in position <value-of select="$pos"/>.</assert>
@@ -3995,74 +3995,74 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
       <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-1"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-1"
         test="label" 
         role="error" 
         id="supplementary-material-test-1">supplementary-material must have a label.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-2"
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-2"
         test="not(matches(label[1],'Transparent reporting form|MDAR checklist')) and not(caption)" 
         role="warning" 
         id="supplementary-material-test-2"><value-of select="label"/> is missing a title/caption - is this correct? (supplementary-material should have a child caption.)</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#pre-supplementary-material-test-3"
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#pre-supplementary-material-test-3"
         test="if (caption) then not(caption/title)
         else ()" 
         role="warning" 
         id="pre-supplementary-material-test-3"><value-of select="label"/> does not have a title.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#final-supplementary-material-test-3"
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#final-supplementary-material-test-3"
         test="if (caption) then not(caption/title)
         else ()" 
         role="warning" 
         id="final-supplementary-material-test-3"><value-of select="label"/> doesn't have a title. Is this correct?</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#pre-supplementary-material-test-5"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#pre-supplementary-material-test-5"
         test="media" 
         role="warning" 
         id="pre-supplementary-material-test-5"><value-of select="label"/> is missing a file (supplementary-material missing a media element) - please ensure that this is queried with the author.</assert>		
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#final-supplementary-material-test-5"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#final-supplementary-material-test-5"
         test="media" 
         role="error" 
         id="final-supplementary-material-test-5"><value-of select="label"/> is missing a file (supplementary-material must have a media).</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-6"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-6"
         test="matches(label[1],'^MDAR checklist$|^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$|^Audio file \d{1,4}\.$|^Box \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$')" 
         role="error" 
         id="supplementary-material-test-6">supplementary-material label (<value-of select="label"/>) does not conform to eLife's usual label format.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-7"
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-7"
         test="(ancestor::sec[@sec-type='supplementary-material']) and (media[@mimetype='video'])" 
         role="error" 
         id="supplementary-material-test-7">supplementary-material in additional files sections cannot have a media element with the attribute mimetype='video'. This should be mimetype='application'</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-8"
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-8"
         test="matches(label[1],'^MDAR checklist$|^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])" 
         role="error" 
         id="supplementary-material-test-8"><value-of select="label"/> has an article level label but it is not captured in the additional files section - This must be incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-9"
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-9"
         test="count(media) gt 1" 
         role="error" 
         id="supplementary-material-test-9"><value-of select="label"/> has <value-of select="count(media)"/> media elements which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-10"
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-10"
         test="matches(label[1],'^Reporting standard \d{1,4}\.$')" 
         role="warning" 
         id="supplementary-material-test-10">Article contains <value-of select="label"/> Please check with eLife - is this actually a reporting standard?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#source-code-test-1"
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#source-code-test-1"
         test="($file = $code-files) and not(matches(label[1],'[Ss]ource code \d{1,4}\.$'))" 
         role="warning" 
         id="source-code-test-1"><value-of select="label"/> has a file which looks like code - <value-of select="$link"/>, but it's not labelled as code.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-11"
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-11"
         test="contains(lower-case(caption[1]/title[1]),'key resource')" 
         role="warning" 
         id="supplementary-material-test-11"><value-of select="if (self::*/label) then replace(label,'\.$','') else self::*/local-name()"/> has a title '<value-of select="caption[1]/title[1]"/>'. Is it a Key resources table? If so, it should be captured as a table in an appendix for the article.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#source-code-test-2"
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#source-code-test-2"
         test="contains(label[1],'ource code') and not(($file=('tar','gz','zip','tgz','rar')))" 
         role="warning" 
         id="source-code-test-2">Source code files should always be zipped. The file type for <value-of select="if (self::*/label) then replace(label,'\.$','') else self::*/local-name()"/> is '<value-of select="$file"/>'. Please zip this file, and replace it with the zipped version.</report>
@@ -4086,12 +4086,12 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'upplementary file')]) - count(following::supplementary-material[contains(label[1],'upplementary file')])"/>
       <let name="no" value="substring-after(@id,'supp')"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#back-supplementary-file-position"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#back-supplementary-file-position"
         test="string($pos) = $no" 
         role="error" 
         id="back-supplementary-file-position"><value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#back-supplementary-file-id"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#back-supplementary-file-id"
         test="matches(@id,'^supp\d{1,2}$')" 
         role="error" 
         id="back-supplementary-file-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. Supplementary files need to have ids in the format 'supp0'.</assert>
@@ -4103,12 +4103,12 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource data')]) - count(following-sibling::supplementary-material[contains(label[1],'ource data')])"/>
       <let name="no" value="substring-after(@id,'sdata')"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#back-source-data-position"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#back-source-data-position"
         test="string($pos) = $no" 
         role="error" 
         id="back-source-data-position"><value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#back-source-data-id"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#back-source-data-id"
         test="matches(@id,'^sdata\d{1,2}$')" 
         role="error" 
         id="back-source-data-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. Source data need to have ids in the format 'sdata0'.</assert>
@@ -4120,12 +4120,12 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource code')]) - count(following-sibling::supplementary-material[contains(label[1],'ource code')])"/>
       <let name="no" value="substring-after(@id,'scode')"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#back-source-code-position"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#back-source-code-position"
         test="string($pos) = $no" 
         role="error" 
         id="back-source-code-position"><value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#back-source-code-id"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#back-source-code-id"
         test="matches(@id,'^scode\d{1,2}$')" 
         role="error" 
         id="back-source-code-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. Source code needs to have ids in the format 'scode0'.</assert>
@@ -4134,12 +4134,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" id="source-data-specific-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#fig-data-test-1"
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#fig-data-test-1"
         test="matches(label[1],'^Figure \d{1,4}—source data \d{1,4}|^Appendix \d{1,4}—figure \d{1,4}—source data \d{1,4}') and (count(descendant::xref[@ref-type='fig'])=1) and (descendant::xref[(@ref-type='fig') and contains(.,'upplement')])" 
         role="warning" 
         id="fig-data-test-1"><value-of select="label"/> is figure level source data, but contains 1 figure citation which is a link to a figure supplement - should it be figure supplement level source data?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#fig-code-test-1"
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#fig-code-test-1"
         test="matches(label[1],'^Figure \d{1,4}—source code \d{1,4}|^Appendix \d{1,4}—figure \d{1,4}—source code \d{1,4}') and (count(descendant::xref[@ref-type='fig'])=1) and (descendant::xref[(@ref-type='fig') and contains(.,'upplement')])" 
         role="warning" 
         id="fig-code-test-1"><value-of select="label"/> is figure level source code, but contains 1 figure citation which is a link to a figure supplement - should it be figure supplement level source code?</report>
@@ -4154,17 +4154,17 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="sibling-count" value="count(ancestor::fig[1]//supplementary-material[contains(label[1],' data ')])"/>
       <let name="pos" value="$sibling-count - count(following::supplementary-material[(ancestor::fig[1]/@id=$fig-id) and contains(label[1],' data ')])"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#fig-data-test-2"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#fig-data-test-2"
         test="$number = $pos" 
         role="error" 
         id="fig-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#fig-data-id"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#fig-data-id"
         test="@id=concat($fig-id,'sdata',$pos)" 
         role="error" 
         id="fig-data-id">The id for figure level source data must be the id of its ancestor fig, followed by 'sdata', followed by its position relative to other source data for the same figure. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($fig-id,'sdata',$pos)"/>' instead.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#fig-data-label"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#fig-data-label"
         test="$label = concat($fig-label,'—source data ',$pos,'.')" 
         role="error" 
         id="fig-data-label">Figure source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong figure or the label is incorrect. Should the label be <value-of select="concat($fig-label,'—source data ',$pos,'.')"/> instead?</assert>
@@ -4178,17 +4178,17 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="sibling-count" value="count(ancestor::fig[1]//supplementary-material[contains(label[1],' code ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::fig[1]/@id=$fig-id) and contains(label[1],' code ')])"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#fig-code-test-2"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#fig-code-test-2"
         test="$number = $pos" 
         role="error" 
         id="fig-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#fig-code-id"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#fig-code-id"
         test="@id=concat($fig-id,'scode',$pos)" 
         role="error" 
         id="fig-code-id">The id for figure level source code must be the id of its ancestor fig, followed by 'scode', followed by its position relative to other source data for the same figure. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($fig-id,'scode',$pos)"/>' instead.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#fig-code-label"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#fig-code-label"
         test="$label = concat($fig-label,'—source code ',$pos,'.')" 
         role="error" 
         id="fig-code-label">Figure source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong figure or the label is incorrect. Should the label be <value-of select="concat($fig-label,'—source code ',$pos,'.')"/> instead?</assert>
@@ -4203,17 +4203,17 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="sibling-count" value="count(ancestor::media[1]//supplementary-material[contains(label[1],' data ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::media[1]/@id=$vid-id) and contains(label[1],' data ')])"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#vid-data-test-2"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#vid-data-test-2"
         test="$number = $pos" 
         role="error" 
         id="vid-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#vid-data-id"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#vid-data-id"
         test="@id=concat($vid-id,'sdata',$pos)" 
         role="error" 
         id="vid-data-id">The id for video level source data must be the id of its ancestor video, followed by 'sdata', followed by its position relative to other source data for the same video. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($vid-id,'sdata',$pos)"/>' instead.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#vid-data-label"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#vid-data-label"
         test="$label = concat($vid-label,'—source data ',$pos,'.')" 
         role="error" 
         id="vid-data-label">Video source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong video or the label is incorrect. Should the label be <value-of select="concat($vid-label,'—source data ',$pos,'.')"/> instead?</assert>
@@ -4227,17 +4227,17 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="sibling-count" value="count(ancestor::media[1]//supplementary-material[contains(label[1],' code ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::media[1]/@id=$vid-id) and contains(label[1],' code ')])"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#vid-code-test-2"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#vid-code-test-2"
         test="$number = $pos" 
         role="error" 
         id="vid-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#vid-code-id"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#vid-code-id"
         test="@id=concat($vid-id,'scode',$pos)" 
         role="error" 
         id="vid-code-id">The id for video level source code must be the id of its ancestor video, followed by 'scode', followed by its position relative to other source data for the same video. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($vid-id,'scode',$pos)"/>' instead.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#vid-code-label"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#vid-code-label"
         test="$label = concat($vid-label,'—source code ',$pos,'.')" 
         role="error" 
         id="vid-code-label">Video source code label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong video or the label is incorrect. Should the label be <value-of select="concat($vid-label,'—source code ',$pos,'.')"/> instead?</assert>
@@ -4251,17 +4251,17 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="sibling-count" value="count(ancestor::table-wrap[1]//supplementary-material[contains(label[1],' data ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::table-wrap[1]/@id=$table-id) and contains(label[1],' data ')])"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#table-data-test-2" 
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#table-data-test-2" 
         test="$number = $pos" 
         role="error" 
         id="table-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#table-data-id"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#table-data-id"
         test="@id=concat($table-id,'sdata',$pos)" 
         role="error" 
         id="table-data-id">The id for table level source data must be the id of its ancestor table-wrap, followed by 'sdata', followed by its position relative to other source data for the same table. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($table-id,'sdata',$pos)"/>' instead.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#table-data-label"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#table-data-label"
         test="$label = concat($table-label,'—source data ',$pos,'.')" 
         role="error" 
         id="table-data-label">Table source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong table or the label is incorrect. Should the label be <value-of select="concat($table-label,'—source data ',$pos,'.')"/> instead?</assert>
@@ -4276,17 +4276,17 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="sibling-count" value="count(ancestor::table-wrap[1]//supplementary-material[contains(label[1],' code ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::table-wrap[1]/@id=$table-id) and contains(label[1],' code ')])"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#table-code-test-2" 
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#table-code-test-2" 
         test="$number = $pos" 
         role="error" 
         id="table-code-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#table-code-id"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#table-code-id"
         test="@id=concat($table-id,'scode',$pos)" 
         role="error" 
         id="table-code-id">The id for table level source code must be the id of its ancestor table, followed by 'scode', followed by its position relative to other source data for the same table. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($table-id,'scode',$pos)"/>' instead.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#table-code-label"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#table-code-label"
         test="$label = concat($table-label,'—source code ',$pos,'.')" 
         role="error" 
         id="table-code-label">Table source code label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong table or the label is incorrect. Should the label be <value-of select="concat($table-label,'—source code ',$pos,'.')"/> instead?</assert>
@@ -4295,17 +4295,17 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="disp-formula" id="disp-formula-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#disp-formula-test-2"
+      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-2"
         test="mml:math" 
         role="error" 
         id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#disp-formula-test-3"
+      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-3"
         test="parent::p" 
         role="warning" 
         id="disp-formula-test-3">In the vast majority of cases disp-formula should be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/>. Is that correct?</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#disp-formula-test-4"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-4"
         test="parent::p[not(parent::boxed-text[label]) and not(preceding-sibling::*[1]/name()='list')] and not(preceding-sibling::*) and (not(preceding-sibling::text()) or normalize-space(preceding-sibling::text()[1])='') and not(ancestor::list)"
         role="error" 
         id="disp-formula-test-4">disp-formula cannot be placed as the first child of a p element with no content before it (ie. &lt;p>&lt;disp-formula ...). Either capture it at the end of the previous paragraph or capture it as a child of <value-of select="parent::p/parent::*/local-name()"/></report>
@@ -4315,22 +4315,22 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-test-1"
+      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-1"
         test="mml:math" 
         role="error" 
         id="inline-formula-test-1">inline-formula must contain an mml:math element.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-test-2"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-2"
         test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')" 
         role="warning" 
         id="inline-formula-test-2">There is no space between inline-formula and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-test-3"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-3"
         test="not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and matches($post-text,'^[\p{L}\p{N}\p{M}]')" 
         role="warning" 
         id="inline-formula-test-3">There is no space between inline-formula and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-test-4"
+      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-4"
         test="parent::p or parent::td or parent::th or parent::title" 
         role="error" 
         id="inline-formula-test-4"><name/> must be a child of p, td, th or title. The formula containing <value-of select="."/> is a child of <value-of select="parent::*/local-name()"/></assert>
@@ -4340,97 +4340,97 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="data" value="replace(normalize-space(.),'\p{Zs}','')"/>
       <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-1"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-1"
         test="$data = ''" 
         role="error" 
         id="math-test-1">mml:math must not be empty.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-2"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-2"
         test="descendant::mml:merror" 
         role="error" 
         id="math-test-2">math contains an mml:merror with '<value-of select="descendant::mml:merror[1]/*"/>'. This will almost certainly not render correctly.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-14" 
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-14" 
         test="not(matches($data,'^±$|^±[\d]+$|^±[\d]+\.[\d]+$|^×$|^~$|^~[\d]+$|^~[\d]+\.[\d]+$|^%[\d]+$|^%[\d]+\.[\d]+$|^%$|^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')) and ($children='')" 
         role="warning" 
         id="math-test-14">mml:math only contains numbers and/or operators - '<value-of select="$data"/>'. Is it necessary for this to be set as a formula, or can it be captured with as normal text instead?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-3"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-3"
         test="$data = '±'" 
         role="error" 
         id="math-test-3">mml:math only contains '±', which is unnecessary. Capture this as a normal text '±' instead.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-4"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-4"
         test="matches($data,'^±[\d]+$|^±[\d]+\.[\d]+$')" 
         role="error" 
         id="math-test-4">mml:math only contains '±' followed by digits, which is unnecessary. Capture this as a normal text instead.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-5"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-5"
         test="$data = '×'" 
         role="error" 
         id="math-test-5">mml:math only contains '×', which is unnecessary. Capture this as a normal text '×' instead.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-6"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-6"
         test="$data = '~'" 
         role="error" 
         id="math-test-6">mml:math only contains '~', which is unnecessary. Capture this as a normal text '~' instead.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-7"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-7"
         test="matches($data,'^~[\d]+$|^~[\d]+\.[\d]+$')" 
         role="error" 
         id="math-test-7">mml:math only contains '~' and digits, which is unnecessary. Capture this as a normal text instead.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-8"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-8"
         test="$data = 'μ'" 
         role="warning" 
         id="math-test-8">mml:math only contains 'μ', which is likely unnecessary. Should this be captured as a normal text 'μ' instead?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-9"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-9"
         test="matches($data,'^[\d]+%$|^[\d]+\.[\d]+%$|^%$')" 
         role="error" 
         id="math-test-9">mml:math only contains '%' and digits, which is unnecessary. Capture this as a normal text instead.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-12"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-12"
         test="matches($data,'^%$')" 
         role="error" 
         id="math-test-12">mml:math only contains '%', which is unnecessary. Capture this as a normal text instead.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-10"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-10"
         test="$data = '°'" 
         role="error" 
         id="math-test-10">mml:math only contains '°', which is likely unnecessary. This should be captured as a normal text '°' instead.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-11"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-11"
         test="contains($data,'○')" 
         role="warning" 
         id="math-test-11">mml:math contains '○' (the white circle symbol). Should this be the degree symbol instead - '°', or '∘' (the ring operator symbol)?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-13"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-13"
         test="not(descendant::mml:msqrt) and not(descendant::mml:mroot) and not(descendant::mml:mfrac) and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')" 
         role="warning" 
         id="math-test-13">mml:math only contains '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-15"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-15"
         test="matches($data,'^Na[2]?\+$|^Ca2\+$|^K\+$|^Cu[2]?\+$|^Ag\+$|^Hg[2]?\+$|^H\+$|^Mg2\+$|^Ba2\+$|^Pb2\+$|^Fe2\+$|^Co2\+$|^Ni2\+$|^Mn2\+$|^Zn2\+$|^Al3\+$|^Fe3\+$|^Cr3\+$')" 
         role="warning" 
         id="math-test-15">mml:math seems to only contain the formula for a cation - '<value-of select="."/>' - which is likely unnecessary. Should this be captured as normal text instead?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-16"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-16"
         test="matches($data,'^H\-$|^Cl\-$|^Br\-$|^I\-$|^OH\-$|^NO3\-$|^NO2\-$|^HCO3\-$|^HSO4\-$|^CN\-$|^MnO4\-$|^ClO[3]?\-$|^O2\-$|^S2\-$|^SO42\-$|^SO32\-$|^S2O32\-$|^SiO32\-$|^CO32\-$|^CrO42\-$|^Cr2O72\-$|^N3\-$|^P3\-$|^PO43\-$')" 
         role="warning" 
         id="math-test-16">mml:math seems to only contain the formula for an anion - '<value-of select="."/>' - which is likely unnecessary. Should this be captured as normal text instead?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-17"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-17"
         test="child::mml:msqrt and matches($data,'^±\d+%$|^+\d+%$|^-\d+%$|^\d+%$|^±\d+$|^+\d+$|^-\d+$')" 
         role="warning" 
         id="math-test-17">mml:math only contains number(s) and square root symbol(s) '<value-of select="."/>', which is likely unnecessary. Should this be captured as normal text instead? Such as <value-of select="concat('√',.)"/>?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-18"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-18"
         test="ancestor::abstract" 
         role="warning" 
         id="math-test-18">abstract contains MathML (<value-of select="."/>). Is this necessary? MathML in abstracts may not render downstream, so if it can be represented using normal text/unicode, then please do so instead.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-19"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-19"
         test="descendant::mml:mi[(.='') and preceding-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')] and following-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')]]" 
         role="warning" 
         id="math-test-19">Maths containing '<value-of select="."/>' has what looks like words or terms which need separating with a space. With it's current markup the space will not be preserved on the eLife website. Please add in the space(s) using the latext '\;' in the appropriate place(s), so that the space is preserved in the HTML.</report>
@@ -4443,7 +4443,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="math-test-21"><value-of select="parent::*/name()"/> starts with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the right. Please esnure they are removed.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-broken-unicode-test" 
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-broken-unicode-test" 
         test="matches(.,'(&amp;|§|§amp;)#x?\d|[^\p{L}\p{N}][gl]t;')" 
         role="warning" 
         id="math-broken-unicode-test">Equation likely contains a broken unicode - <value-of select="."/>.</report>
@@ -4459,7 +4459,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="disp-formula/*" id="disp-formula-child-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#disp-formula-child-test-1"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1"
         test="not(local-name()=('label','math'))" 
         role="error" 
         id="disp-formula-child-test-1"><name/> element is not allowed as a child of disp-formula.</report>
@@ -4467,7 +4467,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="inline-formula/*" id="inline-formula-child-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-child-test-1"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-child-test-1"
         test="local-name()!='math'" 
         role="error" 
         id="inline-formula-child-test-1"><name/> element is not allowed as a child of inline-formula.</report>
@@ -4490,32 +4490,32 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-wrap-test-1" 
         test="table" 
         role="error" 
         id="table-wrap-test-1">table-wrap must have one table.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-wrap-test-2" 
         test="count(table) &gt; 1" 
         role="warning" 
         id="table-wrap-test-2">table-wrap has more than one table - Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-wrap-test-3" 
         test="(contains($id,'inline')) and (normalize-space($lab) != '')" 
         role="error" 
         id="table-wrap-test-3">table-wrap has an inline id <value-of select="$id"/> but it has a label - <value-of select="$lab"/>, which is not correct.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-wrap-test-4" 
         test="(matches($id,'^table[0-9]{1,3}$')) and (normalize-space($lab) = '')" 
         role="error" 
         id="table-wrap-test-4">table-wrap with id <value-of select="$id"/> has no label which is not correct.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-wrap-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-wrap-test-1" 
         test="contains($id,'keyresource') and not(matches($lab,'^Key resources table$|^Appendix [0-9]{1,4}—key resources table$'))" 
         role="error" 
         id="kr-table-wrap-test-1">table-wrap has an id '<value-of select="$id"/>' but its label is not in the format 'Key resources table' or 'Appendix 0—key resources table', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-table-wrap-cite-1" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#pre-table-wrap-cite-1" 
         test="if (contains($id,'keyresource')) then ()
         else if (contains($id,'inline')) then ()
         else if ($article-type = ($features-article-types,$notice-article-types)) then ()
@@ -4523,7 +4523,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="pre-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure to query the author asking for a citation.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#final-table-wrap-cite-1" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#final-table-wrap-cite-1" 
         test="if (contains($id,'keyresource')) then ()
         else if (contains($id,'inline')) then ()
         else if ($article-type = ($features-article-types,$notice-article-types)) then ()
@@ -4532,19 +4532,19 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="final-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#feat-table-wrap-cite-1" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#feat-table-wrap-cite-1" 
         test="if (contains($id,'inline')) then ()
         else if ($article-type = $features-article-types) then (not(ancestor::article//xref[tokenize(@rid,'\s') = $id]))
         else ()" 
         role="warning" 
         id="feat-table-wrap-cite-1">There is no citation to <value-of select="if (label) then label else 'table.'"/> Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-not-tagged" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-not-tagged" 
         test="not(matches($id,'keyresource|app[\d]{1,4}keyresource')) and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" 
         role="warning" 
         id="kr-table-not-tagged"><value-of select="$lab"/> has headings that are for a Key resources table, but it does not have an @id the format 'keyresource' or 'app0keyresource'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-not-tagged-2" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-not-tagged-2" 
         test="matches(caption/title[1],'[Kk]ey [Rr]esource')" 
         role="warning" 
         id="kr-table-not-tagged-2"><value-of select="$lab"/> has the title <value-of select="caption/title[1]"/> but it is not tagged as a key resources table. Is this correct?</report>
@@ -4553,12 +4553,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="table-wrap[not(ancestor::sub-article) and not(contains(@id,'keyresource')) and label]" id="table-title-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-table-title-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#pre-table-title-test-1" 
         test="caption/title" 
         role="warning" 
         id="pre-table-title-test-1"><value-of select="replace(label[1],'\.$','')"/> does not have a title. Please ensure to query the authors for one.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#final-table-title-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#final-table-title-test-1" 
         test="caption/title" 
         role="error" 
         id="final-table-title-test-1"><value-of select="replace(label[1],'\.$','')"/> does not have a title. Please ensure to query the authors for one.</assert>
@@ -4567,27 +4567,27 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="table-wrap/caption/title" id="table-title-tests-2">
       <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-title-test-2" 
         test="not(*) and normalize-space(.)=''" 
         role="error" 
         id="table-title-test-2">The title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> is empty which is not allowed.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-3" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-title-test-3" 
         test="ends-with(.,'.') or ends-with(.,'?')" 
         role="error" 
         id="table-title-test-3">The title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> does not end with a full stop which is incorrect - '<value-of select="."/>'.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-title-test-4" 
         test="ends-with(.,' vs.')" 
         role="warning" 
         id="table-title-test-4">title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption - <value-of select="."/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-title-test-5" 
         test="string-length(.) gt 250" 
         role="warning" 
         id="table-title-test-5">title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> is longer than 250 characters. Is it a caption instead?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-6" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-title-test-6" 
         test="$sentence-count gt 1" 
         role="warning" 
         id="table-title-test-6">title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
@@ -4599,42 +4599,42 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="table-wrap[contains(@id,'keyresource')]/table/thead[1]" id="kr-table-heading-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-1" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-header-1" 
         test="count(tr[1]/th) != 5" 
         role="warning" 
         id="kr-table-header-1">Key resources tables should have 5 column headings (th elements) but this one has <value-of select="count(tr[1]/th)"/>. Either it is incorrectly typeset or the author will need to be queried in order to provide the table in the correct format.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-2" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-header-2" 
         test="count(tr) gt 1" 
         role="warning" 
         id="kr-table-header-2">Key resources table has more than 1 row in its header, which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-3" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-header-3" 
         test="count(tr) lt 1" 
         role="warning" 
         id="kr-table-header-3">Key resources table has no rows in its header, which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-4" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-header-4" 
         test="tr[1]/th[1] and (normalize-space(tr[1]/th[1]) != 'Reagent type (species) or resource')" 
         role="warning" 
         id="kr-table-header-4">The first column header in a Key resources table is usually 'Reagent type (species) or resource' but this one has '<value-of select="tr[1]/th[1]"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-5" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-header-5" 
         test="tr[1]/th[2] and (normalize-space(tr[1]/th[2]) != 'Designation')" 
         role="warning" 
         id="kr-table-header-5">The second column header in a Key resources table is usually 'Designation' but this one has '<value-of select="tr[1]/th[2]"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-6" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-header-6" 
         test="tr[1]/th[3] and (normalize-space(tr[1]/th[3]) != 'Source or reference')" 
         role="warning" 
         id="kr-table-header-6">The third column header in a Key resources table is usually 'Source or reference' but this one has '<value-of select="tr[1]/th[3]"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-7" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-header-7" 
         test="tr[1]/th[4] and (normalize-space(tr[1]/th[4]) != 'Identifiers')" 
         role="warning" 
         id="kr-table-header-7">The fourth column header in a Key resources table is usually 'Identifiers' but this one has '<value-of select="tr[1]/th[4]"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-8" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-header-8" 
         test="tr[1]/th[5] and (normalize-space(tr[1]/th[5]) != 'Additional information')" 
         role="warning" 
         id="kr-table-header-8">The fifth column header in a Key resources table is usually 'Additional information' but this one has '<value-of select="tr[1]/th[5]"/>'.</report>
@@ -4643,7 +4643,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*" id="kr-table-body-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-body-1" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-body-1" 
         test="local-name()='td'" 
         role="error" 
         id="kr-table-body-1">Table cell in KR table containing '<value-of select="."/>' is captured as a table header cell (<value-of select="local-name()"/>), which is not allowed. Ensure that this is changed to a normal table cell (td).</assert>
@@ -4652,7 +4652,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*[1]" id="kr-table-first-column-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-first-column-1" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-first-column-1" 
         test="matches(lower-case(.),'^gene|^strain|^genetic reagent|^cell line|^transfected construct|^biological sample|^antibody|^recombinant dna reagent|^sequence-based reagent|^peptide, recombinant protein|^commercial (assay|kit)|^chemical compound|^drug|^software|^algorithm|^other')" 
         role="warning" 
         id="kr-table-first-column-1">A cell in the first column of the body of a key resources table should start with one of the standard values. '<value-of select="."/>' does not start with one of Gene; Strain, strain background; Genetic reagent; Cell line; Transfected construct; Biological sample; Antibody; Recombinant DNA reagent; Sequence-based reagent; Peptide, recombinant protein; Commercial assay or kit; Chemical compound, drug; Software; Algorithm; Other.</assert>
@@ -4680,7 +4680,7 @@ else self::*/local-name() = $allowed-p-blocks"
         return if (($x/local-name()='xref') and $x/@ref-type='bibr') then ()
         else $x,'')"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#table-cell-1" 
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#table-cell-1" 
         test="matches($stripped-text,'[\p{N}\p{L}]')" 
         role="warning" 
         id="table-cell-1">Table cell in <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> contains '<value-of select="."/>'. Are the brackets around the citation(s) unnecessary?</assert>
@@ -4689,7 +4689,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="body//table-wrap/label" id="body-table-label-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#body-table-label-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#body-table-label-test-1" 
         test="matches(.,'^Table \d{1,4}\.$|^Key resources table$|^Author response table \d{1,4}\.$|^Decision letter table \d{1,4}\.$')" 
         role="error" 
         id="body-table-label-test-1"><value-of select="."/> - Table label does not conform to the usual format.</assert>
@@ -4699,12 +4699,12 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="app//table-wrap/label" id="app-table-label-tests">
       <let name="app" value="ancestor::app/title[1]"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#app-table-label-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#app-table-label-test-1" 
         test="matches(.,'^Appendix \d{1,4}—table \d{1,4}\.$|^Appendix \d{1,4}—key resources table$')" 
         role="error" 
         id="app-table-label-test-1"><value-of select="."/> - Table label does not conform to the usual format.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#app-table-label-test-2" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#app-table-label-test-2" 
         test="starts-with(.,$app)" 
         role="error" 
         id="app-table-label-test-2"><value-of select="."/> - Table label does not begin with the title of the appendix it sits in. Either the table is in the incorrect appendix or the table has been labelled incorrectly.</assert>
@@ -4713,17 +4713,17 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="table" id="table-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-test-1" 
         test="count(tbody) = 0" 
         role="error" 
         id="table-test-1">table must have at least one body (tbody).</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-test-2" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-test-2" 
         test="thead" 
         role="warning" 
         id="table-test-2">table doesn't have a header (thead). Is this correct?</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-test-3" 
         test="thead and tbody/tr/th[not(following-sibling::td)] and count(descendant::tr) gt 45" 
         role="warning" 
         id="table-test-3"><value-of select="if (ancestor::table-wrap[1]/label[1]) then replace(ancestor::table-wrap[1]/label[1],'\.$','') else 'Table'"/> has a main header (thead), but it also has a header or headers in the body and contains 45 or more rows. The main (first) header will as a result appear at the start of any new pages in the PDF. Is this correct? Or should the main header be moved down into the body (but still captured with &lt;th&gt; instead of &lt;td&gt;) so that this header does not appear on the subsequent pages?</report>
@@ -4731,7 +4731,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="table/tbody" id="tbody-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#tbody-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#tbody-test-1" 
         test="count(tr) = 0" 
         role="error" 
         id="tbody-test-1">tbody must have at least one row (tr).</report>
@@ -4739,7 +4739,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="table/thead" id="thead-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#thead-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#thead-test-1" 
         test="count(tr) = 0" 
         role="error" 
         id="thead-test-1">thead must have at least one row (tr).</report>
@@ -4748,17 +4748,17 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="tr" id="tr-tests">
       <let name="count" value="count(th) + count(td)"/> 
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#tr-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#tr-test-1" 
         test="$count = 0" 
         role="error" 
         id="tr-test-1">row (tr) must contain at least one heading cell (th) or data cell (td).</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#tr-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#tr-test-2" 
         test="th and (parent::tbody)" 
         role="warning" 
         id="tr-test-2">table row in body contains a th element (a header). Please check that this is correct.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#tr-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#tr-test-3" 
         test="td and (parent::thead)" 
         role="error" 
         id="tr-test-3">table row in header contains a td element (table data), which is not allowed. Only th elements (table heading cells) are allowed in a row in the table header.</report>
@@ -4767,7 +4767,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="td/*" id="td-child-tests">
       <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'styled-content', 'monospace', 'code','inline-graphic','underline','inline-formula', 'list')"/> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#td-child-test" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#td-child-test" 
         test="self::*/local-name() = $allowed-blocks" 
         role="error" 
         id="td-child-test">td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline', and 'inline-formula'.</assert>
@@ -4776,12 +4776,12 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="th/*" id="th-child-tests">
       <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic', 'list')"/> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#th-child-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#th-child-test-1" 
         test="self::*/local-name() = ($allowed-blocks)" 
         role="error" 
         id="th-child-test-1">th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code', 'inline-graphic', and 'inline-formula'.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#th-child-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#th-child-test-2" 
         test="self::*/local-name() = 'bold'" 
         role="warning" 
         id="th-child-test-2">th contains bold. Is this correct?</report>
@@ -4789,7 +4789,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="th" id="th-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#th-row-test" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#th-row-test" 
         test="following-sibling::td or preceding-sibling::td" 
         role="warning" 
         id="th-row-test">Table header cell containing '<value-of select="."/>' has table data (not header) cells next to it on the same row. Is this correct? Should the whole row be header cells, or should this cell extend across the whole row?</report>
@@ -4798,7 +4798,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="table-wrap-foot//fn/p" id="table-fn-label-tests"> 
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-fn-label-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-label-test-1" 
         test="not(matches(.,'^\p{Zs}?[*†‡§¶]')) and matches(.,'^\p{Zs}?[\p{Ps}]?[\da-z][\p{Pe}]?\p{Zs}+[\p{Lu}\d]')" 
         role="warning" 
         id="table-fn-label-test-1">Footnote starts with what might be a label which is not in line with house style - <value-of select="."/>. If it is a label, then it should changed to one of the allowed symbols, so that the order of labels in the footnotes follows this sequence *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc.</report>
@@ -4806,12 +4806,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="table-wrap-foot//fn" id="table-fn-tests"> 
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-fn-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-test-1" 
         test="label and not(@id)" 
         role="error" 
         id="table-fn-test-1">Table footnote with a label must have an id. This one has the label '<value-of select="label"/>' but no id.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-fn-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-test-2" 
         test="@id and not(label)" 
         role="error" 
         id="table-fn-test-2">Table footnotes with an id must have a label (or the id should be removed). This one has the id '<value-of select="@id"/>' but no label. If a lable should not be present, then please remove the id.</report>
@@ -4921,12 +4921,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="code" id="code-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/code-blocks#code-child-test" 
+      <report see="https://elifeproduction.slab.com/posts/code-blocks-947pcamv#code-child-test" 
         test="child::*" 
         role="error" 
         id="code-child-test">code contains a child element, which will display in HTML with its tagging, i.e. '&lt;<value-of select="child::*[1]/name()"/><value-of select="if (child::*[1]/@*) then for $x in child::*[1]/@* return concat(' ',$x/name(),'=&quot;',$x/string(),'&quot;') else ()"/>&gt;<value-of select="child::*[1]"/>&lt;/<value-of select="child::*[1]/name()"/>&gt;'. Strip any child elements.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/code-blocks#code-parent-test" 
+      <assert see="https://elifeproduction.slab.com/posts/code-blocks-947pcamv#code-parent-test" 
         test="parent::p" 
         role="error" 
         id="code-parent-test">A code element must be contained in a p element. The code element (containing the content <value-of select="."/>) is contained in a <value-of select="parent::*/name()"/> element.</assert>
@@ -4935,7 +4935,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="p[count(code) gt 1]/code[2]" id="code-tests-2">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/code-blocks#code-sibling-test"
+      <report see="https://elifeproduction.slab.com/posts/code-blocks-947pcamv#code-sibling-test"
         test="normalize-space(preceding-sibling::text()[preceding-sibling::*[1]/local-name()='code'][1])=''" 
         role="warning" 
         id="code-sibling-test">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
@@ -4945,7 +4945,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="p[count(code) = 1]/code" id="code-tests-3">
       <let name="previous-parent" value="parent::p/preceding-sibling::*[1]"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/code-blocks#code-sibling-test-2"
+      <report see="https://elifeproduction.slab.com/posts/code-blocks-947pcamv#code-sibling-test-2"
         test="$previous-parent/*[last()][(local-name()='code') and not(following-sibling::text())] and not(preceding-sibling::*) and not(preceding-sibling::text())" 
         role="warning" 
         id="code-sibling-test-2">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
@@ -4956,7 +4956,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="label" value="replace(.,'\.$','')"/>
       <let name="label-2" value="replace(.,'\p{P}','')"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#label-fig-group-conformance-1" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#label-fig-group-conformance-1" 
         test="not(ancestor::fig-group) and parent::fig[@specific-use='child-fig']" 
         role="error" 
         id="label-fig-group-conformance-1"><value-of select="$label"/> is not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
@@ -4975,12 +4975,12 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="label-2" value="replace(.,'\p{P}','')"/>
       <let name="app-id" value="ancestor::app/@id"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#equation-label-conformance-1" 
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#equation-label-conformance-1" 
         test="(ancestor::app) and (some $x in preceding::disp-formula/label[ancestor::app[@id=$app-id]] satisfies (replace($x,'\p{P}','') = $label-2))" 
         role="error" 
         id="equation-label-conformance-1">Duplicated display formula labels - <value-of select="."/> is present more than once in the same appendix.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#equation-label-conformance-2"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#equation-label-conformance-2"
         test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article] and not(ancestor::fig)] satisfies (replace($x,'\p{P}','') = $label-2))" 
         role="error" 
         id="equation-label-conformance-2">Duplicated display formula labels - <value-of select="."/> is present more than once in the main body of the text.</report>
@@ -5182,12 +5182,12 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="pos" value="$count - count(following::table-wrap[(matches(@id,'^table[\d]+$')) and (ancestor::body) and not(ancestor::sub-article)])"/>
       <let name="no" value="substring-after(@id,'table')"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-body-table-report" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#pre-body-table-report" 
         test="($no = string($pos))" 
         role="warning" 
         id="pre-body-table-report"><value-of select="label"/> does not appear in sequence. Relative to the other numbered tables it is placed in position <value-of select="$pos"/>.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#final-body-table-report" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#final-body-table-report" 
         test="($no = string($pos))" 
         role="error" 
         id="final-body-table-report"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other numbered tables it is placed in position <value-of select="$pos"/>.</assert>
@@ -5202,12 +5202,12 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="pos" value="$count - count(following::table-wrap[matches(@id,$id-regex)])"/>
       <let name="no" value="substring-after(@id,concat($app-no,'table'))"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-app-table-report" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#pre-app-table-report" 
         test="($no = string($pos))" 
         role="warning" 
         id="pre-app-table-report"><value-of select="label"/> does not appear in sequence. Relative to the other numbered tables in the same appendix it is placed in position <value-of select="$pos"/>.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#final-app-table-report" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#final-app-table-report" 
         test="($no = string($pos))" 
         role="error" 
         id="final-app-table-report"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other numbered tables in the same appendix it is placed in position <value-of select="$pos"/>.</assert>
@@ -5234,12 +5234,12 @@ else self::*/local-name() = $allowed-p-blocks"
         $first-cite-parent/following-sibling::*[@id=$id or (child::*[@id=$id] and local-name()='fig-group') or following::*[@id=$id] or following::*/*[@id=$id]]/local-name()
         )"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-specific-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-specific-test-1" 
         test="label[contains(lower-case(.),'supplement')]" 
         role="error" 
         id="fig-specific-test-1">fig label contains 'supplement', but it does not have a @specific-use='child-fig'. If it is a figure supplement it needs the attribute, if it isn't then it cannot contain 'supplement' in the label.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-specific-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#pre-fig-specific-test-2" 
         test="if ($article-type = $notice-article-types) then ()
         else if ($count = 0) then ()
         else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()
@@ -5247,7 +5247,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="pre-fig-specific-test-2"><value-of select="$lab"/> does not appear in sequence. Relative to the other figures it is placed in position <value-of select="$pos"/>. Please query this with the author.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-specific-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#final-fig-specific-test-2" 
         test="if ($article-type = $notice-article-types) then ()
         else if ($count = 0) then ()
         else if (not(matches($id,'^fig[0-9]{1,3}$'))) then ()
@@ -5255,37 +5255,37 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="final-fig-specific-test-2"><value-of select="$lab"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-specific-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-specific-test-3" 
         test="not($article-type = $notice-article-types) and ancestor::article//xref[@rid = $id] and  (empty($in-between-elements) or (some $x in $in-between-elements satisfies not($x=('fig-group','fig','media','table-wrap'))))" 
         role="warning" 
         id="fig-specific-test-3"><value-of select="$lab"/> is cited, but does not appear directly after the paragraph citing it. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-specific-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#pre-fig-specific-test-4" 
         test="if ($article-type = ($features-article-types,$notice-article-types)) then ()
         else if (contains($lab,'Chemical') or contains($lab,'Scheme')) then ()
         else not(ancestor::article//xref[@rid = $id])" 
         role="warning" 
         id="pre-fig-specific-test-4">There is no citation to <value-of select="$lab"/> Ensure to query the author asking for a citation.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#final-fig-specific-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#final-fig-specific-test-4" 
         test="if ($article-type = ($features-article-types,$notice-article-types)) then ()
         else if (contains($lab,'Chemical') or contains($lab,'Scheme')) then ()
         else not(ancestor::article//xref[@rid = $id])" 
         role="warning" 
         id="final-fig-specific-test-4">There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#feat-fig-specific-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#feat-fig-specific-test-4" 
         test="if ($article-type = $features-article-types) then (not(ancestor::article//xref[@rid = $id]))
         else ()" 
         role="warning" 
         id="feat-fig-specific-test-4">There is no citation to <value-of select="if (label) then label else 'figure.'"/> Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-specific-test-6" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-specific-test-6" 
         test="($fol-sib/local-name() = 'p') and ($fol-sib/*/local-name() = 'disp-formula') and (count($fol-sib/*[1]/preceding-sibling::text()) = 0) and (not(matches($pre-sib,'\.\p{Zs}*?$|\?\p{Zs}*?$|!\p{Zs}*?$')))" 
         role="warning" 
         id="fig-specific-test-6"><value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-specific-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-specific-test-5" 
         test="($fol-sib/local-name() = 'disp-formula') and (not(matches($pre-sib,'\.\p{Zs}*?$|\?\p{Zs}*?$|!\p{Zs}*?$')))" 
         role="warning" 
         id="fig-specific-test-5"><value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
@@ -5298,7 +5298,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label" id="fig-label-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-label-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-label-test-1" 
         test="matches(.,'^Figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" 
         role="error" 
         id="fig-label-test-1">fig label must be in the format 'Figure 0.', 'Chemical structure 0.', or 'Scheme 0'.</assert>
@@ -5313,34 +5313,34 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="parent-fig-no" value="substring-after(parent::fig-group/fig[not(@specific-use='child-fig')][1]/@id,'fig')"/>
       <let name="label-no" value="replace(substring-after(label[1],'supplement'),'[^\d]','')"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-sup-test-1" 
         test="parent::fig-group" 
         role="error" 
         id="fig-sup-test-1">fig supplement is not a child of fig-group. This cannot be correct.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-2" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-sup-test-2" 
         test="$label-conforms" 
         role="error" 
         id="fig-sup-test-2">fig in the body of the article which has a @specific-use='child-fig' must have a label in the format 'Figure 0—figure supplement 0.' (where 0 is one or more digits).</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-3" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-sup-test-3" 
         test="starts-with(label[1],concat('Figure ',$parent-fig-no))" 
         role="error" 
         id="fig-sup-test-3"><value-of select="label"/> does not start with the main figure number it is associated with - <value-of select="concat('Figure ',$parent-fig-no)"/>.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-sup-test-4" 
         test="if ($article-type = $notice-article-types) then ()
         else $no != string($pos)" 
         role="error" 
         id="fig-sup-test-4"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-sup-test-5" 
         test="if ($article-type = $notice-article-types) then ()
         else ($label-conforms and ($label-no != string($pos)))" 
         role="error" 
         id="fig-sup-test-5"><value-of select="label"/> is in position <value-of select="$pos"/>, which means either the label or the placement incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-6" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-sup-test-6" 
         test="$label-conforms and ($no != $label-no)" 
         role="error" 
         id="fig-sup-test-6"><value-of select="label"/> label ends with <value-of select="$label-no"/>, but the id (<value-of select="@id"/>) ends with <value-of select="$no"/>, so one must be incorrect.</report>
@@ -5349,13 +5349,13 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='reply']//fig" id="rep-fig-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#resp-fig-test-2" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#resp-fig-test-2" 
         test="label" 
         role="error" 
         flag="dl-ar"
         id="resp-fig-test-2">fig must have a label.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#reply-fig-test-2" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#reply-fig-test-2" 
         test="matches(label[1],'^Author response image [0-9]{1,3}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" 
         role="error" 
         flag="dl-ar"
@@ -5365,13 +5365,13 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='decision-letter']//fig" id="dec-fig-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#dec-fig-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#dec-fig-test-1" 
         test="label" 
         role="error" 
         flag="dl-ar"
         id="dec-fig-test-1">fig must have a label.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#dec-fig-test-2" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#dec-fig-test-2" 
         test="matches(label[1],'^Decision letter image [0-9]{1,3}\.$')" 
         role="error" 
         flag="dl-ar"
@@ -5381,7 +5381,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="article/body//boxed-text//fig[not(@specific-use='child-fig')]/label" id="box-fig-tests"> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#box-fig-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#box-fig-test-1" 
         test="matches(.,'^Box \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" 
         role="error" 
         id="box-fig-test-1">label for fig inside boxed-text must be in the format 'Box 1—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
@@ -5389,12 +5389,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="article//app//fig[not(@specific-use='child-fig')]/label" id="app-fig-tests"> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#app-fig-test-1" 
         test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$|^Appendix \d{1,4}—chemical structure \d{1,4}\.$|^Appendix \d{1,4}—scheme \d{1,4}\.$|^Appendix [A-Z]—chemical structure \d{1,4}\.$|^Appendix [A-Z]—scheme \d{1,4}\.$|^Appendix—chemical structure \d{1,4}\.$|^Appendix—scheme \d{1,4}\.$')" 
         role="error" 
         id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1.', 'Appendix A—figure 1.', or 'Appendix 1—chemical structure 1.', or 'Appendix A—scheme 1'.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#app-fig-test-2" 
         test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(starts-with(.,ancestor::app/title))" 
         role="error" 
         id="app-fig-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</report>
@@ -5402,12 +5402,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="article//app//fig[@specific-use='child-fig']/label" id="app-fig-sup-tests"> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-sup-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#app-fig-sup-test-1" 
         test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}—figure supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure supplement \d{1,4}\.$')" 
         role="error" 
         id="app-fig-sup-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1—figure supplement 1.'.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-sup-test-2" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#app-fig-sup-test-2" 
         test="starts-with(.,ancestor::app/title)" 
         role="error" 
         id="app-fig-sup-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</assert>
@@ -5437,72 +5437,72 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="permissions[not(parent::article-meta)]" id="fig-permissions">
       <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-1" 
         test="copyright-statement and (not(copyright-year) or not(copyright-holder))" 
         role="error" 
         id="fig-permissions-test-1">permissions for <value-of select="$label"/> has a copyright-statement, but not a copyright-year or copyright-holder which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-2" 
         test="copyright-year and (not(copyright-statement) or not(copyright-holder))" 
         role="error" 
         id="fig-permissions-test-2">permissions for <value-of select="$label"/> has a copyright-year, but not a copyright-statement or copyright-holder which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-3" 
         test="copyright-holder and (not(copyright-statement) or not(copyright-year))" 
         role="error" 
         id="fig-permissions-test-3">permissions for <value-of select="$label"/> has a copyright-holder, but not a copyright-statement or copyright-year which is incorrect.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-4" 
+      <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-4" 
         test="license/license-p" 
         role="error" 
         id="fig-permissions-test-4">permissions for <value-of select="$label"/> must contain a license-p element.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-5" 
         test="count(copyright-statement) gt 1" 
         role="error" 
         id="fig-permissions-test-5">permissions for <value-of select="$label"/> has <value-of select="count(copyright-statement)"/> &lt;copyright-statement&gt; elements, when there can only be 0 or 1.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-6" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-6" 
         test="count(copyright-holder) gt 1" 
         role="error" 
         id="fig-permissions-test-6">permissions for <value-of select="$label"/> has <value-of select="count(copyright-holder)"/> &lt;copyright-holder&gt; elements, when there can only be 0 or 1.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-7" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-7" 
         test="count(copyright-year) gt 1" 
         role="error" 
         id="fig-permissions-test-7">permissions for <value-of select="$label"/> has <value-of select="count(copyright-year)"/> &lt;copyright-year&gt; elements, when there can only be 0 or 1.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-8" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-8" 
         test="count(license) gt 1" 
         role="error" 
         id="fig-permissions-test-8">permissions for <value-of select="$label"/> has <value-of select="count(license)"/> &lt;license&gt; elements, when there can only be 0 or 1.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-9" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-9" 
         test="(count(license) = 1) and not(license/license-p)" 
         role="error" 
         id="fig-permissions-test-9">permissions for <value-of select="$label"/> has a &lt;license&gt; element, but not &lt;license-p&gt; element, which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-10" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-10" 
         test="count(license/license-p) gt 1" 
         role="error" 
         id="fig-permissions-test-10">permissions for <value-of select="$label"/> has <value-of select="count(license-p)"/> &lt;license-p&gt; elements, when there can only be 0 or 1.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-11" 
+      <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-11" 
         test="copyright-statement or license" 
         role="error" 
         id="fig-permissions-test-11">Asset level permissions must either have a &lt;copyright-statement&gt; and/or a &lt;license&gt; element, but those for <value-of select="$label"/> have neither.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-notification" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-notification" 
         test="." 
         role="info" 
         id="permissions-notification"><value-of select="$label"/> has permissions - '<value-of select="if (license/license-p) then license/license-p else if (copyright-statement) then copyright-statement else ()"/>'.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-parent" 
+      <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-parent" 
         test="parent::*/local-name() = ('fig', 'media', 'table-wrap', 'boxed-text', 'supplementary-material')" 
         role="error" 
         id="permissions-parent">permissions is not allowed as a child of <value-of select="parent::*/local-name()"/></assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-14" 
+      <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-14" 
         test="copyright-statement" 
         role="warning" 
         id="fig-permissions-test-14">permissions for <value-of select="$label"/> does not contain a &lt;copyright-statement&gt; element. Is this correct? This would usually only be the case in CC0 licenses.</assert>
@@ -5513,7 +5513,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
       <let name="text" value="concat('© ',parent::*/copyright-year[1],', ',parent::*/copyright-holder[1])"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-15" 
+      <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-15" 
         test="contains(.,$text)" 
         role="error" 
         id="fig-permissions-test-15">The &lt;copyright-statement&gt; element in the permissions for <value-of select="$label"/> does not contain the text '<value-of select="$text"/>' (a concatenation of '© ', copyright-year, a comma and space, and copyright-holder).</assert>
@@ -5522,12 +5522,12 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="permissions[not(parent::article-meta) and copyright-statement and not(license[1]/ali:license_ref[1][contains(.,'creativecommons.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org'))]" id="permissions-2">
       <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-12" 
+      <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-12" 
         test="matches(license[1]/license-p[1],'[Ff]urther reproduction of (this|these) (panels?|illustrations?) would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would (need|require) permission from the copyright holder\.$')" 
         role="warning" 
         id="fig-permissions-test-12"><value-of select="$label"/> permissions - the &lt;license-p&gt; for all rights reserved type permissions should usually end with 'further reproduction of this panel/illustration/figure would need permission from the copyright holder.', but <value-of select="$label"/>'s doesn't. Is this correct? (There is no 'https://creativecommons.org/' type link on the license element or in an ali:license_ref so presumed ARR.)</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-13" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-13" 
         test="license//ext-link[contains(@xlink:href,'creativecommons.org')]" 
         role="warning" 
         id="fig-permissions-test-13"><value-of select="$label"/> permissions - the &lt;license-p&gt; contains a CC link, but the license does not have an ali:license_ref element, which is very likely incorrect.</report>
@@ -5574,12 +5574,12 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="panel-list" value="e:list-panels(.)"/>
       
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-caption-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-caption-test-1" 
         test="count($text-tokens) = 0" 
         role="warning" 
         id="fig-caption-test-1">Caption for <value-of select="$label"/> contains what looks like a lower case letter at the start of a sentence - <value-of select="string-join($text-tokens,'; ')"/>.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-caption-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-caption-test-2" 
         test="contains(lower-case(.),'image credit') and not(parent::caption/parent::fig/attrib)" 
         role="warning" 
         id="fig-caption-test-2">Caption for <value-of select="$label"/> contains what looks like an image credit. It's quite likely that this should be captured in an &lt;attrib&gt; element instead - <value-of select="."/>.</report>
@@ -5593,7 +5593,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="first-character" value="substring(.,1, 1)"/>
       <let name="last-character" value="substring(., string-length(.), 1)"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-panel-test-1"  
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-panel-test-1"  
         test="($first-character= ('(', ')', '.', ',')) or ($last-character = ('(', ')', '.', ','))" 
         role="warning" 
         id="fig-panel-test-1">Bold text in the caption for <value-of select="replace(ancestor::fig[1]/label,'\.$','')"/> starts and/or ends with punctuation - <value-of select="."/> - is that correct? Or should the punctuation be unbolded?</report>
@@ -5608,24 +5608,24 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="method-count" value="count(sec[@sec-type='materials|methods']) + count(sec[@sec-type='methods']) + count(sec[@sec-type='model'])"/>
       <let name="res-disc-count" value="count(sec[@sec-type='results']) + count(sec[@sec-type='discussion'])"/>
     
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#ra-sec-test-1"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#ra-sec-test-1"
         test="count(sec) = 0" 
         role="error" 
         id="ra-sec-test-1">At least one sec should be present in body for research-article content.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#ra-sec-test-2"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#ra-sec-test-2"
         test="if ($type = ('Short Report','Scientific Correspondence','Feature Article')) then ()
         else count(sec[@sec-type='intro']) != 1" 
         role="warning" 
         id="ra-sec-test-2"><value-of select="$type"/> doesn't have child sec[@sec-type='intro'] in the main body. Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#ra-sec-test-3"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#ra-sec-test-3"
         test="if ($type = ('Short Report','Scientific Correspondence','Feature Article')) then ()
         else $method-count != 1" 
         role="warning" 
         id="ra-sec-test-3">main body in <value-of select="$type"/> content doesn't have a child sec with @sec-type whose value is either 'materials|methods', 'methods' or 'model'. Is this correct?.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#ra-sec-test-4"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#ra-sec-test-4"
         test="if ($type = ('Short Report','Scientific Correspondence','Feature Article')) then ()
         else if (sec[@sec-type='results|discussion']) then ()
         else $res-disc-count != 2" 
@@ -5638,22 +5638,22 @@ else self::*/local-name() = $allowed-p-blocks"
       id="medicine-section-tests">
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-introduction"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#medicine-introduction"
         test="$pos=1 and title[1]!='Introduction'" 
         role="error" 
         id="medicine-introduction">The first top level section in a Medicine article should be 'Introduction'. This one is '<value-of select="title[1]"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-methods"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#medicine-methods"
         test="$pos=2 and not(title[1]=('Methods','Materials and methods'))" 
         role="warning" 
         id="medicine-methods">The second top level section in a Medicine article should be 'Methods' or 'Materials and methods', but this one is '<value-of select="title[1]"/>'. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-results"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#medicine-results"
         test="$pos=3 and title[1]!='Results'" 
         role="warning" 
         id="medicine-results">The third top level section in a Medicine article should be 'Results', but this one is '<value-of select="title[1]"/>'. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-discussion"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#medicine-discussion"
         test="$pos=4 and title[1]!='Discussion'" 
         role="warning" 
         id="medicine-discussion">The fourth top level section in a Medicine article should be 'Discussion', but this one is '<value-of select="title[1]"/>'. Is that correct?</report>
@@ -5665,7 +5665,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
       <let name="allowed-titles" value="('Introduction', 'Results', 'Discussion', 'Materials and methods', 'Results and discussion','Methods', 'Model')"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-conformity"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-conformity"
         test="not($type = ($features-subj,'Review Article',$notice-display-types)) and not(replace(title[1],' ',' ') = $allowed-titles)" 
         role="warning" 
         id="sec-conformity">top level sec with title - <value-of select="title"/> - is not a usual title for <value-of select="$type"/> content. Should this be captured as a sub-level of <value-of select="preceding-sibling::sec[1]/title"/>?</report>
@@ -5676,7 +5676,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="title" value="normalize-space(replace(lower-case(.),' ',' '))"/>
         
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#conclusion-test-1"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#conclusion-test-1"
         test="matches($title,'conclusions?')" 
         role="error" 
         id="conclusion-test-1">Top level section with title - <value-of select="."/> - should be made a level 2 section. Probably as a child of the <value-of select="preceding-sibling::sec[1]/title"/> section.</report>
@@ -5687,7 +5687,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="title" value="normalize-space(replace(lower-case(.),' ',' '))"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#conclusion-test-2"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#conclusion-test-2"
         test="matches($title,'conclusions?')" 
         role="warning" 
         id="conclusion-test-2">Level <value-of select="count(ancestor::sec) + 1"/> section with the title '<value-of select="."/>' should likely be made a level 2 section.</report>
@@ -5730,7 +5730,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sec[@sec-type]/title" id="sec-title-tests">
       <let name="title" value="e:sec-type2title(parent::sec/@sec-type)"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-type-title-test"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-type-title-test"
         test="if ($title = 'undefined') then ()
         else . != $title" 
         role="warning" 
@@ -5742,42 +5742,42 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-title-test-1" 
         test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" 
         role="warning" 
         id="fig-title-test-1">'<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-2" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-title-test-2" 
         test="matches(replace(.,'&quot;',''),'\.$|\?$')" 
         role="error" 
         id="fig-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-title-test-3" 
         test="matches(.,' vs\.$')" 
         role="warning" 
         id="fig-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-title-test-4" 
         test="matches(.,'^\p{Zs}')" 
         role="error" 
         id="fig-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-title-test-5" 
         test="matches(.,'^\p{P}')" 
         role="warning" 
         id="fig-title-test-5">title for <value-of select="$label"/> begins with punctuation. Is this correct? - <value-of select="."/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-6" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-title-test-6" 
         test="matches(.,'^[Pp]anel ')" 
         role="warning" 
         id="fig-title-test-6">title for <value-of select="$label"/> begins with '<value-of select="substring-before(.,' ')"/>' - <value-of select="."/>. It is very likely that this requires an overall title instead.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-7" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-title-test-7" 
         test="string-length(.) gt 250" 
         role="warning" 
         id="fig-title-test-7">title for <value-of select="$label"/> is longer than 250 characters. Is it a caption instead?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-8" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-title-test-8" 
         test="$sentence-count gt 1" 
         role="warning" 
         id="fig-title-test-8">title for <value-of select="$label"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
@@ -5791,32 +5791,32 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-title-test-1"
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-title-test-1"
         test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" 
         role="warning" 
         id="supplementary-material-title-test-1">'<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-title-test-2"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-title-test-2"
         test="matches(.,'[\.\?]$')" 
         role="error" 
         id="supplementary-material-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-title-test-3"
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-title-test-3"
         test="matches(.,' vs\.$')" 
         role="warning" 
         id="supplementary-material-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-title-test-4"
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-title-test-4"
         test="matches(.,'^\p{Zs}')" 
         role="error" 
         id="supplementary-material-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-title-test-7"
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-title-test-7"
         test="string-length(.) gt 250" 
         role="warning" 
         id="supplementary-material-title-test-7">title for <value-of select="$label"/> is longer than 250 characters. Is it a caption instead?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-title-test-8"
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-title-test-8"
         test="$sentence-count gt 1" 
         role="warning" 
         id="supplementary-material-title-test-8">title for <value-of select="$label"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
@@ -5889,12 +5889,12 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="cite-list" value="e:ref-cite-list(.)"/>
       <let name="non-distinct" value="e:non-distinct-citations($cite-list)"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ref-list-title-test" 
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#ref-list-title-test" 
         test="title = 'References'" 
         role="warning" 
         id="ref-list-title-test">reference list usually has a title that is 'References', but currently it is '<value-of select="title"/>' - is that correct?</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ref-list-distinct-1"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#ref-list-distinct-1"
         test="$non-distinct//*:item" 
         role="error" 
         id="ref-list-distinct-1">In the reference list, each reference must be unique in its citation style (combination of authors and year). If a reference's citation is the same as anothers, a lowercase letter should be suffixed to the year (e.g. Smith et al., 2020a). <value-of select="string-join(for $x in $non-distinct//*:item return concat($x,' with the id ',$x/@id),' and ')"/> does not meet this requirement.</report>
@@ -5942,12 +5942,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="fn-group[@content-type='ethics-information']" id="ethics-title-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-title-test" 
+      <assert see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-title-test" 
         test="title = 'Ethics'" 
         role="error" 
         id="ethics-title-test">fn-group[@content-type='ethics-information'] must have a title that contains 'Ethics'. Currently it is '<value-of select="title"/>'.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-broken-unicode-test" 
+      <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-broken-unicode-test" 
         test="matches(.,'&amp;#x\d')" 
         role="warning" 
         id="ethics-broken-unicode-test">Ethics statement likely contains a broken unicode - <value-of select="."/>.</report>
@@ -5963,7 +5963,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='decision-letter']/front-stub/title-group" id="dec-letter-title-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-title-test" 
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-title-test" 
         test="article-title = 'Decision letter'" 
         role="error" 
         flag="dl-ar"
@@ -5971,7 +5971,7 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="sub-article[@article-type='reply']/front-stub/title-group" id="reply-title-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-title-test" 
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-title-test" 
         test="article-title = 'Author response'" 
         role="error" 
         flag="dl-ar"
@@ -6001,12 +6001,12 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-ids">
       
       <!-- Needs updating once scheme/checmical structure ids have been updated -->
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-id-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-id-test-1" 
         test="matches(@id,'^fig[0-9]{1,3}$|^C[0-9]{1,3}$|^S[0-9]{1,3}$')" 
         role="error" 
         id="fig-id-test-1">fig must have an @id in the format fig0 (or C0 for chemical structures, or S0 for Schemes). <value-of select="@id"/> does not conform to this.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-id-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-id-test-2" 
         test="matches(label[1],'[Ff]igure') and not(matches(@id,'^fig[0-9]{1,3}$'))" 
         role="error" 
         id="fig-id-test-2">fig must have an @id in the format fig0. <value-of select="@id"/> does not conform to this.</report>
@@ -6022,7 +6022,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)]" id="fig-sup-ids">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-id-test" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-sup-id-test" 
         test="matches(@id,'^fig[0-9]{1,3}s[0-9]{1,3}$')" 
         role="error" 
         id="fig-sup-id-test">figure supplement must have an @id in the format fig0s0. <value-of select="@id"/> does not conform to this.</assert>
@@ -6031,12 +6031,12 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="article/body//boxed-text//fig[not(@specific-use='child-fig')]" id="box-fig-ids">
       <let name="box-id" value="ancestor::boxed-text/@id"/> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#box-fig-id-1" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#box-fig-id-1" 
         test="matches(@id,'^box[0-9]{1,3}fig[0-9]{1,3}$')" 
         role="error" 
         id="box-fig-id-1">fig must have @id in the format box0fig0. <value-of select="@id"/> does not conform to this.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#box-fig-id-2" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#box-fig-id-2" 
         test="contains(@id,$box-id)" 
         role="error" 
         id="box-fig-id-2">fig id (<value-of select="@id"/>) does not contain its ancestor boxed-text id. Please ensure the first part of the id contains '<value-of select="$box-id"/>'.</assert>
@@ -6044,17 +6044,17 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="article/back//app//fig[not(@specific-use='child-fig')]" id="app-fig-ids">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-id-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#app-fig-id-test-1" 
         test="matches(label[1],'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))" 
         role="error" 
         id="app-fig-id-test-1">figures in appendices must have an @id in the format app0fig0. <value-of select="@id"/> does not conform to this.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-id-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#app-fig-id-test-2" 
         test="matches(label[1],'[Cc]hemical [Ss]tructure') and not(matches(@id,'^app[0-9]{1,3}chem[0-9]{1,3}$'))" 
         role="warning" 
         id="app-fig-id-test-2">Chemical structures must have an @id in the format app0chem0. <value-of select="@id"/> does not conform to this.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-id-test-3"
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#app-fig-id-test-3"
         test="matches(label[1],'[Ss]cheme') and not(matches(@id,'^app[0-9]{1,3}scheme[0-9]{1,3}$'))" 
         role="warning" 
         id="app-fig-id-test-3">Schemes must have an @id in the format app0scheme0. <value-of select="@id"/> does not conform to this.</report>
@@ -6062,7 +6062,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="article/back//app//fig[@specific-use='child-fig']" id="app-fig-sup-ids">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#app-fig-sup-id-test" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#app-fig-sup-id-test" 
         test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')" 
         role="error" 
         id="app-fig-sup-id-test">figure supplements in appendices must have an @id in the format app0fig0s0. <value-of select="@id"/> does not conform to this.</assert>
@@ -6070,7 +6070,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article//fig[not(@specific-use='child-fig')]" id="rep-fig-ids">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#resp-fig-id-test" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#resp-fig-id-test" 
         test="matches(@id,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')" 
         role="error" 
         flag="dl-ar"
@@ -6079,7 +6079,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article//fig[@specific-use='child-fig']" id="rep-fig-sup-ids">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#resp-fig-sup-id-test" 
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#resp-fig-sup-id-test" 
         test="matches(@id,'^respfig[0-9]{1,3}s[0-9]{1,3}$|^sa[0-9]{1}fig[0-9]{1,3}s[0-9]{1,3}$')" 
         role="error" 
         flag="dl-ar"
@@ -6182,12 +6182,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="disp-formula" id="disp-formula-ids">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#disp-formula-id-test"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-id-test"
         test="not(ancestor::sub-article) and not(matches(@id,'^equ[0-9]{1,9}$'))" 
         role="error" 
         id="disp-formula-id-test">disp-formula @id must be in the format 'equ0'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#sub-disp-formula-id-test"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#sub-disp-formula-id-test"
         test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]equ[0-9]{1,9}$|^equ[0-9]{1,9}$'))" 
         role="error" 
         flag="dl-ar"
@@ -6196,12 +6196,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="disp-formula/mml:math" id="mml-math-ids">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#mml-math-id-test"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#mml-math-id-test"
         test="not(ancestor::sub-article) and not(matches(@id,'^m[0-9]{1,9}$'))" 
         role="error" 
         id="mml-math-id-test">mml:math @id in disp-formula must be in the format 'm0'.  <value-of select="@id"/> does not conform to this.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#sub-mml-math-id-test"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#sub-mml-math-id-test"
         test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]m[0-9]{1,9}$|^m[0-9]{1,9}$'))" 
         role="error" 
         flag="dl-ar"
@@ -6211,12 +6211,12 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="app//table-wrap[label]" id="app-table-wrap-ids">
       <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
     
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#app-table-wrap-id-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#app-table-wrap-id-test-1" 
         test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$|^app[0-9]{1,3}keyresource$|^keyresource$')" 
         role="error" 
         id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0' for normal tables, or 'app0keyresource' or 'keyresource' for key resources tables in appendices. <value-of select="@id"/> does not conform to this.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#app-table-wrap-id-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#app-table-wrap-id-test-2" 
         test="not(@id='keyresource') and not(starts-with(@id, concat('app' , $app-no)))" 
         role="error" 
         id="app-table-wrap-id-test-2">table-wrap @id must start with <value-of select="concat('app' , $app-no)"/>.</report>
@@ -6224,7 +6224,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article//table-wrap" id="resp-table-wrap-ids">
  
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#resp-table-wrap-id-test" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#resp-table-wrap-id-test" 
         test="if (label) then matches(@id, '^resptable[0-9]{1,3}$|^sa[0-9]table[0-9]{1,3}$')
         else matches(@id, '^respinlinetable[0-9]{1,3}$||^sa[0-9]inlinetable[0-9]{1,3}$')" 
         role="warning" 
@@ -6234,7 +6234,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="article//table-wrap[not(ancestor::app) and not(ancestor::sub-article)]" id="table-wrap-ids">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-id-test" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-wrap-id-test" 
         test="if (label = 'Key resources table') then @id='keyresource'
         else if (label) then matches(@id, '^table[0-9]{1,3}$')
         else matches(@id, '^inlinetable[0-9]{1,3}$')" 
@@ -6245,7 +6245,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="article/body/sec" id="body-top-level-sec-ids">
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
     
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#body-top-level-sec-id-test"
+      <assert see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#body-top-level-sec-id-test"
         test="@id = concat('s',$pos)" 
         role="error" 
         id="body-top-level-sec-id-test">This sec id must be a concatenation of 's' and this element's position relative to its siblings. It must be <value-of select="concat('s',$pos)"/>.</assert>
@@ -6263,7 +6263,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="parent-sec" value="parent::sec/@id"/>
       <let name="pos" value="count(parent::sec/sec) - count(following-sibling::sec)"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#low-level-sec-id-test"
+      <assert see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#low-level-sec-id-test"
         test="@id = concat($parent-sec,'-',$pos)" 
         role="error" 
         id="low-level-sec-id-test">sec id must be a concatenation of its parent sec id and this element's position relative to its sibling secs. It must be <value-of select="concat($parent-sec,'-',$pos)"/>.</assert>
@@ -6329,7 +6329,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="supplementary-material/*" id="supplementary-material-children">
       <let name="allowed-children" value="('label', 'caption', 'media', 'permissions')"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-child-conformance"
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-child-conformance"
         test="local-name() = $allowed-children" 
         role="error" 
         id="supplementary-material-child-conformance"><name/> is not allowed as a child of supplementary-material.</assert>
@@ -6348,22 +6348,22 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sec" id="sec-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-1"
+      <assert see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-test-1"
         test="title" 
         role="error" 
         id="sec-test-1">sec must have a title</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#pre-sec-test-2"
+      <assert see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#pre-sec-test-2"
         test="p or sec or fig or fig-group or media or table-wrap or boxed-text or list or fn-group or supplementary-material or related-object or code" 
         role="warning" 
         id="pre-sec-test-2">sec appears to contain no content. This cannot be correct. If the heading is correct and the content is missing, please ensure to query the authors asking for them to update accordingly.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#final-sec-test-2"
+      <assert see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#final-sec-test-2"
         test="p or sec or fig or fig-group or media or table-wrap or boxed-text or list or fn-group or supplementary-material or related-object or code" 
         role="error" 
         id="final-sec-test-2">sec appears to contain no content. This cannot be correct.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-test-5" 
         test="count(ancestor::sec) ge 5" 
         role="error" 
         id="sec-test-5">Level <value-of select="count(ancestor::sec) + 1"/> sections are not allowed. Please either make this a level 5 heading, or capture the title as a bolded paragraph in its parent section.</report>
@@ -6372,7 +6372,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="article[@article-type='research-article']//sec[not(@sec-type) and not(matches(.,'[Gg]ithub|[Gg]itlab|[Cc]ode[Pp]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket'))]" id="res-data-sec">
       <let name="title" value="lower-case(title[1])"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#sec-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#sec-test-3" 
         test="contains($title,'data') and (contains($title,'availability') or contains($title,'code') or contains($title,'accessib') or contains($title,'statement'))" 
         role="warning" 
         id="sec-test-3">Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of the data availability section (and therefore should be removed)?</report>
@@ -6381,7 +6381,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])]" id="res-ethics-sec">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#sec-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#sec-test-4" 
         test="matches(lower-case(title[1]),'^ethics| ethics$| ethics ')" 
         role="warning" 
         id="sec-test-4">Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of, or very similar to, the ethics statement (in the article details page)? If so, it should be removed. If not, then which statement is correct? The one in this section or '<value-of select="string-join(
@@ -6409,7 +6409,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="back-test-2">More than one sec[@sec-type="supplementary-material"] cannot be present in back.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#back-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#back-test-3" 
         test="($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and (not($pub-date) or ($pub-date gt '2018-05-31')) and (count(sec[@sec-type='data-availability']) != 1)" 
         role="error" 
         id="back-test-3">One and only one Data availability section (sec[@sec-type="data-availability"]) must be present (as a child of back) for '<value-of select="$article-type"/>'.</report>
@@ -6589,17 +6589,17 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="fn-group[@content-type='ethics-information']" id="ethics-tests">
       
       <!-- Exclusion included for Feature 5 -->
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-test-1" 
         test="ancestor::article[not(@article-type='discussion')] and not(parent::sec[@sec-type='additional-information'])" 
         role="error" 
         id="ethics-test-1">Ethics fn-group can only be captured as a child of a sec [@sec-type='additional-information']</report>
  
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-test-2"  
+      <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-test-2"  
         test="count(fn) gt 3" 
         role="error" 
         id="ethics-test-2">Ethics fn-group may not have more than 3 fn elements. Currently there are <value-of select="count(fn)"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-test-3"
+      <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-test-3"
         test="count(fn) = 0" 
         role="error" 
         id="ethics-test-3">Ethics fn-group must have at least one fn element.</report>
@@ -6607,7 +6607,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-fn-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-test-4" 
+      <assert see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-test-4" 
         test="@fn-type='other'" 
         role="error" 
         id="ethics-test-4">This fn must have an @fn-type='other'</assert>
@@ -6624,25 +6624,25 @@ else self::*/local-name() = $allowed-p-blocks"
         else if (@article-type=('reply','author-comment')) then 'sa2'
         else 'unknown'"></let>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-1" 
         test="@article-type=('editor-report','referee-report','author-comment','decision-letter','reply')" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-reply-test-1">sub-article must must have an article-type which is equal to one of the following values: 'editor-report','decision-letter', or 'reply'.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-2" 
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-2" 
         test="@id = $id-convention" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-reply-test-2">sub-article id is <value-of select="@id"/> when based on it's article-type it should be <value-of select="$id-convention"/>.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-3" 
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-3" 
         test="count(front-stub) = 1" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-reply-test-3">sub-article must contain one and only one front-stub.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-4" 
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-4" 
         test="count(body) = 1" 
         role="error" 
         flag="dl-ar"
@@ -6673,13 +6673,13 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="article/sub-article//p" id="dec-letter-reply-content-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-5" 
         test="matches(.,'&lt;[/]?[Aa]uthor response')" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-reply-test-5"><value-of select="ancestor::sub-article/@article-type"/> paragraph contains what looks like pseudo-code - <value-of select="."/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-6" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-6" 
         test="matches(.,'&lt;\p{Zs}?/?\p{Zs}?[a-z]*\p{Zs}?/?\p{Zs}?&gt;')" 
         role="warning" 
         flag="dl-ar"
@@ -6690,7 +6690,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="regex" value="'\p{Zs}([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict\p{Zs}[Oo]f\p{Zs}[Ii]nterest|([Aa]re|[Aa]m)\p{Zs}[Ss]hocked|[Ss]trongly\p{Zs}[Dd]isagree)[^\p{L}]'"/>
       
       <!-- Need to improve messaging -->
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reply-test-7" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-7" 
         test="matches(.,$regex)"
         role="warning" 
         flag="dl-ar"
@@ -6785,25 +6785,25 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
       <let name="count" value="count(contrib-group)"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-1" 
         test="count(article-id[@pub-id-type='doi']) = 1" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-2" 
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-2" 
         test="$count gt 0" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-front-test-2">decision letter front-stub must contain at least 1 contrib-group element.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-3" 
         test="$count gt 2" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-front-test-3">decision letter front-stub contains more than 2 contrib-group elements.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-4" 
         test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'(All|The) reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/|doi.org/10.24072/pci.evolbiol')])" 
         role="warning" 
         flag="dl-ar"
@@ -6812,13 +6812,13 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" id="dec-letter-editor-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-editor-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-editor-test-1" 
         test="count(contrib[@contrib-type='editor']) = 1" 
         role="warning" 
         flag="dl-ar"
         id="dec-letter-editor-test-1">First contrib-group in decision letter must contain 1 and only 1 editor (contrib[@contrib-type='editor']).</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-editor-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-editor-test-2" 
         test="contrib[not(@contrib-type) or @contrib-type!='editor']" 
         role="warning" 
         flag="dl-ar"
@@ -6831,7 +6831,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <!--<let name="top-role" value="ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[e:get-name(name[1])=$name]/role"/>-->
       <!--<let name="top-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[role=$role]/name[1])"/>-->
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-editor-test-3" 
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-editor-test-3" 
         test="$role=('Reviewing Editor','Senior and Reviewing Editor')" 
         role="error" 
         flag="dl-ar"
@@ -6844,19 +6844,19 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" id="dec-letter-reviewer-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reviewer-test-1" 
         test="count(contrib[@contrib-type='reviewer']) gt 0" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-reviewer-test-1">Second contrib-group in decision letter must contain a reviewer (contrib[@contrib-type='reviewer']).</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reviewer-test-2" 
         test="contrib[not(@contrib-type) or @contrib-type!='reviewer']" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-reviewer-test-2">Second contrib-group in decision letter contains a contrib which is not marked up as a reviewer (contrib[@contrib-type='reviewer']).</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-6" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reviewer-test-6" 
         test="count(contrib[@contrib-type='reviewer']) gt 5" 
         role="warning" 
         flag="dl-ar"
@@ -6866,7 +6866,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]/contrib[@contrib-type='reviewer']" id="dec-letter-reviewer-tests-2">
       <let name="name" value="e:get-name(name[1])"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-reviewer-test-3" 
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reviewer-test-3" 
         test="role='Reviewer'" 
         role="error" 
         flag="dl-ar"
@@ -6875,7 +6875,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='decision-letter']/body" id="dec-letter-body-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-body-test-1" 
         test="child::*[1]/local-name() = 'boxed-text'" 
         role="error" 
         flag="dl-ar"
@@ -6883,13 +6883,13 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
       
     <rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//p" id="dec-letter-body-p-tests">  
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-body-test-2" 
         test="contains(lower-case(.),'this paper was reviewed by review commons') and not(child::ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/') and (lower-case(.)='review commons')])" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-body-test-2">The text 'Review Commons' in '<value-of select="."/>' must contain an embedded link pointing to https://www.reviewcommons.org/.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-body-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-body-test-3" 
         test="contains(lower-case(.),'reviewed and recommended by peer community in evolutionary biology') and not(child::ext-link[matches(@xlink:href,'doi.org/10.24072/pci.evolbiol')])" 
         role="error" 
         flag="dl-ar"
@@ -6901,19 +6901,19 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="permitted-text-2" value="'^Our editorial process produces two outputs: \(?i\) public reviews designed to be posted alongside the preprint for the benefit of readers; \(?ii\) feedback on the manuscript for the authors, including requests for revisions, shown below. We also include an acceptance summary that explains what the editors found interesting or important about the work.$'"/>
       <let name="permitted-text-3" value="'^In the interests of transparency, eLife publishes the most substantive revision requests and the accompanying author responses.$'"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-box-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-box-test-1" 
         test="matches(.,concat($permitted-text-1,'|',$permitted-text-2,'|',$permitted-text-3))" 
         role="warning" 
         flag="dl-ar"
         id="dec-letter-box-test-1">The text at the top of the decision letter is not correct - '<value-of select="."/>'. It has to be one of the three paragraphs which are permitted (see the GitBook page for these paragraphs).</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-box-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-box-test-2" 
         test="matches(.,concat($permitted-text-1,'|',$permitted-text-2)) and not(descendant::ext-link[contains(@xlink:href,'sciety.org/') and .='public reviews'])" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-box-test-2">At the top of the decision letter, the text 'public reviews' must contain an embedded link to Sciety where the public review for this article's preprint is located.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-box-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-box-test-3" 
         test="matches(.,concat($permitted-text-1,'|',$permitted-text-2)) and not(descendant::ext-link[.='the preprint'])" 
         role="error" 
         flag="dl-ar"
@@ -6923,7 +6923,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sub-article[@article-type='decision-letter']" 
       id="decision-missing-table-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#decision-missing-table-test" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#decision-missing-table-test" 
         test="contains(.,'letter table') and not(descendant::table-wrap[label])"
         role="warning" 
         flag="dl-ar"
@@ -6932,7 +6932,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='reply']/front-stub" id="reply-front-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-front-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-front-test-1" 
         test="count(article-id[@pub-id-type='doi']) = 1" 
         role="error" 
         flag="dl-ar"
@@ -6941,13 +6941,13 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='reply']/body" id="reply-body-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-body-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-body-test-1" 
         test="count(disp-quote[@content-type='editor-comment']) = 0" 
         role="warning" 
         flag="dl-ar"
         id="reply-body-test-1">author response doesn't contain a disp-quote. This is very likely to be incorrect. Please check the original file.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-body-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-body-test-2" 
         test="count(p) = 0" 
         role="error" 
         flag="dl-ar"
@@ -6956,7 +6956,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='reply']/body//disp-quote" id="reply-disp-quote-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-disp-quote-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-disp-quote-test-1" 
         test="@content-type='editor-comment'" 
         role="warning" 
         flag="dl-ar"
@@ -6968,7 +6968,7 @@ else self::*/local-name() = $allowed-p-blocks"
         normalize-space(string-join(for $x in self::*/text() return $x,''))
         ,' ','')"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-missing-disp-quote-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-disp-quote-test-1" 
         test="(count(*)=1) and (child::italic) and ($free-text='')" 
         role="warning" 
         flag="dl-ar"
@@ -6977,7 +6977,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-missing-disp-quote-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-disp-quote-test-2" 
         test="string-length(.) ge 50" 
         role="warning" 
         flag="dl-ar"
@@ -6987,7 +6987,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sub-article[@article-type='reply']" 
       id="reply-missing-table-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#reply-missing-table-test" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-table-test" 
         test="contains(.,'response table') and not(descendant::table-wrap[label])"
         role="warning" 
         flag="dl-ar"
@@ -6997,7 +6997,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sub-article//ext-link" 
       id="sub-article-ext-link-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#paper-pile-test" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#paper-pile-test" 
         test="contains(@xlink:href,'paperpile.com')"
         role="error" 
         flag="dl-ar"
@@ -7007,7 +7007,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sub-article[@article-type='reply']/body/*[last()][name()='p']" 
       id="sub-article-ref-p-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#sub-article-ref-p-test" 
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#sub-article-ref-p-test" 
         test="count(tokenize(lower-case(.),'doi\p{Zs}?:')) gt 2"
         role="warning" 
         flag="dl-ar"
@@ -7020,7 +7020,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sub-article[@article-type='referee-report']/front-stub" id="ref-report-front">
       <let name="count" value="count(contrib-group)"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-1" 
         test="count(article-id[@pub-id-type='doi']) = 1" 
         role="error" 
         flag="dl-ar"
@@ -7233,17 +7233,17 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation" id="elem-citation-general">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-name-5"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-name-5"
         test="descendant::etal" 
         role="error" 
         id="err-elem-cit-gen-name-5">The &lt;etal&gt; element in a reference is not allowed. Reference '<value-of select="ancestor::ref/@id"/>' contains it.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-date-1-9"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-date-1-9"
         test="count(year) > 1 " 
         role="error" 
         id="err-elem-cit-gen-date-1-9">There may be at most one &lt;year&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(year)"/> &lt;year&gt; elements.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#fpage-lpage-test-1"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#fpage-lpage-test-1"
         test="(fpage) and not(lpage)" 
         role="warning" 
         id="fpage-lpage-test-1"><value-of select="e:citation-format1(.)"/> has a first page <value-of select="fpage"/>, but no last page. Is this correct? Should it be an elocation-id instead?</report>
@@ -7252,7 +7252,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation/person-group" id="elem-citation-gen-name-3-1">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-name-3-1"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-name-3-1"
         test=".[not (name or collab)]" 
         role="error" 
         id="err-elem-cit-gen-name-3-1">[err-elem-cit-gen-name-3-1]
@@ -7264,7 +7264,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation/person-group/collab" id="elem-citation-gen-name-3-2">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-name-3-2"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-name-3-2"
         test="count(*) = count(italic | sub | sup)" 
         role="error" 
         id="err-elem-cit-gen-name-3-2">[err-elem-cit-gen-name-3-2]
@@ -7276,7 +7276,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation/person-group/name/suffix" id="elem-citation-gen-name-4">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-name-4"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-name-4"
         test=".=('Jr','Jnr', 'Sr','Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" 
         role="error" 
         id="err-elem-cit-gen-name-4">[err-elem-cit-gen-name-4]
@@ -7292,32 +7292,32 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="citation" value="e:citation-format1(parent::element-citation)"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-date-1-2"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-date-1-2"
         test="(1700 le number($YYYY)) and (number($YYYY) le ($current-year + 5))" 
         role="warning" 
         id="err-elem-cit-gen-date-1-2">The numeric value of the 4 digits in the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive). Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains the value '<value-of select="."/>'.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-date-1-3"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-date-1-3"
         test="./@iso-8601-date" 
         role="error" 
         id="err-elem-cit-gen-date-1-3">All &lt;year&gt; elements must have @iso-8601-date attributes. Reference '<value-of select="ancestor::ref/@id"/>' does not.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-date-1-4"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-date-1-4"
         test="not(./@iso-8601-date) or (1700 le number(substring(normalize-space(@iso-8601-date),1,4)) and number(substring(normalize-space(@iso-8601-date),1,4)) le ($current-year + 5))" 
         role="warning" 
         id="err-elem-cit-gen-date-1-4">The numeric value of the 4 digits in the @iso-8601-date attribute on the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive). Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the attribute contains the value '<value-of select="./@iso-8601-date"/>'.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pre-err-elem-cit-gen-date-1-5"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-err-elem-cit-gen-date-1-5"
         test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY" 
         role="warning" 
         id="pre-err-elem-cit-gen-date-1-5">The numeric value of the 4 digits in the @iso-8601-date attribute must match the first 4 digits on the  &lt;year&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the element contains the value '<value-of select="."/>' and the attribute contains the value '<value-of select="./@iso-8601-date"/>'. If there is no year, and you are unable to determine this, please query with the authors.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-err-elem-cit-gen-date-1-5"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-err-elem-cit-gen-date-1-5"
         test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY" 
         role="error" 
         id="final-err-elem-cit-gen-date-1-5">The numeric value of the 4 digits in the @iso-8601-date attribute must match the first 4 digits on the &lt;year&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the element contains the value '<value-of select="."/>' and the attribute contains the value '<value-of select="./@iso-8601-date"/>'. If there is no year, and you are unable to determine this, please query with the authors.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-date-1-6"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-date-1-6"
         test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and
         (some $y in //element-citation/descendant::year
         satisfies (normalize-space($y) = concat($YYYY,'b'))
@@ -7327,7 +7327,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="err-elem-cit-gen-date-1-6">If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with the same first author surname (or collab) with a letter "b" after the year. Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-date-1-7"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-date-1-7"
         test="not(starts-with(.,$YYYY) and matches(normalize-space(.),('\d{4}[b-z]'))) or
         (some $y in //element-citation/descendant::year
         satisfies (normalize-space($y) = concat($YYYY,translate(substring(normalize-space(.),5,1),'bcdefghijklmnopqrstuvwxyz',
@@ -7345,7 +7345,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="ref/element-citation/source" id="elem-citation-source">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#elem-cit-source"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#elem-cit-source"
         test="string-length(normalize-space(.)) ge 2" 
         role="error" 
         id="elem-cit-source">A  &lt;source&gt; element within a <value-of select="parent::element-citation/@publication-type"/> type &lt;element-citation&gt; must contain at least two characters. - <value-of select="."/>. See Ref '<value-of select="ancestor::ref/@id"/>'.</assert>
@@ -7354,12 +7354,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="ref/element-citation/ext-link" id="elem-citation-ext-link">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ext-link-attribute-content-match"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#ext-link-attribute-content-match"
         test="(normalize-space(@xlink:href)=normalize-space(.)) and (normalize-space(.)!='')" 
         role="error" 
         id="ext-link-attribute-content-match">&lt;ext-link&gt; must contain content and have an @xlink:href, the value of which must be the same as the content of &lt;ext-link&gt;. The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#link-href-conformance"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#link-href-conformance"
         test="matches(@xlink:href,'^https?://|^s?ftp://')" 
         role="error" 
         id="link-href-conformance">@xlink:href must start with either "http://", "https://", "sftp://" or "ftp://". The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' is '<value-of select="@xlink:href"/>', which does not.</assert>
@@ -7385,7 +7385,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="kriya1-order-value" value="e:ref-list-string2(self::*)"/>
       <let name="preceding-ref-kriya1-order-value" value="e:ref-list-string2(preceding-sibling::ref[1])"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-high-2-2"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-high-2-2"
         test="($order-value gt $preceding-ref-order-value) or ($kriya1-order-value gt $preceding-ref-kriya1-order-value)" 
         role="error" 
         id="err-elem-cit-high-2-2">The order of &lt;element-citation&gt;s in the reference list should be name and date, arranged alphabetically by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of two authors, the sequence should be arranged by both authors' surnames, then date. For three or more authors, the sequence should be the first author's surname, then date. Reference '<value-of select="@id"/>' appears to be in a different order.</assert>
@@ -7393,22 +7393,22 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="ref" id="ref">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-high-1"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-high-1"
         test="count(*) = count(element-citation)" 
         role="error" 
         id="err-elem-cit-high-1">The only element that is allowed as a child of &lt;ref&gt; is &lt;element-citation&gt;. Reference '<value-of select="@id"/>' has other elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-high-3-1"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-high-3-1"
         test="@id" 
         role="error" 
         id="err-elem-cit-high-3-1">Each &lt;ref&gt; element must have an @id attribute.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-high-3-2"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-high-3-2"
         test="matches(normalize-space(@id) ,'^bib\d+$')" 
         role="error" 
         id="err-elem-cit-high-3-2">Each &lt;ref&gt; element must have an @id attribute that starts with 'bib' and ends with a number. Reference '<value-of select="@id"/>' has the value '<value-of select="@id"/>', which is incorrect.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-high-3-3"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-high-3-3"
         test="count(preceding-sibling::ref)=0 or number(substring(@id,4)) gt number(substring(preceding-sibling::ref[1]/@id,4))" 
         role="error" 
         id="err-elem-cit-high-3-3">The sequence of ids in the &lt;ref&gt; elements must increase monotonically (e.g. 1,2,3,4,5, . . . ,50,51,52,53, . . . etc). Reference '<value-of select="@id"/>' has the value  '<value-of select="@id"/>', which does not fit this pattern.</assert>
@@ -7417,7 +7417,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
       <rule context="xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')]" id="xref">
       
-        <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-xref-high-2-1"
+        <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-xref-high-2-1"
           test="some $x in preceding::xref satisfies (substring(normalize-space(.),string-length(.)) gt substring(normalize-space($x),string-length(.)))" 
         role="error" 
         id="err-xref-high-2-1">Citations in the text to references with the same author(s) in the same year must be arranged in the same order as the reference list. The xref with the value '<value-of select="."/>' is in the wrong order in the text. Check all the references to citations for the same authors to determine which need to be changed.</assert>
@@ -7428,27 +7428,27 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="article-doi" value="lower-case(ancestor::article/descendant::article-meta[1]/article-id[@pub-id-type='doi'][1])"/>
       <let name="title" value="lower-case(ancestor::article/descendant::article-meta[1]/descendant::article-title[1])"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-high-6-2"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-high-6-2"
         test="@publication-type = ('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis')" 
         role="error" 
         id="err-elem-cit-high-6-2">element-citation must have a publication-type attribute with one of these values: 'journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', or 'thesis'. Reference '<value-of select="../@id"/>' has '<value-of select="if (@publication-type) then concat('a @publication-type with the value ',@publication-type) else ('no @publication-type')"/>'.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pre-element-cite-year"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-element-cite-year"
         test="not(year)" 
         role="warning" 
         id="pre-element-cite-year">'<value-of select="@publication-type"/>' type references must have a year. Reference '<value-of select="../@id"/>' does not. If you are unable to determine this, please ensure to add an author query asking for the year of publication.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-element-cite-year"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-element-cite-year"
         test="not(year)" 
         role="error" 
         id="final-element-cite-year">'<value-of select="@publication-type"/>' type references must have a year. Reference '<value-of select="../@id"/>' does not. If you are unable to determine this, please ensure to query the authors for the year of publication.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#self-cite-1"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#self-cite-1"
         test="lower-case(pub-id[@pub-id-type='doi'][1]) = $article-doi" 
         role="error" 
         id="self-cite-1">'<value-of select="@publication-type"/>' type reference has a doi which is the same as this article - <value-of select="pub-id[@pub-id-type='doi']"/>. Is the reference correct? If it is intentional, please remove the reference, and replace citations in the text with the text 'current work' or similar.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#self-cite-1"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#self-cite-1"
         test="(lower-case(pub-id[@pub-id-type='doi'][1]) != $article-doi) and 
               (lower-case(source[1]) = 'elife') and 
               ((lower-case(article-title[1]) = $title) or (lower-case(chapter-title[1]) = $title)) "
@@ -7459,17 +7459,17 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation//*" id="element-citation-descendants">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pre-empty-elem-cit-des"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-empty-elem-cit-des"
         test="not(*) and (normalize-space(.)='')" 
         role="warning" 
         id="pre-empty-elem-cit-des"><name/> element is empty - this is not allowed. It must contain content. If the details are missing and cannot be determined, please query the authors.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-empty-elem-cit-des"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-empty-elem-cit-des"
         test="not(*) and (normalize-space(.)='')" 
         role="error" 
         id="final-empty-elem-cit-des"><name/> element is empty - this is not allowed. It must contain content.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#tagging-elem-cit-des"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#tagging-elem-cit-des"
         test="matches(.,'&lt;/?[a-z]*/?>')" 
         role="error" 
         id="tagging-elem-cit-des"><name/> element contains tagging, which should be removed - '<value-of select="."/>'.</report>
@@ -7480,72 +7480,72 @@ else self::*/local-name() = $allowed-p-blocks"
   <pattern id="element-citation-journal-tests">
     <rule context="element-citation[@publication-type='journal']" id="elem-citation-journal">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#pre-err-elem-cit-journal-2-1" 
+      <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#pre-err-elem-cit-journal-2-1" 
         test="count(person-group)=1" 
         role="warning" 
         id="pre-err-elem-cit-journal-2-1">Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;person-group&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements. If this information is missing, please query the authors for it.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#final-err-elem-cit-journal-2-1" 
+      <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#final-err-elem-cit-journal-2-1" 
         test="count(person-group)=1" 
         role="error" 
         id="final-err-elem-cit-journal-2-1">Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;person-group&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#pre-err-elem-cit-journal-2-2" 
+      <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#pre-err-elem-cit-journal-2-2" 
         test="person-group[@person-group-type='author']" 
         role="warning" 
         id="pre-err-elem-cit-journal-2-2">Each  &lt;element-citation&gt; of type 'journal' must contain one &lt;person-group&gt;  with the attribute person-group-type 'author'. Reference '<value-of select="ancestor::ref/@id"/>' has a  &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'. If this information is missing, please query the authors for it.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#final-err-elem-cit-journal-2-2" 
+      <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#final-err-elem-cit-journal-2-2" 
         test="person-group[@person-group-type='author']" 
         role="error" 
         id="final-err-elem-cit-journal-2-2">Each  &lt;element-citation&gt; of type 'journal' must contain one &lt;person-group&gt;  with the attribute person-group-type 'author'. Reference '<value-of select="ancestor::ref/@id"/>' has a  &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.</assert> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#pre-err-elem-cit-journal-3-1" 
+      <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#pre-err-elem-cit-journal-3-1" 
         test="count(article-title)=1" 
         role="warning" 
         id="pre-err-elem-cit-journal-3-1">Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements. If you are unable to determine this then please query the authors for this information.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#final-err-elem-cit-journal-3-1" 
+      <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#final-err-elem-cit-journal-3-1" 
         test="count(article-title)=1" 
         role="error" 
         id="final-err-elem-cit-journal-3-1">Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#pre-err-elem-cit-journal-4-1" 
+      <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#pre-err-elem-cit-journal-4-1" 
         test="count(source)=1" 
         role="warning" 
         id="pre-err-elem-cit-journal-4-1">Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements. If you are unable to determine this then please query the authors for this information.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#final-err-elem-cit-journal-4-1" 
+      <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#final-err-elem-cit-journal-4-1" 
         test="count(source)=1" 
         role="error" 
         id="final-err-elem-cit-journal-4-1">Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-4-2-2" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-4-2-2" 
         test="count(source)=1 and count(source/*)!=0" 
         role="error" 
         id="err-elem-cit-journal-4-2-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' may not contain child elements. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-5-1-3" 
+      <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-5-1-3" 
         test="count(volume) le 1" 
         role="error" 
         id="err-elem-cit-journal-5-1-3">There may be no more than one  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal'. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(volume)"/> &lt;volume&gt; elements.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-1" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-6-5-1" 
         test="lpage and not(fpage)" 
         role="error" 
         id="err-elem-cit-journal-6-5-1">&lt;lpage&gt; is only allowed if &lt;fpage&gt; is present. Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; but no &lt;fpage&gt;.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-5-2" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-6-5-2" 
         test="lpage and (number(fpage[1]) ge number(lpage[1]))" 
         role="error" 
         id="err-elem-cit-journal-6-5-2">&lt;lpage&gt; must be larger than &lt;fpage&gt;, if present. Reference '<value-of select="ancestor::ref/@id"/>' has first page &lt;fpage&gt; = '<value-of select="fpage"/>' but last page &lt;lpage&gt; = '<value-of select="lpage"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-7" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-6-7" 
         test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1 or count(comment) gt 1" 
         role="error" 
         id="err-elem-cit-journal-6-7">The following elements may not occur more than once in an &lt;element-citation&gt;: &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, and &lt;comment&gt;In press&lt;/comment&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(fpage)"/> &lt;fpage&gt;, <value-of select="count(lpage)"/> &lt;lpage&gt;, <value-of select="count(elocation-id)"/> &lt;elocation-id&gt;, and <value-of select="count(comment)"/> &lt;comment&gt; elements.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-12" 
+      <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-12" 
         test="count(*) = count(person-group| year| article-title| source| volume| fpage| lpage| elocation-id| comment| pub-id)" 
         role="error" 
         id="err-elem-cit-journal-12">The only elements allowed as children of &lt;element-citation&gt; with the publication-type="journal" are: &lt;person-group&gt;, &lt;year&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;volume&gt;, &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, &lt;comment&gt;, and &lt;pub-id&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
@@ -7554,7 +7554,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='journal']/article-title" id="elem-citation-journal-article-title">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-3-2" 
+      <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-3-2" 
         test="count(*) = count(sub|sup|italic)" 
         role="error" 
         id="err-elem-cit-journal-3-2">An &lt;article-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
@@ -7562,7 +7562,7 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="element-citation[@publication-type='journal']/volume" id="elem-citation-journal-volume">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-5-1-2" 
+      <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-5-1-2" 
         test="count(*)=0 and (string-length(text()) ge 1)" 
         role="error" 
         id="err-elem-cit-journal-5-1-2">A &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal' must contain at least one character and may not contain child elements. Reference '<value-of select="ancestor::ref/@id"/>' has too few characters and/or child elements.</assert>
@@ -7570,12 +7570,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='journal']/fpage" id="elem-citation-journal-fpage">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-2" 
+      <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-6-2" 
         test="count(../elocation-id) eq 0 and count(../comment) eq 0" 
         role="error" 
         id="err-elem-cit-journal-6-2">If &lt;fpage&gt; is present, neither &lt;elocation-id&gt; nor &lt;comment&gt;In press&lt;/comment&gt; may be present. Reference '<value-of select="ancestor::ref/@id"/>' has &lt;fpage&gt; and one of those elements.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-6-6" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-6-6" 
         test="matches(normalize-space(.),'^\D\d') and ../lpage and not(starts-with(../lpage[1],substring(.,1,1)))" 
         role="error" 
         id="err-elem-cit-journal-6-6">If the content of &lt;fpage&gt; begins with a letter and digit, then the content of  &lt;lpage&gt; must begin with the same letter. Reference '<value-of select="ancestor::ref/@id"/>' does not.</report>
@@ -7742,62 +7742,62 @@ else self::*/local-name() = $allowed-p-blocks"
   <pattern id="element-citation-data-tests">
     <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#err-elem-cit-data-3-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#err-elem-cit-data-3-1" 
         test="count(person-group[@person-group-type='author']) gt 1" 
         role="error" 
         id="err-elem-cit-data-3-1">Data references must have one and only one &lt;person-group person-group-type='author'&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group[@person-group-type='author'])"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#pre-err-elem-cit-data-3-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#pre-err-elem-cit-data-3-2" 
         test="count(person-group) lt 1" 
         role="warning" 
         id="pre-err-elem-cit-data-3-2">Data references must have one and only one &lt;person-group person-group-type='author'&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has 0. If this information is missing, please query the authors asking for it.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#final-err-elem-cit-data-3-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#final-err-elem-cit-data-3-2" 
         test="count(person-group) lt 1" 
         role="error" 
         id="final-err-elem-cit-data-3-2">Data references must have one and only one &lt;person-group person-group-type='author'&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has 0.</report>
       
-      <assert  see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#pre-err-elem-cit-data-10"
+      <assert  see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#pre-err-elem-cit-data-10"
         test="count(data-title)=1" 
         role="warning" 
         id="pre-err-elem-cit-data-10">Data reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(data-title)"/> data-title elements, when it should contain one. If this information is missing, please query it with the authors.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#final-err-elem-cit-data-10" 
+      <assert see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#final-err-elem-cit-data-10" 
         test="count(data-title)=1" 
         role="error" 
         id="final-err-elem-cit-data-10">Data reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> data-title elements. It must contain one (and only one).</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#pre-err-elem-cit-data-11-2" 
+      <assert see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#pre-err-elem-cit-data-11-2" 
         test="count(source)=1" 
         role="warning" 
         id="pre-err-elem-cit-data-11-2">Data reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> source elements, when it should contain one. If this information is missing, please query it with the authors.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#final-err-elem-cit-data-11-2"
+      <assert see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#final-err-elem-cit-data-11-2"
         test="count(source)=1" 
         role="error" 
         id="final-err-elem-cit-data-11-2">Data reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> source elements. It must contain one (and only one).</assert>
       
-      <assert  see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#err-elem-cit-data-11-3-2"
+      <assert  see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#err-elem-cit-data-11-3-2"
         test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" 
         role="error" 
         id="err-elem-cit-data-11-3-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'data' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
-      <assert  see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#pre-err-elem-cit-data-13-1"
+      <assert  see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#pre-err-elem-cit-data-13-1"
         test="(count(pub-id) = 1) or count(ext-link) = 1" 
         role="warning" 
         id="pre-err-elem-cit-data-13-1">There should be one (and only one) pub-id or one (and only one) ext-link. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id> elements and <value-of select="count(ext-link)"/> &lt;ext-link> elements. If this information is missing, please query it with the authors.</assert>
       
-      <assert  see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#final-err-elem-cit-data-13-1"
+      <assert  see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#final-err-elem-cit-data-13-1"
         test="(count(pub-id) = 1) or count(ext-link) = 1" 
         role="error" 
         id="final-err-elem-cit-data-13-1">There must be one (and only one) pub-id or one (and only one) ext-link. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id> elements and <value-of select="count(ext-link)"/> &lt;ext-link> elements.</assert>
       
-      <report  see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#elem-cit-data-pub-id-ext-link"
+      <report  see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#elem-cit-data-pub-id-ext-link"
         test="pub-id and ext-link" 
         role="error" 
         id="elem-cit-data-pub-id-ext-link">Dataset reference '<value-of select="ancestor::ref/@id"/>' has both &lt;pub-id> &lt;ext-link> elements. There can only be one or the other, not both.</report>
       
-      <assert  see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#err-elem-cit-data-18"
+      <assert  see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#err-elem-cit-data-18"
         test="count(*) = count(person-group| data-title| source| year| pub-id| version| ext-link)" 
         role="error" 
         id="err-elem-cit-data-18">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="data" are: &lt;person-group&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, &lt;ext-link&gt; and &lt;version&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
@@ -7816,7 +7816,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="element-citation[@publication-type='data']/person-group" 
       id="elem-citation-data-person-group">
       
-      <assert  see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#data-cite-person-group"
+      <assert  see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#data-cite-person-group"
         test="@person-group-type='author'" 
         role="error" 
         id="data-cite-person-group">The person-group for a data reference must have the attribute person-group-type="author". This one in reference '<value-of select="ancestor::ref/@id"/>' has either no person-group attribute or the value is incorrect (<value-of select="@person-group-type"/>).</assert>
@@ -7825,7 +7825,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="ref/element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']" id="elem-citation-data-pub-id-doi">
       
-      <assert  see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#err-elem-cit-data-14-2"
+      <assert  see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#err-elem-cit-data-14-2"
         test="not(@xlink:href)" 
         role="error" 
         id="err-elem-cit-data-14-2">If the pub-id is of pub-id-type doi, it may not have an @xlink:href. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with type doi and an @link-href with value '<value-of select="@link-href"/>'.</assert>
@@ -7834,12 +7834,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="ref/element-citation[@publication-type='data']/pub-id" id="elem-citation-data-pub-id">
       
-      <assert   see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#err-elem-cit-data-13-2"
+      <assert   see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#err-elem-cit-data-13-2"
         test="@pub-id-type=('accession','doi')" 
         role="error" 
         id="err-elem-cit-data-13-2">Each pub-id element must have a pub-id-type which is either accession or doi. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with the type '<value-of select="@pub-id-type"/>'.</assert>
       
-      <report    see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#err-elem-cit-data-14-1"
+      <report    see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#err-elem-cit-data-14-1"
         test="if (@pub-id-type != 'doi') then not(@xlink:href) else ()" 
         role="error" 
         id="err-elem-cit-data-14-1">If the pub-id is of any pub-id-type except doi, it must have an @xlink:href. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with type '<value-of select="@pub-id-type"/>' but no @xlink-href.</report>
@@ -7951,22 +7951,22 @@ else self::*/local-name() = $allowed-p-blocks"
   <pattern id="element-citation-software-tests">
     <rule context="element-citation[@publication-type = 'software']" id="elem-citation-software">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-1" 
+      <assert see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#err-elem-cit-software-2-1" 
         test="count(person-group[@person-group-type='author']) = 1" 
         role="error" 
         id="err-elem-cit-software-2-1">Each &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; element with attribute person-group-type = author. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group[@person-group-type='author'])"/> &lt;person-group&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-2" 
+      <assert see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#err-elem-cit-software-2-2" 
         test="person-group[@person-group-type='author']" 
         role="error" 
         id="err-elem-cit-software-2-2">The &lt;person-group&gt; in a software reference must have the attribute person-group-type set to 'author'. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-10-1" 
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#err-elem-cit-software-10-1" 
         test="count(data-title) &gt; 1" 
         role="error" 
         id="err-elem-cit-software-10-1">Each &lt;element-citation&gt; of type 'software' may contain one and only one &lt;data-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(data-title)"/> &lt;data-title&gt; elements.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-16" 
+      <assert see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#err-elem-cit-software-16" 
         test="count(*) = count(person-group | year | data-title | source | version | publisher-name | publisher-loc | ext-link | pub-id)" 
         role="error" 
         id="err-elem-cit-software-16">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="software" are: &lt;person-group&gt;, &lt;year&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;version&gt;, &lt;publisher-name&gt;, &lt;publisher-loc&gt;, &lt;ext-link&gt;, and &lt;pub-id&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
@@ -7979,7 +7979,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type = 'software']/data-title" id="elem-citation-software-data-title">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-10-2" 
+      <assert see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#err-elem-cit-software-10-2" 
         test="count(*) = count(sub | sup | italic)" 
         role="error" 
         id="err-elem-cit-software-10-2">An &lt;data-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
@@ -7990,32 +7990,32 @@ else self::*/local-name() = $allowed-p-blocks"
   <pattern id="element-citation-preprint-tests">
     <rule context="element-citation[@publication-type='preprint']" id="elem-citation-preprint">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-2-1" 
+      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-2-1" 
         test="count(person-group)=1" 
         role="error" 
         id="err-elem-cit-preprint-2-1">There must be one and only one person-group. <value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-1" 
+      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-8-1" 
         test="count(article-title)=1" 
         role="error" 
         id="err-elem-cit-preprint-8-1">Each  &lt;element-citation&gt; of type 'preprint' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-9-1" 
+      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-9-1" 
         test="count(source) = 1" 
         role="error" 
         id="err-elem-cit-preprint-9-1">Each  &lt;element-citation&gt; of type 'preprint' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-10-1" 
+      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-10-1" 
         test="count(pub-id) le 1" 
         role="error" 
         id="err-elem-cit-preprint-10-1">One &lt;pub-id&gt; element is allowed. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-10-3" 
+      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-10-3" 
         test="count(pub-id)=1 or count(ext-link)=1" 
         role="error" 
         id="err-elem-cit-preprint-10-3">Either one &lt;pub-id&gt; or one &lt;ext-link&gt; element is required in a preprint reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-13" 
+      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-13" 
         test="count(*) = count(person-group| article-title| source| year| pub-id| ext-link)" 
         role="error" 
         id="err-elem-cit-preprint-13">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="preprint" are: &lt;person-group&gt;, &lt;article-title&gt;, &lt;source&gt;, &lt;year&gt;, &lt;pub-id&gt;, and &lt;ext-link&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
@@ -8024,7 +8024,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='preprint']/person-group" id="elem-citation-preprint-person-group"> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-2-2" 
+      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-2-2" 
         test="@person-group-type='author'" 
         role="error" 
         id="err-elem-cit-preprint-2-2">The &lt;person-group&gt; element must contain @person-group-type='author'. The &lt;person-group&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' contains @person-group-type='<value-of select="@person-group-type"/>'.</assert>
@@ -8033,7 +8033,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='preprint']/pub-id" id="elem-citation-preprint-pub-id"> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-10-2" 
+      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-10-2" 
         test="@pub-id-type='doi'" 
         role="error" 
         id="err-elem-cit-preprint-10-2">If present, the &lt;pub-id&gt; element must contain @pub-id-type='doi'. The &lt;pub-id&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' contains @pub-id-type='<value-of select="@pub-id-type"/>'.</assert>
@@ -8041,12 +8041,12 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="element-citation[@publication-type='preprint']/article-title" id="elem-citation-preprint-article-title"> 
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-2-1" 
+      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-8-2-1" 
         test="./string-length() + sum(*/string-length()) ge 2" 
         role="error" 
         id="err-elem-cit-preprint-8-2-1">A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' must contain at least two characters. Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-8-2-2" 
+      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-8-2-2" 
         test="count(*)=count(italic | sub | sup)" 
         role="error" 
         id="err-elem-cit-preprint-8-2-2">A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
@@ -8054,7 +8054,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='preprint']/source" id="elem-citation-preprint-source"> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-9-2-2" 
+      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-9-2-2" 
         test="count(*)=count(italic | sub | sup)" 
         role="error" 
         id="err-elem-cit-preprint-9-2-2">A &lt;source&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
@@ -8189,7 +8189,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="element-citation[@publication-type='report']" id="elem-citation-report">
       <let name="publisher-locations" value="'publisher-locations.xml'"/> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-2-1"
+      <assert see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-2-1"
         test="count(person-group)=1" 
         role="error" 
         id="err-elem-cit-report-2-1">[err-elem-cit-report-2-1]
@@ -8197,7 +8197,7 @@ else self::*/local-name() = $allowed-p-blocks"
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-9-1"
+      <assert see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-9-1"
         test="count(source)=1" 
         role="error" 
         id="err-elem-cit-report-9-1">[err-elem-report-report-9-1]
@@ -8206,7 +8206,7 @@ else self::*/local-name() = $allowed-p-blocks"
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-11-1"
+      <assert see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-11-1"
         test="count(publisher-name)=1" 
         role="error" 
         id="err-elem-cit-report-11-1">[err-elem-cit-report-11-1]
@@ -8214,7 +8214,7 @@ else self::*/local-name() = $allowed-p-blocks"
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(publisher-name)"/>
         &lt;publisher-name&gt; elements.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#warning-elem-cit-report-11-3"
+      <report see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#warning-elem-cit-report-11-3"
         test="some $p in document($publisher-locations)/locations/location/text()
         satisfies ends-with(publisher-name[1],$p)" 
         role="warning" 
@@ -8223,7 +8223,7 @@ else self::*/local-name() = $allowed-p-blocks"
         Reference '<value-of select="ancestor::ref/@id"/>' contains the string <value-of select="publisher-name"/>,
         which ends with a publisher location.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-15"
+      <assert see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-15"
         test="count(*) = count(person-group| year| source| publisher-loc|publisher-name| ext-link| pub-id)" 
         role="error" 
         id="err-elem-cit-report-15">[err-elem-cit-report-15]
@@ -8231,7 +8231,7 @@ else self::*/local-name() = $allowed-p-blocks"
         &lt;person-group&gt;, &lt;year&gt;, &lt;source&gt;, &lt;publisher-loc&gt;, &lt;publisher-name&gt;, &lt;ext-link&gt;, and &lt;pub-id&gt;.
         Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-14"
+      <report see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-14"
         test="ext-link and pub-id[@pub-id-type='doi']" 
         role="error" 
         id="err-elem-cit-report-14">Report reference cannot have both a doi and a URL. Reference '<value-of select="ancestor::ref/@id"/>' has a doi (<value-of select="pub-id[@pub-id-type='doi']"/>) and a URL (<value-of select="ext-link"/>).</report>
@@ -8239,7 +8239,7 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="element-citation[@publication-type='report']/person-group" id="elem-citation-report-preson-group">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-2-2"
+      <assert see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-2-2"
         test="@person-group-type='author'" 
         role="error" 
         id="err-elem-cit-report-2-2">[err-elem-cit-report-2-2]
@@ -8250,7 +8250,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='report']/source" id="elem-citation-report-source">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-9-2-2"
+      <assert see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-9-2-2"
         test="count(*)=count(italic | sub | sup)" 
         role="error" 
         id="err-elem-cit-report-9-2-2">[err-elem-cit-report-9-2-2]
@@ -8262,7 +8262,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='report']/publisher-name" id="elem-citation-report-publisher-name">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-11-2"
+      <assert see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-11-2"
         test="count(*)=0" 
         role="error" 
         id="err-elem-cit-report-11-2">[err-elem-cit-report-11-2]
@@ -8274,7 +8274,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='report']/pub-id" id="elem-citation-report-pub-id">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-12-2"
+      <assert see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-12-2"
         test="@pub-id-type='doi' or @pub-id-type='isbn'" 
         role="error" 
         id="err-elem-cit-report-12-2">[err-elem-cit-report-12-2]
@@ -8545,107 +8545,107 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']" id="gen-das-tests">
       <let name="pos" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@publication-type='data']) - count(following::element-citation[@publication-type='data' and ancestor::sec[@sec-type='data-availability']])"/> 
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-person-group-1" 
+      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-elem-person-group-1" 
         test="count(person-group[@person-group-type='author'])=1" 
         role="warning" 
         id="pre-das-elem-person-group-1">The reference in position <value-of select="$pos"/> of the data availability section does not have any authors (no person-group[@person-group-type='author']). Please ensure to add them in or query the authors asking for the author list.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-person-group-1" 
+      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-elem-person-group-1" 
         test="count(person-group[@person-group-type='author'])=1" 
         role="error" 
         id="final-das-elem-person-group-1">The reference in position <value-of select="$pos"/> of the data availability section does not have any authors (no person-group[@person-group-type='author']). Please ensure to add them.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-person-group-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-person-group-2" 
         test="count(person-group) gt 1" 
         role="error" 
         id="das-elem-person-group-2">The reference in position <value-of select="$pos"/> of the data availability has <value-of select="count(person-group)"/> person-group elements, which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-person-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-elem-person-1" 
         test="(count(person-group[@person-group-type='author']/name)=0) and (count(person-group[@person-group-type='author']/collab)=0)" 
         role="warning" 
         id="pre-das-elem-person-1">The reference in position <value-of select="$pos"/> of the data availability section does not have any authors. Please ensure to add them in or query the authors asking for the author list.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-person-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-elem-person-1" 
         test="(count(person-group[@person-group-type='author']/name)=0) and (count(person-group[@person-group-type='author']/collab)=0)" 
         role="error" 
         id="final-das-elem-person-1">The reference in position <value-of select="$pos"/> of the data availability section does not have any authors (person-group[@person-group-type='author']). Please ensure to add them in.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-data-title-1" 
+      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-elem-data-title-1" 
         test="count(data-title)=1" 
         role="warning" 
         id="pre-das-elem-data-title-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a title (no data-title). Please ensure to add it in or query the authors asking for it.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-data-title-1" 
+      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-elem-data-title-1" 
         test="count(data-title)=1" 
         role="error" 
         id="final-das-elem-data-title-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a title (no data-title). Please ensure to add it in.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-source-1" 
+      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-elem-source-1" 
         test="count(source)=1" 
         role="warning" 
         id="pre-das-elem-source-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a database name (no source). Please ensure to add it in or query the authors asking for it.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-source-1" 
+      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-elem-source-1" 
         test="count(source)=1" 
         role="error" 
         id="final-das-elem-source-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a database name (no source). Please ensure to add it in.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-pub-id-1" 
+      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-elem-pub-id-1" 
         test="count(pub-id)=1" 
         role="warning" 
         id="pre-das-elem-pub-id-1">The reference in position <value-of select="$pos"/> of the data availability section does not have an identifier (no pub-id). Please ensure to add it in or query the authors asking for it.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-pub-id-1" 
+      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-elem-pub-id-1" 
         test="count(pub-id)=1" 
         role="error" 
         id="final-das-elem-pub-id-1">The reference in position <value-of select="$pos"/> of the data availability section does not have an identifier (no pub-id). Please ensure to add it in.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-pub-id-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-elem-pub-id-2" 
         test="normalize-space(pub-id)=''" 
         role="warning" 
         id="pre-das-elem-pub-id-2">The reference in position <value-of select="$pos"/> of the data availability section does not have an id (pub-id is empty). Please ensure to add it in or query the authors asking for it.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-pub-id-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-elem-pub-id-2" 
         test="normalize-space(pub-id)=''" 
         role="error" 
         id="final-das-elem-pub-id-2">The reference in position <value-of select="$pos"/> of the data availability section does not have an id (pub-id is empty). Please ensure to add it in.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-year-1" 
+      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-elem-year-1" 
         test="count(year)=1" 
         role="warning" 
         id="pre-das-elem-year-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a year. Please ensure to add it in or query the authors asking for it.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-year-1" 
+      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-elem-year-1" 
         test="count(year)=1" 
         role="error" 
         id="final-das-elem-year-1">The reference in position <value-of select="$pos"/> of the data availability section does not have a year. Please ensure to add it in.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-1" 
+      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-cit-1" 
         test="@specific-use" 
         role="error" 
         id="das-elem-cit-1">Every reference in the data availability section must have an @specific-use. The reference in position <value-of select="$pos"/> does not.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-cit-2" 
         test="@specific-use and not(@specific-use=('isSupplementedBy','references'))" 
         role="error" 
         id="das-elem-cit-2">The reference in position <value-of select="$pos"/> of the data availability section has a @specific-use value of <value-of select="@specific-use"/>, which is not allowed. It must be 'isSupplementedBy' or 'references'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-cit-3" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-elem-cit-3" 
         test="pub-id[1]/@xlink:href = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]/@xlink:href" 
         role="warning" 
         id="pre-das-elem-cit-3">The reference in position <value-of select="$pos"/> of the data availability section has a link (<value-of select="pub-id[1]/@xlink:href"/>) which is the same as another dataset reference in that section. Dataset reference links should be distinct.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-cit-3" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-elem-cit-3" 
         test="pub-id[1]/@xlink:href = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]/@xlink:href" 
         role="error" 
         id="final-das-elem-cit-3">The reference in position <value-of select="$pos"/> of the data availability section has a link (<value-of select="pub-id[1]/@xlink:href"/>) which is the same as another dataset reference in that section. Dataset reference links should be distinct.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-4" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-cit-4" 
         test="pub-id[1] = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]" 
         role="warning" 
         id="das-elem-cit-4">The reference in position <value-of select="$pos"/> of the data availability section has a pub-id (<value-of select="pub-id[1]"/>) which is the same as another dataset reference in that section. This is very likely incorrect. Dataset reference pub-id should be distinct.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-cit-5" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-cit-5" 
         test="pub-id[1] = following::element-citation[ancestor::ref-list]/pub-id[1]" 
         role="warning" 
         id="das-elem-cit-5">The reference in position <value-of select="$pos"/> of the data availability section has a pub-id (<value-of select="pub-id[1]"/>) which is the same as in another reference in the reference list. Is the same reference in both the reference list and data availability section?</report>
@@ -8658,22 +8658,22 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id" id="das-elem-citation-data-pub-id">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-pub-id-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-pub-id-1" 
         test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'doi'))" 
         role="warning" 
         id="pre-das-pub-id-1">Each pub-id element must have an @pub-id-type which is either accession or doi. If this identifier is missing, then ensure to query the author for this information.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-pub-id-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-pub-id-1" 
         test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'doi'))" 
         role="error" 
         id="final-das-pub-id-1">Each pub-id element must have an @pub-id-type which is either accession or doi.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-pub-id-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-pub-id-2" 
         test="@pub-id-type!='doi' and normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))" 
         role="warning" 
         id="pre-das-pub-id-2">Each pub-id element which is not a doi must have an @xlink-href (which is not empty). If the link is not available please query the authors asking for it.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-pub-id-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-pub-id-2" 
         test="@pub-id-type!='doi' and normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))" 
         role="error" 
         id="final-das-pub-id-2">Each pub-id element which is not a doi must have an @xlink-href (which is not empty).</report>
@@ -8686,7 +8686,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/source/*|sec[@sec-type='data-availability']//element-citation[@publication-type='data']/data-title/*" id="das-elem-citation-children">
       <let name="allowed-elems" value="('sup','sub','italic')"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-citation-child-1" 
+      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-citation-child-1" 
         test="name()=$allowed-elems" 
         role="error" 
         id="das-elem-citation-child-1">Reference in the data availability section has a <value-of select="name()"/> element in a <value-of select="parent::*/name()"/> element which is not allowed.</assert>
@@ -8695,17 +8695,17 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/year" id="das-elem-citation-year-tests">
       <let name="digits" value="replace(.,'[^\d]','')"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-elem-citation-year-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-citation-year-1" 
         test="(.!='') and (@iso-8601-date!=$digits)" 
         role="error" 
         id="das-elem-citation-year-1">Every year in a reference must have an @iso-8601-date attribute equal to the numbers in the year. Reference with id <value-of select="parent::*/@id"/> has a year '<value-of select="."/>' but an @iso-8601-date '<value-of select="@iso-8601-date"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-elem-citation-year-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-elem-citation-year-2" 
         test="normalize-space(.)=''" 
         role="warning" 
         id="pre-das-elem-citation-year-2">Reference with id <value-of select="parent::*/@id"/> has an empty year. Please ensure to add it in or query the authors asking for it.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-citation-year-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-elem-citation-year-2" 
         test="normalize-space(.)=''" 
         role="error" 
         id="final-das-elem-citation-year-2">Reference with id <value-of select="parent::*/@id"/> has an empty year. Please ensure to add it in.</report>
@@ -8716,32 +8716,32 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation/pub-id" id="pub-id-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pre-pub-id-test-1"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-pub-id-test-1"
         test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^s?ftp://'))" 
         role="warning" 
         id="pre-pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol. - <value-of select="@xlink:href"/> does not. If this information is missing, please ensure to query it with the authors.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-pub-id-test-1"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-pub-id-test-1"
         test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^s?ftp://'))" 
         role="error" 
         id="final-pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol. - <value-of select="@xlink:href"/> does not.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pre-pub-id-test-2"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-pub-id-test-2"
         test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" 
         role="warning" 
         id="pre-pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/>. If this information is missing, please ensure to query it with the authors.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-pub-id-test-2"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-pub-id-test-2"
         test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" 
         role="error" 
         id="final-pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-id-test-3"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pub-id-test-3"
         test="(@pub-id-type='pmid') and not(matches(.,'^\d{3,10}$'))" 
         role="error" 
         id="pub-id-test-3">pub-id is tagged as a pmid, but it is not a number made up of between 3 and 10 digits - <value-of select="."/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-id-doi-test-1"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pub-id-doi-test-1"
         test="(@pub-id-type != 'doi') and matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')" 
         role="error" 
         id="pub-id-doi-test-1">pub-id has a doi link - <value-of select="@xlink:href"/> - but its pub-id-type is <value-of select="@pub-id-type"/> instead of doi.</report>
@@ -8751,12 +8751,12 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="pub-id-doi-test-2">pub id has a doi link - <value-of select="@xlink:href"/> - but the identifier is not the doi - '<value-of select="."/>', which is incorrect. Either the doi link is correct, and the identifier needs changing, or the identifier is correct and needs adding after 'https://doi.org/' in order to create the real doi link.</report>-->
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-id-test-4"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pub-id-test-4"
         test="contains(.,' ')" 
         role="warning" 
         id="pub-id-test-4">pub id contains whitespace - <value-of select="."/> - which is very likely to be incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-id-test-5"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pub-id-test-5"
         test="ends-with(.,'.')" 
         role="error" 
         id="pub-id-test-5"><value-of select="@pub-id-type"/> pub-id ends with a full stop - <value-of select="."/> - which is not correct. Please remove the full stop.</report>
@@ -8799,7 +8799,7 @@ else self::*/local-name() = $allowed-p-blocks"
    <rule context="article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title" id="feature-title-tests">
      <let name="sub-disp-channel" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject[1]"/>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-title-test-1"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-title-test-1"
        test="(count(ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject) = 1) and starts-with(.,$sub-disp-channel)" 
         role="error" 
         id="feature-title-test-1">title starts with the sub-display-channel. This is certainly incorrect.</report>
@@ -8808,12 +8808,12 @@ else self::*/local-name() = $allowed-p-blocks"
    
    <rule context="front//abstract[@abstract-type=('executive-summary','plain-language-summary')]" id="feature-abstract-tests">
      
-     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#feature-abstract-test-1"
+     <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#feature-abstract-test-1"
        test="count(title) = 1" 
         role="error" 
         id="feature-abstract-test-1">abstract must contain one and only one title.</assert>
      
-     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#feature-abstract-test-2"
+     <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#feature-abstract-test-2"
        test="title = 'eLife digest'" 
         role="error" 
         id="feature-abstract-test-2">abstract title must contain 'eLife digest'. Possible superfluous characters - <value-of select="replace(title,'eLife digest','')"/></assert>
@@ -8822,12 +8822,12 @@ else self::*/local-name() = $allowed-p-blocks"
    
    <rule context="front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p" id="digest-tests">
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#digest-test-1"
+     <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#digest-test-1"
        test="matches(.,'^\p{Ll}')" 
        role="warning" 
        id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrectly split into two?</report>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#final-digest-test-2"
+     <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#final-digest-test-2"
        test="matches(.,'\[[Oo][Kk]\??\]')" 
        role="error" 
        id="final-digest-test-2">digest paragraph contains [OK] or [OK?] which should be removed - <value-of select="."/></report>
@@ -8843,17 +8843,17 @@ else self::*/local-name() = $allowed-p-blocks"
      <let name="token1" value="substring-before(.,' ')"/>
      <let name="token2" value="substring-after(.,$token1)"/>
 		
-     <report  see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-subj-test-2"
+     <report  see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-subj-test-2"
        test=". != e:titleCase(.)" 
         role="error" 
         id="feature-subj-test-2">The content of the sub-display-channel should be in title case - <value-of select="e:titleCase(.)"/></report>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-subj-test-3"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-subj-test-3"
        test="ends-with(.,':')" 
         role="error" 
         id="feature-subj-test-3">sub-display-channel ends with a colon. This is incorrect.</report>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-subj-test-4"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-subj-test-4"
         test="preceding-sibling::subject" 
         role="error" 
         id="feature-subj-test-4">There is more than one sub-display-channel subject. This is incorrect.</report>
@@ -8863,7 +8863,7 @@ else self::*/local-name() = $allowed-p-blocks"
    <rule context="article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-article-category-tests">
      <let name="count" value="count(subj-group[@subj-group-type='sub-display-channel'])"/>
      
-     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-article-category-test-1"
+     <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-article-category-test-1"
         test="$count = 1" 
         role="error" 
         id="feature-article-category-test-1">article categories for <value-of select="subj-group[@subj-group-type='display-channel']/subject"/>s must contain one, and only one, subj-group[@subj-group-type='sub-display-channel']</assert>
@@ -8872,7 +8872,7 @@ else self::*/local-name() = $allowed-p-blocks"
    
    <rule context="article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']" id="feature-author-tests">
      
-     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-author-test-1"
+     <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-author-test-1"
        test="collab or ancestor::collab or bio" 
         role="error" 
         id="feature-author-test-1">Author must contain child bio in feature content.</assert>
@@ -8885,34 +8885,34 @@ else self::*/local-name() = $allowed-p-blocks"
        else ancestor::contrib-group/aff[@id/string() = $xref-rid]/institution[not(@content-type)][1]/normalize-space(.)"/>
      <let name="aff-tokens" value="for $y in $aff return tokenize($y,', ')"/>
      
-     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-1"
+     <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-bio-test-1"
         test="p[1]/bold = $name" 
         role="error" 
         id="feature-bio-test-1">bio must contain a bold element that contains the name of the author - <value-of select="$name"/>.</assert>
      
      <!-- Needs to account for authors with two or more affs-->
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-2"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-bio-test-2"
        test="if (count($aff) &gt; 1) then ()
        else not(contains(.,$aff))" 
         role="warning" 
         id="feature-bio-test-2">bio does not contain the institution text as it appears in their affiliation ('<value-of select="$aff"/>'). Is this correct?</report>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-6"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-bio-test-6"
        test="(count($aff) &gt; 1) and (some $x in $aff-tokens satisfies not(contains(.,$x)))" 
         role="warning" 
         id="feature-bio-test-6">Some of the text from <value-of select="$name"/>'s affiliations does not appear in their bio - <value-of select="string-join(for $x in $aff-tokens return if (contains(.,$x)) then () else concat('&quot;',$x,'&quot;'),' and ')"/>. Is this correct?</report>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-3"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-bio-test-3"
        test="matches(p[1],'\.$')" 
         role="error" 
         id="feature-bio-test-3">bio cannot end  with a full stop - '<value-of select="p[1]"/>'.</report>
      
-     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-4"
+     <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-bio-test-4"
        test="(count(p) = 1)" 
         role="error" 
         id="feature-bio-test-4">One and only 1 &lt;p&gt; is allowed as a child of bio. <value-of select="."/></assert>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-5"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-bio-test-5"
         test="*[local-name()!='p']" 
         role="error" 
         id="feature-bio-test-5"><value-of select="*[local-name()!='p'][1]/local-name()"/> is not allowed as a child of &lt;bio&gt;. - <value-of select="."/></report>
@@ -8922,29 +8922,29 @@ else self::*/local-name() = $allowed-p-blocks"
      <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
      <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-template-test-1"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-template-test-1"
        test="($template = ('1','2','3')) and child::sub-article" 
         role="error" 
         flag="dl-ar"
         id="feature-template-test-1"><value-of select="$type"/> is a template <value-of select="$template"/> but it has a decision letter or author response, which cannot be correct, as only template 5s are allowed these.</report>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-template-test-2"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-template-test-2"
         test="($template = '5') and not(@article-type='research-article')" 
         role="error" 
         flag="dl-ar"
         id="feature-template-test-2"><value-of select="$type"/> is a template <value-of select="$template"/> so the article element must have a @article-type="research-article". Instead the @article-type="<value-of select="@article-type"/>".</report>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-template-test-3"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-template-test-3"
         test="($template = '5') and not(child::sub-article[@article-type='decision-letter'])" 
         role="warning" 
         id="feature-template-test-3"><value-of select="$type"/> is a template <value-of select="$template"/> but it does not (currently) have a decision letter. Is that OK?</report>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-template-test-4"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-template-test-4"
         test="($template = '5') and not(child::sub-article[@article-type='reply'])" 
         role="warning" 
         id="feature-template-test-4"><value-of select="$type"/> is a template <value-of select="$template"/> but it does not (currently) have an author response. Is that OK?</report>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-no-bre"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-templates-no-bre"
         test="front/article-meta/contrib-group[@content-type='section'] and ($template != '5')" 
         role="error" 
         id="feature-templates-no-bre"><value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should not have any BREs. This <value-of select="$type"/> has <value-of select="
@@ -8956,7 +8956,7 @@ else self::*/local-name() = $allowed-p-blocks"
           )
           "/>. Please remove any senior/reviewing editors.</report>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-author-cont"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-templates-author-cont"
         test="back/fn-group[@content-type='author-contribution'] and $template = '1'" 
         role="error" 
         id="feature-templates-author-cont"><value-of select="$type"/> articles should not have any Author contributions. This <value-of select="$type"/> has <value-of select="
@@ -8967,7 +8967,7 @@ else self::*/local-name() = $allowed-p-blocks"
           )
           "/>. Please remove the author contributions.</report>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-templates-author-cont"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-templates-author-cont"
        test="back/fn-group[@content-type='author-contribution'] and $template = '2'" 
        role="warning" 
        id="feature-templates-author-cont-3"><value-of select="$type"/> articles should not usually have any Author contributions. This <value-of select="$type"/> has <value-of select="
@@ -8978,12 +8978,12 @@ else self::*/local-name() = $allowed-p-blocks"
          )
          "/>. Are they required?</report>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#pre-feature-templates-author-cont-2"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#pre-feature-templates-author-cont-2"
        test="$template = ('3','4') and not(back/fn-group[@content-type='author-contribution'])" 
        role="warning" 
        id="pre-feature-templates-author-cont-2"><value-of select="$type"/>s should have Author contributions. This one does not. Exeter please check with the Production team who will check with the Features team.</report>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#final-feature-templates-author-cont-2"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#final-feature-templates-author-cont-2"
        test="$template = ('3','4') and not(back/fn-group[@content-type='author-contribution'])" 
        role="error" 
        id="final-feature-templates-author-cont-2"><value-of select="$type"/>s should have Author contributions. This one does not. Exeter please check with the Production team who will check with the Features team.</report>
@@ -8993,12 +8993,12 @@ else self::*/local-name() = $allowed-p-blocks"
      <let name="impact-statement" value="parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]"/>
      <let name="impact-statement-element-count" value="count(parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]/*)"/>
      
-     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#insight-abstract-impact-test-1" 
+     <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#insight-abstract-impact-test-1" 
         test=". = $impact-statement" 
         role="warning" 
         id="insight-abstract-impact-test-1">In insights, abstracts must be the same as impact statements. Here the abstract reads "<value-of select="."/>", whereas the impact statement reads "<value-of select="$impact-statement"/>".</assert>
      
-     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#insight-abstract-impact-test-2" 
+     <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#insight-abstract-impact-test-2" 
         test="count(p/*) = $impact-statement-element-count" 
         role="warning" 
         id="insight-abstract-impact-test-2">In insights, abstracts must be the same as impact statements. Here the abstract has <value-of select="count(*)"/> child element(s), whereas the impact statement has <value-of select="$impact-statement-element-count"/> child element(s). Check for possible missing formatting.</assert>
@@ -9026,12 +9026,12 @@ else self::*/local-name() = $allowed-p-blocks"
        '. doi: ',
        $x/pub-id[@pub-id-type='doi']),' ',' ')"/>
      
-     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#insight-box-test-1"
+     <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#insight-box-test-1"
         test="contains($text,$citation)" 
         role="warning" 
         id="insight-box-test-1">A citation for related article <value-of select="$doi"/> is not included in the related-article box text in the body of the article. '<value-of select="$citation"/>' is not present (or is different to the relevant passage) in '<value-of select="$text"/>'. The following word(s) are in the boxed text but not in the citation: <value-of select="string-join(e:insight-box($text,$citation)//*:item[@type='cite'],'; ')"/>. The following word(s) are in the citation but not in the boxed text: <value-of select="string-join(e:insight-box($text,$citation)//*:item[@type='box'],'; ')"/>.</assert>
      
-     <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#insight-related-article-test-1"
+     <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#insight-related-article-test-1"
         test="@related-article-type='commentary-article'" 
         role="error" 
         id="insight-related-article-test-1">Insight related article links must have the related-article-type 'commentary-article'. The link for <value-of select="$doi"/> has '<value-of select="@related-article-type"/>'.</assert>
@@ -9042,12 +9042,12 @@ else self::*/local-name() = $allowed-p-blocks"
      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//th" 
      id="feature-comment-tests">
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#final-feat-ok-test"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#final-feat-ok-test"
        test="matches(.,'\[[Oo][Kk]\??\]')" 
        role="error" 
        id="final-feat-ok-test"><value-of select="name()"/> element contains [OK] or [OK?] which should be removed - <value-of select="."/></report>
      
-     <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/production-checklist#final-feat-query-test"
+     <report see="https://elifeproduction.slab.com/posts/production-checklist-4cb7d124#final-feat-query-test"
        test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')" 
        role="error" 
        id="final-feat-query-test"><value-of select="name()"/> element contains [Query] or [QUERY] which should be removed - <value-of select="."/></report>
@@ -9071,7 +9071,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="corr-self-uri-presence">Correction notices should not contain a self-uri element (as the PDF is not published).</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#corr-abstract-presence"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#corr-abstract-presence"
         test="descendant::abstract" 
         role="error" 
         id="corr-abstract-presence">Correction notices should not contain abstracts.</report>
@@ -9105,7 +9105,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="retr-self-uri-presence"><value-of select="$display-subject"/> notices should not contain a self-uri element (as the PDF is not published).</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#retr-abstract-presence"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#retr-abstract-presence"
         test="descendant::abstract" 
         role="error" 
         id="retr-abstract-presence"><value-of select="$display-subject"/> notices should not contain abstracts.</report>
@@ -9156,7 +9156,7 @@ else self::*/local-name() = $allowed-p-blocks"
         return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\p{Zs}]?|\.com[\p{Zs}]?|\.co.uk[\p{Zs}]?|\.us[\p{Zs}]?|\.net[\p{Zs}]?|\.edu[\p{Zs}]?|\.gov[\p{Zs}]?|\.io[\p{Zs}]?')) then $x
         else (),'; ')"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/rrids#rrid-test" 
+      <report see="https://elifeproduction.slab.com/posts/rri-ds-5k19v560#rrid-test" 
         test="($text-count gt $count)" 
         role="warning" 
         id="rrid-test">'<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://identifiers.org/RRID/RRID:'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
@@ -9165,7 +9165,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="org-test"><name/> element contains an organism - <value-of select="e:org-conform($t)"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/code-blocks#code-test"
+      <report see="https://elifeproduction.slab.com/posts/code-blocks-947pcamv#code-test"
         test="not(descendant::monospace) and not(descendant::code) and ($code-text != '')" 
         role="warning" 
         id="code-test"><name/> element contains what looks like unformatted code - '<value-of select="$code-text"/>' - does this need tagging with &lt;monospace/&gt; or &lt;code/&gt;?</report>
@@ -9198,7 +9198,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="year-style-test">'<name/>' element contains the following string(s) - <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,' s'),'; ')"/>. If this refers to years, then the space should be removed after the number, i.e. <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,'s'),'; ')"/>. If the text is referring to a unit then this is fine.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#final-missing-url-test"
+      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#final-missing-url-test"
         test="contains(lower-case(.),'url to be added')" 
         role="error" 
         id="final-missing-url-test"><name/> element contains the text 'URL to be added' - <value-of select="."/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL, then the eLife team should check with the authors to determine what needs to be added.</report>
@@ -9219,17 +9219,17 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="source" value="element-citation/source[1]"/>
       <let name="top-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi'][1]"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#duplicate-ref-test-1"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#duplicate-ref-test-1"
         test="(element-citation/@publication-type != 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" 
         role="error" 
         id="duplicate-ref-test-1">ref '<value-of select="@id"/>' has the same doi as another reference, which is incorrect. Is it a duplicate?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#duplicate-ref-test-2"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#duplicate-ref-test-2"
         test="(element-citation/@publication-type = 'book') and  ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" 
         role="warning" 
         id="duplicate-ref-test-2">ref '<value-of select="@id"/>' has the same doi as another reference, which might be incorrect. If they are not different chapters from the same book, then this is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#duplicate-ref-test-3"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#duplicate-ref-test-3"
         test="some $x in preceding-sibling::ref/element-citation satisfies (
         (($x/article-title = $a-title) and ($x/source = $source))
         or
@@ -9238,7 +9238,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="duplicate-ref-test-3">ref '<value-of select="@id"/>' has the same title and source as another reference, which is almost certainly incorrect - '<value-of select="$a-title"/>', '<value-of select="$source"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#duplicate-ref-test-4"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#duplicate-ref-test-4"
         test="some $x in preceding-sibling::ref/element-citation satisfies (
         (($x/article-title = $a-title) and not($x/source = $source))
         or
@@ -9247,7 +9247,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="duplicate-ref-test-4">ref '<value-of select="@id"/>' has the same title as another reference, but a different source. Is this correct? - '<value-of select="$a-title"/>'</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#duplicate-ref-test-6"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#duplicate-ref-test-6"
         test="$top-doi = $doi" 
         role="error" 
         id="duplicate-ref-test-6">ref '<value-of select="@id"/>' has a doi which is the same as the article itself '<value-of select="$top-doi"/>' which must be incorrect.</report>
@@ -9270,132 +9270,132 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
       <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#pre-ref-xref-test-1" 
         test="$ref/*/year and (replace(.,' ',' ') != $cite1)" 
         role="error" 
         id="pre-ref-xref-test-1"><value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#final-ref-xref-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#final-ref-xref-test-1" 
         test="replace(.,' ',' ') = ($cite1,$cite2)" 
         role="error" 
         id="final-ref-xref-test-1"><value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>' or '<value-of select="$cite2"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-2" 
         test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" 
         role="warning" 
         id="ref-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-3" 
         test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" 
         role="warning" 
         id="ref-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-4" 
+      <assert see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#pre-ref-xref-test-4" 
         test="matches(normalize-space(.),'\p{N}')" 
         role="warning" 
         id="pre-ref-xref-test-4">citation doesn't contain numbers, which must be incorrect - <value-of select="."/>. If there is no year for this reference, and you are unable to determine this yourself, please query the authors.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#final-ref-xref-test-4" 
+      <assert see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#final-ref-xref-test-4" 
         test="matches(normalize-space(.),'\p{N}')" 
         role="error" 
         id="final-ref-xref-test-4">citation doesn't contain numbers, which must be incorrect - <value-of select="."/>. If there is no year for this reference, and you are unable to determine this yourself, please query the authors.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-5" 
+      <assert see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-5" 
         test="matches(normalize-space(.),'\p{L}')" 
         role="error" 
         id="ref-xref-test-5">citation doesn't contain letters, which must be incorrect - <value-of select="."/>.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-7"
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-7"
         test="($open - $close) gt 1" 
         role="warning" 
         id="ref-xref-test-7">citation is preceded by text containing 2 or more open brackets, '('. eLife style is that parenthetical citations already in brackets should be contained in square brackets, '['. Either there is a superfluous '(' in the preceding text, or the '(' needs changing to a '['  - <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.,substring($post-text,1,10))"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-11" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-11" 
         test="matches($pre-sentence,' from\p{Zs}*[\(]+$| in\p{Zs}*[\(]+$| by\p{Zs}*[\(]+$| of\p{Zs}*[\(]+$| on\p{Zs}*[\(]+$| to\p{Zs}*[\(]+$| see\p{Zs}*[\(]+$| see also\p{Zs}*[\(]+$| at\p{Zs}*[\(]+$| per\p{Zs}*[\(]+$| follows\p{Zs}*[\(]+$| following\p{Zs}*[\(]+$')" 
         role="warning" 
         id="ref-xref-test-11">'<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>' - citation is preceded by text ending with a possessive, preposition or verb and bracket which suggests the bracket should be removed.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-12" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-12" 
         test="matches($post-text,'^[\)]+\p{Zs}*who|^[\)]+\p{Zs}*have|^[\)]+\p{Zs}*found|^[\)]+\p{Zs}*used|^[\)]+\p{Zs}*demonstrate|^[\)]+\p{Zs}*follow[s]?|^[\)]+\p{Zs}*followed')" 
         role="warning" 
         id="ref-xref-test-12">'<value-of select="concat(.,substring($post-text,1,10))"/>' - citation is followed by a bracket and a possessive, preposition or verb which suggests the bracket is unnecessary.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-14" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-14" 
         test="matches($pre-sentence,$cite3)" 
         role="warning" 
         id="ref-xref-test-14">citation is preceded by text containing much of the citation text which is possibly unnecessary - <value-of select="concat($pre-sentence,.)"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-15" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-15" 
         test="matches($post-sentence,$cite3)" 
         role="warning" 
         id="ref-xref-test-15">citation is followed by text containing much of the citation text. Is this correct? - '<value-of select="concat(.,$post-sentence)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-13" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-13" 
         test="matches($pre-sentence,'\(\[\p{Zs}?$')" 
         role="warning" 
         id="ref-xref-test-13">citation is preceded by '(['. Is the square bracket unnecessary? - <value-of select="concat($pre-sentence,.)"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-16" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-16" 
         test="matches($post-sentence,'^\p{Zs}?\)\)')" 
         role="error" 
         id="ref-xref-test-16">citation is followed by '))'. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - <value-of select="concat(.,$post-sentence)"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-17" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-17" 
         test="matches($pre-sentence,'\(\(\p{Zs}?$')" 
         role="error" 
         id="ref-xref-test-17">citation is preceded by '(('. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - <value-of select="concat($pre-sentence,.)"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-10" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-10" 
         test="matches($pre-sentence,'\(\p{Zs}?$') and ((string-length(replace($pre-sentence,'[^\(]','')) - string-length(replace($pre-sentence,'[^\)]',''))) gt 1)" 
         role="warning" 
         id="ref-xref-test-10">citation is preceded by '(', and appears to already be in a brackets. Should the bracket(s) around the citation be removed? Or replaced with square brackets? - <value-of select="concat($pre-sentence,.,$post-sentence)"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-18" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-18" 
         test="matches($pre-sentence,'\(\p{Zs}?$') and matches($post-sentence,'^\p{Zs}?\);') and (following-sibling::*[1]/name()='xref')" 
         role="warning" 
         id="ref-xref-test-18">citation is preceded by '(', and followed by ');'. Should the brackets be removed? - <value-of select="concat($pre-sentence,.,$post-sentence)"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-19" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#pre-ref-xref-test-19" 
         test="matches(.,'^et al|^ and|^\(\d|^,')" 
         role="warning" 
         id="pre-ref-xref-test-19"><value-of select="."/> - citation doesn't start with an author's name. If this information is missing, please ensure to query the authors asking for the details for this reference.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#final-ref-xref-test-19" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#final-ref-xref-test-19" 
         test="matches(.,'^et al|^ and|^\(\d|^,')" 
         role="error" 
         id="final-ref-xref-test-19"><value-of select="."/> - citation doesn't start with an author's name which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-20" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-20" 
         test="matches($post-text,'^\);\p{Zs}?$') and (following-sibling::*[1]/local-name() = 'xref')" 
         role="error" 
         id="ref-xref-test-20">citation is followed by ');', which in turn is followed by another link. This must be incorrect (the bracket should be removed) - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-21" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-21" 
         test="matches($pre-sentence,'[A-Za-z0-9]\($')" 
         role="warning" 
         id="ref-xref-test-21">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-sentence,.)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-22" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-22" 
         test="matches($post-sentence,'^\)[A-Za-z0-9]')" 
         role="warning" 
         id="ref-xref-test-22">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-sentence)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-26" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-26" 
         test="matches($pre-text,'; \[$')" 
         role="warning" 
         id="ref-xref-test-26">citation is preceded by '; [' - '<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.,substring($post-text,1,1))"/>' - Are the square bracket(s) surrounding the citation required? If this citation is already in a bracketed sentence, then it's very likely they can be removed.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-27" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-27" 
         test="matches($post-text,'^\)\p{Zs}?\($') and (following-sibling::*[1]/local-name() = 'xref')" 
         role="warning" 
         id="ref-xref-test-27">citation is followed by ') (', which in turn is followed by another link - '<value-of select="concat(.,$post-sentence,following-sibling::*[1])"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(.,'; ',following-sibling::*[1])"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-28" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-28" 
         test="matches($pre-text,'^\)\p{Zs}?\($') and (preceding-sibling::*[1]/local-name() = 'xref')" 
         role="warning" 
         id="ref-xref-test-28">citation is preceded by ') (', which in turn is preceded by another link - '<value-of select="concat(preceding-sibling::*[1],$pre-sentence,.)"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(preceding-sibling::*[1],'; ',.)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-29" 
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-29" 
         test="matches($post-text,'^\);\p{Zs}?$') and (starts-with(following-sibling::*[1]/following-sibling::text()[1],')') or starts-with(following-sibling::*[1]/following-sibling::text()[1],';)'))" 
         role="warning" 
         id="ref-xref-test-29">citation is followed by ');', which in turn is followed by something else followed by ')'. Is this punctuation correct? - '<value-of select="concat(.,$post-text,following-sibling::*[1],tokenize(following-sibling::*[1]/following-sibling::text()[1],'\. ')[position() = 1])"/>'.</report>
@@ -9482,63 +9482,63 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-conformity-1"
+      <assert see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-conformity-1"
         test="matches(.,'\p{N}')" 
         role="error" 
         id="vid-xref-conformity-1"><value-of select="."/> - video citation does not contain any numbers which must be incorrect.</assert>
       
       <!-- Workaround for animations -->
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-conformity-2"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-conformity-2"
         test="not(contains(.,'nimation')) and ((count($rids) gt 1 and not(contains(.,$target-nos[1])) or not(contains(.,$target-nos[last()]))) or (count($rids)=1 and not(contains(.,$target-nos))))" 
         role="error" 
         id="vid-xref-conformity-2">video citation does not match the video that it links to. Target video label number(s) are <value-of select="$target-nos"/>, but <value-of select="if (count($rids) gt 1) then concat($target-nos[1],' and ',$target-nos[last()],' are') else concat($target-nos,' is')"/> not in the citation text - <value-of select="."/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-2"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-2"
         test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" 
         role="warning" 
         id="vid-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-3"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-3"
         test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" 
         role="warning" 
         id="vid-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-4"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-4"
         test="(ancestor::media[@mimetype='video']/@id = $rids)" 
         role="warning" 
         id="vid-xref-test-4"><value-of select="."/> - video citation is in the caption of the video that it links to. Is it correct or necessary?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-5"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-5"
         test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" 
         role="error" 
         id="vid-xref-test-5"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Video citation is in a reference to a video from a different paper, and therefore must be unlinked.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-6"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-6"
         test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
         role="error" 
         id="vid-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-7"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-7"
         test="matches($post-text,'^[\)][A-Za-z0-9]')" 
         role="error" 
         id="vid-xref-test-7">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-8"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-8"
         test="matches($post-text,'^[\p{Zs}]?[\p{Zs}—\-][\p{Zs}]?[Ss]ource')" 
         role="error" 
         id="vid-xref-test-8">Incomplete citation. Video citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-9"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-9"
         test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?$')" 
         role="error" 
         id="vid-xref-test-9">Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to a figure level video - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-10"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-10"
         test="matches($pre-text,'cf[\.]?\p{Zs}?[\(]?$')" 
         role="warning" 
         id="vid-xref-test-10">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-11"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-11"
         test="contains(lower-case(.),'figure') and contains(.,'Video')" 
         role="warning" 
         id="vid-xref-test-11">Figure video citation contains 'Video', when it should contain 'video' with a lowercase v - <value-of select="."/>.</report>
@@ -9556,117 +9556,117 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
       <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-conformity-1"
+      <assert see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-conformity-1"
         test="matches(.,'\p{N}')" 
         role="error" 
         id="fig-xref-conformity-1"><value-of select="."/> - figure citation does not contain any numbers which must be incorrect.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-conformity-2"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-conformity-2"
         test="($type = ('Figure','Chemical structure','Scheme')) and not(contains($no,$target-no))" 
         role="error" 
         id="fig-xref-conformity-2"><value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-conformity-3"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-conformity-3"
         test="($type = ('Figure','Chemical structure','Scheme')) and ($no != $target-no)" 
         role="warning" 
         id="fig-xref-conformity-3"><value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-conformity-4"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-conformity-4"
         test="($type = 'Figure') and matches(.,'[Ss]upplement')" 
         role="error" 
         id="fig-xref-conformity-4"><value-of select="."/> - figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-conformity-5"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-conformity-5"
         test="($type = 'Figure supplement') and (not(matches(.,'[Ss]upplement'))) and (not(matches(preceding-sibling::text()[1],'–[\p{Zs}]?$| and $| or $|,[\p{Zs}]?$')))" 
         role="warning" 
         id="fig-xref-conformity-5">figure citation stands alone, contains the text <value-of select="."/>, and links to a figure supplement, but it does not contain the string 'supplement'. Is it correct? Preceding text - '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-conformity-6"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-conformity-6"
         test="($type = 'Figure supplement') and ($target-no != $no) and not(contains($no,substring($target-no, string-length($target-no), 1)))" 
         role="error" 
         id="fig-xref-conformity-6">figure citation contains the text <value-of select="."/> but links to a figure supplement with the id <value-of select="$rid"/> which cannot be correct.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-2"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-2"
         test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" 
         role="warning" 
         id="fig-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-3"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-3"
         test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" 
         role="warning" 
         id="fig-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-4"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-4"
         test="not(ancestor::supplementary-material) and not(ancestor::license-p) and (ancestor::fig/@id = $rid)" 
         role="warning" 
         id="fig-xref-test-4"><value-of select="."/> - Figure citation is in the caption of the figure that it links to. Is it correct or necessary?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-5"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-5"
         test="($type = 'Figure') and (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" 
         role="error" 
         id="fig-xref-test-5"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation refers to a figure from a different paper, and therefore must be unlinked.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-6"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-6"
         test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
         role="error" 
         id="fig-xref-test-6">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-7"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-7"
         test="matches($post-text,'^[\)][A-Za-z0-9]')" 
         role="error" 
         id="fig-xref-test-7">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-8"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-8"
         test="matches($pre-text,'their $')" 
         role="warning" 
         id="fig-xref-test-8">Figure citation is preceded by 'their'. Does this refer to a figure in other content (and as such should be captured as plain text)? - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-9"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-9"
         test="matches($post-text,'^ of [\p{Lu}][\p{Ll}]+[\-]?[\p{Ll}]? et al[\.]?')" 
         role="warning" 
         id="fig-xref-test-9">Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-10"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-10"
         test="matches($post-text,'^[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?[Ff]igure supplement')" 
         role="error" 
         id="fig-xref-test-10">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a Figure supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-11"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-11"
         test="matches($post-text,'^[\p{Zs}]?[\p{Zs}—\-][\p{Zs}]?[Vv]ideo')" 
         role="warning" 
         id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-12"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-12"
         test="matches($post-text,'^[\p{Zs}]?[\p{Zs}—\-][\p{Zs}]?[Ss]ource')" 
         role="warning" 
         id="fig-xref-test-12">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-13"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-13"
         test="matches($post-text,'^[\p{Zs}]?[Ss]upplement|^[\p{Zs}]?[Ff]igure [Ss]upplement|^[\p{Zs}]?[Ss]ource|^[\p{Zs}]?[Vv]ideo')" 
         role="warning" 
         id="fig-xref-test-13">Figure citation is followed by text which suggests it could be an incomplete citation - <value-of select="concat(.,$post-text)"/>'. Is this OK?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-14"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-14"
         test="matches($pre-text,'cf[\.]?\p{Zs}?[\(]?$')" 
         role="warning" 
         id="fig-xref-test-14">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-15"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-15"
         test="matches(.,' [Ff]ig[\.]? ')" 
         role="error" 
         id="fig-xref-test-15">Link - '<value-of select="."/>' - is incomplete. It should have 'figure' or 'Figure' spelt out.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-16"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-16"
         test="matches($pre-text,'[Ss]uppl?[\.]?\p{Zs}?$|[Ss]upp?l[ea]mental\p{Zs}?$|[Ss]upp?l[ea]mentary\p{Zs}?$|[Ss]upp?l[ea]ment\p{Zs}?$')" 
         role="warning" 
         id="fig-xref-test-16">Figure citation - '<value-of select="."/>' - is preceded by the text '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>' - should it be a figure supplement citation instead?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-17"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-17"
         test="matches(.,'[A-Z]$') and matches($post-text,'^\p{Zs}?and [A-Z] |^\p{Zs}?and [A-Z]\.')" 
         role="warning" 
         id="fig-xref-test-17">Figure citation - '<value-of select="."/>' - is followed by the text '<value-of select="substring($post-text,1,7)"/>' - should this text be included in the link text too (i.e. '<value-of select="concat(.,substring($post-text,1,6))"/>')?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-test-18"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-18"
         test="matches($post-text,'^\-[A-Za-z0-9]')" 
         role="warning" 
         id="fig-xref-test-18">Figure citation - '<value-of select="."/>' - is followed by the text '<value-of select="substring($post-text,1,10)"/>' - should some or all of that text be included in the citation text?</report>
@@ -9681,57 +9681,57 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-1" 
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#table-xref-conformity-1" 
         test="not(matches(.,'Table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and not(contains($rid,'app')) and not(contains($rid,'resp')) and not(contains($rid,'sa'))" 
         role="warning" 
         id="table-xref-conformity-1"><value-of select="."/> - citation points to table, but does not include the string 'Table', which is very unusual.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-2" 
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#table-xref-conformity-2" 
         test="not(matches(.,'table')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ') and contains($rid,'app')" 
         role="warning" 
         id="table-xref-conformity-2"><value-of select="."/> - citation points to an Appendix table, but does not include the string 'table', which is very unusual.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-3" 
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#table-xref-conformity-3" 
         test="(not(contains($rid,'app') or contains($rid,'sa'))) and ($text-no != $rid-no) and not(contains(.,'–')) and not(contains(.,' and '))" 
         role="warning" 
         id="table-xref-conformity-3"><value-of select="."/> - Citation content does not match what it directs to.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-4" 
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#table-xref-conformity-4" 
         test="(contains($rid,'app')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–'))" 
         role="warning" 
         id="table-xref-conformity-4"><value-of select="."/> - Citation content does not match what it directs to.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-conformity-5" 
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#table-xref-conformity-5" 
         test="(contains($rid,'sa')) and (not(ends-with($text-no,substring($rid-no,2)))) and not(contains(.,'–')) and not(contains(.,' and '))" 
         role="warning" 
         id="table-xref-conformity-5"><value-of select="."/> - Citation content does not match what it directs to.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#table-xref-test-1" 
         test="(ancestor::table-wrap/@id = $rid) and not(ancestor::supplementary-material)" 
         role="warning" 
         id="table-xref-test-1"><value-of select="."/> - Citation is in the caption of the Table that it links to. Is it correct or necessary?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#table-xref-test-2" 
         test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
         role="error" 
         id="table-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#table-xref-test-3" 
         test="matches($post-text,'^[\)][A-Za-z0-9]')" 
         role="error" 
         id="table-xref-test-3">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#table-xref-test-4" 
         test="matches($post-text,'^[\p{Zs}]?[\p{Zs}—\-][\p{Zs}]?[Ss]ource')" 
         role="error" 
         id="table-xref-test-4">Incomplete citation. Table citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#table-xref-test-5" 
         test="matches($pre-text,'cf[\.]?\p{Zs}?[\(]?$')" 
         role="warning" 
         id="table-xref-test-5">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#table-xref-test-6" 
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#table-xref-test-6" 
         test="matches($pre-text,'[Ss]uppl?[\.]?\p{Zs}?$|[Ss]upp?l[ea]mental\p{Zs}?$|[Ss]upp?l[ea]mentary\p{Zs}?$|[Ss]upp?l[ea]ment\p{Zs}?$')" 
         role="warning" 
         id="table-xref-test-6">Table citation - '<value-of select="."/>' - is preceded by the text '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>' - should it be a Supplementary file citation instead?</report>
@@ -9750,67 +9750,67 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-1"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-file-xref-conformity-1"
         test="contains($rid,'data') and not(matches(.,'[Ss]ource data')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" 
         role="warning" 
         id="supp-file-xref-conformity-1"><value-of select="."/> - citation points to source data, but does not include the string 'source data', which is very unusual.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-2"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-file-xref-conformity-2"
         test="contains($rid,'code') and not(matches(.,'[Ss]ource code')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" 
         role="warning" 
         id="supp-file-xref-conformity-2"><value-of select="."/> - citation points to source code, but does not include the string 'source code', which is very unusual.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-3"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-file-xref-conformity-3"
         test="contains($rid,'supp') and not(matches(.,'[Ss]upplementary file')) and ($pre-text != ' and ') and ($pre-text != '–') and ($pre-text != ', ')" 
         role="warning" 
         id="supp-file-xref-conformity-3"><value-of select="."/> - citation points to a supplementary file, but does not include the string 'Supplementary file', which is very unusual.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-4"
+      <assert see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-file-xref-conformity-4"
         test="contains(.,$last-rid-no)" 
         role="warning" 
         id="supp-file-xref-conformity-4"><value-of select="."/> - It looks like the citation content does not match what it directs to. The only case where this can be ignored is if this points to an audio file.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-5"
+      <assert see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-file-xref-conformity-5"
         test="$last-text-no = $last-rid-no" 
         role="warning" 
         id="supp-file-xref-conformity-5"><value-of select="."/> - It looks like the citation content does not match what it directs to. Check that it is correct.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-test-1"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-file-xref-test-1"
         test="ancestor::supplementary-material/@id = $rid" 
         role="warning" 
         id="supp-file-xref-test-1"><value-of select="."/> - Citation is in the caption of the Supplementary file that it links to. Is it correct or necessary?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-xref-test-2"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-xref-test-2"
         test="matches($pre-text,'[A-Za-z0-9][\(]$')" 
         role="error" 
         id="supp-xref-test-2">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-xref-test-3"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-xref-test-3"
         test="matches($post-text,'^[\)][A-Za-z0-9]')" 
         role="error" 
         id="supp-xref-test-3">citation is followed by a ')' which in turn is immediately followed by a letter or number. Is there a space missing after the ')'?  - '<value-of select="concat(.,$post-text)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-xref-test-4"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-xref-test-4"
         test="matches($pre-text,'[Ff]igure [\d]{1,2}[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?$|[Vv]ideo [\d]{1,2}[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?$|[Tt]able [\d]{1,2}[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?$')" 
         role="error" 
         id="supp-xref-test-4">Incomplete citation. <value-of select="."/> citation is preceded by text which suggests it should instead be a link to Figure/Video/Table level source data or code - <value-of select="concat($pre-text,.)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-xref-test-5"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-xref-test-5"
         test="matches($pre-text,'cf[\.]?\p{Zs}?[\(]?$')" 
         role="warning" 
         id="supp-xref-test-5">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-xref-test-6"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-xref-test-6"
         test="contains(.,'—Source')" 
         role="warning" 
         id="supp-xref-test-6">citation contains '—Source' (<value-of select="."/>). If it refers to asset level source data or code, then 'Source' should be spelled with a lowercase s, as in the label for that file.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-6"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-file-xref-conformity-6"
         test="contains($rid,'data') and matches(.,'[Ss]ource datas')" 
         role="error" 
         id="supp-file-xref-conformity-6"><value-of select="."/> - citation points to source data but contains the string 'source datas', which is grammatically incorrect. It should be source data instead.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-7"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-file-xref-conformity-7"
         test="contains($rid,'code') and matches(.,'[Ss]ource codes')" 
         role="error" 
         id="supp-file-xref-conformity-7"><value-of select="."/> - citation points to source code but contains the string 'source codes', which is grammatically incorrect. It should be source code instead.</report>
@@ -9826,23 +9826,23 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="prec-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-1"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#equ-xref-conformity-1"
         test="not(matches(.,'[Ee]quation')) and ($prec-text != ' and ') and ($prec-text != '–')" 
         role="warning" 
         id="equ-xref-conformity-1"><value-of select="."/> - link points to equation, but does not include the string 'Equation', which is unusual. Is it correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-2"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#equ-xref-conformity-2"
         test="if (count($labels) gt 1) then (some $label in $labels satisfies not(contains(.,$label)))
               else not(contains(.,$labels))" 
         role="warning" 
         id="equ-xref-conformity-2">equation link content does not match what it directs to (content = <value-of select="."/>; label(s) = <value-of select="string-join($labels,'; ')"/>). Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-3"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#equ-xref-conformity-3"
         test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" 
         role="error" 
         id="equ-xref-conformity-3"><value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Equation citation appears to be a reference to an equation from a different paper, and therefore must be unlinked.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-4"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#equ-xref-conformity-4"
         test="matches($prec-text,'cf[\.]?\p{Zs}?[\(]?$')" 
         role="warning" 
         id="equ-xref-conformity-4">citation is preceded by '<value-of select="substring($prec-text,string-length($prec-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
@@ -9857,544 +9857,544 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <let name="lc" value="lower-case(.)"/>
     
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#bssubtilis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#bssubtilis-ref-article-title-check" 
         test="matches($lc,'b\.\p{Zs}?subtilis') and not(italic[contains(text() ,'B. subtilis')])" 
         role="info" 
         id="bssubtilis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'B. subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#bacillusssubtilis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#bacillusssubtilis-ref-article-title-check" 
         test="matches($lc,'bacillus\p{Zs}?subtilis') and not(italic[contains(text() ,'Bacillus subtilis')])" 
         role="info" 
         id="bacillusssubtilis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Bacillus subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#dsmelanogaster-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#dsmelanogaster-ref-article-title-check" 
         test="matches($lc,'d\.\p{Zs}?melanogaster') and not(italic[contains(text() ,'D. melanogaster')])" 
         role="info" 
         id="dsmelanogaster-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'D. melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drosophilasmelanogaster-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#drosophilasmelanogaster-ref-article-title-check" 
         test="matches($lc,'drosophila\p{Zs}?melanogaster') and not(italic[contains(text() ,'Drosophila melanogaster')])" 
         role="info" 
         id="drosophilasmelanogaster-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Drosophila melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#escoli-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#escoli-ref-article-title-check" 
         test="matches($lc,'e\.\p{Zs}?coli') and not(italic[contains(text() ,'E. coli')])" 
         role="info" 
         id="escoli-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. coli' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#escherichiascoli-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#escherichiascoli-ref-article-title-check" 
         test="matches($lc,'escherichia\p{Zs}?coli') and not(italic[contains(text() ,'Escherichia coli')])" 
         role="info" 
         id="escherichiascoli-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Escherichia coli' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#sspombe-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#sspombe-ref-article-title-check" 
         test="matches($lc,'s\.\p{Zs}?pombe') and not(italic[contains(text() ,'S. pombe')])" 
         role="info" 
         id="sspombe-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#schizosaccharomycesspombe-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#schizosaccharomycesspombe-ref-article-title-check" 
         test="matches($lc,'schizosaccharomyces\p{Zs}?pombe') and not(italic[contains(text() ,'Schizosaccharomyces pombe')])" 
         role="info" 
         id="schizosaccharomycesspombe-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Schizosaccharomyces pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#sscerevisiae-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#sscerevisiae-ref-article-title-check" 
         test="matches($lc,'s\.\p{Zs}?cerevisiae') and not(italic[contains(text() ,'S. cerevisiae')])" 
         role="info" 
         id="sscerevisiae-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#saccharomycesscerevisiae-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#saccharomycesscerevisiae-ref-article-title-check" 
         test="matches($lc,'saccharomyces\p{Zs}?cerevisiae') and not(italic[contains(text() ,'Saccharomyces cerevisiae')])" 
         role="info" 
         id="saccharomycesscerevisiae-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Saccharomyces cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#cselegans-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#cselegans-ref-article-title-check" 
         test="matches($lc,'c\.\p{Zs}?elegans') and not(italic[contains(text() ,'C. elegans')])" 
         role="info" 
         id="cselegans-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#caenorhabditisselegans-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#caenorhabditisselegans-ref-article-title-check" 
         test="matches($lc,'caenorhabditis\p{Zs}?elegans') and not(italic[contains(text() ,'Caenorhabditis elegans')])" 
         role="info" 
         id="caenorhabditisselegans-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Caenorhabditis elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#asthaliana-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#asthaliana-ref-article-title-check" 
         test="matches($lc,'a\.\p{Zs}?thaliana') and not(italic[contains(text() ,'A. thaliana')])" 
         role="info" 
         id="asthaliana-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'A. thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#arabidopsissthaliana-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#arabidopsissthaliana-ref-article-title-check" 
         test="matches($lc,'arabidopsis\p{Zs}?thaliana') and not(italic[contains(text() ,'Arabidopsis thaliana')])" 
         role="info" 
         id="arabidopsissthaliana-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Arabidopsis thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#msthermophila-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#msthermophila-ref-article-title-check" 
         test="matches($lc,'m\.\p{Zs}?thermophila') and not(italic[contains(text() ,'M. thermophila')])" 
         role="info" 
         id="msthermophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'M. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#myceliophthorasthermophila-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#myceliophthorasthermophila-ref-article-title-check" 
         test="matches($lc,'myceliophthora\p{Zs}?thermophila') and not(italic[contains(text() ,'Myceliophthora thermophila')])" 
         role="info" 
         id="myceliophthorasthermophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Myceliophthora thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#dictyostelium-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#dictyostelium-ref-article-title-check" 
         test="matches($lc,'dictyostelium') and not(italic[contains(text() ,'Dictyostelium')])" 
         role="info" 
         id="dictyostelium-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Dictyostelium' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#psfalciparum-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#psfalciparum-ref-article-title-check" 
         test="matches($lc,'p\.\p{Zs}?falciparum') and not(italic[contains(text() ,'P. falciparum')])" 
         role="info" 
         id="psfalciparum-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#plasmodiumsfalciparum-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#plasmodiumsfalciparum-ref-article-title-check" 
         test="matches($lc,'plasmodium\p{Zs}?falciparum') and not(italic[contains(text() ,'Plasmodium falciparum')])" 
         role="info" 
         id="plasmodiumsfalciparum-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Plasmodium falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ssenterica-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#ssenterica-ref-article-title-check" 
         test="matches($lc,'s\.\p{Zs}?enterica') and not(italic[contains(text() ,'S. enterica')])" 
         role="info" 
         id="ssenterica-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#salmonellasenterica-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#salmonellasenterica-ref-article-title-check" 
         test="matches($lc,'salmonella\p{Zs}?enterica') and not(italic[contains(text() ,'Salmonella enterica')])" 
         role="info" 
         id="salmonellasenterica-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Salmonella enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#sspyogenes-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#sspyogenes-ref-article-title-check" 
         test="matches($lc,'s\.\p{Zs}?pyogenes') and not(italic[contains(text() ,'S. pyogenes')])" 
         role="info" 
         id="sspyogenes-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#streptococcusspyogenes-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#streptococcusspyogenes-ref-article-title-check" 
         test="matches($lc,'streptococcus\p{Zs}?pyogenes') and not(italic[contains(text() ,'Streptococcus pyogenes')])" 
         role="info" 
         id="streptococcusspyogenes-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Streptococcus pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#psdumerilii-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#psdumerilii-ref-article-title-check" 
         test="matches($lc,'p\.\p{Zs}?dumerilii') and not(italic[contains(text() ,'P. dumerilii')])" 
         role="info" 
         id="psdumerilii-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#platynereissdumerilii-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#platynereissdumerilii-ref-article-title-check" 
         test="matches($lc,'platynereis\p{Zs}?dumerilii') and not(italic[contains(text() ,'Platynereis dumerilii')])" 
         role="info" 
         id="platynereissdumerilii-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Platynereis dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pscynocephalus-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pscynocephalus-ref-article-title-check" 
         test="matches($lc,'p\.\p{Zs}?cynocephalus') and not(italic[contains(text() ,'P. cynocephalus')])" 
         role="info" 
         id="pscynocephalus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#papioscynocephalus-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#papioscynocephalus-ref-article-title-check" 
         test="matches($lc,'papio\p{Zs}?cynocephalus') and not(italic[contains(text() ,'Papio cynocephalus')])" 
         role="info" 
         id="papioscynocephalus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Papio cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#osfasciatus-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#osfasciatus-ref-article-title-check" 
         test="matches($lc,'o\.\p{Zs}?fasciatus') and not(italic[contains(text() ,'O. fasciatus')])" 
         role="info" 
         id="osfasciatus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'O. fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#oncopeltussfasciatus-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#oncopeltussfasciatus-ref-article-title-check" 
         test="matches($lc,'oncopeltus\p{Zs}?fasciatus') and not(italic[contains(text() ,'Oncopeltus fasciatus')])" 
         role="info" 
         id="oncopeltussfasciatus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Oncopeltus fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#nscrassa-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#nscrassa-ref-article-title-check" 
         test="matches($lc,'n\.\p{Zs}?crassa') and not(italic[contains(text() ,'N. crassa')])" 
         role="info" 
         id="nscrassa-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'N. crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#neurosporascrassa-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#neurosporascrassa-ref-article-title-check" 
         test="matches($lc,'neurospora\p{Zs}?crassa') and not(italic[contains(text() ,'Neurospora crassa')])" 
         role="info" 
         id="neurosporascrassa-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Neurospora crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#csintestinalis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#csintestinalis-ref-article-title-check" 
         test="matches($lc,'c\.\p{Zs}?intestinalis') and not(italic[contains(text() ,'C. intestinalis')])" 
         role="info" 
         id="csintestinalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#cionasintestinalis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#cionasintestinalis-ref-article-title-check" 
         test="matches($lc,'ciona\p{Zs}?intestinalis') and not(italic[contains(text() ,'Ciona intestinalis')])" 
         role="info" 
         id="cionasintestinalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Ciona intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#escuniculi-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#escuniculi-ref-article-title-check" 
         test="matches($lc,'e\.\p{Zs}?cuniculi') and not(italic[contains(text() ,'E. cuniculi')])" 
         role="info" 
         id="escuniculi-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#encephalitozoonscuniculi-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#encephalitozoonscuniculi-ref-article-title-check" 
         test="matches($lc,'encephalitozoon\p{Zs}?cuniculi') and not(italic[contains(text() ,'Encephalitozoon cuniculi')])" 
         role="info" 
         id="encephalitozoonscuniculi-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Encephalitozoon cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#hssalinarum-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#hssalinarum-ref-article-title-check" 
         test="matches($lc,'h\.\p{Zs}?salinarum') and not(italic[contains(text() ,'H. salinarum')])" 
         role="info" 
         id="hssalinarum-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'H. salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#halobacteriumssalinarum-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#halobacteriumssalinarum-ref-article-title-check" 
         test="matches($lc,'halobacterium\p{Zs}?salinarum') and not(italic[contains(text() ,'Halobacterium salinarum')])" 
         role="info" 
         id="halobacteriumssalinarum-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Halobacterium salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#sssolfataricus-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#sssolfataricus-ref-article-title-check" 
         test="matches($lc,'s\.\p{Zs}?solfataricus') and not(italic[contains(text() ,'S. solfataricus')])" 
         role="info" 
         id="sssolfataricus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#sulfolobusssolfataricus-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#sulfolobusssolfataricus-ref-article-title-check" 
         test="matches($lc,'sulfolobus\p{Zs}?solfataricus') and not(italic[contains(text() ,'Sulfolobus solfataricus')])" 
         role="info" 
         id="sulfolobusssolfataricus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Sulfolobus solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ssmediterranea-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#ssmediterranea-ref-article-title-check" 
         test="matches($lc,'s\.\p{Zs}?mediterranea') and not(italic[contains(text() ,'S. mediterranea')])" 
         role="info" 
         id="ssmediterranea-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#schmidteasmediterranea-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#schmidteasmediterranea-ref-article-title-check" 
         test="matches($lc,'schmidtea\p{Zs}?mediterranea') and not(italic[contains(text() ,'Schmidtea mediterranea')])" 
         role="info" 
         id="schmidteasmediterranea-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Schmidtea mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ssrosetta-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#ssrosetta-ref-article-title-check" 
         test="matches($lc,'s\.\p{Zs}?rosetta') and not(italic[contains(text() ,'S. rosetta')])" 
         role="info" 
         id="ssrosetta-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#salpingoecasrosetta-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#salpingoecasrosetta-ref-article-title-check" 
         test="matches($lc,'salpingoeca\p{Zs}?rosetta') and not(italic[contains(text() ,'Salpingoeca rosetta')])" 
         role="info" 
         id="salpingoecasrosetta-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Salpingoeca rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#nsvectensis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#nsvectensis-ref-article-title-check" 
         test="matches($lc,'n\.\p{Zs}?vectensis') and not(italic[contains(text() ,'N. vectensis')])" 
         role="info" 
         id="nsvectensis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'N. vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#nematostellasvectensis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#nematostellasvectensis-ref-article-title-check" 
         test="matches($lc,'nematostella\p{Zs}?vectensis') and not(italic[contains(text() ,'Nematostella vectensis')])" 
         role="info" 
         id="nematostellasvectensis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Nematostella vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ssaureus-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#ssaureus-ref-article-title-check" 
         test="matches($lc,'s\.\p{Zs}?aureus') and not(italic[contains(text() ,'S. aureus')])" 
         role="info" 
         id="ssaureus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'S. aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#staphylococcussaureus-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#staphylococcussaureus-ref-article-title-check" 
         test="matches($lc,'staphylococcus\p{Zs}?aureus') and not(italic[contains(text() ,'Staphylococcus aureus')])" 
         role="info" 
         id="staphylococcussaureus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Staphylococcus aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#vscholerae-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#vscholerae-ref-article-title-check" 
         test="matches($lc,'v\.\p{Zs}?cholerae') and not(italic[contains(text() ,'V. cholerae')])" 
         role="info" 
         id="vscholerae-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'V. cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#vibrioscholerae-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#vibrioscholerae-ref-article-title-check" 
         test="matches($lc,'vibrio\p{Zs}?cholerae') and not(italic[contains(text() ,'Vibrio cholerae')])" 
         role="info" 
         id="vibrioscholerae-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Vibrio cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#tsthermophila-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#tsthermophila-ref-article-title-check" 
         test="matches($lc,'t\.\p{Zs}?thermophila') and not(italic[contains(text() ,'T. thermophila')])" 
         role="info" 
         id="tsthermophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'T. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#tetrahymenasthermophila-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#tetrahymenasthermophila-ref-article-title-check" 
         test="matches($lc,'tetrahymena\p{Zs}?thermophila') and not(italic[contains(text() ,'Tetrahymena thermophila')])" 
         role="info" 
         id="tetrahymenasthermophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Tetrahymena thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#csreinhardtii-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#csreinhardtii-ref-article-title-check" 
         test="matches($lc,'c\.\p{Zs}?reinhardtii') and not(italic[contains(text() ,'C. reinhardtii')])" 
         role="info" 
         id="csreinhardtii-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#chlamydomonassreinhardtii-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#chlamydomonassreinhardtii-ref-article-title-check" 
         test="matches($lc,'chlamydomonas\p{Zs}?reinhardtii') and not(italic[contains(text() ,'Chlamydomonas reinhardtii')])" 
         role="info" 
         id="chlamydomonassreinhardtii-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Chlamydomonas reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#nsattenuata-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#nsattenuata-ref-article-title-check" 
         test="matches($lc,'n\.\p{Zs}?attenuata') and not(italic[contains(text() ,'N. attenuata')])" 
         role="info" 
         id="nsattenuata-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'N. attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#nicotianasattenuata-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#nicotianasattenuata-ref-article-title-check" 
         test="matches($lc,'nicotiana\p{Zs}?attenuata') and not(italic[contains(text() ,'Nicotiana attenuata')])" 
         role="info" 
         id="nicotianasattenuata-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Nicotiana attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#escarotovora-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#escarotovora-ref-article-title-check" 
         test="matches($lc,'e\.\p{Zs}?carotovora') and not(italic[contains(text() ,'E. carotovora')])" 
         role="info" 
         id="escarotovora-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#erwiniascarotovora-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#erwiniascarotovora-ref-article-title-check" 
         test="matches($lc,'erwinia\p{Zs}?carotovora') and not(italic[contains(text() ,'Erwinia carotovora')])" 
         role="info" 
         id="erwiniascarotovora-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Erwinia carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#esfaecalis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#esfaecalis-ref-article-title-check" 
         test="matches($lc,'e\.\p{Zs}?faecalis') and not(italic[contains(text() ,'E. faecalis')])" 
         role="info" 
         id="esfaecalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#hsapiens-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#hsapiens-ref-article-title-check" 
         test="matches($lc,'h\.\p{Zs}?sapiens') and not(italic[contains(text() ,'H. sapiens')])" 
         role="info" 
         id="hsapiens-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'H. sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#homosapiens-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#homosapiens-ref-article-title-check" 
         test="matches($lc,'homo\p{Zs}?sapiens') and not(italic[contains(text() ,'Homo sapiens')])" 
         role="info" 
         id="homosapiens-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Homo sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ctrachomatis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#ctrachomatis-ref-article-title-check" 
         test="matches($lc,'c\.\p{Zs}?trachomatis') and not(italic[contains(text() ,'C. trachomatis')])" 
         role="info" 
         id="ctrachomatis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'C. trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#chlamydiatrachomatis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#chlamydiatrachomatis-ref-article-title-check" 
         test="matches($lc,'chlamydia\p{Zs}?trachomatis') and not(italic[contains(text() ,'Chlamydia trachomatis')])" 
         role="info" 
         id="chlamydiatrachomatis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Chlamydia trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#enterococcussfaecalis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#enterococcussfaecalis-ref-article-title-check" 
         test="matches($lc,'enterococcus\p{Zs}?faecalis') and not(italic[contains(text() ,'Enterococcus faecalis')])" 
         role="info" 
         id="enterococcussfaecalis-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Enterococcus faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#xlaevis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#xlaevis-ref-article-title-check" 
         test="matches($lc,'x\.\p{Zs}?laevis') and not(italic[contains(text() ,'X. laevis')])" 
         role="info" 
         id="xlaevis-ref-article-title-check">
         <name/> contains an organism - 'X. laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#xenopuslaevis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#xenopuslaevis-ref-article-title-check" 
         test="matches($lc,'xenopus\p{Zs}?laevis') and not(italic[contains(text() ,'Xenopus laevis')])" 
         role="info" 
         id="xenopuslaevis-ref-article-title-check">
         <name/> contains an organism - 'Xenopus laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#xtropicalis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#xtropicalis-ref-article-title-check" 
         test="matches($lc,'x\.\p{Zs}?tropicalis') and not(italic[contains(text() ,'X. tropicalis')])" 
         role="info" 
         id="xtropicalis-ref-article-title-check">
         <name/> contains an organism - 'X. tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#xenopustropicalis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#xenopustropicalis-ref-article-title-check" 
         test="matches($lc,'xenopus\p{Zs}?tropicalis') and not(italic[contains(text() ,'Xenopus tropicalis')])" 
         role="info" 
         id="xenopustropicalis-ref-article-title-check">
         <name/> contains an organism - 'Xenopus tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mmusculus-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#mmusculus-ref-article-title-check" 
         test="matches($lc,'m\.\p{Zs}?musculus') and not(italic[contains(text() ,'M. musculus')])" 
         role="info" 
         id="mmusculus-ref-article-title-check">
         <name/> contains an organism - 'M. musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#musmusculus-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#musmusculus-ref-article-title-check" 
         test="matches($lc,'mus\p{Zs}?musculus') and not(italic[contains(text() ,'Mus musculus')])" 
         role="info" 
         id="musmusculus-ref-article-title-check">
         <name/> contains an organism - 'Mus musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#dimmigrans-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#dimmigrans-ref-article-title-check" 
         test="matches($lc,'d\.\p{Zs}?immigrans') and not(italic[contains(text() ,'D. immigrans')])" 
         role="info" 
         id="dimmigrans-ref-article-title-check">
         <name/> contains an organism - 'D. immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drosophilaimmigrans-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#drosophilaimmigrans-ref-article-title-check" 
         test="matches($lc,'drosophila\p{Zs}?immigrans') and not(italic[contains(text() ,'Drosophila immigrans')])" 
         role="info" 
         id="drosophilaimmigrans-ref-article-title-check">
         <name/> contains an organism - 'Drosophila immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#dsubobscura-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#dsubobscura-ref-article-title-check" 
         test="matches($lc,'d\.\p{Zs}?subobscura') and not(italic[contains(text() ,'D. subobscura')])" 
         role="info" 
         id="dsubobscura-ref-article-title-check">
         <name/> contains an organism - 'D. subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drosophilasubobscura-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#drosophilasubobscura-ref-article-title-check" 
         test="matches($lc,'drosophila\p{Zs}?subobscura') and not(italic[contains(text() ,'Drosophila subobscura')])" 
         role="info" 
         id="drosophilasubobscura-ref-article-title-check">
         <name/> contains an organism - 'Drosophila subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#daffinis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#daffinis-ref-article-title-check" 
         test="matches($lc,'d\.\p{Zs}?affinis') and not(italic[contains(text() ,'D. affinis')])" 
         role="info" 
         id="daffinis-ref-article-title-check">
         <name/> contains an organism - 'D. affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drosophilaaffinis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#drosophilaaffinis-ref-article-title-check" 
         test="matches($lc,'drosophila\p{Zs}?affinis') and not(italic[contains(text() ,'Drosophila affinis')])" 
         role="info" 
         id="drosophilaaffinis-ref-article-title-check">
         <name/> contains an organism - 'Drosophila affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#dobscura-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#dobscura-ref-article-title-check" 
         test="matches($lc,'d\.\p{Zs}?obscura') and not(italic[contains(text() ,'D. obscura')])" 
         role="info" 
         id="dobscura-ref-article-title-check">
         <name/> contains an organism - 'D. obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drosophilaobscura-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#drosophilaobscura-ref-article-title-check" 
         test="matches($lc,'drosophila\p{Zs}?obscura') and not(italic[contains(text() ,'Drosophila obscura')])" 
         role="info" 
         id="drosophilaobscura-ref-article-title-check">
         <name/> contains an organism - 'Drosophila obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ftularensis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#ftularensis-ref-article-title-check" 
         test="matches($lc,'f\.\p{Zs}?tularensis') and not(italic[contains(text() ,'F. tularensis')])" 
         role="info" 
         id="ftularensis-ref-article-title-check">
         <name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#francisellatularensis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#francisellatularensis-ref-article-title-check" 
         test="matches($lc,'francisella\p{Zs}?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])" 
         role="info" 
         id="francisellatularensis-ref-article-title-check">
         <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pplantaginis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pplantaginis-ref-article-title-check" 
         test="matches($lc,'p\.\p{Zs}?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])" 
         role="info" 
         id="pplantaginis-ref-article-title-check">
         <name/> contains an organism - 'P. plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#podosphaeraplantaginis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#podosphaeraplantaginis-ref-article-title-check" 
         test="matches($lc,'podosphaera\p{Zs}?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])" 
         role="info" 
         id="podosphaeraplantaginis-ref-article-title-check">
         <name/> contains an organism - 'Podosphaera plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#planceolata-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#planceolata-ref-article-title-check" 
         test="matches($lc,'p\.\p{Zs}?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])" 
         role="info" 
         id="planceolata-ref-article-title-check">
         <name/> contains an organism - 'P. lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#plantagolanceolata-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#plantagolanceolata-ref-article-title-check" 
         test="matches($lc,'plantago\p{Zs}?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])" 
         role="info" 
         id="plantagolanceolata-ref-article-title-check">
         <name/> contains an organism - 'Plantago lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mtrossulus-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#mtrossulus-ref-article-title-check" 
         test="matches($lc,'m\.\p{Zs}?trossulus') and not(italic[contains(text() ,'M. trossulus')])" 
         role="info" 
         id="mtrossulus-ref-article-title-check">
         <name/> contains an organism - 'M. trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mytilustrossulus-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#mytilustrossulus-ref-article-title-check" 
         test="matches($lc,'mytilus\p{Zs}?trossulus') and not(italic[contains(text() ,'Mytilus trossulus')])" 
         role="info" 
         id="mytilustrossulus-ref-article-title-check">
         <name/> contains an organism - 'Mytilus trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#medulis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#medulis-ref-article-title-check" 
         test="matches($lc,'m\.\p{Zs}?edulis') and not(italic[contains(text() ,'M. edulis')])" 
         role="info" 
         id="medulis-ref-article-title-check">
         <name/> contains an organism - 'M. edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mytilusedulis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#mytilusedulis-ref-article-title-check" 
         test="matches($lc,'mytilus\p{Zs}?edulis') and not(italic[contains(text() ,'Mytilus edulis')])" 
         role="info" 
         id="mytilusedulis-ref-article-title-check">
         <name/> contains an organism - 'Mytilus edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mchilensis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#mchilensis-ref-article-title-check" 
         test="matches($lc,'m\.\p{Zs}?chilensis') and not(italic[contains(text() ,'M. chilensis')])" 
         role="info" 
         id="mchilensis-ref-article-title-check">
         <name/> contains an organism - 'M. chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#mytiluschilensis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#mytiluschilensis-ref-article-title-check" 
         test="matches($lc,'mytilus\p{Zs}?chilensis') and not(italic[contains(text() ,'Mytilus chilensis')])" 
         role="info" 
         id="mytiluschilensis-ref-article-title-check">
         <name/> contains an organism - 'Mytilus chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#umaydis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#umaydis-ref-article-title-check" 
         test="matches($lc,'u\.\p{Zs}?maydis') and not(italic[contains(text() ,'U. maydis')])" 
         role="info" 
         id="umaydis-ref-article-title-check">
         <name/> contains an organism - 'U. maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ustilagomaydis-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#ustilagomaydis-ref-article-title-check" 
         test="matches($lc,'ustilago\p{Zs}?maydis') and not(italic[contains(text() ,'Ustilago maydis')])" 
         role="info" 
         id="ustilagomaydis-ref-article-title-check">
         <name/> contains an organism - 'Ustilago maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pknowlesi-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pknowlesi-ref-article-title-check" 
         test="matches($lc,'p\.\p{Zs}?knowlesi') and not(italic[contains(text() ,'P. knowlesi')])" 
         role="info" 
         id="pknowlesi-ref-article-title-check">
         <name/> contains an organism - 'P. knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#plasmodiumknowlesi-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#plasmodiumknowlesi-ref-article-title-check" 
         test="matches($lc,'plasmodium\p{Zs}?knowlesi') and not(italic[contains(text() ,'Plasmodium knowlesi')])" 
         role="info" 
         id="plasmodiumknowlesi-ref-article-title-check">
         <name/> contains an organism - 'Plasmodium knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#paeruginosa-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#paeruginosa-ref-article-title-check" 
         test="matches($lc,'p\.\p{Zs}?aeruginosa') and not(italic[contains(text() ,'P. aeruginosa')])" 
         role="info" 
         id="paeruginosa-ref-article-title-check">
         <name/> contains an organism - 'P. aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pseudomonasaeruginosa-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pseudomonasaeruginosa-ref-article-title-check" 
         test="matches($lc,'pseudomonas\p{Zs}?aeruginosa') and not(italic[contains(text() ,'Pseudomonas aeruginosa')])" 
         role="info" 
         id="pseudomonasaeruginosa-ref-article-title-check">
         <name/> contains an organism - 'Pseudomonas aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#tbrucei-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#tbrucei-ref-article-title-check" 
         test="matches($lc,'t\.\p{Zs}?brucei') and not(italic[contains(text() ,'T. brucei')])" 
         role="info" 
         id="tbrucei-ref-article-title-check">
         <name/> contains an organism - 'T. brucei' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#trypanosomabrucei-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#trypanosomabrucei-ref-article-title-check" 
         test="matches($lc,'trypanosoma\p{Zs}?brucei') and not(italic[contains(text() ,'Trypanosoma brucei')])" 
         role="info" 
         id="trypanosomabrucei-ref-article-title-check">
         <name/> contains an organism - 'Trypanosoma brucei' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#tbrucei-ref-article-title-check" 
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#tbrucei-ref-article-title-check" 
         test="matches($lc,'t\.\p{Zs}?gondii') and not(italic[contains(text() ,'T. gondii')])" 
         role="info" 
         id="tgondii-ref-article-title-check">
         <name/> contains an organism - 'T. gondii' - but there is no italic element with that correct capitalisation or spacing.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#trypanosomabrucei-ref-article-title-check" 
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#trypanosomabrucei-ref-article-title-check" 
         test="matches($lc,'toxoplasma\p{Zs}?gondii') and not(italic[contains(text() ,'Toxoplasma gondii')])" 
         role="info" 
         id="toxoplasmagondii-ref-article-title-check">
         <name/> contains an organism - 'Toxoplasma gondii' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drerio-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#drerio-ref-article-title-check" 
         test="matches($lc,'d\.\p{Zs}?rerio') and not(italic[contains(text() ,'D. rerio')])" 
         role="info" 
         id="drerio-ref-article-title-check">
         <name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#daniorerio-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#daniorerio-ref-article-title-check" 
         test="matches($lc,'danio\p{Zs}?rerio') and not(italic[contains(text() ,'Danio rerio')])" 
         role="info" 
         id="daniorerio-ref-article-title-check">
@@ -10535,12 +10535,12 @@ else self::*/local-name() = $allowed-p-blocks"
         role="info" 
         id="etutus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'E. tutus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#drosophila-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#drosophila-ref-article-title-check" 
         test="matches($lc,'drosophila') and not(italic[contains(text(),'Drosophila')])" 
         role="info" 
         id="drosophila-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Drosophila' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-    <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#xenopus-ref-article-title-check" 
+    <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#xenopus-ref-article-title-check" 
         test="matches($lc,'xenopus') and not(italic[contains(text() ,'Xenopus')])" 
         role="info" 
         id="xenopus-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Xenopus' - but there is no italic element with that correct capitalisation or spacing.</report>
@@ -11155,7 +11155,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="andand-presence"><name/> element contains ' and and ' which is very likely to be incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#figurefigure-presence" 
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#figurefigure-presence" 
         test="matches(.,'[Ff]igure [Ff]igure')" 
         role="warning" 
         id="figurefigure-presence"><name/> element contains ' figure figure ' which is very likely to be incorrect.</report>
@@ -11164,22 +11164,22 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="plus-minus-presence"><name/> element contains two plus or minus signs separated by a space and a forward slash (such as '+ /-'). Should the space be removed? - <value-of select="."/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supplementalfigure-presence"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supplementalfigure-presence"
         test="not(ancestor::sub-article) and matches(.,'\p{Zs}?[Ss]upplemental [Ff]igure')" 
         role="warning" 
         id="supplementalfigure-presence"><name/> element contains the phrase ' Supplemental figure ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supplementalfile-presence"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supplementalfile-presence"
         test="not(ancestor::sub-article) and matches(.,'\p{Zs}?[Ss]upplemental [Ff]ile')" 
         role="warning" 
         id="supplementalfile-presence"><name/> element contains the phrase ' Supplemental file ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supplementaryfigure-presence"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supplementaryfigure-presence"
         test="not(ancestor::sub-article) and matches(.,'\p{Zs}?[Ss]upplementary [Ff]igure')" 
         role="warning" 
         id="supplementaryfigure-presence"><name/> element contains the phrase ' Supplementary figure ' which almost certainly needs updating. If it's unclear which figure/figure supplement should be cited, please query the authors. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supplement-table-presence"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supplement-table-presence"
         test="not(ancestor::sub-article) and matches(.,'\p{Zs}?[Ss]upplementa(l|ry) [Tt]able')" 
         role="warning" 
         id="supplement-table-presence"><name/> element contains the phrase 'Supplementary table' or 'Supplemental table'. Does it need updating? If it's unclear what should be cited, please query the authors. <name/> starts with - <value-of select="substring(.,1,25)"/></report>
@@ -11385,69 +11385,69 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi'][1]"/>
       <let name="uc" value="upper-case(.)"/>
         
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#PLOS-1" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#PLOS-1" 
         test="($uc != 'PLOS ONE') and matches(.,'plos|Plos|PLoS')" 
         role="error" 
         id="PLOS-1">ref '<value-of select="ancestor::ref/@id"/>' contains
         <value-of select="."/>. 'PLOS' should be upper-case.</report>
         
-       <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#PLOS-2" 
+       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#PLOS-2" 
         test="($uc = 'PLOS ONE') and (. != 'PLOS ONE')" 
         role="error" 
         id="PLOS-2">ref '<value-of select="ancestor::ref/@id"/>' contains
          <value-of select="."/>. 'PLOS ONE' should be upper-case.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#PNAS" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#PNAS" 
         test="if (starts-with($doi,'10.1073')) then . != 'PNAS'
         else()" 
         role="error" 
         id="PNAS">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'PNAS' but the journal name is
         <value-of select="."/>, which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#RNA" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#RNA" 
         test="($uc = 'RNA') and (. != 'RNA')" 
         role="error" 
         id="RNA">ref '<value-of select="ancestor::ref/@id"/>' contains
         <value-of select="."/>. 'RNA' should be upper-case.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#bmj" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#bmj" 
         test="(matches($uc,'^BMJ$|BMJ[:]? ')) and matches(.,'Bmj|bmj|BMj|BmJ|bMj|bmJ')" 
         role="error" 
         id="bmj">ref '<value-of select="ancestor::ref/@id"/>' contains
         <value-of select="."/>. 'BMJ' should be upper-case.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#G3" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#G3" 
         test="starts-with($doi,'10.1534/g3') and (. != 'G3: Genes, Genomes, Genetics')" 
         role="error" 
         id="G3">ref '<value-of select="ancestor::ref/@id"/>' has the doi for 'G3' but the journal name is
         <value-of select="."/> - it should be 'G3: Genes, Genomes, Genetics'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#ampersand-check" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#ampersand-check" 
         test="matches(.,'[Aa]mp;')" 
         role="warning" 
         id="ampersand-check">ref '<value-of select="ancestor::ref/@id"/>' appears to contain the text 'amp', is this a broken ampersand?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#Research-gate-check" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#Research-gate-check" 
         test="(normalize-space($uc) = 'RESEARCH GATE') or (normalize-space($uc) = 'RESEARCHGATE')" 
         role="error" 
         id="Research-gate-check"> ref '<value-of select="ancestor::ref/@id"/>' has a source title '<value-of select="."/>' which must be incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-replacement-character-presence" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#journal-replacement-character-presence" 
         test="matches(.,'�')" 
         role="error" 
         id="journal-replacement-character-presence"><name/> element contains the replacement character '�' which is unallowed - <value-of select="."/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-off-presence" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#journal-off-presence" 
         test="matches(.,'[Oo]fficial [Jj]ournal')" 
         role="warning" 
         id="journal-off-presence">ref '<value-of select="ancestor::ref/@id"/>' has a source title which contains the text 'official journal' - '<value-of select="."/>'. Is this necessary?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#handbook-presence" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#handbook-presence" 
         test="contains($uc,'HANDBOOK')" 
         role="error" 
         id="handbook-presence">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#elife-check" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#elife-check" 
         test="starts-with($doi,'10.7554/eLife.') and (. != 'eLife')" 
         role="error" 
         id="elife-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has an eLife doi <value-of select="$doi"/>, but the journal name is '<value-of select="."/>', when it should be 'eLife'. Either the journal name needs updating to eLife, or the doi is incorrect.</report>
@@ -11462,37 +11462,37 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="word-count" value="count(tokenize(.,'\p{Zs}'))"/>
       <let name="title-word-count" value="count(tokenize(.,'\p{Zs}')[.=concat(upper-case(substring(.,1,1)),substring(.,2))])"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-fullstop-check-1" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#article-title-fullstop-check-1" 
         test="(matches($rep,'[A-Za-z][A-Za-z]+\. [A-Za-z]'))" 
         role="info" 
         id="article-title-fullstop-check-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-fullstop-check-2" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#article-title-fullstop-check-2" 
         test="matches(.,'\.$') and not(matches(.,'\.\.$'))" 
         role="error" 
         id="article-title-fullstop-check-2">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with a full stop, which cannot be correct - <value-of select="."/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-fullstop-check-3" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#article-title-fullstop-check-3" 
         test="matches(.,'\.$') and matches(.,'\.\.$')" 
         role="warning" 
         id="article-title-fullstop-check-3">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which ends with some full stops - is this correct? - <value-of select="."/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-correction-check" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#article-title-correction-check" 
         test="matches(.,'^[Cc]orrection|^[Rr]etraction|[Ee]rratum')" 
         role="warning" 
         id="article-title-correction-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which begins with 'Correction', 'Retraction' or contains 'Erratum'. Is this a reference to the notice or the original article?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-journal-check" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#article-title-journal-check" 
         test="matches(.,' [Jj]ournal ')" 
         role="warning" 
         id="article-title-journal-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which contains the text ' journal '. Is a journal name (source) erroneously included in the title? - '<value-of select="."/>'</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-child-1" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#article-title-child-1" 
         test="(count(child::*) = 1) and (count(child::text()) = 0)" 
         role="warning" 
         id="article-title-child-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with one child <value-of select="*/local-name()"/> element, and no text. This is almost certainly incorrect. - <value-of select="."/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#a-title-replacement-character-presence" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#a-title-replacement-character-presence" 
         test="matches(.,'�')" 
         role="error" 
         id="a-title-replacement-character-presence"><name/> element contains the replacement character '�' which is unallowed - <value-of select="."/></report>
@@ -11505,32 +11505,32 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='journal']" id="journal-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#eloc-page-assert" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#eloc-page-assert" 
         test="not(fpage) and not(elocation-id) and not(comment)" 
         role="warning" 
         id="eloc-page-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a page range or e-location. Is this right?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#volume-assert" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#volume-assert" 
         test="not(comment[.='In press']) and not(volume)" 
         role="warning" 
         id="volume-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a volume. Is this right?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-preprint-check" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#journal-preprint-check" 
         test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^medrxiv$|^psyarxiv$|^paleorxiv$|^preprints$')" 
         role="error" 
         id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source[1]"/>, but it is captured as a journal not a preprint.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#elife-ref-check" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#elife-ref-check" 
         test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5}$|^10.7554/eLife\.\d{5}\.\d{3}$|^10.7554/eLife\.\d{5}\.sa[12]$'))" 
         role="error" 
         id="elife-ref-check">ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source[1]"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-conference-ref-check-1" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#journal-conference-ref-check-1" 
         test="matches(lower-case(source[1]),'conference|symposium|symposia|neural information processing|nips|computer vision and pattern recognition|scipy|workshop|meeting|spie|congress|[\d]st|[\d]nd|[\d]rd|[\d]th')" 
         role="warning" 
         id="journal-conference-ref-check-1">Journal ref '<value-of select="ancestor::ref/@id"/>' has the journal name <value-of select="source[1]"/>. Should it be a conference type reference instead?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#journal-conference-ref-check-2" 
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#journal-conference-ref-check-2" 
         test="matches(source[1],'^[1][7-9][0-9][0-9] |\([1][7-9][0-9][0-9][\)\p{Zs}]| [1][7-9][0-9][0-9] | [1][7-9][0-9][0-9]$|^[2][0-2][0-9][0-9] |\([2][0-2][0-9][0-9][\)\p{Zs}]| [2][0-2][0-9][0-9] | [2][0-2][0-9][0-9]$')" 
         role="warning" 
         id="journal-conference-ref-check-2">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name containing a year - <value-of select="source[1]"/>. Should it be a conference type reference instead? Or should the year be removed from the journal name?</report>
@@ -11572,32 +11572,32 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="element-citation[@publication-type='preprint']/source" id="preprint-title-tests">
       <let name="lc" value="lower-case(.)"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#not-rxiv-test" 
+      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#not-rxiv-test" 
         test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|zenodo')" 
         role="warning" 
         id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#biorxiv-test" 
+      <report see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#biorxiv-test" 
         test="matches($lc,'biorxiv') and not(. = 'bioRxiv')" 
         role="error" 
         id="biorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'bioRxiv'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#biorxiv-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#biorxiv-test-2" 
         test="matches($lc,'biorxiv') and not(starts-with(parent::element-citation/pub-id[@pub-id-type='doi'][1],'10.1101/'))" 
         role="error" 
         id="biorxiv-test-2">ref '<value-of select="ancestor::ref/@id"/>' is captured as a <value-of select="."/> preprint, but it does not have a doi starting with the bioRxiv prefix, '10.1101/'. <value-of select="if (parent::element-citation/pub-id[@pub-id-type='doi']) then concat('The doi does not point to bioRxiv - https://doi.org/',parent::element-citation/pub-id[@pub-id-type='doi'][1]) else 'The doi is missing'"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#arxiv-test" 
+      <report see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#arxiv-test" 
         test="matches($lc,'^arxiv$') and not(. = 'arXiv')" 
         role="error" 
         id="arxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'arXiv'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#chemrxiv-test" 
+      <report see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#chemrxiv-test" 
         test="matches($lc,'chemrxiv') and not(. = 'ChemRxiv')" 
         role="error" 
         id="chemrxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'ChemRxiv'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#medrxiv-test" 
+      <report see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#medrxiv-test" 
         test="matches($lc,'medrxiv') and not(. = 'medRxiv')" 
         role="error" 
         id="medrxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'medRxiv'.</report>
@@ -11606,28 +11606,28 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="osfpreprints-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'OSF Preprints'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#peerjpreprints-test" 
+      <report see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#peerjpreprints-test" 
         test="matches($lc,'peerj preprints') and not(. = 'PeerJ Preprints')" 
         role="error" 
         id="peerjpreprints-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PeerJ Preprints'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#psyarxiv-test" 
+      <report see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#psyarxiv-test" 
         test="matches($lc,'psyarxiv') and not(. = 'PsyArXiv')" 
         role="error" 
         id="psyarxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PsyArXiv'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#paleorxiv-test" 
+      <report see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#paleorxiv-test" 
         test="matches($lc,'paleorxiv') and not(. = 'PaleorXiv')" 
         role="error" 
         id="paleorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'PaleorXiv'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#preprint-replacement-character-presence" 
+      <report see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#preprint-replacement-character-presence" 
         test="matches(.,'�')" 
         role="error" 
         id="preprint-replacement-character-presence"><name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>.</report>
       
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#preprint-handbook-presence" 
+      <report see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#preprint-handbook-presence" 
         test="contains(.,'handbook')" 
         role="error" 
         id="preprint-handbook-presence">Preprint ref '<value-of select="ancestor::ref/@id"/>' has a source '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
@@ -11640,7 +11640,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="element-citation[@publication-type='web']" id="website-tests">
       <let name="link" value="lower-case(ext-link[1])"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#github-web-test" 
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#github-web-test" 
         test="contains($link,'github') and not(contains($link,'github.io'))" 
         role="warning" 
         id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost certainly be captured as a software ref (unless it's a blog post by GitHub).</report>
@@ -11677,72 +11677,72 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
       <let name="lc" value="lower-case(data-title[1])"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#r-test-1" 
         test="matches($lc,'r: a language and environment for statistical computing') and not(matches(person-group[@person-group-type='author']/collab[1],'^R Development Core Team$'))" 
         role="error" 
         id="R-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it does not have one collab element containing 'R Development Core Team'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#r-test-2" 
         test="matches($lc,'r: a language and environment for statistical computing') and (count(person-group[@person-group-type='author']/collab) != 1)" 
         role="error" 
         id="R-test-2">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it has <value-of select="count(person-group[@person-group-type='author']/collab)"/> collab element(s).</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#r-test-3" 
         test="matches($lc,'r: a language and environment for statistical computing') and (count((publisher-loc[text() = 'Vienna, Austria'])) != 1)" 
         role="error" 
         id="R-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but does not have a &lt;publisher-loc&gt;Vienna, Austria&lt;/publisher-loc&gt; element.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#r-test-4" 
         test="matches($lc,'r: a language and environment for statistical computing') and not(matches(ext-link[1]/@xlink:href,'^http[s]?://www.[Rr]-project.org'))" 
         role="error" 
         id="R-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but does not have a 'http://www.r-project.org' type link.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#r-test-5" 
         test="matches(lower-case(source[1]),'r: a language and environment for statistical computing')" 
         role="error" 
         id="R-test-5">software ref '<value-of select="ancestor::ref/@id"/>' has a source '<value-of select="source"/>' but this is the data-title.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-6" 
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#r-test-6" 
         test="matches(lower-case(publisher-name[1]),'r: a language and environment for statistical computing')" 
         role="error" 
         id="R-test-6">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name '<value-of select="publisher-name"/>' but this is the data-title.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#r-test-7" 
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#r-test-7" 
         test="matches($lc,'r: a language and environment for statistical computing') and (lower-case(publisher-name[1]) != 'r foundation for statistical computing')" 
         role="error" 
         id="R-test-7">software ref '<value-of select="ancestor::ref/@id"/>' with the title '<value-of select="data-title"/>' must have a publisher-name element which contains 'R Foundation for Statistical Computing'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-replacement-character-presence" 
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#software-replacement-character-presence" 
         test="matches(.,'�')" 
         role="error" 
         id="software-replacement-character-presence">software reference contains the replacement character '�' which is unallowed - <value-of select="."/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#ref-software-test-1" 
         test="source and publisher-name" 
         role="error" 
         id="ref-software-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has both a source - <value-of select="source[1]"/> - and a publisher-name - <value-of select="publisher-name[1]"/> - which is incorrect. It should have either one or the other.</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-2" 
+      <assert see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#ref-software-test-2" 
         test="source or publisher-name" 
         role="error" 
         id="ref-software-test-2">software ref '<value-of select="ancestor::ref/@id"/>' with the title - <value-of select="data-title"/> - must contain either one source element or one publisher-name element.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#ref-software-test-3" 
         test="matches(lower-case(publisher-name[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab')" 
         role="error" 
         id="ref-software-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name - <value-of select="publisher-name[1]"/>. Since this is a software source, it should be captured in a source element. Please move into the source field (rather than publisher).</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#ref-software-test-4" 
         test="matches(lower-case(source[1]),'schr[öo]dinger|r foundation|rstudio ,? inc|mathworks| llc| ltd')" 
         role="error" 
         id="ref-software-test-4">software ref '<value-of select="ancestor::ref/@id"/>' has a source - <value-of select="source[1]"/>. Since this is a software publisher, it should be captured in a publisher-name element. Please move into the Software publisher field.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#ref-software-test-5" 
         test="(normalize-space(lower-case(source[1]))='github') and not(version)" 
         role="warning" 
         id="ref-software-test-5"><value-of select="source[1]"/> software ref (with id '<value-of select="ancestor::ref/@id"/>') does not have a version number. Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-6" 
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#ref-software-test-6" 
         test="matches(lower-case(source[1]),'github|gitlab|bitbucket|sourceforge|matlab') and not(ext-link)" 
         role="error" 
         id="ref-software-test-6"><value-of select="source[1]"/> software ref (with id '<value-of select="ancestor::ref/@id"/>') does not have a URL which is incorrect.</report>
@@ -11754,307 +11754,307 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-geo-test" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-geo-test" 
         test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/geo') and not(source[1]='NCBI Gene Expression Omnibus')" 
         role="warning" 
         id="data-geo-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/geo' type link, but the database name is not 'NCBI Gene Expression Omnibus' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-nucleotide-test" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-nucleotide-test" 
         test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/nuccore') and not(source[1]='NCBI GenBank') and not(source[1]='NCBI Nucleotide')" 
         role="warning" 
         id="data-nucleotide-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/nuccore' type link, but the database name is not 'NCBI Nucleotide' or 'NCBI GenBank' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bioproject-test" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-bioproject-test" 
         test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/bioproject') and not(source[1]='NCBI BioProject')" 
         role="warning" 
         id="data-bioproject-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/bioproject' type link, but the database name is not 'NCBI BioProject' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-dbgap-test" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-dbgap-test" 
         test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/gap') and not(source[1]='NCBI dbGaP')" 
         role="warning" 
         id="data-dbgap-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/gap' type link, but the database name is not 'NCBI dbGaP' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-popset-test" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-popset-test" 
         test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/popset') and not(source[1]='NCBI PopSet')" 
         role="warning" 
         id="data-popset-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/popset' type link, but the database name is not 'NCBI PopSet' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-sra-test" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-sra-test" 
         test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/sra') and not(source[1]='NCBI Sequence Read Archive')" 
         role="warning" 
         id="data-sra-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/sra' type link, but the database name is not 'NCBI Sequence Read Archive' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-biosample-test" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-biosample-test" 
         test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/biosample') and not(source[1]='NCBI BioSample')" 
         role="warning" 
         id="data-biosample-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/biosample' type link, but the database name is not 'NCBI BioSample' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-protein-test" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-protein-test" 
         test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/protein') and not(source[1]='NCBI Protein')" 
         role="warning" 
         id="data-protein-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/protein' type link, but the database name is not 'NCBI Protein' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-assembly-test" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-assembly-test" 
         test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/assembly') and not(source[1]='NCBI Assembly')" 
         role="warning" 
         id="data-assembly-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/assembly' type link, but the database name is not 'NCBI Assembly' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-ncbi-test-1" 
         test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/') and pub-id[@pub-id-type!='accession']" 
         role="warning" 
         id="data-ncbi-test-1">Data reference with an NCBI link '<value-of select="pub-id[1]/@xlink:href"/>' is not marked as an accession number, which is likely incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-ncbi-test-2" 
         test="matches(lower-case(source[1]),'^ncbi gene expression omnibus$|^ncbi nucleotide$|^ncbi genbank$|^ncbi assembly$|^ncbi bioproject$|^ncbi dbgap$|^ncbi sequence read archive$|^ncbi popset$|^ncbi biosample$') and pub-id[@pub-id-type!='accession']" 
         role="warning" 
         id="data-ncbi-test-2">Data reference with the database source '<value-of select="source[1]"/>' is not marked as an accession number, which is very likely incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-dryad-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-dryad-test-1" 
         test="(starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') or starts-with(pub-id[1][@pub-id-type='doi'],'10.7272')) and (source[1]!='Dryad Digital Repository')" 
         role="warning" 
         id="data-dryad-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a Dryad type doi <value-of select="pub-id[1][@pub-id-type='doi']"/>, but the database name is not 'Dryad Digital Repository' - <value-of select="source[1]"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-dryad-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-dryad-test-2" 
         test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.5061/dryad') or starts-with(pub-id[1][@pub-id-type='doi'],'10.7272')) and (source[1]='Dryad Digital Repository')" 
         role="warning" 
         id="data-dryad-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name  <value-of select="source[1]"/>, but no doi starting with '10.5061/dryad' or '10.7272', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-rcsbpbd-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-rcsbpbd-test-1" 
         test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and not(source[1]='RCSB Protein Data Bank')" 
         role="warning" 
         id="data-rcsbpbd-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.rcsb.org' type link, but the database name is not 'RCSB Protein Data Bank' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-rcsbpbd-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-rcsbpbd-test-3" 
         test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
         role="warning" 
         id="data-rcsbpbd-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a PDB 'http://www.rcsb.org' type link, but is not marked as an accession type link.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdb-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-emdb-test-1" 
         test="not(contains(pub-id[1]/@xlink:href,'empiar')) and matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and not(source[1]='Electron Microscopy Data Bank')" 
         role="warning" 
         id="data-emdb-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb' type link, but the database name is not 'Electron Microscopy Data Bank' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdb-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-emdb-test-3" 
         test="matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
         role="warning" 
         id="data-emdb-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a EMDB 'http://www.ebi.ac.uk/pdbe/emdb' type link, but is not marked as an accession type link.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-empiar-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-empiar-test-1" 
         test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb/empiar/') and not(source[1]='Electron Microscopy Public Image Archive')" 
         role="warning" 
         id="data-empiar-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb/empiar' type link, but the database name is not 'Electron Microscopy Public Image Archive' - <value-of select="source[1]"/>. Is that correct? https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-empiar-test-1</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-arrayexpress-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-arrayexpress-test-1" 
         test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and not(source[1]='ArrayExpress')" 
         role="warning" 
         id="data-arrayexpress-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.ebi.ac.uk/arrayexpress' type link, but the database name is not 'ArrayExpress' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-arrayexpress-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-arrayexpress-test-3" 
         test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/arrayexpress') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
         role="warning" 
         id="data-arrayexpress-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has an ArrayExpress 'www.ebi.ac.uk/arrayexpress' type link, but is not marked as an accession type link.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-pride-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-pride-test-1" 
         test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pride') and not(source[1]='PRIDE')" 
         role="warning" 
         id="data-pride-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.ebi.ac.uk/pride' type link, but the database name is not 'PRIDE' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-pride-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-pride-test-3" 
         test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pride') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
         role="warning" 
         id="data-pride-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a PRIDE 'www.ebi.ac.uk/pride' type link, but is not marked as an accession type link.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-zenodo-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-zenodo-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo') and (source[1]!='Zenodo')" 
         role="warning" 
         id="data-zenodo-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.5281/zenodo' but the database name is not 'Zenodo' - <value-of select="source[1]"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-zenodo-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-zenodo-test-2" 
         test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.5281/zenodo')) and (source[1]='Zenodo')" 
         role="warning" 
         id="data-zenodo-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name  <value-of select="source[1]"/>, but no doi starting with '10.5281/zenodo', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-osf-test-1" 
         test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and not(source[1]='Open Science Framework')" 
         role="warning" 
         id="data-osf-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://osf.io' type link, but the database name is not 'Open Science Framework' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-osf-test-3" 
         test="matches(pub-id[1]/@xlink:href,'^http[s]?://osf.io') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
         role="warning" 
         id="data-osf-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has an OSF 'https://osf.io' type link, but is not marked as an accession type link.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-osf-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-osf-test-4" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17605/OSF') and (source[1]!='Open Science Framework')" 
         role="warning" 
         id="data-osf-test-4">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.17605/OSF' but the database name is not 'Open Science Framework' - <value-of select="source[1]"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-figshare-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-figshare-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare') and (source[1]!='figshare')" 
         role="warning" 
         id="data-figshare-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.6084/m9.figshare' but the database name is not 'figshare' - <value-of select="source[1]"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-figshare-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-figshare-test-2" 
         test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.6084/m9.figshare')) and (source[1]='figshare')" 
         role="warning" 
         id="data-figshare-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.6084/m9.figshare' - is this correct? Figshare sometimes host for other organisations (example http://doi.org/10.1184/R1/9963566), so this may be fine.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-proteomexchange-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-proteomexchange-test-1" 
         test="contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and not(source[1]='ProteomeXchange')" 
         role="warning" 
         id="data-proteomexchange-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://proteomecentral.proteomexchange.org/' type link, but the database name is not 'ProteomeXchange' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-proteomexchange-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-proteomexchange-test-3" 
         test="contains(pub-id[1]/@xlink:href,'proteomecentral.proteomexchange.org/') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
         role="warning" 
         id="data-proteomexchange-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a ProteomeXchange 'http://proteomecentral.proteomexchange.org/' type link, but is not marked as an accession type link.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-openneuro-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-openneuro-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.18112/openneuro') and (source[1]!='OpenNeuro')" 
         role="warning" 
         id="data-openneuro-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.18112/openneuro' but the database name is not 'OpenNeuro' - <value-of select="source[1]"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-openneuro-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-openneuro-test-2" 
         test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.18112/openneuro')) and not(contains(pub-id[1]/@xlink:href,'openneuro.org/datasets')) and (source[1]='OpenNeuro')" 
         role="warning" 
         id="data-openneuro-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.18112/openneuro' or 'openneuro.org/datasets' type link, which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-synapse-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-synapse-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn') and (source[1]!='Synapse')" 
         role="warning" 
         id="data-synapse-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.7303/syn' but the database name is not 'Synapse' - <value-of select="source[1]"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-synapse-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-synapse-test-2" 
         test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7303/syn')) and (source[1]='Synapse')" 
         role="warning" 
         id="data-synapse-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7303/syn', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-bmrb-test-1" 
         test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and not(source[1]='Biological Magnetic Resonance Data Bank')" 
         role="warning" 
         id="data-bmrb-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.bmrb.wisc.edu/data_library/summary' type link, but the database name is not 'Biological Magnetic Resonance Data Bank' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-bmrb-test-3" 
         test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
         role="warning" 
         id="data-bmrb-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a BMRB 'www.bmrb.wisc.edu/data_library/summary' type link, but is not marked as an accession type link.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphdbase-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-morphdbase-test-1" 
         test="contains(pub-id[1]/@xlink:href,'www.morphdbase.de') and not(source[1]='Morph D Base')" 
         role="warning" 
         id="data-morphdbase-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.morphdbase.de' type link, but the database name is not 'Morph D Base' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphdbase-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-morphdbase-test-3" 
         test="contains(pub-id[1]/@xlink:href,'www.morphdbase.de') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
         role="warning" 
         id="data-morphdbase-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a Morph D Base 'www.morphdbase.de' type link, but is not marked as an accession type link.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-mendeley-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-mendeley-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17632') and (source[1]!='Mendeley Data')" 
         role="warning" 
         id="data-mendeley-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.17632' but the database name is not 'Mendeley Data' - <value-of select="source[1]"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-mendeley-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-mendeley-test-2" 
         test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.17632')) and (source[1]='Mendeley Data')" 
         role="warning" 
         id="data-mendeley-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.17632', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-edatashare-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-edatashare-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7488') and (source[1]!='Edinburgh DataShare')" 
         role="warning" 
         id="data-edatashare-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.7488' but the database name is not 'Edinburgh DataShare' - <value-of select="source[1]"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-edatashare-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-edatashare-test-2" 
         test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7488')) and (source[1]='Edinburgh DataShare')" 
         role="warning" 
         id="data-edatashare-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7488', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-eth-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-eth-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.3929') and (source[1]!='ETH Library research collection')" 
         role="warning" 
         id="data-eth-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.3929' but the database name is not 'ETH Library research collection' - <value-of select="source[1]"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-eth-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-eth-test-2" 
         test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.3929')) and (source[1]='ETH Library research collection')" 
         role="warning" 
         id="data-eth-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.3929', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-crcns-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-crcns-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6080') and (source[1]!='Collaborative Research in Computational Neuroscience')" 
         role="warning" 
         id="data-crcns-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.6080' but the database name is not 'Collaborative Research in Computational Neuroscience' - <value-of select="source[1]"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-crcns-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-crcns-test-2" 
         test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.6080')) and (source[1]='Collaborative Research in Computational Neuroscience')" 
         role="warning" 
         id="data-crcns-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.6080', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphosource-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-morphosource-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17602') and (source[1]!='MorphoSource')" 
         role="warning" 
         id="data-morphosource-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.17602' but the database name is not 'MorphoSource' - <value-of select="source[1]"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-morphosource-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-morphosource-test-2" 
         test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.17602')) and (source[1]='MorphoSource')" 
         role="warning" 
         id="data-morphosource-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.17602', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-neurovault-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-neurovault-test-1" 
         test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and not(source[1]='NeuroVault')" 
         role="warning" 
         id="data-neurovault-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'neurovault.org/collections' type link, but the database name is not 'NeuroVault' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-neurovault-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-neurovault-test-3" 
         test="contains(pub-id[1]/@xlink:href,'neurovault.org/collections') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
         role="warning" 
         id="data-neurovault-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a NeuroVault 'neurovault.org/collections' type link, but is not marked as an accession type link.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-wwpdb-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-wwpdb-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.2210') and (source[1]!='Worldwide Protein Data Bank')" 
         role="warning" 
         id="data-wwpdb-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.2210' but the database name is not 'Worldwide Protein Data Bank' - <value-of select="source[1]"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-wwpdb-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-wwpdb-test-2" 
         test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.2210')) and (source[1]='Worldwide Protein Data Bank')" 
         role="warning" 
         id="data-wwpdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.2210', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-sbgdb-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-sbgdb-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID') and (source[1]!='SBGrid Data Bank')" 
         role="warning" 
         id="data-sbgdb-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.15785/SBGRID' but the database name is not 'SBGrid Data Bank' - <value-of select="source[1]"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-sbgdb-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-sbgdb-test-2" 
         test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.15785/SBGRID')) and (source[1]='SBGrid Data Bank')" 
         role="warning" 
         id="data-sbgdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.15785/SBGRID', which is likely incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-harvard-dataverse-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-harvard-dataverse-test-1" 
         test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7910') and (source[1]!='Harvard Dataverse')" 
         role="warning" 
         id="data-harvard-dataverse-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.7910' but the database name is not 'Harvard Dataverse' - <value-of select="source[1]"/>.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-harvard-dataverse-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-harvard-dataverse-test-2" 
         test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.7910')) and (source[1]='Harvard Dataverse')" 
         role="warning" 
         id="data-harvard-dataverse-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.7910', which is likely incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-encode-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-encode-test-1" 
         test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and not(source[1]='ENCODE')" 
         role="warning" 
         id="data-encode-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.encodeproject.org' type link, but the database name is not 'ENCODE' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-encode-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-encode-test-3" 
         test="contains(pub-id[1]/@xlink:href,'www.encodeproject.org') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
         role="warning" 
         id="data-encode-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has an ENCODE 'www.encodeproject.org' type link, but is not marked as an accession type link.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdr-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-emdr-test-1" 
         test="contains(pub-id[1]/@xlink:href,'www.emdataresource.org') and not(source[1]='EMDataResource')" 
         role="warning" 
         id="data-emdr-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.emdataresource.org' type link, but the database name is not 'EMDataResource' - <value-of select="source[1]"/>. Is that correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-emdr-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-emdr-test-3" 
         test="contains(pub-id[1]/@xlink:href,'www.emdataresource.org') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
         role="warning" 
         id="data-emdr-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has an EMDataResource 'www.emdataresource.org' type link, but is not marked as an accession type link.</report>
@@ -12071,22 +12071,22 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation/publisher-name" id="publisher-name-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#publisher-name-colon"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#publisher-name-colon"
         test="matches(.,':')" 
         role="warning" 
         id="publisher-name-colon">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing a colon - <value-of select="."/>. Should the text preceding the colon instead be captured as publisher-loc?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#publisher-name-inc"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#publisher-name-inc"
         test="matches(.,'[Ii]nc\.')" 
         role="warning" 
         id="publisher-name-inc">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing the text 'Inc.' Should the fullstop be removed? <value-of select="."/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-name-replacement-character-presence"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pub-name-replacement-character-presence"
         test="matches(.,'�')" 
         role="error" 
         id="pub-name-replacement-character-presence"><name/> contains the replacement character '�' which is unallowed - <value-of select="."/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-name-newspaper"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pub-name-newspaper"
         test="matches(lower-case(.),'guardian|the independent|times|post|news')" 
         role="warning" 
         id="pub-name-newspaper"><name/> contains the text 'guardian', 'independent', 'times' or 'post' - <value-of select="."/> - is it a newspaper reference? If so, it should be captured as a web or a periodical reference.</report>
@@ -12095,47 +12095,47 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="element-citation//name" id="ref-name-tests">
       <let name="type" value="ancestor::person-group[1]/@person-group-type"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#author-test-1"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#author-test-1"
         test="matches(.,'[Aa]uthor')" 
         role="warning" 
         id="author-test-1">name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Author'. Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#author-test-2"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#author-test-2"
         test="matches(.,'[Ed]itor')" 
         role="warning" 
         id="author-test-2">name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Editor'. Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#author-test-3"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#author-test-3"
         test="matches(.,'[Pp]ress')" 
         role="warning" 
         id="author-test-3">name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Press'. Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#all-caps-surname"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#all-caps-surname"
         test="matches(surname[1],'^[A-Z]*$')" 
         role="warning" 
         id="all-caps-surname">surname in ref '<value-of select="ancestor::ref/@id"/>' is composed of only capitalised letters - <value-of select="surname[1]"/>. Should this be captured as a collab? If not, Should it be - <value-of select="concat(substring(surname[1],1,1),lower-case(substring(surname[1],2)))"/>?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#surname-number-check"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#surname-number-check"
         test="matches(.,'[0-9]')" 
         role="warning" 
         id="surname-number-check">name in ref '<value-of select="ancestor::ref/@id"/>' contains numbers - <value-of select="."/>. Should this be captured as a collab?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#surname-ellipsis-check"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#surname-ellipsis-check"
         test="matches(surname[1],'^\p{Zs}*?…|^\p{Zs}*?\.\p{Zs}?\.\p{Zs}?\.')" 
         role="error" 
         id="surname-ellipsis-check">surname in ref '<value-of select="ancestor::ref/@id"/>' begins with an ellipsis which is wrong - <value-of select="surname"/>. Are there preceding authors missing from the list?</report>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#surname-count"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#surname-count"
         test="count(surname) = 1" 
         role="error" 
         id="surname-count">ref '<value-of select="ancestor::ref/@id"/>' has an <value-of select="$type"/> with <value-of select="count(surname)"/> surnames - <value-of select="."/> - which is incorrect.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#given-names-count"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#given-names-count"
         test="count(given-names) gt 1" 
         role="error" 
         id="given-names-count">ref '<value-of select="ancestor::ref/@id"/>' has an <value-of select="$type"/> with <value-of select="count(given-names)"/> given-names - <value-of select="."/> - which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#given-names-count-2"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#given-names-count-2"
         test="count(given-names) lt 1" 
         role="warning" 
         id="given-names-count-2">ref '<value-of select="ancestor::ref/@id"/>' has an <value-of select="$type"/> with <value-of select="count(given-names)"/> given-names - <value-of select="."/> - is this incorrect?</report>
@@ -12154,7 +12154,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="t" value="translate(.,'-','')"/>
       <let name="sum" value="e:isbn-sum($t)"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#isbn-conformity-test"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#isbn-conformity-test"
         test="$sum = 0" 
         role="error" 
         id="isbn-conformity-test">pub-id contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
@@ -12171,36 +12171,36 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sec[@sec-type='data-availability']/p[1]" id="data-availability-statement">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-sentence-conformity" 
+      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-sentence-conformity" 
         test="matches(.,'\.$|\?$')" 
         role="error" 
         id="das-sentence-conformity">The Data Availability Statement must end with a full stop.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#pre-das-dryad-conformity" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-dryad-conformity" 
         test="matches(.,'[Dd]ryad') and 
         not(parent::sec//element-citation[contains(source[1],'Dryad') or pub-id[@pub-id-type='doi' and (contains(.,'10.7272') or contains(.,'10.5061/dryad'))]])
         and not(ancestor::back//ref-list/ref[element-citation[@publication-type='data' and (contains(source[1],'Dryad') or pub-id[@pub-id-type='doi' and (contains(.,'10.7272') or contains(.,'10.5061/dryad'))])]]/@id = xref[@ref-type='bibr']/@rid)" 
         role="warning" 
         id="pre-das-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad doi and/or database name containing 'Dryad'. If there is a dryad dataset present, ensure that it is captured correctly, otherwise please query the authors for the reference details.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-dryad-conformity" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-dryad-conformity" 
         test="matches(.,'[Dd]ryad') and 
         (not(parent::sec//element-citation[contains(source[1],'Dryad') or pub-id[@pub-id-type='doi' and (contains(.,'10.7272') or contains(.,'10.5061/dryad'))]]))
         and not(ancestor::back//ref-list/ref[element-citation[@publication-type='data' and (contains(source[1],'Dryad') or pub-id[@pub-id-type='doi' and (contains(.,'10.7272') or contains(.,'10.5061/dryad'))])]]/@id = xref[@ref-type='bibr']/@rid)" 
         role="error" 
         id="final-das-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad doi and/or database name containing 'Dryad'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-supplemental-conformity" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-supplemental-conformity" 
         test="matches(.,'[Ss]upplemental [Ff]igure')" 
         role="warning" 
         id="das-supplemental-conformity">Data Availability Statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-request-conformity-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-request-conformity-1" 
         test="matches(.,'[Rr]equest')" 
         role="warning" 
         id="das-request-conformity-1">Data Availability Statement contains the phrase 'request'. Does it state data is available upon request, and if so, has this been approved by editorial?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#das-doi-conformity-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-doi-conformity-1" 
         test="matches(.,'10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+$') and not(matches(.,'http[s]?://doi.org/'))" 
         role="error" 
         id="das-doi-conformity-1">Data Availability Statement contains a doi, but it does not contain the 'https://doi.org/' proxy. All dois should be updated to include a full 'https://doi.org/...' type link.</report>
@@ -12229,7 +12229,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sec[@sec-type='data-availability']/p[not(*)]" id="data-availability-p">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-p-conformity-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-p-conformity-1" 
         test="normalize-space(replace(.,' ',''))=''" 
         role="error" 
         id="final-das-p-conformity-1">p element in data availability section contains no content. It must be removed.</report>
@@ -12272,12 +12272,12 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-info">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-info-conformity"
+      <assert see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-info-conformity"
         test="matches(replace(normalize-space(.),'&quot;',''),'\.$|\?$')" 
         role="error" 
         id="ethics-info-conformity">The ethics statement must end with a full stop.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-info-supplemental-conformity"
+      <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-info-supplemental-conformity"
         test="matches(.,'[Ss]upplemental [Ffigure]')" 
         role="warning" 
         id="ethics-info-supplemental-conformity">Ethics statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling.</report>
@@ -12294,32 +12294,32 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="new-org-regex" value="string-join(for $x in tokenize($org-regex,'\|') return concat('^',$x,'$'),'|')"/>
       
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-list-check"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-list-check"
         test="matches(.,'^\p{Zs}?[A-Za-z]{1,3}\)|^\p{Zs}?\([A-Za-z]{1,3}')" 
         role="warning" 
         id="sec-title-list-check">Section title might start with a list indicator - '<value-of select="."/>'. Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-appendix-check"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-appendix-check"
         test="matches(.,'^[Aa]ppendix')" 
         role="warning" 
         id="sec-title-appendix-check">Section title contains the word appendix - '<value-of select="."/>'. Should it be captured as an appendix?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-appendix-check-2"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-appendix-check-2"
         test="ancestor::body and matches(.,'^[Ss]upplementary |^[Ss]upplemental ')" 
         role="warning" 
         id="sec-title-appendix-check-2">Should the section titled '<value-of select="."/>' be captured as an appendix?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-abbr-check"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-abbr-check"
         test="matches(.,'^[Aa]bbreviation[s]?')" 
         role="warning" 
         id="sec-title-abbr-check">Section title contains the word abbreviation - '<value-of select="."/>'. Is it an abbreviation section? eLife house style is to define abbreviations in the text when they are first mentioned.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-content-mandate"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-content-mandate"
         test="not(*) and (normalize-space(.)='')" 
         role="error" 
         id="sec-title-content-mandate">Section title must not be empty.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-full-stop"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-full-stop"
         test="matches(replace(.,' ',' '),'\.[\p{Zs}]*$')" 
         role="warning" 
         id="sec-title-full-stop">Section title ends with full stop, which is very likely to be incorrect - <value-of select="."/></report>
@@ -12328,38 +12328,38 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="sec-title-space">Section title ends with space(s). Please remove the space '<value-of select="."/>'</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-bold" 
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-bold" 
         test="(count(*) = 1) and child::bold and ($free-text='')" 
         role="error" 
         id="sec-title-bold">All section title content is captured in bold. This is incorrect - <value-of select="."/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-underline"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-underline"
         test="(count(*) = 1) and child::underline and ($free-text='')" 
         role="error" 
         id="sec-title-underline">All section title content is captured in underline. This is incorrect - <value-of select="."/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-italic"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-italic"
         test="(count(*) = 1) and child::italic and ($free-text='') and not(matches(normalize-space(lower-case(.)),$new-org-regex))" 
         role="warning" 
         id="sec-title-italic">All section title content is captured in italics. Is this incorrect? If it is just a species name, then this is likely to be fine - <value-of select="."/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-dna"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-dna"
         test="matches(upper-case($no-link-text),'^DNA | DNA | DNA$') and not(matches($no-link-text,'^DNA | DNA | DNA$'))" 
         role="warning" 
         id="sec-title-dna">Section title contains the phrase DNA, but it is not in all caps - <value-of select="."/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-rna"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-rna"
         test="matches(upper-case($no-link-text),'^RNA | RNA | RNA$') and not(matches($no-link-text,'^RNA | RNA | RNA$'))" 
         role="warning" 
         id="sec-title-rna">Section title contains the phrase RNA, but it is not in all caps - <value-of select="."/></report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-dimension"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-dimension"
         test="matches($no-link-text,'^[1-4]d | [1-4]d | [1-4]d$')" 
         role="warning" 
         id="sec-title-dimension">Section title contains lowercase abbreviation for dimension, when this should always be uppercase 'D' - <value-of select="."/></report>
       
       <!-- AIDS not included due to other meaning/use -->
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-hiv"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-hiv"
         test="matches(upper-case($no-link-text),'^HIV | HIV | HIV') and not(matches($no-link-text,'^HIV | HIV | HIV'))" 
         role="warning" 
         id="sec-title-hiv">Section title contains the word HIV, but it is not in all caps - <value-of select="."/></report>
@@ -12373,22 +12373,22 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="abstract[not(@*)]" id="abstract-house-tests">
       <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#xref-bibr-presence"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#xref-bibr-presence"
         test="descendant::xref[@ref-type='bibr']" 
         role="warning" 
         id="xref-bibr-presence">Abstract contains a citation - '<value-of select="descendant::xref[@ref-type='bibr'][1]"/>' - which isn't usually allowed. Check that this is correct.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#pre-res-comm-test"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-res-comm-test"
         test="($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))" 
         role="warning" 
         id="pre-res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect. Please ensure to check with eLife staff for the required wording.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#final-res-comm-test"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#final-res-comm-test"
         test="($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))" 
         role="error" 
         id="final-res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect.</report>
      
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#res-art-test"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#res-art-test"
         test="(count(p) &gt; 1) and ($subj = 'Research Article')" 
         role="warning" 
         id="res-art-test">'<value-of select="$subj"/>' has more than one paragraph in its abstract, is this correct?</report>
@@ -12396,7 +12396,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="table-wrap[@id='keyresource']//xref[@ref-type='bibr']" id="KRT-xref-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#xref-column-test" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#xref-column-test" 
         test="(count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)" 
         role="warning" 
         id="xref-column-test">'<value-of select="."/>' citation is in a column in the Key Resources Table which usually does not include references. Is it correct?</report>
@@ -12415,17 +12415,17 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="table-wrap[@id='keyresource']//td" id="KRT-td-checks">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#doi-link-test" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#doi-link-test" 
         test="matches(.,'10\.\d{4,9}/') and (count(ext-link[contains(@xlink:href,'doi.org')]) = 0)" 
         role="error" 
         id="doi-link-test">td element containing - '<value-of select="."/>' - looks like it contains a doi, but it contains no link with 'doi.org', which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#PMID-link-test" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#PMID-link-test" 
         test="matches(.,'[Pp][Mm][Ii][Dd][:]?\p{Zs}?[0-9][0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed/') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov/')]) = 0)" 
         role="error" 
         id="PMID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMID, but it contains no link pointing to PubMed, which is incorrect.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#PMCID-link-test" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#PMCID-link-test" 
         test="matches(.,'PMCID[:]?\p{Zs}?PMC[0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)" 
         role="error" 
         id="PMCID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect.</report>
@@ -12439,7 +12439,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="th|td" id="colour-table">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#colour-check-table" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#colour-check-table" 
         test="starts-with(@style,'author-callout') or starts-with(@style,'background-color: ')" 
         role="warning" 
         id="colour-check-table"><name/> element has colour background. Is this correct? It contains <value-of select="."/>.</report>
@@ -12449,12 +12449,12 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="old-allowed-values" value="('author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8')"/>
       <let name="allowed-values" value="('background-color: #90caf9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-colour-check-table-2" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#pre-colour-check-table-2" 
         test="@style=($old-allowed-values,$allowed-values)" 
         role="warning" 
         id="pre-colour-check-table-2"><name/> element containing '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are 'author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8' for blue, green orange, yellow, purple, red, pink and grey respectively. Please ensure one of these is used. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for table cells - blue, green orange, yellow, purple, red, pink and grey. Please confirm how you would like the colour(s) here captured given this information.'.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#final-colour-check-table-2" 
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#final-colour-check-table-2" 
         test="@style=($old-allowed-values,$allowed-values)" 
         role="error" 
         id="final-colour-check-table-2"><name/> element contanining '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are 'author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8' for blue, green orange, yellow, purple, red, pink and grey respectively.</assert>
@@ -12508,17 +12508,17 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="mml:*[@mathcolor]" id="math-colour-tests">
       <let name="allowed-values" value="('red','blue','purple')"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#pre-mathcolor-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#pre-mathcolor-test-1" 
         test="@mathcolor = $allowed-values" 
         role="warning" 
         id="pre-mathcolor-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has a colour style which is not red, blue or purple - '<value-of select="@mathcolor"/>' - which is not allowed. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for text and maths - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) here captured given this information.'.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#final-mathcolor-test-1"
+      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#final-mathcolor-test-1"
         test="@mathcolor = $allowed-values" 
         role="error" 
         id="final-mathcolor-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>' - which is not allowed. Only 'red', 'blue' and 'purple' are allowed.</assert>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#mathcolor-test-2"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#mathcolor-test-2"
         test="@mathcolor = $allowed-values" 
         role="warning" 
         id="mathcolor-test-2">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has <value-of select="@mathcolor"/> colour formatting. Is this OK?</report>
@@ -12527,22 +12527,22 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="mml:*[@mathbackground]" id="mathbackground-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#pre-mathbackground-test-1"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#pre-mathbackground-test-1"
         test="not(ancestor::table-wrap)" 
         role="warning" 
         id="pre-mathbackground-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. Please check this carefully against the original manuscript. If it's not a mistake, and the background colour is deliberate, then please add the following author query -&gt; 'Where possible, we prefer that colours are not used in text in the interests of accessibility and because they may not display in downstream HTML. eLife does not support background colours for text, however we do support the following colours for text itself - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) captured here given this information, and note that our preference would be to use more common forms of emphasis (such as bold, italic or underline) if possible to still convey the same meaning.'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#pre-mathbackground-test-2"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#pre-mathbackground-test-2"
         test="ancestor::table-wrap" 
         role="warning" 
         id="pre-mathbackground-test-2">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. Please check this carefully against the original manuscript. If it's not a mistake, and the background colour is deliberate, then please ensure that the background colour is captured for the table cell (rather than the maths).</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#final-mathbackground-test-1"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#final-mathbackground-test-1"
         test="not(ancestor::table-wrap)" 
         role="error" 
         id="final-mathbackground-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. If it's not a mistake, and the background colour is deliberate, then this will need to removed.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#final-mathbackground-test-2"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#final-mathbackground-test-2"
         test="ancestor::table-wrap" 
         role="error" 
         id="final-mathbackground-test-2">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. If it's not a mistake, and the background colour is deliberate, then either the background colour will need to added to the table cell (rather than the maths), or it needs to be removed.</report>
@@ -12551,7 +12551,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="mml:mtext" id="mtext-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#mtext-test-1"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#mtext-test-1"
         test="matches(.,'^\p{Zs}*\\')" 
         role="warning" 
         id="mtext-test-1">math (<value-of select="name()"/> element) contains '<value-of select="."/>' which looks suspiciously like LaTeX markup. Is it correct? Or is there missing content or content which has been processed incompletely?</report>
@@ -12561,7 +12561,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="inline-formula[not(descendant::mml:mtable) and following-sibling::text()]" 
       id="inline-formula-length-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-length-test-1"
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-length-test-1"
         test="string-length(.) gt 89" 
         role="warning" 
         id="inline-formula-length-test-1">Inline formula containing '<value-of select="."/>' is particularly long. Consider either splitting this up into multiple equations or capturing this as a display equation, as the display on Continuum will likely be strange.</report>
@@ -12691,12 +12691,12 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="lc" value="lower-case($pre-text)"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#pre-pmid-spacing-table" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#pre-pmid-spacing-table" 
         test="ends-with($lc,'pmid: ') or ends-with($lc,'pmid ')" 
         role="error" 
         id="pre-pmid-spacing-table">PMID link should be preceding by 'PMID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#final-pmid-spacing-table" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#final-pmid-spacing-table" 
         test="ends-with($lc,'pmid: ') or ends-with($lc,'pmid ')" 
         role="warning" 
         id="final-pmid-spacing-table">PMID link should be preceding by 'PMID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
@@ -12706,12 +12706,12 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="lc" value="lower-case($pre-text)"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/rrids#pre-rrid-spacing" 
+      <report see="https://elifeproduction.slab.com/posts/rri-ds-5k19v560#pre-rrid-spacing" 
         test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" 
         role="error" 
         id="pre-rrid-spacing">RRID link should be preceded by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/rrids#final-rrid-spacing" 
+      <report see="https://elifeproduction.slab.com/posts/rri-ds-5k19v560#final-rrid-spacing" 
         test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" 
         role="warning" 
         id="final-rrid-spacing">RRID link should be preceded by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
@@ -12720,12 +12720,12 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="ref-list/ref" id="ref-link-mandate">
       <let name="id" value="@id"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pre-ref-link-presence"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-ref-link-presence"
         test="ancestor::article//xref[@rid = $id]" 
         role="warning" 
         id="pre-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-ref-link-presence"
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-ref-link-presence"
         test="ancestor::article//xref[@rid = $id]" 
         role="error" 
         id="final-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
@@ -12734,42 +12734,42 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]" id="fig-permissions-check">
       <let name="label" value="replace(label[1],'\.','')"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-1" 
         test="matches(caption[1],'[Rr]eproduced from')" 
         role="warning" 
         id="reproduce-test-1">The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-2" 
         test="matches(caption[1],'[Rr]eproduced [Ww]ith [Pp]ermission')" 
         role="warning" 
         id="reproduce-test-2">The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-3" 
         test="matches(caption[1],'[Aa]dapted from|[Aa]dapted with')" 
         role="warning" 
         id="reproduce-test-3">The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-4" 
         test="matches(caption[1],'[Rr]eprinted from')" 
         role="warning" 
         id="reproduce-test-4">The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-5" 
         test="matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" 
         role="warning" 
         id="reproduce-test-5">The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-6" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-6" 
         test="matches(caption[1],'[Mm]odified from')" 
         role="warning" 
         id="reproduce-test-6">The caption for <value-of select="$label"/> contains the text 'modified from', but has no permissions. Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-7"
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-7"
         test="matches(caption[1],'[Mm]odified [Ww]ith')" 
         role="warning" 
         id="reproduce-test-7">The caption for <value-of select="$label"/> contains the text 'modified with', but has no permissions. Is this correct?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#reproduce-test-8" 
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-8" 
         test="matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')" 
         role="warning" 
         id="reproduce-test-8">The caption for <value-of select="$label"/> contains the text 'used with permission', but has no permissions. Is this correct?</report>
@@ -12780,12 +12780,12 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="child" value="child::*/local-name()"/>
       <let name="formatting-elems" value="('bold','fixed-case','italic','monospace','overline','overline-start','overline-end','roman','sans-serif','sc','strike','underline','underline-start','underline-end','ruby')"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#xref-parent-test"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#xref-parent-test"
         test="$parent = $formatting-elems" 
         role="error" 
         id="xref-parent-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#xref-child-test"
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#xref-child-test"
         test="$child = $formatting-elems" 
         role="warning" 
         id="xref-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is likely not correct.</report>
@@ -12812,7 +12812,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="article" id="code-fork">
       <let name="test" value="e:code-check(lower-case(.))"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#code-fork-info" 
+      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#code-fork-info" 
         test="$test//*:match" 
         role="warning" 
         id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join(for $x in $test//*:match return $x,', ')"/>.</report>
@@ -12871,7 +12871,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="ref-list//element-citation/person-group[@person-group-type='author']//given-names" id="ref-given-names">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#ref-given-names-test-1"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#ref-given-names-test-1"
         test="string-length(.) gt 4" 
         role="warning" 
         id="ref-given-names-test-1">Given names should always be initialised. Ref '<value-of select="ancestor::ref[1]/@id"/>' contains a given names with a string longer than 4 characters - '<value-of select="."/>' in <value-of select="concat(preceding-sibling::surname[1],' ',.)"/>. Is this a surname captured as given names? Or a fully spelt out given names?</report>
@@ -12879,7 +12879,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sec[@sec-type='data-availability']//element-citation/person-group[@person-group-type='author']//given-names" id="data-ref-given-names">      
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ref-given-names-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-ref-given-names-test-1" 
         test="string-length(.) gt 4" 
         role="warning" 
         id="data-ref-given-names-test-1">Given names should always be initialised. Ref contains a given names with a string longer than 4 characters - '<value-of select="."/>' in <value-of select="concat(preceding-sibling::surname[1],' ',.)"/>. Is this a surname captured as given names? Or a fully spelt out given names?</report>
@@ -12888,7 +12888,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="fig[ancestor::sub-article]/caption/title" id="ar-fig-title-tests">     
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#ar-fig-title-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#ar-fig-title-test-1" 
         test="lower-case(normalize-space(.))=('title','title.')" 
         role="warning" 
         id="ar-fig-title-test-1">Please query author for a <value-of select="ancestor::fig/label"/> title, and/or remove placeholder title text - <value-of select="."/>.</report>
@@ -12898,7 +12898,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sec/p/*[1][not(preceding-sibling::text()) or (normalize-space(preceding-sibling::text())='')]" id="section-title-tests">     
       <let name="following-text" value="following-sibling::text()[1]"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#section-title-test-1"
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#section-title-test-1"
         test="(name()=('italic','bold','underline')) and (ends-with(.,'.') or matches($following-text,'^\p{Zs}?\.|^[\p{P}]?\p{Zs}?[A-Z]|^[\p{P}]?\p{Zs}?\d')) and not((name()='italic') and matches(lower-case(.),$sec-title-regex))" 
         role="warning" 
         id="section-title-test-1"><name/> text begins a paragraph - <value-of select="."/> - Should it be marked up as a section title (Heading level <value-of select="count(ancestor::sec) + 1"/>)?</report>
@@ -12958,7 +12958,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="substring" value="substring-after($l,'github.com/')"/>
       <let name="owner-repo" value="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#github-no-citation"  
+      <assert see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#github-no-citation"  
         test="preceding::ext-link[contains(lower-case(@xlink:href),$owner-repo)] or ancestor::article//element-citation[@publication-type=('software','data') and (contains(lower-case(ext-link[1]),$owner-repo) or  contains(lower-case(pub-id[1]/@xlink:href),$owner-repo))]" 
         role="warning" 
         id="github-no-citation">This GitHub link - <value-of select="@xlink:href"/> - is included in the text, but there is no software reference for it. Please add a software reference or, in the event that all the information is not available, query the authors for the reference details.</assert>
@@ -12971,7 +12971,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="substring" value="substring-after($l,'gitlab.com/')"/>
       <let name="owner-repo" value="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#gitlab-no-citation" 
+      <assert see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#gitlab-no-citation" 
         test="preceding::ext-link[contains(lower-case(@xlink:href),$owner-repo)] or ancestor::article//element-citation[@publication-type=('software','data') and (contains(lower-case(ext-link[1]),$owner-repo) or  contains(lower-case(pub-id[1]/@xlink:href),$owner-repo))]" 
         role="warning" 
         id="gitlab-no-citation">This GitLab link - <value-of select="@xlink:href"/> - is included in the text, but there is no software reference for it. Please add a software reference or, in the event that all the information is not available, query the authors for the reference details.</assert>
@@ -13009,12 +13009,12 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="cite" value="e:citation-format1(.)"/>
       <let name="host" value="lower-case(source[1])"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-doi-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#software-doi-test-1" 
         test="$host='zenodo' and not(contains(ext-link[1],'10.5281/zenodo'))" 
         role="warning" 
         id="software-doi-test-1"><value-of select="$cite"/> is a software ref with a source (<value-of select="source[1]"/>) known to register dois starting with '10.5281/zenodo'. Should it have a link in the format 'https://doi.org/10.5281/zenodo...'?</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#software-doi-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#software-doi-test-2" 
         test="$host='figshare' and not(contains(ext-link[1],'10.6084/m9.figshare'))" 
         role="warning" 
         id="software-doi-test-2"><value-of select="$cite"/> is a software ref with a source (<value-of select="source[1]"/>) known to register dois starting with '10.6084/m9.figshare'. Should it have a link in the format 'https://doi.org/10.6084/m9.figshare...'?</report>
@@ -13035,7 +13035,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[(lower-case(source[1])='zenodo') or contains(ext-link[1],'10.5281/zenodo') or contains(pub-id[@pub-id-type='doi'][1],'10.5281/zenodo')]" id="zenodo-tests">
       
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#zenodo-check"  
+      <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#zenodo-check"  
         test="@publication-type=('data','software','preprint','report')" 
         role="error" 
         id="zenodo-check"><value-of select="@publication-type"/> type reference <value-of select="if (parent::ref[@id]) then concat('(with id ',parent::ref[1]/@id,')') else ()"/> is a zenodo one, which means that it must be one of the following reference types: data, software, preprint or report.</assert>
@@ -13056,12 +13056,12 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="d-count" value="if ($t-count = 1) then 1
                                  else count(distinct-values($t))"/>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#doi-in-display-test"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#doi-in-display-test"
         test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+|\p{Zs}10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+')" 
         role="error" 
         id="doi-in-display-test"><value-of select="name()"/> element contains a doi - <value-of select="."/>. The doi must be moved to the appropriate field, and the correct information should be included in this element (or queried if the information is missing).</report>
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#link-in-display-test"
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#link-in-display-test"
         test="matches(.,'https?:|ftp://|git://|tel:|mailto:')" 
         role="error" 
         id="link-in-display-test"><value-of select="name()"/> element contains a url - <value-of select="."/>. The url must be moved to the appropriate field (if it is a doi, then it should be captured as a doi without the 'https://doi.org/' prefix), and the correct information should be included in this element (or queried if the information is missing).</report>
@@ -13092,457 +13092,457 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article//p[matches(.,'[âÂÅÃËÆ]')]|sub-article//td[matches(.,'[âÂÅÃËÆ]')]|sub-article//th[matches(.,'[âÂÅÃËÆ]')]" id="unicode-tests">
       
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-1" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-1" 
         test="contains(.,'â‚¬')" 
         role="warning" 
         id="unicode-test-1"><name/> element contains 'â‚¬' - this should instead be the character '€'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-2" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-2" 
         test="contains(.,'Ã€')" 
         role="warning" 
         id="unicode-test-2"><name/> element contains 'Ã€' - this should instead be the character 'À'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-3" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-3" 
         test="contains(.,'Ã')" 
         role="warning" 
         id="unicode-test-3"><name/> element contains 'Ã' - this should instead be the character 'Á'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-4" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-4" 
         test="contains(.,'â€š')" 
         role="warning" 
         id="unicode-test-4"><name/> element contains 'â€š' - this should instead be the character '‚'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-5" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-5" 
         test="contains(.,'Ã‚')" 
         role="warning" 
         id="unicode-test-5"><name/> element contains 'Ã‚' - this should instead be the character 'Â'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-6" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-6" 
         test="contains(.,'Æ’')" 
         role="warning" 
         id="unicode-test-6"><name/> element contains 'Æ’' - this should instead be the character 'ƒ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-7" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-7" 
         test="contains(.,'Ãƒ')" 
         role="warning" 
         id="unicode-test-7"><name/> element contains 'Ãƒ' - this should instead be the character 'Ã'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-8" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-8" 
         test="contains(.,'â€ž')" 
         role="warning" 
         id="unicode-test-8"><name/> element contains 'â€ž' - this should instead be the character '„'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-9" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-9" 
         test="contains(.,'Ã„')" 
         role="warning" 
         id="unicode-test-9"><name/> element contains 'Ã„' - this should instead be the character 'Ä'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-10" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-10" 
         test="contains(.,'â€¦')" 
         role="warning" 
         id="unicode-test-10"><name/> element contains 'â€¦' - this should instead be the character '…'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-11" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-11" 
         test="contains(.,'Ã…')" 
         role="warning" 
         id="unicode-test-11"><name/> element contains 'Ã…' - this should instead be the character 'Å'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-13" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-13" 
         test="contains(.,'Ã†')" 
         role="warning" 
         id="unicode-test-13"><name/> element contains 'Ã†' - this should instead be the character 'Æ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-14" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-14" 
         test="contains(.,'â€¡')" 
         role="warning" 
         id="unicode-test-14"><name/> element contains 'â€¡' - this should instead be the character '‡'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-15" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-15" 
         test="contains(.,'Ã‡')" 
         role="warning" 
         id="unicode-test-15"><name/> element contains 'Ã‡' - this should instead be the character 'Ç'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-16" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-16" 
         test="contains(.,'Ë†')" 
         role="warning" 
         id="unicode-test-16"><name/> element contains 'Ë†' - this should instead be the character 'ˆ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-17" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-17" 
         test="contains(.,'Ãˆ')" 
         role="warning" 
         id="unicode-test-17"><name/> element contains 'Ãˆ' - this should instead be the character 'È'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-18" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-18" 
         test="contains(.,'â€°')" 
         role="warning" 
         id="unicode-test-18"><name/> element contains 'â€°' - this should instead be the character '‰'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-19" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-19" 
         test="contains(.,'Ã‰')" 
         role="warning" 
         id="unicode-test-19"><name/> element contains 'Ã‰' - this should instead be the character 'É'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-21" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-21" 
         test="contains(.,'ÃŠ')" 
         role="warning" 
         id="unicode-test-21"><name/> element contains 'ÃŠ' - this should instead be the character 'Ê'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-22" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-22" 
         test="contains(.,'â€¹')" 
         role="warning" 
         id="unicode-test-22"><name/> element contains 'â€¹' - this should instead be the character '‹'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-23" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-23" 
         test="contains(.,'Ã‹')" 
         role="warning" 
         id="unicode-test-23"><name/> element contains 'Ã‹' - this should instead be the character 'Ë'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-24" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-24" 
         test="contains(.,'Å’')" 
         role="warning" 
         id="unicode-test-24"><name/> element contains 'Å’' - should this instead be the character 'Œ'? - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-25" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-25" 
         test="contains(.,'ÃŒ')" 
         role="warning" 
         id="unicode-test-25"><name/> element contains 'ÃŒ' - this should instead be the character 'Ì'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-26" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-26" 
         test="contains(.,'Ã')" 
         role="warning" 
         id="unicode-test-26"><name/> element contains 'Ã' - this should instead be the character 'Í'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-27" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-27" 
         test="contains(.,'Å½')" 
         role="warning" 
         id="unicode-test-27"><name/> element contains 'Å½' - this should instead be the character 'Ž'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-28" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-28" 
         test="contains(.,'ÃŽ')" 
         role="warning" 
         id="unicode-test-28"><name/> element contains 'ÃŽ' - this should instead be the character 'Î'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-29" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-29" 
         test="contains(.,'Ã')" 
         role="warning" 
         id="unicode-test-29"><name/> element contains 'Ã' - this should instead be the character 'Ï'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-30" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-30" 
         test="contains(.,'Ã')" 
         role="warning" 
         id="unicode-test-30"><name/> element contains 'Ã' - this should instead be the character 'Ð'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-31" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-31" 
         test="contains(.,'â€˜')" 
         role="warning" 
         id="unicode-test-31"><name/> element contains 'â€˜' - this should instead be the character '‘'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-32" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-32" 
         test="contains(.,'Ã‘')" 
         role="warning" 
         id="unicode-test-32"><name/> element contains 'Ã‘' - this should instead be the character 'Ñ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-33" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-33" 
         test="contains(.,'â€™')" 
         role="warning" 
         id="unicode-test-33"><name/> element contains 'â€™' - this should instead be the character '’'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-34" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-34" 
         test="contains(.,'Ã’')" 
         role="warning" 
         id="unicode-test-34"><name/> element contains 'Ã’' - this should instead be the character 'Ò'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-35" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-35" 
         test="contains(.,'â€œ')" 
         role="warning" 
         id="unicode-test-35"><name/> element contains 'â€œ' - this should instead be the character '“'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-36" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-36" 
         test="contains(.,'Ã“')" 
         role="warning" 
         id="unicode-test-36"><name/> element contains 'Ã“' - this should instead be the character 'Ó'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-37" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-37" 
         test="contains(.,'â€')" 
         role="warning" 
         id="unicode-test-37"><name/> element contains 'â€' - this should instead be the character '”'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-38" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-38" 
         test="contains(.,'Ã”')" 
         role="warning" 
         id="unicode-test-38"><name/> element contains 'Ã”' - this should instead be the character 'Ô'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-39" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-39" 
         test="contains(.,'Ã•')" 
         role="warning" 
         id="unicode-test-39"><name/> element contains 'Ã•' - this should instead be the character 'Õ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-40" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-40" 
         test="contains(.,'â€“')" 
         role="warning" 
         id="unicode-test-40"><name/> element contains 'â€“' - this should instead be the character '–'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-41" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-41" 
         test="contains(.,'Ã–')" 
         role="warning" 
         id="unicode-test-41"><name/> element contains 'Ã–' - this should instead be the character 'Ö'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-42" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-42" 
         test="contains(.,'â€”')" 
         role="warning" 
         id="unicode-test-42"><name/> element contains 'â€”' - this should instead be the character '—'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-43" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-43" 
         test="contains(.,'Ã—')" 
         role="warning" 
         id="unicode-test-43"><name/> element contains 'Ã—' - this should instead be the character '×'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-44" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-44" 
         test="contains(.,'Ëœ')" 
         role="warning" 
         id="unicode-test-44"><name/> element contains 'Ëœ' - this should instead be the character '˜'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-45" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-45" 
         test="contains(.,'Ã˜')" 
         role="warning" 
         id="unicode-test-45"><name/> element contains 'Ã˜' - this should instead be the character 'Ø'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-46" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-46" 
         test="contains(.,'Ã™')" 
         role="warning" 
         id="unicode-test-46"><name/> element contains 'Ã™' - this should instead be the character 'Ù'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-47" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-47" 
         test="contains(.,'Å¡')" 
         role="warning" 
         id="unicode-test-47"><name/> element contains 'Å¡' - this should instead be the character 'š'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-48" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-48" 
         test="contains(.,'Ãš')" 
         role="warning" 
         id="unicode-test-48"><name/> element contains 'Ãš' - this should instead be the character 'Ú'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-49" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-49" 
         test="contains(.,'â€º')" 
         role="warning" 
         id="unicode-test-49"><name/> element contains 'â€º' - this should instead be the character '›'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-50" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-50" 
         test="contains(.,'Ã›')" 
         role="warning" 
         id="unicode-test-50"><name/> element contains 'Ã›' - this should instead be the character 'Û'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-51" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-51" 
         test="contains(.,'Å“')" 
         role="warning" 
         id="unicode-test-51"><name/> element contains 'Å“' - this should instead be the character 'œ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-52" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-52" 
         test="contains(.,'Ãœ')" 
         role="warning" 
         id="unicode-test-52"><name/> element contains 'Ãœ' - this should instead be the character 'Ü'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-53" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-53" 
         test="contains(.,'Ã')" 
         role="warning" 
         id="unicode-test-53"><name/> element contains 'Ã' - this should instead be the character 'Ý'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-54" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-54" 
         test="contains(.,'Å¾')" 
         role="warning" 
         id="unicode-test-54"><name/> element contains 'Å¾' - this should instead be the character 'ž'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-55" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-55" 
         test="contains(.,'Ãž')" 
         role="warning" 
         id="unicode-test-55"><name/> element contains 'Ãž' - this should instead be the character 'Þ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-56" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-56" 
         test="contains(.,'Å¸')" 
         role="warning" 
         id="unicode-test-56"><name/> element contains 'Å¸' - this should instead be the character 'Ÿ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-57" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-57" 
         test="contains(.,'ÃŸ')" 
         role="warning" 
         id="unicode-test-57"><name/> element contains 'ÃŸ' - this should instead be the character 'ß'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-58" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-58" 
         test="contains(.,'Â¡')" 
         role="warning" 
         id="unicode-test-58"><name/> element contains 'Â¡' - this should instead be the character '¡'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-59" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-59" 
         test="contains(.,'Ã¡')" 
         role="warning" 
         id="unicode-test-59"><name/> element contains 'Ã¡' - this should instead be the character 'á'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-60" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-60" 
         test="contains(.,'Â¢')" 
         role="warning" 
         id="unicode-test-60"><name/> element contains 'Â¢' - this should instead be the character '¢'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-61" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-61" 
         test="contains(.,'Ã¢')" 
         role="warning" 
         id="unicode-test-61"><name/> element contains 'Ã¢' - this should instead be the character 'â'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-62" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-62" 
         test="contains(.,'Â£')" 
         role="warning" 
         id="unicode-test-62"><name/> element contains 'Â£' - this should instead be the character '£'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-63" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-63" 
         test="contains(.,'Ã£')" 
         role="warning" 
         id="unicode-test-63"><name/> element contains 'Ã£' - this should instead be the character 'ã'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-64" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-64" 
         test="contains(.,'Â¤')" 
         role="warning" 
         id="unicode-test-64"><name/> element contains 'Â¤' - this should instead be the character '¤'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-65" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-65" 
         test="contains(.,'Ã¤')" 
         role="warning" 
         id="unicode-test-65"><name/> element contains 'Ã¤' - this should instead be the character 'ä'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-66" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-66" 
         test="contains(.,'Ã¥')" 
         role="warning" 
         id="unicode-test-66"><name/> element contains 'Ã¥' - this should instead be the character 'å'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-67" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-67" 
         test="contains(.,'Â¨')" 
         role="warning" 
         id="unicode-test-67"><name/> element contains 'Â¨' - this should instead be the character '¨'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-68" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-68" 
         test="contains(.,'Ã¨')" 
         role="warning" 
         id="unicode-test-68"><name/> element contains 'Ã¨' - this should instead be the character 'è'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-69" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-69" 
         test="contains(.,'Âª')" 
         role="warning" 
         id="unicode-test-69"><name/> element contains 'Âª' - this should instead be the character 'ª'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-70" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-70" 
         test="contains(.,'Ãª')" 
         role="warning" 
         id="unicode-test-70"><name/> element contains 'Ãª' - this should instead be the character 'ê'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-71" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-71" 
         test="contains(.,'Â­')" 
         role="warning" 
         id="unicode-test-71"><name/> element contains 'Â­' - this should instead be the character '­'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-72" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-72" 
         test="contains(.,'Ã­')" 
         role="warning" 
         id="unicode-test-72"><name/> element contains 'Ã­' - this should instead be the character 'í'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-73" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-73" 
         test="contains(.,'Â¯')" 
         role="warning" 
         id="unicode-test-73"><name/> element contains 'Â¯' - this should instead be the character '¯'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-74" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-74" 
         test="contains(.,'Ã¯')" 
         role="warning" 
         id="unicode-test-74"><name/> element contains 'Ã¯' - this should instead be the character 'ï'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-75" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-75" 
         test="contains(.,'Â°')" 
         role="warning" 
         id="unicode-test-75"><name/> element contains 'Â°' - this should instead be the character '°'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-76" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-76" 
         test="contains(.,'Ã°')" 
         role="warning" 
         id="unicode-test-76"><name/> element contains 'Ã°' - this should instead be the character 'ð'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-77" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-77" 
         test="contains(.,'Â±')" 
         role="warning" 
         id="unicode-test-77"><name/> element contains 'Â±' - this should instead be the character '±'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-78" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-78" 
         test="contains(.,'Ã±')" 
         role="warning" 
         id="unicode-test-78"><name/> element contains 'Ã±' - this should instead be the character 'ñ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-79" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-79" 
         test="contains(.,'Â´')" 
         role="warning" 
         id="unicode-test-79"><name/> element contains 'Â´' - this should instead be the character '´'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-80" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-80" 
         test="contains(.,'Ã´')" 
         role="warning" 
         id="unicode-test-80"><name/> element contains 'Ã´' - this should instead be the character 'ô'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-81" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-81" 
         test="contains(.,'Âµ')" 
         role="warning" 
         id="unicode-test-81"><name/> element contains 'Âµ' - this should instead be the character 'µ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-82" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-82" 
         test="contains(.,'Ãµ')" 
         role="warning" 
         id="unicode-test-82"><name/> element contains 'Ãµ' - this should instead be the character 'õ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-83" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-83" 
         test="contains(.,'Â¶')" 
         role="warning" 
         id="unicode-test-83"><name/> element contains 'Â¶' - this should instead be the character '¶'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-84" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-84" 
         test="contains(.,'Ã¶')" 
         role="warning" 
         id="unicode-test-84"><name/> element contains 'Ã¶' - this should instead be the character 'ö'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-85" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-85" 
         test="contains(.,'Â·')" 
         role="warning" 
         id="unicode-test-85"><name/> element contains 'Â·' - this should instead be the character '·'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-86" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-86" 
         test="contains(.,'Ã·')" 
         role="warning" 
         id="unicode-test-86"><name/> element contains 'Ã·' - this should instead be the character '÷'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-87" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-87" 
         test="contains(.,'Â¸')" 
         role="warning" 
         id="unicode-test-87"><name/> element contains 'Â¸' - this should instead be the character '¸'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-88" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-88" 
         test="contains(.,'Ã¸')" 
         role="warning" 
         id="unicode-test-88"><name/> element contains 'Ã¸' - this should instead be the character 'ø'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-89" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-89" 
         test="contains(.,'Ã¹')" 
         role="warning" 
         id="unicode-test-89"><name/> element contains 'Ã¹' - this should instead be the character 'ù'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-90" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-90" 
         test="contains(.,'Âº')" 
         role="warning" 
         id="unicode-test-90"><name/> element contains 'Âº' - this should instead be the character 'º'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-91" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-91" 
         test="contains(.,'Ãº')" 
         role="warning" 
         id="unicode-test-91"><name/> element contains 'Ãº' - this should instead be the character 'ú'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-92" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-92" 
         test="contains(.,'Â¿')" 
         role="warning" 
         id="unicode-test-92"><name/> element contains 'Â¿' - this should instead be the character '¿'. - <value-of select="."/>.</report>
 
-        <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-93" 
+        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-93" 
         test="contains(.,'Ã¿')" 
         role="warning" 
         id="unicode-test-93"><name/> element contains 'Ã¿' - this should instead be the character 'ÿ'. - <value-of select="."/>.</report>
@@ -13552,7 +13552,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="p[not(descendant::p or descendant::td or descendant::th)]|td[not(descendant::p)]|th[not(descendant::p)]" 
       id="private-char-tests">
       
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/general-content#private-char-test"
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#private-char-test"
         test="matches(.,'\p{Co}')" 
         role="error" 
         id="private-char-test"><name/> element contains private use character(s). They either need removing or changing to the correct character. Private characters: '<value-of select="string-join(distinct-values(tokenize(.,'\p{Zs}')[matches(.,'\p{Co}')]),' ')"/>'.</report>

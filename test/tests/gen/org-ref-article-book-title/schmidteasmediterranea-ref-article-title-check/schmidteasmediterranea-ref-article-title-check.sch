@@ -1199,7 +1199,7 @@
   <pattern id="org-pattern">
     <rule context="element-citation/article-title|element-citation/chapter-title|element-citation/source|element-citation/data-title" id="org-ref-article-book-title">
       <let name="lc" value="lower-case(.)"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#schmidteasmediterranea-ref-article-title-check" test="matches($lc,'schmidtea\p{Zs}?mediterranea') and not(italic[contains(text() ,'Schmidtea mediterranea')])" role="info" id="schmidteasmediterranea-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Schmidtea mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#schmidteasmediterranea-ref-article-title-check" test="matches($lc,'schmidtea\p{Zs}?mediterranea') and not(italic[contains(text() ,'Schmidtea mediterranea')])" role="info" id="schmidteasmediterranea-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'Schmidtea mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

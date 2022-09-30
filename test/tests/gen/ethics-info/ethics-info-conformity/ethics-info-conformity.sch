@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-info">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-info-conformity" test="matches(replace(normalize-space(.),'&quot;',''),'\.$|\?$')" role="error" id="ethics-info-conformity">The ethics statement must end with a full stop.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-info-conformity" test="matches(replace(normalize-space(.),'&quot;',''),'\.$|\?$')" role="error" id="ethics-info-conformity">The ethics statement must end with a full stop.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

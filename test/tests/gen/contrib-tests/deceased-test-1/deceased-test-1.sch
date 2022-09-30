@@ -1217,7 +1217,7 @@
       <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
       <let name="fn" value="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
       <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/people/deceased-status#deceased-test-1" test="matches($fn,'[Dd]eceased') and not(@deceased='yes')" role="error" id="deceased-test-1">
+      <report see="https://elifeproduction.slab.com/posts/deceased-status-8gs60uqk#deceased-test-1" test="matches($fn,'[Dd]eceased') and not(@deceased='yes')" role="error" id="deceased-test-1">
         <value-of select="$name"/> has a linked footnote '<value-of select="$fn"/>', but not @deceased="yes" which is incorrect.</report>
     </rule>
   </pattern>

@@ -1209,7 +1209,7 @@
       <let name="first-cite" value="ancestor::article/body/descendant::xref[parent::p and not(ancestor::caption) and not(ancestor::table-wrap) and (@rid = $id)][1]"/>
       <let name="first-cite-parent" value="if ($first-cite/ancestor::list) then $first-cite/ancestor::list[last()] else $first-cite/parent::p"/>
       <let name="in-between-elements" value="distinct-values(         $first-cite-parent/following-sibling::*[@id=$id or (child::*[@id=$id] and local-name()='fig-group') or following::*[@id=$id] or following::*/*[@id=$id]]/local-name()         )"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-specific-test-5" test="($fol-sib/local-name() = 'disp-formula') and (not(matches($pre-sib,'\.\p{Zs}*?$|\?\p{Zs}*?$|!\p{Zs}*?$')))" role="warning" id="fig-specific-test-5">
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-specific-test-5" test="($fol-sib/local-name() = 'disp-formula') and (not(matches($pre-sib,'\.\p{Zs}*?$|\?\p{Zs}*?$|!\p{Zs}*?$')))" role="warning" id="fig-specific-test-5">
         <value-of select="$lab"/> is immediately followed by a display formula, and preceded by a paragraph which does not end with punctuation. Should it should be moved after the display formula or after the para following the display formula?</report>
     </rule>
   </pattern>

@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-ncbi-test-2" test="matches(lower-case(source[1]),'^ncbi gene expression omnibus$|^ncbi nucleotide$|^ncbi genbank$|^ncbi assembly$|^ncbi bioproject$|^ncbi dbgap$|^ncbi sequence read archive$|^ncbi popset$|^ncbi biosample$') and pub-id[@pub-id-type!='accession']" role="warning" id="data-ncbi-test-2">Data reference with the database source '<value-of select="source[1]"/>' is not marked as an accession number, which is very likely incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-ncbi-test-2" test="matches(lower-case(source[1]),'^ncbi gene expression omnibus$|^ncbi nucleotide$|^ncbi genbank$|^ncbi assembly$|^ncbi bioproject$|^ncbi dbgap$|^ncbi sequence read archive$|^ncbi popset$|^ncbi biosample$') and pub-id[@pub-id-type!='accession']" role="warning" id="data-ncbi-test-2">Data reference with the database source '<value-of select="source[1]"/>' is not marked as an accession number, which is very likely incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

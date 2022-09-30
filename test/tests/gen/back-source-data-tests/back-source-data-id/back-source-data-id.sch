@@ -1200,7 +1200,7 @@
     <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource data')]" id="back-source-data-tests">
       <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource data')]) - count(following-sibling::supplementary-material[contains(label[1],'ource data')])"/>
       <let name="no" value="substring-after(@id,'sdata')"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#back-source-data-id" test="matches(@id,'^sdata\d{1,2}$')" role="error" id="back-source-data-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. Source data need to have ids in the format 'sdata0'.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#back-source-data-id" test="matches(@id,'^sdata\d{1,2}$')" role="error" id="back-source-data-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. Source data need to have ids in the format 'sdata0'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

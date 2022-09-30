@@ -1199,7 +1199,7 @@
   <pattern id="content-containers">
     <rule context="table-wrap/caption/title" id="table-title-tests-2">
       <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-5" test="string-length(.) gt 250" role="warning" id="table-title-test-5">title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> is longer than 250 characters. Is it a caption instead?</report>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-title-test-5" test="string-length(.) gt 250" role="warning" id="table-title-test-5">title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> is longer than 250 characters. Is it a caption instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

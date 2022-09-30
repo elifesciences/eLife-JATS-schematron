@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="zenodo-checks">
     <rule context="element-citation[(lower-case(source[1])='zenodo') or contains(ext-link[1],'10.5281/zenodo') or contains(pub-id[@pub-id-type='doi'][1],'10.5281/zenodo')]" id="zenodo-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#zenodo-check" test="@publication-type=('data','software','preprint','report')" role="error" id="zenodo-check">
+      <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#zenodo-check" test="@publication-type=('data','software','preprint','report')" role="error" id="zenodo-check">
         <value-of select="@publication-type"/> type reference <value-of select="if (parent::ref[@id]) then concat('(with id ',parent::ref[1]/@id,')') else ()"/> is a zenodo one, which means that it must be one of the following reference types: data, software, preprint or report.</assert>
     </rule>
   </pattern>

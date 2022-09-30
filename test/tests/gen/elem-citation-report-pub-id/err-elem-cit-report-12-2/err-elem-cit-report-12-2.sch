@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="element-citation-report-tests">
     <rule context="element-citation[@publication-type='report']/pub-id" id="elem-citation-report-pub-id">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-12-2" test="@pub-id-type='doi' or @pub-id-type='isbn'" role="error" id="err-elem-cit-report-12-2">[err-elem-cit-report-12-2]
+      <assert see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-12-2" test="@pub-id-type='doi' or @pub-id-type='isbn'" role="error" id="err-elem-cit-report-12-2">[err-elem-cit-report-12-2]
         The only allowed pub-id types are 'doi' and 'isbn'.
         Reference '<value-of select="ancestor::ref/@id"/>' has a pub-id type of 
         '<value-of select="@pub-id-type"/>'.</assert>

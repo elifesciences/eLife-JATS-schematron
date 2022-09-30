@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-mendeley-test-1" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17632') and (source[1]!='Mendeley Data')" role="warning" id="data-mendeley-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.17632' but the database name is not 'Mendeley Data' - <value-of select="source[1]"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-mendeley-test-1" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.17632') and (source[1]!='Mendeley Data')" role="warning" id="data-mendeley-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.17632' but the database name is not 'Mendeley Data' - <value-of select="source[1]"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

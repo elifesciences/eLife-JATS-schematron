@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="element-citation-journal-tests">
     <rule context="element-citation[@publication-type='journal']" id="elem-citation-journal">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#pre-err-elem-cit-journal-3-1" test="count(article-title)=1" role="warning" id="pre-err-elem-cit-journal-3-1">Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements. If you are unable to determine this then please query the authors for this information.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#pre-err-elem-cit-journal-3-1" test="count(article-title)=1" role="warning" id="pre-err-elem-cit-journal-3-1">Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements. If you are unable to determine this then please query the authors for this information.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

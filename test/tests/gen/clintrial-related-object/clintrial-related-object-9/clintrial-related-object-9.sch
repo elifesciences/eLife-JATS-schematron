@@ -1199,7 +1199,7 @@
   <pattern id="article-metadata">
     <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
       <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-related-object-9" test="matches(@id,'^RO[1-9]')" role="error" id="clintrial-related-object-9">
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-9" test="matches(@id,'^RO[1-9]')" role="error" id="clintrial-related-object-9">
         <name/> must have an @id in the format 'RO1'. '<value-of select="@id"/>' does not conform to this convention.</assert>
     </rule>
   </pattern>

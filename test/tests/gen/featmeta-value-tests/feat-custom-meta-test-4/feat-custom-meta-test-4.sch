@@ -1199,7 +1199,7 @@
   <pattern id="article-metadata">
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" id="featmeta-value-tests">
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-4" test="($type='Editorial') and (. != '2')" role="error" id="feat-custom-meta-test-4">
+      <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feat-custom-meta-test-4" test="($type='Editorial') and (. != '2')" role="error" id="feat-custom-meta-test-4">
         <value-of select="$type"/> must be a template 2. Currently it is a template <value-of select="."/>.</report>
     </rule>
   </pattern>

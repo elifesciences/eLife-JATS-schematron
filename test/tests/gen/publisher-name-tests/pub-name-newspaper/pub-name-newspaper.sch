@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation/publisher-name" id="publisher-name-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-name-newspaper" test="matches(lower-case(.),'guardian|the independent|times|post|news')" role="warning" id="pub-name-newspaper">
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pub-name-newspaper" test="matches(lower-case(.),'guardian|the independent|times|post|news')" role="warning" id="pub-name-newspaper">
         <name/> contains the text 'guardian', 'independent', 'times' or 'post' - <value-of select="."/> - is it a newspaper reference? If so, it should be captured as a web or a periodical reference.</report>
     </rule>
   </pattern>

@@ -1199,7 +1199,7 @@
   <pattern id="features">
     <rule context="article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-article-category-tests">
       <let name="count" value="count(subj-group[@subj-group-type='sub-display-channel'])"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-article-category-test-1" test="$count = 1" role="error" id="feature-article-category-test-1">article categories for <value-of select="subj-group[@subj-group-type='display-channel']/subject"/>s must contain one, and only one, subj-group[@subj-group-type='sub-display-channel']</assert>
+      <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-article-category-test-1" test="$count = 1" role="error" id="feature-article-category-test-1">article categories for <value-of select="subj-group[@subj-group-type='display-channel']/subject"/>s must contain one, and only one, subj-group[@subj-group-type='sub-display-channel']</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

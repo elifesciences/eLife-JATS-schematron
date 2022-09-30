@@ -1209,7 +1209,7 @@
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
       <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
       <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-11" test="matches($pre-sentence,' from\p{Zs}*[\(]+$| in\p{Zs}*[\(]+$| by\p{Zs}*[\(]+$| of\p{Zs}*[\(]+$| on\p{Zs}*[\(]+$| to\p{Zs}*[\(]+$| see\p{Zs}*[\(]+$| see also\p{Zs}*[\(]+$| at\p{Zs}*[\(]+$| per\p{Zs}*[\(]+$| follows\p{Zs}*[\(]+$| following\p{Zs}*[\(]+$')" role="warning" id="ref-xref-test-11">'<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>' - citation is preceded by text ending with a possessive, preposition or verb and bracket which suggests the bracket should be removed.</report>
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-11" test="matches($pre-sentence,' from\p{Zs}*[\(]+$| in\p{Zs}*[\(]+$| by\p{Zs}*[\(]+$| of\p{Zs}*[\(]+$| on\p{Zs}*[\(]+$| to\p{Zs}*[\(]+$| see\p{Zs}*[\(]+$| see also\p{Zs}*[\(]+$| at\p{Zs}*[\(]+$| per\p{Zs}*[\(]+$| follows\p{Zs}*[\(]+$| following\p{Zs}*[\(]+$')" role="warning" id="ref-xref-test-11">'<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>' - citation is preceded by text ending with a possessive, preposition or verb and bracket which suggests the bracket should be removed.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

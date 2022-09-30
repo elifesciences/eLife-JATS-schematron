@@ -1199,7 +1199,7 @@
   <pattern id="content-containers">
     <rule context="ext-link[contains(@xlink:href,'softwareheritage')]" id="software-heritage-tests">
       <let name="origin" value="lower-case(substring-before(substring-after(@xlink:href,'origin='),';'))"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-4" test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies replace(lower-case($x/@xlink:href),'/$','') = $origin)" role="warning" id="software-heritage-test-4">A Software heritage link must follow the original link for the software. The Software heritage link with the text '<value-of select="."/>' has '<value-of select="$origin"/>' as its origin URL, but there is no preceding link with that same URL.</report>
+      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-4" test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies replace(lower-case($x/@xlink:href),'/$','') = $origin)" role="warning" id="software-heritage-test-4">A Software heritage link must follow the original link for the software. The Software heritage link with the text '<value-of select="."/>' has '<value-of select="$origin"/>' as its origin URL, but there is no preceding link with that same URL.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

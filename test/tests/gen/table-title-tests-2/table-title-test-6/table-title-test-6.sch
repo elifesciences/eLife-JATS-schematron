@@ -1199,7 +1199,7 @@
   <pattern id="content-containers">
     <rule context="table-wrap/caption/title" id="table-title-tests-2">
       <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-6" test="$sentence-count gt 1" role="warning" id="table-title-test-6">title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-title-test-6" test="$sentence-count gt 1" role="warning" id="table-title-test-6">title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

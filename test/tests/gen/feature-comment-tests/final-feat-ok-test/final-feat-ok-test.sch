@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="features">
     <rule context="article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//p|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//td|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//th" id="feature-comment-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#final-feat-ok-test" test="matches(.,'\[[Oo][Kk]\??\]')" role="error" id="final-feat-ok-test">
+      <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#final-feat-ok-test" test="matches(.,'\[[Oo][Kk]\??\]')" role="error" id="final-feat-ok-test">
         <value-of select="name()"/> element contains [OK] or [OK?] which should be removed - <value-of select="."/>
       </report>
     </rule>

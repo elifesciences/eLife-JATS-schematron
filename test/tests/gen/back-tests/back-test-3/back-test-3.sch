@@ -1202,7 +1202,7 @@
       <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="pub-date" value="e:get-iso-pub-date(self::*)"/>
       <let name="version" value="e:get-version(.)"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#back-test-3" test="($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and (not($pub-date) or ($pub-date gt '2018-05-31')) and (count(sec[@sec-type='data-availability']) != 1)" role="error" id="back-test-3">One and only one Data availability section (sec[@sec-type="data-availability"]) must be present (as a child of back) for '<value-of select="$article-type"/>'.</report>
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#back-test-3" test="($article-type='research-article') and ($subj-type != 'Scientific Correspondence') and (not($pub-date) or ($pub-date gt '2018-05-31')) and (count(sec[@sec-type='data-availability']) != 1)" role="error" id="back-test-3">One and only one Data availability section (sec[@sec-type="data-availability"]) must be present (as a child of back) for '<value-of select="$article-type"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

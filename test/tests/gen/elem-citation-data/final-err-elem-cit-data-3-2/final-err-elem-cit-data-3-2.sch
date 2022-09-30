@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="element-citation-data-tests">
     <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#final-err-elem-cit-data-3-2" test="count(person-group) lt 1" role="error" id="final-err-elem-cit-data-3-2">Data references must have one and only one &lt;person-group person-group-type='author'&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has 0.</report>
+      <report see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#final-err-elem-cit-data-3-2" test="count(person-group) lt 1" role="error" id="final-err-elem-cit-data-3-2">Data references must have one and only one &lt;person-group person-group-type='author'&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has 0.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

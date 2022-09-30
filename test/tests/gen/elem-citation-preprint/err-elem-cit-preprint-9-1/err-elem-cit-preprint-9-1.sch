@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="element-citation-preprint-tests">
     <rule context="element-citation[@publication-type='preprint']" id="elem-citation-preprint">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/preprint-references#err-elem-cit-preprint-9-1" test="count(source) = 1" role="error" id="err-elem-cit-preprint-9-1">Each  &lt;element-citation&gt; of type 'preprint' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-9-1" test="count(source) = 1" role="error" id="err-elem-cit-preprint-9-1">Each  &lt;element-citation&gt; of type 'preprint' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

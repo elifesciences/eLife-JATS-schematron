@@ -1205,7 +1205,7 @@
       <let name="last-rid-no" value="substring($rid-no,string-length($rid-no))"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-7" test="contains($rid,'code') and matches(.,'[Ss]ource codes')" role="error" id="supp-file-xref-conformity-7">
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-file-xref-conformity-7" test="contains($rid,'code') and matches(.,'[Ss]ource codes')" role="error" id="supp-file-xref-conformity-7">
         <value-of select="."/> - citation points to source code but contains the string 'source codes', which is grammatically incorrect. It should be source code instead.</report>
     </rule>
   </pattern>

@@ -1202,7 +1202,7 @@
       <let name="target-nos" value="for $rid in $rids return substring-after($rid,'video')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-conformity-2" test="not(contains(.,'nimation')) and ((count($rids) gt 1 and not(contains(.,$target-nos[1])) or not(contains(.,$target-nos[last()]))) or (count($rids)=1 and not(contains(.,$target-nos))))" role="error" id="vid-xref-conformity-2">video citation does not match the video that it links to. Target video label number(s) are <value-of select="$target-nos"/>, but <value-of select="if (count($rids) gt 1) then concat($target-nos[1],' and ',$target-nos[last()],' are') else concat($target-nos,' is')"/> not in the citation text - <value-of select="."/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-conformity-2" test="not(contains(.,'nimation')) and ((count($rids) gt 1 and not(contains(.,$target-nos[1])) or not(contains(.,$target-nos[last()]))) or (count($rids)=1 and not(contains(.,$target-nos))))" role="error" id="vid-xref-conformity-2">video citation does not match the video that it links to. Target video label number(s) are <value-of select="$target-nos"/>, but <value-of select="if (count($rids) gt 1) then concat($target-nos[1],' and ',$target-nos[last()],' are') else concat($target-nos,' is')"/> not in the citation text - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

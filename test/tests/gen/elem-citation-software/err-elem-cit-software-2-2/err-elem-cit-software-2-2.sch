@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="element-citation-software-tests">
     <rule context="element-citation[@publication-type = 'software']" id="elem-citation-software">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#err-elem-cit-software-2-2" test="person-group[@person-group-type='author']" role="error" id="err-elem-cit-software-2-2">The &lt;person-group&gt; in a software reference must have the attribute person-group-type set to 'author'. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#err-elem-cit-software-2-2" test="person-group[@person-group-type='author']" role="error" id="err-elem-cit-software-2-2">The &lt;person-group&gt; in a software reference must have the attribute person-group-type set to 'author'. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

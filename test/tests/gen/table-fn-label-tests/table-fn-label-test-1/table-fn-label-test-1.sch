@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="table-wrap-foot//fn/p" id="table-fn-label-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-fn-label-test-1" test="not(matches(.,'^\p{Zs}?[*†‡§¶]')) and matches(.,'^\p{Zs}?[\p{Ps}]?[\da-z][\p{Pe}]?\p{Zs}+[\p{Lu}\d]')" role="warning" id="table-fn-label-test-1">Footnote starts with what might be a label which is not in line with house style - <value-of select="."/>. If it is a label, then it should changed to one of the allowed symbols, so that the order of labels in the footnotes follows this sequence *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc.</report>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-label-test-1" test="not(matches(.,'^\p{Zs}?[*†‡§¶]')) and matches(.,'^\p{Zs}?[\p{Ps}]?[\da-z][\p{Pe}]?\p{Zs}+[\p{Lu}\d]')" role="warning" id="table-fn-label-test-1">Footnote starts with what might be a label which is not in line with house style - <value-of select="."/>. If it is a label, then it should changed to one of the allowed symbols, so that the order of labels in the footnotes follows this sequence *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

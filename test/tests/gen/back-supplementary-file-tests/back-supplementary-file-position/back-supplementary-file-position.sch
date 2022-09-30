@@ -1200,7 +1200,7 @@
     <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')]" id="back-supplementary-file-tests">
       <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'upplementary file')]) - count(following::supplementary-material[contains(label[1],'upplementary file')])"/>
       <let name="no" value="substring-after(@id,'supp')"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#back-supplementary-file-position" test="string($pos) = $no" role="error" id="back-supplementary-file-position">
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#back-supplementary-file-position" test="string($pos) = $no" role="error" id="back-supplementary-file-position">
         <value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
     </rule>
   </pattern>

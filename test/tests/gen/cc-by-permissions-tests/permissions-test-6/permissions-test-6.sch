@@ -1201,7 +1201,7 @@
       <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
       <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
       <let name="license-type" value="license/@xlink:href"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-6" test="copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year" role="error" id="permissions-test-6">copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year=<value-of select="copyright-year"/> and pub-date=<value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year"/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-6" test="copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year" role="error" id="permissions-test-6">copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year=<value-of select="copyright-year"/> and pub-date=<value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

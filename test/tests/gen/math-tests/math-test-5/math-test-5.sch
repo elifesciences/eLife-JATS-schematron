@@ -1200,7 +1200,7 @@
     <rule context="mml:math" id="math-tests">
       <let name="data" value="replace(normalize-space(.),'\p{Zs}','')"/>
       <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#math-test-5" test="$data = '×'" role="error" id="math-test-5">mml:math only contains '×', which is unnecessary. Capture this as a normal text '×' instead.</report>
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-5" test="$data = '×'" role="error" id="math-test-5">mml:math only contains '×', which is unnecessary. Capture this as a normal text '×' instead.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1199,7 +1199,7 @@
   <pattern id="id-conformance">
     <rule context="app//table-wrap[label]" id="app-table-wrap-ids">
       <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#app-table-wrap-id-test-2" test="not(@id='keyresource') and not(starts-with(@id, concat('app' , $app-no)))" role="error" id="app-table-wrap-id-test-2">table-wrap @id must start with <value-of select="concat('app' , $app-no)"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#app-table-wrap-id-test-2" test="not(@id='keyresource') and not(starts-with(@id, concat('app' , $app-no)))" role="error" id="app-table-wrap-id-test-2">table-wrap @id must start with <value-of select="concat('app' , $app-no)"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

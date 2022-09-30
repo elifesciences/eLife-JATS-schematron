@@ -1206,7 +1206,7 @@
       <let name="abs-count" value="count(abstract)"/>
       <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
       <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#test-funding-group-presence" test="if ($article-type = $features-article-types) then ()       else if ($subj-type = ('Scientific Correspondence',$notice-display-types)) then ()       else count(funding-group) != 1" role="error" id="test-funding-group-presence">There must be one and only one funding-group element in the article-meta. Currently there are <value-of select="count(funding-group)"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#test-funding-group-presence" test="if ($article-type = $features-article-types) then ()       else if ($subj-type = ('Scientific Correspondence',$notice-display-types)) then ()       else count(funding-group) != 1" role="error" id="test-funding-group-presence">There must be one and only one funding-group element in the article-meta. Currently there are <value-of select="count(funding-group)"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

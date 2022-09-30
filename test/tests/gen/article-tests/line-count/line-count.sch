@@ -1199,7 +1199,7 @@
   <pattern id="article">
     <rule context="article" id="article-tests">
       <let name="line-count" value="e:line-count(.)"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/code-blocks#line-count" test="not(descendant::code) and ($line-count gt 1)" role="error" id="line-count">Articles without code blocks must only have one line in the xml. The xml for this article has <value-of select="$line-count"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/code-blocks-947pcamv#line-count" test="not(descendant::code) and ($line-count gt 1)" role="error" id="line-count">Articles without code blocks must only have one line in the xml. The xml for this article has <value-of select="$line-count"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

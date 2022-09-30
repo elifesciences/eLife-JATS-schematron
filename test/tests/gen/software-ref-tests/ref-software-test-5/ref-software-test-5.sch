@@ -1199,7 +1199,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
       <let name="lc" value="lower-case(data-title[1])"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-5" test="(normalize-space(lower-case(source[1]))='github') and not(version)" role="warning" id="ref-software-test-5">
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#ref-software-test-5" test="(normalize-space(lower-case(source[1]))='github') and not(version)" role="warning" id="ref-software-test-5">
         <value-of select="source[1]"/> software ref (with id '<value-of select="ancestor::ref/@id"/>') does not have a version number. Is this correct?</report>
     </rule>
   </pattern>

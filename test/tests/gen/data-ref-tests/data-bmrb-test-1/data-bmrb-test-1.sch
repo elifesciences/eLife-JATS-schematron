@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-bmrb-test-1" test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and not(source[1]='Biological Magnetic Resonance Data Bank')" role="warning" id="data-bmrb-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.bmrb.wisc.edu/data_library/summary' type link, but the database name is not 'Biological Magnetic Resonance Data Bank' - <value-of select="source[1]"/>. Is that correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-bmrb-test-1" test="contains(pub-id[1]/@xlink:href,'www.bmrb.wisc.edu/data_library/summary') and not(source[1]='Biological Magnetic Resonance Data Bank')" role="warning" id="data-bmrb-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'www.bmrb.wisc.edu/data_library/summary' type link, but the database name is not 'Biological Magnetic Resonance Data Bank' - <value-of select="source[1]"/>. Is that correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

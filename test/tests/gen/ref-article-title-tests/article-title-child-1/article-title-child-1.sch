@@ -1201,7 +1201,7 @@
       <let name="rep" value="replace(.,' [Ii]{1,3}\. | IV\. | V. | [Cc]\. [Ee]legans| vs\. | sp\. ','')"/>
       <let name="word-count" value="count(tokenize(.,'\p{Zs}'))"/>
       <let name="title-word-count" value="count(tokenize(.,'\p{Zs}')[.=concat(upper-case(substring(.,1,1)),substring(.,2))])"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#article-title-child-1" test="(count(child::*) = 1) and (count(child::text()) = 0)" role="warning" id="article-title-child-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with one child <value-of select="*/local-name()"/> element, and no text. This is almost certainly incorrect. - <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#article-title-child-1" test="(count(child::*) = 1) and (count(child::text()) = 0)" role="warning" id="article-title-child-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with one child <value-of select="*/local-name()"/> element, and no text. This is almost certainly incorrect. - <value-of select="."/>
       </report>
     </rule>
   </pattern>

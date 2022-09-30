@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="further-fig-tests">
     <rule context="article/body//boxed-text//fig[not(@specific-use='child-fig')]/label" id="box-fig-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#box-fig-test-1" test="matches(.,'^Box \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="box-fig-test-1">label for fig inside boxed-text must be in the format 'Box 1—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#box-fig-test-1" test="matches(.,'^Box \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="box-fig-test-1">label for fig inside boxed-text must be in the format 'Box 1—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

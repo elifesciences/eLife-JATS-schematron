@@ -1209,7 +1209,7 @@
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
       <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
       <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#pre-ref-xref-test-4" test="matches(normalize-space(.),'\p{N}')" role="warning" id="pre-ref-xref-test-4">citation doesn't contain numbers, which must be incorrect - <value-of select="."/>. If there is no year for this reference, and you are unable to determine this yourself, please query the authors.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#pre-ref-xref-test-4" test="matches(normalize-space(.),'\p{N}')" role="warning" id="pre-ref-xref-test-4">citation doesn't contain numbers, which must be incorrect - <value-of select="."/>. If there is no year for this reference, and you are unable to determine this yourself, please query the authors.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

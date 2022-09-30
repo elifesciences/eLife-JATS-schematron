@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="th|td" id="colour-table">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#colour-check-table" test="starts-with(@style,'author-callout') or starts-with(@style,'background-color: ')" role="warning" id="colour-check-table">
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#colour-check-table" test="starts-with(@style,'author-callout') or starts-with(@style,'background-color: ')" role="warning" id="colour-check-table">
         <name/> element has colour background. Is this correct? It contains <value-of select="."/>.</report>
     </rule>
   </pattern>

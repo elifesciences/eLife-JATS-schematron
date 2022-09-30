@@ -1209,7 +1209,7 @@
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
       <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
       <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-28" test="matches($pre-text,'^\)\p{Zs}?\($') and (preceding-sibling::*[1]/local-name() = 'xref')" role="warning" id="ref-xref-test-28">citation is preceded by ') (', which in turn is preceded by another link - '<value-of select="concat(preceding-sibling::*[1],$pre-sentence,.)"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(preceding-sibling::*[1],'; ',.)"/>'.</report>
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-28" test="matches($pre-text,'^\)\p{Zs}?\($') and (preceding-sibling::*[1]/local-name() = 'xref')" role="warning" id="ref-xref-test-28">citation is preceded by ') (', which in turn is preceded by another link - '<value-of select="concat(preceding-sibling::*[1],$pre-sentence,.)"/>'. Should the closing and opening brackets be replaced with a '; '? i.e. '<value-of select="concat(preceding-sibling::*[1],'; ',.)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1199,7 +1199,7 @@
   <pattern id="das-element-citation-tests">
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/year" id="das-elem-citation-year-tests">
       <let name="digits" value="replace(.,'[^\d]','')"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-elem-citation-year-2" test="normalize-space(.)=''" role="error" id="final-das-elem-citation-year-2">Reference with id <value-of select="parent::*/@id"/> has an empty year. Please ensure to add it in.</report>
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-elem-citation-year-2" test="normalize-space(.)=''" role="error" id="final-das-elem-citation-year-2">Reference with id <value-of select="parent::*/@id"/> has an empty year. Please ensure to add it in.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

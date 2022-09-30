@@ -1209,7 +1209,7 @@
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
       <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
       <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-3" test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="ref-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-3" test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="ref-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

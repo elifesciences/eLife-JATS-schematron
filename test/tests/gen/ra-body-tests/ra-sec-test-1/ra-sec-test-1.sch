@@ -1201,7 +1201,7 @@
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="method-count" value="count(sec[@sec-type='materials|methods']) + count(sec[@sec-type='methods']) + count(sec[@sec-type='model'])"/>
       <let name="res-disc-count" value="count(sec[@sec-type='results']) + count(sec[@sec-type='discussion'])"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#ra-sec-test-1" test="count(sec) = 0" role="error" id="ra-sec-test-1">At least one sec should be present in body for research-article content.</report>
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#ra-sec-test-1" test="count(sec) = 0" role="error" id="ra-sec-test-1">At least one sec should be present in body for research-article content.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

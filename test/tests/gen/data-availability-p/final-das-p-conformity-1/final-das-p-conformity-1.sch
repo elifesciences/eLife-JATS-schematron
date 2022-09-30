@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="sec[@sec-type='data-availability']/p[not(*)]" id="data-availability-p">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#final-das-p-conformity-1" test="normalize-space(replace(.,' ',''))=''" role="error" id="final-das-p-conformity-1">p element in data availability section contains no content. It must be removed.</report>
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-p-conformity-1" test="normalize-space(replace(.,' ',''))=''" role="error" id="final-das-p-conformity-1">p element in data availability section contains no content. It must be removed.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

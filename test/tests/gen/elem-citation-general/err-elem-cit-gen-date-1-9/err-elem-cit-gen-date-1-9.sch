@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="element-citation-general-tests">
     <rule context="element-citation" id="elem-citation-general">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-date-1-9" test="count(year) &gt; 1 " role="error" id="err-elem-cit-gen-date-1-9">There may be at most one &lt;year&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(year)"/> &lt;year&gt; elements.</report>
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-date-1-9" test="count(year) &gt; 1 " role="error" id="err-elem-cit-gen-date-1-9">There may be at most one &lt;year&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(year)"/> &lt;year&gt; elements.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

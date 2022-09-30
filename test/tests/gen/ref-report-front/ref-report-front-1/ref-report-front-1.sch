@@ -1199,7 +1199,7 @@
   <pattern id="sub-article-version-2">
     <rule context="sub-article[@article-type='referee-report']/front-stub" id="ref-report-front">
       <let name="count" value="count(contrib-group)"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#dec-letter-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="ref-report-front-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="ref-report-front-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

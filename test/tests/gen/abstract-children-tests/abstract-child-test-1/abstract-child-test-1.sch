@@ -1199,7 +1199,7 @@
   <pattern id="article-metadata">
     <rule context="front//abstract/*" id="abstract-children-tests">
       <let name="allowed-elems" value="('p','sec','title')"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#abstract-child-test-1" test="local-name() = $allowed-elems" role="error" id="abstract-child-test-1">
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#abstract-child-test-1" test="local-name() = $allowed-elems" role="error" id="abstract-child-test-1">
         <name/> is not allowed as a child of abstract.</assert>
     </rule>
   </pattern>

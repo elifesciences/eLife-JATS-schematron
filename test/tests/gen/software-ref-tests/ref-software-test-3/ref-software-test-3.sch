@@ -1199,7 +1199,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
       <let name="lc" value="lower-case(data-title[1])"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/software-references#ref-software-test-3" test="matches(lower-case(publisher-name[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab')" role="error" id="ref-software-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name - <value-of select="publisher-name[1]"/>. Since this is a software source, it should be captured in a source element. Please move into the source field (rather than publisher).</report>
+      <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#ref-software-test-3" test="matches(lower-case(publisher-name[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab')" role="error" id="ref-software-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name - <value-of select="publisher-name[1]"/>. Since this is a software source, it should be captured in a source element. Please move into the source field (rather than publisher).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1199,7 +1199,7 @@
   <pattern id="article-metadata">
     <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" id="featmeta-value-tests">
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feat-custom-meta-test-2" test=". = ('1','2','3','4','5')" role="error" id="feat-custom-meta-test-2">Template type meta-value must one of '1','2','3','4', or '5'.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feat-custom-meta-test-2" test=". = ('1','2','3','4','5')" role="error" id="feat-custom-meta-test-2">Template type meta-value must one of '1','2','3','4', or '5'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

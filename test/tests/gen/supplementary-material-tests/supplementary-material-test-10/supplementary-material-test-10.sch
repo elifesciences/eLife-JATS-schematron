@@ -1201,7 +1201,7 @@
       <let name="link" value="media[1]/@xlink:href"/>
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
       <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-10" test="matches(label[1],'^Reporting standard \d{1,4}\.$')" role="warning" id="supplementary-material-test-10">Article contains <value-of select="label"/> Please check with eLife - is this actually a reporting standard?</report>
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-10" test="matches(label[1],'^Reporting standard \d{1,4}\.$')" role="warning" id="supplementary-material-test-10">Article contains <value-of select="label"/> Please check with eLife - is this actually a reporting standard?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

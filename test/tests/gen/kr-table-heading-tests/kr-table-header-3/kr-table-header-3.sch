@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="table-wrap[contains(@id,'keyresource')]/table/thead[1]" id="kr-table-heading-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-header-3" test="count(tr) lt 1" role="warning" id="kr-table-header-3">Key resources table has no rows in its header, which is incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-header-3" test="count(tr) lt 1" role="warning" id="kr-table-header-3">Key resources table has no rows in its header, which is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1209,7 +1209,7 @@
       <let name="post-sentence" value="tokenize($post-text,'\. ')[position() = 1]"/>
       <let name="open" value="string-length(replace($pre-sentence,'[^\(]',''))"/>
       <let name="close" value="string-length(replace($pre-sentence,'[^\)]',''))"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/reference-citations#ref-xref-test-12" test="matches($post-text,'^[\)]+\p{Zs}*who|^[\)]+\p{Zs}*have|^[\)]+\p{Zs}*found|^[\)]+\p{Zs}*used|^[\)]+\p{Zs}*demonstrate|^[\)]+\p{Zs}*follow[s]?|^[\)]+\p{Zs}*followed')" role="warning" id="ref-xref-test-12">'<value-of select="concat(.,substring($post-text,1,10))"/>' - citation is followed by a bracket and a possessive, preposition or verb which suggests the bracket is unnecessary.</report>
+      <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-12" test="matches($post-text,'^[\)]+\p{Zs}*who|^[\)]+\p{Zs}*have|^[\)]+\p{Zs}*found|^[\)]+\p{Zs}*used|^[\)]+\p{Zs}*demonstrate|^[\)]+\p{Zs}*follow[s]?|^[\)]+\p{Zs}*followed')" role="warning" id="ref-xref-test-12">'<value-of select="concat(.,substring($post-text,1,10))"/>' - citation is followed by a bracket and a possessive, preposition or verb which suggests the bracket is unnecessary.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

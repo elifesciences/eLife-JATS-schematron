@@ -1199,7 +1199,7 @@
   <pattern id="house-style">
     <rule context="mml:*[@mathcolor]" id="math-colour-tests">
       <let name="allowed-values" value="('red','blue','purple')"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#mathcolor-test-2" test="@mathcolor = $allowed-values" role="warning" id="mathcolor-test-2">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has <value-of select="@mathcolor"/> colour formatting. Is this OK?</report>
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#mathcolor-test-2" test="@mathcolor = $allowed-values" role="warning" id="mathcolor-test-2">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has <value-of select="@mathcolor"/> colour formatting. Is this OK?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

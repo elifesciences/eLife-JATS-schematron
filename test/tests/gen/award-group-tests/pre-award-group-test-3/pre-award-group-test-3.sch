@@ -1201,7 +1201,7 @@
       <let name="id" value="@id"/>
       <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
       <let name="version" value="e:get-version(.)"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#pre-award-group-test-3" test="if ($version = '1') then not(principal-award-recipient)         else ()" role="warning" id="pre-award-group-test-3">award-group must contain a principal-award-recipient. If it is not clear which author(s) are associated with this funding, please add an author query.</report>
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#pre-award-group-test-3" test="if ($version = '1') then not(principal-award-recipient)         else ()" role="warning" id="pre-award-group-test-3">award-group must contain a principal-award-recipient. If it is not clear which author(s) are associated with this funding, please add an author query.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

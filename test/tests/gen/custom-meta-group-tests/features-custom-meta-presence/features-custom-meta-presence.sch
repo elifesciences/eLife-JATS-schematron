@@ -1199,7 +1199,7 @@
   <pattern id="article-metadata">
     <rule context="article-meta/custom-meta-group" id="custom-meta-group-tests">
       <let name="type" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#features-custom-meta-presence" test="($type = $features-subj) and not(count(custom-meta[@specific-use='meta-only']) = (2,3))" role="error" id="features-custom-meta-presence">2 or 3 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>. This one has <value-of select="count(custom-meta[@specific-use='meta-only'])"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#features-custom-meta-presence" test="($type = $features-subj) and not(count(custom-meta[@specific-use='meta-only']) = (2,3))" role="error" id="features-custom-meta-presence">2 or 3 custom-meta[@specific-use='meta-only'] must be present in custom-meta-group for <value-of select="$type"/>. This one has <value-of select="count(custom-meta[@specific-use='meta-only'])"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1199,7 +1199,7 @@
   <pattern id="house-style">
     <rule context="ref-list/ref" id="ref-link-mandate">
       <let name="id" value="@id"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pre-ref-link-presence" test="ancestor::article//xref[@rid = $id]" role="warning" id="pre-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-ref-link-presence" test="ancestor::article//xref[@rid = $id]" role="warning" id="pre-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

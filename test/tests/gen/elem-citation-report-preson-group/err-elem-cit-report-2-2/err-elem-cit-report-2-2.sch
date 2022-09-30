@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="element-citation-report-tests">
     <rule context="element-citation[@publication-type='report']/person-group" id="elem-citation-report-preson-group">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-2-2" test="@person-group-type='author'" role="error" id="err-elem-cit-report-2-2">[err-elem-cit-report-2-2]
+      <assert see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-2-2" test="@person-group-type='author'" role="error" id="err-elem-cit-report-2-2">[err-elem-cit-report-2-2]
         Each &lt;person-group&gt; must have a @person-group-type attribute of type 'author'.
         Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; 
         element with @person-group-type attribute '<value-of select="@person-group-type"/>'.</assert>

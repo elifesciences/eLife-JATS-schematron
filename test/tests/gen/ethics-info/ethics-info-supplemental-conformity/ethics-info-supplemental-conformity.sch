@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-info">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-info-supplemental-conformity" test="matches(.,'[Ss]upplemental [Ffigure]')" role="warning" id="ethics-info-supplemental-conformity">Ethics statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling.</report>
+      <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-info-supplemental-conformity" test="matches(.,'[Ss]upplemental [Ffigure]')" role="warning" id="ethics-info-supplemental-conformity">Ethics statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

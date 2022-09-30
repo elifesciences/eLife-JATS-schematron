@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="funding-group//principal-award-recipient/name" id="par-name-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#par-name-test-2" test="surname or given-names" role="error" id="par-name-test-2">name in principal-award-recipient cannot be empty.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#par-name-test-2" test="surname or given-names" role="error" id="par-name-test-2">name in principal-award-recipient cannot be empty.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

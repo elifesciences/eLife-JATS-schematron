@@ -1199,7 +1199,7 @@
   <pattern id="further-fig-tests">
     <rule context="permissions[not(parent::article-meta)]" id="fig-permissions">
       <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#fig-permissions-test-4" test="license/license-p" role="error" id="fig-permissions-test-4">permissions for <value-of select="$label"/> must contain a license-p element.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-4" test="license/license-p" role="error" id="fig-permissions-test-4">permissions for <value-of select="$label"/> must contain a license-p element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

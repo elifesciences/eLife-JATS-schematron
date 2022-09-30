@@ -1199,7 +1199,7 @@
   <pattern id="article-metadata">
     <rule context="abstract[not(@abstract-type)]/sec" id="abstract-sec-titles">
       <let name="pos" value="count(ancestor::abstract/sec) - count(following-sibling::sec)"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-4" test="($pos = 4) and (title != 'Conclusions:')" role="error" id="clintrial-conformance-4">Fourth section title is '<value-of select="title"/>' - but the only allowed value is 'Conclusions:'.</report>
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-4" test="($pos = 4) and (title != 'Conclusions:')" role="error" id="clintrial-conformance-4">Fourth section title is '<value-of select="title"/>' - but the only allowed value is 'Conclusions:'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

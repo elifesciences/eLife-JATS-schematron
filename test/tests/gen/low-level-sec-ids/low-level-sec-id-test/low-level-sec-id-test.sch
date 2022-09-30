@@ -1200,7 +1200,7 @@
     <rule context="article/body/sec//sec|article/back/sec//sec" id="low-level-sec-ids">
       <let name="parent-sec" value="parent::sec/@id"/>
       <let name="pos" value="count(parent::sec/sec) - count(following-sibling::sec)"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#low-level-sec-id-test" test="@id = concat($parent-sec,'-',$pos)" role="error" id="low-level-sec-id-test">sec id must be a concatenation of its parent sec id and this element's position relative to its sibling secs. It must be <value-of select="concat($parent-sec,'-',$pos)"/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#low-level-sec-id-test" test="@id = concat($parent-sec,'-',$pos)" role="error" id="low-level-sec-id-test">sec id must be a concatenation of its parent sec id and this element's position relative to its sibling secs. It must be <value-of select="concat($parent-sec,'-',$pos)"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

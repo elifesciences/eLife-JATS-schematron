@@ -1199,7 +1199,7 @@
   <pattern id="element-citation-report-tests">
     <rule context="element-citation[@publication-type='report']" id="elem-citation-report">
       <let name="publisher-locations" value="'../../../../../src/publisher-locations.xml'"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-11-1" test="count(publisher-name)=1" role="error" id="err-elem-cit-report-11-1">[err-elem-cit-report-11-1]
+      <assert see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-11-1" test="count(publisher-name)=1" role="error" id="err-elem-cit-report-11-1">[err-elem-cit-report-11-1]
         &lt;publisher-name&gt; is required.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(publisher-name)"/>
         &lt;publisher-name&gt; elements.</assert>

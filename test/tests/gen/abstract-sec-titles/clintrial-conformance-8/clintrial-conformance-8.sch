@@ -1199,7 +1199,7 @@
   <pattern id="article-metadata">
     <rule context="abstract[not(@abstract-type)]/sec" id="abstract-sec-titles">
       <let name="pos" value="count(ancestor::abstract/sec) - count(following-sibling::sec)"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#clintrial-conformance-8" test="matches(@id,'^abs[1-9]$')" role="error" id="clintrial-conformance-8">
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-8" test="matches(@id,'^abs[1-9]$')" role="error" id="clintrial-conformance-8">
         <name/> must have an @id in the format 'abs1'. <value-of select="@id"/> does not conform to this convention.</assert>
     </rule>
   </pattern>

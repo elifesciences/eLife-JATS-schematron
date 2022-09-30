@@ -1199,7 +1199,7 @@
   <pattern id="further-fig-tests">
     <rule context="permissions[not(parent::article-meta)]" id="fig-permissions">
       <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-notification" test="." role="info" id="permissions-notification">
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-notification" test="." role="info" id="permissions-notification">
         <value-of select="$label"/> has permissions - '<value-of select="if (license/license-p) then license/license-p else if (copyright-statement) then copyright-statement else ()"/>'.</report>
     </rule>
   </pattern>

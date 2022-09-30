@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="element-citation-report-tests">
     <rule context="element-citation[@publication-type='report']/publisher-name" id="elem-citation-report-publisher-name">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-11-2" test="count(*)=0" role="error" id="err-elem-cit-report-11-2">[err-elem-cit-report-11-2]
+      <assert see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-11-2" test="count(*)=0" role="error" id="err-elem-cit-report-11-2">[err-elem-cit-report-11-2]
         No elements are allowed inside &lt;publisher-name&gt;.
         Reference '<value-of select="ancestor::ref/@id"/>' has child elements within the
         &lt;publisher-name&gt; element.</assert>
