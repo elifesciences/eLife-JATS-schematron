@@ -1199,7 +1199,7 @@
   <pattern id="content-containers">
     <rule context="ext-link[contains(@xlink:href,'softwareheritage')]" id="software-heritage-tests">
       <let name="origin" value="lower-case(substring-before(substring-after(@xlink:href,'origin='),';'))"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/toolkit/archiving-code#software-heritage-test-2" test="(ancestor::body or ancestor::ref) and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))" role="error" id="software-heritage-test-2">Software heritage links in the main text or references must be the directory link with contextual information. '<value-of select="@xlink:href"/>' is not a directory link with contextual information.</report>
+      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-2" test="(ancestor::body or ancestor::ref) and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))" role="error" id="software-heritage-test-2">Software heritage links in the main text or references must be the directory link with contextual information. '<value-of select="@xlink:href"/>' is not a directory link with contextual information.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

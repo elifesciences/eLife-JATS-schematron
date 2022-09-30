@@ -1201,7 +1201,7 @@
       <let name="id" value="@id"/>
       <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#kr-table-wrap-test-1" test="contains($id,'keyresource') and not(matches($lab,'^Key resources table$|^Appendix [0-9]{1,4}—key resources table$'))" role="error" id="kr-table-wrap-test-1">table-wrap has an id '<value-of select="$id"/>' but its label is not in the format 'Key resources table' or 'Appendix 0—key resources table', which is incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-wrap-test-1" test="contains($id,'keyresource') and not(matches($lab,'^Key resources table$|^Appendix [0-9]{1,4}—key resources table$'))" role="error" id="kr-table-wrap-test-1">table-wrap has an id '<value-of select="$id"/>' but its label is not in the format 'Key resources table' or 'Appendix 0—key resources table', which is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

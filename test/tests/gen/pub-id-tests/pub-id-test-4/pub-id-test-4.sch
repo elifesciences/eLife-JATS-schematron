@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="pub-id-pattern">
     <rule context="element-citation/pub-id" id="pub-id-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-id-test-4" test="contains(.,' ')" role="warning" id="pub-id-test-4">pub id contains whitespace - <value-of select="."/> - which is very likely to be incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pub-id-test-4" test="contains(.,' ')" role="warning" id="pub-id-test-4">pub id contains whitespace - <value-of select="."/> - which is very likely to be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1199,7 +1199,7 @@
   <pattern id="house-style">
     <rule context="element-citation//name" id="ref-name-tests">
       <let name="type" value="ancestor::person-group[1]/@person-group-type"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#author-test-1" test="matches(.,'[Aa]uthor')" role="warning" id="author-test-1">name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Author'. Is this correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#author-test-1" test="matches(.,'[Aa]uthor')" role="warning" id="author-test-1">name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Author'. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

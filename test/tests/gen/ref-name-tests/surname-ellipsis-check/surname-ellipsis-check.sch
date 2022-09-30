@@ -1199,7 +1199,7 @@
   <pattern id="house-style">
     <rule context="element-citation//name" id="ref-name-tests">
       <let name="type" value="ancestor::person-group[1]/@person-group-type"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#surname-ellipsis-check" test="matches(surname[1],'^\p{Zs}*?…|^\p{Zs}*?\.\p{Zs}?\.\p{Zs}?\.')" role="error" id="surname-ellipsis-check">surname in ref '<value-of select="ancestor::ref/@id"/>' begins with an ellipsis which is wrong - <value-of select="surname"/>. Are there preceding authors missing from the list?</report>
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#surname-ellipsis-check" test="matches(surname[1],'^\p{Zs}*?…|^\p{Zs}*?\.\p{Zs}?\.\p{Zs}?\.')" role="error" id="surname-ellipsis-check">surname in ref '<value-of select="ancestor::ref/@id"/>' begins with an ellipsis which is wrong - <value-of select="surname"/>. Are there preceding authors missing from the list?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="unicode-checks">
     <rule context="sub-article//p[matches(.,'[âÂÅÃËÆ]')]|sub-article//td[matches(.,'[âÂÅÃËÆ]')]|sub-article//th[matches(.,'[âÂÅÃËÆ]')]" id="unicode-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/decision-letters-and-author-responses#unicode-test-4" test="contains(.,'â€š')" role="warning" id="unicode-test-4">
+      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-4" test="contains(.,'â€š')" role="warning" id="unicode-test-4">
         <name/> element contains 'â€š' - this should instead be the character '‚'. - <value-of select="."/>.</report>
     </rule>
   </pattern>

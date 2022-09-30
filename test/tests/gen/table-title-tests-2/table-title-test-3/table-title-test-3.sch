@@ -1199,7 +1199,7 @@
   <pattern id="content-containers">
     <rule context="table-wrap/caption/title" id="table-title-tests-2">
       <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-title-test-3" test="ends-with(.,'.') or ends-with(.,'?')" role="error" id="table-title-test-3">The title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> does not end with a full stop which is incorrect - '<value-of select="."/>'.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-title-test-3" test="ends-with(.,'.') or ends-with(.,'?')" role="error" id="table-title-test-3">The title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> does not end with a full stop which is incorrect - '<value-of select="."/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1203,7 +1203,7 @@
       <let name="c-title" value="element-citation/chapter-title[1]"/>
       <let name="source" value="element-citation/source[1]"/>
       <let name="top-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi'][1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#duplicate-ref-test-1" test="(element-citation/@publication-type != 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="error" id="duplicate-ref-test-1">ref '<value-of select="@id"/>' has the same doi as another reference, which is incorrect. Is it a duplicate?</report>
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#duplicate-ref-test-1" test="(element-citation/@publication-type != 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="error" id="duplicate-ref-test-1">ref '<value-of select="@id"/>' has the same doi as another reference, which is incorrect. Is it a duplicate?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

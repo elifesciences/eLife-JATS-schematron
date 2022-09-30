@@ -1204,7 +1204,7 @@
       <let name="number" value="number(replace(substring-after($label,' code '),'[^\d]',''))"/>
       <let name="sibling-count" value="count(ancestor::media[1]//supplementary-material[contains(label[1],' code ')])"/>
       <let name="pos" value="$sibling-count - count( following::supplementary-material[(ancestor::media[1]/@id=$vid-id) and contains(label[1],' code ')])"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#vid-code-id" test="@id=concat($vid-id,'scode',$pos)" role="error" id="vid-code-id">The id for video level source code must be the id of its ancestor video, followed by 'scode', followed by its position relative to other source data for the same video. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($vid-id,'scode',$pos)"/>' instead.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#vid-code-id" test="@id=concat($vid-id,'scode',$pos)" role="error" id="vid-code-id">The id for video level source code must be the id of its ancestor video, followed by 'scode', followed by its position relative to other source data for the same video. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($vid-id,'scode',$pos)"/>' instead.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

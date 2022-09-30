@@ -1205,7 +1205,7 @@
       <let name="no" value="substring-after(@id,'s')"/>
       <let name="parent-fig-no" value="substring-after(parent::fig-group/fig[not(@specific-use='child-fig')][1]/@id,'fig')"/>
       <let name="label-no" value="replace(substring-after(label[1],'supplement'),'[^\d]','')"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-sup-test-4" test="if ($article-type = $notice-article-types) then ()         else $no != string($pos)" role="error" id="fig-sup-test-4">
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-sup-test-4" test="if ($article-type = $notice-article-types) then ()         else $no != string($pos)" role="error" id="fig-sup-test-4">
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
     </rule>
   </pattern>

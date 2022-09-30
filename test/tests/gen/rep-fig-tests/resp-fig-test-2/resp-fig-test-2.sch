@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="further-fig-tests">
     <rule context="sub-article[@article-type='reply']//fig" id="rep-fig-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#resp-fig-test-2" test="label" role="error" flag="dl-ar" id="resp-fig-test-2">fig must have a label.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#resp-fig-test-2" test="label" role="error" flag="dl-ar" id="resp-fig-test-2">fig must have a label.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

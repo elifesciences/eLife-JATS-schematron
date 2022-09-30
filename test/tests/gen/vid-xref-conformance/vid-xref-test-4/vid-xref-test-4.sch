@@ -1202,7 +1202,7 @@
       <let name="target-nos" value="for $rid in $rids return substring-after($rid,'video')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#vid-xref-test-4" test="(ancestor::media[@mimetype='video']/@id = $rids)" role="warning" id="vid-xref-test-4">
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-4" test="(ancestor::media[@mimetype='video']/@id = $rids)" role="warning" id="vid-xref-test-4">
         <value-of select="."/> - video citation is in the caption of the video that it links to. Is it correct or necessary?</report>
     </rule>
   </pattern>

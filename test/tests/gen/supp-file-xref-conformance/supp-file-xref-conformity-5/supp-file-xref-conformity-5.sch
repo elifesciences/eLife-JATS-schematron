@@ -1205,7 +1205,7 @@
       <let name="last-rid-no" value="substring($rid-no,string-length($rid-no))"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-conformity-5" test="$last-text-no = $last-rid-no" role="warning" id="supp-file-xref-conformity-5">
+      <assert see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-file-xref-conformity-5" test="$last-text-no = $last-rid-no" role="warning" id="supp-file-xref-conformity-5">
         <value-of select="."/> - It looks like the citation content does not match what it directs to. Check that it is correct.</assert>
     </rule>
   </pattern>

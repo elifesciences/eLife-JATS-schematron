@@ -1201,7 +1201,7 @@
       <let name="link" value="media[1]/@xlink:href"/>
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
       <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#source-code-test-2" test="contains(label[1],'ource code') and not(($file=('tar','gz','zip','tgz','rar')))" role="warning" id="source-code-test-2">Source code files should always be zipped. The file type for <value-of select="if (self::*/label) then replace(label,'\.$','') else self::*/local-name()"/> is '<value-of select="$file"/>'. Please zip this file, and replace it with the zipped version.</report>
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#source-code-test-2" test="contains(label[1],'ource code') and not(($file=('tar','gz','zip','tgz','rar')))" role="warning" id="source-code-test-2">Source code files should always be zipped. The file type for <value-of select="if (self::*/label) then replace(label,'\.$','') else self::*/local-name()"/> is '<value-of select="$file"/>'. Please zip this file, and replace it with the zipped version.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

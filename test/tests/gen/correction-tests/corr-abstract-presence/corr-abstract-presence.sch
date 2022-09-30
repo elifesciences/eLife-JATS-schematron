@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="correction-retraction">
     <rule context="article[@article-type = 'correction']" id="correction-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#corr-abstract-presence" test="descendant::abstract" role="error" id="corr-abstract-presence">Correction notices should not contain abstracts.</report>
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#corr-abstract-presence" test="descendant::abstract" role="error" id="corr-abstract-presence">Correction notices should not contain abstracts.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

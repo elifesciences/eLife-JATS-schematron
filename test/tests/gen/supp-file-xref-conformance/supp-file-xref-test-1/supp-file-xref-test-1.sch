@@ -1205,7 +1205,7 @@
       <let name="last-rid-no" value="substring($rid-no,string-length($rid-no))"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supp-file-xref-test-1" test="ancestor::supplementary-material/@id = $rid" role="warning" id="supp-file-xref-test-1">
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-file-xref-test-1" test="ancestor::supplementary-material/@id = $rid" role="warning" id="supp-file-xref-test-1">
         <value-of select="."/> - Citation is in the caption of the Supplementary file that it links to. Is it correct or necessary?</report>
     </rule>
   </pattern>

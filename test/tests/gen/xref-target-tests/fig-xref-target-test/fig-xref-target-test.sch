@@ -1200,7 +1200,7 @@
     <rule context="xref" id="xref-target-tests">
       <let name="rid" value="tokenize(@rid,' ')[1]"/>
       <let name="target" value="self::*/ancestor::article//*[@id = $rid]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-target-test" test="(@ref-type='fig') and ($target/local-name() != 'fig')" role="error" id="fig-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-target-test" test="(@ref-type='fig') and ($target/local-name() != 'fig')" role="error" id="fig-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1200,7 +1200,7 @@
     <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-template-tests">
       <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
       <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#pre-feature-templates-author-cont-2" test="$template = ('3','4') and not(back/fn-group[@content-type='author-contribution'])" role="warning" id="pre-feature-templates-author-cont-2">
+      <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#pre-feature-templates-author-cont-2" test="$template = ('3','4') and not(back/fn-group[@content-type='author-contribution'])" role="warning" id="pre-feature-templates-author-cont-2">
         <value-of select="$type"/>s should have Author contributions. This one does not. Exeter please check with the Production team who will check with the Features team.</report>
     </rule>
   </pattern>

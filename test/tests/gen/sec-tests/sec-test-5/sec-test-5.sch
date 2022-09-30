@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="sec-specific">
     <rule context="sec" id="sec-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-test-5" test="count(ancestor::sec) ge 5" role="error" id="sec-test-5">Level <value-of select="count(ancestor::sec) + 1"/> sections are not allowed. Please either make this a level 5 heading, or capture the title as a bolded paragraph in its parent section.</report>
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-test-5" test="count(ancestor::sec) ge 5" role="error" id="sec-test-5">Level <value-of select="count(ancestor::sec) + 1"/> sections are not allowed. Please either make this a level 5 heading, or capture the title as a bolded paragraph in its parent section.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

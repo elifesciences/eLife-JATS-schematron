@@ -1201,7 +1201,7 @@
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       <let name="no-link-text" value="translate(         normalize-space(string-join(for $x in self::*/(*[not(name()='xref')]|text()) return $x,''))         ,' ?.',' ')"/>
       <let name="new-org-regex" value="string-join(for $x in tokenize($org-regex,'\|') return concat('^',$x,'$'),'|')"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-title-appendix-check-2" test="ancestor::body and matches(.,'^[Ss]upplementary |^[Ss]upplemental ')" role="warning" id="sec-title-appendix-check-2">Should the section titled '<value-of select="."/>' be captured as an appendix?</report>
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-appendix-check-2" test="ancestor::body and matches(.,'^[Ss]upplementary |^[Ss]upplemental ')" role="warning" id="sec-title-appendix-check-2">Should the section titled '<value-of select="."/>' be captured as an appendix?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

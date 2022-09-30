@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="element-citation-general-tests">
     <rule context="ref/element-citation/ext-link" id="elem-citation-ext-link">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#link-href-conformance" test="matches(@xlink:href,'^https?://|^s?ftp://')" role="error" id="link-href-conformance">@xlink:href must start with either "http://", "https://", "sftp://" or "ftp://". The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' is '<value-of select="@xlink:href"/>', which does not.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#link-href-conformance" test="matches(@xlink:href,'^https?://|^s?ftp://')" role="error" id="link-href-conformance">@xlink:href must start with either "http://", "https://", "sftp://" or "ftp://". The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' is '<value-of select="@xlink:href"/>', which does not.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1199,7 +1199,7 @@
   <pattern id="content-containers">
     <rule context="fig[not(ancestor::sub-article)]" id="fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#pre-fig-test-4" test="not($article-type = ('discussion',$notice-article-types)) and not(caption)" role="warning" id="pre-fig-test-4">
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#pre-fig-test-4" test="not($article-type = ('discussion',$notice-article-types)) and not(caption)" role="warning" id="pre-fig-test-4">
         <value-of select="label"/> has no title or caption (caption element). Ensure this is queried with the author.</report>
     </rule>
   </pattern>

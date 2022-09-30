@@ -1201,7 +1201,7 @@
       <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
       <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
       <let name="license-type" value="license/@xlink:href"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/licensing-and-copyright#permissions-test-1" test="copyright-statement" role="error" id="permissions-test-1">permissions must contain copyright-statement in CC BY licensed articles.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-1" test="copyright-statement" role="error" id="permissions-test-1">permissions must contain copyright-statement in CC BY licensed articles.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

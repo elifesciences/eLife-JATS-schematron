@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="back">
     <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-fn-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/ethics#ethics-test-4" test="@fn-type='other'" role="error" id="ethics-test-4">This fn must have an @fn-type='other'</assert>
+      <assert see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-test-4" test="@fn-type='other'" role="error" id="ethics-test-4">This fn must have an @fn-type='other'</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

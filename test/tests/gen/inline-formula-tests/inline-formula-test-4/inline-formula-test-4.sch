@@ -1200,7 +1200,7 @@
     <rule context="inline-formula" id="inline-formula-tests">
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#inline-formula-test-4" test="parent::p or parent::td or parent::th or parent::title" role="error" id="inline-formula-test-4">
+      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-4" test="parent::p or parent::td or parent::th or parent::title" role="error" id="inline-formula-test-4">
         <name/> must be a child of p, td, th or title. The formula containing <value-of select="."/> is a child of <value-of select="parent::*/local-name()"/>
       </assert>
     </rule>

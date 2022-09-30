@@ -1201,7 +1201,7 @@
       <let name="YYYY" value="substring(normalize-space(.), 1, 4)"/>
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="citation" value="e:citation-format1(parent::element-citation)"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#err-elem-cit-gen-date-1-4" test="not(./@iso-8601-date) or (1700 le number(substring(normalize-space(@iso-8601-date),1,4)) and number(substring(normalize-space(@iso-8601-date),1,4)) le ($current-year + 5))" role="warning" id="err-elem-cit-gen-date-1-4">The numeric value of the 4 digits in the @iso-8601-date attribute on the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive). Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the attribute contains the value '<value-of select="./@iso-8601-date"/>'.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-date-1-4" test="not(./@iso-8601-date) or (1700 le number(substring(normalize-space(@iso-8601-date),1,4)) and number(substring(normalize-space(@iso-8601-date),1,4)) le ($current-year + 5))" role="warning" id="err-elem-cit-gen-date-1-4">The numeric value of the 4 digits in the @iso-8601-date attribute on the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive). Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the attribute contains the value '<value-of select="./@iso-8601-date"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

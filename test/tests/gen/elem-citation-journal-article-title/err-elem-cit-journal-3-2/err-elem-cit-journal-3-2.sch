@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="element-citation-journal-tests">
     <rule context="element-citation[@publication-type='journal']/article-title" id="elem-citation-journal-article-title">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/journal-references#err-elem-cit-journal-3-2" test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-journal-3-2">An &lt;article-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-3-2" test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-journal-3-2">An &lt;article-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

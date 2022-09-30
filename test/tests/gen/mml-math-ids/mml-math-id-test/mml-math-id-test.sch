@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="disp-formula/mml:math" id="mml-math-ids">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#mml-math-id-test" test="not(ancestor::sub-article) and not(matches(@id,'^m[0-9]{1,9}$'))" role="error" id="mml-math-id-test">mml:math @id in disp-formula must be in the format 'm0'.  <value-of select="@id"/> does not conform to this.</report>
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#mml-math-id-test" test="not(ancestor::sub-article) and not(matches(@id,'^m[0-9]{1,9}$'))" role="error" id="mml-math-id-test">mml:math @id in disp-formula must be in the format 'm0'.  <value-of select="@id"/> does not conform to this.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

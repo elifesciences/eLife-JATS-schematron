@@ -1201,7 +1201,7 @@
       <let name="id" value="@id"/>
       <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-test-2" test="count(table) &gt; 1" role="warning" id="table-wrap-test-2">table-wrap has more than one table - Is this correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-wrap-test-2" test="count(table) &gt; 1" role="warning" id="table-wrap-test-2">table-wrap has more than one table - Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

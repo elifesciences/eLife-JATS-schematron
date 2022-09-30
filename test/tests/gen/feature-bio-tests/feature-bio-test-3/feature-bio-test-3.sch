@@ -1202,7 +1202,7 @@
       <let name="xref-rid" value="parent::contrib/xref[@ref-type='aff']/@rid"/>
       <let name="aff" value="if (parent::contrib/aff) then parent::contrib/aff[1]/institution[not(@content-type)][1]/normalize-space(.)        else ancestor::contrib-group/aff[@id/string() = $xref-rid]/institution[not(@content-type)][1]/normalize-space(.)"/>
       <let name="aff-tokens" value="for $y in $aff return tokenize($y,', ')"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-bio-test-3" test="matches(p[1],'\.$')" role="error" id="feature-bio-test-3">bio cannot end  with a full stop - '<value-of select="p[1]"/>'.</report>
+      <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-bio-test-3" test="matches(p[1],'\.$')" role="error" id="feature-bio-test-3">bio cannot end  with a full stop - '<value-of select="p[1]"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

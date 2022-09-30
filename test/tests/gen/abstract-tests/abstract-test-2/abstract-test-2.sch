@@ -1199,7 +1199,7 @@
   <pattern id="article-metadata">
     <rule context="front//abstract" id="abstract-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#abstract-test-2" test="(count(p) + count(sec[descendant::p])) lt 1" role="error" id="abstract-test-2">At least 1 p element or sec element (with descendant p) must be present in abstract.</report>
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#abstract-test-2" test="(count(p) + count(sec[descendant::p])) lt 1" role="error" id="abstract-test-2">At least 1 p element or sec element (with descendant p) must be present in abstract.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1199,7 +1199,7 @@
   <pattern id="element-citation-report-tests">
     <rule context="element-citation[@publication-type='report']" id="elem-citation-report">
       <let name="publisher-locations" value="'../../../../../src/publisher-locations.xml'"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/report-references#err-elem-cit-report-14" test="ext-link and pub-id[@pub-id-type='doi']" role="error" id="err-elem-cit-report-14">Report reference cannot have both a doi and a URL. Reference '<value-of select="ancestor::ref/@id"/>' has a doi (<value-of select="pub-id[@pub-id-type='doi']"/>) and a URL (<value-of select="ext-link"/>).</report>
+      <report see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-14" test="ext-link and pub-id[@pub-id-type='doi']" role="error" id="err-elem-cit-report-14">Report reference cannot have both a doi and a URL. Reference '<value-of select="ancestor::ref/@id"/>' has a doi (<value-of select="pub-id[@pub-id-type='doi']"/>) and a URL (<value-of select="ext-link"/>).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

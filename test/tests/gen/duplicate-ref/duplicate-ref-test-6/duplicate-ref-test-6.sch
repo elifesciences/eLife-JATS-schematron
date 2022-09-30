@@ -1203,7 +1203,7 @@
       <let name="c-title" value="element-citation/chapter-title[1]"/>
       <let name="source" value="element-citation/source[1]"/>
       <let name="top-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi'][1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#duplicate-ref-test-6" test="$top-doi = $doi" role="error" id="duplicate-ref-test-6">ref '<value-of select="@id"/>' has a doi which is the same as the article itself '<value-of select="$top-doi"/>' which must be incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#duplicate-ref-test-6" test="$top-doi = $doi" role="error" id="duplicate-ref-test-6">ref '<value-of select="@id"/>' has a doi which is the same as the article itself '<value-of select="$top-doi"/>' which must be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

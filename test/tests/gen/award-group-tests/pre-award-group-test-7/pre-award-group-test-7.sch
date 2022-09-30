@@ -1201,7 +1201,7 @@
       <let name="id" value="@id"/>
       <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
       <let name="version" value="e:get-version(.)"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#pre-award-group-test-7" test="if ($version = '1') then not(ancestor::article//article-meta//contrib//xref/@rid = $id)      else ()" role="warning" id="pre-award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). If you are unable to determine which author(s) are associated with this funding, please add an author query.</report>
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#pre-award-group-test-7" test="if ($version = '1') then not(ancestor::article//article-meta//contrib//xref/@rid = $id)      else ()" role="warning" id="pre-award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). If you are unable to determine which author(s) are associated with this funding, please add an author query.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

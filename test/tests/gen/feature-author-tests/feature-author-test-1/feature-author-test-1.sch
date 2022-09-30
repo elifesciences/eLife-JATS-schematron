@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="features">
     <rule context="article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']" id="feature-author-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/feature-content#feature-author-test-1" test="collab or ancestor::collab or bio" role="error" id="feature-author-test-1">Author must contain child bio in feature content.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-author-test-1" test="collab or ancestor::collab or bio" role="error" id="feature-author-test-1">Author must contain child bio in feature content.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

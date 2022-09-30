@@ -1200,7 +1200,7 @@
     <rule context="element-citation/pub-id[@pub-id-type='isbn']" id="isbn-conformity">
       <let name="t" value="translate(.,'-','')"/>
       <let name="sum" value="e:isbn-sum($t)"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#isbn-conformity-test" test="$sum = 0" role="error" id="isbn-conformity-test">pub-id contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#isbn-conformity-test" test="$sum = 0" role="error" id="isbn-conformity-test">pub-id contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

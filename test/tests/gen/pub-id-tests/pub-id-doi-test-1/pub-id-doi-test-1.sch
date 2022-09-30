@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="pub-id-pattern">
     <rule context="element-citation/pub-id" id="pub-id-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#pub-id-doi-test-1" test="(@pub-id-type != 'doi') and matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')" role="error" id="pub-id-doi-test-1">pub-id has a doi link - <value-of select="@xlink:href"/> - but its pub-id-type is <value-of select="@pub-id-type"/> instead of doi.</report>
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pub-id-doi-test-1" test="(@pub-id-type != 'doi') and matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')" role="error" id="pub-id-doi-test-1">pub-id has a doi link - <value-of select="@xlink:href"/> - but its pub-id-type is <value-of select="@pub-id-type"/> instead of doi.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

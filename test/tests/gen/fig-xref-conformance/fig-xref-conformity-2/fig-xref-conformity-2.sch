@@ -1204,7 +1204,7 @@
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
       <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
       <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#fig-xref-conformity-2" test="($type = ('Figure','Chemical structure','Scheme')) and not(contains($no,$target-no))" role="error" id="fig-xref-conformity-2">
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-conformity-2" test="($type = ('Figure','Chemical structure','Scheme')) and not(contains($no,$target-no))" role="error" id="fig-xref-conformity-2">
         <value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
     </rule>
   </pattern>

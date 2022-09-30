@@ -1199,7 +1199,7 @@
   <pattern id="house-style">
     <rule context="element-citation//name" id="ref-name-tests">
       <let name="type" value="ancestor::person-group[1]/@person-group-type"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#surname-count" test="count(surname) = 1" role="error" id="surname-count">ref '<value-of select="ancestor::ref/@id"/>' has an <value-of select="$type"/> with <value-of select="count(surname)"/> surnames - <value-of select="."/> - which is incorrect.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#surname-count" test="count(surname) = 1" role="error" id="surname-count">ref '<value-of select="ancestor::ref/@id"/>' has an <value-of select="$type"/> with <value-of select="count(surname)"/> surnames - <value-of select="."/> - which is incorrect.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

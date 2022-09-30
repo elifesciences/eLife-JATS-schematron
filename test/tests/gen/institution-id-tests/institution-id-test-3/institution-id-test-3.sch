@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article[e:get-version(.)='1']//award-group//institution-wrap/institution-id" id="institution-id-tests">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/funding-information#institution-id-test-3" test="normalize-space(.) != ''" role="error" id="institution-id-test-3">The funding entry for <value-of select="parent::institution-wrap/institution"/> has an empty <name/> element, which is not allowed.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-3" test="normalize-space(.) != ''" role="error" id="institution-id-test-3">The funding entry for <value-of select="parent::institution-wrap/institution"/> has an empty <name/> element, which is not allowed.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

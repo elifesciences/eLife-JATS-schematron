@@ -1201,7 +1201,7 @@
       <let name="link" value="media[1]/@xlink:href"/>
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
       <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/additional-files#supplementary-material-test-2" test="not(matches(label[1],'Transparent reporting form|MDAR checklist')) and not(caption)" role="warning" id="supplementary-material-test-2">
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-2" test="not(matches(label[1],'Transparent reporting form|MDAR checklist')) and not(caption)" role="warning" id="supplementary-material-test-2">
         <value-of select="label"/> is missing a title/caption - is this correct? (supplementary-material should have a child caption.)</report>
     </rule>
   </pattern>

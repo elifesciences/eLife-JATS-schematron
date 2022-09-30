@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="body//xref" id="body-xref-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#semi-colon-xref-test" test="ends-with(.,';') or ends-with(.,'; ')" role="error" id="semi-colon-xref-test">xref ends with semi-colon - '<value-of select="."/>' - which is incorrect. The semi-colon should be placed after the link as 'normal' text.</report>
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#semi-colon-xref-test" test="ends-with(.,';') or ends-with(.,'; ')" role="error" id="semi-colon-xref-test">xref ends with semi-colon - '<value-of select="."/>' - which is incorrect. The semi-colon should be placed after the link as 'normal' text.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

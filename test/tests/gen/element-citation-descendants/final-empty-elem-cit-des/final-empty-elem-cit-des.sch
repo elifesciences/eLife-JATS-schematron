@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="element-citation-high-tests">
     <rule context="element-citation//*" id="element-citation-descendants">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#final-empty-elem-cit-des" test="not(*) and (normalize-space(.)='')" role="error" id="final-empty-elem-cit-des">
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-empty-elem-cit-des" test="not(*) and (normalize-space(.)='')" role="error" id="final-empty-elem-cit-des">
         <name/> element is empty - this is not allowed. It must contain content.</report>
     </rule>
   </pattern>

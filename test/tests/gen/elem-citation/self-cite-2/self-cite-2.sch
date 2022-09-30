@@ -1200,7 +1200,7 @@
     <rule context="element-citation" id="elem-citation">
       <let name="article-doi" value="lower-case(ancestor::article/descendant::article-meta[1]/article-id[@pub-id-type='doi'][1])"/>
       <let name="title" value="lower-case(ancestor::article/descendant::article-meta[1]/descendant::article-title[1])"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references#self-cite-1" test="(lower-case(pub-id[@pub-id-type='doi'][1]) != $article-doi) and                (lower-case(source[1]) = 'elife') and                ((lower-case(article-title[1]) = $title) or (lower-case(chapter-title[1]) = $title)) " role="error" id="self-cite-2">'<value-of select="@publication-type"/>' type reference looks to possibly be citing itself. If that's the case (and this isn't an error within the reference), please delete the reference and replace any citations in the text with the text 'current work'.</report>
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#self-cite-1" test="(lower-case(pub-id[@pub-id-type='doi'][1]) != $article-doi) and                (lower-case(source[1]) = 'elife') and                ((lower-case(article-title[1]) = $title) or (lower-case(chapter-title[1]) = $title)) " role="error" id="self-cite-2">'<value-of select="@publication-type"/>' type reference looks to possibly be citing itself. If that's the case (and this isn't an error within the reference), please delete the reference and replace any citations in the text with the text 'current work'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1199,7 +1199,7 @@
   <pattern id="house-style">
     <rule context="mml:*[@mathcolor]" id="math-colour-tests">
       <let name="allowed-values" value="('red','blue','purple')"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/maths#final-mathcolor-test-1" test="@mathcolor = $allowed-values" role="error" id="final-mathcolor-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>' - which is not allowed. Only 'red', 'blue' and 'purple' are allowed.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#final-mathcolor-test-1" test="@mathcolor = $allowed-values" role="error" id="final-mathcolor-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>' - which is not allowed. Only 'red', 'blue' and 'purple' are allowed.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

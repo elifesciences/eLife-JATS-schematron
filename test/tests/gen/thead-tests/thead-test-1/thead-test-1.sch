@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="table/thead" id="thead-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#thead-test-1" test="count(tr) = 0" role="error" id="thead-test-1">thead must have at least one row (tr).</report>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#thead-test-1" test="count(tr) = 0" role="error" id="thead-test-1">thead must have at least one row (tr).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

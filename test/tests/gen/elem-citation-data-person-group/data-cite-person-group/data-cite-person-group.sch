@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="element-citation-data-tests">
     <rule context="element-citation[@publication-type='data']/person-group" id="elem-citation-data-person-group">
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/data-references#data-cite-person-group" test="@person-group-type='author'" role="error" id="data-cite-person-group">The person-group for a data reference must have the attribute person-group-type="author". This one in reference '<value-of select="ancestor::ref/@id"/>' has either no person-group attribute or the value is incorrect (<value-of select="@person-group-type"/>).</assert>
+      <assert see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#data-cite-person-group" test="@person-group-type='author'" role="error" id="data-cite-person-group">The person-group for a data reference must have the attribute person-group-type="author". This one in reference '<value-of select="ancestor::ref/@id"/>' has either no person-group attribute or the value is incorrect (<value-of select="@person-group-type"/>).</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

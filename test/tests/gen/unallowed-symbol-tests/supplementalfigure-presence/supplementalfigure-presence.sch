@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#supplementalfigure-presence" test="not(ancestor::sub-article) and matches(.,'\p{Zs}?[Ss]upplemental [Ff]igure')" role="warning" id="supplementalfigure-presence">
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supplementalfigure-presence" test="not(ancestor::sub-article) and matches(.,'\p{Zs}?[Ss]upplemental [Ff]igure')" role="warning" id="supplementalfigure-presence">
         <name/> element contains the phrase ' Supplemental figure ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/>
       </report>
     </rule>

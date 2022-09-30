@@ -1201,7 +1201,7 @@
       <let name="id" value="@id"/>
       <let name="lab" value="label[1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/tables#table-wrap-test-3" test="(contains($id,'inline')) and (normalize-space($lab) != '')" role="error" id="table-wrap-test-3">table-wrap has an inline id <value-of select="$id"/> but it has a label - <value-of select="$lab"/>, which is not correct.</report>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-wrap-test-3" test="(contains($id,'inline')) and (normalize-space($lab) != '')" role="error" id="table-wrap-test-3">table-wrap has an inline id <value-of select="$id"/> but it has a label - <value-of select="$lab"/>, which is not correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

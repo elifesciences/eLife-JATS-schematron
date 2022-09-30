@@ -1202,7 +1202,7 @@
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <let name="we-token" value="substring-before(substring-after(lower-case(.),' we '),' ')"/>
       <let name="verbs" value="('name', 'named', 'can', 'progress', 'progressed', 'explain', 'explained', 'found', 'founded', 'present', 'presented', 'have', 'describe', 'described', 'showed', 'report', 'reported', 'miss', 'missed', 'identify', 'identified', 'better', 'bettered', 'validate', 'validated', 'use', 'used', 'listen', 'listened', 'demonstrate', 'demonstrated', 'argue', 'argued', 'will', 'assess', 'assessed', 'are', 'may', 'observe', 'observed', 'find', 'found', 'previously', 'should', 'rely', 'relied', 'reflect', 'reflected', 'recognise', 'recognised', 'attend', 'attended', 'first', 'define', 'defined', 'here', 'need', 'needed')"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#pre-custom-meta-test-6" test="matches(.,'[\.|\?]$')" role="warning" id="pre-custom-meta-test-6">Impact statement must end with a full stop or question mark.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-custom-meta-test-6" test="matches(.,'[\.|\?]$')" role="warning" id="pre-custom-meta-test-6">Impact statement must end with a full stop or question mark.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

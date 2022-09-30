@@ -1200,7 +1200,7 @@
     <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
       <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi'][1]"/>
       <let name="uc" value="upper-case(.)"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/references/journal-references#bmj" test="(matches($uc,'^BMJ$|BMJ[:]? ')) and matches(.,'Bmj|bmj|BMj|BmJ|bMj|bmJ')" role="error" id="bmj">ref '<value-of select="ancestor::ref/@id"/>' contains
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#bmj" test="(matches($uc,'^BMJ$|BMJ[:]? ')) and matches(.,'Bmj|bmj|BMj|BmJ|bMj|bmJ')" role="error" id="bmj">ref '<value-of select="ancestor::ref/@id"/>' contains
         <value-of select="."/>. 'BMJ' should be upper-case.</report>
     </rule>
   </pattern>

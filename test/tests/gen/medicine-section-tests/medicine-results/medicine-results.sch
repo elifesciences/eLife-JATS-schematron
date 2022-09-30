@@ -1199,7 +1199,7 @@
   <pattern id="body">
     <rule context="article[@article-type='research-article' and descendant::article-meta[not(//subj-group[@subj-group-type='display-channel']/subject[lower-case(.)='feature article']) and //subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" id="medicine-section-tests">
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#medicine-results" test="$pos=3 and title[1]!='Results'" role="warning" id="medicine-results">The third top level section in a Medicine article should be 'Results', but this one is '<value-of select="title[1]"/>'. Is that correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#medicine-results" test="$pos=3 and title[1]!='Results'" role="warning" id="medicine-results">The third top level section in a Medicine article should be 'Results', but this one is '<value-of select="title[1]"/>'. Is that correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

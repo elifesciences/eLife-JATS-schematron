@@ -1198,7 +1198,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#figurefigure-presence" test="matches(.,'[Ff]igure [Ff]igure')" role="warning" id="figurefigure-presence">
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#figurefigure-presence" test="matches(.,'[Ff]igure [Ff]igure')" role="warning" id="figurefigure-presence">
         <name/> element contains ' figure figure ' which is very likely to be incorrect.</report>
     </rule>
   </pattern>

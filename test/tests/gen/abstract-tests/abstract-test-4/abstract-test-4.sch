@@ -1199,7 +1199,7 @@
   <pattern id="article-metadata">
     <rule context="front//abstract" id="abstract-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure/abstract-digest-impact-statement#abstract-test-4" test="descendant::disp-formula" role="error" id="abstract-test-4">abstracts cannot contain display formulas.</report>
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#abstract-test-4" test="descendant::disp-formula" role="error" id="abstract-test-4">abstracts cannot contain display formulas.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

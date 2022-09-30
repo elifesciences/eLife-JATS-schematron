@@ -1200,7 +1200,7 @@
     <rule context="fig/caption/title" id="fig-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
-      <assert see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/figures#fig-title-test-2" test="matches(replace(.,'&quot;',''),'\.$|\?$')" role="error" id="fig-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-title-test-2" test="matches(replace(.,'&quot;',''),'\.$|\?$')" role="error" id="fig-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

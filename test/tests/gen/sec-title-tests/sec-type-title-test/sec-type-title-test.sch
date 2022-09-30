@@ -1199,7 +1199,7 @@
   <pattern id="title-conformance">
     <rule context="sec[@sec-type]/title" id="sec-title-tests">
       <let name="title" value="e:sec-type2title(parent::sec/@sec-type)"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/article-structure#sec-type-title-test" test="if ($title = 'undefined') then ()         else . != $title" role="warning" id="sec-type-title-test">title of a sec with an @sec-type='<value-of select="parent::sec/@sec-type"/>' should usually be '<value-of select="$title"/>'.</report>
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-type-title-test" test="if ($title = 'undefined') then ()         else . != $title" role="warning" id="sec-type-title-test">title of a sec with an @sec-type='<value-of select="parent::sec/@sec-type"/>' should usually be '<value-of select="$title"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

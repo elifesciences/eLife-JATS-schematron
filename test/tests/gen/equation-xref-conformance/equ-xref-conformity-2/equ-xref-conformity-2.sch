@@ -1202,7 +1202,7 @@
       <let name="labels" value="for $rid in tokenize($rids,'\s')[position()=(1,last())] return translate(ancestor::article//disp-formula[@id = $rid]/label,'()','')"/>
       <let name="prec-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <report see="https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/allowed-assets/asset-citations#equ-xref-conformity-2" test="if (count($labels) gt 1) then (some $label in $labels satisfies not(contains(.,$label)))               else not(contains(.,$labels))" role="warning" id="equ-xref-conformity-2">equation link content does not match what it directs to (content = <value-of select="."/>; label(s) = <value-of select="string-join($labels,'; ')"/>). Is this correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#equ-xref-conformity-2" test="if (count($labels) gt 1) then (some $label in $labels satisfies not(contains(.,$label)))               else not(contains(.,$labels))" role="warning" id="equ-xref-conformity-2">equation link content does not match what it directs to (content = <value-of select="."/>; label(s) = <value-of select="string-join($labels,'; ')"/>). Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
