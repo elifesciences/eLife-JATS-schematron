@@ -1197,14 +1197,14 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article[e:get-version(.)!='1']//award-group//institution-wrap/institution-id" id="institution-id-tests-v2">
+    <rule context="article//award-group//institution-wrap/institution-id[@institution-id-type='doi']" id="institution-id-doi-tests">
       <assert test="@vocab='open-funder-registry'" role="error" id="institution-id-test-6">
         <name/> in funding must have a vocab="open-funder-registry" attribute. This one does not.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[e:get-version(.)!='1']//award-group//institution-wrap/institution-id" role="error" id="institution-id-tests-v2-xspec-assert">article[e:get-version(.)!='1']//award-group//institution-wrap/institution-id must be present.</assert>
+      <assert test="descendant::article//award-group//institution-wrap/institution-id[@institution-id-type='doi']" role="error" id="institution-id-doi-tests-xspec-assert">article//award-group//institution-wrap/institution-id[@institution-id-type='doi'] must be present.</assert>
     </rule>
   </pattern>
 </schema>
