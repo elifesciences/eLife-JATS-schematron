@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="institution-id-test-6.sch"?>
+<!--Context: article//award-group//institution-wrap/institution-id[@institution-id-type='doi']
+Test: assert    @vocab='open-funder-registry'
+Message:  in funding must have a vocab="open-funder-registry" attribute. This one does not. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-type="research-article">
+    <front>
+      <article-meta>
+        <award-group>
+          <institution-wrap>
+            <institution-id institution-id-type="doi" vocab-identifier="10.13039/open-funder-registry">10.13039/100000002</institution-id>
+          </institution-wrap>
+        </award-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

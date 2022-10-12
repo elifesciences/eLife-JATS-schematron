@@ -3120,12 +3120,12 @@
       
     </rule>
     
-    <rule context="article[e:get-version(.)='1']//award-group//institution-wrap/institution-id" id="institution-id-tests">
+    <rule context="article//award-group//institution-wrap/institution-id" id="institution-id-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-2" 
-        test="@institution-id-type='FundRef'" 
+        test="@institution-id-type=('doi','FundRef')" 
         role="error" 
-        id="institution-id-test-2"><name/> element must have the attribute institution-id-type="FundRef".</assert>
+        id="institution-id-test-2"><name/> element must have the attribute institution-id-type with a value of "doi" (or for older content "FundRef").</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-3" 
         test="normalize-space(.) != ''" 
@@ -3144,25 +3144,7 @@
       
     </rule>
     
-    <rule context="article[e:get-version(.)!='1']//award-group//institution-wrap/institution-id" id="institution-id-tests-v2">
-      
-      <assert test="@institution-id-type='doi'" 
-        role="error" 
-        id="institution-id-test-2-v2"><name/> element must have the attribute institution-id-type="doi".</assert>
-      
-      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-3" 
-        test="normalize-space(.) != ''" 
-        role="error" 
-        id="institution-id-test-3-v2">The funding entry for <value-of select="parent::institution-wrap/institution"/> has an empty <name/> element, which is not allowed.</assert>
-      
-      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-4" 
-        test="*" 
-        role="error" 
-        id="institution-id-test-4-v2">The <name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains child element(s) (<value-of select="string-join(distinct-values(*/name()),', ')"/>) which is not allowed.</report>
-      
-      <report test="(normalize-space(.) != '') and not(matches(.,'^10.13039/\d*$'))" 
-        role="error" 
-        id="institution-id-test-5-v2"><name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains the following text - <value-of select="."/> - which is not a fundref doi.</report>
+    <rule context="article//award-group//institution-wrap/institution-id[@institution-id-type='doi']" id="institution-id-doi-tests">
       
       <assert test="@vocab='open-funder-registry'" 
         role="error" 

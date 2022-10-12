@@ -1197,13 +1197,13 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article[e:get-version(.)='1']//award-group//institution-wrap/institution-id" id="institution-id-tests">
+    <rule context="article//award-group//institution-wrap/institution-id" id="institution-id-tests">
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-4" test="*" role="error" id="institution-id-test-4">The <name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains child element(s) (<value-of select="string-join(distinct-values(*/name()),', ')"/>) which is not allowed.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[e:get-version(.)='1']//award-group//institution-wrap/institution-id" role="error" id="institution-id-tests-xspec-assert">article[e:get-version(.)='1']//award-group//institution-wrap/institution-id must be present.</assert>
+      <assert test="descendant::article//award-group//institution-wrap/institution-id" role="error" id="institution-id-tests-xspec-assert">article//award-group//institution-wrap/institution-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

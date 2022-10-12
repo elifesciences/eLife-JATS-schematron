@@ -1197,14 +1197,14 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article//award-group//institution-wrap/institution-id" id="institution-id-tests">
-      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-5" test="(normalize-space(.) != '') and not(matches(.,'^http[s]?://d?x?\.?doi.org/10.13039/\d*$'))" role="error" id="institution-id-test-5">
-        <name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains the following text - <value-of select="."/> - which is not a fundref doi.</report>
+    <rule context="article//award-group//institution-wrap/institution-id[@institution-id-type='doi']" id="institution-id-doi-tests">
+      <assert test="@vocab-identifier='10.13039/open-funder-registry'" role="error" id="institution-id-test-7">
+        <name/> in funding must have a vocab-identifier="10.13039/open-funder-registry" attribute. This one does not.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article//award-group//institution-wrap/institution-id" role="error" id="institution-id-tests-xspec-assert">article//award-group//institution-wrap/institution-id must be present.</assert>
+      <assert test="descendant::article//award-group//institution-wrap/institution-id[@institution-id-type='doi']" role="error" id="institution-id-doi-tests-xspec-assert">article//award-group//institution-wrap/institution-id[@institution-id-type='doi'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

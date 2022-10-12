@@ -2081,8 +2081,8 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">institution-id-tests-v2-pattern</xsl:attribute>
-            <xsl:attribute name="name">institution-id-tests-v2-pattern</xsl:attribute>
+            <xsl:attribute name="id">institution-id-doi-tests-pattern</xsl:attribute>
+            <xsl:attribute name="name">institution-id-doi-tests-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M142"/>
@@ -11418,13 +11418,13 @@
 
 
 	  <!--RULE institution-id-tests-->
-   <xsl:template match="article[e:get-version(.)='1']//award-group//institution-wrap/institution-id" priority="1000" mode="M141">
+   <xsl:template match="article//award-group//institution-wrap/institution-id" priority="1000" mode="M141">
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="@institution-id-type='FundRef'"/>
+         <xsl:when test="@institution-id-type=('doi','FundRef')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@institution-id-type='FundRef'">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@institution-id-type=('doi','FundRef')">
                <xsl:attribute name="id">institution-id-test-2</xsl:attribute>
                <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
@@ -11433,7 +11433,7 @@
                </xsl:attribute>
                <svrl:text>[institution-id-test-2] <xsl:text/>
                   <xsl:value-of select="name(.)"/>
-                  <xsl:text/> element must have the attribute institution-id-type="FundRef".</svrl:text>
+                  <xsl:text/> element must have the attribute institution-id-type with a value of "doi" (or for older content "FundRef").</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -11502,87 +11502,13 @@
       <xsl:apply-templates select="*" mode="M141"/>
    </xsl:template>
 
-   <!--PATTERN institution-id-tests-v2-pattern-->
+   <!--PATTERN institution-id-doi-tests-pattern-->
 
 
-	  <!--RULE institution-id-tests-v2-->
-   <xsl:template match="article[e:get-version(.)!='1']//award-group//institution-wrap/institution-id" priority="1000" mode="M142">
+	  <!--RULE institution-id-doi-tests-->
+   <xsl:template match="article//award-group//institution-wrap/institution-id[@institution-id-type='doi']" priority="1000" mode="M142">
 
 		<!--ASSERT error-->
-      <xsl:choose>
-         <xsl:when test="@institution-id-type='doi'"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@institution-id-type='doi'">
-               <xsl:attribute name="id">institution-id-test-2-v2</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[institution-id-test-2-v2] <xsl:text/>
-                  <xsl:value-of select="name(.)"/>
-                  <xsl:text/> element must have the attribute institution-id-type="doi".</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
-
-		    <!--ASSERT error-->
-      <xsl:choose>
-         <xsl:when test="normalize-space(.) != ''"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.) != ''">
-               <xsl:attribute name="id">institution-id-test-3-v2</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-3</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[institution-id-test-3-v2] The funding entry for <xsl:text/>
-                  <xsl:value-of select="parent::institution-wrap/institution"/>
-                  <xsl:text/> has an empty <xsl:text/>
-                  <xsl:value-of select="name(.)"/>
-                  <xsl:text/> element, which is not allowed.</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
-
-		    <!--REPORT error-->
-      <xsl:if test="*">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*">
-            <xsl:attribute name="id">institution-id-test-4-v2</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-4</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[institution-id-test-4-v2] The <xsl:text/>
-               <xsl:value-of select="name(.)"/>
-               <xsl:text/> element in funding entry for <xsl:text/>
-               <xsl:value-of select="parent::institution-wrap/institution"/>
-               <xsl:text/> contains child element(s) (<xsl:text/>
-               <xsl:value-of select="string-join(distinct-values(*/name()),', ')"/>
-               <xsl:text/>) which is not allowed.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT error-->
-      <xsl:if test="(normalize-space(.) != '') and not(matches(.,'^10.13039/\d*$'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(normalize-space(.) != '') and not(matches(.,'^10.13039/\d*$'))">
-            <xsl:attribute name="id">institution-id-test-5-v2</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[institution-id-test-5-v2] <xsl:text/>
-               <xsl:value-of select="name(.)"/>
-               <xsl:text/> element in funding entry for <xsl:text/>
-               <xsl:value-of select="parent::institution-wrap/institution"/>
-               <xsl:text/> contains the following text - <xsl:text/>
-               <xsl:value-of select="."/>
-               <xsl:text/> - which is not a fundref doi.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="@vocab='open-funder-registry'"/>
          <xsl:otherwise>
