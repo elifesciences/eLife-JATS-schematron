@@ -1537,7 +1537,7 @@
         role="error" 
         id="test-self-uri-pdf-2">self-uri does not conform.</report>
 		
-    <report test="not($article-type = ($notice-article-types,'article-commentary')) and count(history) != 1" 
+    <report test="not($article-type = ($notice-article-types,'article-commentary','editorial')) and count(history) != 1" 
         role="error" 
         id="test-history-presence">There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/></report>
     

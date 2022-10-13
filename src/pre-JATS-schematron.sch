@@ -1340,7 +1340,7 @@
     
     <report test="not($article-type = $notice-article-types) and not(self-uri[matches(@xlink:href, '^elife-[\d]{5}\.pdf$|^elife-[\d]{5}-v[0-9]{1,2}\.pdf$')])" role="error" id="test-self-uri-pdf-2">[test-self-uri-pdf-2] self-uri does not conform.</report>
 		
-    <report test="not($article-type = ($notice-article-types,'article-commentary')) and count(history) != 1" role="error" id="test-history-presence">[test-history-presence] There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/>
+    <report test="not($article-type = ($notice-article-types,'article-commentary','editorial')) and count(history) != 1" role="error" id="test-history-presence">[test-history-presence] There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/>
       </report>
     
     <!-- Add this once all history is removed from insights
