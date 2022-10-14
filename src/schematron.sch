@@ -3677,7 +3677,7 @@ else self::*/local-name() = $allowed-p-blocks"
       id="das-software-heritage-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-1" 
-        test="(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$',''))" 
+        test="(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$|;path=/.*$',''))" 
         role="error" 
         id="software-heritage-test-1">Software heritage links in the data availability statement must be the full contextual link, with the revision SWHID as the text of the link for Kriya 2. '<value-of select="."/>' is not either of these.</assert>
       

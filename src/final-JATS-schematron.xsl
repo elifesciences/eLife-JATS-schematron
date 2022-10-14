@@ -13199,9 +13199,9 @@
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$',''))"/>
+         <xsl:when test="(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$|;path=/.*$',''))"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$',''))">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$|;path=/.*$',''))">
                <xsl:attribute name="id">software-heritage-test-1</xsl:attribute>
                <xsl:attribute name="see">https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
