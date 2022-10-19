@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="r-article-sub-articles.sch"?>
 <!--Context: article[@article-type='research-article' and sub-article]
-Test: report    if ($version='1') then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type!='reply']) else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type!='author-comment'])
+Test: report    $disp-channel != 'Scientific Correspondence' and not(sub-article[@article-type!=('reply','author-comment')])
 Message:  type articles cannot have only an Author response. The following combinations of peer review-material are permitted: Editor's evaluation, Decision letter, and Author response; Decision letter, and Author response; Editor's evaluation and Decision letter; Editor's evaluation and Author response; or Decision letter. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="research-article">

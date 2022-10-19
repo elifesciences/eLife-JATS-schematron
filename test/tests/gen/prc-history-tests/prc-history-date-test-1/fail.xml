@@ -1,0 +1,22 @@
+<?oxygen SCHSchema="prc-history-date-test-1.sch"?>
+<!--Context: article-meta[e:is-prc(.)]/history
+Test: assert    date[@date-type='sent-for-review']
+Message: history must contain date[@date-type='sent-for-review'] in PRC articles. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <history>
+      </history>
+      <custom-meta-group>
+        <custom-meta specific-use="meta-only">
+          <meta-name>Author impact statement</meta-name>
+          <meta-value>This is an impact statement <italic>i</italic><sup>a</sup><sub>b</sub>.</meta-value>
+        </custom-meta>
+        <custom-meta specific-use="meta-only">
+          <meta-name>publishing-route</meta-name>
+          <meta-value>prc</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </article>
+</root>

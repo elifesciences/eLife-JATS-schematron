@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="final-test-r-article-d-letter-feat.sch"?>
 <!--Context: article[@article-type='research-article']
-Test: report    if ($version='1') then ($disp-channel = 'Feature Article') and not(sub-article[@article-type='decision-letter']) else ($disp-channel = 'Feature Article') and not(sub-article[@article-type='referee-report'])
+Test: report    $disp-channel = 'Feature Article' and not(sub-article[@article-type='decision-letter'])
 Message: A decision letter should be present for research articles. Feature template 5s almost always have a decision letter, but this one does not. Is that correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
     <article article-type="research-article" dtd-version="1.1">

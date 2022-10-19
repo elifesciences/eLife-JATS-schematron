@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ed-eval-title-test.sch"?>
 <!--Context: sub-article[@article-type='editor-report']/front-stub/title-group
-Test: assert    article-title = "Editor's evaluation"
-Message: title-group must contain article-title which contains "Editor's evaluation". Currently it is . -->
+Test: assert    article-title = ("Editor's evaluation",'eLife assessment')
+Message: A sub-article[@article-type='editor-report'] must have the title "eLife assessment" or "Editor's evaluation". Currently it is . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sub-article article-type="editor-report" id="sa0">

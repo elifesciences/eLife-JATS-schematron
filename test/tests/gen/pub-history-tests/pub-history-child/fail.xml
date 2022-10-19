@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pub-history-child.sch"?>
 <!--Context: pub-history
-Test: assert    count(event) = 1
-Message:  must have one, and only one, event element. This one has . -->
+Test: report    not(e:is-prc(.)) and count(event) != 1
+Message:  must have one, and only one, event element in non-PRC content. This one has . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <pub-history>
