@@ -1224,7 +1224,7 @@
       <let name="role" value="role[1]"/>
       <let name="top-contrib" value="ancestor::article//article-meta/contrib-group[2]/contrib[lower-case(role[1])=lower-case($role)]"/>
       <let name="top-name" value="if ($top-contrib) then e:get-name($top-contrib/name[1]) else ''"/>
-      <report test="($top-name!='') and ($top-name!=$name)" role="error" id="ref-report-editor-2">In decision letter '<value-of select="$name"/>' is a '<value-of select="$role"/>', but in the top-level article details '<value-of select="$top-name"/>' is the '<value-of select="$top-contrib/role[1]"/>'.</report>
+      <report test="($top-name!='') and ($top-name!=$name)" role="error" id="ref-report-editor-2">In <value-of select="ancestor::front-stub[1]//article-title"/> '<value-of select="$name"/>' is a '<value-of select="$role"/>', but in the top-level article details '<value-of select="$top-name"/>' is the '<value-of select="$top-contrib/role[1]"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

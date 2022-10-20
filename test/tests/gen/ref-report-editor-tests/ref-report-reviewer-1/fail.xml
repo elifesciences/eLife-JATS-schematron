@@ -1,7 +1,7 @@
-<?oxygen SCHSchema="ref-report-editor-1.sch"?>
+<?oxygen SCHSchema="ref-report-reviewer-1.sch"?>
 <!--Context: sub-article[@article-type='referee-report']/front-stub[lower-case(title-group[1]/article-title[1])='recommendations for authors']
-Test: assert    count(descendant::contrib[role[@specific-use='editor']]) = 1
-Message: The Recommendations for authors must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']). This one has . -->
+Test: assert    count(descendant::contrib[role[@specific-use='reviewer']]) > 0
+Message: The Recommendations for authors must contain 1 or more reviewers (a contrib with a role[@specific-use='reviewer']). This one has 0. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sub-article article-type="referee-report">
@@ -12,7 +12,7 @@ Message: The Recommendations for authors must contain 1 and only 1 editor (a con
         <contrib-group>
           <contrib contrib-type="author">
             <name/>
-            <role specific-use="reviewer">Reviewer</role>
+            <role specific-use="editor">Reviewing Editor</role>
           </contrib>
         </contrib-group>
       </front-stub>

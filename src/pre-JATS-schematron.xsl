@@ -23314,7 +23314,7 @@
 
 
 	  <!--RULE ref-report-editor-tests-->
-   <xsl:template match="sub-article[@article-type='referee-report' and lower-case(/front-stub[1]/title-group[1]/article-title[1])='recommendations for authors']/front-stub" priority="1000" mode="M358">
+   <xsl:template match="sub-article[@article-type='referee-report']/front-stub[lower-case(title-group[1]/article-title[1])='recommendations for authors']" priority="1000" mode="M358">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -23330,6 +23330,22 @@
                <svrl:text>[ref-report-editor-1] The Recommendations for authors must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']). This one has <xsl:text/>
                   <xsl:value-of select="count(descendant::contrib[role[@specific-use='editor']])"/>
                   <xsl:text/>.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="count(descendant::contrib[role[@specific-use='reviewer']]) &gt; 0"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(descendant::contrib[role[@specific-use='reviewer']]) &gt; 0">
+               <xsl:attribute name="id">ref-report-reviewer-1</xsl:attribute>
+               <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[ref-report-reviewer-1] The Recommendations for authors must contain 1 or more reviewers (a contrib with a role[@specific-use='reviewer']). This one has 0.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -23358,7 +23374,9 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[ref-report-editor-2] In decision letter '<xsl:text/>
+            <svrl:text>[ref-report-editor-2] In <xsl:text/>
+               <xsl:value-of select="ancestor::front-stub[1]//article-title"/>
+               <xsl:text/> '<xsl:text/>
                <xsl:value-of select="$name"/>
                <xsl:text/>' is a '<xsl:text/>
                <xsl:value-of select="$role"/>
@@ -23380,34 +23398,36 @@
 
 
 	  <!--RULE ref-report-reviewer-tests-->
-   <xsl:template match="sub-article[@article-type='referee-report']/front-stub/contrib-group[2]" priority="1000" mode="M360">
+   <xsl:template match="sub-article[@article-type='referee-report' and contains(lower-case(front-stub[1]/title-group[1]/article-title[1]),'public review')]/front-stub" priority="1000" mode="M360">
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="count(contrib[role[@specific-use='referee']]) gt 0"/>
+         <xsl:when test="count(descendant::contrib[role[@specific-use='referee']])=1"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(contrib[role[@specific-use='referee']]) gt 0">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(descendant::contrib[role[@specific-use='referee']])=1">
                <xsl:attribute name="id">ref-report-reviewer-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[ref-report-reviewer-test-1] Second contrib-group in decision letter must contain a reviewer (a contrib with a child role[@specific-use='referee']).</svrl:text>
+               <svrl:text>[ref-report-reviewer-test-1] A public review must contain a single contributor which is a reviewer (a contrib with a child role[@specific-use='referee']). This one contains <xsl:text/>
+                  <xsl:value-of select="count(descendant::contrib[role[@specific-use='referee']])"/>
+                  <xsl:text/>.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--REPORT warning-->
-      <xsl:if test="count(contrib[role[@specific-use='referee']]) gt 5">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(contrib[role[@specific-use='referee']]) gt 5">
-            <xsl:attribute name="id">ref-report-reviewer-test-6</xsl:attribute>
+		    <!--REPORT error-->
+      <xsl:if test="descendant::contrib[not(role[@specific-use='referee'])]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::contrib[not(role[@specific-use='referee'])]">
+            <xsl:attribute name="id">ref-report-reviewer-test-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[ref-report-reviewer-test-6] Second contrib-group in decision letter contains more than five reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</svrl:text>
+            <svrl:text>[ref-report-reviewer-test-2] A public review cannot contain a contributor which is not a reviewer (i.e. a contrib without a child role[@specific-use='referee']).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M360"/>

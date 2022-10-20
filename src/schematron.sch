@@ -7111,12 +7111,17 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="sub-article[@article-type='referee-report' and lower-case(/front-stub[1]/title-group[1]/article-title[1])='recommendations for authors']/front-stub" id="ref-report-editor-tests">
+    <rule context="sub-article[@article-type='referee-report']/front-stub[lower-case(title-group[1]/article-title[1])='recommendations for authors']" id="ref-report-editor-tests">
       
       <assert test="count(descendant::contrib[role[@specific-use='editor']]) = 1" 
         role="error" 
         flag="dl-ar"
         id="ref-report-editor-1">The Recommendations for authors must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']). This one has <value-of select="count(descendant::contrib[role[@specific-use='editor']])"/>.</assert>
+      
+      <assert test="count(descendant::contrib[role[@specific-use='reviewer']]) > 0" 
+        role="error" 
+        flag="dl-ar"
+        id="ref-report-reviewer-1">The Recommendations for authors must contain 1 or more reviewers (a contrib with a role[@specific-use='reviewer']). This one has 0.</assert>
     </rule>
     
     <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[1]/contrib[role[@specific-use='editor']]" id="ref-report-editor-tests-2">
@@ -7127,20 +7132,20 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="($top-name!='') and ($top-name!=$name)"
         role="error"
-        id="ref-report-editor-2">In decision letter '<value-of select="$name"/>' is a '<value-of select="$role"/>', but in the top-level article details '<value-of select="$top-name"/>' is the '<value-of select="$top-contrib/role[1]"/>'.</report>
+        id="ref-report-editor-2">In <value-of select="ancestor::front-stub[1]//article-title"/> '<value-of select="$name"/>' is a '<value-of select="$role"/>', but in the top-level article details '<value-of select="$top-name"/>' is the '<value-of select="$top-contrib/role[1]"/>'.</report>
     </rule>
     
-    <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[2]" id="ref-report-reviewer-tests">
+    <rule context="sub-article[@article-type='referee-report' and contains(lower-case(front-stub[1]/title-group[1]/article-title[1]),'public review')]/front-stub" id="ref-report-reviewer-tests">
       
-      <assert test="count(contrib[role[@specific-use='referee']]) gt 0" 
+      <assert test="count(descendant::contrib[role[@specific-use='referee']])=1" 
         role="error" 
         flag="dl-ar"
-        id="ref-report-reviewer-test-1">Second contrib-group in decision letter must contain a reviewer (a contrib with a child role[@specific-use='referee']).</assert>
+        id="ref-report-reviewer-test-1">A public review must contain a single contributor which is a reviewer (a contrib with a child role[@specific-use='referee']). This one contains <value-of select="count(descendant::contrib[role[@specific-use='referee']])"/>.</assert>
       
-      <report test="count(contrib[role[@specific-use='referee']]) gt 5" 
-        role="warning" 
+      <report test="descendant::contrib[not(role[@specific-use='referee'])]" 
+        role="error" 
         flag="dl-ar"
-        id="ref-report-reviewer-test-6">Second contrib-group in decision letter contains more than five reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</report>
+        id="ref-report-reviewer-test-2">A public review cannot contain a contributor which is not a reviewer (i.e. a contrib without a child role[@specific-use='referee']).</report>
     </rule>
     
     <rule context="anonymous" 

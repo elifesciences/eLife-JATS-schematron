@@ -4,18 +4,9 @@ Test: assert    $count = 1
 Message: sub-article front-stub must contain one, and only one contrib-group elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <front>
-      <article-meta>
-        <custom-meta-group>
-          <custom-meta specific-use="meta-only">
-            <meta-name>schema-version</meta-name>
-            <meta-value>2.0.0</meta-value>
-          </custom-meta>
-        </custom-meta-group>
-      </article-meta>
-    </front>
     <sub-article article-type="referee-report">
       <front-stub>
+        <contrib-group/>
         <contrib-group/>
       </front-stub>
     </sub-article>

@@ -1219,13 +1219,13 @@
     
   </xsl:function>
   <pattern id="sub-article-version-2">
-    <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[2]" id="ref-report-reviewer-tests">
-      <assert test="count(contrib[role[@specific-use='referee']]) gt 0" role="error" flag="dl-ar" id="ref-report-reviewer-test-1">Second contrib-group in decision letter must contain a reviewer (a contrib with a child role[@specific-use='referee']).</assert>
+    <rule context="sub-article[@article-type='referee-report' and contains(lower-case(front-stub[1]/title-group[1]/article-title[1]),'public review')]/front-stub" id="ref-report-reviewer-tests">
+      <assert test="count(descendant::contrib[role[@specific-use='referee']])=1" role="error" flag="dl-ar" id="ref-report-reviewer-test-1">A public review must contain a single contributor which is a reviewer (a contrib with a child role[@specific-use='referee']). This one contains <value-of select="count(descendant::contrib[role[@specific-use='referee']])"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='referee-report']/front-stub/contrib-group[2]" role="error" id="ref-report-reviewer-tests-xspec-assert">sub-article[@article-type='referee-report']/front-stub/contrib-group[2] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='referee-report' and contains(lower-case(front-stub[1]/title-group[1]/article-title[1]),'public review')]/front-stub" role="error" id="ref-report-reviewer-tests-xspec-assert">sub-article[@article-type='referee-report' and contains(lower-case(front-stub[1]/title-group[1]/article-title[1]),'public review')]/front-stub must be present.</assert>
     </rule>
   </pattern>
 </schema>

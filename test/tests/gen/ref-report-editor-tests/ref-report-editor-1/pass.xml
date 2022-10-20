@@ -1,47 +1,18 @@
 <?oxygen SCHSchema="ref-report-editor-1.sch"?>
-<!--Context: sub-article[@article-type='referee-report']/front-stub/contrib-group[1]
-Test: assert    count(contrib[role[@specific-use='editor']]) = 1
-Message: First contrib-group in decision letter must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']). -->
+<!--Context: sub-article[@article-type='referee-report']/front-stub[lower-case(title-group[1]/article-title[1])='recommendations for authors']
+Test: assert    count(descendant::contrib[role[@specific-use='editor']]) = 1
+Message: The Recommendations for authors must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']). This one has . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <front>
-      <article-meta>
-        <custom-meta-group>
-          <custom-meta specific-use="meta-only">
-            <meta-name>schema-version</meta-name>
-            <meta-value>2.0.0</meta-value>
-          </custom-meta>
-        </custom-meta-group>
-      </article-meta>
-    </front>
     <sub-article article-type="referee-report">
       <front-stub>
-        <article-id pub-id-type="doi"/>
+        <title-group>
+          <article-title>Recommendations for authors</article-title>
+        </title-group>
         <contrib-group>
           <contrib contrib-type="author">
             <name/>
             <role specific-use="editor">Reviewing Editor</role>
-          </contrib>
-        </contrib-group>
-        <contrib-group>
-          <contrib contrib-type="author">
-            <anonymous/>
-            <role specific-use="referee">Reviewer</role>
-          </contrib>
-        </contrib-group>
-      </front-stub>
-    </sub-article>
-    <sub-article article-type="author-comment">
-      <front-stub>
-        <article-id pub-id-type="doi"/>
-        <contrib-group>
-          <contrib contrib-type="author">
-            <name/>
-            <role specific-use="author">Author</role>
-          </contrib>
-          <contrib contrib-type="author">
-            <name/>
-            <role specific-use="author">Author</role>
           </contrib>
         </contrib-group>
       </front-stub>

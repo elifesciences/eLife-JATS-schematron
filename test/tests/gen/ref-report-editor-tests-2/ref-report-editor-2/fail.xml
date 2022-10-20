@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ref-report-editor-2.sch"?>
 <!--Context: sub-article[@article-type='referee-report']/front-stub/contrib-group[1]/contrib[role[@specific-use='editor']]
 Test: report    ($top-name!='') and ($top-name!=$name)
-Message: In decision letter '' is a '', but in the top-level article details '' is the ''. -->
+Message: In  '' is a '', but in the top-level article details '' is the ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>
