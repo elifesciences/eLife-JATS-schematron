@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="body//table-wrap/label" id="body-table-label-tests">
-      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#body-table-label-test-1" test="matches(.,'^Table \d{1,4}\.$|^Key resources table$|^Author response table \d{1,4}\.$|^Decision letter table \d{1,4}\.$')" role="error" id="body-table-label-test-1">
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#body-table-label-test-1" test="matches(.,'^Table \d{1,4}\.$|^Key resources table$|^Author response table \d{1,4}\.$|^Decision letter table \d{1,4}\.$|^Review table \d{1,4}\.$')" role="error" id="body-table-label-test-1">
         <value-of select="."/> - Table label does not conform to the usual format.</assert>
     </rule>
   </pattern>

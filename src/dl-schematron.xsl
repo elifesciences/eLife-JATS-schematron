@@ -2339,8 +2339,9 @@
 
 	  <!--RULE dec-letter-reply-tests-->
    <xsl:template match="article/sub-article" priority="1000" mode="M72">
-      <xsl:variable name="version" select="e:get-version(.)"/>
-      <xsl:variable name="id-convention" select="if (@article-type='editor-report') then 'sa0'         else if (@article-type=('decision-letter','referee-report')) then 'sa1'         else if (@article-type=('reply','author-comment')) then 'sa2'         else 'unknown'"/>
+      <xsl:variable name="is-prc" select="e:is-prc(.)"/>
+      <xsl:variable name="sub-article-count" select="count(parent::article/sub-article)"/>
+      <xsl:variable name="id-convention" select="if (@article-type='editor-report') then 'sa0'         else if (@article-type=('reply','author-comment')) then ('sa'||$sub-article-count - 1)         else ('sa'||count(preceding-sibling::sub-article))"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>
@@ -2373,7 +2374,7 @@
                </xsl:attribute>
                <svrl:text>sub-article id is <xsl:text/>
                   <xsl:value-of select="@id"/>
-                  <xsl:text/> when based on it's article-type it should be <xsl:text/>
+                  <xsl:text/> when based on it's article-type and position it should be <xsl:text/>
                   <xsl:value-of select="$id-convention"/>
                   <xsl:text/>.</svrl:text>
             </svrl:failed-assert>
@@ -2414,71 +2415,63 @@
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--REPORT warning-->
-      <xsl:if test="$version='1' and @article-type='referee-report'">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$version='1' and @article-type='referee-report'">
+		    <!--REPORT error-->
+      <xsl:if test="not($is-prc) and @article-type='referee-report'">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($is-prc) and @article-type='referee-report'">
             <xsl:attribute name="id">sub-article-1</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>'<xsl:text/>
                <xsl:value-of select="@article-type"/>
-               <xsl:text/>' is not permitted as the article-type for a sub-article in version 1 xml. Either, this needs to be made version 2 xml, or 'decision-letter' should be used in place of <xsl:text/>
-               <xsl:value-of select="@article-type"/>
-               <xsl:text/>.</svrl:text>
+               <xsl:text/>' is not permitted as the article-type for a sub-article in a non-PRC article. Provided this is in fact a non-PRC article, the article-type should be 'decision-letter'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT warning-->
-      <xsl:if test="$version='1' and @article-type='author-comment'">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$version='1' and @article-type='author-comment'">
+		    <!--REPORT error-->
+      <xsl:if test="not($is-prc) and @article-type='author-comment'">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($is-prc) and @article-type='author-comment'">
             <xsl:attribute name="id">sub-article-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>'<xsl:text/>
                <xsl:value-of select="@article-type"/>
-               <xsl:text/>' is not permitted as the article-type for a sub-article in version 1 xml. Either, this needs to be made version 2 xml, or 'reply' should be used in place of '<xsl:text/>
-               <xsl:value-of select="@article-type"/>
-               <xsl:text/>'.</svrl:text>
+               <xsl:text/>' is not permitted as the article-type for a sub-article in a non-PRC article. Provided this is in fact a non-PRC article, the article-type should be 'response'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT warning-->
-      <xsl:if test="$version!='1' and @article-type='decision-letter'">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$version!='1' and @article-type='decision-letter'">
+		    <!--REPORT error-->
+      <xsl:if test="$is-prc and @article-type='decision-letter'">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$is-prc and @article-type='decision-letter'">
             <xsl:attribute name="id">sub-article-3</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>'<xsl:text/>
                <xsl:value-of select="@article-type"/>
-               <xsl:text/>' is not permitted as the article-type for a sub-article in version 2 xml. Either, this needs to be made version 1 xml, or 'referee-report' should be used in place of <xsl:text/>
-               <xsl:value-of select="@article-type"/>
-               <xsl:text/>.</svrl:text>
+               <xsl:text/>' is not permitted as the article-type for a sub-article in PRC articles. Provided this is in fact a PRC article, the article-type should be 'referee-report'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT warning-->
-      <xsl:if test="$version!='1' and @article-type='reply'">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$version!='1' and @article-type='reply'">
+		    <!--REPORT error-->
+      <xsl:if test="$is-prc and @article-type='reply'">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$is-prc and @article-type='reply'">
             <xsl:attribute name="id">sub-article-4</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>'<xsl:text/>
                <xsl:value-of select="@article-type"/>
-               <xsl:text/>' is not permitted as the article-type for a sub-article in version 2 xml. Either, this needs to be made version 1 xml, or 'author-comment' should be used in place of <xsl:text/>
-               <xsl:value-of select="@article-type"/>
-               <xsl:text/>.</svrl:text>
+               <xsl:text/>' is not permitted as the article-type for a sub-article in a non-PRC article. Provided this is in fact a non-PRC article, the article-type should be 'author-comment'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M72"/>

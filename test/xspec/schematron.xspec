@@ -8819,42 +8819,42 @@
       </x:scenario>
       <x:scenario label="sub-article-1-pass">
         <x:context href="../tests/gen/dec-letter-reply-tests/sub-article-1/pass.xml"/>
-        <x:expect-not-report id="sub-article-1" role="warning"/>
+        <x:expect-not-report id="sub-article-1" role="error"/>
         <x:expect-not-assert id="dec-letter-reply-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sub-article-1-fail">
         <x:context href="../tests/gen/dec-letter-reply-tests/sub-article-1/fail.xml"/>
-        <x:expect-report id="sub-article-1" role="warning"/>
+        <x:expect-report id="sub-article-1" role="error"/>
         <x:expect-not-assert id="dec-letter-reply-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sub-article-2-pass">
         <x:context href="../tests/gen/dec-letter-reply-tests/sub-article-2/pass.xml"/>
-        <x:expect-not-report id="sub-article-2" role="warning"/>
+        <x:expect-not-report id="sub-article-2" role="error"/>
         <x:expect-not-assert id="dec-letter-reply-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sub-article-2-fail">
         <x:context href="../tests/gen/dec-letter-reply-tests/sub-article-2/fail.xml"/>
-        <x:expect-report id="sub-article-2" role="warning"/>
+        <x:expect-report id="sub-article-2" role="error"/>
         <x:expect-not-assert id="dec-letter-reply-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sub-article-3-pass">
         <x:context href="../tests/gen/dec-letter-reply-tests/sub-article-3/pass.xml"/>
-        <x:expect-not-report id="sub-article-3" role="warning"/>
+        <x:expect-not-report id="sub-article-3" role="error"/>
         <x:expect-not-assert id="dec-letter-reply-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sub-article-3-fail">
         <x:context href="../tests/gen/dec-letter-reply-tests/sub-article-3/fail.xml"/>
-        <x:expect-report id="sub-article-3" role="warning"/>
+        <x:expect-report id="sub-article-3" role="error"/>
         <x:expect-not-assert id="dec-letter-reply-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sub-article-4-pass">
         <x:context href="../tests/gen/dec-letter-reply-tests/sub-article-4/pass.xml"/>
-        <x:expect-not-report id="sub-article-4" role="warning"/>
+        <x:expect-not-report id="sub-article-4" role="error"/>
         <x:expect-not-assert id="dec-letter-reply-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="sub-article-4-fail">
         <x:context href="../tests/gen/dec-letter-reply-tests/sub-article-4/fail.xml"/>
-        <x:expect-report id="sub-article-4" role="warning"/>
+        <x:expect-report id="sub-article-4" role="error"/>
         <x:expect-not-assert id="dec-letter-reply-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
