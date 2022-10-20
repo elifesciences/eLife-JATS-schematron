@@ -11,7 +11,11 @@ Message:  that's a child of an event with an eLife DOI must contain the text 'Th
         <month>04</month>
         <year>2023</year>
       </date>
-      <!-- Dummy URL, replace with finalised form when available -->
+      
+<!--Context: event-desc
+Test: report    matches(parent::event/self-uri[1]/@xlink:href,'elifesciences\.org|10.7554/e[lL]ife') and not(.=('This manuscript was published as a reviewed preprint.','The reviewed preprint was revised.'))
+Message:  that's a child of an event with an eLife DOI must contain the text 'This manuscript was published as a reviewed preprint.' or 'The reviewed preprint was revised.' -->
+
       <self-uri content-type="preprint" xlink:href="https://elifesciences.org/preprints/1234567890v1"/>   
     </event>
   </article>

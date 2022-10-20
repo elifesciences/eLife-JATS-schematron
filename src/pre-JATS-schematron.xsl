@@ -6007,8 +6007,8 @@
       <xsl:variable name="disp-channel" select="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
 
 		    <!--REPORT error-->
-      <xsl:if test="$disp-channel != 'Scientific Correspondence' and not(sub-article[@article-type!=('reply','author-comment')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$disp-channel != 'Scientific Correspondence' and not(sub-article[@article-type!=('reply','author-comment')])">
+      <xsl:if test="$disp-channel != 'Scientific Correspondence' and not(sub-article[not(@article-type=('reply','author-comment'))])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$disp-channel != 'Scientific Correspondence' and not(sub-article[not(@article-type=('reply','author-comment'))])">
             <xsl:attribute name="id">r-article-sub-articles</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>

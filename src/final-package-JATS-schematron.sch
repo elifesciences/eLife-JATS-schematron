@@ -1340,7 +1340,7 @@
     <rule context="article[@article-type='research-article' and sub-article]" id="research-article-sub-article">
      <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/> 
      
-     <report test="$disp-channel != 'Scientific Correspondence' and not(sub-article[@article-type!=('reply','author-comment')])" role="error" id="r-article-sub-articles">
+     <report test="$disp-channel != 'Scientific Correspondence' and not(sub-article[not(@article-type=('reply','author-comment'))])" role="error" id="r-article-sub-articles">
         <value-of select="$disp-channel"/> type articles cannot have only an Author response. The following combinations of peer review-material are permitted: Editor's evaluation, Decision letter, and Author response; Decision letter, and Author response; Editor's evaluation and Decision letter; Editor's evaluation and Author response; or Decision letter.</report>
      
    </rule>
