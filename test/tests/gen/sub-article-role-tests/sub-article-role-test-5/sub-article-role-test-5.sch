@@ -1221,6 +1221,7 @@
   <pattern id="sub-article-version-2">
     <rule context="sub-article/front-stub/contrib-group/contrib/role" id="sub-article-role-tests">
       <let name="sub-article-type" value="ancestor::sub-article[1]/@article-type"/>
+      <let name="sub-title" value="ancestor::sub-article[1]/front-stub[1]/title-group[1]/article-title[1]"/>
       <report test="@specific-use='editor' and not(.=('Senior and Reviewing Editor','Reviewing Editor'))" role="error" flag="dl-ar" id="sub-article-role-test-5">A role element with the attribute specific-use='editor' must contain the text 'Senior and Reviewing Editor' or 'Reviewing Editor'. This one has '<value-of select="."/>'.</report>
     </rule>
   </pattern>

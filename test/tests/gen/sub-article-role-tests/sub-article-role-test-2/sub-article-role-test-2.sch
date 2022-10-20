@@ -1221,7 +1221,8 @@
   <pattern id="sub-article-version-2">
     <rule context="sub-article/front-stub/contrib-group/contrib/role" id="sub-article-role-tests">
       <let name="sub-article-type" value="ancestor::sub-article[1]/@article-type"/>
-      <report test="$sub-article-type='referee-report' and parent::contrib/parent::contrib-group[not(following-sibling::contrib-group)] and not(@specific-use='referee')" role="error" flag="dl-ar" id="sub-article-role-test-2">The role element for contributors in the second contrib-group in the decision letter must have the attribute specific-use='referee'.</report>
+      <let name="sub-title" value="ancestor::sub-article[1]/front-stub[1]/title-group[1]/article-title[1]"/>
+      <report test="$sub-article-type='referee-report' and (lower-case($sub-title)!='recommendations for authors' or parent::contrib/preceding-sibling::contrib) and not(@specific-use='referee')" role="error" flag="dl-ar" id="sub-article-role-test-2">The role element for this contributor must have the attribute specific-use='referee'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

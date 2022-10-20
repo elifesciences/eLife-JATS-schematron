@@ -7043,10 +7043,10 @@ else self::*/local-name() = $allowed-p-blocks"
         flag="dl-ar"
         id="ref-report-front-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
       
-      <assert test="$count = 2" 
+      <assert test="$count = 1" 
         role="error" 
         flag="dl-ar"
-        id="ref-report-front-2">sub-article front-stub must contain 2 contrib-group elements.</assert>
+        id="ref-report-front-2">sub-article front-stub must contain one, and only one contrib-group elements.</assert>
     </rule>
     
     <rule context="sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib" 
@@ -7077,16 +7077,17 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sub-article/front-stub/contrib-group/contrib/role" 
       id="sub-article-role-tests">
       <let name="sub-article-type" value="ancestor::sub-article[1]/@article-type"/>
+      <let name="sub-title" value="ancestor::sub-article[1]/front-stub[1]/title-group[1]/article-title[1]"/>
       
-      <report test="$sub-article-type='referee-report' and parent::contrib/parent::contrib-group[not(preceding-sibling::contrib-group)] and not(@specific-use='editor')" 
+      <report test="lower-case($sub-title)='recommendations for authors' and not(parent::contrib/preceding-sibling::contrib) and not(@specific-use='editor')" 
         role="error" 
         flag="dl-ar"
-        id="sub-article-role-test-1">The role element for contributors in the first contrib-group in the decision letter must have the attribute specific-use='editor'.</report>
+        id="sub-article-role-test-1">The role element for the first contributor in <value-of select="$sub-title"/> must have the attribute specific-use='editor'.</report>
       
-      <report test="$sub-article-type='referee-report' and parent::contrib/parent::contrib-group[not(following-sibling::contrib-group)] and not(@specific-use='referee')" 
+      <report test="$sub-article-type='referee-report' and (lower-case($sub-title)!='recommendations for authors' or parent::contrib/preceding-sibling::contrib) and not(@specific-use='referee')" 
         role="error" 
         flag="dl-ar"
-        id="sub-article-role-test-2">The role element for contributors in the second contrib-group in the decision letter must have the attribute specific-use='referee'.</report>
+        id="sub-article-role-test-2">The role element for this contributor must have the attribute specific-use='referee'.</report>
       
       <report test="$sub-article-type='author-comment' and not(@specific-use='author')" 
         role="error" 
@@ -7110,12 +7111,12 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[1]" id="ref-report-editor-tests">
+    <rule context="sub-article[@article-type='referee-report' and lower-case(/front-stub[1]/title-group[1]/article-title[1])='recommendations for authors']/front-stub" id="ref-report-editor-tests">
       
-      <assert test="count(contrib[role[@specific-use='editor']]) = 1" 
+      <assert test="count(descendant::contrib[role[@specific-use='editor']]) = 1" 
         role="error" 
         flag="dl-ar"
-        id="ref-report-editor-1">First contrib-group in decision letter must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']).</assert>
+        id="ref-report-editor-1">The Recommendations for authors must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']). This one has <value-of select="count(descendant::contrib[role[@specific-use='editor']])"/>.</assert>
     </rule>
     
     <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[1]/contrib[role[@specific-use='editor']]" id="ref-report-editor-tests-2">

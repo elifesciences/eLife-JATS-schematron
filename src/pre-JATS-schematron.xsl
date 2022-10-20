@@ -23111,16 +23111,16 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="$count = 2"/>
+         <xsl:when test="$count = 1"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$count = 2">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$count = 1">
                <xsl:attribute name="id">ref-report-front-2</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[ref-report-front-2] sub-article front-stub must contain 2 contrib-group elements.</svrl:text>
+               <svrl:text>[ref-report-front-2] sub-article front-stub must contain one, and only one contrib-group elements.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -23216,30 +23216,33 @@
 	  <!--RULE sub-article-role-tests-->
    <xsl:template match="sub-article/front-stub/contrib-group/contrib/role" priority="1000" mode="M357">
       <xsl:variable name="sub-article-type" select="ancestor::sub-article[1]/@article-type"/>
+      <xsl:variable name="sub-title" select="ancestor::sub-article[1]/front-stub[1]/title-group[1]/article-title[1]"/>
 
 		    <!--REPORT error-->
-      <xsl:if test="$sub-article-type='referee-report' and parent::contrib/parent::contrib-group[not(preceding-sibling::contrib-group)] and not(@specific-use='editor')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$sub-article-type='referee-report' and parent::contrib/parent::contrib-group[not(preceding-sibling::contrib-group)] and not(@specific-use='editor')">
+      <xsl:if test="lower-case($sub-title)='recommendations for authors' and not(parent::contrib/preceding-sibling::contrib) and not(@specific-use='editor')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="lower-case($sub-title)='recommendations for authors' and not(parent::contrib/preceding-sibling::contrib) and not(@specific-use='editor')">
             <xsl:attribute name="id">sub-article-role-test-1</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[sub-article-role-test-1] The role element for contributors in the first contrib-group in the decision letter must have the attribute specific-use='editor'.</svrl:text>
+            <svrl:text>[sub-article-role-test-1] The role element for the first contributor in <xsl:text/>
+               <xsl:value-of select="$sub-title"/>
+               <xsl:text/> must have the attribute specific-use='editor'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="$sub-article-type='referee-report' and parent::contrib/parent::contrib-group[not(following-sibling::contrib-group)] and not(@specific-use='referee')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$sub-article-type='referee-report' and parent::contrib/parent::contrib-group[not(following-sibling::contrib-group)] and not(@specific-use='referee')">
+      <xsl:if test="$sub-article-type='referee-report' and (lower-case($sub-title)!='recommendations for authors' or parent::contrib/preceding-sibling::contrib) and not(@specific-use='referee')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$sub-article-type='referee-report' and (lower-case($sub-title)!='recommendations for authors' or parent::contrib/preceding-sibling::contrib) and not(@specific-use='referee')">
             <xsl:attribute name="id">sub-article-role-test-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[sub-article-role-test-2] The role element for contributors in the second contrib-group in the decision letter must have the attribute specific-use='referee'.</svrl:text>
+            <svrl:text>[sub-article-role-test-2] The role element for this contributor must have the attribute specific-use='referee'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -23311,20 +23314,22 @@
 
 
 	  <!--RULE ref-report-editor-tests-->
-   <xsl:template match="sub-article[@article-type='referee-report']/front-stub/contrib-group[1]" priority="1000" mode="M358">
+   <xsl:template match="sub-article[@article-type='referee-report' and lower-case(/front-stub[1]/title-group[1]/article-title[1])='recommendations for authors']/front-stub" priority="1000" mode="M358">
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="count(contrib[role[@specific-use='editor']]) = 1"/>
+         <xsl:when test="count(descendant::contrib[role[@specific-use='editor']]) = 1"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(contrib[role[@specific-use='editor']]) = 1">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(descendant::contrib[role[@specific-use='editor']]) = 1">
                <xsl:attribute name="id">ref-report-editor-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[ref-report-editor-1] First contrib-group in decision letter must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']).</svrl:text>
+               <svrl:text>[ref-report-editor-1] The Recommendations for authors must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']). This one has <xsl:text/>
+                  <xsl:value-of select="count(descendant::contrib[role[@specific-use='editor']])"/>
+                  <xsl:text/>.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>

@@ -1221,6 +1221,7 @@
   <pattern id="sub-article-version-2">
     <rule context="sub-article/front-stub/contrib-group/contrib/role" id="sub-article-role-tests">
       <let name="sub-article-type" value="ancestor::sub-article[1]/@article-type"/>
+      <let name="sub-title" value="ancestor::sub-article[1]/front-stub[1]/title-group[1]/article-title[1]"/>
       <report test="$sub-article-type='author-comment' and not(@specific-use='author')" role="error" flag="dl-ar" id="sub-article-role-test-3">The role element for contributors in the author response must have the attribute specific-use='author'.</report>
     </rule>
   </pattern>
