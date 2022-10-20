@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="event-desc-content.sch"?>
 <!--Context: event-desc
-Test: assert    starts-with(.,'This manuscript was published as a preprint at ')
-Message:  must contain the text 'This manuscript was published as a preprint at ' followed by the preprint server name. This one does not. -->
+Test: report    not(matches(parent::event/self-uri[1]/@xlink:href,'elifesciences\.org|10.7554/e[lL]ife')) and not(starts-with(.,'This manuscript was published as a preprint at ') or .='This manuscript was published as a preprint.')
+Message:  that's a child of an event without an eLife DOI must contain the text 'This manuscript was published as a preprint at ' followed by the preprint server name. This one does not. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <pub-history>

@@ -32,6 +32,30 @@
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   
   <!--=== Custom functions ===-->
+  <xsl:function name="e:is-prc" as="xs:boolean">
+    <xsl:param name="elem" as="node()"/>
+    <xsl:choose>
+      <xsl:when test="$elem/name()='article'">
+        <xsl:value-of select="e:is-prc-helper($elem)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="e:is-prc-helper($elem/ancestor::article[1])"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  
+  <xsl:function name="e:is-prc-helper" as="xs:boolean">
+    <xsl:param name="article" as="node()"/>
+    <xsl:choose>
+      <xsl:when test="$article//article-meta/custom-meta-group/custom-meta[meta-name='publishing-route']/meta-value='prc'">
+        <xsl:value-of select="true()"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="false()"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  
   <xsl:function name="e:get-version" as="xs:string">
     <xsl:param name="elem" as="node()"/>
     <xsl:choose>
@@ -1207,22 +1231,22 @@
  <pattern id="research-article-pattern">
     <rule context="article[@article-type='research-article']" id="research-article">
 	  <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/> 
-	  <let name="version" value="e:get-version(.)"/>
+	  <let name="is-prc" value="e:is-prc(.)"/>
 	  
-	  <report test="if ($version='1') then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])      else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])" role="warning" flag="dl-ar" id="test-r-article-d-letter">A decision letter should almost always be present for research articles. This one doesn't have one. Check that this is correct.</report>
+	  <report test="if ($is-prc) then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])      else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])" role="warning" flag="dl-ar" id="test-r-article-d-letter">
+        <value-of select="if ($is-prc) then 'Public reviews and recomendations for the authors' else 'A decision letter'"/>should almost always be present for research articles. This one doesn't have one. Check that this is correct.</report>
 	  
-	  <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#final-test-r-article-d-letter-feat" test="if ($version='1') then ($disp-channel = 'Feature Article') and not(sub-article[@article-type='decision-letter'])      else ($disp-channel = 'Feature Article') and not(sub-article[@article-type='referee-report'])" role="warning" flag="dl-ar" id="final-test-r-article-d-letter-feat">A decision letter should be present for research articles. Feature template 5s almost always have a decision letter, but this one does not. Is that correct?</report>
+	  <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#final-test-r-article-d-letter-feat" test="$disp-channel = 'Feature Article' and not(sub-article[@article-type='decision-letter'])" role="warning" flag="dl-ar" id="final-test-r-article-d-letter-feat">A decision letter should be present for research articles. Feature template 5s almost always have a decision letter, but this one does not. Is that correct?</report>
 		
-	  <report test="if ($version='1') then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='reply'])      else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='author-comment'])" role="warning" flag="dl-ar" id="test-r-article-a-reply">Author response should usually be present for research articles, but this one does not have one. Is that correct?</report>
+	  <report test="$disp-channel != 'Scientific Correspondence' and not(sub-article[@article-type=('reply','author-comment')])" role="warning" flag="dl-ar" id="test-r-article-a-reply">Author response should usually be present for research articles, but this one does not have one. Is that correct?</report>
 	
 	</rule>
   </pattern>
   <pattern id="research-article-sub-article-pattern">
     <rule context="article[@article-type='research-article' and sub-article]" id="research-article-sub-article">
      <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/> 
-     <let name="version" value="e:get-version(.)"/>
      
-     <report test="if ($version='1') then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type!='reply'])        else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type!='author-comment'])" flag="dl-ar" role="error" id="r-article-sub-articles">
+     <report test="$disp-channel != 'Scientific Correspondence' and not(sub-article[not(@article-type=('reply','author-comment'))])" flag="dl-ar" role="error" id="r-article-sub-articles">
         <value-of select="$disp-channel"/> type articles cannot have only an Author response. The following combinations of peer review-material are permitted: Editor's evaluation, Decision letter, and Author response; Decision letter, and Author response; Editor's evaluation and Decision letter; Editor's evaluation and Author response; or Decision letter.</report>
      
    </rule>
@@ -1319,7 +1343,7 @@
   <pattern id="ed-eval-title-tests-pattern">
     <rule context="sub-article[@article-type='editor-report']/front-stub/title-group" id="ed-eval-title-tests">
       
-      <assert test="article-title = &quot;Editor's evaluation&quot;" role="error" flag="dl-ar" id="ed-eval-title-test">title-group must contain article-title which contains "Editor's evaluation". Currently it is <value-of select="article-title"/>.</assert>
+      <assert test="article-title = (&quot;Editor's evaluation&quot;,'eLife assessment')" role="error" flag="dl-ar" id="ed-eval-title-test">A sub-article[@article-type='editor-report'] must have the title "eLife assessment" or "Editor's evaluation". Currently it is <value-of select="article-title"/>.</assert>
     </rule>
   </pattern>
   <pattern id="dec-letter-title-tests-pattern">
@@ -1379,24 +1403,25 @@
   
   <pattern id="dec-letter-reply-tests-pattern">
     <rule context="article/sub-article" id="dec-letter-reply-tests">
-      <let name="version" value="e:get-version(.)"/>
-      <let name="id-convention" value="if (@article-type='editor-report') then 'sa0'         else if (@article-type=('decision-letter','referee-report')) then 'sa1'         else if (@article-type=('reply','author-comment')) then 'sa2'         else 'unknown'"/>
+      <let name="is-prc" value="e:is-prc(.)"/>
+      <let name="sub-article-count" value="count(parent::article/sub-article)"/>
+      <let name="id-convention" value="if (@article-type='editor-report') then 'sa0'         else if (@article-type=('reply','author-comment')) then ('sa'||$sub-article-count - 1)         else ('sa'||count(preceding-sibling::sub-article))"/>
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-1" test="@article-type=('editor-report','referee-report','author-comment','decision-letter','reply')" role="error" flag="dl-ar" id="dec-letter-reply-test-1">sub-article must must have an article-type which is equal to one of the following values: 'editor-report','decision-letter', or 'reply'.</assert>
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-2" test="@id = $id-convention" role="error" flag="dl-ar" id="dec-letter-reply-test-2">sub-article id is <value-of select="@id"/> when based on it's article-type it should be <value-of select="$id-convention"/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-2" test="@id = $id-convention" role="error" flag="dl-ar" id="dec-letter-reply-test-2">sub-article id is <value-of select="@id"/> when based on it's article-type and position it should be <value-of select="$id-convention"/>.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-3" test="count(front-stub) = 1" role="error" flag="dl-ar" id="dec-letter-reply-test-3">sub-article must contain one and only one front-stub.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-4" test="count(body) = 1" role="error" flag="dl-ar" id="dec-letter-reply-test-4">sub-article must contain one and only one body.</assert>
       
-      <report test="$version='1' and @article-type='referee-report'" role="warning" flag="dl-ar" id="sub-article-1">'<value-of select="@article-type"/>' is not permitted as the article-type for a sub-article in version 1 xml. Either, this needs to be made version 2 xml, or 'decision-letter' should be used in place of <value-of select="@article-type"/>.</report>
+      <report test="not($is-prc) and @article-type='referee-report'" role="error" flag="dl-ar" id="sub-article-1">'<value-of select="@article-type"/>' is not permitted as the article-type for a sub-article in a non-PRC article. Provided this is in fact a non-PRC article, the article-type should be 'decision-letter'.</report>
       
-      <report test="$version='1' and @article-type='author-comment'" role="warning" flag="dl-ar" id="sub-article-2">'<value-of select="@article-type"/>' is not permitted as the article-type for a sub-article in version 1 xml. Either, this needs to be made version 2 xml, or 'reply' should be used in place of '<value-of select="@article-type"/>'.</report>
+      <report test="not($is-prc) and @article-type='author-comment'" role="error" flag="dl-ar" id="sub-article-2">'<value-of select="@article-type"/>' is not permitted as the article-type for a sub-article in a non-PRC article. Provided this is in fact a non-PRC article, the article-type should be 'response'.</report>
       
-      <report test="$version!='1' and @article-type='decision-letter'" role="warning" flag="dl-ar" id="sub-article-3">'<value-of select="@article-type"/>' is not permitted as the article-type for a sub-article in version 2 xml. Either, this needs to be made version 1 xml, or 'referee-report' should be used in place of <value-of select="@article-type"/>.</report>
+      <report test="$is-prc and @article-type='decision-letter'" role="error" flag="dl-ar" id="sub-article-3">'<value-of select="@article-type"/>' is not permitted as the article-type for a sub-article in PRC articles. Provided this is in fact a PRC article, the article-type should be 'referee-report'.</report>
       
-      <report test="$version!='1' and @article-type='reply'" role="warning" flag="dl-ar" id="sub-article-4">'<value-of select="@article-type"/>' is not permitted as the article-type for a sub-article in version 2 xml. Either, this needs to be made version 1 xml, or 'author-comment' should be used in place of <value-of select="@article-type"/>.</report>
+      <report test="$is-prc and @article-type='reply'" role="error" flag="dl-ar" id="sub-article-4">'<value-of select="@article-type"/>' is not permitted as the article-type for a sub-article in a non-PRC article. Provided this is in fact a non-PRC article, the article-type should be 'author-comment'.</report>
       
     </rule>
   </pattern>

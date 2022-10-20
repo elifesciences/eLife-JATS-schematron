@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="history-date-test-2.sch"?>
-<!--Context: article-meta/history
+<!--Context: article-meta[not(e:is-prc(.))]/history
 Test: assert    date[@date-type='accepted']
 Message: history must contain date[@date-type='accepted'] -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

@@ -1,15 +1,15 @@
 <?oxygen SCHSchema="sub-article-4.sch"?>
 <!--Context: article/sub-article
-Test: report    $version!='1' and @article-type='reply'
-Message: '' is not permitted as the article-type for a sub-article in version 2 xml. Either, this needs to be made version 1 xml, or 'author-comment' should be used in place of . -->
+Test: report    $is-prc and @article-type='reply'
+Message: '' is not permitted as the article-type for a sub-article in a non-PRC article. Provided this is in fact a non-PRC article, the article-type should be 'author-comment'. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>
       <article-meta>
         <custom-meta-group>
           <custom-meta specific-use="meta-only">
-            <meta-name>schema-version</meta-name>
-            <meta-value>2.0.0</meta-value>
+            <meta-name>publishing-route</meta-name>
+            <meta-value>prc</meta-value>
           </custom-meta>
         </custom-meta-group>
       </article-meta>

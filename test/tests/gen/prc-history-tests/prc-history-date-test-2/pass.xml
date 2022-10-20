@@ -1,0 +1,25 @@
+<?oxygen SCHSchema="prc-history-date-test-2.sch"?>
+<!--Context: article-meta[e:is-prc(.)]/history
+Test: report    date[@date-type!='sent-for-review' or not(@date-type)]
+Message: PRC articles can only have sent-for-review dates in their history. This one has a  date. -->
+<article>
+  <article-meta>
+    <history>
+      <date date-type="sent-for-review" iso-8601-date="2023-03-20">
+        <day>20</day>
+        <month>03</month>
+        <year>2023</year>
+      </date>
+    </history>
+    <custom-meta-group>
+      <custom-meta specific-use="meta-only">
+        <meta-name>Author impact statement</meta-name>
+        <meta-value>This is an impact statement <italic>i</italic><sup>a</sup><sub>b</sub>.</meta-value>
+      </custom-meta>
+      <custom-meta specific-use="meta-only">
+        <meta-name>publishing-route</meta-name>
+        <meta-value>prc</meta-value>
+      </custom-meta>
+    </custom-meta-group>
+  </article-meta>
+</article>

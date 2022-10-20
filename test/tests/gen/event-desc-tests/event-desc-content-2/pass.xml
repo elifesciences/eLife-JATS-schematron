@@ -1,0 +1,26 @@
+<?oxygen SCHSchema="event-desc-content-2.sch"?>
+<!--Context: event-desc
+Test: report    matches(parent::event/self-uri[1]/@xlink:href,'elifesciences\.org|10.7554/e[lL]ife') and not(.=('This manuscript was published as a reviewed preprint.','The reviewed preprint was revised.'))
+Message:  that's a child of an event with an eLife DOI must contain the text 'This manuscript was published as a reviewed preprint.' or 'The reviewed preprint was revised.' -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <event>
+      <event-desc>This manuscript was published as a reviewed preprint.</event-desc>
+      <date date-type="preprint" iso-8601-date="2023-04-15">
+        <day>15</day>
+        <month>04</month>
+        <year>2023</year>
+      </date>
+      
+
+
+<!--Context: event-desc
+Test: report    matches(parent::event/self-uri[1]/@xlink:href,'elifesciences\.org|10.7554/e[lL]ife') and not(.=('This manuscript was published as a reviewed preprint.','The reviewed preprint was revised.'))
+Message:  that's a child of an event with an eLife DOI must contain the text 'This manuscript was published as a reviewed preprint.' or 'The reviewed preprint was revised.' -->
+
+
+
+      <self-uri content-type="preprint" xlink:href="https://elifesciences.org/preprints/1234567890v1"/>   
+    </event>
+  </article>
+</root>
