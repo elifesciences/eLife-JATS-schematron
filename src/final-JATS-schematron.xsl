@@ -10502,9 +10502,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="@document-id"/>
+         <xsl:when test="@document-id[not(matches(.,'\p{Zs}'))]"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@document-id">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@document-id[not(matches(.,'\p{Zs}'))]">
                <xsl:attribute name="id">clintrial-related-object-6</xsl:attribute>
                <xsl:attribute name="see">https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-6</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
@@ -10513,16 +10513,16 @@
                </xsl:attribute>
                <svrl:text>[clintrial-related-object-6] <xsl:text/>
                   <xsl:value-of select="name(.)"/>
-                  <xsl:text/> must have an @document-id.</svrl:text>
+                  <xsl:text/> must have an @document-id with a value that does not contain a space character.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="@xlink:href"/>
+         <xsl:when test="@xlink:href[not(matches(.,'\p{Zs}'))]"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@xlink:href">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@xlink:href[not(matches(.,'\p{Zs}'))]">
                <xsl:attribute name="id">clintrial-related-object-7</xsl:attribute>
                <xsl:attribute name="see">https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-7</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
@@ -10531,7 +10531,7 @@
                </xsl:attribute>
                <svrl:text>[clintrial-related-object-7] <xsl:text/>
                   <xsl:value-of select="name(.)"/>
-                  <xsl:text/> must have an @xlink:href.</svrl:text>
+                  <xsl:text/> must have an @xlink:href with a value that does not contain a space character.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>

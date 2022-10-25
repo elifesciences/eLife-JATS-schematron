@@ -1221,8 +1221,8 @@
   <pattern id="article-metadata">
     <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
       <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
-      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-7" test="@xlink:href" role="error" id="clintrial-related-object-7">
-        <name/> must have an @xlink:href.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-7" test="@xlink:href[not(matches(.,'\p{Zs}'))]" role="error" id="clintrial-related-object-7">
+        <name/> must have an @xlink:href with a value that does not contain a space character.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

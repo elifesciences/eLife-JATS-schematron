@@ -2814,14 +2814,14 @@
         id="clintrial-related-object-5"><name/> must have an @document-id-type='clinical-trial-number'.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-6"
-        test="@document-id" 
+        test="@document-id[not(matches(.,'\p{Zs}'))]" 
         role="error" 
-        id="clintrial-related-object-6"><name/> must have an @document-id.</assert>
+        id="clintrial-related-object-6"><name/> must have an @document-id with a value that does not contain a space character.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-7"
-        test="@xlink:href" 
+        test="@xlink:href[not(matches(.,'\p{Zs}'))]" 
         role="error" 
-        id="clintrial-related-object-7"><name/> must have an @xlink:href.</assert>
+        id="clintrial-related-object-7"><name/> must have an @xlink:href with a value that does not contain a space character.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-8"
         test="contains(.,@document-id/string())" 
