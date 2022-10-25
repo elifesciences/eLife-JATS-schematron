@@ -11635,7 +11635,7 @@
 	  <!--RULE par-tests-->
    <xsl:template match="funding-group//principal-award-recipient" priority="1000" mode="M146">
       <xsl:variable name="authors" select="for $x in ancestor::article//article-meta/contrib-group[1]/contrib[@contrib-type='author']         return if ($x/name) then e:get-name($x/name[1])         else if ($x/collab) then e:get-collab($x/collab[1])         else ''"/>
-      <xsl:variable name="par-text" select="if (name) then e:get-name(name[1]) else e:get-collab(collab[1])"/>
+      <xsl:variable name="par-text" select="if (name) then e:get-name(name[1])         else if (string-name) then string-name         else e:get-collab(collab[1])"/>
 
 		    <!--REPORT error-->
       <xsl:if test="normalize-space(.)='' and not(*)">
