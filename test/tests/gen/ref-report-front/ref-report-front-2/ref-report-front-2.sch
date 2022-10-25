@@ -1221,7 +1221,7 @@
   <pattern id="sub-article-version-2">
     <rule context="sub-article[@article-type='referee-report']/front-stub" id="ref-report-front">
       <let name="count" value="count(contrib-group)"/>
-      <assert test="$count = 2" role="error" flag="dl-ar" id="ref-report-front-2">sub-article front-stub must contain 2 contrib-group elements.</assert>
+      <assert test="$count = 1" role="error" flag="dl-ar" id="ref-report-front-2">sub-article front-stub must contain one, and only one contrib-group elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

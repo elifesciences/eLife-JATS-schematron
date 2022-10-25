@@ -1,32 +1,19 @@
 <?oxygen SCHSchema="sub-article-role-test-2.sch"?>
 <!--Context: sub-article/front-stub/contrib-group/contrib/role
-Test: report    $sub-article-type='referee-report' and parent::contrib/parent::contrib-group[not(following-sibling::contrib-group)] and not(@specific-use='referee')
-Message: The role element for contributors in the second contrib-group in the decision letter must have the attribute specific-use='referee'. -->
+Test: report    $sub-article-type='referee-report' and (lower-case($sub-title)!='recommendations for authors' or parent::contrib/preceding-sibling::contrib) and not(@specific-use='referee')
+Message: The role element for this contributor must have the attribute specific-use='referee'. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <front>
-      <article-meta>
-        <custom-meta-group>
-          <custom-meta specific-use="meta-only">
-            <meta-name>schema-version</meta-name>
-            <meta-value>2.0.0</meta-value>
-          </custom-meta>
-        </custom-meta-group>
-      </article-meta>
-    </front>
     <sub-article article-type="referee-report">
       <front-stub>
         <article-id pub-id-type="doi"/>
-        <contrib-group>
-          <contrib contrib-type="author">
-            <name/>
-            <role specific-use="editor"/>
-          </contrib>
-        </contrib-group>
+        <title-group>
+          <article-title>Reviewer #1 (public review)</article-title>
+        </title-group>
         <contrib-group>
           <contrib contrib-type="author">
             <anonymous/>
-            <role/>
+            <role specific-use="editor"/>
           </contrib>
         </contrib-group>
       </front-stub>

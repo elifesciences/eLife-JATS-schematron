@@ -1222,7 +1222,7 @@
     <rule context="article/sub-article" id="dec-letter-reply-tests">
       <let name="is-prc" value="e:is-prc(.)"/>
       <let name="sub-article-count" value="count(parent::article/sub-article)"/>
-      <let name="id-convention" value="if (@article-type='editor-report') then 'sa0'         else if (@article-type=('reply','author-comment')) then ('sa'||$sub-article-count - 1)         else ('sa'||count(preceding-sibling::sub-article)-1)"/>
+      <let name="id-convention" value="if (@article-type='editor-report') then 'sa0'         else if (@article-type=('reply','author-comment')) then ('sa'||$sub-article-count - 1)         else ('sa'||count(preceding-sibling::sub-article))"/>
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-2" test="@id = $id-convention" role="error" flag="dl-ar" id="dec-letter-reply-test-2">sub-article id is <value-of select="@id"/> when based on it's article-type and position it should be <value-of select="$id-convention"/>.</assert>
     </rule>
   </pattern>

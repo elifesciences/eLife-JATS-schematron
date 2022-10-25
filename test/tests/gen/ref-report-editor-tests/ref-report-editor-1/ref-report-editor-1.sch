@@ -1219,13 +1219,13 @@
     
   </xsl:function>
   <pattern id="sub-article-version-2">
-    <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[1]" id="ref-report-editor-tests">
-      <assert test="count(contrib[role[@specific-use='editor']]) = 1" role="error" flag="dl-ar" id="ref-report-editor-1">First contrib-group in decision letter must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']).</assert>
+    <rule context="sub-article[@article-type='referee-report']/front-stub[lower-case(title-group[1]/article-title[1])='recommendations for authors']" id="ref-report-editor-tests">
+      <assert test="count(descendant::contrib[role[@specific-use='editor']]) = 1" role="error" flag="dl-ar" id="ref-report-editor-1">The Recommendations for authors must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']). This one has <value-of select="count(descendant::contrib[role[@specific-use='editor']])"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='referee-report']/front-stub/contrib-group[1]" role="error" id="ref-report-editor-tests-xspec-assert">sub-article[@article-type='referee-report']/front-stub/contrib-group[1] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='referee-report']/front-stub[lower-case(title-group[1]/article-title[1])='recommendations for authors']" role="error" id="ref-report-editor-tests-xspec-assert">sub-article[@article-type='referee-report']/front-stub[lower-case(title-group[1]/article-title[1])='recommendations for authors'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

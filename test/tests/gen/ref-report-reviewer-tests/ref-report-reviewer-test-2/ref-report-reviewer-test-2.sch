@@ -1219,15 +1219,13 @@
     
   </xsl:function>
   <pattern id="sub-article-version-2">
-    <rule context="sub-article/front-stub/contrib-group/contrib/role" id="sub-article-role-tests">
-      <let name="sub-article-type" value="ancestor::sub-article[1]/@article-type"/>
-      <let name="sub-title" value="ancestor::sub-article[1]/front-stub[1]/title-group[1]/article-title[1]"/>
-      <report test="lower-case($sub-title)='recommendations for authors' and not(parent::contrib/preceding-sibling::contrib) and not(@specific-use='editor')" role="error" flag="dl-ar" id="sub-article-role-test-1">The role element for the first contributor in <value-of select="$sub-title"/> must have the attribute specific-use='editor'.</report>
+    <rule context="sub-article[@article-type='referee-report' and contains(lower-case(front-stub[1]/title-group[1]/article-title[1]),'public review')]/front-stub" id="ref-report-reviewer-tests">
+      <report test="descendant::contrib[not(role[@specific-use='referee'])]" role="error" flag="dl-ar" id="ref-report-reviewer-test-2">A public review cannot contain a contributor which is not a reviewer (i.e. a contrib without a child role[@specific-use='referee']).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article/front-stub/contrib-group/contrib/role" role="error" id="sub-article-role-tests-xspec-assert">sub-article/front-stub/contrib-group/contrib/role must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='referee-report' and contains(lower-case(front-stub[1]/title-group[1]/article-title[1]),'public review')]/front-stub" role="error" id="ref-report-reviewer-tests-xspec-assert">sub-article[@article-type='referee-report' and contains(lower-case(front-stub[1]/title-group[1]/article-title[1]),'public review')]/front-stub must be present.</assert>
     </rule>
   </pattern>
 </schema>

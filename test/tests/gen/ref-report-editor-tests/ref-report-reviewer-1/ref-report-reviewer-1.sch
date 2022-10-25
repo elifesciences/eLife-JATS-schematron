@@ -1219,15 +1219,13 @@
     
   </xsl:function>
   <pattern id="sub-article-version-2">
-    <rule context="sub-article/front-stub/contrib-group/contrib/role" id="sub-article-role-tests">
-      <let name="sub-article-type" value="ancestor::sub-article[1]/@article-type"/>
-      <let name="sub-title" value="ancestor::sub-article[1]/front-stub[1]/title-group[1]/article-title[1]"/>
-      <report test="lower-case($sub-title)='recommendations for authors' and not(parent::contrib/preceding-sibling::contrib) and not(@specific-use='editor')" role="error" flag="dl-ar" id="sub-article-role-test-1">The role element for the first contributor in <value-of select="$sub-title"/> must have the attribute specific-use='editor'.</report>
+    <rule context="sub-article[@article-type='referee-report']/front-stub[lower-case(title-group[1]/article-title[1])='recommendations for authors']" id="ref-report-editor-tests">
+      <assert test="count(descendant::contrib[role[@specific-use='reviewer']]) &gt; 0" role="error" flag="dl-ar" id="ref-report-reviewer-1">The Recommendations for authors must contain 1 or more reviewers (a contrib with a role[@specific-use='reviewer']). This one has 0.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article/front-stub/contrib-group/contrib/role" role="error" id="sub-article-role-tests-xspec-assert">sub-article/front-stub/contrib-group/contrib/role must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='referee-report']/front-stub[lower-case(title-group[1]/article-title[1])='recommendations for authors']" role="error" id="ref-report-editor-tests-xspec-assert">sub-article[@article-type='referee-report']/front-stub[lower-case(title-group[1]/article-title[1])='recommendations for authors'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1,7 +1,7 @@
-<?oxygen SCHSchema="ref-report-reviewer-test-1.sch"?>
+<?oxygen SCHSchema="ref-report-reviewer-test-2.sch"?>
 <!--Context: sub-article[@article-type='referee-report' and contains(lower-case(front-stub[1]/title-group[1]/article-title[1]),'public review')]/front-stub
-Test: assert    count(descendant::contrib[role[@specific-use='referee']])=1
-Message: A public review must contain a single contributor which is a reviewer (a contrib with a child role[@specific-use='referee']). This one contains . -->
+Test: report    descendant::contrib[not(role[@specific-use='referee'])]
+Message: A public review cannot contain a contributor which is not a reviewer (i.e. a contrib without a child role[@specific-use='referee']). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sub-article article-type="referee-report">
@@ -13,6 +13,10 @@ Message: A public review must contain a single contributor which is a reviewer (
           <contrib contrib-type="author">
             <anonymous/>
             <role specific-use="referee">Reviewer</role>
+          </contrib>
+          <contrib contrib-type="author">
+            <anonymous/>
+            <role specific-use="editor">Editor</role>
           </contrib>
         </contrib-group>
       </front-stub>

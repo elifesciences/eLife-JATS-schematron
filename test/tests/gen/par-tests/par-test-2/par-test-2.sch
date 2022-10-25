@@ -1221,7 +1221,7 @@
   <pattern id="article-metadata">
     <rule context="funding-group//principal-award-recipient" id="par-tests">
       <let name="authors" value="for $x in ancestor::article//article-meta/contrib-group[1]/contrib[@contrib-type='author']         return if ($x/name) then e:get-name($x/name[1])         else if ($x/collab) then e:get-collab($x/collab[1])         else ''"/>
-      <let name="par-text" value="if (name) then e:get-name(name[1]) else e:get-collab(collab[1])"/>
+      <let name="par-text" value="if (name) then e:get-name(name[1])         else if (string-name) then string-name         else e:get-collab(collab[1])"/>
       <assert test="$par-text = $authors" role="error" id="par-test-2">Author name in funding section (<value-of select="$par-text"/>) does not match any of the author names in the author list: <value-of select="string-join($authors,', ')"/>.</assert>
     </rule>
   </pattern>
