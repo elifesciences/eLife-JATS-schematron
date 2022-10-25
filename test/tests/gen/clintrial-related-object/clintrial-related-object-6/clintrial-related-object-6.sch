@@ -1221,8 +1221,8 @@
   <pattern id="article-metadata">
     <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
       <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
-      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-6" test="@document-id" role="error" id="clintrial-related-object-6">
-        <name/> must have an @document-id.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-6" test="@document-id[not(matches(.,'\p{Zs}'))]" role="error" id="clintrial-related-object-6">
+        <name/> must have an @document-id with a value that does not contain a space character.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
