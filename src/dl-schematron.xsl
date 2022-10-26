@@ -2341,7 +2341,7 @@
    <xsl:template match="article/sub-article" priority="1000" mode="M72">
       <xsl:variable name="is-prc" select="e:is-prc(.)"/>
       <xsl:variable name="sub-article-count" select="count(parent::article/sub-article)"/>
-      <xsl:variable name="id-convention" select="if (@article-type='editor-report') then 'sa0'         else if (@article-type=('reply','author-comment')) then ('sa'||$sub-article-count - 1)         else ('sa'||count(preceding-sibling::sub-article))"/>
+      <xsl:variable name="id-convention" select="if (@article-type='editor-report') then 'sa0'         else if (@article-type='decision-letter') then 'sa1'         else if (@article-type='reply') then 'sa2'         else if (@article-type='author-comment') then ('sa'||$sub-article-count - 1)         else ('sa'||count(preceding-sibling::sub-article))"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>
