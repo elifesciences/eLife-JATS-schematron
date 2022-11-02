@@ -1220,8 +1220,9 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="event" id="event-tests">
-      <assert test="date[@date-type='preprint']" role="error" id="event-test-2">
-        <name/> must contain a date element with the attribute date-type="preprint". This one does not.</assert>
+      <let name="date" value="date[1]/@iso-8601-date"/>
+      <assert test="date[@date-type=('preprint','reviewed-preprint')]" role="error" id="event-test-2">
+        <name/> must contain a date element with the attribute date-type="preprint" or date-type="reviewed-preprint". This one does not.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

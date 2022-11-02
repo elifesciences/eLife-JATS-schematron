@@ -1221,7 +1221,7 @@
   <pattern id="related-articles">
     <rule context="related-article" id="related-articles-conformance">
       <let name="allowed-values" value="('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article', 'object-of-concern')"/>
-      <let name="article-doi" value="parent::article-meta/article-id[@pub-id-type='doi']"/>
+      <let name="article-doi" value="parent::article-meta/article-id[@pub-id-type='doi'][1]"/>
       <assert test="@ext-link-type='doi'" role="error" id="related-articles-test-5">related-article element must contain a @ext-link-type='doi'.</assert>
     </rule>
   </pattern>

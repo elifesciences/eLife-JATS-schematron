@@ -1220,8 +1220,8 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="event/date" id="event-date-tests">
-      <assert test="day and month and year" role="error" id="event-date-child">
-        <name/> in event must have a day, month and year element. This one does not.</assert>
+      <assert test="@date-type=('preprint','reviewed-preprint')" role="error" id="event-date-type">
+        <name/> in event must have a date-type attribute with the value 'preprint' or 'reviewed-preprint'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

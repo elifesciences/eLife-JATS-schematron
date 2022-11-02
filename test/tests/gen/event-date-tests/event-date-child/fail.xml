@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="event-date-child.sch"?>
-<!--Context: event/date[@date-type='preprint']
+<!--Context: event/date
 Test: assert    day and month and year
 Message:  in event must have a day, month and year element. This one does not. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

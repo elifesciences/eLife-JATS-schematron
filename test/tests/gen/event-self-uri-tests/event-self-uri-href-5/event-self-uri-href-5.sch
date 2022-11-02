@@ -1219,14 +1219,14 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="event/date" id="event-date-tests">
-      <assert test="day and month and year" role="error" id="event-date-child">
-        <name/> in event must have a day, month and year element. This one does not.</assert>
+    <rule context="event/self-uri" id="event-self-uri-tests">
+      <report test="(@content-type!='reviewed-preprint' or not(@content-type)) and matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.\d$')" role="error" id="event-self-uri-href-5">
+        <name/> in event does not have the attribute content-type="reviewed-preprint", but the xlink:href attribute contains an eLife version specific DOI - <value-of select="@xlink:href"/>. If it's a preprint event, the link should be to a preprint. If it's an event for reviewed preprint publication, then it should have the attribute content-type!='reviewed-preprint'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event/date" role="error" id="event-date-tests-xspec-assert">event/date must be present.</assert>
+      <assert test="descendant::event/self-uri" role="error" id="event-self-uri-tests-xspec-assert">event/self-uri must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1219,14 +1219,14 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="event/date" id="event-date-tests">
-      <assert test="day and month and year" role="error" id="event-date-child">
-        <name/> in event must have a day, month and year element. This one does not.</assert>
+    <rule context="event" id="event-tests">
+      <let name="date" value="date[1]/@iso-8601-date"/>
+      <report test="following-sibling::event[date[@iso-8601-date lt $date]]" role="error" id="event-test-4">Events in pub-history must be ordered chronologically in descending order. This event has a date (<value-of select="$date"/>) which is later than the date of a following event (<value-of select="preceding-sibling::event[date[@iso-8601-date lt $date]][1]"/>).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event/date" role="error" id="event-date-tests-xspec-assert">event/date must be present.</assert>
+      <assert test="descendant::event" role="error" id="event-tests-xspec-assert">event must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -9430,6 +9430,22 @@
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="e:is-prc(.) and count(event) le 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-prc(.) and count(event) le 1">
+            <xsl:attribute name="id">pub-history-events-1</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pub-history-events-1] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in PRC articles must have more than one event element, at least one for the preprint, and at least one for the reviewed preprint (there may be numerous reviewed preprint events). This one has <xsl:text/>
+               <xsl:value-of select="count(event)"/>
+               <xsl:text/> event elements.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M111"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M111"/>
@@ -9442,8 +9458,9 @@
 
 	  <!--RULE event-tests-->
    <xsl:template match="event" priority="1000" mode="M112">
+      <xsl:variable name="date" select="date[1]/@iso-8601-date"/>
 
-		<!--ASSERT error-->
+		    <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="event-desc"/>
          <xsl:otherwise>
@@ -9462,9 +9479,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="date[@date-type='preprint']"/>
+         <xsl:when test="date[@date-type=('preprint','reviewed-preprint')]"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="date[@date-type='preprint']">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="date[@date-type=('preprint','reviewed-preprint')]">
                <xsl:attribute name="id">event-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
@@ -9472,7 +9489,7 @@
                </xsl:attribute>
                <svrl:text>[event-test-2] <xsl:text/>
                   <xsl:value-of select="name(.)"/>
-                  <xsl:text/> must contain a date element with the attribute date-type="preprint". This one does not.</svrl:text>
+                  <xsl:text/> must contain a date element with the attribute date-type="preprint" or date-type="reviewed-preprint". This one does not.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -9493,6 +9510,22 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--REPORT error-->
+      <xsl:if test="following-sibling::event[date[@iso-8601-date lt $date]]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="following-sibling::event[date[@iso-8601-date lt $date]]">
+            <xsl:attribute name="id">event-test-4</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[event-test-4] Events in pub-history must be ordered chronologically in descending order. This event has a date (<xsl:text/>
+               <xsl:value-of select="$date"/>
+               <xsl:text/>) which is later than the date of a following event (<xsl:text/>
+               <xsl:value-of select="preceding-sibling::event[date[@iso-8601-date lt $date]][1]"/>
+               <xsl:text/>).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M112"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M112"/>
@@ -9592,7 +9625,7 @@
 
 
 	  <!--RULE event-date-tests-->
-   <xsl:template match="event/date[@date-type='preprint']" priority="1000" mode="M115">
+   <xsl:template match="event/date" priority="1000" mode="M115">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -9607,6 +9640,23 @@
                <svrl:text>[event-date-child] <xsl:text/>
                   <xsl:value-of select="name(.)"/>
                   <xsl:text/> in event must have a day, month and year element. This one does not.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="@date-type=('preprint','reviewed-preprint')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@date-type=('preprint','reviewed-preprint')">
+               <xsl:attribute name="id">event-date-type</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[event-date-type] <xsl:text/>
+                  <xsl:value-of select="name(.)"/>
+                  <xsl:text/> in event must have a date-type attribute with the value 'preprint' or 'reviewed-preprint'.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -9625,9 +9675,9 @@
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="@content-type='preprint'"/>
+         <xsl:when test="@content-type=('preprint','reviewed-preprint')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@content-type='preprint'">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@content-type=('preprint','reviewed-preprint')">
                <xsl:attribute name="id">event-self-uri-content-type</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
@@ -9710,6 +9760,38 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--REPORT error-->
+      <xsl:if test="@content-type='reviewed-preprint' and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.\d$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@content-type='reviewed-preprint' and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.\d$'))">
+            <xsl:attribute name="id">event-self-uri-href-4</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[event-self-uri-href-4] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in event has the attribute content-type="reviewed-preprint", but the xlink:href attribute does not contain an eLife version specific DOI - <xsl:text/>
+               <xsl:value-of select="@xlink:href"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="(@content-type!='reviewed-preprint' or not(@content-type)) and matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.\d$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@content-type!='reviewed-preprint' or not(@content-type)) and matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.\d$')">
+            <xsl:attribute name="id">event-self-uri-href-5</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[event-self-uri-href-5] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in event does not have the attribute content-type="reviewed-preprint", but the xlink:href attribute contains an eLife version specific DOI - <xsl:text/>
+               <xsl:value-of select="@xlink:href"/>
+               <xsl:text/>. If it's a preprint event, the link should be to a preprint. If it's an event for reviewed preprint publication, then it should have the attribute content-type!='reviewed-preprint'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M116"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M116"/>

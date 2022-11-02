@@ -2005,16 +2005,21 @@
       <assert test="parent::article-meta" role="error" id="pub-history-parent">[pub-history-parent] <name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
       
       <report test="not(e:is-prc(.)) and count(event) != 1" role="error" id="pub-history-child">[pub-history-child] <name/> must have one, and only one, event element in non-PRC content. This one has <value-of select="count(event)"/>.</report>
+      
+      <report test="e:is-prc(.) and count(event) le 1" role="error" id="pub-history-events-1">[pub-history-events-1] <name/> in PRC articles must have more than one event element, at least one for the preprint, and at least one for the reviewed preprint (there may be numerous reviewed preprint events). This one has <value-of select="count(event)"/> event elements.</report>
     </rule>
   </pattern>
   <pattern id="event-tests-pattern">
     <rule context="event" id="event-tests">
+      <let name="date" value="date[1]/@iso-8601-date"/>
       
       <assert test="event-desc" role="error" id="event-test-1">[event-test-1] <name/> must contain an event-desc element. This one does not.</assert>
       
-      <assert test="date[@date-type='preprint']" role="error" id="event-test-2">[event-test-2] <name/> must contain a date element with the attribute date-type="preprint". This one does not.</assert>
+      <assert test="date[@date-type=('preprint','reviewed-preprint')]" role="error" id="event-test-2">[event-test-2] <name/> must contain a date element with the attribute date-type="preprint" or date-type="reviewed-preprint". This one does not.</assert>
       
       <assert test="self-uri" role="error" id="event-test-3">[event-test-3] <name/> must contain a self-uri element. This one does not.</assert>
+        
+        <report test="following-sibling::event[date[@iso-8601-date lt $date]]" role="error" id="event-test-4">[event-test-4] Events in pub-history must be ordered chronologically in descending order. This event has a date (<value-of select="$date"/>) which is later than the date of a following event (<value-of select="preceding-sibling::event[date[@iso-8601-date lt $date]][1]"/>).</report>
     </rule>
   </pattern>
   <pattern id="event-child-tests-pattern">
@@ -2036,15 +2041,17 @@
     </rule>
   </pattern>
   <pattern id="event-date-tests-pattern">
-    <rule context="event/date[@date-type='preprint']" id="event-date-tests">
+    <rule context="event/date" id="event-date-tests">
       
       <assert test="day and month and year" role="error" id="event-date-child">[event-date-child] <name/> in event must have a day, month and year element. This one does not.</assert>
+      
+      <assert test="@date-type=('preprint','reviewed-preprint')" role="error" id="event-date-type">[event-date-type] <name/> in event must have a date-type attribute with the value 'preprint' or 'reviewed-preprint'.</assert>
     </rule>
   </pattern>
   <pattern id="event-self-uri-tests-pattern">
     <rule context="event/self-uri" id="event-self-uri-tests">
       
-      <assert test="@content-type='preprint'" role="error" id="event-self-uri-content-type">[event-self-uri-content-type] <name/> in event must have the attribute content-type="preprint". This one does not.</assert>
+      <assert test="@content-type=('preprint','reviewed-preprint')" role="error" id="event-self-uri-content-type">[event-self-uri-content-type] <name/> in event must have the attribute content-type="preprint". This one does not.</assert>
       
       <assert test="not(*) and normalize-space(.)=''" role="error" id="event-self-uri-content">[event-self-uri-content] <name/> in event must be empty. This one contains elements and/or text.</assert>
       
@@ -2053,6 +2060,10 @@
       <report test="matches(lower-case(@xlink:href),'(bio|med)rxiv')" role="error" id="event-self-uri-href-2">[event-self-uri-href-2] <name/> in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. bioRxiv and medRxiv preprint have dois, and this one points to one of those, but it is not a doi - <value-of select="@xlink:href"/>.</report>
       
       <assert test="matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')" role="warning" id="event-self-uri-href-3">[event-self-uri-href-3] <name/> in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. This one is not a doi - <value-of select="@xlink:href"/>. Please check whether there is a doi that can be used instead.</assert>
+      
+      <report test="@content-type='reviewed-preprint' and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.\d$'))" role="error" id="event-self-uri-href-4">[event-self-uri-href-4] <name/> in event has the attribute content-type="reviewed-preprint", but the xlink:href attribute does not contain an eLife version specific DOI - <value-of select="@xlink:href"/>.</report>
+      
+      <report test="(@content-type!='reviewed-preprint' or not(@content-type)) and matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.\d$')" role="error" id="event-self-uri-href-5">[event-self-uri-href-5] <name/> in event does not have the attribute content-type="reviewed-preprint", but the xlink:href attribute contains an eLife version specific DOI - <value-of select="@xlink:href"/>. If it's a preprint event, the link should be to a preprint. If it's an event for reviewed preprint publication, then it should have the attribute content-type!='reviewed-preprint'.</report>
     </rule>
   </pattern>
   <pattern id="front-permissions-tests-pattern">
