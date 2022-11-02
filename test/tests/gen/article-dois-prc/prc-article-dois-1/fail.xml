@@ -7,14 +7,15 @@ Message: Article level DOI must start with '10.7554/eLife.'. Currently it is  --
     <front>
       <article-meta>
         <article-id pub-id-type="publisher-id">00000</article-id>
-        <article-id pub-id-type="doi">10.7554/eLife.00000</article-id>
+        <article-id pub-id-type="doi">10.7554/eLidsafe.00001</article-id>
+        <article-id pub-id-type="doi" specific-version="version">10.7554/eLife.00001.0</article-id>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>publishing-route</meta-name>
+            <meta-value>prc</meta-value>
+          </custom-meta>
+        </custom-meta-group>
       </article-meta>
-      <custom-meta-group>
-        <custom-meta specific-use="meta-only">
-          <meta-name>publishing-route</meta-name>
-          <meta-value>prc</meta-value>
-        </custom-meta>
-      </custom-meta-group>
     </front>
   </article>
 </root>
