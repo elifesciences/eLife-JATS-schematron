@@ -1220,6 +1220,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="event" id="event-tests">
+      <let name="date" value="date[1]/@iso-8601-date"/>
       <assert test="event-desc" role="error" id="event-test-1">
         <name/> must contain an event-desc element. This one does not.</assert>
     </rule>

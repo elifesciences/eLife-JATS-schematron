@@ -1219,22 +1219,15 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article/front/article-meta" id="test-article-metadata">
-      <let name="article-id" value="article-id[@pub-id-type='publisher-id'][1]"/>
-      <let name="article-type" value="ancestor::article/@article-type"/>
-      <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <let name="exceptions" value="('Insight',$notice-display-types)"/>
-      <let name="no-digest" value="('Scientific Correspondence','Replication Study','Research Advance','Registered Report',$notice-display-types,$features-subj)"/>
-      <let name="abs-count" value="count(abstract)"/>
-      <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
-      <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
-      <assert test="starts-with(article-id[@pub-id-type='doi'][1],'10.7554/eLife.')" role="error" id="test-article-doi-1">Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="article-id[@pub-id-type='doi']"/>
+    <rule context="article[not(e:is-prc(.))]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois-non-prc">
+      <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
+      <assert test="substring-after(.,'10.7554/eLife.') = $article-id" role="error" id="nprc-article-dois-2">Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is <value-of select="."/>
       </assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/article-meta" role="error" id="test-article-metadata-xspec-assert">article/front/article-meta must be present.</assert>
+      <assert test="descendant::article[not(e:is-prc(.))]/front/article-meta/article-id[@pub-id-type='doi']" role="error" id="article-dois-non-prc-xspec-assert">article[not(e:is-prc(.))]/front/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

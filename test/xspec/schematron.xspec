@@ -235,26 +235,6 @@
         <x:expect-assert id="test-article-id" role="error"/>
         <x:expect-not-assert id="test-article-metadata-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="test-article-doi-1-pass">
-        <x:context href="../tests/gen/test-article-metadata/test-article-doi-1/pass.xml"/>
-        <x:expect-not-assert id="test-article-doi-1" role="error"/>
-        <x:expect-not-assert id="test-article-metadata-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="test-article-doi-1-fail">
-        <x:context href="../tests/gen/test-article-metadata/test-article-doi-1/fail.xml"/>
-        <x:expect-assert id="test-article-doi-1" role="error"/>
-        <x:expect-not-assert id="test-article-metadata-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="test-article-doi-2-pass">
-        <x:context href="../tests/gen/test-article-metadata/test-article-doi-2/pass.xml"/>
-        <x:expect-not-assert id="test-article-doi-2" role="error"/>
-        <x:expect-not-assert id="test-article-metadata-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="test-article-doi-2-fail">
-        <x:context href="../tests/gen/test-article-metadata/test-article-doi-2/fail.xml"/>
-        <x:expect-assert id="test-article-doi-2" role="error"/>
-        <x:expect-not-assert id="test-article-metadata-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="test-article-presence-pass">
         <x:context href="../tests/gen/test-article-metadata/test-article-presence/pass.xml"/>
         <x:expect-not-assert id="test-article-presence" role="error"/>
@@ -474,6 +454,120 @@
         <x:context href="../tests/gen/test-article-metadata/preprint-presence/fail.xml"/>
         <x:expect-report id="preprint-presence" role="warning"/>
         <x:expect-not-assert id="test-article-metadata-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="article-dois-non-prc">
+      <x:scenario label="nprc-article-dois-1-pass">
+        <x:context href="../tests/gen/article-dois-non-prc/nprc-article-dois-1/pass.xml"/>
+        <x:expect-not-assert id="nprc-article-dois-1" role="error"/>
+        <x:expect-not-assert id="article-dois-non-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="nprc-article-dois-1-fail">
+        <x:context href="../tests/gen/article-dois-non-prc/nprc-article-dois-1/fail.xml"/>
+        <x:expect-assert id="nprc-article-dois-1" role="error"/>
+        <x:expect-not-assert id="article-dois-non-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="nprc-article-dois-2-pass">
+        <x:context href="../tests/gen/article-dois-non-prc/nprc-article-dois-2/pass.xml"/>
+        <x:expect-not-assert id="nprc-article-dois-2" role="error"/>
+        <x:expect-not-assert id="article-dois-non-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="nprc-article-dois-2-fail">
+        <x:context href="../tests/gen/article-dois-non-prc/nprc-article-dois-2/fail.xml"/>
+        <x:expect-assert id="nprc-article-dois-2" role="error"/>
+        <x:expect-not-assert id="article-dois-non-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="nprc-article-dois-3-pass">
+        <x:context href="../tests/gen/article-dois-non-prc/nprc-article-dois-3/pass.xml"/>
+        <x:expect-not-report id="nprc-article-dois-3" role="error"/>
+        <x:expect-not-assert id="article-dois-non-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="nprc-article-dois-3-fail">
+        <x:context href="../tests/gen/article-dois-non-prc/nprc-article-dois-3/fail.xml"/>
+        <x:expect-report id="nprc-article-dois-3" role="error"/>
+        <x:expect-not-assert id="article-dois-non-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="nprc-article-dois-4-pass">
+        <x:context href="../tests/gen/article-dois-non-prc/nprc-article-dois-4/pass.xml"/>
+        <x:expect-not-report id="nprc-article-dois-4" role="error"/>
+        <x:expect-not-assert id="article-dois-non-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="nprc-article-dois-4-fail">
+        <x:context href="../tests/gen/article-dois-non-prc/nprc-article-dois-4/fail.xml"/>
+        <x:expect-report id="nprc-article-dois-4" role="error"/>
+        <x:expect-not-assert id="article-dois-non-prc-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="article-dois-prc">
+      <x:scenario label="prc-article-dois-1-pass">
+        <x:context href="../tests/gen/article-dois-prc/prc-article-dois-1/pass.xml"/>
+        <x:expect-not-assert id="prc-article-dois-1" role="error"/>
+        <x:expect-not-assert id="article-dois-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="prc-article-dois-1-fail">
+        <x:context href="../tests/gen/article-dois-prc/prc-article-dois-1/fail.xml"/>
+        <x:expect-assert id="prc-article-dois-1" role="error"/>
+        <x:expect-not-assert id="article-dois-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="prc-article-dois-2-pass">
+        <x:context href="../tests/gen/article-dois-prc/prc-article-dois-2/pass.xml"/>
+        <x:expect-not-report id="prc-article-dois-2" role="error"/>
+        <x:expect-not-assert id="article-dois-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="prc-article-dois-2-fail">
+        <x:context href="../tests/gen/article-dois-prc/prc-article-dois-2/fail.xml"/>
+        <x:expect-report id="prc-article-dois-2" role="error"/>
+        <x:expect-not-assert id="article-dois-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="prc-article-dois-3-pass">
+        <x:context href="../tests/gen/article-dois-prc/prc-article-dois-3/pass.xml"/>
+        <x:expect-not-report id="prc-article-dois-3" role="error"/>
+        <x:expect-not-assert id="article-dois-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="prc-article-dois-3-fail">
+        <x:context href="../tests/gen/article-dois-prc/prc-article-dois-3/fail.xml"/>
+        <x:expect-report id="prc-article-dois-3" role="error"/>
+        <x:expect-not-assert id="article-dois-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="prc-article-dois-4-pass">
+        <x:context href="../tests/gen/article-dois-prc/prc-article-dois-4/pass.xml"/>
+        <x:expect-not-report id="prc-article-dois-4" role="error"/>
+        <x:expect-not-assert id="article-dois-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="prc-article-dois-4-fail">
+        <x:context href="../tests/gen/article-dois-prc/prc-article-dois-4/fail.xml"/>
+        <x:expect-report id="prc-article-dois-4" role="error"/>
+        <x:expect-not-assert id="article-dois-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="prc-article-dois-5-pass">
+        <x:context href="../tests/gen/article-dois-prc/prc-article-dois-5/pass.xml"/>
+        <x:expect-not-report id="prc-article-dois-5" role="error"/>
+        <x:expect-not-assert id="article-dois-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="prc-article-dois-5-fail">
+        <x:context href="../tests/gen/article-dois-prc/prc-article-dois-5/fail.xml"/>
+        <x:expect-report id="prc-article-dois-5" role="error"/>
+        <x:expect-not-assert id="article-dois-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="prc-article-dois-6-pass">
+        <x:context href="../tests/gen/article-dois-prc/prc-article-dois-6/pass.xml"/>
+        <x:expect-not-report id="prc-article-dois-6" role="error"/>
+        <x:expect-not-assert id="article-dois-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="prc-article-dois-6-fail">
+        <x:context href="../tests/gen/article-dois-prc/prc-article-dois-6/fail.xml"/>
+        <x:expect-report id="prc-article-dois-6" role="error"/>
+        <x:expect-not-assert id="article-dois-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="prc-article-dois-7-pass">
+        <x:context href="../tests/gen/article-dois-prc/prc-article-dois-7/pass.xml"/>
+        <x:expect-not-report id="prc-article-dois-7" role="error"/>
+        <x:expect-not-assert id="article-dois-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="prc-article-dois-7-fail">
+        <x:context href="../tests/gen/article-dois-prc/prc-article-dois-7/fail.xml"/>
+        <x:expect-report id="prc-article-dois-7" role="error"/>
+        <x:expect-not-assert id="article-dois-prc-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="test-research-article-metadata">
@@ -1967,6 +2061,16 @@
         <x:expect-report id="pub-history-child" role="error"/>
         <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="pub-history-events-1-pass">
+        <x:context href="../tests/gen/pub-history-tests/pub-history-events-1/pass.xml"/>
+        <x:expect-not-report id="pub-history-events-1" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-events-1-fail">
+        <x:context href="../tests/gen/pub-history-tests/pub-history-events-1/fail.xml"/>
+        <x:expect-report id="pub-history-events-1" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="event-tests">
       <x:scenario label="event-test-1-pass">
@@ -1997,6 +2101,16 @@
       <x:scenario label="event-test-3-fail">
         <x:context href="../tests/gen/event-tests/event-test-3/fail.xml"/>
         <x:expect-assert id="event-test-3" role="error"/>
+        <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-test-4-pass">
+        <x:context href="../tests/gen/event-tests/event-test-4/pass.xml"/>
+        <x:expect-not-report id="event-test-4" role="error"/>
+        <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-test-4-fail">
+        <x:context href="../tests/gen/event-tests/event-test-4/fail.xml"/>
+        <x:expect-report id="event-test-4" role="error"/>
         <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -2055,6 +2169,16 @@
         <x:expect-assert id="event-date-child" role="error"/>
         <x:expect-not-assert id="event-date-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="event-date-type-pass">
+        <x:context href="../tests/gen/event-date-tests/event-date-type/pass.xml"/>
+        <x:expect-not-assert id="event-date-type" role="error"/>
+        <x:expect-not-assert id="event-date-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-date-type-fail">
+        <x:context href="../tests/gen/event-date-tests/event-date-type/fail.xml"/>
+        <x:expect-assert id="event-date-type" role="error"/>
+        <x:expect-not-assert id="event-date-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="event-self-uri-tests">
       <x:scenario label="event-self-uri-content-type-pass">
@@ -2105,6 +2229,26 @@
       <x:scenario label="event-self-uri-href-3-fail">
         <x:context href="../tests/gen/event-self-uri-tests/event-self-uri-href-3/fail.xml"/>
         <x:expect-assert id="event-self-uri-href-3" role="warning"/>
+        <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-self-uri-href-4-pass">
+        <x:context href="../tests/gen/event-self-uri-tests/event-self-uri-href-4/pass.xml"/>
+        <x:expect-not-report id="event-self-uri-href-4" role="error"/>
+        <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-self-uri-href-4-fail">
+        <x:context href="../tests/gen/event-self-uri-tests/event-self-uri-href-4/fail.xml"/>
+        <x:expect-report id="event-self-uri-href-4" role="error"/>
+        <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-self-uri-href-5-pass">
+        <x:context href="../tests/gen/event-self-uri-tests/event-self-uri-href-5/pass.xml"/>
+        <x:expect-not-report id="event-self-uri-href-5" role="error"/>
+        <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-self-uri-href-5-fail">
+        <x:context href="../tests/gen/event-self-uri-tests/event-self-uri-href-5/fail.xml"/>
+        <x:expect-report id="event-self-uri-href-5" role="error"/>
         <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

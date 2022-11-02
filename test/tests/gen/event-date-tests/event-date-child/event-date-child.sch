@@ -1219,14 +1219,14 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="event/date[@date-type='preprint']" id="event-date-tests">
+    <rule context="event/date" id="event-date-tests">
       <assert test="day and month and year" role="error" id="event-date-child">
         <name/> in event must have a day, month and year element. This one does not.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event/date[@date-type='preprint']" role="error" id="event-date-tests-xspec-assert">event/date[@date-type='preprint'] must be present.</assert>
+      <assert test="descendant::event/date" role="error" id="event-date-tests-xspec-assert">event/date must be present.</assert>
     </rule>
   </pattern>
 </schema>

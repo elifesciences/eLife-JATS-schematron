@@ -1,0 +1,21 @@
+<?oxygen SCHSchema="prc-article-dois-7.sch"?>
+<!--Context: article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']
+Test: report    @specific-use and @specific-use!='version'
+Message: Article DOI has a specific-use attribute value . The only permitted value is 'version'. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <article-id pub-id-type="publisher-id">00000</article-id>
+        <article-id pub-id-type="doi">10.7554/eLife.00000</article-id>
+        <article-id pub-id-type="doi" specific-use="dunno">10.7554/eLife.00000.0</article-id>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>publishing-route</meta-name>
+            <meta-value>prc</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

@@ -1221,7 +1221,7 @@
   <pattern id="related-articles">
     <rule context="related-article" id="related-articles-conformance">
       <let name="allowed-values" value="('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article', 'object-of-concern')"/>
-      <let name="article-doi" value="parent::article-meta/article-id[@pub-id-type='doi']"/>
+      <let name="article-doi" value="parent::article-meta/article-id[@pub-id-type='doi'][1]"/>
       <report test="@xlink:href = preceding::related-article/@xlink:href" role="error" id="related-articles-test-10">related-article elements must contain a distinct @xlink:href. There is more than 1 related article link for <value-of select="@xlink:href"/>.</report>
     </rule>
   </pattern>

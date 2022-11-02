@@ -1221,7 +1221,7 @@
   <pattern id="related-articles">
     <rule context="related-article" id="related-articles-conformance">
       <let name="allowed-values" value="('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article', 'object-of-concern')"/>
-      <let name="article-doi" value="parent::article-meta/article-id[@pub-id-type='doi']"/>
+      <let name="article-doi" value="parent::article-meta/article-id[@pub-id-type='doi'][1]"/>
       <assert test="@related-article-type = $allowed-values" role="error" id="related-articles-test-4">@related-article-type must be equal to one of the allowed values, ('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article', and 'object-of-concern').</assert>
     </rule>
   </pattern>

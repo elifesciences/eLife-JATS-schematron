@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="event/self-uri" id="event-self-uri-tests">
-      <assert test="@content-type='preprint'" role="error" id="event-self-uri-content-type">
+      <assert test="@content-type=('preprint','reviewed-preprint')" role="error" id="event-self-uri-content-type">
         <name/> in event must have the attribute content-type="preprint". This one does not.</assert>
     </rule>
   </pattern>

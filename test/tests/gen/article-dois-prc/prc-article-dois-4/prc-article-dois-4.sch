@@ -1218,14 +1218,16 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="sub-article-version-2">
-    <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[2]" id="ref-report-reviewer-tests">
-      <report test="count(contrib[role[@specific-use='referee']]) gt 5" role="warning" flag="dl-ar" id="ref-report-reviewer-test-6">Second contrib-group in decision letter contains more than five reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</report>
+  <pattern id="article-metadata">
+    <rule context="article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois-prc">
+      <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
+      <report test="@specific-use and not(matches(.,'^10.7554/eLife\.\d{5,6}\.\d$'))" role="error" id="prc-article-dois-4">Article level specific version DOI must be in the format 10.7554/eLife.00000.0. Currently it is <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='referee-report']/front-stub/contrib-group[2]" role="error" id="ref-report-reviewer-tests-xspec-assert">sub-article[@article-type='referee-report']/front-stub/contrib-group[2] must be present.</assert>
+      <assert test="descendant::article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']" role="error" id="article-dois-prc-xspec-assert">article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1221,7 +1221,7 @@
   <pattern id="related-articles">
     <rule context="related-article" id="related-articles-conformance">
       <let name="allowed-values" value="('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article', 'object-of-concern')"/>
-      <let name="article-doi" value="parent::article-meta/article-id[@pub-id-type='doi']"/>
+      <let name="article-doi" value="parent::article-meta/article-id[@pub-id-type='doi'][1]"/>
       <report test="contains(@xlink:href,$article-doi)" role="error" id="related-articles-test-11">An article cannot contain a related-article link to itself - please delete the related article link to <value-of select="@xlink:href"/>.</report>
     </rule>
   </pattern>

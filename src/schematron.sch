@@ -1504,14 +1504,6 @@
 	<assert test="matches($article-id,'^\d{5}$')" 
         role="error" 
         id="test-article-id">article-id must consist only of 5 digits. Currently it is <value-of select="article-id[@pub-id-type='publisher-id']"/></assert> 
-	 
-	 <assert test="starts-with(article-id[@pub-id-type='doi'][1],'10.7554/eLife.')" 
-        role="error" 
-        id="test-article-doi-1">Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="article-id[@pub-id-type='doi']"/></assert>
-	   
-  	 <assert test="substring-after(article-id[@pub-id-type='doi'][1],'10.7554/eLife.') = $article-id" 
-        role="error" 
-        id="test-article-doi-2">Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is <value-of select="article-id[@pub-id-type='doi']"/></assert>
 	   
      <assert test="count(article-categories) = 1" 
         role="error" 
@@ -1618,6 +1610,60 @@
       role="warning"
       id="preprint-presence">This <value-of select="$subj-type"/> was received on '<value-of select="history/date[@date-type='received']/@iso-8601-date"/>' (after the preprint mandate) but does not have preprint information. Is that correct?</report>
    </rule>
+    
+    <rule context="article[not(e:is-prc(.))]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois-non-prc">
+      <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
+      
+      <assert test="starts-with(.,'10.7554/eLife.')" 
+        role="error" 
+        id="nprc-article-dois-1">Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="."/></assert>
+      
+      <assert test="substring-after(.,'10.7554/eLife.') = $article-id" 
+        role="error" 
+        id="nprc-article-dois-2">Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is <value-of select="."/></assert>
+      
+      <report test="preceding-sibling::article-id[@pub-id-type='doi']" 
+        role="error" 
+        id="nprc-article-dois-3">A non PRC article cannot have more than one DOI in article-meta.</report>
+      
+      <report test="@*[name()!='pub-id-type']" 
+        role="error" 
+        id="nprc-article-dois-4">The DOI article-id in a non PRC article cannot have any attributes others than pub-id-type. This one has the following unpermitted attributes: <value-of select="string-join(@*[name()!='pub-id-type']/name(),'; ')"/></report>
+      
+    </rule>
+    
+    <rule context="article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois-prc">
+      <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
+      
+      <assert test="starts-with(.,'10.7554/eLife.')" 
+        role="error" 
+        id="prc-article-dois-1">Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="."/></assert>
+      
+      <report test="not(@specific-use) and substring-after(.,'10.7554/eLife.') != $article-id" 
+        role="error" 
+        id="prc-article-dois-2">Article level concept DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is <value-of select="."/></report>
+      
+      <report test="@specific-use and not(contains(.,$article-id))" 
+        role="error" 
+        id="prc-article-dois-3">Article level specific version DOI must contain the article-id (<value-of select="$article-id"/>). Currently it does not <value-of select="."/></report>
+      
+      <report test="@specific-use and not(matches(.,'^10.7554/eLife\.\d{5,6}\.\d$'))" 
+        role="error" 
+        id="prc-article-dois-4">Article level specific version DOI must be in the format 10.7554/eLife.00000.0. Currently it is <value-of select="."/></report>
+      
+      <report test="not(@specific-use) and (preceding-sibling::article-id[@pub-id-type='doi'] or following-sibling::article-id[@pub-id-type='doi' and not(@specific-use)])" 
+        role="error" 
+        id="prc-article-dois-5">Article level concept DOI must be first in article-meta, and there can only be one. This concept DOI has a preceding DOI or following concept DOI.</report>
+      
+      <report test="@specific-use and (following-sibling::article-id[@pub-id-type='doi'] or preceding-sibling::article-id[@pub-id-type='doi' and @specific-use])" 
+        role="error" 
+        id="prc-article-dois-6">Article level version DOI must be second in article-meta. This version DOI has a following sibling DOI or a preceding version specific DOI.</report>
+      
+      <report test="@specific-use and @specific-use!='version'" 
+        role="error" 
+        id="prc-article-dois-7">Article DOI has a specific-use attribute value <value-of select="@specific-use"/>. The only permitted value is 'version'.</report>
+      
+    </rule>
    
    <rule context="article[@article-type='research-article']/front/article-meta" id="test-research-article-metadata">
    
@@ -2464,21 +2510,30 @@
       <report test="not(e:is-prc(.)) and count(event) != 1" 
         role="error" 
         id="pub-history-child"><name/> must have one, and only one, event element in non-PRC content. This one has <value-of select="count(event)"/>.</report>
+      
+      <report test="e:is-prc(.) and count(event) le 1" 
+        role="error" 
+        id="pub-history-events-1"><name/> in PRC articles must have more than one event element, at least one for the preprint, and at least one for the reviewed preprint (there may be numerous reviewed preprint events). This one has <value-of select="count(event)"/> event elements.</report>
     </rule>
     
     <rule context="event" id="event-tests">
+      <let name="date" value="date[1]/@iso-8601-date"/>
       
       <assert test="event-desc" 
         role="error" 
         id="event-test-1"><name/> must contain an event-desc element. This one does not.</assert>
       
-      <assert test="date[@date-type='preprint']" 
+      <assert test="date[@date-type=('preprint','reviewed-preprint')]" 
         role="error" 
-        id="event-test-2"><name/> must contain a date element with the attribute date-type="preprint". This one does not.</assert>
+        id="event-test-2"><name/> must contain a date element with the attribute date-type="preprint" or date-type="reviewed-preprint". This one does not.</assert>
       
       <assert test="self-uri" 
         role="error" 
         id="event-test-3"><name/> must contain a self-uri element. This one does not.</assert>
+        
+        <report test="following-sibling::event[date[@iso-8601-date lt $date]]" 
+          role="error" 
+          id="event-test-4">Events in pub-history must be ordered chronologically in descending order. This event has a date (<value-of select="$date"/>) which is later than the date of a following event (<value-of select="preceding-sibling::event[date[@iso-8601-date lt $date]][1]"/>).</report>
     </rule>
     
     <rule context="event/*" id="event-child-tests">
@@ -2505,16 +2560,20 @@
       
     </rule>
     
-    <rule context="event/date[@date-type='preprint']" id="event-date-tests">
+    <rule context="event/date" id="event-date-tests">
       
       <assert test="day and month and year" 
         role="error" 
         id="event-date-child"><name/> in event must have a day, month and year element. This one does not.</assert>
+      
+      <assert test="@date-type=('preprint','reviewed-preprint')" 
+        role="error" 
+        id="event-date-type"><name/> in event must have a date-type attribute with the value 'preprint' or 'reviewed-preprint'.</assert>
     </rule>
     
     <rule context="event/self-uri" id="event-self-uri-tests">
       
-      <assert test="@content-type='preprint'" 
+      <assert test="@content-type=('preprint','reviewed-preprint')" 
         role="error" 
         id="event-self-uri-content-type"><name/> in event must have the attribute content-type="preprint". This one does not.</assert>
       
@@ -2533,6 +2592,14 @@
       <assert test="matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')" 
         role="warning" 
         id="event-self-uri-href-3"><name/> in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. This one is not a doi - <value-of select="@xlink:href"/>. Please check whether there is a doi that can be used instead.</assert>
+      
+      <report test="@content-type='reviewed-preprint' and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.\d$'))" 
+        role="error" 
+        id="event-self-uri-href-4"><name/> in event has the attribute content-type="reviewed-preprint", but the xlink:href attribute does not contain an eLife version specific DOI - <value-of select="@xlink:href"/>.</report>
+      
+      <report test="(@content-type!='reviewed-preprint' or not(@content-type)) and matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.\d$')" 
+        role="error" 
+        id="event-self-uri-href-5"><name/> in event does not have the attribute content-type="reviewed-preprint", but the xlink:href attribute contains an eLife version specific DOI - <value-of select="@xlink:href"/>. If it's a preprint event, the link should be to a preprint. If it's an event for reviewed preprint publication, then it should have the attribute content-type!='reviewed-preprint'.</report>
     </rule>
 	
 	<!-- All license types -->
@@ -7214,7 +7281,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="related-article" id="related-articles-conformance">
       <let name="allowed-values" value="('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article', 'object-of-concern')"/>
-      <let name="article-doi" value="parent::article-meta/article-id[@pub-id-type='doi']"/>
+      <let name="article-doi" value="parent::article-meta/article-id[@pub-id-type='doi'][1]"/>
       
       <assert test="@related-article-type" 
         role="error" 
