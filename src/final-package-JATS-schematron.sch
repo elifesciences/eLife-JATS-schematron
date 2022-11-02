@@ -1397,12 +1397,6 @@
     
 	<assert test="matches($article-id,'^\d{5}$')" role="error" id="test-article-id">article-id must consist only of 5 digits. Currently it is <value-of select="article-id[@pub-id-type='publisher-id']"/>
       </assert> 
-	 
-	 <assert test="starts-with(article-id[@pub-id-type='doi'][1],'10.7554/eLife.')" role="error" id="test-article-doi-1">Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="article-id[@pub-id-type='doi']"/>
-      </assert>
-	   
-  	 <assert test="substring-after(article-id[@pub-id-type='doi'][1],'10.7554/eLife.') = $article-id" role="error" id="test-article-doi-2">Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is <value-of select="article-id[@pub-id-type='doi']"/>
-      </assert>
 	   
      <assert test="count(article-categories) = 1" role="error" id="test-article-presence">There must be one article-categories element in the article-meta. Currently there are <value-of select="count(article-categories)"/>
       </assert>
@@ -1459,6 +1453,47 @@
     
     <report test="($subj-type=('Research Article','Research Advance','Tools and Resources','Short Report')) and (history/date[@date-type='received']/@iso-8601-date gt '2021-07-01') and not(pub-history[event[self-uri[@content-type='preprint']]])" role="warning" id="preprint-presence">This <value-of select="$subj-type"/> was received on '<value-of select="history/date[@date-type='received']/@iso-8601-date"/>' (after the preprint mandate) but does not have preprint information. Is that correct?</report>
    </rule>
+  </pattern>
+  <pattern id="article-dois-non-prc-pattern">
+    <rule context="article[not(e:is-prc(.))]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois-non-prc">
+      <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
+      
+      <assert test="starts-with(.,'10.7554/eLife.')" role="error" id="nprc-article-dois-1">Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="."/>
+      </assert>
+      
+      <assert test="substring-after(.,'10.7554/eLife.') = $article-id" role="error" id="nprc-article-dois-2">Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is <value-of select="."/>
+      </assert>
+      
+      <report test="preceding-sibling::article-id[@pub-id-type='doi']" role="error" id="nprc-article-dois-3">A non PRC article cannot have more than one DOI in article-meta.</report>
+      
+      <report test="@*[name()!='pub-id-type']" role="error" id="nprc-article-dois-4">The DOI article-id in a non PRC article cannot have any attributes others than pub-id-type. This one has the following unpermitted attributes: <value-of select="string-join(@*[name()!='pub-id-type']/name(),'; ')"/>
+      </report>
+      
+    </rule>
+  </pattern>
+  <pattern id="article-dois-prc-pattern">
+    <rule context="article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois-prc">
+      <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
+      
+      <assert test="starts-with(.,'10.7554/eLife.')" role="error" id="prc-article-dois-1">Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="."/>
+      </assert>
+      
+      <report test="not(@specific-use) and substring-after(.,'10.7554/eLife.') != $article-id" role="error" id="prc-article-dois-2">Article level concept DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is <value-of select="."/>
+      </report>
+      
+      <report test="@specific-use and not(contains(.,$article-id))" role="error" id="prc-article-dois-3">Article level specific version DOI must contain the article-id (<value-of select="$article-id"/>). Currently it does not <value-of select="."/>
+      </report>
+      
+      <report test="@specific-use and not(matches(.,'^10.7554/eLife\.\d{5,6}\.\d$'))" role="error" id="prc-article-dois-4">Article level specific version DOI must be in the format 10.7554/eLife.00000.0. Currently it is <value-of select="."/>
+      </report>
+      
+      <report test="not(@specific-use) and (preceding-sibling::article-id[@pub-id-type='doi'] or following-sibling::article-id[@pub-id-type='doi' and not(@specific-use)])" role="error" id="prc-article-dois-5">Article level concept DOI must be first in article-meta, and there can only be one. This concept DOI has a preceding DOI or following concept DOI.</report>
+      
+      <report test="@specific-use and (following-sibling::article-id[@pub-id-type='doi'] or preceding-sibling::article-id[@pub-id-type='doi' and @specific-use])" role="error" id="prc-article-dois-6">Article level version DOI must be second in article-meta. This version DOI has a following sibling DOI or a preceding version specific DOI.</report>
+      
+      <report test="@specific-use and @specific-use!='version'" role="error" id="prc-article-dois-7">Article DOI has a specific-use attribute value <value-of select="@specific-use"/>. The only permitted value is 'version'.</report>
+      
+    </rule>
   </pattern>
   <pattern id="test-research-article-metadata-pattern">
     <rule context="article[@article-type='research-article']/front/article-meta" id="test-research-article-metadata">
@@ -5136,7 +5171,7 @@
   <pattern id="related-articles-conformance-pattern">
     <rule context="related-article" id="related-articles-conformance">
       <let name="allowed-values" value="('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article', 'object-of-concern')"/>
-      <let name="article-doi" value="parent::article-meta/article-id[@pub-id-type='doi']"/>
+      <let name="article-doi" value="parent::article-meta/article-id[@pub-id-type='doi'][1]"/>
       
       <assert test="@related-article-type" role="error" id="related-articles-test-3">related-article element must contain a @related-article-type.</assert>
       

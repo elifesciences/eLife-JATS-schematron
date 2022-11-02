@@ -1,0 +1,7 @@
+<?oxygen SCHSchema="prc-article-dois-6.sch"?>
+<!--Context: article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']
+Test: report    @specific-use and (following-sibling::article-id[@pub-id-type='doi'] or preceding-sibling::article-id[@pub-id-type='doi' and @specific-use])
+Message: Article level version DOI must be second in article-meta. This version DOI has a following sibling DOI or a preceding version specific DOI. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article/>
+</root>

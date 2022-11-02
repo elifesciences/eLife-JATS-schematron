@@ -1,0 +1,7 @@
+<?oxygen SCHSchema="prc-article-dois-5.sch"?>
+<!--Context: article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']
+Test: report    not(@specific-use) and (preceding-sibling::article-id[@pub-id-type='doi'] or following-sibling::article-id[@pub-id-type='doi' and not(@specific-use)])
+Message: Article level concept DOI must be first in article-meta, and there can only be one. This concept DOI has a preceding DOI or following concept DOI. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article/>
+</root>

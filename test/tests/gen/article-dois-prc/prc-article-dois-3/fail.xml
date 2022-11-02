@@ -1,0 +1,7 @@
+<?oxygen SCHSchema="prc-article-dois-3.sch"?>
+<!--Context: article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']
+Test: report    @specific-use and not(contains(.,$article-id))
+Message: Article level specific version DOI must contain the article-id (). Currently it does not  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article/>
+</root>

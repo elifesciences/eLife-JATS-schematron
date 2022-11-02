@@ -1,0 +1,7 @@
+<?oxygen SCHSchema="prc-article-dois-7.sch"?>
+<!--Context: article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']
+Test: report    @specific-use and @specific-use!='version'
+Message: Article DOI has a specific-use attribute value . The only permitted value is 'version'. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article/>
+</root>

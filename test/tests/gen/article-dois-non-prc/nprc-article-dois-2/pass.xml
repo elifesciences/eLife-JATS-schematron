@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="nprc-article-dois-2.sch"?>
+<!--Context: article[not(e:is-prc(.))]/front/article-meta/article-id[@pub-id-type='doi']
+Test: assert    substring-after(.,'10.7554/eLife.') = $article-id
+Message: Article level DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <article-id pub-id-type="publisher-id">00000</article-id>
+        <article-id pub-id-type="doi">10.7554/eLife.00000</article-id>
+      </article-meta>
+    </front>
+  </article>
+</root>
