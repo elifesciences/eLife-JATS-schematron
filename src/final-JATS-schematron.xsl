@@ -15760,8 +15760,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches(.,'(&amp;|§|§amp;)#x?\d|[^\p{L}\p{N}][gl]t;')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'(&amp;|§|§amp;)#x?\d|[^\p{L}\p{N}][gl]t;')">
+      <xsl:if test="matches(.,'(&amp;|§|§amp;)(#x?\d)?|[^\p{L}\p{N}][gl]t;')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'(&amp;|§|§amp;)(#x?\d)?|[^\p{L}\p{N}][gl]t;')">
             <xsl:attribute name="id">math-broken-unicode-test</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-broken-unicode-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
