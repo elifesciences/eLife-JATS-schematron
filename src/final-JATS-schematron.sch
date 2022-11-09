@@ -4728,7 +4728,7 @@
   <pattern id="ed-eval-front-child-tests-pattern">
     <rule context="sub-article[@article-type='editor-report']/front-stub/*" id="ed-eval-front-child-tests">
       
-      <assert test="name()=('article-id','title-group','contrib-group','related-object')" role="error" flag="dl-ar" id="ed-eval-front-child-test-1">[ed-eval-front-child-test-1] <name/> element is not allowed in the front-stub for an Editor's evaluation. Only the following elements are permitted: article-id, title-group, contrib-group, related-object.</assert>
+      <assert test="name()=('article-id','title-group','contrib-group','kwd-group','related-object')" role="error" flag="dl-ar" id="ed-eval-front-child-test-1">[ed-eval-front-child-test-1] <name/> element is not allowed in the front-stub for an Editor's evaluation. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</assert>
     </rule>
   </pattern>
   <pattern id="ed-eval-contrib-group-tests-pattern">
@@ -4762,6 +4762,41 @@
       <assert test="@xlink:href = concat('https://sciety.org/articles/activity/',@object-id)" role="error" flag="dl-ar" id="ed-eval-rel-obj-test-6">[ed-eval-rel-obj-test-6] related-object in editor's evaluation must have an xlink:href attribute whose value is 'https://sciety.org/articles/activity/' followed by the object-id attribute value (which must be a doi). '<value-of select="@xlink:href"/>' is not equal to <value-of select="concat('https://sciety.org/articles/activity/',@object-id)"/>. Which is correct?</assert>
       
       <assert test="@xlink:href = concat('https://sciety.org/articles/activity/',$event-preprint-doi)" role="error" flag="dl-ar" id="ed-eval-rel-obj-test-7">[ed-eval-rel-obj-test-7] related-object in editor's evaluation must have an xlink:href attribute whose value is 'https://sciety.org/articles/activity/' followed by the preprint doi in the article's pub-history. xlink:href '<value-of select="@xlink:href"/>' is not the same as '<value-of select="concat('https://sciety.org/articles/activity/',$event-preprint-doi)"/>'. Which is correct?</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="ed-report-kwd-group-pattern">
+    <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group" id="ed-report-kwd-group">
+      
+      <assert test="@kwd-group-type=('claim-importance','evidence-strength')" role="error" flag="dl-ar" id="ed-report-kwd-group-1">[ed-report-kwd-group-1] kwd-group in <value-of select="parent::*/title-group/article-title"/> must have the attribute kwd-group-type with the value 'claim-importance' or 'evidence-strength'. This one does not.</assert>
+      
+      <report test="@kwd-group-type=('claim-importance','evidence-strength') and count(kwd) gt 2" role="warning" flag="dl-ar" id="ed-report-kwd-group-2">[ed-report-kwd-group-2] <value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. This is unusual, please check this is correct.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="ed-report-claim-kwds-pattern">
+    <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" id="ed-report-claim-kwds">
+      <let name="allowed-vals" value="('Landmark', 'Fundamental', 'Important', 'Noteworthy', 'Useful', 'Flawed')"/>
+      
+      <assert test=".=$allowed-vals" role="error" flag="dl-ar" id="ed-report-claim-kwd-1">[ed-report-claim-kwd-1] Keyword contains <value-of select="."/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/>
+      </assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="ed-report-evidence-kwds-pattern">
+    <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" id="ed-report-evidence-kwds">
+      <let name="allowed-vals" value="('Tour-de-force', 'Compelling', 'Convincing', 'Solid', 'Incomplete', 'Inadequate')"/>
+      
+      <assert test=".=$allowed-vals" role="error" flag="dl-ar" id="ed-report-evidence-kwd-1">[ed-report-evidence-kwd-1] Keyword contains <value-of select="."/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/>
+      </assert>
+    </rule>
+  </pattern>
+  <pattern id="ed-report-kwds-pattern">
+    <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" id="ed-report-kwds">
+      
+      <report test="preceding-sibling::kwd = ." role="error" flag="dl-ar" id="ed-report-kwd-1">[ed-report-kwd-1] Keyword contains <value-of select="."/>, there is another kwd with that value witin the same kwd-group, so this one is either incorrect or superfluous and should be deleted.</report>
+      
+      <assert test="some $x in ancestor::sub-article[1]/body/p//bold satisfies lower-case($x)=lower-case(.)" role="error" flag="dl-ar" id="ed-report-kwd-2">[ed-report-kwd-2] Keyword contains <value-of select="."/>, but this term is not bolded in the text of the <value-of select="ancestor::front-stub/title-group/article-title"/>.</assert>
       
     </rule>
   </pattern>
@@ -4948,7 +4983,7 @@
       
       <assert test="count(descendant::contrib[role[@specific-use='editor']]) = 1" role="error" flag="dl-ar" id="ref-report-editor-1">[ref-report-editor-1] The Recommendations for authors must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']). This one has <value-of select="count(descendant::contrib[role[@specific-use='editor']])"/>.</assert>
       
-      <assert test="count(descendant::contrib[role[@specific-use='reviewer']]) &gt; 0" role="error" flag="dl-ar" id="ref-report-reviewer-1">[ref-report-reviewer-1] The Recommendations for authors must contain 1 or more reviewers (a contrib with a role[@specific-use='reviewer']). This one has 0.</assert>
+      <assert test="count(descendant::contrib[role[@specific-use='referee']]) &gt; 0" role="error" flag="dl-ar" id="ref-report-reviewer-1">[ref-report-reviewer-1] The Recommendations for authors must contain 1 or more reviewers (a contrib with a role[@specific-use='referee']). This one has 0.</assert>
     </rule>
   </pattern>
   <pattern id="ref-report-editor-tests-2-pattern">

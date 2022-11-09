@@ -9176,6 +9176,74 @@
         <x:expect-not-assert id="ed-eval-rel-obj-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="ed-report-kwd-group">
+      <x:scenario label="ed-report-kwd-group-1-pass">
+        <x:context href="../tests/gen/ed-report-kwd-group/ed-report-kwd-group-1/pass.xml"/>
+        <x:expect-not-assert id="ed-report-kwd-group-1" role="error"/>
+        <x:expect-not-assert id="ed-report-kwd-group-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-kwd-group-1-fail">
+        <x:context href="../tests/gen/ed-report-kwd-group/ed-report-kwd-group-1/fail.xml"/>
+        <x:expect-assert id="ed-report-kwd-group-1" role="error"/>
+        <x:expect-not-assert id="ed-report-kwd-group-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-kwd-group-2-pass">
+        <x:context href="../tests/gen/ed-report-kwd-group/ed-report-kwd-group-2/pass.xml"/>
+        <x:expect-not-report id="ed-report-kwd-group-2" role="warning"/>
+        <x:expect-not-assert id="ed-report-kwd-group-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-kwd-group-2-fail">
+        <x:context href="../tests/gen/ed-report-kwd-group/ed-report-kwd-group-2/fail.xml"/>
+        <x:expect-report id="ed-report-kwd-group-2" role="warning"/>
+        <x:expect-not-assert id="ed-report-kwd-group-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="ed-report-claim-kwds">
+      <x:scenario label="ed-report-claim-kwd-1-pass">
+        <x:context href="../tests/gen/ed-report-claim-kwds/ed-report-claim-kwd-1/pass.xml"/>
+        <x:expect-not-assert id="ed-report-claim-kwd-1" role="error"/>
+        <x:expect-not-assert id="ed-report-claim-kwds-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-claim-kwd-1-fail">
+        <x:context href="../tests/gen/ed-report-claim-kwds/ed-report-claim-kwd-1/fail.xml"/>
+        <x:expect-assert id="ed-report-claim-kwd-1" role="error"/>
+        <x:expect-not-assert id="ed-report-claim-kwds-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="ed-report-evidence-kwds">
+      <x:scenario label="ed-report-evidence-kwd-1-pass">
+        <x:context href="../tests/gen/ed-report-evidence-kwds/ed-report-evidence-kwd-1/pass.xml"/>
+        <x:expect-not-assert id="ed-report-evidence-kwd-1" role="error"/>
+        <x:expect-not-assert id="ed-report-evidence-kwds-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-evidence-kwd-1-fail">
+        <x:context href="../tests/gen/ed-report-evidence-kwds/ed-report-evidence-kwd-1/fail.xml"/>
+        <x:expect-assert id="ed-report-evidence-kwd-1" role="error"/>
+        <x:expect-not-assert id="ed-report-evidence-kwds-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="ed-report-kwds">
+      <x:scenario label="ed-report-kwd-1-pass">
+        <x:context href="../tests/gen/ed-report-kwds/ed-report-kwd-1/pass.xml"/>
+        <x:expect-not-report id="ed-report-kwd-1" role="error"/>
+        <x:expect-not-assert id="ed-report-kwds-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-kwd-1-fail">
+        <x:context href="../tests/gen/ed-report-kwds/ed-report-kwd-1/fail.xml"/>
+        <x:expect-report id="ed-report-kwd-1" role="error"/>
+        <x:expect-not-assert id="ed-report-kwds-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-kwd-2-pass">
+        <x:context href="../tests/gen/ed-report-kwds/ed-report-kwd-2/pass.xml"/>
+        <x:expect-not-assert id="ed-report-kwd-2" role="error"/>
+        <x:expect-not-assert id="ed-report-kwds-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-kwd-2-fail">
+        <x:context href="../tests/gen/ed-report-kwds/ed-report-kwd-2/fail.xml"/>
+        <x:expect-assert id="ed-report-kwd-2" role="error"/>
+        <x:expect-not-assert id="ed-report-kwds-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="dec-letter-front-tests">
       <x:scenario label="dec-letter-front-test-1-pass">
         <x:context href="../tests/gen/dec-letter-front-tests/dec-letter-front-test-1/pass.xml"/>
