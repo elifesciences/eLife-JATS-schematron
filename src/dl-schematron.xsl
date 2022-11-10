@@ -3054,6 +3054,23 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--REPORT error-->
+      <xsl:if test="*">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*">
+            <xsl:attribute name="id">ed-report-kwd-3</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>Keywords in <xsl:text/>
+               <xsl:value-of select="ancestor::front-stub/title-group/article-title"/>
+               <xsl:text/> cannot contain elements, only text. This one has: <xsl:text/>
+               <xsl:value-of select="string-join(distinct-values(*/name()),'; ')"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M83"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M83"/>

@@ -1,0 +1,25 @@
+<?oxygen SCHSchema="ed-report-kwd-3.sch"?>
+<!--Context: sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd
+Test: report    *
+Message: Keywords in  cannot contain elements, only text. This one has: . -->
+<article>
+  <sub-article id="sa0" article-type="editor-report">
+    <front-stub>
+      <article-id pub-id-type="doi">10.7554/eLife.1234567890.4.sa0</article-id>
+      <title-group>
+        <article-title>eLife assessment</article-title>
+      </title-group>
+      <kwd-group kwd-group-type="claim-importance">
+        <kwd>Noteworthy</kwd>
+        <kwd><italic/>Flawed<sup><sub/></sup></kwd>
+      </kwd-group>
+      <kwd-group kwd-group-type="evidence-strength">
+        <kwd><bold>Compelling</bold></kwd>
+        <kwd>Incomplete</kwd>
+      </kwd-group>
+    </front-stub>
+    <body>
+      <p>The terms in use are <bold>noteworthy</bold> but <bold>flawed</bold>. And the data is <bold>compelling</bold>, but <bold>incomplete</bold>.</p>
+    </body>
+  </sub-article>
+</article>

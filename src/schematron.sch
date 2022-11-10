@@ -6915,6 +6915,11 @@ else self::*/local-name() = $allowed-p-blocks"
         flag="dl-ar"
         id="ed-report-kwd-2">Keyword contains <value-of select="."/>, but this term is not bolded in the text of the <value-of select="ancestor::front-stub/title-group/article-title"/>.</assert>
       
+      <report test="*"
+        role="error" 
+        flag="dl-ar"
+        id="ed-report-kwd-3">Keywords in <value-of select="ancestor::front-stub/title-group/article-title"/> cannot contain elements, only text. This one has: <value-of select="string-join(distinct-values(*/name()),'; ')"/>.</report>
+      
     </rule>
     
     <rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
