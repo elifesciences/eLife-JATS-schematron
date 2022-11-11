@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="test-elocation-conformance.sch"?>
 <!--Context: article-meta/elocation-id
-Test: assert    . = concat('e' , $article-id)
-Message: elocation-id is incorrect. Its value should be a concatenation of 'e' and the article id, in this case . -->
+Test: report    not($is-prc) and . != concat('e' , $article-id)
+Message: elocation-id is incorrect. In non-PRC articles its value should be a concatenation of 'e' and the article id, in this case . Currently it is . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

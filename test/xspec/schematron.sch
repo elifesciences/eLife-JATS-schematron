@@ -2749,8 +2749,11 @@
   <pattern id="elocation-id-tests-pattern">
     <rule context="article-meta/elocation-id" id="elocation-id-tests">
       <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
+      <let name="is-prc" value="e:is-prc(.)"/>
       
-      <assert test=". = concat('e' , $article-id)" role="error" id="test-elocation-conformance">elocation-id is incorrect. Its value should be a concatenation of 'e' and the article id, in this case <value-of select="concat('e',$article-id)"/>.</assert>
+      <report test="not($is-prc) and . != concat('e' , $article-id)" role="error" id="test-elocation-conformance">elocation-id is incorrect. In non-PRC articles its value should be a concatenation of 'e' and the article id, in this case <value-of select="concat('e',$article-id)"/>. Currently it is <value-of select="."/>.</report>
+      
+      <report test="$is-prc and . != concat('RP' , $article-id)" role="error" id="test-elocation-conformance-prc">elocation-id is incorrect. In PRC articles its value should be a concatenation of 'RP' and the article id, in this case <value-of select="concat('RP',$article-id)"/>. Currently it is <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="related-object-tests-pattern">
@@ -2763,8 +2766,9 @@
   
   <pattern id="volume-test-pattern">
     <rule context="article-meta/volume" id="volume-test">
+      <let name="is-prc" value="e:is-prc(.)"/>
       <!-- @date-type='pub' included for legacy content -->
-      <let name="pub-date" value="parent::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year[1]"/>
+      <let name="pub-date" value=" if ($is-prc) then parent::article-meta/pub-history[1]/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]         else parent::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year[1]"/>
       
       <assert test=". = number($pub-date) - 2011" role="error" id="volume-test-1">Journal volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</assert>
     </rule>
