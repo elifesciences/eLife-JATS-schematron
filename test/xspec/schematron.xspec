@@ -3841,12 +3841,22 @@
     <x:scenario label="elocation-id-tests">
       <x:scenario label="test-elocation-conformance-pass">
         <x:context href="../tests/gen/elocation-id-tests/test-elocation-conformance/pass.xml"/>
-        <x:expect-not-assert id="test-elocation-conformance" role="error"/>
+        <x:expect-not-report id="test-elocation-conformance" role="error"/>
         <x:expect-not-assert id="elocation-id-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="test-elocation-conformance-fail">
         <x:context href="../tests/gen/elocation-id-tests/test-elocation-conformance/fail.xml"/>
-        <x:expect-assert id="test-elocation-conformance" role="error"/>
+        <x:expect-report id="test-elocation-conformance" role="error"/>
+        <x:expect-not-assert id="elocation-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="test-elocation-conformance-prc-pass">
+        <x:context href="../tests/gen/elocation-id-tests/test-elocation-conformance-prc/pass.xml"/>
+        <x:expect-not-report id="test-elocation-conformance-prc" role="error"/>
+        <x:expect-not-assert id="elocation-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="test-elocation-conformance-prc-fail">
+        <x:context href="../tests/gen/elocation-id-tests/test-elocation-conformance-prc/fail.xml"/>
+        <x:expect-report id="test-elocation-conformance-prc" role="error"/>
         <x:expect-not-assert id="elocation-id-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

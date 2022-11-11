@@ -12775,23 +12775,39 @@
 	  <!--RULE elocation-id-tests-->
    <xsl:template match="article-meta/elocation-id" priority="1000" mode="M162">
       <xsl:variable name="article-id" select="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
+      <xsl:variable name="is-prc" select="e:is-prc(.)"/>
 
-		    <!--ASSERT error-->
-      <xsl:choose>
-         <xsl:when test=". = concat('e' , $article-id)"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=". = concat('e' , $article-id)">
-               <xsl:attribute name="id">test-elocation-conformance</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[test-elocation-conformance] elocation-id is incorrect. Its value should be a concatenation of 'e' and the article id, in this case <xsl:text/>
-                  <xsl:value-of select="concat('e',$article-id)"/>
-                  <xsl:text/>.</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
+		    <!--REPORT error-->
+      <xsl:if test="not($is-prc) and . != concat('e' , $article-id)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($is-prc) and . != concat('e' , $article-id)">
+            <xsl:attribute name="id">test-elocation-conformance</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[test-elocation-conformance] elocation-id is incorrect. In non-PRC articles its value should be a concatenation of 'e' and the article id, in this case <xsl:text/>
+               <xsl:value-of select="concat('e',$article-id)"/>
+               <xsl:text/>. Currently it is <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="$is-prc and . != concat('RP' , $article-id)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$is-prc and . != concat('RP' , $article-id)">
+            <xsl:attribute name="id">test-elocation-conformance-prc</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[test-elocation-conformance-prc] elocation-id is incorrect. In PRC articles its value should be a concatenation of 'RP' and the article id, in this case <xsl:text/>
+               <xsl:value-of select="concat('RP',$article-id)"/>
+               <xsl:text/>. Currently it is <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M162"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M162"/>
@@ -12834,7 +12850,8 @@
 
 	  <!--RULE volume-test-->
    <xsl:template match="article-meta/volume" priority="1000" mode="M164">
-      <xsl:variable name="pub-date" select="parent::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year[1]"/>
+      <xsl:variable name="is-prc" select="e:is-prc(.)"/>
+      <xsl:variable name="pub-date" select=" if ($is-prc) then parent::article-meta/pub-history[1]/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]         else parent::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year[1]"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>

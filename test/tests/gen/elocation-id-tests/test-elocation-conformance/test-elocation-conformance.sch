@@ -1221,7 +1221,8 @@
   <pattern id="article-metadata">
     <rule context="article-meta/elocation-id" id="elocation-id-tests">
       <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
-      <assert test=". = concat('e' , $article-id)" role="error" id="test-elocation-conformance">elocation-id is incorrect. Its value should be a concatenation of 'e' and the article id, in this case <value-of select="concat('e',$article-id)"/>.</assert>
+      <let name="is-prc" value="e:is-prc(.)"/>
+      <report test="not($is-prc) and . != concat('e' , $article-id)" role="error" id="test-elocation-conformance">elocation-id is incorrect. In non-PRC articles its value should be a concatenation of 'e' and the article id, in this case <value-of select="concat('e',$article-id)"/>. Currently it is <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
