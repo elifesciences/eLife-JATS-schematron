@@ -269,7 +269,7 @@
     <xsl:param name="collab-or-name"/>
     <xsl:choose>
       <xsl:when test="$collab-or-name/name()='collab'">
-        <xsl:value-of select="e:stripDiacritics(lower-case($collab-or-name))"/>
+        <xsl:value-of select="e:stripDiacritics(replace(lower-case($collab-or-name),'\.',''))"/>
       </xsl:when>
       <xsl:when test="$collab-or-name/surname">
         <xsl:value-of select="e:stripDiacritics(lower-case($collab-or-name/surname[1]))"/>
