@@ -1228,7 +1228,8 @@
       <let name="abs-count" value="count(abstract)"/>
       <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
       <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
-      <assert test="pub-date[@pub-type='collection']" role="error" id="test-pub-collection-presence">There must be a child pub-date[@pub-type='collection'] in article-meta.</assert>
+      <let name="is-prc" value="e:is-prc(.)"/>
+      <report test="not($is-prc) and not(pub-date[@pub-type='collection'])" role="error" id="test-pub-collection-presence">There must be a child pub-date[@pub-type='collection'] in article-meta.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
