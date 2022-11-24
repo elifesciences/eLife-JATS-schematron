@@ -1228,6 +1228,7 @@
       <let name="abs-count" value="count(abstract)"/>
       <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
       <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
+      <let name="is-prc" value="e:is-prc(.)"/>
       <report test="if ($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication'))       then (count(kwd-group[@kwd-group-type='research-organism']) = 0)       else ()" role="warning" id="test-ro-kwd-group-presence-2">
         <value-of select="$subj-type"/> does not contain a Research Organism keyword group. Is this correct?</report>
     </rule>

@@ -1228,6 +1228,7 @@
       <let name="abs-count" value="count(abstract)"/>
       <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
       <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
+      <let name="is-prc" value="e:is-prc(.)"/>
       <report test="if ($subj-type = $notice-display-types) then (count(kwd-group[@kwd-group-type='author-keywords']) != 0)       else ()" role="error" id="test-auth-kwd-group-presence-2">
         <value-of select="$subj-type"/> articles must not have any author keywords</report>
     </rule>

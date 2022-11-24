@@ -1394,6 +1394,7 @@
     <let name="abs-count" value="count(abstract)"/>
     <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
     <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
+    <let name="is-prc" value="e:is-prc(.)"/>
     
 	<assert test="matches($article-id,'^\d{5}$')" role="error" id="test-article-id">article-id must consist only of 5 digits. Currently it is <value-of select="article-id[@pub-id-type='publisher-id']"/>
       </assert> 
@@ -1405,7 +1406,7 @@
 	   
     <assert test="pub-date[@publication-format='electronic'][@date-type='publication']" role="error" id="test-epub-date">There must be a child pub-date[@publication-format='electronic'][@date-type='publication'] in article-meta.</assert>
 	   
-    <assert test="pub-date[@pub-type='collection']" role="error" id="test-pub-collection-presence">There must be a child pub-date[@pub-type='collection'] in article-meta.</assert> 
+    <report test="not($is-prc) and not(pub-date[@pub-type='collection'])" role="error" id="test-pub-collection-presence">There must be a child pub-date[@pub-type='collection'] in article-meta.</report> 
 	  
     <assert test="volume" role="error" id="test-volume-presence">There must be a child volume in article-meta.</assert> 
 		

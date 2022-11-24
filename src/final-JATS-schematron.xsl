@@ -6350,6 +6350,7 @@
       <xsl:variable name="abs-count" select="count(abstract)"/>
       <xsl:variable name="abs-standard-count" select="count(abstract[not(@abstract-type)])"/>
       <xsl:variable name="digest-count" select="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
+      <xsl:variable name="is-prc" select="e:is-prc(.)"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>
@@ -6417,20 +6418,17 @@
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--ASSERT error-->
-      <xsl:choose>
-         <xsl:when test="pub-date[@pub-type='collection']"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="pub-date[@pub-type='collection']">
-               <xsl:attribute name="id">test-pub-collection-presence</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[test-pub-collection-presence] There must be a child pub-date[@pub-type='collection'] in article-meta.</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
+		    <!--REPORT error-->
+      <xsl:if test="not($is-prc) and not(pub-date[@pub-type='collection'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($is-prc) and not(pub-date[@pub-type='collection'])">
+            <xsl:attribute name="id">test-pub-collection-presence</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[test-pub-collection-presence] There must be a child pub-date[@pub-type='collection'] in article-meta.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
 
 		    <!--ASSERT error-->
       <xsl:choose>

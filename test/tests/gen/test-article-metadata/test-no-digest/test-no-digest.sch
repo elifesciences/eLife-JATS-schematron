@@ -1228,6 +1228,7 @@
       <let name="abs-count" value="count(abstract)"/>
       <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
       <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
+      <let name="is-prc" value="e:is-prc(.)"/>
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#test-no-digest" test="($subj-type= $no-digest) and abstract[@abstract-type=('executive-summary','plain-language-summary')]" role="error" id="test-no-digest">'<value-of select="$subj-type"/>' cannot have a digest.</report>
     </rule>
   </pattern>

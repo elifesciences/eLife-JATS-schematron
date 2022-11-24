@@ -1228,6 +1228,7 @@
       <let name="abs-count" value="count(abstract)"/>
       <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
       <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
+      <let name="is-prc" value="e:is-prc(.)"/>
       <report test="not($article-type = $notice-article-types) and not(self-uri[matches(@xlink:href, '^elife-[\d]{5}\.pdf$|^elife-[\d]{5}-v[0-9]{1,2}\.pdf$')])" role="error" id="test-self-uri-pdf-2">self-uri does not conform.</report>
     </rule>
   </pattern>
