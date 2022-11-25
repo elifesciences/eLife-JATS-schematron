@@ -395,14 +395,24 @@
         <x:expect-report id="test-funding-group-presence" role="error"/>
         <x:expect-not-assert id="test-article-metadata-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="test-custom-meta-group-presence-pass">
-        <x:context href="../tests/gen/test-article-metadata/test-custom-meta-group-presence/pass.xml"/>
-        <x:expect-not-report id="test-custom-meta-group-presence" role="error"/>
+      <x:scenario label="pre-test-custom-meta-group-presence-pass">
+        <x:context href="../tests/gen/test-article-metadata/pre-test-custom-meta-group-presence/pass.xml"/>
+        <x:expect-not-report id="pre-test-custom-meta-group-presence" role="warning"/>
         <x:expect-not-assert id="test-article-metadata-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="test-custom-meta-group-presence-fail">
-        <x:context href="../tests/gen/test-article-metadata/test-custom-meta-group-presence/fail.xml"/>
-        <x:expect-report id="test-custom-meta-group-presence" role="error"/>
+      <x:scenario label="pre-test-custom-meta-group-presence-fail">
+        <x:context href="../tests/gen/test-article-metadata/pre-test-custom-meta-group-presence/fail.xml"/>
+        <x:expect-report id="pre-test-custom-meta-group-presence" role="warning"/>
+        <x:expect-not-assert id="test-article-metadata-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-test-custom-meta-group-presence-pass">
+        <x:context href="../tests/gen/test-article-metadata/final-test-custom-meta-group-presence/pass.xml"/>
+        <x:expect-not-report id="final-test-custom-meta-group-presence" role="error"/>
+        <x:expect-not-assert id="test-article-metadata-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-test-custom-meta-group-presence-fail">
+        <x:context href="../tests/gen/test-article-metadata/final-test-custom-meta-group-presence/fail.xml"/>
+        <x:expect-report id="final-test-custom-meta-group-presence" role="error"/>
         <x:expect-not-assert id="test-article-metadata-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="test-auth-kwd-group-presence-1-pass">
