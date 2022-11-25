@@ -1584,8 +1584,13 @@
     
     <report test="if ($subj-type = $exceptions) then ()
       else count(custom-meta-group) != 1" 
-        role="error" 
-        id="test-custom-meta-group-presence">One custom-meta-group should be present in article-meta for all article types except Insights, Retractions, Corrections and Expressions of Concern.</report>
+        role="warning" 
+        id="pre-test-custom-meta-group-presence">One custom-meta-group should be present in article-meta for all article types except Insights, Retractions, Corrections and Expressions of Concern.</report>
+	   
+    <report test="if ($subj-type = $exceptions) then ()
+      else count(custom-meta-group) != 1" 
+      role="error" 
+      id="final-test-custom-meta-group-presence">One custom-meta-group should be present in article-meta for all article types except Insights, Retractions, Corrections and Expressions of Concern.</report>
 	   
     <report test="if ($subj-type = $notice-display-types) then ()
       else count(kwd-group[@kwd-group-type='author-keywords']) != 1" 

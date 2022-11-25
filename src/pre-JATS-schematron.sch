@@ -1376,7 +1376,9 @@
 	 
     <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#test-funding-group-presence" test="if ($article-type = $features-article-types) then ()       else if ($subj-type = ('Scientific Correspondence',$notice-display-types)) then ()       else count(funding-group) != 1" role="error" id="test-funding-group-presence">[test-funding-group-presence] There must be one and only one funding-group element in the article-meta. Currently there are <value-of select="count(funding-group)"/>.</report>
     
-    <report test="if ($subj-type = $exceptions) then ()       else count(custom-meta-group) != 1" role="error" id="test-custom-meta-group-presence">[test-custom-meta-group-presence] One custom-meta-group should be present in article-meta for all article types except Insights, Retractions, Corrections and Expressions of Concern.</report>
+    <report test="if ($subj-type = $exceptions) then ()       else count(custom-meta-group) != 1" role="warning" id="pre-test-custom-meta-group-presence">[pre-test-custom-meta-group-presence] One custom-meta-group should be present in article-meta for all article types except Insights, Retractions, Corrections and Expressions of Concern.</report>
+	   
+    
 	   
     <report test="if ($subj-type = $notice-display-types) then ()       else count(kwd-group[@kwd-group-type='author-keywords']) != 1" role="error" id="test-auth-kwd-group-presence-1">[test-auth-kwd-group-presence-1] One author keyword group must be present in article-meta.</report>
     

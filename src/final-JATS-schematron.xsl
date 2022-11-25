@@ -6607,12 +6607,12 @@
 		    <!--REPORT error-->
       <xsl:if test="if ($subj-type = $exceptions) then ()       else count(custom-meta-group) != 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($subj-type = $exceptions) then () else count(custom-meta-group) != 1">
-            <xsl:attribute name="id">test-custom-meta-group-presence</xsl:attribute>
+            <xsl:attribute name="id">final-test-custom-meta-group-presence</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[test-custom-meta-group-presence] One custom-meta-group should be present in article-meta for all article types except Insights, Retractions, Corrections and Expressions of Concern.</svrl:text>
+            <svrl:text>[final-test-custom-meta-group-presence] One custom-meta-group should be present in article-meta for all article types except Insights, Retractions, Corrections and Expressions of Concern.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
