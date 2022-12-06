@@ -7386,7 +7386,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#elife-check" test="starts-with($doi,'10.7554/eLife.') and (. != 'eLife')" role="error" id="elife-check">[elife-check] Journal ref '<value-of select="ancestor::ref/@id"/>' has an eLife doi <value-of select="$doi"/>, but the journal name is '<value-of select="."/>', when it should be 'eLife'. Either the journal name needs updating to eLife, or the doi is incorrect.</report>
       
-      <report test="matches(.,'\[|\(|\)|\]')" role="warning" id="journal-bracket-check">[journal-bracket-check] Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name which contains brackets '<value-of select="."/>'. It is very unlikely that the content in the brackets is required.</report>
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#journal-bracket-check" test="matches(.,'\[|\(|\)|\]')" role="warning" id="journal-bracket-check">[journal-bracket-check] Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name which contains brackets '<value-of select="."/>'. It is very unlikely that the content in the brackets is required.</report>
     </rule>
   </pattern>
   <pattern id="ref-article-title-tests-pattern">
@@ -7413,7 +7413,7 @@
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#a-title-replacement-character-presence" test="matches(.,'�')" role="error" id="a-title-replacement-character-presence">[a-title-replacement-character-presence] <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
       
-      <report test="($word-count gt 4) and ($title-word-count gt ($word-count div 2))" role="warning" id="article-title-case">[article-title-case] Journal ref has <name/> in mostly title case. Is that correct? eLife style is to use sentence case. "<value-of select="."/>"</report>
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#article-title-case" test="($word-count gt 4) and ($title-word-count gt ($word-count div 2))" role="warning" id="article-title-case">[article-title-case] Journal ref has <name/> in mostly title case. Is that correct? eLife style is to use sentence case. "<value-of select="."/>"</report>
       
     </rule>
   </pattern>
@@ -8324,7 +8324,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#link-in-display-test" test="matches(.,'https?:|ftp://|git://|tel:|mailto:')" role="error" id="link-in-display-test">[link-in-display-test] <value-of select="name()"/> element contains a url - <value-of select="."/>. The url must be moved to the appropriate field (if it is a doi, then it should be captured as a doi without the 'https://doi.org/' prefix), and the correct information should be included in this element (or queried if the information is missing).</report>
       
-      <assert test="($d-count div $t-count) gt 0.75" role="warning" id="duplicated-content">[duplicated-content] Does <value-of select="name(.)"/> in <value-of select="e:citation-format1(parent::element-citation)"/> have duplicated content? <value-of select="."/>
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#hg303-duplicated-content" test="($d-count div $t-count) gt 0.75" role="warning" id="duplicated-content">[duplicated-content] Does <value-of select="name(.)"/> in <value-of select="e:citation-format1(parent::element-citation)"/> have duplicated content? <value-of select="."/>
       </assert>
       
     </rule>

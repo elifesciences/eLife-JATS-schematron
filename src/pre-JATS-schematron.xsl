@@ -36622,6 +36622,7 @@
       <xsl:if test="matches(.,'\[|\(|\)|\]')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\[|\(|\)|\]')">
             <xsl:attribute name="id">journal-bracket-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/journal-references-i098980k#journal-bracket-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36774,6 +36775,7 @@
       <xsl:if test="($word-count gt 4) and ($title-word-count gt ($word-count div 2))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($word-count gt 4) and ($title-word-count gt ($word-count div 2))">
             <xsl:attribute name="id">article-title-case</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/journal-references-i098980k#article-title-case</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -41597,6 +41599,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($d-count div $t-count) gt 0.75">
                <xsl:attribute name="id">duplicated-content</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/references-ghxfa7uy#hg303-duplicated-content</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>

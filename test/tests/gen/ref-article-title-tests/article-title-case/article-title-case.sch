@@ -1223,7 +1223,7 @@
       <let name="rep" value="replace(.,' [Ii]{1,3}\. | IV\. | V. | [Cc]\. [Ee]legans| vs\. | sp\. ','')"/>
       <let name="word-count" value="count(tokenize(.,'\p{Zs}'))"/>
       <let name="title-word-count" value="count(tokenize(.,'\p{Zs}')[.=concat(upper-case(substring(.,1,1)),substring(.,2))])"/>
-      <report test="($word-count gt 4) and ($title-word-count gt ($word-count div 2))" role="warning" id="article-title-case">Journal ref has <name/> in mostly title case. Is that correct? eLife style is to use sentence case. "<value-of select="."/>"</report>
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#article-title-case" test="($word-count gt 4) and ($title-word-count gt ($word-count div 2))" role="warning" id="article-title-case">Journal ref has <name/> in mostly title case. Is that correct? eLife style is to use sentence case. "<value-of select="."/>"</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
