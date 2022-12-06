@@ -1222,7 +1222,7 @@
     <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
       <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi'][1]"/>
       <let name="uc" value="upper-case(.)"/>
-      <report test="matches(.,'\[|\(|\)|\]')" role="warning" id="journal-bracket-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name which contains brackets '<value-of select="."/>'. It is very unlikely that the content in the brackets is required.</report>
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#journal-bracket-check" test="matches(.,'\[|\(|\)|\]')" role="warning" id="journal-bracket-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name which contains brackets '<value-of select="."/>'. It is very unlikely that the content in the brackets is required.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
