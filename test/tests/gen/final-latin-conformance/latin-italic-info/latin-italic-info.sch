@@ -1223,7 +1223,7 @@
       <let name="latin-terms" value="e:get-latin-terms(.,$latin-regex)"/>
       <let name="roman-count" value="sum(for $x in $latin-terms//*:list[@list-type='roman']//*:match return number($x/@count))"/>
       <let name="italic-count" value="sum(for $x in $latin-terms//*:list[@list-type='italic']//*:match return number($x/@count))"/>
-      <report test="($italic-count != 0) and ($roman-count gt $italic-count)" role="warning" id="latin-italic-info">Latin terms are not consistenly either roman or italic. There are <value-of select="$roman-count"/> roman terms which is more common, and <value-of select="$italic-count"/> italic term(s). The following terms should be unitalicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='italic'])"/>.</report>
+      <report test="($italic-count != 0) and ($roman-count gt $italic-count)" role="warning" id="latin-italic-info">Latin terms are not consistently either roman or italic. There are <value-of select="$roman-count"/> roman terms which is more common, and <value-of select="$italic-count"/> italic term(s). The following terms should be unitalicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='italic'])"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
