@@ -1502,9 +1502,9 @@
     <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
     <let name="is-prc" value="e:is-prc(.)"/>
     
-	<assert test="matches($article-id,'^\d{5}$')" 
+	<assert test="matches($article-id,'^\d{5,6}$')" 
         role="error" 
-        id="test-article-id">article-id must consist only of 5 digits. Currently it is <value-of select="article-id[@pub-id-type='publisher-id']"/></assert> 
+        id="test-article-id">article-id must consist only of 5 or 6 digits. Currently it is <value-of select="article-id[@pub-id-type='publisher-id']"/></assert> 
 	   
      <assert test="count(article-categories) = 1" 
         role="error" 
@@ -1546,7 +1546,7 @@
         role="error" 
         id="test-self-uri-pdf-1">self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx = the article-id. Currently it is <value-of select="self-uri/@xlink:href"/>. It should start with elife-<value-of select="$article-id"/>.</report>
     
-    <report test="not($article-type = $notice-article-types) and not(self-uri[matches(@xlink:href, '^elife-[\d]{5}\.pdf$|^elife-[\d]{5}-v[0-9]{1,2}\.pdf$')])" 
+    <report test="not($article-type = $notice-article-types) and not(self-uri[matches(@xlink:href, '^elife-[\d]{5,6}\.pdf$|^elife-[\d]{5,6}-v[0-9]{1,2}\.pdf$')])" 
         role="error" 
         id="test-self-uri-pdf-2">self-uri does not conform.</report>
 		
@@ -7360,7 +7360,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="related-articles-test-5">related-article element must contain a @ext-link-type='doi'.</assert>
       
-      <assert test="matches(@xlink:href,'^10\.7554/e[lL]ife\.[\d]{5}$')" 
+      <assert test="matches(@xlink:href,'^10\.7554/e[lL]ife\.[\d]{5,6}$')" 
         role="error" 
         id="related-articles-test-6">related-article element must contain a @xlink:href, the value of which should be in the form 10.7554/eLife.00000.</assert>
       
@@ -11682,7 +11682,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source[1]"/>, but it is captured as a journal not a preprint.</report>
       
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#elife-ref-check" 
-        test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5}$|^10.7554/eLife\.\d{5}\.\d{3}$|^10.7554/eLife\.\d{5}\.sa[12]$'))" 
+        test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5,6}$|^10.7554/eLife\.\d{5,6}\.\d{3}$|^10.7554/eLife\.\d{5,6}\.sa[12]$'))" 
         role="error" 
         id="elife-ref-check">ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source[1]"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.</report>
       
