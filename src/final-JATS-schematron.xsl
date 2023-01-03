@@ -40489,7 +40489,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[latin-italic-info] Latin terms are not consistenly either roman or italic. There are <xsl:text/>
+            <svrl:text>[latin-italic-info] Latin terms are not consistently either roman or italic. There are <xsl:text/>
                <xsl:value-of select="$roman-count"/>
                <xsl:text/> roman terms which is more common, and <xsl:text/>
                <xsl:value-of select="$italic-count"/>
@@ -40507,7 +40507,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[latin-roman-info] Latin terms are not consistenly either roman or italic. There are <xsl:text/>
+            <svrl:text>[latin-roman-info] Latin terms are not consistently either roman or italic. There are <xsl:text/>
                <xsl:value-of select="$italic-count"/>
                <xsl:text/> italic terms which is more common, and <xsl:text/>
                <xsl:value-of select="$roman-count"/>
@@ -40525,7 +40525,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[latin-conformance-info] Latin terms are not consistenly either roman or italic. There are an equal number of italic (<xsl:text/>
+            <svrl:text>[latin-conformance-info] Latin terms are not consistently either roman or italic. There are an equal number of italic (<xsl:text/>
                <xsl:value-of select="$italic-count"/>
                <xsl:text/>) and roman (<xsl:text/>
                <xsl:value-of select="$roman-count"/>
@@ -41302,7 +41302,7 @@
                </xsl:attribute>
                <svrl:text>[italic-org-test-1] There is no space between the organism name '<xsl:text/>
                   <xsl:value-of select="."/>
-                  <xsl:text/>' and its preceeding text - '<xsl:text/>
+                  <xsl:text/>' and its preceding text - '<xsl:text/>
                   <xsl:value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>
                   <xsl:text/>'. Is this correct or is there a missing space?</svrl:text>
             </svrl:failed-assert>

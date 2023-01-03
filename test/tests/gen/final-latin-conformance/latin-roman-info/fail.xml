@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="latin-roman-info.sch"?>
 <!--Context: article
 Test: report    ($roman-count != 0) and ($italic-count gt $roman-count)
-Message: Latin terms are not consistenly either roman or italic. There are  italic terms which is more common, and  roman term(s). The following terms should be italicised: . -->
+Message: Latin terms are not consistently either roman or italic. There are  italic terms which is more common, and  roman term(s). The following terms should be italicised: . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <body>
