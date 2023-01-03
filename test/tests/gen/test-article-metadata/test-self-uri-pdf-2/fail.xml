@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="test-self-uri-pdf-2.sch"?>
 <!--Context: article/front/article-meta
-Test: report    not($article-type = $notice-article-types) and not(self-uri[matches(@xlink:href, '^elife-[\d]{5}\.pdf$|^elife-[\d]{5}-v[0-9]{1,2}\.pdf$')])
+Test: report    not($article-type = $notice-article-types) and not(self-uri[matches(@xlink:href, '^elife-[\d]{5,6}\.pdf$|^elife-[\d]{5,6}-v[0-9]{1,2}\.pdf$')])
 Message: self-uri does not conform. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">

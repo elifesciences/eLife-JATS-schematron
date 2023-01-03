@@ -6354,15 +6354,15 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches($article-id,'^\d{5}$')"/>
+         <xsl:when test="matches($article-id,'^\d{5,6}$')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($article-id,'^\d{5}$')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($article-id,'^\d{5,6}$')">
                <xsl:attribute name="id">test-article-id</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[test-article-id] article-id must consist only of 5 digits. Currently it is <xsl:text/>
+               <svrl:text>[test-article-id] article-id must consist only of 5 or 6 digits. Currently it is <xsl:text/>
                   <xsl:value-of select="article-id[@pub-id-type='publisher-id']"/>
                   <xsl:text/>
                </svrl:text>
@@ -6516,8 +6516,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="not($article-type = $notice-article-types) and not(self-uri[matches(@xlink:href, '^elife-[\d]{5}\.pdf$|^elife-[\d]{5}-v[0-9]{1,2}\.pdf$')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($article-type = $notice-article-types) and not(self-uri[matches(@xlink:href, '^elife-[\d]{5}\.pdf$|^elife-[\d]{5}-v[0-9]{1,2}\.pdf$')])">
+      <xsl:if test="not($article-type = $notice-article-types) and not(self-uri[matches(@xlink:href, '^elife-[\d]{5,6}\.pdf$|^elife-[\d]{5,6}-v[0-9]{1,2}\.pdf$')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($article-type = $notice-article-types) and not(self-uri[matches(@xlink:href, '^elife-[\d]{5,6}\.pdf$|^elife-[\d]{5,6}-v[0-9]{1,2}\.pdf$')])">
             <xsl:attribute name="id">test-self-uri-pdf-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -24275,9 +24275,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(@xlink:href,'^10\.7554/e[lL]ife\.[\d]{5}$')"/>
+         <xsl:when test="matches(@xlink:href,'^10\.7554/e[lL]ife\.[\d]{5,6}$')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'^10\.7554/e[lL]ife\.[\d]{5}$')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'^10\.7554/e[lL]ife\.[\d]{5,6}$')">
                <xsl:attribute name="id">related-articles-test-6</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
@@ -37040,8 +37040,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5}$|^10.7554/eLife\.\d{5}\.\d{3}$|^10.7554/eLife\.\d{5}\.sa[12]$'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5}$|^10.7554/eLife\.\d{5}\.\d{3}$|^10.7554/eLife\.\d{5}\.sa[12]$'))">
+      <xsl:if test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5,6}$|^10.7554/eLife\.\d{5,6}\.\d{3}$|^10.7554/eLife\.\d{5,6}\.sa[12]$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5,6}$|^10.7554/eLife\.\d{5,6}\.\d{3}$|^10.7554/eLife\.\d{5,6}\.sa[12]$'))">
             <xsl:attribute name="id">elife-ref-check</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/journal-references-i098980k#elife-ref-check</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
