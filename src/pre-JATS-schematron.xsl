@@ -41220,7 +41220,7 @@
                </xsl:attribute>
                <svrl:text>[italic-org-test-1] There is no space between the organism name '<xsl:text/>
                   <xsl:value-of select="."/>
-                  <xsl:text/>' and its preceeding text - '<xsl:text/>
+                  <xsl:text/>' and its preceding text - '<xsl:text/>
                   <xsl:value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>
                   <xsl:text/>'. Is this correct or is there a missing space?</svrl:text>
             </svrl:failed-assert>
