@@ -1218,15 +1218,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="article-metadata">
-    <rule context="pub-history" id="pub-history-tests">
-      <report test="not(e:is-prc(.)) and count(event) gt 1" role="error" id="pub-history-child">
-        <name/> must have one, and only one, event element in non-PRC content. This one has <value-of select="count(event)"/>.</report>
+  <pattern id="sub-article-version-2">
+    <rule context="anonymous" id="anonymous-tests">
+      <report test="@*" role="error" id="anonymous-test-3">anonymous element cannot have any attributes.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::pub-history" role="error" id="pub-history-tests-xspec-assert">pub-history must be present.</assert>
+      <assert test="descendant::anonymous" role="error" id="anonymous-tests-xspec-assert">anonymous must be present.</assert>
     </rule>
   </pattern>
 </schema>

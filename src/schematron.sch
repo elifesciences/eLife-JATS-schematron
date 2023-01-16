@@ -2513,13 +2513,25 @@
         role="error" 
         id="pub-history-parent"><name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
       
-      <report test="not(e:is-prc(.)) and count(event) != 1" 
+      <report test="not(e:is-prc(.)) and count(event) gt 1" 
         role="error" 
         id="pub-history-child"><name/> must have one, and only one, event element in non-PRC content. This one has <value-of select="count(event)"/>.</report>
       
       <report test="e:is-prc(.) and count(event) le 1" 
         role="error" 
         id="pub-history-events-1"><name/> in PRC articles must have more than one event element, at least one for the preprint, and at least one for the reviewed preprint (there may be numerous reviewed preprint events). This one has <value-of select="count(event)"/> event elements.</report>
+      
+      <report test="count(event[self-uri[@content-type='preprint']]) != 1" 
+        role="error" 
+        id="pub-history-events-2"><name/> must contain one, and only one preprint event (an event with a self-uri[@content-type='preprint'] element). This one has <value-of select="count(event[self-uri[@content-type='preprint']])"/> preprint event elements.</report>
+      
+      <report test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) lt 1" 
+        role="error" 
+        id="pub-history-events-3"><name/> in PRC articles must have at least one event element for reviewed preprint publication (an event with a self-uri[@content-type='reviewed-preprint'] element). This one has none.</report>
+      
+      <report test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) gt 3" 
+        role="warning" 
+        id="pub-history-events-4"><name/> has <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint event elements, which is unusual. Is this correct?</report>
     </rule>
     
     <rule context="event" id="event-tests">
@@ -2540,6 +2552,10 @@
         <report test="following-sibling::event[date[@iso-8601-date lt $date]]" 
           role="error" 
           id="event-test-4">Events in pub-history must be ordered chronologically in descending order. This event has a date (<value-of select="$date"/>) which is later than the date of a following event (<value-of select="preceding-sibling::event[date[@iso-8601-date lt $date]][1]"/>).</report>
+      
+      <report test="date and self-uri and date[1]/@date-type != self-uri[1]/@content-type" 
+        role="error" 
+        id="event-test-5">This event in pub-history has a date with the date-type <value-of select="date[1]/@date-type"/>, but a self-uri with the content-type <value-of select="self-uri[1]/@content-type"/>. These values should be the same, so one (or both of them) are incorrect.</report>
     </rule>
     
     <rule context="event/*" id="event-child-tests">
@@ -2581,7 +2597,7 @@
       
       <assert test="@content-type=('preprint','reviewed-preprint')" 
         role="error" 
-        id="event-self-uri-content-type"><name/> in event must have the attribute content-type="preprint". This one does not.</assert>
+        id="event-self-uri-content-type"><name/> in event must have the attribute content-type="preprint" or content-type="reviewed-preprint". This one does not.</assert>
       
       <assert test="not(*) and normalize-space(.)=''" 
         role="error" 
@@ -7290,6 +7306,27 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert test="parent::contrib[role[@specific-use='referee']]"
         role="error" 
         id="anonymous-test-1">The anonymous element can only be used for a reviewer who has opted not to reveal their name. It cannot be placed as a child of <value-of select="if (parent::contrib) then 'a non-reviewer contrib' else parent::*/name()"/>.</assert>
+      
+      <report test="* or normalize-space(.)!=''"
+        role="error" 
+        id="anonymous-test-2">anonymous element cannot contain any elements on text.</report>
+      
+      <report test="@*"
+        role="error" 
+        id="anonymous-test-3">anonymous element cannot have any attributes.</report>
+    </rule>
+    
+    <!-- All reviewers captured as anonymous under PRC -->
+    <rule context="sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']]" 
+      id="prc-reviewer-tests">
+      
+      <report test="name or collab"
+        role="error" 
+        id="prc-reviewer-test-1">A reviewer contrib in a PRC article cannot have a child <value-of select="*[name()=('name','collab')]/name()"/> element, since all reviewers are captured as anonymous. They must have an anonymous element instead.</report>
+      
+      <assert test="anonymous"
+        role="error" 
+        id="prc-reviewer-test-2">A reviewer contrib in a PRC article must have a child anonymous element. This one does not - <value-of select="."/>.</assert>
     </rule>
     
   </pattern>
@@ -11404,7 +11441,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="contains(.,'°')" 
         role="error" 
-        id="degree-symbol-sup">'<name/>' element contains the degree symbol, '°', which is not unnecessary. It does not need to be superscript.</report>
+        id="degree-symbol-sup">'<name/>' element contains the degree symbol, '°', which is unnecessary. It does not need to be superscript.</report>
       
       <report test="contains(.,'○')" 
         role="warning" 

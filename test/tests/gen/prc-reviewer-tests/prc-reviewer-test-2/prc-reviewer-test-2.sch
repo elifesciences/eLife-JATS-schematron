@@ -1218,15 +1218,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="article-metadata">
-    <rule context="pub-history" id="pub-history-tests">
-      <report test="not(e:is-prc(.)) and count(event) gt 1" role="error" id="pub-history-child">
-        <name/> must have one, and only one, event element in non-PRC content. This one has <value-of select="count(event)"/>.</report>
+  <pattern id="sub-article-version-2">
+    <rule context="sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']]" id="prc-reviewer-tests">
+      <assert test="anonymous" role="error" id="prc-reviewer-test-2">A reviewer contrib in a PRC article must have a child anonymous element. This one does not - <value-of select="."/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::pub-history" role="error" id="pub-history-tests-xspec-assert">pub-history must be present.</assert>
+      <assert test="descendant::sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']]" role="error" id="prc-reviewer-tests-xspec-assert">sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']] must be present.</assert>
     </rule>
   </pattern>
 </schema>

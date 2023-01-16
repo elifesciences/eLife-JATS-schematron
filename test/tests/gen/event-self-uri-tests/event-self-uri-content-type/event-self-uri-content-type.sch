@@ -1221,7 +1221,7 @@
   <pattern id="article-metadata">
     <rule context="event/self-uri" id="event-self-uri-tests">
       <assert test="@content-type=('preprint','reviewed-preprint')" role="error" id="event-self-uri-content-type">
-        <name/> in event must have the attribute content-type="preprint". This one does not.</assert>
+        <name/> in event must have the attribute content-type="preprint" or content-type="reviewed-preprint". This one does not.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1,0 +1,22 @@
+<?oxygen SCHSchema="event-test-5.sch"?>
+<!--Context: event
+Test: report    date and self-uri and date[1]/@date-type != self-uri[1]/@content-type
+Message: This event in pub-history has a date with the date-type , but a self-uri with the content-type . These values should be the same, so one (or both of them) are incorrect. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <pub-history>
+          <event>
+            <date date-type="preprint"/>
+            <self-uri content-type="preprint"/>
+          </event>
+          <event>
+            <date date-type="reviewed-preprint"/>
+            <self-uri content-type="reviewed-preprint"/>
+          </event>
+        </pub-history>
+      </article-meta>
+    </front>
+  </article>
+</root>
