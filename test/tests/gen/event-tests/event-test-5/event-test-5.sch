@@ -1219,14 +1219,14 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="event/self-uri" id="event-self-uri-tests">
-      <assert test="@content-type=('preprint','reviewed-preprint')" role="error" id="event-self-uri-content-type">
-        <name/> in event must have the attribute content-type="preprint" or content-type="reviewed-preprint". This one does not.</assert>
+    <rule context="event" id="event-tests">
+      <let name="date" value="date[1]/@iso-8601-date"/>
+      <report test="date and self-uri and date[1]/@date-type != self-uri[1]/@content-type" role="error" id="event-test-5">This event in pub-history has a date with the date-type <value-of select="date[1]/@date-type"/>, but a self-uri with the content-type <value-of select="self-uri[1]/@content-type"/>. These values should be the same, so one (or both of them) are incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event/self-uri" role="error" id="event-self-uri-tests-xspec-assert">event/self-uri must be present.</assert>
+      <assert test="descendant::event" role="error" id="event-tests-xspec-assert">event must be present.</assert>
     </rule>
   </pattern>
 </schema>
