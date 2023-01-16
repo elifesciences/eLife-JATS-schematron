@@ -9450,8 +9450,8 @@
       </xsl:choose>
 
 		    <!--REPORT error-->
-      <xsl:if test="not(e:is-prc(.)) and count(event) != 1">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(e:is-prc(.)) and count(event) != 1">
+      <xsl:if test="not(e:is-prc(.)) and count(event) gt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(e:is-prc(.)) and count(event) gt 1">
             <xsl:attribute name="id">pub-history-child</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -9478,6 +9478,52 @@
                <xsl:text/> in PRC articles must have more than one event element, at least one for the preprint, and at least one for the reviewed preprint (there may be numerous reviewed preprint events). This one has <xsl:text/>
                <xsl:value-of select="count(event)"/>
                <xsl:text/> event elements.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="count(event[self-uri[@content-type='preprint']]) != 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(event[self-uri[@content-type='preprint']]) != 1">
+            <xsl:attribute name="id">pub-history-events-2</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pub-history-events-2] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> must contain one, and only one preprint event (an event with a self-uri[@content-type='preprint'] element). This one has <xsl:text/>
+               <xsl:value-of select="count(event[self-uri[@content-type='preprint']])"/>
+               <xsl:text/> preprint event elements.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) lt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) lt 1">
+            <xsl:attribute name="id">pub-history-events-3</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pub-history-events-3] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in PRC articles must have at least one event element for reviewed preprint publication (an event with a self-uri[@content-type='reviewed-preprint'] element). This one has none.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) gt 3">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) gt 3">
+            <xsl:attribute name="id">pub-history-events-4</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pub-history-events-4] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> has <xsl:text/>
+               <xsl:value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/>
+               <xsl:text/> reviewed preprint event elements, which is unusual. Is this correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M111"/>
@@ -35948,7 +35994,7 @@
             </xsl:attribute>
             <svrl:text>[degree-symbol-sup] '<xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/>' element contains the degree symbol, '°', which is not unnecessary. It does not need to be superscript.</svrl:text>
+               <xsl:text/>' element contains the degree symbol, '°', which is unnecessary. It does not need to be superscript.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 

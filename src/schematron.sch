@@ -2513,13 +2513,25 @@
         role="error" 
         id="pub-history-parent"><name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
       
-      <report test="not(e:is-prc(.)) and count(event) != 1" 
+      <report test="not(e:is-prc(.)) and count(event) gt 1" 
         role="error" 
         id="pub-history-child"><name/> must have one, and only one, event element in non-PRC content. This one has <value-of select="count(event)"/>.</report>
       
       <report test="e:is-prc(.) and count(event) le 1" 
         role="error" 
         id="pub-history-events-1"><name/> in PRC articles must have more than one event element, at least one for the preprint, and at least one for the reviewed preprint (there may be numerous reviewed preprint events). This one has <value-of select="count(event)"/> event elements.</report>
+      
+      <report test="count(event[self-uri[@content-type='preprint']]) != 1" 
+        role="error" 
+        id="pub-history-events-2"><name/> must contain one, and only one preprint event (an event with a self-uri[@content-type='preprint'] element). This one has <value-of select="count(event[self-uri[@content-type='preprint']])"/> preprint event elements.</report>
+      
+      <report test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) lt 1" 
+        role="error" 
+        id="pub-history-events-3"><name/> in PRC articles must have at least one event element for reviewed preprint publication (an event with a self-uri[@content-type='reviewed-preprint'] element). This one has none.</report>
+      
+      <report test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) gt 3" 
+        role="warning" 
+        id="pub-history-events-4"><name/> has <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint event elements, which is unusual. Is this correct?</report>
     </rule>
     
     <rule context="event" id="event-tests">
@@ -11404,7 +11416,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="contains(.,'°')" 
         role="error" 
-        id="degree-symbol-sup">'<name/>' element contains the degree symbol, '°', which is not unnecessary. It does not need to be superscript.</report>
+        id="degree-symbol-sup">'<name/>' element contains the degree symbol, '°', which is unnecessary. It does not need to be superscript.</report>
       
       <report test="contains(.,'○')" 
         role="warning" 

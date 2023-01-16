@@ -1,0 +1,26 @@
+<?oxygen SCHSchema="pub-history-events-3.sch"?>
+<!--Context: pub-history
+Test: report    e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) lt 1
+Message:  in PRC articles must have at least one event element for reviewed preprint publication (an event with a self-uri[@content-type='reviewed-preprint'] element). This one has none. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <pub-history>
+          <event>
+            <self-uri content-type="preprint"/>
+          </event>
+          <event>
+            <self-uri content-type="reviewed-preprint"/>
+          </event>
+        </pub-history>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>publishing-route</meta-name>
+            <meta-value>prc</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

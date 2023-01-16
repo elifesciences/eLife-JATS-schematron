@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="pub-history-events-2.sch"?>
+<!--Context: pub-history
+Test: report    count(event[self-uri[@content-type='preprint']]) != 1
+Message:  must contain one, and only one preprint event (an event with a self-uri[@content-type='preprint'] element). This one has  preprint event elements. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <pub-history>
+          <event>
+            <self-uri content-type="preprint"/>
+          </event>
+        </pub-history>
+      </article-meta>
+    </front>
+  </article>
+</root>

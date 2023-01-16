@@ -1,0 +1,35 @@
+<?oxygen SCHSchema="pub-history-events-4.sch"?>
+<!--Context: pub-history
+Test: report    e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) gt 3
+Message:  has  reviewed preprint event elements, which is unusual. Is this correct? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <pub-history>
+          <event>
+            <self-uri content-type="preprint"/>
+          </event>
+          <event>
+            <self-uri content-type="reviewed-preprint"/>
+          </event>
+          <event>
+            <self-uri content-type="reviewed-preprint"/>
+          </event>
+          <event>
+            <self-uri content-type="reviewed-preprint"/>
+          </event>
+          <event>
+            <self-uri content-type="reviewed-preprint"/>
+          </event>
+        </pub-history>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>publishing-route</meta-name>
+            <meta-value>prc</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

@@ -1220,8 +1220,8 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="pub-history" id="pub-history-tests">
-      <report test="not(e:is-prc(.)) and count(event) gt 1" role="error" id="pub-history-child">
-        <name/> must have one, and only one, event element in non-PRC content. This one has <value-of select="count(event)"/>.</report>
+      <report test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) lt 1" role="error" id="pub-history-events-3">
+        <name/> in PRC articles must have at least one event element for reviewed preprint publication (an event with a self-uri[@content-type='reviewed-preprint'] element). This one has none.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

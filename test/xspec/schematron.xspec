@@ -2081,6 +2081,36 @@
         <x:expect-report id="pub-history-events-1" role="error"/>
         <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="pub-history-events-2-pass">
+        <x:context href="../tests/gen/pub-history-tests/pub-history-events-2/pass.xml"/>
+        <x:expect-not-report id="pub-history-events-2" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-events-2-fail">
+        <x:context href="../tests/gen/pub-history-tests/pub-history-events-2/fail.xml"/>
+        <x:expect-report id="pub-history-events-2" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-events-3-pass">
+        <x:context href="../tests/gen/pub-history-tests/pub-history-events-3/pass.xml"/>
+        <x:expect-not-report id="pub-history-events-3" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-events-3-fail">
+        <x:context href="../tests/gen/pub-history-tests/pub-history-events-3/fail.xml"/>
+        <x:expect-report id="pub-history-events-3" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-events-4-pass">
+        <x:context href="../tests/gen/pub-history-tests/pub-history-events-4/pass.xml"/>
+        <x:expect-not-report id="pub-history-events-4" role="warning"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-events-4-fail">
+        <x:context href="../tests/gen/pub-history-tests/pub-history-events-4/fail.xml"/>
+        <x:expect-report id="pub-history-events-4" role="warning"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="event-tests">
       <x:scenario label="event-test-1-pass">
