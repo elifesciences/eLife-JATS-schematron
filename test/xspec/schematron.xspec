@@ -9811,6 +9811,26 @@
         <x:expect-assert id="anonymous-test-1" role="error"/>
         <x:expect-not-assert id="anonymous-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="anonymous-test-2-pass">
+        <x:context href="../tests/gen/anonymous-tests/anonymous-test-2/pass.xml"/>
+        <x:expect-not-report id="anonymous-test-2" role="error"/>
+        <x:expect-not-assert id="anonymous-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="anonymous-test-2-fail">
+        <x:context href="../tests/gen/anonymous-tests/anonymous-test-2/fail.xml"/>
+        <x:expect-report id="anonymous-test-2" role="error"/>
+        <x:expect-not-assert id="anonymous-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="anonymous-test-3-pass">
+        <x:context href="../tests/gen/anonymous-tests/anonymous-test-3/pass.xml"/>
+        <x:expect-not-report id="anonymous-test-3" role="error"/>
+        <x:expect-not-assert id="anonymous-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="anonymous-test-3-fail">
+        <x:context href="../tests/gen/anonymous-tests/anonymous-test-3/fail.xml"/>
+        <x:expect-report id="anonymous-test-3" role="error"/>
+        <x:expect-not-assert id="anonymous-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="prc-reviewer-tests">
       <x:scenario label="prc-reviewer-test-1-pass">

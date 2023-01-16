@@ -24018,6 +24018,30 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--REPORT error-->
+      <xsl:if test="* or normalize-space(.)!=''">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="* or normalize-space(.)!=''">
+            <xsl:attribute name="id">anonymous-test-2</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[anonymous-test-2] anonymous element cannot contain any elements on text.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="@*">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@*">
+            <xsl:attribute name="id">anonymous-test-3</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[anonymous-test-3] anonymous element cannot have any attributes.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M367"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M367"/>

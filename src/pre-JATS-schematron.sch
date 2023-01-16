@@ -4968,6 +4968,10 @@
     <rule context="anonymous" id="anonymous-tests">
       
       <assert test="parent::contrib[role[@specific-use='referee']]" role="error" id="anonymous-test-1">[anonymous-test-1] The anonymous element can only be used for a reviewer who has opted not to reveal their name. It cannot be placed as a child of <value-of select="if (parent::contrib) then 'a non-reviewer contrib' else parent::*/name()"/>.</assert>
+      
+      <report test="* or normalize-space(.)!=''" role="error" id="anonymous-test-2">[anonymous-test-2] anonymous element cannot contain any elements on text.</report>
+      
+      <report test="@*" role="error" id="anonymous-test-3">[anonymous-test-3] anonymous element cannot have any attributes.</report>
     </rule>
   </pattern>
   <pattern id="prc-reviewer-tests-pattern">
