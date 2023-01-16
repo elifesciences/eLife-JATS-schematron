@@ -9606,6 +9606,22 @@
                <xsl:text/>).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="date and self-uri and date[1]/@date-type != self-uri[1]/@content-type">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="date and self-uri and date[1]/@date-type != self-uri[1]/@content-type">
+            <xsl:attribute name="id">event-test-5</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[event-test-5] This event in pub-history has a date with the date-type <xsl:text/>
+               <xsl:value-of select="date[1]/@date-type"/>
+               <xsl:text/>, but a self-uri with the content-type <xsl:text/>
+               <xsl:value-of select="self-uri[1]/@content-type"/>
+               <xsl:text/>. These values should be the same, so one (or both of them) are incorrect.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M112"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M112"/>
@@ -9765,7 +9781,7 @@
                </xsl:attribute>
                <svrl:text>[event-self-uri-content-type] <xsl:text/>
                   <xsl:value-of select="name(.)"/>
-                  <xsl:text/> in event must have the attribute content-type="preprint". This one does not.</svrl:text>
+                  <xsl:text/> in event must have the attribute content-type="preprint" or content-type="reviewed-preprint". This one does not.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>

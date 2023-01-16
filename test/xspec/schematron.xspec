@@ -2153,6 +2153,16 @@
         <x:expect-report id="event-test-4" role="error"/>
         <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="event-test-5-pass">
+        <x:context href="../tests/gen/event-tests/event-test-5/pass.xml"/>
+        <x:expect-not-report id="event-test-5" role="error"/>
+        <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-test-5-fail">
+        <x:context href="../tests/gen/event-tests/event-test-5/fail.xml"/>
+        <x:expect-report id="event-test-5" role="error"/>
+        <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="event-child-tests">
       <x:scenario label="event-child-pass">

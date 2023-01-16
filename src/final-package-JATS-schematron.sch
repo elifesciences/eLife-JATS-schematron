@@ -2122,6 +2122,8 @@
         <name/> must contain a self-uri element. This one does not.</assert>
         
         <report test="following-sibling::event[date[@iso-8601-date lt $date]]" role="error" id="event-test-4">Events in pub-history must be ordered chronologically in descending order. This event has a date (<value-of select="$date"/>) which is later than the date of a following event (<value-of select="preceding-sibling::event[date[@iso-8601-date lt $date]][1]"/>).</report>
+      
+      <report test="date and self-uri and date[1]/@date-type != self-uri[1]/@content-type" role="error" id="event-test-5">This event in pub-history has a date with the date-type <value-of select="date[1]/@date-type"/>, but a self-uri with the content-type <value-of select="self-uri[1]/@content-type"/>. These values should be the same, so one (or both of them) are incorrect.</report>
     </rule>
   </pattern>
   <pattern id="event-child-tests-pattern">
@@ -2160,7 +2162,7 @@
     <rule context="event/self-uri" id="event-self-uri-tests">
       
       <assert test="@content-type=('preprint','reviewed-preprint')" role="error" id="event-self-uri-content-type">
-        <name/> in event must have the attribute content-type="preprint". This one does not.</assert>
+        <name/> in event must have the attribute content-type="preprint" or content-type="reviewed-preprint". This one does not.</assert>
       
       <assert test="not(*) and normalize-space(.)=''" role="error" id="event-self-uri-content">
         <name/> in event must be empty. This one contains elements and/or text.</assert>
