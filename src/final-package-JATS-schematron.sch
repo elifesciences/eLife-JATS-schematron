@@ -5196,6 +5196,14 @@
       <assert test="parent::contrib[role[@specific-use='referee']]" role="error" id="anonymous-test-1">The anonymous element can only be used for a reviewer who has opted not to reveal their name. It cannot be placed as a child of <value-of select="if (parent::contrib) then 'a non-reviewer contrib' else parent::*/name()"/>.</assert>
     </rule>
   </pattern>
+  <pattern id="prc-reviewer-tests-pattern">
+    <rule context="sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']]" id="prc-reviewer-tests">
+      
+      <report test="name or collab" role="error" id="prc-reviewer-test-1">A reviewer contrib in a PRC article cannot have a child <value-of select="*[name()=('name','collab')]/name()"/> element, since all reviewers are captured as anonymous. They must have an anonymous element instead.</report>
+      
+      <assert test="anonymous" role="error" id="prc-reviewer-test-2">A reviewer contrib in a PRC article must have a child anonymous element. This one does not - <value-of select="."/>.</assert>
+    </rule>
+  </pattern>
   
   <pattern id="research-advance-test-pattern">
     <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" id="research-advance-test">

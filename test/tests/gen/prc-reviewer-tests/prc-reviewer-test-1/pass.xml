@@ -1,0 +1,28 @@
+<?oxygen SCHSchema="prc-reviewer-test-1.sch"?>
+<!--Context: sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']]
+Test: report    name or collab
+Message: A reviewer contrib in a PRC article cannot have a child  element, since all reviewers are captured as anonymous. They must have an anonymous element instead. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>publishing-route</meta-name>
+            <meta-value>prc</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+    <sub-article>
+      <front-stub>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <anonymous/>
+            <role specific-use="referee">Reviewer</role>
+          </contrib>
+        </contrib-group>
+      </front-stub>
+    </sub-article>
+  </article>
+</root>
