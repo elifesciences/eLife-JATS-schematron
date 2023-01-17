@@ -2783,7 +2783,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#table-xref-target-test" test="(@ref-type='table') and ($target/local-name() != 'table-wrap') and ($target/local-name() != 'table')" role="error" id="table-xref-target-test">[table-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='table-fn') and ($target/local-name() != 'fn')" role="error" id="table-fn-xref-target-test">[table-fn-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-xref-target-test" test="(@ref-type='table-fn') and ($target/local-name() != 'fn')" role="error" id="table-fn-xref-target-test">[table-fn-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#box-xref-target-test" test="(@ref-type='box') and ($target/local-name() != 'boxed-text')" role="error" id="box-xref-target-test">[box-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
