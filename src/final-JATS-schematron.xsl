@@ -13286,6 +13286,7 @@
       <xsl:if test="(@ref-type='table-fn') and ($target/local-name() != 'fn')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@ref-type='table-fn') and ($target/local-name() != 'fn')">
             <xsl:attribute name="id">table-fn-xref-target-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-xref-target-test</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>

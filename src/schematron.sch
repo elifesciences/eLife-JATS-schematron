@@ -3690,7 +3690,8 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="table-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
-      <report test="(@ref-type='table-fn') and ($target/local-name() != 'fn')" 
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-xref-target-test"
+        test="(@ref-type='table-fn') and ($target/local-name() != 'fn')" 
         role="error" 
         id="table-fn-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
