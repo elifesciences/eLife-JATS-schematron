@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']" id="duplicated-cont-tests-v2">
-      <let name="roles" value="for $x in role return lower-case($x/data())"/>
+      <let name="roles" value="for $x in role return lower-case($x)"/>
       <let name="indistinct-conts" value="for $role in distinct-values($roles) return $role[count($roles[. = $role]) gt 1]"/>
       <assert test="empty($indistinct-conts)" role="error" id="dupe-cont-test-v2">Author <value-of select="if (name) then e:get-name(name[1]) else if (collab) then (e:get-collab(collab[1])) else ('with no name')"/> has duplicated contributions - <value-of select="$indistinct-conts"/> - which is incorrect.</assert>
     </rule>

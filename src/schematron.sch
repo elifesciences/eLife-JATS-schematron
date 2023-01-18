@@ -1981,7 +1981,7 @@
     </rule>
     
     <rule context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']" id="duplicated-cont-tests-v2">
-      <let name="roles" value="for $x in role return lower-case($x/data())"/>
+      <let name="roles" value="for $x in role return lower-case($x)"/>
       <let name="indistinct-conts" value="for $role in distinct-values($roles) return $role[count($roles[. = $role]) gt 1]"/>
      
       <assert test="empty($indistinct-conts)" 
@@ -6739,8 +6739,8 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="id-convention" value="if (@article-type='editor-report') then 'sa0'
         else if (@article-type='decision-letter') then 'sa1'
         else if (@article-type='reply') then 'sa2'
-        else if (@article-type='author-comment') then ('sa'||$sub-article-count - 1)
-        else ('sa'||count(preceding-sibling::sub-article))"></let>
+        else if (@article-type='author-comment') then concat('sa',$sub-article-count - 1)
+        else concat('sa',count(preceding-sibling::sub-article))"></let>
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-1" 
         test="@article-type=('editor-report','referee-report','author-comment','decision-letter','reply')" 

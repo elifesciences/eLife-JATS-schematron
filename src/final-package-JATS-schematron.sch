@@ -1726,7 +1726,7 @@
   </pattern>
   <pattern id="duplicated-cont-tests-v2-pattern">
     <rule context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']" id="duplicated-cont-tests-v2">
-      <let name="roles" value="for $x in role return lower-case($x/data())"/>
+      <let name="roles" value="for $x in role return lower-case($x)"/>
       <let name="indistinct-conts" value="for $role in distinct-values($roles) return $role[count($roles[. = $role]) gt 1]"/>
      
       <assert test="empty($indistinct-conts)" role="error" id="dupe-cont-test-v2">Author <value-of select="if (name) then e:get-name(name[1]) else if (collab) then (e:get-collab(collab[1])) else ('with no name')"/> has duplicated contributions - <value-of select="$indistinct-conts"/> - which is incorrect.</assert>
@@ -4858,7 +4858,7 @@
     <rule context="article/sub-article" id="dec-letter-reply-tests">
       <let name="is-prc" value="e:is-prc(.)"/>
       <let name="sub-article-count" value="count(parent::article/sub-article)"/>
-      <let name="id-convention" value="if (@article-type='editor-report') then 'sa0'         else if (@article-type='decision-letter') then 'sa1'         else if (@article-type='reply') then 'sa2'         else if (@article-type='author-comment') then ('sa'||$sub-article-count - 1)         else ('sa'||count(preceding-sibling::sub-article))"/>
+      <let name="id-convention" value="if (@article-type='editor-report') then 'sa0'         else if (@article-type='decision-letter') then 'sa1'         else if (@article-type='reply') then 'sa2'         else if (@article-type='author-comment') then concat('sa',$sub-article-count - 1)         else concat('sa',count(preceding-sibling::sub-article))"/>
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-1" test="@article-type=('editor-report','referee-report','author-comment','decision-letter','reply')" role="error" id="dec-letter-reply-test-1">sub-article must must have an article-type which is equal to one of the following values: 'editor-report','decision-letter', or 'reply'.</assert>
       
