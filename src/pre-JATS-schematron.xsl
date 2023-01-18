@@ -7842,7 +7842,7 @@
 
 	  <!--RULE duplicated-cont-tests-v2-->
    <xsl:template match="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']" priority="1000" mode="M84">
-      <xsl:variable name="roles" select="for $x in role return lower-case($x/data())"/>
+      <xsl:variable name="roles" select="for $x in role return lower-case($x)"/>
       <xsl:variable name="indistinct-conts" select="for $role in distinct-values($roles) return $role[count($roles[. = $role]) gt 1]"/>
 
 		    <!--ASSERT error-->
@@ -22304,7 +22304,7 @@
    <xsl:template match="article/sub-article" priority="1000" mode="M332">
       <xsl:variable name="is-prc" select="e:is-prc(.)"/>
       <xsl:variable name="sub-article-count" select="count(parent::article/sub-article)"/>
-      <xsl:variable name="id-convention" select="if (@article-type='editor-report') then 'sa0'         else if (@article-type='decision-letter') then 'sa1'         else if (@article-type='reply') then 'sa2'         else if (@article-type='author-comment') then ('sa'||$sub-article-count - 1)         else ('sa'||count(preceding-sibling::sub-article))"/>
+      <xsl:variable name="id-convention" select="if (@article-type='editor-report') then 'sa0'         else if (@article-type='decision-letter') then 'sa1'         else if (@article-type='reply') then 'sa2'         else if (@article-type='author-comment') then concat('sa',$sub-article-count - 1)         else concat('sa',count(preceding-sibling::sub-article))"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>
