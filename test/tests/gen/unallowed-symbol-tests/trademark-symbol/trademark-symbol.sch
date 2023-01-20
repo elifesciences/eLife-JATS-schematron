@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
-      <report test="contains(.,'™')" role="error" id="trademark-symbol">
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-trademark-symbol" test="contains(.,'™')" role="error" id="trademark-symbol">
         <name/> element contains the trademark symbol, '™', which is not allowed.</report>
     </rule>
   </pattern>

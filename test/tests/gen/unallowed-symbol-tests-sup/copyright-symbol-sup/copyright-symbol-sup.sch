@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="sup" id="unallowed-symbol-tests-sup">
-      <report test="contains(.,'©')" role="error" id="copyright-symbol-sup">'<name/>' element contains the copyright symbol, '©', which is not allowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-copyright-symbol-sup" test="contains(.,'©')" role="error" id="copyright-symbol-sup">'<name/>' element contains the copyright symbol, '©', which is not allowed.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

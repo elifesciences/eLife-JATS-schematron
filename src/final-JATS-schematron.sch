@@ -3639,16 +3639,16 @@
       <let name="open-square" value="string-length(replace(.,'[^\[]',''))"/>
       <let name="close-square" value="string-length(replace(.,'[^\]]',''))"/>
       
-      <report test="$open-curly gt $close-curly" role="warning" id="bracket-test-1">[bracket-test-1] <name/> element contains more left '(' than right ')' parentheses (<value-of select="$open-curly"/> and <value-of select="$close-curly"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(]','')) gt string-length(replace($sentence,'[^\)]',''))) then $sentence else (),' ---- ')"/>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-1" test="$open-curly gt $close-curly" role="warning" id="bracket-test-1">[bracket-test-1] <name/> element contains more left '(' than right ')' parentheses (<value-of select="$open-curly"/> and <value-of select="$close-curly"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(]','')) gt string-length(replace($sentence,'[^\)]',''))) then $sentence else (),' ---- ')"/>
       </report>
       
-      <report test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\)')) and ($open-curly lt $close-curly)" role="warning" id="bracket-test-2">[bracket-test-2] <name/> element contains more right ')' than left '(' parentheses (<value-of select="$close-curly"/> and <value-of select="$open-curly"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(]','')) lt string-length(replace($sentence,'[^\)]',''))) then $sentence else (),' ---- ')"/>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-2" test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\)')) and ($open-curly lt $close-curly)" role="warning" id="bracket-test-2">[bracket-test-2] <name/> element contains more right ')' than left '(' parentheses (<value-of select="$close-curly"/> and <value-of select="$open-curly"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(]','')) lt string-length(replace($sentence,'[^\)]',''))) then $sentence else (),' ---- ')"/>
       </report>
       
-      <report test="$open-square gt $close-square" role="warning" id="bracket-test-3">[bracket-test-3] <name/> element contains more left '[' than right ']' square brackets (<value-of select="$open-square"/> and <value-of select="$close-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) gt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-3" test="$open-square gt $close-square" role="warning" id="bracket-test-3">[bracket-test-3] <name/> element contains more left '[' than right ']' square brackets (<value-of select="$open-square"/> and <value-of select="$close-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) gt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/>
       </report>
       
-      <report test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\]')) and ($open-square lt $close-square)" role="warning" id="bracket-test-4">[bracket-test-4] <name/> element contains more right ']' than left '[' square brackets (<value-of select="$close-square"/> and <value-of select="$open-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) lt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-4" test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\]')) and ($open-square lt $close-square)" role="warning" id="bracket-test-4">[bracket-test-4] <name/> element contains more right ']' than left '[' square brackets (<value-of select="$close-square"/> and <value-of select="$open-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) lt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/>
       </report>
     </rule>
   </pattern>
@@ -6969,310 +6969,277 @@
     <rule context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd" id="org-title-kwd">		
       <let name="lc" value="lower-case(.)"/>
       
-      <report test="matches($lc,'b\.\p{Zs}?subtilis') and not(italic[contains(text() ,'B. subtilis')])" role="warning" id="bssubtilis-article-title-check">[bssubtilis-article-title-check] <name/> contains an organism - 'B. subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'bacillus\p{Zs}?subtilis') and not(italic[contains(text() ,'Bacillus subtilis')])" role="warning" id="bacillusssubtilis-article-title-check">[bacillusssubtilis-article-title-check] <name/> contains an organism - 'Bacillus subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'d\.\p{Zs}?melanogaster') and not(italic[contains(text() ,'D. melanogaster')])" role="warning" id="dsmelanogaster-article-title-check">[dsmelanogaster-article-title-check] <name/> contains an organism - 'D. melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'drosophila\p{Zs}?melanogaster') and not(italic[contains(text() ,'Drosophila melanogaster')])" role="warning" id="drosophilasmelanogaster-article-title-check">[drosophilasmelanogaster-article-title-check] <name/> contains an organism - 'Drosophila melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'e\.\p{Zs}?coli') and not(italic[contains(text() ,'E. coli')])" role="warning" id="escoli-article-title-check">[escoli-article-title-check] <name/> contains an organism - 'E. coli' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'escherichia\p{Zs}?coli') and not(italic[contains(text() ,'Escherichia coli')])" role="warning" id="escherichiascoli-article-title-check">[escherichiascoli-article-title-check] <name/> contains an organism - 'Escherichia coli' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'s\.\p{Zs}?pombe') and not(italic[contains(text() ,'S. pombe')])" role="warning" id="sspombe-article-title-check">[sspombe-article-title-check] <name/> contains an organism - 'S. pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'schizosaccharomyces\p{Zs}?pombe') and not(italic[contains(text() ,'Schizosaccharomyces pombe')])" role="warning" id="schizosaccharomycesspombe-article-title-check">[schizosaccharomycesspombe-article-title-check] <name/> contains an organism - 'Schizosaccharomyces pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'s\.\p{Zs}?cerevisiae') and not(italic[contains(text() ,'S. cerevisiae')])" role="warning" id="sscerevisiae-article-title-check">[sscerevisiae-article-title-check] <name/> contains an organism - 'S. cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'saccharomyces\p{Zs}?cerevisiae') and not(italic[contains(text() ,'Saccharomyces cerevisiae')])" role="warning" id="saccharomycesscerevisiae-article-title-check">[saccharomycesscerevisiae-article-title-check] <name/> contains an organism - 'Saccharomyces cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'c\.\p{Zs}?elegans') and not(italic[contains(text() ,'C. elegans')])" role="warning" id="cselegans-article-title-check">[cselegans-article-title-check] <name/> contains an organism - 'C. elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'caenorhabditis\p{Zs}?elegans') and not(italic[contains(text() ,'Caenorhabditis elegans')])" role="warning" id="caenorhabditisselegans-article-title-check">[caenorhabditisselegans-article-title-check] <name/> contains an organism - 'Caenorhabditis elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'a\.\p{Zs}?thaliana') and not(italic[contains(text() ,'A. thaliana')])" role="warning" id="asthaliana-article-title-check">[asthaliana-article-title-check] <name/> contains an organism - 'A. thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'arabidopsis\p{Zs}?thaliana') and not(italic[contains(text() ,'Arabidopsis thaliana')])" role="warning" id="arabidopsissthaliana-article-title-check">[arabidopsissthaliana-article-title-check] <name/> contains an organism - 'Arabidopsis thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'m\.\p{Zs}?thermophila') and not(italic[contains(text() ,'M. thermophila')])" role="warning" id="msthermophila-article-title-check">[msthermophila-article-title-check] <name/> contains an organism - 'M. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'myceliophthora\p{Zs}?thermophila') and not(italic[contains(text() ,'Myceliophthora thermophila')])" role="warning" id="myceliophthorasthermophila-article-title-check">[myceliophthorasthermophila-article-title-check] <name/> contains an organism - 'Myceliophthora thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'dictyostelium') and not(italic[contains(text() ,'Dictyostelium')])" role="warning" id="dictyostelium-article-title-check">[dictyostelium-article-title-check] <name/> contains an organism - 'Dictyostelium' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'p\.\p{Zs}?falciparum') and not(italic[contains(text() ,'P. falciparum')])" role="warning" id="psfalciparum-article-title-check">[psfalciparum-article-title-check] <name/> contains an organism - 'P. falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'plasmodium\p{Zs}?falciparum') and not(italic[contains(text() ,'Plasmodium falciparum')])" role="warning" id="plasmodiumsfalciparum-article-title-check">[plasmodiumsfalciparum-article-title-check] <name/> contains an organism - 'Plasmodium falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'s\.\p{Zs}?enterica') and not(italic[contains(text() ,'S. enterica')])" role="warning" id="ssenterica-article-title-check">[ssenterica-article-title-check] <name/> contains an organism - 'S. enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'salmonella\p{Zs}?enterica') and not(italic[contains(text() ,'Salmonella enterica')])" role="warning" id="salmonellasenterica-article-title-check">[salmonellasenterica-article-title-check] <name/> contains an organism - 'Salmonella enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'s\.\p{Zs}?pyogenes') and not(italic[contains(text() ,'S. pyogenes')])" role="warning" id="sspyogenes-article-title-check">[sspyogenes-article-title-check] <name/> contains an organism - 'S. pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'streptococcus\p{Zs}?pyogenes') and not(italic[contains(text() ,'Streptococcus pyogenes')])" role="warning" id="streptococcusspyogenes-article-title-check">[streptococcusspyogenes-article-title-check] <name/> contains an organism - 'Streptococcus pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'p\.\p{Zs}?dumerilii') and not(italic[contains(text() ,'P. dumerilii')])" role="warning" id="psdumerilii-article-title-check">[psdumerilii-article-title-check] <name/> contains an organism - 'P. dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'platynereis\p{Zs}?dumerilii') and not(italic[contains(text() ,'Platynereis dumerilii')])" role="warning" id="platynereissdumerilii-article-title-check">[platynereissdumerilii-article-title-check] <name/> contains an organism - 'Platynereis dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'p\.\p{Zs}?cynocephalus') and not(italic[contains(text() ,'P. cynocephalus')])" role="warning" id="pscynocephalus-article-title-check">[pscynocephalus-article-title-check] <name/> contains an organism - 'P. cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'papio\p{Zs}?cynocephalus') and not(italic[contains(text() ,'Papio cynocephalus')])" role="warning" id="papioscynocephalus-article-title-check">[papioscynocephalus-article-title-check] <name/> contains an organism - 'Papio cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'o\.\p{Zs}?fasciatus') and not(italic[contains(text() ,'O. fasciatus')])" role="warning" id="osfasciatus-article-title-check">[osfasciatus-article-title-check] <name/> contains an organism - 'O. fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'oncopeltus\p{Zs}?fasciatus') and not(italic[contains(text() ,'Oncopeltus fasciatus')])" role="warning" id="oncopeltussfasciatus-article-title-check">[oncopeltussfasciatus-article-title-check] <name/> contains an organism - 'Oncopeltus fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'n\.\p{Zs}?crassa') and not(italic[contains(text() ,'N. crassa')])" role="warning" id="nscrassa-article-title-check">[nscrassa-article-title-check] <name/> contains an organism - 'N. crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'neurospora\p{Zs}?crassa') and not(italic[contains(text() ,'Neurospora crassa')])" role="warning" id="neurosporascrassa-article-title-check">[neurosporascrassa-article-title-check] <name/> contains an organism - 'Neurospora crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'c\.\p{Zs}?intestinalis') and not(italic[contains(text() ,'C. intestinalis')])" role="warning" id="csintestinalis-article-title-check">[csintestinalis-article-title-check] <name/> contains an organism - 'C. intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'ciona\p{Zs}?intestinalis') and not(italic[contains(text() ,'Ciona intestinalis')])" role="warning" id="cionasintestinalis-article-title-check">[cionasintestinalis-article-title-check] <name/> contains an organism - 'Ciona intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'e\.\p{Zs}?cuniculi') and not(italic[contains(text() ,'E. cuniculi')])" role="warning" id="escuniculi-article-title-check">[escuniculi-article-title-check] <name/> contains an organism - 'E. cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'encephalitozoon\p{Zs}?cuniculi') and not(italic[contains(text() ,'Encephalitozoon cuniculi')])" role="warning" id="encephalitozoonscuniculi-article-title-check">[encephalitozoonscuniculi-article-title-check] <name/> contains an organism - 'Encephalitozoon cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'h\.\p{Zs}?salinarum') and not(italic[contains(text() ,'H. salinarum')])" role="warning" id="hssalinarum-article-title-check">[hssalinarum-article-title-check] <name/> contains an organism - 'H. salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'halobacterium\p{Zs}?salinarum') and not(italic[contains(text() ,'Halobacterium salinarum')])" role="warning" id="halobacteriumssalinarum-article-title-check">[halobacteriumssalinarum-article-title-check] <name/> contains an organism - 'Halobacterium salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'s\.\p{Zs}?solfataricus') and not(italic[contains(text() ,'S. solfataricus')])" role="warning" id="sssolfataricus-article-title-check">[sssolfataricus-article-title-check] <name/> contains an organism - 'S. solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'sulfolobus\p{Zs}?solfataricus') and not(italic[contains(text() ,'Sulfolobus solfataricus')])" role="warning" id="sulfolobusssolfataricus-article-title-check">[sulfolobusssolfataricus-article-title-check] <name/> contains an organism - 'Sulfolobus solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'s\.\p{Zs}?mediterranea') and not(italic[contains(text() ,'S. mediterranea')])" role="warning" id="ssmediterranea-article-title-check">[ssmediterranea-article-title-check] <name/> contains an organism - 'S. mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'schmidtea\p{Zs}?mediterranea') and not(italic[contains(text() ,'Schmidtea mediterranea')])" role="warning" id="schmidteasmediterranea-article-title-check">[schmidteasmediterranea-article-title-check] <name/> contains an organism - 'Schmidtea mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'s\.\p{Zs}?rosetta') and not(italic[contains(text() ,'S. rosetta')])" role="warning" id="ssrosetta-article-title-check">[ssrosetta-article-title-check] <name/> contains an organism - 'S. rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'salpingoeca\p{Zs}?rosetta') and not(italic[contains(text() ,'Salpingoeca rosetta')])" role="warning" id="salpingoecasrosetta-article-title-check">[salpingoecasrosetta-article-title-check] <name/> contains an organism - 'Salpingoeca rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'n\.\p{Zs}?vectensis') and not(italic[contains(text() ,'N. vectensis')])" role="warning" id="nsvectensis-article-title-check">[nsvectensis-article-title-check] <name/> contains an organism - 'N. vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'nematostella\p{Zs}?vectensis') and not(italic[contains(text() ,'Nematostella vectensis')])" role="warning" id="nematostellasvectensis-article-title-check">[nematostellasvectensis-article-title-check] <name/> contains an organism - 'Nematostella vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'s\.\p{Zs}?aureus') and not(italic[contains(text() ,'S. aureus')])" role="warning" id="ssaureus-article-title-check">[ssaureus-article-title-check] <name/> contains an organism - 'S. aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'staphylococcus\p{Zs}?aureus') and not(italic[contains(text() ,'Staphylococcus aureus')])" role="warning" id="staphylococcussaureus-article-title-check">[staphylococcussaureus-article-title-check] <name/> contains an organism - 'Staphylococcus aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'v\.\p{Zs}?cholerae') and not(italic[contains(text() ,'V. cholerae')])" role="warning" id="vscholerae-article-title-check">[vscholerae-article-title-check] <name/> contains an organism - 'V. cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'vibrio\p{Zs}?cholerae') and not(italic[contains(text() ,'Vibrio cholerae')])" role="warning" id="vibrioscholerae-article-title-check">[vibrioscholerae-article-title-check] <name/> contains an organism - 'Vibrio cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'t\.\p{Zs}?thermophila') and not(italic[contains(text() ,'T. thermophila')])" role="warning" id="tsthermophila-article-title-check">[tsthermophila-article-title-check] <name/> contains an organism - 'T. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'tetrahymena\p{Zs}?thermophila') and not(italic[contains(text() ,'Tetrahymena thermophila')])" role="warning" id="tetrahymenasthermophila-article-title-check">[tetrahymenasthermophila-article-title-check] <name/> contains an organism - 'Tetrahymena thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'c\.\p{Zs}?reinhardtii') and not(italic[contains(text() ,'C. reinhardtii')])" role="warning" id="csreinhardtii-article-title-check">[csreinhardtii-article-title-check] <name/> contains an organism - 'C. reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'chlamydomonas\p{Zs}?reinhardtii') and not(italic[contains(text() ,'Chlamydomonas reinhardtii')])" role="warning" id="chlamydomonassreinhardtii-article-title-check">[chlamydomonassreinhardtii-article-title-check] <name/> contains an organism - 'Chlamydomonas reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'n\.\p{Zs}?attenuata') and not(italic[contains(text() ,'N. attenuata')])" role="warning" id="nsattenuata-article-title-check">[nsattenuata-article-title-check] <name/> contains an organism - 'N. attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'nicotiana\p{Zs}?attenuata') and not(italic[contains(text() ,'Nicotiana attenuata')])" role="warning" id="nicotianasattenuata-article-title-check">[nicotianasattenuata-article-title-check] <name/> contains an organism - 'Nicotiana attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'e\.\p{Zs}?carotovora') and not(italic[contains(text() ,'E. carotovora')])" role="warning" id="escarotovora-article-title-check">[escarotovora-article-title-check] <name/> contains an organism - 'E. carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'erwinia\p{Zs}?carotovora') and not(italic[contains(text() ,'Erwinia carotovora')])" role="warning" id="erwiniascarotovora-article-title-check">[erwiniascarotovora-article-title-check] <name/> contains an organism - 'Erwinia carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'h\.\p{Zs}?sapiens') and not(italic[contains(text() ,'H. sapiens')])" role="warning" id="hsapiens-article-title-check">[hsapiens-article-title-check] <name/> contains an organism - 'H. sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'homo\p{Zs}?sapiens') and not(italic[contains(text() ,'Homo sapiens')])" role="warning" id="homosapiens-article-title-check">[homosapiens-article-title-check] <name/> contains an organism - 'Homo sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'c\.\p{Zs}?trachomatis') and not(italic[contains(text() ,'C. trachomatis')])" role="warning" id="ctrachomatis-article-title-check">[ctrachomatis-article-title-check] <name/> contains an organism - 'C. trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'chlamydia\p{Zs}?trachomatis') and not(italic[contains(text() ,'Chlamydia trachomatis')])" role="warning" id="chlamydiatrachomatis-article-title-check">[chlamydiatrachomatis-article-title-check] <name/> contains an organism - 'Chlamydia trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'e\.\p{Zs}?faecalis') and not(italic[contains(text() ,'E. faecalis')])" role="warning" id="esfaecalis-article-title-check">[esfaecalis-article-title-check] <name/> contains an organism - 'E. faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'enterococcus\p{Zs}?faecalis') and not(italic[contains(text() ,'Enterococcus faecalis')])" role="warning" id="enterococcussfaecalis-article-title-check">[enterococcussfaecalis-article-title-check] <name/> contains an organism - 'Enterococcus faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'x\.\p{Zs}?laevis') and not(italic[contains(text() ,'X. laevis')])" role="warning" id="xlaevis-article-title-check">[xlaevis-article-title-check] <name/> contains an organism - 'X. laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'xenopus\p{Zs}?laevis') and not(italic[contains(text() ,'Xenopus laevis')])" role="warning" id="xenopuslaevis-article-title-check">[xenopuslaevis-article-title-check] <name/> contains an organism - 'Xenopus laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'x\.\p{Zs}?tropicalis') and not(italic[contains(text() ,'X. tropicalis')])" role="warning" id="xtropicalis-article-title-check">[xtropicalis-article-title-check] <name/> contains an organism - 'X. tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'xenopus\p{Zs}?tropicalis') and not(italic[contains(text() ,'Xenopus tropicalis')])" role="warning" id="xenopustropicalis-article-title-check">[xenopustropicalis-article-title-check] <name/> contains an organism - 'Xenopus tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'m\.\p{Zs}?musculus') and not(italic[contains(text() ,'M. musculus')])" role="warning" id="mmusculus-article-title-check">[mmusculus-article-title-check] <name/> contains an organism - 'M. musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'mus\p{Zs}?musculus') and not(italic[contains(text() ,'Mus musculus')])" role="warning" id="musmusculus-article-title-check">[musmusculus-article-title-check] <name/> contains an organism - 'Mus musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'d\.\p{Zs}?immigrans') and not(italic[contains(text() ,'D. immigrans')])" role="warning" id="dimmigrans-article-title-check">[dimmigrans-article-title-check] <name/> contains an organism - 'D. immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'drosophila\p{Zs}?immigrans') and not(italic[contains(text() ,'Drosophila immigrans')])" role="warning" id="drosophilaimmigrans-article-title-check">[drosophilaimmigrans-article-title-check] <name/> contains an organism - 'Drosophila immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'d\.\p{Zs}?subobscura') and not(italic[contains(text() ,'D. subobscura')])" role="warning" id="dsubobscura-article-title-check">[dsubobscura-article-title-check] <name/> contains an organism - 'D. subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'drosophila\p{Zs}?subobscura') and not(italic[contains(text() ,'Drosophila subobscura')])" role="warning" id="drosophilasubobscura-article-title-check">[drosophilasubobscura-article-title-check] <name/> contains an organism - 'Drosophila subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'d\.\p{Zs}?affinis') and not(italic[contains(text() ,'D. affinis')])" role="warning" id="daffinis-article-title-check">[daffinis-article-title-check] <name/> contains an organism - 'D. affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'drosophila\p{Zs}?affinis') and not(italic[contains(text() ,'Drosophila affinis')])" role="warning" id="drosophilaaffinis-article-title-check">[drosophilaaffinis-article-title-check] <name/> contains an organism - 'Drosophila affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'d\.\p{Zs}?obscura') and not(italic[contains(text() ,'D. obscura')])" role="warning" id="dobscura-article-title-check">[dobscura-article-title-check] <name/> contains an organism - 'D. obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'drosophila\p{Zs}?obscura') and not(italic[contains(text() ,'Drosophila obscura')])" role="warning" id="drosophilaobscura-article-title-check">[drosophilaobscura-article-title-check] <name/> contains an organism - 'Drosophila obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'f\.\p{Zs}?tularensis') and not(italic[contains(text() ,'F. tularensis')])" role="warning" id="ftularensis-article-title-check">[ftularensis-article-title-check] <name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'francisella\p{Zs}?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])" role="warning" id="francisellatularensis-article-title-check">[francisellatularensis-article-title-check] <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'p\.\p{Zs}?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])" role="warning" id="pplantaginis-article-title-check">[pplantaginis-article-title-check] <name/> contains an organism - 'P. plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'podosphaera\p{Zs}?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])" role="warning" id="podosphaeraplantaginis-article-title-check">[podosphaeraplantaginis-article-title-check] <name/> contains an organism - 'Podosphaera plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'p\.\p{Zs}?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])" role="warning" id="planceolata-article-title-check">[planceolata-article-title-check] <name/> contains an organism - 'P. lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'plantago\p{Zs}?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])" role="warning" id="plantagolanceolata-article-title-check">[plantagolanceolata-article-title-check] <name/> contains an organism - 'Plantago lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'m\.\p{Zs}?trossulus') and not(italic[contains(text() ,'M. trossulus')])" role="info" id="mtrossulus-article-title-check">[mtrossulus-article-title-check] <name/> contains an organism - 'M. trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'mytilus\p{Zs}?trossulus') and not(italic[contains(text() ,'Mytilus trossulus')])" role="info" id="mytilustrossulus-article-title-check">[mytilustrossulus-article-title-check] <name/> contains an organism - 'Mytilus trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'m\.\p{Zs}?edulis') and not(italic[contains(text() ,'M. edulis')])" role="info" id="medulis-article-title-check">[medulis-article-title-check] <name/> contains an organism - 'M. edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'mytilus\p{Zs}?edulis') and not(italic[contains(text() ,'Mytilus edulis')])" role="info" id="mytilusedulis-article-title-check">[mytilusedulis-article-title-check] <name/> contains an organism - 'Mytilus edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'m\.\p{Zs}?chilensis') and not(italic[contains(text() ,'M. chilensis')])" role="info" id="mchilensis-article-title-check">[mchilensis-article-title-check] <name/> contains an organism - 'M. chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'mytilus\p{Zs}?chilensis') and not(italic[contains(text() ,'Mytilus chilensis')])" role="info" id="mytiluschilensis-article-title-check">[mytiluschilensis-article-title-check] <name/> contains an organism - 'Mytilus chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'u\.\p{Zs}?maydis') and not(italic[contains(text() ,'U. maydis')])" role="info" id="umaydis-article-title-check">[umaydis-article-title-check] <name/> contains an organism - 'U. maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'ustilago\p{Zs}?maydis') and not(italic[contains(text() ,'Ustilago maydis')])" role="info" id="ustilagomaydis-article-title-check">[ustilagomaydis-article-title-check] <name/> contains an organism - 'Ustilago maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'p\.\p{Zs}?knowlesi') and not(italic[contains(text() ,'P. knowlesi')])" role="info" id="pknowlesi-article-title-check">[pknowlesi-article-title-check] <name/> contains an organism - 'P. knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'plasmodium\p{Zs}?knowlesi') and not(italic[contains(text() ,'Plasmodium knowlesi')])" role="info" id="plasmodiumknowlesi-article-title-check">[plasmodiumknowlesi-article-title-check] <name/> contains an organism - 'Plasmodium knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'p\.\p{Zs}?aeruginosa') and not(italic[contains(text() ,'P. aeruginosa')])" role="info" id="paeruginosa-article-title-check">[paeruginosa-article-title-check] <name/> contains an organism - 'P. aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'pseudomonas\p{Zs}?aeruginosa') and not(italic[contains(text() ,'Pseudomonas aeruginosa')])" role="info" id="pseudomonasaeruginosa-article-title-check">[pseudomonasaeruginosa-article-title-check] <name/> contains an organism - 'Pseudomonas aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'t\.\p{Zs}?brucei') and not(italic[contains(text() ,'T. brucei')])" role="warning" id="tbrucei-article-title-check">[tbrucei-article-title-check] <name/> contains an organism - 'T. brucei' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'trypanosoma\p{Zs}?brucei') and not(italic[contains(text() ,'Trypanosoma brucei')])" role="warning" id="trypanosomabrucei-article-title-check">[trypanosomabrucei-article-title-check] <name/> contains an organism - 'Trypanosoma brucei' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'t\.\p{Zs}?gondii') and not(italic[contains(text() ,'T. gondii')])" role="warning" id="tgondii-article-title-check">[tgondii-article-title-check] <name/> contains an organism - 'T. gondii' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'toxoplasma\p{Zs}?gondii') and not(italic[contains(text() ,'Toxoplasma gondii')])" role="warning" id="toxoplasmagondii-article-title-check">[toxoplasmagondii-article-title-check] <name/> contains an organism - 'Toxoplasma gondii' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'d\.\p{Zs}?rerio') and not(italic[contains(text() ,'D. rerio')])" role="warning" id="drerio-article-title-check">[drerio-article-title-check] <name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'danio\p{Zs}?rerio') and not(italic[contains(text() ,'Danio rerio')])" role="warning" id="daniorerio-article-title-check">[daniorerio-article-title-check] <name/> contains an organism - 'Danio rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'yimenosaurus') and not(italic[contains(text() ,'Yimenosaurus')])" role="warning" id="yimenosaurus-article-title-check">[yimenosaurus-article-title-check] 
-        <name/> contains an organism - 'Yimenosaurus' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'scelidosaurus\p{Zs}?harrisonii') and not(italic[contains(text() ,'Scelidosaurus harrisonii')])" role="warning" id="scelidosaurusharrisonii-article-title-check">[scelidosaurusharrisonii-article-title-check] 
-        <name/> contains an organism - 'Scelidosaurus harrisonii' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'s\.\p{Zs}?harrisonii') and not(italic[contains(text() ,'S. harrisonii')])" role="warning" id="sharrisonii-article-title-check">[sharrisonii-article-title-check] 
-        <name/> contains an organism - 'S. harrisonii' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'haya\p{Zs}?griva') and not(italic[contains(text() ,'Haya griva')])" role="warning" id="hayagriva-article-title-check">[hayagriva-article-title-check] 
-        <name/> contains an organism - 'Haya griva' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'h\.\p{Zs}?griva') and not(italic[contains(text() ,'H. griva')])" role="warning" id="hgriva-article-title-check">[hgriva-article-title-check] 
-        <name/> contains an organism - 'H. griva' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'polacanthus\p{Zs}?foxii') and not(italic[contains(text() ,'Polacanthus foxii')])" role="warning" id="polacanthusfoxii-article-title-check">[polacanthusfoxii-article-title-check] 
-        <name/> contains an organism - 'Polacanthus foxii' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'p\.\p{Zs}?foxii') and not(italic[contains(text() ,'P. foxii')])" role="warning" id="pfoxii-article-title-check">[pfoxii-article-title-check] 
-        <name/> contains an organism - 'P. foxii' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'scutellosaurus\p{Zs}?lawleri') and not(italic[contains(text() ,'Scutellosaurus lawleri')])" role="warning" id="scutellosauruslawleri-article-title-check">[scutellosauruslawleri-article-title-check] 
-        <name/> contains an organism - 'Scutellosaurus lawleri' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. lawleri')])" role="warning" id="slawleri-article-title-check">[slawleri-article-title-check] 
-        <name/> contains an organism - 'S. lawleri' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'saichania\p{Zs}?chulsanensis') and not(italic[contains(text() ,'Saichania chulsanensis')])" role="warning" id="saichaniachulsanensis-article-title-check">[saichaniachulsanensis-article-title-check] 
-        <name/> contains an organism - 'Saichania chulsanensis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'s\.\p{Zs}?chulsanensis') and not(italic[contains(text() ,'S. chulsanensis')])" role="warning" id="schulsanensis-article-title-check">[schulsanensis-article-title-check] 
-        <name/> contains an organism - 'S. chulsanensis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'gargoyleosaurus\p{Zs}?parkpinorum') and not(italic[contains(text() ,'Gargoyleosaurus parkpinorum')])" role="warning" id="gargoyleosaurusparkpinorum-article-title-check">[gargoyleosaurusparkpinorum-article-title-check] 
-        <name/> contains an organism - 'Gargoyleosaurus parkpinorum' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'g\.\p{Zs}?parkpinorum') and not(italic[contains(text() ,'G. parkpinorum')])" role="warning" id="gparkpinorum-article-title-check">[gparkpinorum-article-title-check] 
-        <name/> contains an organism - 'G. parkpinorum' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'europelta\p{Zs}?carbonensis') and not(italic[contains(text() ,'Europelta carbonensis')])" role="warning" id="europeltacarbonensis-article-title-check">[europeltacarbonensis-article-title-check] 
-        <name/> contains an organism - 'Europelta carbonensis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'e\.\p{Zs}?carbonensis') and not(italic[contains(text() ,'E. carbonensis')])" role="warning" id="ecarbonensis-article-title-check">[ecarbonensis-article-title-check] 
-        <name/> contains an organism - 'E. carbonensis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'stegosaurus\p{Zs}?stenops') and not(italic[contains(text() ,'Stegosaurus stenops')])" role="warning" id="stegosaurusstenops-article-title-check">[stegosaurusstenops-article-title-check] 
-        <name/> contains an organism - 'Stegosaurus stenops' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'s\.\p{Zs}?stenops') and not(italic[contains(text() ,'S. stenops')])" role="warning" id="sstenops-article-title-check">[sstenops-article-title-check] 
-        <name/> contains an organism - 'S. stenops' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'pinacosaurus\p{Zs}?grangeri') and not(italic[contains(text() ,'Pinacosaurus grangeri')])" role="warning" id="pinacosaurusgrangeri-article-title-check">[pinacosaurusgrangeri-article-title-check] 
-        <name/> contains an organism - 'Pinacosaurus grangeri' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'p\.\p{Zs}?grangeri') and not(italic[contains(text() ,'P. grangeri')])" role="warning" id="pgrangeri-article-title-check">[pgrangeri-article-title-check] 
-        <name/> contains an organism - 'P. grangeri' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'tatisaurus\p{Zs}?oehleri') and not(italic[contains(text() ,'Tatisaurus oehleri')])" role="warning" id="tatisaurusoehleri-article-title-check">[tatisaurusoehleri-article-title-check] 
-        <name/> contains an organism - 'Tatisaurus oehleri' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'t\.\p{Zs}?oehleri') and not(italic[contains(text() ,'T. oehleri')])" role="warning" id="toehleri-article-title-check">[toehleri-article-title-check] 
-        <name/> contains an organism - 'T. oehleri' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'hungarosaurus\p{Zs}?tormai') and not(italic[contains(text() ,'Hungarosaurus tormai')])" role="warning" id="hungarosaurustormai-article-title-check">[hungarosaurustormai-article-title-check] 
-        <name/> contains an organism - 'Hungarosaurus tormai' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'h\.\p{Zs}?tormai') and not(italic[contains(text() ,'H. tormai')])" role="warning" id="htormai-article-title-check">[htormai-article-title-check] 
-        <name/> contains an organism - 'H. tormai' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'lesothosaurus\p{Zs}?diagnosticus') and not(italic[contains(text() ,'Lesothosaurus diagnosticus')])" role="warning" id="lesothosaurusdiagnosticus-article-title-check">[lesothosaurusdiagnosticus-article-title-check] 
-        <name/> contains an organism - 'Lesothosaurus diagnosticus' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'l\.\p{Zs}?diagnosticus') and not(italic[contains(text() ,'L. diagnosticus')])" role="warning" id="ldiagnosticus-article-title-check">[ldiagnosticus-article-title-check] 
-        <name/> contains an organism - 'L. diagnosticus' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'bienosaurus\p{Zs}?lufengensis') and not(italic[contains(text() ,'Bienosaurus lufengensis')])" role="warning" id="bienosauruslufengensis-article-title-check">[bienosauruslufengensis-article-title-check] 
-        <name/> contains an organism - 'Bienosaurus lufengensis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'b\.\p{Zs}?lufengensis') and not(italic[contains(text() ,'B. lufengensis')])" role="warning" id="blufengensis-article-title-check">[blufengensis-article-title-check] 
-        <name/> contains an organism - 'B. lufengensis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'fabrosaurus\p{Zs}?australis') and not(italic[contains(text() ,'Fabrosaurus australis')])" role="warning" id="fabrosaurusaustralis-article-title-check">[fabrosaurusaustralis-article-title-check] 
-        <name/> contains an organism - 'Fabrosaurus australis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'f\.\p{Zs}?australis') and not(italic[contains(text() ,'F. australis')])" role="warning" id="faustralis-article-title-check">[faustralis-article-title-check] 
-        <name/> contains an organism - 'F. australis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'chinshakiangosaurus\p{Zs}?chunghoensis') and not(italic[contains(text() ,'Chinshakiangosaurus chunghoensis')])" role="warning" id="chinshakiangosauruschunghoensis-article-title-check">[chinshakiangosauruschunghoensis-article-title-check] 
-        <name/> contains an organism - 'Chinshakiangosaurus chunghoensis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'c\.\p{Zs}?chunghoensis') and not(italic[contains(text() ,'C. chunghoensis')])" role="warning" id="cchunghoensis-article-title-check">[cchunghoensis-article-title-check] 
-        <name/> contains an organism - 'C. chunghoensis' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'euoplocephalus\p{Zs}?tutus') and not(italic[contains(text() ,'Euoplocephalus tutus')])" role="warning" id="euoplocephalustutus-article-title-check">[euoplocephalustutus-article-title-check] 
-        <name/> contains an organism - 'Euoplocephalus tutus' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'e\.\p{Zs}?tutus') and not(italic[contains(text() ,'E. tutus')])" role="warning" id="etutus-article-title-check">[etutus-article-title-check] 
-        <name/> contains an organism - 'E. tutus' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'drosophila') and not(italic[contains(text(),'Drosophila')])" role="warning" id="drosophila-article-title-check">[drosophila-article-title-check] <name/> contains an organism - 'Drosophila' - but there is no italic element with that correct capitalisation or spacing.</report>
-      
-      <report test="matches($lc,'xenopus') and not(italic[contains(text() ,'Xenopus')])" role="warning" id="xenopus-article-title-check">[xenopus-article-title-check] <name/> contains an organism - 'Xenopus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-bssubtilis-article-title-check" test="matches($lc,'b\.\p{Zs}?subtilis') and not(italic[contains(text() ,'B. subtilis')])" role="warning" id="bssubtilis-article-title-check">[bssubtilis-article-title-check] <name/> contains an organism - 'B. subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-bacillusssubtilis-article-title-check" test="matches($lc,'bacillus\p{Zs}?subtilis') and not(italic[contains(text() ,'Bacillus subtilis')])" role="warning" id="bacillusssubtilis-article-title-check">[bacillusssubtilis-article-title-check] <name/> contains an organism - 'Bacillus subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-dsmelanogaster-article-title-check" test="matches($lc,'d\.\p{Zs}?melanogaster') and not(italic[contains(text() ,'D. melanogaster')])" role="warning" id="dsmelanogaster-article-title-check">[dsmelanogaster-article-title-check] <name/> contains an organism - 'D. melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-drosophilasmelanogaster-article-title-check" test="matches($lc,'drosophila\p{Zs}?melanogaster') and not(italic[contains(text() ,'Drosophila melanogaster')])" role="warning" id="drosophilasmelanogaster-article-title-check">[drosophilasmelanogaster-article-title-check] <name/> contains an organism - 'Drosophila melanogaster' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-escoli-article-title-check" test="matches($lc,'e\.\p{Zs}?coli') and not(italic[contains(text() ,'E. coli')])" role="warning" id="escoli-article-title-check">[escoli-article-title-check] <name/> contains an organism - 'E. coli' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-escherichiascoli-article-title-check" test="matches($lc,'escherichia\p{Zs}?coli') and not(italic[contains(text() ,'Escherichia coli')])" role="warning" id="escherichiascoli-article-title-check">[escherichiascoli-article-title-check] <name/> contains an organism - 'Escherichia coli' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-sspombe-article-title-check" test="matches($lc,'s\.\p{Zs}?pombe') and not(italic[contains(text() ,'S. pombe')])" role="warning" id="sspombe-article-title-check">[sspombe-article-title-check] <name/> contains an organism - 'S. pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-schizosaccharomycesspombe-article-title-check" test="matches($lc,'schizosaccharomyces\p{Zs}?pombe') and not(italic[contains(text() ,'Schizosaccharomyces pombe')])" role="warning" id="schizosaccharomycesspombe-article-title-check">[schizosaccharomycesspombe-article-title-check] <name/> contains an organism - 'Schizosaccharomyces pombe' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-sscerevisiae-article-title-check" test="matches($lc,'s\.\p{Zs}?cerevisiae') and not(italic[contains(text() ,'S. cerevisiae')])" role="warning" id="sscerevisiae-article-title-check">[sscerevisiae-article-title-check] <name/> contains an organism - 'S. cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-saccharomycesscerevisiae-article-title-check" test="matches($lc,'saccharomyces\p{Zs}?cerevisiae') and not(italic[contains(text() ,'Saccharomyces cerevisiae')])" role="warning" id="saccharomycesscerevisiae-article-title-check">[saccharomycesscerevisiae-article-title-check] <name/> contains an organism - 'Saccharomyces cerevisiae' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-cselegans-article-title-check" test="matches($lc,'c\.\p{Zs}?elegans') and not(italic[contains(text() ,'C. elegans')])" role="warning" id="cselegans-article-title-check">[cselegans-article-title-check] <name/> contains an organism - 'C. elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-caenorhabditisselegans-article-title-check" test="matches($lc,'caenorhabditis\p{Zs}?elegans') and not(italic[contains(text() ,'Caenorhabditis elegans')])" role="warning" id="caenorhabditisselegans-article-title-check">[caenorhabditisselegans-article-title-check] <name/> contains an organism - 'Caenorhabditis elegans' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-asthaliana-article-title-check" test="matches($lc,'a\.\p{Zs}?thaliana') and not(italic[contains(text() ,'A. thaliana')])" role="warning" id="asthaliana-article-title-check">[asthaliana-article-title-check] <name/> contains an organism - 'A. thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-arabidopsissthaliana-article-title-check" test="matches($lc,'arabidopsis\p{Zs}?thaliana') and not(italic[contains(text() ,'Arabidopsis thaliana')])" role="warning" id="arabidopsissthaliana-article-title-check">[arabidopsissthaliana-article-title-check] <name/> contains an organism - 'Arabidopsis thaliana' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-msthermophila-article-title-check" test="matches($lc,'m\.\p{Zs}?thermophila') and not(italic[contains(text() ,'M. thermophila')])" role="warning" id="msthermophila-article-title-check">[msthermophila-article-title-check] <name/> contains an organism - 'M. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-myceliophthorasthermophila-article-title-check" test="matches($lc,'myceliophthora\p{Zs}?thermophila') and not(italic[contains(text() ,'Myceliophthora thermophila')])" role="warning" id="myceliophthorasthermophila-article-title-check">[myceliophthorasthermophila-article-title-check] <name/> contains an organism - 'Myceliophthora thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-dictyostelium-article-title-check" test="matches($lc,'dictyostelium') and not(italic[contains(text() ,'Dictyostelium')])" role="warning" id="dictyostelium-article-title-check">[dictyostelium-article-title-check] <name/> contains an organism - 'Dictyostelium' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-psfalciparum-article-title-check" test="matches($lc,'p\.\p{Zs}?falciparum') and not(italic[contains(text() ,'P. falciparum')])" role="warning" id="psfalciparum-article-title-check">[psfalciparum-article-title-check] <name/> contains an organism - 'P. falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-plasmodiumsfalciparum-article-title-check" test="matches($lc,'plasmodium\p{Zs}?falciparum') and not(italic[contains(text() ,'Plasmodium falciparum')])" role="warning" id="plasmodiumsfalciparum-article-title-check">[plasmodiumsfalciparum-article-title-check] <name/> contains an organism - 'Plasmodium falciparum' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-ssenterica-article-title-check" test="matches($lc,'s\.\p{Zs}?enterica') and not(italic[contains(text() ,'S. enterica')])" role="warning" id="ssenterica-article-title-check">[ssenterica-article-title-check] <name/> contains an organism - 'S. enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-salmonellasenterica-article-title-check" test="matches($lc,'salmonella\p{Zs}?enterica') and not(italic[contains(text() ,'Salmonella enterica')])" role="warning" id="salmonellasenterica-article-title-check">[salmonellasenterica-article-title-check] <name/> contains an organism - 'Salmonella enterica' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-sspyogenes-article-title-check" test="matches($lc,'s\.\p{Zs}?pyogenes') and not(italic[contains(text() ,'S. pyogenes')])" role="warning" id="sspyogenes-article-title-check">[sspyogenes-article-title-check] <name/> contains an organism - 'S. pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-streptococcusspyogenes-article-title-check" test="matches($lc,'streptococcus\p{Zs}?pyogenes') and not(italic[contains(text() ,'Streptococcus pyogenes')])" role="warning" id="streptococcusspyogenes-article-title-check">[streptococcusspyogenes-article-title-check] <name/> contains an organism - 'Streptococcus pyogenes' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-psdumerilii-article-title-check" test="matches($lc,'p\.\p{Zs}?dumerilii') and not(italic[contains(text() ,'P. dumerilii')])" role="warning" id="psdumerilii-article-title-check">[psdumerilii-article-title-check] <name/> contains an organism - 'P. dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-platynereissdumerilii-article-title-check" test="matches($lc,'platynereis\p{Zs}?dumerilii') and not(italic[contains(text() ,'Platynereis dumerilii')])" role="warning" id="platynereissdumerilii-article-title-check">[platynereissdumerilii-article-title-check] <name/> contains an organism - 'Platynereis dumerilii' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-pscynocephalus-article-title-check" test="matches($lc,'p\.\p{Zs}?cynocephalus') and not(italic[contains(text() ,'P. cynocephalus')])" role="warning" id="pscynocephalus-article-title-check">[pscynocephalus-article-title-check] <name/> contains an organism - 'P. cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-papioscynocephalus-article-title-check" test="matches($lc,'papio\p{Zs}?cynocephalus') and not(italic[contains(text() ,'Papio cynocephalus')])" role="warning" id="papioscynocephalus-article-title-check">[papioscynocephalus-article-title-check] <name/> contains an organism - 'Papio cynocephalus' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-osfasciatus-article-title-check" test="matches($lc,'o\.\p{Zs}?fasciatus') and not(italic[contains(text() ,'O. fasciatus')])" role="warning" id="osfasciatus-article-title-check">[osfasciatus-article-title-check] <name/> contains an organism - 'O. fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-oncopeltussfasciatus-article-title-check" test="matches($lc,'oncopeltus\p{Zs}?fasciatus') and not(italic[contains(text() ,'Oncopeltus fasciatus')])" role="warning" id="oncopeltussfasciatus-article-title-check">[oncopeltussfasciatus-article-title-check] <name/> contains an organism - 'Oncopeltus fasciatus' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-nscrassa-article-title-check" test="matches($lc,'n\.\p{Zs}?crassa') and not(italic[contains(text() ,'N. crassa')])" role="warning" id="nscrassa-article-title-check">[nscrassa-article-title-check] <name/> contains an organism - 'N. crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-neurosporascrassa-article-title-check" test="matches($lc,'neurospora\p{Zs}?crassa') and not(italic[contains(text() ,'Neurospora crassa')])" role="warning" id="neurosporascrassa-article-title-check">[neurosporascrassa-article-title-check] <name/> contains an organism - 'Neurospora crassa' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-csintestinalis-article-title-check" test="matches($lc,'c\.\p{Zs}?intestinalis') and not(italic[contains(text() ,'C. intestinalis')])" role="warning" id="csintestinalis-article-title-check">[csintestinalis-article-title-check] <name/> contains an organism - 'C. intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-cionasintestinalis-article-title-check" test="matches($lc,'ciona\p{Zs}?intestinalis') and not(italic[contains(text() ,'Ciona intestinalis')])" role="warning" id="cionasintestinalis-article-title-check">[cionasintestinalis-article-title-check] <name/> contains an organism - 'Ciona intestinalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-escuniculi-article-title-check" test="matches($lc,'e\.\p{Zs}?cuniculi') and not(italic[contains(text() ,'E. cuniculi')])" role="warning" id="escuniculi-article-title-check">[escuniculi-article-title-check] <name/> contains an organism - 'E. cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-encephalitozoonscuniculi-article-title-check" test="matches($lc,'encephalitozoon\p{Zs}?cuniculi') and not(italic[contains(text() ,'Encephalitozoon cuniculi')])" role="warning" id="encephalitozoonscuniculi-article-title-check">[encephalitozoonscuniculi-article-title-check] <name/> contains an organism - 'Encephalitozoon cuniculi' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-hssalinarum-article-title-check" test="matches($lc,'h\.\p{Zs}?salinarum') and not(italic[contains(text() ,'H. salinarum')])" role="warning" id="hssalinarum-article-title-check">[hssalinarum-article-title-check] <name/> contains an organism - 'H. salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-halobacteriumssalinarum-article-title-check" test="matches($lc,'halobacterium\p{Zs}?salinarum') and not(italic[contains(text() ,'Halobacterium salinarum')])" role="warning" id="halobacteriumssalinarum-article-title-check">[halobacteriumssalinarum-article-title-check] <name/> contains an organism - 'Halobacterium salinarum' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-sssolfataricus-article-title-check" test="matches($lc,'s\.\p{Zs}?solfataricus') and not(italic[contains(text() ,'S. solfataricus')])" role="warning" id="sssolfataricus-article-title-check">[sssolfataricus-article-title-check] <name/> contains an organism - 'S. solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-sulfolobusssolfataricus-article-title-check" test="matches($lc,'sulfolobus\p{Zs}?solfataricus') and not(italic[contains(text() ,'Sulfolobus solfataricus')])" role="warning" id="sulfolobusssolfataricus-article-title-check">[sulfolobusssolfataricus-article-title-check] <name/> contains an organism - 'Sulfolobus solfataricus' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-ssmediterranea-article-title-check" test="matches($lc,'s\.\p{Zs}?mediterranea') and not(italic[contains(text() ,'S. mediterranea')])" role="warning" id="ssmediterranea-article-title-check">[ssmediterranea-article-title-check] <name/> contains an organism - 'S. mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-schmidteasmediterranea-article-title-check" test="matches($lc,'schmidtea\p{Zs}?mediterranea') and not(italic[contains(text() ,'Schmidtea mediterranea')])" role="warning" id="schmidteasmediterranea-article-title-check">[schmidteasmediterranea-article-title-check] <name/> contains an organism - 'Schmidtea mediterranea' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-ssrosetta-article-title-check" test="matches($lc,'s\.\p{Zs}?rosetta') and not(italic[contains(text() ,'S. rosetta')])" role="warning" id="ssrosetta-article-title-check">[ssrosetta-article-title-check] <name/> contains an organism - 'S. rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-salpingoecasrosetta-article-title-check" test="matches($lc,'salpingoeca\p{Zs}?rosetta') and not(italic[contains(text() ,'Salpingoeca rosetta')])" role="warning" id="salpingoecasrosetta-article-title-check">[salpingoecasrosetta-article-title-check] <name/> contains an organism - 'Salpingoeca rosetta' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-nsvectensis-article-title-check" test="matches($lc,'n\.\p{Zs}?vectensis') and not(italic[contains(text() ,'N. vectensis')])" role="warning" id="nsvectensis-article-title-check">[nsvectensis-article-title-check] <name/> contains an organism - 'N. vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-nematostellasvectensis-article-title-check" test="matches($lc,'nematostella\p{Zs}?vectensis') and not(italic[contains(text() ,'Nematostella vectensis')])" role="warning" id="nematostellasvectensis-article-title-check">[nematostellasvectensis-article-title-check] <name/> contains an organism - 'Nematostella vectensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-ssaureus-article-title-check" test="matches($lc,'s\.\p{Zs}?aureus') and not(italic[contains(text() ,'S. aureus')])" role="warning" id="ssaureus-article-title-check">[ssaureus-article-title-check] <name/> contains an organism - 'S. aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-staphylococcussaureus-article-title-check" test="matches($lc,'staphylococcus\p{Zs}?aureus') and not(italic[contains(text() ,'Staphylococcus aureus')])" role="warning" id="staphylococcussaureus-article-title-check">[staphylococcussaureus-article-title-check] <name/> contains an organism - 'Staphylococcus aureus' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-vscholerae-article-title-check" test="matches($lc,'v\.\p{Zs}?cholerae') and not(italic[contains(text() ,'V. cholerae')])" role="warning" id="vscholerae-article-title-check">[vscholerae-article-title-check] <name/> contains an organism - 'V. cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-vibrioscholerae-article-title-check" test="matches($lc,'vibrio\p{Zs}?cholerae') and not(italic[contains(text() ,'Vibrio cholerae')])" role="warning" id="vibrioscholerae-article-title-check">[vibrioscholerae-article-title-check] <name/> contains an organism - 'Vibrio cholerae' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-tsthermophila-article-title-check" test="matches($lc,'t\.\p{Zs}?thermophila') and not(italic[contains(text() ,'T. thermophila')])" role="warning" id="tsthermophila-article-title-check">[tsthermophila-article-title-check] <name/> contains an organism - 'T. thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-tetrahymenasthermophila-article-title-check" test="matches($lc,'tetrahymena\p{Zs}?thermophila') and not(italic[contains(text() ,'Tetrahymena thermophila')])" role="warning" id="tetrahymenasthermophila-article-title-check">[tetrahymenasthermophila-article-title-check] <name/> contains an organism - 'Tetrahymena thermophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-csreinhardtii-article-title-check" test="matches($lc,'c\.\p{Zs}?reinhardtii') and not(italic[contains(text() ,'C. reinhardtii')])" role="warning" id="csreinhardtii-article-title-check">[csreinhardtii-article-title-check] <name/> contains an organism - 'C. reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-chlamydomonassreinhardtii-article-title-check" test="matches($lc,'chlamydomonas\p{Zs}?reinhardtii') and not(italic[contains(text() ,'Chlamydomonas reinhardtii')])" role="warning" id="chlamydomonassreinhardtii-article-title-check">[chlamydomonassreinhardtii-article-title-check] <name/> contains an organism - 'Chlamydomonas reinhardtii' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-nsattenuata-article-title-check" test="matches($lc,'n\.\p{Zs}?attenuata') and not(italic[contains(text() ,'N. attenuata')])" role="warning" id="nsattenuata-article-title-check">[nsattenuata-article-title-check] <name/> contains an organism - 'N. attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-nicotianasattenuata-article-title-check" test="matches($lc,'nicotiana\p{Zs}?attenuata') and not(italic[contains(text() ,'Nicotiana attenuata')])" role="warning" id="nicotianasattenuata-article-title-check">[nicotianasattenuata-article-title-check] <name/> contains an organism - 'Nicotiana attenuata' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-escarotovora-article-title-check" test="matches($lc,'e\.\p{Zs}?carotovora') and not(italic[contains(text() ,'E. carotovora')])" role="warning" id="escarotovora-article-title-check">[escarotovora-article-title-check] <name/> contains an organism - 'E. carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-erwiniascarotovora-article-title-check" test="matches($lc,'erwinia\p{Zs}?carotovora') and not(italic[contains(text() ,'Erwinia carotovora')])" role="warning" id="erwiniascarotovora-article-title-check">[erwiniascarotovora-article-title-check] <name/> contains an organism - 'Erwinia carotovora' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-hsapiens-article-title-check" test="matches($lc,'h\.\p{Zs}?sapiens') and not(italic[contains(text() ,'H. sapiens')])" role="warning" id="hsapiens-article-title-check">[hsapiens-article-title-check] <name/> contains an organism - 'H. sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-homosapiens-article-title-check" test="matches($lc,'homo\p{Zs}?sapiens') and not(italic[contains(text() ,'Homo sapiens')])" role="warning" id="homosapiens-article-title-check">[homosapiens-article-title-check] <name/> contains an organism - 'Homo sapiens' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-ctrachomatis-article-title-check" test="matches($lc,'c\.\p{Zs}?trachomatis') and not(italic[contains(text() ,'C. trachomatis')])" role="warning" id="ctrachomatis-article-title-check">[ctrachomatis-article-title-check] <name/> contains an organism - 'C. trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-chlamydiatrachomatis-article-title-check" test="matches($lc,'chlamydia\p{Zs}?trachomatis') and not(italic[contains(text() ,'Chlamydia trachomatis')])" role="warning" id="chlamydiatrachomatis-article-title-check">[chlamydiatrachomatis-article-title-check] <name/> contains an organism - 'Chlamydia trachomatis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-esfaecalis-article-title-check" test="matches($lc,'e\.\p{Zs}?faecalis') and not(italic[contains(text() ,'E. faecalis')])" role="warning" id="esfaecalis-article-title-check">[esfaecalis-article-title-check] <name/> contains an organism - 'E. faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-enterococcussfaecalis-article-title-check" test="matches($lc,'enterococcus\p{Zs}?faecalis') and not(italic[contains(text() ,'Enterococcus faecalis')])" role="warning" id="enterococcussfaecalis-article-title-check">[enterococcussfaecalis-article-title-check] <name/> contains an organism - 'Enterococcus faecalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-xlaevis-article-title-check" test="matches($lc,'x\.\p{Zs}?laevis') and not(italic[contains(text() ,'X. laevis')])" role="warning" id="xlaevis-article-title-check">[xlaevis-article-title-check] <name/> contains an organism - 'X. laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-xenopuslaevis-article-title-check" test="matches($lc,'xenopus\p{Zs}?laevis') and not(italic[contains(text() ,'Xenopus laevis')])" role="warning" id="xenopuslaevis-article-title-check">[xenopuslaevis-article-title-check] <name/> contains an organism - 'Xenopus laevis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-xtropicalis-article-title-check" test="matches($lc,'x\.\p{Zs}?tropicalis') and not(italic[contains(text() ,'X. tropicalis')])" role="warning" id="xtropicalis-article-title-check">[xtropicalis-article-title-check] <name/> contains an organism - 'X. tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-xenopustropicalis-article-title-check" test="matches($lc,'xenopus\p{Zs}?tropicalis') and not(italic[contains(text() ,'Xenopus tropicalis')])" role="warning" id="xenopustropicalis-article-title-check">[xenopustropicalis-article-title-check] <name/> contains an organism - 'Xenopus tropicalis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-mmusculus-article-title-check" test="matches($lc,'m\.\p{Zs}?musculus') and not(italic[contains(text() ,'M. musculus')])" role="warning" id="mmusculus-article-title-check">[mmusculus-article-title-check] <name/> contains an organism - 'M. musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-musmusculus-article-title-check" test="matches($lc,'mus\p{Zs}?musculus') and not(italic[contains(text() ,'Mus musculus')])" role="warning" id="musmusculus-article-title-check">[musmusculus-article-title-check] <name/> contains an organism - 'Mus musculus' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-dimmigrans-article-title-check" test="matches($lc,'d\.\p{Zs}?immigrans') and not(italic[contains(text() ,'D. immigrans')])" role="warning" id="dimmigrans-article-title-check">[dimmigrans-article-title-check] <name/> contains an organism - 'D. immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-drosophilaimmigrans-article-title-check" test="matches($lc,'drosophila\p{Zs}?immigrans') and not(italic[contains(text() ,'Drosophila immigrans')])" role="warning" id="drosophilaimmigrans-article-title-check">[drosophilaimmigrans-article-title-check] <name/> contains an organism - 'Drosophila immigrans' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-dsubobscura-article-title-check" test="matches($lc,'d\.\p{Zs}?subobscura') and not(italic[contains(text() ,'D. subobscura')])" role="warning" id="dsubobscura-article-title-check">[dsubobscura-article-title-check] <name/> contains an organism - 'D. subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-drosophilasubobscura-article-title-check" test="matches($lc,'drosophila\p{Zs}?subobscura') and not(italic[contains(text() ,'Drosophila subobscura')])" role="warning" id="drosophilasubobscura-article-title-check">[drosophilasubobscura-article-title-check] <name/> contains an organism - 'Drosophila subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-daffinis-article-title-check" test="matches($lc,'d\.\p{Zs}?affinis') and not(italic[contains(text() ,'D. affinis')])" role="warning" id="daffinis-article-title-check">[daffinis-article-title-check] <name/> contains an organism - 'D. affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-drosophilaaffinis-article-title-check" test="matches($lc,'drosophila\p{Zs}?affinis') and not(italic[contains(text() ,'Drosophila affinis')])" role="warning" id="drosophilaaffinis-article-title-check">[drosophilaaffinis-article-title-check] <name/> contains an organism - 'Drosophila affinis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-dobscura-article-title-check" test="matches($lc,'d\.\p{Zs}?obscura') and not(italic[contains(text() ,'D. obscura')])" role="warning" id="dobscura-article-title-check">[dobscura-article-title-check] <name/> contains an organism - 'D. obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-drosophilaobscura-article-title-check" test="matches($lc,'drosophila\p{Zs}?obscura') and not(italic[contains(text() ,'Drosophila obscura')])" role="warning" id="drosophilaobscura-article-title-check">[drosophilaobscura-article-title-check] <name/> contains an organism - 'Drosophila obscura' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-ftularensis-article-title-check" test="matches($lc,'f\.\p{Zs}?tularensis') and not(italic[contains(text() ,'F. tularensis')])" role="warning" id="ftularensis-article-title-check">[ftularensis-article-title-check] <name/> contains an organism - 'F. tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-francisellatularensis-article-title-check" test="matches($lc,'francisella\p{Zs}?tularensis') and not(italic[contains(text() ,'Francisella tularensis')])" role="warning" id="francisellatularensis-article-title-check">[francisellatularensis-article-title-check] <name/> contains an organism - 'Francisella tularensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-pplantaginis-article-title-check" test="matches($lc,'p\.\p{Zs}?plantaginis') and not(italic[contains(text() ,'P. plantaginis')])" role="warning" id="pplantaginis-article-title-check">[pplantaginis-article-title-check] <name/> contains an organism - 'P. plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-podosphaeraplantaginis-article-title-check" test="matches($lc,'podosphaera\p{Zs}?plantaginis') and not(italic[contains(text() ,'Podosphaera plantaginis')])" role="warning" id="podosphaeraplantaginis-article-title-check">[podosphaeraplantaginis-article-title-check] <name/> contains an organism - 'Podosphaera plantaginis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-planceolata-article-title-check" test="matches($lc,'p\.\p{Zs}?lanceolata') and not(italic[contains(text() ,'P. lanceolata')])" role="warning" id="planceolata-article-title-check">[planceolata-article-title-check] <name/> contains an organism - 'P. lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-plantagolanceolata-article-title-check" test="matches($lc,'plantago\p{Zs}?lanceolata') and not(italic[contains(text() ,'Plantago lanceolata')])" role="warning" id="plantagolanceolata-article-title-check">[plantagolanceolata-article-title-check] <name/> contains an organism - 'Plantago lanceolata' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-mtrossulus-article-title-check" test="matches($lc,'m\.\p{Zs}?trossulus') and not(italic[contains(text() ,'M. trossulus')])" role="info" id="mtrossulus-article-title-check">[mtrossulus-article-title-check] <name/> contains an organism - 'M. trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-mytilustrossulus-article-title-check" test="matches($lc,'mytilus\p{Zs}?trossulus') and not(italic[contains(text() ,'Mytilus trossulus')])" role="info" id="mytilustrossulus-article-title-check">[mytilustrossulus-article-title-check] <name/> contains an organism - 'Mytilus trossulus' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-medulis-article-title-check" test="matches($lc,'m\.\p{Zs}?edulis') and not(italic[contains(text() ,'M. edulis')])" role="info" id="medulis-article-title-check">[medulis-article-title-check] <name/> contains an organism - 'M. edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-mytilusedulis-article-title-check" test="matches($lc,'mytilus\p{Zs}?edulis') and not(italic[contains(text() ,'Mytilus edulis')])" role="info" id="mytilusedulis-article-title-check">[mytilusedulis-article-title-check] <name/> contains an organism - 'Mytilus edulis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-mchilensis-article-title-check" test="matches($lc,'m\.\p{Zs}?chilensis') and not(italic[contains(text() ,'M. chilensis')])" role="info" id="mchilensis-article-title-check">[mchilensis-article-title-check] <name/> contains an organism - 'M. chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-mytiluschilensis-article-title-check" test="matches($lc,'mytilus\p{Zs}?chilensis') and not(italic[contains(text() ,'Mytilus chilensis')])" role="info" id="mytiluschilensis-article-title-check">[mytiluschilensis-article-title-check] <name/> contains an organism - 'Mytilus chilensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-umaydis-article-title-check" test="matches($lc,'u\.\p{Zs}?maydis') and not(italic[contains(text() ,'U. maydis')])" role="info" id="umaydis-article-title-check">[umaydis-article-title-check] <name/> contains an organism - 'U. maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-ustilagomaydis-article-title-check" test="matches($lc,'ustilago\p{Zs}?maydis') and not(italic[contains(text() ,'Ustilago maydis')])" role="info" id="ustilagomaydis-article-title-check">[ustilagomaydis-article-title-check] <name/> contains an organism - 'Ustilago maydis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-pknowlesi-article-title-check" test="matches($lc,'p\.\p{Zs}?knowlesi') and not(italic[contains(text() ,'P. knowlesi')])" role="info" id="pknowlesi-article-title-check">[pknowlesi-article-title-check] <name/> contains an organism - 'P. knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-plasmodiumknowlesi-article-title-check" test="matches($lc,'plasmodium\p{Zs}?knowlesi') and not(italic[contains(text() ,'Plasmodium knowlesi')])" role="info" id="plasmodiumknowlesi-article-title-check">[plasmodiumknowlesi-article-title-check] <name/> contains an organism - 'Plasmodium knowlesi' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-paeruginosa-article-title-check" test="matches($lc,'p\.\p{Zs}?aeruginosa') and not(italic[contains(text() ,'P. aeruginosa')])" role="info" id="paeruginosa-article-title-check">[paeruginosa-article-title-check] <name/> contains an organism - 'P. aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-pseudomonasaeruginosa-article-title-check" test="matches($lc,'pseudomonas\p{Zs}?aeruginosa') and not(italic[contains(text() ,'Pseudomonas aeruginosa')])" role="info" id="pseudomonasaeruginosa-article-title-check">[pseudomonasaeruginosa-article-title-check] <name/> contains an organism - 'Pseudomonas aeruginosa' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-tbrucei-article-title-check" test="matches($lc,'t\.\p{Zs}?brucei') and not(italic[contains(text() ,'T. brucei')])" role="warning" id="tbrucei-article-title-check">[tbrucei-article-title-check] <name/> contains an organism - 'T. brucei' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-trypanosomabrucei-article-title-check" test="matches($lc,'trypanosoma\p{Zs}?brucei') and not(italic[contains(text() ,'Trypanosoma brucei')])" role="warning" id="trypanosomabrucei-article-title-check">[trypanosomabrucei-article-title-check] <name/> contains an organism - 'Trypanosoma brucei' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-tgondii-article-title-check" test="matches($lc,'t\.\p{Zs}?gondii') and not(italic[contains(text() ,'T. gondii')])" role="warning" id="tgondii-article-title-check">[tgondii-article-title-check] <name/> contains an organism - 'T. gondii' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-toxoplasmagondii-article-title-check" test="matches($lc,'toxoplasma\p{Zs}?gondii') and not(italic[contains(text() ,'Toxoplasma gondii')])" role="warning" id="toxoplasmagondii-article-title-check">[toxoplasmagondii-article-title-check] <name/> contains an organism - 'Toxoplasma gondii' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-drerio-article-title-check" test="matches($lc,'d\.\p{Zs}?rerio') and not(italic[contains(text() ,'D. rerio')])" role="warning" id="drerio-article-title-check">[drerio-article-title-check] <name/> contains an organism - 'D. rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-daniorerio-article-title-check" test="matches($lc,'danio\p{Zs}?rerio') and not(italic[contains(text() ,'Danio rerio')])" role="warning" id="daniorerio-article-title-check">[daniorerio-article-title-check] <name/> contains an organism - 'Danio rerio' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-yimenosaurus-article-title-check" test="matches($lc,'yimenosaurus') and not(italic[contains(text() ,'Yimenosaurus')])" role="warning" id="yimenosaurus-article-title-check">[yimenosaurus-article-title-check] <name/> contains an organism - 'Yimenosaurus' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-scelidosaurusharrisonii-article-title-check" test="matches($lc,'scelidosaurus\p{Zs}?harrisonii') and not(italic[contains(text() ,'Scelidosaurus harrisonii')])" role="warning" id="scelidosaurusharrisonii-article-title-check">[scelidosaurusharrisonii-article-title-check] <name/> contains an organism - 'Scelidosaurus harrisonii' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-sharrisonii-article-title-check" test="matches($lc,'s\.\p{Zs}?harrisonii') and not(italic[contains(text() ,'S. harrisonii')])" role="warning" id="sharrisonii-article-title-check">[sharrisonii-article-title-check] <name/> contains an organism - 'S. harrisonii' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-hayagriva-article-title-check" test="matches($lc,'haya\p{Zs}?griva') and not(italic[contains(text() ,'Haya griva')])" role="warning" id="hayagriva-article-title-check">[hayagriva-article-title-check] <name/> contains an organism - 'Haya griva' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-hgriva-article-title-check" test="matches($lc,'h\.\p{Zs}?griva') and not(italic[contains(text() ,'H. griva')])" role="warning" id="hgriva-article-title-check">[hgriva-article-title-check] <name/> contains an organism - 'H. griva' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-polacanthusfoxii-article-title-check" test="matches($lc,'polacanthus\p{Zs}?foxii') and not(italic[contains(text() ,'Polacanthus foxii')])" role="warning" id="polacanthusfoxii-article-title-check">[polacanthusfoxii-article-title-check] <name/> contains an organism - 'Polacanthus foxii' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-pfoxii-article-title-check" test="matches($lc,'p\.\p{Zs}?foxii') and not(italic[contains(text() ,'P. foxii')])" role="warning" id="pfoxii-article-title-check">[pfoxii-article-title-check] <name/> contains an organism - 'P. foxii' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-scutellosauruslawleri-article-title-check" test="matches($lc,'scutellosaurus\p{Zs}?lawleri') and not(italic[contains(text() ,'Scutellosaurus lawleri')])" role="warning" id="scutellosauruslawleri-article-title-check">[scutellosauruslawleri-article-title-check] <name/> contains an organism - 'Scutellosaurus lawleri' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-slawleri-article-title-check" test="matches($lc,'s\.\p{Zs}?lawleri') and not(italic[contains(text() ,'S. lawleri')])" role="warning" id="slawleri-article-title-check">[slawleri-article-title-check] <name/> contains an organism - 'S. lawleri' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-saichaniachulsanensis-article-title-check" test="matches($lc,'saichania\p{Zs}?chulsanensis') and not(italic[contains(text() ,'Saichania chulsanensis')])" role="warning" id="saichaniachulsanensis-article-title-check">[saichaniachulsanensis-article-title-check] <name/> contains an organism - 'Saichania chulsanensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-schulsanensis-article-title-check" test="matches($lc,'s\.\p{Zs}?chulsanensis') and not(italic[contains(text() ,'S. chulsanensis')])" role="warning" id="schulsanensis-article-title-check">[schulsanensis-article-title-check] <name/> contains an organism - 'S. chulsanensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-gargoyleosaurusparkpinorum-article-title-check" test="matches($lc,'gargoyleosaurus\p{Zs}?parkpinorum') and not(italic[contains(text() ,'Gargoyleosaurus parkpinorum')])" role="warning" id="gargoyleosaurusparkpinorum-article-title-check">[gargoyleosaurusparkpinorum-article-title-check] <name/> contains an organism - 'Gargoyleosaurus parkpinorum' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-gparkpinorum-article-title-check" test="matches($lc,'g\.\p{Zs}?parkpinorum') and not(italic[contains(text() ,'G. parkpinorum')])" role="warning" id="gparkpinorum-article-title-check">[gparkpinorum-article-title-check] <name/> contains an organism - 'G. parkpinorum' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-europeltacarbonensis-article-title-check" test="matches($lc,'europelta\p{Zs}?carbonensis') and not(italic[contains(text() ,'Europelta carbonensis')])" role="warning" id="europeltacarbonensis-article-title-check">[europeltacarbonensis-article-title-check] <name/> contains an organism - 'Europelta carbonensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-ecarbonensis-article-title-check" test="matches($lc,'e\.\p{Zs}?carbonensis') and not(italic[contains(text() ,'E. carbonensis')])" role="warning" id="ecarbonensis-article-title-check">[ecarbonensis-article-title-check] <name/> contains an organism - 'E. carbonensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-stegosaurusstenops-article-title-check" test="matches($lc,'stegosaurus\p{Zs}?stenops') and not(italic[contains(text() ,'Stegosaurus stenops')])" role="warning" id="stegosaurusstenops-article-title-check">[stegosaurusstenops-article-title-check] <name/> contains an organism - 'Stegosaurus stenops' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-sstenops-article-title-check" test="matches($lc,'s\.\p{Zs}?stenops') and not(italic[contains(text() ,'S. stenops')])" role="warning" id="sstenops-article-title-check">[sstenops-article-title-check] <name/> contains an organism - 'S. stenops' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-pinacosaurusgrangeri-article-title-check" test="matches($lc,'pinacosaurus\p{Zs}?grangeri') and not(italic[contains(text() ,'Pinacosaurus grangeri')])" role="warning" id="pinacosaurusgrangeri-article-title-check">[pinacosaurusgrangeri-article-title-check] <name/> contains an organism - 'Pinacosaurus grangeri' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-pgrangeri-article-title-check" test="matches($lc,'p\.\p{Zs}?grangeri') and not(italic[contains(text() ,'P. grangeri')])" role="warning" id="pgrangeri-article-title-check">[pgrangeri-article-title-check] <name/> contains an organism - 'P. grangeri' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-tatisaurusoehleri-article-title-check" test="matches($lc,'tatisaurus\p{Zs}?oehleri') and not(italic[contains(text() ,'Tatisaurus oehleri')])" role="warning" id="tatisaurusoehleri-article-title-check">[tatisaurusoehleri-article-title-check] <name/> contains an organism - 'Tatisaurus oehleri' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-toehleri-article-title-check" test="matches($lc,'t\.\p{Zs}?oehleri') and not(italic[contains(text() ,'T. oehleri')])" role="warning" id="toehleri-article-title-check">[toehleri-article-title-check] <name/> contains an organism - 'T. oehleri' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-hungarosaurustormai-article-title-check" test="matches($lc,'hungarosaurus\p{Zs}?tormai') and not(italic[contains(text() ,'Hungarosaurus tormai')])" role="warning" id="hungarosaurustormai-article-title-check">[hungarosaurustormai-article-title-check] <name/> contains an organism - 'Hungarosaurus tormai' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-htormai-article-title-check" test="matches($lc,'h\.\p{Zs}?tormai') and not(italic[contains(text() ,'H. tormai')])" role="warning" id="htormai-article-title-check">[htormai-article-title-check] <name/> contains an organism - 'H. tormai' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-lesothosaurusdiagnosticus-article-title-check" test="matches($lc,'lesothosaurus\p{Zs}?diagnosticus') and not(italic[contains(text() ,'Lesothosaurus diagnosticus')])" role="warning" id="lesothosaurusdiagnosticus-article-title-check">[lesothosaurusdiagnosticus-article-title-check] <name/> contains an organism - 'Lesothosaurus diagnosticus' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-ldiagnosticus-article-title-check" test="matches($lc,'l\.\p{Zs}?diagnosticus') and not(italic[contains(text() ,'L. diagnosticus')])" role="warning" id="ldiagnosticus-article-title-check">[ldiagnosticus-article-title-check] <name/> contains an organism - 'L. diagnosticus' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-bienosauruslufengensis-article-title-check" test="matches($lc,'bienosaurus\p{Zs}?lufengensis') and not(italic[contains(text() ,'Bienosaurus lufengensis')])" role="warning" id="bienosauruslufengensis-article-title-check">[bienosauruslufengensis-article-title-check] <name/> contains an organism - 'Bienosaurus lufengensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-blufengensis-article-title-check" test="matches($lc,'b\.\p{Zs}?lufengensis') and not(italic[contains(text() ,'B. lufengensis')])" role="warning" id="blufengensis-article-title-check">[blufengensis-article-title-check] <name/> contains an organism - 'B. lufengensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-fabrosaurusaustralis-article-title-check" test="matches($lc,'fabrosaurus\p{Zs}?australis') and not(italic[contains(text() ,'Fabrosaurus australis')])" role="warning" id="fabrosaurusaustralis-article-title-check">[fabrosaurusaustralis-article-title-check] <name/> contains an organism - 'Fabrosaurus australis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-faustralis-article-title-check" test="matches($lc,'f\.\p{Zs}?australis') and not(italic[contains(text() ,'F. australis')])" role="warning" id="faustralis-article-title-check">[faustralis-article-title-check] <name/> contains an organism - 'F. australis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-chinshakiangosauruschunghoensis-article-title-check" test="matches($lc,'chinshakiangosaurus\p{Zs}?chunghoensis') and not(italic[contains(text() ,'Chinshakiangosaurus chunghoensis')])" role="warning" id="chinshakiangosauruschunghoensis-article-title-check">[chinshakiangosauruschunghoensis-article-title-check] <name/> contains an organism - 'Chinshakiangosaurus chunghoensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-cchunghoensis-article-title-check" test="matches($lc,'c\.\p{Zs}?chunghoensis') and not(italic[contains(text() ,'C. chunghoensis')])" role="warning" id="cchunghoensis-article-title-check">[cchunghoensis-article-title-check] <name/> contains an organism - 'C. chunghoensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-euoplocephalustutus-article-title-check" test="matches($lc,'euoplocephalus\p{Zs}?tutus') and not(italic[contains(text() ,'Euoplocephalus tutus')])" role="warning" id="euoplocephalustutus-article-title-check">[euoplocephalustutus-article-title-check] <name/> contains an organism - 'Euoplocephalus tutus' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-etutus-article-title-check" test="matches($lc,'e\.\p{Zs}?tutus') and not(italic[contains(text() ,'E. tutus')])" role="warning" id="etutus-article-title-check">[etutus-article-title-check] <name/> contains an organism - 'E. tutus' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-drosophila-article-title-check" test="matches($lc,'drosophila') and not(italic[contains(text(),'Drosophila')])" role="warning" id="drosophila-article-title-check">[drosophila-article-title-check] <name/> contains an organism - 'Drosophila' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-xenopus-article-title-check" test="matches($lc,'xenopus') and not(italic[contains(text() ,'Xenopus')])" role="warning" id="xenopus-article-title-check">[xenopus-article-title-check] <name/> contains an organism - 'Xenopus' - but there is no italic element with that correct capitalisation or spacing.</report>
       
     </rule>
   </pattern>
@@ -7280,19 +7247,19 @@
   <pattern id="unallowed-symbol-tests-pattern">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">		
       
-      <report test="contains(.,'©')" role="error" id="copyright-symbol">[copyright-symbol] <name/> element contains the copyright symbol, '©', which is not allowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-copyright-symbol" test="contains(.,'©')" role="error" id="copyright-symbol">[copyright-symbol] <name/> element contains the copyright symbol, '©', which is not allowed.</report>
       
-      <report test="contains(.,'™')" role="error" id="trademark-symbol">[trademark-symbol] <name/> element contains the trademark symbol, '™', which is not allowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-trademark-symbol" test="contains(.,'™')" role="error" id="trademark-symbol">[trademark-symbol] <name/> element contains the trademark symbol, '™', which is not allowed.</report>
       
-      <report test="contains(.,'®')" role="error" id="reg-trademark-symbol">[reg-trademark-symbol] <name/> element contains the registered trademark symbol, '®', which is not allowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-reg-trademark-symbol" test="contains(.,'®')" role="error" id="reg-trademark-symbol">[reg-trademark-symbol] <name/> element contains the registered trademark symbol, '®', which is not allowed.</report>
       
-      <report test="matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')" role="warning" id="Inc-presence">[Inc-presence] <name/> element contains 'Inc.' with a full stop. Remove the full stop.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-Inc-presence" test="matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')" role="warning" id="Inc-presence">[Inc-presence] <name/> element contains 'Inc.' with a full stop. Remove the full stop.</report>
       
-      <report test="matches(.,' [Aa]nd [Aa]nd ')" role="warning" id="andand-presence">[andand-presence] <name/> element contains ' and and ' which is very likely to be incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hkbnb-andand-presence" test="matches(.,' [Aa]nd [Aa]nd ')" role="warning" id="andand-presence">[andand-presence] <name/> element contains ' and and ' which is very likely to be incorrect.</report>
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#figurefigure-presence" test="matches(.,'[Ff]igure [Ff]igure')" role="warning" id="figurefigure-presence">[figurefigure-presence] <name/> element contains ' figure figure ' which is very likely to be incorrect.</report>
       
-      <report test="matches(translate(.,'—– ','-- '),'[\+\-]\p{Zs}+/\p{Zs}?[\+\-]|[\+\-]\p{Zs}?/\p{Zs}+[\+\-]')" role="warning" id="plus-minus-presence">[plus-minus-presence] <name/> element contains two plus or minus signs separated by a space and a forward slash (such as '+ /-'). Should the space be removed? - <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hkbnb-plus-minus-presence" test="matches(translate(.,'—– ','-- '),'[\+\-]\p{Zs}+/\p{Zs}?[\+\-]|[\+\-]\p{Zs}?/\p{Zs}+[\+\-]')" role="warning" id="plus-minus-presence">[plus-minus-presence] <name/> element contains two plus or minus signs separated by a space and a forward slash (such as '+ /-'). Should the space be removed? - <value-of select="."/>
       </report>
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supplementalfigure-presence" test="not(ancestor::sub-article) and matches(.,'\p{Zs}?[Ss]upplemental [Ff]igure')" role="warning" id="supplementalfigure-presence">[supplementalfigure-presence] <name/> element contains the phrase ' Supplemental figure ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/>
@@ -7321,9 +7288,9 @@
       
       <report test="matches(.,'&amp;#x\d')" role="warning" id="broken-unicode-presence">[broken-unicode-presence] <name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
       
-      <report test="not(ancestor::sub-article) and not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))" role="warning" id="extra-full-stop-presence">[extra-full-stop-presence] <name/> element contains what looks two full stops right next to each other (..) - Is that correct? - <value-of select="."/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-extra-full-stop-presence" test="not(ancestor::sub-article) and not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))" role="warning" id="extra-full-stop-presence">[extra-full-stop-presence] <name/> element contains what looks two full stops right next to each other (..) - Is that correct? - <value-of select="."/>.</report>
       
-      <report test="not(local-name()='code') and not(inline-formula|element-citation|code|disp-formula|table-wrap|list|inline-graphic|supplementary-material|break) and matches(replace(.,' ',' '),'\s\s+')" role="warning" id="extra-space-presence">[extra-space-presence] <name/> element contains two or more spaces right next to each other - it is very likely that only 1 space is necessary - <value-of select="."/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-extra-space-presence" test="not(local-name()='code') and not(inline-formula|element-citation|code|disp-formula|table-wrap|list|inline-graphic|supplementary-material|break) and matches(replace(.,' ',' '),'\s\s+')" role="warning" id="extra-space-presence">[extra-space-presence] <name/> element contains two or more spaces right next to each other - it is very likely that only 1 space is necessary - <value-of select="."/>.</report>
       
       <report test="contains(.,'&#x9D;')" role="error" id="operating-system-command-presence">[operating-system-command-presence] <name/> element contains an operating system command character '&#x9D;' (unicode string: &amp;#x9D;) which should very likely be replaced/removed. - <value-of select="."/>
       </report>
@@ -7332,27 +7299,27 @@
   <pattern id="unallowed-symbol-tests-sup-pattern">
     <rule context="sup" id="unallowed-symbol-tests-sup">		
       
-      <report test="contains(.,'©')" role="error" id="copyright-symbol-sup">[copyright-symbol-sup] '<name/>' element contains the copyright symbol, '©', which is not allowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-copyright-symbol-sup" test="contains(.,'©')" role="error" id="copyright-symbol-sup">[copyright-symbol-sup] '<name/>' element contains the copyright symbol, '©', which is not allowed.</report>
       
-      <report test="contains(.,'™')" role="error" id="trademark-symbol-1-sup">[trademark-symbol-1-sup] '<name/>' element contains the trademark symbol, '™', which is not allowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-trademark-symbol-1-sup" test="contains(.,'™')" role="error" id="trademark-symbol-1-sup">[trademark-symbol-1-sup] '<name/>' element contains the trademark symbol, '™', which is not allowed.</report>
       
-      <report test=". = 'TM'" role="warning" id="trademark-symbol-2-sup">[trademark-symbol-2-sup] '<name/>' element contains the text 'TM', which means that it resembles the trademark symbol. The trademark symbol is not allowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-trademark-symbol-2-sup" test=". = 'TM'" role="warning" id="trademark-symbol-2-sup">[trademark-symbol-2-sup] '<name/>' element contains the text 'TM', which means that it resembles the trademark symbol. The trademark symbol is not allowed.</report>
       
-      <report test="contains(.,'®')" role="error" id="reg-trademark-symbol-sup">[reg-trademark-symbol-sup] '<name/>' element contains the registered trademark symbol, '®', which is not allowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-reg-trademark-symbol-sup" test="contains(.,'®')" role="error" id="reg-trademark-symbol-sup">[reg-trademark-symbol-sup] '<name/>' element contains the registered trademark symbol, '®', which is not allowed.</report>
       
-      <report test="contains(.,'°')" role="error" id="degree-symbol-sup">[degree-symbol-sup] '<name/>' element contains the degree symbol, '°', which is unnecessary. It does not need to be superscript.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-degree-symbol-sup" test="contains(.,'°')" role="error" id="degree-symbol-sup">[degree-symbol-sup] '<name/>' element contains the degree symbol, '°', which is unnecessary. It does not need to be superscript.</report>
       
-      <report test="contains(.,'○')" role="warning" id="white-circle-symbol-sup">[white-circle-symbol-sup] '<name/>' element contains the white circle symbol, '○'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-white-circle-symbol-sup" test="contains(.,'○')" role="warning" id="white-circle-symbol-sup">[white-circle-symbol-sup] '<name/>' element contains the white circle symbol, '○'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
       
-      <report test="contains(.,'∘')" role="warning" id="ring-op-symbol-sup">[ring-op-symbol-sup] '<name/>' element contains the Ring Operator symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-ring-op-symbol-sup" test="contains(.,'∘')" role="warning" id="ring-op-symbol-sup">[ring-op-symbol-sup] '<name/>' element contains the Ring Operator symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
       
-      <report test="contains(.,'˚')" role="warning" id="ring-diacritic-symbol-sup">[ring-diacritic-symbol-sup] '<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-ring-diacritic-symbol-sup" test="contains(.,'˚')" role="warning" id="ring-diacritic-symbol-sup">[ring-diacritic-symbol-sup] '<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
     </rule>
   </pattern>
   <pattern id="underline-tests-pattern">
     <rule context="underline" id="underline-tests">
       
-      <report test="matches(.,'^\p{P}*$')" role="warning" id="underline-test-1">[underline-test-1] '<name/>' element only contains punctuation - <value-of select="."/> - Should it have underline formatting?</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hd9o3-underline-test-1" test="matches(.,'^\p{P}*$')" role="warning" id="underline-test-1">[underline-test-1] '<name/>' element only contains punctuation - <value-of select="."/> - Should it have underline formatting?</report>
       
     </rule>
   </pattern>
@@ -7920,7 +7887,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-appendix-check-2" test="ancestor::body and matches(.,'^[Ss]upplementary |^[Ss]upplemental ')" role="warning" id="sec-title-appendix-check-2">[sec-title-appendix-check-2] Should the section titled '<value-of select="."/>' be captured as an appendix?</report>
       
-      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-abbr-check" test="matches(.,'^[Aa]bbreviation[s]?')" role="warning" id="sec-title-abbr-check">[sec-title-abbr-check] Section title contains the word abbreviation - '<value-of select="."/>'. Is it an abbreviation section? eLife house style is to define abbreviations in the text when they are first mentioned.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hp09b-sec-title-abbr-check" test="matches(.,'^[Aa]bbreviation[s]?')" role="warning" id="sec-title-abbr-check">[sec-title-abbr-check] Section title contains the word abbreviation - '<value-of select="."/>'. Is it an abbreviation section? eLife house style is to define abbreviations in the text when they are first mentioned.</report>
       
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-content-mandate" test="not(*) and (normalize-space(.)='')" role="error" id="sec-title-content-mandate">[sec-title-content-mandate] Section title must not be empty.</report>
       
@@ -8090,11 +8057,11 @@
     <rule context="article[not(@article-type=($notice-article-types,'article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]" id="p-punctuation">
       <let name="para" value="replace(.,' ',' ')"/>
       
-      <assert test="matches($para,'\p{P}\p{Zs}*?$')" role="warning" id="p-punctuation-test">[p-punctuation-test] paragraph doesn't end with punctuation - Is this correct?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-punctuation-test" test="matches($para,'\p{P}\p{Zs}*?$')" role="warning" id="p-punctuation-test">[p-punctuation-test] paragraph doesn't end with punctuation - Is this correct?</assert>
       
-      <assert test="matches($para,'\.\)?\p{Zs}*?$|:\p{Zs}*?$|\?\p{Zs}*?$|!\p{Zs}*?$|\.”\p{Zs}*?|\.&quot;\p{Zs}*?')" role="warning" id="p-bracket-test">[p-bracket-test] paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-bracket-test" test="matches($para,'\.\)?\p{Zs}*?$|:\p{Zs}*?$|\?\p{Zs}*?$|!\p{Zs}*?$|\.”\p{Zs}*?|\.&quot;\p{Zs}*?')" role="warning" id="p-bracket-test">[p-bracket-test] paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</assert>
       
-      <report test="matches(.,'\p{Zs}$')" role="warning" id="p-space-test">[p-space-test] paragraph ends with space(s). Is this correct? '<value-of select="."/>'</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-space-test" test="matches(.,'\p{Zs}$')" role="warning" id="p-space-test">[p-space-test] paragraph ends with space(s). Is this correct? '<value-of select="."/>'</report>
     </rule>
   </pattern>
   <pattern id="italic-house-style-pattern">
@@ -8102,7 +8069,7 @@
       
       
 
-      <report test="matches(.,'et al[\.]?')" role="warning" id="final-et-al-italic-test">[final-et-al-italic-test] <name/> element contains 'et al.' - this should not be in italics (eLife house style).</report>  
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-final-et-al-italic-test" test="matches(.,'et al[\.]?')" role="warning" id="final-et-al-italic-test">[final-et-al-italic-test] <name/> element contains 'et al.' - this should not be in italics (eLife house style).</report>  
       
         
       
@@ -8142,11 +8109,11 @@
       <let name="roman-count" value="sum(for $x in $latin-terms//*:list[@list-type='roman']//*:match return number($x/@count))"/>
       <let name="italic-count" value="sum(for $x in $latin-terms//*:list[@list-type='italic']//*:match return number($x/@count))"/>
       
-      <report test="($italic-count != 0) and ($roman-count gt $italic-count)" role="warning" id="latin-italic-info">[latin-italic-info] Latin terms are not consistently either roman or italic. There are <value-of select="$roman-count"/> roman terms which is more common, and <value-of select="$italic-count"/> italic term(s). The following terms should be unitalicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='italic'])"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7l5o-latin-italic-info" test="($italic-count != 0) and ($roman-count gt $italic-count)" role="warning" id="latin-italic-info">[latin-italic-info] Latin terms are not consistently either roman or italic. There are <value-of select="$roman-count"/> roman terms which is more common, and <value-of select="$italic-count"/> italic term(s). The following terms should be unitalicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='italic'])"/>.</report>
       
-      <report test="($roman-count != 0) and ($italic-count gt $roman-count)" role="warning" id="latin-roman-info">[latin-roman-info] Latin terms are not consistently either roman or italic. There are <value-of select="$italic-count"/> italic terms which is more common, and <value-of select="$roman-count"/> roman term(s). The following terms should be italicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='roman'])"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7l5o-latin-roman-info" test="($roman-count != 0) and ($italic-count gt $roman-count)" role="warning" id="latin-roman-info">[latin-roman-info] Latin terms are not consistently either roman or italic. There are <value-of select="$italic-count"/> italic terms which is more common, and <value-of select="$roman-count"/> roman term(s). The following terms should be italicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='roman'])"/>.</report>
       
-      <report test="($roman-count != 0) and ($italic-count = $roman-count)" role="warning" id="latin-conformance-info">[latin-conformance-info] Latin terms are not consistently either roman or italic. There are an equal number of italic (<value-of select="$italic-count"/>) and roman (<value-of select="$roman-count"/>) terms. The following terms are italicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='italic'])"/>. The following terms are unitalicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='roman'])"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7l5o-latin-conformance-info" test="($roman-count != 0) and ($italic-count = $roman-count)" role="warning" id="latin-conformance-info">[latin-conformance-info] Latin terms are not consistently either roman or italic. There are an equal number of italic (<value-of select="$italic-count"/>) and roman (<value-of select="$roman-count"/>) terms. The following terms are italicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='italic'])"/>. The following terms are unitalicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='roman'])"/>.</report>
     </rule>
   </pattern>
   <pattern id="pubmed-link-pattern">
@@ -8317,9 +8284,9 @@
       <let name="pre-token" value="substring($pre-text, string-length($pre-text), 1)"/>
       <let name="post-token" value="substring($post-text, 1, 1)"/>
       
-      <assert test="(substring(.,1,1) = (' ',' ')) or ($pre-token='') or matches($pre-token,'[\p{Zs}\p{P}]')" role="warning" id="italic-org-test-1">[italic-org-test-1] There is no space between the organism name '<value-of select="."/>' and its preceding text - '<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>'. Is this correct or is there a missing space?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hkbnb-italic-org-test-1" test="(substring(.,1,1) = (' ',' ')) or ($pre-token='') or matches($pre-token,'[\p{Zs}\p{P}]')" role="warning" id="italic-org-test-1">[italic-org-test-1] There is no space between the organism name '<value-of select="."/>' and its preceding text - '<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>'. Is this correct or is there a missing space?</assert>
       
-      <assert test="(substring(., string-length(.), 1) = (' ',' ')) or ($post-token='') or matches($post-token,'[\p{Zs}\p{P}]')" role="warning" id="italic-org-test-2">[italic-org-test-2] There is no space between the organism name '<value-of select="."/>' and its following text - '<value-of select="concat(.,substring($post-text,1,10))"/>'. Is this correct or is there a missing space?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hkbnb-italic-org-test-2" test="(substring(., string-length(.), 1) = (' ',' ')) or ($post-token='') or matches($post-token,'[\p{Zs}\p{P}]')" role="warning" id="italic-org-test-2">[italic-org-test-2] There is no space between the organism name '<value-of select="."/>' and its following text - '<value-of select="concat(.,substring($post-text,1,10))"/>'. Is this correct or is there a missing space?</assert>
     </rule>
   </pattern>
   <pattern id="sub-sup-tests-pattern">

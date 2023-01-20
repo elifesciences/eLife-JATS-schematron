@@ -1,8 +1,7 @@
 <?oxygen SCHSchema="pfoxii-article-title-check.sch"?>
 <!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
 Test: report    matches($lc,'p\.\p{Zs}?foxii') and not(italic[contains(text() ,'P. foxii')])
-Message: 
-         contains an organism - 'P. foxii' - but there is no italic element with that correct capitalisation or spacing. -->
+Message:  contains an organism - 'P. foxii' - but there is no italic element with that correct capitalisation or spacing. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <body>

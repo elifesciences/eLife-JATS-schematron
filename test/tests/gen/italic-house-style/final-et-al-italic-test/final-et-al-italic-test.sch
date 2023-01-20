@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="italic[not(ancestor::ref) and not(ancestor::sub-article)]" id="italic-house-style">
-      <report test="matches(.,'et al[\.]?')" role="warning" id="final-et-al-italic-test">
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-final-et-al-italic-test" test="matches(.,'et al[\.]?')" role="warning" id="final-et-al-italic-test">
         <name/> element contains 'et al.' - this should not be in italics (eLife house style).</report>
     </rule>
   </pattern>
