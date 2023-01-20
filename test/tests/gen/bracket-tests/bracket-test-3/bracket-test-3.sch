@@ -1224,7 +1224,7 @@
       <let name="close-curly" value="string-length(replace(.,'[^\)]',''))"/>
       <let name="open-square" value="string-length(replace(.,'[^\[]',''))"/>
       <let name="close-square" value="string-length(replace(.,'[^\]]',''))"/>
-      <report test="$open-square gt $close-square" role="warning" id="bracket-test-3">
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-3" test="$open-square gt $close-square" role="warning" id="bracket-test-3">
         <name/> element contains more left '[' than right ']' square brackets (<value-of select="$open-square"/> and <value-of select="$close-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) gt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/>
       </report>
     </rule>

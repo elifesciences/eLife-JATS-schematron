@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
-      <report test="not(ancestor::sub-article) and not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))" role="warning" id="extra-full-stop-presence">
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-extra-full-stop-presence" test="not(ancestor::sub-article) and not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))" role="warning" id="extra-full-stop-presence">
         <name/> element contains what looks two full stops right next to each other (..) - Is that correct? - <value-of select="."/>.</report>
     </rule>
   </pattern>

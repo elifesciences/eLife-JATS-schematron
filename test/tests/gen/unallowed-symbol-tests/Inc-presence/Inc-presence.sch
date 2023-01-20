@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
-      <report test="matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')" role="warning" id="Inc-presence">
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-Inc-presence" test="matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')" role="warning" id="Inc-presence">
         <name/> element contains 'Inc.' with a full stop. Remove the full stop.</report>
     </rule>
   </pattern>

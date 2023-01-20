@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="italic[not(ancestor::ref) and not(ancestor::sub-article)]" id="italic-house-style">
-      <report test="matches(.,'[Aa] [Pp]osteriori')" role="warning" id="pre-a-posteriori-italic-test">
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-a-posteriori-italic-test" test="matches(.,'[Aa] [Pp]osteriori')" role="warning" id="pre-a-posteriori-italic-test">
         <name/> element contains 'a posteriori' - this should not be in italics (eLife house style).</report>
     </rule>
   </pattern>

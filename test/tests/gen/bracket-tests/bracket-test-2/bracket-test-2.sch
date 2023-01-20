@@ -1224,7 +1224,7 @@
       <let name="close-curly" value="string-length(replace(.,'[^\)]',''))"/>
       <let name="open-square" value="string-length(replace(.,'[^\[]',''))"/>
       <let name="close-square" value="string-length(replace(.,'[^\]]',''))"/>
-      <report test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\)')) and ($open-curly lt $close-curly)" role="warning" id="bracket-test-2">
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-2" test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\)')) and ($open-curly lt $close-curly)" role="warning" id="bracket-test-2">
         <name/> element contains more right ')' than left '(' parentheses (<value-of select="$close-curly"/> and <value-of select="$open-curly"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(]','')) lt string-length(replace($sentence,'[^\)]',''))) then $sentence else (),' ---- ')"/>
       </report>
     </rule>

@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
-      <report test="matches(.,' [Aa]nd [Aa]nd ')" role="warning" id="andand-presence">
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hkbnb-andand-presence" test="matches(.,' [Aa]nd [Aa]nd ')" role="warning" id="andand-presence">
         <name/> element contains ' and and ' which is very likely to be incorrect.</report>
     </rule>
   </pattern>

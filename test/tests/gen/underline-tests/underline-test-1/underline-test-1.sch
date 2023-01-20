@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="underline" id="underline-tests">
-      <report test="matches(.,'^\p{P}*$')" role="warning" id="underline-test-1">'<name/>' element only contains punctuation - <value-of select="."/> - Should it have underline formatting?</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hd9o3-underline-test-1" test="matches(.,'^\p{P}*$')" role="warning" id="underline-test-1">'<name/>' element only contains punctuation - <value-of select="."/> - Should it have underline formatting?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

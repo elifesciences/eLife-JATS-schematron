@@ -3639,16 +3639,16 @@
       <let name="open-square" value="string-length(replace(.,'[^\[]',''))"/>
       <let name="close-square" value="string-length(replace(.,'[^\]]',''))"/>
       
-      <report test="$open-curly gt $close-curly" role="warning" id="bracket-test-1">[bracket-test-1] <name/> element contains more left '(' than right ')' parentheses (<value-of select="$open-curly"/> and <value-of select="$close-curly"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(]','')) gt string-length(replace($sentence,'[^\)]',''))) then $sentence else (),' ---- ')"/>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-1" test="$open-curly gt $close-curly" role="warning" id="bracket-test-1">[bracket-test-1] <name/> element contains more left '(' than right ')' parentheses (<value-of select="$open-curly"/> and <value-of select="$close-curly"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(]','')) gt string-length(replace($sentence,'[^\)]',''))) then $sentence else (),' ---- ')"/>
       </report>
       
-      <report test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\)')) and ($open-curly lt $close-curly)" role="warning" id="bracket-test-2">[bracket-test-2] <name/> element contains more right ')' than left '(' parentheses (<value-of select="$close-curly"/> and <value-of select="$open-curly"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(]','')) lt string-length(replace($sentence,'[^\)]',''))) then $sentence else (),' ---- ')"/>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-2" test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\)')) and ($open-curly lt $close-curly)" role="warning" id="bracket-test-2">[bracket-test-2] <name/> element contains more right ')' than left '(' parentheses (<value-of select="$close-curly"/> and <value-of select="$open-curly"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\(]','')) lt string-length(replace($sentence,'[^\)]',''))) then $sentence else (),' ---- ')"/>
       </report>
       
-      <report test="$open-square gt $close-square" role="warning" id="bracket-test-3">[bracket-test-3] <name/> element contains more left '[' than right ']' square brackets (<value-of select="$open-square"/> and <value-of select="$close-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) gt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-3" test="$open-square gt $close-square" role="warning" id="bracket-test-3">[bracket-test-3] <name/> element contains more left '[' than right ']' square brackets (<value-of select="$open-square"/> and <value-of select="$close-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) gt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/>
       </report>
       
-      <report test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\]')) and ($open-square lt $close-square)" role="warning" id="bracket-test-4">[bracket-test-4] <name/> element contains more right ']' than left '[' square brackets (<value-of select="$close-square"/> and <value-of select="$open-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) lt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-4" test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\]')) and ($open-square lt $close-square)" role="warning" id="bracket-test-4">[bracket-test-4] <name/> element contains more right ']' than left '[' square brackets (<value-of select="$close-square"/> and <value-of select="$open-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) lt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/>
       </report>
     </rule>
   </pattern>
@@ -7280,19 +7280,19 @@
   <pattern id="unallowed-symbol-tests-pattern">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">		
       
-      <report test="contains(.,'©')" role="error" id="copyright-symbol">[copyright-symbol] <name/> element contains the copyright symbol, '©', which is not allowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-copyright-symbol" test="contains(.,'©')" role="error" id="copyright-symbol">[copyright-symbol] <name/> element contains the copyright symbol, '©', which is not allowed.</report>
       
-      <report test="contains(.,'™')" role="error" id="trademark-symbol">[trademark-symbol] <name/> element contains the trademark symbol, '™', which is not allowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-trademark-symbol" test="contains(.,'™')" role="error" id="trademark-symbol">[trademark-symbol] <name/> element contains the trademark symbol, '™', which is not allowed.</report>
       
-      <report test="contains(.,'®')" role="error" id="reg-trademark-symbol">[reg-trademark-symbol] <name/> element contains the registered trademark symbol, '®', which is not allowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-reg-trademark-symbol" test="contains(.,'®')" role="error" id="reg-trademark-symbol">[reg-trademark-symbol] <name/> element contains the registered trademark symbol, '®', which is not allowed.</report>
       
-      <report test="matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')" role="warning" id="Inc-presence">[Inc-presence] <name/> element contains 'Inc.' with a full stop. Remove the full stop.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-Inc-presence" test="matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')" role="warning" id="Inc-presence">[Inc-presence] <name/> element contains 'Inc.' with a full stop. Remove the full stop.</report>
       
-      <report test="matches(.,' [Aa]nd [Aa]nd ')" role="warning" id="andand-presence">[andand-presence] <name/> element contains ' and and ' which is very likely to be incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hkbnb-andand-presence" test="matches(.,' [Aa]nd [Aa]nd ')" role="warning" id="andand-presence">[andand-presence] <name/> element contains ' and and ' which is very likely to be incorrect.</report>
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#figurefigure-presence" test="matches(.,'[Ff]igure [Ff]igure')" role="warning" id="figurefigure-presence">[figurefigure-presence] <name/> element contains ' figure figure ' which is very likely to be incorrect.</report>
       
-      <report test="matches(translate(.,'—– ','-- '),'[\+\-]\p{Zs}+/\p{Zs}?[\+\-]|[\+\-]\p{Zs}?/\p{Zs}+[\+\-]')" role="warning" id="plus-minus-presence">[plus-minus-presence] <name/> element contains two plus or minus signs separated by a space and a forward slash (such as '+ /-'). Should the space be removed? - <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hkbnb-plus-minus-presence" test="matches(translate(.,'—– ','-- '),'[\+\-]\p{Zs}+/\p{Zs}?[\+\-]|[\+\-]\p{Zs}?/\p{Zs}+[\+\-]')" role="warning" id="plus-minus-presence">[plus-minus-presence] <name/> element contains two plus or minus signs separated by a space and a forward slash (such as '+ /-'). Should the space be removed? - <value-of select="."/>
       </report>
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supplementalfigure-presence" test="not(ancestor::sub-article) and matches(.,'\p{Zs}?[Ss]upplemental [Ff]igure')" role="warning" id="supplementalfigure-presence">[supplementalfigure-presence] <name/> element contains the phrase ' Supplemental figure ' which almost certainly needs updating. <name/> starts with - <value-of select="substring(.,1,25)"/>
@@ -7321,9 +7321,9 @@
       
       <report test="matches(.,'&amp;#x\d')" role="warning" id="broken-unicode-presence">[broken-unicode-presence] <name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
       
-      <report test="not(ancestor::sub-article) and not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))" role="warning" id="extra-full-stop-presence">[extra-full-stop-presence] <name/> element contains what looks two full stops right next to each other (..) - Is that correct? - <value-of select="."/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-extra-full-stop-presence" test="not(ancestor::sub-article) and not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))" role="warning" id="extra-full-stop-presence">[extra-full-stop-presence] <name/> element contains what looks two full stops right next to each other (..) - Is that correct? - <value-of select="."/>.</report>
       
-      <report test="not(local-name()='code') and not(inline-formula|element-citation|code|disp-formula|table-wrap|list|inline-graphic|supplementary-material|break) and matches(replace(.,' ',' '),'\s\s+')" role="warning" id="extra-space-presence">[extra-space-presence] <name/> element contains two or more spaces right next to each other - it is very likely that only 1 space is necessary - <value-of select="."/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-extra-space-presence" test="not(local-name()='code') and not(inline-formula|element-citation|code|disp-formula|table-wrap|list|inline-graphic|supplementary-material|break) and matches(replace(.,' ',' '),'\s\s+')" role="warning" id="extra-space-presence">[extra-space-presence] <name/> element contains two or more spaces right next to each other - it is very likely that only 1 space is necessary - <value-of select="."/>.</report>
       
       <report test="contains(.,'&#x9D;')" role="error" id="operating-system-command-presence">[operating-system-command-presence] <name/> element contains an operating system command character '&#x9D;' (unicode string: &amp;#x9D;) which should very likely be replaced/removed. - <value-of select="."/>
       </report>
@@ -7332,27 +7332,27 @@
   <pattern id="unallowed-symbol-tests-sup-pattern">
     <rule context="sup" id="unallowed-symbol-tests-sup">		
       
-      <report test="contains(.,'©')" role="error" id="copyright-symbol-sup">[copyright-symbol-sup] '<name/>' element contains the copyright symbol, '©', which is not allowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-copyright-symbol-sup" test="contains(.,'©')" role="error" id="copyright-symbol-sup">[copyright-symbol-sup] '<name/>' element contains the copyright symbol, '©', which is not allowed.</report>
       
-      <report test="contains(.,'™')" role="error" id="trademark-symbol-1-sup">[trademark-symbol-1-sup] '<name/>' element contains the trademark symbol, '™', which is not allowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-trademark-symbol-1-sup" test="contains(.,'™')" role="error" id="trademark-symbol-1-sup">[trademark-symbol-1-sup] '<name/>' element contains the trademark symbol, '™', which is not allowed.</report>
       
-      <report test=". = 'TM'" role="warning" id="trademark-symbol-2-sup">[trademark-symbol-2-sup] '<name/>' element contains the text 'TM', which means that it resembles the trademark symbol. The trademark symbol is not allowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-trademark-symbol-2-sup" test=". = 'TM'" role="warning" id="trademark-symbol-2-sup">[trademark-symbol-2-sup] '<name/>' element contains the text 'TM', which means that it resembles the trademark symbol. The trademark symbol is not allowed.</report>
       
-      <report test="contains(.,'®')" role="error" id="reg-trademark-symbol-sup">[reg-trademark-symbol-sup] '<name/>' element contains the registered trademark symbol, '®', which is not allowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-reg-trademark-symbol-sup" test="contains(.,'®')" role="error" id="reg-trademark-symbol-sup">[reg-trademark-symbol-sup] '<name/>' element contains the registered trademark symbol, '®', which is not allowed.</report>
       
-      <report test="contains(.,'°')" role="error" id="degree-symbol-sup">[degree-symbol-sup] '<name/>' element contains the degree symbol, '°', which is unnecessary. It does not need to be superscript.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-degree-symbol-sup" test="contains(.,'°')" role="error" id="degree-symbol-sup">[degree-symbol-sup] '<name/>' element contains the degree symbol, '°', which is unnecessary. It does not need to be superscript.</report>
       
-      <report test="contains(.,'○')" role="warning" id="white-circle-symbol-sup">[white-circle-symbol-sup] '<name/>' element contains the white circle symbol, '○'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-white-circle-symbol-sup" test="contains(.,'○')" role="warning" id="white-circle-symbol-sup">[white-circle-symbol-sup] '<name/>' element contains the white circle symbol, '○'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
       
-      <report test="contains(.,'∘')" role="warning" id="ring-op-symbol-sup">[ring-op-symbol-sup] '<name/>' element contains the Ring Operator symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-ring-op-symbol-sup" test="contains(.,'∘')" role="warning" id="ring-op-symbol-sup">[ring-op-symbol-sup] '<name/>' element contains the Ring Operator symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
       
-      <report test="contains(.,'˚')" role="warning" id="ring-diacritic-symbol-sup">[ring-diacritic-symbol-sup] '<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-ring-diacritic-symbol-sup" test="contains(.,'˚')" role="warning" id="ring-diacritic-symbol-sup">[ring-diacritic-symbol-sup] '<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
     </rule>
   </pattern>
   <pattern id="underline-tests-pattern">
     <rule context="underline" id="underline-tests">
       
-      <report test="matches(.,'^\p{P}*$')" role="warning" id="underline-test-1">[underline-test-1] '<name/>' element only contains punctuation - <value-of select="."/> - Should it have underline formatting?</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hd9o3-underline-test-1" test="matches(.,'^\p{P}*$')" role="warning" id="underline-test-1">[underline-test-1] '<name/>' element only contains punctuation - <value-of select="."/> - Should it have underline formatting?</report>
       
     </rule>
   </pattern>
@@ -8090,11 +8090,11 @@
     <rule context="article[not(@article-type=($notice-article-types,'article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]" id="p-punctuation">
       <let name="para" value="replace(.,' ',' ')"/>
       
-      <assert test="matches($para,'\p{P}\p{Zs}*?$')" role="warning" id="p-punctuation-test">[p-punctuation-test] paragraph doesn't end with punctuation - Is this correct?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-punctuation-test" test="matches($para,'\p{P}\p{Zs}*?$')" role="warning" id="p-punctuation-test">[p-punctuation-test] paragraph doesn't end with punctuation - Is this correct?</assert>
       
-      <assert test="matches($para,'\.\)?\p{Zs}*?$|:\p{Zs}*?$|\?\p{Zs}*?$|!\p{Zs}*?$|\.”\p{Zs}*?|\.&quot;\p{Zs}*?')" role="warning" id="p-bracket-test">[p-bracket-test] paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-bracket-test" test="matches($para,'\.\)?\p{Zs}*?$|:\p{Zs}*?$|\?\p{Zs}*?$|!\p{Zs}*?$|\.”\p{Zs}*?|\.&quot;\p{Zs}*?')" role="warning" id="p-bracket-test">[p-bracket-test] paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</assert>
       
-      <report test="matches(.,'\p{Zs}$')" role="warning" id="p-space-test">[p-space-test] paragraph ends with space(s). Is this correct? '<value-of select="."/>'</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-space-test" test="matches(.,'\p{Zs}$')" role="warning" id="p-space-test">[p-space-test] paragraph ends with space(s). Is this correct? '<value-of select="."/>'</report>
     </rule>
   </pattern>
   <pattern id="italic-house-style-pattern">
@@ -8102,7 +8102,7 @@
       
       
 
-      <report test="matches(.,'et al[\.]?')" role="warning" id="final-et-al-italic-test">[final-et-al-italic-test] <name/> element contains 'et al.' - this should not be in italics (eLife house style).</report>  
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-final-et-al-italic-test" test="matches(.,'et al[\.]?')" role="warning" id="final-et-al-italic-test">[final-et-al-italic-test] <name/> element contains 'et al.' - this should not be in italics (eLife house style).</report>  
       
         
       
@@ -8142,11 +8142,11 @@
       <let name="roman-count" value="sum(for $x in $latin-terms//*:list[@list-type='roman']//*:match return number($x/@count))"/>
       <let name="italic-count" value="sum(for $x in $latin-terms//*:list[@list-type='italic']//*:match return number($x/@count))"/>
       
-      <report test="($italic-count != 0) and ($roman-count gt $italic-count)" role="warning" id="latin-italic-info">[latin-italic-info] Latin terms are not consistently either roman or italic. There are <value-of select="$roman-count"/> roman terms which is more common, and <value-of select="$italic-count"/> italic term(s). The following terms should be unitalicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='italic'])"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7l5o-latin-italic-info" test="($italic-count != 0) and ($roman-count gt $italic-count)" role="warning" id="latin-italic-info">[latin-italic-info] Latin terms are not consistently either roman or italic. There are <value-of select="$roman-count"/> roman terms which is more common, and <value-of select="$italic-count"/> italic term(s). The following terms should be unitalicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='italic'])"/>.</report>
       
-      <report test="($roman-count != 0) and ($italic-count gt $roman-count)" role="warning" id="latin-roman-info">[latin-roman-info] Latin terms are not consistently either roman or italic. There are <value-of select="$italic-count"/> italic terms which is more common, and <value-of select="$roman-count"/> roman term(s). The following terms should be italicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='roman'])"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7l5o-latin-roman-info" test="($roman-count != 0) and ($italic-count gt $roman-count)" role="warning" id="latin-roman-info">[latin-roman-info] Latin terms are not consistently either roman or italic. There are <value-of select="$italic-count"/> italic terms which is more common, and <value-of select="$roman-count"/> roman term(s). The following terms should be italicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='roman'])"/>.</report>
       
-      <report test="($roman-count != 0) and ($italic-count = $roman-count)" role="warning" id="latin-conformance-info">[latin-conformance-info] Latin terms are not consistently either roman or italic. There are an equal number of italic (<value-of select="$italic-count"/>) and roman (<value-of select="$roman-count"/>) terms. The following terms are italicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='italic'])"/>. The following terms are unitalicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='roman'])"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7l5o-latin-conformance-info" test="($roman-count != 0) and ($italic-count = $roman-count)" role="warning" id="latin-conformance-info">[latin-conformance-info] Latin terms are not consistently either roman or italic. There are an equal number of italic (<value-of select="$italic-count"/>) and roman (<value-of select="$roman-count"/>) terms. The following terms are italicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='italic'])"/>. The following terms are unitalicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='roman'])"/>.</report>
     </rule>
   </pattern>
   <pattern id="pubmed-link-pattern">
@@ -8317,9 +8317,9 @@
       <let name="pre-token" value="substring($pre-text, string-length($pre-text), 1)"/>
       <let name="post-token" value="substring($post-text, 1, 1)"/>
       
-      <assert test="(substring(.,1,1) = (' ',' ')) or ($pre-token='') or matches($pre-token,'[\p{Zs}\p{P}]')" role="warning" id="italic-org-test-1">[italic-org-test-1] There is no space between the organism name '<value-of select="."/>' and its preceding text - '<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>'. Is this correct or is there a missing space?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hkbnb-italic-org-test-1" test="(substring(.,1,1) = (' ',' ')) or ($pre-token='') or matches($pre-token,'[\p{Zs}\p{P}]')" role="warning" id="italic-org-test-1">[italic-org-test-1] There is no space between the organism name '<value-of select="."/>' and its preceding text - '<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>'. Is this correct or is there a missing space?</assert>
       
-      <assert test="(substring(., string-length(.), 1) = (' ',' ')) or ($post-token='') or matches($post-token,'[\p{Zs}\p{P}]')" role="warning" id="italic-org-test-2">[italic-org-test-2] There is no space between the organism name '<value-of select="."/>' and its following text - '<value-of select="concat(.,substring($post-text,1,10))"/>'. Is this correct or is there a missing space?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hkbnb-italic-org-test-2" test="(substring(., string-length(.), 1) = (' ',' ')) or ($post-token='') or matches($post-token,'[\p{Zs}\p{P}]')" role="warning" id="italic-org-test-2">[italic-org-test-2] There is no space between the organism name '<value-of select="."/>' and its following text - '<value-of select="concat(.,substring($post-text,1,10))"/>'. Is this correct or is there a missing space?</assert>
     </rule>
   </pattern>
   <pattern id="sub-sup-tests-pattern">

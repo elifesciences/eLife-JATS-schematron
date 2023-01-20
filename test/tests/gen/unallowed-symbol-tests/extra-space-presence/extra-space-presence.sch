@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
-      <report test="not(local-name()='code') and not(inline-formula|element-citation|code|disp-formula|table-wrap|list|inline-graphic|supplementary-material|break) and matches(replace(.,' ',' '),'\s\s+')" role="warning" id="extra-space-presence">
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-extra-space-presence" test="not(local-name()='code') and not(inline-formula|element-citation|code|disp-formula|table-wrap|list|inline-graphic|supplementary-material|break) and matches(replace(.,' ',' '),'\s\s+')" role="warning" id="extra-space-presence">
         <name/> element contains two or more spaces right next to each other - it is very likely that only 1 space is necessary - <value-of select="."/>.</report>
     </rule>
   </pattern>

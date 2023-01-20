@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="sup" id="unallowed-symbol-tests-sup">
-      <report test="contains(.,'○')" role="warning" id="white-circle-symbol-sup">'<name/>' element contains the white circle symbol, '○'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-white-circle-symbol-sup" test="contains(.,'○')" role="warning" id="white-circle-symbol-sup">'<name/>' element contains the white circle symbol, '○'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

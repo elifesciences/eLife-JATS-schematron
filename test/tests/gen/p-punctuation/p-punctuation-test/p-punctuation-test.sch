@@ -1221,7 +1221,7 @@
   <pattern id="house-style">
     <rule context="article[not(@article-type=($notice-article-types,'article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]" id="p-punctuation">
       <let name="para" value="replace(.,' ',' ')"/>
-      <assert test="matches($para,'\p{P}\p{Zs}*?$')" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-punctuation-test" test="matches($para,'\p{P}\p{Zs}*?$')" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

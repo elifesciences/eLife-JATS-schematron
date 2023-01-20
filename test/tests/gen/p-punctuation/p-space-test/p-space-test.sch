@@ -1221,7 +1221,7 @@
   <pattern id="house-style">
     <rule context="article[not(@article-type=($notice-article-types,'article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]" id="p-punctuation">
       <let name="para" value="replace(.,' ',' ')"/>
-      <report test="matches(.,'\p{Zs}$')" role="warning" id="p-space-test">paragraph ends with space(s). Is this correct? '<value-of select="."/>'</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-space-test" test="matches(.,'\p{Zs}$')" role="warning" id="p-space-test">paragraph ends with space(s). Is this correct? '<value-of select="."/>'</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -17479,6 +17479,7 @@
       <xsl:if test="$open-curly gt $close-curly">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$open-curly gt $close-curly">
             <xsl:attribute name="id">bracket-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17500,6 +17501,7 @@
       <xsl:if test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\)')) and ($open-curly lt $close-curly)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\)')) and ($open-curly lt $close-curly)">
             <xsl:attribute name="id">bracket-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17521,6 +17523,7 @@
       <xsl:if test="$open-square gt $close-square">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$open-square gt $close-square">
             <xsl:attribute name="id">bracket-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17542,6 +17545,7 @@
       <xsl:if test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\]')) and ($open-square lt $close-square)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\]')) and ($open-square lt $close-square)">
             <xsl:attribute name="id">bracket-test-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -35682,6 +35686,7 @@
       <xsl:if test="contains(.,'©')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'©')">
             <xsl:attribute name="id">copyright-symbol</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-copyright-symbol</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -35696,6 +35701,7 @@
       <xsl:if test="contains(.,'™')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'™')">
             <xsl:attribute name="id">trademark-symbol</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-trademark-symbol</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -35710,6 +35716,7 @@
       <xsl:if test="contains(.,'®')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'®')">
             <xsl:attribute name="id">reg-trademark-symbol</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-reg-trademark-symbol</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -35724,6 +35731,7 @@
       <xsl:if test="matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,' [Ii]nc\. |[Ii]nc\.\)|[Ii]nc\.,')">
             <xsl:attribute name="id">Inc-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-Inc-presence</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -35738,6 +35746,7 @@
       <xsl:if test="matches(.,' [Aa]nd [Aa]nd ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,' [Aa]nd [Aa]nd ')">
             <xsl:attribute name="id">andand-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hkbnb-andand-presence</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -35767,6 +35776,7 @@
       <xsl:if test="matches(translate(.,'—– ','-- '),'[\+\-]\p{Zs}+/\p{Zs}?[\+\-]|[\+\-]\p{Zs}?/\p{Zs}+[\+\-]')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(translate(.,'—– ','-- '),'[\+\-]\p{Zs}+/\p{Zs}?[\+\-]|[\+\-]\p{Zs}?/\p{Zs}+[\+\-]')">
             <xsl:attribute name="id">plus-minus-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hkbnb-plus-minus-presence</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -35964,6 +35974,7 @@
       <xsl:if test="not(ancestor::sub-article) and not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(ancestor::sub-article) and not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))">
             <xsl:attribute name="id">extra-full-stop-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-extra-full-stop-presence</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -35980,6 +35991,7 @@
       <xsl:if test="not(local-name()='code') and not(inline-formula|element-citation|code|disp-formula|table-wrap|list|inline-graphic|supplementary-material|break) and matches(replace(.,' ',' '),'\s\s+')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(local-name()='code') and not(inline-formula|element-citation|code|disp-formula|table-wrap|list|inline-graphic|supplementary-material|break) and matches(replace(.,' ',' '),'\s\s+')">
             <xsl:attribute name="id">extra-space-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-extra-space-presence</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36025,6 +36037,7 @@
       <xsl:if test="contains(.,'©')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'©')">
             <xsl:attribute name="id">copyright-symbol-sup</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-copyright-symbol-sup</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36039,6 +36052,7 @@
       <xsl:if test="contains(.,'™')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'™')">
             <xsl:attribute name="id">trademark-symbol-1-sup</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-trademark-symbol-1-sup</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36053,6 +36067,7 @@
       <xsl:if test=". = 'TM'">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=". = 'TM'">
             <xsl:attribute name="id">trademark-symbol-2-sup</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-trademark-symbol-2-sup</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36067,6 +36082,7 @@
       <xsl:if test="contains(.,'®')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'®')">
             <xsl:attribute name="id">reg-trademark-symbol-sup</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-reg-trademark-symbol-sup</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36081,6 +36097,7 @@
       <xsl:if test="contains(.,'°')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'°')">
             <xsl:attribute name="id">degree-symbol-sup</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-degree-symbol-sup</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36095,6 +36112,7 @@
       <xsl:if test="contains(.,'○')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'○')">
             <xsl:attribute name="id">white-circle-symbol-sup</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-white-circle-symbol-sup</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36109,6 +36127,7 @@
       <xsl:if test="contains(.,'∘')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'∘')">
             <xsl:attribute name="id">ring-op-symbol-sup</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-ring-op-symbol-sup</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36123,6 +36142,7 @@
       <xsl:if test="contains(.,'˚')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'˚')">
             <xsl:attribute name="id">ring-diacritic-symbol-sup</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-ring-diacritic-symbol-sup</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36149,6 +36169,7 @@
       <xsl:if test="matches(.,'^\p{P}*$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^\p{P}*$')">
             <xsl:attribute name="id">underline-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hd9o3-underline-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40336,6 +40357,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($para,'\p{P}\p{Zs}*?$')">
                <xsl:attribute name="id">p-punctuation-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-punctuation-test</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40351,6 +40373,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($para,'\.\)?\p{Zs}*?$|:\p{Zs}*?$|\?\p{Zs}*?$|!\p{Zs}*?$|\.”\p{Zs}*?|\.&quot;\p{Zs}*?')">
                <xsl:attribute name="id">p-bracket-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-bracket-test</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40364,6 +40387,7 @@
       <xsl:if test="matches(.,'\p{Zs}$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Zs}$')">
             <xsl:attribute name="id">p-space-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-space-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40390,6 +40414,7 @@
       <xsl:if test="matches(.,'et al[\.]?')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'et al[\.]?')">
             <xsl:attribute name="id">pre-et-al-italic-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-et-al-italic-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40404,6 +40429,7 @@
       <xsl:if test="matches(.,'[Ii]n [Vv]itro')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Ii]n [Vv]itro')">
             <xsl:attribute name="id">pre-in-vitro-italic-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-in-vitro-italic-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40418,6 +40444,7 @@
       <xsl:if test="matches(.,'[Ii]n [Vv]ivo')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Ii]n [Vv]ivo')">
             <xsl:attribute name="id">pre-in-vivo-italic-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-in-vivo-italic-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40432,6 +40459,7 @@
       <xsl:if test="matches(.,'[Ee]x [Vv]ivo')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Ee]x [Vv]ivo')">
             <xsl:attribute name="id">pre-ex-vivo-italic-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-ex-vivo-italic-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40446,6 +40474,7 @@
       <xsl:if test="matches(.,'[Aa] [Pp]riori')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Aa] [Pp]riori')">
             <xsl:attribute name="id">pre-a-priori-italic-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-a-priori-italic-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40460,6 +40489,7 @@
       <xsl:if test="matches(.,'[Aa] [Pp]osteriori')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Aa] [Pp]osteriori')">
             <xsl:attribute name="id">pre-a-posteriori-italic-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-a-posteriori-italic-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40474,6 +40504,7 @@
       <xsl:if test="matches(.,'[Dd]e [Nn]ovo')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Dd]e [Nn]ovo')">
             <xsl:attribute name="id">pre-de-novo-italic-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-de-novo-italic-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40488,6 +40519,7 @@
       <xsl:if test="matches(.,'[Ii]n [Uu]tero')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Ii]n [Uu]tero')">
             <xsl:attribute name="id">pre-in-utero-italic-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-in-utero-italic-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40502,6 +40534,7 @@
       <xsl:if test="matches(.,'[Ii]n [Nn]atura')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Ii]n [Nn]atura')">
             <xsl:attribute name="id">pre-in-natura-italic-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-in-natura-italic-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40516,6 +40549,7 @@
       <xsl:if test="matches(.,'[Ii]n [Ss]itu')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Ii]n [Ss]itu')">
             <xsl:attribute name="id">pre-in-situ-italic-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-in-situ-italic-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40530,6 +40564,7 @@
       <xsl:if test="matches(.,'[Ii]n [Pp]lanta')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Ii]n [Pp]lanta')">
             <xsl:attribute name="id">pre-in-planta-italic-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-in-planta-italic-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40544,6 +40579,7 @@
       <xsl:if test="matches(.,'[Rr]ete [Mm]irabile')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Rr]ete [Mm]irabile')">
             <xsl:attribute name="id">pre-rete-mirabile-italic-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-rete-mirabile-italic-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40558,6 +40594,7 @@
       <xsl:if test="matches(.,'[Nn]omen [Nn]ovum')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Nn]omen [Nn]ovum')">
             <xsl:attribute name="id">pre-nomen-novum-italic-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-nomen-novum-italic-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40572,6 +40609,7 @@
       <xsl:if test="matches(.,'^[Ss]ensu$| [Ss]ensu$|^[Ss]ensu | [Ss]ensu ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^[Ss]ensu$| [Ss]ensu$|^[Ss]ensu | [Ss]ensu ')">
             <xsl:attribute name="id">pre-sensu-italic-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-sensu-italic-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40586,6 +40624,7 @@
       <xsl:if test="matches(.,'[Aa]d [Ll]ibitum')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Aa]d [Ll]ibitum')">
             <xsl:attribute name="id">pre-ad-libitum-italic-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-ad-libitum-italic-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -40600,6 +40639,7 @@
       <xsl:if test="matches(.,'[Ii]n [Oo]vo')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Ii]n [Oo]vo')">
             <xsl:attribute name="id">pre-in-ovo-italic-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-in-ovo-italic-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -41353,6 +41393,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(substring(.,1,1) = (' ',' ')) or ($pre-token='') or matches($pre-token,'[\p{Zs}\p{P}]')">
                <xsl:attribute name="id">italic-org-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hkbnb-italic-org-test-1</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -41372,6 +41413,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(substring(., string-length(.), 1) = (' ',' ')) or ($post-token='') or matches($post-token,'[\p{Zs}\p{P}]')">
                <xsl:attribute name="id">italic-org-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hkbnb-italic-org-test-2</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>

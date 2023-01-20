@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="sup" id="unallowed-symbol-tests-sup">
-      <report test="contains(.,'°')" role="error" id="degree-symbol-sup">'<name/>' element contains the degree symbol, '°', which is unnecessary. It does not need to be superscript.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-degree-symbol-sup" test="contains(.,'°')" role="error" id="degree-symbol-sup">'<name/>' element contains the degree symbol, '°', which is unnecessary. It does not need to be superscript.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="sup" id="unallowed-symbol-tests-sup">
-      <report test=". = 'TM'" role="warning" id="trademark-symbol-2-sup">'<name/>' element contains the text 'TM', which means that it resembles the trademark symbol. The trademark symbol is not allowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-trademark-symbol-2-sup" test=". = 'TM'" role="warning" id="trademark-symbol-2-sup">'<name/>' element contains the text 'TM', which means that it resembles the trademark symbol. The trademark symbol is not allowed.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

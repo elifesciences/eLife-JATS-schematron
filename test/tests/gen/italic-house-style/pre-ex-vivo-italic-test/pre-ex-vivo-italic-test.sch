@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="italic[not(ancestor::ref) and not(ancestor::sub-article)]" id="italic-house-style">
-      <report test="matches(.,'[Ee]x [Vv]ivo')" role="warning" id="pre-ex-vivo-italic-test">
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-ex-vivo-italic-test" test="matches(.,'[Ee]x [Vv]ivo')" role="warning" id="pre-ex-vivo-italic-test">
         <name/> element contains 'ex vivo' - this should not be in italics (eLife house style).</report>
     </rule>
   </pattern>
