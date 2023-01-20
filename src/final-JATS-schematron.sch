@@ -7887,7 +7887,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-appendix-check-2" test="ancestor::body and matches(.,'^[Ss]upplementary |^[Ss]upplemental ')" role="warning" id="sec-title-appendix-check-2">[sec-title-appendix-check-2] Should the section titled '<value-of select="."/>' be captured as an appendix?</report>
       
-      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-abbr-check" test="matches(.,'^[Aa]bbreviation[s]?')" role="warning" id="sec-title-abbr-check">[sec-title-abbr-check] Section title contains the word abbreviation - '<value-of select="."/>'. Is it an abbreviation section? eLife house style is to define abbreviations in the text when they are first mentioned.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hp09b-sec-title-abbr-check" test="matches(.,'^[Aa]bbreviation[s]?')" role="warning" id="sec-title-abbr-check">[sec-title-abbr-check] Section title contains the word abbreviation - '<value-of select="."/>'. Is it an abbreviation section? eLife house style is to define abbreviations in the text when they are first mentioned.</report>
       
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-content-mandate" test="not(*) and (normalize-space(.)='')" role="error" id="sec-title-content-mandate">[sec-title-content-mandate] Section title must not be empty.</report>
       

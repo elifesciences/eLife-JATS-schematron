@@ -39920,7 +39920,7 @@
       <xsl:if test="matches(.,'^[Aa]bbreviation[s]?')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^[Aa]bbreviation[s]?')">
             <xsl:attribute name="id">sec-title-abbr-check</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-abbr-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hp09b-sec-title-abbr-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
