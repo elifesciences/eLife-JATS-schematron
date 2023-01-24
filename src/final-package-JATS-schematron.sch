@@ -6500,7 +6500,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/rri-ds-5k19v560#rrid-test" test="($text-count gt $count)" role="warning" id="rrid-test">'<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://identifiers.org/RRID/RRID:'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
       
-      <report test="matches($t,$org-regex) and not(descendant::italic[contains(.,e:org-conform($t))]) and not(descendant::element-citation)" role="warning" id="org-test">
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h6d61-org-test" test="matches($t,$org-regex) and not(descendant::italic[contains(.,e:org-conform($t))]) and not(descendant::element-citation)" role="warning" id="org-test">
         <name/> element contains an organism - <value-of select="e:org-conform($t)"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
       
       <report see="https://elifeproduction.slab.com/posts/code-blocks-947pcamv#code-test" test="not(descendant::monospace) and not(descendant::code) and ($code-text != '')" role="warning" id="code-test">
@@ -6514,7 +6514,7 @@
         <name/> element contains the text '+cells' or '±cells' which is very likely to be incorrect spacing - <value-of select="."/>
       </report>
       
-      <report test="matches(.,'˚') and not(descendant::p[matches(.,'˚')]) and not(descendant::td[matches(.,'˚')]) and not(descendant::th[matches(.,'˚')])" role="warning" id="ring-diacritic-symbol-test">'<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hrt08-ring-diacritic-symbol-test" test="matches(.,'˚') and not(descendant::p[matches(.,'˚')]) and not(descendant::td[matches(.,'˚')]) and not(descendant::th[matches(.,'˚')])" role="warning" id="ring-diacritic-symbol-test">'<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
       
       <report test="matches(.,'[Tt]ype\p{Zs}?[Oo]ne\p{Zs}?[Dd]iabetes') and not(descendant::p[matches(.,'[Tt]ype\p{Zs}?[Oo]ne\p{Zs}?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Tt]ype\p{Zs}?[Oo]ne\p{Zs}?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Tt]ype\p{Zs}?[Oo]ne\p{Zs}?[Dd]iabetes')])" role="error" id="diabetes-1-test">'<name/>' element contains the phrase 'Type one diabetes'. The number should not be spelled out, this should be 'Type 1 diabetes'.</report>
       
