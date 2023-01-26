@@ -38247,7 +38247,7 @@
                <xsl:value-of select="data-title[1]"/>
                <xsl:text/>' has a 'http://www.ebi.ac.uk/pdbe/emdb/empiar' type link, but the database name is not 'Electron Microscopy Public Image Archive' - <xsl:text/>
                <xsl:value-of select="source[1]"/>
-               <xsl:text/>. Is that correct? https://elifesciences.gitbook.io/productionhowto/-M1eY9ikxECYR-0OcnGt/article-details/content/data-availability#data-empiar-test-1</svrl:text>
+               <xsl:text/>. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
