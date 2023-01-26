@@ -18,8 +18,8 @@ declare variable $outputDir := substring-before(base-uri($sch),'/schematron.sch'
 (: repo root :)
 declare variable $root := substring-before($outputDir,'/src');
 
-(: copy edit schematron file :)
-declare variable $copy-edit-sch := doc(concat($outputDir,'/copy-edit.sch'));
+(: schematron file for preprints :)
+declare variable $rp-sch := doc(concat($outputDir,'/rp-schematron.sch'));
 
 (
   for $sch in $sch/sch:schema
@@ -37,6 +37,8 @@ declare variable $copy-edit-sch := doc(concat($outputDir,'/copy-edit.sch'));
   let $final-xsl := schematron:compile($final-sch)
   (: schematron for final-package - niche use :)
   let $final-package-sch :=  elife:sch2final-package($sch)
+  (: schematron for reviewed preprints :)
+  let $rp-xsl := schematron:compile($rp-sch)
   (: Generate xspec specific sch :)
   let $xspec-sch := elife:sch2xspec-sch($sch)
   (: Generate xspec file from xspec specific sch :)
@@ -52,18 +54,11 @@ declare variable $copy-edit-sch := doc(concat($outputDir,'/copy-edit.sch'));
     file:write(($outputDir||'/pre-JATS-schematron.xsl'),$pre-xsl),
     file:write(($outputDir||'/dl-schematron.xsl'),$dl-xsl),
     file:write(($outputDir||'/final-JATS-schematron.xsl'),$final-xsl),
+    file:write(($outputDir||'/rp-schematron.xsl'),$rp-xsl),
     
     file:write(($outputDir||'/final-package-JATS-schematron.sch'),$final-package-sch),
     file:write(($root||'/test/xspec/schematron.sch'),$xspec-sch),
     file:write(($root||'/test/xspec/schematron.xspec'),$xspec)
-  )
-,
-
-  for $sch2 in $copy-edit-sch/sch:schema
-  let $copy-edit-xspec := elife:copy-edit2xspec($sch2)
-  return (
-    file:write(($root||'/test/xspec/copy-edit.sch'),$sch2),
-    file:write(($root||'/test/xspec/copy-edit.xspec'),$copy-edit-xspec)
   )
 ,
   
