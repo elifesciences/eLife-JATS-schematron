@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="kwd-dupe-test.sch"?>
+<!--Context: article-meta/kwd-group[@kwd-group-type='research-organism']/kwd
+Test: report    preceding-sibling::kwd = .
+Message: research-organism keywords must be distinct. This one containing  is not. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <kwd-group kwd-group-type='research-organism'>
+          <kwd>C. Elegans</kwd>
+          <kwd>C. Elegans</kwd>
+          <kwd>Drosophila</kwd>
+          <kwd>Drosophila</kwd>
+        </kwd-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

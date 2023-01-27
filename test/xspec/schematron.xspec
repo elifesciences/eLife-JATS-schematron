@@ -3565,6 +3565,16 @@
         <x:expect-report id="kwd-child-test" role="error"/>
         <x:expect-not-assert id="ro-kwd-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="kwd-dupe-test-pass">
+        <x:context href="../tests/gen/ro-kwd-tests/kwd-dupe-test/pass.xml"/>
+        <x:expect-not-report id="kwd-dupe-test" role="error"/>
+        <x:expect-not-assert id="ro-kwd-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="kwd-dupe-test-fail">
+        <x:context href="../tests/gen/ro-kwd-tests/kwd-dupe-test/fail.xml"/>
+        <x:expect-report id="kwd-dupe-test" role="error"/>
+        <x:expect-not-assert id="ro-kwd-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="custom-meta-group-tests">
       <x:scenario label="custom-meta-presence-pass">
