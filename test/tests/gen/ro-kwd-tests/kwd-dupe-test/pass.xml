@@ -6,7 +6,7 @@ Message: research-organism keywords must be distinct. This one containing  is no
   <article>
     <front>
       <article-meta>
-        <kwd-group kwd-group-type='research-organism'>
+        <kwd-group kwd-group-type="research-organism">
           <kwd>C. Elegans</kwd>
           <kwd>D. Elegans</kwd>
           <kwd>Drosophila</kwd>
