@@ -9864,6 +9864,18 @@
         <x:expect-not-assert id="prc-reviewer-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="prc-pub-review-tests">
+      <x:scenario label="prc-pub-review-test-1-pass">
+        <x:context href="../tests/gen/prc-pub-review-tests/prc-pub-review-test-1/pass.xml"/>
+        <x:expect-not-report id="prc-pub-review-test-1" role="error"/>
+        <x:expect-not-assert id="prc-pub-review-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="prc-pub-review-test-1-fail">
+        <x:context href="../tests/gen/prc-pub-review-tests/prc-pub-review-test-1/fail.xml"/>
+        <x:expect-report id="prc-pub-review-test-1" role="error"/>
+        <x:expect-not-assert id="prc-pub-review-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="research-advance-test">
       <x:scenario label="related-articles-test-1-pass">
         <x:context href="../tests/gen/research-advance-test/related-articles-test-1/pass.xml"/>
@@ -19207,6 +19219,16 @@
       <x:scenario label="KRT-presence-fail">
         <x:context href="../tests/gen/KRT-check/KRT-presence/fail.xml"/>
         <x:expect-report id="KRT-presence" role="warning"/>
+        <x:expect-not-assert id="KRT-check-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="krt-missing-pass">
+        <x:context href="../tests/gen/KRT-check/krt-missing/pass.xml"/>
+        <x:expect-not-report id="krt-missing" role="warning"/>
+        <x:expect-not-assert id="KRT-check-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="krt-missing-fail">
+        <x:context href="../tests/gen/KRT-check/krt-missing/fail.xml"/>
+        <x:expect-report id="krt-missing" role="warning"/>
         <x:expect-not-assert id="KRT-check-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

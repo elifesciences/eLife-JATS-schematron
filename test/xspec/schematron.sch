@@ -5222,6 +5222,12 @@
       <assert test="anonymous" role="error" id="prc-reviewer-test-2">A reviewer contrib in a PRC article must have a child anonymous element. This one does not - <value-of select="."/>.</assert>
     </rule>
   </pattern>
+  <pattern id="prc-pub-review-tests-pattern">
+    <rule context="article[e:is-prc(.)]" id="prc-pub-review-tests">
+      
+      <report test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')]          or         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')]         )" role="error" id="prc-pub-review-test-1">This article has individual public reviews, and also either a consensus or a joint public review. This must be incorrect.</report>
+    </rule>
+  </pattern>
   
   <pattern id="research-advance-test-pattern">
     <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" id="research-advance-test">
@@ -8361,6 +8367,8 @@
       
       <report test="($subj = 'Research Article') and not(descendant::table-wrap[@id = 'keyresource']) and (descendant::sec[@sec-type=$methods]/*[2]/local-name()='table-wrap')" role="warning" id="KRT-presence">'<value-of select="$subj"/>' does not have a key resources table, but the <value-of select="descendant::sec[@sec-type=$methods]/title"/> starts with a table. Should this table be a key resources table?</report>
       
+      <report test="($subj = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance')) and         not(descendant::table-wrap[contains(@id,'keyresource')]) and         not(descendant::supplementary-material[contains(lower-case(caption[1]/title[1]),'key resource')])" role="warning" id="krt-missing">This is a '<value-of select="$subj"/>' and it does not have a key resources table (or a supplementary file containing a KR table). Should it have one?</report>
+      
     </rule>
   </pattern>
   <pattern id="KRT-td-checks-pattern">
@@ -9496,6 +9504,7 @@
       <assert test="descendant::sub-article[@article-type='referee-report' and contains(lower-case(front-stub[1]/title-group[1]/article-title[1]),'public review')]/front-stub" role="error" id="ref-report-reviewer-tests-xspec-assert">sub-article[@article-type='referee-report' and contains(lower-case(front-stub[1]/title-group[1]/article-title[1]),'public review')]/front-stub must be present.</assert>
       <assert test="descendant::anonymous" role="error" id="anonymous-tests-xspec-assert">anonymous must be present.</assert>
       <assert test="descendant::sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']]" role="error" id="prc-reviewer-tests-xspec-assert">sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']] must be present.</assert>
+      <assert test="descendant::article[e:is-prc(.)]" role="error" id="prc-pub-review-tests-xspec-assert">article[e:is-prc(.)] must be present.</assert>
       <assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" role="error" id="research-advance-test-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta must be present.</assert>
       <assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta" role="error" id="insight-test-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta must be present.</assert>
       <assert test="descendant::article[@article-type='correction']//article-meta" role="error" id="correction-test-xspec-assert">article[@article-type='correction']//article-meta must be present.</assert>
