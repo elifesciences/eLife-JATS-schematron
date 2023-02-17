@@ -5041,6 +5041,12 @@
       <assert test="anonymous" role="error" id="prc-reviewer-test-2">[prc-reviewer-test-2] A reviewer contrib in a PRC article must have a child anonymous element. This one does not - <value-of select="."/>.</assert>
     </rule>
   </pattern>
+  <pattern id="prc-pub-review-tests-pattern">
+    <rule context="article[e:is-prc(.)]" id="prc-pub-review-tests">
+      
+      <report test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')]          or         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')]         )" role="error" id="prc-pub-review-test-1">[prc-pub-review-test-1] This article has individual public reviews, and also either a consensus or a joint public review. This must be incorrect.</report>
+    </rule>
+  </pattern>
   
   <pattern id="research-advance-test-pattern">
     <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" id="research-advance-test">
@@ -7951,7 +7957,7 @@
       
       <report test="($subj = 'Research Article') and not(descendant::table-wrap[@id = 'keyresource']) and (descendant::sec[@sec-type=$methods]/*[2]/local-name()='table-wrap')" role="warning" id="KRT-presence">[KRT-presence] '<value-of select="$subj"/>' does not have a key resources table, but the <value-of select="descendant::sec[@sec-type=$methods]/title"/> starts with a table. Should this table be a key resources table?</report>
       
-      <report test="($subj = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance')) and         not(descendant::table-wrap[contains(@id,'keyresource')]) and         not(descendant::supplementary-material[contains(lower-case(caption[1]/title[1]),'key resource')])" role="warning" id="krt-missing">[krt-missing] '<value-of select="$subj"/>' does not have a key resources table (or a supplementary file containing a KR table). Should it have one?</report>
+      <report test="($subj = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance')) and         not(descendant::table-wrap[contains(@id,'keyresource')]) and         not(descendant::supplementary-material[contains(lower-case(caption[1]/title[1]),'key resource')])" role="warning" id="krt-missing">[krt-missing] This is a '<value-of select="$subj"/>' and it does not have a key resources table (or a supplementary file containing a KR table). Should it have one?</report>
       
     </rule>
   </pattern>

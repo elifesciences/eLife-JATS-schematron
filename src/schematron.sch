@@ -7338,6 +7338,18 @@ else self::*/local-name() = $allowed-p-blocks"
         id="prc-reviewer-test-2">A reviewer contrib in a PRC article must have a child anonymous element. This one does not - <value-of select="."/>.</assert>
     </rule>
     
+    <rule context="article[e:is-prc(.)]" 
+      id="prc-pub-review-tests">
+      
+      <report test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (
+        sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')] 
+        or
+        sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')]
+        )"
+        role="error" 
+        id="prc-pub-review-test-1">This article has individual public reviews, and also either a consensus or a joint public review. This must be incorrect.</report>
+    </rule>
+    
   </pattern>
   
   <pattern id="related-articles">

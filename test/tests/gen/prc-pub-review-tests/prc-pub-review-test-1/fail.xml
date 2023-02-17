@@ -1,0 +1,32 @@
+<?oxygen SCHSchema="prc-pub-review-test-1.sch"?>
+<!--Context: article[e:is-prc(.)]
+Test: report    sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and ( sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')] or sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')] )
+Message: This article has individual public reviews, and also either a consensus or a joint public review. This must be incorrect. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>publishing-route</meta-name>
+            <meta-value>prc</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+    <sub-article article-type="referee-report">
+      <front-stub>
+        <title-group>
+          <article-title>Reviewer #1 (public review)</article-title>
+        </title-group>
+      </front-stub>
+    </sub-article>
+    <sub-article article-type="referee-report">
+      <front-stub>
+        <title-group>
+          <article-title>Consensus public review</article-title>
+        </title-group>
+      </front-stub>
+    </sub-article>
+  </article>
+</root>
