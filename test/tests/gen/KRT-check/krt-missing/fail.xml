@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="krt-missing.sch"?>
+<!--Context: article
+Test: report    ($subj = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance')) and not(descendant::table-wrap[contains(@id,'keyresource')]) and not(descendant::supplementary-material[contains(lower-case(caption[1]/title[1]),'key resource')])
+Message: This is a '' and it does not have a key resources table (or a supplementary file containing a KR table). Should it have one? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <article-categories>
+          <subj-group subj-group-type="display-channel">
+            <subject>Research Article</subject>
+          </subj-group>
+        </article-categories>
+      </article-meta>
+    </front>
+  </article>
+</root>

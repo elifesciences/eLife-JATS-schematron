@@ -40232,6 +40232,20 @@
                <xsl:text/> starts with a table. Should this table be a key resources table?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="($subj = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance')) and         not(descendant::table-wrap[contains(@id,'keyresource')]) and         not(descendant::supplementary-material[contains(lower-case(caption[1]/title[1]),'key resource')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($subj = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance')) and not(descendant::table-wrap[contains(@id,'keyresource')]) and not(descendant::supplementary-material[contains(lower-case(caption[1]/title[1]),'key resource')])">
+            <xsl:attribute name="id">krt-missing</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[krt-missing] '<xsl:text/>
+               <xsl:value-of select="$subj"/>
+               <xsl:text/>' does not have a key resources table (or a supplementary file containing a KR table). Should it have one?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M514"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M514"/>
