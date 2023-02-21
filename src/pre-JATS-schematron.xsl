@@ -37349,9 +37349,9 @@
 
 		    <!--ASSERT warning-->
       <xsl:choose>
-         <xsl:when test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|zenodo')"/>
+         <xsl:when test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|research square|zenodo')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|zenodo')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|research square|zenodo')">
                <xsl:attribute name="id">not-rxiv-test</xsl:attribute>
                <xsl:attribute name="see">https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#not-rxiv-test</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
