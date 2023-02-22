@@ -40062,8 +40062,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="($subj = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance')) and         not(descendant::table-wrap[contains(@id,'keyresource')]) and         not(descendant::supplementary-material[contains(lower-case(caption[1]/title[1]),'key resource')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($subj = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance')) and not(descendant::table-wrap[contains(@id,'keyresource')]) and not(descendant::supplementary-material[contains(lower-case(caption[1]/title[1]),'key resource')])">
+      <xsl:if test="($subj = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance')) and matches(lower-case(.),'key\sresources?\stable') and         not(descendant::table-wrap[contains(@id,'keyresource')]) and         not(descendant::supplementary-material[contains(lower-case(caption[1]/title[1]),'key resource')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($subj = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance')) and matches(lower-case(.),'key\sresources?\stable') and not(descendant::table-wrap[contains(@id,'keyresource')]) and not(descendant::supplementary-material[contains(lower-case(caption[1]/title[1]),'key resource')])">
             <xsl:attribute name="id">krt-missing</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -40071,7 +40071,7 @@
             </xsl:attribute>
             <svrl:text>[krt-missing] This is a '<xsl:text/>
                <xsl:value-of select="$subj"/>
-               <xsl:text/>' and it does not have a key resources table (or a supplementary file containing a KR table). Should it have one?</svrl:text>
+               <xsl:text/>', it mentions a key resources table, but it does not have a key resources table (or a supplementary file containing a KR table). Should it have one?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M513"/>
