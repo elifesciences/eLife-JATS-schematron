@@ -12754,11 +12754,11 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="KRT-presence">'<value-of select="$subj"/>' does not have a key resources table, but the <value-of select="descendant::sec[@sec-type=$methods]/title"/> starts with a table. Should this table be a key resources table?</report>
       
-      <report test="($subj = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance')) and
+      <report test="($subj = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance')) and matches(lower-case(.),'key\sresources?\stable') and
         not(descendant::table-wrap[contains(@id,'keyresource')]) and
         not(descendant::supplementary-material[contains(lower-case(caption[1]/title[1]),'key resource')])" 
         role="warning" 
-        id="krt-missing">This is a '<value-of select="$subj"/>' and it does not have a key resources table (or a supplementary file containing a KR table). Should it have one?</report>
+        id="krt-missing">This is a '<value-of select="$subj"/>', it mentions a key resources table, but it does not have a key resources table (or a supplementary file containing a KR table). Should it have one?</report>
       
     </rule>
     

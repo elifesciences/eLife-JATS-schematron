@@ -1222,7 +1222,7 @@
     <rule context="article" id="KRT-check">
       <let name="subj" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="methods" value="('model', 'methods', 'materials|methods')"/>
-      <report test="($subj = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance')) and         not(descendant::table-wrap[contains(@id,'keyresource')]) and         not(descendant::supplementary-material[contains(lower-case(caption[1]/title[1]),'key resource')])" role="warning" id="krt-missing">This is a '<value-of select="$subj"/>' and it does not have a key resources table (or a supplementary file containing a KR table). Should it have one?</report>
+      <report test="($subj = ('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance')) and matches(lower-case(.),'key\sresources?\stable') and         not(descendant::table-wrap[contains(@id,'keyresource')]) and         not(descendant::supplementary-material[contains(lower-case(caption[1]/title[1]),'key resource')])" role="warning" id="krt-missing">This is a '<value-of select="$subj"/>', it mentions a key resources table, but it does not have a key resources table (or a supplementary file containing a KR table). Should it have one?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
