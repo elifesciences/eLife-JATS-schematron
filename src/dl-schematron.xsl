@@ -1803,7 +1803,7 @@
             <svrl:text>
                <xsl:text/>
                <xsl:value-of select="if ($is-prc) then 'Public reviews and recomendations for the authors' else 'A decision letter'"/>
-               <xsl:text/>should almost always be present for research articles. This one doesn't have one. Check that this is correct.</svrl:text>
+               <xsl:text/> should almost always be present for research articles. This one doesn't have one. Check that this is correct.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 

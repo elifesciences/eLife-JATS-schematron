@@ -1322,7 +1322,7 @@
 	  <let name="is-prc" value="e:is-prc(.)"/>
 	  
 	  <report test="if ($is-prc) then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])      else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])" role="warning" flag="dl-ar" id="test-r-article-d-letter">
-        <value-of select="if ($is-prc) then 'Public reviews and recomendations for the authors' else 'A decision letter'"/>should almost always be present for research articles. This one doesn't have one. Check that this is correct.</report>
+        <value-of select="if ($is-prc) then 'Public reviews and recomendations for the authors' else 'A decision letter'"/> should almost always be present for research articles. This one doesn't have one. Check that this is correct.</report>
 	  
 	  <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#final-test-r-article-d-letter-feat" test="$disp-channel = 'Feature Article' and not(sub-article[@article-type='decision-letter'])" role="warning" flag="dl-ar" id="final-test-r-article-d-letter-feat">A decision letter should be present for research articles. Feature template 5s almost always have a decision letter, but this one does not. Is that correct?</report>
 		
@@ -2332,6 +2332,8 @@
       
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-8" test="matches(@id,'^abs[1-9]$')" role="error" id="clintrial-conformance-8">
         <name/> must have an @id in the format 'abs1'. <value-of select="@id"/> does not conform to this convention.</assert>
+      
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-5" test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])" role="error" id="clintrial-conformance-9">A section weith the title <value-of select="title"/> in the abstract must have at least one related-object element that contains all the information related to the clinical trial. This one does not.</report>
     </rule>
   </pattern>
   <pattern id="clintrial-related-object-pattern">
