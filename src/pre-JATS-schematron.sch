@@ -1265,7 +1265,7 @@
 	  <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/> 
 	  <let name="is-prc" value="e:is-prc(.)"/>
 	  
-	  <report test="if ($is-prc) then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])      else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])" role="warning" flag="dl-ar" id="test-r-article-d-letter">[test-r-article-d-letter] <value-of select="if ($is-prc) then 'Public reviews and recomendations for the authors' else 'A decision letter'"/>should almost always be present for research articles. This one doesn't have one. Check that this is correct.</report>
+	  <report test="if ($is-prc) then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])      else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])" role="warning" flag="dl-ar" id="test-r-article-d-letter">[test-r-article-d-letter] <value-of select="if ($is-prc) then 'Public reviews and recomendations for the authors' else 'A decision letter'"/> should almost always be present for research articles. This one doesn't have one. Check that this is correct.</report>
 	  
 	  
 		
@@ -2227,6 +2227,8 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-7" test="child::sec" role="error" id="clintrial-conformance-7">[clintrial-conformance-7] Nested secs are not allowed in abstracts. Sec with the id <value-of select="@id"/> and title '<value-of select="title"/>' has child sections.</report>
       
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-8" test="matches(@id,'^abs[1-9]$')" role="error" id="clintrial-conformance-8">[clintrial-conformance-8] <name/> must have an @id in the format 'abs1'. <value-of select="@id"/> does not conform to this convention.</assert>
+      
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-5" test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])" role="error" id="clintrial-conformance-9">[clintrial-conformance-9] A section weith the title <value-of select="title"/> in the abstract must have at least one related-object element that contains all the information related to the clinical trial. This one does not.</report>
     </rule>
   </pattern>
   <pattern id="clintrial-related-object-pattern">

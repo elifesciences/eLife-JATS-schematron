@@ -1223,7 +1223,7 @@
       <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="is-prc" value="e:is-prc(.)"/>
       <report test="if ($is-prc) then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])      else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])" role="warning" flag="dl-ar" id="test-r-article-d-letter">
-        <value-of select="if ($is-prc) then 'Public reviews and recomendations for the authors' else 'A decision letter'"/>should almost always be present for research articles. This one doesn't have one. Check that this is correct.</report>
+        <value-of select="if ($is-prc) then 'Public reviews and recomendations for the authors' else 'A decision letter'"/> should almost always be present for research articles. This one doesn't have one. Check that this is correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

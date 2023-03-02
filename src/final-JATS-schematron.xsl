@@ -6114,7 +6114,7 @@
             </xsl:attribute>
             <svrl:text>[test-r-article-d-letter] <xsl:text/>
                <xsl:value-of select="if ($is-prc) then 'Public reviews and recomendations for the authors' else 'A decision letter'"/>
-               <xsl:text/>should almost always be present for research articles. This one doesn't have one. Check that this is correct.</svrl:text>
+               <xsl:text/> should almost always be present for research articles. This one doesn't have one. Check that this is correct.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -10766,6 +10766,21 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--REPORT error-->
+      <xsl:if test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])">
+            <xsl:attribute name="id">clintrial-conformance-9</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-5</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[clintrial-conformance-9] A section weith the title <xsl:text/>
+               <xsl:value-of select="title"/>
+               <xsl:text/> in the abstract must have at least one related-object element that contains all the information related to the clinical trial. This one does not.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M130"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M130"/>
