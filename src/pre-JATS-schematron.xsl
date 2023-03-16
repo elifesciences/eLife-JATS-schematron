@@ -28817,8 +28817,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))">
+      <xsl:if test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9%&lt;&gt;\[\]]+$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9%&lt;&gt;\[\]]+$'))">
             <xsl:attribute name="id">pre-pub-id-test-2</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-pub-id-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
