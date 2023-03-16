@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="pub-id-pattern">
     <rule context="element-citation/pub-id" id="pub-id-tests">
-      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-pub-id-test-2" test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="error" id="final-pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-pub-id-test-2" test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9%&lt;&gt;\[\]]+$'))" role="error" id="final-pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/>
       </report>
     </rule>
   </pattern>

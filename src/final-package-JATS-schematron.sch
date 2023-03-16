@@ -6249,7 +6249,7 @@
       
       
       
-      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-pub-id-test-2" test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="error" id="final-pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-pub-id-test-2" test="(@pub-id-type='doi') and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9%&lt;&gt;\[\]]+$'))" role="error" id="final-pub-id-test-2">pub-id is tagged as a doi, but it is not one - <value-of select="."/>
       </report>
       
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pub-id-test-3" test="(@pub-id-type='pmid') and not(matches(.,'^\d{3,10}$'))" role="error" id="pub-id-test-3">pub-id is tagged as a pmid, but it is not a number made up of between 3 and 10 digits - <value-of select="."/>
