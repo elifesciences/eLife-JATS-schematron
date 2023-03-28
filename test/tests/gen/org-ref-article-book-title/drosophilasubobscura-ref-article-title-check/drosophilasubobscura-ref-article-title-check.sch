@@ -1221,7 +1221,7 @@
   <pattern id="org-pattern">
     <rule context="element-citation/article-title|element-citation/chapter-title|element-citation/source|element-citation/data-title" id="org-ref-article-book-title">
       <let name="lc" value="lower-case(.)"/>
-      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#drosophilasubobscura-ref-article-title-check" test="matches($lc,'drosophila\p{Zs}?subobscura') and not(italic[contains(text() ,'Drosophila subobscura')])" role="info" id="drosophilasubobscura-ref-article-title-check">
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#drosophilasubobscura-ref-article-title-check" test="matches($lc,'drosophila\p{Zs}?subobscura') and not(italic[contains(.,'Drosophila subobscura')])" role="info" id="drosophilasubobscura-ref-article-title-check">
         <name/> contains an organism - 'Drosophila subobscura' - but there is no italic element with that correct capitalisation or spacing.</report>
     </rule>
   </pattern>

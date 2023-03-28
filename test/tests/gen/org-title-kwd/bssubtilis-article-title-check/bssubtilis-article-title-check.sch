@@ -1221,7 +1221,7 @@
   <pattern id="org-pattern">
     <rule context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd" id="org-title-kwd">
       <let name="lc" value="lower-case(.)"/>
-      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-bssubtilis-article-title-check" test="matches($lc,'b\.\p{Zs}?subtilis') and not(italic[contains(text() ,'B. subtilis')])" role="warning" id="bssubtilis-article-title-check">
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-bssubtilis-article-title-check" test="matches($lc,'b\.\p{Zs}?subtilis') and not(italic[contains(.,'B. subtilis')])" role="warning" id="bssubtilis-article-title-check">
         <name/> contains an organism - 'B. subtilis' - but there is no italic element with that correct capitalisation or spacing.</report>
     </rule>
   </pattern>

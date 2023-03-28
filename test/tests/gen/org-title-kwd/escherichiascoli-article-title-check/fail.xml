@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="escherichiascoli-article-title-check.sch"?>
 <!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
-Test: report    matches($lc,'escherichia\p{Zs}?coli') and not(italic[contains(text() ,'Escherichia coli')])
+Test: report    matches($lc,'escherichia\p{Zs}?coli') and not(italic[contains(.,'Escherichia coli')])
 Message:  contains an organism - 'Escherichia coli' - but there is no italic element with that correct capitalisation or spacing. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>

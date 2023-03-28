@@ -1221,7 +1221,7 @@
   <pattern id="org-pattern">
     <rule context="element-citation/article-title|element-citation/chapter-title|element-citation/source|element-citation/data-title" id="org-ref-article-book-title">
       <let name="lc" value="lower-case(.)"/>
-      <report test="matches($lc,'p\.\p{Zs}?grangeri') and not(italic[contains(text() ,'P. grangeri')])" role="info" id="pgrangeri-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. grangeri' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'p\.\p{Zs}?grangeri') and not(italic[contains(.,'P. grangeri')])" role="info" id="pgrangeri-ref-article-title-check">ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. grangeri' - but there is no italic element with that correct capitalisation or spacing.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
