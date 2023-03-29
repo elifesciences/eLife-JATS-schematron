@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="add-files-4.sch"?>
+<!--Context: sec[@sec-type='supplementary-material']
+Test: report    descendant::supplementary-material[matches(lower-case(label[1]),'transparent reporting form')] and descendant::supplementary-material[matches(lower-case(label[1]),'mdar checklist')]
+Message: This article has both a transparent reporting form and an MDAR checklist - there should only be one. Please check with the eLife team who will decide which should be retained. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sec sec-type="supplementary-material">
+      <supplementary-material id="mdar">
+        <label>MDAR checklist</label>
+        <media/>
+      </supplementary-material>
+    </sec>
+  </article>
+</root>

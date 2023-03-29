@@ -6663,6 +6663,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="add-files-1">The additional files section (sec[@sec-type='supplementary-material']) must have a title which is 'Additional files'. This one does not.</assert>
       
+      <report test="descendant::supplementary-material[matches(lower-case(label[1]),'transparent reporting form')] and descendant::supplementary-material[matches(lower-case(label[1]),'mdar checklist')]" 
+        role="error" 
+        id="add-files-4">This article has both a transparent reporting form and an MDAR checklist - there should only be one. Please check with the eLife team who will decide which should be retained.</report>
+      
     </rule>
     
     <rule context="article[@article-type='research-article']" id="trf-presence">
