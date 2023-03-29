@@ -22171,6 +22171,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--REPORT error-->
+      <xsl:if test="descendant::supplementary-material[matches(lower-case(label[1]),'transparent reporting form')] and descendant::supplementary-material[matches(lower-case(label[1]),'mdar checklist')]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::supplementary-material[matches(lower-case(label[1]),'transparent reporting form')] and descendant::supplementary-material[matches(lower-case(label[1]),'mdar checklist')]">
+            <xsl:attribute name="id">add-files-4</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[add-files-4] This article has both a transparent reporting form and an MDAR checklist - there should only be one. Please check with the eLife team who will decide which should be retained.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M326"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M326"/>
