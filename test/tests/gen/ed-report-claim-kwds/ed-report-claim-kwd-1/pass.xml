@@ -11,8 +11,8 @@ Message: Keyword contains , but it is in a 'claim-importance' keyword group, mea
           <article-title>eLife assessment</article-title>
         </title-group>
         <kwd-group kwd-group-type="claim-importance">
-          <kwd>Noteworthy</kwd>
-          <kwd>Flawed</kwd>
+          <kwd>Landmark</kwd>
+          <kwd>Useful</kwd>
         </kwd-group>
         <kwd-group kwd-group-type="evidence-strength">
           <kwd>Compelling</kwd>
@@ -20,7 +20,7 @@ Message: Keyword contains , but it is in a 'claim-importance' keyword group, mea
         </kwd-group>
       </front-stub>
       <body>
-        <p>The terms in use are <bold>noteworthy</bold> but <bold>flawed</bold>. And the data is <bold>compelling</bold>, but <bold>incomplete</bold>.</p>
+        <p>The terms in use are <bold>landmark</bold> and <bold>useful</bold>. And the data is <bold>compelling</bold>, but <bold>incomplete</bold>.</p>
       </body>
     </sub-article>
   </article>
