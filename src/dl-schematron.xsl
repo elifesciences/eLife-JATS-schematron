@@ -2951,7 +2951,7 @@
 
 	  <!--RULE ed-report-claim-kwds-->
    <xsl:template match="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" priority="1000" mode="M81">
-      <xsl:variable name="allowed-vals" select="('Landmark', 'Fundamental', 'Important', 'Noteworthy', 'Useful', 'Flawed')"/>
+      <xsl:variable name="allowed-vals" select="('Landmark', 'Fundamental', 'Important', 'Valuable', 'Useful')"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>
@@ -2985,7 +2985,7 @@
 
 	  <!--RULE ed-report-evidence-kwds-->
    <xsl:template match="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" priority="1000" mode="M82">
-      <xsl:variable name="allowed-vals" select="('Tour-de-force', 'Compelling', 'Convincing', 'Solid', 'Incomplete', 'Inadequate')"/>
+      <xsl:variable name="allowed-vals" select="('Exceptional', 'Compelling', 'Convincing', 'Solid', 'Incomplete', 'Inadequate')"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>
@@ -3037,9 +3037,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="some $x in ancestor::sub-article[1]/body/p//bold satisfies lower-case($x)=lower-case(.)"/>
+         <xsl:when test="some $x in ancestor::sub-article[1]/body/p//bold satisfies contains(lower-case($x),lower-case(.))"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $x in ancestor::sub-article[1]/body/p//bold satisfies lower-case($x)=lower-case(.)">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $x in ancestor::sub-article[1]/body/p//bold satisfies contains(lower-case($x),lower-case(.))">
                <xsl:attribute name="id">ed-report-kwd-2</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>

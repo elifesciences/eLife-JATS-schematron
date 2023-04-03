@@ -4797,7 +4797,7 @@
   </pattern>
   <pattern id="ed-report-claim-kwds-pattern">
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" id="ed-report-claim-kwds">
-      <let name="allowed-vals" value="('Landmark', 'Fundamental', 'Important', 'Noteworthy', 'Useful', 'Flawed')"/>
+      <let name="allowed-vals" value="('Landmark', 'Fundamental', 'Important', 'Valuable', 'Useful')"/>
       
       <assert test=".=$allowed-vals" role="error" flag="dl-ar" id="ed-report-claim-kwd-1">[ed-report-claim-kwd-1] Keyword contains <value-of select="."/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/>
       </assert>
@@ -4806,7 +4806,7 @@
   </pattern>
   <pattern id="ed-report-evidence-kwds-pattern">
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" id="ed-report-evidence-kwds">
-      <let name="allowed-vals" value="('Tour-de-force', 'Compelling', 'Convincing', 'Solid', 'Incomplete', 'Inadequate')"/>
+      <let name="allowed-vals" value="('Exceptional', 'Compelling', 'Convincing', 'Solid', 'Incomplete', 'Inadequate')"/>
       
       <assert test=".=$allowed-vals" role="error" flag="dl-ar" id="ed-report-evidence-kwd-1">[ed-report-evidence-kwd-1] Keyword contains <value-of select="."/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/>
       </assert>
@@ -4817,7 +4817,7 @@
       
       <report test="preceding-sibling::kwd = ." role="error" flag="dl-ar" id="ed-report-kwd-1">[ed-report-kwd-1] Keyword contains <value-of select="."/>, there is another kwd with that value witin the same kwd-group, so this one is either incorrect or superfluous and should be deleted.</report>
       
-      <assert test="some $x in ancestor::sub-article[1]/body/p//bold satisfies lower-case($x)=lower-case(.)" role="error" flag="dl-ar" id="ed-report-kwd-2">[ed-report-kwd-2] Keyword contains <value-of select="."/>, but this term is not bolded in the text of the <value-of select="ancestor::front-stub/title-group/article-title"/>.</assert>
+      <assert test="some $x in ancestor::sub-article[1]/body/p//bold satisfies contains(lower-case($x),lower-case(.))" role="error" flag="dl-ar" id="ed-report-kwd-2">[ed-report-kwd-2] Keyword contains <value-of select="."/>, but this term is not bolded in the text of the <value-of select="ancestor::front-stub/title-group/article-title"/>.</assert>
       
       <report test="*" role="error" flag="dl-ar" id="ed-report-kwd-3">[ed-report-kwd-3] Keywords in <value-of select="ancestor::front-stub/title-group/article-title"/> cannot contain elements, only text. This one has: <value-of select="string-join(distinct-values(*/name()),'; ')"/>.</report>
       

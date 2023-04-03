@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="dec-letter-auth-response">
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" id="ed-report-claim-kwds">
-      <let name="allowed-vals" value="('Landmark', 'Fundamental', 'Important', 'Noteworthy', 'Useful', 'Flawed')"/>
+      <let name="allowed-vals" value="('Landmark', 'Fundamental', 'Important', 'Valuable', 'Useful')"/>
       <assert test=".=$allowed-vals" role="error" flag="dl-ar" id="ed-report-claim-kwd-1">Keyword contains <value-of select="."/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/>
       </assert>
     </rule>
