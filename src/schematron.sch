@@ -6932,7 +6932,7 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" id="ed-report-claim-kwds">
-      <let name="allowed-vals" value="('Landmark', 'Fundamental', 'Important', 'Noteworthy', 'Useful', 'Flawed')"/>
+      <let name="allowed-vals" value="('Landmark', 'Fundamental', 'Important', 'Valuable', 'Useful')"/>
       
       <assert test=".=$allowed-vals"
         role="error" 
@@ -6942,7 +6942,7 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" id="ed-report-evidence-kwds">
-      <let name="allowed-vals" value="('Tour-de-force', 'Compelling', 'Convincing', 'Solid', 'Incomplete', 'Inadequate')"/>
+      <let name="allowed-vals" value="('Exceptional', 'Compelling', 'Convincing', 'Solid', 'Incomplete', 'Inadequate')"/>
       
       <assert test=".=$allowed-vals"
         role="error" 
@@ -6957,7 +6957,7 @@ else self::*/local-name() = $allowed-p-blocks"
         flag="dl-ar"
         id="ed-report-kwd-1">Keyword contains <value-of select="."/>, there is another kwd with that value witin the same kwd-group, so this one is either incorrect or superfluous and should be deleted.</report>
       
-      <assert test="some $x in ancestor::sub-article[1]/body/p//bold satisfies lower-case($x)=lower-case(.)"
+      <assert test="some $x in ancestor::sub-article[1]/body/p//bold satisfies contains(lower-case($x),lower-case(.))"
         role="error" 
         flag="dl-ar"
         id="ed-report-kwd-2">Keyword contains <value-of select="."/>, but this term is not bolded in the text of the <value-of select="ancestor::front-stub/title-group/article-title"/>.</assert>

@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="ed-report-kwd-2.sch"?>
 <!--Context: sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd
-Test: assert    some $x in ancestor::sub-article[1]/body/p//bold satisfies lower-case($x)=lower-case(.)
+Test: assert    some $x in ancestor::sub-article[1]/body/p//bold satisfies contains(lower-case($x),lower-case(.))
 Message: Keyword contains , but this term is not bolded in the text of the . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
@@ -11,16 +11,16 @@ Message: Keyword contains , but this term is not bolded in the text of the . -->
           <article-title>eLife assessment</article-title>
         </title-group>
         <kwd-group kwd-group-type="claim-importance">
-          <kwd>Noteworthy</kwd>
-          <kwd>Flawed</kwd>
+          <kwd>Valuable</kwd>
         </kwd-group>
         <kwd-group kwd-group-type="evidence-strength">
           <kwd>Compelling</kwd>
+          <kwd>Inadequate</kwd>
           <kwd>Incomplete</kwd>
         </kwd-group>
       </front-stub>
       <body>
-        <p>The terms in use are noteworthy but <bold>flawed</bold>. And the data is compelling, but <bold>incomplete</bold>.</p>
+        <p>The terms in use are valuable but <bold>incomplete</bold>. And the data is compelling, but <bold>inadequate</bold>.</p>
       </body>
     </sub-article>
   </article>
