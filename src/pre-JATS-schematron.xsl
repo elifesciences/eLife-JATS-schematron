@@ -16763,7 +16763,7 @@
 
 	  <!--RULE th-child-tests-->
    <xsl:template match="th/*" priority="1000" mode="M216">
-      <xsl:variable name="allowed-blocks" select="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic', 'list')"/>
+      <xsl:variable name="allowed-blocks" select="('bold','italic','sup','sub','sc','underline','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic', 'list')"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>
@@ -16778,21 +16778,25 @@
                </xsl:attribute>
                <svrl:text>[th-child-test-1] th cannot contain <xsl:text/>
                   <xsl:value-of select="self::*/local-name()"/>
-                  <xsl:text/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code', 'inline-graphic', and 'inline-formula'.</svrl:text>
+                  <xsl:text/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'underline', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code', 'inline-graphic', and 'inline-formula'.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
 
 		    <!--REPORT warning-->
-      <xsl:if test="self::*/local-name() = 'bold'">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="self::*/local-name() = 'bold'">
+      <xsl:if test="name() = ('bold','underline') and . = ./parent::th">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="name() = ('bold','underline') and . = ./parent::th">
             <xsl:attribute name="id">th-child-test-2</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/tables-3nehcouh#th-child-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[th-child-test-2] th contains bold. Is this correct?</svrl:text>
+            <svrl:text>[th-child-test-2] The content of this th element is entirely in <xsl:text/>
+               <xsl:value-of select="name()"/>
+               <xsl:text/> emphasis - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. Is this correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M216"/>
