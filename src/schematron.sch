@@ -4899,17 +4899,17 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="th/*" id="th-child-tests">
-      <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic', 'list')"/> 
+      <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','underline','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic', 'list')"/> 
       
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#th-child-test-1" 
         test="self::*/local-name() = ($allowed-blocks)" 
         role="error" 
-        id="th-child-test-1">th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code', 'inline-graphic', and 'inline-formula'.</assert>
+        id="th-child-test-1">th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'underline', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code', 'inline-graphic', and 'inline-formula'.</assert>
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#th-child-test-2" 
-        test="self::*/local-name() = 'bold'" 
+        test="name() = ('bold','underline') and . = ./parent::th" 
         role="warning" 
-        id="th-child-test-2">th contains bold. Is this correct?</report>
+        id="th-child-test-2">The content of this th element is entirely in <value-of select="name()"/> emphasis - <value-of select="."/>. Is this correct?</report>
     </rule>
     
     <rule context="th" id="th-tests">

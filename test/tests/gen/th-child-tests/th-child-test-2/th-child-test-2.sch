@@ -1220,8 +1220,8 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="th/*" id="th-child-tests">
-      <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic', 'list')"/>
-      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#th-child-test-2" test="self::*/local-name() = 'bold'" role="warning" id="th-child-test-2">th contains bold. Is this correct?</report>
+      <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','underline','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic', 'list')"/>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#th-child-test-2" test="name() = ('bold','underline') and . = ./parent::th" role="warning" id="th-child-test-2">The content of this th element is entirely in <value-of select="name()"/> emphasis - <value-of select="."/>. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
