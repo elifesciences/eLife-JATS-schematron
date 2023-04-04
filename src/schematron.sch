@@ -5807,8 +5807,8 @@ else self::*/local-name() = $allowed-p-blocks"
         
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#conclusion-test-1"
         test="matches($title,'conclusions?')" 
-        role="error" 
-        id="conclusion-test-1">Top level section with title - <value-of select="."/> - should be made a level 2 section. Probably as a child of the <value-of select="preceding-sibling::sec[1]/title"/> section.</report>
+        role="warning" 
+        id="conclusion-test-1">Top level section title has the content '<value-of select="."/>' - should it be made a level 2 section? Potentially as a child of the <value-of select="preceding-sibling::sec[1]/title"/> section?</report>
       
     </rule>
     

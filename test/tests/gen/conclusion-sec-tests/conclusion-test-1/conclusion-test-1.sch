@@ -1222,7 +1222,7 @@
     <rule context="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body/sec/title" id="conclusion-sec-tests">
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="title" value="normalize-space(replace(lower-case(.),' ',' '))"/>
-      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#conclusion-test-1" test="matches($title,'conclusions?')" role="error" id="conclusion-test-1">Top level section with title - <value-of select="."/> - should be made a level 2 section. Probably as a child of the <value-of select="preceding-sibling::sec[1]/title"/> section.</report>
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#conclusion-test-1" test="matches($title,'conclusions?')" role="warning" id="conclusion-test-1">Top level section title has the content '<value-of select="."/>' - should it be made a level 2 section? Potentially as a child of the <value-of select="preceding-sibling::sec[1]/title"/> section?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

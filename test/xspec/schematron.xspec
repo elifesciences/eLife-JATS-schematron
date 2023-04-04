@@ -7497,12 +7497,12 @@
     <x:scenario label="conclusion-sec-tests">
       <x:scenario label="conclusion-test-1-pass">
         <x:context href="../tests/gen/conclusion-sec-tests/conclusion-test-1/pass.xml"/>
-        <x:expect-not-report id="conclusion-test-1" role="error"/>
+        <x:expect-not-report id="conclusion-test-1" role="warning"/>
         <x:expect-not-assert id="conclusion-sec-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="conclusion-test-1-fail">
         <x:context href="../tests/gen/conclusion-sec-tests/conclusion-test-1/fail.xml"/>
-        <x:expect-report id="conclusion-test-1" role="error"/>
+        <x:expect-report id="conclusion-test-1" role="warning"/>
         <x:expect-not-assert id="conclusion-sec-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

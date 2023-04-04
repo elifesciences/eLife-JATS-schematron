@@ -19348,20 +19348,20 @@
       <xsl:variable name="type" select="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <xsl:variable name="title" select="normalize-space(replace(lower-case(.),' ',' '))"/>
 
-		    <!--REPORT error-->
+		    <!--REPORT warning-->
       <xsl:if test="matches($title,'conclusions?')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($title,'conclusions?')">
             <xsl:attribute name="id">conclusion-test-1</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#conclusion-test-1</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[conclusion-test-1] Top level section with title - <xsl:text/>
+            <svrl:text>[conclusion-test-1] Top level section title has the content '<xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/> - should be made a level 2 section. Probably as a child of the <xsl:text/>
+               <xsl:text/>' - should it be made a level 2 section? Potentially as a child of the <xsl:text/>
                <xsl:value-of select="preceding-sibling::sec[1]/title"/>
-               <xsl:text/> section.</svrl:text>
+               <xsl:text/> section?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M264"/>
