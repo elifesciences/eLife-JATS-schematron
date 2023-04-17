@@ -7630,23 +7630,6 @@
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--ASSERT error-->
-      <xsl:choose>
-         <xsl:when test="empty($indistinct-orcids)"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="empty($indistinct-orcids)">
-               <xsl:attribute name="id">duplicate-orcid-test</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[duplicate-orcid-test] There is more than one author with the following ORCiD(s) - <xsl:text/>
-                  <xsl:value-of select="if (count($indistinct-orcids) gt 1) then concat(string-join($indistinct-orcids[position() != last()],', '),' and ',$indistinct-orcids[last()]) else $indistinct-orcids"/>
-                  <xsl:text/> - which must be incorrect.</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
-
 		    <!--REPORT error-->
       <xsl:if test="$article-type=$non-contribs and descendant::contrib[@contrib-type='author' and role]">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$article-type=$non-contribs and descendant::contrib[@contrib-type='author' and role]">

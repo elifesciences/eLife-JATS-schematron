@@ -1637,8 +1637,6 @@
       
       <assert test="empty($indistinct-names)" role="warning" id="duplicate-author-test">[duplicate-author-test] There is more than one author with the following name(s) - <value-of select="if (count($indistinct-names) gt 1) then concat(string-join($indistinct-names[position() != last()],', '),' and ',$indistinct-names[last()]) else $indistinct-names"/> - which is very likely be incorrect.</assert>
       
-      <assert test="empty($indistinct-orcids)" role="error" id="duplicate-orcid-test">[duplicate-orcid-test] There is more than one author with the following ORCiD(s) - <value-of select="if (count($indistinct-orcids) gt 1) then concat(string-join($indistinct-orcids[position() != last()],', '),' and ',$indistinct-orcids[last()]) else $indistinct-orcids"/> - which must be incorrect.</assert>
-      
       <report test="$article-type=$non-contribs and descendant::contrib[@contrib-type='author' and role]" role="error" id="non-contrib-contribs">[non-contrib-contribs] <value-of select="$article-type"/> type articles should not contain author contributions.</report>
       
     </rule>
