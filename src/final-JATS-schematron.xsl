@@ -37368,8 +37368,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^medrxiv$|^psyarxiv$|^paleorxiv$|^preprints$')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^medrxiv$|^psyarxiv$|^paleorxiv$|^preprints$')">
+      <xsl:if test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^africarxiv$|^arxiv$|^cell\s+sneak\s+peak$|^chemrxiv$|^chinaxiv$|^eartharxiv$|^medrxiv$|^osf\s+preprints$|^paleorxiv$|^peerj\s+preprints$|^preprints$|^preprints\.org$|^psyarxiv$|^research\s+square$|^scielo\s+preprints$|^ssrn$|^vixra$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^africarxiv$|^arxiv$|^cell\s+sneak\s+peak$|^chemrxiv$|^chinaxiv$|^eartharxiv$|^medrxiv$|^osf\s+preprints$|^paleorxiv$|^peerj\s+preprints$|^preprints$|^preprints\.org$|^psyarxiv$|^research\s+square$|^scielo\s+preprints$|^ssrn$|^vixra$')">
             <xsl:attribute name="id">journal-preprint-check</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/journal-references-i098980k#journal-preprint-check</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
