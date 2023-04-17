@@ -1219,19 +1219,17 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article/front/article-meta/contrib-group[1]" id="auth-contrib-group">
-      <let name="names" value="for $name in contrib[@contrib-type='author']/name[1] return e:get-name($name)"/>
-      <let name="indistinct-names" value="for $name in distinct-values($names) return $name[count($names[. = $name]) gt 1]"/>
-      <let name="orcids" value="for $x in contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid'] return substring-after($x,'orcid.org/')"/>
-      <let name="indistinct-orcids" value="for $orcid in distinct-values($orcids) return $orcid[count($orcids[. = $orcid]) gt 1]"/>
-      <let name="article-type" value="ancestor::article/@article-type"/>
-      <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', $notice-article-types)"/>
-      <assert test="empty($indistinct-orcids)" role="error" id="duplicate-orcid-test">There is more than one author with the following ORCiD(s) - <value-of select="if (count($indistinct-orcids) gt 1) then concat(string-join($indistinct-orcids[position() != last()],', '),' and ',$indistinct-orcids[last()]) else $indistinct-orcids"/> - which must be incorrect.</assert>
+    <rule context="article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))]" id="max-planck-fund-statement-tests">
+      <let name="corresp-authors" value="ancestor::article-meta/contrib-group[1]/contrib[@contrib-type='author' and @corresp='yes']"/>
+      <let name="nested-affs" value="$corresp-authors//aff"/>
+      <let name="corresp-author-rids" value="$corresp-authors/xref[@ref-type='aff']/@rid"/>
+      <let name="group-affs" value="ancestor::article-meta/contrib-group[1]/aff[@id=$corresp-author-rids]"/>
+      <report test="some $aff in ($nested-affs,$group-affs) satisfies matches(lower-case($aff),'^max[\p{Zs}-]+plan[ck]+|\p{Zs}max[\p{Zs}-]+plan[ck]+')" role="warning" id="max-planck-fund-statement">This article has a corresponding author that is affiliated with a Max Planck Institute, but the funding statement does not contain the text 'Open access funding provided by Max Planck Society.' Should it? The funding statement currently reads: <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/article-meta/contrib-group[1]" role="error" id="auth-contrib-group-xspec-assert">article/front/article-meta/contrib-group[1] must be present.</assert>
+      <assert test="descendant::article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))]" role="error" id="max-planck-fund-statement-tests-xspec-assert">article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))] must be present.</assert>
     </rule>
   </pattern>
 </schema>

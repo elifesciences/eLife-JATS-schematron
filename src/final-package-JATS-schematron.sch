@@ -1649,8 +1649,6 @@
       
       <assert test="empty($indistinct-names)" role="warning" id="duplicate-author-test">There is more than one author with the following name(s) - <value-of select="if (count($indistinct-names) gt 1) then concat(string-join($indistinct-names[position() != last()],', '),' and ',$indistinct-names[last()]) else $indistinct-names"/> - which is very likely be incorrect.</assert>
       
-      <assert test="empty($indistinct-orcids)" role="error" id="duplicate-orcid-test">There is more than one author with the following ORCiD(s) - <value-of select="if (count($indistinct-orcids) gt 1) then concat(string-join($indistinct-orcids[position() != last()],', '),' and ',$indistinct-orcids[last()]) else $indistinct-orcids"/> - which must be incorrect.</assert>
-      
       <report test="$article-type=$non-contribs and descendant::contrib[@contrib-type='author' and role]" role="error" id="non-contrib-contribs">
         <value-of select="$article-type"/> type articles should not contain author contributions.</report>
       
@@ -2527,7 +2525,18 @@
   <pattern id="wellcome-fund-statement-tests-pattern">
     <rule context="article-meta/funding-group[descendant::institution[lower-case(.)=('wellcome','wellcome trust')]]/funding-statement" id="wellcome-fund-statement-tests">
       
-      <assert test="matches(lower-case(.),'for the purpose of open access, the authors have applied a cc by public copyright license to any author accepted manuscript version arising from this submission\.$')" role="warning" id="wellcome-fund-statement">This article has Wellcome funding declared, but the funding statement does not end with "For the purpose of Open Access, the authors have applied a CC BY public copyright license to any Author Accepted Manuscript version arising from this submission." is that correct? The funding statement is currently <value-of select="."/>.</assert>
+      <assert test="matches(lower-case(.),'for the purpose of open access, the authors have applied a cc by public copyright license to any author accepted manuscript version arising from this submission\.')" role="warning" id="wellcome-fund-statement">This article has Wellcome funding declared, but the funding statement does not end with "For the purpose of Open Access, the authors have applied a CC BY public copyright license to any Author Accepted Manuscript version arising from this submission." is that correct? The funding statement is currently <value-of select="."/>.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="max-planck-fund-statement-tests-pattern">
+    <rule context="article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))]" id="max-planck-fund-statement-tests">
+      <let name="corresp-authors" value="ancestor::article-meta/contrib-group[1]/contrib[@contrib-type='author' and @corresp='yes']"/>
+      <let name="nested-affs" value="$corresp-authors//aff"/>
+      <let name="corresp-author-rids" value="$corresp-authors/xref[@ref-type='aff']/@rid"/>
+      <let name="group-affs" value="ancestor::article-meta/contrib-group[1]/aff[@id=$corresp-author-rids]"/>
+      
+      <report test="some $aff in ($nested-affs,$group-affs) satisfies matches(lower-case($aff),'^max[\p{Zs}-]+plan[ck]+|\p{Zs}max[\p{Zs}-]+plan[ck]+')" role="warning" id="max-planck-fund-statement">This article has a corresponding author that is affiliated with a Max Planck Institute, but the funding statement does not contain the text 'Open access funding provided by Max Planck Society.' Should it? The funding statement currently reads: <value-of select="."/>.</report>
       
     </rule>
   </pattern>
@@ -7886,7 +7895,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#volume-assert" test="not(comment[.='In press']) and not(volume)" role="warning" id="volume-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a volume. Is this right?</report>
       
-      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#journal-preprint-check" test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^arxiv$|^chemrxiv$|^peerj preprints$|^medrxiv$|^psyarxiv$|^paleorxiv$|^preprints$')" role="error" id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source[1]"/>, but it is captured as a journal not a preprint.</report>
+      <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#journal-preprint-check" test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^africarxiv$|^arxiv$|^cell\s+sneak\s+peak$|^chemrxiv$|^chinaxiv$|^eartharxiv$|^medrxiv$|^osf\s+preprints$|^paleorxiv$|^peerj\s+preprints$|^preprints$|^preprints\.org$|^psyarxiv$|^research\s+square$|^scielo\s+preprints$|^ssrn$|^vixra$')" role="error" id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source[1]"/>, but it is captured as a journal not a preprint.</report>
       
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#elife-ref-check" test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5,6}$|^10.7554/eLife\.\d{5,6}\.\d{3}$|^10.7554/eLife\.\d{5,6}\.sa[12]$'))" role="error" id="elife-ref-check">ref '<value-of select="ancestor::ref/@id"/>' is an <value-of select="source[1]"/> article, but it has no doi in the format 10.7554/eLife.00000, which must be incorrect.</report>
       

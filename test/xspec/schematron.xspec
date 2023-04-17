@@ -991,16 +991,6 @@
         <x:expect-assert id="duplicate-author-test" role="warning"/>
         <x:expect-not-assert id="auth-contrib-group-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="duplicate-orcid-test-pass">
-        <x:context href="../tests/gen/auth-contrib-group/duplicate-orcid-test/pass.xml"/>
-        <x:expect-not-assert id="duplicate-orcid-test" role="error"/>
-        <x:expect-not-assert id="auth-contrib-group-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="duplicate-orcid-test-fail">
-        <x:context href="../tests/gen/auth-contrib-group/duplicate-orcid-test/fail.xml"/>
-        <x:expect-assert id="duplicate-orcid-test" role="error"/>
-        <x:expect-not-assert id="auth-contrib-group-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="non-contrib-contribs-pass">
         <x:context href="../tests/gen/auth-contrib-group/non-contrib-contribs/pass.xml"/>
         <x:expect-not-report id="non-contrib-contribs" role="error"/>
@@ -3232,6 +3222,18 @@
         <x:context href="../tests/gen/wellcome-fund-statement-tests/wellcome-fund-statement/fail.xml"/>
         <x:expect-assert id="wellcome-fund-statement" role="warning"/>
         <x:expect-not-assert id="wellcome-fund-statement-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="max-planck-fund-statement-tests">
+      <x:scenario label="max-planck-fund-statement-pass">
+        <x:context href="../tests/gen/max-planck-fund-statement-tests/max-planck-fund-statement/pass.xml"/>
+        <x:expect-not-report id="max-planck-fund-statement" role="warning"/>
+        <x:expect-not-assert id="max-planck-fund-statement-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="max-planck-fund-statement-fail">
+        <x:context href="../tests/gen/max-planck-fund-statement-tests/max-planck-fund-statement/fail.xml"/>
+        <x:expect-report id="max-planck-fund-statement" role="warning"/>
+        <x:expect-not-assert id="max-planck-fund-statement-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="award-group-tests">

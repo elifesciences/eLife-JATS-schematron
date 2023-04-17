@@ -1,0 +1,44 @@
+<?oxygen SCHSchema="max-planck-fund-statement.sch"?>
+<!--Context: article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))]
+Test: report    some $aff in ($nested-affs,$group-affs) satisfies matches(lower-case($aff),'^max[\p{Zs}-]+plan[ck]+|\p{Zs}max[\p{Zs}-]+plan[ck]+')
+Message: This article has a corresponding author that is affiliated with a Max Planck Institute, but the funding statement does not contain the text 'Open access funding provided by Max Planck Society.' Should it? The funding statement currently reads: . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <xref ref-type="aff" rid="aff1"/>
+        </contrib>
+        <!-- either this author or the one below should flag -->
+        <contrib contrib-type="author" corresp="yes">
+          <aff>
+            <institution>misspelled Max Plank institute</institution>
+            <country>Germany</country>
+          </aff>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <xref ref-type="aff" rid="aff1"/>
+        </contrib>
+        <aff id="aff1">
+          <label>1</label>
+          <institution-wrap>
+            <institution-id institution-id-type="ror">https://ror.org/03ap2av50</institution-id>
+            <institution>Max Planck Institute of Neurobiology</institution>
+          </institution-wrap>
+          <country>Germany</country>
+        </aff>
+        <aff id="aff2">
+          <label>2</label>
+          <institution-wrap>
+            <institution-id institution-id-type="ror">https://ror.org/placeholder</institution-id>
+            <institution>Another institution that isn't pax mlanck</institution>
+          </institution-wrap>
+          <country>Germany</country>
+        </aff>
+      </contrib-group>
+      <funding-group>
+        <funding-statement>The funders had no role in study design, ... for publication.</funding-statement>
+      </funding-group>
+    </article-meta>
+  </article>
+</root>

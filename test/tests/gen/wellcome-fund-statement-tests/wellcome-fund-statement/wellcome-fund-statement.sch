@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/funding-group[descendant::institution[lower-case(.)=('wellcome','wellcome trust')]]/funding-statement" id="wellcome-fund-statement-tests">
-      <assert test="matches(lower-case(.),'for the purpose of open access, the authors have applied a cc by public copyright license to any author accepted manuscript version arising from this submission\.$')" role="warning" id="wellcome-fund-statement">This article has Wellcome funding declared, but the funding statement does not end with "For the purpose of Open Access, the authors have applied a CC BY public copyright license to any Author Accepted Manuscript version arising from this submission." is that correct? The funding statement is currently <value-of select="."/>.</assert>
+      <assert test="matches(lower-case(.),'for the purpose of open access, the authors have applied a cc by public copyright license to any author accepted manuscript version arising from this submission\.')" role="warning" id="wellcome-fund-statement">This article has Wellcome funding declared, but the funding statement does not end with "For the purpose of Open Access, the authors have applied a CC BY public copyright license to any Author Accepted Manuscript version arising from this submission." is that correct? The funding statement is currently <value-of select="."/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
