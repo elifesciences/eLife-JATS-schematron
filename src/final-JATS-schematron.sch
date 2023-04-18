@@ -5508,7 +5508,7 @@
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="diff" value="number($current-year) - number($year)"/>
       
-      <report test="($diff gt 1) or ($diff lt -1)" role="warning" id="data-old-and-gend">[data-old-and-gend] Dataset reference <value-of select="if (parent::ref) then parent::ref/@id else 'in data availability section'"/> is marked as generated but the year is <value-of select="$year"/>. Is this correct?</report>
+      <report test="($diff gt 1) or ($diff lt -1)" role="warning" id="final-data-old-and-gend">[final-data-old-and-gend] Dataset reference <value-of select="if (parent::ref) then parent::ref/@id else 'in data availability section'"/> is marked as generated but the year is <value-of select="$year"/>. Is this correct?</report>
       
     </rule>
   </pattern>

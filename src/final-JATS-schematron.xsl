@@ -26439,12 +26439,12 @@
 		    <!--REPORT warning-->
       <xsl:if test="($diff gt 1) or ($diff lt -1)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($diff gt 1) or ($diff lt -1)">
-            <xsl:attribute name="id">data-old-and-gend</xsl:attribute>
+            <xsl:attribute name="id">final-data-old-and-gend</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[data-old-and-gend] Dataset reference <xsl:text/>
+            <svrl:text>[final-data-old-and-gend] Dataset reference <xsl:text/>
                <xsl:value-of select="if (parent::ref) then parent::ref/@id else 'in data availability section'"/>
                <xsl:text/> is marked as generated but the year is <xsl:text/>
                <xsl:value-of select="$year"/>

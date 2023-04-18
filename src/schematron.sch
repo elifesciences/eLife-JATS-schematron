@@ -8087,7 +8087,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="($diff gt 1) or ($diff lt -1)" 
         role="warning" 
-        id="data-old-and-gend">Dataset reference <value-of select="if (parent::ref) then parent::ref/@id else 'in data availability section'"/> is marked as generated but the year is <value-of select="$year"/>. Is this correct?</report>
+        id="final-data-old-and-gend">Dataset reference <value-of select="if (parent::ref) then parent::ref/@id else 'in data availability section'"/> is marked as generated but the year is <value-of select="$year"/>. Is this correct?</report>
       
     </rule>
   </pattern>
