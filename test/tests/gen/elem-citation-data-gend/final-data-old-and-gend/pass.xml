@@ -1,14 +1,14 @@
-<?oxygen SCHSchema="data-old-and-gend.sch"?>
+<?oxygen SCHSchema="final-data-old-and-gend.sch"?>
 <!--Context: element-citation[@publication-type='data' and year and @specific-use=('generated','isSupplementedBy')]
 Test: report    ($diff gt 1) or ($diff lt -1)
 Message: Dataset reference  is marked as generated but the year is . Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <element-citation publication-type="data" specific-use="isSupplementedBy">
-      <year>2007c</year>
+      <year>2024c</year>
     </element-citation>
     <element-citation publication-type="data" specific-use="generated">
-      <year>2040</year>
+      <year>2024</year>
     </element-citation>
   </article>
 </root>

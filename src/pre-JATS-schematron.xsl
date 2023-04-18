@@ -26335,22 +26335,6 @@
       <xsl:variable name="year" select="replace(year[1],'[^\d]','')"/>
       <xsl:variable name="current-year" select="year-from-date(current-date())"/>
       <xsl:variable name="diff" select="number($current-year) - number($year)"/>
-
-		    <!--REPORT warning-->
-      <xsl:if test="($diff gt 1) or ($diff lt -1)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($diff gt 1) or ($diff lt -1)">
-            <xsl:attribute name="id">data-old-and-gend</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-old-and-gend] Dataset reference <xsl:text/>
-               <xsl:value-of select="if (parent::ref) then parent::ref/@id else 'in data availability section'"/>
-               <xsl:text/> is marked as generated but the year is <xsl:text/>
-               <xsl:value-of select="$year"/>
-               <xsl:text/>. Is this correct?</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
       <xsl:apply-templates select="*" mode="M411"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M411"/>

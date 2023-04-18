@@ -11049,14 +11049,14 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="elem-citation-data-gend">
-      <x:scenario label="data-old-and-gend-pass">
-        <x:context href="../tests/gen/elem-citation-data-gend/data-old-and-gend/pass.xml"/>
-        <x:expect-not-report id="data-old-and-gend" role="warning"/>
+      <x:scenario label="final-data-old-and-gend-pass">
+        <x:context href="../tests/gen/elem-citation-data-gend/final-data-old-and-gend/pass.xml"/>
+        <x:expect-not-report id="final-data-old-and-gend" role="warning"/>
         <x:expect-not-assert id="elem-citation-data-gend-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="data-old-and-gend-fail">
-        <x:context href="../tests/gen/elem-citation-data-gend/data-old-and-gend/fail.xml"/>
-        <x:expect-report id="data-old-and-gend" role="warning"/>
+      <x:scenario label="final-data-old-and-gend-fail">
+        <x:context href="../tests/gen/elem-citation-data-gend/final-data-old-and-gend/fail.xml"/>
+        <x:expect-report id="final-data-old-and-gend" role="warning"/>
         <x:expect-not-assert id="elem-citation-data-gend-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

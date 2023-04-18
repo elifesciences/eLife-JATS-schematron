@@ -81,9 +81,11 @@ Message:  that's a child of an event with an eLife DOI must contain the text 'Th
 
 
 
+
 <!--Context: event-desc
 Test: report    matches(parent::event/self-uri[1]/@xlink:href,'elifesciences\.org|10.7554/e[lL]ife') and not(.=('This manuscript was published as a reviewed preprint.','The reviewed preprint was revised.'))
 Message:  that's a child of an event with an eLife DOI must contain the text 'This manuscript was published as a reviewed preprint.' or 'The reviewed preprint was revised.' -->
+
 
 
 
