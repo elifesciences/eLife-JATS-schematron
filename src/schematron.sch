@@ -3300,6 +3300,7 @@
         else ''"/>
       <let name="par-text" value="if (name) then e:get-name(name[1])
         else if (string-name) then string-name
+        else if (institution) then institution
         else e:get-collab(collab[1])"/>
       
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#par-test-1" 
