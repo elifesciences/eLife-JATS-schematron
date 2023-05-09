@@ -1221,7 +1221,7 @@
   <pattern id="article-metadata">
     <rule context="funding-group//principal-award-recipient" id="par-tests">
       <let name="authors" value="for $x in ancestor::article//article-meta/contrib-group[1]/contrib[@contrib-type='author']         return if ($x/name) then e:get-name($x/name[1])         else if ($x/collab) then e:get-collab($x/collab[1])         else ''"/>
-      <let name="par-text" value="if (name) then e:get-name(name[1])         else if (string-name) then string-name         else e:get-collab(collab[1])"/>
+      <let name="par-text" value="if (name) then e:get-name(name[1])         else if (string-name) then string-name         else if (institution) then institution         else e:get-collab(collab[1])"/>
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#par-test-1" test="normalize-space(.)='' and not(*)" role="error" id="par-test-1">
         <name/> cannot be empty.</report>
     </rule>
