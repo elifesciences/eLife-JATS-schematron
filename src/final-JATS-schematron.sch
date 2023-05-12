@@ -2463,9 +2463,9 @@
   <pattern id="max-planck-fund-statement-tests-pattern">
     <rule context="article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))]" id="max-planck-fund-statement-tests">
       <let name="corresp-authors" value="ancestor::article-meta/contrib-group[1]/contrib[@contrib-type='author' and @corresp='yes']"/>
-      <let name="nested-affs" value="$corresp-authors//aff"/>
+      <let name="nested-affs" value="$corresp-authors//aff//institution"/>
       <let name="corresp-author-rids" value="$corresp-authors/xref[@ref-type='aff']/@rid"/>
-      <let name="group-affs" value="ancestor::article-meta/contrib-group[1]/aff[@id=$corresp-author-rids]"/>
+      <let name="group-affs" value="ancestor::article-meta/contrib-group[1]/aff[@id=$corresp-author-rids]//institution"/>
       
       <report test="some $aff in ($nested-affs,$group-affs) satisfies matches(lower-case($aff),'^max[\p{Zs}-]+plan[ck]+|\p{Zs}max[\p{Zs}-]+plan[ck]+')" role="warning" id="max-planck-fund-statement">[max-planck-fund-statement] This article has a corresponding author that is affiliated with a Max Planck Institute, but the funding statement does not contain the text 'Open access funding provided by Max Planck Society.' Should it? The funding statement currently reads: <value-of select="."/>.</report>
       

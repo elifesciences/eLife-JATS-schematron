@@ -11732,9 +11732,9 @@
 	  <!--RULE max-planck-fund-statement-tests-->
    <xsl:template match="article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))]" priority="1000" mode="M145">
       <xsl:variable name="corresp-authors" select="ancestor::article-meta/contrib-group[1]/contrib[@contrib-type='author' and @corresp='yes']"/>
-      <xsl:variable name="nested-affs" select="$corresp-authors//aff"/>
+      <xsl:variable name="nested-affs" select="$corresp-authors//aff//institution"/>
       <xsl:variable name="corresp-author-rids" select="$corresp-authors/xref[@ref-type='aff']/@rid"/>
-      <xsl:variable name="group-affs" select="ancestor::article-meta/contrib-group[1]/aff[@id=$corresp-author-rids]"/>
+      <xsl:variable name="group-affs" select="ancestor::article-meta/contrib-group[1]/aff[@id=$corresp-author-rids]//institution"/>
 
 		    <!--REPORT warning-->
       <xsl:if test="some $aff in ($nested-affs,$group-affs) satisfies matches(lower-case($aff),'^max[\p{Zs}-]+plan[ck]+|\p{Zs}max[\p{Zs}-]+plan[ck]+')">
