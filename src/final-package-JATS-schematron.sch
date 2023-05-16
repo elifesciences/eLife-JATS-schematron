@@ -2335,7 +2335,14 @@
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-8" test="matches(@id,'^abs[1-9]$')" role="error" id="clintrial-conformance-8">
         <name/> must have an @id in the format 'abs1'. <value-of select="@id"/> does not conform to this convention.</assert>
       
-      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-5" test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])" role="error" id="clintrial-conformance-9">A section weith the title <value-of select="title"/> in the abstract must have at least one related-object element that contains all the information related to the clinical trial. This one does not.</report>
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-5" test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])" role="error" id="clintrial-conformance-9">A section with the title <value-of select="title"/> in the abstract must have at least one related-object element that contains all the information related to the clinical trial. This one does not.</report>
+    </rule>
+  </pattern>
+  <pattern id="abstract-sec-title-content-pattern">
+    <rule context="abstract[not(@abstract-type)]/sec/title" id="abstract-sec-title-content">
+      
+      <report test="*" role="error" id="struct-abs-title-1">A title in a structured abstract cannot contain a child element. It should only contain text. This title with the content '<value-of select="."/>' has the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
+      
     </rule>
   </pattern>
   <pattern id="clintrial-related-object-pattern">
@@ -7683,6 +7690,9 @@
       
       <report test="contains(.,'')" role="error" id="junk-character-presence">
         <name/> element contains a junk character '' which should be replaced.</report>
+      
+      <report test="contains(.,'︎')" role="error" id="junk-character-presence-2">
+        <name/> element contains a junk character '︎' which should be replaced or deleted.</report>
       
       <report test="contains(.,'¿')" role="warning" id="inverterted-question-presence">
         <name/> element contains an inverted question mark '¿' which should very likely be replaced/removed.</report>

@@ -2706,6 +2706,18 @@
         <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="abstract-sec-title-content">
+      <x:scenario label="struct-abs-title-1-pass">
+        <x:context href="../tests/gen/abstract-sec-title-content/struct-abs-title-1/pass.xml"/>
+        <x:expect-not-report id="struct-abs-title-1" role="error"/>
+        <x:expect-not-assert id="abstract-sec-title-content-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="struct-abs-title-1-fail">
+        <x:context href="../tests/gen/abstract-sec-title-content/struct-abs-title-1/fail.xml"/>
+        <x:expect-report id="struct-abs-title-1" role="error"/>
+        <x:expect-not-assert id="abstract-sec-title-content-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="clintrial-related-object">
       <x:scenario label="clintrial-related-object-1-pass">
         <x:context href="../tests/gen/clintrial-related-object/clintrial-related-object-1/pass.xml"/>
@@ -16971,6 +16983,16 @@
       <x:scenario label="junk-character-presence-fail">
         <x:context href="../tests/gen/unallowed-symbol-tests/junk-character-presence/fail.xml"/>
         <x:expect-report id="junk-character-presence" role="error"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="junk-character-presence-2-pass">
+        <x:context href="../tests/gen/unallowed-symbol-tests/junk-character-presence-2/pass.xml"/>
+        <x:expect-not-report id="junk-character-presence-2" role="error"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="junk-character-presence-2-fail">
+        <x:context href="../tests/gen/unallowed-symbol-tests/junk-character-presence-2/fail.xml"/>
+        <x:expect-report id="junk-character-presence-2" role="error"/>
         <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="inverterted-question-presence-pass">
