@@ -11556,6 +11556,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="junk-character-presence"><name/> element contains a junk character '' which should be replaced.</report>
       
+      <report test="contains(.,'&#xfe0e;')" 
+        role="error" 
+        id="junk-character-presence-2"><name/> element contains a junk character '&#xfe0e;' which should be replaced or deleted.</report>
+      
       <report test="contains(.,'¿')" 
         role="warning" 
         id="inverterted-question-presence"><name/> element contains an inverted question mark '¿' which should very likely be replaced/removed.</report>
