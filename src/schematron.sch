@@ -2879,7 +2879,7 @@
       
       <report test="*"
         role="error" 
-        id="struct-abs-title-1">A title in a structured abstract cannot contain a child element. It shouyld only contain text. This title with the content <value-of select="."/> has the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
+        id="struct-abs-title-1">A title in a structured abstract cannot contain a child element. It should only contain text. This title with the content '<value-of select="."/>' has the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
       
     </rule>
     

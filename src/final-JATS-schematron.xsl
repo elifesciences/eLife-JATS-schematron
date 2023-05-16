@@ -10803,9 +10803,9 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[struct-abs-title-1] A title in a structured abstract cannot contain a child element. It shouyld only contain text. This title with the content <xsl:text/>
+            <svrl:text>[struct-abs-title-1] A title in a structured abstract cannot contain a child element. It should only contain text. This title with the content '<xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/> has the following element(s): <xsl:text/>
+               <xsl:text/>' has the following element(s): <xsl:text/>
                <xsl:value-of select="string-join(*/name(),'; ')"/>
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
