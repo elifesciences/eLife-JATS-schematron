@@ -2872,7 +2872,15 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-5"
         test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])" 
         role="error" 
-        id="clintrial-conformance-9">A section weith the title <value-of select="title"/> in the abstract must have at least one related-object element that contains all the information related to the clinical trial. This one does not.</report>
+        id="clintrial-conformance-9">A section with the title <value-of select="title"/> in the abstract must have at least one related-object element that contains all the information related to the clinical trial. This one does not.</report>
+    </rule>
+    
+    <rule context="abstract[not(@abstract-type)]/sec/title" id="abstract-sec-title-content">
+      
+      <report test="*"
+        role="error" 
+        id="struct-abs-title-1">A title in a structured abstract cannot contain a child element. It shouyld only contain text. This title with the content <value-of select="."/> has the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
+      
     </rule>
     
     <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">

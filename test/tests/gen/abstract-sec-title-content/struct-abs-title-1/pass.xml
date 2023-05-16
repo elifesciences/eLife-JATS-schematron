@@ -1,0 +1,19 @@
+<?oxygen SCHSchema="struct-abs-title-1.sch"?>
+<!--Context: abstract[not(@abstract-type)]/sec/title
+Test: report    *
+Message: A title in a structured abstract cannot contain a child element. It shouyld only contain text. This title with the content  has the following element(s): . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <abstract>
+      <sec>
+        <title>Background:</title>
+      </sec>
+      <sec>
+        <title>Methods:</title>
+      </sec>
+      <sec>
+        <title>Results:</title>
+      </sec>
+    </abstract>
+  </article>
+</root>
