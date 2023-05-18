@@ -13823,6 +13823,26 @@
         <x:expect-report id="fig-xref-test-18" role="warning"/>
         <x:expect-not-assert id="fig-xref-conformance-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="fig-xref-test-19-pass">
+        <x:context href="../tests/gen/fig-xref-conformance/fig-xref-test-19/pass.xml"/>
+        <x:expect-not-report id="fig-xref-test-19" role="warning"/>
+        <x:expect-not-assert id="fig-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-xref-test-19-fail">
+        <x:context href="../tests/gen/fig-xref-conformance/fig-xref-test-19/fail.xml"/>
+        <x:expect-report id="fig-xref-test-19" role="warning"/>
+        <x:expect-not-assert id="fig-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-xref-test-20-pass">
+        <x:context href="../tests/gen/fig-xref-conformance/fig-xref-test-20/pass.xml"/>
+        <x:expect-not-report id="fig-xref-test-20" role="warning"/>
+        <x:expect-not-assert id="fig-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-xref-test-20-fail">
+        <x:context href="../tests/gen/fig-xref-conformance/fig-xref-test-20/fail.xml"/>
+        <x:expect-report id="fig-xref-test-20" role="warning"/>
+        <x:expect-not-assert id="fig-xref-conformance-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="table-xref-conformance">
       <x:scenario label="table-xref-conformity-1-pass">

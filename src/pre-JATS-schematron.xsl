@@ -31302,6 +31302,34 @@
                <xsl:text/>' - should some or all of that text be included in the citation text?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="matches(lower-case(.),'author\s+response') and not(matches(.,'^Author response image'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'author\s+response') and not(matches(.,'^Author response image'))">
+            <xsl:attribute name="id">fig-xref-test-19</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[fig-xref-test-19] Figure citation - '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>' - is pointing to an image in the author response but it does not contain the text 'Author response image'. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="matches(lower-case(.),'review') and not(matches(.,'^Review image'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'review') and not(matches(.,'^Review image'))">
+            <xsl:attribute name="id">fig-xref-test-20</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[fig-xref-test-20] Figure citation - '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>' - is pointing to an image in the peer reviews but it does not contain the text 'Review image'. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M474"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M474"/>

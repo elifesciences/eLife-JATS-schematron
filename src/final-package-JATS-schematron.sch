@@ -6794,6 +6794,10 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-17" test="matches(.,'[A-Z]$') and matches($post-text,'^\p{Zs}?and [A-Z] |^\p{Zs}?and [A-Z]\.')" role="warning" id="fig-xref-test-17">Figure citation - '<value-of select="."/>' - is followed by the text '<value-of select="substring($post-text,1,7)"/>' - should this text be included in the link text too (i.e. '<value-of select="concat(.,substring($post-text,1,6))"/>')?</report>
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-18" test="matches($post-text,'^\-[A-Za-z0-9]')" role="warning" id="fig-xref-test-18">Figure citation - '<value-of select="."/>' - is followed by the text '<value-of select="substring($post-text,1,10)"/>' - should some or all of that text be included in the citation text?</report>
+      
+      <report test="matches(lower-case(.),'author\s+response') and not(matches(.,'^Author response image'))" role="warning" id="fig-xref-test-19">Figure citation - '<value-of select="."/>' - is pointing to an image in the author response but it does not contain the text 'Author response image'. Is that correct?</report>
+      
+      <report test="matches(lower-case(.),'review') and not(matches(.,'^Review image'))" role="warning" id="fig-xref-test-20">Figure citation - '<value-of select="."/>' - is pointing to an image in the peer reviews but it does not contain the text 'Review image'. Is that correct?</report>
     </rule>
   </pattern>
   

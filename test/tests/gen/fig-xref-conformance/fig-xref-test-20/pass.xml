@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="fig-xref-test-20.sch"?>
+<!--Context: xref[@ref-type='fig' and @rid]
+Test: report    matches(lower-case(.),'review') and not(matches(.,'^Review image'))
+Message: Figure citation - '' - is pointing to an image in the peer reviews but it does not contain the text 'Review image'. Is that correct? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <xref ref-type="fig" rid="sa2fig1">Review image 1</xref>
+  </article>
+</root>
