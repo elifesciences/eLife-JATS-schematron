@@ -2852,9 +2852,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="@xlink:href = concat('https://sciety.org/articles/activity/',@object-id)"/>
+         <xsl:when test="@xlink:href = (             concat('https://sciety.org/articles/activity/',@object-id),             concat('https://sciety.org/articles/',@object-id)           )"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@xlink:href = concat('https://sciety.org/articles/activity/',@object-id)">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@xlink:href = ( concat('https://sciety.org/articles/activity/',@object-id), concat('https://sciety.org/articles/',@object-id) )">
                <xsl:attribute name="id">ed-eval-rel-obj-test-6</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
@@ -2872,9 +2872,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="@xlink:href = concat('https://sciety.org/articles/activity/',$event-preprint-doi)"/>
+         <xsl:when test="@xlink:href = (           concat('https://sciety.org/articles/activity/',$event-preprint-doi),           concat('https://sciety.org/articles/',$event-preprint-doi)         )"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@xlink:href = concat('https://sciety.org/articles/activity/',$event-preprint-doi)">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@xlink:href = ( concat('https://sciety.org/articles/activity/',$event-preprint-doi), concat('https://sciety.org/articles/',$event-preprint-doi) )">
                <xsl:attribute name="id">ed-eval-rel-obj-test-7</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
