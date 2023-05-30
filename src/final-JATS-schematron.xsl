@@ -22992,9 +22992,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="@xlink:href = (             concat('https://sciety.org/articles/activity/',@object-id),             concat('https://sciety.org/articles/',@object-id)           )"/>
+         <xsl:when test="@xlink:href = concat('https://sciety.org/articles/activity/',@object-id)"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@xlink:href = ( concat('https://sciety.org/articles/activity/',@object-id), concat('https://sciety.org/articles/',@object-id) )">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@xlink:href = concat('https://sciety.org/articles/activity/',@object-id)">
                <xsl:attribute name="id">ed-eval-rel-obj-test-6</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
@@ -23012,9 +23012,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="@xlink:href = (           concat('https://sciety.org/articles/activity/',$event-preprint-doi),           concat('https://sciety.org/articles/',$event-preprint-doi)         )"/>
+         <xsl:when test="@xlink:href = concat('https://sciety.org/articles/activity/',$event-preprint-doi)"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@xlink:href = ( concat('https://sciety.org/articles/activity/',$event-preprint-doi), concat('https://sciety.org/articles/',$event-preprint-doi) )">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@xlink:href = concat('https://sciety.org/articles/activity/',$event-preprint-doi)">
                <xsl:attribute name="id">ed-eval-rel-obj-test-7</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
@@ -31508,34 +31508,6 @@
                <xsl:text/>' - is followed by the text '<xsl:text/>
                <xsl:value-of select="substring($post-text,1,10)"/>
                <xsl:text/>' - should some or all of that text be included in the citation text?</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="matches(lower-case(.),'author\s+response') and not(matches(.,'^Author response image'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'author\s+response') and not(matches(.,'^Author response image'))">
-            <xsl:attribute name="id">fig-xref-test-19</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[fig-xref-test-19] Figure citation - '<xsl:text/>
-               <xsl:value-of select="."/>
-               <xsl:text/>' - is pointing to an image in the author response but it does not contain the text 'Author response image'. Is that correct?</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="matches(lower-case(.),'review') and not(matches(.,'^Review image'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'review') and not(matches(.,'^Review image'))">
-            <xsl:attribute name="id">fig-xref-test-20</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[fig-xref-test-20] Figure citation - '<xsl:text/>
-               <xsl:value-of select="."/>
-               <xsl:text/>' - is pointing to an image in the peer reviews but it does not contain the text 'Review image'. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M476"/>
