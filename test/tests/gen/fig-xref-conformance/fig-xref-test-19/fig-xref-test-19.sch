@@ -1218,15 +1218,20 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="dec-letter-auth-response">
-    <rule context="sub-article[@article-type='editor-report']/front-stub/related-object" id="ed-eval-rel-obj-tests">
-      <let name="event-preprint-doi" value="for $x in ancestor::article//article-meta/pub-history/event[1]/self-uri[@content-type='preprint'][1]/@xlink:href                                         return substring-after($x,'.org/')"/>
-      <assert test="@xlink:href = (             concat('https://sciety.org/articles/activity/',@object-id),             concat('https://sciety.org/articles/',@object-id)           )" role="error" flag="dl-ar" id="ed-eval-rel-obj-test-6">related-object in editor's evaluation must have an xlink:href attribute whose value is 'https://sciety.org/articles/activity/' followed by the object-id attribute value (which must be a doi). '<value-of select="@xlink:href"/>' is not equal to <value-of select="concat('https://sciety.org/articles/activity/',@object-id)"/>. Which is correct?</assert>
+  <pattern id="figure-xref-pattern">
+    <rule context="xref[@ref-type='fig' and @rid]" id="fig-xref-conformance">
+      <let name="rid" value="tokenize(@rid,'\s')[1]"/>
+      <let name="type" value="e:fig-id-type($rid)"/>
+      <let name="no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
+      <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
+      <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
+      <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
+      <report test="matches(lower-case(.),'author\s+response') and not(matches(.,'^Author response image'))" role="warning" id="fig-xref-test-19">Figure citation - '<value-of select="."/>' - is pointing to an image in the author response but it does not contain the text 'Author response image'. Is that correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/related-object" role="error" id="ed-eval-rel-obj-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub/related-object must be present.</assert>
+      <assert test="descendant::xref[@ref-type='fig' and @rid]" role="error" id="fig-xref-conformance-xspec-assert">xref[@ref-type='fig' and @rid] must be present.</assert>
     </rule>
   </pattern>
 </schema>
