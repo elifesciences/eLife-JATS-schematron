@@ -42030,28 +42030,25 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--ASSERT warning-->
-      <xsl:choose>
-         <xsl:when test="($d-count div $t-count) gt 0.75"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($d-count div $t-count) gt 0.75">
-               <xsl:attribute name="id">duplicated-content</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/references-ghxfa7uy#hg303-duplicated-content</xsl:attribute>
-               <xsl:attribute name="role">warning</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[duplicated-content] Does <xsl:text/>
-                  <xsl:value-of select="name(.)"/>
-                  <xsl:text/> in <xsl:text/>
-                  <xsl:value-of select="e:citation-format1(parent::element-citation)"/>
-                  <xsl:text/> have duplicated content? <xsl:text/>
-                  <xsl:value-of select="."/>
-                  <xsl:text/>
-               </svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
+		    <!--REPORT warning-->
+      <xsl:if test="lower-case(.)!='cell stem cell' and ($d-count div $t-count) lt 0.75">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="lower-case(.)!='cell stem cell' and ($d-count div $t-count) lt 0.75">
+            <xsl:attribute name="id">duplicated-content</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/references-ghxfa7uy#hg303-duplicated-content</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[duplicated-content] Does <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in <xsl:text/>
+               <xsl:value-of select="e:citation-format1(parent::element-citation)"/>
+               <xsl:text/> have duplicated content? <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M554"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M554"/>

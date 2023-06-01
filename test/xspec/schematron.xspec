@@ -20337,12 +20337,12 @@
       </x:scenario>
       <x:scenario label="duplicated-content-pass">
         <x:context href="../tests/gen/link-ref-tests/duplicated-content/pass.xml"/>
-        <x:expect-not-assert id="duplicated-content" role="warning"/>
+        <x:expect-not-report id="duplicated-content" role="warning"/>
         <x:expect-not-assert id="link-ref-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="duplicated-content-fail">
         <x:context href="../tests/gen/link-ref-tests/duplicated-content/fail.xml"/>
-        <x:expect-assert id="duplicated-content" role="warning"/>
+        <x:expect-report id="duplicated-content" role="warning"/>
         <x:expect-not-assert id="link-ref-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

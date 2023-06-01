@@ -8847,8 +8847,8 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#link-in-display-test" test="matches(.,'https?:|ftp://|git://|tel:|mailto:')" role="error" id="link-in-display-test">
         <value-of select="name()"/> element contains a url - <value-of select="."/>. The url must be moved to the appropriate field (if it is a doi, then it should be captured as a doi without the 'https://doi.org/' prefix), and the correct information should be included in this element (or queried if the information is missing).</report>
       
-      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#hg303-duplicated-content" test="($d-count div $t-count) gt 0.75" role="warning" id="duplicated-content">Does <value-of select="name(.)"/> in <value-of select="e:citation-format1(parent::element-citation)"/> have duplicated content? <value-of select="."/>
-      </assert>
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#hg303-duplicated-content" test="lower-case(.)!='cell stem cell' and ($d-count div $t-count) lt 0.75" role="warning" id="duplicated-content">Does <value-of select="name(.)"/> in <value-of select="e:citation-format1(parent::element-citation)"/> have duplicated content? <value-of select="."/>
+      </report>
       
     </rule>
   </pattern>
