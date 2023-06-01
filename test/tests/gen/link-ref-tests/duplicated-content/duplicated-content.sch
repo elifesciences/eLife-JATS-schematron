@@ -1224,8 +1224,8 @@
       <let name="t" value="tokenize($lc,'\s')[not(.=('of','the'))]"/>
       <let name="t-count" value="if (count($t) lt 1) then 1                                  else count($t)"/>
       <let name="d-count" value="if ($t-count = 1) then 1                                  else count(distinct-values($t))"/>
-      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#hg303-duplicated-content" test="($d-count div $t-count) gt 0.75" role="warning" id="duplicated-content">Does <value-of select="name(.)"/> in <value-of select="e:citation-format1(parent::element-citation)"/> have duplicated content? <value-of select="."/>
-      </assert>
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#hg303-duplicated-content" test="lower-case(.)!='cell stem cell' and ($d-count div $t-count) lt 0.75" role="warning" id="duplicated-content">Does <value-of select="name(.)"/> in <value-of select="e:citation-format1(parent::element-citation)"/> have duplicated content? <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
