@@ -1219,7 +1219,7 @@
     
   </xsl:function>
   <pattern id="video-tests">
-    <rule context="app//media[@mimetype='video']" id="app-video-specific">
+    <rule context="app//media[@mimetype='video' and not(ancestor::fig-group)]" id="app-video-specific">
       <let name="app-id" value="ancestor::app/@id"/>
       <let name="count" value="count(ancestor::app//media[@mimetype='video'])"/>
       <let name="pos" value="$count - count(following::media[(@mimetype='video') and (ancestor::app/@id = $app-id)])"/>
@@ -1230,7 +1230,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::app//media[@mimetype='video']" role="error" id="app-video-specific-xspec-assert">app//media[@mimetype='video'] must be present.</assert>
+      <assert test="descendant::app//media[@mimetype='video' and not(ancestor::fig-group)]" role="error" id="app-video-specific-xspec-assert">app//media[@mimetype='video' and not(ancestor::fig-group)] must be present.</assert>
     </rule>
   </pattern>
 </schema>
