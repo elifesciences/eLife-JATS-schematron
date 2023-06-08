@@ -3881,7 +3881,7 @@
     </rule>
   </pattern>
   <pattern id="app-video-specific-pattern">
-    <rule context="app//media[@mimetype='video']" id="app-video-specific">
+    <rule context="app//media[@mimetype='video' and not(ancestor::fig-group)]" id="app-video-specific">
       <let name="app-id" value="ancestor::app/@id"/>
       <let name="count" value="count(ancestor::app//media[@mimetype='video'])"/>
       <let name="pos" value="$count - count(following::media[(@mimetype='video') and (ancestor::app/@id = $app-id)])"/>
@@ -3891,6 +3891,20 @@
         <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
       
       <assert test="$no = string($pos)" role="error" id="final-app-video-position-test">
+        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+    </rule>
+  </pattern>
+  <pattern id="app-fig-video-specific-pattern">
+    <rule context="app//fig-group//media[@mimetype='video']" id="app-fig-video-specific">
+      <let name="fig-id" value="ancestor::fig-group/fig[not(@specific-use='child-fig')]/@id"/>
+      <let name="count" value="count(ancestor::fig-group//media[@mimetype='video'])"/>
+      <let name="pos" value="$count - count(following::media[(@mimetype='video') and (ancestor::fig-group/fig[not(@specific-use='child-fig')]/@id = $fig-id)])"/>
+      <let name="no" value="substring-after(@id,'video')"/>
+      
+      <assert test="$no = string($pos)" role="warning" id="pre-app-fig-video-position-test">
+        <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+      
+      <assert test="$no = string($pos)" role="error" id="final-app-fig-video-position-test">
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
@@ -9398,7 +9412,8 @@
       <assert test="descendant::attrib" role="error" id="attrib-tests-xspec-assert">attrib must be present.</assert>
       <assert test="descendant::attrib/*" role="error" id="attrib-child-tests-xspec-assert">attrib/* must be present.</assert>
       <assert test="descendant::article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']" role="error" id="body-video-specific-xspec-assert">article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video'] must be present.</assert>
-      <assert test="descendant::app//media[@mimetype='video']" role="error" id="app-video-specific-xspec-assert">app//media[@mimetype='video'] must be present.</assert>
+      <assert test="descendant::app//media[@mimetype='video' and not(ancestor::fig-group)]" role="error" id="app-video-specific-xspec-assert">app//media[@mimetype='video' and not(ancestor::fig-group)] must be present.</assert>
+      <assert test="descendant::app//fig-group//media[@mimetype='video']" role="error" id="app-fig-video-specific-xspec-assert">app//fig-group//media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::fig-group/media[@mimetype='video']" role="error" id="fig-video-specific-xspec-assert">fig-group/media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::sub-article[@article-type=('decision-letter','referee-report')]/body//media[@mimetype='video']" role="error" id="dl-video-specific-xspec-assert">sub-article[@article-type=('decision-letter','referee-report')]/body//media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body//media[@mimetype='video']" role="error" id="ar-video-specific-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body//media[@mimetype='video'] must be present.</assert>

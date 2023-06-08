@@ -1,0 +1,25 @@
+<?oxygen SCHSchema="final-app-fig-video-position-test.sch"?>
+<!--Context: app//fig-group//media[@mimetype='video']
+Test: assert    $no = string($pos)
+Message:  does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <app>
+      <fig-group>
+        <fig id="app2fig2" position="float">
+          <label>Appendix 2&#x2014;figure 2.</label>
+          <graphic mimetype="image" mime-subtype="tiff" xlink:href="elife-79827-app2-fig2.tif"/>
+        </fig>
+        <media mimetype="video" mime-subtype="gif" xlink:href="elife-79827-app2-fig2-video1.gif" id="app2fig2video1">
+          <label>Appendix 2&#x2014;figure 2&#x2014;animation 1.</label>
+        </media>
+        <media mimetype="video" mime-subtype="gif" xlink:href="elife-79827-app2-fig2-video3.gif" id="app2fig2video3">
+          <label>Appendix 2&#x2014;figure 2&#x2014;animation 3.</label>
+        </media>
+        <media mimetype="video" mime-subtype="gif" xlink:href="elife-79827-app2-fig2-video2.gif" id="app2fig2video2">
+          <label>Appendix 2&#x2014;figure 2&#x2014;animation 2.</label>
+        </media>
+      </fig-group>
+    </app>
+  </article>
+</root>
