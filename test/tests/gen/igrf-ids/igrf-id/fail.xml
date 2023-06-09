@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="igrf-id.sch"?>
+<!--Context: supplementary-material[matches(label[1],'^Inclusion in global research form$')]
+Test: assert    matches(@id,'^igrf$')
+Message: The id () for  is not in the correct format. It must be 'igrf'. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <supplementary-material id="zoolander">
+      <label>Inclusion in global research form</label>
+      <media mimetype="application" mime-subtype="pdf" xlink:href="elife-1234567890-inclusion_global_research.pdf"/>
+    </supplementary-material>
+  </article>
+</root>

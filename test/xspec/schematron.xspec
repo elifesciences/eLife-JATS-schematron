@@ -8500,6 +8500,18 @@
         <x:expect-not-assert id="mdar-ids-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="igrf-ids">
+      <x:scenario label="igrf-id-pass">
+        <x:context href="../tests/gen/igrf-ids/igrf-id/pass.xml"/>
+        <x:expect-not-assert id="igrf-id" role="error"/>
+        <x:expect-not-assert id="igrf-ids-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="igrf-id-fail">
+        <x:context href="../tests/gen/igrf-ids/igrf-id/fail.xml"/>
+        <x:expect-assert id="igrf-id" role="error"/>
+        <x:expect-not-assert id="igrf-ids-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="transrep-ids">
       <x:scenario label="transrep-id-pass">
         <x:context href="../tests/gen/transrep-ids/transrep-id/pass.xml"/>
