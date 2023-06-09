@@ -3141,11 +3141,11 @@
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#final-supplementary-material-test-5" test="media" role="error" id="final-supplementary-material-test-5">
         <value-of select="label"/> is missing a file (supplementary-material must have a media).</assert>
       
-      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-6" test="matches(label[1],'^MDAR checklist$|^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$|^Audio file \d{1,4}\.$|^Box \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$')" role="error" id="supplementary-material-test-6">supplementary-material label (<value-of select="label"/>) does not conform to eLife's usual label format.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-6" test="matches(label[1],'^Inclusion in global research form$|^MDAR checklist$|^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$|^Audio file \d{1,4}\.$|^Box \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$')" role="error" id="supplementary-material-test-6">supplementary-material label (<value-of select="label"/>) does not conform to eLife's usual label format.</assert>
       
       <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-7" test="(ancestor::sec[@sec-type='supplementary-material']) and (media[@mimetype='video'])" role="error" id="supplementary-material-test-7">supplementary-material in additional files sections cannot have a media element with the attribute mimetype='video'. This should be mimetype='application'</report>
       
-      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-8" test="matches(label[1],'^MDAR checklist$|^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])" role="error" id="supplementary-material-test-8">
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-8" test="matches(label[1],'^Inclusion in global research form$|^MDAR checklist$|^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])" role="error" id="supplementary-material-test-8">
         <value-of select="label"/> has an article level label but it is not captured in the additional files section - This must be incorrect.</report>
       
       <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-9" test="count(media) gt 1" role="error" id="supplementary-material-test-9">
@@ -4671,6 +4671,13 @@
     <rule context="supplementary-material[contains(lower-case(label[1]),'mdar')]" id="mdar-ids">
       
       <assert test="matches(@id,'^mdar$')" role="error" id="mdar-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. It must be 'mdar'.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="igrf-ids-pattern">
+    <rule context="supplementary-material[matches(label[1],'^Inclusion in global research form$')]" id="igrf-ids">
+      
+      <assert test="matches(@id,'^igrf$')" role="error" id="igrf-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. It must be 'igrf'.</assert>
       
     </rule>
   </pattern>
@@ -9484,6 +9491,7 @@
       <assert test="descendant::article/body/sec//sec or descendant::article/back/sec//sec" role="error" id="low-level-sec-ids-xspec-assert">article/body/sec//sec|article/back/sec//sec must be present.</assert>
       <assert test="descendant::app" role="error" id="app-ids-xspec-assert">app must be present.</assert>
       <assert test="descendant::supplementary-material[contains(lower-case(label[1]),'mdar')]" role="error" id="mdar-ids-xspec-assert">supplementary-material[contains(lower-case(label[1]),'mdar')] must be present.</assert>
+      <assert test="descendant::supplementary-material[matches(label[1],'^Inclusion in global research form$')]" role="error" id="igrf-ids-xspec-assert">supplementary-material[matches(label[1],'^Inclusion in global research form$')] must be present.</assert>
       <assert test="descendant::supplementary-material[contains(lower-case(label[1]),'transparent')]" role="error" id="transrep-ids-xspec-assert">supplementary-material[contains(lower-case(label[1]),'transparent')] must be present.</assert>
       <assert test="descendant::fig/*" role="error" id="fig-children-xspec-assert">fig/* must be present.</assert>
       <assert test="descendant::table-wrap/*" role="error" id="table-wrap-children-xspec-assert">table-wrap/* must be present.</assert>

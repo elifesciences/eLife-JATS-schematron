@@ -1218,18 +1218,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="content-containers">
-    <rule context="supplementary-material" id="supplementary-material-tests">
-      <let name="link" value="media[1]/@xlink:href"/>
-      <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
-      <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
-      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-8" test="matches(label[1],'^Inclusion in global research form$|^MDAR checklist$|^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])" role="error" id="supplementary-material-test-8">
-        <value-of select="label"/> has an article level label but it is not captured in the additional files section - This must be incorrect.</report>
+  <pattern id="id-conformance">
+    <rule context="supplementary-material[matches(label[1],'^Inclusion in global research form$')]" id="igrf-ids">
+      <assert test="matches(@id,'^igrf$')" role="error" id="igrf-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. It must be 'igrf'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material" role="error" id="supplementary-material-tests-xspec-assert">supplementary-material must be present.</assert>
+      <assert test="descendant::supplementary-material[matches(label[1],'^Inclusion in global research form$')]" role="error" id="igrf-ids-xspec-assert">supplementary-material[matches(label[1],'^Inclusion in global research form$')] must be present.</assert>
     </rule>
   </pattern>
 </schema>
