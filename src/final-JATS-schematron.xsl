@@ -15943,7 +15943,7 @@
             </xsl:attribute>
             <svrl:text>[math-test-20] <xsl:text/>
                <xsl:value-of select="parent::*/name()"/>
-               <xsl:text/> ends with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the left. Please esnure they are removed.</svrl:text>
+               <xsl:text/> ends with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the left. Please ensure they are removed.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -15957,7 +15957,7 @@
             </xsl:attribute>
             <svrl:text>[math-test-21] <xsl:text/>
                <xsl:value-of select="parent::*/name()"/>
-               <xsl:text/> starts with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the right. Please esnure they are removed.</svrl:text>
+               <xsl:text/> starts with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the right. Please ensure they are removed.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
