@@ -1,0 +1,30 @@
+<?oxygen SCHSchema="pre-err-elem-cit-preprint-10-3.sch"?>
+<!--Context: element-citation[@publication-type='preprint']
+Test: assert    count(pub-id)=1 or count(ext-link)=1
+Message: Either one <pub-id> or one <ext-link> element is required in a preprint reference. Reference '' has  <pub-id> elements and  <ext-link> elements. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <ref-list>
+      <ref id="bib1">
+        <element-citation publication-type="preprint">
+          <person-group person-group-type="author">
+            <name><surname>Bloss</surname><given-names>CS</given-names></name>
+            <name><surname>Wineinger</surname><given-names>NE</given-names></name>
+            <name><surname>Peters</surname><given-names>M</given-names></name>
+            <name><surname>Boeldt</surname><given-names>DL</given-names></name>
+            <name><surname>Ariniello</surname><given-names>L</given-names></name>
+            <name><surname>Kim</surname><given-names>JL</given-names></name>
+            <name><surname>Judy Sheard</surname><given-names>J</given-names></name>
+            <name><surname>Komatireddy</surname><given-names>R</given-names></name>
+            <name><surname>Barrett</surname><given-names>P</given-names></name>
+            <name><surname>Topol</surname><given-names>EJ</given-names></name>
+          </person-group>
+          <year iso-8601-date="2016">2016</year>
+          <article-title>A prospective randomized trial examining health care utilization in individuals using multiple 
+            smartphone-enabled biosensors</article-title>
+          <source>bioRxiv</source>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </article>
+</root>

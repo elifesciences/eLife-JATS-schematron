@@ -26960,18 +26960,17 @@
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--ASSERT error-->
+		    <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="count(pub-id)=1 or count(ext-link)=1"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(pub-id)=1 or count(ext-link)=1">
-               <xsl:attribute name="id">err-elem-cit-preprint-10-3</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-10-3</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="id">pre-err-elem-cit-preprint-10-3</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-preprint-10-3] Either one &lt;pub-id&gt; or one &lt;ext-link&gt; element is required in a preprint reference. Reference '<xsl:text/>
+               <svrl:text>[pre-err-elem-cit-preprint-10-3] Either one &lt;pub-id&gt; or one &lt;ext-link&gt; element is required in a preprint reference. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has <xsl:text/>
                   <xsl:value-of select="count(pub-id)"/>
@@ -37556,22 +37555,21 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT error-->
+		    <!--REPORT warning-->
       <xsl:if test="matches($lc,'biorxiv') and not(starts-with(parent::element-citation/pub-id[@pub-id-type='doi'][1],'10.1101/'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'biorxiv') and not(starts-with(parent::element-citation/pub-id[@pub-id-type='doi'][1],'10.1101/'))">
-            <xsl:attribute name="id">biorxiv-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#biorxiv-test-2</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="id">pre-biorxiv-test-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[biorxiv-test-2] ref '<xsl:text/>
+            <svrl:text>[pre-biorxiv-test-2] ref '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
                <xsl:text/>' is captured as a <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/> preprint, but it does not have a doi starting with the bioRxiv prefix, '10.1101/'. <xsl:text/>
                <xsl:value-of select="if (parent::element-citation/pub-id[@pub-id-type='doi']) then concat('The doi does not point to bioRxiv - https://doi.org/',parent::element-citation/pub-id[@pub-id-type='doi'][1]) else 'The doi is missing'"/>
-               <xsl:text/>.</svrl:text>
+               <xsl:text/>. Please check with eLife.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 

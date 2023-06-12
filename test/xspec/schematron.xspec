@@ -11399,14 +11399,24 @@
         <x:expect-assert id="err-elem-cit-preprint-10-1" role="error"/>
         <x:expect-not-assert id="elem-citation-preprint-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="err-elem-cit-preprint-10-3-pass">
-        <x:context href="../tests/gen/elem-citation-preprint/err-elem-cit-preprint-10-3/pass.xml"/>
-        <x:expect-not-assert id="err-elem-cit-preprint-10-3" role="error"/>
+      <x:scenario label="pre-err-elem-cit-preprint-10-3-pass">
+        <x:context href="../tests/gen/elem-citation-preprint/pre-err-elem-cit-preprint-10-3/pass.xml"/>
+        <x:expect-not-assert id="pre-err-elem-cit-preprint-10-3" role="warning"/>
         <x:expect-not-assert id="elem-citation-preprint-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="err-elem-cit-preprint-10-3-fail">
-        <x:context href="../tests/gen/elem-citation-preprint/err-elem-cit-preprint-10-3/fail.xml"/>
-        <x:expect-assert id="err-elem-cit-preprint-10-3" role="error"/>
+      <x:scenario label="pre-err-elem-cit-preprint-10-3-fail">
+        <x:context href="../tests/gen/elem-citation-preprint/pre-err-elem-cit-preprint-10-3/fail.xml"/>
+        <x:expect-assert id="pre-err-elem-cit-preprint-10-3" role="warning"/>
+        <x:expect-not-assert id="elem-citation-preprint-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-err-elem-cit-preprint-10-3-pass">
+        <x:context href="../tests/gen/elem-citation-preprint/final-err-elem-cit-preprint-10-3/pass.xml"/>
+        <x:expect-not-assert id="final-err-elem-cit-preprint-10-3" role="error"/>
+        <x:expect-not-assert id="elem-citation-preprint-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-err-elem-cit-preprint-10-3-fail">
+        <x:context href="../tests/gen/elem-citation-preprint/final-err-elem-cit-preprint-10-3/fail.xml"/>
+        <x:expect-assert id="final-err-elem-cit-preprint-10-3" role="error"/>
         <x:expect-not-assert id="elem-citation-preprint-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="err-elem-cit-preprint-13-pass">
@@ -17757,14 +17767,24 @@
         <x:expect-report id="biorxiv-test" role="error"/>
         <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="biorxiv-test-2-pass">
-        <x:context href="../tests/gen/preprint-title-tests/biorxiv-test-2/pass.xml"/>
-        <x:expect-not-report id="biorxiv-test-2" role="error"/>
+      <x:scenario label="pre-biorxiv-test-2-pass">
+        <x:context href="../tests/gen/preprint-title-tests/pre-biorxiv-test-2/pass.xml"/>
+        <x:expect-not-report id="pre-biorxiv-test-2" role="warning"/>
         <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="biorxiv-test-2-fail">
-        <x:context href="../tests/gen/preprint-title-tests/biorxiv-test-2/fail.xml"/>
-        <x:expect-report id="biorxiv-test-2" role="error"/>
+      <x:scenario label="pre-biorxiv-test-2-fail">
+        <x:context href="../tests/gen/preprint-title-tests/pre-biorxiv-test-2/fail.xml"/>
+        <x:expect-report id="pre-biorxiv-test-2" role="warning"/>
+        <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-biorxiv-test-2-pass">
+        <x:context href="../tests/gen/preprint-title-tests/final-biorxiv-test-2/pass.xml"/>
+        <x:expect-not-report id="final-biorxiv-test-2" role="error"/>
+        <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-biorxiv-test-2-fail">
+        <x:context href="../tests/gen/preprint-title-tests/final-biorxiv-test-2/fail.xml"/>
+        <x:expect-report id="final-biorxiv-test-2" role="error"/>
         <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="arxiv-test-pass">
