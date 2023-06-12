@@ -3386,10 +3386,10 @@
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-19" test="descendant::mml:mi[(.='') and preceding-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')] and following-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')]]" role="warning" id="math-test-19">Maths containing '<value-of select="."/>' has what looks like words or terms which need separating with a space. With it's current markup the space will not be preserved on the eLife website. Please add in the space(s) using the latext '\;' in the appropriate place(s), so that the space is preserved in the HTML.</report>
       
       <report test="matches(.,'\p{Zs}\p{Zs}\p{Zs}\p{Zs}+$') and not(matches(.,'\s\s\s\s+$'))" role="error" id="math-test-20">
-        <value-of select="parent::*/name()"/> ends with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the left. Please esnure they are removed.</report>
+        <value-of select="parent::*/name()"/> ends with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the left. Please ensure they are removed.</report>
       
       <report test="matches(.,'^\p{Zs}\p{Zs}\p{Zs}\p{Zs}+') and not(matches(.,'^\s\s\s\s+'))" role="error" id="math-test-21">
-        <value-of select="parent::*/name()"/> starts with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the right. Please esnure they are removed.</report>
+        <value-of select="parent::*/name()"/> starts with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the right. Please ensure they are removed.</report>
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-broken-unicode-test" test="matches(.,'(&amp;|§|§amp;)(#x?\d)?|[^\p{L}\p{N}][gl]t;')" role="warning" id="math-broken-unicode-test">Equation likely contains a broken unicode - <value-of select="."/>.</report>
     </rule>
