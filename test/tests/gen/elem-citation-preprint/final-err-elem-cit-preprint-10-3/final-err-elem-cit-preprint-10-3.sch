@@ -1218,15 +1218,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="house-style">
-    <rule context="element-citation[@publication-type='preprint']/source" id="preprint-title-tests">
-      <let name="lc" value="lower-case(.)"/>
-      <report see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#biorxiv-test-2" test="matches($lc,'biorxiv') and not(starts-with(parent::element-citation/pub-id[@pub-id-type='doi'][1],'10.1101/'))" role="error" id="biorxiv-test-2">ref '<value-of select="ancestor::ref/@id"/>' is captured as a <value-of select="."/> preprint, but it does not have a doi starting with the bioRxiv prefix, '10.1101/'. <value-of select="if (parent::element-citation/pub-id[@pub-id-type='doi']) then concat('The doi does not point to bioRxiv - https://doi.org/',parent::element-citation/pub-id[@pub-id-type='doi'][1]) else 'The doi is missing'"/>.</report>
+  <pattern id="element-citation-preprint-tests">
+    <rule context="element-citation[@publication-type='preprint']" id="elem-citation-preprint">
+      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-10-3" test="count(pub-id)=1 or count(ext-link)=1" role="error" id="final-err-elem-cit-preprint-10-3">Either one &lt;pub-id&gt; or one &lt;ext-link&gt; element is required in a preprint reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='preprint']/source" role="error" id="preprint-title-tests-xspec-assert">element-citation[@publication-type='preprint']/source must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='preprint']" role="error" id="elem-citation-preprint-xspec-assert">element-citation[@publication-type='preprint'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

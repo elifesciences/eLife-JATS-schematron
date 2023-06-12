@@ -1,4 +1,4 @@
-<?oxygen SCHSchema="err-elem-cit-preprint-10-3.sch"?>
+<?oxygen SCHSchema="pre-err-elem-cit-preprint-10-3.sch"?>
 <!--Context: element-citation[@publication-type='preprint']
 Test: assert    count(pub-id)=1 or count(ext-link)=1
 Message: Either one <pub-id> or one <ext-link> element is required in a preprint reference. Reference '' has  <pub-id> elements and  <ext-link> elements. -->

@@ -1220,7 +1220,7 @@
   </xsl:function>
   <pattern id="element-citation-preprint-tests">
     <rule context="element-citation[@publication-type='preprint']" id="elem-citation-preprint">
-      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-10-3" test="count(pub-id)=1 or count(ext-link)=1" role="error" id="err-elem-cit-preprint-10-3">Either one &lt;pub-id&gt; or one &lt;ext-link&gt; element is required in a preprint reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
+      <assert test="count(pub-id)=1 or count(ext-link)=1" role="warning" id="pre-err-elem-cit-preprint-10-3">Either one &lt;pub-id&gt; or one &lt;ext-link&gt; element is required in a preprint reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
