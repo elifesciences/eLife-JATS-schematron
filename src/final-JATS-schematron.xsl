@@ -42184,8 +42184,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="matches(.,'https?:|ftp://|git://|tel:|mailto:')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'https?:|ftp://|git://|tel:|mailto:')">
+      <xsl:if test="matches(.,'^(https?:|ftp://|git://|tel:\s*[\d\+]|mailto:)|\s(https?:|ftp://|git://|tel:\s*[\d\+]|mailto:)')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^(https?:|ftp://|git://|tel:\s*[\d\+]|mailto:)|\s(https?:|ftp://|git://|tel:\s*[\d\+]|mailto:)')">
             <xsl:attribute name="id">link-in-display-test</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/references-ghxfa7uy#link-in-display-test</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>

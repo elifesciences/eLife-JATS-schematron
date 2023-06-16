@@ -13504,7 +13504,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="doi-in-display-test"><value-of select="name()"/> element contains a doi - <value-of select="."/>. The doi must be moved to the appropriate field, and the correct information should be included in this element (or queried if the information is missing).</report>
       
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#link-in-display-test"
-        test="matches(.,'https?:|ftp://|git://|tel:|mailto:')" 
+        test="matches(.,'^(https?:|ftp://|git://|tel:\s*[\d\+]|mailto:)|\s(https?:|ftp://|git://|tel:\s*[\d\+]|mailto:)')" 
         role="error" 
         id="link-in-display-test"><value-of select="name()"/> element contains a url - <value-of select="."/>. The url must be moved to the appropriate field (if it is a doi, then it should be captured as a doi without the 'https://doi.org/' prefix), and the correct information should be included in this element (or queried if the information is missing).</report>
       

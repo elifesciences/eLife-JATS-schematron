@@ -1224,7 +1224,7 @@
       <let name="t" value="tokenize($lc,'\s')[not(.=('of','the'))]"/>
       <let name="t-count" value="if (count($t) lt 1) then 1                                  else count($t)"/>
       <let name="d-count" value="if ($t-count = 1) then 1                                  else count(distinct-values($t))"/>
-      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#link-in-display-test" test="matches(.,'https?:|ftp://|git://|tel:|mailto:')" role="error" id="link-in-display-test">
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#link-in-display-test" test="matches(.,'^(https?:|ftp://|git://|tel:\s*[\d\+]|mailto:)|\s(https?:|ftp://|git://|tel:\s*[\d\+]|mailto:)')" role="error" id="link-in-display-test">
         <value-of select="name()"/> element contains a url - <value-of select="."/>. The url must be moved to the appropriate field (if it is a doi, then it should be captured as a doi without the 'https://doi.org/' prefix), and the correct information should be included in this element (or queried if the information is missing).</report>
     </rule>
   </pattern>
