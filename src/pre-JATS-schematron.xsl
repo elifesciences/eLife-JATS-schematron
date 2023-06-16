@@ -23130,6 +23130,19 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--REPORT error-->
+      <xsl:if test=".='Inadequate'">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".='Inadequate'">
+            <xsl:attribute name="id">ed-report-evidence-kwd-2</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ed-report-evidence-kwd-2] This article is deemed inadequate. Exeter contact eLife immediately. eLife place this article on hold and DO NOT let it proceed.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M346"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M346"/>
