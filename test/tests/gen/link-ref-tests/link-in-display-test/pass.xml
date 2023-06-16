@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="link-in-display-test.sch"?>
 <!--Context: element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title
-Test: report    matches(.,'https?:|ftp://|git://|tel:|mailto:')
+Test: report    matches(.,'^(https?:|ftp://|git://|tel:\s*[\d\+]|mailto:)|\s(https?:|ftp://|git://|tel:\s*[\d\+]|mailto:)')
 Message:  element contains a url - . The url must be moved to the appropriate field (if it is a doi, then it should be captured as a doi without the 'https://doi.org/' prefix), and the correct information should be included in this element (or queried if the information is missing). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

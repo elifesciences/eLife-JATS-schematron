@@ -8890,7 +8890,7 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#doi-in-display-test" test="matches(.,'^10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+|\p{Zs}10\.\d{4,9}/[-._;()/:A-Za-z0-9&lt;&gt;\+#&amp;`~–−]+')" role="error" id="doi-in-display-test">
         <value-of select="name()"/> element contains a doi - <value-of select="."/>. The doi must be moved to the appropriate field, and the correct information should be included in this element (or queried if the information is missing).</report>
       
-      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#link-in-display-test" test="matches(.,'https?:|ftp://|git://|tel:|mailto:')" role="error" id="link-in-display-test">
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#link-in-display-test" test="matches(.,'^(https?:|ftp://|git://|tel:\s*[\d\+]|mailto:)|\s(https?:|ftp://|git://|tel:\s*[\d\+]|mailto:)')" role="error" id="link-in-display-test">
         <value-of select="name()"/> element contains a url - <value-of select="."/>. The url must be moved to the appropriate field (if it is a doi, then it should be captured as a doi without the 'https://doi.org/' prefix), and the correct information should be included in this element (or queried if the information is missing).</report>
       
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#hg303-duplicated-content" test="lower-case(.)!='cell stem cell' and ($d-count div $t-count) lt 0.75" role="warning" id="duplicated-content">Does <value-of select="name(.)"/> in <value-of select="e:citation-format1(parent::element-citation)"/> have duplicated content? <value-of select="."/>
