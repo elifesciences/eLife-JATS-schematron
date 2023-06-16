@@ -4788,6 +4788,8 @@
       
       <assert test=".=$allowed-vals" role="error" flag="dl-ar" id="ed-report-evidence-kwd-1">[ed-report-evidence-kwd-1] Keyword contains <value-of select="."/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/>
       </assert>
+      
+      <report test=".='Inadequate'" role="error" flag="dl-ar" id="ed-report-evidence-kwd-2">[ed-report-evidence-kwd-2] This article is deemed inadequate. Exeter contact eLife immediately. eLife place this article on hold and DO NOT let it proceed.</report>
     </rule>
   </pattern>
   <pattern id="ed-report-kwds-pattern">
