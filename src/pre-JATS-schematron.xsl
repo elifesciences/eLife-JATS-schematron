@@ -16473,9 +16473,9 @@
 
 		<!--ASSERT warning-->
       <xsl:choose>
-         <xsl:when test="matches(lower-case(.),'^gene|^strain|^genetic reagent|^cell line|^transfected construct|^biological sample|^antibody|^recombinant dna reagent|^sequence-based reagent|^peptide, recombinant protein|^commercial (assay|kit)|^chemical compound|^drug|^software|^algorithm|^other')"/>
+         <xsl:when test="matches(lower-case(.),'^gene|^strain|^genetic reagent|^cell line|^transfected construct|^biological sample|^antibody|^recombinant dna reagent|^sequence-based reagent|^peptide|^recombinant protein|^commercial (assay|kit)|^chemical compound|^drug|^software|^algorithm|^other')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'^gene|^strain|^genetic reagent|^cell line|^transfected construct|^biological sample|^antibody|^recombinant dna reagent|^sequence-based reagent|^peptide, recombinant protein|^commercial (assay|kit)|^chemical compound|^drug|^software|^algorithm|^other')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'^gene|^strain|^genetic reagent|^cell line|^transfected construct|^biological sample|^antibody|^recombinant dna reagent|^sequence-based reagent|^peptide|^recombinant protein|^commercial (assay|kit)|^chemical compound|^drug|^software|^algorithm|^other')">
                <xsl:attribute name="id">kr-table-first-column-1</xsl:attribute>
                <xsl:attribute name="see">https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-first-column-1</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
@@ -16484,7 +16484,7 @@
                </xsl:attribute>
                <svrl:text>[kr-table-first-column-1] A cell in the first column of the body of a key resources table should start with one of the standard values. '<xsl:text/>
                   <xsl:value-of select="."/>
-                  <xsl:text/>' does not start with one of Gene; Strain, strain background; Genetic reagent; Cell line; Transfected construct; Biological sample; Antibody; Recombinant DNA reagent; Sequence-based reagent; Peptide, recombinant protein; Commercial assay or kit; Chemical compound, drug; Software; Algorithm; Other.</svrl:text>
+                  <xsl:text/>' does not start with one of Gene; Strain, strain background; Genetic reagent; Cell line; Transfected construct; Biological sample; Antibody; Recombinant DNA reagent; Sequence-based reagent; Peptide, Recombinant protein; Commercial assay or kit; Chemical compound, drug; Software; Algorithm; Other.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
