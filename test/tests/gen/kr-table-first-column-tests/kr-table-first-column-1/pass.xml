@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="kr-table-first-column-1.sch"?>
 <!--Context: table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*[1]
-Test: assert    matches(lower-case(.),'^gene|^strain|^genetic reagent|^cell line|^transfected construct|^biological sample|^antibody|^recombinant dna reagent|^sequence-based reagent|^peptide, recombinant protein|^commercial (assay|kit)|^chemical compound|^drug|^software|^algorithm|^other')
-Message: A cell in the first column of the body of a key resources table should start with one of the standard values. '' does not start with one of Gene; Strain, strain background; Genetic reagent; Cell line; Transfected construct; Biological sample; Antibody; Recombinant DNA reagent; Sequence-based reagent; Peptide, recombinant protein; Commercial assay or kit; Chemical compound, drug; Software; Algorithm; Other. -->
+Test: assert    matches(lower-case(.),'^gene|^strain|^genetic reagent|^cell line|^transfected construct|^biological sample|^antibody|^recombinant dna reagent|^sequence-based reagent|^peptide|^recombinant protein|^commercial (assay|kit)|^chemical compound|^drug|^software|^algorithm|^other')
+Message: A cell in the first column of the body of a key resources table should start with one of the standard values. '' does not start with one of Gene; Strain, strain background; Genetic reagent; Cell line; Transfected construct; Biological sample; Antibody; Recombinant DNA reagent; Sequence-based reagent; Peptide, Recombinant protein; Commercial assay or kit; Chemical compound, drug; Software; Algorithm; Other. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <table-wrap id="keyresource" position="anchor">
