@@ -1222,7 +1222,8 @@
     <rule context="kwd-group[@kwd-group-type='author-keywords']/kwd" id="auth-kwd-style">
       <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return         if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
       <let name="lower" value="lower-case(.)"/>
-      <let name="t" value="replace($article-text,concat('\. ',.),'')"/>
+      <let name="kwd-regex" value="concat('\. ',replace(.,'\+','\\+'))"/>
+      <let name="t" value="replace($article-text,$kwd-regex,'')"/>
       <report test="matches(.,'[\(\)\[\]]') or contains(.,'{') or contains(.,'}')" role="warning" id="auth-kwd-check-4">Keyword contains brackets - <value-of select="."/>. These should either simply be removed, or added as two keywords (with the brackets still removed).</report>
     </rule>
   </pattern>

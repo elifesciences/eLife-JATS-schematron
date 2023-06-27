@@ -41490,7 +41490,8 @@
    <xsl:template match="kwd-group[@kwd-group-type='author-keywords']/kwd" priority="1000" mode="M541">
       <xsl:variable name="article-text" select="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return         if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
       <xsl:variable name="lower" select="lower-case(.)"/>
-      <xsl:variable name="t" select="replace($article-text,concat('\. ',.),'')"/>
+      <xsl:variable name="kwd-regex" select="concat('\. ',replace(.,'\+','\\+'))"/>
+      <xsl:variable name="t" select="replace($article-text,$kwd-regex,'')"/>
 
 		    <!--REPORT warning-->
       <xsl:if test="not(matches(.,'RNA|[Cc]ryoEM|[34]D')) and (. != $lower) and not(contains($t,.))">
