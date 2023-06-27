@@ -1222,7 +1222,8 @@
     <rule context="kwd-group[@kwd-group-type='author-keywords']/kwd" id="auth-kwd-style">
       <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return         if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
       <let name="lower" value="lower-case(.)"/>
-      <let name="t" value="replace($article-text,concat('\. ',.),'')"/>
+      <let name="kwd-regex" value="concat('\. ',replace(.,'\+','\\+'))"/>
+      <let name="t" value="replace($article-text,$kwd-regex,'')"/>
       <report test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\p{Zs}')) gt 4" role="warning" id="auth-kwd-check-6">Keyword contains more than 4 words - <value-of select="."/>. Should these be split out into separate keywords?</report>
     </rule>
   </pattern>

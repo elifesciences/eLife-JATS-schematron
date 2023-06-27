@@ -8267,7 +8267,9 @@
     <rule context="kwd-group[@kwd-group-type='author-keywords']/kwd" id="auth-kwd-style">
       <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return         if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
       <let name="lower" value="lower-case(.)"/>
-      <let name="t" value="replace($article-text,concat('\. ',.),'')"/>
+      <!-- removes instances where the keyword begins a sentence and accounts for regex special characters -->
+      <let name="kwd-regex" value="concat('\. ',replace(.,'\+','\\+'))"/>
+      <let name="t" value="replace($article-text,$kwd-regex,'')"/>
       
       <report test="not(matches(.,'RNA|[Cc]ryoEM|[34]D')) and (. != $lower) and not(contains($t,.))" role="warning" id="auth-kwd-check">[auth-kwd-check] Keyword - '<value-of select="."/>' - does not appear in the article text with this capitalisation. Should it be <value-of select="$lower"/> instead?</report>
       

@@ -13272,7 +13272,9 @@ else self::*/local-name() = $allowed-p-blocks"
         else if ($x/local-name() = 'xref') then ()
         else $x/text(),'')"/>
       <let name="lower" value="lower-case(.)"/>
-      <let name="t" value="replace($article-text,concat('\. ',.),'')"/>
+      <!-- removes instances where the keyword begins a sentence and accounts for regex special characters -->
+      <let name="kwd-regex" value="concat('\. ',replace(.,'\+','\\+'))"/>
+      <let name="t" value="replace($article-text,$kwd-regex,'')"/>
       
       <report test="not(matches(.,'RNA|[Cc]ryoEM|[34]D')) and (. != $lower) and not(contains($t,.))" 
         role="warning" 
