@@ -37555,8 +37555,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5,6}$|^10.7554/eLife\.\d{5,6}\.\d{3}$|^10.7554/eLife\.\d{5,6}\.sa[12]$'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5,6}$|^10.7554/eLife\.\d{5,6}\.\d{3}$|^10.7554/eLife\.\d{5,6}\.sa[12]$'))">
+      <xsl:if test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5,6}$|^10.7554/eLife\.\d{5,6}\.\d$|^10.7554/eLife\.\d{5,6}\.\d{3}$|^10.7554/eLife\.\d{5,6}\.sa[12]$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(lower-case(source[1]) = 'elife') and not(matches(pub-id[@pub-id-type='doi'][1],'^10.7554/eLife\.\d{5,6}$|^10.7554/eLife\.\d{5,6}\.\d$|^10.7554/eLife\.\d{5,6}\.\d{3}$|^10.7554/eLife\.\d{5,6}\.sa[12]$'))">
             <xsl:attribute name="id">elife-ref-check</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/journal-references-i098980k#elife-ref-check</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
