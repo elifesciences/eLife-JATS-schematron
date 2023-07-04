@@ -579,6 +579,16 @@
         <x:expect-report id="prc-article-dois-7" role="error"/>
         <x:expect-not-assert id="article-dois-prc-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="final-prc-article-dois-8-pass">
+        <x:context href="../tests/gen/article-dois-prc/final-prc-article-dois-8/pass.xml"/>
+        <x:expect-not-report id="final-prc-article-dois-8" role="error"/>
+        <x:expect-not-assert id="article-dois-prc-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-prc-article-dois-8-fail">
+        <x:context href="../tests/gen/article-dois-prc/final-prc-article-dois-8/fail.xml"/>
+        <x:expect-report id="final-prc-article-dois-8" role="error"/>
+        <x:expect-not-assert id="article-dois-prc-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="test-research-article-metadata">
       <x:scenario label="test-contrib-group-presence-1-pass">
@@ -2152,6 +2162,38 @@
         <x:context href="../tests/gen/event-tests/event-test-5/fail.xml"/>
         <x:expect-report id="event-test-5" role="error"/>
         <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="rp-event-tests">
+      <x:scenario label="rp-event-test-1-pass">
+        <x:context href="../tests/gen/rp-event-tests/rp-event-test-1/pass.xml"/>
+        <x:expect-not-report id="rp-event-test-1" role="error"/>
+        <x:expect-not-assert id="rp-event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="rp-event-test-1-fail">
+        <x:context href="../tests/gen/rp-event-tests/rp-event-test-1/fail.xml"/>
+        <x:expect-report id="rp-event-test-1" role="error"/>
+        <x:expect-not-assert id="rp-event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="rp-event-test-2-pass">
+        <x:context href="../tests/gen/rp-event-tests/rp-event-test-2/pass.xml"/>
+        <x:expect-not-report id="rp-event-test-2" role="error"/>
+        <x:expect-not-assert id="rp-event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="rp-event-test-2-fail">
+        <x:context href="../tests/gen/rp-event-tests/rp-event-test-2/fail.xml"/>
+        <x:expect-report id="rp-event-test-2" role="error"/>
+        <x:expect-not-assert id="rp-event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="rp-event-test-3-pass">
+        <x:context href="../tests/gen/rp-event-tests/rp-event-test-3/pass.xml"/>
+        <x:expect-not-report id="rp-event-test-3" role="error"/>
+        <x:expect-not-assert id="rp-event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="rp-event-test-3-fail">
+        <x:context href="../tests/gen/rp-event-tests/rp-event-test-3/fail.xml"/>
+        <x:expect-report id="rp-event-test-3" role="error"/>
+        <x:expect-not-assert id="rp-event-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="event-child-tests">
