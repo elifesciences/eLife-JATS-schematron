@@ -1411,6 +1411,8 @@
   <pattern id="article-dois-prc-pattern">
     <rule context="article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois-prc">
       <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
+      <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri/@xlink:href"/>
+      <let name="latest-rp-doi-version" value="tokenize($latest-rp-doi,'\.')[last()]"/>
       
       <assert test="starts-with(.,'10.7554/eLife.')" role="error" id="prc-article-dois-1">[prc-article-dois-1] Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="."/>
       </assert>
@@ -1429,6 +1431,8 @@
       <report test="@specific-use and (following-sibling::article-id[@pub-id-type='doi'] or preceding-sibling::article-id[@pub-id-type='doi' and @specific-use])" role="error" id="prc-article-dois-6">[prc-article-dois-6] Article level version DOI must be second in article-meta. This version DOI has a following sibling DOI or a preceding version specific DOI.</report>
       
       <report test="@specific-use and @specific-use!='version'" role="error" id="prc-article-dois-7">[prc-article-dois-7] Article DOI has a specific-use attribute value <value-of select="@specific-use"/>. The only permitted value is 'version'.</report>
+      
+      
       
     </rule>
   </pattern>
@@ -2029,6 +2033,23 @@
         <report test="following-sibling::event[date[@iso-8601-date lt $date]]" role="error" id="event-test-4">[event-test-4] Events in pub-history must be ordered chronologically in descending order. This event has a date (<value-of select="$date"/>) which is later than the date of a following event (<value-of select="preceding-sibling::event[date[@iso-8601-date lt $date]][1]"/>).</report>
       
       <report test="date and self-uri and date[1]/@date-type != self-uri[1]/@content-type" role="error" id="event-test-5">[event-test-5] This event in pub-history has a date with the date-type <value-of select="date[1]/@date-type"/>, but a self-uri with the content-type <value-of select="self-uri[1]/@content-type"/>. These values should be the same, so one (or both of them) are incorrect.</report>
+    </rule>
+  </pattern>
+  <pattern id="rp-event-tests-pattern">
+    <rule context="event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" id="rp-event-tests">
+      <let name="rp-link" value="self-uri/@xlink:href"/>
+      <let name="rp-version" value="replace($rp-link,'^.*\.','')"/>
+      <let name="rp-pub-date" value="date[@date-type='reviewed-preprint']/@iso-8601-date"/>
+      <let name="sent-for-review-date" value="ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date"/>
+      <let name="preprint-pub-date" value="parent::pub-history/event/date[@date-type='preprint']/@iso-8601-date"/>
+      <let name="later-rp-events" value="parent::pub-history/event[date[@date-type='reviewed-preprint'] and replace(self-uri[1]/@xlink:href,'^.*\.','') gt $rp-version]"/>
+      
+      <report test="($preprint-pub-date and $preprint-pub-date != '') and         $preprint-pub-date ge $rp-pub-date" role="error" id="rp-event-test-1">[rp-event-test-1] Reviewed preprint publication date (<value-of select="$rp-pub-date"/>) in the publication history (for RP version <value-of select="$rp-version"/>) is the same or an earlier date than the preprint posted date (<value-of select="$preprint-pub-date"/>), which must be incorrect.</report>
+      
+      <report test="($sent-for-review-date and $sent-for-review-date != '') and         $sent-for-review-date ge $rp-pub-date" role="error" id="rp-event-test-2">[rp-event-test-2] Reviewed preprint publication date (<value-of select="$rp-pub-date"/>) in the publication history (for RP version <value-of select="$rp-version"/>) is the same or an earlier date than the sent for review date (<value-of select="$sent-for-review-date"/>), which must be incorrect.</report>
+      
+      <report test="$later-rp-events/date/@iso-8601-date = $rp-pub-date" role="error" id="rp-event-test-3">[rp-event-test-3] Reviewed preprint publication date (<value-of select="$rp-pub-date"/>) in the publication history (for RP version <value-of select="$rp-version"/>) is the same or an earlier date than publication date for a later reviewed preprint version date (<value-of select="$later-rp-events/date/@iso-8601-date[. = $rp-pub-date]"/> for version(s) <value-of select="$later-rp-events/self-uri[1]/@xlink:href/replace(.,'^.*\.','')"/>). This must be incorrect.</report>
+      
     </rule>
   </pattern>
   <pattern id="event-child-tests-pattern">

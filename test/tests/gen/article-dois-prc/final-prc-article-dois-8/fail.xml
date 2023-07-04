@@ -1,0 +1,36 @@
+<?oxygen SCHSchema="final-prc-article-dois-8.sch"?>
+<!--Context: article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']
+Test: report    @specific-use and number(substring-after(.,concat($article-id,'.'))) != (number($latest-rp-doi-version)+1)
+Message: The version DOI for the VOR needs to end with a number that is one more than whatever number the latest reviewed preprint version DOI ends with. The VOR version DOI ends with  (), whereas the latest reviewed preprint DOI in the publicaiton history ends with  (). Either there is a missing reviewed preprint publication event in the publication history, or the VOR version DOI is incorrect. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <article-id pub-id-type="publisher-id">12345</article-id>
+        <article-id pub-id-type="doi" specific-use="version">10.7554/eLife.12345.3</article-id>
+        <pub-history>
+          <event>
+            <event-desc>This manuscript was published as a preprint.</event-desc>
+            <date date-type="preprint" iso-8601-date="2022-11-01">
+              <day>01</day>
+              <month>11</month>
+              <year>2022</year>
+            </date>
+            <self-uri content-type="preprint" xlink:href="https://bfhielwqbjhiv;dwhuqiopgf4r"/></event>
+          <event>
+            <event-desc>This manuscript was published as a reviewed preprint.</event-desc>
+            <date date-type="reviewed-preprint" iso-8601-date="2023-02-01">
+              <day>01</day>
+              <month>02</month>
+              <year>2023</year>
+            </date>
+            <self-uri content-type="reviewed-preprint" xlink:href="https://doi.org/10.7554/eLife.12345.1"/>
+          </event>
+        </pub-history>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only"><meta-name>publishing-route</meta-name><meta-value>prc</meta-value></custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

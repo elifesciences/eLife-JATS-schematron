@@ -1223,8 +1223,7 @@
       <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
       <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri/@xlink:href"/>
       <let name="latest-rp-doi-version" value="tokenize($latest-rp-doi,'\.')[last()]"/>
-      <report test="@specific-use and not(matches(.,'^10.7554/eLife\.\d{5,6}\.\d$'))" role="error" id="prc-article-dois-4">Article level specific version DOI must be in the format 10.7554/eLife.00000.0. Currently it is <value-of select="."/>
-      </report>
+      <report test="@specific-use and number(substring-after(.,concat($article-id,'.'))) != (number($latest-rp-doi-version)+1)" role="error" id="final-prc-article-dois-8">The version DOI for the VOR needs to end with a number that is one more than whatever number the latest reviewed preprint version DOI ends with. The VOR version DOI ends with <value-of select="substring-after(.,concat($article-id,'.'))"/> (<value-of select="."/>), whereas the latest reviewed preprint DOI in the publicaiton history ends with <value-of select="$latest-rp-doi-version"/> (<value-of select="$latest-rp-doi"/>). Either there is a missing reviewed preprint publication event in the publication history, or the VOR version DOI is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
