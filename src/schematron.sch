@@ -5909,13 +5909,17 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="sc-title-test-2">title of a '<value-of select="$type"/>' contains a right double quotation mark. Is this correct? The original article title must be surrounded by a single roman apostrophe - <value-of select="."/>.</report>
       
-      <report test="not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)" 
+      <report test="not(e:is-prc(.)) and not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)" 
         role="warning" 
         id="pre-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the usual upper limit is 140. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
       
-      <report test="not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)" 
+      <report test="not(e:is-prc(.)) and not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)" 
         role="warning" 
         id="final-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the usual upper limit is 140. Article titles with more than 140 characters should be checked with the eLife Editorial team.</report>
+      
+      <report test="$count gt 256" 
+        role="error" 
+        id="absolute-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the current absolute limit for Continuum is 256.</report>
     </rule>
     
     <rule context="sec[@sec-type]/title" id="sec-title-tests">

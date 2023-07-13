@@ -1223,7 +1223,7 @@
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="specifics" value="('Replication Study','Registered Report',$notice-display-types)"/>
       <let name="count" value="string-length(.)"/>
-      <report test="not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)" role="warning" id="final-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the usual upper limit is 140. Article titles with more than 140 characters should be checked with the eLife Editorial team.</report>
+      <report test="not(e:is-prc(.)) and not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)" role="warning" id="final-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the usual upper limit is 140. Article titles with more than 140 characters should be checked with the eLife Editorial team.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

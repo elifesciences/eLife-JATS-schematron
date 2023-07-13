@@ -7657,6 +7657,16 @@
         <x:expect-report id="final-title-length-restriction" role="warning"/>
         <x:expect-not-assert id="article-title-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="absolute-title-length-restriction-pass">
+        <x:context href="../tests/gen/article-title-tests/absolute-title-length-restriction/pass.xml"/>
+        <x:expect-not-report id="absolute-title-length-restriction" role="error"/>
+        <x:expect-not-assert id="article-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="absolute-title-length-restriction-fail">
+        <x:context href="../tests/gen/article-title-tests/absolute-title-length-restriction/fail.xml"/>
+        <x:expect-report id="absolute-title-length-restriction" role="error"/>
+        <x:expect-not-assert id="article-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="sec-title-tests">
       <x:scenario label="sec-type-title-test-pass">

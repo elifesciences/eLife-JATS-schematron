@@ -4145,7 +4145,9 @@
       
       
       
-      <report test="not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)" role="warning" id="final-title-length-restriction">[final-title-length-restriction] The article title contains <value-of select="$count"/> characters, when the usual upper limit is 140. Article titles with more than 140 characters should be checked with the eLife Editorial team.</report>
+      <report test="not(e:is-prc(.)) and not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)" role="warning" id="final-title-length-restriction">[final-title-length-restriction] The article title contains <value-of select="$count"/> characters, when the usual upper limit is 140. Article titles with more than 140 characters should be checked with the eLife Editorial team.</report>
+      
+      <report test="$count gt 256" role="error" id="absolute-title-length-restriction">[absolute-title-length-restriction] The article title contains <value-of select="$count"/> characters, when the current absolute limit for Continuum is 256.</report>
     </rule>
   </pattern>
   <pattern id="sec-title-tests-pattern">
