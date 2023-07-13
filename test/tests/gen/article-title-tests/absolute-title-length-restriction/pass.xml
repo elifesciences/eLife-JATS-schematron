@@ -1,7 +1,7 @@
-<?oxygen SCHSchema="pre-title-length-restriction.sch"?>
+<?oxygen SCHSchema="absolute-title-length-restriction.sch"?>
 <!--Context: article-meta//article-title
-Test: report    not(e:is-prc(.)) and not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)
-Message: The article title contains  characters, when the usual upper limit is 140. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team. -->
+Test: report    $count gt 256
+Message: The article title contains  characters, when the current absolute limit for Continuum is 256. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <article-meta>

@@ -19677,8 +19677,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)">
+      <xsl:if test="not(e:is-prc(.)) and not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(e:is-prc(.)) and not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)">
             <xsl:attribute name="id">pre-title-length-restriction</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -19687,6 +19687,20 @@
             <svrl:text>[pre-title-length-restriction] The article title contains <xsl:text/>
                <xsl:value-of select="$count"/>
                <xsl:text/> characters, when the usual upper limit is 140. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="$count gt 256">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$count gt 256">
+            <xsl:attribute name="id">absolute-title-length-restriction</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[absolute-title-length-restriction] The article title contains <xsl:text/>
+               <xsl:value-of select="$count"/>
+               <xsl:text/> characters, when the current absolute limit for Continuum is 256.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M270"/>
