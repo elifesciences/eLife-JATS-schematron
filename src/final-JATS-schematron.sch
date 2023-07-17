@@ -4143,10 +4143,6 @@
       
       <report test="($type = 'Scientific Correspondence') and matches(.,'”')" role="warning" id="sc-title-test-2">[sc-title-test-2] title of a '<value-of select="$type"/>' contains a right double quotation mark. Is this correct? The original article title must be surrounded by a single roman apostrophe - <value-of select="."/>.</report>
       
-      
-      
-      <report test="not(e:is-prc(.)) and not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)" role="warning" id="final-title-length-restriction">[final-title-length-restriction] The article title contains <value-of select="$count"/> characters, when the usual upper limit is 140. Article titles with more than 140 characters should be checked with the eLife Editorial team.</report>
-      
       <report test="$count gt 256" role="error" id="absolute-title-length-restriction">[absolute-title-length-restriction] The article title contains <value-of select="$count"/> characters, when the current absolute limit for Continuum is 256.</report>
     </rule>
   </pattern>
