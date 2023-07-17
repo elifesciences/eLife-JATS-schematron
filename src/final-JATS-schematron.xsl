@@ -19796,20 +19796,6 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT warning-->
-      <xsl:if test="not(e:is-prc(.)) and not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(e:is-prc(.)) and not($type = ('Scientific Correspondence','Correction','Retraction')) and ($count gt 140)">
-            <xsl:attribute name="id">final-title-length-restriction</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[final-title-length-restriction] The article title contains <xsl:text/>
-               <xsl:value-of select="$count"/>
-               <xsl:text/> characters, when the usual upper limit is 140. Article titles with more than 140 characters should be checked with the eLife Editorial team.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
 		    <!--REPORT error-->
       <xsl:if test="$count gt 256">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$count gt 256">
