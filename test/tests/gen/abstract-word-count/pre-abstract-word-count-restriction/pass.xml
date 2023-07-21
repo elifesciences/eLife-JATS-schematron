@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pre-abstract-word-count-restriction.sch"?>
 <!--Context: front//abstract[not(@abstract-type) and not(sec)]
-Test: report    ($count gt 280)
-Message: The abstract contains  words, when the usual upper limit is 280. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team. -->
+Test: report    ($count gt 300)
+Message: The abstract contains  words, when the usual upper limit is 300. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>
