@@ -2300,7 +2300,7 @@
       <let name="p-words" value="string-join(child::p[not(starts-with(.,'DOI:') or starts-with(.,'Editorial note:'))],' ')"/>
 	    <let name="count" value="count(tokenize(normalize-space(replace($p-words,'\p{P}','')),' '))"/>
 	     
-      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-abstract-word-count-restriction" test="($count gt 280)" role="warning" id="pre-abstract-word-count-restriction">[pre-abstract-word-count-restriction] The abstract contains <value-of select="$count"/> words, when the usual upper limit is 280. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-abstract-word-count-restriction" test="($count gt 300)" role="warning" id="pre-abstract-word-count-restriction">[pre-abstract-word-count-restriction] The abstract contains <value-of select="$count"/> words, when the usual upper limit is 300. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
 	     
       
 	   </rule>

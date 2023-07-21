@@ -11108,8 +11108,8 @@
       <xsl:variable name="count" select="count(tokenize(normalize-space(replace($p-words,'\p{P}','')),' '))"/>
 
 		    <!--REPORT warning-->
-      <xsl:if test="($count gt 280)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($count gt 280)">
+      <xsl:if test="($count gt 300)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($count gt 300)">
             <xsl:attribute name="id">pre-abstract-word-count-restriction</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-abstract-word-count-restriction</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -11118,7 +11118,7 @@
             </xsl:attribute>
             <svrl:text>[pre-abstract-word-count-restriction] The abstract contains <xsl:text/>
                <xsl:value-of select="$count"/>
-               <xsl:text/> words, when the usual upper limit is 280. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</svrl:text>
+               <xsl:text/> words, when the usual upper limit is 300. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M133"/>
