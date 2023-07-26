@@ -1168,7 +1168,7 @@
           <xsl:when test="$is-equal-contrib">
             <!-- when there's more than one first author -->
             <xsl:variable name="equal-contrib-rid" select="$contrib-group/contrib[@contrib-type='author'][1]/xref[starts-with(@rid,'equal-contrib')]/@rid"/>
-            <xsl:variable name="first-authors" select="$contrib-group/contrib[@contrib-type='author' and @equal-contrib='yes' and xref[@rid=$equal-contrib-rid] and (not(preceding-sibling::contrib) or preceding-sibling::contrib[1][@equal-contrib='yes' and xref[@rid=$equal-contrib-rid]])]"/>
+            <xsl:variable name="first-authors" select="$contrib-group/contrib[@contrib-type='author' and @equal-contrib='yes' and xref[@rid=$equal-contrib-rid] and not(preceding-sibling::contrib[not(xref[@rid=$equal-contrib-rid])])]"/>
             <xsl:choose>
               <!-- when there are 3 authors total, and they're all equal contrib -->
               <xsl:when test="$author-count = 3 and count($first-authors) = 3">
