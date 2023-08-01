@@ -13217,6 +13217,16 @@
         <x:expect-report id="git-protocol" role="error"/>
         <x:expect-not-assert id="rrid-org-code-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="user-name-password-pass">
+        <x:context href="../tests/gen/rrid-org-code/user-name-password/pass.xml"/>
+        <x:expect-not-report id="user-name-password" role="warning"/>
+        <x:expect-not-assert id="rrid-org-code-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="user-name-password-fail">
+        <x:context href="../tests/gen/rrid-org-code/user-name-password/fail.xml"/>
+        <x:expect-report id="user-name-password" role="warning"/>
+        <x:expect-not-assert id="rrid-org-code-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="duplicate-ref">
       <x:scenario label="duplicate-ref-test-1-pass">
