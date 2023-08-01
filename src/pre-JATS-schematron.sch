@@ -6338,6 +6338,8 @@
       
       
       <report test="contains(.,'git://')" role="error" id="git-protocol">[git-protocol] <name/> contains the git:// protocol - <value-of select="."/>. This is no longer widely supported, and should be replaced with the appropriate https:// protocol (or similar) equivalent.</report>
+      
+      <report test="matches(.,'user-?name\s*:|password\s*:') or (matches(.,'\suser-?name\s') and matches(.,'\spassword\s'))" role="warning" id="user-name-password">[user-name-password] <name/> contains what may be a username and password - <value-of select="."/>. If these are access ceredentials for a dataset depositsed by the authors, it should be made publicly available (unless approved by editors) and the credentials removed/deleted.</report>
     </rule>
   </pattern>
   

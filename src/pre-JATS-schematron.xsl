@@ -30308,6 +30308,22 @@
                <xsl:text/>. This is no longer widely supported, and should be replaced with the appropriate https:// protocol (or similar) equivalent.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="matches(.,'user-?name\s*:|password\s*:') or (matches(.,'\suser-?name\s') and matches(.,'\spassword\s'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'user-?name\s*:|password\s*:') or (matches(.,'\suser-?name\s') and matches(.,'\spassword\s'))">
+            <xsl:attribute name="id">user-name-password</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[user-name-password] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains what may be a username and password - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. If these are access ceredentials for a dataset depositsed by the authors, it should be made publicly available (unless approved by editors) and the credentials removed/deleted.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M470"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M470"/>
