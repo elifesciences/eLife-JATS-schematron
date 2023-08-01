@@ -6596,8 +6596,8 @@
       
       <report test="matches(.,'\p{Zs}[1-2][0-9][0-9]0\p{Zs}s[\p{Zs}\.]') and not(descendant::p[matches(.,'\p{Zs}[1-2][0-9][0-9]0\p{Zs}s[\p{Zs}\.]')]) and not(descendant::td) and not(descendant::th)" role="warning" id="year-style-test">'<name/>' element contains the following string(s) - <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,' s'),'; ')"/>. If this refers to years, then the space should be removed after the number, i.e. <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,'s'),'; ')"/>. If the text is referring to a unit then this is fine.</report>
       
-      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#final-missing-url-test" test="contains(lower-case(.),'url to be added')" role="error" id="final-missing-url-test">
-        <name/> element contains the text 'URL to be added' - <value-of select="."/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL, then the eLife team should check with the authors to determine what needs to be added.</report>
+      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#final-missing-url-test" test="matches(lower-case(.),'(url|citation) to be added')" role="error" id="final-missing-url-test">
+        <name/> element contains the text 'URL to be added' or 'citation to be added' - <value-of select="."/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL/citation, then the eLife team should check with the authors to determine what needs to be added.</report>
       
       <report test="contains(.,'git://')" role="error" id="git-protocol">
         <name/> contains the git:// protocol - <value-of select="."/>. This is no longer widely supported, and should be replaced with the appropriate https:// protocol (or similar) equivalent.</report>
