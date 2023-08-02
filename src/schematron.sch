@@ -9511,9 +9511,9 @@ else self::*/local-name() = $allowed-p-blocks"
         id="year-style-test">'<name/>' element contains the following string(s) - <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,' s'),'; ')"/>. If this refers to years, then the space should be removed after the number, i.e. <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,'s'),'; ')"/>. If the text is referring to a unit then this is fine.</report>
       
       <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#final-missing-url-test"
-        test="contains(lower-case(.),'url to be added')" 
+        test="matches(lower-case(.),'(url|citation) to be added')" 
         role="error" 
-        id="final-missing-url-test"><name/> element contains the text 'URL to be added' - <value-of select="."/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL, then the eLife team should check with the authors to determine what needs to be added.</report>
+        id="final-missing-url-test"><name/> element contains the text 'URL to be added' or 'citation to be added' - <value-of select="."/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL/citation, then the eLife team should check with the authors to determine what needs to be added.</report>
       
       <report test="contains(.,'git://')" 
         role="error" 

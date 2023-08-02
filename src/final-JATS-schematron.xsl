@@ -30501,8 +30501,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="contains(lower-case(.),'url to be added')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(lower-case(.),'url to be added')">
+      <xsl:if test="matches(lower-case(.),'(url|citation) to be added')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'(url|citation) to be added')">
             <xsl:attribute name="id">final-missing-url-test</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#final-missing-url-test</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
@@ -30511,9 +30511,9 @@
             </xsl:attribute>
             <svrl:text>[final-missing-url-test] <xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/> element contains the text 'URL to be added' - <xsl:text/>
+               <xsl:text/> element contains the text 'URL to be added' or 'citation to be added' - <xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL, then the eLife team should check with the authors to determine what needs to be added.</svrl:text>
+               <xsl:text/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL/citation, then the eLife team should check with the authors to determine what needs to be added.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
