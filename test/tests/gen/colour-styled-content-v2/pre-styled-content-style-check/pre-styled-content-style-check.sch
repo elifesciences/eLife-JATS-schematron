@@ -1219,7 +1219,7 @@
     
   </xsl:function>
   <pattern id="house-style">
-    <rule context="article[e:get-version(.)!='1']//styled-content" id="colour-styled-content-v2">
+    <rule context="article//styled-content" id="colour-styled-content-v2">
       <let name="allowed-values" value="('color: #366BFB;','color: #9C27B0;','color: #D50000;')"/>
       <assert test="@style = $allowed-values" role="warning" id="pre-styled-content-style-check">
         <value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in a &lt;styled-content style="<value-of select="@style"/>"&gt;. The only allowed values for the @style are <value-of select="string-join($allowed-values,', ')"/> as only blue, purple, and red text is permitted (respectively). If this is coloured text and it is not one of the allowed colours, please query the authors - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.'</assert>
@@ -1227,7 +1227,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[e:get-version(.)!='1']//styled-content" role="error" id="colour-styled-content-v2-xspec-assert">article[e:get-version(.)!='1']//styled-content must be present.</assert>
+      <assert test="descendant::article//styled-content" role="error" id="colour-styled-content-v2-xspec-assert">article//styled-content must be present.</assert>
     </rule>
   </pattern>
 </schema>

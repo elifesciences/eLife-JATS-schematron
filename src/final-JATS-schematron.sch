@@ -2790,17 +2790,10 @@
     </rule>
   </pattern>
   <pattern id="p-child-tests-pattern">
-    <rule context="article[e:get-version(.)='1']//p/*" id="p-child-tests">
-      <let name="allowed-p-blocks" value="('bold', 'sup', 'sub', 'sc', 'italic', 'underline', 'xref','inline-formula', 'disp-formula','supplementary-material', 'code', 'ext-link', 'named-content', 'inline-graphic', 'monospace', 'related-object', 'table-wrap')"/>
-      
-      <assert test="if (ancestor::sec[@sec-type='data-availability']) then self::*/local-name() = ($allowed-p-blocks,'element-citation')  else self::*/local-name() = $allowed-p-blocks" role="error" flag="version-1" id="allowed-p-test">[allowed-p-test] p element cannot contain <value-of select="self::*/local-name()"/>. only contain the following elements are allowed - <value-of select="string-join($allowed-p-blocks,', ')"/>.</assert>
-    </rule>
-  </pattern>
-  <pattern id="p-child-tests-v2-pattern">
-    <rule context="article[e:get-version(.)!='1']//p/*" id="p-child-tests-v2">
+    <rule context="article//p/*" id="p-child-tests">
       <let name="allowed-p-blocks" value="('bold', 'sup', 'sub', 'sc', 'italic', 'underline', 'xref','inline-formula', 'disp-formula','supplementary-material', 'code', 'ext-link', 'named-content', 'inline-graphic', 'monospace', 'related-object', 'table-wrap','styled-content')"/>
       
-      <assert test="name() = $allowed-p-blocks" role="error" flag="version-2" id="allowed-p-test-v2">[allowed-p-test-v2] p element cannot contain <value-of select="name()"/>. only contain the following elements are allowed - <value-of select="string-join($allowed-p-blocks,', ')"/>.</assert>
+      <assert test="if (ancestor::sec[@sec-type='data-availability']) then self::*/local-name() = ($allowed-p-blocks,'element-citation')  else self::*/local-name() = $allowed-p-blocks" role="error" flag="version-1" id="allowed-p-test">[allowed-p-test] p element cannot contain <value-of select="self::*/local-name()"/>. only contain the following elements are allowed - <value-of select="string-join($allowed-p-blocks,', ')"/>.</assert>
     </rule>
   </pattern>
   <pattern id="xref-target-tests-pattern">
@@ -8050,38 +8043,24 @@
   </pattern>
   <pattern id="colour-table-2-pattern">
     <rule context="th[@style]|td[@style]" id="colour-table-2">
-      <let name="old-allowed-values" value="('author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8')"/>
       <let name="allowed-values" value="('background-color: #90caf9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
       
       
       
-      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#final-colour-check-table-2" test="@style=($old-allowed-values,$allowed-values)" role="error" id="final-colour-check-table-2">[final-colour-check-table-2] <name/> element contanining '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are 'author-callout-style-b1', 'author-callout-style-b2', 'author-callout-style-b3', 'author-callout-style-b4', 'author-callout-style-b5', 'author-callout-style-b6', 'author-callout-style-b7', 'author-callout-style-b8' for blue, green orange, yellow, purple, red, pink and grey respectively.</assert>
-    </rule>
-  </pattern>
-  <pattern id="colour-named-content-pattern">
-    <rule context="article[e:get-version(.)='1']//named-content" id="colour-named-content">
-      <let name="allowed-values" value="('city', 'department', 'state', 'sequence', 'author-callout-style-a1','author-callout-style-a2','author-callout-style-a3')"/>
-      
-      <report test="starts-with(@content-type,'author-callout')" role="warning" id="colour-named-content-check">[colour-named-content-check] <value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
-      </report>
-      
-      
-      
-      <assert test="@content-type = $allowed-values" role="error" id="final-named-content-type-check">[final-named-content-type-check] <value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in a &lt;named-content content-type="<value-of select="@content-type"/>"&gt;. The only allowed values for the @content-type are <value-of select="string-join($allowed-values,', ')"/>.</assert>
-      
+      <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#final-colour-check-table-2" test="@style=($allowed-values)" role="error" id="final-colour-check-table-2">[final-colour-check-table-2] <name/> element contanining '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are <value-of select="string-join($allowed-values,', ')"/> for blue, green orange, yellow, purple, red, pink and grey respectively.</assert>
     </rule>
   </pattern>
   <pattern id="colour-styled-content-pattern">
-    <rule context="article[e:get-version(.)='1']//styled-content" id="colour-styled-content">
+    <rule context="article//body//named-content[not(@content-type='sequence')]|article//back//named-content[not(@content-type='sequence')]" id="colour-styled-content">
       <let name="parent" value="parent::*/local-name()"/>
       
       
       
-      <report test="." role="error" id="final-colour-styled-content-check">[final-colour-styled-content-check] '<value-of select="."/>' - <value-of select="$parent"/> element contains a styled content element. This is not allowed. Please ensure that &lt;named-content&gt; is used with the three permitted colours for text - red, blue and purple.</report>
+      <report test="." role="error" id="final-colour-styled-content-check">[final-colour-styled-content-check] '<value-of select="."/>' - <value-of select="$parent"/> element contains a named content element. This is not allowed for coloured text. Please ensure that &lt;styled-content&gt; is used with the three permitted colours for text - red, blue and purple.</report>
     </rule>
   </pattern>
   <pattern id="colour-styled-content-v2-pattern">
-    <rule context="article[e:get-version(.)!='1']//styled-content" id="colour-styled-content-v2">
+    <rule context="article//styled-content" id="colour-styled-content-v2">
       <let name="allowed-values" value="('color: #366BFB;','color: #9C27B0;','color: #D50000;')"/>
       
       <report test="@style = $allowed-values" role="warning" id="colour-styled-content-flag">[colour-styled-content-flag] <value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
