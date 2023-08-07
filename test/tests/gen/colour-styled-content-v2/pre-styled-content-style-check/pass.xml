@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="pre-styled-content-style-check.sch"?>
-<!--Context: article[e:get-version(.)!='1']//styled-content
+<!--Context: article//styled-content
 Test: assert    @style = $allowed-values
 Message:  - text in  element is captured in a <styled-content style="">. The only allowed values for the @style are  as only blue, purple, and red text is permitted (respectively). If this is coloured text and it is not one of the allowed colours, please query the authors - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.' -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

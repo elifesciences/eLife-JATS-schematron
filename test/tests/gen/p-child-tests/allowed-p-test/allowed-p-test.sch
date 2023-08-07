@@ -1219,14 +1219,14 @@
     
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="article[e:get-version(.)='1']//p/*" id="p-child-tests">
-      <let name="allowed-p-blocks" value="('bold', 'sup', 'sub', 'sc', 'italic', 'underline', 'xref','inline-formula', 'disp-formula','supplementary-material', 'code', 'ext-link', 'named-content', 'inline-graphic', 'monospace', 'related-object', 'table-wrap')"/>
+    <rule context="article//p/*" id="p-child-tests">
+      <let name="allowed-p-blocks" value="('bold', 'sup', 'sub', 'sc', 'italic', 'underline', 'xref','inline-formula', 'disp-formula','supplementary-material', 'code', 'ext-link', 'named-content', 'inline-graphic', 'monospace', 'related-object', 'table-wrap','styled-content')"/>
       <assert test="if (ancestor::sec[@sec-type='data-availability']) then self::*/local-name() = ($allowed-p-blocks,'element-citation')  else self::*/local-name() = $allowed-p-blocks" role="error" flag="version-1" id="allowed-p-test">p element cannot contain <value-of select="self::*/local-name()"/>. only contain the following elements are allowed - <value-of select="string-join($allowed-p-blocks,', ')"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[e:get-version(.)='1']//p/*" role="error" id="p-child-tests-xspec-assert">article[e:get-version(.)='1']//p/* must be present.</assert>
+      <assert test="descendant::article//p/*" role="error" id="p-child-tests-xspec-assert">article//p/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

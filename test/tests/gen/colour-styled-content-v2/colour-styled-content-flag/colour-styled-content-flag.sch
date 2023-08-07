@@ -1219,7 +1219,7 @@
     
   </xsl:function>
   <pattern id="house-style">
-    <rule context="article[e:get-version(.)!='1']//styled-content" id="colour-styled-content-v2">
+    <rule context="article//styled-content" id="colour-styled-content-v2">
       <let name="allowed-values" value="('color: #366BFB;','color: #9C27B0;','color: #D50000;')"/>
       <report test="@style = $allowed-values" role="warning" id="colour-styled-content-flag">
         <value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
@@ -1228,7 +1228,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[e:get-version(.)!='1']//styled-content" role="error" id="colour-styled-content-v2-xspec-assert">article[e:get-version(.)!='1']//styled-content must be present.</assert>
+      <assert test="descendant::article//styled-content" role="error" id="colour-styled-content-v2-xspec-assert">article//styled-content must be present.</assert>
     </rule>
   </pattern>
 </schema>
