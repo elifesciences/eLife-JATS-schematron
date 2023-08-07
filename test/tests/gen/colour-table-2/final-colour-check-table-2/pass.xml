@@ -4,6 +4,6 @@ Test: assert    @style=($allowed-values)
 Message:  element contanining '' has an @style with an unallowed value - ''. The only allowed values are  for blue, green orange, yellow, purple, red, pink and grey respectively. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <td style="author-callout-style-b1">Education (years)</td>
+    <td style="background-color: #E57373;">Education (years)</td>
   </article>
 </root>
