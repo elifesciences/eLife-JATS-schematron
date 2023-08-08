@@ -5288,6 +5288,22 @@
     </rule>
   </pattern>
   
+  <pattern id="sub-article-doi-checks-pattern">
+    <rule context="sub-article/front-stub/article-id[@pub-id-type='doi']" id="sub-article-doi-checks">
+      <let name="is-prc" value="e:is-prc(.)"/>
+      <let name="msid" value="ancestor::article//article-meta/article-id[@pub-id-type='publisher-id']"/>
+      <let name="umbrella-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi' and not(@specific-use='version')]"/>
+      <let name="vor-version-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi' and @specific-use='version']"/>
+      <let name="pos" value="count(ancestor::article/sub-article) - count(ancestor::sub-article/following-sibling::sub-article) - 1"/>
+      <let name="expected-doi" value="if ($is-prc) then concat($vor-version-doi,'.sa',$pos)         else concat($umbrella-doi,'.sa',$pos)"/>
+      
+      <assert test=".=$expected-doi" role="error" id="sub-article-doi-check-1">Based on whether this article is PRC (or not), the umbrella and/or version DOI and the order of the sub-articles, the DOI for peer review piece '<value-of select="ancestor::sub-article/front-stub//article-title"/>' should be '<value-of select="$expected-doi"/>', but it is currently '<value-of select="."/>'.</assert>
+      
+      <assert test="contains(.,concat('.',$msid,'.'))" role="error" id="sub-article-doi-check-2">The DOI for peer review piece '<value-of select="ancestor::sub-article/front-stub//article-title"/>' must contain the overall 5-6 digit manuscript tracking number (<value-of select="$msid"/>), but it does not (<value-of select="."/>).</assert>
+      
+    </rule>
+  </pattern>
+  
   <pattern id="research-advance-test-pattern">
     <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" id="research-advance-test">
       
@@ -9563,6 +9579,7 @@
       <assert test="descendant::anonymous" role="error" id="anonymous-tests-xspec-assert">anonymous must be present.</assert>
       <assert test="descendant::sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']]" role="error" id="prc-reviewer-tests-xspec-assert">sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']] must be present.</assert>
       <assert test="descendant::article[e:is-prc(.)]" role="error" id="prc-pub-review-tests-xspec-assert">article[e:is-prc(.)] must be present.</assert>
+      <assert test="descendant::sub-article/front-stub/article-id[@pub-id-type='doi']" role="error" id="sub-article-doi-checks-xspec-assert">sub-article/front-stub/article-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" role="error" id="research-advance-test-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta must be present.</assert>
       <assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta" role="error" id="insight-test-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta must be present.</assert>
       <assert test="descendant::article[@article-type='correction']//article-meta" role="error" id="correction-test-xspec-assert">article[@article-type='correction']//article-meta must be present.</assert>

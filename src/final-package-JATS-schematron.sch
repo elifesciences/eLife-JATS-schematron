@@ -5275,6 +5275,22 @@
     </rule>
   </pattern>
   
+  <pattern id="sub-article-doi-checks-pattern">
+    <rule context="sub-article/front-stub/article-id[@pub-id-type='doi']" id="sub-article-doi-checks">
+      <let name="is-prc" value="e:is-prc(.)"/>
+      <let name="msid" value="ancestor::article//article-meta/article-id[@pub-id-type='publisher-id']"/>
+      <let name="umbrella-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi' and not(@specific-use='version')]"/>
+      <let name="vor-version-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi' and @specific-use='version']"/>
+      <let name="pos" value="count(ancestor::article/sub-article) - count(ancestor::sub-article/following-sibling::sub-article) - 1"/>
+      <let name="expected-doi" value="if ($is-prc) then concat($vor-version-doi,'.sa',$pos)         else concat($umbrella-doi,'.sa',$pos)"/>
+      
+      <assert test=".=$expected-doi" role="error" id="sub-article-doi-check-1">Based on whether this article is PRC (or not), the umbrella and/or version DOI and the order of the sub-articles, the DOI for peer review piece '<value-of select="ancestor::sub-article/front-stub//article-title"/>' should be '<value-of select="$expected-doi"/>', but it is currently '<value-of select="."/>'.</assert>
+      
+      <assert test="contains(.,concat('.',$msid,'.'))" role="error" id="sub-article-doi-check-2">The DOI for peer review piece '<value-of select="ancestor::sub-article/front-stub//article-title"/>' must contain the overall 5-6 digit manuscript tracking number (<value-of select="$msid"/>), but it does not (<value-of select="."/>).</assert>
+      
+    </rule>
+  </pattern>
+  
   <pattern id="research-advance-test-pattern">
     <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" id="research-advance-test">
       

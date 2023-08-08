@@ -1,0 +1,30 @@
+<?oxygen SCHSchema="sub-article-doi-check-1.sch"?>
+<!--Context: sub-article/front-stub/article-id[@pub-id-type='doi']
+Test: assert    .=$expected-doi
+Message: Based on whether this article is PRC (or not), the umbrella and/or version DOI and the order of the sub-articles, the DOI for peer review piece '' should be '', but it is currently ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <article-id pub-id-type="publisher-id">1234567890</article-id>
+        <article-id pub-id-type="doi">10.7554/eLife.1234567890</article-id>
+        <article-id pub-id-type="doi" specific-use="version">10.7554/eLife.1234567890.4</article-id>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only"><meta-name>publishing-route</meta-name><meta-value>prc</meta-value></custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+    <sub-article>
+      <front-stub>
+        <article-id pub-id-type="doi">10.7554/eLife.1234567890.4.sa0</article-id>
+        <article-title>Test peer review #1</article-title>
+      </front-stub>
+    </sub-article>
+    <sub-article>
+      <front-stub>
+        <article-id pub-id-type="doi">10.7554/eLife.1234567890.4.sa1</article-id>
+        <article-title>Test peer review #2</article-title>
+      </front-stub>
+    </sub-article>
+  </article>
+</root>
