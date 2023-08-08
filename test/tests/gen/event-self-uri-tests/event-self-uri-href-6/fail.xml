@@ -9,7 +9,7 @@ Message:  in event the attribute content-type="reviewed-preprint", but the xlink
       <pub-history>
         <event>
           <date date-type="preprint" iso-8601-date="1979-01-01"/>
-          <self-uri content-type="reviewed-preprint" xlink:href="https://some-preprint-server/preprint-xyz"/>
+          <self-uri content-type="preprint" xlink:href="https://some-preprint-server/preprint-xyz"/>
         </event>
         <event>
           <date date-type="reviewed-preprint" iso-8601-date="2022-01-01"/>

@@ -10118,7 +10118,7 @@
             <svrl:text>[event-self-uri-href-6] <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> in event the attribute content-type="reviewed-preprint", but the xlink:href attribute value (<xsl:text/>
-               <xsl:value-of select="."/>
+               <xsl:value-of select="@xlink:href"/>
                <xsl:text/>) does not contain the article id (<xsl:text/>
                <xsl:value-of select="$article-id"/>
                <xsl:text/>) which must be incorrect, since this should be the version DOI for the reviewed preprint version.</svrl:text>
