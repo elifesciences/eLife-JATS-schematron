@@ -1220,6 +1220,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="event/self-uri" id="event-self-uri-tests">
+      <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
       <report test="(@content-type!='reviewed-preprint' or not(@content-type)) and matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.\d$')" role="error" id="event-self-uri-href-5">
         <name/> in event does not have the attribute content-type="reviewed-preprint", but the xlink:href attribute contains an eLife version specific DOI - <value-of select="@xlink:href"/>. If it's a preprint event, the link should be to a preprint. If it's an event for reviewed preprint publication, then it should have the attribute content-type!='reviewed-preprint'.</report>
     </rule>

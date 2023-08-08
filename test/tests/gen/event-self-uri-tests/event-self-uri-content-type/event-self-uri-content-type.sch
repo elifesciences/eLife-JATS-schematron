@@ -1220,6 +1220,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="event/self-uri" id="event-self-uri-tests">
+      <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
       <assert test="@content-type=('preprint','reviewed-preprint')" role="error" id="event-self-uri-content-type">
         <name/> in event must have the attribute content-type="preprint" or content-type="reviewed-preprint". This one does not.</assert>
     </rule>

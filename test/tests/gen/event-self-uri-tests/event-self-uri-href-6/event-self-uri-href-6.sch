@@ -1221,8 +1221,8 @@
   <pattern id="article-metadata">
     <rule context="event/self-uri" id="event-self-uri-tests">
       <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
-      <report test="@content-type='reviewed-preprint' and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]$'))" role="error" id="event-self-uri-href-4">
-        <name/> in event has the attribute content-type="reviewed-preprint", but the xlink:href attribute does not contain an eLife version specific DOI - <value-of select="@xlink:href"/>.</report>
+      <report test="@content-type='reviewed-preprint' and not(contains(@xlink:href,$article-id))" role="error" id="event-self-uri-href-6">
+        <name/> in event the attribute content-type="reviewed-preprint", but the xlink:href attribute value (<value-of select="."/>) does not contain the article id (<value-of select="$article-id"/>) which must be incorrect, since this should be the version DOI for the reviewed preprint version.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

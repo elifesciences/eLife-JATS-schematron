@@ -9872,8 +9872,9 @@
 
 	  <!--RULE event-self-uri-tests-->
    <xsl:template match="event/self-uri" priority="1000" mode="M117">
+      <xsl:variable name="article-id" select="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
 
-		<!--ASSERT error-->
+		    <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="@content-type=('preprint','reviewed-preprint')"/>
          <xsl:otherwise>
@@ -9962,8 +9963,8 @@
       </xsl:choose>
 
 		    <!--REPORT error-->
-      <xsl:if test="@content-type='reviewed-preprint' and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.\d$'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@content-type='reviewed-preprint' and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.\d$'))">
+      <xsl:if test="@content-type='reviewed-preprint' and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@content-type='reviewed-preprint' and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]$'))">
             <xsl:attribute name="id">event-self-uri-href-4</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -9990,6 +9991,24 @@
                <xsl:text/> in event does not have the attribute content-type="reviewed-preprint", but the xlink:href attribute contains an eLife version specific DOI - <xsl:text/>
                <xsl:value-of select="@xlink:href"/>
                <xsl:text/>. If it's a preprint event, the link should be to a preprint. If it's an event for reviewed preprint publication, then it should have the attribute content-type!='reviewed-preprint'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="@content-type='reviewed-preprint' and not(contains(@xlink:href,$article-id))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@content-type='reviewed-preprint' and not(contains(@xlink:href,$article-id))">
+            <xsl:attribute name="id">event-self-uri-href-6</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[event-self-uri-href-6] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in event the attribute content-type="reviewed-preprint", but the xlink:href attribute value (<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>) does not contain the article id (<xsl:text/>
+               <xsl:value-of select="$article-id"/>
+               <xsl:text/>) which must be incorrect, since this should be the version DOI for the reviewed preprint version.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M117"/>

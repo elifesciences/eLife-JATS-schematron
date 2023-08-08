@@ -1220,6 +1220,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="event/self-uri" id="event-self-uri-tests">
+      <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
       <assert test="not(*) and normalize-space(.)=''" role="error" id="event-self-uri-content">
         <name/> in event must be empty. This one contains elements and/or text.</assert>
     </rule>

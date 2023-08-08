@@ -2333,6 +2333,16 @@
         <x:expect-report id="event-self-uri-href-5" role="error"/>
         <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="event-self-uri-href-6-pass">
+        <x:context href="../tests/gen/event-self-uri-tests/event-self-uri-href-6/pass.xml"/>
+        <x:expect-not-report id="event-self-uri-href-6" role="error"/>
+        <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-self-uri-href-6-fail">
+        <x:context href="../tests/gen/event-self-uri-tests/event-self-uri-href-6/fail.xml"/>
+        <x:expect-report id="event-self-uri-href-6" role="error"/>
+        <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="front-permissions-tests">
       <x:scenario label="permissions-test-4-pass">
