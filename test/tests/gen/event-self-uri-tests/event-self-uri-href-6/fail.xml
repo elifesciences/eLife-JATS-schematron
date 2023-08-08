@@ -1,22 +1,23 @@
-<?oxygen SCHSchema="event-self-uri-href-4.sch"?>
+<?oxygen SCHSchema="event-self-uri-href-6.sch"?>
 <!--Context: event/self-uri
-Test: report    @content-type='reviewed-preprint' and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]$'))
-Message:  in event has the attribute content-type="reviewed-preprint", but the xlink:href attribute does not contain an eLife version specific DOI - . -->
+Test: report    @content-type='reviewed-preprint' and not(contains(@xlink:href,$article-id))
+Message:  in event the attribute content-type="reviewed-preprint", but the xlink:href attribute value () does not contain the article id () which must be incorrect, since this should be the version DOI for the reviewed preprint version. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <article-meta>
+      <article-id pub-id-type="publisher-id">9876543210</article-id>
       <pub-history>
         <event>
           <date date-type="preprint" iso-8601-date="1979-01-01"/>
-          <self-uri content-type="reviewed-preprint" xlink:href="https://some-preprint-server/preprint-xyz"/>
+          <self-uri content-type="preprint" xlink:href="https://some-preprint-server/preprint-xyz"/>
         </event>
         <event>
           <date date-type="reviewed-preprint" iso-8601-date="2022-01-01"/>
-          <self-uri content-type="reviewed-preprint" xlink:href="https://doi.org/10.7554/eLife.1234567890.0"/>
+          <self-uri content-type="reviewed-preprint" xlink:href="https://doi.org/10.7554/eLife.1234567890.1"/>
         </event>
         <event>
           <date date-type="reviewed-preprint" iso-8601-date="2023-01-01"/>
-          <self-uri content-type="reviewed-preprint" xlink:href="https://doi.org/10.7554/eLife.1234567890.1"/>
+          <self-uri content-type="reviewed-preprint" xlink:href="https://doi.org/10.7554/eLife.1234567890.2"/>
         </event>
       </pub-history>
       <custom-meta-group>
