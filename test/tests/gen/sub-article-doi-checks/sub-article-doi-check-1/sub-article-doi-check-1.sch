@@ -1224,8 +1224,8 @@
       <let name="msid" value="ancestor::article//article-meta/article-id[@pub-id-type='publisher-id']"/>
       <let name="umbrella-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi' and not(@specific-use='version')]"/>
       <let name="vor-version-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi' and @specific-use='version']"/>
-      <let name="pos" value="count(ancestor::article/sub-article) - count(ancestor::sub-article/following-sibling::sub-article) - 1"/>
-      <let name="expected-doi" value="if ($is-prc) then concat($vor-version-doi,'.sa',$pos)         else concat($umbrella-doi,'.sa',$pos)"/>
+      <let name="id" value="ancestor::sub-article/@id"/>
+      <let name="expected-doi" value="if ($is-prc) then concat($vor-version-doi,'.',$id)         else concat($umbrella-doi,'.',$id)"/>
       <assert test=".=$expected-doi" role="error" id="sub-article-doi-check-1">Based on whether this article is PRC (or not), the umbrella and/or version DOI and the order of the sub-articles, the DOI for peer review piece '<value-of select="ancestor::sub-article/front-stub//article-title"/>' should be '<value-of select="$expected-doi"/>', but it is currently '<value-of select="."/>'.</assert>
     </rule>
   </pattern>

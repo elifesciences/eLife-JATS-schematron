@@ -24402,8 +24402,8 @@
       <xsl:variable name="msid" select="ancestor::article//article-meta/article-id[@pub-id-type='publisher-id']"/>
       <xsl:variable name="umbrella-doi" select="ancestor::article//article-meta/article-id[@pub-id-type='doi' and not(@specific-use='version')]"/>
       <xsl:variable name="vor-version-doi" select="ancestor::article//article-meta/article-id[@pub-id-type='doi' and @specific-use='version']"/>
-      <xsl:variable name="pos" select="count(ancestor::article/sub-article) - count(ancestor::sub-article/following-sibling::sub-article) - 1"/>
-      <xsl:variable name="expected-doi" select="if ($is-prc) then concat($vor-version-doi,'.sa',$pos)         else concat($umbrella-doi,'.sa',$pos)"/>
+      <xsl:variable name="id" select="ancestor::sub-article/@id"/>
+      <xsl:variable name="expected-doi" select="if ($is-prc) then concat($vor-version-doi,'.',$id)         else concat($umbrella-doi,'.',$id)"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>
