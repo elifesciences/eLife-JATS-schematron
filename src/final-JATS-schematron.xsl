@@ -24523,7 +24523,7 @@
       <xsl:variable name="umbrella-doi" select="ancestor::article//article-meta/article-id[@pub-id-type='doi' and not(@specific-use='version')]"/>
       <xsl:variable name="vor-version-doi" select="ancestor::article//article-meta/article-id[@pub-id-type='doi' and @specific-use='version']"/>
       <xsl:variable name="id" select="ancestor::sub-article/@id"/>
-      <xsl:variable name="expected-doi" select="if ($is-prc) then concat($vor-version-doi,'.sa',$id)         else concat($umbrella-doi,'.sa',$id)"/>
+      <xsl:variable name="expected-doi" select="if ($is-prc) then concat($vor-version-doi,'.',$id)         else concat($umbrella-doi,'.',$id)"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>

@@ -1225,7 +1225,7 @@
       <let name="umbrella-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi' and not(@specific-use='version')]"/>
       <let name="vor-version-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi' and @specific-use='version']"/>
       <let name="id" value="ancestor::sub-article/@id"/>
-      <let name="expected-doi" value="if ($is-prc) then concat($vor-version-doi,'.sa',$id)         else concat($umbrella-doi,'.sa',$id)"/>
+      <let name="expected-doi" value="if ($is-prc) then concat($vor-version-doi,'.',$id)         else concat($umbrella-doi,'.',$id)"/>
       <assert test="contains(.,concat('.',$msid,'.'))" role="error" id="sub-article-doi-check-2">The DOI for peer review piece '<value-of select="ancestor::sub-article/front-stub//article-title"/>' must contain the overall 5-6 digit manuscript tracking number (<value-of select="$msid"/>), but it does not (<value-of select="."/>).</assert>
     </rule>
   </pattern>

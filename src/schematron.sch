@@ -7443,8 +7443,8 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="umbrella-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi' and not(@specific-use='version')]"/>
       <let name="vor-version-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi' and @specific-use='version']"/>
       <let name="id" value="ancestor::sub-article/@id"/>
-      <let name="expected-doi" value="if ($is-prc) then concat($vor-version-doi,'.sa',$id)
-        else concat($umbrella-doi,'.sa',$id)"/>
+      <let name="expected-doi" value="if ($is-prc) then concat($vor-version-doi,'.',$id)
+        else concat($umbrella-doi,'.',$id)"/>
       
       <assert test=".=$expected-doi" 
         role="error" 
