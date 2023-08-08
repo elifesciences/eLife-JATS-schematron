@@ -7442,9 +7442,9 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="msid" value="ancestor::article//article-meta/article-id[@pub-id-type='publisher-id']"/>
       <let name="umbrella-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi' and not(@specific-use='version')]"/>
       <let name="vor-version-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi' and @specific-use='version']"/>
-      <let name="pos" value="count(ancestor::article/sub-article) - count(ancestor::sub-article/following-sibling::sub-article) - 1"/>
-      <let name="expected-doi" value="if ($is-prc) then concat($vor-version-doi,'.sa',$pos)
-        else concat($umbrella-doi,'.sa',$pos)"/>
+      <let name="id" value="ancestor::sub-article/@id"/>
+      <let name="expected-doi" value="if ($is-prc) then concat($vor-version-doi,'.sa',$id)
+        else concat($umbrella-doi,'.sa',$id)"/>
       
       <assert test=".=$expected-doi" 
         role="error" 

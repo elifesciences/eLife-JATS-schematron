@@ -14,13 +14,13 @@ Message: Based on whether this article is PRC (or not), the umbrella and/or vers
         </custom-meta-group>
       </article-meta>
     </front>
-    <sub-article>
+    <sub-article id="sa0">
       <front-stub>
         <article-id pub-id-type="doi">10.7554/eLife.1234567890.4.sa0</article-id>
         <article-title>Test peer review #1</article-title>
       </front-stub>
     </sub-article>
-    <sub-article>
+    <sub-article id="sa1">
       <front-stub>
         <article-id pub-id-type="doi">10.7554/eLife.1234567890.4.sa1</article-id>
         <article-title>Test peer review #2</article-title>
