@@ -4363,16 +4363,6 @@
         <x:expect-assert id="ext-link-child-test-2" role="error"/>
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="ext-link-child-test-3-pass">
-        <x:context href="../tests/gen/ext-link-tests/ext-link-child-test-3/pass.xml"/>
-        <x:expect-not-report id="ext-link-child-test-3" role="error"/>
-        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="ext-link-child-test-3-fail">
-        <x:context href="../tests/gen/ext-link-tests/ext-link-child-test-3/fail.xml"/>
-        <x:expect-report id="ext-link-child-test-3" role="error"/>
-        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="ext-link-child-test-4-pass">
         <x:context href="../tests/gen/ext-link-tests/ext-link-child-test-4/pass.xml"/>
         <x:expect-not-report id="ext-link-child-test-4" role="warning"/>
@@ -4404,47 +4394,25 @@
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
-    <x:scenario label="das-software-heritage-tests">
-      <x:scenario label="software-heritage-test-1-pass">
-        <x:context href="../tests/gen/das-software-heritage-tests/software-heritage-test-1/pass.xml"/>
-        <x:expect-not-assert id="software-heritage-test-1" role="error"/>
-        <x:expect-not-assert id="das-software-heritage-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="software-heritage-test-1-fail">
-        <x:context href="../tests/gen/das-software-heritage-tests/software-heritage-test-1/fail.xml"/>
-        <x:expect-assert id="software-heritage-test-1" role="error"/>
-        <x:expect-not-assert id="das-software-heritage-tests-xspec-assert" role="error"/>
-      </x:scenario>
-    </x:scenario>
     <x:scenario label="software-heritage-tests">
       <x:scenario label="software-heritage-test-2-pass">
         <x:context href="../tests/gen/software-heritage-tests/software-heritage-test-2/pass.xml"/>
-        <x:expect-not-report id="software-heritage-test-2" role="error"/>
+        <x:expect-not-assert id="software-heritage-test-2" role="error"/>
         <x:expect-not-assert id="software-heritage-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="software-heritage-test-2-fail">
         <x:context href="../tests/gen/software-heritage-tests/software-heritage-test-2/fail.xml"/>
-        <x:expect-report id="software-heritage-test-2" role="error"/>
+        <x:expect-assert id="software-heritage-test-2" role="error"/>
         <x:expect-not-assert id="software-heritage-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="software-heritage-test-3-pass">
         <x:context href="../tests/gen/software-heritage-tests/software-heritage-test-3/pass.xml"/>
-        <x:expect-not-report id="software-heritage-test-3" role="error"/>
+        <x:expect-not-assert id="software-heritage-test-3" role="error"/>
         <x:expect-not-assert id="software-heritage-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="software-heritage-test-3-fail">
         <x:context href="../tests/gen/software-heritage-tests/software-heritage-test-3/fail.xml"/>
-        <x:expect-report id="software-heritage-test-3" role="error"/>
-        <x:expect-not-assert id="software-heritage-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="software-heritage-test-4-pass">
-        <x:context href="../tests/gen/software-heritage-tests/software-heritage-test-4/pass.xml"/>
-        <x:expect-not-report id="software-heritage-test-4" role="warning"/>
-        <x:expect-not-assert id="software-heritage-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="software-heritage-test-4-fail">
-        <x:context href="../tests/gen/software-heritage-tests/software-heritage-test-4/fail.xml"/>
-        <x:expect-report id="software-heritage-test-4" role="warning"/>
+        <x:expect-assert id="software-heritage-test-3" role="error"/>
         <x:expect-not-assert id="software-heritage-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="software-heritage-test-5-pass">
@@ -4456,6 +4424,18 @@
         <x:context href="../tests/gen/software-heritage-tests/software-heritage-test-5/fail.xml"/>
         <x:expect-report id="software-heritage-test-5" role="error"/>
         <x:expect-not-assert id="software-heritage-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="software-heritage-cite-tests">
+      <x:scenario label="software-heritage-test-4-pass">
+        <x:context href="../tests/gen/software-heritage-cite-tests/software-heritage-test-4/pass.xml"/>
+        <x:expect-not-report id="software-heritage-test-4" role="warning"/>
+        <x:expect-not-assert id="software-heritage-cite-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="software-heritage-test-4-fail">
+        <x:context href="../tests/gen/software-heritage-cite-tests/software-heritage-test-4/fail.xml"/>
+        <x:expect-report id="software-heritage-test-4" role="warning"/>
+        <x:expect-not-assert id="software-heritage-cite-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="ext-link-tests-2">

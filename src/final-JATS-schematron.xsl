@@ -2421,8 +2421,8 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">das-software-heritage-tests-pattern</xsl:attribute>
-            <xsl:attribute name="name">das-software-heritage-tests-pattern</xsl:attribute>
+            <xsl:attribute name="id">software-heritage-tests-pattern</xsl:attribute>
+            <xsl:attribute name="name">software-heritage-tests-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M175"/>
@@ -2430,8 +2430,8 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">software-heritage-tests-pattern</xsl:attribute>
-            <xsl:attribute name="name">software-heritage-tests-pattern</xsl:attribute>
+            <xsl:attribute name="id">software-heritage-cite-tests-pattern</xsl:attribute>
+            <xsl:attribute name="name">software-heritage-cite-tests-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M176"/>
@@ -13782,21 +13782,6 @@
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--REPORT error-->
-      <xsl:if test="contains(.,'copy archived')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'copy archived')">
-            <xsl:attribute name="id">ext-link-child-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#ext-link-child-test-3</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[ext-link-child-test-3] ext-link - <xsl:text/>
-               <xsl:value-of select="."/>
-               <xsl:text/> - contains the phrase 'copy archived', which is incorrect.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
 		    <!--REPORT warning-->
       <xsl:if test="matches(.,'^[Dd][Oo][Ii]:|^[Dd][Oo][Ii]\p{Zs}')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^[Dd][Oo][Ii]:|^[Dd][Oo][Ii]\p{Zs}')">
@@ -13848,91 +13833,50 @@
       <xsl:apply-templates select="*" mode="M174"/>
    </xsl:template>
 
-   <!--PATTERN das-software-heritage-tests-pattern-->
-
-
-	  <!--RULE das-software-heritage-tests-->
-   <xsl:template match="sec[@sec-type='data-availability']//ext-link[contains(@xlink:href,'softwareheritage')]" priority="1000" mode="M175">
-
-		<!--ASSERT error-->
-      <xsl:choose>
-         <xsl:when test="(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$|;path=/.*$',''))"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$|;path=/.*$',''))">
-               <xsl:attribute name="id">software-heritage-test-1</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-1</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[software-heritage-test-1] Software heritage links in the data availability statement must be the full contextual link, with the revision SWHID as the text of the link for Kriya 2. '<xsl:text/>
-                  <xsl:value-of select="."/>
-                  <xsl:text/>' is not either of these.</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
-      <xsl:apply-templates select="*" mode="M175"/>
-   </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M175"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M175">
-      <xsl:apply-templates select="*" mode="M175"/>
-   </xsl:template>
-
    <!--PATTERN software-heritage-tests-pattern-->
 
 
 	  <!--RULE software-heritage-tests-->
-   <xsl:template match="ext-link[contains(@xlink:href,'softwareheritage')]" priority="1000" mode="M176">
-      <xsl:variable name="origin" select="lower-case(substring-before(substring-after(@xlink:href,'origin='),';'))"/>
+   <xsl:template match="ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" priority="1000" mode="M175">
+      <xsl:variable name="version" select="replace(substring-after(ext-link[1]/@xlink:href,'anchor='),'/$','')"/>
 
-		    <!--REPORT error-->
-      <xsl:if test="(ancestor::body or ancestor::ref) and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(ancestor::body or ancestor::ref) and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))">
-            <xsl:attribute name="id">software-heritage-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-2</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[software-heritage-test-2] Software heritage links in the main text or references must be the directory link with contextual information. '<xsl:text/>
-               <xsl:value-of select="@xlink:href"/>
-               <xsl:text/>' is not a directory link with contextual information.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="matches(ext-link[1]/@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(ext-link[1]/@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*')">
+               <xsl:attribute name="id">software-heritage-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-2</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[software-heritage-test-2] Software heritage links in references must be the directory link with contextual information. '<xsl:text/>
+                  <xsl:value-of select="ext-link[1]/@xlink:href"/>
+                  <xsl:text/>' is not a directory link with contextual information.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
 
-		    <!--REPORT error-->
-      <xsl:if test="ancestor::body and matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and (. != replace(substring-after(@xlink:href,'anchor='),'/$',''))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::body and matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and (. != replace(substring-after(@xlink:href,'anchor='),'/$',''))">
-            <xsl:attribute name="id">software-heritage-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-3</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[software-heritage-test-3] The text for Software heritage links in the main text must be the revision SWHID without contextual information. '<xsl:text/>
-               <xsl:value-of select="."/>
-               <xsl:text/>' is not. Based on the link itself, the text that is embedded should be '<xsl:text/>
-               <xsl:value-of select="replace(substring-after(@xlink:href,'anchor='),'/$','')"/>
-               <xsl:text/>'.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies replace(lower-case($x/@xlink:href),'/$','') = $origin)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies replace(lower-case($x/@xlink:href),'/$','') = $origin)">
-            <xsl:attribute name="id">software-heritage-test-4</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-4</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[software-heritage-test-4] A Software heritage link must follow the original link for the software. The Software heritage link with the text '<xsl:text/>
-               <xsl:value-of select="."/>
-               <xsl:text/>' has '<xsl:text/>
-               <xsl:value-of select="$origin"/>
-               <xsl:text/>' as its origin URL, but there is no preceding link with that same URL.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="version[1]=$version"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="version[1]=$version">
+               <xsl:attribute name="id">software-heritage-test-3</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-3</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[software-heritage-test-3] The version number for Software heritage references must be the revision SWHID without contextual information. '<xsl:text/>
+                  <xsl:value-of select="version[1]"/>
+                  <xsl:text/>' is not. Based on the link, the version should be '<xsl:text/>
+                  <xsl:value-of select="$version"/>
+                  <xsl:text/>'.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
 
 		    <!--REPORT error-->
       <xsl:if test="contains(@xlink:href,'[…]')">
@@ -13944,6 +13888,38 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[software-heritage-test-5] A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <xsl:apply-templates select="*" mode="M175"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M175"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M175">
+      <xsl:apply-templates select="*" mode="M175"/>
+   </xsl:template>
+
+   <!--PATTERN software-heritage-cite-tests-pattern-->
+
+
+	  <!--RULE software-heritage-cite-tests-->
+   <xsl:template match="article[descendant::ref[descendant::ext-link[1][contains(@xlink:href,'softwareheritage')]]]//xref[@ref-type='bibr']" priority="1000" mode="M176">
+      <xsl:variable name="rid" select="@rid"/>
+      <xsl:variable name="ref" select="ancestor::article//ref[descendant::ext-link[1][contains(@xlink:href,'softwareheritage')] and @id=$rid]"/>
+      <xsl:variable name="origin" select="lower-case(substring-before(substring-after($ref/descendant::ext-link[1]/@xlink:href,'origin='),';'))"/>
+
+		    <!--REPORT warning-->
+      <xsl:if test="$ref and not(preceding::xref[@rid=$rid]) and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies replace(lower-case($x/@xlink:href),'/$','') = $origin)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$ref and not(preceding::xref[@rid=$rid]) and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies replace(lower-case($x/@xlink:href),'/$','') = $origin)">
+            <xsl:attribute name="id">software-heritage-test-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-4</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[software-heritage-test-4] The first citation for a Software heritage reference should follow the original link for the software. This Software heritage citation (<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>) is for a reference which has '<xsl:text/>
+               <xsl:value-of select="$origin"/>
+               <xsl:text/>' as its origin URL, but there is no link preceding the citation with that same URL.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M176"/>

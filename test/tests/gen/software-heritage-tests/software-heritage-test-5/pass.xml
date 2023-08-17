@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="software-heritage-test-5.sch"?>
-<!--Context: ext-link[contains(@xlink:href,'softwareheritage')]
+<!--Context: ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]
 Test: report    contains(@xlink:href,'[…]')
 Message: A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

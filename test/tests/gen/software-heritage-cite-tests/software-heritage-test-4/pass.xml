@@ -1,9 +1,12 @@
-<?oxygen SCHSchema="software-heritage-test-3.sch"?>
-<!--Context: ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]
-Test: assert    version[1]=$version
-Message: The version number for Software heritage references must be the revision SWHID without contextual information. '' is not. Based on the link, the version should be ''. -->
+<?oxygen SCHSchema="software-heritage-test-4.sch"?>
+<!--Context: article[descendant::ref[descendant::ext-link[1][contains(@xlink:href,'softwareheritage')]]]//xref[@ref-type='bibr']
+Test: report    $ref and not(preceding::xref[@rid=$rid]) and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies replace(lower-case($x/@xlink:href),'/$','') = $origin)
+Message: The first citation for a Software heritage reference should follow the original link for the software. This Software heritage citation () is for a reference which has '' as its origin URL, but there is no link preceding the citation with that same URL. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
+    <body>
+      <p>Code associated with analysis of the single cell analysis can be accessed at Github: <ext-link ext-link-type="uri" xlink:href="https://github.com/cnk113/analysis-scripts">https://github.com/cnk113/analysis-scripts</ext-link> (copy archived at <xref ref-type="bibr" rid="bib22">Kim, 2023</xref>).</p>
+    </body>
     <back>
       <ref-list>
         <ref id="bib22">

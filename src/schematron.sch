@@ -3840,11 +3840,6 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="ext-link-child-test-2">ext-link - <value-of select="."/> - has a non-formatting child element - <value-of select="$non-form-children"/> - which is not correct.</assert>
       
-      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#ext-link-child-test-3" 
-        test="contains(.,'copy archived')" 
-        role="error" 
-        id="ext-link-child-test-3">ext-link - <value-of select="."/> - contains the phrase 'copy archived', which is incorrect.</report>
-      
       <report test="matches(.,'^[Dd][Oo][Ii]:|^[Dd][Oo][Ii]\p{Zs}')" 
         role="warning" 
         id="ext-link-child-test-4">ext-link text - <value-of select="."/> - appears to start with the string 'Doi:' or 'Doi ' (or similar), which is unnecessary.</report>
@@ -3859,38 +3854,37 @@ else self::*/local-name() = $allowed-p-blocks"
         id="ext-link-text">The text for a URL is '<value-of select="."/>' (which looks like a URL), but it is not the same as the actual embedded link, which is '<value-of select="@xlink:href"/>'.</report>
     </rule>
     
-    <rule context="sec[@sec-type='data-availability']//ext-link[contains(@xlink:href,'softwareheritage')]" 
-      id="das-software-heritage-tests">
-      
-      <assert see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-1" 
-        test="(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$|;path=/.*$',''))" 
-        role="error" 
-        id="software-heritage-test-1">Software heritage links in the data availability statement must be the full contextual link, with the revision SWHID as the text of the link for Kriya 2. '<value-of select="."/>' is not either of these.</assert>
-      
-    </rule>
-    <rule context="ext-link[contains(@xlink:href,'softwareheritage')]" 
+    <rule context="ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" 
       id="software-heritage-tests">
-      <let name="origin" value="lower-case(substring-before(substring-after(@xlink:href,'origin='),';'))"/>
+      <let name="version" value="replace(substring-after(ext-link[1]/@xlink:href,'anchor='),'/$','')"/>
       
-      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-2" 
-        test="(ancestor::body or ancestor::ref) and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))" 
+      <assert see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-2" 
+        test="matches(ext-link[1]/@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*')" 
         role="error" 
-        id="software-heritage-test-2">Software heritage links in the main text or references must be the directory link with contextual information. '<value-of select="@xlink:href"/>' is not a directory link with contextual information.</report>
+        id="software-heritage-test-2">Software heritage links in references must be the directory link with contextual information. '<value-of select="ext-link[1]/@xlink:href"/>' is not a directory link with contextual information.</assert>
       
-      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-3" 
-        test="ancestor::body and matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and (. != replace(substring-after(@xlink:href,'anchor='),'/$',''))" 
+      <assert see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-3" 
+        test="version[1]=$version" 
         role="error" 
-        id="software-heritage-test-3">The text for Software heritage links in the main text must be the revision SWHID without contextual information. '<value-of select="."/>' is not. Based on the link itself, the text that is embedded should be '<value-of select="replace(substring-after(@xlink:href,'anchor='),'/$','')"/>'.</report>
-      
-      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-4" 
-        test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies replace(lower-case($x/@xlink:href),'/$','') = $origin)" 
-        role="warning" 
-        id="software-heritage-test-4">A Software heritage link must follow the original link for the software. The Software heritage link with the text '<value-of select="."/>' has '<value-of select="$origin"/>' as its origin URL, but there is no preceding link with that same URL.</report>
+        id="software-heritage-test-3">The version number for Software heritage references must be the revision SWHID without contextual information. '<value-of select="version[1]"/>' is not. Based on the link, the version should be '<value-of select="$version"/>'.</assert>
       
       <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-5" 
         test="contains(@xlink:href,'[…]')" 
         role="error" 
         id="software-heritage-test-5">A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed).</report>
+      
+    </rule>
+    
+    <rule context="article[descendant::ref[descendant::ext-link[1][contains(@xlink:href,'softwareheritage')]]]//xref[@ref-type='bibr']"
+      id="software-heritage-cite-tests">
+      <let name="rid" value="@rid"/>
+      <let name="ref" value="ancestor::article//ref[descendant::ext-link[1][contains(@xlink:href,'softwareheritage')] and @id=$rid]"/>
+      <let name="origin" value="lower-case(substring-before(substring-after($ref/descendant::ext-link[1]/@xlink:href,'origin='),';'))"/>
+      
+      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-4" 
+        test="$ref and not(preceding::xref[@rid=$rid]) and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies replace(lower-case($x/@xlink:href),'/$','') = $origin)" 
+        role="warning" 
+        id="software-heritage-test-4">The first citation for a Software heritage reference should follow the original link for the software. This Software heritage citation (<value-of select="."/>) is for a reference which has '<value-of select="$origin"/>' as its origin URL, but there is no link preceding the citation with that same URL.</report>
       
     </rule>
     
