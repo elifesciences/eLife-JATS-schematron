@@ -18,7 +18,7 @@ Message: A Software heritage link contains '[…]', meaning that the link has be
             <data-title>Analysis-scripts</data-title>
             <version designator="swh:1:rev:b5e8fe22e58680e1c1dff1e9dccbb9388595db2a">swh:1:rev:b5e8fe22e58680e1c1dff1e9dccbb9388595db2a</version>
             <source>Software Heritage</source>
-            <ext-link ext-link-type="uri" xlink:href="https://archive.softwareheritage.org/swh:1:dir:e00823050f88e2d1074a4cd1f65aa2b9de800dac;origin=https://github.com/cnk113/analysis-scripts;visit=swh:1:snp:b93db9c09aa1af838e99667644d1c7bb2ebcf8c9;anchor=swh:1:rev:b5e8fe22e58680e1c1dff1e9dccbb9388595db2a">https://archive.softwareheritage.org/swh:1:dir:e00823050f88e2d1074a4cd1f65aa2b9de800dac;ori[…]or=swh:1:rev:b5e8fe22e58680e1c1dff1e9dccbb9388595db2a</ext-link>
+            <ext-link ext-link-type="uri" xlink:href="https://archive.softwareheritage.org/swh:1:dir:e00823050f88e2d1074a4cd1f65aa2b9de800dac;ori[…]or=swh:1:rev:b5e8fe22e58680e1c1dff1e9dccbb9388595db2a">https://archive.softwareheritage.org/swh:1:dir:e00823050f88e2d1074a4cd1f65aa2b9de800dac;ori[…]or=swh:1:rev:b5e8fe22e58680e1c1dff1e9dccbb9388595db2a</ext-link>
           </element-citation>
         </ref>
       </ref-list>
