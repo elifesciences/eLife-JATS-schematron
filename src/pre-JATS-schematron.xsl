@@ -13765,8 +13765,8 @@
       </xsl:choose>
 
 		    <!--REPORT error-->
-      <xsl:if test="contains(@xlink:href,'[…]')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(@xlink:href,'[…]')">
+      <xsl:if test="contains(ext-link[1]/@xlink:href,'[…]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(ext-link[1]/@xlink:href,'[…]')">
             <xsl:attribute name="id">software-heritage-test-5</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>

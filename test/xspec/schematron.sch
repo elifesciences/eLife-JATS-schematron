@@ -2966,7 +2966,7 @@
       
       <assert see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-3" test="version[1]=$version" role="error" id="software-heritage-test-3">The version number for Software heritage references must be the revision SWHID without contextual information. '<value-of select="version[1]"/>' is not. Based on the link, the version should be '<value-of select="$version"/>'.</assert>
       
-      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-5" test="contains(@xlink:href,'[…]')" role="error" id="software-heritage-test-5">A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed).</report>
+      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-5" test="contains(ext-link[1]/@xlink:href,'[…]')" role="error" id="software-heritage-test-5">A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed).</report>
       
     </rule>
   </pattern>

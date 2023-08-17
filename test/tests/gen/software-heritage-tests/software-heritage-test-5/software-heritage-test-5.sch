@@ -1221,7 +1221,7 @@
   <pattern id="content-containers">
     <rule context="ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" id="software-heritage-tests">
       <let name="version" value="replace(substring-after(ext-link[1]/@xlink:href,'anchor='),'/$','')"/>
-      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-5" test="contains(@xlink:href,'[…]')" role="error" id="software-heritage-test-5">A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed).</report>
+      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-5" test="contains(ext-link[1]/@xlink:href,'[…]')" role="error" id="software-heritage-test-5">A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

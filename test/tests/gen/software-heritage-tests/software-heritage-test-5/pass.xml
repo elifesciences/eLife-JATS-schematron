@@ -1,9 +1,27 @@
 <?oxygen SCHSchema="software-heritage-test-5.sch"?>
 <!--Context: ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]
-Test: report    contains(@xlink:href,'[…]')
+Test: report    contains(ext-link[1]/@xlink:href,'[…]')
 Message: A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <ext-link ext-link-type="uri" xlink:href="https://archive.softwareheritage.org/swh:1:dir:19da0c557f8884812d196e912af760ba5f5ffe2b/">This is some text</ext-link>
+    <back>
+      <ref-list>
+        <ref id="bib22">
+          <element-citation publication-type="software">
+            <person-group person-group-type="author">
+              <name>
+                <surname>Kim</surname>
+                <given-names>CN</given-names>
+              </name>
+            </person-group>
+            <year iso-8601-date="2023">2023</year>
+            <data-title>Analysis-scripts</data-title>
+            <version designator="swh:1:rev:b5e8fe22e58680e1c1dff1e9dccbb9388595db2a">swh:1:rev:b5e8fe22e58680e1c1dff1e9dccbb9388595db2a</version>
+            <source>Software Heritage</source>
+            <ext-link ext-link-type="uri" xlink:href="https://archive.softwareheritage.org/swh:1:dir:e00823050f88e2d1074a4cd1f65aa2b9de800dac;origin=https://github.com/cnk113/analysis-scripts;visit=swh:1:snp:b93db9c09aa1af838e99667644d1c7bb2ebcf8c9;anchor=swh:1:rev:b5e8fe22e58680e1c1dff1e9dccbb9388595db2a">https://archive.softwareheritage.org/swh:1:dir:e00823050f88e2d1074a4cd1f65aa2b9de800dac;origin=https://github.com/cnk113/analysis-scripts;visit=swh:1:snp:b93db9c09aa1af838e99667644d1c7bb2ebcf8c9;anchor=swh:1:rev:b5e8fe22e58680e1c1dff1e9dccbb9388595db2a</ext-link>
+          </element-citation>
+        </ref>
+      </ref-list>
+    </back>
   </article>
 </root>
