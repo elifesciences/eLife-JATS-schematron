@@ -2233,7 +2233,7 @@
     <rule context="permissions/license[@xlink:href]/license-p" id="license-link-tests">
       <let name="license-link" value="parent::license/@xlink:href"/>
       
-      <assert test="some $x in ext-link satisfies $x/@xlink:href = $license-link" role="error" id="license-p-test-3">[license-p-test-3] If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: <value-of select="$license-link"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hx30h-p-test-3" test="some $x in ext-link satisfies $x/@xlink:href = $license-link" role="error" id="license-p-test-3">[license-p-test-3] If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: <value-of select="$license-link"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
     </rule>
   </pattern>
   <pattern id="license-ali-ref-link-tests-pattern">
@@ -2874,8 +2874,6 @@
       
       <assert test="$non-form-children=''" role="error" id="ext-link-child-test-2">[ext-link-child-test-2] ext-link - <value-of select="."/> - has a non-formatting child element - <value-of select="$non-form-children"/> - which is not correct.</assert>
       
-      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#ext-link-child-test-3" test="contains(.,'copy archived')" role="error" id="ext-link-child-test-3">[ext-link-child-test-3] ext-link - <value-of select="."/> - contains the phrase 'copy archived', which is incorrect.</report>
-      
       <report test="matches(.,'^[Dd][Oo][Ii]:|^[Dd][Oo][Ii]\p{Zs}')" role="warning" id="ext-link-child-test-4">[ext-link-child-test-4] ext-link text - <value-of select="."/> - appears to start with the string 'Doi:' or 'Doi ' (or similar), which is unnecessary.</report>
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#ext-link-child-test-5" test="contains(@xlink:href,'datadryad.org/review?')" role="warning" id="ext-link-child-test-5">[ext-link-child-test-5] ext-link looks like it points to a review dryad dataset - <value-of select="."/>. Should it be updated?</report>
@@ -2883,24 +2881,25 @@
       <report test="(.!=@xlink:href) and matches(.,'https?:|ftp:|www\.')" role="warning" id="ext-link-text">[ext-link-text] The text for a URL is '<value-of select="."/>' (which looks like a URL), but it is not the same as the actual embedded link, which is '<value-of select="@xlink:href"/>'.</report>
     </rule>
   </pattern>
-  <pattern id="das-software-heritage-tests-pattern">
-    <rule context="sec[@sec-type='data-availability']//ext-link[contains(@xlink:href,'softwareheritage')]" id="das-software-heritage-tests">
+  <pattern id="software-heritage-tests-pattern">
+    <rule context="ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" id="software-heritage-tests">
+      <let name="version" value="replace(substring-after(ext-link[1]/@xlink:href,'anchor='),'/$','')"/>
       
-      <assert see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-1" test="(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and . = replace(substring-after(@xlink:href,'anchor='),'/$|;path=/.*$',''))" role="error" id="software-heritage-test-1">[software-heritage-test-1] Software heritage links in the data availability statement must be the full contextual link, with the revision SWHID as the text of the link for Kriya 2. '<value-of select="."/>' is not either of these.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-2" test="matches(ext-link[1]/@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*')" role="error" id="software-heritage-test-2">[software-heritage-test-2] Software heritage links in references must be the directory link with contextual information. '<value-of select="ext-link[1]/@xlink:href"/>' is not a directory link with contextual information.</assert>
+      
+      <assert see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-3" test="version[1]=$version" role="error" id="software-heritage-test-3">[software-heritage-test-3] The version number for Software heritage references must be the revision SWHID without contextual information. '<value-of select="version[1]"/>' is not. Based on the link, the version should be '<value-of select="$version"/>'.</assert>
+      
+      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-5" test="contains(ext-link[1]/@xlink:href,'[…]')" role="error" id="software-heritage-test-5">[software-heritage-test-5] A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed).</report>
       
     </rule>
   </pattern>
-  <pattern id="software-heritage-tests-pattern">
-    <rule context="ext-link[contains(@xlink:href,'softwareheritage')]" id="software-heritage-tests">
-      <let name="origin" value="lower-case(substring-before(substring-after(@xlink:href,'origin='),';'))"/>
+  <pattern id="software-heritage-cite-tests-pattern">
+    <rule context="article[descendant::ref[descendant::ext-link[1][contains(@xlink:href,'softwareheritage')]]]//xref[@ref-type='bibr']" id="software-heritage-cite-tests">
+      <let name="rid" value="@rid"/>
+      <let name="ref" value="ancestor::article//ref[descendant::ext-link[1][contains(@xlink:href,'softwareheritage')] and @id=$rid]"/>
+      <let name="origin" value="lower-case(substring-before(substring-after($ref/descendant::ext-link[1]/@xlink:href,'origin='),';'))"/>
       
-      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-2" test="(ancestor::body or ancestor::ref) and not(matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*'))" role="error" id="software-heritage-test-2">[software-heritage-test-2] Software heritage links in the main text or references must be the directory link with contextual information. '<value-of select="@xlink:href"/>' is not a directory link with contextual information.</report>
-      
-      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-3" test="ancestor::body and matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and (. != replace(substring-after(@xlink:href,'anchor='),'/$',''))" role="error" id="software-heritage-test-3">[software-heritage-test-3] The text for Software heritage links in the main text must be the revision SWHID without contextual information. '<value-of select="."/>' is not. Based on the link itself, the text that is embedded should be '<value-of select="replace(substring-after(@xlink:href,'anchor='),'/$','')"/>'.</report>
-      
-      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-4" test="ancestor::body and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies replace(lower-case($x/@xlink:href),'/$','') = $origin)" role="warning" id="software-heritage-test-4">[software-heritage-test-4] A Software heritage link must follow the original link for the software. The Software heritage link with the text '<value-of select="."/>' has '<value-of select="$origin"/>' as its origin URL, but there is no preceding link with that same URL.</report>
-      
-      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-5" test="contains(@xlink:href,'[…]')" role="error" id="software-heritage-test-5">[software-heritage-test-5] A Software heritage link contains '[…]', meaning that the link has been copied incorrectly (it is truncated, and cannot be followed).</report>
+      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-4" test="$ref and not(preceding::xref[@rid=$rid]) and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies replace(lower-case($x/@xlink:href),'/$','') = $origin)" role="warning" id="software-heritage-test-4">[software-heritage-test-4] The first citation for a Software heritage reference should follow the original link for the software. This Software heritage citation (<value-of select="."/>) is for a reference which has '<value-of select="$origin"/>' as its origin URL, but there is no link preceding the citation with that same URL.</report>
       
     </rule>
   </pattern>
@@ -3556,10 +3555,10 @@
       <report test="($type='alpha-upper') and matches(.,'^\p{Zs}?[A-H|J-W|Y-Z][\.|\)]? ')" role="warning" id="alpha-upper-test-1">[alpha-upper-test-1] list-item is part of an alpha-upper list, but it begins with a single upper-case letter. Is this correct? <value-of select="."/>
       </report>
       
-      <report test="($type='roman-lower') and matches(.,'^\p{Zs}?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" role="warning" id="roman-lower-test-1">[roman-lower-test-1] list-item is part of an roman-lower list, but it begins with a single roman-lower letter. Is this correct? <value-of select="."/>
+      <report test="($type='roman-lower') and matches(.,'^\p{Zs}?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" role="warning" id="roman-lower-test-1">[roman-lower-test-1] list-item is part of a roman-lower list, but it begins with a single roman-lower letter. Is this correct? <value-of select="."/>
       </report>
       
-      <report test="($type='roman-upper') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="roman-upper-test-1">[roman-upper-test-1] list-item is part of an roman-upper list, but it begins with a single roman-upper letter. Is this correct? <value-of select="."/>
+      <report test="($type='roman-upper') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="roman-upper-test-1">[roman-upper-test-1] list-item is part of a roman-upper list, but it begins with a single roman-upper letter. Is this correct? <value-of select="."/>
       </report>
       
       <report test="($type='simple') and matches(.,'^\p{Zs}?[1-9][\.|\)]? ')" role="warning" id="simple-test-1">[simple-test-1] list-item is part of a simple list, but it begins with a number. Should the list-type be updated to ordered and this number removed? <value-of select="."/>
@@ -6392,10 +6391,10 @@
       
       <report see="https://elifeproduction.slab.com/posts/code-blocks-947pcamv#code-test" test="not(descendant::monospace) and not(descendant::code) and ($code-text != '')" role="warning" id="code-test">[code-test] <name/> element contains what looks like unformatted code - '<value-of select="$code-text"/>' - does this need tagging with &lt;monospace/&gt; or &lt;code/&gt;?</report>
       
-      <report test="($unequal-equal-text != '') and not(disp-formula[contains(.,'=')]) and not(inline-formula[contains(.,'=')]) and not(child::code) and not(child::monospace)" role="warning" id="cell-spacing-test">[cell-spacing-test] <name/> element contains an equal sign with content directly next to one side, but a space on the other, is this correct? - <value-of select="$unequal-equal-text"/>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h9zhw-cell-spacing-test" test="($unequal-equal-text != '') and not(disp-formula[contains(.,'=')]) and not(inline-formula[contains(.,'=')]) and not(child::code) and not(child::monospace)" role="warning" id="cell-spacing-test">[cell-spacing-test] <name/> element contains an equal sign with content directly next to one side, but a space on the other, is this correct? - <value-of select="$unequal-equal-text"/>
       </report>
       
-      <report test="matches(.,'\+cell[s]?|±cell[s]?') and not(descendant::p[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::td[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::th[matches(.,'\+cell[s]?|±cell[s]?')])" role="warning" id="equal-spacing-test">[equal-spacing-test] <name/> element contains the text '+cells' or '±cells' which is very likely to be incorrect spacing - <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7eko-equal-spacing-test" test="matches(.,'\+cell[s]?|±cell[s]?') and not(descendant::p[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::td[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::th[matches(.,'\+cell[s]?|±cell[s]?')])" role="warning" id="equal-spacing-test">[equal-spacing-test] <name/> element contains the text '+cells' or '±cells' which is very likely to be incorrect spacing - <value-of select="."/>
       </report>
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hrt08-ring-diacritic-symbol-test" test="matches(.,'˚') and not(descendant::p[matches(.,'˚')]) and not(descendant::td[matches(.,'˚')]) and not(descendant::th[matches(.,'˚')])" role="warning" id="ring-diacritic-symbol-test">[ring-diacritic-symbol-test] '<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
@@ -7423,11 +7422,11 @@
       <let name="city" value="parent::aff/descendant::named-content[@content-type='city'][1]"/>
       <!--<let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>-->
       
-      <report test="$text = 'United States of America'" role="error" id="united-states-test-1">[united-states-test-1] <value-of select="."/> is not allowed it. This should be 'United States'.</report>
+      <report test="$text = 'United States of America'" role="error" id="united-states-test-1">[united-states-test-1] <value-of select="."/> is not allowed. This should be 'United States'.</report>
       
-      <report test="$text = 'USA'" role="error" id="united-states-test-2">[united-states-test-2] <value-of select="."/> is not allowed it. This should be 'United States'</report>
+      <report test="$text = 'USA'" role="error" id="united-states-test-2">[united-states-test-2] <value-of select="."/> is not allowed. This should be 'United States'</report>
       
-      <report test="$text = 'UK'" role="error" id="united-kingdom-test-2">[united-kingdom-test-2] <value-of select="."/> is not allowed it. This should be 'United Kingdom'</report>
+      <report test="$text = 'UK'" role="error" id="united-kingdom-test-2">[united-kingdom-test-2] <value-of select="."/> is not allowed. This should be 'United Kingdom'</report>
       
       <assert test="$text = document($countries)/countries/country" role="error" id="gen-country-test">[gen-country-test] affiliation contains a country which is not in the allowed list - <value-of select="."/>. For a list of allowed countries, refer to https://github.com/elifesciences/eLife-JATS-schematron/blob/master/src/countries.xml.</assert>
       <!-- Commented out until this is implemented

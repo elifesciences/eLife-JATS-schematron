@@ -1221,7 +1221,7 @@
   <pattern id="content-containers">
     <rule context="list-item" id="list-item-tests">
       <let name="type" value="ancestor::list[1]/@list-type"/>
-      <report test="($type='roman-lower') and matches(.,'^\p{Zs}?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" role="warning" id="roman-lower-test-1">list-item is part of an roman-lower list, but it begins with a single roman-lower letter. Is this correct? <value-of select="."/>
+      <report test="($type='roman-lower') and matches(.,'^\p{Zs}?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" role="warning" id="roman-lower-test-1">list-item is part of a roman-lower list, but it begins with a single roman-lower letter. Is this correct? <value-of select="."/>
       </report>
     </rule>
   </pattern>

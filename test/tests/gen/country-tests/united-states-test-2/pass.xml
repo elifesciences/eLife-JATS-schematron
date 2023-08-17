@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="united-states-test-2.sch"?>
 <!--Context: front//aff/country
 Test: report    $text = 'USA'
-Message:  is not allowed it. This should be 'United States' -->
+Message:  is not allowed. This should be 'United States' -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>

@@ -1219,14 +1219,14 @@
     
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="ext-link[contains(@xlink:href,'softwareheritage')]" id="software-heritage-tests">
-      <let name="origin" value="lower-case(substring-before(substring-after(@xlink:href,'origin='),';'))"/>
-      <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-3" test="ancestor::body and matches(@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*') and (. != replace(substring-after(@xlink:href,'anchor='),'/$',''))" role="error" id="software-heritage-test-3">The text for Software heritage links in the main text must be the revision SWHID without contextual information. '<value-of select="."/>' is not. Based on the link itself, the text that is embedded should be '<value-of select="replace(substring-after(@xlink:href,'anchor='),'/$','')"/>'.</report>
+    <rule context="ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" id="software-heritage-tests">
+      <let name="version" value="replace(substring-after(ext-link[1]/@xlink:href,'anchor='),'/$','')"/>
+      <assert see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-3" test="version[1]=$version" role="error" id="software-heritage-test-3">The version number for Software heritage references must be the revision SWHID without contextual information. '<value-of select="version[1]"/>' is not. Based on the link, the version should be '<value-of select="$version"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ext-link[contains(@xlink:href,'softwareheritage')]" role="error" id="software-heritage-tests-xspec-assert">ext-link[contains(@xlink:href,'softwareheritage')] must be present.</assert>
+      <assert test="descendant::ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" role="error" id="software-heritage-tests-xspec-assert">ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]] must be present.</assert>
     </rule>
   </pattern>
 </schema>
