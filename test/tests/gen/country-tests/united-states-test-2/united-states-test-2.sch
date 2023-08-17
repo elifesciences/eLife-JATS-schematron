@@ -1224,7 +1224,7 @@
       <let name="countries" value="'../../../../../src/countries.xml'"/>
       <let name="city" value="parent::aff/descendant::named-content[@content-type='city'][1]"/>
       <report test="$text = 'USA'" role="error" id="united-states-test-2">
-        <value-of select="."/> is not allowed it. This should be 'United States'</report>
+        <value-of select="."/> is not allowed. This should be 'United States'</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

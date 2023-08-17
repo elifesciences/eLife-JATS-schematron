@@ -17176,7 +17176,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[roman-lower-test-1] list-item is part of an roman-lower list, but it begins with a single roman-lower letter. Is this correct? <xsl:text/>
+            <svrl:text>[roman-lower-test-1] list-item is part of a roman-lower list, but it begins with a single roman-lower letter. Is this correct? <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>
             </svrl:text>
@@ -17191,7 +17191,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[roman-upper-test-1] list-item is part of an roman-upper list, but it begins with a single roman-upper letter. Is this correct? <xsl:text/>
+            <svrl:text>[roman-upper-test-1] list-item is part of a roman-upper list, but it begins with a single roman-upper letter. Is this correct? <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>
             </svrl:text>
@@ -36711,7 +36711,7 @@
             </xsl:attribute>
             <svrl:text>[united-states-test-1] <xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/> is not allowed it. This should be 'United States'.</svrl:text>
+               <xsl:text/> is not allowed. This should be 'United States'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -36725,7 +36725,7 @@
             </xsl:attribute>
             <svrl:text>[united-states-test-2] <xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/> is not allowed it. This should be 'United States'</svrl:text>
+               <xsl:text/> is not allowed. This should be 'United States'</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 
@@ -36739,7 +36739,7 @@
             </xsl:attribute>
             <svrl:text>[united-kingdom-test-2] <xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/> is not allowed it. This should be 'United Kingdom'</svrl:text>
+               <xsl:text/> is not allowed. This should be 'United Kingdom'</svrl:text>
          </svrl:successful-report>
       </xsl:if>
 

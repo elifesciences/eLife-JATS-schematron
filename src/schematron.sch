@@ -5025,11 +5025,11 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="($type='roman-lower') and matches(.,'^\p{Zs}?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" 
         role="warning" 
-        id="roman-lower-test-1">list-item is part of an roman-lower list, but it begins with a single roman-lower letter. Is this correct? <value-of select="."/></report>
+        id="roman-lower-test-1">list-item is part of a roman-lower list, but it begins with a single roman-lower letter. Is this correct? <value-of select="."/></report>
       
       <report test="($type='roman-upper') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" 
         role="warning" 
-        id="roman-upper-test-1">list-item is part of an roman-upper list, but it begins with a single roman-upper letter. Is this correct? <value-of select="."/></report>
+        id="roman-upper-test-1">list-item is part of a roman-upper list, but it begins with a single roman-upper letter. Is this correct? <value-of select="."/></report>
       
       <report test="($type='simple') and matches(.,'^\p{Zs}?[1-9][\.|\)]? ')" 
         role="warning" 
@@ -11743,15 +11743,15 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="$text = 'United States of America'" 
         role="error" 
-        id="united-states-test-1"><value-of select="."/> is not allowed it. This should be 'United States'.</report>
+        id="united-states-test-1"><value-of select="."/> is not allowed. This should be 'United States'.</report>
       
       <report test="$text = 'USA'" 
         role="error" 
-        id="united-states-test-2"><value-of select="."/> is not allowed it. This should be 'United States'</report>
+        id="united-states-test-2"><value-of select="."/> is not allowed. This should be 'United States'</report>
       
       <report test="$text = 'UK'" 
         role="error" 
-        id="united-kingdom-test-2"><value-of select="."/> is not allowed it. This should be 'United Kingdom'</report>
+        id="united-kingdom-test-2"><value-of select="."/> is not allowed. This should be 'United Kingdom'</report>
       
       <assert test="$text = document($countries)/countries/country" 
         role="error" 

@@ -3678,10 +3678,10 @@
       <report test="($type='alpha-upper') and matches(.,'^\p{Zs}?[A-H|J-W|Y-Z][\.|\)]? ')" role="warning" id="alpha-upper-test-1">list-item is part of an alpha-upper list, but it begins with a single upper-case letter. Is this correct? <value-of select="."/>
       </report>
       
-      <report test="($type='roman-lower') and matches(.,'^\p{Zs}?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" role="warning" id="roman-lower-test-1">list-item is part of an roman-lower list, but it begins with a single roman-lower letter. Is this correct? <value-of select="."/>
+      <report test="($type='roman-lower') and matches(.,'^\p{Zs}?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" role="warning" id="roman-lower-test-1">list-item is part of a roman-lower list, but it begins with a single roman-lower letter. Is this correct? <value-of select="."/>
       </report>
       
-      <report test="($type='roman-upper') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="roman-upper-test-1">list-item is part of an roman-upper list, but it begins with a single roman-upper letter. Is this correct? <value-of select="."/>
+      <report test="($type='roman-upper') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="roman-upper-test-1">list-item is part of a roman-upper list, but it begins with a single roman-upper letter. Is this correct? <value-of select="."/>
       </report>
       
       <report test="($type='simple') and matches(.,'^\p{Zs}?[1-9][\.|\)]? ')" role="warning" id="simple-test-1">list-item is part of a simple list, but it begins with a number. Should the list-type be updated to ordered and this number removed? <value-of select="."/>
@@ -7819,13 +7819,13 @@
       <!--<let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>-->
       
       <report test="$text = 'United States of America'" role="error" id="united-states-test-1">
-        <value-of select="."/> is not allowed it. This should be 'United States'.</report>
+        <value-of select="."/> is not allowed. This should be 'United States'.</report>
       
       <report test="$text = 'USA'" role="error" id="united-states-test-2">
-        <value-of select="."/> is not allowed it. This should be 'United States'</report>
+        <value-of select="."/> is not allowed. This should be 'United States'</report>
       
       <report test="$text = 'UK'" role="error" id="united-kingdom-test-2">
-        <value-of select="."/> is not allowed it. This should be 'United Kingdom'</report>
+        <value-of select="."/> is not allowed. This should be 'United Kingdom'</report>
       
       <assert test="$text = document($countries)/countries/country" role="error" id="gen-country-test">affiliation contains a country which is not in the allowed list - <value-of select="."/>. For a list of allowed countries, refer to https://github.com/elifesciences/eLife-JATS-schematron/blob/master/src/countries.xml.</assert>
       <!-- Commented out until this is implemented
