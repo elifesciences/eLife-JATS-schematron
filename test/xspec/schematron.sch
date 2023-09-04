@@ -8628,10 +8628,11 @@
     </rule>
   </pattern>
   <pattern id="colour-table-pattern">
-    <rule context="th|td" id="colour-table">
+    <rule context="table-wrap" id="colour-table">
+      <let name="allowed-values" value="('background-color: #90caf9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
       
-      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#colour-check-table" test="starts-with(@style,'author-callout') or starts-with(@style,'background-color: ')" role="warning" id="colour-check-table">
-        <name/> element has colour background. Is this correct? It contains <value-of select="."/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#colour-check-table" test="descendant::th[@style=$allowed-values] or descendant::td[@style=$allowed-values]" role="warning" id="colour-check-table">
+        <value-of select="if (label) then label else 'table'"/> has colour background. Is this correct and appropriate?</report>
     </rule>
   </pattern>
   <pattern id="colour-table-2-pattern">
@@ -9882,7 +9883,7 @@
       <assert test="descendant::table-wrap[@id='keyresource']//xref[@ref-type='bibr']" role="error" id="KRT-xref-tests-xspec-assert">table-wrap[@id='keyresource']//xref[@ref-type='bibr'] must be present.</assert>
       <assert test="descendant::article" role="error" id="KRT-check-xspec-assert">article must be present.</assert>
       <assert test="descendant::table-wrap[@id='keyresource']//td" role="error" id="KRT-td-checks-xspec-assert">table-wrap[@id='keyresource']//td must be present.</assert>
-      <assert test="descendant::th or descendant::td" role="error" id="colour-table-xspec-assert">th|td must be present.</assert>
+      <assert test="descendant::table-wrap" role="error" id="colour-table-xspec-assert">table-wrap must be present.</assert>
       <assert test="descendant::th[@style] or descendant::td[@style]" role="error" id="colour-table-2-xspec-assert">th[@style]|td[@style] must be present.</assert>
       <assert test="descendant::article//styled-content" role="error" id="colour-styled-content-v2-xspec-assert">article//styled-content must be present.</assert>
       <assert test="descendant::mml:*[@mathcolor]" role="error" id="math-colour-tests-xspec-assert">mml:*[@mathcolor] must be present.</assert>

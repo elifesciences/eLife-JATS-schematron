@@ -8625,10 +8625,11 @@
     </rule>
   </pattern>
   <pattern id="colour-table-pattern">
-    <rule context="th|td" id="colour-table">
+    <rule context="table-wrap" id="colour-table">
+      <let name="allowed-values" value="('background-color: #90caf9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
       
-      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#colour-check-table" test="starts-with(@style,'author-callout') or starts-with(@style,'background-color: ')" role="warning" id="colour-check-table">
-        <name/> element has colour background. Is this correct? It contains <value-of select="."/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#colour-check-table" test="descendant::th[@style=$allowed-values] or descendant::td[@style=$allowed-values]" role="warning" id="colour-check-table">
+        <value-of select="if (label) then label else 'table'"/> has colour background. Is this correct and appropriate?</report>
     </rule>
   </pattern>
   <pattern id="colour-table-2-pattern">

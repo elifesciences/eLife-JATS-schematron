@@ -1279,14 +1279,15 @@
     
   </xsl:function>
   <pattern id="house-style">
-    <rule context="th|td" id="colour-table">
-      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#colour-check-table" test="starts-with(@style,'author-callout') or starts-with(@style,'background-color: ')" role="warning" id="colour-check-table">
-        <name/> element has colour background. Is this correct? It contains <value-of select="."/>.</report>
+    <rule context="table-wrap" id="colour-table">
+      <let name="allowed-values" value="('background-color: #90caf9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#colour-check-table" test="descendant::th[@style=$allowed-values] or descendant::td[@style=$allowed-values]" role="warning" id="colour-check-table">
+        <value-of select="if (label) then label else 'table'"/> has colour background. Is this correct and appropriate?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::th or descendant::td" role="error" id="colour-table-xspec-assert">th|td must be present.</assert>
+      <assert test="descendant::table-wrap" role="error" id="colour-table-xspec-assert">table-wrap must be present.</assert>
     </rule>
   </pattern>
 </schema>

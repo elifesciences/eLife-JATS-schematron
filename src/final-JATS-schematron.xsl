@@ -41319,11 +41319,12 @@
 
 
 	  <!--RULE colour-table-->
-   <xsl:template match="th|td" priority="1000" mode="M522">
+   <xsl:template match="table-wrap" priority="1000" mode="M522">
+      <xsl:variable name="allowed-values" select="('background-color: #90caf9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
 
-		<!--REPORT warning-->
-      <xsl:if test="starts-with(@style,'author-callout') or starts-with(@style,'background-color: ')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(@style,'author-callout') or starts-with(@style,'background-color: ')">
+		    <!--REPORT warning-->
+      <xsl:if test="descendant::th[@style=$allowed-values] or descendant::td[@style=$allowed-values]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::th[@style=$allowed-values] or descendant::td[@style=$allowed-values]">
             <xsl:attribute name="id">colour-check-table</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/tables-3nehcouh#colour-check-table</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -41331,10 +41332,8 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[colour-check-table] <xsl:text/>
-               <xsl:value-of select="name(.)"/>
-               <xsl:text/> element has colour background. Is this correct? It contains <xsl:text/>
-               <xsl:value-of select="."/>
-               <xsl:text/>.</svrl:text>
+               <xsl:value-of select="if (label) then label else 'table'"/>
+               <xsl:text/> has colour background. Is this correct and appropriate?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M522"/>
