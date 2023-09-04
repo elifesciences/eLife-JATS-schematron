@@ -18,10 +18,20 @@ declare function local:tit-update($path as xs:string, $org as xs:string, $isPass
   return file:write($path,$new-xml)
 };
 
+let $base := doc('../src/schematron.sch')
+let $base-uri := substring-before(base-uri($base),'src')
+let $folder := $base-uri||"/test/tests/gen/"
 
-let $folder := "../test/tests/gen/"
-
-for $x in tokenize('yimenosaurus, lesothosaurus diagnosticus, scelidosaurus harrisonii, haya griva, polacanthus foxii, scutellosaurus lawleri, saichania chulsanensis, gargoyleosaurus parkpinorum, europelta carbonensis, stegosaurus stenops, pinacosaurus grangeri, tatisaurus oehleri, hungarosaurus tormai, bienosaurus lufengensis, fabrosaurus australis, chinshakiangosaurus chunghoensis, euoplocephalus tutus',', ')
+for $x in tokenize('gorilla beringei
+macaca assamensis
+macaca fuscata
+macaca mulatta
+macaca nemestrina
+mandrillus sphinx
+papio anubis
+papio hamadryas
+pan paniscus
+pan troglodytes','\n')
 return 
   if (contains($x,' ')) then 
   let $z := replace($x,' ','')

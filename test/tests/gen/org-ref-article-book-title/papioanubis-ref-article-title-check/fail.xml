@@ -3,5 +3,9 @@
 Test: report    matches($lc,'papio\p{Zs}?anubis') and not(italic[contains(.,'Papio anubis')])
 Message: ref  references an organism - 'Papio anubis' - but there is no italic element with that correct capitalisation or spacing. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
-  <article/>
+  <article>
+    <element-citation>
+      <article-title>Papio anubis</article-title>
+    </element-citation>
+  </article>
 </root>
