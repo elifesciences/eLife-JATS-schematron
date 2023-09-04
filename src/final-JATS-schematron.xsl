@@ -918,64 +918,64 @@
          <xsl:when test="matches($s,'e.\p{Zs}?tutus')">
             <xsl:value-of select="'E. tutus'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'g\.\p{zs}?beringei')">
+         <xsl:when test="matches($s,'g\.\p{Zs}?beringei')">
             <xsl:value-of select="'G. beringei'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'gorilla\p{zs}?beringei')">
+         <xsl:when test="matches($s,'gorilla\p{Zs}?beringei')">
             <xsl:value-of select="'Gorilla beringei'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'m\.\p{zs}?assamensis')">
+         <xsl:when test="matches($s,'m\.\p{Zs}?assamensis')">
             <xsl:value-of select="'M. assamensis'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'macaca\p{zs}?assamensis')">
+         <xsl:when test="matches($s,'macaca\p{Zs}?assamensis')">
             <xsl:value-of select="'Macaca assamensis'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'m\.\p{zs}?fuscata')">
+         <xsl:when test="matches($s,'m\.\p{Zs}?fuscata')">
             <xsl:value-of select="'M. fuscata'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'macaca\p{zs}?fuscata')">
+         <xsl:when test="matches($s,'macaca\p{Zs}?fuscata')">
             <xsl:value-of select="'Macaca fuscata'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'m\.\p{zs}?mulatta')">
+         <xsl:when test="matches($s,'m\.\p{Zs}?mulatta')">
             <xsl:value-of select="'M. mulatta'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'macaca\p{zs}?mulatta')">
+         <xsl:when test="matches($s,'macaca\p{Zs}?mulatta')">
             <xsl:value-of select="'Macaca mulatta'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'m\.\p{zs}?nemestrina')">
+         <xsl:when test="matches($s,'m\.\p{Zs}?nemestrina')">
             <xsl:value-of select="'M. nemestrina'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'macaca\p{zs}?nemestrina')">
+         <xsl:when test="matches($s,'macaca\p{Zs}?nemestrina')">
             <xsl:value-of select="'Macaca nemestrina'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'m\.\p{zs}?sphinx')">
+         <xsl:when test="matches($s,'m\.\p{Zs}?sphinx')">
             <xsl:value-of select="'M. sphinx'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'mandrillus\p{zs}?sphinx')">
+         <xsl:when test="matches($s,'mandrillus\p{Zs}?sphinx')">
             <xsl:value-of select="'Mandrillus sphinx'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'p\.\p{zs}?anubis')">
+         <xsl:when test="matches($s,'p\.\p{Zs}?anubis')">
             <xsl:value-of select="'P. anubis'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'papio\p{zs}?anubis')">
+         <xsl:when test="matches($s,'papio\p{Zs}?anubis')">
             <xsl:value-of select="'Papio anubis'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'p\.\p{zs}?hamadryas')">
+         <xsl:when test="matches($s,'p\.\p{Zs}?hamadryas')">
             <xsl:value-of select="'P. hamadryas'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'papio\p{zs}?hamadryas')">
+         <xsl:when test="matches($s,'papio\p{Zs}?hamadryas')">
             <xsl:value-of select="'Papio hamadryas'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'p\.\p{zs}?paniscus')">
+         <xsl:when test="matches($s,'p\.\p{Zs}?paniscus')">
             <xsl:value-of select="'P. paniscus'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'pan\p{zs}?paniscus')">
+         <xsl:when test="matches($s,'pan\p{Zs}?paniscus')">
             <xsl:value-of select="'Pan paniscus'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'p\.\p{zs}?troglodytes')">
+         <xsl:when test="matches($s,'p\.\p{Zs}?troglodytes')">
             <xsl:value-of select="'P. troglodytes'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'pan\p{zs}?troglodytes')">
+         <xsl:when test="matches($s,'pan\p{Zs}?troglodytes')">
             <xsl:value-of select="'Pan troglodytes'"/>
          </xsl:when>
          <xsl:when test="matches($s,'xenopus')">
@@ -6018,7 +6018,7 @@
    <xsl:param name="allowed-article-types" select="('research-article','review-article',$features-article-types, $notice-article-types)"/>
    <xsl:param name="allowed-disp-subj" select="($research-subj, $features-subj)"/>
    <xsl:param name="MSAs" select="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
-   <xsl:param name="org-regex" select="'b\.\p{Zs}?subtilis|bacillus\p{Zs}?subtilis|d\.\p{Zs}?melanogaster|drosophila\p{Zs}?melanogaster|e\.\p{Zs}?coli|escherichia\p{Zs}?coli|s\.\p{Zs}?pombe|schizosaccharomyces\p{Zs}?pombe|s\.\p{Zs}?cerevisiae|saccharomyces\p{Zs}?cerevisiae|c\.\p{Zs}?elegans|caenorhabditis\p{Zs}?elegans|a\.\p{Zs}?thaliana|arabidopsis\p{Zs}?thaliana|m\.\p{Zs}?thermophila|myceliophthora\p{Zs}?thermophila|dictyostelium|p\.\p{Zs}?falciparum|plasmodium\p{Zs}?falciparum|s\.\p{Zs}?enterica|salmonella\p{Zs}?enterica|s\.\p{Zs}?pyogenes|streptococcus\p{Zs}?pyogenes|p\.\p{Zs}?dumerilii|platynereis\p{Zs}?dumerilii|p\.\p{Zs}?cynocephalus|papio\p{Zs}?cynocephalus|o\.\p{Zs}?fasciatus|oncopeltus\p{Zs}?fasciatus|n\.\p{Zs}?crassa|neurospora\p{Zs}?crassa|c\.\p{Zs}?intestinalis|ciona\p{Zs}?intestinalis|e\.\p{Zs}?cuniculi|encephalitozoon\p{Zs}?cuniculi|h\.\p{Zs}?salinarum|halobacterium\p{Zs}?salinarum|s\.\p{Zs}?solfataricus|sulfolobus\p{Zs}?solfataricus|s\.\p{Zs}?mediterranea|schmidtea\p{Zs}?mediterranea|s\.\p{Zs}?rosetta|salpingoeca\p{Zs}?rosetta|n\.\p{Zs}?vectensis|nematostella\p{Zs}?vectensis|s\.\p{Zs}?aureus|staphylococcus\p{Zs}?aureus|v\.\p{Zs}?cholerae|vibrio\p{Zs}?cholerae|t\.\p{Zs}?thermophila|tetrahymena\p{Zs}?thermophila|c\.\p{Zs}?reinhardtii|chlamydomonas\p{Zs}?reinhardtii|n\.\p{Zs}?attenuata|nicotiana\p{Zs}?attenuata|e\.\p{Zs}?carotovora|erwinia\p{Zs}?carotovora|e\.\p{Zs}?faecalis|h\.\p{Zs}?sapiens|homo\p{Zs}?sapiens|c\.\p{Zs}?trachomatis|chlamydia\p{Zs}?trachomatis|enterococcus\p{Zs}?faecalis|x\.\p{Zs}?laevis|xenopus\p{Zs}?laevis|x\.\p{Zs}?tropicalis|xenopus\p{Zs}?tropicalis|m\.\p{Zs}?musculus|mus\p{Zs}?musculus|d\.\p{Zs}?immigrans|drosophila\p{Zs}?immigrans|d\.\p{Zs}?subobscura|drosophila\p{Zs}?subobscura|d\.\p{Zs}?affinis|drosophila\p{Zs}?affinis|d\.\p{Zs}?obscura|drosophila\p{Zs}?obscura|f\.\p{Zs}?tularensis|francisella\p{Zs}?tularensis|p\.\p{Zs}?plantaginis|podosphaera\p{Zs}?plantaginis|p\.\p{Zs}?lanceolata|plantago\p{Zs}?lanceolata|m\.\p{Zs}?trossulus|mytilus\p{Zs}?trossulus|m\.\p{Zs}?edulis|mytilus\p{Zs}?edulis|m\.\p{Zs}?chilensis|mytilus\p{Zs}?chilensis|u\.\p{Zs}?maydis|ustilago\p{Zs}?maydis|p\.\p{Zs}?knowlesi|plasmodium\p{Zs}?knowlesi|p\.\p{Zs}?aeruginosa|pseudomonas\p{Zs}?aeruginosa|t\.\p{Zs}?brucei|trypanosoma\p{Zs}?brucei|t\.\p{Zs}?gondii|toxoplasma\p{Zs}?gondii|d\.\p{Zs}?rerio|danio\p{Zs}?rerio|yimenosaurus|lesothosaurus\p{Zs}?diagnosticus|l\.\p{Zs}?diagnosticus|scelidosaurus\p{Zs}?harrisonii|s\.\p{Zs}?harrisonii|haya\p{Zs}?griva|h\.\p{Zs}?griva|polacanthus\p{Zs}?foxii|p\.\p{Zs}?foxii|scutellosaurus\p{Zs}?lawleri|s\.\p{Zs}?lawleri|saichania\p{Zs}?chulsanensis|s\.\p{Zs}?chulsanensis|gargoyleosaurus\p{Zs}?parkpinorum|g\.\p{Zs}?parkpinorum|europelta\p{Zs}?carbonensis|e\.\p{Zs}?carbonensis|stegosaurus\p{Zs}?stenops|s\.\p{Zs}?stenops|pinacosaurus\p{Zs}?grangeri|p\.\p{Zs}?grangeri|tatisaurus\p{Zs}?oehleri|t\.\p{Zs}?oehleri|hungarosaurus\p{Zs}?tormai|h\.\p{Zs}?tormai|bienosaurus\p{Zs}?lufengensis|b\.\p{Zs}?lufengensis|fabrosaurus\p{Zs}?australis|f\.\p{Zs}?australis|chinshakiangosaurus\p{Zs}?chunghoensis|c\.\p{Zs}?chunghoensis|euoplocephalus\p{Zs}?tutus|e\.\p{Zs}?tutus|drosophila|xenopus|g\.\p{zs}?beringei|gorilla\p{zs}?beringei|m\.\p{zs}?assamensis|macaca\p{zs}?assamensis|m\.\p{zs}?fuscata|macaca\p{zs}?fuscata|m\.\p{zs}?mulatta|macaca\p{zs}?mulatta|m\.\p{zs}?nemestrina|macaca\p{zs}?nemestrina|m\.\p{zs}?sphinx|mandrillus\p{zs}?sphinx|p\.\p{zs}?anubis|papio\p{zs}?anubis|p\.\p{zs}?hamadryas|papio\p{zs}?hamadryas|p\.\p{zs}?paniscus|pan\p{zs}?paniscus|p\.\p{zs}?troglodytes|pan\p{zs}?troglodytes'"/>
+   <xsl:param name="org-regex" select="'b\.\p{Zs}?subtilis|bacillus\p{Zs}?subtilis|d\.\p{Zs}?melanogaster|drosophila\p{Zs}?melanogaster|e\.\p{Zs}?coli|escherichia\p{Zs}?coli|s\.\p{Zs}?pombe|schizosaccharomyces\p{Zs}?pombe|s\.\p{Zs}?cerevisiae|saccharomyces\p{Zs}?cerevisiae|c\.\p{Zs}?elegans|caenorhabditis\p{Zs}?elegans|a\.\p{Zs}?thaliana|arabidopsis\p{Zs}?thaliana|m\.\p{Zs}?thermophila|myceliophthora\p{Zs}?thermophila|dictyostelium|p\.\p{Zs}?falciparum|plasmodium\p{Zs}?falciparum|s\.\p{Zs}?enterica|salmonella\p{Zs}?enterica|s\.\p{Zs}?pyogenes|streptococcus\p{Zs}?pyogenes|p\.\p{Zs}?dumerilii|platynereis\p{Zs}?dumerilii|p\.\p{Zs}?cynocephalus|papio\p{Zs}?cynocephalus|o\.\p{Zs}?fasciatus|oncopeltus\p{Zs}?fasciatus|n\.\p{Zs}?crassa|neurospora\p{Zs}?crassa|c\.\p{Zs}?intestinalis|ciona\p{Zs}?intestinalis|e\.\p{Zs}?cuniculi|encephalitozoon\p{Zs}?cuniculi|h\.\p{Zs}?salinarum|halobacterium\p{Zs}?salinarum|s\.\p{Zs}?solfataricus|sulfolobus\p{Zs}?solfataricus|s\.\p{Zs}?mediterranea|schmidtea\p{Zs}?mediterranea|s\.\p{Zs}?rosetta|salpingoeca\p{Zs}?rosetta|n\.\p{Zs}?vectensis|nematostella\p{Zs}?vectensis|s\.\p{Zs}?aureus|staphylococcus\p{Zs}?aureus|v\.\p{Zs}?cholerae|vibrio\p{Zs}?cholerae|t\.\p{Zs}?thermophila|tetrahymena\p{Zs}?thermophila|c\.\p{Zs}?reinhardtii|chlamydomonas\p{Zs}?reinhardtii|n\.\p{Zs}?attenuata|nicotiana\p{Zs}?attenuata|e\.\p{Zs}?carotovora|erwinia\p{Zs}?carotovora|e\.\p{Zs}?faecalis|h\.\p{Zs}?sapiens|homo\p{Zs}?sapiens|c\.\p{Zs}?trachomatis|chlamydia\p{Zs}?trachomatis|enterococcus\p{Zs}?faecalis|x\.\p{Zs}?laevis|xenopus\p{Zs}?laevis|x\.\p{Zs}?tropicalis|xenopus\p{Zs}?tropicalis|m\.\p{Zs}?musculus|mus\p{Zs}?musculus|d\.\p{Zs}?immigrans|drosophila\p{Zs}?immigrans|d\.\p{Zs}?subobscura|drosophila\p{Zs}?subobscura|d\.\p{Zs}?affinis|drosophila\p{Zs}?affinis|d\.\p{Zs}?obscura|drosophila\p{Zs}?obscura|f\.\p{Zs}?tularensis|francisella\p{Zs}?tularensis|p\.\p{Zs}?plantaginis|podosphaera\p{Zs}?plantaginis|p\.\p{Zs}?lanceolata|plantago\p{Zs}?lanceolata|m\.\p{Zs}?trossulus|mytilus\p{Zs}?trossulus|m\.\p{Zs}?edulis|mytilus\p{Zs}?edulis|m\.\p{Zs}?chilensis|mytilus\p{Zs}?chilensis|u\.\p{Zs}?maydis|ustilago\p{Zs}?maydis|p\.\p{Zs}?knowlesi|plasmodium\p{Zs}?knowlesi|p\.\p{Zs}?aeruginosa|pseudomonas\p{Zs}?aeruginosa|t\.\p{Zs}?brucei|trypanosoma\p{Zs}?brucei|t\.\p{Zs}?gondii|toxoplasma\p{Zs}?gondii|d\.\p{Zs}?rerio|danio\p{Zs}?rerio|yimenosaurus|lesothosaurus\p{Zs}?diagnosticus|l\.\p{Zs}?diagnosticus|scelidosaurus\p{Zs}?harrisonii|s\.\p{Zs}?harrisonii|haya\p{Zs}?griva|h\.\p{Zs}?griva|polacanthus\p{Zs}?foxii|p\.\p{Zs}?foxii|scutellosaurus\p{Zs}?lawleri|s\.\p{Zs}?lawleri|saichania\p{Zs}?chulsanensis|s\.\p{Zs}?chulsanensis|gargoyleosaurus\p{Zs}?parkpinorum|g\.\p{Zs}?parkpinorum|europelta\p{Zs}?carbonensis|e\.\p{Zs}?carbonensis|stegosaurus\p{Zs}?stenops|s\.\p{Zs}?stenops|pinacosaurus\p{Zs}?grangeri|p\.\p{Zs}?grangeri|tatisaurus\p{Zs}?oehleri|t\.\p{Zs}?oehleri|hungarosaurus\p{Zs}?tormai|h\.\p{Zs}?tormai|bienosaurus\p{Zs}?lufengensis|b\.\p{Zs}?lufengensis|fabrosaurus\p{Zs}?australis|f\.\p{Zs}?australis|chinshakiangosaurus\p{Zs}?chunghoensis|c\.\p{Zs}?chunghoensis|euoplocephalus\p{Zs}?tutus|e\.\p{Zs}?tutus|drosophila|xenopus|g\.\p{Zs}?beringei|gorilla\p{Zs}?beringei|m\.\p{Zs}?assamensis|macaca\p{Zs}?assamensis|m\.\p{Zs}?fuscata|macaca\p{Zs}?fuscata|m\.\p{Zs}?mulatta|macaca\p{Zs}?mulatta|m\.\p{Zs}?nemestrina|macaca\p{Zs}?nemestrina|m\.\p{Zs}?sphinx|mandrillus\p{Zs}?sphinx|p\.\p{Zs}?anubis|papio\p{Zs}?anubis|p\.\p{Zs}?hamadryas|papio\p{Zs}?hamadryas|p\.\p{Zs}?paniscus|pan\p{Zs}?paniscus|p\.\p{Zs}?troglodytes|pan\p{Zs}?troglodytes'"/>
    <xsl:param name="sec-title-regex" select="string-join(     for $x in tokenize($org-regex,'\|')     return concat('^',$x,'$')     ,'|')"/>
    <xsl:param name="latin-regex" select="'in\p{Zs}+vitro|ex\p{Zs}+vitro|in\p{Zs}+vivo|ex\p{Zs}+vivo|a\p{Zs}+priori|a\p{Zs}+posteriori|de\p{Zs}+novo|in\p{Zs}+utero|in\p{Zs}+natura|in\p{Zs}+situ|in\p{Zs}+planta|in\p{Zs}+cellulo|rete\p{Zs}+mirabile|nomen\p{Zs}+novum| sensu |ad\p{Zs}+libitum|in\p{Zs}+ovo'"/>
 
@@ -34348,8 +34348,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'g\.\p{zs}?beringei') and not(italic[contains(.,'G. beringei')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'g\.\p{zs}?beringei') and not(italic[contains(.,'G. beringei')])">
+      <xsl:if test="matches($lc,'g\.\p{Zs}?beringei') and not(italic[contains(.,'G. beringei')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'g\.\p{Zs}?beringei') and not(italic[contains(.,'G. beringei')])">
             <xsl:attribute name="id">gberingei-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34362,8 +34362,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'gorilla\p{zs}?beringei') and not(italic[contains(.,'Gorilla beringei')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'gorilla\p{zs}?beringei') and not(italic[contains(.,'Gorilla beringei')])">
+      <xsl:if test="matches($lc,'gorilla\p{Zs}?beringei') and not(italic[contains(.,'Gorilla beringei')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'gorilla\p{Zs}?beringei') and not(italic[contains(.,'Gorilla beringei')])">
             <xsl:attribute name="id">gorillaberingei-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34376,8 +34376,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'m\.\p{zs}?assamensis') and not(italic[contains(.,'M. assamensis')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{zs}?assamensis') and not(italic[contains(.,'M. assamensis')])">
+      <xsl:if test="matches($lc,'m\.\p{Zs}?assamensis') and not(italic[contains(.,'M. assamensis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?assamensis') and not(italic[contains(.,'M. assamensis')])">
             <xsl:attribute name="id">massamensis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34390,8 +34390,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'macaca\p{zs}?assamensis') and not(italic[contains(.,'Macaca assamensis')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'macaca\p{zs}?assamensis') and not(italic[contains(.,'Macaca assamensis')])">
+      <xsl:if test="matches($lc,'macaca\p{Zs}?assamensis') and not(italic[contains(.,'Macaca assamensis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'macaca\p{Zs}?assamensis') and not(italic[contains(.,'Macaca assamensis')])">
             <xsl:attribute name="id">macacaassamensis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34404,8 +34404,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'m\.\p{zs}?fuscata') and not(italic[contains(.,'M. fuscata')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{zs}?fuscata') and not(italic[contains(.,'M. fuscata')])">
+      <xsl:if test="matches($lc,'m\.\p{Zs}?fuscata') and not(italic[contains(.,'M. fuscata')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?fuscata') and not(italic[contains(.,'M. fuscata')])">
             <xsl:attribute name="id">mfuscata-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34418,8 +34418,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'macaca\p{zs}?fuscata') and not(italic[contains(.,'Macaca fuscata')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'macaca\p{zs}?fuscata') and not(italic[contains(.,'Macaca fuscata')])">
+      <xsl:if test="matches($lc,'macaca\p{Zs}?fuscata') and not(italic[contains(.,'Macaca fuscata')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'macaca\p{Zs}?fuscata') and not(italic[contains(.,'Macaca fuscata')])">
             <xsl:attribute name="id">macacafuscata-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34432,8 +34432,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'m\.\p{zs}?mulatta') and not(italic[contains(.,'M. mulatta')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{zs}?mulatta') and not(italic[contains(.,'M. mulatta')])">
+      <xsl:if test="matches($lc,'m\.\p{Zs}?mulatta') and not(italic[contains(.,'M. mulatta')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?mulatta') and not(italic[contains(.,'M. mulatta')])">
             <xsl:attribute name="id">mmulatta-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34446,8 +34446,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'macaca\p{zs}?mulatta') and not(italic[contains(.,'Macaca mulatta')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'macaca\p{zs}?mulatta') and not(italic[contains(.,'Macaca mulatta')])">
+      <xsl:if test="matches($lc,'macaca\p{Zs}?mulatta') and not(italic[contains(.,'Macaca mulatta')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'macaca\p{Zs}?mulatta') and not(italic[contains(.,'Macaca mulatta')])">
             <xsl:attribute name="id">macacamulatta-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34460,8 +34460,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'m\.\p{zs}?nemestrina') and not(italic[contains(.,'M. nemestrina')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{zs}?nemestrina') and not(italic[contains(.,'M. nemestrina')])">
+      <xsl:if test="matches($lc,'m\.\p{Zs}?nemestrina') and not(italic[contains(.,'M. nemestrina')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?nemestrina') and not(italic[contains(.,'M. nemestrina')])">
             <xsl:attribute name="id">mnemestrina-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34474,8 +34474,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'macaca\p{zs}?nemestrina') and not(italic[contains(.,'Macaca nemestrina')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'macaca\p{zs}?nemestrina') and not(italic[contains(.,'Macaca nemestrina')])">
+      <xsl:if test="matches($lc,'macaca\p{Zs}?nemestrina') and not(italic[contains(.,'Macaca nemestrina')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'macaca\p{Zs}?nemestrina') and not(italic[contains(.,'Macaca nemestrina')])">
             <xsl:attribute name="id">macacanemestrina-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34488,8 +34488,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'m\.\p{zs}?sphinx') and not(italic[contains(.,'M. sphinx')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{zs}?sphinx') and not(italic[contains(.,'M. sphinx')])">
+      <xsl:if test="matches($lc,'m\.\p{Zs}?sphinx') and not(italic[contains(.,'M. sphinx')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?sphinx') and not(italic[contains(.,'M. sphinx')])">
             <xsl:attribute name="id">msphinx-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34502,8 +34502,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'mandrillus\p{zs}?sphinx') and not(italic[contains(.,'Mandrillus sphinx')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'mandrillus\p{zs}?sphinx') and not(italic[contains(.,'Mandrillus sphinx')])">
+      <xsl:if test="matches($lc,'mandrillus\p{Zs}?sphinx') and not(italic[contains(.,'Mandrillus sphinx')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'mandrillus\p{Zs}?sphinx') and not(italic[contains(.,'Mandrillus sphinx')])">
             <xsl:attribute name="id">mandrillussphinx-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34516,8 +34516,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'p\.\p{zs}?anubis') and not(italic[contains(.,'P. anubis')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{zs}?anubis') and not(italic[contains(.,'P. anubis')])">
+      <xsl:if test="matches($lc,'p\.\p{Zs}?anubis') and not(italic[contains(.,'P. anubis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{Zs}?anubis') and not(italic[contains(.,'P. anubis')])">
             <xsl:attribute name="id">panubis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34530,8 +34530,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'papio\p{zs}?anubis') and not(italic[contains(.,'Papio anubis')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'papio\p{zs}?anubis') and not(italic[contains(.,'Papio anubis')])">
+      <xsl:if test="matches($lc,'papio\p{Zs}?anubis') and not(italic[contains(.,'Papio anubis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'papio\p{Zs}?anubis') and not(italic[contains(.,'Papio anubis')])">
             <xsl:attribute name="id">papioanubis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34544,8 +34544,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'p\.\p{zs}?hamadryas') and not(italic[contains(.,'P. hamadryas')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{zs}?hamadryas') and not(italic[contains(.,'P. hamadryas')])">
+      <xsl:if test="matches($lc,'p\.\p{Zs}?hamadryas') and not(italic[contains(.,'P. hamadryas')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{Zs}?hamadryas') and not(italic[contains(.,'P. hamadryas')])">
             <xsl:attribute name="id">phamadryas-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34558,8 +34558,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'papio\p{zs}?hamadryas') and not(italic[contains(.,'Papio hamadryas')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'papio\p{zs}?hamadryas') and not(italic[contains(.,'Papio hamadryas')])">
+      <xsl:if test="matches($lc,'papio\p{Zs}?hamadryas') and not(italic[contains(.,'Papio hamadryas')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'papio\p{Zs}?hamadryas') and not(italic[contains(.,'Papio hamadryas')])">
             <xsl:attribute name="id">papiohamadryas-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34572,8 +34572,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'p\.\p{zs}?paniscus') and not(italic[contains(.,'P. paniscus')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{zs}?paniscus') and not(italic[contains(.,'P. paniscus')])">
+      <xsl:if test="matches($lc,'p\.\p{Zs}?paniscus') and not(italic[contains(.,'P. paniscus')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{Zs}?paniscus') and not(italic[contains(.,'P. paniscus')])">
             <xsl:attribute name="id">ppaniscus-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34586,8 +34586,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'pan\p{zs}?paniscus') and not(italic[contains(.,'Pan paniscus')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'pan\p{zs}?paniscus') and not(italic[contains(.,'Pan paniscus')])">
+      <xsl:if test="matches($lc,'pan\p{Zs}?paniscus') and not(italic[contains(.,'Pan paniscus')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'pan\p{Zs}?paniscus') and not(italic[contains(.,'Pan paniscus')])">
             <xsl:attribute name="id">panpaniscus-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34600,8 +34600,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'p\.\p{zs}?troglodytes') and not(italic[contains(.,'P. troglodytes')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{zs}?troglodytes') and not(italic[contains(.,'P. troglodytes')])">
+      <xsl:if test="matches($lc,'p\.\p{Zs}?troglodytes') and not(italic[contains(.,'P. troglodytes')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{Zs}?troglodytes') and not(italic[contains(.,'P. troglodytes')])">
             <xsl:attribute name="id">ptroglodytes-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -34614,8 +34614,8 @@
       </xsl:if>
 
 		    <!--REPORT info-->
-      <xsl:if test="matches($lc,'pan\p{zs}?troglodytes') and not(italic[contains(.,'Pan troglodytes')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'pan\p{zs}?troglodytes') and not(italic[contains(.,'Pan troglodytes')])">
+      <xsl:if test="matches($lc,'pan\p{Zs}?troglodytes') and not(italic[contains(.,'Pan troglodytes')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'pan\p{Zs}?troglodytes') and not(italic[contains(.,'Pan troglodytes')])">
             <xsl:attribute name="id">pantroglodytes-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -36651,8 +36651,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'g\.\p{zs}?beringei') and not(italic[contains(.,'G. beringei')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'g\.\p{zs}?beringei') and not(italic[contains(.,'G. beringei')])">
+      <xsl:if test="matches($lc,'g\.\p{Zs}?beringei') and not(italic[contains(.,'G. beringei')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'g\.\p{Zs}?beringei') and not(italic[contains(.,'G. beringei')])">
             <xsl:attribute name="id">gberingei-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36665,8 +36665,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'gorilla\p{zs}?beringei') and not(italic[contains(.,'Gorilla beringei')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'gorilla\p{zs}?beringei') and not(italic[contains(.,'Gorilla beringei')])">
+      <xsl:if test="matches($lc,'gorilla\p{Zs}?beringei') and not(italic[contains(.,'Gorilla beringei')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'gorilla\p{Zs}?beringei') and not(italic[contains(.,'Gorilla beringei')])">
             <xsl:attribute name="id">gorillaberingei-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36679,8 +36679,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'m\.\p{zs}?assamensis') and not(italic[contains(.,'M. assamensis')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{zs}?assamensis') and not(italic[contains(.,'M. assamensis')])">
+      <xsl:if test="matches($lc,'m\.\p{Zs}?assamensis') and not(italic[contains(.,'M. assamensis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?assamensis') and not(italic[contains(.,'M. assamensis')])">
             <xsl:attribute name="id">massamensis-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36693,8 +36693,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'macaca\p{zs}?assamensis') and not(italic[contains(.,'Macaca assamensis')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'macaca\p{zs}?assamensis') and not(italic[contains(.,'Macaca assamensis')])">
+      <xsl:if test="matches($lc,'macaca\p{Zs}?assamensis') and not(italic[contains(.,'Macaca assamensis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'macaca\p{Zs}?assamensis') and not(italic[contains(.,'Macaca assamensis')])">
             <xsl:attribute name="id">macacaassamensis-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36707,8 +36707,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'m\.\p{zs}?fuscata') and not(italic[contains(.,'M. fuscata')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{zs}?fuscata') and not(italic[contains(.,'M. fuscata')])">
+      <xsl:if test="matches($lc,'m\.\p{Zs}?fuscata') and not(italic[contains(.,'M. fuscata')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?fuscata') and not(italic[contains(.,'M. fuscata')])">
             <xsl:attribute name="id">mfuscata-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36721,8 +36721,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'macaca\p{zs}?fuscata') and not(italic[contains(.,'Macaca fuscata')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'macaca\p{zs}?fuscata') and not(italic[contains(.,'Macaca fuscata')])">
+      <xsl:if test="matches($lc,'macaca\p{Zs}?fuscata') and not(italic[contains(.,'Macaca fuscata')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'macaca\p{Zs}?fuscata') and not(italic[contains(.,'Macaca fuscata')])">
             <xsl:attribute name="id">macacafuscata-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36735,8 +36735,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'m\.\p{zs}?mulatta') and not(italic[contains(.,'M. mulatta')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{zs}?mulatta') and not(italic[contains(.,'M. mulatta')])">
+      <xsl:if test="matches($lc,'m\.\p{Zs}?mulatta') and not(italic[contains(.,'M. mulatta')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?mulatta') and not(italic[contains(.,'M. mulatta')])">
             <xsl:attribute name="id">mmulatta-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36749,8 +36749,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'macaca\p{zs}?mulatta') and not(italic[contains(.,'Macaca mulatta')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'macaca\p{zs}?mulatta') and not(italic[contains(.,'Macaca mulatta')])">
+      <xsl:if test="matches($lc,'macaca\p{Zs}?mulatta') and not(italic[contains(.,'Macaca mulatta')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'macaca\p{Zs}?mulatta') and not(italic[contains(.,'Macaca mulatta')])">
             <xsl:attribute name="id">macacamulatta-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36763,8 +36763,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'m\.\p{zs}?nemestrina') and not(italic[contains(.,'M. nemestrina')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{zs}?nemestrina') and not(italic[contains(.,'M. nemestrina')])">
+      <xsl:if test="matches($lc,'m\.\p{Zs}?nemestrina') and not(italic[contains(.,'M. nemestrina')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?nemestrina') and not(italic[contains(.,'M. nemestrina')])">
             <xsl:attribute name="id">mnemestrina-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36777,8 +36777,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'macaca\p{zs}?nemestrina') and not(italic[contains(.,'Macaca nemestrina')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'macaca\p{zs}?nemestrina') and not(italic[contains(.,'Macaca nemestrina')])">
+      <xsl:if test="matches($lc,'macaca\p{Zs}?nemestrina') and not(italic[contains(.,'Macaca nemestrina')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'macaca\p{Zs}?nemestrina') and not(italic[contains(.,'Macaca nemestrina')])">
             <xsl:attribute name="id">macacanemestrina-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36791,8 +36791,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'m\.\p{zs}?sphinx') and not(italic[contains(.,'M. sphinx')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{zs}?sphinx') and not(italic[contains(.,'M. sphinx')])">
+      <xsl:if test="matches($lc,'m\.\p{Zs}?sphinx') and not(italic[contains(.,'M. sphinx')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?sphinx') and not(italic[contains(.,'M. sphinx')])">
             <xsl:attribute name="id">msphinx-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36805,8 +36805,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'mandrillus\p{zs}?sphinx') and not(italic[contains(.,'Mandrillus sphinx')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'mandrillus\p{zs}?sphinx') and not(italic[contains(.,'Mandrillus sphinx')])">
+      <xsl:if test="matches($lc,'mandrillus\p{Zs}?sphinx') and not(italic[contains(.,'Mandrillus sphinx')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'mandrillus\p{Zs}?sphinx') and not(italic[contains(.,'Mandrillus sphinx')])">
             <xsl:attribute name="id">mandrillussphinx-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36819,8 +36819,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'p\.\p{zs}?anubis') and not(italic[contains(.,'P. anubis')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{zs}?anubis') and not(italic[contains(.,'P. anubis')])">
+      <xsl:if test="matches($lc,'p\.\p{Zs}?anubis') and not(italic[contains(.,'P. anubis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{Zs}?anubis') and not(italic[contains(.,'P. anubis')])">
             <xsl:attribute name="id">panubis-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36833,8 +36833,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'papio\p{zs}?anubis') and not(italic[contains(.,'Papio anubis')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'papio\p{zs}?anubis') and not(italic[contains(.,'Papio anubis')])">
+      <xsl:if test="matches($lc,'papio\p{Zs}?anubis') and not(italic[contains(.,'Papio anubis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'papio\p{Zs}?anubis') and not(italic[contains(.,'Papio anubis')])">
             <xsl:attribute name="id">papioanubis-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36847,8 +36847,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'p\.\p{zs}?hamadryas') and not(italic[contains(.,'P. hamadryas')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{zs}?hamadryas') and not(italic[contains(.,'P. hamadryas')])">
+      <xsl:if test="matches($lc,'p\.\p{Zs}?hamadryas') and not(italic[contains(.,'P. hamadryas')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{Zs}?hamadryas') and not(italic[contains(.,'P. hamadryas')])">
             <xsl:attribute name="id">phamadryas-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36861,8 +36861,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'papio\p{zs}?hamadryas') and not(italic[contains(.,'Papio hamadryas')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'papio\p{zs}?hamadryas') and not(italic[contains(.,'Papio hamadryas')])">
+      <xsl:if test="matches($lc,'papio\p{Zs}?hamadryas') and not(italic[contains(.,'Papio hamadryas')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'papio\p{Zs}?hamadryas') and not(italic[contains(.,'Papio hamadryas')])">
             <xsl:attribute name="id">papiohamadryas-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36875,8 +36875,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'p\.\p{zs}?paniscus') and not(italic[contains(.,'P. paniscus')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{zs}?paniscus') and not(italic[contains(.,'P. paniscus')])">
+      <xsl:if test="matches($lc,'p\.\p{Zs}?paniscus') and not(italic[contains(.,'P. paniscus')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{Zs}?paniscus') and not(italic[contains(.,'P. paniscus')])">
             <xsl:attribute name="id">ppaniscus-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36889,8 +36889,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'pan\p{zs}?paniscus') and not(italic[contains(.,'Pan paniscus')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'pan\p{zs}?paniscus') and not(italic[contains(.,'Pan paniscus')])">
+      <xsl:if test="matches($lc,'pan\p{Zs}?paniscus') and not(italic[contains(.,'Pan paniscus')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'pan\p{Zs}?paniscus') and not(italic[contains(.,'Pan paniscus')])">
             <xsl:attribute name="id">panpaniscus-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36903,8 +36903,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'p\.\p{zs}?troglodytes') and not(italic[contains(.,'P. troglodytes')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{zs}?troglodytes') and not(italic[contains(.,'P. troglodytes')])">
+      <xsl:if test="matches($lc,'p\.\p{Zs}?troglodytes') and not(italic[contains(.,'P. troglodytes')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{Zs}?troglodytes') and not(italic[contains(.,'P. troglodytes')])">
             <xsl:attribute name="id">ptroglodytes-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -36917,8 +36917,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="matches($lc,'pan\p{zs}?troglodytes') and not(italic[contains(.,'Pan troglodytes')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'pan\p{zs}?troglodytes') and not(italic[contains(.,'Pan troglodytes')])">
+      <xsl:if test="matches($lc,'pan\p{Zs}?troglodytes') and not(italic[contains(.,'Pan troglodytes')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'pan\p{Zs}?troglodytes') and not(italic[contains(.,'Pan troglodytes')])">
             <xsl:attribute name="id">pantroglodytes-article-title-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
