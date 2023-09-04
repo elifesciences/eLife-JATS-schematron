@@ -1,10 +1,12 @@
 <?oxygen SCHSchema="colour-check-table.sch"?>
-<!--Context: th|td
-Test: report    starts-with(@style,'author-callout') or starts-with(@style,'background-color: ')
-Message:  element has colour background. Is this correct? It contains . -->
+<!--Context: table-wrap
+Test: report    descendant::th[@style=$allowed-values] or descendant::td[@style=$allowed-values]
+Message:  has colour background. Is this correct and appropriate? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
-    <td style="author-callout-red">test-red</td>
-    <td style="background-color: #E57373;">test-red</td>
+    <table-wrap>
+      <td style="author-callout-red">test-red</td>
+      <td style="background-color: #E57373;">test-red</td>
+    </table-wrap>
   </article>
 </root>

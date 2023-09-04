@@ -492,7 +492,7 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
-  <let name="org-regex" value="'b\.\p{Zs}?subtilis|bacillus\p{Zs}?subtilis|d\.\p{Zs}?melanogaster|drosophila\p{Zs}?melanogaster|e\.\p{Zs}?coli|escherichia\p{Zs}?coli|s\.\p{Zs}?pombe|schizosaccharomyces\p{Zs}?pombe|s\.\p{Zs}?cerevisiae|saccharomyces\p{Zs}?cerevisiae|c\.\p{Zs}?elegans|caenorhabditis\p{Zs}?elegans|a\.\p{Zs}?thaliana|arabidopsis\p{Zs}?thaliana|m\.\p{Zs}?thermophila|myceliophthora\p{Zs}?thermophila|dictyostelium|p\.\p{Zs}?falciparum|plasmodium\p{Zs}?falciparum|s\.\p{Zs}?enterica|salmonella\p{Zs}?enterica|s\.\p{Zs}?pyogenes|streptococcus\p{Zs}?pyogenes|p\.\p{Zs}?dumerilii|platynereis\p{Zs}?dumerilii|p\.\p{Zs}?cynocephalus|papio\p{Zs}?cynocephalus|o\.\p{Zs}?fasciatus|oncopeltus\p{Zs}?fasciatus|n\.\p{Zs}?crassa|neurospora\p{Zs}?crassa|c\.\p{Zs}?intestinalis|ciona\p{Zs}?intestinalis|e\.\p{Zs}?cuniculi|encephalitozoon\p{Zs}?cuniculi|h\.\p{Zs}?salinarum|halobacterium\p{Zs}?salinarum|s\.\p{Zs}?solfataricus|sulfolobus\p{Zs}?solfataricus|s\.\p{Zs}?mediterranea|schmidtea\p{Zs}?mediterranea|s\.\p{Zs}?rosetta|salpingoeca\p{Zs}?rosetta|n\.\p{Zs}?vectensis|nematostella\p{Zs}?vectensis|s\.\p{Zs}?aureus|staphylococcus\p{Zs}?aureus|v\.\p{Zs}?cholerae|vibrio\p{Zs}?cholerae|t\.\p{Zs}?thermophila|tetrahymena\p{Zs}?thermophila|c\.\p{Zs}?reinhardtii|chlamydomonas\p{Zs}?reinhardtii|n\.\p{Zs}?attenuata|nicotiana\p{Zs}?attenuata|e\.\p{Zs}?carotovora|erwinia\p{Zs}?carotovora|e\.\p{Zs}?faecalis|h\.\p{Zs}?sapiens|homo\p{Zs}?sapiens|c\.\p{Zs}?trachomatis|chlamydia\p{Zs}?trachomatis|enterococcus\p{Zs}?faecalis|x\.\p{Zs}?laevis|xenopus\p{Zs}?laevis|x\.\p{Zs}?tropicalis|xenopus\p{Zs}?tropicalis|m\.\p{Zs}?musculus|mus\p{Zs}?musculus|d\.\p{Zs}?immigrans|drosophila\p{Zs}?immigrans|d\.\p{Zs}?subobscura|drosophila\p{Zs}?subobscura|d\.\p{Zs}?affinis|drosophila\p{Zs}?affinis|d\.\p{Zs}?obscura|drosophila\p{Zs}?obscura|f\.\p{Zs}?tularensis|francisella\p{Zs}?tularensis|p\.\p{Zs}?plantaginis|podosphaera\p{Zs}?plantaginis|p\.\p{Zs}?lanceolata|plantago\p{Zs}?lanceolata|m\.\p{Zs}?trossulus|mytilus\p{Zs}?trossulus|m\.\p{Zs}?edulis|mytilus\p{Zs}?edulis|m\.\p{Zs}?chilensis|mytilus\p{Zs}?chilensis|u\.\p{Zs}?maydis|ustilago\p{Zs}?maydis|p\.\p{Zs}?knowlesi|plasmodium\p{Zs}?knowlesi|p\.\p{Zs}?aeruginosa|pseudomonas\p{Zs}?aeruginosa|t\.\p{Zs}?brucei|trypanosoma\p{Zs}?brucei|caulobacter\p{Zs}?crescentus|c\.\p{Zs}?crescentus|agrobacterium\p{Zs}?tumefaciens|a\.\p{Zs}?tumefaciens|t\.\p{Zs}?gondii|toxoplasma\p{Zs}?gondii|d\.\p{Zs}?rerio|danio\p{Zs}?rerio|drosophila|yimenosaurus|lesothosaurus\p{Zs}?diagnosticus|l.\p{Zs}?diagnosticus|scelidosaurus\p{Zs}?harrisonii|s.\p{Zs}?harrisonii|haya\p{Zs}?griva|h.\p{Zs}?griva|polacanthus\p{Zs}?foxii|p.\p{Zs}?foxii|scutellosaurus\p{Zs}?lawleri|s.\p{Zs}?lawleri|saichania\p{Zs}?chulsanensis|s.\p{Zs}?chulsanensis|gargoyleosaurus\p{Zs}?parkpinorum|g.\p{Zs}?parkpinorum|europelta\p{Zs}?carbonensis|e.\p{Zs}?carbonensis|stegosaurus\p{Zs}?stenops|s.\p{Zs}?stenops|pinacosaurus\p{Zs}?grangeri|p.\p{Zs}?grangeri|tatisaurus\p{Zs}?oehleri|t.\p{Zs}?oehleri|hungarosaurus\p{Zs}?tormai|h.\p{Zs}?tormai|lesothosaurus\p{Zs}?diagnosticus|l.\p{Zs}?diagnosticus|bienosaurus\p{Zs}?lufengensis|b.\p{Zs}?lufengensis|fabrosaurus\p{Zs}?australis|f.\p{Zs}?australis|chinshakiangosaurus\p{Zs}?chunghoensis|c.\p{Zs}?chunghoensis|euoplocephalus\p{Zs}?tutus|e.\p{Zs}?tutus|xenopus'"/>
+  <let name="org-regex" value="'b\.\p{Zs}?subtilis|bacillus\p{Zs}?subtilis|d\.\p{Zs}?melanogaster|drosophila\p{Zs}?melanogaster|e\.\p{Zs}?coli|escherichia\p{Zs}?coli|s\.\p{Zs}?pombe|schizosaccharomyces\p{Zs}?pombe|s\.\p{Zs}?cerevisiae|saccharomyces\p{Zs}?cerevisiae|c\.\p{Zs}?elegans|caenorhabditis\p{Zs}?elegans|a\.\p{Zs}?thaliana|arabidopsis\p{Zs}?thaliana|m\.\p{Zs}?thermophila|myceliophthora\p{Zs}?thermophila|dictyostelium|p\.\p{Zs}?falciparum|plasmodium\p{Zs}?falciparum|s\.\p{Zs}?enterica|salmonella\p{Zs}?enterica|s\.\p{Zs}?pyogenes|streptococcus\p{Zs}?pyogenes|p\.\p{Zs}?dumerilii|platynereis\p{Zs}?dumerilii|p\.\p{Zs}?cynocephalus|papio\p{Zs}?cynocephalus|o\.\p{Zs}?fasciatus|oncopeltus\p{Zs}?fasciatus|n\.\p{Zs}?crassa|neurospora\p{Zs}?crassa|c\.\p{Zs}?intestinalis|ciona\p{Zs}?intestinalis|e\.\p{Zs}?cuniculi|encephalitozoon\p{Zs}?cuniculi|h\.\p{Zs}?salinarum|halobacterium\p{Zs}?salinarum|s\.\p{Zs}?solfataricus|sulfolobus\p{Zs}?solfataricus|s\.\p{Zs}?mediterranea|schmidtea\p{Zs}?mediterranea|s\.\p{Zs}?rosetta|salpingoeca\p{Zs}?rosetta|n\.\p{Zs}?vectensis|nematostella\p{Zs}?vectensis|s\.\p{Zs}?aureus|staphylococcus\p{Zs}?aureus|v\.\p{Zs}?cholerae|vibrio\p{Zs}?cholerae|t\.\p{Zs}?thermophila|tetrahymena\p{Zs}?thermophila|c\.\p{Zs}?reinhardtii|chlamydomonas\p{Zs}?reinhardtii|n\.\p{Zs}?attenuata|nicotiana\p{Zs}?attenuata|e\.\p{Zs}?carotovora|erwinia\p{Zs}?carotovora|e\.\p{Zs}?faecalis|h\.\p{Zs}?sapiens|homo\p{Zs}?sapiens|c\.\p{Zs}?trachomatis|chlamydia\p{Zs}?trachomatis|enterococcus\p{Zs}?faecalis|x\.\p{Zs}?laevis|xenopus\p{Zs}?laevis|x\.\p{Zs}?tropicalis|xenopus\p{Zs}?tropicalis|m\.\p{Zs}?musculus|mus\p{Zs}?musculus|d\.\p{Zs}?immigrans|drosophila\p{Zs}?immigrans|d\.\p{Zs}?subobscura|drosophila\p{Zs}?subobscura|d\.\p{Zs}?affinis|drosophila\p{Zs}?affinis|d\.\p{Zs}?obscura|drosophila\p{Zs}?obscura|f\.\p{Zs}?tularensis|francisella\p{Zs}?tularensis|p\.\p{Zs}?plantaginis|podosphaera\p{Zs}?plantaginis|p\.\p{Zs}?lanceolata|plantago\p{Zs}?lanceolata|m\.\p{Zs}?trossulus|mytilus\p{Zs}?trossulus|m\.\p{Zs}?edulis|mytilus\p{Zs}?edulis|m\.\p{Zs}?chilensis|mytilus\p{Zs}?chilensis|u\.\p{Zs}?maydis|ustilago\p{Zs}?maydis|p\.\p{Zs}?knowlesi|plasmodium\p{Zs}?knowlesi|p\.\p{Zs}?aeruginosa|pseudomonas\p{Zs}?aeruginosa|t\.\p{Zs}?brucei|trypanosoma\p{Zs}?brucei|t\.\p{Zs}?gondii|toxoplasma\p{Zs}?gondii|d\.\p{Zs}?rerio|danio\p{Zs}?rerio|yimenosaurus|lesothosaurus\p{Zs}?diagnosticus|l\.\p{Zs}?diagnosticus|scelidosaurus\p{Zs}?harrisonii|s\.\p{Zs}?harrisonii|haya\p{Zs}?griva|h\.\p{Zs}?griva|polacanthus\p{Zs}?foxii|p\.\p{Zs}?foxii|scutellosaurus\p{Zs}?lawleri|s\.\p{Zs}?lawleri|saichania\p{Zs}?chulsanensis|s\.\p{Zs}?chulsanensis|gargoyleosaurus\p{Zs}?parkpinorum|g\.\p{Zs}?parkpinorum|europelta\p{Zs}?carbonensis|e\.\p{Zs}?carbonensis|stegosaurus\p{Zs}?stenops|s\.\p{Zs}?stenops|pinacosaurus\p{Zs}?grangeri|p\.\p{Zs}?grangeri|tatisaurus\p{Zs}?oehleri|t\.\p{Zs}?oehleri|hungarosaurus\p{Zs}?tormai|h\.\p{Zs}?tormai|bienosaurus\p{Zs}?lufengensis|b\.\p{Zs}?lufengensis|fabrosaurus\p{Zs}?australis|f\.\p{Zs}?australis|chinshakiangosaurus\p{Zs}?chunghoensis|c\.\p{Zs}?chunghoensis|euoplocephalus\p{Zs}?tutus|e\.\p{Zs}?tutus|drosophila|xenopus|g\.\p{Zs}?beringei|gorilla\p{Zs}?beringei|m\.\p{Zs}?assamensis|macaca\p{Zs}?assamensis|m\.\p{Zs}?fuscata|macaca\p{Zs}?fuscata|m\.\p{Zs}?mulatta|macaca\p{Zs}?mulatta|m\.\p{Zs}?nemestrina|macaca\p{Zs}?nemestrina|m\.\p{Zs}?sphinx|mandrillus\p{Zs}?sphinx|p\.\p{Zs}?anubis|papio\p{Zs}?anubis|p\.\p{Zs}?hamadryas|papio\p{Zs}?hamadryas|p\.\p{Zs}?paniscus|pan\p{Zs}?paniscus|p\.\p{Zs}?troglodytes|pan\p{Zs}?troglodytes'"/>
   <let name="sec-title-regex" value="string-join(     for $x in tokenize($org-regex,'\|')     return concat('^',$x,'$')     ,'|')"/>
   <xsl:function name="e:org-conform" as="xs:string">
   <xsl:param name="s" as="xs:string"/>
@@ -920,6 +920,66 @@
     <xsl:when test="matches($s,'e.\p{Zs}?tutus')">
       <xsl:value-of select="'E. tutus'"/>
     </xsl:when>
+    <xsl:when test="matches($s,'g\.\p{Zs}?beringei')">
+      <xsl:value-of select="'G. beringei'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'gorilla\p{Zs}?beringei')">
+      <xsl:value-of select="'Gorilla beringei'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'m\.\p{Zs}?assamensis')">
+      <xsl:value-of select="'M. assamensis'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'macaca\p{Zs}?assamensis')">
+      <xsl:value-of select="'Macaca assamensis'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'m\.\p{Zs}?fuscata')">
+      <xsl:value-of select="'M. fuscata'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'macaca\p{Zs}?fuscata')">
+      <xsl:value-of select="'Macaca fuscata'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'m\.\p{Zs}?mulatta')">
+      <xsl:value-of select="'M. mulatta'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'macaca\p{Zs}?mulatta')">
+      <xsl:value-of select="'Macaca mulatta'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'m\.\p{Zs}?nemestrina')">
+      <xsl:value-of select="'M. nemestrina'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'macaca\p{Zs}?nemestrina')">
+      <xsl:value-of select="'Macaca nemestrina'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'m\.\p{Zs}?sphinx')">
+      <xsl:value-of select="'M. sphinx'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'mandrillus\p{Zs}?sphinx')">
+      <xsl:value-of select="'Mandrillus sphinx'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'p\.\p{Zs}?anubis')">
+      <xsl:value-of select="'P. anubis'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'papio\p{Zs}?anubis')">
+      <xsl:value-of select="'Papio anubis'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'p\.\p{Zs}?hamadryas')">
+      <xsl:value-of select="'P. hamadryas'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'papio\p{Zs}?hamadryas')">
+      <xsl:value-of select="'Papio hamadryas'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'p\.\p{Zs}?paniscus')">
+      <xsl:value-of select="'P. paniscus'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'pan\p{Zs}?paniscus')">
+      <xsl:value-of select="'Pan paniscus'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'p\.\p{Zs}?troglodytes')">
+      <xsl:value-of select="'P. troglodytes'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'pan\p{Zs}?troglodytes')">
+      <xsl:value-of select="'Pan troglodytes'"/>
+    </xsl:when>
     <xsl:when test="matches($s,'xenopus')">
       <xsl:value-of select="'Xenopus'"/>
     </xsl:when>
@@ -1220,7 +1280,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="th[@style]|td[@style]" id="colour-table-2">
-      <let name="allowed-values" value="('background-color: #90caf9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
+      <let name="allowed-values" value="('background-color: #90CAF9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#final-colour-check-table-2" test="@style=($allowed-values)" role="error" id="final-colour-check-table-2">
         <name/> element contanining '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are <value-of select="string-join($allowed-values,', ')"/> for blue, green orange, yellow, purple, red, pink and grey respectively.</assert>
     </rule>
