@@ -15567,6 +15567,206 @@
         <x:expect-report id="xenopus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="gberingei-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/gberingei-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="gberingei-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="gberingei-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/gberingei-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="gberingei-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="gorillaberingei-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/gorillaberingei-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="gorillaberingei-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="gorillaberingei-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/gorillaberingei-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="gorillaberingei-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="massamensis-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/massamensis-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="massamensis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="massamensis-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/massamensis-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="massamensis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="macacaassamensis-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/macacaassamensis-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="macacaassamensis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="macacaassamensis-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/macacaassamensis-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="macacaassamensis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mfuscata-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/mfuscata-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mfuscata-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mfuscata-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/mfuscata-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="mfuscata-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="macacafuscata-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/macacafuscata-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="macacafuscata-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="macacafuscata-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/macacafuscata-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="macacafuscata-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mmulatta-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/mmulatta-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mmulatta-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mmulatta-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/mmulatta-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="mmulatta-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="macacamulatta-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/macacamulatta-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="macacamulatta-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="macacamulatta-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/macacamulatta-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="macacamulatta-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mnemestrina-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/mnemestrina-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mnemestrina-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mnemestrina-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/mnemestrina-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="mnemestrina-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="macacanemestrina-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/macacanemestrina-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="macacanemestrina-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="macacanemestrina-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/macacanemestrina-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="macacanemestrina-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="msphinx-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/msphinx-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="msphinx-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="msphinx-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/msphinx-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="msphinx-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mandrillussphinx-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/mandrillussphinx-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mandrillussphinx-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mandrillussphinx-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/mandrillussphinx-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="mandrillussphinx-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="panubis-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/panubis-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="panubis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="panubis-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/panubis-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="panubis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="papioanubis-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/papioanubis-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="papioanubis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="papioanubis-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/papioanubis-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="papioanubis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="phamadryas-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/phamadryas-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="phamadryas-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="phamadryas-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/phamadryas-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="phamadryas-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="papiohamadryas-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/papiohamadryas-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="papiohamadryas-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="papiohamadryas-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/papiohamadryas-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="papiohamadryas-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ppaniscus-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/ppaniscus-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="ppaniscus-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ppaniscus-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/ppaniscus-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="ppaniscus-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="panpaniscus-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/panpaniscus-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="panpaniscus-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="panpaniscus-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/panpaniscus-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="panpaniscus-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ptroglodytes-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/ptroglodytes-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="ptroglodytes-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ptroglodytes-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/ptroglodytes-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="ptroglodytes-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pantroglodytes-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/pantroglodytes-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="pantroglodytes-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pantroglodytes-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/pantroglodytes-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="pantroglodytes-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="org-title-kwd">
       <x:scenario label="bssubtilis-article-title-check-pass">
@@ -16907,6 +17107,206 @@
       <x:scenario label="etutus-article-title-check-fail">
         <x:context href="../tests/gen/org-title-kwd/etutus-article-title-check/fail.xml"/>
         <x:expect-report id="etutus-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="gberingei-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/gberingei-article-title-check/pass.xml"/>
+        <x:expect-not-report id="gberingei-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="gberingei-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/gberingei-article-title-check/fail.xml"/>
+        <x:expect-report id="gberingei-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="gorillaberingei-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/gorillaberingei-article-title-check/pass.xml"/>
+        <x:expect-not-report id="gorillaberingei-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="gorillaberingei-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/gorillaberingei-article-title-check/fail.xml"/>
+        <x:expect-report id="gorillaberingei-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="massamensis-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/massamensis-article-title-check/pass.xml"/>
+        <x:expect-not-report id="massamensis-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="massamensis-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/massamensis-article-title-check/fail.xml"/>
+        <x:expect-report id="massamensis-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="macacaassamensis-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/macacaassamensis-article-title-check/pass.xml"/>
+        <x:expect-not-report id="macacaassamensis-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="macacaassamensis-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/macacaassamensis-article-title-check/fail.xml"/>
+        <x:expect-report id="macacaassamensis-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mfuscata-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/mfuscata-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mfuscata-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mfuscata-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/mfuscata-article-title-check/fail.xml"/>
+        <x:expect-report id="mfuscata-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="macacafuscata-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/macacafuscata-article-title-check/pass.xml"/>
+        <x:expect-not-report id="macacafuscata-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="macacafuscata-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/macacafuscata-article-title-check/fail.xml"/>
+        <x:expect-report id="macacafuscata-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mmulatta-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/mmulatta-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mmulatta-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mmulatta-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/mmulatta-article-title-check/fail.xml"/>
+        <x:expect-report id="mmulatta-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="macacamulatta-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/macacamulatta-article-title-check/pass.xml"/>
+        <x:expect-not-report id="macacamulatta-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="macacamulatta-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/macacamulatta-article-title-check/fail.xml"/>
+        <x:expect-report id="macacamulatta-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mnemestrina-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/mnemestrina-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mnemestrina-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mnemestrina-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/mnemestrina-article-title-check/fail.xml"/>
+        <x:expect-report id="mnemestrina-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="macacanemestrina-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/macacanemestrina-article-title-check/pass.xml"/>
+        <x:expect-not-report id="macacanemestrina-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="macacanemestrina-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/macacanemestrina-article-title-check/fail.xml"/>
+        <x:expect-report id="macacanemestrina-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="msphinx-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/msphinx-article-title-check/pass.xml"/>
+        <x:expect-not-report id="msphinx-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="msphinx-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/msphinx-article-title-check/fail.xml"/>
+        <x:expect-report id="msphinx-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mandrillussphinx-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/mandrillussphinx-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mandrillussphinx-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mandrillussphinx-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/mandrillussphinx-article-title-check/fail.xml"/>
+        <x:expect-report id="mandrillussphinx-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="panubis-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/panubis-article-title-check/pass.xml"/>
+        <x:expect-not-report id="panubis-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="panubis-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/panubis-article-title-check/fail.xml"/>
+        <x:expect-report id="panubis-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="papioanubis-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/papioanubis-article-title-check/pass.xml"/>
+        <x:expect-not-report id="papioanubis-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="papioanubis-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/papioanubis-article-title-check/fail.xml"/>
+        <x:expect-report id="papioanubis-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="phamadryas-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/phamadryas-article-title-check/pass.xml"/>
+        <x:expect-not-report id="phamadryas-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="phamadryas-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/phamadryas-article-title-check/fail.xml"/>
+        <x:expect-report id="phamadryas-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="papiohamadryas-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/papiohamadryas-article-title-check/pass.xml"/>
+        <x:expect-not-report id="papiohamadryas-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="papiohamadryas-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/papiohamadryas-article-title-check/fail.xml"/>
+        <x:expect-report id="papiohamadryas-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ppaniscus-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/ppaniscus-article-title-check/pass.xml"/>
+        <x:expect-not-report id="ppaniscus-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ppaniscus-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/ppaniscus-article-title-check/fail.xml"/>
+        <x:expect-report id="ppaniscus-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="panpaniscus-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/panpaniscus-article-title-check/pass.xml"/>
+        <x:expect-not-report id="panpaniscus-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="panpaniscus-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/panpaniscus-article-title-check/fail.xml"/>
+        <x:expect-report id="panpaniscus-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ptroglodytes-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/ptroglodytes-article-title-check/pass.xml"/>
+        <x:expect-not-report id="ptroglodytes-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ptroglodytes-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/ptroglodytes-article-title-check/fail.xml"/>
+        <x:expect-report id="ptroglodytes-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pantroglodytes-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/pantroglodytes-article-title-check/pass.xml"/>
+        <x:expect-not-report id="pantroglodytes-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pantroglodytes-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/pantroglodytes-article-title-check/fail.xml"/>
+        <x:expect-report id="pantroglodytes-article-title-check" role="warning"/>
         <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drosophila-article-title-check-pass">

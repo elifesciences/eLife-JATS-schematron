@@ -535,7 +535,7 @@
   </xsl:function>
   
   <!-- Global variable included here for convenience -->
-  <let name="org-regex" value="'b\.\p{Zs}?subtilis|bacillus\p{Zs}?subtilis|d\.\p{Zs}?melanogaster|drosophila\p{Zs}?melanogaster|e\.\p{Zs}?coli|escherichia\p{Zs}?coli|s\.\p{Zs}?pombe|schizosaccharomyces\p{Zs}?pombe|s\.\p{Zs}?cerevisiae|saccharomyces\p{Zs}?cerevisiae|c\.\p{Zs}?elegans|caenorhabditis\p{Zs}?elegans|a\.\p{Zs}?thaliana|arabidopsis\p{Zs}?thaliana|m\.\p{Zs}?thermophila|myceliophthora\p{Zs}?thermophila|dictyostelium|p\.\p{Zs}?falciparum|plasmodium\p{Zs}?falciparum|s\.\p{Zs}?enterica|salmonella\p{Zs}?enterica|s\.\p{Zs}?pyogenes|streptococcus\p{Zs}?pyogenes|p\.\p{Zs}?dumerilii|platynereis\p{Zs}?dumerilii|p\.\p{Zs}?cynocephalus|papio\p{Zs}?cynocephalus|o\.\p{Zs}?fasciatus|oncopeltus\p{Zs}?fasciatus|n\.\p{Zs}?crassa|neurospora\p{Zs}?crassa|c\.\p{Zs}?intestinalis|ciona\p{Zs}?intestinalis|e\.\p{Zs}?cuniculi|encephalitozoon\p{Zs}?cuniculi|h\.\p{Zs}?salinarum|halobacterium\p{Zs}?salinarum|s\.\p{Zs}?solfataricus|sulfolobus\p{Zs}?solfataricus|s\.\p{Zs}?mediterranea|schmidtea\p{Zs}?mediterranea|s\.\p{Zs}?rosetta|salpingoeca\p{Zs}?rosetta|n\.\p{Zs}?vectensis|nematostella\p{Zs}?vectensis|s\.\p{Zs}?aureus|staphylococcus\p{Zs}?aureus|v\.\p{Zs}?cholerae|vibrio\p{Zs}?cholerae|t\.\p{Zs}?thermophila|tetrahymena\p{Zs}?thermophila|c\.\p{Zs}?reinhardtii|chlamydomonas\p{Zs}?reinhardtii|n\.\p{Zs}?attenuata|nicotiana\p{Zs}?attenuata|e\.\p{Zs}?carotovora|erwinia\p{Zs}?carotovora|e\.\p{Zs}?faecalis|h\.\p{Zs}?sapiens|homo\p{Zs}?sapiens|c\.\p{Zs}?trachomatis|chlamydia\p{Zs}?trachomatis|enterococcus\p{Zs}?faecalis|x\.\p{Zs}?laevis|xenopus\p{Zs}?laevis|x\.\p{Zs}?tropicalis|xenopus\p{Zs}?tropicalis|m\.\p{Zs}?musculus|mus\p{Zs}?musculus|d\.\p{Zs}?immigrans|drosophila\p{Zs}?immigrans|d\.\p{Zs}?subobscura|drosophila\p{Zs}?subobscura|d\.\p{Zs}?affinis|drosophila\p{Zs}?affinis|d\.\p{Zs}?obscura|drosophila\p{Zs}?obscura|f\.\p{Zs}?tularensis|francisella\p{Zs}?tularensis|p\.\p{Zs}?plantaginis|podosphaera\p{Zs}?plantaginis|p\.\p{Zs}?lanceolata|plantago\p{Zs}?lanceolata|m\.\p{Zs}?trossulus|mytilus\p{Zs}?trossulus|m\.\p{Zs}?edulis|mytilus\p{Zs}?edulis|m\.\p{Zs}?chilensis|mytilus\p{Zs}?chilensis|u\.\p{Zs}?maydis|ustilago\p{Zs}?maydis|p\.\p{Zs}?knowlesi|plasmodium\p{Zs}?knowlesi|p\.\p{Zs}?aeruginosa|pseudomonas\p{Zs}?aeruginosa|t\.\p{Zs}?brucei|trypanosoma\p{Zs}?brucei|caulobacter\p{Zs}?crescentus|c\.\p{Zs}?crescentus|agrobacterium\p{Zs}?tumefaciens|a\.\p{Zs}?tumefaciens|t\.\p{Zs}?gondii|toxoplasma\p{Zs}?gondii|d\.\p{Zs}?rerio|danio\p{Zs}?rerio|drosophila|yimenosaurus|lesothosaurus\p{Zs}?diagnosticus|l.\p{Zs}?diagnosticus|scelidosaurus\p{Zs}?harrisonii|s.\p{Zs}?harrisonii|haya\p{Zs}?griva|h.\p{Zs}?griva|polacanthus\p{Zs}?foxii|p.\p{Zs}?foxii|scutellosaurus\p{Zs}?lawleri|s.\p{Zs}?lawleri|saichania\p{Zs}?chulsanensis|s.\p{Zs}?chulsanensis|gargoyleosaurus\p{Zs}?parkpinorum|g.\p{Zs}?parkpinorum|europelta\p{Zs}?carbonensis|e.\p{Zs}?carbonensis|stegosaurus\p{Zs}?stenops|s.\p{Zs}?stenops|pinacosaurus\p{Zs}?grangeri|p.\p{Zs}?grangeri|tatisaurus\p{Zs}?oehleri|t.\p{Zs}?oehleri|hungarosaurus\p{Zs}?tormai|h.\p{Zs}?tormai|lesothosaurus\p{Zs}?diagnosticus|l.\p{Zs}?diagnosticus|bienosaurus\p{Zs}?lufengensis|b.\p{Zs}?lufengensis|fabrosaurus\p{Zs}?australis|f.\p{Zs}?australis|chinshakiangosaurus\p{Zs}?chunghoensis|c.\p{Zs}?chunghoensis|euoplocephalus\p{Zs}?tutus|e.\p{Zs}?tutus|xenopus'"/>
+  <let name="org-regex" value="'b\.\p{Zs}?subtilis|bacillus\p{Zs}?subtilis|d\.\p{Zs}?melanogaster|drosophila\p{Zs}?melanogaster|e\.\p{Zs}?coli|escherichia\p{Zs}?coli|s\.\p{Zs}?pombe|schizosaccharomyces\p{Zs}?pombe|s\.\p{Zs}?cerevisiae|saccharomyces\p{Zs}?cerevisiae|c\.\p{Zs}?elegans|caenorhabditis\p{Zs}?elegans|a\.\p{Zs}?thaliana|arabidopsis\p{Zs}?thaliana|m\.\p{Zs}?thermophila|myceliophthora\p{Zs}?thermophila|dictyostelium|p\.\p{Zs}?falciparum|plasmodium\p{Zs}?falciparum|s\.\p{Zs}?enterica|salmonella\p{Zs}?enterica|s\.\p{Zs}?pyogenes|streptococcus\p{Zs}?pyogenes|p\.\p{Zs}?dumerilii|platynereis\p{Zs}?dumerilii|p\.\p{Zs}?cynocephalus|papio\p{Zs}?cynocephalus|o\.\p{Zs}?fasciatus|oncopeltus\p{Zs}?fasciatus|n\.\p{Zs}?crassa|neurospora\p{Zs}?crassa|c\.\p{Zs}?intestinalis|ciona\p{Zs}?intestinalis|e\.\p{Zs}?cuniculi|encephalitozoon\p{Zs}?cuniculi|h\.\p{Zs}?salinarum|halobacterium\p{Zs}?salinarum|s\.\p{Zs}?solfataricus|sulfolobus\p{Zs}?solfataricus|s\.\p{Zs}?mediterranea|schmidtea\p{Zs}?mediterranea|s\.\p{Zs}?rosetta|salpingoeca\p{Zs}?rosetta|n\.\p{Zs}?vectensis|nematostella\p{Zs}?vectensis|s\.\p{Zs}?aureus|staphylococcus\p{Zs}?aureus|v\.\p{Zs}?cholerae|vibrio\p{Zs}?cholerae|t\.\p{Zs}?thermophila|tetrahymena\p{Zs}?thermophila|c\.\p{Zs}?reinhardtii|chlamydomonas\p{Zs}?reinhardtii|n\.\p{Zs}?attenuata|nicotiana\p{Zs}?attenuata|e\.\p{Zs}?carotovora|erwinia\p{Zs}?carotovora|e\.\p{Zs}?faecalis|h\.\p{Zs}?sapiens|homo\p{Zs}?sapiens|c\.\p{Zs}?trachomatis|chlamydia\p{Zs}?trachomatis|enterococcus\p{Zs}?faecalis|x\.\p{Zs}?laevis|xenopus\p{Zs}?laevis|x\.\p{Zs}?tropicalis|xenopus\p{Zs}?tropicalis|m\.\p{Zs}?musculus|mus\p{Zs}?musculus|d\.\p{Zs}?immigrans|drosophila\p{Zs}?immigrans|d\.\p{Zs}?subobscura|drosophila\p{Zs}?subobscura|d\.\p{Zs}?affinis|drosophila\p{Zs}?affinis|d\.\p{Zs}?obscura|drosophila\p{Zs}?obscura|f\.\p{Zs}?tularensis|francisella\p{Zs}?tularensis|p\.\p{Zs}?plantaginis|podosphaera\p{Zs}?plantaginis|p\.\p{Zs}?lanceolata|plantago\p{Zs}?lanceolata|m\.\p{Zs}?trossulus|mytilus\p{Zs}?trossulus|m\.\p{Zs}?edulis|mytilus\p{Zs}?edulis|m\.\p{Zs}?chilensis|mytilus\p{Zs}?chilensis|u\.\p{Zs}?maydis|ustilago\p{Zs}?maydis|p\.\p{Zs}?knowlesi|plasmodium\p{Zs}?knowlesi|p\.\p{Zs}?aeruginosa|pseudomonas\p{Zs}?aeruginosa|t\.\p{Zs}?brucei|trypanosoma\p{Zs}?brucei|t\.\p{Zs}?gondii|toxoplasma\p{Zs}?gondii|d\.\p{Zs}?rerio|danio\p{Zs}?rerio|yimenosaurus|lesothosaurus\p{Zs}?diagnosticus|l\.\p{Zs}?diagnosticus|scelidosaurus\p{Zs}?harrisonii|s\.\p{Zs}?harrisonii|haya\p{Zs}?griva|h\.\p{Zs}?griva|polacanthus\p{Zs}?foxii|p\.\p{Zs}?foxii|scutellosaurus\p{Zs}?lawleri|s\.\p{Zs}?lawleri|saichania\p{Zs}?chulsanensis|s\.\p{Zs}?chulsanensis|gargoyleosaurus\p{Zs}?parkpinorum|g\.\p{Zs}?parkpinorum|europelta\p{Zs}?carbonensis|e\.\p{Zs}?carbonensis|stegosaurus\p{Zs}?stenops|s\.\p{Zs}?stenops|pinacosaurus\p{Zs}?grangeri|p\.\p{Zs}?grangeri|tatisaurus\p{Zs}?oehleri|t\.\p{Zs}?oehleri|hungarosaurus\p{Zs}?tormai|h\.\p{Zs}?tormai|bienosaurus\p{Zs}?lufengensis|b\.\p{Zs}?lufengensis|fabrosaurus\p{Zs}?australis|f\.\p{Zs}?australis|chinshakiangosaurus\p{Zs}?chunghoensis|c\.\p{Zs}?chunghoensis|euoplocephalus\p{Zs}?tutus|e\.\p{Zs}?tutus|drosophila|xenopus|g\.\p{zs}?beringei|gorilla\p{zs}?beringei|m\.\p{zs}?assamensis|macaca\p{zs}?assamensis|m\.\p{zs}?fuscata|macaca\p{zs}?fuscata|m\.\p{zs}?mulatta|macaca\p{zs}?mulatta|m\.\p{zs}?nemestrina|macaca\p{zs}?nemestrina|m\.\p{zs}?sphinx|mandrillus\p{zs}?sphinx|p\.\p{zs}?anubis|papio\p{zs}?anubis|p\.\p{zs}?hamadryas|papio\p{zs}?hamadryas|p\.\p{zs}?paniscus|pan\p{zs}?paniscus|p\.\p{zs}?troglodytes|pan\p{zs}?troglodytes'"/>
   
   <let name="sec-title-regex" value="string-join(     for $x in tokenize($org-regex,'\|')     return concat('^',$x,'$')     ,'|')"/>
   
@@ -964,6 +964,66 @@
     </xsl:when>
     <xsl:when test="matches($s,'e.\p{Zs}?tutus')">
       <xsl:value-of select="'E. tutus'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'g\.\p{zs}?beringei')">
+      <xsl:value-of select="'G. beringei'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'gorilla\p{zs}?beringei')">
+      <xsl:value-of select="'Gorilla beringei'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'m\.\p{zs}?assamensis')">
+      <xsl:value-of select="'M. assamensis'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'macaca\p{zs}?assamensis')">
+      <xsl:value-of select="'Macaca assamensis'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'m\.\p{zs}?fuscata')">
+      <xsl:value-of select="'M. fuscata'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'macaca\p{zs}?fuscata')">
+      <xsl:value-of select="'Macaca fuscata'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'m\.\p{zs}?mulatta')">
+      <xsl:value-of select="'M. mulatta'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'macaca\p{zs}?mulatta')">
+      <xsl:value-of select="'Macaca mulatta'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'m\.\p{zs}?nemestrina')">
+      <xsl:value-of select="'M. nemestrina'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'macaca\p{zs}?nemestrina')">
+      <xsl:value-of select="'Macaca nemestrina'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'m\.\p{zs}?sphinx')">
+      <xsl:value-of select="'M. sphinx'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'mandrillus\p{zs}?sphinx')">
+      <xsl:value-of select="'Mandrillus sphinx'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'p\.\p{zs}?anubis')">
+      <xsl:value-of select="'P. anubis'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'papio\p{zs}?anubis')">
+      <xsl:value-of select="'Papio anubis'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'p\.\p{zs}?hamadryas')">
+      <xsl:value-of select="'P. hamadryas'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'papio\p{zs}?hamadryas')">
+      <xsl:value-of select="'Papio hamadryas'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'p\.\p{zs}?paniscus')">
+      <xsl:value-of select="'P. paniscus'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'pan\p{zs}?paniscus')">
+      <xsl:value-of select="'Pan paniscus'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'p\.\p{zs}?troglodytes')">
+      <xsl:value-of select="'P. troglodytes'"/>
+    </xsl:when>
+    <xsl:when test="matches($s,'pan\p{zs}?troglodytes')">
+      <xsl:value-of select="'Pan troglodytes'"/>
     </xsl:when>
     <xsl:when test="matches($s,'xenopus')">
       <xsl:value-of select="'Xenopus'"/>
@@ -6983,6 +7043,46 @@
     <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#drosophila-ref-article-title-check" test="matches($lc,'drosophila') and not(italic[contains(text(),'Drosophila')])" role="info" id="drosophila-ref-article-title-check">[drosophila-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Drosophila' - but there is no italic element with that correct capitalisation or spacing.</report>
 
     <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#xenopus-ref-article-title-check" test="matches($lc,'xenopus') and not(italic[contains(.,'Xenopus')])" role="info" id="xenopus-ref-article-title-check">[xenopus-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Xenopus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'g\.\p{zs}?beringei') and not(italic[contains(.,'G. beringei')])" role="info" id="gberingei-ref-article-title-check">[gberingei-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'G. beringei' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'gorilla\p{zs}?beringei') and not(italic[contains(.,'Gorilla beringei')])" role="info" id="gorillaberingei-ref-article-title-check">[gorillaberingei-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Gorilla beringei' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\p{zs}?assamensis') and not(italic[contains(.,'M. assamensis')])" role="info" id="massamensis-ref-article-title-check">[massamensis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'M. assamensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'macaca\p{zs}?assamensis') and not(italic[contains(.,'Macaca assamensis')])" role="info" id="macacaassamensis-ref-article-title-check">[macacaassamensis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Macaca assamensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\p{zs}?fuscata') and not(italic[contains(.,'M. fuscata')])" role="info" id="mfuscata-ref-article-title-check">[mfuscata-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'M. fuscata' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'macaca\p{zs}?fuscata') and not(italic[contains(.,'Macaca fuscata')])" role="info" id="macacafuscata-ref-article-title-check">[macacafuscata-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Macaca fuscata' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\p{zs}?mulatta') and not(italic[contains(.,'M. mulatta')])" role="info" id="mmulatta-ref-article-title-check">[mmulatta-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'M. mulatta' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'macaca\p{zs}?mulatta') and not(italic[contains(.,'Macaca mulatta')])" role="info" id="macacamulatta-ref-article-title-check">[macacamulatta-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Macaca mulatta' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\p{zs}?nemestrina') and not(italic[contains(.,'M. nemestrina')])" role="info" id="mnemestrina-ref-article-title-check">[mnemestrina-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'M. nemestrina' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'macaca\p{zs}?nemestrina') and not(italic[contains(.,'Macaca nemestrina')])" role="info" id="macacanemestrina-ref-article-title-check">[macacanemestrina-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Macaca nemestrina' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\p{zs}?sphinx') and not(italic[contains(.,'M. sphinx')])" role="info" id="msphinx-ref-article-title-check">[msphinx-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'M. sphinx' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'mandrillus\p{zs}?sphinx') and not(italic[contains(.,'Mandrillus sphinx')])" role="info" id="mandrillussphinx-ref-article-title-check">[mandrillussphinx-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Mandrillus sphinx' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\p{zs}?anubis') and not(italic[contains(.,'P. anubis')])" role="info" id="panubis-ref-article-title-check">[panubis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. anubis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'papio\p{zs}?anubis') and not(italic[contains(.,'Papio anubis')])" role="info" id="papioanubis-ref-article-title-check">[papioanubis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Papio anubis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\p{zs}?hamadryas') and not(italic[contains(.,'P. hamadryas')])" role="info" id="phamadryas-ref-article-title-check">[phamadryas-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. hamadryas' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'papio\p{zs}?hamadryas') and not(italic[contains(.,'Papio hamadryas')])" role="info" id="papiohamadryas-ref-article-title-check">[papiohamadryas-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Papio hamadryas' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\p{zs}?paniscus') and not(italic[contains(.,'P. paniscus')])" role="info" id="ppaniscus-ref-article-title-check">[ppaniscus-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. paniscus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'pan\p{zs}?paniscus') and not(italic[contains(.,'Pan paniscus')])" role="info" id="panpaniscus-ref-article-title-check">[panpaniscus-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Pan paniscus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\p{zs}?troglodytes') and not(italic[contains(.,'P. troglodytes')])" role="info" id="ptroglodytes-ref-article-title-check">[ptroglodytes-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'P. troglodytes' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'pan\p{zs}?troglodytes') and not(italic[contains(.,'Pan troglodytes')])" role="info" id="pantroglodytes-ref-article-title-check">[pantroglodytes-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Pan troglodytes' - but there is no italic element with that correct capitalisation or spacing.</report>
 
 </rule>
   </pattern>
@@ -7257,6 +7357,45 @@
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-euoplocephalustutus-article-title-check" test="matches($lc,'euoplocephalus\p{Zs}?tutus') and not(italic[contains(.,'Euoplocephalus tutus')])" role="warning" id="euoplocephalustutus-article-title-check">[euoplocephalustutus-article-title-check] <name/> contains an organism - 'Euoplocephalus tutus' - but there is no italic element with that correct capitalisation or spacing.</report>
 
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-etutus-article-title-check" test="matches($lc,'e\.\p{Zs}?tutus') and not(italic[contains(.,'E. tutus')])" role="warning" id="etutus-article-title-check">[etutus-article-title-check] <name/> contains an organism - 'E. tutus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'g\.\p{zs}?beringei') and not(italic[contains(.,'G. beringei')])" role="warning" id="gberingei-article-title-check">[gberingei-article-title-check] <name/> contains an organism - 'G. beringei' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'gorilla\p{zs}?beringei') and not(italic[contains(.,'Gorilla beringei')])" role="warning" id="gorillaberingei-article-title-check">[gorillaberingei-article-title-check] <name/> contains an organism - 'Gorilla beringei' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\p{zs}?assamensis') and not(italic[contains(.,'M. assamensis')])" role="warning" id="massamensis-article-title-check">[massamensis-article-title-check] <name/> contains an organism - 'M. assamensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'macaca\p{zs}?assamensis') and not(italic[contains(.,'Macaca assamensis')])" role="warning" id="macacaassamensis-article-title-check">[macacaassamensis-article-title-check] <name/> contains an organism - 'Macaca assamensis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\p{zs}?fuscata') and not(italic[contains(.,'M. fuscata')])" role="warning" id="mfuscata-article-title-check">[mfuscata-article-title-check] <name/> contains an organism - 'M. fuscata' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'macaca\p{zs}?fuscata') and not(italic[contains(.,'Macaca fuscata')])" role="warning" id="macacafuscata-article-title-check">[macacafuscata-article-title-check] <name/> contains an organism - 'Macaca fuscata' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\p{zs}?mulatta') and not(italic[contains(.,'M. mulatta')])" role="warning" id="mmulatta-article-title-check">[mmulatta-article-title-check] <name/> contains an organism - 'M. mulatta' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'macaca\p{zs}?mulatta') and not(italic[contains(.,'Macaca mulatta')])" role="warning" id="macacamulatta-article-title-check">[macacamulatta-article-title-check] <name/> contains an organism - 'Macaca mulatta' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\p{zs}?nemestrina') and not(italic[contains(.,'M. nemestrina')])" role="warning" id="mnemestrina-article-title-check">[mnemestrina-article-title-check] <name/> contains an organism - 'M. nemestrina' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'macaca\p{zs}?nemestrina') and not(italic[contains(.,'Macaca nemestrina')])" role="warning" id="macacanemestrina-article-title-check">[macacanemestrina-article-title-check] <name/> contains an organism - 'Macaca nemestrina' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'m\.\p{zs}?sphinx') and not(italic[contains(.,'M. sphinx')])" role="warning" id="msphinx-article-title-check">[msphinx-article-title-check] <name/> contains an organism - 'M. sphinx' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'mandrillus\p{zs}?sphinx') and not(italic[contains(.,'Mandrillus sphinx')])" role="warning" id="mandrillussphinx-article-title-check">[mandrillussphinx-article-title-check] <name/> contains an organism - 'Mandrillus sphinx' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\p{zs}?anubis') and not(italic[contains(.,'P. anubis')])" role="warning" id="panubis-article-title-check">[panubis-article-title-check] <name/> contains an organism - 'P. anubis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'papio\p{zs}?anubis') and not(italic[contains(.,'Papio anubis')])" role="warning" id="papioanubis-article-title-check">[papioanubis-article-title-check] <name/> contains an organism - 'Papio anubis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\p{zs}?hamadryas') and not(italic[contains(.,'P. hamadryas')])" role="warning" id="phamadryas-article-title-check">[phamadryas-article-title-check] <name/> contains an organism - 'P. hamadryas' - but there is no italic element with that correct capitalisation or spacing.</report>
+
+      <report test="matches($lc,'papio\p{zs}?hamadryas') and not(italic[contains(.,'Papio hamadryas')])" role="warning" id="papiohamadryas-article-title-check">[papiohamadryas-article-title-check] <name/> contains an organism - 'Papio hamadryas' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\p{zs}?paniscus') and not(italic[contains(.,'P. paniscus')])" role="warning" id="ppaniscus-article-title-check">[ppaniscus-article-title-check] <name/> contains an organism - 'P. paniscus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'pan\p{zs}?paniscus') and not(italic[contains(.,'Pan paniscus')])" role="warning" id="panpaniscus-article-title-check">[panpaniscus-article-title-check] <name/> contains an organism - 'Pan paniscus' - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+      <report test="matches($lc,'p\.\p{zs}?troglodytes') and not(italic[contains(.,'P. troglodytes')])" role="warning" id="ptroglodytes-article-title-check">[ptroglodytes-article-title-check] <name/> contains an organism - 'P. troglodytes' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'pan\p{zs}?troglodytes') and not(italic[contains(.,'Pan troglodytes')])" role="warning" id="pantroglodytes-article-title-check">[pantroglodytes-article-title-check] <name/> contains an organism - 'Pan troglodytes' - but there is no italic element with that correct capitalisation or spacing.</report>
 
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h1ycf-drosophila-article-title-check" test="matches($lc,'drosophila') and not(italic[contains(text(),'Drosophila')])" role="warning" id="drosophila-article-title-check">[drosophila-article-title-check] <name/> contains an organism - 'Drosophila' - but there is no italic element with that correct capitalisation or spacing.</report>
 
