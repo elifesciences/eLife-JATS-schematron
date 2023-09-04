@@ -41320,7 +41320,7 @@
 
 	  <!--RULE colour-table-->
    <xsl:template match="table-wrap" priority="1000" mode="M522">
-      <xsl:variable name="allowed-values" select="('background-color: #90caf9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
+      <xsl:variable name="allowed-values" select="('background-color: #90CAF9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
 
 		    <!--REPORT warning-->
       <xsl:if test="descendant::th[@style=$allowed-values] or descendant::td[@style=$allowed-values]">
@@ -41348,7 +41348,7 @@
 
 	  <!--RULE colour-table-2-->
    <xsl:template match="th[@style]|td[@style]" priority="1000" mode="M523">
-      <xsl:variable name="allowed-values" select="('background-color: #90caf9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
+      <xsl:variable name="allowed-values" select="('background-color: #90CAF9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>

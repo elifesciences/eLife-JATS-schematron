@@ -13127,7 +13127,7 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="table-wrap" id="colour-table">
-      <let name="allowed-values" value="('background-color: #90caf9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
+      <let name="allowed-values" value="('background-color: #90CAF9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#colour-check-table" 
         test="descendant::th[@style=$allowed-values] or descendant::td[@style=$allowed-values]" 
@@ -13136,7 +13136,7 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="th[@style]|td[@style]" id="colour-table-2">
-      <let name="allowed-values" value="('background-color: #90caf9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
+      <let name="allowed-values" value="('background-color: #90CAF9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#pre-colour-check-table-2" 
         test="@style=($allowed-values)" 

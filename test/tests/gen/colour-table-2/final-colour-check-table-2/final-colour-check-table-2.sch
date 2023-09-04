@@ -1280,7 +1280,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="th[@style]|td[@style]" id="colour-table-2">
-      <let name="allowed-values" value="('background-color: #90caf9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
+      <let name="allowed-values" value="('background-color: #90CAF9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#final-colour-check-table-2" test="@style=($allowed-values)" role="error" id="final-colour-check-table-2">
         <name/> element contanining '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are <value-of select="string-join($allowed-values,', ')"/> for blue, green orange, yellow, purple, red, pink and grey respectively.</assert>
     </rule>

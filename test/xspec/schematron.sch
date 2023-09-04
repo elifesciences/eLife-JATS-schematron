@@ -8629,7 +8629,7 @@
   </pattern>
   <pattern id="colour-table-pattern">
     <rule context="table-wrap" id="colour-table">
-      <let name="allowed-values" value="('background-color: #90caf9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
+      <let name="allowed-values" value="('background-color: #90CAF9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#colour-check-table" test="descendant::th[@style=$allowed-values] or descendant::td[@style=$allowed-values]" role="warning" id="colour-check-table">
         <value-of select="if (label) then label else 'table'"/> has colour background. Is this correct and appropriate?</report>
@@ -8637,7 +8637,7 @@
   </pattern>
   <pattern id="colour-table-2-pattern">
     <rule context="th[@style]|td[@style]" id="colour-table-2">
-      <let name="allowed-values" value="('background-color: #90caf9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
+      <let name="allowed-values" value="('background-color: #90CAF9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#pre-colour-check-table-2" test="@style=($allowed-values)" role="warning" id="pre-colour-check-table-2">
         <name/> element containing '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are <value-of select="string-join($allowed-values,', ')"/> for blue, green orange, yellow, purple, red, pink and grey respectively. Please ensure one of these is used. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for table cells - blue, green orange, yellow, purple, red, pink and grey. Please confirm how you would like the colour(s) here captured given this information.'.</assert>
