@@ -15567,6 +15567,16 @@
         <x:expect-report id="xenopus-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="salmonella-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/salmonella-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="salmonella-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="salmonella-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/salmonella-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="salmonella-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="gberingei-ref-article-title-check-pass">
         <x:context href="../tests/gen/org-ref-article-book-title/gberingei-ref-article-title-check/pass.xml"/>
         <x:expect-not-report id="gberingei-ref-article-title-check" role="info"/>
@@ -17327,6 +17337,16 @@
       <x:scenario label="xenopus-article-title-check-fail">
         <x:context href="../tests/gen/org-title-kwd/xenopus-article-title-check/fail.xml"/>
         <x:expect-report id="xenopus-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="salmonella-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/salmonella-article-title-check/pass.xml"/>
+        <x:expect-not-report id="salmonella-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="salmonella-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/salmonella-article-title-check/fail.xml"/>
+        <x:expect-report id="salmonella-article-title-check" role="warning"/>
         <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
