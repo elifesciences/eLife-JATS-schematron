@@ -2009,15 +2009,15 @@
       <xsl:variable name="subj" select="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
 
 		    <!--REPORT warning-->
-      <xsl:if test="ancestor::sub-article[@article-type='decision-letter']">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::sub-article[@article-type='decision-letter']">
+      <xsl:if test="ancestor::sub-article[not(@article-type=('reply','author-comment'))]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::sub-article[not(@article-type=('reply','author-comment'))]">
             <xsl:attribute name="id">disp-quote-test-1</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Content is tagged as a display quote, which is almost definitely incorrect, since it's in a decision letter - <xsl:text/>
+            <svrl:text>Content is tagged as a display quote, which is almost definitely incorrect, since it's within peer revew material that is not an author response - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>
             </svrl:text>

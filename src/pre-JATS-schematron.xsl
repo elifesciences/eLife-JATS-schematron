@@ -13275,7 +13275,7 @@
                </xsl:attribute>
                <svrl:text>[allowed-p-test] p element cannot contain <xsl:text/>
                   <xsl:value-of select="self::*/local-name()"/>
-                  <xsl:text/>. only contain the following elements are allowed - <xsl:text/>
+                  <xsl:text/>. Only the following elements are allowed - <xsl:text/>
                   <xsl:value-of select="string-join($allowed-p-blocks,', ')"/>
                   <xsl:text/>.</svrl:text>
             </svrl:failed-assert>
@@ -17648,15 +17648,15 @@
       <xsl:variable name="subj" select="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
 
 		    <!--REPORT warning-->
-      <xsl:if test="ancestor::sub-article[@article-type='decision-letter']">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::sub-article[@article-type='decision-letter']">
+      <xsl:if test="ancestor::sub-article[not(@article-type=('reply','author-comment'))]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::sub-article[not(@article-type=('reply','author-comment'))]">
             <xsl:attribute name="id">disp-quote-test-1</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[disp-quote-test-1] Content is tagged as a display quote, which is almost definitely incorrect, since it's in a decision letter - <xsl:text/>
+            <svrl:text>[disp-quote-test-1] Content is tagged as a display quote, which is almost definitely incorrect, since it's within peer revew material that is not an author response - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>
             </svrl:text>
