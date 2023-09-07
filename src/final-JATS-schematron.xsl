@@ -17769,24 +17769,21 @@
    <xsl:template match="disp-quote" priority="1000" mode="M234">
       <xsl:variable name="subj" select="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
 
-		    <!--ASSERT warning-->
-      <xsl:choose>
-         <xsl:when test="ancestor::sub-article[@article-type=('reply','author-comment')]"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::sub-article[@article-type=('reply','author-comment')]">
-               <xsl:attribute name="id">disp-quote-test-1</xsl:attribute>
-               <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="role">warning</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[disp-quote-test-1] Content is tagged as a display quote, which is almost definitely incorrect, since it's not within an author response - <xsl:text/>
-                  <xsl:value-of select="."/>
-                  <xsl:text/>
-               </svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
+		    <!--REPORT warning-->
+      <xsl:if test="ancestor::sub-article[not(@article-type=('reply','author-comment'))]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::sub-article[not(@article-type=('reply','author-comment'))]">
+            <xsl:attribute name="id">disp-quote-test-1</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[disp-quote-test-1] Content is tagged as a display quote, which is almost definitely incorrect, since it's within peer revew material that is not an author response - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
 
 		    <!--REPORT error-->
       <xsl:if test="not(ancestor::sub-article) and ($subj=$research-subj)">

@@ -1284,8 +1284,8 @@
   <pattern id="content-containers">
     <rule context="disp-quote" id="disp-quote-tests">
       <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <assert test="ancestor::sub-article[@article-type=('reply','author-comment')]" role="warning" flag="dl-ar" id="disp-quote-test-1">Content is tagged as a display quote, which is almost definitely incorrect, since it's not within an author response - <value-of select="."/>
-      </assert>
+      <report test="ancestor::sub-article[not(@article-type=('reply','author-comment'))]" role="warning" flag="dl-ar" id="disp-quote-test-1">Content is tagged as a display quote, which is almost definitely incorrect, since it's within peer revew material that is not an author response - <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
