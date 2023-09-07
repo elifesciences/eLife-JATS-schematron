@@ -5223,10 +5223,10 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="disp-quote" id="disp-quote-tests">
       <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
-      <report test="ancestor::sub-article[@article-type='decision-letter']" 
+      <assert test="ancestor::sub-article[@article-type=('reply','author-comment')]" 
         role="warning" 
         flag="dl-ar"
-        id="disp-quote-test-1">Content is tagged as a display quote, which is almost definitely incorrect, since it's in a decision letter - <value-of select="."/></report>
+        id="disp-quote-test-1">Content is tagged as a display quote, which is almost definitely incorrect, since it's not within an author response - <value-of select="."/></assert>
       
       <report test="not(ancestor::sub-article) and ($subj=$research-subj)" 
         role="error"
