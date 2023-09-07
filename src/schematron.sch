@@ -3761,7 +3761,7 @@
 
 else self::*/local-name() = $allowed-p-blocks" 
         role="error"
-        id="allowed-p-test">p element cannot contain <value-of select="self::*/local-name()"/>. only contain the following elements are allowed - <value-of select="string-join($allowed-p-blocks,', ')"/>.</assert>
+        id="allowed-p-test">p element cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - <value-of select="string-join($allowed-p-blocks,', ')"/>.</assert>
     </rule>
     
     <rule context="xref" id="xref-target-tests">

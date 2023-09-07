@@ -13275,7 +13275,7 @@
                </xsl:attribute>
                <svrl:text>[allowed-p-test] p element cannot contain <xsl:text/>
                   <xsl:value-of select="self::*/local-name()"/>
-                  <xsl:text/>. only contain the following elements are allowed - <xsl:text/>
+                  <xsl:text/>. Only the following elements are allowed - <xsl:text/>
                   <xsl:value-of select="string-join($allowed-p-blocks,', ')"/>
                   <xsl:text/>.</svrl:text>
             </svrl:failed-assert>
