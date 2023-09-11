@@ -12086,23 +12086,6 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT warning-->
-      <xsl:if test="if ($version = '1') then not(ancestor::article//article-meta//contrib//xref/@rid = $id)      else ()">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($version = '1') then not(ancestor::article//article-meta//contrib//xref/@rid = $id) else ()">
-            <xsl:attribute name="id">final-award-group-test-7</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#final-award-group-test-7</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[final-award-group-test-7] There is no author associated with the funding for <xsl:text/>
-               <xsl:value-of select="$institution"/>
-               <xsl:text/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<xsl:text/>
-               <xsl:value-of select="$id"/>
-               <xsl:text/>"&gt;).</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
 		    <!--REPORT error-->
       <xsl:if test="count(funding-source/institution-wrap/institution) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(funding-source/institution-wrap/institution) gt 1">
