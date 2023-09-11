@@ -2651,10 +2651,6 @@
 		
 		<report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-6" test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one.</report>
 	  
-	  <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#pre-award-group-test-7" test="if ($version = '1') then not(ancestor::article//article-meta//contrib//xref/@rid = $id)      else ()" role="warning" id="pre-award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;). If you are unable to determine which author(s) are associated with this funding, please add an author query.</report>
-	  
-	  <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#final-award-group-test-7" test="if ($version = '1') then not(ancestor::article//article-meta//contrib//xref/@rid = $id)      else ()" role="warning" id="final-award-group-test-7">There is no author associated with the funding for <value-of select="$institution"/>, which is incorrect. (There is no xref from a contrib pointing to this &lt;award-group id="<value-of select="$id"/>"&gt;).</report>
-	  
 	  <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-8" test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>.</report>
 	</rule>
   </pattern>
