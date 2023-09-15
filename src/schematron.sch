@@ -5214,7 +5214,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="ancestor::sub-article[not(@article-type=('reply','author-comment'))]" 
         role="warning" 
         flag="dl-ar"
-        id="disp-quote-test-1">Content is tagged as a display quote, which is almost definitely incorrect, since it's within peer revew material that is not an author response - <value-of select="."/></report>
+        id="disp-quote-test-1">Content is tagged as a display quote, which is almost definitely incorrect, since it's within peer review material that is not an author response - <value-of select="."/></report>
       
       <report test="not(ancestor::sub-article) and ($subj=$research-subj)" 
         role="error"
@@ -9419,7 +9419,7 @@ else self::*/local-name() = $allowed-p-blocks"
        role="error" 
        id="final-feat-ok-test"><value-of select="name()"/> element contains [OK] or [OK?] which should be removed - <value-of select="."/></report>
      
-     <report see="https://elifeproduction.slab.com/posts/production-checklist-4cb7d124#final-feat-query-test"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#hb9uk-final-feat-query-test"
        test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')" 
        role="error" 
        id="final-feat-query-test"><value-of select="name()"/> element contains [Query] or [QUERY] which should be removed - <value-of select="."/></report>
@@ -13779,7 +13779,8 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="funding-group" value="distinct-values(ancestor::article//funding-group//institution-id)"/>
       <let name="funders" value="'funders.xml'"/>
       
-      <report test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder,' ')) or contains($ack,concat(' ',$funder,'.'))) and not($funder/@fundref = $funding-group))" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#h10qd-fundref-test-1" 
+        test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder,' ')) or contains($ack,concat(' ',$funder,'.'))) and not($funder/@fundref = $funding-group))" 
         role="warning" 
         id="fundref-test-1">Acknowledgements contains funder(s) in the open funder registry, but their doi is not listed in the funding section. Please check - <value-of select="string-join(for $x in document($funders)//funder[((contains($ack,concat(' ',.,' ')) or contains($ack,concat(' ',.,'.'))) and not(@fundref = $funding-group))] return concat($x,' - ',$x/@fundref),'; ')"/>.</report>
     </rule>

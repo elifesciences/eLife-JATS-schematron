@@ -2017,7 +2017,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Content is tagged as a display quote, which is almost definitely incorrect, since it's within peer revew material that is not an author response - <xsl:text/>
+            <svrl:text>Content is tagged as a display quote, which is almost definitely incorrect, since it's within peer review material that is not an author response - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>
             </svrl:text>

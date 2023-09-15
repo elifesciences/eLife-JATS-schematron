@@ -3721,7 +3721,7 @@
     <rule context="disp-quote" id="disp-quote-tests">
       <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
-      <report test="ancestor::sub-article[not(@article-type=('reply','author-comment'))]" role="warning" flag="dl-ar" id="disp-quote-test-1">[disp-quote-test-1] Content is tagged as a display quote, which is almost definitely incorrect, since it's within peer revew material that is not an author response - <value-of select="."/>
+      <report test="ancestor::sub-article[not(@article-type=('reply','author-comment'))]" role="warning" flag="dl-ar" id="disp-quote-test-1">[disp-quote-test-1] Content is tagged as a display quote, which is almost definitely incorrect, since it's within peer review material that is not an author response - <value-of select="."/>
       </report>
       
       <report test="not(ancestor::sub-article) and ($subj=$research-subj)" role="error" id="disp-quote-test-2">[disp-quote-test-2] Display quote in a <value-of select="$subj"/> is not allowed. Please capture as paragraph instead - '<value-of select="."/>'</report>
@@ -6377,7 +6377,7 @@
      <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#final-feat-ok-test" test="matches(.,'\[[Oo][Kk]\??\]')" role="error" id="final-feat-ok-test">[final-feat-ok-test] <value-of select="name()"/> element contains [OK] or [OK?] which should be removed - <value-of select="."/>
       </report>
      
-     <report see="https://elifeproduction.slab.com/posts/production-checklist-4cb7d124#final-feat-query-test" test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')" role="error" id="final-feat-query-test">[final-feat-query-test] <value-of select="name()"/> element contains [Query] or [QUERY] which should be removed - <value-of select="."/>
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#hb9uk-final-feat-query-test" test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')" role="error" id="final-feat-query-test">[final-feat-query-test] <value-of select="name()"/> element contains [Query] or [QUERY] which should be removed - <value-of select="."/>
       </report>
      
    </rule>
@@ -8618,7 +8618,7 @@
       <let name="funding-group" value="distinct-values(ancestor::article//funding-group//institution-id)"/>
       <let name="funders" value="'funders.xml'"/>
       
-      <report test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder,' ')) or contains($ack,concat(' ',$funder,'.'))) and not($funder/@fundref = $funding-group))" role="warning" id="fundref-test-1">[fundref-test-1] Acknowledgements contains funder(s) in the open funder registry, but their doi is not listed in the funding section. Please check - <value-of select="string-join(for $x in document($funders)//funder[((contains($ack,concat(' ',.,' ')) or contains($ack,concat(' ',.,'.'))) and not(@fundref = $funding-group))] return concat($x,' - ',$x/@fundref),'; ')"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#h10qd-fundref-test-1" test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder,' ')) or contains($ack,concat(' ',$funder,'.'))) and not($funder/@fundref = $funding-group))" role="warning" id="fundref-test-1">[fundref-test-1] Acknowledgements contains funder(s) in the open funder registry, but their doi is not listed in the funding section. Please check - <value-of select="string-join(for $x in document($funders)//funder[((contains($ack,concat(' ',.,' ')) or contains($ack,concat(' ',.,'.'))) and not(@fundref = $funding-group))] return concat($x,' - ',$x/@fundref),'; ')"/>.</report>
     </rule>
   </pattern>
   

@@ -17761,7 +17761,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[disp-quote-test-1] Content is tagged as a display quote, which is almost definitely incorrect, since it's within peer revew material that is not an author response - <xsl:text/>
+            <svrl:text>[disp-quote-test-1] Content is tagged as a display quote, which is almost definitely incorrect, since it's within peer review material that is not an author response - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>
             </svrl:text>
@@ -30113,7 +30113,7 @@
       <xsl:if test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')">
             <xsl:attribute name="id">final-feat-query-test</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/production-checklist-4cb7d124#final-feat-query-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/feature-content-alikl8qp#hb9uk-final-feat-query-test</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -42970,6 +42970,7 @@
       <xsl:if test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder,' ')) or contains($ack,concat(' ',$funder,'.'))) and not($funder/@fundref = $funding-group))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder,' ')) or contains($ack,concat(' ',$funder,'.'))) and not($funder/@fundref = $funding-group))">
             <xsl:attribute name="id">fundref-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#h10qd-fundref-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
