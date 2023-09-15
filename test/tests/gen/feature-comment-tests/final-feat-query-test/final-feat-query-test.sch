@@ -1283,7 +1283,7 @@
   </xsl:function>
   <pattern id="features">
     <rule context="article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//p|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//td|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//th" id="feature-comment-tests">
-      <report see="https://elifeproduction.slab.com/posts/production-checklist-4cb7d124#final-feat-query-test" test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')" role="error" id="final-feat-query-test">
+      <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#hb9uk-final-feat-query-test" test="matches(.,'\[[Qq][Uu][Ee][Rr][Yy]')" role="error" id="final-feat-query-test">
         <value-of select="name()"/> element contains [Query] or [QUERY] which should be removed - <value-of select="."/>
       </report>
     </rule>
