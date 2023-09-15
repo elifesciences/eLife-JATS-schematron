@@ -30030,8 +30030,9 @@
 	  <!--RULE insight-related-article-tests-->
    <xsl:template match="article[@article-type='article-commentary']//article-meta/related-article" priority="1000" mode="M467">
       <xsl:variable name="doi" select="@xlink:href"/>
+      <xsl:variable name="doi-regex" select="concat('^',replace($doi,'\.','\\.'),'.\d$')"/>
       <xsl:variable name="text" select="replace(ancestor::article/body/boxed-text[1],' ',' ')"/>
-      <xsl:variable name="citation" select="for $x in ancestor::article//ref-list//element-citation[pub-id[@pub-id-type='doi']=$doi][1]        return replace(concat(        string-join(        for $y in $x/person-group[@person-group-type='author']/*        return if ($y/name()='name') then concat($y/surname,' ', $y/given-names)        else $y        ,', '),        '. ',        replace($x/year,'[^\d]',''),        '. ',        $x/article-title,        '. eLife ',        $x/volume,        ':',        $x/elocation-id,        '. doi: ',        $x/pub-id[@pub-id-type='doi']),' ',' ')"/>
+      <xsl:variable name="citation" select="for $x in ancestor::article//ref-list//element-citation[matches(pub-id[@pub-id-type='doi'][1],$doi-regex)][1]        return replace(concat(        string-join(        for $y in $x/person-group[@person-group-type='author']/*        return if ($y/name()='name') then concat($y/surname,' ', $y/given-names)        else $y        ,', '),        '. ',        replace($x/year,'[^\d]',''),        '. ',        $x/article-title,        '. eLife ',        $x/volume,        ':',        $x/elocation-id,        '. doi: ',        $x/pub-id[@pub-id-type='doi']),' ',' ')"/>
 
 		    <!--ASSERT warning-->
       <xsl:choose>
