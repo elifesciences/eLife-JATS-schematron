@@ -38512,9 +38512,9 @@
 
 		    <!--ASSERT warning-->
       <xsl:choose>
-         <xsl:when test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|research square|zenodo')"/>
+         <xsl:when test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|research square|zenodo|ecoevorxiv|africarxiv')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|research square|zenodo')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|research square|zenodo|ecoevorxiv|africarxiv')">
                <xsl:attribute name="id">not-rxiv-test</xsl:attribute>
                <xsl:attribute name="see">https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#not-rxiv-test</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
@@ -38731,6 +38731,22 @@
                <xsl:text/>' has a source <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>, which is not the correct proprietary capitalisation - 'AfricArXiv'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="matches($lc,'ecoevorxiv') and not(. = 'EcoEvoRxiv')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'ecoevorxiv') and not(. = 'EcoEvoRxiv')">
+            <xsl:attribute name="id">ecoevorxiv-test</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ecoevorxiv-test] ref '<xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>' has a source <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>, which is not the correct proprietary capitalisation - 'EcoEvoRxiv'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M499"/>

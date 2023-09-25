@@ -18339,6 +18339,16 @@
         <x:expect-report id="africarxiv-test" role="error"/>
         <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ecoevorxiv-test-pass">
+        <x:context href="../tests/gen/preprint-title-tests/ecoevorxiv-test/pass.xml"/>
+        <x:expect-not-report id="ecoevorxiv-test" role="error"/>
+        <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ecoevorxiv-test-fail">
+        <x:context href="../tests/gen/preprint-title-tests/ecoevorxiv-test/fail.xml"/>
+        <x:expect-report id="ecoevorxiv-test" role="error"/>
+        <x:expect-not-assert id="preprint-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="website-tests">
       <x:scenario label="github-web-test-pass">
