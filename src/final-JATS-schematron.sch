@@ -7739,7 +7739,7 @@
     <rule context="element-citation[@publication-type='preprint']/source" id="preprint-title-tests">
       <let name="lc" value="lower-case(.)"/>
       
-      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#not-rxiv-test" test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|research square|zenodo')" role="warning" id="not-rxiv-test">[not-rxiv-test] ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#not-rxiv-test" test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|research square|zenodo|ecoevorxiv|africarxiv')" role="warning" id="not-rxiv-test">[not-rxiv-test] ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
       
       <report see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#biorxiv-test" test="matches($lc,'biorxiv') and not(. = 'bioRxiv')" role="error" id="biorxiv-test">[biorxiv-test] ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'bioRxiv'.</report>
       
@@ -7767,6 +7767,8 @@
       <report see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#preprint-handbook-presence" test="contains(.,'handbook')" role="error" id="preprint-handbook-presence">[preprint-handbook-presence] Preprint ref '<value-of select="ancestor::ref/@id"/>' has a source '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
       
       <report test="matches($lc,'africarxiv') and not(. = 'AfricArXiv')" role="error" id="africarxiv-test">[africarxiv-test] ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'AfricArXiv'.</report>
+      
+      <report test="matches($lc,'ecoevorxiv') and not(. = 'EcoEvoRxiv')" role="error" id="ecoevorxiv-test">[ecoevorxiv-test] ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'EcoEvoRxiv'.</report>
     </rule>
   </pattern>
   <pattern id="website-tests-pattern">

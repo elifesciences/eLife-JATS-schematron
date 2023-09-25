@@ -1284,7 +1284,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='preprint']/source" id="preprint-title-tests">
       <let name="lc" value="lower-case(.)"/>
-      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#not-rxiv-test" test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|research square|zenodo')" role="warning" id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#not-rxiv-test" test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|research square|zenodo|ecoevorxiv|africarxiv')" role="warning" id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

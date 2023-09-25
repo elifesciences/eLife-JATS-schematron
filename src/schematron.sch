@@ -12250,7 +12250,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="lc" value="lower-case(.)"/>
       
       <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#not-rxiv-test" 
-        test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|research square|zenodo')" 
+        test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|research square|zenodo|ecoevorxiv|africarxiv')" 
         role="warning" 
         id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
       
@@ -12316,6 +12316,10 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="matches($lc,'africarxiv') and not(. = 'AfricArXiv')" 
         role="error" 
         id="africarxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'AfricArXiv'.</report>
+      
+      <report test="matches($lc,'ecoevorxiv') and not(. = 'EcoEvoRxiv')" 
+        role="error" 
+        id="ecoevorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'EcoEvoRxiv'.</report>
     </rule>
     
     <rule context="element-citation[@publication-type='web']" id="website-tests">
