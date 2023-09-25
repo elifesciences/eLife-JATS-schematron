@@ -2,7 +2,7 @@ declare variable $sch := doc('../src/schematron.sch');
 
 let $src := substring-before($sch/base-uri(),'schematron.sch')
 
-(: Get latest zip from https://github.com/ror-community/ror-data :)
+(: Get latest zip from https://doi.org/10.5281/zenodo.7926988 :)
 let $json := json:parse(file:read-text('/Users/fredatherden/Desktop/ror.json'))
 
 let $list := 
