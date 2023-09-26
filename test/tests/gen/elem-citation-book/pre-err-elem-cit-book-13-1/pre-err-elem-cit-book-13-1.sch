@@ -1284,7 +1284,7 @@
   <pattern id="element-citation-book-tests">
     <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
       <let name="publisher-locations" value="'../../../../../src/publisher-locations.xml'"/>
-      <assert test="count(publisher-name)=1" role="warning" id="pre-err-elem-cit-book-13-1">One and only one &lt;publisher-name&gt; is required in a book reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(publisher-name)"/> &lt;publisher-name&gt; elements. If this information is missing, please query it with the authors.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hg5ky-pre-err-elem-cit-book-13-1" test="count(publisher-name)=1" role="warning" id="pre-err-elem-cit-book-13-1">One and only one &lt;publisher-name&gt; is required in a book reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(publisher-name)"/> &lt;publisher-name&gt; elements. If this information is missing, please query it with the authors.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

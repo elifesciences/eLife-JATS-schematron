@@ -1283,7 +1283,7 @@
   </xsl:function>
   <pattern id="element-citation-book-tests">
     <rule context="element-citation[@publication-type='book']/comment" id="elem-citation-book-comment">
-      <assert test="count(../fpage) eq 0" role="error" id="err-elem-cit-book-6-4">If &lt;comment&gt;In press&lt;/comment&gt; is present, &lt;fpage&gt; cannot be present. Reference '<value-of select="ancestor::ref/@id"/>' has one of those elements.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hh47s-err-elem-cit-book-6-4" test="count(../fpage) eq 0" role="error" id="err-elem-cit-book-6-4">If &lt;comment&gt;In press&lt;/comment&gt; is present, &lt;fpage&gt; cannot be present. Reference '<value-of select="ancestor::ref/@id"/>' has one of those elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

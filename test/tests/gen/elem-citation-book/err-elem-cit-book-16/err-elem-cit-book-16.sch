@@ -1284,7 +1284,7 @@
   <pattern id="element-citation-book-tests">
     <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
       <let name="publisher-locations" value="'../../../../../src/publisher-locations.xml'"/>
-      <report test="(lpage or fpage) and not(chapter-title)" role="warning" id="err-elem-cit-book-16">Book reference '<value-of select="ancestor::ref/@id"/>' has first and/or last pages, but no chapter title. Is this correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#ht2sp-err-elem-cit-book-16" test="(lpage or fpage) and not(chapter-title)" role="warning" id="err-elem-cit-book-16">Book reference '<value-of select="ancestor::ref/@id"/>' has first and/or last pages, but no chapter title. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

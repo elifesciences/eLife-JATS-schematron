@@ -1284,7 +1284,7 @@
   <pattern id="element-citation-book-tests">
     <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
       <let name="publisher-locations" value="'../../../../../src/publisher-locations.xml'"/>
-      <report test="lpage and not (fpage)" role="error" id="err-elem-cit-book-36-2">If &lt;lpage&gt; is present, &lt;fpage&gt; must also be present. Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; but not &lt;fpage&gt;.</report>
+      <report see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hbbs8-err-elem-cit-book-36-2" test="lpage and not (fpage)" role="error" id="err-elem-cit-book-36-2">If &lt;lpage&gt; is present, &lt;fpage&gt; must also be present. Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; but not &lt;fpage&gt;.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

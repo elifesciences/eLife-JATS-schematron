@@ -1283,7 +1283,7 @@
   </xsl:function>
   <pattern id="element-citation-book-tests">
     <rule context="element-citation[@publication-type='book']/chapter-title" id="elem-citation-book-chapter-title">
-      <assert test="count(../person-group[@person-group-type='author'])=1" role="error" id="final-err-elem-cit-book-22">If there is a &lt;chapter-title&gt; element there must be one and only one &lt;person-group person-group-type="author"&gt;. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hzce0-final-err-elem-cit-book-22" test="count(../person-group[@person-group-type='author'])=1" role="error" id="final-err-elem-cit-book-22">If there is a &lt;chapter-title&gt; element there must be one and only one &lt;person-group person-group-type="author"&gt;. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

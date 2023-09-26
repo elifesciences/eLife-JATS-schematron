@@ -26008,6 +26008,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count(person-group[@person-group-type='author']) + count(person-group[@person-group-type='editor'])) = count(person-group)">
                <xsl:attribute name="id">err-elem-cit-book-2-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hc12m-err-elem-cit-book-2-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26027,6 +26028,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(person-group)=1 or (count(person-group[@person-group-type='author'])=1 and count(person-group[@person-group-type='editor'])=1)">
                <xsl:attribute name="id">final-err-elem-cit-book-2-3</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h5n4c-final-err-elem-cit-book-2-3</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26046,6 +26048,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(source)=1">
                <xsl:attribute name="id">final-err-elem-cit-book-10-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hifu4-final-err-elem-cit-book-10-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26065,6 +26068,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))">
                <xsl:attribute name="id">err-elem-cit-book-10-2-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hp3kx-err-elem-cit-book-10-2-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26082,6 +26086,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(publisher-name)=1">
                <xsl:attribute name="id">final-err-elem-cit-book-13-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h5k88-final-err-elem-cit-book-13-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26099,6 +26104,7 @@
       <xsl:if test="some $p in document($publisher-locations)/locations/location/text()         satisfies ends-with(publisher-name[1],$p)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $p in document($publisher-locations)/locations/location/text() satisfies ends-with(publisher-name[1],$p)">
             <xsl:attribute name="id">warning-elem-cit-book-13-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h4u4v-warning-elem-cit-book-13-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26115,6 +26121,7 @@
       <xsl:if test="(lpage or fpage) and not(chapter-title)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(lpage or fpage) and not(chapter-title)">
             <xsl:attribute name="id">err-elem-cit-book-16</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#ht2sp-err-elem-cit-book-16</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26129,6 +26136,7 @@
       <xsl:if test="(lpage and fpage) and (number(fpage[1]) &gt;= number(lpage[1]))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(lpage and fpage) and (number(fpage[1]) &gt;= number(lpage[1]))">
             <xsl:attribute name="id">err-elem-cit-book-36</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hu702-err-elem-cit-book-36</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26147,6 +26155,7 @@
       <xsl:if test="lpage and not (fpage)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="lpage and not (fpage)">
             <xsl:attribute name="id">err-elem-cit-book-36-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hbbs8-err-elem-cit-book-36-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26161,6 +26170,7 @@
       <xsl:if test="count(lpage) &gt; 1 or count(fpage) &gt; 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(lpage) &gt; 1 or count(fpage) &gt; 1">
             <xsl:attribute name="id">err-elem-cit-book-36-6</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hgboy-err-elem-cit-book-36-6</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26181,6 +26191,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(*) = count(person-group| year| source| chapter-title| publisher-loc|publisher-name|volume| edition| fpage| lpage| pub-id | comment)">
                <xsl:attribute name="id">err-elem-cit-book-40</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h03ib-err-elem-cit-book-40</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26210,6 +26221,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@person-group-type">
                <xsl:attribute name="id">err-elem-cit-book-2-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hcob2-err-elem-cit-book-2-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26239,6 +26251,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(../person-group[@person-group-type='author'])=1">
                <xsl:attribute name="id">final-err-elem-cit-book-22</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hzce0-final-err-elem-cit-book-22</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26256,6 +26269,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(../person-group[@person-group-type='editor']) le 1">
                <xsl:attribute name="id">err-elem-cit-book-28-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hhtxz-err-elem-cit-book-28-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26273,6 +26287,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(*) = count(sub|sup|italic)">
                <xsl:attribute name="id">err-elem-cit-book-31</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h2922-err-elem-cit-book-31</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26302,6 +26317,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(*)=0">
                <xsl:attribute name="id">err-elem-cit-book-13-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hvmqu-err-elem-cit-book-13-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26331,6 +26347,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(*)=0">
                <xsl:attribute name="id">err-elem-cit-book-15</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hi14u-err-elem-cit-book-15</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26360,6 +26377,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@pub-id-type=('doi','pmid','isbn')">
                <xsl:attribute name="id">err-elem-cit-book-17</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h4qcy-err-elem-cit-book-17</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26391,6 +26409,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(../fpage) eq 0">
                <xsl:attribute name="id">err-elem-cit-book-6-4</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hh47s-err-elem-cit-book-6-4</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -26408,6 +26427,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="text() = 'In press'">
                <xsl:attribute name="id">err-elem-cit-book-13</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h6tpw-err-elem-cit-book-13</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -38393,6 +38413,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="person-group[@person-group-type='editor']">
                <xsl:attribute name="id">book-chapter-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hm8cf-book-chapter-test-1</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -38412,6 +38433,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="fpage and lpage">
                <xsl:attribute name="id">book-chapter-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hwihq-book-chapter-test-2</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -38441,6 +38463,7 @@
       <xsl:if test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\p{Zs}\p{P}]?$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\p{Zs}\p{P}]?$')">
             <xsl:attribute name="id">report-chapter-title-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h6n1g-report-chapter-title-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -38469,6 +38492,7 @@
       <xsl:if test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\p{Zs}\p{P}]?$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\p{Zs}\p{P}]?$')">
             <xsl:attribute name="id">report-book-source-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h1zta-report-book-source-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -38485,6 +38509,7 @@
       <xsl:if test="matches(.,'\[|\(|\)|\]')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\[|\(|\)|\]')">
             <xsl:attribute name="id">book-bracket-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h4ccl-book-bracket-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -42776,6 +42801,7 @@
       <xsl:if test="some $x in document($publishers)/publishers/publisher satisfies ($x/@title/string()=$publisher)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $x in document($publishers)/publishers/publisher satisfies ($x/@title/string()=$publisher)">
             <xsl:attribute name="id">book-doi-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h5h75-book-doi-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>

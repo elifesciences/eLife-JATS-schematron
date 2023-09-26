@@ -1284,7 +1284,7 @@
   <pattern id="element-citation-book-tests">
     <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
       <let name="publisher-locations" value="'../../../../../src/publisher-locations.xml'"/>
-      <assert test="count(source)=1" role="warning" id="pre-err-elem-cit-book-10-1">Each  &lt;element-citation&gt; of type 'book' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements. If this information is missing, please query it with the authors.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hcn6b-pre-err-elem-cit-book-10-1" test="count(source)=1" role="warning" id="pre-err-elem-cit-book-10-1">Each  &lt;element-citation&gt; of type 'book' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements. If this information is missing, please query it with the authors.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

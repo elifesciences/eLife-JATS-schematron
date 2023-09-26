@@ -7983,60 +7983,74 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
       <let name="publisher-locations" value="'publisher-locations.xml'"/>
       
-      <assert test="(count(person-group[@person-group-type='author']) + count(person-group[@person-group-type='editor'])) = count(person-group)" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hc12m-err-elem-cit-book-2-2"
+        test="(count(person-group[@person-group-type='author']) + count(person-group[@person-group-type='editor'])) = count(person-group)" 
         role="error" 
         id="err-elem-cit-book-2-2">The only values allowed for @person-group-type in book references are "author" and "editor". Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.</assert> 
       
-      <assert test="count(person-group)=1 or (count(person-group[@person-group-type='author'])=1 and count(person-group[@person-group-type='editor'])=1)" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hq3u9-pre-err-elem-cit-book-2-3"
+        test="count(person-group)=1 or (count(person-group[@person-group-type='author'])=1 and count(person-group[@person-group-type='editor'])=1)" 
         role="warning" 
         id="pre-err-elem-cit-book-2-3">In a book reference, there should be a single person-group element (either author or editor) or one person-group with @person-group-type="author" and one person-group with @person-group-type=editor. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements. If this finromation is missing, please query it with the authors.</assert>
       
-      <assert test="count(person-group)=1 or (count(person-group[@person-group-type='author'])=1 and count(person-group[@person-group-type='editor'])=1)" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h5n4c-final-err-elem-cit-book-2-3"
+        test="count(person-group)=1 or (count(person-group[@person-group-type='author'])=1 and count(person-group[@person-group-type='editor'])=1)" 
         role="error" 
         id="final-err-elem-cit-book-2-3">In a book reference, there should be a single person-group element (either author or editor) or one person-group with @person-group-type="author" and one person-group with @person-group-type=editor. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
-      <assert test="count(source)=1" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hcn6b-pre-err-elem-cit-book-10-1"
+        test="count(source)=1" 
         role="warning" 
         id="pre-err-elem-cit-book-10-1">Each  &lt;element-citation&gt; of type 'book' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements. If this information is missing, please query it with the authors.</assert>
       
-      <assert test="count(source)=1" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hifu4-final-err-elem-cit-book-10-1"
+        test="count(source)=1" 
         role="error" 
         id="final-err-elem-cit-book-10-1">Each  &lt;element-citation&gt; of type 'book' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
       
-      <assert test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hp3kx-err-elem-cit-book-10-2-2"
+        test="count(source)=1 and count(source/*)=count(source/(italic | sub | sup))" 
         role="error" 
         id="err-elem-cit-book-10-2-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'book' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has child elements that are not allowed.</assert>
       
-      <assert test="count(publisher-name)=1" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hg5ky-pre-err-elem-cit-book-13-1"
+        test="count(publisher-name)=1" 
         role="warning" 
         id="pre-err-elem-cit-book-13-1">One and only one &lt;publisher-name&gt; is required in a book reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(publisher-name)"/> &lt;publisher-name&gt; elements. If this information is missing, please query it with the authors.</assert>
       
-      <assert test="count(publisher-name)=1" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h5k88-final-err-elem-cit-book-13-1"
+        test="count(publisher-name)=1" 
         role="error" 
         id="final-err-elem-cit-book-13-1">One and only one &lt;publisher-name&gt; is required in a book reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(publisher-name)"/> &lt;publisher-name&gt; elements.</assert>
       
-      <report test="some $p in document($publisher-locations)/locations/location/text()
+      <report see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h4u4v-warning-elem-cit-book-13-3"
+        test="some $p in document($publisher-locations)/locations/location/text()
         satisfies ends-with(publisher-name[1],$p)" 
         role="warning" 
         id="warning-elem-cit-book-13-3">The content of &lt;publisher-name&gt; should not end with a publisher location. Reference '<value-of select="ancestor::ref/@id"/>' contains the string <value-of select="publisher-name"/>, which ends with a publisher location.</report>
       
-      <report test="(lpage or fpage) and not(chapter-title)" 
+      <report see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#ht2sp-err-elem-cit-book-16"
+        test="(lpage or fpage) and not(chapter-title)" 
         role="warning" 
         id="err-elem-cit-book-16">Book reference '<value-of select="ancestor::ref/@id"/>' has first and/or last pages, but no chapter title. Is this correct?</report>
       
-      <report test="(lpage and fpage) and (number(fpage[1]) &gt;= number(lpage[1]))" 
+      <report see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hu702-err-elem-cit-book-36" 
+        test="(lpage and fpage) and (number(fpage[1]) &gt;= number(lpage[1]))" 
         role="error" 
         id="err-elem-cit-book-36">If both &lt;lpage&gt; and &lt;fpage&gt; are present, the value of &lt;fpage&gt; must be less than the value of &lt;lpage&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; <value-of select="lpage"/>, which is less than or equal to &lt;fpage&gt; <value-of select="fpage"/>.</report>
       
-      <report test="lpage and not (fpage)" 
+      <report see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hbbs8-err-elem-cit-book-36-2"
+        test="lpage and not (fpage)" 
         role="error" 
         id="err-elem-cit-book-36-2">If &lt;lpage&gt; is present, &lt;fpage&gt; must also be present. Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; but not &lt;fpage&gt;.</report>
       
-      <report test="count(lpage) &gt; 1 or count(fpage) &gt; 1" 
+      <report see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hgboy-err-elem-cit-book-36-6"
+        test="count(lpage) &gt; 1 or count(fpage) &gt; 1" 
         role="error" 
         id="err-elem-cit-book-36-6">At most one &lt;lpage&gt; and one &lt;fpage&gt; are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(lpage)"/> &lt;lpage&gt; elements and <value-of select="count(fpage)"/> &lt;fpage&gt; elements.</report>
       
-      <assert test="count(*) = count(person-group| year| source| chapter-title| publisher-loc|publisher-name|volume|
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h03ib-err-elem-cit-book-40"
+        test="count(*) = count(person-group| year| source| chapter-title| publisher-loc|publisher-name|volume|
         edition| fpage| lpage| pub-id | comment)" 
         role="error" 
         id="err-elem-cit-book-40">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="book" are: &lt;person-group&gt;, &lt;year&gt;, &lt;source&gt;, &lt;chapter-title&gt;, &lt;publisher-loc&gt;, &lt;publisher-name&gt;, &lt;volume&gt;, &lt;edition&gt;, &lt;fpage&gt;, &lt;lpage&gt;, &lt;pub-id&gt;, and &lt;comment&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
@@ -8044,26 +8058,31 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="element-citation[@publication-type='book']/person-group" id="elem-citation-book-person-group">
-      <assert test="@person-group-type" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hcob2-err-elem-cit-book-2-1" 
+        test="@person-group-type" 
         role="error" 
         id="err-elem-cit-book-2-1">Each &lt;person-group&gt; must have a @person-group-type attribute. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; element with no @person-group-type attribute.</assert>
     </rule>
     
     <rule context="element-citation[@publication-type='book']/chapter-title" id="elem-citation-book-chapter-title">
       
-      <assert test="count(../person-group[@person-group-type='author'])=1" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h7i77-pre-err-elem-cit-book-22"
+        test="count(../person-group[@person-group-type='author'])=1" 
         role="warning" 
         id="pre-err-elem-cit-book-22">If there is a &lt;chapter-title&gt; element there must be one and only one &lt;person-group person-group-type="author"&gt;. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement. If this information is missing, please query the authors for it.</assert>
       
-      <assert test="count(../person-group[@person-group-type='author'])=1" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hzce0-final-err-elem-cit-book-22"
+        test="count(../person-group[@person-group-type='author'])=1" 
         role="error" 
         id="final-err-elem-cit-book-22">If there is a &lt;chapter-title&gt; element there must be one and only one &lt;person-group person-group-type="author"&gt;. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
       
-      <assert test="count(../person-group[@person-group-type='editor']) le 1" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hhtxz-err-elem-cit-book-28-1"
+        test="count(../person-group[@person-group-type='editor']) le 1" 
         role="error" 
         id="err-elem-cit-book-28-1">If there is a &lt;chapter-title&gt; element there may be a maximum of one &lt;person-group person-group-type="editor"&gt;. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
       
-      <assert test="count(*) = count(sub|sup|italic)" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h2922-err-elem-cit-book-31"
+        test="count(*) = count(sub|sup|italic)" 
         role="error" 
         id="err-elem-cit-book-31">A &lt;chapter-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
       
@@ -8071,7 +8090,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='book']/publisher-name" id="elem-citation-book-publisher-name">
       
-      <assert test="count(*)=0" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hvmqu-err-elem-cit-book-13-2"
+        test="count(*)=0" 
         role="error" 
         id="err-elem-cit-book-13-2">No elements are allowed inside &lt;publisher-name&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has child elements within the &lt;publisher-name&gt; element.</assert>
       
@@ -8079,7 +8099,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='book']/edition" id="elem-citation-book-edition">
       
-      <assert test="count(*)=0" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hi14u-err-elem-cit-book-15"
+        test="count(*)=0" 
         role="error" 
         id="err-elem-cit-book-15">No elements are allowed inside &lt;edition&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has child elements within the &lt;edition&gt; element.</assert>
       
@@ -8087,7 +8108,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='book']/pub-id" id="elem-citation-book-pub-id">
       
-      <assert test="@pub-id-type=('doi','pmid','isbn')" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h4qcy-err-elem-cit-book-17"
+        test="@pub-id-type=('doi','pmid','isbn')" 
         role="error" 
         id="err-elem-cit-book-17">Each &lt;pub-id&gt;, if present in a book reference, must have a @pub-id-type of one of these values: doi, pmid, isbn. The pub-id-type attribute on &lt;pub-id&gt; in Reference '<value-of select="ancestor::ref/@id"/>' is <value-of select="@pub-id-type"/>.</assert>
       
@@ -8095,11 +8117,13 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='book']/comment" id="elem-citation-book-comment">
       
-      <assert test="count(../fpage) eq 0" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hh47s-err-elem-cit-book-6-4"
+        test="count(../fpage) eq 0" 
         role="error" 
         id="err-elem-cit-book-6-4">If &lt;comment&gt;In press&lt;/comment&gt; is present, &lt;fpage&gt; cannot be present. Reference '<value-of select="ancestor::ref/@id"/>' has one of those elements.</assert>
       
-      <assert test="text() = 'In press'" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h6tpw-err-elem-cit-book-13"
+        test="text() = 'In press'" 
         role="error" 
         id="err-elem-cit-book-13">Comment elements with content other than 'In press' are not allowed. Reference '<value-of select="ancestor::ref/@id"/>' has such a &lt;comment&gt; element.</assert>
       
@@ -12216,11 +12240,13 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[(@publication-type='book') and chapter-title]" id="book-chapter-tests">
       
-      <assert test="person-group[@person-group-type='editor']" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hm8cf-book-chapter-test-1"
+        test="person-group[@person-group-type='editor']" 
         role="warning" 
         id="book-chapter-test-1">ref '<value-of select="ancestor::ref/@id"/>' (<value-of select="e:citation-format1(.)"/>) is tagged as a book reference with a chapter title, but there are no editors. Is this correct, or are these details missing?</assert>
       
-      <assert test="fpage and lpage" 
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hwihq-book-chapter-test-2"
+        test="fpage and lpage" 
         role="warning" 
         id="book-chapter-test-2">ref '<value-of select="ancestor::ref/@id"/>' (<value-of select="e:citation-format1(.)"/>) is tagged as a book reference with a chapter title, but there is not a first page and last page. Is this correct, or are these details missing?</assert>
       
@@ -12228,7 +12254,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='book']/chapter-title" id="ref-chapter-title-tests">
       
-      <report test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\p{Zs}\p{P}]?$')" 
+      <report see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h6n1g-report-chapter-title-test"
+        test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\p{Zs}\p{P}]?$')" 
         role="warning" 
         id="report-chapter-title-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a book reference, but the chapter title is <value-of select="."/>. Should it be captured as a report type reference instead?</report>
       
@@ -12236,11 +12263,13 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='book']/source" id="ref-book-source-tests">
       
-      <report test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\p{Zs}\p{P}]?$')" 
+      <report see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h1zta-report-book-source-test"
+        test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\p{Zs}\p{P}]?$')" 
         role="warning" 
         id="report-book-source-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a book reference, but the book title is <value-of select="."/>. Should it be captured as a report type reference instead?</report>
       
-      <report test="matches(.,'\[|\(|\)|\]')" 
+      <report see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h4ccl-book-bracket-check"
+        test="matches(.,'\[|\(|\)|\]')" 
         role="warning" 
         id="book-bracket-check">Book ref '<value-of select="ancestor::ref/@id"/>' has a book name which contains brackets '<value-of select="."/>'. Is the content in the brackets is required?</report>
       
@@ -13700,7 +13729,8 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="publisher" value="lower-case(publisher-name[1])"/>
       <let name="publishers" value="'publishers.xml'"/>
       
-      <report test="some $x in document($publishers)/publishers/publisher satisfies ($x/@title/string()=$publisher)" 
+      <report see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h5h75-book-doi-test-1"
+        test="some $x in document($publishers)/publishers/publisher satisfies ($x/@title/string()=$publisher)" 
         role="warning" 
         id="book-doi-test-1"><value-of select="$cite"/> is a book ref without a doi, but its publisher (<value-of select="publisher-name[1]"/>) is known to register dois with some books/chapters. Should it have one?</report>
       
