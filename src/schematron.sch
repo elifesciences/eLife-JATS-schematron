@@ -13814,9 +13814,9 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="funders" value="'funders.xml'"/>
       
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#h10qd-fundref-test-1" 
-        test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder,' ')) or contains($ack,concat(' ',$funder,'.'))) and not($funder/@fundref = $funding-group))" 
+        test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder/*:name,' ')) or contains($ack,concat(' ',$funder/*:name,'.'))) and not($funder/@fundref = $funding-group))" 
         role="warning" 
-        id="fundref-test-1">Acknowledgements contains funder(s) in the open funder registry, but their doi is not listed in the funding section. Please check - <value-of select="string-join(for $x in document($funders)//funder[((contains($ack,concat(' ',.,' ')) or contains($ack,concat(' ',.,'.'))) and not(@fundref = $funding-group))] return concat($x,' - ',$x/@fundref),'; ')"/>.</report>
+        id="fundref-test-1">Acknowledgements contains funder(s) in the open funder registry, but their doi is not listed in the funding section. Please check - <value-of select="string-join(for $x in document($funders)//funder[((contains($ack,concat(' ',*:name[1],' ')) or contains($ack,concat(' ',*:name[1],'.'))) and not(@fundref = $funding-group))] return concat($x,' - ',$x/@fundref),'; ')"/>.</report>
     </rule>
     
   </pattern>

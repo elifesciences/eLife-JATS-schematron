@@ -23,7 +23,9 @@ let $list := <funders>{
                     else $x,' '),'\s{2,}',' ')
                else replace($r,'\s{2,}',' ')
   let $registers-grant-dois := if ($link=$grant-doi-registering-funder-dois) then 'yes' else 'no'
-  return <funder grant-dois="{$registers-grant-dois}" fundref="{$link}">{$text}</funder> 
+  return <funder grant-dois="{$registers-grant-dois}" fundref="{$link}">
+            <name>{$text}</name>
+         </funder> 
 }</funders>
 
 return file:write(($src||'funders.xml'),$list)
