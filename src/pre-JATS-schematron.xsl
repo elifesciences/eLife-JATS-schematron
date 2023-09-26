@@ -42901,8 +42901,8 @@
       <xsl:variable name="funders" select="'funders.xml'"/>
 
 		    <!--REPORT warning-->
-      <xsl:if test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder,' ')) or contains($ack,concat(' ',$funder,'.'))) and not($funder/@fundref = $funding-group))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder,' ')) or contains($ack,concat(' ',$funder,'.'))) and not($funder/@fundref = $funding-group))">
+      <xsl:if test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder/*:name,' ')) or contains($ack,concat(' ',$funder/*:name,'.'))) and not($funder/@fundref = $funding-group))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder/*:name,' ')) or contains($ack,concat(' ',$funder/*:name,'.'))) and not($funder/@fundref = $funding-group))">
             <xsl:attribute name="id">fundref-test-1</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#h10qd-fundref-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -42910,7 +42910,7 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[fundref-test-1] Acknowledgements contains funder(s) in the open funder registry, but their doi is not listed in the funding section. Please check - <xsl:text/>
-               <xsl:value-of select="string-join(for $x in document($funders)//funder[((contains($ack,concat(' ',.,' ')) or contains($ack,concat(' ',.,'.'))) and not(@fundref = $funding-group))] return concat($x,' - ',$x/@fundref),'; ')"/>
+               <xsl:value-of select="string-join(for $x in document($funders)//funder[((contains($ack,concat(' ',*:name[1],' ')) or contains($ack,concat(' ',*:name[1],'.'))) and not(@fundref = $funding-group))] return concat($x,' - ',$x/@fundref),'; ')"/>
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
