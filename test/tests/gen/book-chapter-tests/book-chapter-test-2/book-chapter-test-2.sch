@@ -1283,7 +1283,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[(@publication-type='book') and chapter-title]" id="book-chapter-tests">
-      <assert test="fpage and lpage" role="warning" id="book-chapter-test-2">ref '<value-of select="ancestor::ref/@id"/>' (<value-of select="e:citation-format1(.)"/>) is tagged as a book reference with a chapter title, but there is not a first page and last page. Is this correct, or are these details missing?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hwihq-book-chapter-test-2" test="fpage and lpage" role="warning" id="book-chapter-test-2">ref '<value-of select="ancestor::ref/@id"/>' (<value-of select="e:citation-format1(.)"/>) is tagged as a book reference with a chapter title, but there is not a first page and last page. Is this correct, or are these details missing?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

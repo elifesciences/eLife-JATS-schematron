@@ -1283,7 +1283,7 @@
   </xsl:function>
   <pattern id="element-citation-book-tests">
     <rule context="element-citation[@publication-type='book']/chapter-title" id="elem-citation-book-chapter-title">
-      <assert test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-book-31">A &lt;chapter-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h2922-err-elem-cit-book-31" test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-book-31">A &lt;chapter-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

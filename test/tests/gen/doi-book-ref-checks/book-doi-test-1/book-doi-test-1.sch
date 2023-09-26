@@ -1287,7 +1287,7 @@
       <let name="year" value="number(replace(year[1],'[^\d]',''))"/>
       <let name="publisher" value="lower-case(publisher-name[1])"/>
       <let name="publishers" value="'../../../../../src/publishers.xml'"/>
-      <report test="some $x in document($publishers)/publishers/publisher satisfies ($x/@title/string()=$publisher)" role="warning" id="book-doi-test-1">
+      <report see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h5h75-book-doi-test-1" test="some $x in document($publishers)/publishers/publisher satisfies ($x/@title/string()=$publisher)" role="warning" id="book-doi-test-1">
         <value-of select="$cite"/> is a book ref without a doi, but its publisher (<value-of select="publisher-name[1]"/>) is known to register dois with some books/chapters. Should it have one?</report>
     </rule>
   </pattern>
