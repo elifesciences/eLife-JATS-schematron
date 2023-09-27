@@ -39,6 +39,8 @@
   
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   
+  <let name="funders" value="'funders.xml'"/>
+  
   <!--=== Custom functions ===-->
   <xsl:function name="e:is-prc" as="xs:boolean">
     <xsl:param name="elem" as="node()"/>
@@ -3316,6 +3318,22 @@
         test="count(funding-source/institution-wrap/institution) gt 1" 
         role="error" 
         id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>.</report>
+	  
+	</rule>
+    
+    <rule context="funding-group/award-group[funding-source/institution-wrap/institution-id]" id="grant-doi-tests">
+      <let name="award-id" value="award-id"/>
+      <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
+      <let name="funder-entry" value="document($funders)//funder[@fundref=$funder-id]"/>
+      <let name="mints-grant-dois" value="$funder-entry/@grant-dois='yes'"/>
+      <!-- Consider alternatives to exact match as this is no better than simply using Crossref's API -->
+      <let name="grant-matches" value="if (not($mints-grant-dois)) then ()
+        else $funder-entry//*:grant[@award=$award-id]"/>
+	  
+      <report test="$grant-matches"
+	    role="warning" 
+	    id="grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id"/>) which could be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
+      
 	</rule>
     
     <rule context="funding-group/award-group/award-id" id="award-id-tests">
@@ -13811,7 +13829,6 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="article[not(@article-type='article-commentary')]//ack" id="fundref-rule">
       <let name="ack" value="."/>   
       <let name="funding-group" value="distinct-values(ancestor::article//funding-group//institution-id)"/>
-      <let name="funders" value="'funders.xml'"/>
       
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#h10qd-fundref-test-1" 
         test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder/*:name,' ')) or contains($ack,concat(' ',$funder/*:name,'.'))) and not($funder/@fundref = $funding-group))" 

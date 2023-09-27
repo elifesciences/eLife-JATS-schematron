@@ -3382,6 +3382,18 @@
         <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="grant-doi-tests">
+      <x:scenario label="grant-doi-test-1-pass">
+        <x:context href="../tests/gen/grant-doi-tests/grant-doi-test-1/pass.xml"/>
+        <x:expect-not-report id="grant-doi-test-1" role="warning"/>
+        <x:expect-not-assert id="grant-doi-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="grant-doi-test-1-fail">
+        <x:context href="../tests/gen/grant-doi-tests/grant-doi-test-1/fail.xml"/>
+        <x:expect-report id="grant-doi-test-1" role="warning"/>
+        <x:expect-not-assert id="grant-doi-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="award-id-tests">
       <x:scenario label="award-id-test-1-pass">
         <x:context href="../tests/gen/award-id-tests/award-id-test-1/pass.xml"/>

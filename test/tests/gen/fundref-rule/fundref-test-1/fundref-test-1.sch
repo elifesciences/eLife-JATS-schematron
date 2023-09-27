@@ -19,6 +19,7 @@
   <let name="allowed-article-types" value="('research-article','review-article',$features-article-types, $notice-article-types)"/>
   <let name="allowed-disp-subj" value="($research-subj, $features-subj)"/>
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
+  <let name="funders" value="'../../../../../src/funders.xml'"/>
   <xsl:function name="e:is-prc" as="xs:boolean">
     <xsl:param name="elem" as="node()"/>
     <xsl:choose>
@@ -1285,7 +1286,6 @@
     <rule context="article[not(@article-type='article-commentary')]//ack" id="fundref-rule">
       <let name="ack" value="."/>
       <let name="funding-group" value="distinct-values(ancestor::article//funding-group//institution-id)"/>
-      <let name="funders" value="'../../../../../src/funders.xml'"/>
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#h10qd-fundref-test-1" test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder/*:name,' ')) or contains($ack,concat(' ',$funder/*:name,'.'))) and not($funder/@fundref = $funding-group))" role="warning" id="fundref-test-1">Acknowledgements contains funder(s) in the open funder registry, but their doi is not listed in the funding section. Please check - <value-of select="string-join(for $x in document($funders)//funder[((contains($ack,concat(' ',*:name[1],' ')) or contains($ack,concat(' ',*:name[1],'.'))) and not(@fundref = $funding-group))] return concat($x,' - ',$x/@fundref),'; ')"/>.</report>
     </rule>
   </pattern>
