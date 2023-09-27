@@ -1866,7 +1866,7 @@
 	  </rule>
   </pattern>
   <pattern id="given-names-tests-pattern">
-    <rule context="contrib-group//name/given-names" id="given-names-tests">
+    <rule context="name/given-names" id="given-names-tests">
 		
 	  <report test="not(*) and (normalize-space(.)='')" role="error" id="given-names-test-3">given-names must not be empty.</report>
 		

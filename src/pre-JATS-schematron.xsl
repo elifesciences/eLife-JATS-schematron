@@ -8322,7 +8322,7 @@
 
 
 	  <!--RULE given-names-tests-->
-   <xsl:template match="contrib-group//name/given-names" priority="1000" mode="M90">
+   <xsl:template match="name/given-names" priority="1000" mode="M90">
 
 		<!--REPORT error-->
       <xsl:if test="not(*) and (normalize-space(.)='')">

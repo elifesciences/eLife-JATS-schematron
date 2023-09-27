@@ -1282,13 +1282,13 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="contrib-group//name/given-names" id="given-names-tests">
+    <rule context="name/given-names" id="given-names-tests">
       <report test="matches(.,'[\(\)\[\]]')" role="warning" id="pre-given-names-test-16">given-names contains brackets - '<value-of select="."/>'. This will be flagged by Crossref (although will not actually cause any significant problems). Please add the following author query: Please confirm whether you are happy to remove the brackets around (one of) your given names - '<value-of select="."/>'. This will cause minor issues at Crossref, although they can be retained if desired.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::contrib-group//name/given-names" role="error" id="given-names-tests-xspec-assert">contrib-group//name/given-names must be present.</assert>
+      <assert test="descendant::name/given-names" role="error" id="given-names-tests-xspec-assert">name/given-names must be present.</assert>
     </rule>
   </pattern>
 </schema>

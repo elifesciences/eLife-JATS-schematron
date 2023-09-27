@@ -1861,7 +1861,7 @@
 	  </rule>
   </pattern>
   <pattern id="given-names-tests-pattern">
-    <rule context="contrib-group//name/given-names" id="given-names-tests">
+    <rule context="name/given-names" id="given-names-tests">
 		
 	  <report test="not(*) and (normalize-space(.)='')" role="error" id="given-names-test-3">given-names must not be empty.</report>
 		
@@ -9460,7 +9460,7 @@
       <assert test="descendant::article-meta//contrib[@contrib-type='author']/xref" role="error" id="author-xref-tests-xspec-assert">article-meta//contrib[@contrib-type='author']/xref must be present.</assert>
       <assert test="descendant::contrib-group//name" role="error" id="name-tests-xspec-assert">contrib-group//name must be present.</assert>
       <assert test="descendant::contrib-group//name/surname" role="error" id="surname-tests-xspec-assert">contrib-group//name/surname must be present.</assert>
-      <assert test="descendant::contrib-group//name/given-names" role="error" id="given-names-tests-xspec-assert">contrib-group//name/given-names must be present.</assert>
+      <assert test="descendant::name/given-names" role="error" id="given-names-tests-xspec-assert">name/given-names must be present.</assert>
       <assert test="descendant::contrib-group//name/suffix" role="error" id="suffix-tests-xspec-assert">contrib-group//name/suffix must be present.</assert>
       <assert test="descendant::contrib-group//name/*" role="error" id="name-child-tests-xspec-assert">contrib-group//name/* must be present.</assert>
       <assert test="descendant::article-meta//contrib" role="error" id="contrib-tests-xspec-assert">article-meta//contrib must be present.</assert>
