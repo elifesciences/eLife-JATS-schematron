@@ -2159,7 +2159,7 @@
 		
 	  </rule>
     
-    <rule context="contrib-group//name/given-names" id="given-names-tests">
+    <rule context="name/given-names" id="given-names-tests">
 		
 	  <report test="not(*) and (normalize-space(.)='')" 
         role="error" 

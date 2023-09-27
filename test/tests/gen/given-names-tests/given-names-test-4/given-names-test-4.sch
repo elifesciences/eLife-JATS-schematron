@@ -1282,13 +1282,13 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="contrib-group//name/given-names" id="given-names-tests">
+    <rule context="name/given-names" id="given-names-tests">
       <report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" role="error" id="given-names-test-4">given-names must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript) - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::contrib-group//name/given-names" role="error" id="given-names-tests-xspec-assert">contrib-group//name/given-names must be present.</assert>
+      <assert test="descendant::name/given-names" role="error" id="given-names-tests-xspec-assert">name/given-names must be present.</assert>
     </rule>
   </pattern>
 </schema>

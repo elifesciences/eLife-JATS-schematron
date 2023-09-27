@@ -1282,13 +1282,13 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="contrib-group//name/given-names" id="given-names-tests">
+    <rule context="name/given-names" id="given-names-tests">
       <report test="matches(.,'[A-Za-z] [Vv]on$')" role="warning" id="given-names-test-12">given-names ends with ' von' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::contrib-group//name/given-names" role="error" id="given-names-tests-xspec-assert">contrib-group//name/given-names must be present.</assert>
+      <assert test="descendant::name/given-names" role="error" id="given-names-tests-xspec-assert">name/given-names must be present.</assert>
     </rule>
   </pattern>
 </schema>
