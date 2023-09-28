@@ -31,6 +31,9 @@
   
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   
+  <let name="funders" value="'funders.xml'"/>
+  <let name="wellcome-fundref-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
+  
   <!--=== Custom functions ===-->
   <xsl:function name="e:is-prc" as="xs:boolean">
     <xsl:param name="elem" as="node()"/>
@@ -2529,7 +2532,32 @@
 		<report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-6" test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">[award-group-test-6] Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one.</report>
 	  
 	  <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-8" test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">[award-group-test-8] Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>.</report>
+	  
 	</rule>
+  </pattern>
+  <pattern id="general-grant-doi-tests-pattern">
+    <rule context="funding-group/award-group[funding-source/institution-wrap/institution-id[not(.=$wellcome-fundref-ids)]]" id="general-grant-doi-tests">
+      <let name="award-id" value="award-id"/>
+      <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
+      <let name="funder-entry" value="document($funders)//funder[@fundref=$funder-id]"/>
+      <let name="mints-grant-dois" value="$funder-entry/@grant-dois='yes'"/>
+      <!-- Consider alternatives to exact match as this is no better than simply using Crossref's API -->
+      <let name="grant-matches" value="if (not($mints-grant-dois)) then ()         else $funder-entry//*:grant[@award=$award-id]"/>
+	  
+      <report test="$grant-matches" role="warning" id="grant-doi-test-1">[grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
+      
+	</rule>
+  </pattern>
+  <pattern id="wellcome-grant-doi-tests-pattern">
+    <rule context="funding-group/award-group[funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" id="wellcome-grant-doi-tests">
+      <let name="wellcome-grants" value="document($funders)//funder[@fundref=$wellcome-fundref-ids]/grant"/>
+      <let name="award-id-elem" value="award-id"/>
+      <let name="award-id" value="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','')          else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/> 
+      <let name="grant-matches" value="if ($award-id='') then ()         else $wellcome-grants[@award=$award-id]"/>
+      
+      <report test="$grant-matches" role="warning" id="wellcome-grant-doi-test-1">[wellcome-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
+      
+    </rule>
   </pattern>
   <pattern id="award-id-tests-pattern">
     <rule context="funding-group/award-group/award-id" id="award-id-tests">
@@ -2542,6 +2570,8 @@
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-3" test="matches(.,'^\p{Zs}?[Nn]one[\.]?\p{Zs}?$')" role="error" id="award-id-test-3">[award-id-test-3] Award id contains - <value-of select="."/> - This entry should be empty.</report>
       
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-4" test="matches(.,'&amp;#x\d')" role="warning" id="award-id-test-4">[award-id-test-4] Award id contains what looks like a broken unicode - <value-of select="."/>.</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-4" test="matches(.,'http[s]?://d?x?\.?doi.org/')" role="warning" id="award-id-test-5">[award-id-test-5] Award id contains a DOI link - <value-of select="."/>. If the award ID is for a grant DOI it should contain the DOI without the https://... protocol (e.g. 10.37717/220020477).</report>
       
     </rule>
   </pattern>
@@ -8543,9 +8573,8 @@
     <rule context="article[not(@article-type='article-commentary')]//ack" id="fundref-rule">
       <let name="ack" value="."/>   
       <let name="funding-group" value="distinct-values(ancestor::article//funding-group//institution-id)"/>
-      <let name="funders" value="'funders.xml'"/>
       
-      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#h10qd-fundref-test-1" test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder,' ')) or contains($ack,concat(' ',$funder,'.'))) and not($funder/@fundref = $funding-group))" role="warning" id="fundref-test-1">[fundref-test-1] Acknowledgements contains funder(s) in the open funder registry, but their doi is not listed in the funding section. Please check - <value-of select="string-join(for $x in document($funders)//funder[((contains($ack,concat(' ',.,' ')) or contains($ack,concat(' ',.,'.'))) and not(@fundref = $funding-group))] return concat($x,' - ',$x/@fundref),'; ')"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#h10qd-fundref-test-1" test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder/*:name,' ')) or contains($ack,concat(' ',$funder/*:name,'.'))) and not($funder/@fundref = $funding-group))" role="warning" id="fundref-test-1">[fundref-test-1] Acknowledgements contains funder(s) in the open funder registry, but their doi is not listed in the funding section. Please check - <value-of select="string-join(for $x in document($funders)//funder[((contains($ack,concat(' ',*:name[1],' ')) or contains($ack,concat(' ',*:name[1],'.'))) and not(@fundref = $funding-group))] return concat($x,' - ',$x/@fundref),'; ')"/>.</report>
     </rule>
   </pattern>
   

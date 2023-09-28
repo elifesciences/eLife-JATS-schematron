@@ -21,9 +21,19 @@ Message: This article has a corresponding author that is affiliated with a Max P
 
 
 
+
+
+
+
+
 <!--Context: article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))]
 Test: report    some $aff in ($nested-affs,$group-affs) satisfies matches(lower-case($aff),'^max[\p{Zs}-]+plan[ck]+|\p{Zs}max[\p{Zs}-]+plan[ck]+')
 Message: This article has a corresponding author that is affiliated with a Max Planck Institute, but the funding statement does not contain the text 'Open access funding provided by Max Planck Society.' Should it? The funding statement currently reads: . -->
+
+
+
+
+
 
 
 
