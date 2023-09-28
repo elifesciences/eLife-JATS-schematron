@@ -2628,6 +2628,8 @@
       
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-4" test="matches(.,'&amp;#x\d')" role="warning" id="award-id-test-4">[award-id-test-4] Award id contains what looks like a broken unicode - <value-of select="."/>.</report>
       
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-4" test="matches(.,'http[s]?://d?x?\.?doi.org/')" role="warning" id="award-id-test-5">[award-id-test-5] Award id contains a DOI link - <value-of select="."/>. If the award ID is for a grant DOI it should contain the DOI without the https://... protocol (e.g. 10.37717/220020477).</report>
+      
     </rule>
   </pattern>
   <pattern id="institution-wrap-tests-pattern">

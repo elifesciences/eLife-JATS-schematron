@@ -12268,6 +12268,21 @@
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="matches(.,'http[s]?://d?x?\.?doi.org/')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'http[s]?://d?x?\.?doi.org/')">
+            <xsl:attribute name="id">award-id-test-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-4</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[award-id-test-5] Award id contains a DOI link - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. If the award ID is for a grant DOI it should contain the DOI without the https://... protocol (e.g. 10.37717/220020477).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M153"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M153"/>
