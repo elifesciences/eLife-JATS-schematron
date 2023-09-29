@@ -25,7 +25,8 @@ let $list :=
                         case 'Vietnam' return 'Viet Nam'
                         case 'Tanzania' return 'United Republic of Tanzania'
                         case 'Laos' return "Lao People's Democratic Republic"
-                        case ('Palestine' or 'Palestinian Territory') return 'State of Palestine'
+                        case 'Palestine' return 'State of Palestine'
+                        case 'Palestinian Territory' return 'State of Palestine'
                         default return $country-name
   let $country := <country country="{$x/country/*:country__code}">{$country-val}</country>
   return <ror>{($id,$name,$cities,$country)}</ror> 
