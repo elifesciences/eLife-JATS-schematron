@@ -194,10 +194,9 @@
       <xsl:when test="$s = 'methods'">
         <xsl:value-of select="'Methods'"/>
       </xsl:when>
-      <!-- Requires Vendor development work
-        <xsl:when test="$s = 'model'">
+      <xsl:when test="$s = 'model'">
         <xsl:value-of select="'Model'"/>
-      </xsl:when>-->
+      </xsl:when>
       <xsl:when test="$s = 'additional-information'">
         <xsl:value-of select="'Additional information'"/>
       </xsl:when>
@@ -211,7 +210,7 @@
         <xsl:value-of select="'undefined'"/>
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:function>  
+  </xsl:function>
   
   <xsl:function name="e:fig-id-type" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
