@@ -173,7 +173,9 @@
       <xsl:when test="$s = 'methods'">
         <xsl:value-of select="'Methods'"/>
       </xsl:when>
-      
+      <xsl:when test="$s = 'model'">
+        <xsl:value-of select="'Model'"/>
+      </xsl:when>
       <xsl:when test="$s = 'additional-information'">
         <xsl:value-of select="'Additional information'"/>
       </xsl:when>
@@ -1288,7 +1290,7 @@
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       <let name="no-link-text" value="translate(         normalize-space(string-join(for $x in self::*/(*[not(name()='xref')]|text()) return $x,''))         ,' ?.',' ')"/>
       <let name="new-org-regex" value="string-join(for $x in tokenize($org-regex,'\|') return concat('^',$x,'$'),'|')"/>
-      <report test="matches(.,'^[\p{Zs}\p{P}]*[Aa][ck][ck]n?ow[le][le]?[dg][dg]?e?ments?[\p{Zs}\p{P}]*$')" role="error" id="sec-title-ack">Section title indicates that it is an acknowledgements section - <value-of select="."/>. Acknowledgements must be tagged as an &lt;ack&gt; element in the back of the article.</report>
+      <report see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#h9cd3-sec-title-ack" test="matches(.,'^[\p{Zs}\p{P}]*[Aa][ck][ck]n?ow[le][le]?[dg][dg]?e?ments?[\p{Zs}\p{P}]*$')" role="error" id="sec-title-ack">Section title indicates that it is an acknowledgements section - <value-of select="."/>. Acknowledgements must be tagged as an &lt;ack&gt; element in the back of the article.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

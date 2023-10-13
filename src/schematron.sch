@@ -220,10 +220,9 @@
       <xsl:when test="$s = 'methods'">
         <xsl:value-of select="'Methods'"/>
       </xsl:when>
-      <!-- Requires Vendor development work
-        <xsl:when test="$s = 'model'">
+      <xsl:when test="$s = 'model'">
         <xsl:value-of select="'Model'"/>
-      </xsl:when>-->
+      </xsl:when>
       <xsl:when test="$s = 'additional-information'">
         <xsl:value-of select="'Additional information'"/>
       </xsl:when>
@@ -237,7 +236,7 @@
         <xsl:value-of select="'undefined'"/>
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:function>  
+  </xsl:function>
   
   <xsl:function name="e:fig-id-type" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
@@ -6128,11 +6127,13 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="ack" id="ack-title-tests">
       
-      <assert test="title = 'Acknowledgements'" 
+      <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hddcf-ack-title-test"
+        test="title = 'Acknowledgements'" 
         role="error" 
         id="ack-title-test">ack must have a title that contains 'Acknowledgements'. Currently it is '<value-of select="title"/>'.</assert>
       
-      <assert test="p[* or not(normalize-space(.)='')]" 
+      <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hslfn-ack-content-test"
+        test="p[* or not(normalize-space(.)='')]" 
         role="error" 
         id="ack-content-test">An Acknowledgements section must contain content. Either add in the missing content or delete the Acknowledgements.</assert>
       
@@ -6146,7 +6147,8 @@ else self::*/local-name() = $allowed-p-blocks"
         if (matches($x,'^[A-Z]{1}\.$')) then $x
         else ())"/>
       
-      <report test="matches(.,' [A-Z]\. |^[A-Z]\. ')" 
+      <report see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#ht2dv-ack-full-stop-intial-test"
+        test="matches(.,' [A-Z]\. |^[A-Z]\. ')" 
         role="warning" 
         id="ack-full-stop-intial-test">p element in Acknowledgements contains what looks like <value-of select="$hit-count"/> initial(s) followed by a full stop. Is it correct? - <value-of select="$hit"/></report>
       
@@ -6707,7 +6709,8 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="back-test-6">One and only one app-group may be present in back.</report>
       
-      <report test="if ($article-type = ($features-article-types,$notice-article-types)) then ()
+      <report see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hmlys-back-test-8"
+        test="if ($article-type = ($features-article-types,$notice-article-types)) then ()
         else if ($subj-type = 'Scientific Correspondence') then ()
         else (not(ack))" 
         role="warning" 
@@ -6750,14 +6753,16 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="back/ack" id="ack-tests">
       
-      <assert test="count(title) = 1" 
+      <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#howwo-ack-test-1"
+        test="count(title) = 1" 
         role="error" 
         id="ack-test-1">ack must have only 1 title.</assert>
     </rule>
     
     <rule context="back/ack/*" id="ack-child-tests">
     
-      <assert test="local-name() = ('p','sec','title')" 
+      <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hdl9z-ack-child-test-1"
+        test="local-name() = ('p','sec','title')" 
         role="error" 
         id="ack-child-test-1">Only p, sec or title can be children of ack. <name/> is not allowed.</assert>
     </rule>
@@ -13117,7 +13122,8 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="sec-title-hiv">Section title contains the word HIV, but it is not in all caps - <value-of select="."/></report>
       
-      <report test="matches(.,'^[\p{Zs}\p{P}]*[Aa][ck][ck]n?ow[le][le]?[dg][dg]?e?ments?[\p{Zs}\p{P}]*$')" 
+      <report see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#h9cd3-sec-title-ack"
+        test="matches(.,'^[\p{Zs}\p{P}]*[Aa][ck][ck]n?ow[le][le]?[dg][dg]?e?ments?[\p{Zs}\p{P}]*$')" 
         role="error" 
         id="sec-title-ack">Section title indicates that it is an acknowledgements section - <value-of select="."/>. Acknowledgements must be tagged as an &lt;ack> element in the back of the article.</report>
       

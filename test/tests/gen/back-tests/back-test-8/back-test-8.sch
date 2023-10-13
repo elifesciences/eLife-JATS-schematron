@@ -173,7 +173,9 @@
       <xsl:when test="$s = 'methods'">
         <xsl:value-of select="'Methods'"/>
       </xsl:when>
-      
+      <xsl:when test="$s = 'model'">
+        <xsl:value-of select="'Model'"/>
+      </xsl:when>
       <xsl:when test="$s = 'additional-information'">
         <xsl:value-of select="'Additional information'"/>
       </xsl:when>
@@ -1289,7 +1291,7 @@
       <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="pub-date" value="e:get-iso-pub-date(self::*)"/>
       <let name="version" value="e:get-version(.)"/>
-      <report test="if ($article-type = ($features-article-types,$notice-article-types)) then ()         else if ($subj-type = 'Scientific Correspondence') then ()         else (not(ack))" role="warning" id="back-test-8">'<value-of select="$article-type"/>' usually have acknowledgement sections, but there isn't one here. Is this correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hmlys-back-test-8" test="if ($article-type = ($features-article-types,$notice-article-types)) then ()         else if ($subj-type = 'Scientific Correspondence') then ()         else (not(ack))" role="warning" id="back-test-8">'<value-of select="$article-type"/>' usually have acknowledgement sections, but there isn't one here. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
