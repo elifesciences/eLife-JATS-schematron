@@ -1287,7 +1287,7 @@
   </xsl:function>
   <pattern id="back">
     <rule context="back/ack" id="ack-tests">
-      <assert test="count(title) = 1" role="error" id="ack-test-1">ack must have only 1 title.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#howwo-ack-test-1" test="count(title) = 1" role="error" id="ack-test-1">ack must have only 1 title.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

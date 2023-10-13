@@ -20369,6 +20369,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="title = 'Acknowledgements'">
                <xsl:attribute name="id">ack-title-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hddcf-ack-title-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -20386,6 +20387,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="p[* or not(normalize-space(.)='')]">
                <xsl:attribute name="id">ack-content-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hslfn-ack-content-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -20413,6 +20415,7 @@
       <xsl:if test="matches(.,' [A-Z]\. |^[A-Z]\. ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,' [A-Z]\. |^[A-Z]\. ')">
             <xsl:attribute name="id">ack-full-stop-intial-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#ht2dv-ack-full-stop-intial-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -22219,6 +22222,7 @@
       <xsl:if test="if ($article-type = ($features-article-types,$notice-article-types)) then ()         else if ($subj-type = 'Scientific Correspondence') then ()         else (not(ack))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($article-type = ($features-article-types,$notice-article-types)) then () else if ($subj-type = 'Scientific Correspondence') then () else (not(ack))">
             <xsl:attribute name="id">back-test-8</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hmlys-back-test-8</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -22354,6 +22358,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(title) = 1">
                <xsl:attribute name="id">ack-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#howwo-ack-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -22381,6 +22386,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="local-name() = ('p','sec','title')">
                <xsl:attribute name="id">ack-child-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hdl9z-ack-child-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -41259,6 +41265,7 @@
       <xsl:if test="matches(.,'^[\p{Zs}\p{P}]*[Aa][ck][ck]n?ow[le][le]?[dg][dg]?e?ments?[\p{Zs}\p{P}]*$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^[\p{Zs}\p{P}]*[Aa][ck][ck]n?ow[le][le]?[dg][dg]?e?ments?[\p{Zs}\p{P}]*$')">
             <xsl:attribute name="id">sec-title-ack</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#h9cd3-sec-title-ack</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>

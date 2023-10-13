@@ -1287,7 +1287,7 @@
   </xsl:function>
   <pattern id="title-conformance">
     <rule context="ack" id="ack-title-tests">
-      <assert test="p[* or not(normalize-space(.)='')]" role="error" id="ack-content-test">An Acknowledgements section must contain content. Either add in the missing content or delete the Acknowledgements.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hslfn-ack-content-test" test="p[* or not(normalize-space(.)='')]" role="error" id="ack-content-test">An Acknowledgements section must contain content. Either add in the missing content or delete the Acknowledgements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

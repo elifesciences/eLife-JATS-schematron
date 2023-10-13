@@ -4475,9 +4475,9 @@
   <pattern id="ack-title-tests-pattern">
     <rule context="ack" id="ack-title-tests">
       
-      <assert test="title = 'Acknowledgements'" role="error" id="ack-title-test">ack must have a title that contains 'Acknowledgements'. Currently it is '<value-of select="title"/>'.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hddcf-ack-title-test" test="title = 'Acknowledgements'" role="error" id="ack-title-test">ack must have a title that contains 'Acknowledgements'. Currently it is '<value-of select="title"/>'.</assert>
       
-      <assert test="p[* or not(normalize-space(.)='')]" role="error" id="ack-content-test">An Acknowledgements section must contain content. Either add in the missing content or delete the Acknowledgements.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hslfn-ack-content-test" test="p[* or not(normalize-space(.)='')]" role="error" id="ack-content-test">An Acknowledgements section must contain content. Either add in the missing content or delete the Acknowledgements.</assert>
       
     </rule>
   </pattern>
@@ -4486,7 +4486,7 @@
       <let name="hit" value="string-join(for $x in tokenize(.,' ') return         if (matches($x,'^[A-Z]{1}\.$')) then $x         else (),', ')"/>
       <let name="hit-count" value="count(for $x in tokenize(.,' ') return         if (matches($x,'^[A-Z]{1}\.$')) then $x         else ())"/>
       
-      <report test="matches(.,' [A-Z]\. |^[A-Z]\. ')" role="warning" id="ack-full-stop-intial-test">p element in Acknowledgements contains what looks like <value-of select="$hit-count"/> initial(s) followed by a full stop. Is it correct? - <value-of select="$hit"/>
+      <report see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#ht2dv-ack-full-stop-intial-test" test="matches(.,' [A-Z]\. |^[A-Z]\. ')" role="warning" id="ack-full-stop-intial-test">p element in Acknowledgements contains what looks like <value-of select="$hit-count"/> initial(s) followed by a full stop. Is it correct? - <value-of select="$hit"/>
       </report>
       
     </rule>
@@ -4881,7 +4881,7 @@
       
       <report test="count(app-group) gt 1" role="error" id="back-test-6">One and only one app-group may be present in back.</report>
       
-      <report test="if ($article-type = ($features-article-types,$notice-article-types)) then ()         else if ($subj-type = 'Scientific Correspondence') then ()         else (not(ack))" role="warning" id="back-test-8">'<value-of select="$article-type"/>' usually have acknowledgement sections, but there isn't one here. Is this correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hmlys-back-test-8" test="if ($article-type = ($features-article-types,$notice-article-types)) then ()         else if ($subj-type = 'Scientific Correspondence') then ()         else (not(ack))" role="warning" id="back-test-8">'<value-of select="$article-type"/>' usually have acknowledgement sections, but there isn't one here. Is this correct?</report>
       
       <report test="($article-type = $features-article-types) and (count(fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-7">An fn-group[@content-type='competing-interest'] must be present as a child of back <value-of select="$subj-type"/> content.</report>
       
@@ -4907,13 +4907,13 @@
   <pattern id="ack-tests-pattern">
     <rule context="back/ack" id="ack-tests">
       
-      <assert test="count(title) = 1" role="error" id="ack-test-1">ack must have only 1 title.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#howwo-ack-test-1" test="count(title) = 1" role="error" id="ack-test-1">ack must have only 1 title.</assert>
     </rule>
   </pattern>
   <pattern id="ack-child-tests-pattern">
     <rule context="back/ack/*" id="ack-child-tests">
     
-      <assert test="local-name() = ('p','sec','title')" role="error" id="ack-child-test-1">Only p, sec or title can be children of ack. <name/> is not allowed.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hdl9z-ack-child-test-1" test="local-name() = ('p','sec','title')" role="error" id="ack-child-test-1">Only p, sec or title can be children of ack. <name/> is not allowed.</assert>
     </rule>
   </pattern>
   <pattern id="app-tests-pattern">
@@ -8614,7 +8614,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-hiv" test="matches(upper-case($no-link-text),'^HIV | HIV | HIV') and not(matches($no-link-text,'^HIV | HIV | HIV'))" role="warning" id="sec-title-hiv">Section title contains the word HIV, but it is not in all caps - <value-of select="."/>
       </report>
       
-      <report test="matches(.,'^[\p{Zs}\p{P}]*[Aa][ck][ck]n?ow[le][le]?[dg][dg]?e?ments?[\p{Zs}\p{P}]*$')" role="error" id="sec-title-ack">Section title indicates that it is an acknowledgements section - <value-of select="."/>. Acknowledgements must be tagged as an &lt;ack&gt; element in the back of the article.</report>
+      <report see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#h9cd3-sec-title-ack" test="matches(.,'^[\p{Zs}\p{P}]*[Aa][ck][ck]n?ow[le][le]?[dg][dg]?e?ments?[\p{Zs}\p{P}]*$')" role="error" id="sec-title-ack">Section title indicates that it is an acknowledgements section - <value-of select="."/>. Acknowledgements must be tagged as an &lt;ack&gt; element in the back of the article.</report>
       
     </rule>
   </pattern>
