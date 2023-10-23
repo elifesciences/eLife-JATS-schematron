@@ -1288,7 +1288,7 @@
   <pattern id="content-containers">
     <rule context="list-item" id="list-item-tests">
       <let name="type" value="ancestor::list[1]/@list-type"/>
-      <report test="($type='alpha-lower') and matches(.,'^\p{Zs}?[a-h|j-w|y-z][\.|\)]? ')" role="warning" id="alpha-lower-test-1">list-item is part of an alpha-lower list, but it begins with a single lower-case letter. Is this correct? <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h8efq-alpha-lower-test-1" test="($type='alpha-lower') and matches(.,'^\p{Zs}?[a-h|j-w|y-z][\.|\)]? ')" role="warning" id="alpha-lower-test-1">list-item is part of an alpha-lower list, but it begins with a single lower-case letter. Is this correct? <value-of select="."/>
       </report>
     </rule>
   </pattern>

@@ -1288,7 +1288,7 @@
   <pattern id="content-containers">
     <rule context="list-item" id="list-item-tests">
       <let name="type" value="ancestor::list[1]/@list-type"/>
-      <report test="($type='simple') and matches(.,'^\p{Zs}?•')" role="error" id="bullet-test-2">list-item is part of simple list, but it begins with a '•'. Remove the unnecessary '•' and capture the list as a bullet type list.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hiw8e-bullet-test-2" test="($type='simple') and matches(.,'^\p{Zs}?•')" role="error" id="bullet-test-2">list-item is part of simple list, but it begins with a '•'. Remove the unnecessary '•' and capture the list as a bullet type list.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1288,7 +1288,7 @@
   <pattern id="content-containers">
     <rule context="p" id="p-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report test="@*" role="error" id="p-test-2">p element must not have any attributes.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hxspa-p-test-2" test="@*" role="error" id="p-test-2">p element must not have any attributes.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

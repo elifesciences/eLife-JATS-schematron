@@ -1291,7 +1291,7 @@
       <let name="parent" value="parent::*[1]/local-name()"/>
       <let name="form-children" value="string-join(         for $x in child::* return if ($x/local-name()=$formatting-elems) then $x/local-name()         else ()         ,', ')"/>
       <let name="non-form-children" value="string-join(         for $x in child::* return if ($x/local-name()=$formatting-elems) then ()         else ($x/local-name())         ,', ')"/>
-      <report test="(.!=@xlink:href) and matches(.,'https?:|ftp:|www\.')" role="warning" id="ext-link-text">The text for a URL is '<value-of select="."/>' (which looks like a URL), but it is not the same as the actual embedded link, which is '<value-of select="@xlink:href"/>'.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hyyhg-ext-link-text" test="(.!=@xlink:href) and matches(.,'https?:|ftp:|www\.')" role="warning" id="ext-link-text">The text for a URL is '<value-of select="."/>' (which looks like a URL), but it is not the same as the actual embedded link, which is '<value-of select="@xlink:href"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1287,7 +1287,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="ext-link[@ext-link-type='uri' and not(ancestor::sec[@sec-type='data-availability']) and not(parent::element-citation) and not(ancestor::table-wrap) and string-length(.) gt 59]" id="ext-link-tests-2">
-      <report test=". = @xlink:href" role="info" id="ext-link-length">Consider embedding long URLs in text instead of displaying in full, where appropriate. This is a very long URL - <value-of select="."/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#ho1mi-ext-link-length" test=". = @xlink:href" role="info" id="ext-link-length">Consider embedding long URLs in text instead of displaying in full, where appropriate. This is a very long URL - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
