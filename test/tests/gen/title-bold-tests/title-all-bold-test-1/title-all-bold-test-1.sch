@@ -1288,7 +1288,7 @@
   <pattern id="house-style">
     <rule context="title[(count(*)=1) and (child::bold or child::italic)]" id="title-bold-tests">
       <let name="free-text" value="replace(       normalize-space(string-join(for $x in self::*/text() return $x,''))       ,' ','')"/>
-      <report test="$free-text=''" role="warning" id="title-all-bold-test-1">Title is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hcq0l-title-all-bold-test-1" test="$free-text=''" role="warning" id="title-all-bold-test-1">Title is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

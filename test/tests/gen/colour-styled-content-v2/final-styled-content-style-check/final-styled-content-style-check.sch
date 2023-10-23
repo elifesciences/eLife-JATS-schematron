@@ -1288,7 +1288,7 @@
   <pattern id="house-style">
     <rule context="article//styled-content" id="colour-styled-content-v2">
       <let name="allowed-values" value="('color: #366BFB;','color: #9C27B0;','color: #D50000;')"/>
-      <assert test="@style = $allowed-values" role="error" id="final-styled-content-style-check">
+      <assert see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h7uzr-final-styled-content-style-check" test="@style = $allowed-values" role="error" id="final-styled-content-style-check">
         <value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in a &lt;styled-content style="<value-of select="@style"/>"&gt;. The only allowed values for the @style are <value-of select="string-join($allowed-values,', ')"/>.</assert>
     </rule>
   </pattern>
