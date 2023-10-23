@@ -1287,7 +1287,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="break" id="break-tests">
-      <assert test="ancestor::td or ancestor::th" role="error" id="break-placement">The break element is only permitted as a child (or descendant) of a table cell. This one is placed elsewhere (<value-of select="concat(string-join(for $x in ancestor::* return $x/name(),'/'),'/',name())"/>).</assert>
+      <assert see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hmp1c-break-placement" test="ancestor::td or ancestor::th" role="error" id="break-placement">The break element is only permitted as a child (or descendant) of a table cell. This one is placed elsewhere (<value-of select="concat(string-join(for $x in ancestor::* return $x/name(),'/'),'/',name())"/>).</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

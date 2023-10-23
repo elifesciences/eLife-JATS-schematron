@@ -2805,13 +2805,13 @@
         role="error" 
         id="p-test-1">p element begins with '<value-of select="substring(.,1,1)"/>'. Is this OK? Usually it should begin with an upper-case letter, or digit, or mathematic symbol, or open parenthesis, or open quote. Or perhaps it should not be the beginning of a new paragraph?</report>-->
       
-      <report test="@*" role="error" id="p-test-2">[p-test-2] p element must not have any attributes.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hxspa-p-test-2" test="@*" role="error" id="p-test-2">[p-test-2] p element must not have any attributes.</report>
       
-      <report test="((ancestor::article/@article-type = ('article-commentary', 'discussion', 'editorial', 'research-article', 'review-article')) and ancestor::body[parent::article]) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}') and (descendant::bold[1] != 'Related research article')" role="warning" id="p-test-5">[p-test-5] p element starts with bolded text - <value-of select="descendant::*[1]"/> - Should it be a header?</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h2ua5-p-test-5" test="((ancestor::article/@article-type = ('article-commentary', 'discussion', 'editorial', 'research-article', 'review-article')) and ancestor::body[parent::article]) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}') and (descendant::bold[1] != 'Related research article')" role="warning" id="p-test-5">[p-test-5] p element starts with bolded text - <value-of select="descendant::*[1]"/> - Should it be a header?</report>
       
-      <report test="(ancestor::body[parent::article]) and (string-length(.) le 100) and not(parent::*[local-name() = ('list-item','fn','td','th')]) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and not($article-type = $notice-article-types) and not((count(*) = 1) and child::supplementary-material)" role="warning" id="p-test-6">[p-test-6] Should this be captured as a list-item in a list? p element is less than 100 characters long, and is preceded by another p element less than 100 characters long.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hu208-p-test-6" test="(ancestor::body[parent::article]) and (string-length(.) le 100) and not(parent::*[local-name() = ('list-item','fn','td','th')]) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and not($article-type = $notice-article-types) and not((count(*) = 1) and child::supplementary-material)" role="warning" id="p-test-6">[p-test-6] Should this be captured as a list-item in a list? p element is less than 100 characters long, and is preceded by another p element less than 100 characters long.</report>
       
-      <report test="matches(.,'^\p{Zs}?•') and not(ancestor::sub-article)" role="warning" id="p-test-7">[p-test-7] p element starts with a bullet point. It is very likely that this should instead be captured as a list-item in a list[@list-type='bullet']. - <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hbssk-p-test-7" test="matches(.,'^\p{Zs}?•') and not(ancestor::sub-article)" role="warning" id="p-test-7">[p-test-7] p element starts with a bullet point. It is very likely that this should instead be captured as a list-item in a list[@list-type='bullet']. - <value-of select="."/>
       </report>
     </rule>
   </pattern>
@@ -2895,21 +2895,21 @@
       
       <report test="matches(@xlink:href,'^(ftp|sftp)://\S+:\S+@')" role="warning" id="ftp-credentials-flag">[ftp-credentials-flag] @xlink:href contains what looks like a link to an FTP site which contains credentials (username and password) - '<value-of select="@xlink:href"/>'. If the link without credentials works (<value-of select="concat(substring-before(@xlink:href,'://'),'://',substring-after(@xlink:href,'@'))"/>), then please replace it with that and notify the authors that you have done so. If the link without credentials does not work, please query with the authors in order to obtain a link without credentials.</report>
       
-      <report test="matches(@xlink:href,'\.$')" role="error" id="url-fullstop-report">[url-fullstop-report] '<value-of select="@xlink:href"/>' - Link ends in a full stop which is incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#htqb8-url-fullstop-report" test="matches(@xlink:href,'\.$')" role="error" id="url-fullstop-report">[url-fullstop-report] '<value-of select="@xlink:href"/>' - Link ends in a full stop which is incorrect.</report>
       
-      <report test="matches(@xlink:href,'[\p{Zs}]')" role="error" id="url-space-report">[url-space-report] '<value-of select="@xlink:href"/>' - Link contains a space which is incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hjtq3-url-space-report" test="matches(@xlink:href,'[\p{Zs}]')" role="error" id="url-space-report">[url-space-report] '<value-of select="@xlink:href"/>' - Link contains a space which is incorrect.</report>
       
-      <report test="(matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and $parent = $formatting-elems)" role="warning" id="ext-link-parent-test">[ext-link-parent-test] ext-link - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which almost certainly unnecessary.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#himma-ext-link-parent-test" test="(matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and $parent = $formatting-elems)" role="warning" id="ext-link-parent-test">[ext-link-parent-test] ext-link - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which almost certainly unnecessary.</report>
       
-      <report test="(matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and ($form-children!=''))" role="error" id="ext-link-child-test">[ext-link-child-test] ext-link - <value-of select="."/> - has a formatting child element - <value-of select="$form-children"/> - which is not correct.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h5vog-ext-link-child-test" test="(matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and ($form-children!=''))" role="error" id="ext-link-child-test">[ext-link-child-test] ext-link - <value-of select="."/> - has a formatting child element - <value-of select="$form-children"/> - which is not correct.</report>
       
-      <assert test="$non-form-children=''" role="error" id="ext-link-child-test-2">[ext-link-child-test-2] ext-link - <value-of select="."/> - has a non-formatting child element - <value-of select="$non-form-children"/> - which is not correct.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hce3u-ext-link-child-test-2" test="$non-form-children=''" role="error" id="ext-link-child-test-2">[ext-link-child-test-2] ext-link - <value-of select="."/> - has a non-formatting child element - <value-of select="$non-form-children"/> - which is not correct.</assert>
       
       <report test="matches(.,'^[Dd][Oo][Ii]:|^[Dd][Oo][Ii]\p{Zs}')" role="warning" id="ext-link-child-test-4">[ext-link-child-test-4] ext-link text - <value-of select="."/> - appears to start with the string 'Doi:' or 'Doi ' (or similar), which is unnecessary.</report>
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#ext-link-child-test-5" test="contains(@xlink:href,'datadryad.org/review?')" role="warning" id="ext-link-child-test-5">[ext-link-child-test-5] ext-link looks like it points to a review dryad dataset - <value-of select="."/>. Should it be updated?</report>
       
-      <report test="(.!=@xlink:href) and matches(.,'https?:|ftp:|www\.')" role="warning" id="ext-link-text">[ext-link-text] The text for a URL is '<value-of select="."/>' (which looks like a URL), but it is not the same as the actual embedded link, which is '<value-of select="@xlink:href"/>'.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hyyhg-ext-link-text" test="(.!=@xlink:href) and matches(.,'https?:|ftp:|www\.')" role="warning" id="ext-link-text">[ext-link-text] The text for a URL is '<value-of select="."/>' (which looks like a URL), but it is not the same as the actual embedded link, which is '<value-of select="@xlink:href"/>'.</report>
     </rule>
   </pattern>
   <pattern id="software-heritage-tests-pattern">
@@ -2937,7 +2937,7 @@
   <pattern id="ext-link-tests-2-pattern">
     <rule context="ext-link[@ext-link-type='uri' and not(ancestor::sec[@sec-type='data-availability']) and not(parent::element-citation) and not(ancestor::table-wrap) and string-length(.) gt 59]" id="ext-link-tests-2">
       
-      <report test=". = @xlink:href" role="info" id="ext-link-length">[ext-link-length] Consider embedding long URLs in text instead of displaying in full, where appropriate. This is a very long URL - <value-of select="."/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#ho1mi-ext-link-length" test=". = @xlink:href" role="info" id="ext-link-length">[ext-link-length] Consider embedding long URLs in text instead of displaying in full, where appropriate. This is a very long URL - <value-of select="."/>.</report>
       
     </rule>
   </pattern>
@@ -3565,7 +3565,7 @@
   <pattern id="list-tests-pattern">
     <rule context="list" id="list-tests">
       
-      <report test="@continued-from" role="error" id="continued-from-test-1">[continued-from-test-1] The continued-from attribute is not allowed for lists, since this is not supported by Continuum. Please use an alternative method to capture lists which are interrupted.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hzkm6-continued-from-test-1" test="@continued-from" role="error" id="continued-from-test-1">[continued-from-test-1] The continued-from attribute is not allowed for lists, since this is not supported by Continuum. Please use an alternative method to capture lists which are interrupted.</report>
       
     </rule>
   </pattern>
@@ -3573,41 +3573,41 @@
     <rule context="list-item" id="list-item-tests">
       <let name="type" value="ancestor::list[1]/@list-type"/>
       
-      <report test="($type='bullet') and matches(.,'^\p{Zs}?•')" role="error" id="bullet-test-1">[bullet-test-1] list-item is part of bullet list, but it also begins with a '•', which means that two will output. Remove the unnecessary '•' from the beginning of the list-item.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#ho2mz-bullet-test-1" test="($type='bullet') and matches(.,'^\p{Zs}?•')" role="error" id="bullet-test-1">[bullet-test-1] list-item is part of bullet list, but it also begins with a '•', which means that two will output. Remove the unnecessary '•' from the beginning of the list-item.</report>
       
-      <report test="($type='simple') and matches(.,'^\p{Zs}?•')" role="error" id="bullet-test-2">[bullet-test-2] list-item is part of simple list, but it begins with a '•'. Remove the unnecessary '•' and capture the list as a bullet type list.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hiw8e-bullet-test-2" test="($type='simple') and matches(.,'^\p{Zs}?•')" role="error" id="bullet-test-2">[bullet-test-2] list-item is part of simple list, but it begins with a '•'. Remove the unnecessary '•' and capture the list as a bullet type list.</report>
       
       <report test="($type='order') and matches(.,'^\p{Zs}?\d+')" role="warning" id="order-test-1">[order-test-1] list-item is part of an ordered list, but it begins with a number. Is this correct? <value-of select="."/>
       </report>
       
-      <report test="($type='alpha-lower') and matches(.,'^\p{Zs}?[a-h|j-w|y-z][\.|\)]? ')" role="warning" id="alpha-lower-test-1">[alpha-lower-test-1] list-item is part of an alpha-lower list, but it begins with a single lower-case letter. Is this correct? <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h8efq-alpha-lower-test-1" test="($type='alpha-lower') and matches(.,'^\p{Zs}?[a-h|j-w|y-z][\.|\)]? ')" role="warning" id="alpha-lower-test-1">[alpha-lower-test-1] list-item is part of an alpha-lower list, but it begins with a single lower-case letter. Is this correct? <value-of select="."/>
       </report>
       
-      <report test="($type='alpha-upper') and matches(.,'^\p{Zs}?[A-H|J-W|Y-Z][\.|\)]? ')" role="warning" id="alpha-upper-test-1">[alpha-upper-test-1] list-item is part of an alpha-upper list, but it begins with a single upper-case letter. Is this correct? <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hu39x-alpha-upper-test-1" test="($type='alpha-upper') and matches(.,'^\p{Zs}?[A-H|J-W|Y-Z][\.|\)]? ')" role="warning" id="alpha-upper-test-1">[alpha-upper-test-1] list-item is part of an alpha-upper list, but it begins with a single upper-case letter. Is this correct? <value-of select="."/>
       </report>
       
-      <report test="($type='roman-lower') and matches(.,'^\p{Zs}?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" role="warning" id="roman-lower-test-1">[roman-lower-test-1] list-item is part of a roman-lower list, but it begins with a single roman-lower letter. Is this correct? <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h6h2f-roman-lower-test-1" test="($type='roman-lower') and matches(.,'^\p{Zs}?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" role="warning" id="roman-lower-test-1">[roman-lower-test-1] list-item is part of a roman-lower list, but it begins with a single roman-lower letter. Is this correct? <value-of select="."/>
       </report>
       
-      <report test="($type='roman-upper') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="roman-upper-test-1">[roman-upper-test-1] list-item is part of a roman-upper list, but it begins with a single roman-upper letter. Is this correct? <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hixpt-roman-upper-test-1" test="($type='roman-upper') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="roman-upper-test-1">[roman-upper-test-1] list-item is part of a roman-upper list, but it begins with a single roman-upper letter. Is this correct? <value-of select="."/>
       </report>
       
-      <report test="($type='simple') and matches(.,'^\p{Zs}?[1-9][\.|\)]? ')" role="warning" id="simple-test-1">[simple-test-1] list-item is part of a simple list, but it begins with a number. Should the list-type be updated to ordered and this number removed? <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hweek-simple-test-1" test="($type='simple') and matches(.,'^\p{Zs}?[1-9][\.|\)]? ')" role="warning" id="simple-test-1">[simple-test-1] list-item is part of a simple list, but it begins with a number. Should the list-type be updated to ordered and this number removed? <value-of select="."/>
       </report>
       
-      <report test="($type='simple') and matches(.,'^\p{Zs}?[a-h|j-w|y-z][\.|\)] ')" role="warning" id="simple-test-2">[simple-test-2] list-item is part of a simple list, but it begins with a single lower-case letter. Should the list-type be updated to 'alpha-lower' and this first letter removed? <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hdued-simple-test-2" test="($type='simple') and matches(.,'^\p{Zs}?[a-h|j-w|y-z][\.|\)] ')" role="warning" id="simple-test-2">[simple-test-2] list-item is part of a simple list, but it begins with a single lower-case letter. Should the list-type be updated to 'alpha-lower' and this first letter removed? <value-of select="."/>
       </report>
       
-      <report test="($type='simple') and matches(.,'^\p{Zs}?[A-H|J-W|Y-Z][\.|\)] ')" role="warning" id="simple-test-3">[simple-test-3] list-item is part of a simple list, but it begins with a single upper-case letter. Should the list-type be updated to 'alpha-upper' and this first letter removed? <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h4a97-simple-test-3" test="($type='simple') and matches(.,'^\p{Zs}?[A-H|J-W|Y-Z][\.|\)] ')" role="warning" id="simple-test-3">[simple-test-3] list-item is part of a simple list, but it begins with a single upper-case letter. Should the list-type be updated to 'alpha-upper' and this first letter removed? <value-of select="."/>
       </report>
       
-      <report test="($type='simple') and matches(.,'^\p{Zs}?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" role="warning" id="simple-test-4">[simple-test-4] list-item is part of a simple list, but it begins with a single roman-lower letter. Should the list-type be updated to 'roman-lower' and this first letter removed? <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hv867-simple-test-4" test="($type='simple') and matches(.,'^\p{Zs}?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')" role="warning" id="simple-test-4">[simple-test-4] list-item is part of a simple list, but it begins with a single roman-lower letter. Should the list-type be updated to 'roman-lower' and this first letter removed? <value-of select="."/>
       </report>
       
-      <report test="($type='simple') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="simple-test-5">[simple-test-5] list-item is part of a simple list, but it begins with a single roman-upper letter. Should the list-type be updated to 'roman-upper' and this first letter removed? <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h9cfo-simple-test-5" test="($type='simple') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="simple-test-5">[simple-test-5] list-item is part of a simple list, but it begins with a single roman-upper letter. Should the list-type be updated to 'roman-upper' and this first letter removed? <value-of select="."/>
       </report>
       
-      <report test="matches(.,'^\p{Zs}?\p{Ll}[\p{Zs}\)\.]')" role="warning" id="list-item-test-1">[list-item-test-1] list-item begins with a single lowercase letter, is this correct? - <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hd4i0-list-item-test-1" test="matches(.,'^\p{Zs}?\p{Ll}[\p{Zs}\)\.]')" role="warning" id="list-item-test-1">[list-item-test-1] list-item begins with a single lowercase letter, is this correct? - <value-of select="."/>
       </report>
     </rule>
   </pattern>
@@ -3696,7 +3696,7 @@
       <report test="ancestor::sub-article[not(@article-type=('reply','author-comment'))]" role="warning" flag="dl-ar" id="disp-quote-test-1">[disp-quote-test-1] Content is tagged as a display quote, which is almost definitely incorrect, since it's within peer review material that is not an author response - <value-of select="."/>
       </report>
       
-      <report test="not(ancestor::sub-article) and ($subj=$research-subj)" role="error" id="disp-quote-test-2">[disp-quote-test-2] Display quote in a <value-of select="$subj"/> is not allowed. Please capture as paragraph instead - '<value-of select="."/>'</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hq129-disp-quote-test-2" test="not(ancestor::sub-article) and ($subj=$research-subj)" role="error" id="disp-quote-test-2">[disp-quote-test-2] Display quote in a <value-of select="$subj"/> is not allowed. Please capture as paragraph instead - '<value-of select="."/>'</report>
     </rule>
   </pattern>
   <pattern id="bracket-tests-pattern">
@@ -6396,7 +6396,7 @@
       <let name="text-tokens" value="for $x in tokenize(.,' ') return if (matches($x,'[ACGTacgt]{15,}')) then $x else ()"/>
       <let name="text-count" value="count($text-tokens)"/>
       
-      <assert test="($text-count le $count)" role="warning" id="gene-primer-sequence-test">[gene-primer-sequence-test] p element contains what looks like an untagged primer or gene sequence - <value-of select="string-join($text-tokens,', ')"/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hlpdc-gene-primer-sequence-test" test="($text-count le $count)" role="warning" id="gene-primer-sequence-test">[gene-primer-sequence-test] p element contains what looks like an untagged primer or gene sequence - <value-of select="string-join($text-tokens,', ')"/>.</assert>
     </rule>
   </pattern>
   
@@ -6429,7 +6429,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hxls5-diabetes-2-test" test="matches(.,'[Tt]ype\p{Zs}?[Tt]wo\p{Zs}?[Dd]iabetes') and not(descendant::p[matches(.,'[Tt]ype\p{Zs}?[Tt]wo\p{Zs}?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Tt]ype\p{Zs}?[Tt]wo\p{Zs}?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Tt]ype\p{Zs}?[Tt]wo\p{Zs}?[Dd]iabetes')])" role="error" id="diabetes-2-test">[diabetes-2-test] '<name/>' element contains the phrase 'Type two diabetes'. The number should not be spelled out, this should be 'Type 2 diabetes'</report>
       
-      <report test="not(descendant::p or descendant::td or descendant::th or descendant::title) and not(ancestor::sub-article or child::element-citation) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')" role="warning" id="unlinked-url">[unlinked-url] '<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hlvnh-unlinked-url" test="not(descendant::p or descendant::td or descendant::th or descendant::title) and not(ancestor::sub-article or child::element-citation) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')" role="warning" id="unlinked-url">[unlinked-url] '<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/>
       </report>
       
       <report test="matches(.,'\p{Zs}[1-2][0-9][0-9]0\p{Zs}s[\p{Zs}\.]') and not(descendant::p[matches(.,'\p{Zs}[1-2][0-9][0-9]0\p{Zs}s[\p{Zs}\.]')]) and not(descendant::td) and not(descendant::th)" role="warning" id="year-style-test">[year-style-test] '<name/>' element contains the following string(s) - <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,' s'),'; ')"/>. If this refers to years, then the space should be removed after the number, i.e. <value-of select="string-join(for $x in tokenize(.,' ')[matches(.,'^[1-2][0-9][0-9]0$')] return concat($x,'s'),'; ')"/>. If the text is referring to a unit then this is fine.</report>
@@ -8184,7 +8184,7 @@
     <rule context="article//body//named-content[not(@content-type='sequence')]|article//back//named-content[not(@content-type='sequence')]" id="colour-styled-content">
       <let name="parent" value="parent::*/local-name()"/>
       
-      <report test="." role="warning" id="pre-colour-styled-content-check">[pre-colour-styled-content-check] '<value-of select="."/>' - <value-of select="$parent"/> element contains a named content element. If it is red, blue or purple then it should be tagged using &lt;styled-content&gt;. If it is not, then the author will need to be queried - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.'</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h8td5-pre-colour-styled-content-check" test="." role="warning" id="pre-colour-styled-content-check">[pre-colour-styled-content-check] '<value-of select="."/>' - <value-of select="$parent"/> element contains a named content element. If it is red, blue or purple then it should be tagged using &lt;styled-content&gt;. If it is not, then the author will need to be queried - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.'</report>
       
       
     </rule>
@@ -8193,10 +8193,10 @@
     <rule context="article//styled-content" id="colour-styled-content-v2">
       <let name="allowed-values" value="('color: #366BFB;','color: #9C27B0;','color: #D50000;')"/>
       
-      <report test="@style = $allowed-values" role="warning" id="colour-styled-content-flag">[colour-styled-content-flag] <value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h3819-colour-styled-content-flag" test="@style = $allowed-values" role="warning" id="colour-styled-content-flag">[colour-styled-content-flag] <value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
       </report>
       
-      <assert test="@style = $allowed-values" role="warning" id="pre-styled-content-style-check">[pre-styled-content-style-check] <value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in a &lt;styled-content style="<value-of select="@style"/>"&gt;. The only allowed values for the @style are <value-of select="string-join($allowed-values,', ')"/> as only blue, purple, and red text is permitted (respectively). If this is coloured text and it is not one of the allowed colours, please query the authors - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.'</assert>
+      <assert see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hm00e-pre-styled-content-style-check" test="@style = $allowed-values" role="warning" id="pre-styled-content-style-check">[pre-styled-content-style-check] <value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in a &lt;styled-content style="<value-of select="@style"/>"&gt;. The only allowed values for the @style are <value-of select="string-join($allowed-values,', ')"/> as only blue, purple, and red text is permitted (respectively). If this is coloured text and it is not one of the allowed colours, please query the authors - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.'</assert>
       
       
     </rule>
@@ -8450,7 +8450,7 @@
     <rule context="title[(count(*)=1) and (child::bold or child::italic)]" id="title-bold-tests">  
     <let name="free-text" value="replace(       normalize-space(string-join(for $x in self::*/text() return $x,''))       ,' ','')"/>
     
-    <report test="$free-text=''" role="warning" id="title-all-bold-test-1">[title-all-bold-test-1] Title is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
+    <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hcq0l-title-all-bold-test-1" test="$free-text=''" role="warning" id="title-all-bold-test-1">[title-all-bold-test-1] Title is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="italic-org-tests-pattern">
@@ -8468,14 +8468,14 @@
   <pattern id="sub-sup-tests-pattern">
     <rule context="sub|sup" id="sub-sup-tests">
       
-      <report test="parent::*/name() = name()" role="error" id="double-sup-sub">[double-sup-sub] <name/> is captured as a child of <name/>, which is not permitted.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h6795-double-sup-sub" test="parent::*/name() = name()" role="error" id="double-sup-sub">[double-sup-sub] <name/> is captured as a child of <name/>, which is not permitted.</report>
       
     </rule>
   </pattern>
   <pattern id="break-tests-pattern">
     <rule context="break" id="break-tests">
       
-      <assert test="ancestor::td or ancestor::th" role="error" id="break-placement">[break-placement] The break element is only permitted as a child (or descendant) of a table cell. This one is placed elsewhere (<value-of select="concat(string-join(for $x in ancestor::* return $x/name(),'/'),'/',name())"/>).</assert>
+      <assert see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hmp1c-break-placement" test="ancestor::td or ancestor::th" role="error" id="break-placement">[break-placement] The break element is only permitted as a child (or descendant) of a table cell. This one is placed elsewhere (<value-of select="concat(string-join(for $x in ancestor::* return $x/name(),'/'),'/',name())"/>).</assert>
       
     </rule>
   </pattern>

@@ -1288,7 +1288,7 @@
   <pattern id="content-containers">
     <rule context="list-item" id="list-item-tests">
       <let name="type" value="ancestor::list[1]/@list-type"/>
-      <report test="($type='simple') and matches(.,'^\p{Zs}?[1-9][\.|\)]? ')" role="warning" id="simple-test-1">list-item is part of a simple list, but it begins with a number. Should the list-type be updated to ordered and this number removed? <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hweek-simple-test-1" test="($type='simple') and matches(.,'^\p{Zs}?[1-9][\.|\)]? ')" role="warning" id="simple-test-1">list-item is part of a simple list, but it begins with a number. Should the list-type be updated to ordered and this number removed? <value-of select="."/>
       </report>
     </rule>
   </pattern>

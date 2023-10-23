@@ -1291,7 +1291,7 @@
       <let name="parent" value="parent::*[1]/local-name()"/>
       <let name="form-children" value="string-join(         for $x in child::* return if ($x/local-name()=$formatting-elems) then $x/local-name()         else ()         ,', ')"/>
       <let name="non-form-children" value="string-join(         for $x in child::* return if ($x/local-name()=$formatting-elems) then ()         else ($x/local-name())         ,', ')"/>
-      <assert test="$non-form-children=''" role="error" id="ext-link-child-test-2">ext-link - <value-of select="."/> - has a non-formatting child element - <value-of select="$non-form-children"/> - which is not correct.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hce3u-ext-link-child-test-2" test="$non-form-children=''" role="error" id="ext-link-child-test-2">ext-link - <value-of select="."/> - has a non-formatting child element - <value-of select="$non-form-children"/> - which is not correct.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

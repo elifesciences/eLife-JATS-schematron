@@ -1288,7 +1288,7 @@
   <pattern id="house-style">
     <rule context="article//body//named-content[not(@content-type='sequence')]|article//back//named-content[not(@content-type='sequence')]" id="colour-styled-content">
       <let name="parent" value="parent::*/local-name()"/>
-      <report test="." role="error" id="final-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a named content element. This is not allowed for coloured text. Please ensure that &lt;styled-content&gt; is used with the three permitted colours for text - red, blue and purple.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hqmsd-final-colour-styled-content-check" test="." role="error" id="final-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a named content element. This is not allowed for coloured text. Please ensure that &lt;styled-content&gt; is used with the three permitted colours for text - red, blue and purple.</report>
     </rule>
   </pattern>
 </schema>

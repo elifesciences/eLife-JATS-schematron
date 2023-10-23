@@ -1288,7 +1288,7 @@
   <pattern id="content-containers">
     <rule context="list-item" id="list-item-tests">
       <let name="type" value="ancestor::list[1]/@list-type"/>
-      <report test="($type='alpha-upper') and matches(.,'^\p{Zs}?[A-H|J-W|Y-Z][\.|\)]? ')" role="warning" id="alpha-upper-test-1">list-item is part of an alpha-upper list, but it begins with a single upper-case letter. Is this correct? <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hu39x-alpha-upper-test-1" test="($type='alpha-upper') and matches(.,'^\p{Zs}?[A-H|J-W|Y-Z][\.|\)]? ')" role="warning" id="alpha-upper-test-1">list-item is part of an alpha-upper list, but it begins with a single upper-case letter. Is this correct? <value-of select="."/>
       </report>
     </rule>
   </pattern>

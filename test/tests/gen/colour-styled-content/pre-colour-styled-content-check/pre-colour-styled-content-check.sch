@@ -1288,7 +1288,7 @@
   <pattern id="house-style">
     <rule context="article//body//named-content[not(@content-type='sequence')]|article//back//named-content[not(@content-type='sequence')]" id="colour-styled-content">
       <let name="parent" value="parent::*/local-name()"/>
-      <report test="." role="warning" id="pre-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a named content element. If it is red, blue or purple then it should be tagged using &lt;styled-content&gt;. If it is not, then the author will need to be queried - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.'</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h8td5-pre-colour-styled-content-check" test="." role="warning" id="pre-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a named content element. If it is red, blue or purple then it should be tagged using &lt;styled-content&gt;. If it is not, then the author will need to be queried - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.'</report>
     </rule>
   </pattern>
 </schema>

@@ -1291,7 +1291,7 @@
       <let name="parent" value="parent::*[1]/local-name()"/>
       <let name="form-children" value="string-join(         for $x in child::* return if ($x/local-name()=$formatting-elems) then $x/local-name()         else ()         ,', ')"/>
       <let name="non-form-children" value="string-join(         for $x in child::* return if ($x/local-name()=$formatting-elems) then ()         else ($x/local-name())         ,', ')"/>
-      <report test="matches(@xlink:href,'[\p{Zs}]')" role="error" id="url-space-report">'<value-of select="@xlink:href"/>' - Link contains a space which is incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hjtq3-url-space-report" test="matches(@xlink:href,'[\p{Zs}]')" role="error" id="url-space-report">'<value-of select="@xlink:href"/>' - Link contains a space which is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

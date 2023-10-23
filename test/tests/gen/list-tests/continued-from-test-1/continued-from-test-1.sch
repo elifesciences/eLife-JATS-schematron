@@ -1287,7 +1287,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="list" id="list-tests">
-      <report test="@continued-from" role="error" id="continued-from-test-1">The continued-from attribute is not allowed for lists, since this is not supported by Continuum. Please use an alternative method to capture lists which are interrupted.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hzkm6-continued-from-test-1" test="@continued-from" role="error" id="continued-from-test-1">The continued-from attribute is not allowed for lists, since this is not supported by Continuum. Please use an alternative method to capture lists which are interrupted.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

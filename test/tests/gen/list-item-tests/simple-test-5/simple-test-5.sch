@@ -1288,7 +1288,7 @@
   <pattern id="content-containers">
     <rule context="list-item" id="list-item-tests">
       <let name="type" value="ancestor::list[1]/@list-type"/>
-      <report test="($type='simple') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="simple-test-5">list-item is part of a simple list, but it begins with a single roman-upper letter. Should the list-type be updated to 'roman-upper' and this first letter removed? <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h9cfo-simple-test-5" test="($type='simple') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="simple-test-5">list-item is part of a simple list, but it begins with a single roman-upper letter. Should the list-type be updated to 'roman-upper' and this first letter removed? <value-of select="."/>
       </report>
     </rule>
   </pattern>

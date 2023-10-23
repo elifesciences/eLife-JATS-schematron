@@ -13260,6 +13260,7 @@
       <xsl:if test="@*">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@*">
             <xsl:attribute name="id">p-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hxspa-p-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -13272,6 +13273,7 @@
       <xsl:if test="((ancestor::article/@article-type = ('article-commentary', 'discussion', 'editorial', 'research-article', 'review-article')) and ancestor::body[parent::article]) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}') and (descendant::bold[1] != 'Related research article')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="((ancestor::article/@article-type = ('article-commentary', 'discussion', 'editorial', 'research-article', 'review-article')) and ancestor::body[parent::article]) and (descendant::*[1]/local-name() = 'bold') and not(ancestor::caption) and not(descendant::*[1]/preceding-sibling::text()) and matches(descendant::bold[1],'\p{L}') and (descendant::bold[1] != 'Related research article')">
             <xsl:attribute name="id">p-test-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h2ua5-p-test-5</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -13286,6 +13288,7 @@
       <xsl:if test="(ancestor::body[parent::article]) and (string-length(.) le 100) and not(parent::*[local-name() = ('list-item','fn','td','th')]) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and not($article-type = $notice-article-types) and not((count(*) = 1) and child::supplementary-material)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(ancestor::body[parent::article]) and (string-length(.) le 100) and not(parent::*[local-name() = ('list-item','fn','td','th')]) and (preceding-sibling::*[1]/local-name() = 'p') and (string-length(preceding-sibling::p[1]) le 100) and not($article-type = $notice-article-types) and not((count(*) = 1) and child::supplementary-material)">
             <xsl:attribute name="id">p-test-6</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hu208-p-test-6</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -13298,6 +13301,7 @@
       <xsl:if test="matches(.,'^\p{Zs}?•') and not(ancestor::sub-article)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^\p{Zs}?•') and not(ancestor::sub-article)">
             <xsl:attribute name="id">p-test-7</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hbssk-p-test-7</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -13744,6 +13748,7 @@
       <xsl:if test="matches(@xlink:href,'\.$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'\.$')">
             <xsl:attribute name="id">url-fullstop-report</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#htqb8-url-fullstop-report</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -13758,6 +13763,7 @@
       <xsl:if test="matches(@xlink:href,'[\p{Zs}]')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'[\p{Zs}]')">
             <xsl:attribute name="id">url-space-report</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hjtq3-url-space-report</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -13772,6 +13778,7 @@
       <xsl:if test="(matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and $parent = $formatting-elems)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and $parent = $formatting-elems)">
             <xsl:attribute name="id">ext-link-parent-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#himma-ext-link-parent-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -13788,6 +13795,7 @@
       <xsl:if test="(matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and ($form-children!=''))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(matches(.,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%,_\+.~#?&amp;//=]*)$|^ftp://.|^git://.|^tel:.|^mailto:.') and ($form-children!=''))">
             <xsl:attribute name="id">ext-link-child-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h5vog-ext-link-child-test</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -13806,6 +13814,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$non-form-children=''">
                <xsl:attribute name="id">ext-link-child-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hce3u-ext-link-child-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -13852,6 +13861,7 @@
       <xsl:if test="(.!=@xlink:href) and matches(.,'https?:|ftp:|www\.')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(.!=@xlink:href) and matches(.,'https?:|ftp:|www\.')">
             <xsl:attribute name="id">ext-link-text</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hyyhg-ext-link-text</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -13976,6 +13986,7 @@
       <xsl:if test=". = @xlink:href">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=". = @xlink:href">
             <xsl:attribute name="id">ext-link-length</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#ho1mi-ext-link-length</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17206,6 +17217,7 @@
       <xsl:if test="@continued-from">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@continued-from">
             <xsl:attribute name="id">continued-from-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hzkm6-continued-from-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17231,6 +17243,7 @@
       <xsl:if test="($type='bullet') and matches(.,'^\p{Zs}?•')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type='bullet') and matches(.,'^\p{Zs}?•')">
             <xsl:attribute name="id">bullet-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#ho2mz-bullet-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17243,6 +17256,7 @@
       <xsl:if test="($type='simple') and matches(.,'^\p{Zs}?•')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type='simple') and matches(.,'^\p{Zs}?•')">
             <xsl:attribute name="id">bullet-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hiw8e-bullet-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17270,6 +17284,7 @@
       <xsl:if test="($type='alpha-lower') and matches(.,'^\p{Zs}?[a-h|j-w|y-z][\.|\)]? ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type='alpha-lower') and matches(.,'^\p{Zs}?[a-h|j-w|y-z][\.|\)]? ')">
             <xsl:attribute name="id">alpha-lower-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h8efq-alpha-lower-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17285,6 +17300,7 @@
       <xsl:if test="($type='alpha-upper') and matches(.,'^\p{Zs}?[A-H|J-W|Y-Z][\.|\)]? ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type='alpha-upper') and matches(.,'^\p{Zs}?[A-H|J-W|Y-Z][\.|\)]? ')">
             <xsl:attribute name="id">alpha-upper-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hu39x-alpha-upper-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17300,6 +17316,7 @@
       <xsl:if test="($type='roman-lower') and matches(.,'^\p{Zs}?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type='roman-lower') and matches(.,'^\p{Zs}?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')">
             <xsl:attribute name="id">roman-lower-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h6h2f-roman-lower-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17315,6 +17332,7 @@
       <xsl:if test="($type='roman-upper') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type='roman-upper') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')">
             <xsl:attribute name="id">roman-upper-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hixpt-roman-upper-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17330,6 +17348,7 @@
       <xsl:if test="($type='simple') and matches(.,'^\p{Zs}?[1-9][\.|\)]? ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type='simple') and matches(.,'^\p{Zs}?[1-9][\.|\)]? ')">
             <xsl:attribute name="id">simple-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hweek-simple-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17345,6 +17364,7 @@
       <xsl:if test="($type='simple') and matches(.,'^\p{Zs}?[a-h|j-w|y-z][\.|\)] ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type='simple') and matches(.,'^\p{Zs}?[a-h|j-w|y-z][\.|\)] ')">
             <xsl:attribute name="id">simple-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hdued-simple-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17360,6 +17380,7 @@
       <xsl:if test="($type='simple') and matches(.,'^\p{Zs}?[A-H|J-W|Y-Z][\.|\)] ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type='simple') and matches(.,'^\p{Zs}?[A-H|J-W|Y-Z][\.|\)] ')">
             <xsl:attribute name="id">simple-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h4a97-simple-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17375,6 +17396,7 @@
       <xsl:if test="($type='simple') and matches(.,'^\p{Zs}?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type='simple') and matches(.,'^\p{Zs}?(i|ii|iii|iv|v|vi|vii|viii|ix|x)[\.|\)]? ')">
             <xsl:attribute name="id">simple-test-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hv867-simple-test-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17390,6 +17412,7 @@
       <xsl:if test="($type='simple') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type='simple') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')">
             <xsl:attribute name="id">simple-test-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h9cfo-simple-test-5</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17405,6 +17428,7 @@
       <xsl:if test="matches(.,'^\p{Zs}?\p{Ll}[\p{Zs}\)\.]')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^\p{Zs}?\p{Ll}[\p{Zs}\)\.]')">
             <xsl:attribute name="id">list-item-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hd4i0-list-item-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17756,6 +17780,7 @@
       <xsl:if test="not(ancestor::sub-article) and ($subj=$research-subj)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(ancestor::sub-article) and ($subj=$research-subj)">
             <xsl:attribute name="id">disp-quote-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hq129-disp-quote-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -30282,6 +30307,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($text-count le $count)">
                <xsl:attribute name="id">gene-primer-sequence-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hlpdc-gene-primer-sequence-test</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -30455,6 +30481,7 @@
       <xsl:if test="not(descendant::p or descendant::td or descendant::th or descendant::title) and not(ancestor::sub-article or child::element-citation) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(descendant::p or descendant::td or descendant::th or descendant::title) and not(ancestor::sub-article or child::element-citation) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')">
             <xsl:attribute name="id">unlinked-url</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hlvnh-unlinked-url</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -41315,6 +41342,7 @@
       <xsl:if test=".">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".">
             <xsl:attribute name="id">pre-colour-styled-content-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h8td5-pre-colour-styled-content-check</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -41344,6 +41372,7 @@
       <xsl:if test="@style = $allowed-values">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@style = $allowed-values">
             <xsl:attribute name="id">colour-styled-content-flag</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h3819-colour-styled-content-flag</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -41363,6 +41392,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@style = $allowed-values">
                <xsl:attribute name="id">pre-styled-content-style-check</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hm00e-pre-styled-content-style-check</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -42562,6 +42592,7 @@
       <xsl:if test="$free-text=''">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$free-text=''">
             <xsl:attribute name="id">title-all-bold-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hcq0l-title-all-bold-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -42646,6 +42677,7 @@
       <xsl:if test="parent::*/name() = name()">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="parent::*/name() = name()">
             <xsl:attribute name="id">double-sup-sub</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h6795-double-sup-sub</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -42676,6 +42708,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::td or ancestor::th">
                <xsl:attribute name="id">break-placement</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hmp1c-break-placement</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>

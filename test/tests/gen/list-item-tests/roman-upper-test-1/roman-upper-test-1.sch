@@ -1288,7 +1288,7 @@
   <pattern id="content-containers">
     <rule context="list-item" id="list-item-tests">
       <let name="type" value="ancestor::list[1]/@list-type"/>
-      <report test="($type='roman-upper') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="roman-upper-test-1">list-item is part of a roman-upper list, but it begins with a single roman-upper letter. Is this correct? <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hixpt-roman-upper-test-1" test="($type='roman-upper') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="roman-upper-test-1">list-item is part of a roman-upper list, but it begins with a single roman-upper letter. Is this correct? <value-of select="."/>
       </report>
     </rule>
   </pattern>

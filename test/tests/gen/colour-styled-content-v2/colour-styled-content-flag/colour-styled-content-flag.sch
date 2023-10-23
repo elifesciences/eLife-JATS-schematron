@@ -1288,7 +1288,7 @@
   <pattern id="house-style">
     <rule context="article//styled-content" id="colour-styled-content-v2">
       <let name="allowed-values" value="('color: #366BFB;','color: #9C27B0;','color: #D50000;')"/>
-      <report test="@style = $allowed-values" role="warning" id="colour-styled-content-flag">
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h3819-colour-styled-content-flag" test="@style = $allowed-values" role="warning" id="colour-styled-content-flag">
         <value-of select="."/> has colour formatting. Is this correct? Preceding text - <value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>
       </report>
     </rule>

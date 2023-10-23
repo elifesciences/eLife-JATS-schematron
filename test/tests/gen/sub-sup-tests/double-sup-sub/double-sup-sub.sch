@@ -1287,7 +1287,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="sub|sup" id="sub-sup-tests">
-      <report test="parent::*/name() = name()" role="error" id="double-sup-sub">
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h6795-double-sup-sub" test="parent::*/name() = name()" role="error" id="double-sup-sub">
         <name/> is captured as a child of <name/>, which is not permitted.</report>
     </rule>
   </pattern>

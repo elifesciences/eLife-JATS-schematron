@@ -1288,7 +1288,7 @@
   <pattern id="content-containers">
     <rule context="p" id="p-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report test="matches(.,'^\p{Zs}?•') and not(ancestor::sub-article)" role="warning" id="p-test-7">p element starts with a bullet point. It is very likely that this should instead be captured as a list-item in a list[@list-type='bullet']. - <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hbssk-p-test-7" test="matches(.,'^\p{Zs}?•') and not(ancestor::sub-article)" role="warning" id="p-test-7">p element starts with a bullet point. It is very likely that this should instead be captured as a list-item in a list[@list-type='bullet']. - <value-of select="."/>
       </report>
     </rule>
   </pattern>

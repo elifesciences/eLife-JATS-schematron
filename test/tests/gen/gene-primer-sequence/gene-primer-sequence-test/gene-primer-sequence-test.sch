@@ -1290,7 +1290,7 @@
       <let name="count" value="count(descendant::named-content[@content-type='sequence'])"/>
       <let name="text-tokens" value="for $x in tokenize(.,' ') return if (matches($x,'[ACGTacgt]{15,}')) then $x else ()"/>
       <let name="text-count" value="count($text-tokens)"/>
-      <assert test="($text-count le $count)" role="warning" id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence - <value-of select="string-join($text-tokens,', ')"/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hlpdc-gene-primer-sequence-test" test="($text-count le $count)" role="warning" id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence - <value-of select="string-join($text-tokens,', ')"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
