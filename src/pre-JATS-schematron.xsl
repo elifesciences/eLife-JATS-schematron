@@ -7742,7 +7742,7 @@
       <xsl:variable name="name" select="e:get-name(name[1])"/>
       <xsl:variable name="role" select="role[1]"/>
       <xsl:variable name="author-contribs" select="ancestor::article-meta/contrib-group[1]/contrib[@contrib-type='author']"/>
-      <xsl:variable name="matching-author-names" select="for $contrib in $author-contribs where (e:get-name($contrib)=$name) return e:get-name($contrib)"/>
+      <xsl:variable name="matching-author-names" select="for $contrib in $author-contribs return if (e:get-name($contrib)=$name) then e:get-name($contrib) else ()"/>
 
 		    <!--REPORT error-->
       <xsl:if test="(@contrib-type='senior_editor') and ($role!='Senior Editor')">
