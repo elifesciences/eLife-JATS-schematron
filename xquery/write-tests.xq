@@ -3,8 +3,6 @@
 import module namespace schematron = "http://github.com/Schematron/schematron-basex";
 import module namespace elife = 'elife' at 'elife.xqm';
 
-declare option db:chop 'false';
-
 let $base := doc('../src/schematron.sch')
 let $base-uri := substring-before(base-uri($base),'/schematron.sch')
 let $root := substring-before($base-uri,'/src')
@@ -44,7 +42,7 @@ Message: ',replace($test/data(),'[-—–][-—–]',''),' ')}
       return file:write($fail,$new-fail,map{'indent':'no'})
     else file:write($fail,$node)
     ,
-    file:write(concat($path,$test/@id,'.sch'),$schema-let)
+    file:write(concat($path,$test/@id,'.sch'),$schema-let,map{'indent':'yes'})
   )
 
 )

@@ -1,5 +1,4 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:saxon="http://saxon.sf.net/" xmlns:schold="http://www.ascc.net/xml/schematron" xmlns:iso="http://purl.oclc.org/dsdl/schematron" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:dc="http://purl.org/dc/terms/" xmlns:e="https://elifesciences.org/namespace" xmlns:file="java.io.File" xmlns:java="http://www.java.com/" version="2.0">
-  <!--Implementers: please note that overriding process-prolog or process-root is 
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:saxon="http://saxon.sf.net/" xmlns:schold="http://www.ascc.net/xml/schematron" xmlns:iso="http://purl.oclc.org/dsdl/schematron" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:dc="http://purl.org/dc/terms/" xmlns:e="https://elifesciences.org/namespace" xmlns:file="java.io.File" xmlns:java="http://www.java.com/" version="2.0"><!--Implementers: please note that overriding process-prolog or process-root is 
     the preferred method for meta-stylesheets to use where possible. -->
    <xsl:param name="archiveDirParameter"/>
    <xsl:param name="archiveNameParameter"/>
@@ -7742,6 +7741,8 @@
    <xsl:template match="article/front/article-meta/contrib-group[@content-type='section']/contrib" priority="1000" mode="M80">
       <xsl:variable name="name" select="e:get-name(name[1])"/>
       <xsl:variable name="role" select="role[1]"/>
+      <xsl:variable name="author-contribs" select="ancestor::article-meta/contrib-group[1]/contrib[@contrib-type='author']"/>
+      <xsl:variable name="matching-author-names" select="for $contrib in $author-contribs return if (e:get-name($contrib)=$name) then e:get-name($contrib)"/>
 
 		    <!--REPORT error-->
       <xsl:if test="(@contrib-type='senior_editor') and ($role!='Senior Editor')">
@@ -7774,6 +7775,25 @@
                <xsl:text/>), which is incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="count($matching-author-names)=0"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count($matching-author-names)=0">
+               <xsl:attribute name="id">editor-conformance-5</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[editor-conformance-5] <xsl:text/>
+                  <xsl:value-of select="$name"/>
+                  <xsl:text/> is listed both as an author as as a <xsl:text/>
+                  <xsl:value-of select="$role"/>
+                  <xsl:text/>, which must be incorrect.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M80"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M80"/>
