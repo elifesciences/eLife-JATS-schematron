@@ -57,8 +57,8 @@ declare variable $rp-sch := doc(concat($outputDir,'/rp-schematron.sch'));
     file:write(($outputDir||'/rp-schematron.xsl'),$rp-xsl),
     
     file:write(($outputDir||'/final-package-JATS-schematron.sch'),$final-package-sch),
-    file:write(($root||'/test/xspec/schematron.sch'),$xspec-sch),
-    file:write(($root||'/test/xspec/schematron.xspec'),$xspec)
+    file:write(($root||'/test/xspec/schematron.sch'),$xspec-sch,map{'indent':'yes'}),
+    file:write(($root||'/test/xspec/schematron.xspec'),$xspec,map{'indent':'yes'})
   )
 ,
   

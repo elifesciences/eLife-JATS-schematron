@@ -1290,7 +1290,7 @@
       <let name="name" value="e:get-name(name[1])"/>
       <let name="role" value="role[1]"/>
       <let name="author-contribs" value="ancestor::article-meta/contrib-group[1]/contrib[@contrib-type='author']"/>
-      <let name="matching-author-names" value="for $contrib in $author-contribs return if (e:get-name($contrib)=$name) then e:get-name($contrib)"/>
+      <let name="matching-author-names" value="for $contrib in $author-contribs where (e:get-name($contrib)=$name) return e:get-name($contrib)"/>
       <report test="(@contrib-type='editor') and ($role!='Reviewing Editor')" role="error" id="editor-conformance-4">
         <value-of select="$name"/> has a @contrib-type='editor' but their role is not 'Reviewing Editor' (<value-of select="$role"/>), which is incorrect.</report>
     </rule>

@@ -1290,7 +1290,7 @@
       <let name="name" value="e:get-name(name[1])"/>
       <let name="role" value="role[1]"/>
       <let name="author-contribs" value="ancestor::article-meta/contrib-group[1]/contrib[@contrib-type='author']"/>
-      <let name="matching-author-names" value="for $contrib in $author-contribs return if (e:get-name($contrib)=$name) then e:get-name($contrib)"/>
+      <let name="matching-author-names" value="for $contrib in $author-contribs where (e:get-name($contrib)=$name) return e:get-name($contrib)"/>
       <assert test="count($matching-author-names)=0" role="error" id="editor-conformance-5">
         <value-of select="$name"/> is listed both as an author as as a <value-of select="$role"/>, which must be incorrect.</assert>
     </rule>
