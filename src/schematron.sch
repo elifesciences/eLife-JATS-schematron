@@ -1978,7 +1978,7 @@
       <let name="name" value="e:get-name(name[1])"/>
       <let name="role" value="role[1]"/>
       <let name="author-contribs" value="ancestor::article-meta/contrib-group[1]/contrib[@contrib-type='author']"/>
-      <let name="matching-author-names" value="for $contrib in $author-contribs return if (e:get-name($contrib)=$name) then e:get-name($contrib) else ()"/>
+      <let name="matching-author-names" value="for $contrib in $author-contribs return if (e:get-name($contrib/name[1])=$name) then e:get-name($contrib) else ()"/>
       
       <report test="(@contrib-type='senior_editor') and ($role!='Senior Editor')" 
         role="error" 
