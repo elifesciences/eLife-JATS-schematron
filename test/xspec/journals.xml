@@ -2,8 +2,7 @@
   - Always lower-case the tite.
   - Always remove 'the' from the beginning og the journal name. i.e. 'the embo journal' becomes 'embo journal'.
   - year attribute contains the most recent year that journal has no dois.
--->
-<journals>
+--><journals>
   <journal title="acta embryol morphol exp" year="9999"/>
   <journal title="acta embryologiae et morphologiae experimentalis" year="9999"/>
   <journal title="acta embryologiae experimentalis" year="9999"/>

@@ -1055,6 +1055,16 @@
         <x:expect-report id="editor-conformance-4" role="error"/>
         <x:expect-not-assert id="test-editors-contrib-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="editor-conformance-5-pass">
+        <x:context href="../tests/gen/test-editors-contrib/editor-conformance-5/pass.xml"/>
+        <x:expect-not-assert id="editor-conformance-5" role="error"/>
+        <x:expect-not-assert id="test-editors-contrib-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-conformance-5-fail">
+        <x:context href="../tests/gen/test-editors-contrib/editor-conformance-5/fail.xml"/>
+        <x:expect-assert id="editor-conformance-5" role="error"/>
+        <x:expect-not-assert id="test-editors-contrib-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="auth-cont-tests">
       <x:scenario label="auth-cont-test-1-pass">

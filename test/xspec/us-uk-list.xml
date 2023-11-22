@@ -1,5 +1,4 @@
-<!-- Note that this is invoked with regex, so special characters have to be escaped -->
-<list>
+<!-- Note that this is invoked with regex, so special characters have to be escaped --><list>
 <item us="accessorize" uk="accessorise"/>
 <item us="accessorized" uk="accessorised"/>
 <item us="accessorizes" uk="accessorises"/>
