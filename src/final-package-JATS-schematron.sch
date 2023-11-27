@@ -4190,7 +4190,7 @@
       <assert test="anonymous" role="error" id="prc-reviewer-test-2">A reviewer contrib in a PRC article must have a child anonymous element. This one does not - <value-of select="."/>.</assert>
     </rule></pattern><pattern id="prc-pub-review-tests-pattern"><rule context="article[e:is-prc(.)]" id="prc-pub-review-tests">
       
-      <report test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')]          or         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')]         )" role="error" id="prc-pub-review-test-1">This article has individual public reviews, and also either a consensus or a joint public review. This must be incorrect.</report>
+      <report test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')]          or         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')]         )" role="warning" id="prc-pub-review-test-1">This article has individual public reviews, and also either a consensus or a joint public review, which is highgly unusual. Is this correct?</report>
     </rule></pattern>
   
   <pattern id="sub-article-doi-checks-pattern"><rule context="sub-article/front-stub/article-id[@pub-id-type='doi']" id="sub-article-doi-checks">

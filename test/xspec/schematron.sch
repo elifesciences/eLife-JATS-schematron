@@ -5376,7 +5376,7 @@
   <pattern id="prc-pub-review-tests-pattern">
     <rule context="article[e:is-prc(.)]" id="prc-pub-review-tests">
       
-      <report test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')]          or         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')]         )" role="error" id="prc-pub-review-test-1">This article has individual public reviews, and also either a consensus or a joint public review. This must be incorrect.</report>
+      <report test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')]          or         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')]         )" role="warning" id="prc-pub-review-test-1">This article has individual public reviews, and also either a consensus or a joint public review, which is highgly unusual. Is this correct?</report>
     </rule>
   </pattern>
   
