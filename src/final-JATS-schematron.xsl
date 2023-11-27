@@ -24565,15 +24565,15 @@
    <xsl:template match="article[e:is-prc(.)]" priority="1000" mode="M379">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="article[e:is-prc(.)]" id="prc-pub-review-tests"/>
 
-		    <!--REPORT error-->
+		    <!--REPORT warning-->
       <xsl:if test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')]          or         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')]         )">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and ( sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')] or sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')] )">
             <xsl:attribute name="id">prc-pub-review-test-1</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[prc-pub-review-test-1] This article has individual public reviews, and also either a consensus or a joint public review. This must be incorrect.</svrl:text>
+            <svrl:text>[prc-pub-review-test-1] This article has individual public reviews, and also either a consensus or a joint public review, which is highgly unusual. Is this correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M379"/>

@@ -7549,8 +7549,8 @@ else self::*/local-name() = $allowed-p-blocks"
         or
         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')]
         )"
-        role="error" 
-        id="prc-pub-review-test-1">This article has individual public reviews, and also either a consensus or a joint public review. This must be incorrect.</report>
+        role="warning" 
+        id="prc-pub-review-test-1">This article has individual public reviews, and also either a consensus or a joint public review, which is highgly unusual. Is this correct?</report>
     </rule>
     
   </pattern>
