@@ -189,9 +189,8 @@
 
 	  <!--RULE -->
    <xsl:template match="contrib" priority="1000" mode="M0">
-      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="contrib"/>
 
-		    <!--REPORT warning-->
+		<!--REPORT warning-->
       <xsl:if test="collab">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="collab">
             <xsl:attribute name="id">test-collab-presence</xsl:attribute>
@@ -214,9 +213,8 @@
 
 	  <!--RULE -->
    <xsl:template match="app-group|app[not(parent::app-group)]" priority="1000" mode="M1">
-      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="app-group|app[not(parent::app-group)]"/>
 
-		    <!--REPORT warning-->
+		<!--REPORT warning-->
       <xsl:if test=".">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".">
             <xsl:attribute name="id">test-appendix-presence</xsl:attribute>
@@ -239,9 +237,8 @@
 
 	  <!--RULE -->
    <xsl:template match="table-wrap" priority="1000" mode="M2">
-      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="table-wrap"/>
 
-		    <!--REPORT warning-->
+		<!--REPORT warning-->
       <xsl:if test="count (graphic) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count (graphic) gt 1">
             <xsl:attribute name="id">test-multi-table-presence</xsl:attribute>
