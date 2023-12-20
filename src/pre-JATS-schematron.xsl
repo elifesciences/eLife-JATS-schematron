@@ -88,6 +88,10 @@
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:titleCase" as="xs:string">
       <xsl:param name="s" as="xs:string"/>
       <xsl:choose>
+      
+         <xsl:when test="lower-case($s)='protein kinase a'">
+            <xsl:value-of select="'Protein Kinase A'"/>
+         </xsl:when>
          <xsl:when test="contains($s,' ')">
             <xsl:variable name="token1" select="substring-before($s,' ')"/>
             <xsl:variable name="token2" select="substring-after($s,$token1)"/>
