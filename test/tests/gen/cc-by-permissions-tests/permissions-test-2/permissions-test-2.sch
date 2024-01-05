@@ -1294,6 +1294,8 @@
       <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
       <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
       <let name="license-type" value="license/@xlink:href"/>
+      <let name="is-prc" value="e:is-prc(.)"/>
+      <let name="authoritative-year" value="if ($is-prc) then ancestor::article-meta/pub-history/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]         else ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year[1]"/>
       <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-2" test="matches(copyright-year[1],'^[0-9]{4}$')" role="error" id="permissions-test-2">permissions must contain copyright-year in the format 0000 in CC BY licensed articles. Currently it is <value-of select="copyright-year"/>.</assert>
     </rule>
   </pattern>

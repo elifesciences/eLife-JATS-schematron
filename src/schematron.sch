@@ -2766,6 +2766,10 @@
       <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
       <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
       <let name="license-type" value="license/@xlink:href"/>
+      <let name="is-prc" value="e:is-prc(.)"/>
+      <!-- dirty - needs doing based on first date rather than just position? -->
+      <let name="authoritative-year" value="if ($is-prc) then ancestor::article-meta/pub-history/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]
+        else ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year[1]"/>
       
       <assert see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-1" 
         test="copyright-statement" 
@@ -2783,9 +2787,9 @@
         id="permissions-test-3">permissions must contain copyright-holder in CC BY licensed articles.</assert>
       
       <assert see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-6" 
-        test="copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year" 
+        test="copyright-year = $authoritative-year" 
         role="error" 
-        id="permissions-test-6">copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year=<value-of select="copyright-year"/> and pub-date=<value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year"/>.</assert>
+        id="permissions-test-6">copyright-year must match the the year of first reviewed preprint publication under the new model or first publicaiton date in the old model. For this <value-of select="if ($is-prc) then 'new' else 'old'"/> model paper, currently copyright-year=<value-of select="copyright-year"/> and authoritative pub-date=<value-of select="$authoritative-year"/>.</assert>
       
       <assert see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-7" 
         test="copyright-holder = $copyright-holder" 

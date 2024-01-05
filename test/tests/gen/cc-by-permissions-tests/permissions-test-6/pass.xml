@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="permissions-test-6.sch"?>
 <!--Context: front//permissions[contains(license[1]/@xlink:href,'creativecommons.org/licenses/by/')]
-Test: assert    copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year
-Message: copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year= and pub-date=. -->
+Test: assert    copyright-year = $authoritative-year
+Message: copyright-year must match the the year of first reviewed preprint publication under the new model or first publicaiton date in the old model. For this  model paper, currently copyright-year= and authoritative pub-date=. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>
