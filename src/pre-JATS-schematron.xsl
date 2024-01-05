@@ -10224,6 +10224,8 @@
       <xsl:variable name="author-contrib-group" select="ancestor::article-meta/contrib-group[1]"/>
       <xsl:variable name="copyright-holder" select="e:get-copyright-holder($author-contrib-group)"/>
       <xsl:variable name="license-type" select="license/@xlink:href"/>
+      <xsl:variable name="is-prc" select="e:is-prc(.)"/>
+      <xsl:variable name="authoritative-year" select="if ($is-prc) then ancestor::article-meta/pub-history/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]         else ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year[1]"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>
@@ -10277,19 +10279,21 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year"/>
+         <xsl:when test="copyright-year = $authoritative-year"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="copyright-year = ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="copyright-year = $authoritative-year">
                <xsl:attribute name="id">permissions-test-6</xsl:attribute>
                <xsl:attribute name="see">https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-6</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[permissions-test-6] copyright-year must match the contents of the year in the pub-date[@publication-format='electronic'][@date-type='publication']. Currently, copyright-year=<xsl:text/>
+               <svrl:text>[permissions-test-6] copyright-year must match the the year of first reviewed preprint publication under the new model or first publicaiton date in the old model. For this <xsl:text/>
+                  <xsl:value-of select="if ($is-prc) then 'new' else 'old'"/>
+                  <xsl:text/> model paper, currently copyright-year=<xsl:text/>
                   <xsl:value-of select="copyright-year"/>
-                  <xsl:text/> and pub-date=<xsl:text/>
-                  <xsl:value-of select="ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year"/>
+                  <xsl:text/> and authoritative pub-date=<xsl:text/>
+                  <xsl:value-of select="$authoritative-year"/>
                   <xsl:text/>.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
