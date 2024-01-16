@@ -11018,13 +11018,13 @@
 		    <!--REPORT error-->
       <xsl:if test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])">
-            <xsl:attribute name="id">clintrial-conformance-9</xsl:attribute>
+            <xsl:attribute name="id">final-clintrial-conformance-9</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[clintrial-conformance-9] A section with the title <xsl:text/>
+            <svrl:text>[final-clintrial-conformance-9] A section with the title <xsl:text/>
                <xsl:value-of select="title"/>
                <xsl:text/> in the abstract must have at least one related-object element that contains all the information related to the clinical trial. This one does not.</svrl:text>
          </svrl:successful-report>

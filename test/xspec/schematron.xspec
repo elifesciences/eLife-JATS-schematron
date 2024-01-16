@@ -2757,14 +2757,24 @@
         <x:expect-assert id="clintrial-conformance-8" role="error"/>
         <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="clintrial-conformance-9-pass">
-        <x:context href="../tests/gen/abstract-sec-titles/clintrial-conformance-9/pass.xml"/>
-        <x:expect-not-report id="clintrial-conformance-9" role="error"/>
+      <x:scenario label="pre-clintrial-conformance-9-pass">
+        <x:context href="../tests/gen/abstract-sec-titles/pre-clintrial-conformance-9/pass.xml"/>
+        <x:expect-not-report id="pre-clintrial-conformance-9" role="warning"/>
         <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="clintrial-conformance-9-fail">
-        <x:context href="../tests/gen/abstract-sec-titles/clintrial-conformance-9/fail.xml"/>
-        <x:expect-report id="clintrial-conformance-9" role="error"/>
+      <x:scenario label="pre-clintrial-conformance-9-fail">
+        <x:context href="../tests/gen/abstract-sec-titles/pre-clintrial-conformance-9/fail.xml"/>
+        <x:expect-report id="pre-clintrial-conformance-9" role="warning"/>
+        <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-clintrial-conformance-9-pass">
+        <x:context href="../tests/gen/abstract-sec-titles/final-clintrial-conformance-9/pass.xml"/>
+        <x:expect-not-report id="final-clintrial-conformance-9" role="error"/>
+        <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-clintrial-conformance-9-fail">
+        <x:context href="../tests/gen/abstract-sec-titles/final-clintrial-conformance-9/fail.xml"/>
+        <x:expect-report id="final-clintrial-conformance-9" role="error"/>
         <x:expect-not-assert id="abstract-sec-titles-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
