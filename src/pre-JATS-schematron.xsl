@@ -17053,7 +17053,9 @@
                </xsl:attribute>
                <svrl:text>[td-child-test] td cannot contain <xsl:text/>
                   <xsl:value-of select="self::*/local-name()"/>
-                  <xsl:text/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline', and 'inline-formula'.</svrl:text>
+                  <xsl:text/>. Only the following elements are allowed - <xsl:text/>
+                  <xsl:value-of select="string-join($allowed-blocks,', ')"/>
+                  <xsl:text/>.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -17084,7 +17086,9 @@
                </xsl:attribute>
                <svrl:text>[th-child-test-1] th cannot contain <xsl:text/>
                   <xsl:value-of select="self::*/local-name()"/>
-                  <xsl:text/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'underline', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code', 'inline-graphic', and 'inline-formula'.</svrl:text>
+                  <xsl:text/>. Only the following elements are allowed - <xsl:text/>
+                  <xsl:value-of select="string-join($allowed-blocks,', ')"/>
+                  <xsl:text/>.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>

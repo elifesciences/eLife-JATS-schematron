@@ -5052,7 +5052,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#td-child-test" 
         test="self::*/local-name() = $allowed-blocks" 
         role="error" 
-        id="td-child-test">td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code','inline-graphic','underline', and 'inline-formula'.</assert>
+        id="td-child-test">td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - <value-of select="string-join($allowed-blocks,', ')"/>.</assert>
     </rule>
     
     <rule context="th/*" id="th-child-tests">
@@ -5061,7 +5061,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#th-child-test-1" 
         test="self::*/local-name() = ($allowed-blocks)" 
         role="error" 
-        id="th-child-test-1">th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - 'bold', 'italic', 'sup', 'sub', 'sc', 'underline', 'ext-link', 'xref', 'break', 'named-content', 'monospace', 'code', 'inline-graphic', and 'inline-formula'.</assert>
+        id="th-child-test-1">th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - <value-of select="string-join($allowed-blocks,', ')"/>.</assert>
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#th-child-test-2" 
         test="name() = ('bold','underline') and . = ./parent::th" 
