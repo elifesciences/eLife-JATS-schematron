@@ -32,4 +32,4 @@ let $list :=
   return <ror>{($id,$name,$cities,$country)}</ror> 
 }</rors>
 
-return file:write(($src||'rors.xml'),$list)
+return file:write(($src||'rors.xml'),$list, map{"indent":"yes"})
