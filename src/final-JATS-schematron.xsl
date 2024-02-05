@@ -19638,6 +19638,20 @@
             </svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="matches(lower-case(.),'biorend[eo]r') and not(parent::caption/parent::fig/permissions[matches(lower-case(.),'biorend[eo]r')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'biorend[eo]r') and not(parent::caption/parent::fig/permissions[matches(lower-case(.),'biorend[eo]r')])">
+            <xsl:attribute name="id">final-fig-caption-test-4</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[final-fig-caption-test-4] Caption for <xsl:text/>
+               <xsl:value-of select="$label"/>
+               <xsl:text/> contains what looks like a mention of bioRender and does not have a permissions statement that refers to bioRender. bioRender do not permit content to be published under a CC-BY license  (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only). Once the authors have obtained permission, this figure needs to contain a copyright statement indicating what license it is available under (e.g. CC BY-NC-ND).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M269"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M269"/>

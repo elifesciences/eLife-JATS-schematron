@@ -1,0 +1,22 @@
+<?oxygen SCHSchema="final-fig-caption-test-4.sch"?>
+<!--Context: fig/caption/p[not(child::supplementary-material)]
+Test: report    matches(lower-case(.),'biorend[eo]r') and not(parent::caption/parent::fig/permissions[matches(lower-case(.),'biorend[eo]r')])
+Message: Caption for  contains what looks like a mention of bioRender and does not have a permissions statement that refers to bioRender. bioRender do not permit content to be published under a CC-BY license  (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only). Once the authors have obtained permission, this figure needs to contain a copyright statement indicating what license it is available under (e.g. CC BY-NC-ND). -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <fig>
+            <caption>
+                <p>Panel X created by bioRender.</p>
+            </caption>
+            <permissions>
+                <copyright-statement>© 2014, copyright holder</copyright-statement>
+                <copyright-year>2014</copyright-year>
+                <copyright-holder>copyright holder</copyright-holder>
+                <license>
+                    <ali:license_ref>https://creativecommons.org/licenses/by-nc-nd/4.0/</ali:license_ref>
+                    <license-p>Panel X created by bioRender and published under a <ext-link ext-link-type="uri" xlink:href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution License (CC BY-NC-ND 4.0) with permission.</ext-link></license-p>
+                </license>
+            </permissions>
+        </fig>
+    </article>
+</root>
