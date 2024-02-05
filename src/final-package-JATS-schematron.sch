@@ -2947,6 +2947,10 @@
       
       <assert test="@mathvariant" role="error" id="math-descendant-test-1">Equation has character(s) - <value-of select="."/> - which have a font in a class element - <value-of select="@class"/> - but the element does not have a mathvariant attribute. This means that while the font will display in the PDF, it will not display on continuum. Either it needs a mathvariant attribute, or the specific unicode for that character in the script/font should be used.</assert>
       
+    </rule></pattern><pattern id="mrow-tests-pattern"><rule context="mml:mrow" id="mrow-tests">
+      
+      <report test="not(*) and (normalize-space(.)='')" role="error" id="final-mrow-test-1">mrow cannot be empty.</report>
+      
     </rule></pattern><pattern id="disp-formula-child-tests-pattern"><rule context="disp-formula/*" id="disp-formula-child-tests">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1" test="not(local-name()=('label','math'))" role="error" id="disp-formula-child-test-1"><name/> element is not allowed as a child of disp-formula.</report>

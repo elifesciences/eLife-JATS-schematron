@@ -2,7 +2,7 @@ declare variable $sch := doc('../src/schematron.sch');
 
 let $src := substring-before($sch/base-uri(),'schematron.sch')
 
-let $c := fetch:xml('http://api.crossref.org/works/10.18810/registries/transform/application/vnd.crossref.unixsd+xml')
+let $c := parse-xml(fetch:text('http://api.crossref.org/works/10.18810/registries/transform/application/vnd.crossref.unixsd+xml'))
 
 let $list := 
 <registries>{
