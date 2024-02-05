@@ -1,0 +1,8 @@
+<?oxygen SCHSchema="final-mrow-test-1.sch"?><!--Context: mml:mrow
+Test: report    not(*) and (normalize-space(.)='')
+Message: mrow cannot be empty. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<article>
+<mml:mrow class="MJX-TeXAtom-ORD"/>
+</article>
+</root>

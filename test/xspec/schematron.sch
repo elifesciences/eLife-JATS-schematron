@@ -3523,6 +3523,13 @@
       
     </rule>
   </pattern>
+  <pattern id="mrow-tests-pattern">
+    <rule context="mml:mrow" id="mrow-tests">
+      
+      <report test="not(*) and (normalize-space(.)='')" role="error" id="final-mrow-test-1">mrow cannot be empty.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="disp-formula-child-tests-pattern">
     <rule context="disp-formula/*" id="disp-formula-child-tests">
       
@@ -9615,6 +9622,7 @@
       <assert test="descendant::inline-formula" role="error" id="inline-formula-tests-xspec-assert">inline-formula must be present.</assert>
       <assert test="descendant::mml:math" role="error" id="math-tests-xspec-assert">mml:math must be present.</assert>
       <assert test="descendant::mml:math//*[contains(@class,'font') and matches(.,'[A-Za-z]')]" role="error" id="math-descendant-tests-xspec-assert">mml:math//*[contains(@class,'font') and matches(.,'[A-Za-z]')] must be present.</assert>
+      <assert test="descendant::mml:mrow" role="error" id="mrow-tests-xspec-assert">mml:mrow must be present.</assert>
       <assert test="descendant::disp-formula/*" role="error" id="disp-formula-child-tests-xspec-assert">disp-formula/* must be present.</assert>
       <assert test="descendant::inline-formula/*" role="error" id="inline-formula-child-tests-xspec-assert">inline-formula/* must be present.</assert>
       <assert test="descendant::mml:mover" role="error" id="math-overset-tests-xspec-assert">mml:mover must be present.</assert>

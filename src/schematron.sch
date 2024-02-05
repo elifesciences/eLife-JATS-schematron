@@ -4738,6 +4738,14 @@ else self::*/local-name() = $allowed-p-blocks"
         id="math-descendant-test-1">Equation has character(s) - <value-of select="."/> - which have a font in a class element - <value-of select="@class"/> - but the element does not have a mathvariant attribute. This means that while the font will display in the PDF, it will not display on continuum. Either it needs a mathvariant attribute, or the specific unicode for that character in the script/font should be used.</assert>
       
     </rule>
+
+    <rule context="mml:mrow" id="mrow-tests">
+      
+      <report test="not(*) and (normalize-space(.)='')" 
+        role="error" 
+        id="final-mrow-test-1">mrow cannot be empty.</report>
+      
+    </rule>
     
     <rule context="disp-formula/*" id="disp-formula-child-tests">
       

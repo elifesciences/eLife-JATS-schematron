@@ -5682,6 +5682,18 @@
         <x:expect-not-assert id="math-descendant-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="mrow-tests">
+      <x:scenario label="final-mrow-test-1-pass">
+        <x:context href="../tests/gen/mrow-tests/final-mrow-test-1/pass.xml"/>
+        <x:expect-not-report id="final-mrow-test-1" role="error"/>
+        <x:expect-not-assert id="mrow-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-mrow-test-1-fail">
+        <x:context href="../tests/gen/mrow-tests/final-mrow-test-1/fail.xml"/>
+        <x:expect-report id="final-mrow-test-1" role="error"/>
+        <x:expect-not-assert id="mrow-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="disp-formula-child-tests">
       <x:scenario label="disp-formula-child-test-1-pass">
         <x:context href="../tests/gen/disp-formula-child-tests/disp-formula-child-test-1/pass.xml"/>
