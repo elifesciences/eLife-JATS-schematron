@@ -5910,6 +5910,14 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="$panel-list//*:item" 
         role="warning" 
         id="fig-caption-test-3">Panel indicators at the start of sentences in captions should be surrounded by parentheses. The caption for <value-of select="$label"/> may have some panels without parentheses. Check <value-of select="string-join(for $x in $panel-list//*:item return concat('&quot;',$x/@token,'&quot;',' in ','&quot;',$x,'&quot;'),';')"/></report>
+
+      <report test="matches(lower-case(.),'biorend[eo]r') and not(parent::caption/parent::fig/permissions[matches(lower-case(.),'biorend[eo]r')])" 
+        role="warning" 
+        id="pre-fig-caption-test-4">Caption for <value-of select="$label"/> contains what looks like a mention of bioRender and does not have a permissions statement that refers to bioRender. bioRender do not permit content to be published under a CC-BY license  (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only). Once the authors have obtained permission, this figure needs to contain a copyright statement indicating what license it is available under (e.g. CC BY-NC-ND).</report>
+
+<report test="matches(lower-case(.),'biorend[eo]r') and not(parent::caption/parent::fig/permissions[matches(lower-case(.),'biorend[eo]r')])" 
+        role="error" 
+        id="final-fig-caption-test-4">Caption for <value-of select="$label"/> contains what looks like a mention of bioRender and does not have a permissions statement that refers to bioRender. bioRender do not permit content to be published under a CC-BY license  (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only). Once the authors have obtained permission, this figure needs to contain a copyright statement indicating what license it is available under (e.g. CC BY-NC-ND).</report>
     </rule>
     
     <rule context="fig/caption/p/bold" id="fig-panel-tests">
