@@ -19649,7 +19649,7 @@
             </xsl:attribute>
             <svrl:text>[final-fig-caption-test-4] Caption for <xsl:text/>
                <xsl:value-of select="$label"/>
-               <xsl:text/> contains what looks like a mention of bioRender and does not have a permissions statement that refers to bioRender. bioRender do not permit content to be published under a CC-BY license  (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only). Once the authors have obtained permission, this figure needs to contain a copyright statement indicating what license it is available under (e.g. CC BY-NC-ND).</svrl:text>
+               <xsl:text/> contains what looks like a mention of bioRender and does not have a permissions statement that refers to bioRender. bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only). Once the authors have obtained permission, this figure needs to contain a copyright statement indicating which license it is available under (e.g. CC BY-NC-ND).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M269"/>
@@ -20530,6 +20530,18 @@
                <xsl:value-of select="$hit"/>
                <xsl:text/>
             </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="matches(lower-case(.),'biorend[eo]r')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'biorend[eo]r')">
+            <xsl:attribute name="id">ack-biorender</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ack-biorender] Acknowledgements contains a reference to bioRender. Since bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only), if any images were created using bioRender, the authors will need to obtain permission to share them under a permissive license. Once the authors have obtained permission, any bioRender figures need to contain a copyright statement indicating which license they are available under (e.g. CC BY-NC-ND).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M282"/>

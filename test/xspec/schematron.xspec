@@ -7973,6 +7973,16 @@
         <x:expect-report id="ack-full-stop-intial-test" role="warning"/>
         <x:expect-not-assert id="ack-content-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ack-biorender-pass">
+        <x:context href="../tests/gen/ack-content-tests/ack-biorender/pass.xml"/>
+        <x:expect-not-report id="ack-biorender" role="warning"/>
+        <x:expect-not-assert id="ack-content-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ack-biorender-fail">
+        <x:context href="../tests/gen/ack-content-tests/ack-biorender/fail.xml"/>
+        <x:expect-report id="ack-biorender" role="warning"/>
+        <x:expect-not-assert id="ack-content-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-list-title-tests">
       <x:scenario label="ref-list-title-test-pass">
