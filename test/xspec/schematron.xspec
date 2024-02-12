@@ -5694,6 +5694,40 @@
         <x:expect-not-assert id="mrow-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="math-overset-tests">
+      <x:scenario label="math-overset-bar-test-pass">
+        <x:context href="../tests/gen/math-overset-tests/math-overset-bar-test/pass.xml"/>
+        <x:expect-not-report id="math-overset-bar-test" role="warning"/>
+        <x:expect-not-assert id="math-overset-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-overset-bar-test-fail">
+        <x:context href="../tests/gen/math-overset-tests/math-overset-bar-test/fail.xml"/>
+        <x:expect-report id="math-overset-bar-test" role="warning"/>
+        <x:expect-not-assert id="math-overset-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-overset-missing-test-pass">
+        <x:context href="../tests/gen/math-overset-tests/math-overset-missing-test/pass.xml"/>
+        <x:expect-not-report id="math-overset-missing-test" role="warning"/>
+        <x:expect-not-assert id="math-overset-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-overset-missing-test-fail">
+        <x:context href="../tests/gen/math-overset-tests/math-overset-missing-test/fail.xml"/>
+        <x:expect-report id="math-overset-missing-test" role="warning"/>
+        <x:expect-not-assert id="math-overset-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="math-mi-tests">
+      <x:scenario label="math-mi-space-test-pass">
+        <x:context href="../tests/gen/math-mi-tests/math-mi-space-test/pass.xml"/>
+        <x:expect-not-report id="math-mi-space-test" role="error"/>
+        <x:expect-not-assert id="math-mi-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-mi-space-test-fail">
+        <x:context href="../tests/gen/math-mi-tests/math-mi-space-test/fail.xml"/>
+        <x:expect-report id="math-mi-space-test" role="error"/>
+        <x:expect-not-assert id="math-mi-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="disp-formula-child-tests">
       <x:scenario label="disp-formula-child-test-1-pass">
         <x:context href="../tests/gen/disp-formula-child-tests/disp-formula-child-test-1/pass.xml"/>
@@ -5716,28 +5750,6 @@
         <x:context href="../tests/gen/inline-formula-child-tests/inline-formula-child-test-1/fail.xml"/>
         <x:expect-report id="inline-formula-child-test-1" role="error"/>
         <x:expect-not-assert id="inline-formula-child-tests-xspec-assert" role="error"/>
-      </x:scenario>
-    </x:scenario>
-    <x:scenario label="math-overset-tests">
-      <x:scenario label="math-overset-bar-test-pass">
-        <x:context href="../tests/gen/math-overset-tests/math-overset-bar-test/pass.xml"/>
-        <x:expect-not-report id="math-overset-bar-test" role="warning"/>
-        <x:expect-not-assert id="math-overset-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="math-overset-bar-test-fail">
-        <x:context href="../tests/gen/math-overset-tests/math-overset-bar-test/fail.xml"/>
-        <x:expect-report id="math-overset-bar-test" role="warning"/>
-        <x:expect-not-assert id="math-overset-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="math-overset-missing-test-pass">
-        <x:context href="../tests/gen/math-overset-tests/math-overset-missing-test/pass.xml"/>
-        <x:expect-not-report id="math-overset-missing-test" role="warning"/>
-        <x:expect-not-assert id="math-overset-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="math-overset-missing-test-fail">
-        <x:context href="../tests/gen/math-overset-tests/math-overset-missing-test/fail.xml"/>
-        <x:expect-report id="math-overset-missing-test" role="warning"/>
-        <x:expect-not-assert id="math-overset-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="table-wrap-tests">
