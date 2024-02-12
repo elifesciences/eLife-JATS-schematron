@@ -4746,6 +4746,26 @@ else self::*/local-name() = $allowed-p-blocks"
         id="final-mrow-test-1">mrow cannot be empty.</report>
       
     </rule>
+
+    <rule context="mml:mover" id="math-overset-tests">
+      
+      <report test="mml:mo='&#x2212;'" 
+        role="warning" 
+        id="math-overset-bar-test"><value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> contains character(s) that are overset by a minus sign (<value-of select="."/>). Has the latex \overset{}{} function been used, and should the \bar{} function (or \overline{} if covering numerous characters) be used instead?</report>
+      
+      <report test="(mml:mtext or mml:mi) and not(mml:mo or */mml:mo)" 
+        role="warning" 
+        id="math-overset-missing-test"><value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> contains character(s) that have possibly missing character(s) directly above them (<value-of select="."/>). Has the \overset{}{} function been used, and if so should the appropriate equivalent latex function be used instead (such as \bar{}, \tilde{}, \dot{}, or \hat{})?</report>
+      
+    </rule>
+
+    <rule context="mml:mi" id="math-mi-tests">
+      
+      <report test="matches(.,'^\p{Zs}$')"
+        role="error"
+        id="math-mi-space-test"><name/> element contains only text. Has "\" been used for space in the tex editor, instead of "\,"?</report>
+      
+    </rule>
     
     <rule context="disp-formula/*" id="disp-formula-child-tests">
       
@@ -4761,18 +4781,6 @@ else self::*/local-name() = $allowed-p-blocks"
         test="local-name()!='math'" 
         role="error" 
         id="inline-formula-child-test-1"><name/> element is not allowed as a child of inline-formula.</report>
-    </rule>
-    
-    <rule context="mml:mover" id="math-overset-tests">
-      
-      <report test="mml:mo='&#x2212;'" 
-        role="warning" 
-        id="math-overset-bar-test"><value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> contains character(s) that are overset by a minus sign (<value-of select="."/>). Has the latex \overset{}{} function been used, and should the \bar{} function (or \overline{} if covering numerous characters) be used instead?</report>
-      
-      <report test="(mml:mtext or mml:mi) and not(mml:mo or */mml:mo)" 
-        role="warning" 
-        id="math-overset-missing-test"><value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> contains character(s) that have possibly missing character(s) directly above them (<value-of select="."/>). Has the \overset{}{} function been used, and if so should the appropriate equivalent latex function be used instead (such as \bar{}, \tilde{}, \dot{}, or \hat{})?</report>
-      
     </rule>
     
     <rule context="table-wrap" id="table-wrap-tests">

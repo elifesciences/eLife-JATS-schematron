@@ -3530,6 +3530,25 @@
       
     </rule>
   </pattern>
+  <pattern id="math-overset-tests-pattern">
+    <rule context="mml:mover" id="math-overset-tests">
+      
+      <report test="mml:mo='−'" role="warning" id="math-overset-bar-test">
+        <value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> contains character(s) that are overset by a minus sign (<value-of select="."/>). Has the latex \overset{}{} function been used, and should the \bar{} function (or \overline{} if covering numerous characters) be used instead?</report>
+      
+      <report test="(mml:mtext or mml:mi) and not(mml:mo or */mml:mo)" role="warning" id="math-overset-missing-test">
+        <value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> contains character(s) that have possibly missing character(s) directly above them (<value-of select="."/>). Has the \overset{}{} function been used, and if so should the appropriate equivalent latex function be used instead (such as \bar{}, \tilde{}, \dot{}, or \hat{})?</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="math-mi-tests-pattern">
+    <rule context="mml:mi" id="math-mi-tests">
+      
+      <report test="matches(.,'^\p{Zs}$')" role="error" id="math-mi-space-test">
+        <name/> element contains only text. Has "\" been used for space in the tex editor, instead of "\,"?</report>
+      
+    </rule>
+  </pattern>
   <pattern id="disp-formula-child-tests-pattern">
     <rule context="disp-formula/*" id="disp-formula-child-tests">
       
@@ -3542,17 +3561,6 @@
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-child-test-1" test="local-name()!='math'" role="error" id="inline-formula-child-test-1">
         <name/> element is not allowed as a child of inline-formula.</report>
-    </rule>
-  </pattern>
-  <pattern id="math-overset-tests-pattern">
-    <rule context="mml:mover" id="math-overset-tests">
-      
-      <report test="mml:mo='−'" role="warning" id="math-overset-bar-test">
-        <value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> contains character(s) that are overset by a minus sign (<value-of select="."/>). Has the latex \overset{}{} function been used, and should the \bar{} function (or \overline{} if covering numerous characters) be used instead?</report>
-      
-      <report test="(mml:mtext or mml:mi) and not(mml:mo or */mml:mo)" role="warning" id="math-overset-missing-test">
-        <value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> contains character(s) that have possibly missing character(s) directly above them (<value-of select="."/>). Has the \overset{}{} function been used, and if so should the appropriate equivalent latex function be used instead (such as \bar{}, \tilde{}, \dot{}, or \hat{})?</report>
-      
     </rule>
   </pattern>
   <pattern id="table-wrap-tests-pattern">
@@ -9628,9 +9636,10 @@
       <assert test="descendant::mml:math" role="error" id="math-tests-xspec-assert">mml:math must be present.</assert>
       <assert test="descendant::mml:math//*[contains(@class,'font') and matches(.,'[A-Za-z]')]" role="error" id="math-descendant-tests-xspec-assert">mml:math//*[contains(@class,'font') and matches(.,'[A-Za-z]')] must be present.</assert>
       <assert test="descendant::mml:mrow" role="error" id="mrow-tests-xspec-assert">mml:mrow must be present.</assert>
+      <assert test="descendant::mml:mover" role="error" id="math-overset-tests-xspec-assert">mml:mover must be present.</assert>
+      <assert test="descendant::mml:mi" role="error" id="math-mi-tests-xspec-assert">mml:mi must be present.</assert>
       <assert test="descendant::disp-formula/*" role="error" id="disp-formula-child-tests-xspec-assert">disp-formula/* must be present.</assert>
       <assert test="descendant::inline-formula/*" role="error" id="inline-formula-child-tests-xspec-assert">inline-formula/* must be present.</assert>
-      <assert test="descendant::mml:mover" role="error" id="math-overset-tests-xspec-assert">mml:mover must be present.</assert>
       <assert test="descendant::table-wrap" role="error" id="table-wrap-tests-xspec-assert">table-wrap must be present.</assert>
       <assert test="descendant::table-wrap[not(ancestor::sub-article) and not(contains(@id,'keyresource')) and label]" role="error" id="table-title-tests-xspec-assert">table-wrap[not(ancestor::sub-article) and not(contains(@id,'keyresource')) and label] must be present.</assert>
       <assert test="descendant::table-wrap/caption/title" role="error" id="table-title-tests-2-xspec-assert">table-wrap/caption/title must be present.</assert>
