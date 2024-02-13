@@ -4764,10 +4764,6 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="matches(.,'^\p{Zs}$')"
         role="error"
         id="math-mi-space-test"><name/> element contains only spaces. Has "\" been used for space in the tex editor, instead of "\,"?</report>
-
-      <report test="not(*) and normalize-space(.)=''"
-        role="error"
-        id="math-mi-empty-test"><name/> element is completely empty. This is not allowed.</report>
       
     </rule>
     
