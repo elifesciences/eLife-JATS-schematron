@@ -16242,20 +16242,6 @@
                <xsl:text/> element contains only spaces. Has "\" been used for space in the tex editor, instead of "\,"?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT error-->
-      <xsl:if test="not(*) and normalize-space(.)=''">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(*) and normalize-space(.)=''">
-            <xsl:attribute name="id">math-mi-empty-test</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[math-mi-empty-test] <xsl:text/>
-               <xsl:value-of select="name(.)"/>
-               <xsl:text/> element is completely empty. This is not allowed.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
       <xsl:apply-templates select="*" mode="M206"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M206"/>
