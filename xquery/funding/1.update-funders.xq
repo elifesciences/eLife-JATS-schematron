@@ -1,4 +1,4 @@
-declare variable $sch := doc('../src/schematron.sch');
+declare variable $sch := doc('../../src/schematron.sch');
 
 let $src := substring-before($sch/base-uri(),'schematron.sch')
 let $fundref := parse-xml(fetch:text('https://gitlab.com/crossref/open_funder_registry/raw/master/registry.rdf'))
