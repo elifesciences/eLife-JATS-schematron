@@ -5727,6 +5727,16 @@
         <x:expect-report id="math-mi-space-test" role="error"/>
         <x:expect-not-assert id="math-mi-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="math-mi-empty-test-pass">
+        <x:context href="../tests/gen/math-mi-tests/math-mi-empty-test/pass.xml"/>
+        <x:expect-not-report id="math-mi-empty-test" role="error"/>
+        <x:expect-not-assert id="math-mi-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-mi-empty-test-fail">
+        <x:context href="../tests/gen/math-mi-tests/math-mi-empty-test/fail.xml"/>
+        <x:expect-report id="math-mi-empty-test" role="error"/>
+        <x:expect-not-assert id="math-mi-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="disp-formula-child-tests">
       <x:scenario label="disp-formula-child-test-1-pass">
