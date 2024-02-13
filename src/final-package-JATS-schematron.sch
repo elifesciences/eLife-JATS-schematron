@@ -3496,9 +3496,13 @@
       
       <report test="$panel-list//*:item" role="warning" id="fig-caption-test-3">Panel indicators at the start of sentences in captions should be surrounded by parentheses. The caption for <value-of select="$label"/> may have some panels without parentheses. Check <value-of select="string-join(for $x in $panel-list//*:item return concat('&quot;',$x/@token,'&quot;',' in ','&quot;',$x,'&quot;'),';')"/></report>
 
+    </rule></pattern><pattern id="biorender-fig-tests-pattern"><rule context="fig/caption/p[not(child::supplementary-material)] | fig/attrib" id="biorender-fig-tests">
+      <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>    
+
       
 
-    <report test="matches(lower-case(.),'biorend[eo]r') and not(parent::caption/parent::fig/permissions[matches(lower-case(.),'biorend[eo]r')])" role="error" id="final-fig-caption-test-4">Caption for <value-of select="$label"/> contains what looks like a mention of bioRender and does not have a permissions statement that refers to bioRender. bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only). Once the authors have obtained permission, this figure needs to contain a copyright statement indicating which license it is available under (e.g. CC BY-NC-ND).</report>
+    <report test="matches(lower-case(.),'biorend[eo]r') and not(ancestor::fig/permissions[matches(lower-case(.),'biorend[eo]r')])" role="error" id="final-fig-caption-test-4">Caption or attrib for <value-of select="$label"/> contains what looks like a mention of bioRender and does not have a permissions statement that refers to bioRender. bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only). Once the authors have obtained permission, this figure needs to contain a copyright statement indicating which license it is available under (e.g. CC BY-NC-ND).</report>
+
     </rule></pattern><pattern id="fig-panel-tests-pattern"><rule context="fig/caption/p/bold" id="fig-panel-tests">
       <let name="first-character" value="substring(.,1, 1)"/>
       <let name="last-character" value="substring(., string-length(.), 1)"/>

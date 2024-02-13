@@ -1290,17 +1290,14 @@
     
   </xsl:function>
   <pattern id="further-fig-tests">
-    <rule context="fig/caption/p[not(child::supplementary-material)]" id="fig-caption-tests">
+    <rule context="fig/caption/p[not(child::supplementary-material)] | fig/attrib" id="biorender-fig-tests">
       <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>
-      <let name="no-panels" value="replace(.,'\([a-zA-Z]\)|\([a-zA-Z]\-[a-zA-Z]\)','')"/>
-      <let name="text-tokens" value="for $x in tokenize($no-panels,'\. ') return         if (string-length($x) lt 3) then ()         else if (matches($x,'^\p{Zs}{1,3}?[a-z]')) then $x         else ()"/>
-      <let name="panel-list" value="e:list-panels(.)"/>
-      <report test="matches(lower-case(.),'biorend[eo]r') and not(parent::caption/parent::fig/permissions[matches(lower-case(.),'biorend[eo]r')])" role="error" id="final-fig-caption-test-4">Caption for <value-of select="$label"/> contains what looks like a mention of bioRender and does not have a permissions statement that refers to bioRender. bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only). Once the authors have obtained permission, this figure needs to contain a copyright statement indicating which license it is available under (e.g. CC BY-NC-ND).</report>
+      <report test="matches(lower-case(.),'biorend[eo]r') and not(ancestor::fig/permissions[matches(lower-case(.),'biorend[eo]r')])" role="warning" id="pre-fig-caption-test-4">Caption or attrib for <value-of select="$label"/> contains what looks like a mention of bioRender and does not have a permissions statement that refers to bioRender. bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only). Once the authors have obtained permission, this figure needs to contain a copyright statement indicating which license it is available under (e.g. CC BY-NC-ND).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/caption/p[not(child::supplementary-material)]" role="error" id="fig-caption-tests-xspec-assert">fig/caption/p[not(child::supplementary-material)] must be present.</assert>
+      <assert test="descendant::fig/caption/p[not(child::supplementary-material)]  or descendant:: fig/attrib" role="error" id="biorender-fig-tests-xspec-assert">fig/caption/p[not(child::supplementary-material)] | fig/attrib must be present.</assert>
     </rule>
   </pattern>
 </schema>
