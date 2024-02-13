@@ -1292,7 +1292,7 @@
   <pattern id="content-containers">
     <rule context="mml:mi" id="math-mi-tests">
       <report test="matches(.,'^\p{Zs}$')" role="error" id="math-mi-space-test">
-        <name/> element contains only text. Has "\" been used for space in the tex editor, instead of "\,"?</report>
+        <name/> element contains only spaces. Has "\" been used for space in the tex editor, instead of "\,"?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
