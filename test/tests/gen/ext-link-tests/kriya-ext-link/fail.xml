@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="kriya-ext-link.sch"?>
+<!--Context: ext-link[@ext-link-type='uri']
+Test: report    contains(lower-case(@xlink:href),'kriyadocs.com')
+Message: URL contains 'kriyadocs.com', so it looks like a link to kriya which must be incorrect - . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ext-link ext-link-type="uri" xlink:href="https://resources.kriyadocs.com/resources/elife/elife/87895/resources/eabc1e01-1537-4a0a-9e0a-794544bb01c6.html#Sx2">test</ext-link>
+    </article>
+</root>

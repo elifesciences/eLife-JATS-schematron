@@ -14043,6 +14043,20 @@
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="contains(lower-case(@xlink:href),'kriyadocs.com')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(lower-case(@xlink:href),'kriyadocs.com')">
+            <xsl:attribute name="id">kriya-ext-link</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[kriya-ext-link] URL contains 'kriyadocs.com', so it looks like a link to kriya which must be incorrect - <xsl:text/>
+               <xsl:value-of select="@xlink:href"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M178"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M178"/>
