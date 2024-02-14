@@ -3971,6 +3971,10 @@ else self::*/local-name() = $allowed-p-blocks"
         test="(.!=@xlink:href) and matches(.,'https?:|ftp:|www\.')" 
         role="warning" 
         id="ext-link-text">The text for a URL is '<value-of select="."/>' (which looks like a URL), but it is not the same as the actual embedded link, which is '<value-of select="@xlink:href"/>'.</report>
+
+      <report test="contains(lower-case(@xlink:href),'kriyadocs.com')" 
+        role="error" 
+        id="kriya-ext-link">URL contains 'kriyadocs.com', so it looks like a link to kriya which must be incorrect - <value-of select="@xlink:href"/>.</report>
     </rule>
     
     <rule context="ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" 
