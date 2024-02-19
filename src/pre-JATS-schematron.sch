@@ -3435,6 +3435,12 @@
       
       <report test="$panel-list//*:item" role="warning" id="fig-caption-test-3">[fig-caption-test-3] Panel indicators at the start of sentences in captions should be surrounded by parentheses. The caption for <value-of select="$label"/> may have some panels without parentheses. Check <value-of select="string-join(for $x in $panel-list//*:item return concat('&quot;',$x/@token,'&quot;',' in ','&quot;',$x,'&quot;'),';')"/></report>
 
+    </rule></pattern><pattern id="biorender-tests-pattern"><rule context="article" id="biorender-tests">
+      
+      <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig]) then ()           else $x/text(),'')"/>
+
+       <report test="matches(lower-case($article-text),'biorend[eo]r')" role="warning" id="biorender-check">[biorender-check] Article text contains a reference to bioRender. Since bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only), if any images were created using bioRender, the authors will need to obtain permission to share them under a permissive license. Once the authors have obtained permission, any bioRender figures need to contain a copyright statement indicating which license they are available under (e.g. CC BY-NC-ND).</report>
+
     </rule></pattern><pattern id="biorender-fig-tests-pattern"><rule context="fig/caption/p[not(child::supplementary-material)] | fig/attrib" id="biorender-fig-tests">
       <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>    
 
@@ -3580,8 +3586,6 @@
       <let name="hit-count" value="count(for $x in tokenize(.,' ') return         if (matches($x,'^[A-Z]{1}\.$')) then $x         else ())"/>
       
       <report see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#ht2dv-ack-full-stop-intial-test" test="matches(.,' [A-Z]\. |^[A-Z]\. ')" role="warning" id="ack-full-stop-intial-test">[ack-full-stop-intial-test] p element in Acknowledgements contains what looks like <value-of select="$hit-count"/> initial(s) followed by a full stop. Is it correct? - <value-of select="$hit"/></report>
-      
-      <report test="matches(lower-case(.),'biorend[eo]r')" role="warning" id="ack-biorender">[ack-biorender] Acknowledgements contains a reference to bioRender. Since bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only), if any images were created using bioRender, the authors will need to obtain permission to share them under a permissive license. Once the authors have obtained permission, any bioRender figures need to contain a copyright statement indicating which license they are available under (e.g. CC BY-NC-ND).</report>
     </rule></pattern><pattern id="ref-list-title-tests-pattern"><rule context="ref-list" id="ref-list-title-tests">
       <let name="cite-list" value="e:ref-cite-list(.)"/>
       <let name="non-distinct" value="e:non-distinct-citations($cite-list)"/>

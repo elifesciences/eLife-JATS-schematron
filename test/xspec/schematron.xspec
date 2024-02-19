@@ -7510,6 +7510,18 @@
         <x:expect-not-assert id="fig-caption-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="biorender-tests">
+      <x:scenario label="biorender-check-pass">
+        <x:context href="../tests/gen/biorender-tests/biorender-check/pass.xml"/>
+        <x:expect-not-report id="biorender-check" role="warning"/>
+        <x:expect-not-assert id="biorender-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="biorender-check-fail">
+        <x:context href="../tests/gen/biorender-tests/biorender-check/fail.xml"/>
+        <x:expect-report id="biorender-check" role="warning"/>
+        <x:expect-not-assert id="biorender-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="biorender-fig-tests">
       <x:scenario label="pre-fig-caption-test-4-pass">
         <x:context href="../tests/gen/biorender-fig-tests/pre-fig-caption-test-4/pass.xml"/>
@@ -7995,16 +8007,6 @@
       <x:scenario label="ack-full-stop-intial-test-fail">
         <x:context href="../tests/gen/ack-content-tests/ack-full-stop-intial-test/fail.xml"/>
         <x:expect-report id="ack-full-stop-intial-test" role="warning"/>
-        <x:expect-not-assert id="ack-content-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="ack-biorender-pass">
-        <x:context href="../tests/gen/ack-content-tests/ack-biorender/pass.xml"/>
-        <x:expect-not-report id="ack-biorender" role="warning"/>
-        <x:expect-not-assert id="ack-content-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="ack-biorender-fail">
-        <x:context href="../tests/gen/ack-content-tests/ack-biorender/fail.xml"/>
-        <x:expect-report id="ack-biorender" role="warning"/>
         <x:expect-not-assert id="ack-content-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
