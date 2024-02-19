@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="biorender-check.sch"?>
+<!--Context: article
+Test: report    matches(lower-case($article-text),'biorend[eo]r')
+Message: Article text contains a reference to bioRender. Since bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only), if any images were created using bioRender, the authors will need to obtain permission to share them under a permissive license. Once the authors have obtained permission, any bioRender figures need to contain a copyright statement indicating which license they are available under (e.g. CC BY-NC-ND). -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <back>
+            <fig>
+                <caption>
+                    <p>Images created with bioRender.com</p>
+                </caption>
+            </fig>
+        </back>
+    </article>
+</root>

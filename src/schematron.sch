@@ -5925,6 +5925,20 @@ else self::*/local-name() = $allowed-p-blocks"
 
     </rule>
 
+    <rule context="article" id="biorender-tests">
+      <!-- exclude ref list and figgures from this check -->
+      <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*
+          return
+          if ($x/ancestor::ref-list) then ()
+          else if ($x/ancestor::caption[parent::fig]) then ()
+          else $x/text(),'')"/>
+
+       <report test="matches(lower-case($article-text),'biorend[eo]r')" 
+        role="warning" 
+        id="biorender-check">Article text contains a reference to bioRender. Since bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only), if any images were created using bioRender, the authors will need to obtain permission to share them under a permissive license. Once the authors have obtained permission, any bioRender figures need to contain a copyright statement indicating which license they are available under (e.g. CC BY-NC-ND).</report>
+
+    </rule>
+
     <rule context="fig/caption/p[not(child::supplementary-material)] | fig/attrib" id="biorender-fig-tests">
       <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>    
 
@@ -6230,10 +6244,6 @@ else self::*/local-name() = $allowed-p-blocks"
         test="matches(.,' [A-Z]\. |^[A-Z]\. ')" 
         role="warning" 
         id="ack-full-stop-intial-test">p element in Acknowledgements contains what looks like <value-of select="$hit-count"/> initial(s) followed by a full stop. Is it correct? - <value-of select="$hit"/></report>
-      
-      <report test="matches(lower-case(.),'biorend[eo]r')" 
-        role="warning" 
-        id="ack-biorender">Acknowledgements contains a reference to bioRender. Since bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only), if any images were created using bioRender, the authors will need to obtain permission to share them under a permissive license. Once the authors have obtained permission, any bioRender figures need to contain a copyright statement indicating which license they are available under (e.g. CC BY-NC-ND).</report>
     </rule>
     
     <rule context="ref-list" id="ref-list-title-tests">
