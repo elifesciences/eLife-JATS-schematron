@@ -13521,6 +13521,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--REPORT error-->
+      <xsl:if test="(count(descendant::*:inline-graphic) ge 1) and normalize-space(.)=''">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count(descendant::*:inline-graphic) ge 1) and normalize-space(.)=''">
+            <xsl:attribute name="id">final-p-test-8</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[final-p-test-8] p element contains one or more inline-graphics and no other text, which is not permitted.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M174"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M174"/>

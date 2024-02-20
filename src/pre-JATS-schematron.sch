@@ -2463,6 +2463,9 @@
       
       <assert test="count($text-tokens) = 0" role="error" id="p-test-3">[p-test-3] p element contains <value-of select="string-join($text-tokens,', ')"/> - The spacing is incorrect.</assert>
       
+      <report test="(count(descendant::*:inline-graphic) ge 1) and normalize-space(.)=''" role="warning" id="pre-p-test-8">[pre-p-test-8] p element contains one or more inline-graphics and no other text, which is not permitted. Are the image(s) equations or content that should otherwise be captured in a machine readable way?</report>
+
+      
     </rule></pattern><pattern id="p-child-tests-pattern"><rule context="article//p/*" id="p-child-tests">
       <let name="allowed-p-blocks" value="('bold', 'sup', 'sub', 'sc', 'italic', 'underline', 'xref','inline-formula', 'disp-formula','supplementary-material', 'code', 'ext-link', 'named-content', 'inline-graphic', 'monospace', 'related-object', 'table-wrap','styled-content')"/>
       

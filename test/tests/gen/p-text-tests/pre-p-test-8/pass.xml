@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="pre-p-test-8.sch"?>
+<!--Context: p[not(inline-formula or disp-formula or code)]
+Test: report    (count(descendant::*:inline-graphic) ge 1) and normalize-space(.)=''
+Message: p element contains one or more inline-graphics and no other text, which is not permitted. Are the image(s) equations or content that should otherwise be captured in a machine readable way? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <p><inline-graphic/> some text </p>
+    </article>
+</root>
