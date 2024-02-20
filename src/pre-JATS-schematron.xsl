@@ -13406,6 +13406,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--REPORT warning-->
+      <xsl:if test="(count(descendant::*:inline-graphic) ge 1) and normalize-space(.)=''">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count(descendant::*:inline-graphic) ge 1) and normalize-space(.)=''">
+            <xsl:attribute name="id">pre-p-test-8</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pre-p-test-8] p element contains one or more inline-graphics and no other text, which is not permitted. Are the image(s) equations or content that should otherwise be captured in a machine readable way?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M172"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M172"/>

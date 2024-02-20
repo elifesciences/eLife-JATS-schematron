@@ -4129,6 +4129,26 @@
         <x:expect-assert id="p-test-3" role="error"/>
         <x:expect-not-assert id="p-text-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="pre-p-test-8-pass">
+        <x:context href="../tests/gen/p-text-tests/pre-p-test-8/pass.xml"/>
+        <x:expect-not-report id="pre-p-test-8" role="warning"/>
+        <x:expect-not-assert id="p-text-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pre-p-test-8-fail">
+        <x:context href="../tests/gen/p-text-tests/pre-p-test-8/fail.xml"/>
+        <x:expect-report id="pre-p-test-8" role="warning"/>
+        <x:expect-not-assert id="p-text-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-p-test-8-pass">
+        <x:context href="../tests/gen/p-text-tests/final-p-test-8/pass.xml"/>
+        <x:expect-not-report id="final-p-test-8" role="error"/>
+        <x:expect-not-assert id="p-text-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-p-test-8-fail">
+        <x:context href="../tests/gen/p-text-tests/final-p-test-8/fail.xml"/>
+        <x:expect-report id="final-p-test-8" role="error"/>
+        <x:expect-not-assert id="p-text-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="p-child-tests">
       <x:scenario label="allowed-p-test-pass">
