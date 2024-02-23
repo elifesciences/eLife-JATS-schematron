@@ -5,9 +5,9 @@ Message: permissions element mentions bioRender, but the copyright holder is not
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <permissions>
-            <copyright-statement>© 2023, bioRender</copyright-statement>
+            <copyright-statement>© 2023, BioRender</copyright-statement>
             <copyright-year>2023</copyright-year>
-            <copyright-holder>bioRender</copyright-holder>
+            <copyright-holder>BioRender</copyright-holder>
             <license>
                 <ali:license_ref>https://creativecommons.org/licenses/by-nc-nd/4.0/</ali:license_ref>
                 <license-p>Panel A was created using <ext-link ext-link-type="uri" xlink:href="https://www.biorender.com/">BioRender</ext-link>, and is published under a <ext-link ext-link-type="uri" xlink:href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</ext-link> license. Further reproductions must adhere to the terms of this license.</license-p>
