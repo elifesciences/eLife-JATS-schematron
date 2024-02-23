@@ -7564,6 +7564,18 @@
         <x:expect-not-assert id="biorender-fig-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="biorender-permissions-tests">
+      <x:scenario label="biorender-permissions-tes-1-pass">
+        <x:context href="../tests/gen/biorender-permissions-tests/biorender-permissions-tes-1/pass.xml"/>
+        <x:expect-not-assert id="biorender-permissions-tes-1" role="error"/>
+        <x:expect-not-assert id="biorender-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="biorender-permissions-tes-1-fail">
+        <x:context href="../tests/gen/biorender-permissions-tests/biorender-permissions-tes-1/fail.xml"/>
+        <x:expect-assert id="biorender-permissions-tes-1" role="error"/>
+        <x:expect-not-assert id="biorender-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="fig-panel-tests">
       <x:scenario label="fig-panel-test-1-pass">
         <x:context href="../tests/gen/fig-panel-tests/fig-panel-test-1/pass.xml"/>
