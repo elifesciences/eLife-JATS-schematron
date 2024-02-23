@@ -3440,7 +3440,7 @@
 
     </rule></pattern><pattern id="biorender-tests-pattern"><rule context="article" id="biorender-tests">
       
-      <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig]) then ()           else $x/text(),'')"/>
+      <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
 
        <report test="matches(lower-case($article-text),'biorend[eo]r')" role="warning" id="biorender-check">[biorender-check] Article text contains a reference to bioRender. Since bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only), if any images were created using bioRender, the authors will need to obtain permission to share them under a permissive license. Once the authors have obtained permission, any bioRender figures need to contain a copyright statement indicating which license they are available under (e.g. CC BY-NC-ND).</report>
 
@@ -3450,6 +3450,10 @@
       <report test="matches(lower-case(.),'biorend[eo]r') and not(ancestor::fig/permissions[matches(lower-case(.),'biorend[eo]r')])" role="warning" id="pre-fig-caption-test-4">[pre-fig-caption-test-4] Caption or attrib for <value-of select="$label"/> contains what looks like a mention of bioRender and does not have a permissions statement that refers to bioRender. bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only). Once the authors have obtained permission, this figure needs to contain a copyright statement indicating which license it is available under (e.g. CC BY-NC-ND).</report>
 
     
+
+    </rule></pattern><pattern id="biorender-permissions-tests-pattern"><rule context="permissions[matches(lower-case(license[1]/license-p[1]),'biorend[eo]r')]/copyright-holder" id="biorender-permissions-tests">    
+
+      <assert test=".='BioRender'" role="error" id="biorender-permissions-tes-1">[biorender-permissions-tes-1] permissions element mentions bioRender, but the copyright holder is not 'BioRender' which is incorrect. The current copyright holder is: <value-of select="."/>. The license text is: <value-of select="parent::permissions/license[1]/license-p[1]"/>.</assert>
 
     </rule></pattern><pattern id="fig-panel-tests-pattern"><rule context="fig/caption/p/bold" id="fig-panel-tests">
       <let name="first-character" value="substring(.,1, 1)"/>
