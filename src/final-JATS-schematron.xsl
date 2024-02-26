@@ -19801,7 +19801,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[biorender-permissions-tes-1] permissions element mentions bioRender, but the copyright holder is not 'BioRender' which is incorrect. The current copyright holder is: <xsl:text/>
+               <svrl:text>[biorender-permissions-tes-1] permissions element mentions bioRender, but the copyright holder is not 'BioRender Inc' which is incorrect. The current copyright holder is: <xsl:text/>
                   <xsl:value-of select="."/>
                   <xsl:text/>. The license text is: <xsl:text/>
                   <xsl:value-of select="parent::permissions/license[1]/license-p[1]"/>
