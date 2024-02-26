@@ -4370,7 +4370,7 @@
   <pattern id="biorender-permissions-tests-pattern">
     <rule context="permissions[matches(lower-case(license[1]/license-p[1]),'biorend[eo]r')]/copyright-holder" id="biorender-permissions-tests">    
 
-      <assert test=".='BioRender'" role="error" id="biorender-permissions-tes-1">permissions element mentions bioRender, but the copyright holder is not 'BioRender' which is incorrect. The current copyright holder is: <value-of select="."/>. The license text is: <value-of select="parent::permissions/license[1]/license-p[1]"/>.</assert>
+      <assert test=".='BioRender Inc'" role="error" id="biorender-permissions-tes-1">permissions element mentions bioRender, but the copyright holder is not 'BioRender' which is incorrect. The current copyright holder is: <value-of select="."/>. The license text is: <value-of select="parent::permissions/license[1]/license-p[1]"/>.</assert>
 
     </rule>
   </pattern>

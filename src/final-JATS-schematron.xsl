@@ -19793,9 +19793,9 @@
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test=".='BioRender'"/>
+         <xsl:when test=".='BioRender Inc'"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".='BioRender'">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".='BioRender Inc'">
                <xsl:attribute name="id">biorender-permissions-tes-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
