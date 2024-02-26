@@ -5963,7 +5963,7 @@ else self::*/local-name() = $allowed-p-blocks"
 
       <assert test=".='BioRender Inc'" 
         role="error" 
-        id="biorender-permissions-tes-1">permissions element mentions bioRender, but the copyright holder is not 'BioRender' which is incorrect. The current copyright holder is: <value-of select="."/>. The license text is: <value-of select="parent::permissions/license[1]/license-p[1]"/>.</assert>
+        id="biorender-permissions-tes-1">permissions element mentions bioRender, but the copyright holder is not 'BioRender Inc' which is incorrect. The current copyright holder is: <value-of select="."/>. The license text is: <value-of select="parent::permissions/license[1]/license-p[1]"/>.</assert>
 
     </rule>
     
