@@ -7188,8 +7188,13 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         flag="dl-ar"
         id="ed-report-kwd-group-1">kwd-group in <value-of select="parent::*/title-group/article-title"/> must have the attribute kwd-group-type with the value 'claim-importance' or 'evidence-strength'. This one does not.</assert>
+
+      <report test="@kwd-group-type='claim-importance' and count(kwd) gt 1" 
+        role="error" 
+        flag="dl-ar"
+        id="ed-report-kwd-group-3"><value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. This is not permitted, please check which single importance keyword should be used.</report>
       
-      <report test="@kwd-group-type=('claim-importance','evidence-strength') and count(kwd) gt 2" 
+      <report test="@kwd-group-type='evidence-strength' and count(kwd) gt 1" 
         role="warning" 
         flag="dl-ar"
         id="ed-report-kwd-group-2"><value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. This is unusual, please check this is correct.</report>
