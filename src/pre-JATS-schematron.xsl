@@ -10393,7 +10393,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[permissions-test-16] This article is CC-BY, but one or more of the authors is affiliation with the NIH (<xsl:text/>
+            <svrl:text>[permissions-test-16] This article is CC-BY, but one or more of the authors is affiliated with the NIH (<xsl:text/>
                <xsl:value-of select="string-join(for $x in ancestor::article-meta/contrib-group[1]/aff[country='United States']//institution[matches(lower-case(.),'national institutes of health|office of the director|national cancer institute|^nci$|national eye institute|^nei$|national heart,? lung,? and blood institute|^nhlbi$|national human genome research institute|^nhgri$|national institute on aging|^nia$|national institute on alcohol abuse and alcoholism|^niaaa$|national institute of allergy and infectious diseases|^niaid$|national institute of arthritis and musculoskeletal and skin diseases|^niams$|national institute of biomedical imaging and bioengineering|^nibib$|national institute of child health and human development|^nichd$|national institute on deafness and other communication disorders|^nidcd$|national institute of dental and craniofacial research|^nidcr$|national institute of diabetes and digestive and kidney diseases|^niddk$|national institute on drug abuse|^nida$|national institute of environmental health sciences|^niehs$|national institute of general medical sciences|^nigms$|national institute of mental health|^nimh$|national institute on minority health and health disparities|^nimhd$|national institute of neurological disorders and stroke|^ninds$|national institute of nursing research|^ninr$|national library of medicine|^nlm$|center for information technology|^cit$|center for scientific review|^csr$|fogarty international center|^fic$|national center for advancing translational sciences|^ncats$|national center for complementary and integrative health|^nccih$|nih clinical center|^nih cc$')] return $x,'; ')"/>
                <xsl:text/>). Should it be CC0 instead?</svrl:text>
          </svrl:successful-report>
@@ -23594,19 +23594,6 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--REPORT error-->
-      <xsl:if test=".='Inadequate'">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".='Inadequate'">
-            <xsl:attribute name="id">ed-report-evidence-kwd-2</xsl:attribute>
-            <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[ed-report-evidence-kwd-2] This article is deemed inadequate. Exeter contact eLife immediately. eLife place this article on hold and DO NOT let it proceed.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
       <xsl:apply-templates select="*" mode="M355"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M355"/>
