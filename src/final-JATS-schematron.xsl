@@ -23621,9 +23621,28 @@
          </xsl:otherwise>
       </xsl:choose>
 
+		    <!--REPORT error-->
+      <xsl:if test="@kwd-group-type='claim-importance' and count(kwd) gt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@kwd-group-type='claim-importance' and count(kwd) gt 1">
+            <xsl:attribute name="id">ed-report-kwd-group-3</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ed-report-kwd-group-3] <xsl:text/>
+               <xsl:value-of select="@kwd-group-type"/>
+               <xsl:text/> type kwd-group has <xsl:text/>
+               <xsl:value-of select="count(kwd)"/>
+               <xsl:text/> keywords: <xsl:text/>
+               <xsl:value-of select="string-join(kwd,'; ')"/>
+               <xsl:text/>. This is not permitted, please check which single importance keyword should be used.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
 		    <!--REPORT warning-->
-      <xsl:if test="@kwd-group-type=('claim-importance','evidence-strength') and count(kwd) gt 2">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@kwd-group-type=('claim-importance','evidence-strength') and count(kwd) gt 2">
+      <xsl:if test="@kwd-group-type='evidence-strength' and count(kwd) gt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@kwd-group-type='evidence-strength' and count(kwd) gt 1">
             <xsl:attribute name="id">ed-report-kwd-group-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
