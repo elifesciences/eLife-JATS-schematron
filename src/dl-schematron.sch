@@ -1505,8 +1505,6 @@
       <let name="allowed-vals" value="('Exceptional', 'Compelling', 'Convincing', 'Solid', 'Incomplete', 'Inadequate')"/>
       
       <assert test=".=$allowed-vals" role="error" flag="dl-ar" id="ed-report-evidence-kwd-1">Keyword contains <value-of select="."/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/></assert>
-      
-      <report test=".='Inadequate'" role="error" flag="dl-ar" id="ed-report-evidence-kwd-2">This article is deemed inadequate. Exeter contact eLife immediately. eLife place this article on hold and DO NOT let it proceed.</report>
     </rule></pattern><pattern id="ed-report-kwds-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" id="ed-report-kwds">
       
       <report test="preceding-sibling::kwd = ." role="error" flag="dl-ar" id="ed-report-kwd-1">Keyword contains <value-of select="."/>, there is another kwd with that value witin the same kwd-group, so this one is either incorrect or superfluous and should be deleted.</report>
