@@ -1467,9 +1467,7 @@
 	   
     <assert test="title-group[article-title]" role="error" id="test-title-group-presence">title-group containing article-title must be present.</assert>
 	   
-    <assert test="pub-date[@publication-format='electronic'][@date-type='publication']" role="error" id="test-epub-date">There must be a child pub-date[@publication-format='electronic'][@date-type='publication'] in article-meta.</assert>
-	   
-    <report test="not($is-prc) and not(pub-date[@pub-type='collection'])" role="error" id="test-pub-collection-presence">There must be a child pub-date[@pub-type='collection'] in article-meta.</report> 
+    <assert test="pub-date[@publication-format='electronic'][@date-type='publication']" role="error" id="test-epub-date">There must be a child pub-date[@publication-format='electronic'][@date-type='publication'] in article-meta.</assert> 
 	  
     <assert test="volume" role="error" id="test-volume-presence">There must be a child volume in article-meta.</assert> 
 		

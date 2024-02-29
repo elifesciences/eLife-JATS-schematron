@@ -265,16 +265,6 @@
         <x:expect-assert id="test-epub-date" role="error"/>
         <x:expect-not-assert id="test-article-metadata-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="test-pub-collection-presence-pass">
-        <x:context href="../tests/gen/test-article-metadata/test-pub-collection-presence/pass.xml"/>
-        <x:expect-not-report id="test-pub-collection-presence" role="error"/>
-        <x:expect-not-assert id="test-article-metadata-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="test-pub-collection-presence-fail">
-        <x:context href="../tests/gen/test-article-metadata/test-pub-collection-presence/fail.xml"/>
-        <x:expect-report id="test-pub-collection-presence" role="error"/>
-        <x:expect-not-assert id="test-article-metadata-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="test-volume-presence-pass">
         <x:context href="../tests/gen/test-article-metadata/test-volume-presence/pass.xml"/>
         <x:expect-not-assert id="test-volume-presence" role="error"/>
