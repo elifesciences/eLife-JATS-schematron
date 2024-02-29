@@ -1585,11 +1585,7 @@
 	   
     <assert test="pub-date[@publication-format='electronic'][@date-type='publication']" 
         role="error" 
-        id="test-epub-date">There must be a child pub-date[@publication-format='electronic'][@date-type='publication'] in article-meta.</assert>
-	   
-    <report test="not($is-prc) and not(pub-date[@pub-type='collection'])" 
-        role="error" 
-        id="test-pub-collection-presence">There must be a child pub-date[@pub-type='collection'] in article-meta.</report> 
+        id="test-epub-date">There must be a child pub-date[@publication-format='electronic'][@date-type='publication'] in article-meta.</assert> 
 	  
     <assert test="volume" 
         role="error" 

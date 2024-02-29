@@ -6605,18 +6605,6 @@
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--REPORT error-->
-      <xsl:if test="not($is-prc) and not(pub-date[@pub-type='collection'])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($is-prc) and not(pub-date[@pub-type='collection'])">
-            <xsl:attribute name="id">test-pub-collection-presence</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[test-pub-collection-presence] There must be a child pub-date[@pub-type='collection'] in article-meta.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
 		    <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="volume"/>
