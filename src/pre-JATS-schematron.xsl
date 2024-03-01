@@ -37164,6 +37164,20 @@
       </xsl:if>
 
 		    <!--REPORT error-->
+      <xsl:if test="contains(.,'℠')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'℠')">
+            <xsl:attribute name="id">service-mark-symbol</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[service-mark-symbol] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element contains the service mark symbol, '℠', which is not allowed.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
       <xsl:if test="contains(.,'®')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'®')">
             <xsl:attribute name="id">reg-trademark-symbol</xsl:attribute>
@@ -37615,6 +37629,34 @@
             <svrl:text>[ring-diacritic-symbol-sup] '<xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="contains(.,'℠')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'℠')">
+            <xsl:attribute name="id">service-mark-symbol-1-sup</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[service-mark-symbol-1-sup] '<xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/>' element contains the service mark symbol, '℠', which is not allowed.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test=". = 'SM'">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=". = 'SM'">
+            <xsl:attribute name="id">service-mark-symbol-2-sup</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[service-mark-symbol-2-sup] '<xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/>' element contains the text 'SM', which means that it resembles the service mark symbol. The service mark symbol is not allowed.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M493"/>

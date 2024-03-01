@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="service-mark-symbol-2-sup.sch"?>
+<!--Context: sup
+Test: report    . = 'SM'
+Message: '' element contains the text 'SM', which means that it resembles the service mark symbol. The service mark symbol is not allowed. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sup>S or M</sup>
+    </article>
+</root>
