@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="service-mark-symbol.sch"?>
+<!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link
+Test: report    contains(.,'℠')
+Message:  element contains the service mark symbol, '℠', which is not allowed. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <p>℠</p>
+    </article>
+</root>

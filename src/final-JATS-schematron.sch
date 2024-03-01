@@ -6228,6 +6228,8 @@
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-copyright-symbol" test="contains(.,'©')" role="error" id="copyright-symbol">[copyright-symbol] <name/> element contains the copyright symbol, '©', which is not allowed.</report>
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-trademark-symbol" test="contains(.,'™')" role="error" id="trademark-symbol">[trademark-symbol] <name/> element contains the trademark symbol, '™', which is not allowed.</report>
+
+      <report test="contains(.,'℠')" role="error" id="service-mark-symbol">[service-mark-symbol] <name/> element contains the service mark symbol, '℠', which is not allowed.</report>
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-reg-trademark-symbol" test="contains(.,'®')" role="error" id="reg-trademark-symbol">[reg-trademark-symbol] <name/> element contains the registered trademark symbol, '®', which is not allowed.</report>
       
@@ -6285,6 +6287,10 @@
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-ring-op-symbol-sup" test="contains(.,'∘')" role="warning" id="ring-op-symbol-sup">[ring-op-symbol-sup] '<name/>' element contains the Ring Operator symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-ring-diacritic-symbol-sup" test="contains(.,'˚')" role="warning" id="ring-diacritic-symbol-sup">[ring-diacritic-symbol-sup] '<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+
+      <report test="contains(.,'℠')" role="error" id="service-mark-symbol-1-sup">[service-mark-symbol-1-sup] '<name/>' element contains the service mark symbol, '℠', which is not allowed.</report>
+      
+      <report test=". = 'SM'" role="warning" id="service-mark-symbol-2-sup">[service-mark-symbol-2-sup] '<name/>' element contains the text 'SM', which means that it resembles the service mark symbol. The service mark symbol is not allowed.</report>
     </rule></pattern><pattern id="underline-tests-pattern"><rule context="underline" id="underline-tests">
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hd9o3-underline-test-1" test="matches(.,'^\p{P}*$')" role="warning" id="underline-test-1">[underline-test-1] '<name/>' element only contains punctuation - <value-of select="."/> - Should it have underline formatting?</report>

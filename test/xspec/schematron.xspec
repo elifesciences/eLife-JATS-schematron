@@ -17495,6 +17495,16 @@
         <x:expect-report id="trademark-symbol" role="error"/>
         <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="service-mark-symbol-pass">
+        <x:context href="../tests/gen/unallowed-symbol-tests/service-mark-symbol/pass.xml"/>
+        <x:expect-not-report id="service-mark-symbol" role="error"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="service-mark-symbol-fail">
+        <x:context href="../tests/gen/unallowed-symbol-tests/service-mark-symbol/fail.xml"/>
+        <x:expect-report id="service-mark-symbol" role="error"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="reg-trademark-symbol-pass">
         <x:context href="../tests/gen/unallowed-symbol-tests/reg-trademark-symbol/pass.xml"/>
         <x:expect-not-report id="reg-trademark-symbol" role="error"/>
@@ -17775,6 +17785,26 @@
       <x:scenario label="ring-diacritic-symbol-sup-fail">
         <x:context href="../tests/gen/unallowed-symbol-tests-sup/ring-diacritic-symbol-sup/fail.xml"/>
         <x:expect-report id="ring-diacritic-symbol-sup" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-sup-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="service-mark-symbol-1-sup-pass">
+        <x:context href="../tests/gen/unallowed-symbol-tests-sup/service-mark-symbol-1-sup/pass.xml"/>
+        <x:expect-not-report id="service-mark-symbol-1-sup" role="error"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-sup-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="service-mark-symbol-1-sup-fail">
+        <x:context href="../tests/gen/unallowed-symbol-tests-sup/service-mark-symbol-1-sup/fail.xml"/>
+        <x:expect-report id="service-mark-symbol-1-sup" role="error"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-sup-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="service-mark-symbol-2-sup-pass">
+        <x:context href="../tests/gen/unallowed-symbol-tests-sup/service-mark-symbol-2-sup/pass.xml"/>
+        <x:expect-not-report id="service-mark-symbol-2-sup" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-sup-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="service-mark-symbol-2-sup-fail">
+        <x:context href="../tests/gen/unallowed-symbol-tests-sup/service-mark-symbol-2-sup/fail.xml"/>
+        <x:expect-report id="service-mark-symbol-2-sup" role="warning"/>
         <x:expect-not-assert id="unallowed-symbol-tests-sup-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
