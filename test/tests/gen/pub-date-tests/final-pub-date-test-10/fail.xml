@@ -8,7 +8,7 @@ Message: pub-date must contain year in the format 0000. Currently it is ''. -->
             <pub-date publication-format="electronic" date-type="publication">
                 <day>22</day>
                 <month>10</month>
-                <year>The year of our Lord and Saviour</year>
+                <year/>
             </pub-date>
         </article-meta>
     </article>
