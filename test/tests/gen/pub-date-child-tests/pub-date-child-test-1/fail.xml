@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="pub-date-child-test-1.sch"?>
+<!--Context: pub-date/*
+Test: assert    name()=$allowed-children
+Message:  is not allowed as a child of pub-date. The only permitted elements are . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <pub-date publication-format="electronic" date-type="publication">
+                <era>Holocene</era>
+                <day>22</day>
+                <month>10</month>
+                <year>2023</year>
+                <season>Hunting season</season>
+            </pub-date>
+        </article-meta>
+    </article>
+</root>

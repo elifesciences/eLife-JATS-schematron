@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="pub-date-test-7.sch"?>
+<!--Context: pub-date
+Test: assert    @date-type
+Message: pub-date must have the attribute date-type. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <pub-date publication-format="electronic" date-type="publication">
+                <day>22</day>
+                <month>10</month>
+                <year>2023</year>
+            </pub-date>
+        </article-meta>
+    </article>
+</root>

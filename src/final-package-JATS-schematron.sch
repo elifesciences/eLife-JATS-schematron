@@ -1921,30 +1921,32 @@
       
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-year-element-citation-conformity" test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')" role="error" id="final-year-element-citation-conformity">year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement. If there is no year, and this cannot be determined yourself, please query this with the authors.</assert>
       
-    </rule></pattern><pattern id="pub-date-tests-1-pattern"><rule context="pub-date[not(@pub-type='collection')]" id="pub-date-tests-1">
+    </rule></pattern><pattern id="pub-date-tests-pattern"><rule context="pub-date" id="pub-date-tests">
+      <let name="allowed-attributes" value="('publication-format','date-type','iso-8601-date')"/>
       
+      <assert test="parent::article-meta" role="error" id="pub-date-test-1">pub-date can only be a child of article-meta. This one is a child of <value-of select="parent::*/name()"/></assert>
+
+      <report test="@*[not(name()=$allowed-attributes)]" role="error" id="pub-date-test-2">Only the following attributes are permitted on pub-date. This one has the following unallowed attributes: <value-of select="string-join(@*[not(name()=$allowed-attributes)]/name(),'; ')"/>.</report>
+
+      <report test="@publication-format and @publication-format!='electronic'" role="error" id="pub-date-test-3">pub-date has the attribute publication-format, but the value is "<value-of select="@publication-format"/>". The only permitted value is "electronic".</report>
+
+      <report test="@date-type and @date-type!='publication'" role="error" id="pub-date-test-4">pub-date has the attribute date-type, but the value is "<value-of select="@date-type"/>". The only permitted value is "publication".</report>
+
+      <report test="preceding-sibling::pub-date" role="error" id="pub-date-test-5">There can only be one pub-date in article-meta. But this pub-date has a preceding one.</report>
+
+      <assert test="@publication-format" role="error" id="pub-date-test-6">pub-date must have the attribute publication-format.</assert>
+
+      <assert test="@date-type" role="error" id="pub-date-test-7">pub-date must have the attribute date-type.</assert>
       
-      
-      <assert test="matches(day[1],'^[0-9]{2}$')" role="error" id="final-pub-date-test-1">pub-date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
-      
-      
-      
-      <assert test="matches(month[1],'^[0-9]{2}$')" role="error" id="final-pub-date-test-2">pub-date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
-      
-      <assert test="matches(year[1],'^[0-9]{4}$')" role="error" id="pub-date-test-3">pub-date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
-      
-    </rule></pattern><pattern id="press-pub-date-pattern"><rule context="pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')]" id="press-pub-date">
+    </rule></pattern><pattern id="pub-date-child-tests-pattern"><rule context="pub-date/*" id="pub-date-child-tests">
+      <let name="allowed-children" value="('day','month','year')"/>
+
+    <assert test="name()=$allowed-children" role="error" id="pub-date-child-test-1"><value-of select="name()"/> is not allowed as a child of pub-date. The only permitted elements are <value-of select="string-join($allowed-children,'; ')"/>.</assert>
+
+     </rule></pattern><pattern id="press-pub-date-pattern"><rule context="pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')]" id="press-pub-date">
       <let name="date" value="concat(year[1],'-',month[1],'-',day[1])"/>
       
       <report test="e:get-weekday($date) != 2" role="warning" id="press-pub-date-check">The publication date for this article is in the future (<value-of select="$date"/>), but the day of publication is not a Tuesday (for Press). Is that correct?</report>
-      
-    </rule></pattern><pattern id="pub-date-tests-2-pattern"><rule context="pub-date[@pub-type='collection']" id="pub-date-tests-2">
-      
-      <assert test="matches(year[1],'^[0-9]{4}$')" role="error" id="pub-date-test-4">date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
-      
-      <report test="*/local-name() != 'year'" role="error" id="pub-date-test-5">pub-date[@pub-type='collection'] can only contain a year element.</report>
-      
-      <assert test="year[1] = parent::*/pub-date[@publication-format='electronic'][@date-type='publication']/year[1]" role="error" id="pub-date-test-6">pub-date[@pub-type='collection'] year must be the same as pub-date[@publication-format='electronic'][@date-type='publication'] year.</assert>
       
     </rule></pattern><pattern id="pub-history-tests-pattern"><rule context="pub-history" id="pub-history-tests">
       
