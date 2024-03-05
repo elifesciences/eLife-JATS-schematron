@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="pub-date-test-4.sch"?>
+<!--Context: pub-date
+Test: report    @date-type and @date-type!='publication'
+Message: pub-date has the attribute date-type, but the value is "". The only permitted value is "publication". -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <pub-date publication-format="electronic" date-type="frisky">
+                <day>22</day>
+                <month>10</month>
+                <year>2023</year>
+            </pub-date>
+        </article-meta>
+    </article>
+</root>

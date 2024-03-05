@@ -1847,8 +1847,8 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">pub-date-tests-1-pattern</xsl:attribute>
-            <xsl:attribute name="name">pub-date-tests-1-pattern</xsl:attribute>
+            <xsl:attribute name="id">pub-date-tests-pattern</xsl:attribute>
+            <xsl:attribute name="name">pub-date-tests-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M110"/>
@@ -1856,8 +1856,8 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">press-pub-date-pattern</xsl:attribute>
-            <xsl:attribute name="name">press-pub-date-pattern</xsl:attribute>
+            <xsl:attribute name="id">pub-date-child-tests-pattern</xsl:attribute>
+            <xsl:attribute name="name">pub-date-child-tests-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M111"/>
@@ -1865,8 +1865,8 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">pub-date-tests-2-pattern</xsl:attribute>
-            <xsl:attribute name="name">pub-date-tests-2-pattern</xsl:attribute>
+            <xsl:attribute name="id">press-pub-date-pattern</xsl:attribute>
+            <xsl:attribute name="name">press-pub-date-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M112"/>
@@ -9463,55 +9463,111 @@
       <xsl:apply-templates select="*" mode="M109"/>
    </xsl:template>
 
-   <!--PATTERN pub-date-tests-1-pattern-->
+   <!--PATTERN pub-date-tests-pattern-->
 
 
-	  <!--RULE pub-date-tests-1-->
-   <xsl:template match="pub-date[not(@pub-type='collection')]" priority="1000" mode="M110">
+	  <!--RULE pub-date-tests-->
+   <xsl:template match="pub-date" priority="1000" mode="M110">
+      <xsl:variable name="allowed-attributes" select="('publication-format','date-type','iso-8601-date')"/>
 
-		<!--ASSERT warning-->
+		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(day[1],'^[0-9]{2}$')"/>
+         <xsl:when test="parent::article-meta"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(day[1],'^[0-9]{2}$')">
-               <xsl:attribute name="id">pre-pub-date-test-1</xsl:attribute>
-               <xsl:attribute name="role">warning</xsl:attribute>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="parent::article-meta">
+               <xsl:attribute name="id">pub-date-test-1</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[pre-pub-date-test-1] day is not present in pub-date.</svrl:text>
+               <svrl:text>[pub-date-test-1] pub-date can only be a child of article-meta. This one is a child of <xsl:text/>
+                  <xsl:value-of select="parent::*/name()"/>
+                  <xsl:text/>
+               </svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
 
-		    <!--ASSERT warning-->
+		    <!--REPORT error-->
+      <xsl:if test="@*[not(name()=$allowed-attributes)]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@*[not(name()=$allowed-attributes)]">
+            <xsl:attribute name="id">pub-date-test-2</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pub-date-test-2] Only the following attributes are permitted on pub-date. This one has the following unallowed attributes: <xsl:text/>
+               <xsl:value-of select="string-join(@*[not(name()=$allowed-attributes)]/name(),'; ')"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="@publication-format and @publication-format!='electronic'">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@publication-format and @publication-format!='electronic'">
+            <xsl:attribute name="id">pub-date-test-3</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pub-date-test-3] pub-date has the attribute publication-format, but the value is "<xsl:text/>
+               <xsl:value-of select="@publication-format"/>
+               <xsl:text/>". The only permitted value is "electronic".</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="@date-type and @date-type!='publication'">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@date-type and @date-type!='publication'">
+            <xsl:attribute name="id">pub-date-test-4</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pub-date-test-4] pub-date has the attribute date-type, but the value is "<xsl:text/>
+               <xsl:value-of select="@date-type"/>
+               <xsl:text/>". The only permitted value is "publication".</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="preceding-sibling::pub-date">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="preceding-sibling::pub-date">
+            <xsl:attribute name="id">pub-date-test-5</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pub-date-test-5] There can only be one pub-date in article-meta. But this pub-date has a preceding one.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(month[1],'^[0-9]{2}$')"/>
+         <xsl:when test="@publication-format"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(month[1],'^[0-9]{2}$')">
-               <xsl:attribute name="id">pre-pub-date-test-2</xsl:attribute>
-               <xsl:attribute name="role">warning</xsl:attribute>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@publication-format">
+               <xsl:attribute name="id">pub-date-test-6</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[pre-pub-date-test-2] month is not present in pub-date.</svrl:text>
+               <svrl:text>[pub-date-test-6] pub-date must have the attribute publication-format.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(year[1],'^[0-9]{4}$')"/>
+         <xsl:when test="@date-type"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(year[1],'^[0-9]{4}$')">
-               <xsl:attribute name="id">pub-date-test-3</xsl:attribute>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@date-type">
+               <xsl:attribute name="id">pub-date-test-7</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[pub-date-test-3] pub-date must contain year in the format 0000. Currently it is '<xsl:text/>
-                  <xsl:value-of select="year"/>
-                  <xsl:text/>'.</svrl:text>
+               <svrl:text>[pub-date-test-7] pub-date must have the attribute date-type.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -9522,11 +9578,43 @@
       <xsl:apply-templates select="*" mode="M110"/>
    </xsl:template>
 
+   <!--PATTERN pub-date-child-tests-pattern-->
+
+
+	  <!--RULE pub-date-child-tests-->
+   <xsl:template match="pub-date/*" priority="1000" mode="M111">
+      <xsl:variable name="allowed-children" select="('day','month','year')"/>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="name()=$allowed-children"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="name()=$allowed-children">
+               <xsl:attribute name="id">pub-date-child-test-1</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[pub-date-child-test-1] <xsl:text/>
+                  <xsl:value-of select="name()"/>
+                  <xsl:text/> is not allowed as a child of pub-date. The only permitted elements are <xsl:text/>
+                  <xsl:value-of select="string-join($allowed-children,'; ')"/>
+                  <xsl:text/>.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M111"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M111"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M111">
+      <xsl:apply-templates select="*" mode="M111"/>
+   </xsl:template>
+
    <!--PATTERN press-pub-date-pattern-->
 
 
 	  <!--RULE press-pub-date-->
-   <xsl:template match="pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')]" priority="1000" mode="M111">
+   <xsl:template match="pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')]" priority="1000" mode="M112">
       <xsl:variable name="date" select="concat(year[1],'-',month[1],'-',day[1])"/>
 
 		    <!--REPORT warning-->
@@ -9542,62 +9630,6 @@
                <xsl:text/>), but the day of publication is not a Tuesday (for Press). Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <xsl:apply-templates select="*" mode="M111"/>
-   </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M111"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M111">
-      <xsl:apply-templates select="*" mode="M111"/>
-   </xsl:template>
-
-   <!--PATTERN pub-date-tests-2-pattern-->
-
-
-	  <!--RULE pub-date-tests-2-->
-   <xsl:template match="pub-date[@pub-type='collection']" priority="1000" mode="M112">
-
-		<!--ASSERT error-->
-      <xsl:choose>
-         <xsl:when test="matches(year[1],'^[0-9]{4}$')"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(year[1],'^[0-9]{4}$')">
-               <xsl:attribute name="id">pub-date-test-4</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[pub-date-test-4] date must contain year in the format 0000. Currently it is '<xsl:text/>
-                  <xsl:value-of select="year"/>
-                  <xsl:text/>'.</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
-
-		    <!--REPORT error-->
-      <xsl:if test="*/local-name() != 'year'">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*/local-name() != 'year'">
-            <xsl:attribute name="id">pub-date-test-5</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[pub-date-test-5] pub-date[@pub-type='collection'] can only contain a year element.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-
-		    <!--ASSERT error-->
-      <xsl:choose>
-         <xsl:when test="year[1] = parent::*/pub-date[@publication-format='electronic'][@date-type='publication']/year[1]"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="year[1] = parent::*/pub-date[@publication-format='electronic'][@date-type='publication']/year[1]">
-               <xsl:attribute name="id">pub-date-test-6</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[pub-date-test-6] pub-date[@pub-type='collection'] year must be the same as pub-date[@publication-format='electronic'][@date-type='publication'] year.</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
       <xsl:apply-templates select="*" mode="M112"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M112"/>
