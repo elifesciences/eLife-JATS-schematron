@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="final-pub-date-test-10.sch"?>
+<!--Context: pub-date
+Test: assert    matches(year[1],'^[0-9]{4}$')
+Message: pub-date must contain year in the format 0000. Currently it is ''. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <pub-date publication-format="electronic" date-type="publication">
+                <day>22</day>
+                <month>10</month>
+                <year>The year of our Lord and Saviour</year>
+            </pub-date>
+        </article-meta>
+    </article>
+</root>

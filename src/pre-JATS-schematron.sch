@@ -1876,6 +1876,12 @@
       <assert test="@publication-format" role="error" id="pub-date-test-6">[pub-date-test-6] pub-date must have the attribute publication-format.</assert>
 
       <assert test="@date-type" role="error" id="pub-date-test-7">[pub-date-test-7] pub-date must have the attribute date-type.</assert>
+
+      
+
+      
+
+      
       
     </rule></pattern><pattern id="pub-date-child-tests-pattern"><rule context="pub-date/*" id="pub-date-child-tests">
       <let name="allowed-children" value="('day','month','year')"/>

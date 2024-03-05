@@ -1937,6 +1937,12 @@
       <assert test="@publication-format" role="error" id="pub-date-test-6">pub-date must have the attribute publication-format.</assert>
 
       <assert test="@date-type" role="error" id="pub-date-test-7">pub-date must have the attribute date-type.</assert>
+
+      <assert test="matches(day[1],'^[0-9]{2}$')" role="error" id="final-pub-date-test-8">pub-date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
+
+      <assert test="matches(month[1],'^[0-9]{2}$')" role="error" id="final-pub-date-test-9">pub-date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
+
+      <assert test="matches(year[1],'^[0-9]{4}$')" role="error" id="final-pub-date-test-10">pub-date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
       
     </rule></pattern><pattern id="pub-date-child-tests-pattern"><rule context="pub-date/*" id="pub-date-child-tests">
       <let name="allowed-children" value="('day','month','year')"/>
