@@ -2025,6 +2025,36 @@
         <x:expect-assert id="pub-date-test-7" role="error"/>
         <x:expect-not-assert id="pub-date-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="final-pub-date-test-8-pass">
+        <x:context href="../tests/gen/pub-date-tests/final-pub-date-test-8/pass.xml"/>
+        <x:expect-not-assert id="final-pub-date-test-8" role="error"/>
+        <x:expect-not-assert id="pub-date-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-pub-date-test-8-fail">
+        <x:context href="../tests/gen/pub-date-tests/final-pub-date-test-8/fail.xml"/>
+        <x:expect-assert id="final-pub-date-test-8" role="error"/>
+        <x:expect-not-assert id="pub-date-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-pub-date-test-9-pass">
+        <x:context href="../tests/gen/pub-date-tests/final-pub-date-test-9/pass.xml"/>
+        <x:expect-not-assert id="final-pub-date-test-9" role="error"/>
+        <x:expect-not-assert id="pub-date-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-pub-date-test-9-fail">
+        <x:context href="../tests/gen/pub-date-tests/final-pub-date-test-9/fail.xml"/>
+        <x:expect-assert id="final-pub-date-test-9" role="error"/>
+        <x:expect-not-assert id="pub-date-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-pub-date-test-10-pass">
+        <x:context href="../tests/gen/pub-date-tests/final-pub-date-test-10/pass.xml"/>
+        <x:expect-not-assert id="final-pub-date-test-10" role="error"/>
+        <x:expect-not-assert id="pub-date-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="final-pub-date-test-10-fail">
+        <x:context href="../tests/gen/pub-date-tests/final-pub-date-test-10/fail.xml"/>
+        <x:expect-assert id="final-pub-date-test-10" role="error"/>
+        <x:expect-not-assert id="pub-date-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="pub-date-child-tests">
       <x:scenario label="pub-date-child-test-1-pass">

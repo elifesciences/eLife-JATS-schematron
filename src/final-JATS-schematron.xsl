@@ -9680,6 +9680,57 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="matches(day[1],'^[0-9]{2}$')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(day[1],'^[0-9]{2}$')">
+               <xsl:attribute name="id">final-pub-date-test-8</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[final-pub-date-test-8] pub-date must contain day in the format 00. Currently it is '<xsl:text/>
+                  <xsl:value-of select="day"/>
+                  <xsl:text/>'.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="matches(month[1],'^[0-9]{2}$')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(month[1],'^[0-9]{2}$')">
+               <xsl:attribute name="id">final-pub-date-test-9</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[final-pub-date-test-9] pub-date must contain month in the format 00. Currently it is '<xsl:text/>
+                  <xsl:value-of select="month"/>
+                  <xsl:text/>'.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="matches(year[1],'^[0-9]{4}$')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(year[1],'^[0-9]{4}$')">
+               <xsl:attribute name="id">final-pub-date-test-10</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[final-pub-date-test-10] pub-date must contain year in the format 0000. Currently it is '<xsl:text/>
+                  <xsl:value-of select="year"/>
+                  <xsl:text/>'.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M112"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M112"/>
