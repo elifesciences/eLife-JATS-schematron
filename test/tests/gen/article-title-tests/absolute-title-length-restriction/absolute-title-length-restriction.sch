@@ -1294,7 +1294,7 @@
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="specifics" value="('Replication Study','Registered Report',$notice-display-types)"/>
       <let name="count" value="string-length(.)"/>
-      <report test="$count gt 256" role="error" id="absolute-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the current absolute limit for Continuum is 256.</report>
+      <report test="$count gt 255" role="error" id="absolute-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the current absolute limit for Continuum is 255.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

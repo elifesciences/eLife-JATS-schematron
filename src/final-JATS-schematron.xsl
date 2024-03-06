@@ -20230,8 +20230,8 @@
       </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="$count gt 256">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$count gt 256">
+      <xsl:if test="$count gt 255">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$count gt 255">
             <xsl:attribute name="id">absolute-title-length-restriction</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -20239,7 +20239,7 @@
             </xsl:attribute>
             <svrl:text>[absolute-title-length-restriction] The article title contains <xsl:text/>
                <xsl:value-of select="$count"/>
-               <xsl:text/> characters, when the current absolute limit for Continuum is 256.</svrl:text>
+               <xsl:text/> characters, when the current absolute limit for Continuum is 255.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M280"/>
