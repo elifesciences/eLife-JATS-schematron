@@ -1,11 +1,11 @@
 <?oxygen SCHSchema="absolute-title-length-restriction.sch"?>
 <!--Context: article-meta//article-title
-Test: report    $count gt 256
-Message: The article title contains  characters, when the current absolute limit for Continuum is 256. -->
+Test: report    $count gt 255
+Message: The article title contains  characters, when the current absolute limit for Continuum is 255. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <article-meta>
-      <article-title>x01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789</article-title>
+      <article-title>x012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234</article-title>
     </article-meta>
   </article>
 </root>
