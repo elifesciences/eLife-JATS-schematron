@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="dropbox-link.sch"?>
+<!--Context: ext-link[@ext-link-type='uri']
+Test: report    contains(lower-case(@xlink:href),'dropbox.com')
+Message: URL looks like it links to dropbox.com - Link: . If this is the author's content, should it be uploaded instead to a trusted repository? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ext-link ext-link-type="uri" xlink:href="https://www.dropbox.com/my-test-project">link text</ext-link>
+    </article>
+</root>
