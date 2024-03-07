@@ -4477,6 +4477,16 @@
         <x:expect-report id="kriya-ext-link" role="error"/>
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="dropbox-link-pass">
+        <x:context href="../tests/gen/ext-link-tests/dropbox-link/pass.xml"/>
+        <x:expect-not-report id="dropbox-link" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="dropbox-link-fail">
+        <x:context href="../tests/gen/ext-link-tests/dropbox-link/fail.xml"/>
+        <x:expect-report id="dropbox-link" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="software-heritage-tests">
       <x:scenario label="software-heritage-test-2-pass">

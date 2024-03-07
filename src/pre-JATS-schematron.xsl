@@ -13992,6 +13992,20 @@
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="contains(lower-case(@xlink:href),'dropbox.com')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(lower-case(@xlink:href),'dropbox.com')">
+            <xsl:attribute name="id">dropbox-link</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[dropbox-link] URL looks like it links to dropbox.com - Link: <xsl:text/>
+               <xsl:value-of select="@xlink:href"/>
+               <xsl:text/>. If this is the author's content, should it be uploaded instead to a trusted repository?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M176"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M176"/>

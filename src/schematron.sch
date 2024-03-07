@@ -3992,6 +3992,10 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="contains(lower-case(@xlink:href),'kriyadocs.com')" 
         role="error" 
         id="kriya-ext-link">URL contains 'kriyadocs.com', so it looks like a link to kriya which must be incorrect - <value-of select="@xlink:href"/>.</report>
+
+      <report test="contains(lower-case(@xlink:href),'dropbox.com')" 
+        role="warning" 
+        id="dropbox-link">URL looks like it links to dropbox.com - Link: <value-of select="@xlink:href"/>. If this is the author's content, should it be uploaded instead to a trusted repository?</report>
     </rule>
     
     <rule context="ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" 
