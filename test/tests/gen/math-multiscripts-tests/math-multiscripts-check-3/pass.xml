@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="math-multiscripts-check-3.sch"?>
+<!--Context: mml:mmultiscripts
+Test: assert    mml:mprescripts
+Message:  element must have a child mml:mprescripts element. If the expressions are all correct, then a more conventional math element (e.g. mml:msub) should be used to capture this content. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mml:mmultiscripts>
+            <mml:mi>X</mml:mi>
+            <mml:mi>d</mml:mi>
+            <mml:mi>c</mml:mi>
+            <mml:mprescripts/>
+            <mml:mi>b</mml:mi>
+            <mml:mi>a</mml:mi>
+        </mml:mmultiscripts>
+    </article>
+</root>

@@ -5820,6 +5820,38 @@
         <x:expect-not-assert id="math-empty-child-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="math-multiscripts-tests">
+      <x:scenario label="math-multiscripts-check-1-pass">
+        <x:context href="../tests/gen/math-multiscripts-tests/math-multiscripts-check-1/pass.xml"/>
+        <x:expect-not-assert id="math-multiscripts-check-1" role="error"/>
+        <x:expect-not-assert id="math-multiscripts-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-multiscripts-check-1-fail">
+        <x:context href="../tests/gen/math-multiscripts-tests/math-multiscripts-check-1/fail.xml"/>
+        <x:expect-assert id="math-multiscripts-check-1" role="error"/>
+        <x:expect-not-assert id="math-multiscripts-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-multiscripts-check-2-pass">
+        <x:context href="../tests/gen/math-multiscripts-tests/math-multiscripts-check-2/pass.xml"/>
+        <x:expect-not-report id="math-multiscripts-check-2" role="error"/>
+        <x:expect-not-assert id="math-multiscripts-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-multiscripts-check-2-fail">
+        <x:context href="../tests/gen/math-multiscripts-tests/math-multiscripts-check-2/fail.xml"/>
+        <x:expect-report id="math-multiscripts-check-2" role="error"/>
+        <x:expect-not-assert id="math-multiscripts-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-multiscripts-check-3-pass">
+        <x:context href="../tests/gen/math-multiscripts-tests/math-multiscripts-check-3/pass.xml"/>
+        <x:expect-not-assert id="math-multiscripts-check-3" role="error"/>
+        <x:expect-not-assert id="math-multiscripts-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-multiscripts-check-3-fail">
+        <x:context href="../tests/gen/math-multiscripts-tests/math-multiscripts-check-3/fail.xml"/>
+        <x:expect-assert id="math-multiscripts-check-3" role="error"/>
+        <x:expect-not-assert id="math-multiscripts-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="disp-formula-child-tests">
       <x:scenario label="disp-formula-child-test-1-pass">
         <x:context href="../tests/gen/disp-formula-child-tests/disp-formula-child-test-1/pass.xml"/>
