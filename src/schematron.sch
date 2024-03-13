@@ -4792,6 +4792,30 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
+    <!-- Derived from the NCBI NLM stylechecker - mml-empty-base-or-script-check -->
+    <rule context="msub|msup|msubsup|munder|mover|munderover" id="math-empty-child-tests">
+      <let name="script-name" value="if (./name() = 'msub') then 'subscript'
+                                     else if (./name() = 'msup') then 'superscript'
+                                     else if (./name() = 'msubsup') then 'subscript'
+                                     else if (./name() = 'munder') then 'underscript'
+                                     else if (./name() = 'mover') then 'overscript'
+                                     else if (./name() = 'munderover') then 'underscript'
+                                     else 'second'"/>
+      
+      <assert test="*[1][normalize-space(descendant-or-self::*[text()])]"
+        role="error"
+        id="math-empty-base-check"><name/> element must not have an empty base expression.</assert>
+
+      <assert test="*[2][normalize-space(descendant-or-self::*[text()])]"
+        role="error"
+        id="math-empty-script-check"><name/> element must not have an empty <value-of select="$script-name"/> expression.</assert>
+
+      <report test="name()=('msubsup','munderover') and not(*[3][normalize-space(descendant-or-self::*[text()])])"
+        role="error"
+        id="math-empty-second-script-check"><name/> element must not have an empty <value-of select="if (name()='msubsup') then 'superscript' else 'overscript'"/> expression.</report>
+      
+    </rule>
+    
     <rule context="disp-formula/*" id="disp-formula-child-tests">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1"

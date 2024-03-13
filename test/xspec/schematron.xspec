@@ -5788,6 +5788,38 @@
         <x:expect-not-assert id="math-mi-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="math-empty-child-tests">
+      <x:scenario label="math-empty-base-check-pass">
+        <x:context href="../tests/gen/math-empty-child-tests/math-empty-base-check/pass.xml"/>
+        <x:expect-not-assert id="math-empty-base-check" role="error"/>
+        <x:expect-not-assert id="math-empty-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-empty-base-check-fail">
+        <x:context href="../tests/gen/math-empty-child-tests/math-empty-base-check/fail.xml"/>
+        <x:expect-assert id="math-empty-base-check" role="error"/>
+        <x:expect-not-assert id="math-empty-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-empty-script-check-pass">
+        <x:context href="../tests/gen/math-empty-child-tests/math-empty-script-check/pass.xml"/>
+        <x:expect-not-assert id="math-empty-script-check" role="error"/>
+        <x:expect-not-assert id="math-empty-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-empty-script-check-fail">
+        <x:context href="../tests/gen/math-empty-child-tests/math-empty-script-check/fail.xml"/>
+        <x:expect-assert id="math-empty-script-check" role="error"/>
+        <x:expect-not-assert id="math-empty-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-empty-second-script-check-pass">
+        <x:context href="../tests/gen/math-empty-child-tests/math-empty-second-script-check/pass.xml"/>
+        <x:expect-not-report id="math-empty-second-script-check" role="error"/>
+        <x:expect-not-assert id="math-empty-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-empty-second-script-check-fail">
+        <x:context href="../tests/gen/math-empty-child-tests/math-empty-second-script-check/fail.xml"/>
+        <x:expect-report id="math-empty-second-script-check" role="error"/>
+        <x:expect-not-assert id="math-empty-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="disp-formula-child-tests">
       <x:scenario label="disp-formula-child-test-1-pass">
         <x:context href="../tests/gen/disp-formula-child-tests/disp-formula-child-test-1/pass.xml"/>

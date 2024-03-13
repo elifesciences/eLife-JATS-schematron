@@ -1,0 +1,34 @@
+<?oxygen SCHSchema="math-empty-script-check.sch"?>
+<!--Context: msub|msup|msubsup|munder|mover|munderover
+Test: assert    *[2][normalize-space(descendant-or-self::*[text()])]
+Message:  element must not have an empty  expression. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <msub>
+            <mi>X</mi>
+            <mi>sub</mi>
+        </msub>
+        <msup>
+            <mi>X</mi>
+            <mi>sup</mi>
+        </msup>
+        <msubsup>
+            <mi>X</mi>
+            <mi>sub</mi>
+            <mi>sup</mi>
+        </msubsup>
+        <munder>
+            <mi>X</mi>
+            <mi>under</mi>
+        </munder>
+        <mover>
+            <mi>X</mi>
+            <mi>over</mi>
+        </mover>
+        <munderover>
+            <mi>X</mi>
+            <mi>under</mi>
+            <mi>over</mi>
+        </munderover>
+    </article>
+</root>

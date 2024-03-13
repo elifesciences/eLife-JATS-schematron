@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="math-empty-base-check.sch"?>
+<!--Context: msub|msup|msubsup|munder|mover|munderover
+Test: assert    *[1][normalize-space(descendant-or-self::*[text()])]
+Message:  element must not have an empty base expression. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <msub/>
+        <msup/>
+        <msubsup/>
+        <munder/>
+        <mover/>
+        <munderover/>
+    </article>
+</root>
