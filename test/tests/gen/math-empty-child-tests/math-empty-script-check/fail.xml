@@ -7,20 +7,46 @@ Message:  element must not have an empty  expression. -->
         <msub>
             <mi>X</mi>
         </msub>
+        <msub>
+            <mi>X</mi>
+            <mi/>
+        </msub>
         <msup>
             <mi>X</mi>
+        </msup>
+        <msup>
+            <mi>X</mi>
+            <mi/>
         </msup>
         <msubsup>
             <mi>X</mi>
         </msubsup>
+        <msubsup>
+            <mi>X</mi>
+            <mi/>
+            <mi>sup</mi>
+        </msubsup>
         <munder>
             <mi>X</mi>
+        </munder>
+        <munder>
+            <mi>X</mi>
+            <mi/>
         </munder>
         <mover>
             <mi>X</mi>
         </mover>
+        <mover>
+            <mi>X</mi>
+            <mi/>
+        </mover>
         <munderover>
             <mi>X</mi>
+        </munderover>
+        <munderover>
+            <mi>X</mi>
+            <mi/>
+            <mi>over</mi>
         </munderover>
     </article>
 </root>

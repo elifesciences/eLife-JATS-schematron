@@ -5,10 +5,36 @@ Message:  element must not have an empty base expression. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <msub/>
+        <msub>
+            <mi/>
+            <mi>sub</mi>
+        </msub>
         <msup/>
+        <msup>
+            <mi/>
+            <mi>sup</mi>
+        </msup>
         <msubsup/>
+        <msubsup>
+            <mi/>
+            <mi>sub</mi>
+            <mi>sup</mi>
+        </msubsup>
         <munder/>
+        <munder>
+            <mi/>
+            <mi>under</mi>
+        </munder>
         <mover/>
+        <mover>
+            <mi/>
+            <mi>over</mi>
+        </mover>
         <munderover/>
+        <munderover>
+            <mi/>
+            <mi>under</mi>
+            <mi>over</mi>
+        </munderover>
     </article>
 </root>

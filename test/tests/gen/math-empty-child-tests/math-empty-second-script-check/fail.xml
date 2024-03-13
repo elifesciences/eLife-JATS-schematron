@@ -4,29 +4,23 @@ Test: report    name()=('msubsup','munderover') and not(*[3][normalize-space(des
 Message:  element must not have an empty  expression. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
-        <msub>
-            <mi>X</mi>
-            <mi>sub</mi>
-        </msub>
-        <msup>
-            <mi>X</mi>
-            <mi>sup</mi>
-        </msup>
         <msubsup>
             <mi>X</mi>
             <mi>sub</mi>
         </msubsup>
-        <munder>
+        <msubsup>
             <mi>X</mi>
-            <mi>under</mi>
-        </munder>
-        <mover>
-            <mi>X</mi>
-            <mi>over</mi>
-        </mover>
+            <mi>sub</mi>
+            <mi/>
+        </msubsup>
         <munderover>
             <mi>X</mi>
             <mi>under</mi>
+        </munderover>
+        <munderover>
+            <mi>X</mi>
+            <mi>under</mi>
+            <mi/>
         </munderover>
     </article>
 </root>
