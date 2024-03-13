@@ -3565,8 +3565,8 @@
     </rule>
   </pattern>
   <pattern id="math-empty-child-tests-pattern">
-    <rule context="msub|msup|msubsup|munder|mover|munderover" id="math-empty-child-tests">
-      <let name="script-name" value="if (./name() = 'msub') then 'subscript'                                      else if (./name() = 'msup') then 'superscript'                                      else if (./name() = 'msubsup') then 'subscript'                                      else if (./name() = 'munder') then 'underscript'                                      else if (./name() = 'mover') then 'overscript'                                      else if (./name() = 'munderover') then 'underscript'                                      else 'second'"/>
+    <rule context="mml:msub|mml:msup|mml:msubsup|mml:munder|mml:mover|mml:munderover" id="math-empty-child-tests">
+      <let name="script-name" value="if (./local-name() = 'msub') then 'subscript'                                      else if (./local-name() = 'msup') then 'superscript'                                      else if (./local-name() = 'msubsup') then 'subscript'                                      else if (./local-name() = 'munder') then 'underscript'                                      else if (./local-name() = 'mover') then 'overscript'                                      else if (./local-name() = 'munderover') then 'underscript'                                      else 'second'"/>
       
       <assert test="*[1][normalize-space(descendant-or-self::*[text()])]" role="error" id="math-empty-base-check">
         <name/> element must not have an empty base expression.</assert>
@@ -3574,8 +3574,8 @@
       <assert test="*[2][normalize-space(descendant-or-self::*[text()])]" role="error" id="math-empty-script-check">
         <name/> element must not have an empty <value-of select="$script-name"/> expression.</assert>
 
-      <report test="name()=('msubsup','munderover') and not(*[3][normalize-space(descendant-or-self::*[text()])])" role="error" id="math-empty-second-script-check">
-        <name/> element must not have an empty <value-of select="if (name()='msubsup') then 'superscript' else 'overscript'"/> expression.</report>
+      <report test="local-name()=('msubsup','munderover') and not(*[3][normalize-space(descendant-or-self::*[text()])])" role="error" id="math-empty-second-script-check">
+        <name/> element must not have an empty <value-of select="if (local-name()='msubsup') then 'superscript' else 'overscript'"/> expression.</report>
       
     </rule>
   </pattern>
@@ -9697,7 +9697,7 @@
       <assert test="descendant::mml:mrow" role="error" id="mrow-tests-xspec-assert">mml:mrow must be present.</assert>
       <assert test="descendant::mml:mover" role="error" id="math-overset-tests-xspec-assert">mml:mover must be present.</assert>
       <assert test="descendant::mml:mi" role="error" id="math-mi-tests-xspec-assert">mml:mi must be present.</assert>
-      <assert test="descendant::msub or descendant::msup or descendant::msubsup or descendant::munder or descendant::mover or descendant::munderover" role="error" id="math-empty-child-tests-xspec-assert">msub|msup|msubsup|munder|mover|munderover must be present.</assert>
+      <assert test="descendant::mml:msub or descendant::mml:msup or descendant::mml:msubsup or descendant::mml:munder or descendant::mml:mover or descendant::mml:munderover" role="error" id="math-empty-child-tests-xspec-assert">mml:msub|mml:msup|mml:msubsup|mml:munder|mml:mover|mml:munderover must be present.</assert>
       <assert test="descendant::disp-formula/*" role="error" id="disp-formula-child-tests-xspec-assert">disp-formula/* must be present.</assert>
       <assert test="descendant::inline-formula/*" role="error" id="inline-formula-child-tests-xspec-assert">inline-formula/* must be present.</assert>
       <assert test="descendant::table-wrap" role="error" id="table-wrap-tests-xspec-assert">table-wrap must be present.</assert>

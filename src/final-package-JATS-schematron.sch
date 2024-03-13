@@ -2974,14 +2974,14 @@
       
       <report test="matches(.,'^\p{Zs}$')" role="error" id="math-mi-space-test"><name/> element contains only spaces. Has "\" been used for space in the tex editor, instead of "\,"?</report>
       
-    </rule></pattern><pattern id="math-empty-child-tests-pattern"><rule context="msub|msup|msubsup|munder|mover|munderover" id="math-empty-child-tests">
-      <let name="script-name" value="if (./name() = 'msub') then 'subscript'                                      else if (./name() = 'msup') then 'superscript'                                      else if (./name() = 'msubsup') then 'subscript'                                      else if (./name() = 'munder') then 'underscript'                                      else if (./name() = 'mover') then 'overscript'                                      else if (./name() = 'munderover') then 'underscript'                                      else 'second'"/>
+    </rule></pattern><pattern id="math-empty-child-tests-pattern"><rule context="mml:msub|mml:msup|mml:msubsup|mml:munder|mml:mover|mml:munderover" id="math-empty-child-tests">
+      <let name="script-name" value="if (./local-name() = 'msub') then 'subscript'                                      else if (./local-name() = 'msup') then 'superscript'                                      else if (./local-name() = 'msubsup') then 'subscript'                                      else if (./local-name() = 'munder') then 'underscript'                                      else if (./local-name() = 'mover') then 'overscript'                                      else if (./local-name() = 'munderover') then 'underscript'                                      else 'second'"/>
       
       <assert test="*[1][normalize-space(descendant-or-self::*[text()])]" role="error" id="math-empty-base-check"><name/> element must not have an empty base expression.</assert>
 
       <assert test="*[2][normalize-space(descendant-or-self::*[text()])]" role="error" id="math-empty-script-check"><name/> element must not have an empty <value-of select="$script-name"/> expression.</assert>
 
-      <report test="name()=('msubsup','munderover') and not(*[3][normalize-space(descendant-or-self::*[text()])])" role="error" id="math-empty-second-script-check"><name/> element must not have an empty <value-of select="if (name()='msubsup') then 'superscript' else 'overscript'"/> expression.</report>
+      <report test="local-name()=('msubsup','munderover') and not(*[3][normalize-space(descendant-or-self::*[text()])])" role="error" id="math-empty-second-script-check"><name/> element must not have an empty <value-of select="if (local-name()='msubsup') then 'superscript' else 'overscript'"/> expression.</report>
       
     </rule></pattern><pattern id="disp-formula-child-tests-pattern"><rule context="disp-formula/*" id="disp-formula-child-tests">
       

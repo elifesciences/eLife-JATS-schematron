@@ -16521,8 +16521,8 @@
 
 
 	  <!--RULE math-empty-child-tests-->
-   <xsl:template match="msub|msup|msubsup|munder|mover|munderover" priority="1000" mode="M209">
-      <xsl:variable name="script-name" select="if (./name() = 'msub') then 'subscript'                                      else if (./name() = 'msup') then 'superscript'                                      else if (./name() = 'msubsup') then 'subscript'                                      else if (./name() = 'munder') then 'underscript'                                      else if (./name() = 'mover') then 'overscript'                                      else if (./name() = 'munderover') then 'underscript'                                      else 'second'"/>
+   <xsl:template match="mml:msub|mml:msup|mml:msubsup|mml:munder|mml:mover|mml:munderover" priority="1000" mode="M209">
+      <xsl:variable name="script-name" select="if (./local-name() = 'msub') then 'subscript'                                      else if (./local-name() = 'msup') then 'superscript'                                      else if (./local-name() = 'msubsup') then 'subscript'                                      else if (./local-name() = 'munder') then 'underscript'                                      else if (./local-name() = 'mover') then 'overscript'                                      else if (./local-name() = 'munderover') then 'underscript'                                      else 'second'"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>
@@ -16561,8 +16561,8 @@
       </xsl:choose>
 
 		    <!--REPORT error-->
-      <xsl:if test="name()=('msubsup','munderover') and not(*[3][normalize-space(descendant-or-self::*[text()])])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="name()=('msubsup','munderover') and not(*[3][normalize-space(descendant-or-self::*[text()])])">
+      <xsl:if test="local-name()=('msubsup','munderover') and not(*[3][normalize-space(descendant-or-self::*[text()])])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="local-name()=('msubsup','munderover') and not(*[3][normalize-space(descendant-or-self::*[text()])])">
             <xsl:attribute name="id">math-empty-second-script-check</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -16571,7 +16571,7 @@
             <svrl:text>[math-empty-second-script-check] <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> element must not have an empty <xsl:text/>
-               <xsl:value-of select="if (name()='msubsup') then 'superscript' else 'overscript'"/>
+               <xsl:value-of select="if (local-name()='msubsup') then 'superscript' else 'overscript'"/>
                <xsl:text/> expression.</svrl:text>
          </svrl:successful-report>
       </xsl:if>

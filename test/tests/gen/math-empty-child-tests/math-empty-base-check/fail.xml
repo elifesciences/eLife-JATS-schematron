@@ -1,40 +1,40 @@
 <?oxygen SCHSchema="math-empty-base-check.sch"?>
-<!--Context: msub|msup|msubsup|munder|mover|munderover
+<!--Context: mml:msub|mml:msup|mml:msubsup|mml:munder|mml:mover|mml:munderover
 Test: assert    *[1][normalize-space(descendant-or-self::*[text()])]
 Message:  element must not have an empty base expression. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
-        <msub/>
-        <msub>
-            <mi/>
-            <mi>sub</mi>
-        </msub>
-        <msup/>
-        <msup>
-            <mi/>
-            <mi>sup</mi>
-        </msup>
-        <msubsup/>
-        <msubsup>
-            <mi/>
-            <mi>sub</mi>
-            <mi>sup</mi>
-        </msubsup>
-        <munder/>
-        <munder>
-            <mi/>
-            <mi>under</mi>
-        </munder>
-        <mover/>
-        <mover>
-            <mi/>
-            <mi>over</mi>
-        </mover>
-        <munderover/>
-        <munderover>
-            <mi/>
-            <mi>under</mi>
-            <mi>over</mi>
-        </munderover>
+        <mml:msub/>
+        <mml:msub>
+            <mml:mi/>
+            <mml:mi>sub</mml:mi>
+        </mml:msub>
+        <mml:msup/>
+        <mml:msup>
+            <mml:mi/>
+            <mml:mi>sup</mml:mi>
+        </mml:msup>
+        <mml:msubsup/>
+        <mml:msubsup>
+            <mml:mi/>
+            <mml:mi>sub</mml:mi>
+            <mml:mi>sup</mml:mi>
+        </mml:msubsup>
+        <mml:munder/>
+        <mml:munder>
+            <mml:mi/>
+            <mml:mi>under</mml:mi>
+        </mml:munder>
+        <mml:mover/>
+        <mml:mover>
+            <mml:mi/>
+            <mml:mi>over</mml:mi>
+        </mml:mover>
+        <mml:munderover/>
+        <mml:munderover>
+            <mml:mi/>
+            <mml:mi>under</mml:mi>
+            <mml:mi>over</mml:mi>
+        </mml:munderover>
     </article>
 </root>
