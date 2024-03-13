@@ -3564,6 +3564,37 @@
       
     </rule>
   </pattern>
+  <pattern id="math-empty-child-tests-pattern">
+    <rule context="mml:msub|mml:msup|mml:msubsup|mml:munder|mml:mover|mml:munderover" id="math-empty-child-tests">
+      <let name="script-name" value="if (./local-name() = 'msub') then 'subscript'                                      else if (./local-name() = 'msup') then 'superscript'                                      else if (./local-name() = 'msubsup') then 'subscript'                                      else if (./local-name() = 'munder') then 'underscript'                                      else if (./local-name() = 'mover') then 'overscript'                                      else if (./local-name() = 'munderover') then 'underscript'                                      else 'second'"/>
+      
+      <assert test="*[1][child::* or normalize-space(.)!='']" role="error" id="math-empty-base-check">
+        <name/> element must not have a missing or empty base expression.</assert>
+
+      <assert test="*[2][child::* or normalize-space(.)!='']" role="error" id="math-empty-script-check">
+        <name/> element must not have a missing or empty <value-of select="$script-name"/> expression.</assert>
+
+      <report test="local-name()=('msubsup','munderover') and *[3][not(child::*) and normalize-space(.)='']" role="error" id="math-empty-second-script-check">
+        <name/> element must not have a missing or empty <value-of select="if (local-name()='msubsup') then 'superscript' else 'overscript'"/> expression.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="math-multiscripts-tests-pattern">
+    <rule context="mml:mmultiscripts" id="math-multiscripts-tests">
+      <!-- REVIST: should we allow mml:none here? -->
+      <let name="empty-exceptions" value="('mprescripts','mrow','none')"/>    
+
+      <assert test="count(*) ge 3" role="error" id="math-multiscripts-check-1">
+        <name/> element must at least 3 child elements. This one has <value-of select="count(*)"/>.</assert>
+
+      <report test="*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)='']" role="error" id="math-multiscripts-check-2">
+        <name/> element must not have an empty child element (with the following exceptions: <value-of select="string-join($empty-exceptions,'; ')"/>). This <name/> has <value-of select="count(*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)=''])"/> empty child elements - <value-of select="string-join(distinct-values(*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)='']/name()),';')"/>.</report>
+
+      <assert test="mml:mprescripts" role="error" id="math-multiscripts-check-3">
+        <name/> element must have a child mml:mprescripts element. If the expressions are all correct, then a more conventional math element (e.g. mml:msub) should be used to capture this content.</assert>
+
+    </rule>
+  </pattern>
   <pattern id="disp-formula-child-tests-pattern">
     <rule context="disp-formula/*" id="disp-formula-child-tests">
       
@@ -9682,6 +9713,8 @@
       <assert test="descendant::mml:mrow" role="error" id="mrow-tests-xspec-assert">mml:mrow must be present.</assert>
       <assert test="descendant::mml:mover" role="error" id="math-overset-tests-xspec-assert">mml:mover must be present.</assert>
       <assert test="descendant::mml:mi" role="error" id="math-mi-tests-xspec-assert">mml:mi must be present.</assert>
+      <assert test="descendant::mml:msub or descendant::mml:msup or descendant::mml:msubsup or descendant::mml:munder or descendant::mml:mover or descendant::mml:munderover" role="error" id="math-empty-child-tests-xspec-assert">mml:msub|mml:msup|mml:msubsup|mml:munder|mml:mover|mml:munderover must be present.</assert>
+      <assert test="descendant::mml:mmultiscripts" role="error" id="math-multiscripts-tests-xspec-assert">mml:mmultiscripts must be present.</assert>
       <assert test="descendant::disp-formula/*" role="error" id="disp-formula-child-tests-xspec-assert">disp-formula/* must be present.</assert>
       <assert test="descendant::inline-formula/*" role="error" id="inline-formula-child-tests-xspec-assert">inline-formula/* must be present.</assert>
       <assert test="descendant::table-wrap" role="error" id="table-wrap-tests-xspec-assert">table-wrap must be present.</assert>

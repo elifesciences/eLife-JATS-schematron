@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="math-multiscripts-check-2.sch"?>
+<!--Context: mml:mmultiscripts
+Test: report    *[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)='']
+Message:  element must not have an empty child element (with the following exceptions: ). This  has  empty child elements - . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mml:mmultiscripts>
+            <mml:mi>X</mml:mi>
+            <mml:mi/>
+            <mml:mi>c</mml:mi>
+            <mml:mprescripts/>
+            <mml:mn/>
+            <mml:mn/>
+            <mml:mi>a</mml:mi>
+        </mml:mmultiscripts>
+    </article>
+</root>
