@@ -16345,9 +16345,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="*[1][normalize-space(descendant-or-self::*[text()])]"/>
+         <xsl:when test="*[1][child::* or normalize-space(.)!='']"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*[1][normalize-space(descendant-or-self::*[text()])]">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*[1][child::* or normalize-space(.)!='']">
                <xsl:attribute name="id">math-empty-base-check</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
@@ -16355,16 +16355,16 @@
                </xsl:attribute>
                <svrl:text>[math-empty-base-check] <xsl:text/>
                   <xsl:value-of select="name(.)"/>
-                  <xsl:text/> element must not have an empty base expression.</svrl:text>
+                  <xsl:text/> element must not have a missing or empty base expression.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="*[2][normalize-space(descendant-or-self::*[text()])]"/>
+         <xsl:when test="*[2][child::* or normalize-space(.)!='']"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*[2][normalize-space(descendant-or-self::*[text()])]">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*[2][child::* or normalize-space(.)!='']">
                <xsl:attribute name="id">math-empty-script-check</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
@@ -16372,7 +16372,7 @@
                </xsl:attribute>
                <svrl:text>[math-empty-script-check] <xsl:text/>
                   <xsl:value-of select="name(.)"/>
-                  <xsl:text/> element must not have an empty <xsl:text/>
+                  <xsl:text/> element must not have a missing or empty <xsl:text/>
                   <xsl:value-of select="$script-name"/>
                   <xsl:text/> expression.</svrl:text>
             </svrl:failed-assert>
@@ -16380,8 +16380,8 @@
       </xsl:choose>
 
 		    <!--REPORT error-->
-      <xsl:if test="local-name()=('msubsup','munderover') and not(*[3][normalize-space(descendant-or-self::*[text()])])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="local-name()=('msubsup','munderover') and not(*[3][normalize-space(descendant-or-self::*[text()])])">
+      <xsl:if test="local-name()=('msubsup','munderover') and *[3][not(child::*) and normalize-space(.)='']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="local-name()=('msubsup','munderover') and *[3][not(child::*) and normalize-space(.)='']">
             <xsl:attribute name="id">math-empty-second-script-check</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -16389,7 +16389,7 @@
             </xsl:attribute>
             <svrl:text>[math-empty-second-script-check] <xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/> element must not have an empty <xsl:text/>
+               <xsl:text/> element must not have a missing or empty <xsl:text/>
                <xsl:value-of select="if (local-name()='msubsup') then 'superscript' else 'overscript'"/>
                <xsl:text/> expression.</svrl:text>
          </svrl:successful-report>

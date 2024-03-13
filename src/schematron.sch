@@ -4802,20 +4802,20 @@ else self::*/local-name() = $allowed-p-blocks"
                                      else if (./local-name() = 'munderover') then 'underscript'
                                      else 'second'"/>
       
-      <assert test="*[1][normalize-space(descendant-or-self::*[text()])]"
+      <assert test="*[1][child::* or normalize-space(.)!='']"
         role="error"
-        id="math-empty-base-check"><name/> element must not have an empty base expression.</assert>
+        id="math-empty-base-check"><name/> element must not have a missing or empty base expression.</assert>
 
-      <assert test="*[2][normalize-space(descendant-or-self::*[text()])]"
+      <assert test="*[2][child::* or normalize-space(.)!='']"
         role="error"
-        id="math-empty-script-check"><name/> element must not have an empty <value-of select="$script-name"/> expression.</assert>
+        id="math-empty-script-check"><name/> element must not have a missing or empty <value-of select="$script-name"/> expression.</assert>
 
-      <report test="local-name()=('msubsup','munderover') and not(*[3][normalize-space(descendant-or-self::*[text()])])"
+      <report test="local-name()=('msubsup','munderover') and *[3][not(child::*) and normalize-space(.)='']"
         role="error"
-        id="math-empty-second-script-check"><name/> element must not have an empty <value-of select="if (local-name()='msubsup') then 'superscript' else 'overscript'"/> expression.</report>
+        id="math-empty-second-script-check"><name/> element must not have a missing or empty <value-of select="if (local-name()='msubsup') then 'superscript' else 'overscript'"/> expression.</report>
       
     </rule>
-    
+
     <rule context="disp-formula/*" id="disp-formula-child-tests">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1"
