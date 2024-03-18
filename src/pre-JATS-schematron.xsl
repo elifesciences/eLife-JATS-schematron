@@ -37702,6 +37702,20 @@
             </svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="matches(lower-case(.),&quot;(^|\s)((i am|i'm) an? ai (language)? model|as an ai (language)? model,? i('m|\s)|(here is|here's) an? (possible|potential)? introduction (to|for) your topic|(here is|here's) an? (abstract|introduction|results|discussion|methods)( section)? for you|certainly,? (here is|here's)|i'm sorry,?( but)? i (don't|can't)|my knowledge (extend|cutoff)|as of my last update|regenerate response)&quot;)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),&quot;(^|\s)((i am|i'm) an? ai (language)? model|as an ai (language)? model,? i('m|\s)|(here is|here's) an? (possible|potential)? introduction (to|for) your topic|(here is|here's) an? (abstract|introduction|results|discussion|methods)( section)? for you|certainly,? (here is|here's)|i'm sorry,?( but)? i (don't|can't)|my knowledge (extend|cutoff)|as of my last update|regenerate response)&quot;)">
+            <xsl:attribute name="id">ai-response-presence-1</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ai-response-presence-1] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element contains what looks like a response from an AI chatbot after it being provided a prompt. Is that correct? Should the content be adjusted?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M494"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M494"/>
