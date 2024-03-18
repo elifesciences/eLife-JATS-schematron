@@ -12130,6 +12130,10 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="contains(.,'&#x9D;')" 
         role="error" 
         id="operating-system-command-presence"><name/> element contains an operating system command character '&#x9D;' (unicode string: &amp;#x9D;) which should very likely be replaced/removed. - <value-of select="."/></report>
+
+      <report test="matches(lower-case(.),&quot;(^|\s)((i am|i&apos;m) an? ai (language)? model|as an ai (language)? model,? i(&apos;m|\s)|(here is|here&apos;s) an? (possible|potential)? introduction (to|for) your topic|(here is|here&apos;s) an? (abstract|introduction|results|discussion|methods)( section)? for you|certainly,? (here is|here&apos;s)|i&apos;m sorry,?( but)? i (don&apos;t|can&apos;t)|my knowledge (extend|cutoff)|as of my last update|regenerate response)&quot;)" 
+        role="warning" 
+        id="ai-response-presence-1"><name/> element contains what looks like a response from an AI chatbot after it being provided a prompt. Is that correct? Should the content be adjusted?</report>
     </rule>
     
     <rule context="sup" id="unallowed-symbol-tests-sup">		
