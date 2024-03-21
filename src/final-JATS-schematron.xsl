@@ -31017,7 +31017,7 @@
 
 	  <!--RULE rrid-org-code-->
    <xsl:template match="p|td|th" priority="1000" mode="M483">
-      <xsl:variable name="count" select="count(descendant::ext-link[matches(@xlink:href,'identifiers\.org/RRID/.*')])"/>
+      <xsl:variable name="count" select="count(descendant::ext-link[matches(@xlink:href,'identifiers\.org/RRID(:|/).*')])"/>
       <xsl:variable name="lc" select="lower-case(.)"/>
       <xsl:variable name="text-count" select="number(count(         for $x in tokenize(.,'RRID\p{Zs}?#?\p{Zs}?:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')         return $x)) -1"/>
       <xsl:variable name="t" select="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>
