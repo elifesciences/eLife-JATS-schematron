@@ -5248,7 +5248,7 @@
     </rule></pattern>
   
   <pattern id="rrid-org-code-pattern"><rule context="p|td|th" id="rrid-org-code">
-      <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'identifiers\.org/RRID/.*')])"/>
+      <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'identifiers\.org/RRID(:|/).*')])"/>
       <let name="lc" value="lower-case(.)"/>
       <let name="text-count" value="number(count(         for $x in tokenize(.,'RRID\p{Zs}?#?\p{Zs}?:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')         return $x)) -1"/>
       <let name="t" value="replace($lc,'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>
