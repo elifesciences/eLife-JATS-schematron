@@ -14359,7 +14359,7 @@
 
 
 	  <!--RULE ar-fig-tests-->
-   <xsl:template match="fig[ancestor::sub-article[@article-type='reply']]" priority="1000" mode="M183">
+   <xsl:template match="fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" priority="1000" mode="M183">
       <xsl:variable name="article-type" select="ancestor::article/@article-type"/>
       <xsl:variable name="count" select="count(ancestor::body//fig)"/>
       <xsl:variable name="pos" select="$count - count(following::fig)"/>
@@ -19062,7 +19062,7 @@
 
 
 	  <!--RULE rep-fig-tests-->
-   <xsl:template match="sub-article[@article-type='reply']//fig" priority="1000" mode="M258">
+   <xsl:template match="sub-article[@article-type=('reply','author-comment')]//fig" priority="1000" mode="M258">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -21061,7 +21061,7 @@
 
 
 	  <!--RULE reply-title-tests-->
-   <xsl:template match="sub-article[@article-type='reply']/front-stub/title-group" priority="1000" mode="M295">
+   <xsl:template match="sub-article[@article-type=('reply','author-comment')]/front-stub/title-group" priority="1000" mode="M295">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -23140,14 +23140,15 @@
 	  <!--RULE dec-letter-reply-tests-->
    <xsl:template match="article/sub-article" priority="1000" mode="M347">
       <xsl:variable name="is-prc" select="e:is-prc(.)"/>
+      <xsl:variable name="sub-article-types" select="('editor-report','referee-report','author-comment','decision-letter','reply')"/>
       <xsl:variable name="sub-article-count" select="count(parent::article/sub-article)"/>
       <xsl:variable name="id-convention" select="if (@article-type='editor-report') then 'sa0'         else if (@article-type='decision-letter') then 'sa1'         else if (@article-type='reply') then 'sa2'         else if (@article-type='author-comment') then concat('sa',$sub-article-count - 1)         else concat('sa',count(preceding-sibling::sub-article))"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="@article-type=('editor-report','referee-report','author-comment','decision-letter','reply')"/>
+         <xsl:when test="@article-type=$sub-article-types"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@article-type=('editor-report','referee-report','author-comment','decision-letter','reply')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@article-type=$sub-article-types">
                <xsl:attribute name="id">dec-letter-reply-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
                <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-1</xsl:attribute>
@@ -23155,7 +23156,9 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[dec-letter-reply-test-1] sub-article must must have an article-type which is equal to one of the following values: 'editor-report','decision-letter', or 'reply'.</svrl:text>
+               <svrl:text>[dec-letter-reply-test-1] sub-article must must have an article-type which is equal to one of the following values: <xsl:text/>
+                  <xsl:value-of select="string-join($sub-article-types,'; ')"/>
+                  <xsl:text/>.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -24263,7 +24266,7 @@
 
 
 	  <!--RULE reply-front-tests-->
-   <xsl:template match="sub-article[@article-type='reply']/front-stub" priority="1000" mode="M368">
+   <xsl:template match="sub-article[@article-type=('reply','author-comment')]/front-stub" priority="1000" mode="M368">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -24292,7 +24295,7 @@
 
 
 	  <!--RULE reply-body-tests-->
-   <xsl:template match="sub-article[@article-type='reply']/body" priority="1000" mode="M369">
+   <xsl:template match="sub-article[@article-type=('reply','author-comment')]/body" priority="1000" mode="M369">
 
 		<!--REPORT warning-->
       <xsl:if test="count(disp-quote[@content-type='editor-comment']) = 0">
@@ -24332,7 +24335,7 @@
 
 
 	  <!--RULE reply-disp-quote-tests-->
-   <xsl:template match="sub-article[@article-type='reply']/body//disp-quote" priority="1000" mode="M370">
+   <xsl:template match="sub-article[@article-type=('reply','author-comment')]/body//disp-quote" priority="1000" mode="M370">
 
 		<!--ASSERT warning-->
       <xsl:choose>
@@ -24361,7 +24364,7 @@
 
 
 	  <!--RULE reply-missing-disp-quote-tests-->
-   <xsl:template match="sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)]" priority="1000" mode="M371">
+   <xsl:template match="sub-article[@article-type=('reply','author-comment')]/body//p[not(ancestor::disp-quote)]" priority="1000" mode="M371">
       <xsl:variable name="free-text" select="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
 
 		    <!--REPORT warning-->
@@ -24388,7 +24391,7 @@
 
 
 	  <!--RULE reply-missing-disp-quote-tests-2-->
-   <xsl:template match="sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)]" priority="1000" mode="M372">
+   <xsl:template match="sub-article[@article-type=('reply','author-comment')]//italic[not(ancestor::disp-quote)]" priority="1000" mode="M372">
 
 		<!--REPORT warning-->
       <xsl:if test="string-length(.) ge 50">
@@ -24418,7 +24421,7 @@
 
 
 	  <!--RULE reply-missing-table-tests-->
-   <xsl:template match="sub-article[@article-type='reply']" priority="1000" mode="M373">
+   <xsl:template match="sub-article[@article-type=('reply','author-comment')]" priority="1000" mode="M373">
 
 		<!--REPORT warning-->
       <xsl:if test="contains(.,'response table') and not(descendant::table-wrap[label])">
@@ -24476,7 +24479,7 @@
 
 
 	  <!--RULE sub-article-ref-p-tests-->
-   <xsl:template match="sub-article[@article-type='reply']/body/*[last()][name()='p']" priority="1000" mode="M375">
+   <xsl:template match="sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p']" priority="1000" mode="M375">
 
 		<!--REPORT warning-->
       <xsl:if test="count(tokenize(lower-case(.),'doi\p{Zs}?:')) gt 2">

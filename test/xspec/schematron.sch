@@ -3154,7 +3154,7 @@
     </rule>
   </pattern>
   <pattern id="ar-fig-tests-pattern">
-    <rule context="fig[ancestor::sub-article[@article-type='reply']]" id="ar-fig-tests">
+    <rule context="fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" id="ar-fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="count" value="count(ancestor::body//fig)"/>
       <let name="pos" value="$count - count(following::fig)"/>
@@ -4234,7 +4234,7 @@
     </rule>
   </pattern>
   <pattern id="rep-fig-tests-pattern">
-    <rule context="sub-article[@article-type='reply']//fig" id="rep-fig-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]//fig" id="rep-fig-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#resp-fig-test-2" test="label" role="error" flag="dl-ar" id="resp-fig-test-2">fig must have a label.</assert>
       
@@ -4657,7 +4657,7 @@
     </rule>
   </pattern>
   <pattern id="reply-title-tests-pattern">
-    <rule context="sub-article[@article-type='reply']/front-stub/title-group" id="reply-title-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]/front-stub/title-group" id="reply-title-tests">
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-title-test" test="article-title = 'Author response'" role="error" flag="dl-ar" id="reply-title-test">title-group must contain article-title which contains 'Author response'. Currently it is <value-of select="article-title"/>.</assert>
       
     </rule>
@@ -5117,10 +5117,11 @@
   <pattern id="dec-letter-reply-tests-pattern">
     <rule context="article/sub-article" id="dec-letter-reply-tests">
       <let name="is-prc" value="e:is-prc(.)"/>
+      <let name="sub-article-types" value="('editor-report','referee-report','author-comment','decision-letter','reply')"/>
       <let name="sub-article-count" value="count(parent::article/sub-article)"/>
       <let name="id-convention" value="if (@article-type='editor-report') then 'sa0'         else if (@article-type='decision-letter') then 'sa1'         else if (@article-type='reply') then 'sa2'         else if (@article-type='author-comment') then concat('sa',$sub-article-count - 1)         else concat('sa',count(preceding-sibling::sub-article))"/>
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-1" test="@article-type=('editor-report','referee-report','author-comment','decision-letter','reply')" role="error" flag="dl-ar" id="dec-letter-reply-test-1">sub-article must must have an article-type which is equal to one of the following values: 'editor-report','decision-letter', or 'reply'.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-1" test="@article-type=$sub-article-types" role="error" flag="dl-ar" id="dec-letter-reply-test-1">sub-article must must have an article-type which is equal to one of the following values: <value-of select="string-join($sub-article-types,'; ')"/>.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-2" test="@id = $id-convention" role="error" flag="dl-ar" id="dec-letter-reply-test-2">sub-article id is <value-of select="@id"/> when based on it's article-type and position it should be <value-of select="$id-convention"/>.</assert>
       
@@ -5334,13 +5335,13 @@
     </rule>
   </pattern>
   <pattern id="reply-front-tests-pattern">
-    <rule context="sub-article[@article-type='reply']/front-stub" id="reply-front-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]/front-stub" id="reply-front-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="reply-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
     </rule>
   </pattern>
   <pattern id="reply-body-tests-pattern">
-    <rule context="sub-article[@article-type='reply']/body" id="reply-body-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]/body" id="reply-body-tests">
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-body-test-1" test="count(disp-quote[@content-type='editor-comment']) = 0" role="warning" flag="dl-ar" id="reply-body-test-1">author response doesn't contain a disp-quote. This is very likely to be incorrect. Please check the original file.</report>
       
@@ -5348,26 +5349,26 @@
     </rule>
   </pattern>
   <pattern id="reply-disp-quote-tests-pattern">
-    <rule context="sub-article[@article-type='reply']/body//disp-quote" id="reply-disp-quote-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]/body//disp-quote" id="reply-disp-quote-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-disp-quote-test-1" test="@content-type='editor-comment'" role="warning" flag="dl-ar" id="reply-disp-quote-test-1">disp-quote in author reply does not have @content-type='editor-comment'. This is almost certainly incorrect.</assert>
     </rule>
   </pattern>
   <pattern id="reply-missing-disp-quote-tests-pattern">
-    <rule context="sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-disp-quote-test-1" test="(count(*)=1) and (child::italic) and ($free-text='')" role="warning" flag="dl-ar" id="reply-missing-disp-quote-test-1">para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly?</report>
     </rule>
   </pattern>
   <pattern id="reply-missing-disp-quote-tests-2-pattern">
-    <rule context="sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
+    <rule context="sub-article[@article-type=('reply','author-comment')]//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-disp-quote-test-2" test="string-length(.) ge 50" role="warning" flag="dl-ar" id="reply-missing-disp-quote-test-2">A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '<value-of select="."/>' in '<value-of select="ancestor::*[local-name()='p'][1]"/>'</report>
     </rule>
   </pattern>
   <pattern id="reply-missing-table-tests-pattern">
-    <rule context="sub-article[@article-type='reply']" id="reply-missing-table-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]" id="reply-missing-table-tests">
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-table-test" test="contains(.,'response table') and not(descendant::table-wrap[label])" role="warning" flag="dl-ar" id="reply-missing-table-test">An author response table is referred to in the text, but there is no table in the response with a label.</report>
     </rule>
@@ -5379,7 +5380,7 @@
     </rule>
   </pattern>
   <pattern id="sub-article-ref-p-tests-pattern">
-    <rule context="sub-article[@article-type='reply']/body/*[last()][name()='p']" id="sub-article-ref-p-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p']" id="sub-article-ref-p-tests">
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#sub-article-ref-p-test" test="count(tokenize(lower-case(.),'doi\p{Zs}?:')) gt 2" role="warning" flag="dl-ar" id="sub-article-ref-p-test">The last paragraph of the author response looks like it contains various references. Should each reference be split out into its own paragraph? <value-of select="."/>
       </report>
@@ -9692,7 +9693,7 @@
       <assert test="descendant::fig-group" role="error" id="fig-group-tests-xspec-assert">fig-group must be present.</assert>
       <assert test="descendant::fig-group/*" role="error" id="fig-group-child-tests-xspec-assert">fig-group/* must be present.</assert>
       <assert test="descendant::fig[not(ancestor::sub-article)]" role="error" id="fig-tests-xspec-assert">fig[not(ancestor::sub-article)] must be present.</assert>
-      <assert test="descendant::fig[ancestor::sub-article[@article-type='reply']]" role="error" id="ar-fig-tests-xspec-assert">fig[ancestor::sub-article[@article-type='reply']] must be present.</assert>
+      <assert test="descendant::fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" role="error" id="ar-fig-tests-xspec-assert">fig[ancestor::sub-article[@article-type=('reply','author-comment')]] must be present.</assert>
       <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-tests-xspec-assert">graphic|inline-graphic must be present.</assert>
       <assert test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
       <assert test="descendant::graphic[@xlink:href] or descendant::media[@xlink:href]" role="error" id="file-extension-tests-xspec-assert">graphic[@xlink:href]|media[@xlink:href] must be present.</assert>
@@ -9767,7 +9768,7 @@
       <assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" role="error" id="fig-specific-tests-xspec-assert">article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)] must be present.</assert>
       <assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label" role="error" id="fig-label-tests-xspec-assert">article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label must be present.</assert>
       <assert test="descendant::article/body//fig[@specific-use='child-fig']" role="error" id="fig-sup-tests-xspec-assert">article/body//fig[@specific-use='child-fig'] must be present.</assert>
-      <assert test="descendant::sub-article[@article-type='reply']//fig" role="error" id="rep-fig-tests-xspec-assert">sub-article[@article-type='reply']//fig must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]//fig" role="error" id="rep-fig-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]//fig must be present.</assert>
       <assert test="descendant::sub-article[@article-type='decision-letter']//fig" role="error" id="dec-fig-tests-xspec-assert">sub-article[@article-type='decision-letter']//fig must be present.</assert>
       <assert test="descendant::article/body//boxed-text//fig[not(@specific-use='child-fig')]/label" role="error" id="box-fig-tests-xspec-assert">article/body//boxed-text//fig[not(@specific-use='child-fig')]/label must be present.</assert>
       <assert test="descendant::article//app//fig[not(@specific-use='child-fig')]/label" role="error" id="app-fig-tests-xspec-assert">article//app//fig[not(@specific-use='child-fig')]/label must be present.</assert>
@@ -9804,7 +9805,7 @@
       <assert test="descendant::fn-group[@content-type='ethics-information']" role="error" id="ethics-title-tests-xspec-assert">fn-group[@content-type='ethics-information'] must be present.</assert>
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/title-group" role="error" id="ed-eval-title-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub/title-group must be present.</assert>
       <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/title-group" role="error" id="dec-letter-title-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/title-group must be present.</assert>
-      <assert test="descendant::sub-article[@article-type='reply']/front-stub/title-group" role="error" id="reply-title-tests-xspec-assert">sub-article[@article-type='reply']/front-stub/title-group must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/front-stub/title-group" role="error" id="reply-title-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/front-stub/title-group must be present.</assert>
       <assert test="descendant::title/*" role="error" id="title-child-tests-xspec-assert">title/* must be present.</assert>
       <assert test="descendant::funding-group/award-group" role="error" id="award-group-ids-xspec-assert">funding-group/award-group must be present.</assert>
       <assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" role="error" id="fig-ids-xspec-assert">article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)] must be present.</assert>
@@ -9877,14 +9878,14 @@
       <assert test="descendant::sub-article[@article-type=('decision-letter','referee-report')]/body//p" role="error" id="dec-letter-body-p-tests-xspec-assert">sub-article[@article-type=('decision-letter','referee-report')]/body//p must be present.</assert>
       <assert test="descendant::sub-article[@article-type='decision-letter']/body/boxed-text[1]" role="error" id="dec-letter-box-tests-xspec-assert">sub-article[@article-type='decision-letter']/body/boxed-text[1] must be present.</assert>
       <assert test="descendant::sub-article[@article-type='decision-letter']" role="error" id="decision-missing-table-tests-xspec-assert">sub-article[@article-type='decision-letter'] must be present.</assert>
-      <assert test="descendant::sub-article[@article-type='reply']/front-stub" role="error" id="reply-front-tests-xspec-assert">sub-article[@article-type='reply']/front-stub must be present.</assert>
-      <assert test="descendant::sub-article[@article-type='reply']/body" role="error" id="reply-body-tests-xspec-assert">sub-article[@article-type='reply']/body must be present.</assert>
-      <assert test="descendant::sub-article[@article-type='reply']/body//disp-quote" role="error" id="reply-disp-quote-tests-xspec-assert">sub-article[@article-type='reply']/body//disp-quote must be present.</assert>
-      <assert test="descendant::sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)]" role="error" id="reply-missing-disp-quote-tests-xspec-assert">sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)] must be present.</assert>
-      <assert test="descendant::sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)]" role="error" id="reply-missing-disp-quote-tests-2-xspec-assert">sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)] must be present.</assert>
-      <assert test="descendant::sub-article[@article-type='reply']" role="error" id="reply-missing-table-tests-xspec-assert">sub-article[@article-type='reply'] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/front-stub" role="error" id="reply-front-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/front-stub must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body" role="error" id="reply-body-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body//disp-quote" role="error" id="reply-disp-quote-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body//disp-quote must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body//p[not(ancestor::disp-quote)]" role="error" id="reply-missing-disp-quote-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body//p[not(ancestor::disp-quote)] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]//italic[not(ancestor::disp-quote)]" role="error" id="reply-missing-disp-quote-tests-2-xspec-assert">sub-article[@article-type=('reply','author-comment')]//italic[not(ancestor::disp-quote)] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]" role="error" id="reply-missing-table-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')] must be present.</assert>
       <assert test="descendant::sub-article//ext-link" role="error" id="sub-article-ext-link-tests-xspec-assert">sub-article//ext-link must be present.</assert>
-      <assert test="descendant::sub-article[@article-type='reply']/body/*[last()][name()='p']" role="error" id="sub-article-ref-p-tests-xspec-assert">sub-article[@article-type='reply']/body/*[last()][name()='p'] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p']" role="error" id="sub-article-ref-p-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p'] must be present.</assert>
       <assert test="descendant::sub-article[@article-type='referee-report']/front-stub" role="error" id="ref-report-front-xspec-assert">sub-article[@article-type='referee-report']/front-stub must be present.</assert>
       <assert test="descendant::sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib" role="error" id="sub-article-contrib-tests-xspec-assert">sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib must be present.</assert>
       <assert test="descendant::sub-article/front-stub/contrib-group/contrib/role" role="error" id="sub-article-role-tests-xspec-assert">sub-article/front-stub/contrib-group/contrib/role must be present.</assert>

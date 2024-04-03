@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="sub-article-ref-p-test.sch"?>
-<!--Context: sub-article[@article-type='reply']/body/*[last()][name()='p']
+<!--Context: sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p']
 Test: report    count(tokenize(lower-case(.),'doi\p{Zs}?:')) gt 2
 Message: The last paragraph of the author response looks like it contains various references. Should each reference be split out into its own paragraph?  -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

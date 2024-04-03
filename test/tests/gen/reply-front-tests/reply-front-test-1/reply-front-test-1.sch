@@ -1290,13 +1290,13 @@
     
   </xsl:function>
   <pattern id="dec-letter-auth-response">
-    <rule context="sub-article[@article-type='reply']/front-stub" id="reply-front-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]/front-stub" id="reply-front-tests">
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="reply-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='reply']/front-stub" role="error" id="reply-front-tests-xspec-assert">sub-article[@article-type='reply']/front-stub must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/front-stub" role="error" id="reply-front-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/front-stub must be present.</assert>
     </rule>
   </pattern>
 </schema>

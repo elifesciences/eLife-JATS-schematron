@@ -1290,13 +1290,13 @@
     
   </xsl:function>
   <pattern id="dec-letter-auth-response">
-    <rule context="sub-article[@article-type='reply']/body" id="reply-body-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]/body" id="reply-body-tests">
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-body-test-2" test="count(p) = 0" role="error" flag="dl-ar" id="reply-body-test-2">author response doesn't contain a p. This has to be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='reply']/body" role="error" id="reply-body-tests-xspec-assert">sub-article[@article-type='reply']/body must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body" role="error" id="reply-body-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body must be present.</assert>
     </rule>
   </pattern>
 </schema>

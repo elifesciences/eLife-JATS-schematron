@@ -1290,7 +1290,7 @@
     
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="fig[ancestor::sub-article[@article-type='reply']]" id="ar-fig-tests">
+    <rule context="fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" id="ar-fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="count" value="count(ancestor::body//fig)"/>
       <let name="pos" value="$count - count(following::fig)"/>
@@ -1300,7 +1300,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig[ancestor::sub-article[@article-type='reply']]" role="error" id="ar-fig-tests-xspec-assert">fig[ancestor::sub-article[@article-type='reply']] must be present.</assert>
+      <assert test="descendant::fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" role="error" id="ar-fig-tests-xspec-assert">fig[ancestor::sub-article[@article-type=('reply','author-comment')]] must be present.</assert>
     </rule>
   </pattern>
 </schema>

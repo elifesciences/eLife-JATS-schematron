@@ -4125,7 +4125,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="final-fig-test-7">fig must have a graphic.</assert>
     </rule>
     
-    <rule context="fig[ancestor::sub-article[@article-type='reply']]" id="ar-fig-tests">
+    <rule context="fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" id="ar-fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="count" value="count(ancestor::body//fig)"/>
       <let name="pos" value="$count - count(following::fig)"/>
@@ -5746,7 +5746,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="sub-article[@article-type='reply']//fig" id="rep-fig-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]//fig" id="rep-fig-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#resp-fig-test-2" 
         test="label" 
@@ -6406,7 +6406,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="dec-letter-title-test">title-group must contain article-title which contains 'Decision letter'. Currently it is <value-of select="article-title"/>.</assert>
     </rule>
     
-    <rule context="sub-article[@article-type='reply']/front-stub/title-group" id="reply-title-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]/front-stub/title-group" id="reply-title-tests">
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-title-test" 
         test="article-title = 'Author response'" 
         role="error" 
@@ -7071,6 +7071,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="article/sub-article" id="dec-letter-reply-tests">
       <let name="is-prc" value="e:is-prc(.)"/>
+      <let name="sub-article-types" value="('editor-report','referee-report','author-comment','decision-letter','reply')"/>
       <let name="sub-article-count" value="count(parent::article/sub-article)"/>
       <let name="id-convention" value="if (@article-type='editor-report') then 'sa0'
         else if (@article-type='decision-letter') then 'sa1'
@@ -7079,10 +7080,10 @@ else self::*/local-name() = $allowed-p-blocks"
         else concat('sa',count(preceding-sibling::sub-article))"></let>
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-1" 
-        test="@article-type=('editor-report','referee-report','author-comment','decision-letter','reply')" 
+        test="@article-type=$sub-article-types" 
         role="error" 
         flag="dl-ar"
-        id="dec-letter-reply-test-1">sub-article must must have an article-type which is equal to one of the following values: 'editor-report','decision-letter', or 'reply'.</assert>
+        id="dec-letter-reply-test-1">sub-article must must have an article-type which is equal to one of the following values: <value-of select="string-join($sub-article-types,'; ')"/>.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-2" 
         test="@id = $id-convention" 
@@ -7447,7 +7448,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="decision-missing-table-test">A decision letter table is referred to in the text, but there is no table in the decision letter with a label.</report>
     </rule>
     
-    <rule context="sub-article[@article-type='reply']/front-stub" id="reply-front-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]/front-stub" id="reply-front-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-front-test-1" 
         test="count(article-id[@pub-id-type='doi']) = 1" 
@@ -7456,7 +7457,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="reply-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
     </rule>
     
-    <rule context="sub-article[@article-type='reply']/body" id="reply-body-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]/body" id="reply-body-tests">
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-body-test-1" 
         test="count(disp-quote[@content-type='editor-comment']) = 0" 
@@ -7471,7 +7472,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="reply-body-test-2">author response doesn't contain a p. This has to be incorrect.</report>
     </rule>
     
-    <rule context="sub-article[@article-type='reply']/body//disp-quote" id="reply-disp-quote-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]/body//disp-quote" id="reply-disp-quote-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-disp-quote-test-1" 
         test="@content-type='editor-comment'" 
@@ -7480,7 +7481,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="reply-disp-quote-test-1">disp-quote in author reply does not have @content-type='editor-comment'. This is almost certainly incorrect.</assert>
     </rule>
     
-    <rule context="sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
       <let name="free-text" value="replace(
         normalize-space(string-join(for $x in self::*/text() return $x,''))
         ,' ','')"/>
@@ -7492,7 +7493,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="reply-missing-disp-quote-test-1">para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly?</report>
     </rule>
     
-    <rule context="sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
+    <rule context="sub-article[@article-type=('reply','author-comment')]//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-disp-quote-test-2" 
         test="string-length(.) ge 50" 
@@ -7501,7 +7502,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="reply-missing-disp-quote-test-2">A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '<value-of select="."/>' in '<value-of select="ancestor::*[local-name()='p'][1]"/>'</report>
     </rule>
     
-    <rule context="sub-article[@article-type='reply']" 
+    <rule context="sub-article[@article-type=('reply','author-comment')]" 
       id="reply-missing-table-tests">
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-table-test" 
@@ -7521,7 +7522,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="paper-pile-test">In the <value-of select="if (ancestor::sub-article[@article-type='reply']) then 'author response' else 'decision letter'"/> the text '<value-of select="."/>' has an embedded hyperlink to <value-of select="@xlink:href"/>. The hyperlink should be removed (but the text retained).</report>
     </rule>
     
-    <rule context="sub-article[@article-type='reply']/body/*[last()][name()='p']" 
+    <rule context="sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p']" 
       id="sub-article-ref-p-tests">
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#sub-article-ref-p-test" 

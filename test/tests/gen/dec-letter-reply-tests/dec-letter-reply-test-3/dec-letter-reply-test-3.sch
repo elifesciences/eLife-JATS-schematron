@@ -1292,6 +1292,7 @@
   <pattern id="dec-letter-auth-response">
     <rule context="article/sub-article" id="dec-letter-reply-tests">
       <let name="is-prc" value="e:is-prc(.)"/>
+      <let name="sub-article-types" value="('editor-report','referee-report','author-comment','decision-letter','reply')"/>
       <let name="sub-article-count" value="count(parent::article/sub-article)"/>
       <let name="id-convention" value="if (@article-type='editor-report') then 'sa0'         else if (@article-type='decision-letter') then 'sa1'         else if (@article-type='reply') then 'sa2'         else if (@article-type='author-comment') then concat('sa',$sub-article-count - 1)         else concat('sa',count(preceding-sibling::sub-article))"/>
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-3" test="count(front-stub) = 1" role="error" flag="dl-ar" id="dec-letter-reply-test-3">sub-article must contain one and only one front-stub.</assert>

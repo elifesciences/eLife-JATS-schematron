@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="dec-letter-reply-test-1.sch"?>
 <!--Context: article/sub-article
-Test: assert    @article-type=('editor-report','referee-report','author-comment','decision-letter','reply')
-Message: sub-article must must have an article-type which is equal to one of the following values: 'editor-report','decision-letter', or 'reply'. -->
+Test: assert    @article-type=$sub-article-types
+Message: sub-article must must have an article-type which is equal to one of the following values: . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <sub-article article-type="editor-report">

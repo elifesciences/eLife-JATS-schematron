@@ -1290,14 +1290,14 @@
     
   </xsl:function>
   <pattern id="dec-letter-auth-response">
-    <rule context="sub-article[@article-type='reply']/body/*[last()][name()='p']" id="sub-article-ref-p-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p']" id="sub-article-ref-p-tests">
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#sub-article-ref-p-test" test="count(tokenize(lower-case(.),'doi\p{Zs}?:')) gt 2" role="warning" flag="dl-ar" id="sub-article-ref-p-test">The last paragraph of the author response looks like it contains various references. Should each reference be split out into its own paragraph? <value-of select="."/>
       </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='reply']/body/*[last()][name()='p']" role="error" id="sub-article-ref-p-tests-xspec-assert">sub-article[@article-type='reply']/body/*[last()][name()='p'] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p']" role="error" id="sub-article-ref-p-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p'] must be present.</assert>
     </rule>
   </pattern>
 </schema>
