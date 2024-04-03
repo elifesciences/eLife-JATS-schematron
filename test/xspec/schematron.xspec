@@ -21016,6 +21016,18 @@
         <x:expect-not-assert id="flag-gitlab-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="data-request-checks">
+      <x:scenario label="data-request-check-pass">
+        <x:context href="../tests/gen/data-request-checks/data-request-check/pass.xml"/>
+        <x:expect-not-report id="data-request-check" role="warning"/>
+        <x:expect-not-assert id="data-request-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="data-request-check-fail">
+        <x:context href="../tests/gen/data-request-checks/data-request-check/fail.xml"/>
+        <x:expect-report id="data-request-check" role="warning"/>
+        <x:expect-not-assert id="data-request-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="doi-journal-ref-checks">
       <x:scenario label="journal-doi-test-1-pass">
         <x:context href="../tests/gen/doi-journal-ref-checks/journal-doi-test-1/pass.xml"/>
