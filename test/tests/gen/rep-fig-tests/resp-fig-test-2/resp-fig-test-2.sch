@@ -1290,13 +1290,13 @@
     
   </xsl:function>
   <pattern id="further-fig-tests">
-    <rule context="sub-article[@article-type='reply']//fig" id="rep-fig-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]//fig" id="rep-fig-tests">
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#resp-fig-test-2" test="label" role="error" flag="dl-ar" id="resp-fig-test-2">fig must have a label.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='reply']//fig" role="error" id="rep-fig-tests-xspec-assert">sub-article[@article-type='reply']//fig must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]//fig" role="error" id="rep-fig-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]//fig must be present.</assert>
     </rule>
   </pattern>
 </schema>

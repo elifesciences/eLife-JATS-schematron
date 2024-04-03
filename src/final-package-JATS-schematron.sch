@@ -2668,7 +2668,7 @@
       
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#final-fig-test-7" test="graphic" role="error" id="final-fig-test-7">fig must have a graphic.</assert>
-    </rule></pattern><pattern id="ar-fig-tests-pattern"><rule context="fig[ancestor::sub-article[@article-type='reply']]" id="ar-fig-tests">
+    </rule></pattern><pattern id="ar-fig-tests-pattern"><rule context="fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" id="ar-fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="count" value="count(ancestor::body//fig)"/>
       <let name="pos" value="$count - count(following::fig)"/>
@@ -3416,7 +3416,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-sup-test-6" test="$label-conforms and ($no != $label-no)" role="error" id="fig-sup-test-6"><value-of select="label"/> label ends with <value-of select="$label-no"/>, but the id (<value-of select="@id"/>) ends with <value-of select="$no"/>, so one must be incorrect.</report>
       
-    </rule></pattern><pattern id="rep-fig-tests-pattern"><rule context="sub-article[@article-type='reply']//fig" id="rep-fig-tests">
+    </rule></pattern><pattern id="rep-fig-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]//fig" id="rep-fig-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#resp-fig-test-2" test="label" role="error" id="resp-fig-test-2">fig must have a label.</assert>
       
@@ -3719,7 +3719,7 @@
     </rule></pattern><pattern id="dec-letter-title-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/front-stub/title-group" id="dec-letter-title-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-title-test" test="article-title = 'Decision letter'" role="error" id="dec-letter-title-test">title-group must contain article-title which contains 'Decision letter'. Currently it is <value-of select="article-title"/>.</assert>
-    </rule></pattern><pattern id="reply-title-tests-pattern"><rule context="sub-article[@article-type='reply']/front-stub/title-group" id="reply-title-tests">
+    </rule></pattern><pattern id="reply-title-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/front-stub/title-group" id="reply-title-tests">
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-title-test" test="article-title = 'Author response'" role="error" id="reply-title-test">title-group must contain article-title which contains 'Author response'. Currently it is <value-of select="article-title"/>.</assert>
       
     </rule></pattern><pattern id="title-child-tests-pattern"><rule context="title/*" id="title-child-tests">
@@ -4019,10 +4019,11 @@
   
   <pattern id="dec-letter-reply-tests-pattern"><rule context="article/sub-article" id="dec-letter-reply-tests">
       <let name="is-prc" value="e:is-prc(.)"/>
+      <let name="sub-article-types" value="('editor-report','referee-report','author-comment','decision-letter','reply')"/>
       <let name="sub-article-count" value="count(parent::article/sub-article)"/>
       <let name="id-convention" value="if (@article-type='editor-report') then 'sa0'         else if (@article-type='decision-letter') then 'sa1'         else if (@article-type='reply') then 'sa2'         else if (@article-type='author-comment') then concat('sa',$sub-article-count - 1)         else concat('sa',count(preceding-sibling::sub-article))"/>
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-1" test="@article-type=('editor-report','referee-report','author-comment','decision-letter','reply')" role="error" id="dec-letter-reply-test-1">sub-article must must have an article-type which is equal to one of the following values: 'editor-report','decision-letter', or 'reply'.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-1" test="@article-type=$sub-article-types" role="error" id="dec-letter-reply-test-1">sub-article must must have an article-type which is equal to one of the following values: <value-of select="string-join($sub-article-types,'; ')"/>.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-2" test="@id = $id-convention" role="error" id="dec-letter-reply-test-2">sub-article id is <value-of select="@id"/> when based on it's article-type and position it should be <value-of select="$id-convention"/>.</assert>
       
@@ -4165,31 +4166,31 @@
     </rule></pattern><pattern id="decision-missing-table-tests-pattern"><rule context="sub-article[@article-type='decision-letter']" id="decision-missing-table-tests">
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#decision-missing-table-test" test="contains(.,'letter table') and not(descendant::table-wrap[label])" role="warning" id="decision-missing-table-test">A decision letter table is referred to in the text, but there is no table in the decision letter with a label.</report>
-    </rule></pattern><pattern id="reply-front-tests-pattern"><rule context="sub-article[@article-type='reply']/front-stub" id="reply-front-tests">
+    </rule></pattern><pattern id="reply-front-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/front-stub" id="reply-front-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" id="reply-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
-    </rule></pattern><pattern id="reply-body-tests-pattern"><rule context="sub-article[@article-type='reply']/body" id="reply-body-tests">
+    </rule></pattern><pattern id="reply-body-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body" id="reply-body-tests">
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-body-test-1" test="count(disp-quote[@content-type='editor-comment']) = 0" role="warning" id="reply-body-test-1">author response doesn't contain a disp-quote. This is very likely to be incorrect. Please check the original file.</report>
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-body-test-2" test="count(p) = 0" role="error" id="reply-body-test-2">author response doesn't contain a p. This has to be incorrect.</report>
-    </rule></pattern><pattern id="reply-disp-quote-tests-pattern"><rule context="sub-article[@article-type='reply']/body//disp-quote" id="reply-disp-quote-tests">
+    </rule></pattern><pattern id="reply-disp-quote-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body//disp-quote" id="reply-disp-quote-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-disp-quote-test-1" test="@content-type='editor-comment'" role="warning" id="reply-disp-quote-test-1">disp-quote in author reply does not have @content-type='editor-comment'. This is almost certainly incorrect.</assert>
-    </rule></pattern><pattern id="reply-missing-disp-quote-tests-pattern"><rule context="sub-article[@article-type='reply']/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
+    </rule></pattern><pattern id="reply-missing-disp-quote-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-disp-quote-test-1" test="(count(*)=1) and (child::italic) and ($free-text='')" role="warning" id="reply-missing-disp-quote-test-1">para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly?</report>
-    </rule></pattern><pattern id="reply-missing-disp-quote-tests-2-pattern"><rule context="sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
+    </rule></pattern><pattern id="reply-missing-disp-quote-tests-2-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-disp-quote-test-2" test="string-length(.) ge 50" role="warning" id="reply-missing-disp-quote-test-2">A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '<value-of select="."/>' in '<value-of select="ancestor::*[local-name()='p'][1]"/>'</report>
-    </rule></pattern><pattern id="reply-missing-table-tests-pattern"><rule context="sub-article[@article-type='reply']" id="reply-missing-table-tests">
+    </rule></pattern><pattern id="reply-missing-table-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]" id="reply-missing-table-tests">
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-table-test" test="contains(.,'response table') and not(descendant::table-wrap[label])" role="warning" id="reply-missing-table-test">An author response table is referred to in the text, but there is no table in the response with a label.</report>
     </rule></pattern><pattern id="sub-article-ext-link-tests-pattern"><rule context="sub-article//ext-link" id="sub-article-ext-link-tests">
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#paper-pile-test" test="contains(@xlink:href,'paperpile.com')" role="error" id="paper-pile-test">In the <value-of select="if (ancestor::sub-article[@article-type='reply']) then 'author response' else 'decision letter'"/> the text '<value-of select="."/>' has an embedded hyperlink to <value-of select="@xlink:href"/>. The hyperlink should be removed (but the text retained).</report>
-    </rule></pattern><pattern id="sub-article-ref-p-tests-pattern"><rule context="sub-article[@article-type='reply']/body/*[last()][name()='p']" id="sub-article-ref-p-tests">
+    </rule></pattern><pattern id="sub-article-ref-p-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p']" id="sub-article-ref-p-tests">
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#sub-article-ref-p-test" test="count(tokenize(lower-case(.),'doi\p{Zs}?:')) gt 2" role="warning" id="sub-article-ref-p-test">The last paragraph of the author response looks like it contains various references. Should each reference be split out into its own paragraph? <value-of select="."/></report>
     </rule></pattern>

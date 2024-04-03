@@ -1290,13 +1290,13 @@
     
   </xsl:function>
   <pattern id="dec-letter-auth-response">
-    <rule context="sub-article[@article-type='reply']" id="reply-missing-table-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]" id="reply-missing-table-tests">
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-table-test" test="contains(.,'response table') and not(descendant::table-wrap[label])" role="warning" flag="dl-ar" id="reply-missing-table-test">An author response table is referred to in the text, but there is no table in the response with a label.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='reply']" role="error" id="reply-missing-table-tests-xspec-assert">sub-article[@article-type='reply'] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]" role="error" id="reply-missing-table-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

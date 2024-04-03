@@ -1290,13 +1290,13 @@
     
   </xsl:function>
   <pattern id="title-conformance">
-    <rule context="sub-article[@article-type='reply']/front-stub/title-group" id="reply-title-tests">
+    <rule context="sub-article[@article-type=('reply','author-comment')]/front-stub/title-group" id="reply-title-tests">
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-title-test" test="article-title = 'Author response'" role="error" flag="dl-ar" id="reply-title-test">title-group must contain article-title which contains 'Author response'. Currently it is <value-of select="article-title"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='reply']/front-stub/title-group" role="error" id="reply-title-tests-xspec-assert">sub-article[@article-type='reply']/front-stub/title-group must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/front-stub/title-group" role="error" id="reply-title-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/front-stub/title-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

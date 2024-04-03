@@ -1290,13 +1290,13 @@
     
   </xsl:function>
   <pattern id="dec-letter-auth-response">
-    <rule context="sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
+    <rule context="sub-article[@article-type=('reply','author-comment')]//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-disp-quote-test-2" test="string-length(.) ge 50" role="warning" flag="dl-ar" id="reply-missing-disp-quote-test-2">A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '<value-of select="."/>' in '<value-of select="ancestor::*[local-name()='p'][1]"/>'</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)]" role="error" id="reply-missing-disp-quote-tests-2-xspec-assert">sub-article[@article-type='reply']//italic[not(ancestor::disp-quote)] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]//italic[not(ancestor::disp-quote)]" role="error" id="reply-missing-disp-quote-tests-2-xspec-assert">sub-article[@article-type=('reply','author-comment')]//italic[not(ancestor::disp-quote)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="resp-fig-test-2.sch"?>
-<!--Context: sub-article[@article-type='reply']//fig
+<!--Context: sub-article[@article-type=('reply','author-comment')]//fig
 Test: assert    label
 Message: fig must have a label. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
