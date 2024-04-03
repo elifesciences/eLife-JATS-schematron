@@ -1295,6 +1295,7 @@
       <let name="count" value="count(ancestor::body//fig)"/>
       <let name="pos" value="$count - count(following::fig)"/>
       <let name="no" value="substring-after(@id,'fig')"/>
+      <let name="id-based-label" value="concat('Author response image ',$no,'.')"/>
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#ar-fig-test-2" test="if ($article-type = ($features-article-types,$notice-article-types)) then ()         else not(label)" role="error" flag="dl-ar" id="ar-fig-test-2">Author Response fig must have a label.</report>
     </rule>
   </pattern>

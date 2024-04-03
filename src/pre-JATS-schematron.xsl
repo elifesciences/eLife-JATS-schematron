@@ -10380,7 +10380,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[permissions-test-6] copyright-year must match the the year of first reviewed preprint publication under the new model or first publicaiton date in the old model. For this <xsl:text/>
+               <svrl:text>[permissions-test-6] copyright-year must match the year of first reviewed preprint publication under the new model or first publicaiton date in the old model. For this <xsl:text/>
                   <xsl:value-of select="if ($is-prc) then 'new' else 'old'"/>
                   <xsl:text/> model paper, currently copyright-year=<xsl:text/>
                   <xsl:value-of select="copyright-year"/>
@@ -14373,6 +14373,7 @@
       <xsl:variable name="count" select="count(ancestor::body//fig)"/>
       <xsl:variable name="pos" select="$count - count(following::fig)"/>
       <xsl:variable name="no" select="substring-after(@id,'fig')"/>
+      <xsl:variable name="id-based-label" select="concat('Author response image ',$no,'.')"/>
 
 		    <!--REPORT error-->
       <xsl:if test="if ($article-type = ($features-article-types,$notice-article-types)) then ()         else not(label)">
@@ -14425,6 +14426,26 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+
+		    <!--REPORT error-->
+      <xsl:if test="matches(label[1],'^Author response image \d+\.$') and (label[1]!=$id-based-label)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(label[1],'^Author response image \d+\.$') and (label[1]!=$id-based-label)">
+            <xsl:attribute name="id">ar-fig-position-label-test</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ar-fig-position-label-test] Author response image has the label '<xsl:text/>
+               <xsl:value-of select="label"/>
+               <xsl:text/>', but the figure number in its id (<xsl:text/>
+               <xsl:value-of select="$no"/>
+               <xsl:text/> in <xsl:text/>
+               <xsl:value-of select="@id"/>
+               <xsl:text/>) suggests the label should be '<xsl:text/>
+               <xsl:value-of select="$id-based-label"/>
+               <xsl:text/>'. Which is correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M183"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M183"/>
@@ -43297,7 +43318,7 @@
             </xsl:attribute>
             <svrl:text>[data-request-check] <xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/> element contains text that has the the words data (or dataset(s)) as well as request. Is this a statement that data is available on request? If so, has this been approved by the editors?</svrl:text>
+               <xsl:text/> element contains text that has the words data (or dataset(s)) as well as request. Is this a statement that data is available on request? If so, has this been approved by the editors?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M562"/>

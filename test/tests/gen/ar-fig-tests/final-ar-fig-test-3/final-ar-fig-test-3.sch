@@ -1295,6 +1295,7 @@
       <let name="count" value="count(ancestor::body//fig)"/>
       <let name="pos" value="$count - count(following::fig)"/>
       <let name="no" value="substring-after(@id,'fig')"/>
+      <let name="id-based-label" value="concat('Author response image ',$no,'.')"/>
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#final-ar-fig-test-3" test="graphic" role="error" id="final-ar-fig-test-3">Author Response fig must have a graphic.</assert>
     </rule>
   </pattern>

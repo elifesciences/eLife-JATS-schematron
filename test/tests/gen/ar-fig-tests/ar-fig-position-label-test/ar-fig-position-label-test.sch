@@ -1289,15 +1289,19 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="house-style">
-    <rule context="p|td|th|title" id="data-request-checks">
-      <report test="matches(lower-case(.),'(^|\s)(data|datasets)(\s|\?|\.|!)') and matches(lower-case(.),'(^|\s)request(\s|\?|\.|!|$)')" role="warning" id="data-request-check">
-        <name/> element contains text that has the words data (or dataset(s)) as well as request. Is this a statement that data is available on request? If so, has this been approved by the editors?</report>
+  <pattern id="content-containers">
+    <rule context="fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" id="ar-fig-tests">
+      <let name="article-type" value="ancestor::article/@article-type"/>
+      <let name="count" value="count(ancestor::body//fig)"/>
+      <let name="pos" value="$count - count(following::fig)"/>
+      <let name="no" value="substring-after(@id,'fig')"/>
+      <let name="id-based-label" value="concat('Author response image ',$no,'.')"/>
+      <report test="matches(label[1],'^Author response image \d+\.$') and (label[1]!=$id-based-label)" role="error" id="ar-fig-position-label-test">Author response image has the label '<value-of select="label"/>', but the figure number in its id (<value-of select="$no"/> in <value-of select="@id"/>) suggests the label should be '<value-of select="$id-based-label"/>'. Which is correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p or descendant::td or descendant::th or descendant::title" role="error" id="data-request-checks-xspec-assert">p|td|th|title must be present.</assert>
+      <assert test="descendant::fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" role="error" id="ar-fig-tests-xspec-assert">fig[ancestor::sub-article[@article-type=('reply','author-comment')]] must be present.</assert>
     </rule>
   </pattern>
 </schema>

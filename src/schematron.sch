@@ -4130,6 +4130,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="count" value="count(ancestor::body//fig)"/>
       <let name="pos" value="$count - count(following::fig)"/>
       <let name="no" value="substring-after(@id,'fig')"/>
+      <let name="id-based-label" value="concat('Author response image ',$no,'.')"/>
       
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#ar-fig-test-2" 
         test="if ($article-type = ($features-article-types,$notice-article-types)) then ()
@@ -4160,10 +4161,9 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="final-ar-fig-position-test"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR images it is placed in position <value-of select="$pos"/>.</assert>
 
-      <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#final-ar-fig-position-test" 
-        test="$no = string($pos)" 
+      <report test="matches(label[1],'^Author response image \d+\.$') and (label[1]!=$id-based-label)" 
         role="error" 
-        id="ar-fig-position-label-test"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR images it is placed in position <value-of select="$pos"/>.</assert>
+        id="ar-fig-position-label-test">Author response image has the label '<value-of select="label"/>', but the figure number in its id (<value-of select="$no"/> in <value-of select="@id"/>) suggests the label should be '<value-of select="$id-based-label"/>'. Which is correct?</report>
     </rule>
     
     <rule context="graphic|inline-graphic" id="graphic-tests">
@@ -13957,7 +13957,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="matches(lower-case(.),'(^|\s)(data|datasets)(\s|\?|\.|!)') and matches(lower-case(.),'(^|\s)request(\s|\?|\.|!|$)')" 
         role="warning" 
-        id="data-request-check"><name/> element contains text that has the the words data (or dataset(s)) as well as request. Is this a statement that data is available on request? If so, has this been approved by the editors?</report>
+        id="data-request-check"><name/> element contains text that has the words data (or dataset(s)) as well as request. Is this a statement that data is available on request? If so, has this been approved by the editors?</report>
       
     </rule>
   </pattern>
