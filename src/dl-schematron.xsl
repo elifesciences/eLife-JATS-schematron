@@ -1948,6 +1948,7 @@
       <xsl:variable name="count" select="count(ancestor::body//fig)"/>
       <xsl:variable name="pos" select="$count - count(following::fig)"/>
       <xsl:variable name="no" select="substring-after(@id,'fig')"/>
+      <xsl:variable name="id-based-label" select="concat('Author response image ',$no,'.')"/>
 
 		    <!--REPORT error-->
       <xsl:if test="if ($article-type = ($features-article-types,$notice-article-types)) then ()         else not(label)">

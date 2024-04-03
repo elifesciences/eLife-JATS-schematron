@@ -2049,7 +2049,7 @@
       
       <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-3" test="copyright-holder" role="error" id="permissions-test-3">[permissions-test-3] permissions must contain copyright-holder in CC BY licensed articles.</assert>
       
-      <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-6" test="copyright-year = $authoritative-year" role="error" id="permissions-test-6">[permissions-test-6] copyright-year must match the the year of first reviewed preprint publication under the new model or first publicaiton date in the old model. For this <value-of select="if ($is-prc) then 'new' else 'old'"/> model paper, currently copyright-year=<value-of select="copyright-year"/> and authoritative pub-date=<value-of select="$authoritative-year"/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-6" test="copyright-year = $authoritative-year" role="error" id="permissions-test-6">[permissions-test-6] copyright-year must match the year of first reviewed preprint publication under the new model or first publicaiton date in the old model. For this <value-of select="if ($is-prc) then 'new' else 'old'"/> model paper, currently copyright-year=<value-of select="copyright-year"/> and authoritative pub-date=<value-of select="$authoritative-year"/>.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-7" test="copyright-holder = $copyright-holder" role="error" id="permissions-test-7">[permissions-test-7] copyright-holder is incorrect. If the article has one author then it should be their surname (or collab name). If it has two authors it should be the surname (or collab name) of the first, then ' and ' and then the surname (or collab name) of the second. If three or more, it should be the surname (or collab name) of the first, and then ' et al'. Currently it's '<value-of select="copyright-holder"/>' when based on the author list it should be '<value-of select="$copyright-holder"/>'.</assert>
       
@@ -2667,6 +2667,7 @@
       <let name="count" value="count(ancestor::body//fig)"/>
       <let name="pos" value="$count - count(following::fig)"/>
       <let name="no" value="substring-after(@id,'fig')"/>
+      <let name="id-based-label" value="concat('Author response image ',$no,'.')"/>
       
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#ar-fig-test-2" test="if ($article-type = ($features-article-types,$notice-article-types)) then ()         else not(label)" role="error" flag="dl-ar" id="ar-fig-test-2">[ar-fig-test-2] Author Response fig must have a label.</report>
       
@@ -2677,6 +2678,8 @@
       
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#final-ar-fig-position-test" test="$no = string($pos)" role="error" id="final-ar-fig-position-test">[final-ar-fig-position-test] <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR images it is placed in position <value-of select="$pos"/>.</assert>
+
+      <report test="matches(label[1],'^Author response image \d+\.$') and (label[1]!=$id-based-label)" role="error" id="ar-fig-position-label-test">[ar-fig-position-label-test] Author response image has the label '<value-of select="label"/>', but the figure number in its id (<value-of select="$no"/> in <value-of select="@id"/>) suggests the label should be '<value-of select="$id-based-label"/>'. Which is correct?</report>
     </rule></pattern><pattern id="graphic-tests-pattern"><rule context="graphic|inline-graphic" id="graphic-tests">
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
@@ -7100,6 +7103,10 @@
       <let name="owner-repo" value="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#gitlab-no-citation" test="preceding::ext-link[contains(lower-case(@xlink:href),$owner-repo)] or ancestor::article//element-citation[@publication-type=('software','data') and (contains(lower-case(ext-link[1]),$owner-repo) or  contains(lower-case(pub-id[1]/@xlink:href),$owner-repo))]" role="warning" id="gitlab-no-citation">[gitlab-no-citation] This GitLab link - <value-of select="@xlink:href"/> - is included in the text, but there is no software reference for it. Please add a software reference or, in the event that all the information is not available, query the authors for the reference details.</assert>
+      
+    </rule></pattern><pattern id="data-request-checks-pattern"><rule context="p|td|th|title" id="data-request-checks">
+      
+      <report test="matches(lower-case(.),'(^|\s)(data|datasets)(\s|\?|\.|!)') and matches(lower-case(.),'(^|\s)request(\s|\?|\.|!|$)')" role="warning" id="data-request-check">[data-request-check] <name/> element contains text that has the words data (or dataset(s)) as well as request. Is this a statement that data is available on request? If so, has this been approved by the editors?</report>
       
     </rule></pattern>
   

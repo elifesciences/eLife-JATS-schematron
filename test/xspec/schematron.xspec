@@ -4741,6 +4741,16 @@
         <x:expect-assert id="final-ar-fig-position-test" role="error"/>
         <x:expect-not-assert id="ar-fig-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ar-fig-position-label-test-pass">
+        <x:context href="../tests/gen/ar-fig-tests/ar-fig-position-label-test/pass.xml"/>
+        <x:expect-not-report id="ar-fig-position-label-test" role="error"/>
+        <x:expect-not-assert id="ar-fig-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ar-fig-position-label-test-fail">
+        <x:context href="../tests/gen/ar-fig-tests/ar-fig-position-label-test/fail.xml"/>
+        <x:expect-report id="ar-fig-position-label-test" role="error"/>
+        <x:expect-not-assert id="ar-fig-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="graphic-tests">
       <x:scenario label="graphic-test-1-pass">
@@ -21014,6 +21024,18 @@
         <x:context href="../tests/gen/flag-gitlab/gitlab-no-citation/fail.xml"/>
         <x:expect-assert id="gitlab-no-citation" role="warning"/>
         <x:expect-not-assert id="flag-gitlab-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="data-request-checks">
+      <x:scenario label="data-request-check-pass">
+        <x:context href="../tests/gen/data-request-checks/data-request-check/pass.xml"/>
+        <x:expect-not-report id="data-request-check" role="warning"/>
+        <x:expect-not-assert id="data-request-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="data-request-check-fail">
+        <x:context href="../tests/gen/data-request-checks/data-request-check/fail.xml"/>
+        <x:expect-report id="data-request-check" role="warning"/>
+        <x:expect-not-assert id="data-request-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="doi-journal-ref-checks">

@@ -1,0 +1,19 @@
+<?oxygen SCHSchema="ar-fig-position-label-test.sch"?>
+<!--Context: fig[ancestor::sub-article[@article-type=('reply','author-comment')]]
+Test: report    matches(label[1],'^Author response image \d+\.$') and (label[1]!=$id-based-label)
+Message: Author response image has the label '', but the figure number in its id ( in ) suggests the label should be ''. Which is correct? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article article-type="author-comment">
+            <fig id="sa3fig1">
+                <label>Author response image 1.</label>
+            </fig>
+            <fig id="sa3fig2">
+                <label>Author response image 2.</label>
+            </fig>
+            <fig id="sa3fig3">
+                <label>Author response image 3.</label>
+            </fig>
+        </sub-article>
+    </article>
+</root>
