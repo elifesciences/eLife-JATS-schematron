@@ -57,7 +57,7 @@
      <rule context="article-meta/contrib-group/contrib[@contrib-type='author' and not(collab)]" id="author-contrib-checks">
         <assert test="xref[@ref-type='aff']" 
         role="error" 
-        id="author-contrb-no-aff-xref">Author <value-of select="e:get-name(.)"/> has no affiliation.</assert>
+        id="author-contrb-no-aff-xref">Author <value-of select="e:get-name(name[1])"/> has no affiliation.</assert>
      </rule>
     
      <rule context="contrib-group//name" id="name-tests">

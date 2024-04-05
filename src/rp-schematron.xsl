@@ -327,7 +327,7 @@
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
                <svrl:text>[author-contrb-no-aff-xref] Author <xsl:text/>
-                  <xsl:value-of select="e:get-name(.)"/>
+                  <xsl:value-of select="e:get-name(name[1])"/>
                   <xsl:text/> has no affiliation.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
