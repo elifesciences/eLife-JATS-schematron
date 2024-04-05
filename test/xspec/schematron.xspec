@@ -3489,12 +3489,12 @@
       </x:scenario>
       <x:scenario label="award-id-test-5-pass">
         <x:context href="../tests/gen/award-id-tests/award-id-test-5/pass.xml"/>
-        <x:expect-not-report id="award-id-test-5" role="warning"/>
+        <x:expect-not-report id="award-id-test-5" role="error"/>
         <x:expect-not-assert id="award-id-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="award-id-test-5-fail">
         <x:context href="../tests/gen/award-id-tests/award-id-test-5/fail.xml"/>
-        <x:expect-report id="award-id-test-5" role="warning"/>
+        <x:expect-report id="award-id-test-5" role="error"/>
         <x:expect-not-assert id="award-id-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
