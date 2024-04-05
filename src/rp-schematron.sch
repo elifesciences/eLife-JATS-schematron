@@ -45,6 +45,14 @@
     </xsl:choose>
   </xsl:function>
 
+  <xsl:function name="java:file-exists" xmlns:file="java.io.File" as="xs:boolean">
+    <xsl:param name="file" as="xs:string"/>
+    <xsl:param name="base-uri" as="xs:string"/>
+    
+    <xsl:variable name="absolute-uri" select="resolve-uri($file, $base-uri)" as="xs:anyURI"/>
+    <xsl:sequence select="file:exists(file:new($absolute-uri))"/>
+  </xsl:function>
+
     <pattern id="article-title">
      <rule context="article-meta/title-group/article-title" id="article-title-checks">
         <report test=". = upper-case(.)" 
@@ -54,7 +62,7 @@
     </pattern>
 
     <pattern id="author-checks">
-     <rule context="article-meta/contrib-group[count(aff gt 1)]/contrib[@contrib-type='author' and not(collab)]" id="author-contrib-checks">
+     <rule context="article-meta/contrib-group[count(aff) gt 1]/contrib[@contrib-type='author' and not(collab)]" id="author-contrib-checks">
         <assert test="xref[@ref-type='aff']" 
         role="error" 
         id="author-contrb-no-aff-xref">Author <value-of select="e:get-name(name[1])"/> has no affiliation.</assert>
@@ -237,7 +245,14 @@
         role="error"
         flag="manifest"
         id="item-type-conformance">The manifest.xml file for this article has item elements with unallowed item types. Here are the unsupported item types: <value-of select="distinct-values($unallowed-items/@type)"/></assert>
+      
+      <let name="missing-files" value="for $file in distinct-values($manifest-files) return if (not(java:file-exists($file, $parent-folder))) then $file else ()"/>
+      <!-- the id is this for convenience -->
+      <assert test="empty($missing-files)" 
+        role="error" 
+        id="graphic-media-presence">The following files referenced in the manifest.xml file are not present in the folder: <value-of select="$missing-files"/></assert>
      </rule>
+
     </pattern>
     
 </schema>
