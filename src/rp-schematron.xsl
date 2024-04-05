@@ -314,7 +314,7 @@
 
 
 	  <!--RULE author-contrib-checks-->
-   <xsl:template match="article-meta/contrib-group/contrib[@contrib-type='author' and not(collab)]" priority="1000" mode="M15">
+   <xsl:template match="article-meta/contrib-group[count(aff gt 1)]/contrib[@contrib-type='author' and not(collab)]" priority="1000" mode="M15">
 
 		<!--ASSERT error-->
       <xsl:choose>
