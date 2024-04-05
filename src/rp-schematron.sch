@@ -221,6 +221,54 @@
      </rule>
     </pattern>
 
+    <pattern id="article-metadata">
+      <rule context="article/front/article-meta" id="general-article-meta-checks">
+        <assert test="article-id[@pub-id-type='doi']" 
+        role="error" 
+        id="article-id">article-meta must contain at least one DOI - a &lt;article-id pub-id-type="doi"> element.</assert>
+
+        <assert test="count(article-version)=1" 
+        role="error" 
+        id="article-version-1">article-meta must contain one (and only one) &lt;article-version> element.</assert>
+      </rule>
+
+      <rule context="article/front/article-meta/article-version" id="article-version-checks">
+        <assert test="matches(.,'^1\.\d+$')" 
+        role="error" 
+        id="article-version-2">article-must be in the format 1.x (e.g. 1.11). This one is '<value-of select="."/>'.</assert>
+      </rule>
+    </pattern>
+
+    <pattern id="arxiv-metadata">
+     <rule context="article/front/journal-meta[lower-case(journal-id)='arxiv']" id="arxiv-journal-meta-checks">
+        <assert test="journal-id[@journal-id-type='publisher-id']='arXiv'" 
+        role="error" 
+        id="arxiv-journal-id">arXiv preprints must have a &lt;journal-id journal-id-type="publisher-id"> element with the value 'arXiv'.</assert>
+
+      <assert test="journal-title-group/journal-title='arXiv'" 
+        role="error" 
+        id="arxiv-journal-title">arXiv preprints must have a &lt;journal-title> element with the value 'arXiv' inside a &lt;journal-title-group> element.</assert>
+
+      <assert test="journal-title-group/abbrev-journal-title[@abbrev-type='publisher']='arXiv'" 
+        role="error" 
+        id="arxiv-abbrev-journal-title">arXiv preprints must have a &lt;abbrev-journal-title abbrev-type="publisher"> element with the value 'arXiv' inside a &lt;journal-title-group> element.</assert>
+
+      <assert test="issn[@pub-type='epub']='2331-8422'" 
+        role="error" 
+        id="arxiv-issn">arXiv preprints must have a &lt;issn pub-type="epub"> element with the value 'arXiv'.</assert>
+
+      <assert test="publisher/publisher-name='Cornell University'" 
+        role="error" 
+        id="arxiv-publisher">arXiv preprints must have a &lt;publisher-name> element with the value 'Cornell University', inside a &lt;publisher> element.</assert>
+     </rule>
+
+      <rule context="article/front[journal-meta[lower-case(journal-id)='arxiv']]/article-meta/article-id[@pub-id-type='doi']" id="arxiv-doi-checks">
+        <assert test="matches(.,'^10\.48550/arXiv\.\d{4,}\.\d{4,}$')" 
+         role="error" 
+         id="arxiv-doi-conformance">arXiv preprints must have a &lt;article-id pub-id-type="doi"> element with a value that matches the regex '10\.48550/arXiv\.\d{4,}\.\d{4,}'. In other words, the current DOI listed is not a valid arXiv DOI: '<value-of select="."/>'.</assert>
+      </rule>
+    </pattern>
+
     <!-- Checks for the manifest file in the meca package.
           For validation in oXygen this assumes the manifest file is in a parent folder of the xml file being validated and named as manifest.xml
           For validation via BaseX, there is a separate file - meca-manifest-schematron.sch
