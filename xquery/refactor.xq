@@ -18,8 +18,9 @@ declare variable $outputDir := substring-before(base-uri($sch),'/schematron.sch'
 (: repo root :)
 declare variable $root := substring-before($outputDir,'/src');
 
-(: schematron file for preprints :)
+(: schematron files for preprints :)
 declare variable $rp-sch := doc(concat($outputDir,'/rp-schematron.sch'));
+declare variable $manifest-sch := doc(concat($outputDir,'/meca-manifest-schematron.sch'));
 
 (
   for $sch in $sch/sch:schema
@@ -36,9 +37,11 @@ declare variable $rp-sch := doc(concat($outputDir,'/rp-schematron.sch'));
   let $dl-xsl := schematron:compile($dl-sch)
   let $final-xsl := schematron:compile($final-sch)
   (: schematron for final-package - niche use :)
-  let $final-package-sch :=  elife:sch2final-package($sch)
+  let $final-package-sch := elife:sch2final-package($sch)
   (: schematron for reviewed preprints :)
-  let $rp-xsl := schematron:compile($rp-sch)
+  let $rp-xsl := schematron:compile(elife:sch2final($rp-sch))
+  (: schematron for manifest files in meca packages :)
+  let $manifest-xsl := schematron:compile($manifest-sch)
   (: Generate xspec specific sch :)
   let $xspec-sch := elife:sch2xspec-sch($sch)
   (: Generate xspec file from xspec specific sch :)
@@ -48,6 +51,8 @@ declare variable $rp-sch := doc(concat($outputDir,'/rp-schematron.sch'));
   return (
     (: error if file contains unallowed role values :)
     elife:unallowed-roles($sch,$roles),
+    elife:unallowed-roles($rp-sch,$roles),
+    elife:unallowed-roles($manifest-sch,$roles),
     file:write(($outputDir||'/pre-JATS-schematron.sch'),$pre-sch),
     file:write(($outputDir||'/dl-schematron.sch'),$dl-sch),
     file:write(($outputDir||'/final-JATS-schematron.sch'),$final-sch),
@@ -55,6 +60,7 @@ declare variable $rp-sch := doc(concat($outputDir,'/rp-schematron.sch'));
     file:write(($outputDir||'/dl-schematron.xsl'),$dl-xsl),
     file:write(($outputDir||'/final-JATS-schematron.xsl'),$final-xsl),
     file:write(($outputDir||'/rp-schematron.xsl'),$rp-xsl),
+    file:write(($outputDir||'/meca-manifest-schematron.xsl'),$manifest-xsl),
     
     file:write(($outputDir||'/final-package-JATS-schematron.sch'),$final-package-sch),
     file:write(($root||'/test/xspec/schematron.sch'),$xspec-sch,map{'indent':'yes'}),
