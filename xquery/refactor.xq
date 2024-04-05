@@ -51,6 +51,8 @@ declare variable $manifest-sch := doc(concat($outputDir,'/meca-manifest-schematr
   return (
     (: error if file contains unallowed role values :)
     elife:unallowed-roles($sch,$roles),
+    elife:unallowed-roles($rp-sch,$roles),
+    elife:unallowed-roles($manifest-sch,$roles),
     file:write(($outputDir||'/pre-JATS-schematron.sch'),$pre-sch),
     file:write(($outputDir||'/dl-schematron.sch'),$dl-sch),
     file:write(($outputDir||'/final-JATS-schematron.sch'),$final-sch),

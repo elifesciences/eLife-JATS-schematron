@@ -477,5 +477,5 @@ let $problem-tests := string-join(
                         ,', ')
 return error(
         xs:QName("elife:error"),
-        (string-join($unallowed-roles,', ')||' is not allowed as value of @role in src/schematron.sch. See test(s) with id(s) '||$problem-tests))
+        (string-join($unallowed-roles,', ')||' is not allowed as value of @role. See test(s) with id(s) '||$problem-tests))
 };
