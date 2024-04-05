@@ -12277,12 +12277,11 @@
          </svrl:successful-report>
       </xsl:if>
 
-		    <!--REPORT warning-->
+		    <!--REPORT error-->
       <xsl:if test="matches(.,'http[s]?://d?x?\.?doi.org/')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'http[s]?://d?x?\.?doi.org/')">
             <xsl:attribute name="id">award-id-test-5</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-4</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
