@@ -185,7 +185,7 @@ declare function elife:sch2final($sch){
       let $id := ("["||$x/@id||"] ")
       return 
       if (starts-with($x/@id,'pre-')) then delete node $x
-      else if ($x/@id = ('graphic-media-presence','article-xml-name')) then delete node $x/ancestor::*:pattern
+      else if ($x/@id = ('graphic-media-presence','article-xml-name','indistinct-files-presence')) then delete node $x/ancestor::*:pattern
       else if (starts-with($x/data(),('['||$x/@id))) then ()
       else insert node $id as first into $x,
 
