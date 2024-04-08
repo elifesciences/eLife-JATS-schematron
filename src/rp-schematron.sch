@@ -230,6 +230,10 @@
         <assert test="count(article-version)=1" 
         role="error" 
         id="article-version-1">article-meta must contain one (and only one) &lt;article-version> element.</assert>
+
+        <assert test="count(contrib-group)=1" 
+        role="error" 
+        id="article-contrib-group">article-meta must contain one (and only one) &lt;contrib-group> element.</assert>
       </rule>
 
       <rule context="article/front/article-meta/article-version" id="article-version-checks">
@@ -255,7 +259,7 @@
 
       <assert test="issn[@pub-type='epub']='2331-8422'" 
         role="error" 
-        id="arxiv-issn">arXiv preprints must have a &lt;issn pub-type="epub"> element with the value 'arXiv'.</assert>
+        id="arxiv-issn">arXiv preprints must have a &lt;issn pub-type="epub"> element with the value '2331-8422'.</assert>
 
       <assert test="publisher/publisher-name='Cornell University'" 
         role="error" 
@@ -265,7 +269,37 @@
       <rule context="article/front[journal-meta[lower-case(journal-id)='arxiv']]/article-meta/article-id[@pub-id-type='doi']" id="arxiv-doi-checks">
         <assert test="matches(.,'^10\.48550/arXiv\.\d{4,5}\.\d{4,5}$')" 
          role="error" 
-         id="arxiv-doi-conformance">arXiv preprints must have a &lt;article-id pub-id-type="doi"> element with a value that matches the regex '10\.48550/arXiv\.\d{4,}\.\d{4,}'. In other words, the current DOI listed is not a valid arXiv DOI: '<value-of select="."/>'.</assert>
+         id="arxiv-doi-conformance">arXiv preprints must have a &lt;article-id pub-id-type="doi"> element with a value that matches the regex '10\.48550/arXiv\.\d{4,}\.\d{4,5}'. In other words, the current DOI listed is not a valid arXiv DOI: '<value-of select="."/>'.</assert>
+      </rule>
+    </pattern>
+
+    <pattern id="res-square-metadata">
+     <rule context="article/front/journal-meta[lower-case(journal-id)='rs']" id="res-square-journal-meta-checks">
+        <assert test="journal-id[@journal-id-type='publisher-id']='RS'" 
+        role="error" 
+        id="res-square-journal-id">Research Square preprints must have a &lt;journal-id journal-id-type="publisher-id"> element with the value 'RS'.</assert>
+
+      <assert test="journal-title-group/journal-title='Research Square'" 
+        role="error" 
+        id="res-square-journal-title">Research Square preprints must have a &lt;journal-title> element with the value 'Research Square' inside a &lt;journal-title-group> element.</assert>
+
+      <assert test="journal-title-group/abbrev-journal-title[@abbrev-type='publisher']='rs'" 
+        role="error" 
+        id="res-square-abbrev-journal-title">Research Square preprints must have a &lt;abbrev-journal-title abbrev-type="publisher"> element with the value 'rs' inside a &lt;journal-title-group> element.</assert>
+
+      <assert test="issn[@pub-type='epub']='2693-5015'" 
+        role="error" 
+        id="res-square-issn">Research Square preprints must have a &lt;issn pub-type="epub"> element with the value '2693-5015'.</assert>
+
+      <assert test="publisher/publisher-name='Research Square'" 
+        role="error" 
+        id="res-square-publisher">Research Square preprints must have a &lt;publisher-name> element with the value 'Research Square', inside a &lt;publisher> element.</assert>
+     </rule>
+
+      <rule context="article/front[journal-meta[lower-case(journal-id)='rs']]/article-meta/article-id[@pub-id-type='doi']" id="res-square-doi-checks">
+        <assert test="matches(.,'^10.21203/rs\.3\.rs-\d+/v\d$')" 
+         role="error" 
+         id="res-square-doi-conformance">Research Square preprints must have a &lt;article-id pub-id-type="doi"> element with a value that matches the regex '^10.21203/rs\.3\.rs-\d+/v\d$'. In other words, the current DOI listed is not a valid Research Square DOI: '<value-of select="."/>'.</assert>
       </rule>
     </pattern>
 
