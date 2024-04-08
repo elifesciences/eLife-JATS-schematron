@@ -1074,9 +1074,9 @@
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(.,'^10\.48550/arXiv\.\d{4,}\.\d{4,}$')"/>
+         <xsl:when test="matches(.,'^10\.48550/arXiv\.\d{4,5}\.\d{4,5}$')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^10\.48550/arXiv\.\d{4,}\.\d{4,}$')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^10\.48550/arXiv\.\d{4,5}\.\d{4,5}$')">
                <xsl:attribute name="id">arxiv-doi-conformance</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
