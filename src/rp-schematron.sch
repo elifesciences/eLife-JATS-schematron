@@ -297,9 +297,35 @@
      </rule>
 
       <rule context="article/front[journal-meta[lower-case(journal-id)='rs']]/article-meta/article-id[@pub-id-type='doi']" id="res-square-doi-checks">
-        <assert test="matches(.,'^10.21203/rs\.3\.rs-\d+/v\d$')" 
+        <assert test="matches(.,'^10\.21203/rs\.3\.rs-\d+/v\d$')" 
          role="error" 
-         id="res-square-doi-conformance">Research Square preprints must have a &lt;article-id pub-id-type="doi"> element with a value that matches the regex '^10.21203/rs\.3\.rs-\d+/v\d$'. In other words, the current DOI listed is not a valid Research Square DOI: '<value-of select="."/>'.</assert>
+         id="res-square-doi-conformance">Research Square preprints must have a &lt;article-id pub-id-type="doi"> element with a value that matches the regex '^10\.21203/rs\.3\.rs-\d+/v\d$'. In other words, the current DOI listed is not a valid Research Square DOI: '<value-of select="."/>'.</assert>
+      </rule>
+    </pattern>
+
+    <pattern id="psyarxiv-metadata">
+     <rule context="article/front/journal-meta[lower-case(journal-id)='psyarxiv']" id="psyarxiv-journal-meta-checks">
+        <assert test="journal-id[@journal-id-type='publisher-id']='PsyArXiv'" 
+        role="error" 
+        id="psyarxiv-journal-id">PsyArXiv preprints must have a &lt;journal-id journal-id-type="publisher-id"> element with the value 'PsyArXiv'.</assert>
+
+      <assert test="journal-title-group/journal-title='PsyArXiv'" 
+        role="error" 
+        id="psyarxiv-journal-title">PsyArXiv preprints must have a &lt;journal-title> element with the value 'PsyArXiv' inside a &lt;journal-title-group> element.</assert>
+
+      <assert test="journal-title-group/abbrev-journal-title[@abbrev-type='publisher']='PsyArXiv'" 
+        role="error" 
+        id="psyarxiv-abbrev-journal-title">PsyArXiv preprints must have a &lt;abbrev-journal-title abbrev-type="publisher"> element with the value 'PsyArXiv' inside a &lt;journal-title-group> element.</assert>
+
+      <assert test="publisher/publisher-name='Center for Open Science'" 
+        role="error" 
+        id="psyarxiv-publisher">PsyArXiv preprints must have a &lt;publisher-name> element with the value 'Center for Open Science', inside a &lt;publisher> element.</assert>
+     </rule>
+
+      <rule context="article/front[journal-meta[lower-case(journal-id)='rs']]/article-meta/article-id[@pub-id-type='doi']" id="psyarxiv-doi-checks">
+        <assert test="matches(.,'^10\.31234/osf\.io/[\da-z]+$')" 
+         role="error" 
+         id="psyarxiv-doi-conformance">PsyArXiv preprints must have a &lt;article-id pub-id-type="doi"> element with a value that matches the regex '^10\.31234/osf\.io/[\da-z]+$'. In other words, the current DOI listed is not a valid PsyArXiv DOI: '<value-of select="."/>'.</assert>
       </rule>
     </pattern>
 
