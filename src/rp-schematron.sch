@@ -263,7 +263,7 @@
      </rule>
 
       <rule context="article/front[journal-meta[lower-case(journal-id)='arxiv']]/article-meta/article-id[@pub-id-type='doi']" id="arxiv-doi-checks">
-        <assert test="matches(.,'^10\.48550/arXiv\.\d{4,}\.\d{4,}$')" 
+        <assert test="matches(.,'^10\.48550/arXiv\.\d{4,5}\.\d{4,5}$')" 
          role="error" 
          id="arxiv-doi-conformance">arXiv preprints must have a &lt;article-id pub-id-type="doi"> element with a value that matches the regex '10\.48550/arXiv\.\d{4,}\.\d{4,}'. In other words, the current DOI listed is not a valid arXiv DOI: '<value-of select="."/>'.</assert>
       </rule>
