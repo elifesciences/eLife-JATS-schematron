@@ -329,6 +329,32 @@
       </rule>
     </pattern>
 
+    <pattern id="osf-metadata">
+     <rule context="article/front/journal-meta[lower-case(journal-id)='osf preprints']" id="osf-journal-meta-checks">
+        <assert test="journal-id[@journal-id-type='publisher-id']='OSF Preprints'" 
+        role="error" 
+        id="osf-journal-id">Preprints on OSF must have a &lt;journal-id journal-id-type="publisher-id"> element with the value 'OSF Preprints'.</assert>
+
+      <assert test="journal-title-group/journal-title='OSF Preprints'" 
+        role="error" 
+        id="osf-journal-title">Preprints on OSF must have a &lt;journal-title> element with the value 'OSF Preprints' inside a &lt;journal-title-group> element.</assert>
+
+      <assert test="journal-title-group/abbrev-journal-title[@abbrev-type='publisher']='OSF pre.'" 
+        role="error" 
+        id="osf-abbrev-journal-title">Preprints on OSF must have a &lt;abbrev-journal-title abbrev-type="publisher"> element with the value 'OSF pre.' inside a &lt;journal-title-group> element.</assert>
+
+      <assert test="publisher/publisher-name='Center for Open Science'" 
+        role="error" 
+        id="osf-publisher">Preprints on OSF must have a &lt;publisher-name> element with the value 'Center for Open Science', inside a &lt;publisher> element.</assert>
+     </rule>
+
+      <rule context="article/front[journal-meta[lower-case(journal-id)='osf preprints']]/article-meta/article-id[@pub-id-type='doi']" id="osf-doi-checks">
+        <assert test="matches(.,'^10/.31219/osf\.io/[\da-z]+$')" 
+         role="error" 
+         id="osf-doi-conformance">Preprints on OSF must have a &lt;article-id pub-id-type="doi"> element with a value that matches the regex '^10/.31219/osf\.io/[\da-z]+$'. In other words, the current DOI listed is not a valid OSF Preprints DOI: '<value-of select="."/>'.</assert>
+      </rule>
+    </pattern>
+
     <!-- Checks for the manifest file in the meca package.
           For validation in oXygen this assumes the manifest file is in a parent folder of the xml file being validated and named as manifest.xml
           For validation via BaseX, there is a separate file - meca-manifest-schematron.sch
