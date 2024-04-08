@@ -221,6 +221,24 @@
      </rule>
     </pattern>
 
+    <pattern id="fig">
+     <rule context="fig/*" id="fig-child-checks">
+        <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
+        <assert test="name()=$supported-fig-children" 
+        role="error" 
+        id="fig-child-conformance"><value-of select="name()"/> is not supported as a child of &lt;fig>.</assert>
+     </rule>
+    </pattern>
+
+    <pattern id="table-wrap">
+     <rule context="table-wrap/*" id="table-wrap-child-checks">
+        <let name="supported-table-wrap-children" value="('label','caption','graphic','alternatives','table','permissions','table-wrap-foot')"/>
+        <assert test="name()=$supported-table-wrap-children" 
+        role="error" 
+        id="table-wrap-child-conformance"><value-of select="name()"/> is not supported as a child of &lt;table-wrap>.</assert>
+     </rule>
+    </pattern>
+
     <pattern id="article-metadata">
       <rule context="article/front/article-meta" id="general-article-meta-checks">
         <assert test="article-id[@pub-id-type='doi']" 
