@@ -205,6 +205,18 @@
      </rule>
     </pattern>
 
+     <pattern id="ref-year">
+      <rule context="ref//year" id="ref-year-checks">
+        <report test="matches(.,'\d') and not(matches(.,'^\d{4}[a-z]?$'))"
+        role="error" 
+        id="ref-year-value-1">Ref with id <value-of select="ancestor::ref/@id"/> has a year element with the value '<value-of select="."/>' which contains a digit (or more) but is not a year.</report>
+
+        <assert test="matches(.,'\d')"
+        role="warning" 
+        id="ref-year-value-2">Ref with id <value-of select="ancestor::ref/@id"/> has a year element which does not contain a digit. Is it correct? (it's acceptable for this element to contain 'no date' or equivalent non-numerical information relating to year of publication)</assert>
+     </rule>
+     </pattern>
+
     <pattern id="strike">
      <rule context="strike" id="strike-checks">
         <report test="." 
@@ -379,6 +391,32 @@
         <assert test="matches(.,'^10/.31219/osf\.io/[\da-z]+$')" 
          role="error" 
          id="osf-doi-conformance">Preprints on OSF must have a &lt;article-id pub-id-type="doi"> element with a value that matches the regex '^10/.31219/osf\.io/[\da-z]+$'. In other words, the current DOI listed is not a valid OSF Preprints DOI: '<value-of select="."/>'.</assert>
+      </rule>
+    </pattern>
+
+    <pattern id="ecoevorxiv-metadata">
+     <rule context="article/front/journal-meta[lower-case(journal-id)='ecoevorxiv']" id="ecoevorxiv-journal-meta-checks">
+        <assert test="journal-id[@journal-id-type='publisher-id']='EcoEvoRxiv'" 
+        role="error" 
+        id="ecoevorxiv-journal-id">EcoEvoRxiv preprints must have a &lt;journal-id journal-id-type="publisher-id"> element with the value 'EcoEvoRxiv'.</assert>
+
+      <assert test="journal-title-group/journal-title='EcoEvoRxiv'" 
+        role="error" 
+        id="ecoevorxiv-journal-title">EcoEvoRxiv preprints must have a &lt;journal-title> element with the value 'EcoEvoRxiv' inside a &lt;journal-title-group> element.</assert>
+
+      <assert test="journal-title-group/abbrev-journal-title[@abbrev-type='publisher']='EcoEvoRxiv'" 
+        role="error" 
+        id="ecoevorxiv-abbrev-journal-title">EcoEvoRxiv preprints must have a &lt;abbrev-journal-title abbrev-type="publisher"> element with the value 'EcoEvoRxiv' inside a &lt;journal-title-group> element.</assert>
+
+      <assert test="publisher/publisher-name='Society for Open, Reliable, and Transparent Ecology and Evolutionary Biology (SORTEE)'" 
+        role="error" 
+        id="ecoevorxiv-publisher">EcoEvoRxiv preprints must have a &lt;publisher-name> element with the value 'Society for Open, Reliable, and Transparent Ecology and Evolutionary Biology (SORTEE)', inside a &lt;publisher> element.</assert>
+     </rule>
+
+      <rule context="article/front[journal-meta[lower-case(journal-id)='rs']]/article-meta/article-id[@pub-id-type='doi']" id="ecoevorxiv-doi-checks">
+        <assert test="matches(.,'^10.32942/[A-Z\d]+$')" 
+         role="error" 
+         id="ecoevorxiv-doi-conformance">EcoEvoRxiv preprints must have a &lt;article-id pub-id-type="doi"> element with a value that matches the regex '^10.32942/[A-Z\d]+$'. In other words, the current DOI listed is not a valid EcoEvoRxiv DOI: '<value-of select="."/>'.</assert>
       </rule>
     </pattern>
 
