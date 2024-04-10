@@ -205,6 +205,18 @@
      </rule>
     </pattern>
 
+     <pattern id="ref-year">
+      <rule context="ref//year" id="ref-year-checks">
+        <report test="matches(.,'\d') and not(matches(.,'^\d{4}[a-z]?$'))"
+        role="error" 
+        id="ref-year-value-1">Ref with id <value-of select="ancestor::ref/@id"/> has a year element with the value '<value-of select="."/>' which contains a digit (or more) but is not a year.</report>
+
+        <assert test="matches(.,'\d')"
+        role="warning" 
+        id="ref-year-value-2">Ref with id <value-of select="ancestor::ref/@id"/> has a year element which does not contain a digit. Is it correct? (it's acceptable for this element to contain 'no date' or equivalent non-numerical information relating to year of publication)</assert>
+     </rule>
+     </pattern>
+
     <pattern id="strike">
      <rule context="strike" id="strike-checks">
         <report test="." 
