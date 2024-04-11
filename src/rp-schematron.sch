@@ -282,6 +282,14 @@
       </rule>
     </pattern>
 
+    <pattern id="digest">
+      <rule context="title" id="digest-title-checks">
+        <report test="matches(lower-case(.),'^\s*(elife\s)?digest\s*$')" 
+        role="error" 
+        id="digest-flag"><value-of select="parent::*/name()"/> element has a title containing 'digest' - <value-of select="."/>. If this is referring to an plain language summary written by the authors it should be renamed to plain language summary (or similar) in order to not suggest to readers this was written by the features team.</report>
+      </rule>
+    </pattern>
+
     <pattern id="arxiv-metadata">
      <rule context="article/front/journal-meta[lower-case(journal-id)='arxiv']" id="arxiv-journal-meta-checks">
         <assert test="journal-id[@journal-id-type='publisher-id']='arXiv'" 
