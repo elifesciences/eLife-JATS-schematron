@@ -428,6 +428,32 @@
       </rule>
     </pattern>
 
+    <pattern id="authorea-metadata">
+     <rule context="article/front/journal-meta[lower-case(journal-id)='authorea']" id="authorea-journal-meta-checks">
+        <assert test="journal-id[@journal-id-type='publisher-id']='Authorea'" 
+        role="error" 
+        id="authorea-journal-id">Authorea preprints must have a &lt;journal-id journal-id-type="publisher-id"> element with the value 'Authorea'.</assert>
+
+      <assert test="journal-title-group/journal-title='Authorea'" 
+        role="error" 
+        id="authorea-journal-title">Authorea preprints must have a &lt;journal-title> element with the value 'Authorea' inside a &lt;journal-title-group> element.</assert>
+
+      <assert test="journal-title-group/abbrev-journal-title[@abbrev-type='publisher']='Authorea'" 
+        role="error" 
+        id="authorea-abbrev-journal-title">Authorea preprints must have a &lt;abbrev-journal-title abbrev-type="publisher"> element with the value 'Authorea' inside a &lt;journal-title-group> element.</assert>
+
+      <assert test="publisher/publisher-name='Authorea, Inc'" 
+        role="error" 
+        id="authorea-publisher">Authorea preprints must have a &lt;publisher-name> element with the value 'Authorea, Inc', inside a &lt;publisher> element.</assert>
+     </rule>
+
+      <rule context="article/front[journal-meta[lower-case(journal-id)='rs']]/article-meta/article-id[@pub-id-type='doi']" id="authorea-doi-checks">
+        <assert test="matches(.,'^10\.22541/au\.\d+\.\d+/v\d$')" 
+         role="error" 
+         id="authorea-doi-conformance">Authorea preprints must have a &lt;article-id pub-id-type="doi"> element with a value that matches the regex '^10\.22541/au\.\d+\.\d+/v\d$'. In other words, the current DOI listed is not a valid Authorea DOI: '<value-of select="."/>'.</assert>
+      </rule>
+    </pattern>
+
     <!-- Checks for the manifest file in the meca package.
           For validation in oXygen this assumes the manifest file is in a parent folder of the xml file being validated and named as manifest.xml
           For validation via BaseX, there is a separate file - meca-manifest-schematron.sch
