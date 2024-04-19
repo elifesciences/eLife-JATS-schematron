@@ -14,7 +14,7 @@
     </xsl:template>
     
     <!-- Change all caps titles to sentence case for known phrases, e.g. REFERENCES -> References -->
-    <xsl:template match="title[not(*)]">
+    <xsl:template match="title[not(*) and not(parent::caption)]">
         <xsl:variable name="phrases" select="(
             'bibliography( (and|&amp;) references?)?',
             '(graphical )?abstract',
