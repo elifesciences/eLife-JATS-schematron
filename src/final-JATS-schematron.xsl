@@ -6261,6 +6261,7 @@
       <xsl:if test="@article-type='retraction'">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@article-type='retraction'">
             <xsl:attribute name="id">retraction-info</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/versioning-li6miptl#h3q4a-retraction-info</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -7378,6 +7379,7 @@
       <xsl:if test="($article-type = 'correction') and not(.='Correction')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($article-type = 'correction') and not(.='Correction')">
             <xsl:attribute name="id">disp-subj-value-test-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/versioning-li6miptl#h0zbc-disp-subj-value-test-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -7426,6 +7428,7 @@
       <xsl:if test="($article-type = 'retraction') and not(.='Retraction')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($article-type = 'retraction') and not(.='Retraction')">
             <xsl:attribute name="id">disp-subj-value-test-8</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/versioning-li6miptl#h7pnv-disp-subj-value-test-8</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25310,6 +25313,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(related-article[@related-article-type='corrected-article']) gt 0">
                <xsl:attribute name="id">related-articles-test-8</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/versioning-li6miptl#hzu2u-related-articles-test-8</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -25337,6 +25341,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(related-article[@related-article-type='retracted-article']) gt 0">
                <xsl:attribute name="id">related-articles-test-9</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/versioning-li6miptl#hl977-related-articles-test-9</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -30812,6 +30817,7 @@
       <xsl:if test="descendant::article-meta//aff">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::article-meta//aff">
             <xsl:attribute name="id">corr-aff-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/versioning-li6miptl#hy53l-corr-aff-presence</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -30824,6 +30830,7 @@
       <xsl:if test="descendant::fn-group[@content-type='competing-interest']">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::fn-group[@content-type='competing-interest']">
             <xsl:attribute name="id">corr-COI-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/versioning-li6miptl#hohvo-corr-coi-presence</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -30836,6 +30843,7 @@
       <xsl:if test="descendant::self-uri">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::self-uri">
             <xsl:attribute name="id">corr-self-uri-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/versioning-li6miptl#hrxuv-corr-self-uri-presence</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -30861,6 +30869,7 @@
       <xsl:if test="(back/sec[not(@sec-type='supplementary-material')]) or (count(back/sec) gt 1)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(back/sec[not(@sec-type='supplementary-material')]) or (count(back/sec) gt 1)">
             <xsl:attribute name="id">corr-back-sec</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/versioning-li6miptl#hg8b8-corr-back-sec</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -30873,6 +30882,7 @@
       <xsl:if test="descendant::meta-name[text() = 'Author impact statement']">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::meta-name[text() = 'Author impact statement']">
             <xsl:attribute name="id">corr-impact-statement</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/versioning-li6miptl#hnc5o-corr-impact-statement</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -30885,6 +30895,7 @@
       <xsl:if test="descendant::contrib-group[@content-type='section']">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::contrib-group[@content-type='section']">
             <xsl:attribute name="id">corr-SE-BRE</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/versioning-li6miptl#hs0ll-corr-se-bre</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -30910,6 +30921,7 @@
       <xsl:if test="descendant::article-meta//aff">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::article-meta//aff">
             <xsl:attribute name="id">retr-aff-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/versioning-li6miptl#h577w-retr-aff-presence</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -30924,6 +30936,7 @@
       <xsl:if test="descendant::fn-group[@content-type='competing-interest']">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::fn-group[@content-type='competing-interest']">
             <xsl:attribute name="id">retr-COI-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/versioning-li6miptl#heu8l-retr-coi-presence</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -30938,6 +30951,7 @@
       <xsl:if test="descendant::self-uri">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::self-uri">
             <xsl:attribute name="id">retr-self-uri-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/versioning-li6miptl#hmmm1-retr-self-uri-presence</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -30967,6 +30981,7 @@
       <xsl:if test="back/*">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="back/*">
             <xsl:attribute name="id">retr-back</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/versioning-li6miptl#hwi7f-retr-back</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -30981,6 +30996,7 @@
       <xsl:if test="descendant::meta-name[text() = 'Author impact statement']">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::meta-name[text() = 'Author impact statement']">
             <xsl:attribute name="id">retr-impact-statement</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/versioning-li6miptl#hgn3c-retr-impact-statement</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -30995,6 +31011,7 @@
       <xsl:if test="descendant::contrib-group[@content-type='section']">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::contrib-group[@content-type='section']">
             <xsl:attribute name="id">retr-SE-BRE</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/versioning-li6miptl#hqq70-retr-se-bre</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>

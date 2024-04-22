@@ -1292,7 +1292,7 @@
   <pattern id="correction-retraction">
     <rule context="article[@article-type = ('retraction','expression-of-concern')]" id="retraction-tests">
       <let name="display-subject" value="article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <report test="descendant::contrib-group[@content-type='section']" role="error" id="retr-SE-BRE">
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hqq70-retr-se-bre" test="descendant::contrib-group[@content-type='section']" role="error" id="retr-SE-BRE">
         <value-of select="$display-subject"/> notices must not contain any Senior or Reviewing Editors.</report>
     </rule>
   </pattern>

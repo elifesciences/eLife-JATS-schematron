@@ -1291,7 +1291,7 @@
   </xsl:function>
   <pattern id="related-articles">
     <rule context="article[@article-type='retraction']//article-meta" id="retraction-test">
-      <assert test="count(related-article[@related-article-type='retracted-article']) gt 0" role="error" id="related-articles-test-9">Retractions must contain at least 1 related-article link with the attribute related-article-type='retracted-article'.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hl977-related-articles-test-9" test="count(related-article[@related-article-type='retracted-article']) gt 0" role="error" id="related-articles-test-9">Retractions must contain at least 1 related-article link with the attribute related-article-type='retracted-article'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

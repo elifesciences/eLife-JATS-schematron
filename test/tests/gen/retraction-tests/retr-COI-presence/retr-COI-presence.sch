@@ -1292,7 +1292,7 @@
   <pattern id="correction-retraction">
     <rule context="article[@article-type = ('retraction','expression-of-concern')]" id="retraction-tests">
       <let name="display-subject" value="article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <report test="descendant::fn-group[@content-type='competing-interest']" role="error" id="retr-COI-presence">
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#heu8l-retr-coi-presence" test="descendant::fn-group[@content-type='competing-interest']" role="error" id="retr-COI-presence">
         <value-of select="$display-subject"/> notices should not contain competing interests.</report>
     </rule>
   </pattern>

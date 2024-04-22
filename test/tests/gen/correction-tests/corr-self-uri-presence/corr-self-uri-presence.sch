@@ -1291,7 +1291,7 @@
   </xsl:function>
   <pattern id="correction-retraction">
     <rule context="article[@article-type = 'correction']" id="correction-tests">
-      <report test="descendant::self-uri" role="error" id="corr-self-uri-presence">Correction notices should not contain a self-uri element (as the PDF is not published).</report>
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hrxuv-corr-self-uri-presence" test="descendant::self-uri" role="error" id="corr-self-uri-presence">Correction notices should not contain a self-uri element (as the PDF is not published).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

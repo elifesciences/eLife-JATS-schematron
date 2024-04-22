@@ -1291,7 +1291,7 @@
   </xsl:function>
   <pattern id="correction-retraction">
     <rule context="article[@article-type = 'correction']" id="correction-tests">
-      <report test="descendant::contrib-group[@content-type='section']" role="error" id="corr-SE-BRE">Correction notices must not contain any Senior or Reviewing Editors.</report>
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hs0ll-corr-se-bre" test="descendant::contrib-group[@content-type='section']" role="error" id="corr-SE-BRE">Correction notices must not contain any Senior or Reviewing Editors.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

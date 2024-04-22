@@ -1291,7 +1291,7 @@
   </xsl:function>
   <pattern id="correction-retraction">
     <rule context="article[@article-type = 'correction']" id="correction-tests">
-      <report test="descendant::fn-group[@content-type='competing-interest']" role="error" id="corr-COI-presence">Correction notices should not contain competing interests.</report>
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hohvo-corr-coi-presence" test="descendant::fn-group[@content-type='competing-interest']" role="error" id="corr-COI-presence">Correction notices should not contain competing interests.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

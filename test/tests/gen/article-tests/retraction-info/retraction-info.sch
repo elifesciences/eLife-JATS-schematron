@@ -1292,7 +1292,7 @@
   <pattern id="article">
     <rule context="article" id="article-tests">
       <let name="line-count" value="e:line-count(.)"/>
-      <report test="@article-type='retraction'" role="info" id="retraction-info">Ensure that the PDF for the article which is being retracted (<value-of select="string-join(descendant::article-meta/related-article[@related-article-type='retracted-article']/@xlink:href,'; ')"/>) is also updated with a header saying it's been retracted.</report>
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#h3q4a-retraction-info" test="@article-type='retraction'" role="info" id="retraction-info">Ensure that the PDF for the article which is being retracted (<value-of select="string-join(descendant::article-meta/related-article[@related-article-type='retracted-article']/@xlink:href,'; ')"/>) is also updated with a header saying it's been retracted.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

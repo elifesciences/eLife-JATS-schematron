@@ -1292,7 +1292,7 @@
   <pattern id="correction-retraction">
     <rule context="article[@article-type = ('retraction','expression-of-concern')]" id="retraction-tests">
       <let name="display-subject" value="article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <report test="descendant::self-uri" role="error" id="retr-self-uri-presence">
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hmmm1-retr-self-uri-presence" test="descendant::self-uri" role="error" id="retr-self-uri-presence">
         <value-of select="$display-subject"/> notices should not contain a self-uri element (as the PDF is not published).</report>
     </rule>
   </pattern>
