@@ -14,7 +14,7 @@
     </xsl:template>
     
     <!-- Change all caps titles to sentence case for known phrases, e.g. REFERENCES -> References -->
-    <xsl:template match="title[not(*) and not(parent::caption)]">
+    <xsl:template match="title[upper-case(.)=. and not(*) and not(parent::caption)]">
         <xsl:variable name="phrases" select="(
             'bibliography( (and|&amp;) references?)?',
             '(graphical )?abstract',
@@ -42,7 +42,7 @@
         )"/>
         <xsl:variable name="regex" select="concat('^(',string-join($phrases,'|'),')$')"/>
         <xsl:choose>
-            <xsl:when test="upper-case(.)=. and matches(normalize-space(lower-case(.)),$regex)">
+            <xsl:when test="matches(normalize-space(lower-case(.)),$regex)">
             <xsl:copy>
                     <xsl:apply-templates select="@*"/>
                     <xsl:value-of select="concat(upper-case(substring(.,1,1)),lower-case(substring(.,2)))"/>
