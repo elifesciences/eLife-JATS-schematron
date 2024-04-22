@@ -1465,7 +1465,8 @@
         role="error" 
         id="line-count">Articles without code blocks must only have one line in the xml. The xml for this article has <value-of select="$line-count"/>.</report>
       
-      <report test="@article-type='retraction'" 
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#h3q4a-retraction-info"
+        test="@article-type='retraction'" 
         role="info" 
         id="retraction-info">Ensure that the PDF for the article which is being retracted (<value-of select="string-join(descendant::article-meta/related-article[@related-article-type='retracted-article']/@xlink:href,'; ')"/>) is also updated with a header saying it's been retracted.</report>
       
@@ -1819,7 +1820,8 @@
         role="error" 
         id="disp-subj-value-test-4">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Editorial' according to the article-type.</report>
       
-      <report test="($article-type = 'correction') and not(.='Correction')" 
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#h0zbc-disp-subj-value-test-5"
+        test="($article-type = 'correction') and not(.='Correction')" 
         role="error" 
         id="disp-subj-value-test-5">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Correction' according to the article-type.</report>
       
@@ -1831,7 +1833,8 @@
         role="error" 
         id="disp-subj-value-test-7">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Review Article' according to the article-type.</report>
       
-      <report test="($article-type = 'retraction') and not(.='Retraction')" 
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#h7pnv-disp-subj-value-test-8"
+        test="($article-type = 'retraction') and not(.='Retraction')" 
         role="error" 
         id="disp-subj-value-test-8">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Retraction' according to the article-type.</report>
       
@@ -7739,7 +7742,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="article[@article-type='correction']//article-meta" id="correction-test">
       
-      <assert test="count(related-article[@related-article-type='corrected-article']) gt 0" 
+      <assert see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hzu2u-related-articles-test-8"
+        test="count(related-article[@related-article-type='corrected-article']) gt 0" 
         role="error" 
         id="related-articles-test-8">Corrections must contain at least 1 related-article link with the attribute related-article-type='corrected-article'.</assert>
       
@@ -7747,7 +7751,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="article[@article-type='retraction']//article-meta" id="retraction-test">
       
-      <assert test="count(related-article[@related-article-type='retracted-article']) gt 0" 
+      <assert see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hl977-related-articles-test-9"
+        test="count(related-article[@related-article-type='retracted-article']) gt 0" 
         role="error" 
         id="related-articles-test-9">Retractions must contain at least 1 related-article link with the attribute related-article-type='retracted-article'.</assert>
       
@@ -9671,15 +9676,18 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="article[@article-type = 'correction']" id="correction-tests">
       
-      <report test="descendant::article-meta//aff" 
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hy53l-corr-aff-presence" 
+        test="descendant::article-meta//aff" 
         role="error" 
         id="corr-aff-presence">Correction notices should not contain affiliations.</report>
       
-      <report test="descendant::fn-group[@content-type='competing-interest']" 
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hohvo-corr-coi-presence"
+        test="descendant::fn-group[@content-type='competing-interest']" 
         role="error" 
         id="corr-COI-presence">Correction notices should not contain competing interests.</report>
       
-      <report test="descendant::self-uri" 
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hrxuv-corr-self-uri-presence"
+        test="descendant::self-uri" 
         role="error" 
         id="corr-self-uri-presence">Correction notices should not contain a self-uri element (as the PDF is not published).</report>
       
@@ -9688,15 +9696,18 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="corr-abstract-presence">Correction notices should not contain abstracts.</report>
       
-      <report test="(back/sec[not(@sec-type='supplementary-material')]) or (count(back/sec) gt 1)" 
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hg8b8-corr-back-sec"
+        test="(back/sec[not(@sec-type='supplementary-material')]) or (count(back/sec) gt 1)" 
         role="error" 
         id="corr-back-sec">Correction notices should not contain any sections in the backmatter which are not for supplementary files.</report>
       
-      <report test="descendant::meta-name[text() = 'Author impact statement']" 
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hnc5o-corr-impact-statement"
+        test="descendant::meta-name[text() = 'Author impact statement']" 
         role="error" 
         id="corr-impact-statement">Correction notices should not contain an impact statement.</report>
       
-      <report test="descendant::contrib-group[@content-type='section']" 
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hs0ll-corr-se-bre"
+        test="descendant::contrib-group[@content-type='section']" 
         role="error" 
         id="corr-SE-BRE">Correction notices must not contain any Senior or Reviewing Editors.</report>
       
@@ -9705,15 +9716,18 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="article[@article-type = ('retraction','expression-of-concern')]" id="retraction-tests">
       <let name="display-subject" value="article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
-      <report test="descendant::article-meta//aff" 
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#h577w-retr-aff-presence"
+        test="descendant::article-meta//aff" 
         role="error" 
         id="retr-aff-presence"><value-of select="$display-subject"/> notices should not contain affiliations.</report>
       
-      <report test="descendant::fn-group[@content-type='competing-interest']" 
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#heu8l-retr-coi-presence"
+        test="descendant::fn-group[@content-type='competing-interest']" 
         role="error" 
         id="retr-COI-presence"><value-of select="$display-subject"/> notices should not contain competing interests.</report>
       
-      <report test="descendant::self-uri" 
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hmmm1-retr-self-uri-presence"
+        test="descendant::self-uri" 
         role="error" 
         id="retr-self-uri-presence"><value-of select="$display-subject"/> notices should not contain a self-uri element (as the PDF is not published).</report>
       
@@ -9722,15 +9736,18 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="retr-abstract-presence"><value-of select="$display-subject"/> notices should not contain abstracts.</report>
       
-      <report test="back/*" 
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hwi7f-retr-back"
+        test="back/*" 
         role="error" 
         id="retr-back"><value-of select="$display-subject"/> notices should not contain any content in the back.</report>
       
-      <report test="descendant::meta-name[text() = 'Author impact statement']" 
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hgn3c-retr-impact-statement"
+        test="descendant::meta-name[text() = 'Author impact statement']" 
         role="error" 
         id="retr-impact-statement"><value-of select="$display-subject"/> notices should not contain an impact statement.</report>
       
-      <report test="descendant::contrib-group[@content-type='section']" 
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hqq70-retr-se-bre"
+        test="descendant::contrib-group[@content-type='section']" 
         role="error" 
         id="retr-SE-BRE"><value-of select="$display-subject"/> notices must not contain any Senior or Reviewing Editors.</report>
        

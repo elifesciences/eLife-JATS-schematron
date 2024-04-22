@@ -1292,7 +1292,7 @@
   <pattern id="correction-retraction">
     <rule context="article[@article-type = ('retraction','expression-of-concern')]" id="retraction-tests">
       <let name="display-subject" value="article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <report test="descendant::article-meta//aff" role="error" id="retr-aff-presence">
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#h577w-retr-aff-presence" test="descendant::article-meta//aff" role="error" id="retr-aff-presence">
         <value-of select="$display-subject"/> notices should not contain affiliations.</report>
     </rule>
   </pattern>

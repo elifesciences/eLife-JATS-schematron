@@ -1292,7 +1292,7 @@
   <pattern id="correction-retraction">
     <rule context="article[@article-type = ('retraction','expression-of-concern')]" id="retraction-tests">
       <let name="display-subject" value="article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <report test="descendant::meta-name[text() = 'Author impact statement']" role="error" id="retr-impact-statement">
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hgn3c-retr-impact-statement" test="descendant::meta-name[text() = 'Author impact statement']" role="error" id="retr-impact-statement">
         <value-of select="$display-subject"/> notices should not contain an impact statement.</report>
     </rule>
   </pattern>

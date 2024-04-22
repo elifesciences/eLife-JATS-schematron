@@ -1291,7 +1291,7 @@
   </xsl:function>
   <pattern id="correction-retraction">
     <rule context="article[@article-type = 'correction']" id="correction-tests">
-      <report test="descendant::article-meta//aff" role="error" id="corr-aff-presence">Correction notices should not contain affiliations.</report>
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hy53l-corr-aff-presence" test="descendant::article-meta//aff" role="error" id="corr-aff-presence">Correction notices should not contain affiliations.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

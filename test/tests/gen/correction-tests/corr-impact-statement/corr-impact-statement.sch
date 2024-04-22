@@ -1291,7 +1291,7 @@
   </xsl:function>
   <pattern id="correction-retraction">
     <rule context="article[@article-type = 'correction']" id="correction-tests">
-      <report test="descendant::meta-name[text() = 'Author impact statement']" role="error" id="corr-impact-statement">Correction notices should not contain an impact statement.</report>
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hnc5o-corr-impact-statement" test="descendant::meta-name[text() = 'Author impact statement']" role="error" id="corr-impact-statement">Correction notices should not contain an impact statement.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

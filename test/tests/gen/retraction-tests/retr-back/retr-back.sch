@@ -1292,7 +1292,7 @@
   <pattern id="correction-retraction">
     <rule context="article[@article-type = ('retraction','expression-of-concern')]" id="retraction-tests">
       <let name="display-subject" value="article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <report test="back/*" role="error" id="retr-back">
+      <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hwi7f-retr-back" test="back/*" role="error" id="retr-back">
         <value-of select="$display-subject"/> notices should not contain any content in the back.</report>
     </rule>
   </pattern>
