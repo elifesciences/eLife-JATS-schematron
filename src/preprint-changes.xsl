@@ -5,7 +5,7 @@
     exclude-result-prefixes="xs"
     version="3.0">
 
-    <xsl:output method="xml" encoding="UTF-8"/>
+    <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="yes"/>
 
      <xsl:template match="*|@*|text()|comment()|processing-instruction()">
         <xsl:copy>
