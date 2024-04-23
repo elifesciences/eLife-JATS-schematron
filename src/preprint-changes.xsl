@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML"
     xmlns:xlink="http://www.w3.org/1999/xlink"
-    exclude-result-prefixes="xs"
+    xmlns:ali="http://www.niso.org/schemas/ali/1.0/"
+    exclude-result-prefixes="xs xsi"
     version="3.0">
 
     <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="yes"/>
@@ -10,6 +13,18 @@
      <xsl:template match="*|@*|text()|comment()|processing-instruction()">
         <xsl:copy>
             <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- Update dtd-version attribute to 1.3
+         remove specific-use attribute
+         change article-type to conform with VORs -->
+    <xsl:template match="article">
+        <xsl:copy>
+            <xsl:attribute name="article-type">research-article</xsl:attribute>
+            <xsl:attribute name="dtd-version">1.3</xsl:attribute>
+            <xsl:apply-templates select="@*[not(name()=('dtd-version','specific-use','article-type'))]"/>
+            <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
     </xsl:template>
     
