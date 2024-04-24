@@ -11317,6 +11317,22 @@
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="ends-with(.,'.')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ends-with(.,'.')">
+            <xsl:attribute name="id">clintrial-related-object-16</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[clintrial-related-object-16] Content within <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element ends with a full stop, which is not correct - '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M133"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M133"/>

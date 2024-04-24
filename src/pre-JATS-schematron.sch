@@ -2121,6 +2121,8 @@
       <report test="ends-with(@xlink:href,'.')" role="error" id="clintrial-related-object-14">[clintrial-related-object-14] <name/> has a @xlink:href attribute value which ends with a full stop, which is not correct - '<value-of select="@xlink:href"/>'.</report>
 
       <report test="ends-with(@document-id,'.')" role="error" id="clintrial-related-object-15">[clintrial-related-object-15] <name/> has an @document-id attribute value which ends with a full stop, which is not correct - '<value-of select="@document-id"/>'.</report>
+
+      <report test="ends-with(.,'.')" role="error" id="clintrial-related-object-16">[clintrial-related-object-16] Content within <name/> element ends with a full stop, which is not correct - '<value-of select="."/>'.</report>
       
     </rule></pattern><pattern id="clintrial-related-object-p-pattern"><rule context="abstract[not(@abstract-type)]/sec[//related-object[@document-id-type='clinical-trial-number']]" id="clintrial-related-object-p">
       

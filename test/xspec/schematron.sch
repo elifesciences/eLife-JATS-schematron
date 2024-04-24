@@ -2499,6 +2499,8 @@
 
       <report test="ends-with(@document-id,'.')" role="error" id="clintrial-related-object-15">
         <name/> has an @document-id attribute value which ends with a full stop, which is not correct - '<value-of select="@document-id"/>'.</report>
+
+      <report test="ends-with(.,'.')" role="error" id="clintrial-related-object-16">Content within <name/> element ends with a full stop, which is not correct - '<value-of select="."/>'.</report>
       
     </rule>
   </pattern>
