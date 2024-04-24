@@ -2493,6 +2493,12 @@
       </assert>
       
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-12" test="@source-id='ClinicalTrials.gov' and @xlink:href!=concat('https://clinicaltrials.gov/show/',@document-id)" role="error" id="clintrial-related-object-12">ClinicalTrials.gov trial links are in the format https://clinicaltrials.gov/show/{number}. This <name/> has the link '<value-of select="@xlink:href"/>', which based on the clinical trial registry (<value-of select="@source-id"/>) and @document-id (<value-of select="@document-id"/>) is not right. Either the xlink:href is wrong (should it be <value-of select="concat('https://clinicaltrials.gov/show/',@document-id)"/> instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these).</report>
+
+      <report test="ends-with(@xlink:href,'.')" role="error" id="clintrial-related-object-14">
+        <name/> has a @xlink:href attribute value which ends with a full stop, which is not correct - '<value-of select="@xlink:href"/>'.</report>
+
+      <report test="ends-with(@document-id,'.')" role="error" id="clintrial-related-object-15">
+        <name/> has an @document-id attribute value which ends with a full stop, which is not correct - '<value-of select="@document-id"/>'.</report>
       
     </rule>
   </pattern>

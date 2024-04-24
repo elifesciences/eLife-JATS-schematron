@@ -11285,6 +11285,38 @@
                <xsl:text/> instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="ends-with(@xlink:href,'.')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ends-with(@xlink:href,'.')">
+            <xsl:attribute name="id">clintrial-related-object-14</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[clintrial-related-object-14] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> has a @xlink:href attribute value which ends with a full stop, which is not correct - '<xsl:text/>
+               <xsl:value-of select="@xlink:href"/>
+               <xsl:text/>'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="ends-with(@document-id,'.')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ends-with(@document-id,'.')">
+            <xsl:attribute name="id">clintrial-related-object-15</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[clintrial-related-object-15] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> has an @document-id attribute value which ends with a full stop, which is not correct - '<xsl:text/>
+               <xsl:value-of select="@document-id"/>
+               <xsl:text/>'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M133"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M133"/>
