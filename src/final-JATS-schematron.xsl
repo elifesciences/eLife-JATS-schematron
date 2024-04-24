@@ -11445,6 +11445,54 @@
                <xsl:text/> instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="ends-with(@xlink:href,'.')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ends-with(@xlink:href,'.')">
+            <xsl:attribute name="id">clintrial-related-object-14</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[clintrial-related-object-14] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> has a @xlink:href attribute value which ends with a full stop, which is not correct - '<xsl:text/>
+               <xsl:value-of select="@xlink:href"/>
+               <xsl:text/>'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="ends-with(@document-id,'.')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ends-with(@document-id,'.')">
+            <xsl:attribute name="id">clintrial-related-object-15</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[clintrial-related-object-15] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> has an @document-id attribute value which ends with a full stop, which is not correct - '<xsl:text/>
+               <xsl:value-of select="@document-id"/>
+               <xsl:text/>'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="ends-with(.,'.')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ends-with(.,'.')">
+            <xsl:attribute name="id">clintrial-related-object-16</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[clintrial-related-object-16] Content within <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element ends with a full stop, which is not correct - '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M135"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M135"/>
@@ -14196,6 +14244,20 @@
             <svrl:text>[dropbox-link] URL looks like it links to dropbox.com - Link: <xsl:text/>
                <xsl:value-of select="@xlink:href"/>
                <xsl:text/>. If this is the author's content, should it be uploaded instead to a trusted repository?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="matches(@xlink:href,'^https?://(dx\.)?doi\.org/[^1][^0]?')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'^https?://(dx\.)?doi\.org/[^1][^0]?')">
+            <xsl:attribute name="id">ext-link-doi-check</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ext-link-doi-check] Embedded URL within text starts with the DOI prefix, but it is not a valid doi - <xsl:text/>
+               <xsl:value-of select="@xlink:href"/>
+               <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M178"/>

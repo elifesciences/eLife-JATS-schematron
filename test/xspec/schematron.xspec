@@ -2931,6 +2931,36 @@
         <x:expect-report id="clintrial-related-object-12" role="error"/>
         <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="clintrial-related-object-14-pass">
+        <x:context href="../tests/gen/clintrial-related-object/clintrial-related-object-14/pass.xml"/>
+        <x:expect-not-report id="clintrial-related-object-14" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-14-fail">
+        <x:context href="../tests/gen/clintrial-related-object/clintrial-related-object-14/fail.xml"/>
+        <x:expect-report id="clintrial-related-object-14" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-15-pass">
+        <x:context href="../tests/gen/clintrial-related-object/clintrial-related-object-15/pass.xml"/>
+        <x:expect-not-report id="clintrial-related-object-15" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-15-fail">
+        <x:context href="../tests/gen/clintrial-related-object/clintrial-related-object-15/fail.xml"/>
+        <x:expect-report id="clintrial-related-object-15" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-16-pass">
+        <x:context href="../tests/gen/clintrial-related-object/clintrial-related-object-16/pass.xml"/>
+        <x:expect-not-report id="clintrial-related-object-16" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="clintrial-related-object-16-fail">
+        <x:context href="../tests/gen/clintrial-related-object/clintrial-related-object-16/fail.xml"/>
+        <x:expect-report id="clintrial-related-object-16" role="error"/>
+        <x:expect-not-assert id="clintrial-related-object-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="clintrial-related-object-p">
       <x:scenario label="clintrial-related-object-13-pass">
@@ -4485,6 +4515,16 @@
       <x:scenario label="dropbox-link-fail">
         <x:context href="../tests/gen/ext-link-tests/dropbox-link/fail.xml"/>
         <x:expect-report id="dropbox-link" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ext-link-doi-check-pass">
+        <x:context href="../tests/gen/ext-link-tests/ext-link-doi-check/pass.xml"/>
+        <x:expect-not-report id="ext-link-doi-check" role="error"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ext-link-doi-check-fail">
+        <x:context href="../tests/gen/ext-link-tests/ext-link-doi-check/fail.xml"/>
+        <x:expect-report id="ext-link-doi-check" role="error"/>
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

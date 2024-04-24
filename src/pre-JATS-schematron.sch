@@ -2117,6 +2117,12 @@
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-11" test="some $x in document($registries)/registries/registry satisfies ($x/subtitle/string()=@source-id)" role="error" id="clintrial-related-object-11">[clintrial-related-object-11] <name/> @source-id value must be one of the subtitles of the Crossref clinical trial registries. "<value-of select="@source-id"/>" is not one of the following <value-of select="string-join(for $x in document($registries)/registries/registry return concat('&quot;',$x/subtitle/string(),'&quot; (',$x/doi/string(),')'),', ')"/></assert>
       
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-12" test="@source-id='ClinicalTrials.gov' and @xlink:href!=concat('https://clinicaltrials.gov/show/',@document-id)" role="error" id="clintrial-related-object-12">[clintrial-related-object-12] ClinicalTrials.gov trial links are in the format https://clinicaltrials.gov/show/{number}. This <name/> has the link '<value-of select="@xlink:href"/>', which based on the clinical trial registry (<value-of select="@source-id"/>) and @document-id (<value-of select="@document-id"/>) is not right. Either the xlink:href is wrong (should it be <value-of select="concat('https://clinicaltrials.gov/show/',@document-id)"/> instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these).</report>
+
+      <report test="ends-with(@xlink:href,'.')" role="error" id="clintrial-related-object-14">[clintrial-related-object-14] <name/> has a @xlink:href attribute value which ends with a full stop, which is not correct - '<value-of select="@xlink:href"/>'.</report>
+
+      <report test="ends-with(@document-id,'.')" role="error" id="clintrial-related-object-15">[clintrial-related-object-15] <name/> has an @document-id attribute value which ends with a full stop, which is not correct - '<value-of select="@document-id"/>'.</report>
+
+      <report test="ends-with(.,'.')" role="error" id="clintrial-related-object-16">[clintrial-related-object-16] Content within <name/> element ends with a full stop, which is not correct - '<value-of select="."/>'.</report>
       
     </rule></pattern><pattern id="clintrial-related-object-p-pattern"><rule context="abstract[not(@abstract-type)]/sec[//related-object[@document-id-type='clinical-trial-number']]" id="clintrial-related-object-p">
       
@@ -2553,6 +2559,8 @@
       <report test="contains(lower-case(@xlink:href),'kriyadocs.com')" role="error" id="kriya-ext-link">[kriya-ext-link] URL contains 'kriyadocs.com', so it looks like a link to kriya which must be incorrect - <value-of select="@xlink:href"/>.</report>
 
       <report test="contains(lower-case(@xlink:href),'dropbox.com')" role="warning" id="dropbox-link">[dropbox-link] URL looks like it links to dropbox.com - Link: <value-of select="@xlink:href"/>. If this is the author's content, should it be uploaded instead to a trusted repository?</report>
+
+      <report test="matches(@xlink:href,'^https?://(dx\.)?doi\.org/[^1][^0]?')" role="error" id="ext-link-doi-check">[ext-link-doi-check] Embedded URL within text starts with the DOI prefix, but it is not a valid doi - <value-of select="@xlink:href"/>.</report>
     </rule></pattern><pattern id="software-heritage-tests-pattern"><rule context="ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" id="software-heritage-tests">
       <let name="version" value="replace(substring-after(ext-link[1]/@xlink:href,'anchor='),'/$','')"/>
       

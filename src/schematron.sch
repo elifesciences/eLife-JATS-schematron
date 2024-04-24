@@ -3080,6 +3080,18 @@
         test="@source-id='ClinicalTrials.gov' and @xlink:href!=concat('https://clinicaltrials.gov/show/',@document-id)" 
         role="error" 
         id="clintrial-related-object-12">ClinicalTrials.gov trial links are in the format https://clinicaltrials.gov/show/{number}. This <name/> has the link '<value-of select="@xlink:href"/>', which based on the clinical trial registry (<value-of select="@source-id"/>) and @document-id (<value-of select="@document-id"/>) is not right. Either the xlink:href is wrong (should it be <value-of select="concat('https://clinicaltrials.gov/show/',@document-id)"/> instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these).</report>
+
+      <report test="ends-with(@xlink:href,'.')" 
+        role="error" 
+        id="clintrial-related-object-14"><name/> has a @xlink:href attribute value which ends with a full stop, which is not correct - '<value-of select="@xlink:href"/>'.</report>
+
+      <report test="ends-with(@document-id,'.')" 
+        role="error" 
+        id="clintrial-related-object-15"><name/> has an @document-id attribute value which ends with a full stop, which is not correct - '<value-of select="@document-id"/>'.</report>
+
+      <report test="ends-with(.,'.')" 
+        role="error" 
+        id="clintrial-related-object-16">Content within <name/> element ends with a full stop, which is not correct - '<value-of select="."/>'.</report>
       
     </rule>
     
@@ -3999,6 +4011,10 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="contains(lower-case(@xlink:href),'dropbox.com')" 
         role="warning" 
         id="dropbox-link">URL looks like it links to dropbox.com - Link: <value-of select="@xlink:href"/>. If this is the author's content, should it be uploaded instead to a trusted repository?</report>
+
+      <report test="matches(@xlink:href,'^https?://(dx\.)?doi\.org/[^1][^0]?')" 
+        role="error" 
+        id="ext-link-doi-check">Embedded URL within text starts with the DOI prefix, but it is not a valid doi - <value-of select="@xlink:href"/>.</report>
     </rule>
     
     <rule context="ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" 
