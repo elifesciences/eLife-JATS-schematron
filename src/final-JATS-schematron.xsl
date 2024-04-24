@@ -14246,6 +14246,20 @@
                <xsl:text/>. If this is the author's content, should it be uploaded instead to a trusted repository?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="matches(@xlink:href,'^https?://(dx\.)?doi\.org/[^1][^0]?')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'^https?://(dx\.)?doi\.org/[^1][^0]?')">
+            <xsl:attribute name="id">ext-link-doi-check</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ext-link-doi-check] Embedded URL within text starts with the DOI prefix, but it is not a valid doi - <xsl:text/>
+               <xsl:value-of select="@xlink:href"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M178"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M178"/>
