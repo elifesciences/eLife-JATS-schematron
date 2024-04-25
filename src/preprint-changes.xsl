@@ -32,9 +32,6 @@
             </xsl:choose>
             <xsl:attribute name="dtd-version">1.3</xsl:attribute>
             <xsl:apply-templates select="@*[not(name()=('dtd-version','specific-use','article-type'))]"/>
-            <xsl:if test=".">
-                <xsl:attribute name="type"><xsl:value-of select="empty(namespace::ali)"/></xsl:attribute>
-            </xsl:if>
             <!-- If ali, mml and xlink namespaces are missing on root -->
             <xsl:if test="empty(namespace::mml)">
                 <xsl:namespace name="mml">http://www.w3.org/1998/Math/MathML</xsl:namespace>
