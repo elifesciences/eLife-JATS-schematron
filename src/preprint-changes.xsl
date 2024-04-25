@@ -21,9 +21,18 @@
          change article-type to conform with VORs -->
     <xsl:template match="article">
         <xsl:copy>
-            <xsl:attribute name="article-type">research-article</xsl:attribute>
+            <xsl:choose>
+                <!-- to account for review articles under the new model -->
+                <xsl:when test="@article-type='review-article'">
+                    <xsl:apply-templates select="@article-type"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="article-type">research-article</xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
             <xsl:attribute name="dtd-version">1.3</xsl:attribute>
             <xsl:apply-templates select="@*[not(name()=('dtd-version','specific-use','article-type'))]"/>
+            <xsl:namespace name="ali">http://www.niso.org/schemas/ali/1.0/</xsl:namespace>
             <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
     </xsl:template>
