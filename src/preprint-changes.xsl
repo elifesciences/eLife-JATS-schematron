@@ -32,7 +32,16 @@
             </xsl:choose>
             <xsl:attribute name="dtd-version">1.3</xsl:attribute>
             <xsl:apply-templates select="@*[not(name()=('dtd-version','specific-use','article-type'))]"/>
-            <xsl:namespace name="ali">http://www.niso.org/schemas/ali/1.0/</xsl:namespace>
+            <!-- If ali, mml and xlink namespaces are missing on root -->
+            <xsl:if test="namespace-uri-for-prefix('mml',.)=''">
+                <xsl:namespace name="mml">http://www.w3.org/1998/Math/MathML</xsl:namespace>
+            </xsl:if>
+            <xsl:if test="namespace-uri-for-prefix('ali',.)=''">
+                <xsl:namespace name="ali">http://www.niso.org/schemas/ali/1.0/</xsl:namespace>
+            </xsl:if>
+            <xsl:if test="namespace-uri-for-prefix('xlink',.)=''">
+                <xsl:namespace name="xlink">http://www.w3.org/1999/xlink</xsl:namespace>
+            </xsl:if>
             <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
     </xsl:template>
