@@ -2616,6 +2616,8 @@
       <report test="contains(lower-case(@xlink:href),'dropbox.com')" role="warning" id="dropbox-link">[dropbox-link] URL looks like it links to dropbox.com - Link: <value-of select="@xlink:href"/>. If this is the author's content, should it be uploaded instead to a trusted repository?</report>
 
       <report test="matches(@xlink:href,'^https?://(dx\.)?doi\.org/[^1][^0]?')" role="error" id="ext-link-doi-check">[ext-link-doi-check] Embedded URL within text starts with the DOI prefix, but it is not a valid doi - <value-of select="@xlink:href"/>.</report>
+
+    <report test="not(ancestor::fig/permissions[contains(.,'phylopic')]) and matches(@xlink:href,'phylopic\.org')" role="warning" id="phylopic-link-check">[phylopic-link-check] This link is to phylopic.org, which is a site where silhouettes/images are typically reproduced from. Please check whether any figures contain reproduced images from this site, and if so whether permissions have been obtained and/or copyright statements are correctly included.</report>
     </rule></pattern><pattern id="software-heritage-tests-pattern"><rule context="ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" id="software-heritage-tests">
       <let name="version" value="replace(substring-after(ext-link[1]/@xlink:href,'anchor='),'/$','')"/>
       

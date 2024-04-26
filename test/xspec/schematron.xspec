@@ -4527,6 +4527,16 @@
         <x:expect-report id="ext-link-doi-check" role="error"/>
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="phylopic-link-check-pass">
+        <x:context href="../tests/gen/ext-link-tests/phylopic-link-check/pass.xml"/>
+        <x:expect-not-report id="phylopic-link-check" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="phylopic-link-check-fail">
+        <x:context href="../tests/gen/ext-link-tests/phylopic-link-check/fail.xml"/>
+        <x:expect-report id="phylopic-link-check" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="software-heritage-tests">
       <x:scenario label="software-heritage-test-2-pass">

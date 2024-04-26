@@ -18,7 +18,8 @@
 
     <!-- Update dtd-version attribute to 1.3
          remove specific-use attribute
-         change article-type to conform with VORs -->
+         change article-type to conform with VORs
+         add namespace definitions to root element if missing -->
     <xsl:template match="article">
         <xsl:copy>
             <xsl:choose>
