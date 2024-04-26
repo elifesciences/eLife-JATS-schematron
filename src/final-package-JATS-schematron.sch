@@ -2622,6 +2622,8 @@
       <report test="contains(lower-case(@xlink:href),'dropbox.com')" role="warning" id="dropbox-link">URL looks like it links to dropbox.com - Link: <value-of select="@xlink:href"/>. If this is the author's content, should it be uploaded instead to a trusted repository?</report>
 
       <report test="matches(@xlink:href,'^https?://(dx\.)?doi\.org/[^1][^0]?')" role="error" id="ext-link-doi-check">Embedded URL within text starts with the DOI prefix, but it is not a valid doi - <value-of select="@xlink:href"/>.</report>
+
+    <report test="not(ancestor::fig/permissions[contains(.,'phylopic')]) and matches(@xlink:href,'phylopic\.org')" role="warning" id="phylopic-link-check">This link is to phylopic.org, which is a site where silhouettes/images are typically reproduced from. Please check whether any figures contain reproduced images from this site, and if so whether permissions have been obtained and/or copyright statements are correctly included.</report>
     </rule></pattern><pattern id="software-heritage-tests-pattern"><rule context="ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" id="software-heritage-tests">
       <let name="version" value="replace(substring-after(ext-link[1]/@xlink:href,'anchor='),'/$','')"/>
       
@@ -3538,7 +3540,7 @@
       <report test="$panel-list//*:item" role="warning" id="fig-caption-test-3">Panel indicators at the start of sentences in captions should be surrounded by parentheses. The caption for <value-of select="$label"/> may have some panels without parentheses. Check <value-of select="string-join(for $x in $panel-list//*:item return concat('&quot;',$x/@token,'&quot;',' in ','&quot;',$x,'&quot;'),';')"/></report>
 
     </rule></pattern><pattern id="biorender-tests-pattern"><rule context="article" id="biorender-tests">
-      <!-- exclude ref list and figgures from this check -->
+      <!-- exclude ref list and figures from this check -->
       <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
 
        <report test="matches(lower-case($article-text),'biorend[eo]r')" role="warning" id="biorender-check">Article text contains a reference to bioRender. Since bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only), if any images were created using bioRender, the authors will need to obtain permission to share them under a permissive license. Once the authors have obtained permission, any bioRender figures need to contain a copyright statement indicating which license they are available under (e.g. CC BY-NC-ND).</report>
