@@ -12146,6 +12146,10 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="contains(.,'&#xfe0e;')" 
         role="error" 
         id="junk-character-presence-2"><name/> element contains a junk character '&#xfe0e;' which should be replaced or deleted.</report>
+
+      <report test="contains(.,'□')" 
+        role="error" 
+        id="junk-character-presence-3"><name/> element contains a junk character '□' which should be replaced or deleted.</report>
       
       <report test="contains(.,'¿')" 
         role="warning" 

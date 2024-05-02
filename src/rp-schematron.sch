@@ -233,6 +233,22 @@
      </rule>
      </pattern>
 
+    <pattern id="ref-names">
+      <rule context="mixed-citation/name | mixed-citation/string-name" id="ref-name-checks">
+        <assert test="surname" 
+        role="error" 
+        id="ref-surname"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have a surname element.</assert>
+     </rule>
+    </pattern>
+
+    <pattern id="ref-etal">
+      <rule context="mixed-citation[person-group]//etal" id="ref-etal-checks">
+        <assert test="parent::person-group" 
+        role="error" 
+        id="ref-etal-1">If the etal element is included in a reference, and that reference has a person-group element, then the etal should also be included in the person-group element. But this one is a child of <value-of select="parent::*/name()"/>.</assert>
+     </rule>
+    </pattern>
+
     <pattern id="strike">
      <rule context="strike" id="strike-checks">
         <report test="." 
@@ -304,6 +320,48 @@
         role="error" 
         id="digest-flag"><value-of select="parent::*/name()"/> element has a title containing 'digest' - <value-of select="."/>. If this is referring to an plain language summary written by the authors it should be renamed to plain language summary (or similar) in order to not suggest to readers this was written by the features team.</report>
       </rule>
+    </pattern>
+
+    <pattern id="symbol-checks">
+      <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
+      
+      <report test="contains(.,'�')" 
+        role="error" 
+        id="replacement-character-presence"><name/> element contains the replacement character '�' which is not allowed.</report>
+      
+      <report test="contains(.,'')" 
+        role="error" 
+        id="junk-character-presence"><name/> element contains a junk character '' which should be replaced.</report>
+      
+      <report test="contains(.,'&#xfe0e;')" 
+        role="error" 
+        id="junk-character-presence-2"><name/> element contains a junk character '&#xfe0e;' which should be replaced or deleted.</report>
+
+      <report test="contains(.,'□')" 
+        role="error" 
+        id="junk-character-presence-3"><name/> element contains a junk character '□' which should be replaced or deleted.</report>
+      
+      <report test="contains(.,'¿')" 
+        role="warning" 
+        id="inverterted-question-presence"><name/> element contains an inverted question mark '¿' which should very likely be replaced/removed.</report>
+      
+      <report test="some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]')" 
+        role="warning" 
+        id="empty-parentheses-presence"><name/> element contains empty parentheses ('[]', or '()'). Is there a missing citation within the parentheses? Or perhaps this is a piece of code that needs formatting?</report>
+      
+      <report test="matches(.,'&amp;#x\d')" 
+        role="warning" 
+        id="broken-unicode-presence"><name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
+      
+      <report test="contains(.,'&#x9D;')" 
+        role="error" 
+        id="operating-system-command-presence"><name/> element contains an operating system command character '&#x9D;' (unicode string: &amp;#x9D;) which should very likely be replaced/removed. - <value-of select="."/></report>
+
+      <report test="matches(lower-case(.),&quot;(^|\s)((i am|i&apos;m) an? ai (language)? model|as an ai (language)? model,? i(&apos;m|\s)|(here is|here&apos;s) an? (possible|potential)? introduction (to|for) your topic|(here is|here&apos;s) an? (abstract|introduction|results|discussion|methods)( section)? for you|certainly(,|!)? (here is|here&apos;s)|i&apos;m sorry,?( but)? i (don&apos;t|can&apos;t)|knowledge (extend|cutoff)|as of my last update|regenerate response)&quot;)" 
+        role="warning" 
+        id="ai-response-presence-1"><name/> element contains what looks like a response from an AI chatbot after it being provided a prompt. Is that correct? Should the content be adjusted?</report>
+    </rule>
+    
     </pattern>
 
     <pattern id="arxiv-metadata">

@@ -17809,6 +17809,16 @@
         <x:expect-report id="junk-character-presence-2" role="error"/>
         <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="junk-character-presence-3-pass">
+        <x:context href="../tests/gen/unallowed-symbol-tests/junk-character-presence-3/pass.xml"/>
+        <x:expect-not-report id="junk-character-presence-3" role="error"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="junk-character-presence-3-fail">
+        <x:context href="../tests/gen/unallowed-symbol-tests/junk-character-presence-3/fail.xml"/>
+        <x:expect-report id="junk-character-presence-3" role="error"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="inverterted-question-presence-pass">
         <x:context href="../tests/gen/unallowed-symbol-tests/inverterted-question-presence/pass.xml"/>
         <x:expect-not-report id="inverterted-question-presence" role="warning"/>
