@@ -249,6 +249,14 @@
      </rule>
     </pattern>
 
+    <pattern id="ref-pub-id">
+      <rule context="ref//pub-id[@pub-id-type='doi']" id="ref-pub-id-checks">
+        <assert test="matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')" 
+        role="error" 
+        id="ref-doi-conformance">&lt;pub-id pub-id="doi"> in reference (id=<value-of select="ancestor::ref/@id"/>) does not contain a valid DOI: '<value-of select="."/>'.</assert>
+     </rule>
+    </pattern>
+
     <pattern id="strike">
      <rule context="strike" id="strike-checks">
         <report test="." 
