@@ -127,4 +127,25 @@
         </xsl:element>
     </xsl:template>
 
+    <!-- Add blanket biorender statement for any object with a caption that mentions it -->
+    <xsl:template match="*[caption[contains(lower-case(.),'biorender')] and not(permissions[contains(lower-case(.),'biorender')])]">
+        <xsl:variable name="current-year" select="year-from-date(current-date())"/>
+        <xsl:copy>
+            <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+            <permissions>
+                <xsl:text>&#xa;</xsl:text>
+                <copyright-statement><xsl:value-of select="concat('© ',$current-year,', BioRender Inc')"/></copyright-statement>
+                <xsl:text>&#xa;</xsl:text>
+                <copyright-year><xsl:value-of select="$current-year"/></copyright-year>
+                <xsl:text>&#xa;</xsl:text>
+                <copyright-holder>BioRender Inc</copyright-holder>
+                <xsl:text>&#xa;</xsl:text>
+                <license>
+                    <license-p><xsl:text>Any parts of this image created with </xsl:text><ext-link ext-link-type="uri" xlink:href="https://www.biorender.com/">BioRender</ext-link><xsl:text> are not made available under the same license as the Reviewed Preprint, and are © </xsl:text><xsl:value-of select="$current-year"/><xsl:text>, BioRender Inc.</xsl:text></license-p>
+                </license>
+                <xsl:text>&#xa;</xsl:text>
+            </permissions>
+        </xsl:copy>
+    </xsl:template>
+
 </xsl:stylesheet>
