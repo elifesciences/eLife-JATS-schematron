@@ -48,7 +48,7 @@
     </xsl:template>
     
     <!-- Change all caps titles to sentence case for known phrases, e.g. REFERENCES -> References -->
-    <xsl:template match="title[upper-case(.)=. and not(*) and not(parent::caption)]">
+    <xsl:template match="title[(upper-case(.)=. or lower-case(.)=.) and not(*) and not(parent::caption)]">
         <xsl:variable name="phrases" select="(
             'bibliography( (and|&amp;) references?)?',
             '(graphical )?abstract',
@@ -56,17 +56,16 @@
             '(supplement(al|ary)? )?materials( (and|&amp;) correspondence)?',
             'model((and|&amp;) results)?',
             'introu?duction',
-            'results?( (and|&amp;) discussion)?',
+            '(results?|conclusions?)( (and|&amp;) discussion)?',
             'acknowled?ge?ments?',
-            'conclusions?',
-            'discussion',
+            'discussion( (and|&amp;) (results?|conclusions?))?',
             'fundings?( sources)?',
             'key\s?words?',
             '(supplementa(ry|l)|additional) (information|files?|figures?|tables?|materials?)',
             '(data|resource|code|software|materials?)( and (data|resource|code|software|materials?))? (avail(a|i)bi?li?ty|accessibi?li?ty)( statement)?',
             'summary|highlights?|teaser',
             '(impact|significance|competing interests?|(conflicts?|declarations?) (of interests?|disclosures?))\s?(statements?)?',
-            '(authors? )?(contributions?|details?)',
+            '(article( and| &amp;)?)?(authors?’? )?(contributions?|details?|information)',
             'key resources? table',
             '(supplement(al|ary)? )?(figure|table|material|(source )?(data|code)|references?)( supplement(al|ary)?)?( legends?)?',
             '(figures?|tables?) supplements',

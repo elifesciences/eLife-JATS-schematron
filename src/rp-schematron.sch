@@ -300,6 +300,18 @@
      </rule>
     </pattern>
 
+    <pattern id="title">
+     <rule context="title" id="title-checks">
+        <report test="upper-case(.)=." 
+        role="warning" 
+        id="title-upper-case">Content of &lt;title> element is entirely in upper case: Is that correct? '<value-of select="."/>'</report>
+
+        <report test="lower-case(.)=." 
+        role="warning" 
+        id="title-lower-case">Content of &lt;title> element is entirely in lower-case case: Is that correct? '<value-of select="."/>'</report>
+     </rule>
+    </pattern>
+
     <pattern id="article-metadata">
       <rule context="article/front/article-meta" id="general-article-meta-checks">
         <assert test="article-id[@pub-id-type='doi']" 
