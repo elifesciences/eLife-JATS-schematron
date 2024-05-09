@@ -342,6 +342,22 @@
       </rule>
     </pattern>
 
+    <pattern id="preformat">
+     <rule context="preformat" id="preformat-checks">
+        <report test="." 
+        role="warning" 
+        id="preformat-flag">Please check whether the content in this preformat element has been captured crrectly (and is rendered approriately).</report>
+     </rule>
+    </pattern>
+
+    <pattern id="code">
+     <rule context="code" id="code-checks">
+        <report test="." 
+        role="warning" 
+        id="code-flag">Please check whether the content in this code element has been captured crrectly (and is rendered approriately).</report>
+     </rule>
+    </pattern>
+
     <pattern id="symbol-checks">
       <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
       
