@@ -569,7 +569,7 @@
           For validation via BaseX, there is a separate file - meca-manifest-schematron.sch
      -->
     <pattern id="meca-manifest-checks">
-     <rule context="root()">
+     <rule context="root()" id="manifest-checks">
       <let name="xml-folder" value="substring-before(base-uri(),tokenize(base-uri(.), '/')[last()])"/>
       <let name="parent-folder" value="substring-before($xml-folder,tokenize(replace($xml-folder,'/$',''), '/')[last()])"/>
       <let name="manifest-path" value="concat($parent-folder,'manifest.xml')"/>

@@ -11,13 +11,16 @@ let $root := substring-before($base-uri,'/src')
 return
 (
   for $test in ($sch//(*:assert|*:report)|$rp-sch//(*:assert|*:report))
+  let $is-gen := if ($test/ancestor::*:schema/*:title='eLife Schematron') then true()
+                 else false()
   let $rule-id := $test/parent::*:rule/@id
-  let $xspec-folder := if ($test/ancestor::*:schema/*:title='eLife Schematron') then 'gen'
+  let $xspec-folder := if ($is-gen) then 'gen'
                        else 'rp'
   let $path := concat($root,'/test/tests/'||$xspec-folder||'/',$rule-id,'/',$test/@id,'/')
   let $pass := concat($path,'pass.xml')
   let $fail := concat($path,'fail.xml')
-  let $schema-let := elife:schema-let($test)
+  let $schema-let := if ($is-gen) then elife:schema-let($test)
+                     else elife:rp-schema-let($test)
 
   let $pi-content := ('SCHSchema="'||$test/@id||'.sch'||'"') 
   let $comment := comment{concat('Context: ',$test/parent::*:rule/@context/string(),'

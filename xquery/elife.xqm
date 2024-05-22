@@ -6,7 +6,7 @@ declare namespace svrl = "http://purl.oclc.org/dsdl/svrl";
 declare namespace x="http://www.jenitennison.com/xslt/xspec";
 
 declare variable $elife:base := doc('../src/schematron.sch');
-declare variable $elife:copy-edit-base := doc('../src/copy-edit.sch');
+declare variable $elife:rp-base := doc('../src/rp-schematron.sch');
 
 (:~ Generate schemalet files for unit testing purposes
  :)
@@ -392,10 +392,10 @@ declare function elife:copy-edit2xspec($xspec-sch){
 
 (:~ Generate schemalet files for unit testing purposes from the copy-edit-schematron
  :)
-declare function elife:copy-edit-schema-let($assert-or-report){
+declare function elife:rp-schema-let($assert-or-report){
   let $id := $assert-or-report/@id
   return
-    copy $copy1 := $elife:copy-edit-base
+    copy $copy1 := $elife:rp-base
     modify(
       for $x in $copy1//*:rule
       return 
