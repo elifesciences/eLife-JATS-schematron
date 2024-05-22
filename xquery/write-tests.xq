@@ -3,15 +3,18 @@
 import module namespace schematron = "http://github.com/Schematron/schematron-basex";
 import module namespace elife = 'elife' at 'elife.xqm';
 
-let $base := doc('../src/schematron.sch')
-let $base-uri := substring-before(base-uri($base),'/schematron.sch')
+let $sch := doc('../src/schematron.sch')
+let $rp-sch := doc('../src/rp-schematron.sch')
+let $base-uri := substring-before(base-uri($sch),'/schematron.sch')
 let $root := substring-before($base-uri,'/src')
 
 return
 (
-  for $test in $base//(*:assert|*:report)
+  for $test in ($sch//(*:assert|*:report)|$rp-sch//(*:assert|*:report))
   let $rule-id := $test/parent::*:rule/@id
-  let $path := concat($root,'/test/tests/gen/',$rule-id,'/',$test/@id,'/')
+  let $xspec-folder := if ($test/ancestor::schema/*:title='eLife Schematron') then 'gen'
+                       else 'rp'
+  let $path := concat($root,'/test/tests/'||$xspec-folder||'/',$rule-id,'/',$test/@id,'/')
   let $pass := concat($path,'pass.xml')
   let $fail := concat($path,'fail.xml')
   let $schema-let := elife:schema-let($test)
