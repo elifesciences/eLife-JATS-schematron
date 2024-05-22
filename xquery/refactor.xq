@@ -22,10 +22,11 @@ declare variable $root := substring-before($outputDir,'/src');
 declare variable $rp-sch := doc(concat($outputDir,'/rp-schematron.sch'));
 declare variable $manifest-sch := doc(concat($outputDir,'/meca-manifest-schematron.sch'));
 
+(: Permitted role values :)
+declare variable $roles := ('error','warning','info');
+
 (
   for $sch in $sch/sch:schema
-  (: Permitted role values :)
-  let $roles := ('error','warning','info')
   (: schematron for pre-author :)
   let $pre-sch := elife:sch2pre($sch)
    (: schematron for dl only :)
@@ -38,10 +39,6 @@ declare variable $manifest-sch := doc(concat($outputDir,'/meca-manifest-schematr
   let $final-xsl := schematron:compile($final-sch)
   (: schematron for final-package - niche use :)
   let $final-package-sch := elife:sch2final-package($sch)
-  (: schematron for reviewed preprints :)
-  let $rp-xsl := schematron:compile(elife:sch2final($rp-sch))
-  (: schematron for manifest files in meca packages :)
-  let $manifest-xsl := schematron:compile($manifest-sch)
   (: Generate xspec specific sch :)
   let $xspec-sch := elife:sch2xspec-sch($sch)
   (: Generate xspec file from xspec specific sch :)
@@ -51,23 +48,39 @@ declare variable $manifest-sch := doc(concat($outputDir,'/meca-manifest-schematr
   return (
     (: error if file contains unallowed role values :)
     elife:unallowed-roles($sch,$roles),
-    elife:unallowed-roles($rp-sch,$roles),
-    elife:unallowed-roles($manifest-sch,$roles),
     file:write(($outputDir||'/pre-JATS-schematron.sch'),$pre-sch),
     file:write(($outputDir||'/dl-schematron.sch'),$dl-sch),
     file:write(($outputDir||'/final-JATS-schematron.sch'),$final-sch),
     file:write(($outputDir||'/pre-JATS-schematron.xsl'),$pre-xsl),
     file:write(($outputDir||'/dl-schematron.xsl'),$dl-xsl),
     file:write(($outputDir||'/final-JATS-schematron.xsl'),$final-xsl),
-    file:write(($outputDir||'/rp-schematron.xsl'),$rp-xsl),
-    file:write(($outputDir||'/meca-manifest-schematron.xsl'),$manifest-xsl),
-    
     file:write(($outputDir||'/final-package-JATS-schematron.sch'),$final-package-sch),
     file:write(($root||'/test/xspec/schematron.sch'),$xspec-sch,map{'indent':'yes'}),
     file:write(($root||'/test/xspec/schematron.xspec'),$xspec,map{'indent':'yes'})
   )
 ,
+
+  for $rp-sch in $rp-sch/sch:schema
+  (: schematron for reviewed preprints :)
+  let $rp-xsl := schematron:compile(elife:sch2final($rp-sch))
+  (: schematron for manifest files in meca packages :)
+  let $manifest-xsl := schematron:compile($manifest-sch)
+  (: Generate xspec specific sch :)
+  let $rp-xspec-sch := elife:sch2xspec-sch($sch)
+  (: Generate xspec file from xspec specific sch :)
+  let $rp-xspec := elife:sch2xspec($rp-xspec-sch)
   
+  return (
+    (: error if file contains unallowed role values :)
+    elife:unallowed-roles($rp-sch,$roles),
+    elife:unallowed-roles($manifest-sch,$roles),
+    file:write(($outputDir||'/rp-schematron.xsl'),$rp-xsl),
+    file:write(($outputDir||'/meca-manifest-schematron.xsl'),$manifest-xsl),
+    file:write(($root||'/test/xspec/rp-schematron.sch'),$rp-xspec-sch,map{'indent':'yes'}),
+    file:write(($root||'/test/xspec/rp-schematron.xspec'),$rp-xspec,map{'indent':'yes'})
+  )
+  
+,
   for $file in file:list($outputDir)[matches(.,'\.xml')]
   let $xml := doc(($outputDir||'/'||$file))
   return (

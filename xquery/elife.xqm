@@ -252,10 +252,10 @@ declare function elife:sch2xspec-sch($sch){
         for $y in $copy1//xsl:function[@name="java:file-exists"]
         return delete node $y,
         
-        for $c in $copy1//sch:pattern[@id=("final-package-pattern","final-package-article-xml")]
+        for $c in $copy1//sch:pattern[@id=("final-package-pattern","final-package-article-xml","meca-manifest-checks")]
         return delete node $c,
         
-        for $c in $copy1//*:pattern[not(@id=("final-package-pattern","final-package-article-xml"))]
+        for $c in $copy1//*:pattern[not(@id=("final-package-pattern","final-package-article-xml","meca-manifest-checks"))]
         return replace node $c with $c/*
        )
                           
@@ -300,7 +300,7 @@ declare function elife:sch2xspec($xspec-sch){
   <x:scenario>
   {
     (:Ignore final package rule :)
-    for $x in $xspec-sch//sch:rule[not(@id=('final-package','final-package-article-xml','root-rule'))]
+    for $x in $xspec-sch//sch:rule[not(@id=('final-package','final-package-article-xml','root-rule','manifest-checks'))]
     let $id := elife:get-id($x)  
     return
     <x:scenario label="{$id}">
