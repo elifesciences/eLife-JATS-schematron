@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="disallowed-child-assert.sch"?>
+<!--Context: contrib-group//name/*
+Test: assert    local-name() = ('surname','given-names','suffix')
+Message:  is not supported as a child of name. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

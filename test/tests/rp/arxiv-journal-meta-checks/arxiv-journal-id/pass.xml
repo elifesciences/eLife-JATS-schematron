@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="arxiv-journal-id.sch"?>
+<!--Context: article/front/journal-meta[lower-case(journal-id)='arxiv']
+Test: assert    journal-id[@journal-id-type='publisher-id']='arXiv'
+Message: arXiv preprints must have a <journal-id journal-id-type="publisher-id"> element with the value 'arXiv'. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="given-names-test-15.sch"?>
+<!--Context: name/given-names
+Test: report    matches(normalize-space(.),'[A-Za-z]\p{Zs}[A-za-z]\p{Zs}[A-za-z]\p{Zs}[A-za-z]|[A-Za-z]\p{Zs}[A-za-z]\p{Zs}[A-za-z]$|^[A-za-z]\p{Zs}[A-za-z]$')
+Message: given-names contains initials with spaces. Ensure that the space(s) is removed between initials - ''. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

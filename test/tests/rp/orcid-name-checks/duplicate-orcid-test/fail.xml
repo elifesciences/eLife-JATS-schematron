@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="duplicate-orcid-test.sch"?>
+<!--Context: article/front/article-meta/contrib-group[1]
+Test: assert    empty($indistinct-orcids)
+Message: There is more than one author with the following ORCiD(s) -  - which must be incorrect. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

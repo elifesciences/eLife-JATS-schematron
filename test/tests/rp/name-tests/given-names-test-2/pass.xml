@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="given-names-test-2.sch"?>
+<!--Context: contrib-group//name
+Test: assert    given-names
+Message: This name -  - does not contain a given-name. Please check with eLife staff that this is correct. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

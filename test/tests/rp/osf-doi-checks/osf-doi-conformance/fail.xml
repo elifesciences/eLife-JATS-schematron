@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="osf-doi-conformance.sch"?>
+<!--Context: article/front[journal-meta[lower-case(journal-id)='osf preprints']]/article-meta/article-id[@pub-id-type='doi']
+Test: assert    matches(.,'^10/.31219/osf\.io/[\da-z]+$')
+Message: Preprints on OSF must have a <article-id pub-id-type="doi"> element with a value that matches the regex '^10/.31219/osf\.io/[\da-z]+$'. In other words, the current DOI listed is not a valid OSF Preprints DOI: ''. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

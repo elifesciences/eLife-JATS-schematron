@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="given-names-test-13.sch"?>
+<!--Context: name/given-names
+Test: report    matches(.,'[A-Za-z]\.? [Ee]l$')
+Message: given-names ends with ' el' - should this be captured as the beginning of the surname instead? - ''. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

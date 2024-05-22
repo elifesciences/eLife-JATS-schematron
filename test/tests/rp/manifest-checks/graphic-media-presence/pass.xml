@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="graphic-media-presence.sch"?>
+<!--Context: root()
+Test: assert    empty($missing-files)
+Message: The following files referenced in the manifest.xml file are not present in the folder:  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

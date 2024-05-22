@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="given-names-test-5.sch"?>
+<!--Context: name/given-names
+Test: assert    matches(.,"^[\p{L}\p{M}\(\)\s'’\.-]*$")
+Message: given-names should usually only contain letters, spaces, or hyphens.  contains other characters. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

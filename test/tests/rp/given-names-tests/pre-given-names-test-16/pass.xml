@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="pre-given-names-test-16.sch"?>
+<!--Context: name/given-names
+Test: report    matches(.,'[\(\)\[\]]')
+Message: given-names contains brackets - ''. This will be flagged by Crossref (although will not actually cause any significant problems). Please add the following author query: Please confirm whether you are happy to remove the brackets around (one of) your given names - ''. This will cause minor issues at Crossref, although they can be retained if desired. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

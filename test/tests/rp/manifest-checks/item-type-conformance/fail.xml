@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="item-type-conformance.sch"?>
+<!--Context: root()
+Test: assert    empty($unallowed-items)
+Message: The manifest.xml file for this article has item elements with unallowed item types. Here are the unsupported item types:  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

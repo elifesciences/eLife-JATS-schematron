@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="ecoevorxiv-journal-id.sch"?>
+<!--Context: article/front/journal-meta[lower-case(journal-id)='ecoevorxiv']
+Test: assert    journal-id[@journal-id-type='publisher-id']='EcoEvoRxiv'
+Message: EcoEvoRxiv preprints must have a <journal-id journal-id-type="publisher-id"> element with the value 'EcoEvoRxiv'. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

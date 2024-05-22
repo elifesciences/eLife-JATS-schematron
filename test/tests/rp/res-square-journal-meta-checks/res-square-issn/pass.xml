@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="res-square-issn.sch"?>
+<!--Context: article/front/journal-meta[lower-case(journal-id)='rs']
+Test: assert    issn[@pub-type='epub']='2693-5015'
+Message: Research Square preprints must have a <issn pub-type="epub"> element with the value '2693-5015'. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>
