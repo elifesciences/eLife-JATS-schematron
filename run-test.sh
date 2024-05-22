@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ -z $SAXON_HOME ]; then
-    export SAXON_HOME=$PWD/validator
+    export SAXON_HOME=$PWD/validator/saxon
 fi
 
 for xspectest in test/xspec/*.xspec;
