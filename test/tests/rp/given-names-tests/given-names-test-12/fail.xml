@@ -2,4 +2,19 @@
 <!--Context: name/given-names
 Test: report    matches(.,'[A-Za-z]\.? [Vv]on$')
 Message: given-names ends with ' von' - should this be captured as the beginning of the surname instead? - ''. -->
-<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <name>
+              <given-names>Derek von</given-names>
+              <surname>Zoolander</surname>
+            </name>
+          </contrib>
+        </contrib-group>
+      </article-meta>
+    </front>
+  </article>
+</root>
