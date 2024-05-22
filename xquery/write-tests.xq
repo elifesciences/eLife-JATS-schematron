@@ -12,7 +12,7 @@ return
 (
   for $test in ($sch//(*:assert|*:report)|$rp-sch//(*:assert|*:report))
   let $rule-id := $test/parent::*:rule/@id
-  let $xspec-folder := if ($test/ancestor::schema/*:title='eLife Schematron') then 'gen'
+  let $xspec-folder := if ($test/ancestor::*:schema/*:title='eLife Schematron') then 'gen'
                        else 'rp'
   let $path := concat($root,'/test/tests/'||$xspec-folder||'/',$rule-id,'/',$test/@id,'/')
   let $pass := concat($path,'pass.xml')
