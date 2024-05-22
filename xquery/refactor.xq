@@ -42,7 +42,7 @@ declare variable $roles := ('error','warning','info');
   (: Generate xspec specific sch :)
   let $xspec-sch := elife:sch2xspec-sch($sch)
   (: Generate xspec file from xspec specific sch :)
-  let $xspec := elife:sch2xspec($xspec-sch)
+  let $xspec := elife:sch2xspec($xspec-sch,'gen')
 
 
   return (
@@ -66,9 +66,9 @@ declare variable $roles := ('error','warning','info');
   (: schematron for manifest files in meca packages :)
   let $manifest-xsl := schematron:compile($manifest-sch)
   (: Generate xspec specific sch :)
-  let $rp-xspec-sch := elife:sch2xspec-sch($sch)
+  let $rp-xspec-sch := elife:sch2xspec-sch($rp-sch)
   (: Generate xspec file from xspec specific sch :)
-  let $rp-xspec := elife:sch2xspec($rp-xspec-sch)
+  let $rp-xspec := elife:sch2xspec($rp-xspec-sch,'rp')
   
   return (
     (: error if file contains unallowed role values :)

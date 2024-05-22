@@ -295,7 +295,7 @@ declare function elife:sch2xspec-sch($sch){
 (:~ 
  : Generate Xspec file from modified schematron file in elife:sch2xspec-sch
  :)
-declare function elife:sch2xspec($xspec-sch){
+declare function elife:sch2xspec($xspec-sch,$parent-folder){
   <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" schematron="schematron.sch">
   <x:scenario>
   {
@@ -306,7 +306,7 @@ declare function elife:sch2xspec($xspec-sch){
     <x:scenario label="{$id}">
       {for $y in $x//(sch:assert|sch:report)
        let $id-2 := $y/@id
-       let $folder := concat('../tests/gen/',$id,'/',$id-2,'/') 
+       let $folder := concat('../tests/'||$parent-folder||'/',$id,'/',$id-2,'/') 
        let $e-pass := element {concat('x:expect-not-',$y/local-name())} {attribute {'id'} {$id-2}, attribute {'role'} {$y/@role}}
        let $e-fail := element {concat('x:expect-',$y/local-name())} {attribute {'id'} {$id-2}, attribute {'role'} {$y/@role}}
        let $e-present := if ($y[@id="permissions-notification"]) then () 
