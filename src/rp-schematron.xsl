@@ -1166,7 +1166,7 @@
 
 
 	  <!--RULE ref-name-checks-->
-   <xsl:template match="mixed-citation/name | mixed-citation/string-name" priority="1000" mode="M24">
+   <xsl:template match="mixed-citation//name | mixed-citation//string-name" priority="1000" mode="M24">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -2152,9 +2152,9 @@
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(.,'^10/.31219/osf\.io/[\da-z]+$')"/>
+         <xsl:when test="matches(.,'^10\.31219/osf\.io/[\da-z]+$')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^10/.31219/osf\.io/[\da-z]+$')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^10\.31219/osf\.io/[\da-z]+$')">
                <xsl:attribute name="id">osf-doi-conformance</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">

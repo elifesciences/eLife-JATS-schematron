@@ -2,4 +2,4 @@
 <!--Context: underline
 Test: report    string-length(.) gt 20
 Message: underline element contains more than 20 characters. Is this tracked change formatting that's been erroneously retained? -->
-<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article><underline>123456789012345678901</underline></article></root>

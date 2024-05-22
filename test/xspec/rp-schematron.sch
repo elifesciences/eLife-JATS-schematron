@@ -155,7 +155,7 @@
   </pattern>
 
     <pattern id="ref-name-checks-pattern">
-    <rule context="mixed-citation/name | mixed-citation/string-name" id="ref-name-checks">
+    <rule context="mixed-citation//name | mixed-citation//string-name" id="ref-name-checks">
         <assert test="surname" role="error" id="ref-surname">
         <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have a surname element.</assert>
      </rule>
@@ -352,7 +352,7 @@
   </pattern>
   <pattern id="osf-doi-checks-pattern">
     <rule context="article/front[journal-meta[lower-case(journal-id)='osf preprints']]/article-meta/article-id[@pub-id-type='doi']" id="osf-doi-checks">
-        <assert test="matches(.,'^10/.31219/osf\.io/[\da-z]+$')" role="error" id="osf-doi-conformance">Preprints on OSF must have a &lt;article-id pub-id-type="doi"&gt; element with a value that matches the regex '^10/.31219/osf\.io/[\da-z]+$'. In other words, the current DOI listed is not a valid OSF Preprints DOI: '<value-of select="."/>'.</assert>
+        <assert test="matches(.,'^10\.31219/osf\.io/[\da-z]+$')" role="error" id="osf-doi-conformance">Preprints on OSF must have a &lt;article-id pub-id-type="doi"&gt; element with a value that matches the regex '^10/.31219/osf\.io/[\da-z]+$'. In other words, the current DOI listed is not a valid OSF Preprints DOI: '<value-of select="."/>'.</assert>
       </rule>
   </pattern>
 
@@ -408,10 +408,9 @@
       <assert test="descendant::mixed-citation[@publication-type='journal']" role="error" id="journal-ref-checks-xspec-assert">mixed-citation[@publication-type='journal'] must be present.</assert>
       <assert test="descendant::ref-list" role="error" id="ref-list-checks-xspec-assert">ref-list must be present.</assert>
       <assert test="descendant::ref//year" role="error" id="ref-year-checks-xspec-assert">ref//year must be present.</assert>
-      <assert test="descendant::mixed-citation/name  or descendant:: mixed-citation/string-name" role="error" id="ref-name-checks-xspec-assert">mixed-citation/name | mixed-citation/string-name must be present.</assert>
+      <assert test="descendant::mixed-citation//name  or descendant:: mixed-citation//string-name" role="error" id="ref-name-checks-xspec-assert">mixed-citation//name | mixed-citation//string-name must be present.</assert>
       <assert test="descendant::mixed-citation[person-group]//etal" role="error" id="ref-etal-checks-xspec-assert">mixed-citation[person-group]//etal must be present.</assert>
       <assert test="descendant::ref//pub-id[@pub-id-type='doi']" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id[@pub-id-type='doi'] must be present.</assert>
-      <assert test="descendant::strike" role="error" id="strike-checks-xspec-assert">strike must be present.</assert>
       <assert test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>
       <assert test="descendant::fig/*" role="error" id="fig-child-checks-xspec-assert">fig/* must be present.</assert>
       <assert test="descendant::table-wrap/*" role="error" id="table-wrap-child-checks-xspec-assert">table-wrap/* must be present.</assert>
@@ -420,8 +419,6 @@
       <assert test="descendant::article/front/article-meta" role="error" id="general-article-meta-checks-xspec-assert">article/front/article-meta must be present.</assert>
       <assert test="descendant::article/front/article-meta/article-version" role="error" id="article-version-checks-xspec-assert">article/front/article-meta/article-version must be present.</assert>
       <assert test="descendant::title" role="error" id="digest-title-checks-xspec-assert">title must be present.</assert>
-      <assert test="descendant::preformat" role="error" id="preformat-checks-xspec-assert">preformat must be present.</assert>
-      <assert test="descendant::code" role="error" id="code-checks-xspec-assert">code must be present.</assert>
       <assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link" role="error" id="unallowed-symbol-tests-xspec-assert">p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</assert>
       <assert test="descendant::article/front/journal-meta[lower-case(journal-id)='arxiv']" role="error" id="arxiv-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id)='arxiv'] must be present.</assert>
       <assert test="descendant::article/front[journal-meta[lower-case(journal-id)='arxiv']]/article-meta/article-id[@pub-id-type='doi']" role="error" id="arxiv-doi-checks-xspec-assert">article/front[journal-meta[lower-case(journal-id)='arxiv']]/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>

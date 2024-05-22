@@ -234,7 +234,7 @@
      </pattern>
 
     <pattern id="ref-names">
-      <rule context="mixed-citation/name | mixed-citation/string-name" id="ref-name-checks">
+      <rule context="mixed-citation//name | mixed-citation//string-name" id="ref-name-checks">
         <assert test="surname" 
         role="error" 
         id="ref-surname"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have a surname element.</assert>
@@ -506,7 +506,7 @@
      </rule>
 
       <rule context="article/front[journal-meta[lower-case(journal-id)='osf preprints']]/article-meta/article-id[@pub-id-type='doi']" id="osf-doi-checks">
-        <assert test="matches(.,'^10/.31219/osf\.io/[\da-z]+$')" 
+        <assert test="matches(.,'^10\.31219/osf\.io/[\da-z]+$')" 
          role="error" 
          id="osf-doi-conformance">Preprints on OSF must have a &lt;article-id pub-id-type="doi"> element with a value that matches the regex '^10/.31219/osf\.io/[\da-z]+$'. In other words, the current DOI listed is not a valid OSF Preprints DOI: '<value-of select="."/>'.</assert>
       </rule>

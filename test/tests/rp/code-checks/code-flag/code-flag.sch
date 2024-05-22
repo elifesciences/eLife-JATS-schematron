@@ -37,9 +37,4 @@
       <report test="." role="warning" id="code-flag">Please check whether the content in this code element has been captured crrectly (and is rendered approriately).</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
-    <rule context="root" id="root-rule">
-      <assert test="descendant::code" role="error" id="code-checks-xspec-assert">code must be present.</assert>
-    </rule>
-  </pattern>
 </schema>

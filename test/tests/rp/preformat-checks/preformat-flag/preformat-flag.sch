@@ -37,9 +37,4 @@
       <report test="." role="warning" id="preformat-flag">Please check whether the content in this preformat element has been captured crrectly (and is rendered approriately).</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
-    <rule context="root" id="root-rule">
-      <assert test="descendant::preformat" role="error" id="preformat-checks-xspec-assert">preformat must be present.</assert>
-    </rule>
-  </pattern>
 </schema>

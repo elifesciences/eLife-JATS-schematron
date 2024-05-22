@@ -37,9 +37,4 @@
       <report test="." role="warning" id="strike-warning">strike element is present. Is this tracked change formatting that's been erroneously retained? Should this text be deleted?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
-    <rule context="root" id="root-rule">
-      <assert test="descendant::strike" role="error" id="strike-checks-xspec-assert">strike must be present.</assert>
-    </rule>
-  </pattern>
 </schema>
