@@ -13,7 +13,7 @@ jobs:
         run: |
           ./run-test.sh
         env:
-          SAXON_HOME: ${{ github.workspace }}/validator
+          SAXON_HOME: ${{ github.workspace }}/validator/saxon
       - name: Publish as 'unstable'
         if: github.ref == 'refs/heads/master'
         run: |
