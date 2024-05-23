@@ -1,0 +1,28 @@
+<?oxygen SCHSchema="duplicate-orcid-test.sch"?>
+<!--Context: article/front/article-meta/contrib-group[1]
+Test: assert    empty($indistinct-orcids)
+Message: There is more than one author with the following ORCiD(s) -  - which must be incorrect. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <front>
+            <article-meta>
+                <contrib-group>
+                    <contrib contrib-type="author" equal-contrib="yes" deceased="yes">
+                        <contrib-id authenticated="true" contrib-id-type="orcid">https://orcid.org/0000-0002-6048-1470</contrib-id>
+                    <name>
+                        <surname>Claus</surname>
+                        <given-names>Santa</given-names>
+                    </name>
+                    </contrib>
+                    <contrib contrib-type="author" equal-contrib="yes" deceased="yes">
+                        <contrib-id authenticated="true" contrib-id-type="orcid">https://orcid.org/0000-0002-6048-1470</contrib-id>
+                    <name>
+                        <surname>Claus</surname>
+                        <given-names>Ms</given-names>
+                    </name>
+                    </contrib>
+                </contrib-group>
+            </article-meta>
+        </front>
+    </article>
+</root>

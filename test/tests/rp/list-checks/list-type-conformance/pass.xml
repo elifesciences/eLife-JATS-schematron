@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="list-type-conformance.sch"?>
+<!--Context: list
+Test: assert    @list-type=$supported-list-types
+Message: <list> element must have a list-type attribute with one of the supported values: . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <list list-type="bullet"/>
+        <list list-type="simple"/>
+        <list list-type="order"/>
+        <list list-type="alpha-lower"/>
+        <list list-type="alpha-uppper"/>
+        <list list-type="roman-lower"/>
+        <list list-type="roman-upper"/>
+    </article>
+</root>

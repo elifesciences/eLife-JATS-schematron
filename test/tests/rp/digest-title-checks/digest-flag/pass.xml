@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="digest-flag.sch"?>
+<!--Context: title
+Test: report    matches(lower-case(.),'^\s*(elife\s)?digest\s*$')
+Message:  element has a title containing 'digest' - . If this is referring to an plain language summary written by the authors it should be renamed to plain language summary (or similar) in order to not suggest to readers this was written by the features team. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <title/>
+    </article>
+</root>

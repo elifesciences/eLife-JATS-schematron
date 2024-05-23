@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="strike-warning.sch"?>
+<!--Context: strike
+Test: report    .
+Message: strike element is present. Is this tracked change formatting that's been erroneously retained? Should this text be deleted? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article><strike/></article></root>

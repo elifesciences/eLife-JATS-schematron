@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="fig-child-conformance.sch"?>
+<!--Context: fig/*
+Test: assert    name()=$supported-fig-children
+Message:  is not supported as a child of <fig>. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <fig>
+            <label/>
+            <caption/>
+            <graphic/>
+            <permissions/>
+        </fig>
+    </article>
+</root>

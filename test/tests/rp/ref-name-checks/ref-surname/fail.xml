@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="ref-surname.sch"?>
+<!--Context: mixed-citation//name | mixed-citation//string-name
+Test: assert    surname
+Message:  in reference (id=) does not have a surname element. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mixed-citation><name/></mixed-citation>
+    </article>
+</root>

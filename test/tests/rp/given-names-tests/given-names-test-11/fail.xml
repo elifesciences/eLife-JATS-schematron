@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="given-names-test-11.sch"?>
+<!--Context: name/given-names
+Test: report    matches(.,'[A-Za-z]\.? [Vv]an$')
+Message: given-names ends with ' van' - should this be captured as the beginning of the surname instead? - ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <name>
+              <given-names>Derek van</given-names>
+              <surname>Zoolander</surname>
+            </name>
+          </contrib>
+        </contrib-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

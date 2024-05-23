@@ -1,0 +1,24 @@
+<?oxygen SCHSchema="res-square-journal-title.sch"?>
+<!--Context: article/front/journal-meta[lower-case(journal-id)='rs']
+Test: assert    journal-title-group/journal-title='Research Square'
+Message: Research Square preprints must have a <journal-title> element with the value 'Research Square' inside a <journal-title-group> element. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <front>
+            <journal-meta>
+                <journal-id journal-id-type="publisher-id">RS</journal-id>
+                <journal-title-group>
+                    <journal-title>Research Ssquare</journal-title>
+                    <abbrev-journal-title abbrev-type="publisher">rs</abbrev-journal-title>
+                </journal-title-group>
+                <issn pub-type="epub">2693-5015</issn>
+                <publisher>
+                    <publisher-name>Research Square</publisher-name>
+                </publisher>
+            </journal-meta>
+            <article-meta>
+                <article-id pub-id-type="doi">10.21203/rs.3.rs-11/v1</article-id>
+            </article-meta>
+        </front>
+    </article>
+</root>

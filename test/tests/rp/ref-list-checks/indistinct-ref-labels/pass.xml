@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="indistinct-ref-labels.sch"?>
+<!--Context: ref-list
+Test: assert    empty($indistinct-labels)
+Message: Duplicate labels in reference list - . Have there been typesetting errors? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref-list>
+            <ref><label>1</label></ref>
+            <ref><label>2</label></ref>
+            <ref><label>3</label></ref>
+            <ref><label>4</label></ref>
+        </ref-list>
+    </article>
+</root>

@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="given-names-test-10.sch"?>
+<!--Context: name/given-names
+Test: report    matches(.,'[A-Za-z]\.? [Dd]e[rn]?$')
+Message: given-names ends with de, der, or den - should this be captured as the beginning of the surname instead? - ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <name>
+              <given-names>Derek de</given-names>
+              <surname>Zoolander</surname>
+            </name>
+          </contrib>
+        </contrib-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

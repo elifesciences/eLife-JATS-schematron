@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="table-wrap-child-conformance.sch"?>
+<!--Context: table-wrap/*
+Test: assert    name()=$supported-table-wrap-children
+Message:  is not supported as a child of <table-wrap>. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <table-wrap>
+            <label/>
+            <caption/>
+            <graphic/>
+            <alternatives/>
+            <table/>
+            <permissions/>
+            <table-wrap-foot/>
+        </table-wrap>
+    </article>
+</root>

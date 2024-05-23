@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="indistinct-files-presence.sch"?>
+<!--Context: root()
+Test: assert    empty($indistinct-files)
+Message: The manifest.xml file for this article has the following files referred to numerous times within separate items: . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

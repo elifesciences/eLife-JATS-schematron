@@ -1,0 +1,21 @@
+<?oxygen SCHSchema="given-names-test-1.sch"?>
+<!--Context: contrib-group//name
+Test: report    count(given-names) gt 1
+Message: Each name must contain only one given-names element. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group>
+          <contrib>
+            <name>
+              <given-names>Derek</given-names>
+              <surname>Zoolander</surname>
+              <suffix>II</suffix>
+            </name>
+          </contrib>
+        </contrib-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

@@ -234,7 +234,7 @@
      </pattern>
 
     <pattern id="ref-names">
-      <rule context="mixed-citation/name | mixed-citation/string-name" id="ref-name-checks">
+      <rule context="mixed-citation//name | mixed-citation//string-name" id="ref-name-checks">
         <assert test="surname" 
         role="error" 
         id="ref-surname"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have a surname element.</assert>
@@ -506,7 +506,7 @@
      </rule>
 
       <rule context="article/front[journal-meta[lower-case(journal-id)='osf preprints']]/article-meta/article-id[@pub-id-type='doi']" id="osf-doi-checks">
-        <assert test="matches(.,'^10/.31219/osf\.io/[\da-z]+$')" 
+        <assert test="matches(.,'^10\.31219/osf\.io/[\da-z]+$')" 
          role="error" 
          id="osf-doi-conformance">Preprints on OSF must have a &lt;article-id pub-id-type="doi"> element with a value that matches the regex '^10/.31219/osf\.io/[\da-z]+$'. In other words, the current DOI listed is not a valid OSF Preprints DOI: '<value-of select="."/>'.</assert>
       </rule>
@@ -569,7 +569,7 @@
           For validation via BaseX, there is a separate file - meca-manifest-schematron.sch
      -->
     <pattern id="meca-manifest-checks">
-     <rule context="root()">
+     <rule context="root()" id="manifest-checks">
       <let name="xml-folder" value="substring-before(base-uri(),tokenize(base-uri(.), '/')[last()])"/>
       <let name="parent-folder" value="substring-before($xml-folder,tokenize(replace($xml-folder,'/$',''), '/')[last()])"/>
       <let name="manifest-path" value="concat($parent-folder,'manifest.xml')"/>

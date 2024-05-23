@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="article-title-all-caps.sch"?>
+<!--Context: article-meta/title-group/article-title
+Test: report    . = upper-case(.)
+Message: Article title is in all caps - . Please change to sentence case. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <title-group>
+                <article-title>All caps</article-title>
+            </title-group>
+        </article-meta>
+    </article>
+</root>

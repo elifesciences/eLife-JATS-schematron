@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="surname-test-8.sch"?>
+<!--Context: contrib-group//name/surname
+Test: report    matches(.,'^[A-Z]{1,2}\.?\p{Zs}') and (string-length(.) gt 3)
+Message: surname looks to start with initial - ''. Should '' be placed in the given-names field? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <contrib-group>
+      <contrib>
+        <name>
+          <given-names>Fred P</given-names>
+          <surname>Atherden</surname>
+        </name>
+      </contrib>
+    </contrib-group>
+  </article>
+</root>

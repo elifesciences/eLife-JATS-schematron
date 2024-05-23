@@ -6,7 +6,7 @@ declare namespace svrl = "http://purl.oclc.org/dsdl/svrl";
 declare namespace x="http://www.jenitennison.com/xslt/xspec";
 
 declare variable $elife:base := doc('../src/schematron.sch');
-declare variable $elife:copy-edit-base := doc('../src/copy-edit.sch');
+declare variable $elife:rp-base := doc('../src/rp-schematron.sch');
 
 (:~ Generate schemalet files for unit testing purposes
  :)
@@ -252,10 +252,10 @@ declare function elife:sch2xspec-sch($sch){
         for $y in $copy1//xsl:function[@name="java:file-exists"]
         return delete node $y,
         
-        for $c in $copy1//sch:pattern[@id=("final-package-pattern","final-package-article-xml")]
+        for $c in $copy1//sch:pattern[@id=("final-package-pattern","final-package-article-xml","meca-manifest-checks")]
         return delete node $c,
         
-        for $c in $copy1//*:pattern[not(@id=("final-package-pattern","final-package-article-xml"))]
+        for $c in $copy1//*:pattern[not(@id=("final-package-pattern","final-package-article-xml","meca-manifest-checks"))]
         return replace node $c with $c/*
        )
                           
@@ -265,7 +265,7 @@ declare function elife:sch2xspec-sch($sch){
          let $r := 
              <pattern id="root-pattern">
                 <rule context="root" id="root-rule">{
-                for $z in $t//sch:rule[not(@id=("missing-ref-cited","strike-tests","colour-styled-content","empty-attribute-test"))]
+                for $z in $t//sch:rule[not(@id=("missing-ref-cited","strike-tests","colour-styled-content","empty-attribute-test","strike-checks","preformat-checks","code-checks"))]
                 let $test := $z/@context/string()
                 return
                 if ($z/@id="covid-prologue") then <assert test="{concat('descendant::',$test)}" role="error" id="{concat($z/@id,'-xspec-assert')}">{$test} must be present.</assert>
@@ -295,18 +295,20 @@ declare function elife:sch2xspec-sch($sch){
 (:~ 
  : Generate Xspec file from modified schematron file in elife:sch2xspec-sch
  :)
-declare function elife:sch2xspec($xspec-sch){
-  <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" schematron="schematron.sch">
-  <x:scenario>
+declare function elife:sch2xspec($xspec-sch,$parent-folder){
+  let $schematron-file := if ($parent-folder='gen') then 'schematron.sch' else 'rp-schematron.sch'
+  return
+  <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" schematron="{$schematron-file}">
+  <x:scenario label="schematron">
   {
     (:Ignore final package rule :)
-    for $x in $xspec-sch//sch:rule[not(@id=('final-package','final-package-article-xml','root-rule'))]
+    for $x in $xspec-sch//sch:rule[not(@id=('final-package','final-package-article-xml','root-rule','manifest-checks'))]
     let $id := elife:get-id($x)  
     return
     <x:scenario label="{$id}">
       {for $y in $x//(sch:assert|sch:report)
        let $id-2 := $y/@id
-       let $folder := concat('../tests/gen/',$id,'/',$id-2,'/') 
+       let $folder := concat('../tests/'||$parent-folder||'/',$id,'/',$id-2,'/') 
        let $e-pass := element {concat('x:expect-not-',$y/local-name())} {attribute {'id'} {$id-2}, attribute {'role'} {$y/@role}}
        let $e-fail := element {concat('x:expect-',$y/local-name())} {attribute {'id'} {$id-2}, attribute {'role'} {$y/@role}}
        let $e-present := if ($y[@id="permissions-notification"]) then () 
@@ -392,10 +394,10 @@ declare function elife:copy-edit2xspec($xspec-sch){
 
 (:~ Generate schemalet files for unit testing purposes from the copy-edit-schematron
  :)
-declare function elife:copy-edit-schema-let($assert-or-report){
+declare function elife:rp-schema-let($assert-or-report){
   let $id := $assert-or-report/@id
   return
-    copy $copy1 := $elife:copy-edit-base
+    copy $copy1 := $elife:rp-base
     modify(
       for $x in $copy1//*:rule
       return 
@@ -437,9 +439,9 @@ return delete node $x,
                               ,
                               ' or ')}" role="error" id="{concat($rule/@id,'-xspec-assert')}">{$test} must be present.</assert>
             else <assert test="{concat('descendant::',$test)}" role="error" id="{concat($rule/@id,'-xspec-assert')}">{$test} must be present.</assert> 
-    
     return 
-    insert node 
+    if ($id=('code-flag','preformat-flag','strike-warning')) then ()
+    else insert node 
         <pattern id="root-pattern">
         <rule context="root" id="root-rule">
         {$q}

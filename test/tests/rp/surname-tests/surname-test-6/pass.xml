@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="surname-test-6.sch"?>
+<!--Context: contrib-group//name/surname
+Test: report    matches(.,'^\p{Zs}')
+Message: surname starts with a space, which cannot be correct - ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <article-meta>
+      <contrib-group>
+        <contrib>
+          <name>
+            <surname>Zoolander</surname>
+          </name>
+        </contrib>
+      </contrib-group>
+    </article-meta>
+  </article>
+</root>

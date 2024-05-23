@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="author-contrb-no-aff-xref.sch"?>
+<!--Context: article-meta/contrib-group[count(aff) gt 1]/contrib[@contrib-type='author' and not(collab)]
+Test: assert    xref[@ref-type='aff']
+Message: Author  has no affiliation. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <contrib-group>
+                <contrib contrib-type="author">
+                    <name><surname>Claus</surname><given-names>Santa</given-names></name>
+                </contrib>
+                <aff id="aff1"/>
+                <aff id="aff2"/>
+            </contrib-group>
+        </article-meta>
+    </article>
+</root>

@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="given-names-test-14.sch"?>
+<!--Context: name/given-names
+Test: report    matches(.,'[A-Za-z]\.? [Tt]e[rn]?$')
+Message: given-names ends with te, ter, or ten - should this be captured as the beginning of the surname instead? - ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <contrib-group>
+          <name><surname>ten Cate</surname><given-names>Tuomas</given-names></name>
+        </contrib-group>
+      </article-meta>
+    </front>
+  </article>
+</root>
