@@ -296,8 +296,10 @@ declare function elife:sch2xspec-sch($sch){
  : Generate Xspec file from modified schematron file in elife:sch2xspec-sch
  :)
 declare function elife:sch2xspec($xspec-sch,$parent-folder){
-  <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" schematron="schematron.sch">
-  <x:scenario>
+  let $schematron-file := if ($parent-folder='gen') then 'schematron.sch' else 'rp-schematron.sch'
+  return
+  <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" schematron="{$schematron-file}">
+  <x:scenario label="schematron">
   {
     (:Ignore final package rule :)
     for $x in $xspec-sch//sch:rule[not(@id=('final-package','final-package-article-xml','root-rule','manifest-checks'))]

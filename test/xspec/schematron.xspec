@@ -1,5 +1,5 @@
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" schematron="schematron.sch">
-  <x:scenario>
+  <x:scenario label="schematron">
     <x:scenario label="covid-prologue">
       <x:scenario label="covid-processing-instruction-pass">
         <x:context href="../tests/gen/covid-prologue/covid-processing-instruction/pass.xml"/>

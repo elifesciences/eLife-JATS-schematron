@@ -1,5 +1,5 @@
-<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" schematron="schematron.sch">
-  <x:scenario>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" schematron="rp-schematron.sch">
+  <x:scenario label="schematron">
     <x:scenario label="article-title-checks">
       <x:scenario label="article-title-all-caps-pass">
         <x:context href="../tests/rp/article-title-checks/article-title-all-caps/pass.xml"/>
