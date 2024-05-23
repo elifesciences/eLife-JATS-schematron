@@ -6,7 +6,7 @@ Message: Authorea preprints must have a <journal-id journal-id-type="publisher-i
     <article>
         <front>
             <journal-meta>
-                <journal-id journal-id-type="publisher-id">sAuthorea</journal-id>
+                <journal-id journal-id-type="publisher-id">authorea</journal-id>
                 <journal-title-group>
                     <journal-title>Authorea</journal-title>
                     <abbrev-journal-title abbrev-type="publisher">Authorea</abbrev-journal-title>
