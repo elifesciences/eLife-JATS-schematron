@@ -34,7 +34,7 @@
   </xsl:function>
   <pattern id="list">
     <rule context="list" id="list-checks">
-      <let name="supported-list-types" value="('bullet','simple','order','alpha-lower','alpha-uppper','roman-lower','roman-upper')"/>
+      <let name="supported-list-types" value="('bullet','simple','order','alpha-lower','alpha-upper','roman-lower','roman-upper')"/>
       <assert test="@list-type=$supported-list-types" role="error" id="list-type-conformance">&lt;list&gt; element must have a list-type attribute with one of the supported values: <value-of select="string-join($supported-list-types,'; ')"/>.<value-of select="if (./@list-type) then concat(' list-type ',@list-type,' is not supported.') else ()"/>
       </assert>
     </rule>

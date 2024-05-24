@@ -1366,7 +1366,7 @@
 
 	  <!--RULE list-checks-->
    <xsl:template match="list" priority="1000" mode="M31">
-      <xsl:variable name="supported-list-types" select="('bullet','simple','order','alpha-lower','alpha-uppper','roman-lower','roman-upper')"/>
+      <xsl:variable name="supported-list-types" select="('bullet','simple','order','alpha-lower','alpha-upper','roman-lower','roman-upper')"/>
 
 		    <!--ASSERT error-->
       <xsl:choose>

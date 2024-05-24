@@ -8,7 +8,7 @@ Message: <list> element must have a list-type attribute with one of the supporte
         <list list-type="simple"/>
         <list list-type="order"/>
         <list list-type="alpha-lower"/>
-        <list list-type="alpha-uppper"/>
+        <list list-type="alpha-upper"/>
         <list list-type="roman-lower"/>
         <list list-type="roman-upper"/>
     </article>
