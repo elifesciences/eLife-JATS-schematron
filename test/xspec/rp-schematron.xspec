@@ -430,6 +430,18 @@
         <x:expect-not-assert id="underline-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="fig-checks">
+      <x:scenario label="fig-graphic-conformance-pass">
+        <x:context href="../tests/rp/fig-checks/fig-graphic-conformance/pass.xml"/>
+        <x:expect-not-assert id="fig-graphic-conformance" role="error"/>
+        <x:expect-not-assert id="fig-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-graphic-conformance-fail">
+        <x:context href="../tests/rp/fig-checks/fig-graphic-conformance/fail.xml"/>
+        <x:expect-assert id="fig-graphic-conformance" role="error"/>
+        <x:expect-not-assert id="fig-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="fig-child-checks">
       <x:scenario label="fig-child-conformance-pass">
         <x:context href="../tests/rp/fig-child-checks/fig-child-conformance/pass.xml"/>

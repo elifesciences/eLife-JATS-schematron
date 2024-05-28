@@ -185,7 +185,13 @@
      </rule>
   </pattern>
 
-    <pattern id="fig-child-checks-pattern">
+    <pattern id="fig-checks-pattern">
+    <rule context="fig" id="fig-checks">
+        <assert test="graphic" role="error" id="fig-graphic-conformance">
+        <value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>
+     </rule>
+  </pattern>
+  <pattern id="fig-child-checks-pattern">
     <rule context="fig/*" id="fig-child-checks">
         <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
         <assert test="name()=$supported-fig-children" role="error" id="fig-child-conformance">
@@ -412,6 +418,7 @@
       <assert test="descendant::mixed-citation[person-group]//etal" role="error" id="ref-etal-checks-xspec-assert">mixed-citation[person-group]//etal must be present.</assert>
       <assert test="descendant::ref//pub-id[@pub-id-type='doi']" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>
+      <assert test="descendant::fig" role="error" id="fig-checks-xspec-assert">fig must be present.</assert>
       <assert test="descendant::fig/*" role="error" id="fig-child-checks-xspec-assert">fig/* must be present.</assert>
       <assert test="descendant::table-wrap/*" role="error" id="table-wrap-child-checks-xspec-assert">table-wrap/* must be present.</assert>
       <assert test="descendant::list" role="error" id="list-checks-xspec-assert">list must be present.</assert>

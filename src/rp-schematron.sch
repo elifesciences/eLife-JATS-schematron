@@ -274,6 +274,12 @@
     </pattern>
 
     <pattern id="fig">
+     <rule context="fig" id="fig-checks">
+        <assert test="graphic" 
+        role="error" 
+        id="fig-graphic-conformance"><value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>
+     </rule>
+
      <rule context="fig/*" id="fig-child-checks">
         <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
         <assert test="name()=$supported-fig-children" 
