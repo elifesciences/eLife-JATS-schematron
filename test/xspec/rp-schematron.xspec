@@ -454,6 +454,18 @@
         <x:expect-not-assert id="fig-child-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="table-wrap-checks">
+      <x:scenario label="table-wrap-content-conformance-pass">
+        <x:context href="../tests/rp/table-wrap-checks/table-wrap-content-conformance/pass.xml"/>
+        <x:expect-not-assert id="table-wrap-content-conformance" role="error"/>
+        <x:expect-not-assert id="table-wrap-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-wrap-content-conformance-fail">
+        <x:context href="../tests/rp/table-wrap-checks/table-wrap-content-conformance/fail.xml"/>
+        <x:expect-assert id="table-wrap-content-conformance" role="error"/>
+        <x:expect-not-assert id="table-wrap-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="table-wrap-child-checks">
       <x:scenario label="table-wrap-child-conformance-pass">
         <x:context href="../tests/rp/table-wrap-child-checks/table-wrap-child-conformance/pass.xml"/>

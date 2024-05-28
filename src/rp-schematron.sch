@@ -289,6 +289,13 @@
     </pattern>
 
     <pattern id="table-wrap">
+     <rule context="table-wrap" id="table-wrap-checks">
+        <!-- adjust when support is added for HTML tables -->
+        <assert test="graphic or alternatives[graphic]" 
+        role="error" 
+        id="table-wrap-content-conformance"><value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>
+     </rule>
+
      <rule context="table-wrap/*" id="table-wrap-child-checks">
         <let name="supported-table-wrap-children" value="('label','caption','graphic','alternatives','table','permissions','table-wrap-foot')"/>
         <assert test="name()=$supported-table-wrap-children" 

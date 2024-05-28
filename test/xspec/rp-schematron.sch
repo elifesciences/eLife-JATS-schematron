@@ -199,7 +199,14 @@
      </rule>
   </pattern>
 
-    <pattern id="table-wrap-child-checks-pattern">
+    <pattern id="table-wrap-checks-pattern">
+    <rule context="table-wrap" id="table-wrap-checks">
+        <!-- adjust when support is added for HTML tables -->
+        <assert test="graphic or alternatives[graphic]" role="error" id="table-wrap-content-conformance">
+        <value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>
+     </rule>
+  </pattern>
+  <pattern id="table-wrap-child-checks-pattern">
     <rule context="table-wrap/*" id="table-wrap-child-checks">
         <let name="supported-table-wrap-children" value="('label','caption','graphic','alternatives','table','permissions','table-wrap-foot')"/>
         <assert test="name()=$supported-table-wrap-children" role="error" id="table-wrap-child-conformance">
@@ -420,6 +427,7 @@
       <assert test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>
       <assert test="descendant::fig" role="error" id="fig-checks-xspec-assert">fig must be present.</assert>
       <assert test="descendant::fig/*" role="error" id="fig-child-checks-xspec-assert">fig/* must be present.</assert>
+      <assert test="descendant::table-wrap" role="error" id="table-wrap-checks-xspec-assert">table-wrap must be present.</assert>
       <assert test="descendant::table-wrap/*" role="error" id="table-wrap-child-checks-xspec-assert">table-wrap/* must be present.</assert>
       <assert test="descendant::list" role="error" id="list-checks-xspec-assert">list must be present.</assert>
       <assert test="descendant::title" role="error" id="title-checks-xspec-assert">title must be present.</assert>
