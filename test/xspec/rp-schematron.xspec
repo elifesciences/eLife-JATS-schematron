@@ -526,6 +526,28 @@
         <x:expect-not-assert id="list-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="graphic-checks">
+      <x:scenario label="graphic-check-1-pass">
+        <x:context href="../tests/rp/graphic-checks/graphic-check-1/pass.xml"/>
+        <x:expect-not-assert id="graphic-check-1" role="error"/>
+        <x:expect-not-assert id="graphic-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="graphic-check-1-fail">
+        <x:context href="../tests/rp/graphic-checks/graphic-check-1/fail.xml"/>
+        <x:expect-assert id="graphic-check-1" role="error"/>
+        <x:expect-not-assert id="graphic-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="graphic-check-2-pass">
+        <x:context href="../tests/rp/graphic-checks/graphic-check-2/pass.xml"/>
+        <x:expect-not-assert id="graphic-check-2" role="error"/>
+        <x:expect-not-assert id="graphic-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="graphic-check-2-fail">
+        <x:context href="../tests/rp/graphic-checks/graphic-check-2/fail.xml"/>
+        <x:expect-assert id="graphic-check-2" role="error"/>
+        <x:expect-not-assert id="graphic-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="title-checks">
       <x:scenario label="title-upper-case-pass">
         <x:context href="../tests/rp/title-checks/title-upper-case/pass.xml"/>

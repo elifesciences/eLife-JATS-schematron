@@ -241,6 +241,19 @@
       </assert>
      </rule>
   </pattern>
+  
+     <pattern id="graphic-checks-pattern">
+    <rule context="graphic|inline-graphic" id="graphic-checks">
+        <let name="file" value="tokenize(lower-case(@xlink:href),'\.')[last()]"/>
+        <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
+        
+        <assert test="normalize-space(@xlink:href)!=''" role="error" id="graphic-check-1">
+        <name/> must have an xlink:href attribute. This one does not.</assert>
+        
+        <assert test="$file=$image-file-types" role="error" id="graphic-check-2">
+        <name/> must have an xlink:href attribute that ends with an image file type extension. <value-of select="if ($file!='') then $file else @xlink:href"/> is not one of <value-of select="string-join($image-file-types,', ')"/>.</assert>
+     </rule>
+  </pattern>
 
     <pattern id="title-checks-pattern">
     <rule context="title" id="title-checks">
@@ -453,6 +466,7 @@
       <assert test="descendant::inline-formula" role="error" id="inline-formula-checks-xspec-assert">inline-formula must be present.</assert>
       <assert test="descendant::alternatives[parent::disp-formula or parent::inline-formula]" role="error" id="equation-alternatives-checks-xspec-assert">alternatives[parent::disp-formula or parent::inline-formula] must be present.</assert>
       <assert test="descendant::list" role="error" id="list-checks-xspec-assert">list must be present.</assert>
+      <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-checks-xspec-assert">graphic|inline-graphic must be present.</assert>
       <assert test="descendant::title" role="error" id="title-checks-xspec-assert">title must be present.</assert>
       <assert test="descendant::article/front/article-meta" role="error" id="general-article-meta-checks-xspec-assert">article/front/article-meta must be present.</assert>
       <assert test="descendant::article/front/article-meta/article-version" role="error" id="article-version-checks-xspec-assert">article/front/article-meta/article-version must be present.</assert>

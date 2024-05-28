@@ -334,6 +334,22 @@
         id="list-type-conformance">&lt;list> element must have a list-type attribute with one of the supported values: <value-of select="string-join($supported-list-types,'; ')"/>.<value-of select="if (./@list-type) then concat(' list-type ',@list-type,' is not supported.') else ()"/></assert>
      </rule>
     </pattern>
+  
+     <pattern id="graphic">
+      <rule context="graphic|inline-graphic" id="graphic-checks">
+        <let name="file" value="tokenize(lower-case(@xlink:href),'\.')[last()]"/>
+        <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
+        
+        <assert test="normalize-space(@xlink:href)!=''" 
+          role="error" 
+          id="graphic-check-1"><name/> must have an xlink:href attribute. This one does not.</assert>
+        
+        <assert test="$file=$image-file-types" 
+          role="error" 
+          id="graphic-check-2"><name/> must have an xlink:href attribute that ends with an image file type extension. <value-of select="if ($file!='') then $file else @xlink:href"/> is not one of <value-of select="string-join($image-file-types,', ')"/>.</assert>
+     </rule>
+       
+     </pattern>
 
     <pattern id="title">
      <rule context="title" id="title-checks">
