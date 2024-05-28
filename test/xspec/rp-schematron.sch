@@ -185,7 +185,13 @@
      </rule>
   </pattern>
 
-    <pattern id="fig-child-checks-pattern">
+    <pattern id="fig-checks-pattern">
+    <rule context="fig" id="fig-checks">
+        <assert test="graphic" role="error" id="fig-graphic-conformance">
+        <value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>
+     </rule>
+  </pattern>
+  <pattern id="fig-child-checks-pattern">
     <rule context="fig/*" id="fig-child-checks">
         <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
         <assert test="name()=$supported-fig-children" role="error" id="fig-child-conformance">
@@ -193,7 +199,14 @@
      </rule>
   </pattern>
 
-    <pattern id="table-wrap-child-checks-pattern">
+    <pattern id="table-wrap-checks-pattern">
+    <rule context="table-wrap" id="table-wrap-checks">
+        <!-- adjust when support is added for HTML tables -->
+        <assert test="graphic or alternatives[graphic]" role="error" id="table-wrap-content-conformance">
+        <value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>
+     </rule>
+  </pattern>
+  <pattern id="table-wrap-child-checks-pattern">
     <rule context="table-wrap/*" id="table-wrap-child-checks">
         <let name="supported-table-wrap-children" value="('label','caption','graphic','alternatives','table','permissions','table-wrap-foot')"/>
         <assert test="name()=$supported-table-wrap-children" role="error" id="table-wrap-child-conformance">
@@ -201,11 +214,44 @@
      </rule>
   </pattern>
 
+    <pattern id="disp-formula-checks-pattern">
+    <rule context="disp-formula" id="disp-formula-checks">
+          <!-- adjust when support is added for mathML -->
+          <assert test="graphic or alternatives[graphic]" role="error" id="disp-formula-content-conformance">
+        <value-of select="if (label) then concat('Equation ',label) else name()"/> does not have a child graphic element, which must be incorrect.</assert>
+      </rule>
+  </pattern>
+  <pattern id="inline-formula-checks-pattern">
+    <rule context="inline-formula" id="inline-formula-checks">
+          <!-- adjust when support is added for mathML -->
+          <assert test="graphic or alternatives[graphic]" role="error" id="inline-formula-content-conformance">
+        <value-of select="name()"/> does not have a child graphic element, which must be incorrect.</assert>
+      </rule>
+  </pattern>
+  <pattern id="equation-alternatives-checks-pattern">
+    <rule context="alternatives[parent::disp-formula or parent::inline-formula]" id="equation-alternatives-checks">
+          <assert test="graphic and mml:math" role="error" id="equation-alternatives-conformance">alternaives element within <value-of select="parent::*/name()"/> must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
+      </rule>
+  </pattern>
+
     <pattern id="list-checks-pattern">
     <rule context="list" id="list-checks">
         <let name="supported-list-types" value="('bullet','simple','order','alpha-lower','alpha-upper','roman-lower','roman-upper')"/>
         <assert test="@list-type=$supported-list-types" role="error" id="list-type-conformance">&lt;list&gt; element must have a list-type attribute with one of the supported values: <value-of select="string-join($supported-list-types,'; ')"/>.<value-of select="if (./@list-type) then concat(' list-type ',@list-type,' is not supported.') else ()"/>
       </assert>
+     </rule>
+  </pattern>
+  
+     <pattern id="graphic-checks-pattern">
+    <rule context="graphic|inline-graphic" id="graphic-checks">
+        <let name="file" value="tokenize(lower-case(@xlink:href),'\.')[last()]"/>
+        <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
+        
+        <assert test="normalize-space(@xlink:href)!=''" role="error" id="graphic-check-1">
+        <name/> must have an xlink:href attribute. This one does not.</assert>
+        
+        <assert test="$file=$image-file-types" role="error" id="graphic-check-2">
+        <name/> must have an xlink:href attribute that ends with an image file type extension. <value-of select="if ($file!='') then $file else @xlink:href"/> is not one of <value-of select="string-join($image-file-types,', ')"/>.</assert>
      </rule>
   </pattern>
 
@@ -412,9 +458,15 @@
       <assert test="descendant::mixed-citation[person-group]//etal" role="error" id="ref-etal-checks-xspec-assert">mixed-citation[person-group]//etal must be present.</assert>
       <assert test="descendant::ref//pub-id[@pub-id-type='doi']" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>
+      <assert test="descendant::fig" role="error" id="fig-checks-xspec-assert">fig must be present.</assert>
       <assert test="descendant::fig/*" role="error" id="fig-child-checks-xspec-assert">fig/* must be present.</assert>
+      <assert test="descendant::table-wrap" role="error" id="table-wrap-checks-xspec-assert">table-wrap must be present.</assert>
       <assert test="descendant::table-wrap/*" role="error" id="table-wrap-child-checks-xspec-assert">table-wrap/* must be present.</assert>
+      <assert test="descendant::disp-formula" role="error" id="disp-formula-checks-xspec-assert">disp-formula must be present.</assert>
+      <assert test="descendant::inline-formula" role="error" id="inline-formula-checks-xspec-assert">inline-formula must be present.</assert>
+      <assert test="descendant::alternatives[parent::disp-formula or parent::inline-formula]" role="error" id="equation-alternatives-checks-xspec-assert">alternatives[parent::disp-formula or parent::inline-formula] must be present.</assert>
       <assert test="descendant::list" role="error" id="list-checks-xspec-assert">list must be present.</assert>
+      <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-checks-xspec-assert">graphic|inline-graphic must be present.</assert>
       <assert test="descendant::title" role="error" id="title-checks-xspec-assert">title must be present.</assert>
       <assert test="descendant::article/front/article-meta" role="error" id="general-article-meta-checks-xspec-assert">article/front/article-meta must be present.</assert>
       <assert test="descendant::article/front/article-meta/article-version" role="error" id="article-version-checks-xspec-assert">article/front/article-meta/article-version must be present.</assert>

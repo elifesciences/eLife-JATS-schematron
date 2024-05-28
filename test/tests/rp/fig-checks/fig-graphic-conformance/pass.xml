@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="fig-graphic-conformance.sch"?>
+<!--Context: fig
+Test: assert    graphic
+Message:  does not have a child graphic element, which must be incorrect. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <fig>
+            <graphic/>
+        </fig>
+    </article>
+</root>

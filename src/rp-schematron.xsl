@@ -327,11 +327,29 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
+            <xsl:attribute name="id">fig-checks-pattern</xsl:attribute>
+            <xsl:attribute name="name">fig-checks-pattern</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M29"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
             <xsl:attribute name="id">fig-child-checks-pattern</xsl:attribute>
             <xsl:attribute name="name">fig-child-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M29"/>
+         <xsl:apply-templates select="/" mode="M30"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="id">table-wrap-checks-pattern</xsl:attribute>
+            <xsl:attribute name="name">table-wrap-checks-pattern</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M31"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -340,7 +358,34 @@
             <xsl:attribute name="name">table-wrap-child-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M30"/>
+         <xsl:apply-templates select="/" mode="M32"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="id">disp-formula-checks-pattern</xsl:attribute>
+            <xsl:attribute name="name">disp-formula-checks-pattern</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M33"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="id">inline-formula-checks-pattern</xsl:attribute>
+            <xsl:attribute name="name">inline-formula-checks-pattern</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M34"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="id">equation-alternatives-checks-pattern</xsl:attribute>
+            <xsl:attribute name="name">equation-alternatives-checks-pattern</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M35"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -349,7 +394,16 @@
             <xsl:attribute name="name">list-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M31"/>
+         <xsl:apply-templates select="/" mode="M36"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="id">graphic-checks-pattern</xsl:attribute>
+            <xsl:attribute name="name">graphic-checks-pattern</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M37"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -358,7 +412,7 @@
             <xsl:attribute name="name">title-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M32"/>
+         <xsl:apply-templates select="/" mode="M38"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -367,7 +421,7 @@
             <xsl:attribute name="name">general-article-meta-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M33"/>
+         <xsl:apply-templates select="/" mode="M39"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -376,7 +430,7 @@
             <xsl:attribute name="name">article-version-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M34"/>
+         <xsl:apply-templates select="/" mode="M40"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -385,7 +439,7 @@
             <xsl:attribute name="name">digest-title-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M35"/>
+         <xsl:apply-templates select="/" mode="M41"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -394,7 +448,7 @@
             <xsl:attribute name="name">preformat-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M36"/>
+         <xsl:apply-templates select="/" mode="M42"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -403,7 +457,7 @@
             <xsl:attribute name="name">code-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M37"/>
+         <xsl:apply-templates select="/" mode="M43"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -412,7 +466,7 @@
             <xsl:attribute name="name">unallowed-symbol-tests-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M38"/>
+         <xsl:apply-templates select="/" mode="M44"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -421,7 +475,7 @@
             <xsl:attribute name="name">arxiv-journal-meta-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M39"/>
+         <xsl:apply-templates select="/" mode="M45"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -430,7 +484,7 @@
             <xsl:attribute name="name">arxiv-doi-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M40"/>
+         <xsl:apply-templates select="/" mode="M46"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -439,7 +493,7 @@
             <xsl:attribute name="name">res-square-journal-meta-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M41"/>
+         <xsl:apply-templates select="/" mode="M47"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -448,7 +502,7 @@
             <xsl:attribute name="name">res-square-doi-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M42"/>
+         <xsl:apply-templates select="/" mode="M48"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -457,7 +511,7 @@
             <xsl:attribute name="name">psyarxiv-journal-meta-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M43"/>
+         <xsl:apply-templates select="/" mode="M49"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -466,7 +520,7 @@
             <xsl:attribute name="name">psyarxiv-doi-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M44"/>
+         <xsl:apply-templates select="/" mode="M50"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -475,7 +529,7 @@
             <xsl:attribute name="name">osf-journal-meta-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M45"/>
+         <xsl:apply-templates select="/" mode="M51"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -484,7 +538,7 @@
             <xsl:attribute name="name">osf-doi-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M46"/>
+         <xsl:apply-templates select="/" mode="M52"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -493,7 +547,7 @@
             <xsl:attribute name="name">ecoevorxiv-journal-meta-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M47"/>
+         <xsl:apply-templates select="/" mode="M53"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -502,7 +556,7 @@
             <xsl:attribute name="name">ecoevorxiv-doi-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M48"/>
+         <xsl:apply-templates select="/" mode="M54"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -511,7 +565,7 @@
             <xsl:attribute name="name">authorea-journal-meta-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M49"/>
+         <xsl:apply-templates select="/" mode="M55"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -520,7 +574,7 @@
             <xsl:attribute name="name">authorea-doi-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M50"/>
+         <xsl:apply-templates select="/" mode="M56"/>
       </svrl:schematron-output>
    </xsl:template>
 
@@ -1301,11 +1355,40 @@
       <xsl:apply-templates select="*" mode="M28"/>
    </xsl:template>
 
+   <!--PATTERN fig-checks-pattern-->
+
+
+	  <!--RULE fig-checks-->
+   <xsl:template match="fig" priority="1000" mode="M29">
+
+		<!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="graphic"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="graphic">
+               <xsl:attribute name="id">fig-graphic-conformance</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[fig-graphic-conformance] <xsl:text/>
+                  <xsl:value-of select="if (label) then label else name()"/>
+                  <xsl:text/> does not have a child graphic element, which must be incorrect.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M29"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M29"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M29">
+      <xsl:apply-templates select="*" mode="M29"/>
+   </xsl:template>
+
    <!--PATTERN fig-child-checks-pattern-->
 
 
 	  <!--RULE fig-child-checks-->
-   <xsl:template match="fig/*" priority="1000" mode="M29">
+   <xsl:template match="fig/*" priority="1000" mode="M30">
       <xsl:variable name="supported-fig-children" select="('label','caption','graphic','alternatives','permissions')"/>
 
 		    <!--ASSERT error-->
@@ -1324,18 +1407,47 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M29"/>
+      <xsl:apply-templates select="*" mode="M30"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M29"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M29">
-      <xsl:apply-templates select="*" mode="M29"/>
+   <xsl:template match="text()" priority="-1" mode="M30"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M30">
+      <xsl:apply-templates select="*" mode="M30"/>
+   </xsl:template>
+
+   <!--PATTERN table-wrap-checks-pattern-->
+
+
+	  <!--RULE table-wrap-checks-->
+   <xsl:template match="table-wrap" priority="1000" mode="M31">
+
+		<!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="graphic or alternatives[graphic]"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="graphic or alternatives[graphic]">
+               <xsl:attribute name="id">table-wrap-content-conformance</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[table-wrap-content-conformance] <xsl:text/>
+                  <xsl:value-of select="if (label) then label else name()"/>
+                  <xsl:text/> does not have a child graphic element, which must be incorrect.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M31"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M31"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M31">
+      <xsl:apply-templates select="*" mode="M31"/>
    </xsl:template>
 
    <!--PATTERN table-wrap-child-checks-pattern-->
 
 
 	  <!--RULE table-wrap-child-checks-->
-   <xsl:template match="table-wrap/*" priority="1000" mode="M30">
+   <xsl:template match="table-wrap/*" priority="1000" mode="M32">
       <xsl:variable name="supported-table-wrap-children" select="('label','caption','graphic','alternatives','table','permissions','table-wrap-foot')"/>
 
 		    <!--ASSERT error-->
@@ -1354,18 +1466,105 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M30"/>
+      <xsl:apply-templates select="*" mode="M32"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M30"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M30">
-      <xsl:apply-templates select="*" mode="M30"/>
+   <xsl:template match="text()" priority="-1" mode="M32"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M32">
+      <xsl:apply-templates select="*" mode="M32"/>
+   </xsl:template>
+
+   <!--PATTERN disp-formula-checks-pattern-->
+
+
+	  <!--RULE disp-formula-checks-->
+   <xsl:template match="disp-formula" priority="1000" mode="M33">
+
+		<!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="graphic or alternatives[graphic]"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="graphic or alternatives[graphic]">
+               <xsl:attribute name="id">disp-formula-content-conformance</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[disp-formula-content-conformance] <xsl:text/>
+                  <xsl:value-of select="if (label) then concat('Equation ',label) else name()"/>
+                  <xsl:text/> does not have a child graphic element, which must be incorrect.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M33"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M33"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M33">
+      <xsl:apply-templates select="*" mode="M33"/>
+   </xsl:template>
+
+   <!--PATTERN inline-formula-checks-pattern-->
+
+
+	  <!--RULE inline-formula-checks-->
+   <xsl:template match="inline-formula" priority="1000" mode="M34">
+
+		<!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="graphic or alternatives[graphic]"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="graphic or alternatives[graphic]">
+               <xsl:attribute name="id">inline-formula-content-conformance</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[inline-formula-content-conformance] <xsl:text/>
+                  <xsl:value-of select="name()"/>
+                  <xsl:text/> does not have a child graphic element, which must be incorrect.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M34"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M34"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M34">
+      <xsl:apply-templates select="*" mode="M34"/>
+   </xsl:template>
+
+   <!--PATTERN equation-alternatives-checks-pattern-->
+
+
+	  <!--RULE equation-alternatives-checks-->
+   <xsl:template match="alternatives[parent::disp-formula or parent::inline-formula]" priority="1000" mode="M35">
+
+		<!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="graphic and mml:math"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="graphic and mml:math">
+               <xsl:attribute name="id">equation-alternatives-conformance</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[equation-alternatives-conformance] alternaives element within <xsl:text/>
+                  <xsl:value-of select="parent::*/name()"/>
+                  <xsl:text/> must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M35"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M35"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M35">
+      <xsl:apply-templates select="*" mode="M35"/>
    </xsl:template>
 
    <!--PATTERN list-checks-pattern-->
 
 
 	  <!--RULE list-checks-->
-   <xsl:template match="list" priority="1000" mode="M31">
+   <xsl:template match="list" priority="1000" mode="M36">
       <xsl:variable name="supported-list-types" select="('bullet','simple','order','alpha-lower','alpha-upper','roman-lower','roman-upper')"/>
 
 		    <!--ASSERT error-->
@@ -1387,18 +1586,70 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M31"/>
+      <xsl:apply-templates select="*" mode="M36"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M31"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M31">
-      <xsl:apply-templates select="*" mode="M31"/>
+   <xsl:template match="text()" priority="-1" mode="M36"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M36">
+      <xsl:apply-templates select="*" mode="M36"/>
+   </xsl:template>
+
+   <!--PATTERN graphic-checks-pattern-->
+
+
+	  <!--RULE graphic-checks-->
+   <xsl:template match="graphic|inline-graphic" priority="1000" mode="M37">
+      <xsl:variable name="file" select="tokenize(lower-case(@xlink:href),'\.')[last()]"/>
+      <xsl:variable name="image-file-types" select="('tif','tiff','gif','jpg','jpeg','png')"/>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="normalize-space(@xlink:href)!=''"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(@xlink:href)!=''">
+               <xsl:attribute name="id">graphic-check-1</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[graphic-check-1] <xsl:text/>
+                  <xsl:value-of select="name(.)"/>
+                  <xsl:text/> must have an xlink:href attribute. This one does not.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="$file=$image-file-types"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$file=$image-file-types">
+               <xsl:attribute name="id">graphic-check-2</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[graphic-check-2] <xsl:text/>
+                  <xsl:value-of select="name(.)"/>
+                  <xsl:text/> must have an xlink:href attribute that ends with an image file type extension. <xsl:text/>
+                  <xsl:value-of select="if ($file!='') then $file else @xlink:href"/>
+                  <xsl:text/> is not one of <xsl:text/>
+                  <xsl:value-of select="string-join($image-file-types,', ')"/>
+                  <xsl:text/>.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M37"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M37"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M37">
+      <xsl:apply-templates select="*" mode="M37"/>
    </xsl:template>
 
    <!--PATTERN title-checks-pattern-->
 
 
 	  <!--RULE title-checks-->
-   <xsl:template match="title" priority="1000" mode="M32">
+   <xsl:template match="title" priority="1000" mode="M38">
 
 		<!--REPORT warning-->
       <xsl:if test="upper-case(.)=.">
@@ -1427,18 +1678,18 @@
                <xsl:text/>'</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <xsl:apply-templates select="*" mode="M32"/>
+      <xsl:apply-templates select="*" mode="M38"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M32"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M32">
-      <xsl:apply-templates select="*" mode="M32"/>
+   <xsl:template match="text()" priority="-1" mode="M38"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M38">
+      <xsl:apply-templates select="*" mode="M38"/>
    </xsl:template>
 
    <!--PATTERN general-article-meta-checks-pattern-->
 
 
 	  <!--RULE general-article-meta-checks-->
-   <xsl:template match="article/front/article-meta" priority="1000" mode="M33">
+   <xsl:template match="article/front/article-meta" priority="1000" mode="M39">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -1484,18 +1735,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M33"/>
+      <xsl:apply-templates select="*" mode="M39"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M33"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M33">
-      <xsl:apply-templates select="*" mode="M33"/>
+   <xsl:template match="text()" priority="-1" mode="M39"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M39">
+      <xsl:apply-templates select="*" mode="M39"/>
    </xsl:template>
 
    <!--PATTERN article-version-checks-pattern-->
 
 
 	  <!--RULE article-version-checks-->
-   <xsl:template match="article/front/article-meta/article-version" priority="1000" mode="M34">
+   <xsl:template match="article/front/article-meta/article-version" priority="1000" mode="M40">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -1513,18 +1764,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M34"/>
+      <xsl:apply-templates select="*" mode="M40"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M34"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M34">
-      <xsl:apply-templates select="*" mode="M34"/>
+   <xsl:template match="text()" priority="-1" mode="M40"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M40">
+      <xsl:apply-templates select="*" mode="M40"/>
    </xsl:template>
 
    <!--PATTERN digest-title-checks-pattern-->
 
 
 	  <!--RULE digest-title-checks-->
-   <xsl:template match="title" priority="1000" mode="M35">
+   <xsl:template match="title" priority="1000" mode="M41">
 
 		<!--REPORT error-->
       <xsl:if test="matches(lower-case(.),'^\s*(elife\s)?digest\s*$')">
@@ -1541,18 +1792,18 @@
                <xsl:text/>. If this is referring to an plain language summary written by the authors it should be renamed to plain language summary (or similar) in order to not suggest to readers this was written by the features team.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <xsl:apply-templates select="*" mode="M35"/>
+      <xsl:apply-templates select="*" mode="M41"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M35"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M35">
-      <xsl:apply-templates select="*" mode="M35"/>
+   <xsl:template match="text()" priority="-1" mode="M41"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M41">
+      <xsl:apply-templates select="*" mode="M41"/>
    </xsl:template>
 
    <!--PATTERN preformat-checks-pattern-->
 
 
 	  <!--RULE preformat-checks-->
-   <xsl:template match="preformat" priority="1000" mode="M36">
+   <xsl:template match="preformat" priority="1000" mode="M42">
 
 		<!--REPORT warning-->
       <xsl:if test=".">
@@ -1565,18 +1816,18 @@
             <svrl:text>[preformat-flag] Please check whether the content in this preformat element has been captured crrectly (and is rendered approriately).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <xsl:apply-templates select="*" mode="M36"/>
+      <xsl:apply-templates select="*" mode="M42"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M36"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M36">
-      <xsl:apply-templates select="*" mode="M36"/>
+   <xsl:template match="text()" priority="-1" mode="M42"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M42">
+      <xsl:apply-templates select="*" mode="M42"/>
    </xsl:template>
 
    <!--PATTERN code-checks-pattern-->
 
 
 	  <!--RULE code-checks-->
-   <xsl:template match="code" priority="1000" mode="M37">
+   <xsl:template match="code" priority="1000" mode="M43">
 
 		<!--REPORT warning-->
       <xsl:if test=".">
@@ -1589,18 +1840,18 @@
             <svrl:text>[code-flag] Please check whether the content in this code element has been captured crrectly (and is rendered approriately).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <xsl:apply-templates select="*" mode="M37"/>
+      <xsl:apply-templates select="*" mode="M43"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M37"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M37">
-      <xsl:apply-templates select="*" mode="M37"/>
+   <xsl:template match="text()" priority="-1" mode="M43"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M43">
+      <xsl:apply-templates select="*" mode="M43"/>
    </xsl:template>
 
    <!--PATTERN unallowed-symbol-tests-pattern-->
 
 
 	  <!--RULE unallowed-symbol-tests-->
-   <xsl:template match="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" priority="1000" mode="M38">
+   <xsl:template match="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" priority="1000" mode="M44">
 
 		<!--REPORT error-->
       <xsl:if test="contains(.,'�')">
@@ -1732,18 +1983,18 @@
                <xsl:text/> element contains what looks like a response from an AI chatbot after it being provided a prompt. Is that correct? Should the content be adjusted?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <xsl:apply-templates select="*" mode="M38"/>
+      <xsl:apply-templates select="*" mode="M44"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M38"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M38">
-      <xsl:apply-templates select="*" mode="M38"/>
+   <xsl:template match="text()" priority="-1" mode="M44"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M44">
+      <xsl:apply-templates select="*" mode="M44"/>
    </xsl:template>
 
    <!--PATTERN arxiv-journal-meta-checks-pattern-->
 
 
 	  <!--RULE arxiv-journal-meta-checks-->
-   <xsl:template match="article/front/journal-meta[lower-case(journal-id)='arxiv']" priority="1000" mode="M39">
+   <xsl:template match="article/front/journal-meta[lower-case(journal-id)='arxiv']" priority="1000" mode="M45">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -1819,18 +2070,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M39"/>
+      <xsl:apply-templates select="*" mode="M45"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M39"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M39">
-      <xsl:apply-templates select="*" mode="M39"/>
+   <xsl:template match="text()" priority="-1" mode="M45"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M45">
+      <xsl:apply-templates select="*" mode="M45"/>
    </xsl:template>
 
    <!--PATTERN arxiv-doi-checks-pattern-->
 
 
 	  <!--RULE arxiv-doi-checks-->
-   <xsl:template match="article/front[journal-meta[lower-case(journal-id)='arxiv']]/article-meta/article-id[@pub-id-type='doi']" priority="1000" mode="M40">
+   <xsl:template match="article/front[journal-meta[lower-case(journal-id)='arxiv']]/article-meta/article-id[@pub-id-type='doi']" priority="1000" mode="M46">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -1848,18 +2099,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M40"/>
+      <xsl:apply-templates select="*" mode="M46"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M40"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M40">
-      <xsl:apply-templates select="*" mode="M40"/>
+   <xsl:template match="text()" priority="-1" mode="M46"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M46">
+      <xsl:apply-templates select="*" mode="M46"/>
    </xsl:template>
 
    <!--PATTERN res-square-journal-meta-checks-pattern-->
 
 
 	  <!--RULE res-square-journal-meta-checks-->
-   <xsl:template match="article/front/journal-meta[lower-case(journal-id)='rs']" priority="1000" mode="M41">
+   <xsl:template match="article/front/journal-meta[lower-case(journal-id)='rs']" priority="1000" mode="M47">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -1935,18 +2186,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M41"/>
+      <xsl:apply-templates select="*" mode="M47"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M41"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M41">
-      <xsl:apply-templates select="*" mode="M41"/>
+   <xsl:template match="text()" priority="-1" mode="M47"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M47">
+      <xsl:apply-templates select="*" mode="M47"/>
    </xsl:template>
 
    <!--PATTERN res-square-doi-checks-pattern-->
 
 
 	  <!--RULE res-square-doi-checks-->
-   <xsl:template match="article/front[journal-meta[lower-case(journal-id)='rs']]/article-meta/article-id[@pub-id-type='doi']" priority="1000" mode="M42">
+   <xsl:template match="article/front[journal-meta[lower-case(journal-id)='rs']]/article-meta/article-id[@pub-id-type='doi']" priority="1000" mode="M48">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -1964,18 +2215,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M42"/>
+      <xsl:apply-templates select="*" mode="M48"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M42"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M42">
-      <xsl:apply-templates select="*" mode="M42"/>
+   <xsl:template match="text()" priority="-1" mode="M48"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M48">
+      <xsl:apply-templates select="*" mode="M48"/>
    </xsl:template>
 
    <!--PATTERN psyarxiv-journal-meta-checks-pattern-->
 
 
 	  <!--RULE psyarxiv-journal-meta-checks-->
-   <xsl:template match="article/front/journal-meta[lower-case(journal-id)='psyarxiv']" priority="1000" mode="M43">
+   <xsl:template match="article/front/journal-meta[lower-case(journal-id)='psyarxiv']" priority="1000" mode="M49">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -2036,18 +2287,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M43"/>
+      <xsl:apply-templates select="*" mode="M49"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M43"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M43">
-      <xsl:apply-templates select="*" mode="M43"/>
+   <xsl:template match="text()" priority="-1" mode="M49"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M49">
+      <xsl:apply-templates select="*" mode="M49"/>
    </xsl:template>
 
    <!--PATTERN psyarxiv-doi-checks-pattern-->
 
 
 	  <!--RULE psyarxiv-doi-checks-->
-   <xsl:template match="article/front[journal-meta[lower-case(journal-id)='psyarxiv']]/article-meta/article-id[@pub-id-type='doi']" priority="1000" mode="M44">
+   <xsl:template match="article/front[journal-meta[lower-case(journal-id)='psyarxiv']]/article-meta/article-id[@pub-id-type='doi']" priority="1000" mode="M50">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -2065,18 +2316,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M44"/>
+      <xsl:apply-templates select="*" mode="M50"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M44"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M44">
-      <xsl:apply-templates select="*" mode="M44"/>
+   <xsl:template match="text()" priority="-1" mode="M50"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M50">
+      <xsl:apply-templates select="*" mode="M50"/>
    </xsl:template>
 
    <!--PATTERN osf-journal-meta-checks-pattern-->
 
 
 	  <!--RULE osf-journal-meta-checks-->
-   <xsl:template match="article/front/journal-meta[lower-case(journal-id)='osf preprints']" priority="1000" mode="M45">
+   <xsl:template match="article/front/journal-meta[lower-case(journal-id)='osf preprints']" priority="1000" mode="M51">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -2137,18 +2388,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M45"/>
+      <xsl:apply-templates select="*" mode="M51"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M45"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M45">
-      <xsl:apply-templates select="*" mode="M45"/>
+   <xsl:template match="text()" priority="-1" mode="M51"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M51">
+      <xsl:apply-templates select="*" mode="M51"/>
    </xsl:template>
 
    <!--PATTERN osf-doi-checks-pattern-->
 
 
 	  <!--RULE osf-doi-checks-->
-   <xsl:template match="article/front[journal-meta[lower-case(journal-id)='osf preprints']]/article-meta/article-id[@pub-id-type='doi']" priority="1000" mode="M46">
+   <xsl:template match="article/front[journal-meta[lower-case(journal-id)='osf preprints']]/article-meta/article-id[@pub-id-type='doi']" priority="1000" mode="M52">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -2166,18 +2417,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M46"/>
+      <xsl:apply-templates select="*" mode="M52"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M46"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M46">
-      <xsl:apply-templates select="*" mode="M46"/>
+   <xsl:template match="text()" priority="-1" mode="M52"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M52">
+      <xsl:apply-templates select="*" mode="M52"/>
    </xsl:template>
 
    <!--PATTERN ecoevorxiv-journal-meta-checks-pattern-->
 
 
 	  <!--RULE ecoevorxiv-journal-meta-checks-->
-   <xsl:template match="article/front/journal-meta[lower-case(journal-id)='ecoevorxiv']" priority="1000" mode="M47">
+   <xsl:template match="article/front/journal-meta[lower-case(journal-id)='ecoevorxiv']" priority="1000" mode="M53">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -2238,18 +2489,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M47"/>
+      <xsl:apply-templates select="*" mode="M53"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M47"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M47">
-      <xsl:apply-templates select="*" mode="M47"/>
+   <xsl:template match="text()" priority="-1" mode="M53"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M53">
+      <xsl:apply-templates select="*" mode="M53"/>
    </xsl:template>
 
    <!--PATTERN ecoevorxiv-doi-checks-pattern-->
 
 
 	  <!--RULE ecoevorxiv-doi-checks-->
-   <xsl:template match="article/front[journal-meta[lower-case(journal-id)='ecoevorxiv']]/article-meta/article-id[@pub-id-type='doi']" priority="1000" mode="M48">
+   <xsl:template match="article/front[journal-meta[lower-case(journal-id)='ecoevorxiv']]/article-meta/article-id[@pub-id-type='doi']" priority="1000" mode="M54">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -2267,18 +2518,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M48"/>
+      <xsl:apply-templates select="*" mode="M54"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M48"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M48">
-      <xsl:apply-templates select="*" mode="M48"/>
+   <xsl:template match="text()" priority="-1" mode="M54"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M54">
+      <xsl:apply-templates select="*" mode="M54"/>
    </xsl:template>
 
    <!--PATTERN authorea-journal-meta-checks-pattern-->
 
 
 	  <!--RULE authorea-journal-meta-checks-->
-   <xsl:template match="article/front/journal-meta[lower-case(journal-id)='authorea']" priority="1000" mode="M49">
+   <xsl:template match="article/front/journal-meta[lower-case(journal-id)='authorea']" priority="1000" mode="M55">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -2339,18 +2590,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M49"/>
+      <xsl:apply-templates select="*" mode="M55"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M49"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M49">
-      <xsl:apply-templates select="*" mode="M49"/>
+   <xsl:template match="text()" priority="-1" mode="M55"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M55">
+      <xsl:apply-templates select="*" mode="M55"/>
    </xsl:template>
 
    <!--PATTERN authorea-doi-checks-pattern-->
 
 
 	  <!--RULE authorea-doi-checks-->
-   <xsl:template match="article/front[journal-meta[lower-case(journal-id)='authorea']]/article-meta/article-id[@pub-id-type='doi']" priority="1000" mode="M50">
+   <xsl:template match="article/front[journal-meta[lower-case(journal-id)='authorea']]/article-meta/article-id[@pub-id-type='doi']" priority="1000" mode="M56">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -2368,10 +2619,10 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M50"/>
+      <xsl:apply-templates select="*" mode="M56"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M50"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M50">
-      <xsl:apply-templates select="*" mode="M50"/>
+   <xsl:template match="text()" priority="-1" mode="M56"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M56">
+      <xsl:apply-templates select="*" mode="M56"/>
    </xsl:template>
 </xsl:stylesheet>

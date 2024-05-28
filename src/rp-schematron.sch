@@ -274,6 +274,12 @@
     </pattern>
 
     <pattern id="fig">
+     <rule context="fig" id="fig-checks">
+        <assert test="graphic" 
+        role="error" 
+        id="fig-graphic-conformance"><value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>
+     </rule>
+
      <rule context="fig/*" id="fig-child-checks">
         <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
         <assert test="name()=$supported-fig-children" 
@@ -283,12 +289,41 @@
     </pattern>
 
     <pattern id="table-wrap">
+     <rule context="table-wrap" id="table-wrap-checks">
+        <!-- adjust when support is added for HTML tables -->
+        <assert test="graphic or alternatives[graphic]" 
+        role="error" 
+        id="table-wrap-content-conformance"><value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>
+     </rule>
+
      <rule context="table-wrap/*" id="table-wrap-child-checks">
         <let name="supported-table-wrap-children" value="('label','caption','graphic','alternatives','table','permissions','table-wrap-foot')"/>
         <assert test="name()=$supported-table-wrap-children" 
         role="error" 
         id="table-wrap-child-conformance"><value-of select="name()"/> is not supported as a child of &lt;table-wrap>.</assert>
      </rule>
+    </pattern>
+
+    <pattern id="equation">
+      <rule context="disp-formula" id="disp-formula-checks">
+          <!-- adjust when support is added for mathML -->
+          <assert test="graphic or alternatives[graphic]" 
+          role="error" 
+          id="disp-formula-content-conformance"><value-of select="if (label) then concat('Equation ',label) else name()"/> does not have a child graphic element, which must be incorrect.</assert>
+      </rule>
+      
+       <rule context="inline-formula" id="inline-formula-checks">
+          <!-- adjust when support is added for mathML -->
+          <assert test="graphic or alternatives[graphic]" 
+          role="error" 
+          id="inline-formula-content-conformance"><value-of select="name()"/> does not have a child graphic element, which must be incorrect.</assert>
+      </rule>
+      
+        <rule context="alternatives[parent::disp-formula or parent::inline-formula]" id="equation-alternatives-checks">
+          <assert test="graphic and mml:math" 
+          role="error" 
+          id="equation-alternatives-conformance">alternaives element within <value-of select="parent::*/name()"/> must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
+      </rule>
     </pattern>
 
     <pattern id="list">
@@ -299,6 +334,22 @@
         id="list-type-conformance">&lt;list> element must have a list-type attribute with one of the supported values: <value-of select="string-join($supported-list-types,'; ')"/>.<value-of select="if (./@list-type) then concat(' list-type ',@list-type,' is not supported.') else ()"/></assert>
      </rule>
     </pattern>
+  
+     <pattern id="graphic">
+      <rule context="graphic|inline-graphic" id="graphic-checks">
+        <let name="file" value="tokenize(lower-case(@xlink:href),'\.')[last()]"/>
+        <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
+        
+        <assert test="normalize-space(@xlink:href)!=''" 
+          role="error" 
+          id="graphic-check-1"><name/> must have an xlink:href attribute. This one does not.</assert>
+        
+        <assert test="$file=$image-file-types" 
+          role="error" 
+          id="graphic-check-2"><name/> must have an xlink:href attribute that ends with an image file type extension. <value-of select="if ($file!='') then $file else @xlink:href"/> is not one of <value-of select="string-join($image-file-types,', ')"/>.</assert>
+     </rule>
+       
+     </pattern>
 
     <pattern id="title">
      <rule context="title" id="title-checks">

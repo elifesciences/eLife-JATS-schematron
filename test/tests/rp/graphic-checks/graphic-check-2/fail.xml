@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="graphic-check-2.sch"?>
+<!--Context: graphic|inline-graphic
+Test: assert    $file=$image-file-types
+Message:  must have an xlink:href attribute that ends with an image file type extension.  is not one of . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <graphic xlink:href="test.pdf"/>
+        <graphic xlink:href="test.docx"/>
+        <graphic xlink:href="test.pliff"/>
+        <graphic xlink:href="test.ppt"/>
+        <graphic xlink:href="test.bvjoerwbhigrfew"/>
+    </article>
+</root>

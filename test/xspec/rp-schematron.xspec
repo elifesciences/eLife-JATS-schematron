@@ -430,6 +430,18 @@
         <x:expect-not-assert id="underline-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="fig-checks">
+      <x:scenario label="fig-graphic-conformance-pass">
+        <x:context href="../tests/rp/fig-checks/fig-graphic-conformance/pass.xml"/>
+        <x:expect-not-assert id="fig-graphic-conformance" role="error"/>
+        <x:expect-not-assert id="fig-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-graphic-conformance-fail">
+        <x:context href="../tests/rp/fig-checks/fig-graphic-conformance/fail.xml"/>
+        <x:expect-assert id="fig-graphic-conformance" role="error"/>
+        <x:expect-not-assert id="fig-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="fig-child-checks">
       <x:scenario label="fig-child-conformance-pass">
         <x:context href="../tests/rp/fig-child-checks/fig-child-conformance/pass.xml"/>
@@ -440,6 +452,18 @@
         <x:context href="../tests/rp/fig-child-checks/fig-child-conformance/fail.xml"/>
         <x:expect-assert id="fig-child-conformance" role="error"/>
         <x:expect-not-assert id="fig-child-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="table-wrap-checks">
+      <x:scenario label="table-wrap-content-conformance-pass">
+        <x:context href="../tests/rp/table-wrap-checks/table-wrap-content-conformance/pass.xml"/>
+        <x:expect-not-assert id="table-wrap-content-conformance" role="error"/>
+        <x:expect-not-assert id="table-wrap-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-wrap-content-conformance-fail">
+        <x:context href="../tests/rp/table-wrap-checks/table-wrap-content-conformance/fail.xml"/>
+        <x:expect-assert id="table-wrap-content-conformance" role="error"/>
+        <x:expect-not-assert id="table-wrap-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="table-wrap-child-checks">
@@ -454,6 +478,42 @@
         <x:expect-not-assert id="table-wrap-child-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="disp-formula-checks">
+      <x:scenario label="disp-formula-content-conformance-pass">
+        <x:context href="../tests/rp/disp-formula-checks/disp-formula-content-conformance/pass.xml"/>
+        <x:expect-not-assert id="disp-formula-content-conformance" role="error"/>
+        <x:expect-not-assert id="disp-formula-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-formula-content-conformance-fail">
+        <x:context href="../tests/rp/disp-formula-checks/disp-formula-content-conformance/fail.xml"/>
+        <x:expect-assert id="disp-formula-content-conformance" role="error"/>
+        <x:expect-not-assert id="disp-formula-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="inline-formula-checks">
+      <x:scenario label="inline-formula-content-conformance-pass">
+        <x:context href="../tests/rp/inline-formula-checks/inline-formula-content-conformance/pass.xml"/>
+        <x:expect-not-assert id="inline-formula-content-conformance" role="error"/>
+        <x:expect-not-assert id="inline-formula-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="inline-formula-content-conformance-fail">
+        <x:context href="../tests/rp/inline-formula-checks/inline-formula-content-conformance/fail.xml"/>
+        <x:expect-assert id="inline-formula-content-conformance" role="error"/>
+        <x:expect-not-assert id="inline-formula-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="equation-alternatives-checks">
+      <x:scenario label="equation-alternatives-conformance-pass">
+        <x:context href="../tests/rp/equation-alternatives-checks/equation-alternatives-conformance/pass.xml"/>
+        <x:expect-not-assert id="equation-alternatives-conformance" role="error"/>
+        <x:expect-not-assert id="equation-alternatives-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="equation-alternatives-conformance-fail">
+        <x:context href="../tests/rp/equation-alternatives-checks/equation-alternatives-conformance/fail.xml"/>
+        <x:expect-assert id="equation-alternatives-conformance" role="error"/>
+        <x:expect-not-assert id="equation-alternatives-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="list-checks">
       <x:scenario label="list-type-conformance-pass">
         <x:context href="../tests/rp/list-checks/list-type-conformance/pass.xml"/>
@@ -464,6 +524,28 @@
         <x:context href="../tests/rp/list-checks/list-type-conformance/fail.xml"/>
         <x:expect-assert id="list-type-conformance" role="error"/>
         <x:expect-not-assert id="list-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="graphic-checks">
+      <x:scenario label="graphic-check-1-pass">
+        <x:context href="../tests/rp/graphic-checks/graphic-check-1/pass.xml"/>
+        <x:expect-not-assert id="graphic-check-1" role="error"/>
+        <x:expect-not-assert id="graphic-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="graphic-check-1-fail">
+        <x:context href="../tests/rp/graphic-checks/graphic-check-1/fail.xml"/>
+        <x:expect-assert id="graphic-check-1" role="error"/>
+        <x:expect-not-assert id="graphic-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="graphic-check-2-pass">
+        <x:context href="../tests/rp/graphic-checks/graphic-check-2/pass.xml"/>
+        <x:expect-not-assert id="graphic-check-2" role="error"/>
+        <x:expect-not-assert id="graphic-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="graphic-check-2-fail">
+        <x:context href="../tests/rp/graphic-checks/graphic-check-2/fail.xml"/>
+        <x:expect-assert id="graphic-check-2" role="error"/>
+        <x:expect-not-assert id="graphic-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="title-checks">
