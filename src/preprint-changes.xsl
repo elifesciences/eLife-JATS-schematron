@@ -125,6 +125,15 @@
             <xsl:value-of select="substring(@xlink:href, (string-length(@xlink:href) - string-length(substring-after(lower-case(@xlink:href),'doi.org/')) + 1))"/>
         </xsl:element>
     </xsl:template>
+    
+    <!-- Change publication-type="website" to "web" for consistency across all eLife content -->
+    <xsl:template match="mixed-citation[@publication-type='website']|element-citation-citation[@publication-type='website']">
+        <xsl:copy>
+            <xsl:attribute name="publication-type">web</xsl:attribute>
+            <xsl:apply-templates select="@*[name()!='publication-type']"/>
+            <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+        </xsl:copy>
+    </xsl:template>
 
     <!-- Add blanket biorender statement for any object with a caption that mentions it -->
     <xsl:template match="*[caption[contains(lower-case(.),'biorender')] and not(permissions[contains(lower-case(.),'biorender')])]">
