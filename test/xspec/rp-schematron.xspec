@@ -406,6 +406,50 @@
         <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="ref-checks">
+      <x:scenario label="ref-empty-pass">
+        <x:context href="../tests/rp/ref-checks/ref-empty/pass.xml"/>
+        <x:expect-not-assert id="ref-empty" role="error"/>
+        <x:expect-not-assert id="ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-empty-fail">
+        <x:context href="../tests/rp/ref-checks/ref-empty/fail.xml"/>
+        <x:expect-assert id="ref-empty" role="error"/>
+        <x:expect-not-assert id="ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-id-pass">
+        <x:context href="../tests/rp/ref-checks/ref-id/pass.xml"/>
+        <x:expect-not-assert id="ref-id" role="error"/>
+        <x:expect-not-assert id="ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-id-fail">
+        <x:context href="../tests/rp/ref-checks/ref-id/fail.xml"/>
+        <x:expect-assert id="ref-id" role="error"/>
+        <x:expect-not-assert id="ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="mixed-citation-checks">
+      <x:scenario label="mixed-citation-empty-1-pass">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-empty-1/pass.xml"/>
+        <x:expect-not-report id="mixed-citation-empty-1" role="error"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mixed-citation-empty-1-fail">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-empty-1/fail.xml"/>
+        <x:expect-report id="mixed-citation-empty-1" role="error"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mixed-citation-empty-2-pass">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-empty-2/pass.xml"/>
+        <x:expect-not-report id="mixed-citation-empty-2" role="warning"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mixed-citation-empty-2-fail">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-empty-2/fail.xml"/>
+        <x:expect-report id="mixed-citation-empty-2" role="warning"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="strike-checks">
       <x:scenario label="strike-warning-pass">
         <x:context href="../tests/rp/strike-checks/strike-warning/pass.xml"/>

@@ -172,6 +172,27 @@
         <assert test="matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')" role="error" id="ref-doi-conformance">&lt;pub-id pub-id="doi"&gt; in reference (id=<value-of select="ancestor::ref/@id"/>) does not contain a valid DOI: '<value-of select="."/>'.</assert>
      </rule>
   </pattern>
+  
+    <pattern id="ref-checks-pattern">
+    <rule context="ref" id="ref-checks">
+        <let name="content" value="string-join(*[name()!='label'])"/>
+        <assert test="mixed-citation or element-citation" role="error" id="ref-empty">
+        <name/> does not contain either a mixed-citation or an element-citation element.</assert>
+        
+        <assert test="normalize-space(@id)!=''" role="error" id="ref-id">
+        <name/> must have an id attribute with a non-empty value.</assert>
+     </rule>
+  </pattern>
+  
+    <pattern id="mixed-citation-checks-pattern">
+    <rule context="mixed-citation" id="mixed-citation-checks">
+        <report test="normalize-space(.)=('','.')" role="error" id="mixed-citation-empty-1">
+        <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) is empty.</report>
+        
+        <report test="not(normalize-space(.)=('','.')) and (string-length(normalize-space(.)) lt 6)" role="warning" id="mixed-citation-empty-2">
+        <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) only contains <value-of select="string-length(normalize-space(.))"/> characters.</report>
+     </rule>
+  </pattern>
 
     <pattern id="strike-checks-pattern">
     <rule context="strike" id="strike-checks">
@@ -462,6 +483,8 @@
       <assert test="descendant::mixed-citation//name  or descendant:: mixed-citation//string-name" role="error" id="ref-name-checks-xspec-assert">mixed-citation//name | mixed-citation//string-name must be present.</assert>
       <assert test="descendant::mixed-citation[person-group]//etal" role="error" id="ref-etal-checks-xspec-assert">mixed-citation[person-group]//etal must be present.</assert>
       <assert test="descendant::ref//pub-id[@pub-id-type='doi']" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id[@pub-id-type='doi'] must be present.</assert>
+      <assert test="descendant::ref" role="error" id="ref-checks-xspec-assert">ref must be present.</assert>
+      <assert test="descendant::mixed-citation" role="error" id="mixed-citation-checks-xspec-assert">mixed-citation must be present.</assert>
       <assert test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>
       <assert test="descendant::fig" role="error" id="fig-checks-xspec-assert">fig must be present.</assert>
       <assert test="descendant::fig/*" role="error" id="fig-child-checks-xspec-assert">fig/* must be present.</assert>

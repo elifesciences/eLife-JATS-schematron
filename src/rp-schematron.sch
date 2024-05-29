@@ -256,6 +256,31 @@
         id="ref-doi-conformance">&lt;pub-id pub-id="doi"> in reference (id=<value-of select="ancestor::ref/@id"/>) does not contain a valid DOI: '<value-of select="."/>'.</assert>
      </rule>
     </pattern>
+  
+    <pattern id="ref">
+      <rule context="ref" id="ref-checks">
+        <let name="content" value="string-join(*[name()!='label'])"/>
+        <assert test="mixed-citation or element-citation" 
+        role="error" 
+        id="ref-empty"><name/> does not contain either a mixed-citation or an element-citation element.</assert>
+        
+        <assert test="normalize-space(@id)!=''" 
+        role="error" 
+        id="ref-id"><name/> must have an id attribute with a non-empty value.</assert>
+     </rule>
+    </pattern>
+  
+    <pattern id="mixed-citation">
+      <rule context="mixed-citation" id="mixed-citation-checks">
+        <report test="normalize-space(.)=('','.')" 
+          role="error" 
+          id="mixed-citation-empty-1"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) is empty.</report>
+        
+        <report test="not(normalize-space(.)=('','.')) and (string-length(normalize-space(.)) lt 6)" 
+          role="warning" 
+          id="mixed-citation-empty-2"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) only contains <value-of select="string-length(normalize-space(.))"/> characters.</report>
+     </rule>
+    </pattern>
 
     <pattern id="strike">
      <rule context="strike" id="strike-checks">
