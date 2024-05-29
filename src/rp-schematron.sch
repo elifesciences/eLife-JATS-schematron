@@ -259,7 +259,6 @@
   
     <pattern id="ref">
       <rule context="ref" id="ref-checks">
-        <let name="content" value="string-join(*[name()!='label'])"/>
         <assert test="mixed-citation or element-citation" 
         role="error" 
         id="ref-empty"><name/> does not contain either a mixed-citation or an element-citation element.</assert>
