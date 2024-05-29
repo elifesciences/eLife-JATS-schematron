@@ -32,15 +32,16 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="equation">
-    <rule context="inline-formula" id="inline-formula-checks">
-      <assert test="inline-graphic or alternatives[inline-graphic]" role="error" id="inline-formula-content-conformance">
-        <value-of select="name()"/> does not have a child inline-graphic element, which must be incorrect.</assert>
+  <pattern id="ref">
+    <rule context="ref" id="ref-checks">
+      <let name="content" value="string-join(*[name()!='label'])"/>
+      <assert test="mixed-citation or element-citation" role="error" id="ref-empty">
+        <name/> does not contain either a mixed-citation or an element-citation element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::inline-formula" role="error" id="inline-formula-checks-xspec-assert">inline-formula must be present.</assert>
+      <assert test="descendant::ref" role="error" id="ref-checks-xspec-assert">ref must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -33,14 +33,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="equation">
-    <rule context="inline-formula" id="inline-formula-checks">
-      <assert test="inline-graphic or alternatives[inline-graphic]" role="error" id="inline-formula-content-conformance">
-        <value-of select="name()"/> does not have a child inline-graphic element, which must be incorrect.</assert>
+    <rule context="alternatives[parent::disp-formula]" id="disp-equation-alternatives-checks">
+      <assert test="graphic and mml:math" role="error" id="disp-equation-alternatives-conformance">alternaives element within <value-of select="parent::*/name()"/> must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::inline-formula" role="error" id="inline-formula-checks-xspec-assert">inline-formula must be present.</assert>
+      <assert test="descendant::alternatives[parent::disp-formula]" role="error" id="disp-equation-alternatives-checks-xspec-assert">alternatives[parent::disp-formula] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -172,6 +172,38 @@
         <assert test="matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')" role="error" id="ref-doi-conformance">&lt;pub-id pub-id="doi"&gt; in reference (id=<value-of select="ancestor::ref/@id"/>) does not contain a valid DOI: '<value-of select="."/>'.</assert>
      </rule>
   </pattern>
+  
+    <pattern id="ref-checks-pattern">
+    <rule context="ref" id="ref-checks">
+        <let name="content" value="string-join(*[name()!='label'])"/>
+        <assert test="mixed-citation or element-citation" role="error" id="ref-empty">
+        <name/> does not contain either a mixed-citation or an element-citation element.</assert>
+        
+        <assert test="normalize-space(@id)!=''" role="error" id="ref-id">
+        <name/> must have an id attribute with a non-empty value.</assert>
+     </rule>
+  </pattern>
+  
+    <pattern id="mixed-citation-checks-pattern">
+    <rule context="mixed-citation" id="mixed-citation-checks">
+        <let name="publication-type-values" value="('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')"/>
+        
+        <report test="normalize-space(.)=('','.')" role="error" id="mixed-citation-empty-1">
+        <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) is empty.</report>
+        
+        <report test="not(normalize-space(.)=('','.')) and (string-length(normalize-space(.)) lt 6)" role="warning" id="mixed-citation-empty-2">
+        <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) only contains <value-of select="string-length(normalize-space(.))"/> characters.</report>
+        
+        <assert test="normalize-space(@publication-type)!=''" role="error" id="mixed-citation-publication-type-presence">
+        <name/> must have a publication-type attribute with a non-empty value.</assert>
+        
+        <report test="normalize-space(@publication-type)!='' and not(@publication-type=$publication-type-values)" role="warning" id="mixed-citation-publication-type-flag">
+        <name/> has publication-type="<value-of select="@publication-type"/>" which is not one of the known/supported types: <value-of select="string-join($publication-type-values,'; ')"/>.</report>
+        
+        <report test="@publication-type='other'" role="warning" id="mixed-citation-other-publication-flag">
+        <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) has a publication-type='other'. Is that correct?</report>
+     </rule>
+  </pattern>
 
     <pattern id="strike-checks-pattern">
     <rule context="strike" id="strike-checks">
@@ -224,13 +256,18 @@
   <pattern id="inline-formula-checks-pattern">
     <rule context="inline-formula" id="inline-formula-checks">
           <!-- adjust when support is added for mathML -->
-          <assert test="graphic or alternatives[graphic]" role="error" id="inline-formula-content-conformance">
-        <value-of select="name()"/> does not have a child graphic element, which must be incorrect.</assert>
+          <assert test="inline-graphic or alternatives[inline-graphic]" role="error" id="inline-formula-content-conformance">
+        <value-of select="name()"/> does not have a child inline-graphic element, which must be incorrect.</assert>
       </rule>
   </pattern>
-  <pattern id="equation-alternatives-checks-pattern">
-    <rule context="alternatives[parent::disp-formula or parent::inline-formula]" id="equation-alternatives-checks">
-          <assert test="graphic and mml:math" role="error" id="equation-alternatives-conformance">alternaives element within <value-of select="parent::*/name()"/> must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
+  <pattern id="disp-equation-alternatives-checks-pattern">
+    <rule context="alternatives[parent::disp-formula]" id="disp-equation-alternatives-checks">
+          <assert test="graphic and mml:math" role="error" id="disp-equation-alternatives-conformance">alternaives element within <value-of select="parent::*/name()"/> must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
+      </rule>
+  </pattern>
+  <pattern id="inline-equation-alternatives-checks-pattern">
+    <rule context="alternatives[parent::inline-formula]" id="inline-equation-alternatives-checks">
+          <assert test="inline-graphic and mml:math" role="error" id="inline-equation-alternatives-conformance">alternaives element within <value-of select="parent::*/name()"/> must have both an inline-graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
       </rule>
   </pattern>
 
@@ -457,6 +494,8 @@
       <assert test="descendant::mixed-citation//name  or descendant:: mixed-citation//string-name" role="error" id="ref-name-checks-xspec-assert">mixed-citation//name | mixed-citation//string-name must be present.</assert>
       <assert test="descendant::mixed-citation[person-group]//etal" role="error" id="ref-etal-checks-xspec-assert">mixed-citation[person-group]//etal must be present.</assert>
       <assert test="descendant::ref//pub-id[@pub-id-type='doi']" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id[@pub-id-type='doi'] must be present.</assert>
+      <assert test="descendant::ref" role="error" id="ref-checks-xspec-assert">ref must be present.</assert>
+      <assert test="descendant::mixed-citation" role="error" id="mixed-citation-checks-xspec-assert">mixed-citation must be present.</assert>
       <assert test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>
       <assert test="descendant::fig" role="error" id="fig-checks-xspec-assert">fig must be present.</assert>
       <assert test="descendant::fig/*" role="error" id="fig-child-checks-xspec-assert">fig/* must be present.</assert>
@@ -464,7 +503,8 @@
       <assert test="descendant::table-wrap/*" role="error" id="table-wrap-child-checks-xspec-assert">table-wrap/* must be present.</assert>
       <assert test="descendant::disp-formula" role="error" id="disp-formula-checks-xspec-assert">disp-formula must be present.</assert>
       <assert test="descendant::inline-formula" role="error" id="inline-formula-checks-xspec-assert">inline-formula must be present.</assert>
-      <assert test="descendant::alternatives[parent::disp-formula or parent::inline-formula]" role="error" id="equation-alternatives-checks-xspec-assert">alternatives[parent::disp-formula or parent::inline-formula] must be present.</assert>
+      <assert test="descendant::alternatives[parent::disp-formula]" role="error" id="disp-equation-alternatives-checks-xspec-assert">alternatives[parent::disp-formula] must be present.</assert>
+      <assert test="descendant::alternatives[parent::inline-formula]" role="error" id="inline-equation-alternatives-checks-xspec-assert">alternatives[parent::inline-formula] must be present.</assert>
       <assert test="descendant::list" role="error" id="list-checks-xspec-assert">list must be present.</assert>
       <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-checks-xspec-assert">graphic|inline-graphic must be present.</assert>
       <assert test="descendant::title" role="error" id="title-checks-xspec-assert">title must be present.</assert>

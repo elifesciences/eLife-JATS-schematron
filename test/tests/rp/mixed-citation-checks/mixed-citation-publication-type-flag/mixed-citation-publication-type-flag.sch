@@ -32,15 +32,16 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="equation">
-    <rule context="inline-formula" id="inline-formula-checks">
-      <assert test="inline-graphic or alternatives[inline-graphic]" role="error" id="inline-formula-content-conformance">
-        <value-of select="name()"/> does not have a child inline-graphic element, which must be incorrect.</assert>
+  <pattern id="mixed-citation">
+    <rule context="mixed-citation" id="mixed-citation-checks">
+      <let name="publication-type-values" value="('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')"/>
+      <report test="normalize-space(@publication-type)!='' and not(@publication-type=$publication-type-values)" role="warning" id="mixed-citation-publication-type-flag">
+        <name/> has publication-type="<value-of select="@publication-type"/>" which is not one of the known/supported types: <value-of select="string-join($publication-type-values,'; ')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::inline-formula" role="error" id="inline-formula-checks-xspec-assert">inline-formula must be present.</assert>
+      <assert test="descendant::mixed-citation" role="error" id="mixed-citation-checks-xspec-assert">mixed-citation must be present.</assert>
     </rule>
   </pattern>
 </schema>

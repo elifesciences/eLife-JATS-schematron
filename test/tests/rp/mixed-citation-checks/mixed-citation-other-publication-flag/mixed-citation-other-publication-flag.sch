@@ -32,14 +32,16 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="equation">
-    <rule context="alternatives[parent::disp-formula or parent::inline-formula]" id="equation-alternatives-checks">
-      <assert test="graphic and mml:math" role="error" id="equation-alternatives-conformance">alternaives element within <value-of select="parent::*/name()"/> must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
+  <pattern id="mixed-citation">
+    <rule context="mixed-citation" id="mixed-citation-checks">
+      <let name="publication-type-values" value="('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')"/>
+      <report test="@publication-type='other'" role="warning" id="mixed-citation-other-publication-flag">
+        <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) has a publication-type='other'. Is that correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::alternatives[parent::disp-formula or parent::inline-formula]" role="error" id="equation-alternatives-checks-xspec-assert">alternatives[parent::disp-formula or parent::inline-formula] must be present.</assert>
+      <assert test="descendant::mixed-citation" role="error" id="mixed-citation-checks-xspec-assert">mixed-citation must be present.</assert>
     </rule>
   </pattern>
 </schema>

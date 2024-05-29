@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="mixed-citation-empty-2.sch"?>
+<!--Context: mixed-citation
+Test: report    not(normalize-space(.)=('','.')) and (string-length(normalize-space(.)) lt 6)
+Message:  in reference (id=) only contains  characters. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref id="c22"><label>22.</label><mixed-citation publication-type="other">Metho</mixed-citation></ref>
+    </article>
+</root>
