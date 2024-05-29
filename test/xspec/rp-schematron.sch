@@ -224,13 +224,18 @@
   <pattern id="inline-formula-checks-pattern">
     <rule context="inline-formula" id="inline-formula-checks">
           <!-- adjust when support is added for mathML -->
-          <assert test="graphic or alternatives[graphic]" role="error" id="inline-formula-content-conformance">
-        <value-of select="name()"/> does not have a child graphic element, which must be incorrect.</assert>
+          <assert test="inline-graphic or alternatives[inline-graphic]" role="error" id="inline-formula-content-conformance">
+        <value-of select="name()"/> does not have a child inline-graphic element, which must be incorrect.</assert>
       </rule>
   </pattern>
-  <pattern id="equation-alternatives-checks-pattern">
-    <rule context="alternatives[parent::disp-formula or parent::inline-formula]" id="equation-alternatives-checks">
-          <assert test="graphic and mml:math" role="error" id="equation-alternatives-conformance">alternaives element within <value-of select="parent::*/name()"/> must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
+  <pattern id="disp-equation-alternatives-checks-pattern">
+    <rule context="alternatives[parent::disp-formula]" id="disp-equation-alternatives-checks">
+          <assert test="graphic and mml:math" role="error" id="disp-equation-alternatives-conformance">alternaives element within <value-of select="parent::*/name()"/> must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
+      </rule>
+  </pattern>
+  <pattern id="inline-equation-alternatives-checks-pattern">
+    <rule context="alternatives[parent::inline-formula]" id="inline-equation-alternatives-checks">
+          <assert test="inline-graphic and mml:math" role="error" id="inline-equation-alternatives-conformance">alternaives element within <value-of select="parent::*/name()"/> must have both an inline-graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
       </rule>
   </pattern>
 
@@ -464,7 +469,8 @@
       <assert test="descendant::table-wrap/*" role="error" id="table-wrap-child-checks-xspec-assert">table-wrap/* must be present.</assert>
       <assert test="descendant::disp-formula" role="error" id="disp-formula-checks-xspec-assert">disp-formula must be present.</assert>
       <assert test="descendant::inline-formula" role="error" id="inline-formula-checks-xspec-assert">inline-formula must be present.</assert>
-      <assert test="descendant::alternatives[parent::disp-formula or parent::inline-formula]" role="error" id="equation-alternatives-checks-xspec-assert">alternatives[parent::disp-formula or parent::inline-formula] must be present.</assert>
+      <assert test="descendant::alternatives[parent::disp-formula]" role="error" id="disp-equation-alternatives-checks-xspec-assert">alternatives[parent::disp-formula] must be present.</assert>
+      <assert test="descendant::alternatives[parent::inline-formula]" role="error" id="inline-equation-alternatives-checks-xspec-assert">alternatives[parent::inline-formula] must be present.</assert>
       <assert test="descendant::list" role="error" id="list-checks-xspec-assert">list must be present.</assert>
       <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-checks-xspec-assert">graphic|inline-graphic must be present.</assert>
       <assert test="descendant::title" role="error" id="title-checks-xspec-assert">title must be present.</assert>

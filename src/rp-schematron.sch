@@ -314,15 +314,21 @@
       
        <rule context="inline-formula" id="inline-formula-checks">
           <!-- adjust when support is added for mathML -->
-          <assert test="graphic or alternatives[graphic]" 
+          <assert test="inline-graphic or alternatives[inline-graphic]" 
           role="error" 
-          id="inline-formula-content-conformance"><value-of select="name()"/> does not have a child graphic element, which must be incorrect.</assert>
+          id="inline-formula-content-conformance"><value-of select="name()"/> does not have a child inline-graphic element, which must be incorrect.</assert>
       </rule>
       
-        <rule context="alternatives[parent::disp-formula or parent::inline-formula]" id="equation-alternatives-checks">
+        <rule context="alternatives[parent::disp-formula]" id="disp-equation-alternatives-checks">
           <assert test="graphic and mml:math" 
           role="error" 
-          id="equation-alternatives-conformance">alternaives element within <value-of select="parent::*/name()"/> must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
+          id="disp-equation-alternatives-conformance">alternaives element within <value-of select="parent::*/name()"/> must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
+      </rule>
+      
+        <rule context="alternatives[parent::inline-formula]" id="inline-equation-alternatives-checks">
+          <assert test="inline-graphic and mml:math" 
+          role="error" 
+          id="inline-equation-alternatives-conformance">alternaives element within <value-of select="parent::*/name()"/> must have both an inline-graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
       </rule>
     </pattern>
 

@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="disp-equation-alternatives-conformance.sch"?>
+<!--Context: alternatives[parent::disp-formula]
+Test: assert    graphic and mml:math
+Message: alternaives element within  must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <disp-formula>
+            <alternatives>
+                <graphic/>
+                <mml:math/>
+            </alternatives>
+        </disp-formula>
+        <inline-formula>
+            <alternatives>
+                <graphic/>
+                <mml:math/>
+            </alternatives>
+        </inline-formula>
+    </article>
+</root>
