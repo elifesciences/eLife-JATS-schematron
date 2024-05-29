@@ -1386,8 +1386,9 @@
 
 	  <!--RULE mixed-citation-checks-->
    <xsl:template match="mixed-citation" priority="1000" mode="M28">
+      <xsl:variable name="publication-type-values" select="('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')"/>
 
-		<!--REPORT error-->
+		    <!--REPORT error-->
       <xsl:if test="normalize-space(.)=('','.')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=('','.')">
             <xsl:attribute name="id">mixed-citation-empty-1</xsl:attribute>
@@ -1418,6 +1419,57 @@
                <xsl:text/>) only contains <xsl:text/>
                <xsl:value-of select="string-length(normalize-space(.))"/>
                <xsl:text/> characters.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="normalize-space(@publication-type)!=''"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(@publication-type)!=''">
+               <xsl:attribute name="id">mixed-citation-publication-type-presence</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[mixed-citation-publication-type-presence] <xsl:text/>
+                  <xsl:value-of select="name(.)"/>
+                  <xsl:text/> must have a publication-type attribute with a non-empty value.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+
+		    <!--REPORT warning-->
+      <xsl:if test="normalize-space(@publication-type)!='' and not(@publication-type=$publication-type-values)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(@publication-type)!='' and not(@publication-type=$publication-type-values)">
+            <xsl:attribute name="id">mixed-citation-publication-type-flag</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mixed-citation-publication-type-flag] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> has publication-type="<xsl:text/>
+               <xsl:value-of select="@publication-type"/>
+               <xsl:text/>" which is not one of the known/supported types: <xsl:text/>
+               <xsl:value-of select="string-join($publication-type-values,'; ')"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="@publication-type='other'">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@publication-type='other'">
+            <xsl:attribute name="id">mixed-citation-other-publication-flag</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mixed-citation-other-publication-flag] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in reference (id=<xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>) has a publication-type='other'. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M28"/>

@@ -34,6 +34,7 @@
   </xsl:function>
   <pattern id="mixed-citation">
     <rule context="mixed-citation" id="mixed-citation-checks">
+      <let name="publication-type-values" value="('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')"/>
       <report test="normalize-space(.)=('','.')" role="error" id="mixed-citation-empty-1">
         <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) is empty.</report>
     </rule>

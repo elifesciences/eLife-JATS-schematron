@@ -449,6 +449,36 @@
         <x:expect-report id="mixed-citation-empty-2" role="warning"/>
         <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="mixed-citation-publication-type-presence-pass">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-publication-type-presence/pass.xml"/>
+        <x:expect-not-assert id="mixed-citation-publication-type-presence" role="error"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mixed-citation-publication-type-presence-fail">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-publication-type-presence/fail.xml"/>
+        <x:expect-assert id="mixed-citation-publication-type-presence" role="error"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mixed-citation-publication-type-flag-pass">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-publication-type-flag/pass.xml"/>
+        <x:expect-not-report id="mixed-citation-publication-type-flag" role="warning"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mixed-citation-publication-type-flag-fail">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-publication-type-flag/fail.xml"/>
+        <x:expect-report id="mixed-citation-publication-type-flag" role="warning"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mixed-citation-other-publication-flag-pass">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-other-publication-flag/pass.xml"/>
+        <x:expect-not-report id="mixed-citation-other-publication-flag" role="warning"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mixed-citation-other-publication-flag-fail">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-other-publication-flag/fail.xml"/>
+        <x:expect-report id="mixed-citation-other-publication-flag" role="warning"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="strike-checks">
       <x:scenario label="strike-warning-pass">

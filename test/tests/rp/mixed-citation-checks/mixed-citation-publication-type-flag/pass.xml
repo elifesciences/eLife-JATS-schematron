@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="mixed-citation-publication-type-flag.sch"?>
+<!--Context: mixed-citation
+Test: report    normalize-space(@publication-type)!='' and not(@publication-type=$publication-type-values)
+Message:  has publication-type="" which is not one of the known/supported types: . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref id="c1"><label>1.</label><mixed-citation publication-type="journal"/></ref>
+        <ref id="c2"><label>2.</label><mixed-citation publication-type="book"/></ref>
+        <ref id="c3"><label>3.</label><mixed-citation publication-type="data"/></ref>
+        <ref id="c4"><label>4.</label><mixed-citation publication-type="patent"/></ref>
+        <ref id="c5"><label>5.</label><mixed-citation publication-type="software"/></ref>
+        <ref id="c6"><label>6.</label><mixed-citation publication-type="web"/></ref>
+        <ref id="c7"><label>7.</label><mixed-citation publication-type="report"/></ref>
+        <ref id="c8"><label>8.</label><mixed-citation publication-type="confproc"/></ref>
+        <ref id="c9"><label>9.</label><mixed-citation publication-type="thesis"/></ref>
+        <ref id="c10"><label>10.</label><mixed-citation publication-type="other"/></ref>
+    </article>
+</root>

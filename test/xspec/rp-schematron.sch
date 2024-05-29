@@ -186,11 +186,22 @@
   
     <pattern id="mixed-citation-checks-pattern">
     <rule context="mixed-citation" id="mixed-citation-checks">
+        <let name="publication-type-values" value="('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')"/>
+        
         <report test="normalize-space(.)=('','.')" role="error" id="mixed-citation-empty-1">
         <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) is empty.</report>
         
         <report test="not(normalize-space(.)=('','.')) and (string-length(normalize-space(.)) lt 6)" role="warning" id="mixed-citation-empty-2">
         <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) only contains <value-of select="string-length(normalize-space(.))"/> characters.</report>
+        
+        <assert test="normalize-space(@publication-type)!=''" role="error" id="mixed-citation-publication-type-presence">
+        <name/> must have a publication-type attribute with a non-empty value.</assert>
+        
+        <report test="normalize-space(@publication-type)!='' and not(@publication-type=$publication-type-values)" role="warning" id="mixed-citation-publication-type-flag">
+        <name/> has publication-type="<value-of select="@publication-type"/>" which is not one of the known/supported types: <value-of select="string-join($publication-type-values,'; ')"/>.</report>
+        
+        <report test="@publication-type='other'" role="warning" id="mixed-citation-other-publication-flag">
+        <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) has a publication-type='other'. Is that correct?</report>
      </rule>
   </pattern>
 
