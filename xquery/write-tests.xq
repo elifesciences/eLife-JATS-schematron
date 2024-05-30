@@ -4,7 +4,7 @@ import module namespace schematron = "http://github.com/Schematron/schematron-ba
 import module namespace elife = 'elife' at 'elife.xqm';
 
 let $sch := doc('../src/schematron.sch')
-let $rp-sch := doc('../src/rp-schematron.sch')
+let $rp-sch := doc('../src/rp-schematron-base.sch')
 let $base-uri := substring-before(base-uri($sch),'/schematron.sch')
 let $root := substring-before($base-uri,'/src')
 

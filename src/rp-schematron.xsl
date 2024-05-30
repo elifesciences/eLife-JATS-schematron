@@ -1339,9 +1339,8 @@
 
 	  <!--RULE ref-checks-->
    <xsl:template match="ref" priority="1000" mode="M27">
-      <xsl:variable name="content" select="string-join(*[name()!='label'])"/>
 
-		    <!--ASSERT error-->
+		<!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="mixed-citation or element-citation"/>
          <xsl:otherwise>

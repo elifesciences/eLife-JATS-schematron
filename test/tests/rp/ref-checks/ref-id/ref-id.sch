@@ -34,7 +34,6 @@
   </xsl:function>
   <pattern id="ref">
     <rule context="ref" id="ref-checks">
-      <let name="content" value="string-join(*[name()!='label'])"/>
       <assert test="normalize-space(@id)!=''" role="error" id="ref-id">
         <name/> must have an id attribute with a non-empty value.</assert>
     </rule>
