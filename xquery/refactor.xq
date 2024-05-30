@@ -19,7 +19,7 @@ declare variable $outputDir := substring-before(base-uri($sch),'/schematron.sch'
 declare variable $root := substring-before($outputDir,'/src');
 
 (: schematron files for preprints :)
-declare variable $rp-sch := doc(concat($outputDir,'/rp-schematron.sch'));
+declare variable $rp-sch := doc(concat($outputDir,'/rp-schematron-base.sch'));
 declare variable $manifest-sch := doc(concat($outputDir,'/meca-manifest-schematron.sch'));
 
 (: Permitted role values :)
@@ -61,8 +61,9 @@ declare variable $roles := ('error','warning','info');
 ,
 
   for $rp-sch in $rp-sch/sch:schema
-  (: schematron for reviewed preprints :)
-  let $rp-xsl := schematron:compile(elife:sch2final($rp-sch))
+  (: schematron for reviewed preprints - every rule has it's own pattern :)
+  let $rp-sch-mod := elife:sch2final($rp-sch)
+  let $rp-xsl := schematron:compile($rp-sch-mod)
   (: schematron for manifest files in meca packages :)
   let $manifest-xsl := schematron:compile($manifest-sch)
   (: Generate xspec specific sch :)
@@ -74,6 +75,7 @@ declare variable $roles := ('error','warning','info');
     (: error if file contains unallowed role values :)
     elife:unallowed-roles($rp-sch,$roles),
     elife:unallowed-roles($manifest-sch,$roles),
+    file:write(($outputDir||'/rp-schematron.sch'),$rp-sch-mod),
     file:write(($outputDir||'/rp-schematron.xsl'),$rp-xsl),
     file:write(($outputDir||'/meca-manifest-schematron.xsl'),$manifest-xsl),
     file:write(($root||'/test/xspec/rp-schematron.sch'),$rp-xspec-sch,map{'indent':'yes'}),
