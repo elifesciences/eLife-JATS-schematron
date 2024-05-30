@@ -1,4 +1,4 @@
-<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:java="http://www.java.com/" xmlns:file="java.io.File" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:meca="http://manuscriptexchange.org" queryBinding="xslt2">
+<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:meca="http://manuscriptexchange.org" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:file="java.io.File" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink" queryBinding="xslt2">
   <title>eLife reviewed preprint schematron</title>
   <ns uri="http://www.niso.org/schemas/ali/1.0/" prefix="ali"/>
   <ns uri="http://www.w3.org/XML/1998/namespace" prefix="xml"/>
@@ -32,10 +32,9 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="table-wrap">
+  <pattern id="table-wrap-checks-pattern">
     <rule context="table-wrap" id="table-wrap-checks">
-      <assert test="graphic or alternatives[graphic]" role="error" id="table-wrap-content-conformance">
-        <value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>
+      <assert test="graphic or alternatives[graphic]" role="error" id="table-wrap-content-conformance">[table-wrap-content-conformance] <value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

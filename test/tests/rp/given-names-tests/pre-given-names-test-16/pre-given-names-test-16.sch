@@ -1,4 +1,4 @@
-<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:java="http://www.java.com/" xmlns:file="java.io.File" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:meca="http://manuscriptexchange.org" queryBinding="xslt2">
+<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:meca="http://manuscriptexchange.org" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:file="java.io.File" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink" queryBinding="xslt2">
   <title>eLife reviewed preprint schematron</title>
   <ns uri="http://www.niso.org/schemas/ali/1.0/" prefix="ali"/>
   <ns uri="http://www.w3.org/XML/1998/namespace" prefix="xml"/>
@@ -32,14 +32,9 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="author-checks">
-    <rule context="name/given-names" id="given-names-tests">
-      <report test="matches(.,'[\(\)\[\]]')" role="warning" id="pre-given-names-test-16">given-names contains brackets - '<value-of select="."/>'. This will be flagged by Crossref (although will not actually cause any significant problems). Please add the following author query: Please confirm whether you are happy to remove the brackets around (one of) your given names - '<value-of select="."/>'. This will cause minor issues at Crossref, although they can be retained if desired.</report>
-    </rule>
-  </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::name/given-names" role="error" id="given-names-tests-xspec-assert">name/given-names must be present.</assert>
+      <assert test="descendant::" role="error" id="-xspec-assert"> must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -42,7 +42,7 @@
         <report test=". = upper-case(.)" role="error" id="article-title-all-caps">[article-title-all-caps] Article title is in all caps - <value-of select="."/>. Please change to sentence case.</report>
      </rule></pattern>
 
-    <pattern id="author-contrib-checks-pattern"><rule context="article-meta/contrib-group[count(aff) gt 1]/contrib[@contrib-type='author' and not(collab)]" id="author-contrib-checks">
+    <pattern id="author-contrib-checks-pattern"><rule context="article-meta/contrib-group/contrib[@contrib-type='author' and not(collab)]" id="author-contrib-checks">
         <assert test="xref[@ref-type='aff']" role="error" id="author-contrb-no-aff-xref">[author-contrb-no-aff-xref] Author <value-of select="e:get-name(name[1])"/> has no affiliation.</assert>
      </rule></pattern><pattern id="name-tests-pattern"><rule context="contrib-group//name" id="name-tests">
     	<assert test="count(surname) = 1" role="error" id="surname-test-1">[surname-test-1] Each name must contain only one surname.</assert>

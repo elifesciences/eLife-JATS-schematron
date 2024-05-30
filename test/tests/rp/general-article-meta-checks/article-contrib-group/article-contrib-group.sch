@@ -1,4 +1,4 @@
-<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:java="http://www.java.com/" xmlns:file="java.io.File" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:meca="http://manuscriptexchange.org" queryBinding="xslt2">
+<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:meca="http://manuscriptexchange.org" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:file="java.io.File" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink" queryBinding="xslt2">
   <title>eLife reviewed preprint schematron</title>
   <ns uri="http://www.niso.org/schemas/ali/1.0/" prefix="ali"/>
   <ns uri="http://www.w3.org/XML/1998/namespace" prefix="xml"/>
@@ -32,9 +32,9 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="article-metadata">
+  <pattern id="general-article-meta-checks-pattern">
     <rule context="article/front/article-meta" id="general-article-meta-checks">
-      <assert test="count(contrib-group)=1" role="error" id="article-contrib-group">article-meta must contain one (and only one) &lt;contrib-group&gt; element.</assert>
+      <assert test="count(contrib-group)=1" role="error" id="article-contrib-group">[article-contrib-group] article-meta must contain one (and only one) &lt;contrib-group&gt; element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

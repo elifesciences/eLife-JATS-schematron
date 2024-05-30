@@ -62,7 +62,7 @@
     </pattern>
 
     <pattern id="author-checks">
-     <rule context="article-meta/contrib-group[count(aff) gt 1]/contrib[@contrib-type='author' and not(collab)]" id="author-contrib-checks">
+     <rule context="article-meta/contrib-group/contrib[@contrib-type='author' and not(collab)]" id="author-contrib-checks">
         <assert test="xref[@ref-type='aff']" 
         role="error" 
         id="author-contrb-no-aff-xref">Author <value-of select="e:get-name(name[1])"/> has no affiliation.</assert>
