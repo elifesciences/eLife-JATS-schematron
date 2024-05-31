@@ -229,6 +229,15 @@
         <value-of select="name()"/> is not supported as a child of &lt;fig&gt;.</assert>
      </rule>
   </pattern>
+  <pattern id="fig-label-checks-pattern">
+    <rule context="fig/label" id="fig-label-checks">
+        <report test="normalize-space(.)=''" role="error" id="fig-wrap-empty">Label for fig is empty. Either remove the elment or add the missing content.</report>
+        
+        <report test="matches(lower-case(.),'^\s*(video|movie)')" role="warning" id="fig-label-video">Label for figure ('<value-of select="."/>') starts with text that suggests its a video. Should this content be captured as a video instead of a figure?</report>
+        
+        <report test="matches(lower-case(.),'^\s*table')" role="warning" id="fig-label-table">Label for figure ('<value-of select="."/>') starts with table. Should this content be captured as a table instead of a figure?</report>
+     </rule>
+  </pattern>
 
     <pattern id="table-wrap-checks-pattern">
     <rule context="table-wrap" id="table-wrap-checks">
@@ -242,6 +251,13 @@
         <let name="supported-table-wrap-children" value="('label','caption','graphic','alternatives','table','permissions','table-wrap-foot')"/>
         <assert test="name()=$supported-table-wrap-children" role="error" id="table-wrap-child-conformance">
         <value-of select="name()"/> is not supported as a child of &lt;table-wrap&gt;.</assert>
+     </rule>
+  </pattern>
+  <pattern id="table-wrap-label-checks-pattern">
+    <rule context="table-wrap/label" id="table-wrap-label-checks">
+        <report test="normalize-space(.)=''" role="error" id="table-wrap-empty">Label for table is empty. Either remove the elment or add the missing content.</report>
+        
+        <report test="matches(lower-case(.),'^\s*fig')" role="warning" id="table-wrap-label-fig">Label for table ('<value-of select="."/>') starts with text that suggests its a figure. Should this content be captured as a figure instead of a table?</report>
      </rule>
   </pattern>
 
@@ -297,6 +313,12 @@
 
         <report test="lower-case(.)=." role="warning" id="title-lower-case">Content of &lt;title&gt; element is entirely in lower-case case: Is that correct? '<value-of select="."/>'</report>
      </rule>
+  </pattern>
+  <pattern id="title-toc-checks-pattern">
+    <rule context="article/body/sec/title|article/back/sec/title" id="title-toc-checks">
+        <report test="xref" role="error" id="toc-title-contains-citation">
+        <name/> element contains a citation and will appear within the table of contents on EPP. This will cause images not to load. Please either remove the citaiton or make it plain text.</report>
+      </rule>
   </pattern>
 
     <pattern id="general-article-meta-checks-pattern">
@@ -498,8 +520,10 @@
       <assert test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>
       <assert test="descendant::fig" role="error" id="fig-checks-xspec-assert">fig must be present.</assert>
       <assert test="descendant::fig/*" role="error" id="fig-child-checks-xspec-assert">fig/* must be present.</assert>
+      <assert test="descendant::fig/label" role="error" id="fig-label-checks-xspec-assert">fig/label must be present.</assert>
       <assert test="descendant::table-wrap" role="error" id="table-wrap-checks-xspec-assert">table-wrap must be present.</assert>
       <assert test="descendant::table-wrap/*" role="error" id="table-wrap-child-checks-xspec-assert">table-wrap/* must be present.</assert>
+      <assert test="descendant::table-wrap/label" role="error" id="table-wrap-label-checks-xspec-assert">table-wrap/label must be present.</assert>
       <assert test="descendant::disp-formula" role="error" id="disp-formula-checks-xspec-assert">disp-formula must be present.</assert>
       <assert test="descendant::inline-formula" role="error" id="inline-formula-checks-xspec-assert">inline-formula must be present.</assert>
       <assert test="descendant::alternatives[parent::disp-formula]" role="error" id="disp-equation-alternatives-checks-xspec-assert">alternatives[parent::disp-formula] must be present.</assert>
@@ -507,6 +531,7 @@
       <assert test="descendant::list" role="error" id="list-checks-xspec-assert">list must be present.</assert>
       <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-checks-xspec-assert">graphic|inline-graphic must be present.</assert>
       <assert test="descendant::title" role="error" id="title-checks-xspec-assert">title must be present.</assert>
+      <assert test="descendant::article/body/sec/title or descendant::article/back/sec/title" role="error" id="title-toc-checks-xspec-assert">article/body/sec/title|article/back/sec/title must be present.</assert>
       <assert test="descendant::article/front/article-meta" role="error" id="general-article-meta-checks-xspec-assert">article/front/article-meta must be present.</assert>
       <assert test="descendant::article/front/article-meta/article-version" role="error" id="article-version-checks-xspec-assert">article/front/article-meta/article-version must be present.</assert>
       <assert test="descendant::title" role="error" id="digest-title-checks-xspec-assert">title must be present.</assert>

@@ -528,6 +528,38 @@
         <x:expect-not-assert id="fig-child-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="fig-label-checks">
+      <x:scenario label="fig-wrap-empty-pass">
+        <x:context href="../tests/rp/fig-label-checks/fig-wrap-empty/pass.xml"/>
+        <x:expect-not-report id="fig-wrap-empty" role="error"/>
+        <x:expect-not-assert id="fig-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-wrap-empty-fail">
+        <x:context href="../tests/rp/fig-label-checks/fig-wrap-empty/fail.xml"/>
+        <x:expect-report id="fig-wrap-empty" role="error"/>
+        <x:expect-not-assert id="fig-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-label-video-pass">
+        <x:context href="../tests/rp/fig-label-checks/fig-label-video/pass.xml"/>
+        <x:expect-not-report id="fig-label-video" role="warning"/>
+        <x:expect-not-assert id="fig-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-label-video-fail">
+        <x:context href="../tests/rp/fig-label-checks/fig-label-video/fail.xml"/>
+        <x:expect-report id="fig-label-video" role="warning"/>
+        <x:expect-not-assert id="fig-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-label-table-pass">
+        <x:context href="../tests/rp/fig-label-checks/fig-label-table/pass.xml"/>
+        <x:expect-not-report id="fig-label-table" role="warning"/>
+        <x:expect-not-assert id="fig-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-label-table-fail">
+        <x:context href="../tests/rp/fig-label-checks/fig-label-table/fail.xml"/>
+        <x:expect-report id="fig-label-table" role="warning"/>
+        <x:expect-not-assert id="fig-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="table-wrap-checks">
       <x:scenario label="table-wrap-content-conformance-pass">
         <x:context href="../tests/rp/table-wrap-checks/table-wrap-content-conformance/pass.xml"/>
@@ -550,6 +582,28 @@
         <x:context href="../tests/rp/table-wrap-child-checks/table-wrap-child-conformance/fail.xml"/>
         <x:expect-assert id="table-wrap-child-conformance" role="error"/>
         <x:expect-not-assert id="table-wrap-child-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="table-wrap-label-checks">
+      <x:scenario label="table-wrap-empty-pass">
+        <x:context href="../tests/rp/table-wrap-label-checks/table-wrap-empty/pass.xml"/>
+        <x:expect-not-report id="table-wrap-empty" role="error"/>
+        <x:expect-not-assert id="table-wrap-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-wrap-empty-fail">
+        <x:context href="../tests/rp/table-wrap-label-checks/table-wrap-empty/fail.xml"/>
+        <x:expect-report id="table-wrap-empty" role="error"/>
+        <x:expect-not-assert id="table-wrap-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-wrap-label-fig-pass">
+        <x:context href="../tests/rp/table-wrap-label-checks/table-wrap-label-fig/pass.xml"/>
+        <x:expect-not-report id="table-wrap-label-fig" role="warning"/>
+        <x:expect-not-assert id="table-wrap-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-wrap-label-fig-fail">
+        <x:context href="../tests/rp/table-wrap-label-checks/table-wrap-label-fig/fail.xml"/>
+        <x:expect-report id="table-wrap-label-fig" role="warning"/>
+        <x:expect-not-assert id="table-wrap-label-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="disp-formula-checks">
@@ -654,6 +708,18 @@
         <x:context href="../tests/rp/title-checks/title-lower-case/fail.xml"/>
         <x:expect-report id="title-lower-case" role="warning"/>
         <x:expect-not-assert id="title-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="title-toc-checks">
+      <x:scenario label="toc-title-contains-citation-pass">
+        <x:context href="../tests/rp/title-toc-checks/toc-title-contains-citation/pass.xml"/>
+        <x:expect-not-report id="toc-title-contains-citation" role="error"/>
+        <x:expect-not-assert id="title-toc-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="toc-title-contains-citation-fail">
+        <x:context href="../tests/rp/title-toc-checks/toc-title-contains-citation/fail.xml"/>
+        <x:expect-report id="toc-title-contains-citation" role="error"/>
+        <x:expect-not-assert id="title-toc-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="general-article-meta-checks">

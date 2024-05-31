@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="fig-wrap-empty.sch"?>
+<!--Context: fig/label
+Test: report    normalize-space(.)=''
+Message: Label for fig is empty. Either remove the elment or add the missing content. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <fig>
+            <label>Figure 1</label>
+        </fig>
+    </article>
+</root>
