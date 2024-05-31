@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="fig-label-table.sch"?>
+<!--Context: fig/label
+Test: report    matches(lower-case(.),'^\s*table')
+Message: Label for figure ('') starts with table. Should this content be captured as a table instead of a figure? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <fig>
+            <label>Figure 1</label>
+        </fig>
+    </article>
+</root>

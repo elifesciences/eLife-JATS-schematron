@@ -173,6 +173,12 @@
      </rule></pattern><pattern id="fig-child-checks-pattern"><rule context="fig/*" id="fig-child-checks">
         <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
         <assert test="name()=$supported-fig-children" role="error" id="fig-child-conformance">[fig-child-conformance] <value-of select="name()"/> is not supported as a child of &lt;fig&gt;.</assert>
+     </rule></pattern><pattern id="fig-label-checks-pattern"><rule context="fig/label" id="fig-label-checks">
+        <report test="normalize-space(.)=''" role="error" id="fig-wrap-empty">[fig-wrap-empty] Label for fig is empty. Either remove the elment or add the missing content.</report>
+        
+        <report test="matches(lower-case(.),'^\s*(video|movie)')" role="warning" id="fig-label-video">[fig-label-video] Label for figure ('<value-of select="."/>') starts with text that suggests its a video. Should this content be captured as a video instead of a figure?</report>
+        
+        <report test="matches(lower-case(.),'^\s*table')" role="warning" id="fig-label-table">[fig-label-table] Label for figure ('<value-of select="."/>') starts with table. Should this content be captured as a table instead of a figure?</report>
      </rule></pattern>
 
     <pattern id="table-wrap-checks-pattern"><rule context="table-wrap" id="table-wrap-checks">
@@ -181,6 +187,10 @@
      </rule></pattern><pattern id="table-wrap-child-checks-pattern"><rule context="table-wrap/*" id="table-wrap-child-checks">
         <let name="supported-table-wrap-children" value="('label','caption','graphic','alternatives','table','permissions','table-wrap-foot')"/>
         <assert test="name()=$supported-table-wrap-children" role="error" id="table-wrap-child-conformance">[table-wrap-child-conformance] <value-of select="name()"/> is not supported as a child of &lt;table-wrap&gt;.</assert>
+     </rule></pattern><pattern id="table-wrap-label-checks-pattern"><rule context="table-wrap/label" id="table-wrap-label-checks">
+        <report test="normalize-space(.)=''" role="error" id="table-wrap-empty">[table-wrap-empty] Label for table is empty. Either remove the elment or add the missing content.</report>
+        
+        <report test="matches(lower-case(.),'^\s*fig')" role="warning" id="table-wrap-label-fig">[table-wrap-label-fig] Label for table ('<value-of select="."/>') starts with text that suggests its a figure. Should this content be captured as a figure instead of a table?</report>
      </rule></pattern>
 
     <pattern id="disp-formula-checks-pattern"><rule context="disp-formula" id="disp-formula-checks">

@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="fig-label-video.sch"?>
+<!--Context: fig/label
+Test: report    matches(lower-case(.),'^\s*(video|movie)')
+Message: Label for figure ('') starts with text that suggests its a video. Should this content be captured as a video instead of a figure? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <fig>
+            <label>Video 1</label>
+        </fig>
+        <fig>
+            <label>Movie 1</label>
+        </fig>
+    </article>
+</root>
