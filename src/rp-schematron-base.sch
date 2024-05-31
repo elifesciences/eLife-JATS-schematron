@@ -405,6 +405,13 @@
         role="warning" 
         id="title-lower-case">Content of &lt;title> element is entirely in lower-case case: Is that correct? '<value-of select="."/>'</report>
      </rule>
+      
+<!-- Top level section titles that will appear in the table of contents -->
+      <rule context="article/body/sec/title|article/back/sec/title" id="title-toc-checks">
+        <report test="xref" 
+          role="error" 
+          id="toc-title-contains-citation"><name/> element contains a citation and will appear within the table of contents on EPP. This will cause images not to load. Please either remove the citaiton or make it plain text.</report>
+      </rule>
     </pattern>
 
     <pattern id="article-metadata">

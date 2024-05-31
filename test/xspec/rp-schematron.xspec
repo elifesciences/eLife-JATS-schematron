@@ -656,6 +656,18 @@
         <x:expect-not-assert id="title-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="title-toc-checks">
+      <x:scenario label="toc-title-contains-citation-pass">
+        <x:context href="../tests/rp/title-toc-checks/toc-title-contains-citation/pass.xml"/>
+        <x:expect-not-report id="toc-title-contains-citation" role="error"/>
+        <x:expect-not-assert id="title-toc-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="toc-title-contains-citation-fail">
+        <x:context href="../tests/rp/title-toc-checks/toc-title-contains-citation/fail.xml"/>
+        <x:expect-report id="toc-title-contains-citation" role="error"/>
+        <x:expect-not-assert id="title-toc-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="general-article-meta-checks">
       <x:scenario label="article-id-pass">
         <x:context href="../tests/rp/general-article-meta-checks/article-id/pass.xml"/>

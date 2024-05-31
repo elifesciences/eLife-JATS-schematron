@@ -298,6 +298,12 @@
         <report test="lower-case(.)=." role="warning" id="title-lower-case">Content of &lt;title&gt; element is entirely in lower-case case: Is that correct? '<value-of select="."/>'</report>
      </rule>
   </pattern>
+  <pattern id="title-toc-checks-pattern">
+    <rule context="article/body/sec/title|article/back/sec/title" id="title-toc-checks">
+        <report test="xref" role="error" id="toc-title-contains-citation">
+        <name/> element contains a citation and will appear within the table of contents on EPP. This will cause images not to load. Please either remove the citaiton or make it plain text.</report>
+      </rule>
+  </pattern>
 
     <pattern id="general-article-meta-checks-pattern">
     <rule context="article/front/article-meta" id="general-article-meta-checks">
@@ -507,6 +513,7 @@
       <assert test="descendant::list" role="error" id="list-checks-xspec-assert">list must be present.</assert>
       <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-checks-xspec-assert">graphic|inline-graphic must be present.</assert>
       <assert test="descendant::title" role="error" id="title-checks-xspec-assert">title must be present.</assert>
+      <assert test="descendant::article/body/sec/title or descendant::article/back/sec/title" role="error" id="title-toc-checks-xspec-assert">article/body/sec/title|article/back/sec/title must be present.</assert>
       <assert test="descendant::article/front/article-meta" role="error" id="general-article-meta-checks-xspec-assert">article/front/article-meta must be present.</assert>
       <assert test="descendant::article/front/article-meta/article-version" role="error" id="article-version-checks-xspec-assert">article/front/article-meta/article-version must be present.</assert>
       <assert test="descendant::title" role="error" id="digest-title-checks-xspec-assert">title must be present.</assert>
