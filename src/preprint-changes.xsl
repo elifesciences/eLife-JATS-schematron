@@ -47,6 +47,24 @@
         </xsl:copy>
     </xsl:template>
     
+    <!-- Handle cases where there is a singular affiliation without links from the authors -->
+    <xsl:template match="article-meta/contrib-group[count(aff) = 1 and not(contrib[@contrib-type='author' and xref[@ref-type='aff']])]/contrib[@contrib-type='author' and not(xref[@ref-type='aff'])]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:apply-templates select="*|text()"/>
+            <!-- label unknown -->
+            <xref ref-type="aff" rid="aff1"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- In cases where there is one affiliation for all authors, add id for affiliation so that it can be linked -->
+    <xsl:template match="article-meta/contrib-group[contrib[@contrib-type='author'] and count(aff) = 1 and not(contrib[@contrib-type='author' and xref[@ref-type='aff']])]/aff">
+        <aff id="aff1">
+            <xsl:apply-templates select="@*[name()!='id']"/>
+            <xsl:apply-templates select="*|text()"/>
+        </aff>
+    </xsl:template>
+    
     <!-- Change all caps titles to sentence case for known phrases, e.g. REFERENCES -> References -->
     <xsl:template match="title[(upper-case(.)=. or lower-case(.)=.) and not(*) and not(parent::caption)]">
         <xsl:variable name="phrases" select="(
