@@ -1292,7 +1292,7 @@
   <pattern id="content-containers">
     <rule context="mml:msub|mml:msup|mml:msubsup|mml:munder|mml:mover|mml:munderover" id="math-empty-child-tests">
       <let name="script-name" value="if (./local-name() = 'msub') then 'subscript'                                      else if (./local-name() = 'msup') then 'superscript'                                      else if (./local-name() = 'msubsup') then 'subscript'                                      else if (./local-name() = 'munder') then 'underscript'                                      else if (./local-name() = 'mover') then 'overscript'                                      else if (./local-name() = 'munderover') then 'underscript'                                      else 'second'"/>
-      <assert test="*[1][child::* or normalize-space(.)!='']" role="error" id="math-empty-base-check">
+      <assert test="*[1][normalize-space(.)!='']" role="error" id="math-empty-base-check">
         <name/> element must not have a missing or empty base expression.</assert>
     </rule>
   </pattern>
