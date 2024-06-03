@@ -16642,9 +16642,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="*[1][child::* or normalize-space(.)!='']"/>
+         <xsl:when test="*[1][normalize-space(.)!='']"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*[1][child::* or normalize-space(.)!='']">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*[1][normalize-space(.)!='']">
                <xsl:attribute name="id">math-empty-base-check</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
@@ -16659,9 +16659,9 @@
 
 		    <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="*[2][child::* or normalize-space(.)!='']"/>
+         <xsl:when test="*[2][normalize-space(.)!='']"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*[2][child::* or normalize-space(.)!='']">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*[2][normalize-space(.)!='']">
                <xsl:attribute name="id">math-empty-script-check</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
@@ -16677,8 +16677,8 @@
       </xsl:choose>
 
 		    <!--REPORT error-->
-      <xsl:if test="local-name()=('msubsup','munderover') and *[3][not(child::*) and normalize-space(.)='']">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="local-name()=('msubsup','munderover') and *[3][not(child::*) and normalize-space(.)='']">
+      <xsl:if test="local-name()=('msubsup','munderover') and *[3][normalize-space(.)='']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="local-name()=('msubsup','munderover') and *[3][normalize-space(.)='']">
             <xsl:attribute name="id">math-empty-second-script-check</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">

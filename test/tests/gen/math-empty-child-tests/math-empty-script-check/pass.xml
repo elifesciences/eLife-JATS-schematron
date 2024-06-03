@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="math-empty-script-check.sch"?>
 <!--Context: mml:msub|mml:msup|mml:msubsup|mml:munder|mml:mover|mml:munderover
-Test: assert    *[2][child::* or normalize-space(.)!='']
+Test: assert    *[2][normalize-space(.)!='']
 Message:  element must not have a missing or empty  expression. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
