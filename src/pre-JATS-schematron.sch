@@ -2929,11 +2929,11 @@
     </rule></pattern><pattern id="math-empty-child-tests-pattern"><rule context="mml:msub|mml:msup|mml:msubsup|mml:munder|mml:mover|mml:munderover" id="math-empty-child-tests">
       <let name="script-name" value="if (./local-name() = 'msub') then 'subscript'                                      else if (./local-name() = 'msup') then 'superscript'                                      else if (./local-name() = 'msubsup') then 'subscript'                                      else if (./local-name() = 'munder') then 'underscript'                                      else if (./local-name() = 'mover') then 'overscript'                                      else if (./local-name() = 'munderover') then 'underscript'                                      else 'second'"/>
       
-      <assert test="*[1][normalize-space(.)!='']" role="error" id="math-empty-base-check">[math-empty-base-check] <name/> element must not have a missing or empty base expression.</assert>
+      <report test="*[1][matches(.,'^\p{Z}*$')]" role="error" id="math-empty-base-check">[math-empty-base-check] <name/> element must not have a missing or empty base expression.</report>
 
-      <assert test="*[2][normalize-space(.)!='']" role="error" id="math-empty-script-check">[math-empty-script-check] <name/> element must not have a missing or empty <value-of select="$script-name"/> expression.</assert>
+      <report test="*[2][matches(.,'^\p{Z}*$')]" role="error" id="math-empty-script-check">[math-empty-script-check] <name/> element must not have a missing or empty <value-of select="$script-name"/> expression.</report>
 
-      <report test="local-name()=('msubsup','munderover') and *[3][normalize-space(.)='']" role="error" id="math-empty-second-script-check">[math-empty-second-script-check] <name/> element must not have a missing or empty <value-of select="if (local-name()='msubsup') then 'superscript' else 'overscript'"/> expression.</report>
+      <report test="local-name()=('msubsup','munderover') and *[3][matches(.,'^\p{Z}*$')]" role="error" id="math-empty-second-script-check">[math-empty-second-script-check] <name/> element must not have a missing or empty <value-of select="if (local-name()='msubsup') then 'superscript' else 'overscript'"/> expression.</report>
       
     </rule></pattern><pattern id="math-multiscripts-tests-pattern"><rule context="mml:mmultiscripts" id="math-multiscripts-tests">
       <!-- REVIST: should we allow mml:none here? -->
