@@ -16459,45 +16459,39 @@
    <xsl:template match="mml:msub|mml:msup|mml:msubsup|mml:munder|mml:mover|mml:munderover" priority="1000" mode="M207">
       <xsl:variable name="script-name" select="if (./local-name() = 'msub') then 'subscript'                                      else if (./local-name() = 'msup') then 'superscript'                                      else if (./local-name() = 'msubsup') then 'subscript'                                      else if (./local-name() = 'munder') then 'underscript'                                      else if (./local-name() = 'mover') then 'overscript'                                      else if (./local-name() = 'munderover') then 'underscript'                                      else 'second'"/>
 
-		    <!--ASSERT error-->
-      <xsl:choose>
-         <xsl:when test="*[1][normalize-space(.)!='']"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*[1][normalize-space(.)!='']">
-               <xsl:attribute name="id">math-empty-base-check</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[math-empty-base-check] <xsl:text/>
-                  <xsl:value-of select="name(.)"/>
-                  <xsl:text/> element must not have a missing or empty base expression.</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
-
-		    <!--ASSERT error-->
-      <xsl:choose>
-         <xsl:when test="*[2][normalize-space(.)!='']"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*[2][normalize-space(.)!='']">
-               <xsl:attribute name="id">math-empty-script-check</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[math-empty-script-check] <xsl:text/>
-                  <xsl:value-of select="name(.)"/>
-                  <xsl:text/> element must not have a missing or empty <xsl:text/>
-                  <xsl:value-of select="$script-name"/>
-                  <xsl:text/> expression.</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
+		    <!--REPORT error-->
+      <xsl:if test="*[1][matches(.,'^\p{Z}*$')]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*[1][matches(.,'^\p{Z}*$')]">
+            <xsl:attribute name="id">math-empty-base-check</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[math-empty-base-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element must not have a missing or empty base expression.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
 
 		    <!--REPORT error-->
-      <xsl:if test="local-name()=('msubsup','munderover') and *[3][normalize-space(.)='']">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="local-name()=('msubsup','munderover') and *[3][normalize-space(.)='']">
+      <xsl:if test="*[2][matches(.,'^\p{Z}*$')]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*[2][matches(.,'^\p{Z}*$')]">
+            <xsl:attribute name="id">math-empty-script-check</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[math-empty-script-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element must not have a missing or empty <xsl:text/>
+               <xsl:value-of select="$script-name"/>
+               <xsl:text/> expression.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+
+		    <!--REPORT error-->
+      <xsl:if test="local-name()=('msubsup','munderover') and *[3][matches(.,'^\p{Z}*$')]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="local-name()=('msubsup','munderover') and *[3][matches(.,'^\p{Z}*$')]">
             <xsl:attribute name="id">math-empty-second-script-check</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">

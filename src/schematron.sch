@@ -4830,15 +4830,15 @@ else self::*/local-name() = $allowed-p-blocks"
                                      else if (./local-name() = 'munderover') then 'underscript'
                                      else 'second'"/>
       
-      <assert test="*[1][normalize-space(.)!='']"
+      <report test="*[1][matches(.,'^\p{Z}*$')]"
         role="error"
-        id="math-empty-base-check"><name/> element must not have a missing or empty base expression.</assert>
+        id="math-empty-base-check"><name/> element must not have a missing or empty base expression.</report>
 
-      <assert test="*[2][normalize-space(.)!='']"
+      <report test="*[2][matches(.,'^\p{Z}*$')]"
         role="error"
-        id="math-empty-script-check"><name/> element must not have a missing or empty <value-of select="$script-name"/> expression.</assert>
+        id="math-empty-script-check"><name/> element must not have a missing or empty <value-of select="$script-name"/> expression.</report>
 
-      <report test="local-name()=('msubsup','munderover') and *[3][normalize-space(.)='']"
+      <report test="local-name()=('msubsup','munderover') and *[3][matches(.,'^\p{Z}*$')]"
         role="error"
         id="math-empty-second-script-check"><name/> element must not have a missing or empty <value-of select="if (local-name()='msubsup') then 'superscript' else 'overscript'"/> expression.</report>
       
