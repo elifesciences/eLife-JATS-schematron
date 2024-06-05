@@ -450,7 +450,12 @@
 
     <pattern id="article-metadata">
       <rule context="article/front/article-meta" id="general-article-meta-checks">
-        <assert test="article-id[@pub-id-type='doi']" 
+        <let name="distinct-emails" value="distinct-values((descendant::contrib[@contrib-type='author']/email, author-notes/corresp/email))"/>
+        <let name="distinct-email-count" value="count($distinct-emails)"/>
+        <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
+        <let name="corresp-author-count" value="count($corresp-authors)"/>
+        
+        <assert test="article-id[@pub-id-type='doi']"
         role="error" 
         id="article-id">article-meta must contain at least one DOI - a &lt;article-id pub-id-type="doi"> element.</assert>
 
@@ -465,6 +470,10 @@
         <assert test="(descendant::contrib[@contrib-type='author' and email]) or (descendant::contrib[@contrib-type='author']/xref[@ref-type='corresp']/@rid=./author-notes/corresp/@id)" 
         role="error" 
         id="article-no-emails">This preprint has no emails for corresponding authors, which must be incorrect.</assert>
+        
+        <assert test="$corresp-author-count=$distinct-email-count" 
+        role="warning" 
+        id="article-email-corresp-author-count-equivalence">The number of corresponding authors (<value-of select="$corresp-author-count"/>: <value-of select="string-join($corresp-authors,'; ')"/>) is not equal to the number of distinct email addresses (<value-of select="$distinct-email-count"/>: <value-of select="string-join($distinct-emails,'; ')"/>). Is this correct?</assert>
       </rule>
 
       <rule context="article/front/article-meta/article-version" id="article-version-checks">

@@ -174,7 +174,7 @@
         </xsl:copy>
     </xsl:template>
     
-    <!-- Add introduce id for top-level sections (with titles) that don't have them, so they appear in the TOC on EPP -->
+    <!-- Introduce id for top-level sections (with titles) that don't have them, so they appear in the TOC on EPP -->
     <xsl:template match="(body|back)/sec[title and not(@id)]">
         <xsl:copy>
             <xsl:attribute name="id">

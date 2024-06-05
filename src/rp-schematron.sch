@@ -232,6 +232,11 @@
       </rule></pattern>
 
     <pattern id="general-article-meta-checks-pattern"><rule context="article/front/article-meta" id="general-article-meta-checks">
+        <let name="distinct-emails" value="distinct-values((descendant::contrib[@contrib-type='author']/email, author-notes/corresp/email))"/>
+        <let name="distinct-email-count" value="count($distinct-emails)"/>
+        <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
+        <let name="corresp-author-count" value="count($corresp-authors)"/>
+        
         <assert test="article-id[@pub-id-type='doi']" role="error" id="article-id">[article-id] article-meta must contain at least one DOI - a &lt;article-id pub-id-type="doi"&gt; element.</assert>
 
         <assert test="count(article-version)=1" role="error" id="article-version-1">[article-version-1] article-meta must contain one (and only one) &lt;article-version&gt; element.</assert>
@@ -239,6 +244,8 @@
         <assert test="count(contrib-group)=1" role="error" id="article-contrib-group">[article-contrib-group] article-meta must contain one (and only one) &lt;contrib-group&gt; element.</assert>
         
         <assert test="(descendant::contrib[@contrib-type='author' and email]) or (descendant::contrib[@contrib-type='author']/xref[@ref-type='corresp']/@rid=./author-notes/corresp/@id)" role="error" id="article-no-emails">[article-no-emails] This preprint has no emails for corresponding authors, which must be incorrect.</assert>
+        
+        <assert test="$corresp-author-count=$distinct-email-count" role="warning" id="article-email-corresp-author-count-equivalence">[article-email-corresp-author-count-equivalence] The number of corresponding authors (<value-of select="$corresp-author-count"/>: <value-of select="string-join($corresp-authors,'; ')"/>) is not equal to the number of distinct email addresses (<value-of select="$distinct-email-count"/>: <value-of select="string-join($distinct-emails,'; ')"/>). Is this correct?</assert>
       </rule></pattern><pattern id="article-version-checks-pattern"><rule context="article/front/article-meta/article-version" id="article-version-checks">
         <assert test="matches(.,'^1\.\d+$')" role="error" id="article-version-2">[article-version-2] article-must be in the format 1.x (e.g. 1.11). This one is '<value-of select="."/>'.</assert>
       </rule></pattern>

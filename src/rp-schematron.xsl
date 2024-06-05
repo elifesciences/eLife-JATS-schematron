@@ -2082,8 +2082,12 @@
 
 	  <!--RULE general-article-meta-checks-->
    <xsl:template match="article/front/article-meta" priority="1000" mode="M46">
+      <xsl:variable name="distinct-emails" select="distinct-values((descendant::contrib[@contrib-type='author']/email, author-notes/corresp/email))"/>
+      <xsl:variable name="distinct-email-count" select="count($distinct-emails)"/>
+      <xsl:variable name="corresp-authors" select="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
+      <xsl:variable name="corresp-author-count" select="count($corresp-authors)"/>
 
-		<!--ASSERT error-->
+		    <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="article-id[@pub-id-type='doi']"/>
          <xsl:otherwise>
@@ -2139,6 +2143,29 @@
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
                <svrl:text>[article-no-emails] This preprint has no emails for corresponding authors, which must be incorrect.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+
+		    <!--ASSERT warning-->
+      <xsl:choose>
+         <xsl:when test="$corresp-author-count=$distinct-email-count"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$corresp-author-count=$distinct-email-count">
+               <xsl:attribute name="id">article-email-corresp-author-count-equivalence</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[article-email-corresp-author-count-equivalence] The number of corresponding authors (<xsl:text/>
+                  <xsl:value-of select="$corresp-author-count"/>
+                  <xsl:text/>: <xsl:text/>
+                  <xsl:value-of select="string-join($corresp-authors,'; ')"/>
+                  <xsl:text/>) is not equal to the number of distinct email addresses (<xsl:text/>
+                  <xsl:value-of select="$distinct-email-count"/>
+                  <xsl:text/>: <xsl:text/>
+                  <xsl:value-of select="string-join($distinct-emails,'; ')"/>
+                  <xsl:text/>). Is this correct?</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
