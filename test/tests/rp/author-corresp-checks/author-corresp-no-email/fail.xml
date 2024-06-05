@@ -1,0 +1,21 @@
+<?oxygen SCHSchema="author-corresp-no-email.sch"?>
+<!--Context: contrib[@contrib-type='author']
+Test: report    @corresp='yes' and not(email) and not(xref[@ref-type='corresp'])
+Message: Author  has the attribute corresp="yes", but they do not have a child email element or an xref with the attribute ref-type="corresp". -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <contrib-group>
+                <contrib contrib-type="author" corresp="yes">
+                    <name/>
+                </contrib>
+                <contrib contrib-type="author" corresp="yes">
+                    <xref ref-type="aff" rid="aff1"/>
+                </contrib>
+            </contrib-group>
+            <author-notes>
+                <corresp id="c1"><email/></corresp>
+            </author-notes>
+        </article-meta>
+    </article>
+</root>

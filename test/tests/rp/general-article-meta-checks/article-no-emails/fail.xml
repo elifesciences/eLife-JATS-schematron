@@ -1,0 +1,21 @@
+<?oxygen SCHSchema="article-no-emails.sch"?>
+<!--Context: article/front/article-meta
+Test: assert    (descendant::contrib[@contrib-type='author' and email]) or (descendant::contrib[@contrib-type='author']/xref[@ref-type='corresp']/@rid=./author-notes/corresp/@id)
+Message: This preprint has no emails for corresponding authors, which must be incorrect. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <front>
+            <article-meta>
+            <contrib-group>
+                <contrib contrib-type="author" corresp="yes">
+                </contrib>
+                <contrib contrib-type="author" corresp="yes">
+                </contrib>
+            </contrib-group>
+            <author-notes>
+                <corresp id="c1"><email/></corresp>
+            </author-notes>
+        </article-meta>
+        </front>
+    </article>
+</root>

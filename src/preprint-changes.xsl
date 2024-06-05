@@ -173,5 +173,15 @@
             </permissions>
         </xsl:copy>
     </xsl:template>
+    
+    <!-- Introduce id for top-level sections (with titles) that don't have them, so they appear in the TOC on EPP -->
+    <xsl:template match="(body|back)/sec[title and not(@id)]">
+        <xsl:copy>
+            <xsl:attribute name="id">
+                <xsl:value-of select="generate-id(.)"/>
+            </xsl:attribute>
+            <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+        </xsl:copy>
+    </xsl:template>
 
 </xsl:stylesheet>

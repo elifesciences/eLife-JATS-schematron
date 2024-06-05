@@ -24,6 +24,28 @@
         <x:expect-not-assert id="author-contrib-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="author-corresp-checks">
+      <x:scenario label="author-corresp-no-email-pass">
+        <x:context href="../tests/rp/author-corresp-checks/author-corresp-no-email/pass.xml"/>
+        <x:expect-not-report id="author-corresp-no-email" role="error"/>
+        <x:expect-not-assert id="author-corresp-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-corresp-no-email-fail">
+        <x:context href="../tests/rp/author-corresp-checks/author-corresp-no-email/fail.xml"/>
+        <x:expect-report id="author-corresp-no-email" role="error"/>
+        <x:expect-not-assert id="author-corresp-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-email-no-corresp-pass">
+        <x:context href="../tests/rp/author-corresp-checks/author-email-no-corresp/pass.xml"/>
+        <x:expect-not-report id="author-email-no-corresp" role="error"/>
+        <x:expect-not-assert id="author-corresp-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-email-no-corresp-fail">
+        <x:context href="../tests/rp/author-corresp-checks/author-email-no-corresp/fail.xml"/>
+        <x:expect-report id="author-email-no-corresp" role="error"/>
+        <x:expect-not-assert id="author-corresp-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="name-tests">
       <x:scenario label="surname-test-1-pass">
         <x:context href="../tests/rp/name-tests/surname-test-1/pass.xml"/>
@@ -751,6 +773,26 @@
       <x:scenario label="article-contrib-group-fail">
         <x:context href="../tests/rp/general-article-meta-checks/article-contrib-group/fail.xml"/>
         <x:expect-assert id="article-contrib-group" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-no-emails-pass">
+        <x:context href="../tests/rp/general-article-meta-checks/article-no-emails/pass.xml"/>
+        <x:expect-not-assert id="article-no-emails" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-no-emails-fail">
+        <x:context href="../tests/rp/general-article-meta-checks/article-no-emails/fail.xml"/>
+        <x:expect-assert id="article-no-emails" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-email-corresp-author-count-equivalence-pass">
+        <x:context href="../tests/rp/general-article-meta-checks/article-email-corresp-author-count-equivalence/pass.xml"/>
+        <x:expect-not-assert id="article-email-corresp-author-count-equivalence" role="warning"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-email-corresp-author-count-equivalence-fail">
+        <x:context href="../tests/rp/general-article-meta-checks/article-email-corresp-author-count-equivalence/fail.xml"/>
+        <x:expect-assert id="article-email-corresp-author-count-equivalence" role="warning"/>
         <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
