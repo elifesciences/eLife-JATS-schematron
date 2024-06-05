@@ -67,6 +67,16 @@
         role="error" 
         id="author-contrb-no-aff-xref">Author <value-of select="e:get-name(name[1])"/> has no affiliation.</assert>
      </rule>
+      
+      <rule context="contrib[@contrib-type='author']" id="author-corresp-checks">
+        <report test="@corresp='yes' and not(email) and not(xref[@ref-type='corresp'])" 
+          role="error" 
+          id="author-corresp-no-email">Author <value-of select="e:get-name(name[1])"/> has the attribute corresp="yes", but they do not have a child email element or an xref with the attribute ref-type="corresp".</report>
+        
+        <report test="not(@corresp='yes') and (email or xref[@ref-type='corresp'])" 
+          role="error" 
+          id="author-email-no-corresp">Author <value-of select="e:get-name(name[1])"/> does not have the attribute corresp="yes", but they have a child email element or an xref with the attribute ref-type="corresp".</report>
+     </rule>
     
      <rule context="contrib-group//name" id="name-tests">
     	<assert test="count(surname) = 1"
@@ -451,6 +461,10 @@
         <assert test="count(contrib-group)=1" 
         role="error" 
         id="article-contrib-group">article-meta must contain one (and only one) &lt;contrib-group> element.</assert>
+        
+        <assert test="(descendant::contrib[@contrib-type='author' and email]) or (descendant::contrib[@contrib-type='author']/xref[@ref-type='corresp']/@rid=./author-notes/corresp/@id)" 
+        role="error" 
+        id="article-no-emails">This preprint has no emails for corresponding authors, which must be incorrect.</assert>
       </rule>
 
       <rule context="article/front/article-meta/article-version" id="article-version-checks">

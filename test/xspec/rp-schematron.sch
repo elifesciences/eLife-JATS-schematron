@@ -49,6 +49,13 @@
         <assert test="xref[@ref-type='aff']" role="error" id="author-contrb-no-aff-xref">Author <value-of select="e:get-name(name[1])"/> has no affiliation.</assert>
      </rule>
   </pattern>
+  <pattern id="author-corresp-checks-pattern">
+    <rule context="contrib[@contrib-type='author']" id="author-corresp-checks">
+        <report test="@corresp='yes' and not(email) and not(xref[@ref-type='corresp'])" role="error" id="author-corresp-no-email">Author <value-of select="e:get-name(name[1])"/> has the attribute corresp="yes", but they do not have a child email element or an xref with the attribute ref-type="corresp".</report>
+        
+        <report test="not(@corresp='yes') and (email or xref[@ref-type='corresp'])" role="error" id="author-email-no-corresp">Author <value-of select="e:get-name(name[1])"/> does not have the attribute corresp="yes", but they have a child email element or an xref with the attribute ref-type="corresp".</report>
+     </rule>
+  </pattern>
   <pattern id="name-tests-pattern">
     <rule context="contrib-group//name" id="name-tests">
     	<assert test="count(surname) = 1" role="error" id="surname-test-1">Each name must contain only one surname.</assert>
@@ -328,6 +335,8 @@
         <assert test="count(article-version)=1" role="error" id="article-version-1">article-meta must contain one (and only one) &lt;article-version&gt; element.</assert>
 
         <assert test="count(contrib-group)=1" role="error" id="article-contrib-group">article-meta must contain one (and only one) &lt;contrib-group&gt; element.</assert>
+        
+        <assert test="(descendant::contrib[@contrib-type='author' and email]) or (descendant::contrib[@contrib-type='author']/xref[@ref-type='corresp']/@rid=./author-notes/corresp/@id)" role="error" id="article-no-emails">This preprint has no emails for corresponding authors, which must be incorrect.</assert>
       </rule>
   </pattern>
   <pattern id="article-version-checks-pattern">
@@ -504,6 +513,7 @@
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/title-group/article-title" role="error" id="article-title-checks-xspec-assert">article-meta/title-group/article-title must be present.</assert>
       <assert test="descendant::article-meta/contrib-group/contrib[@contrib-type='author' and not(collab)]" role="error" id="author-contrib-checks-xspec-assert">article-meta/contrib-group/contrib[@contrib-type='author' and not(collab)] must be present.</assert>
+      <assert test="descendant::contrib[@contrib-type='author']" role="error" id="author-corresp-checks-xspec-assert">contrib[@contrib-type='author'] must be present.</assert>
       <assert test="descendant::contrib-group//name" role="error" id="name-tests-xspec-assert">contrib-group//name must be present.</assert>
       <assert test="descendant::contrib-group//name/surname" role="error" id="surname-tests-xspec-assert">contrib-group//name/surname must be present.</assert>
       <assert test="descendant::name/given-names" role="error" id="given-names-tests-xspec-assert">name/given-names must be present.</assert>
