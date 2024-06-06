@@ -20,7 +20,7 @@
          remove specific-use attribute
          change article-type to conform with VORs
          add namespace definitions to root element if missing -->
-    <xsl:template match="article">
+    <xsl:template name="article-changes" match="article">
         <xsl:copy>
             <xsl:choose>
                 <!-- to account for review articles under the new model -->
@@ -48,7 +48,7 @@
     </xsl:template>
     
     <!-- Handle cases where there is a singular affiliation without links from the authors -->
-    <xsl:template match="article-meta/contrib-group[count(aff) = 1 and not(contrib[@contrib-type='author' and xref[@ref-type='aff']])]/contrib[@contrib-type='author' and not(xref[@ref-type='aff'])]">
+    <xsl:template name="singular-aff-contrib" match="article-meta/contrib-group[count(aff) = 1 and not(contrib[@contrib-type='author' and xref[@ref-type='aff']])]/contrib[@contrib-type='author' and not(xref[@ref-type='aff'])]">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:apply-templates select="*|text()"/>
@@ -58,7 +58,7 @@
     </xsl:template>
     
     <!-- In cases where there is one affiliation for all authors, add id for affiliation so that it can be linked -->
-    <xsl:template match="article-meta/contrib-group[contrib[@contrib-type='author'] and count(aff) = 1 and not(contrib[@contrib-type='author' and xref[@ref-type='aff']])]/aff">
+    <xsl:template name="singular-aff" match="article-meta/contrib-group[contrib[@contrib-type='author'] and count(aff) = 1 and not(contrib[@contrib-type='author' and xref[@ref-type='aff']])]/aff">
         <aff id="aff1">
             <xsl:apply-templates select="@*[name()!='id']"/>
             <xsl:apply-templates select="*|text()"/>
@@ -66,7 +66,7 @@
     </xsl:template>
     
     <!-- Change all caps titles to sentence case for known phrases, e.g. REFERENCES -> References -->
-    <xsl:template match="title[(upper-case(.)=. or lower-case(.)=.) and not(*) and not(parent::caption)]">
+    <xsl:template name="all-caps-to-sentence" match="title[(upper-case(.)=. or lower-case(.)=.) and not(*) and not(parent::caption)]">
         <xsl:variable name="phrases" select="(
             'bibliography( (and|&amp;) references?)?',
             '(graphical )?abstract',
@@ -108,7 +108,7 @@
     </xsl:template>
 
     <!-- Capture additional content within asbtract as additional, sibling abstract(s) with JATS4R compliant abstract-type -->
-    <xsl:template match="article-meta/abstract[*:sec[preceding-sibling::p]]">
+    <xsl:template name="abstract-types" match="article-meta/abstract[*:sec[preceding-sibling::p]]">
         <xsl:copy>
         <xsl:apply-templates select="@*|title|p[not(preceding-sibling::sec)]|text()[not(preceding-sibling::sec)]"/>
         </xsl:copy>
@@ -137,7 +137,7 @@
     </xsl:template>
 
     <!-- Convert ext-link elements that contain dois in refs to correct semantic capture: pub-id -->
-    <xsl:template match="ref//ext-link[@ext-link-type='uri'][matches(lower-case(@xlink:href),'^https?://(dx\.)?doi\.org/')]">
+    <xsl:template name="ref-doi-fix" match="ref//ext-link[@ext-link-type='uri'][matches(lower-case(@xlink:href),'^https?://(dx\.)?doi\.org/')]">
         <xsl:element name="pub-id">
             <xsl:attribute name="pub-id-type">doi</xsl:attribute>
             <xsl:value-of select="substring(@xlink:href, (string-length(@xlink:href) - string-length(substring-after(lower-case(@xlink:href),'doi.org/')) + 1))"/>
@@ -145,7 +145,7 @@
     </xsl:template>
     
     <!-- Change publication-type="website" to "web" for consistency across all eLife content -->
-    <xsl:template match="mixed-citation[@publication-type='website']|element-citation-citation[@publication-type='website']">
+    <xsl:template name="web-ref-type" match="mixed-citation[@publication-type='website']|element-citation-citation[@publication-type='website']">
         <xsl:copy>
             <xsl:attribute name="publication-type">web</xsl:attribute>
             <xsl:apply-templates select="@*[name()!='publication-type']"/>
@@ -154,7 +154,7 @@
     </xsl:template>
 
     <!-- Add blanket biorender statement for any object with a caption that mentions it -->
-    <xsl:template match="*[caption[contains(lower-case(.),'biorender')] and not(permissions[contains(lower-case(.),'biorender')])]">
+    <xsl:template name="biorender-permissions" match="*[caption[contains(lower-case(.),'biorender')] and not(permissions[contains(lower-case(.),'biorender')])]">
         <xsl:variable name="current-year" select="year-from-date(current-date())"/>
         <xsl:copy>
             <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
@@ -175,7 +175,7 @@
     </xsl:template>
     
     <!-- Introduce id for top-level sections (with titles) that don't have them, so they appear in the TOC on EPP -->
-    <xsl:template match="(body|back)/sec[title and not(@id)]">
+    <xsl:template name="toc-sec-ids" match="(body|back)/sec[title and not(@id)]">
         <xsl:copy>
             <xsl:attribute name="id">
                 <xsl:value-of select="generate-id(.)"/>
