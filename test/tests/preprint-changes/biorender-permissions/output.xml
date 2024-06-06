@@ -1,0 +1,11 @@
+<!--Testing template with name: biorender-permissions-->
+<fig xmlns:xlink="http://www.w3.org/1999/xlink">
+<caption>
+<p>Images were created using BioRender.com.</p>
+</caption>
+<permissions>
+<copyright-statement>© 2024, BioRender Inc</copyright-statement>
+<copyright-year>2024</copyright-year>
+<copyright-holder>BioRender Inc</copyright-holder>
+<license><license-p>Any parts of this image created with <ext-link ext-link-type="uri" xlink:href="https://www.biorender.com/">BioRender</ext-link> are not made available under the same license as the Reviewed Preprint, and are © 2024, BioRender Inc.</license-p></license>
+</permissions></fig>
