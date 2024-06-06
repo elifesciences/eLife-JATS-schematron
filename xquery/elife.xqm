@@ -358,7 +358,7 @@ declare function elife:new-test-case($file-path,$new-comment){
  :)
 declare function elife:copy-edit2xspec($xspec-sch){
   <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" schematron="copy-edit.sch">
-  <x:scenario >{
+  <x:scenario>{
     for $x in $xspec-sch//sch:rule
     let $id := elife:get-id($x)  
     return
@@ -480,4 +480,25 @@ let $problem-tests := string-join(
 return error(
         xs:QName("elife:error"),
         (string-join($unallowed-roles,', ')||' is not allowed as value of @role. See test(s) with id(s) '||$problem-tests))
+};
+
+(: Generate an xspec file for a xsl file. It expects:
+    - Each template (to be tested) in the xsl to have a name
+    - Each template to have an input.xml and an output.xml file in a folder named after the template
+    :)
+declare function elife:xsl2xspec($xsl as node(),$name as xs:string){
+  <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"  xmlns:xs="http://www.w3.org/2001/XMLSchema" stylesheet="../../src/preprint-changes.xsl">
+    <x:scenario label="{$name}">
+      <x:scenario label="all">
+       <x:context href="{'../tests/'||$name||'/all/input.xml'}"/>
+       <x:expect label="Testing all templates" href="{'../tests/'||$name||'/all/output.xml'}"/>
+      </x:scenario>{
+      for $template in $xsl//xsl:template[@xml:id]
+      let $id := $template/@xml:id
+      return <x:scenario label="{$id}">
+                <x:context href="{'../tests/'||$name||'/'||$id||'/input.xml'}"/>
+                <x:expect label="{'Testing the template: '||$id}" href="{'../tests/'||$name||'/'||$id||'/output.xml'}"/>
+             </x:scenario>
+    }</x:scenario>
+  </x:description>
 };

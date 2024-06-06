@@ -25,6 +25,9 @@ declare variable $manifest-sch := doc(concat($outputDir,'/meca-manifest-schematr
 (: Permitted role values :)
 declare variable $roles := ('error','warning','info');
 
+(: XSL for preprints :)
+declare variable $preprint-changes-xsl := doc(concat($outputDir,'/preprint-changes.xsl'));
+
 (
   for $sch in $sch/sch:schema
   (: schematron for pre-author :)
@@ -70,6 +73,7 @@ declare variable $roles := ('error','warning','info');
   let $rp-xspec-sch := elife:sch2xspec-sch($rp-sch)
   (: Generate xspec file from xspec specific sch :)
   let $rp-xspec := elife:sch2xspec($rp-xspec-sch,'rp')
+
   
   return (
     (: error if file contains unallowed role values :)
@@ -87,5 +91,12 @@ declare variable $roles := ('error','warning','info');
   let $xml := doc(($outputDir||'/'||$file))
   return (
     file:write(($root||'/test/xspec/'||$file),$xml)
+  )
+  
+,
+  (: Generate xspec file for preprint-changes xsl :)
+  let $preprint-changes-xspec := elife:xsl2xspec($preprint-changes-xsl,'preprint-changes')
+  return (
+    file:write(($root||'/test/xspec/preprint-changes.xspec'),$preprint-changes-xspec,map{'indent':'yes'})
   )
 )
