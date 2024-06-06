@@ -1,0 +1,76 @@
+<!--Testing template with id: all-->
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:xlink="http://www.w3.org/1999/xlink" article-type="something-err-idunno" specific-use="production" dtd-version="1.1d2">
+<front>
+<journal-meta>
+            ...
+</journal-meta>
+<article-meta>
+            ...
+<title-group>
+<article-title/>
+</title-group>
+<contrib-group>
+<contrib contrib-type="author" corresp="yes">
+<name>
+<surname>Claus</surname>
+<given-names>Santa</given-names>
+</name>
+<xref ref-type="corresp" rid="cor1">*</xref>
+</contrib>
+<contrib contrib-type="author">
+<name>
+<surname>Elf</surname>
+<given-names>Top</given-names>
+</name>
+</contrib>
+<aff><institution>North Pole Enterprises LLC</institution></aff>
+</contrib-group>
+<author-notes>
+<corresp id="cor1"><label>*</label>Corresponding author. <email>s.claus@north.pole</email></corresp>
+</author-notes>
+            ...
+<abstract>
+<p>This is the abstract</p>
+<sec>
+<title>Impact statement</title>
+<p>This is an impact statement</p>
+</sec>
+<sec>
+<title>eLife digest</title>
+<p>A plain language summary</p>
+</sec>
+<sec>
+<fig/>
+</sec>
+</abstract>
+...
+</article-meta>
+        ...
+</front>
+<body>
+<sec>
+<title>INTRODUCTION</title>
+</sec>
+<sec id="s2">
+<title>RESULTS &amp; DISCUSSION</title>
+<fig>
+<caption>
+<p>Images were created using BioRender.com.</p>
+</caption>
+</fig>
+</sec>
+<sec id="s3">
+<title>MATERIALS &amp; METHODS</title>
+</sec>
+</body>
+<back>
+<ref-list>
+<ref id="r1">
+<mixed-citation publication-type="journal"><ext-link ext-link-type="uri" xlink:href="https://doi.org/10.7554/eLife.09560">https://doi.org/10.7554/eLife.09560</ext-link></mixed-citation>
+</ref>
+<ref id="r2">
+<mixed-citation publication-type="website">The internet</mixed-citation>
+</ref>
+</ref-list>
+</back>
+</article>

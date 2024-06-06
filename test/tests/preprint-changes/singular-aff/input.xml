@@ -1,0 +1,18 @@
+<!--Testing template with name: singular-aff-->
+<article-meta>
+<contrib-group>
+<contrib contrib-type="author">
+<name>
+<surname>Claus</surname>
+<given-names>Santa</given-names>
+</name>
+</contrib>
+<contrib contrib-type="author">
+<name>
+<surname>Elf</surname>
+<given-names>Top</given-names>
+</name>
+</contrib>
+<aff><institution>North Pole Enterprises LLC</institution></aff>
+</contrib-group>
+</article-meta>

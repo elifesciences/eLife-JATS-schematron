@@ -1,0 +1,44 @@
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" stylesheet="../../src/preprint-changes.xsl">
+  <x:scenario label="preprint-changes">
+    <x:scenario label="all">
+      <x:context href="../tests/preprint-changes/all/input.xml"/>
+      <x:expect label="Testing all templates" href="../tests/preprint-changes/all/output.xml"/>
+    </x:scenario>
+    <x:scenario label="article-changes">
+      <x:context href="../tests/preprint-changes/article-changes/input.xml"/>
+      <x:expect label="Testing the template: article-changes" href="../tests/preprint-changes/article-changes/output.xml"/>
+    </x:scenario>
+    <x:scenario label="singular-aff-contrib">
+      <x:context href="../tests/preprint-changes/singular-aff-contrib/input.xml"/>
+      <x:expect label="Testing the template: singular-aff-contrib" href="../tests/preprint-changes/singular-aff-contrib/output.xml"/>
+    </x:scenario>
+    <x:scenario label="singular-aff">
+      <x:context href="../tests/preprint-changes/singular-aff/input.xml"/>
+      <x:expect label="Testing the template: singular-aff" href="../tests/preprint-changes/singular-aff/output.xml"/>
+    </x:scenario>
+    <x:scenario label="all-caps-to-sentence">
+      <x:context href="../tests/preprint-changes/all-caps-to-sentence/input.xml"/>
+      <x:expect label="Testing the template: all-caps-to-sentence" href="../tests/preprint-changes/all-caps-to-sentence/output.xml"/>
+    </x:scenario>
+    <x:scenario label="abstract-types">
+      <x:context href="../tests/preprint-changes/abstract-types/input.xml"/>
+      <x:expect label="Testing the template: abstract-types" href="../tests/preprint-changes/abstract-types/output.xml"/>
+    </x:scenario>
+    <x:scenario label="ref-doi-fix">
+      <x:context href="../tests/preprint-changes/ref-doi-fix/input.xml"/>
+      <x:expect label="Testing the template: ref-doi-fix" href="../tests/preprint-changes/ref-doi-fix/output.xml"/>
+    </x:scenario>
+    <x:scenario label="web-ref-type">
+      <x:context href="../tests/preprint-changes/web-ref-type/input.xml"/>
+      <x:expect label="Testing the template: web-ref-type" href="../tests/preprint-changes/web-ref-type/output.xml"/>
+    </x:scenario>
+    <x:scenario label="biorender-permissions">
+      <x:context href="../tests/preprint-changes/biorender-permissions/input.xml"/>
+      <x:expect label="Testing the template: biorender-permissions" href="../tests/preprint-changes/biorender-permissions/output.xml"/>
+    </x:scenario>
+    <x:scenario label="toc-sec-ids">
+      <x:context href="../tests/preprint-changes/toc-sec-ids/input.xml"/>
+      <x:expect label="Testing the template: toc-sec-ids" href="../tests/preprint-changes/toc-sec-ids/output.xml"/>
+    </x:scenario>
+  </x:scenario>
+</x:description>

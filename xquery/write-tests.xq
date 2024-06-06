@@ -5,6 +5,7 @@ import module namespace elife = 'elife' at 'elife.xqm';
 
 let $sch := doc('../src/schematron.sch')
 let $rp-sch := doc('../src/rp-schematron-base.sch')
+let $preprint-xsl := doc('../src/preprint-changes.xsl')
 let $base-uri := substring-before(base-uri($sch),'/schematron.sch')
 let $root := substring-before($base-uri,'/src')
 
@@ -52,5 +53,21 @@ Message: ',replace($test/data(),'[-—–][-—–]',''),' ')}
     ,
     file:write(concat($path,$test/@id,'.sch'),$schema-let,map{'indent':'yes'})
   )
+,
 
+ for $id in ($preprint-xsl//*:template/@xml:id,'all')
+  let $path := concat($root,'/test/tests/preprint-changes/',$id,'/')
+  let $input-path :=$path||'input.xml'
+  let $output-path :=$path||'output.xml'
+  let $node := (comment{'Testing template with id: '||$id},'&#xa;',
+                <article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"/>)
+  return (
+    if(file:exists($path)) 
+    then () 
+    else file:create-dir($path)
+    ,
+    if(not(file:exists($input-path))) then file:write($input-path,$node)
+    ,
+    if(not(file:exists($output-path))) then file:write($output-path,$node)
+  )
 )

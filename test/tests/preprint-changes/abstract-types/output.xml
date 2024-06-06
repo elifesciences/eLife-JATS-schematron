@@ -1,0 +1,17 @@
+<!--Testing template with name: abstract-types-->
+<article-meta>
+<abstract>
+<p>This is the abstract</p>
+</abstract>
+<abstract abstract-type="teaser">
+<title>Impact statement</title>
+<p>This is an impact statement</p>
+</abstract>
+<abstract abstract-type="plain-language-summary">
+<title>eLife digest</title>
+<p>A plain language summary</p>
+</abstract>
+<abstract abstract-type="graphical">
+<fig/>
+</abstract>
+</article-meta>
