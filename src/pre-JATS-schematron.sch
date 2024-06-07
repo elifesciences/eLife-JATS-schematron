@@ -1587,7 +1587,7 @@
       
       <report test="(@contrib-type='editor') and ($role!='Reviewing Editor')" role="error" id="editor-conformance-4">[editor-conformance-4] <value-of select="$name"/> has a @contrib-type='editor' but their role is not 'Reviewing Editor' (<value-of select="$role"/>), which is incorrect.</report>
 
-      <assert test="count($matching-author-names)=0" role="error" id="editor-conformance-5">[editor-conformance-5] <value-of select="$name"/> is listed both as an author as as a <value-of select="$role"/>, which must be incorrect.</assert>
+      <assert test="count($matching-author-names)=0" role="error" id="editor-conformance-5">[editor-conformance-5] <value-of select="$name"/> is listed both as an author and as a <value-of select="$role"/>, which must be incorrect.</assert>
       
     </rule></pattern><pattern id="auth-cont-tests-pattern"><rule context="article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and not(child::collab) and not(ancestor::collab)]" id="auth-cont-tests">
       

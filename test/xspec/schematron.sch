@@ -1742,7 +1742,7 @@
         <value-of select="$name"/> has a @contrib-type='editor' but their role is not 'Reviewing Editor' (<value-of select="$role"/>), which is incorrect.</report>
 
       <assert test="count($matching-author-names)=0" role="error" id="editor-conformance-5">
-        <value-of select="$name"/> is listed both as an author as as a <value-of select="$role"/>, which must be incorrect.</assert>
+        <value-of select="$name"/> is listed both as an author and as a <value-of select="$role"/>, which must be incorrect.</assert>
       
     </rule>
   </pattern>
