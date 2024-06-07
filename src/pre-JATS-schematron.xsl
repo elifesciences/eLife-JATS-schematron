@@ -8619,22 +8619,6 @@
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT warning-->
-      <xsl:if test="matches(.,'[\(\)\[\]]')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[\(\)\[\]]')">
-            <xsl:attribute name="id">pre-given-names-test-16</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[pre-given-names-test-16] given-names contains brackets - '<xsl:text/>
-               <xsl:value-of select="."/>
-               <xsl:text/>'. This will be flagged by Crossref (although will not actually cause any significant problems). Please add the following author query: Please confirm whether you are happy to remove the brackets around (one of) your given names - '<xsl:text/>
-               <xsl:value-of select="."/>
-               <xsl:text/>'. This will cause minor issues at Crossref, although they can be retained if desired.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
       <xsl:apply-templates select="*" mode="M92"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M92"/>
