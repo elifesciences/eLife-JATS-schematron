@@ -7955,7 +7955,7 @@
                </xsl:attribute>
                <svrl:text>[editor-conformance-5] <xsl:text/>
                   <xsl:value-of select="$name"/>
-                  <xsl:text/> is listed both as an author as as a <xsl:text/>
+                  <xsl:text/> is listed both as an author and as a <xsl:text/>
                   <xsl:value-of select="$role"/>
                   <xsl:text/>, which must be incorrect.</svrl:text>
             </svrl:failed-assert>
