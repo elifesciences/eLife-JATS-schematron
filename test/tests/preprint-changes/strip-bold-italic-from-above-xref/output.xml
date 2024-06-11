@@ -1,7 +1,7 @@
 <!--Testing template with id: strip-bold-italic-around-xref-->
 <article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
 <p>
-<italic>italic text <xref>Fig 1</xref> italic text <node/></italic>
-<bold>bold text <xref>Fig 1</xref> bold text <node/></bold>
+<italic>italic text </italic><xref>Fig 1</xref><italic> italic text </italic><italic><node/></italic>
+<bold>bold text </bold><xref>Fig 1</xref><bold> bold text </bold><bold><node/></bold>
 </p>
 </article>
