@@ -1,0 +1,5 @@
+<!--Testing template with id: strip-bold-italic-from-above-xref-->
+<sec>
+<p><italic>italic text <xref>Fig 1</xref> italic text <node/></italic></p>
+<p><bold>bold text <xref>Fig 1</xref> bold text <node/></bold></p>
+</sec>

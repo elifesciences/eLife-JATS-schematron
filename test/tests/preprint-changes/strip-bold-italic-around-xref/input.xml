@@ -1,0 +1,7 @@
+<!--Testing template with id: strip-bold-italic-around-xref-->
+<sec>
+<p><bold><italic><xref>Fig 1</xref></italic></bold></p>
+<p><italic><bold><xref>Fig 1</xref></bold></italic></p>
+<p><xref><italic><bold>Fig 1</bold></italic></xref></p>
+<p><xref><bold><italic>Fig 1</italic></bold></xref></p>
+</sec>
