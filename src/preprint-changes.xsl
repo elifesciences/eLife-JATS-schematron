@@ -184,4 +184,59 @@
         </xsl:copy>
     </xsl:template>
 
+    <!-- Strip unnecessary bolding and italicisation from inside citations -->
+    <xsl:template xml:id="strip-bold-italic-around-xref" match="xref/bold[italic[not(xref)]]
+                                                                    |xref/bold/italic[not(xref)]
+                                                                    |bold[italic[xref]]
+                                                                    |xref/italic[bold[not(xref)]]
+                                                                    |xref/italic/bold[not(xref)]
+                                                                    |italic[bold[xref]]">
+         <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+    </xsl:template>
+
+    <!-- Strip unnecessary bolding and italicisation above citations -->
+    <xsl:template xml:id="strip-bold-italic-from-above-xref" match="bold[xref]|italic[xref]">
+        <xsl:choose> 
+            <!-- if there's a text node that contains anything other than punctuation -->
+            <xsl:when test="text()[matches(.,'[^\s\p{P}]')] or *[not(name()=('bold','italic','xref'))]">
+                <xsl:for-each select="node()">
+                    <xsl:choose>
+                        <xsl:when test="self::xref">
+                            <xsl:apply-templates select="."/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:choose>
+                                <!-- if the text node is just space -->
+                                <xsl:when test="self::text() and matches(.,'^\p{Z}+$')">
+                                    <xsl:apply-templates select="."/>
+                                </xsl:when>
+                                <!-- reintroduce styling for unknown content -->
+                                <xsl:when test="parent::bold[parent::italic]">
+                                    <italic><bold><xsl:apply-templates select="."/></bold></italic>
+                                </xsl:when>
+                                <xsl:when test="parent::bold">
+                                    <bold><xsl:apply-templates select="."/></bold>
+                                </xsl:when>
+                                <xsl:when test="parent::italic[parent::bold]">
+                                    <bold><italic><xsl:apply-templates select="."/></italic></bold>
+                                </xsl:when>
+                                <xsl:when test="parent::italic">
+                                    <italic><xsl:apply-templates select="."/></italic>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:copy>
+                                        <xsl:apply-templates select="."/>
+                                    </xsl:copy>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                 <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
 </xsl:stylesheet>

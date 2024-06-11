@@ -1,0 +1,9 @@
+<!--Testing template with id: strip-bold-italic-around-xref-->
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<p>
+<bold><italic><xref>Fig 1</xref></italic></bold>
+<italic><bold><xref>Fig 1</xref></bold></italic>
+<xref><italic><bold>Fig 1</bold></italic></xref>
+<xref><bold><italic>Fig 1</italic></bold></xref>
+</p>
+</article>
