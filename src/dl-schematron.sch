@@ -33,7 +33,9 @@
   
   <let name="funders" value="'funders.xml'"/>
   <let name="wellcome-fundref-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
-  
+  <let name="gbmf-fundref-id" value="'http://dx.doi.org/10.13039/100000936'"/>
+  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$gbmf-fundref-id)"/>  
+
   <!--=== Custom functions ===-->
   <xsl:function name="e:is-prc" as="xs:boolean">
     <xsl:param name="elem" as="node()"/>
