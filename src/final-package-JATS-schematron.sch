@@ -33,7 +33,9 @@
   
   <let name="funders" value="'funders.xml'"/>
   <let name="wellcome-fundref-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
-  
+  <let name="gbmf-fundref-id" value="'http://dx.doi.org/10.13039/100000936'"/>
+  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$gbmf-fundref-id)"/>  
+
   <!--=== Custom functions ===-->
   <xsl:function name="e:is-prc" as="xs:boolean">
     <xsl:param name="elem" as="node()"/>
@@ -2313,7 +2315,7 @@
 	  
 	  <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-8" test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>.</report>
 	  
-	</rule></pattern><pattern id="general-grant-doi-tests-pattern"><rule context="funding-group/award-group[funding-source/institution-wrap/institution-id[not(.=$wellcome-fundref-ids)]]" id="general-grant-doi-tests">
+	</rule></pattern><pattern id="general-grant-doi-tests-pattern"><rule context="funding-group/award-group[funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" id="general-grant-doi-tests">
       <let name="award-id" value="award-id"/>
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
       <let name="funder-entry" value="document($funders)//funder[@fundref=$funder-id]"/>
@@ -2326,10 +2328,18 @@
 	</rule></pattern><pattern id="wellcome-grant-doi-tests-pattern"><rule context="funding-group/award-group[funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" id="wellcome-grant-doi-tests">
       <let name="wellcome-grants" value="document($funders)//funder[@fundref=$wellcome-fundref-ids]/grant"/>
       <let name="award-id-elem" value="award-id"/>
-      <let name="award-id" value="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','')          else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/> 
+      <let name="award-id" value="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','')          else if (contains(lower-case($award-id-elem),'_z')) then replace(substring-before(lower-case($award-id-elem),'_z'),'[^\d]','')         else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/> 
       <let name="grant-matches" value="if ($award-id='') then ()         else $wellcome-grants[@award=$award-id]"/>
       
       <report test="$grant-matches" role="warning" id="wellcome-grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
+      
+    </rule></pattern><pattern id="gbmf-grant-doi-tests-pattern"><rule context="funding-group/award-group[funding-source/institution-wrap/institution-id=$gbmf-fundref-id]" id="gbmf-grant-doi-tests">
+      <let name="gbmf-grants" value="document($funders)//funder[@fundref=$gbmf-fundref-id]/grant"/>
+      <let name="award-id-elem" value="award-id"/>
+      <let name="award-id" value="if (matches($award-id-elem,'^\d+(\.\d+)?$')) then concat('GBMF',$award-id-elem)         else if (not(matches(upper-case($award-id-elem),'^GBMF'))) then concat('GBMF',replace($award-id-elem,'[^\d\.]',''))         else upper-case($award-id-elem)"/> 
+      <let name="grant-matches" value="if ($award-id='') then ()         else $gbmf-grants[@award=$award-id]"/>
+      
+      <report test="$grant-matches" role="warning" id="gbmf-grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
       
     </rule></pattern><pattern id="award-id-tests-pattern"><rule context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>

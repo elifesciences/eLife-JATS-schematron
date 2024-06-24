@@ -33,7 +33,9 @@
   
   <let name="funders" value="'funders.xml'"/>
   <let name="wellcome-fundref-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
-  
+  <let name="gbmf-fundref-id" value="'http://dx.doi.org/10.13039/100000936'"/>
+  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$gbmf-fundref-id)"/>  
+
   <!--=== Custom functions ===-->
   <xsl:function name="e:is-prc" as="xs:boolean">
     <xsl:param name="elem" as="node()"/>
@@ -2685,7 +2687,7 @@
 	</rule>
   </pattern>
   <pattern id="general-grant-doi-tests-pattern">
-    <rule context="funding-group/award-group[funding-source/institution-wrap/institution-id[not(.=$wellcome-fundref-ids)]]" id="general-grant-doi-tests">
+    <rule context="funding-group/award-group[funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" id="general-grant-doi-tests">
       <let name="award-id" value="award-id"/>
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
       <let name="funder-entry" value="document($funders)//funder[@fundref=$funder-id]"/>
@@ -2701,10 +2703,21 @@
     <rule context="funding-group/award-group[funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" id="wellcome-grant-doi-tests">
       <let name="wellcome-grants" value="document($funders)//funder[@fundref=$wellcome-fundref-ids]/grant"/>
       <let name="award-id-elem" value="award-id"/>
-      <let name="award-id" value="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','')          else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/> 
+      <let name="award-id" value="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','')          else if (contains(lower-case($award-id-elem),'_z')) then replace(substring-before(lower-case($award-id-elem),'_z'),'[^\d]','')         else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/> 
       <let name="grant-matches" value="if ($award-id='') then ()         else $wellcome-grants[@award=$award-id]"/>
       
       <report test="$grant-matches" role="warning" id="wellcome-grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="gbmf-grant-doi-tests-pattern">
+    <rule context="funding-group/award-group[funding-source/institution-wrap/institution-id=$gbmf-fundref-id]" id="gbmf-grant-doi-tests">
+      <let name="gbmf-grants" value="document($funders)//funder[@fundref=$gbmf-fundref-id]/grant"/>
+      <let name="award-id-elem" value="award-id"/>
+      <let name="award-id" value="if (matches($award-id-elem,'^\d+(\.\d+)?$')) then concat('GBMF',$award-id-elem)         else if (not(matches(upper-case($award-id-elem),'^GBMF'))) then concat('GBMF',replace($award-id-elem,'[^\d\.]',''))         else upper-case($award-id-elem)"/> 
+      <let name="grant-matches" value="if ($award-id='') then ()         else $gbmf-grants[@award=$award-id]"/>
+      
+      <report test="$grant-matches" role="warning" id="gbmf-grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
       
     </rule>
   </pattern>
@@ -9681,8 +9694,9 @@
       <assert test="descendant::article-meta/funding-group[descendant::institution[lower-case(.)=('wellcome','wellcome trust')]]/funding-statement" role="error" id="wellcome-fund-statement-tests-xspec-assert">article-meta/funding-group[descendant::institution[lower-case(.)=('wellcome','wellcome trust')]]/funding-statement must be present.</assert>
       <assert test="descendant::article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))]" role="error" id="max-planck-fund-statement-tests-xspec-assert">article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))] must be present.</assert>
       <assert test="descendant::funding-group/award-group" role="error" id="award-group-tests-xspec-assert">funding-group/award-group must be present.</assert>
-      <assert test="descendant::funding-group/award-group[funding-source/institution-wrap/institution-id[not(.=$wellcome-fundref-ids)]]" role="error" id="general-grant-doi-tests-xspec-assert">funding-group/award-group[funding-source/institution-wrap/institution-id[not(.=$wellcome-fundref-ids)]] must be present.</assert>
+      <assert test="descendant::funding-group/award-group[funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" role="error" id="general-grant-doi-tests-xspec-assert">funding-group/award-group[funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]] must be present.</assert>
       <assert test="descendant::funding-group/award-group[funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" role="error" id="wellcome-grant-doi-tests-xspec-assert">funding-group/award-group[funding-source/institution-wrap/institution-id=$wellcome-fundref-ids] must be present.</assert>
+      <assert test="descendant::funding-group/award-group[funding-source/institution-wrap/institution-id=$gbmf-fundref-id]" role="error" id="gbmf-grant-doi-tests-xspec-assert">funding-group/award-group[funding-source/institution-wrap/institution-id=$gbmf-fundref-id] must be present.</assert>
       <assert test="descendant::funding-group/award-group/award-id" role="error" id="award-id-tests-xspec-assert">funding-group/award-group/award-id must be present.</assert>
       <assert test="descendant::article-meta//award-group//institution-wrap" role="error" id="institution-wrap-tests-xspec-assert">article-meta//award-group//institution-wrap must be present.</assert>
       <assert test="descendant::article//award-group//institution-wrap/institution-id" role="error" id="institution-id-tests-xspec-assert">article//award-group//institution-wrap/institution-id must be present.</assert>
