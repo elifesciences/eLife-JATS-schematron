@@ -12199,7 +12199,7 @@
 
 
 	  <!--RULE general-grant-doi-tests-->
-   <xsl:template match="funding-group/award-group[funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" priority="1000" mode="M152">
+   <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" priority="1000" mode="M152">
       <xsl:variable name="award-id" select="award-id"/>
       <xsl:variable name="funder-id" select="funding-source/institution-wrap/institution-id"/>
       <xsl:variable name="funder-entry" select="document($funders)//funder[@fundref=$funder-id]"/>
@@ -12223,6 +12223,26 @@
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test="$mints-grant-dois and (count($funder-entry//*:grant) gt 29) and not($grant-matches)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$mints-grant-dois and (count($funder-entry//*:grant) gt 29) and not($grant-matches)">
+            <xsl:attribute name="id">grant-doi-test-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[grant-doi-test-2] Funding entry from <xsl:text/>
+               <xsl:value-of select="funding-source/institution-wrap/institution"/>
+               <xsl:text/> has an award-id (<xsl:text/>
+               <xsl:value-of select="$award-id"/>
+               <xsl:text/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <xsl:text/>
+               <xsl:value-of select="$funder-entry/descendant::*:grant[1]/@doi"/>
+               <xsl:text/> for ID <xsl:text/>
+               <xsl:value-of select="$funder-entry/descendant::*:grant[1]/@award"/>
+               <xsl:text/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M152"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M152"/>
@@ -12234,11 +12254,11 @@
 
 
 	  <!--RULE wellcome-grant-doi-tests-->
-   <xsl:template match="funding-group/award-group[funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" priority="1000" mode="M153">
-      <xsl:variable name="wellcome-grants" select="document($funders)//funder[@fundref=$wellcome-fundref-ids]/grant"/>
+   <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" priority="1000" mode="M153">
+      <xsl:variable name="grants" select="document($funders)//funder[@fundref=$wellcome-fundref-ids]/grant"/>
       <xsl:variable name="award-id-elem" select="award-id"/>
       <xsl:variable name="award-id" select="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','')          else if (contains(lower-case($award-id-elem),'_z')) then replace(substring-before(lower-case($award-id-elem),'_z'),'[^\d]','')         else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>
-      <xsl:variable name="grant-matches" select="if ($award-id='') then ()         else $wellcome-grants[@award=$award-id]"/>
+      <xsl:variable name="grant-matches" select="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
 
 		    <!--REPORT warning-->
       <xsl:if test="$grant-matches">
@@ -12257,6 +12277,29 @@
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--ASSERT warning-->
+      <xsl:choose>
+         <xsl:when test="$grant-matches"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$grant-matches">
+               <xsl:attribute name="id">wellcome-grant-doi-test-2</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[wellcome-grant-doi-test-2] Funding entry from <xsl:text/>
+                  <xsl:value-of select="funding-source/institution-wrap/institution"/>
+                  <xsl:text/> has an award-id (<xsl:text/>
+                  <xsl:value-of select="$award-id-elem"/>
+                  <xsl:text/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <xsl:text/>
+                  <xsl:value-of select="$grants[1]/@doi"/>
+                  <xsl:text/> for ID <xsl:text/>
+                  <xsl:value-of select="$grants[1]/@award"/>
+                  <xsl:text/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M153"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M153"/>
@@ -12268,11 +12311,11 @@
 
 
 	  <!--RULE gbmf-grant-doi-tests-->
-   <xsl:template match="funding-group/award-group[funding-source/institution-wrap/institution-id=$gbmf-fundref-id]" priority="1000" mode="M154">
-      <xsl:variable name="gbmf-grants" select="document($funders)//funder[@fundref=$gbmf-fundref-id]/grant"/>
+   <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$gbmf-fundref-id]" priority="1000" mode="M154">
+      <xsl:variable name="grants" select="document($funders)//funder[@fundref=$gbmf-fundref-id]/grant"/>
       <xsl:variable name="award-id-elem" select="award-id"/>
       <xsl:variable name="award-id" select="if (matches($award-id-elem,'^\d+(\.\d+)?$')) then concat('GBMF',$award-id-elem)         else if (not(matches(upper-case($award-id-elem),'^GBMF'))) then concat('GBMF',replace($award-id-elem,'[^\d\.]',''))         else upper-case($award-id-elem)"/>
-      <xsl:variable name="grant-matches" select="if ($award-id='') then ()         else $gbmf-grants[@award=$award-id]"/>
+      <xsl:variable name="grant-matches" select="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
 
 		    <!--REPORT warning-->
       <xsl:if test="$grant-matches">
@@ -12291,6 +12334,29 @@
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--ASSERT warning-->
+      <xsl:choose>
+         <xsl:when test="$grant-matches"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$grant-matches">
+               <xsl:attribute name="id">gbmf-grant-doi-test-2</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[gbmf-grant-doi-test-2] Funding entry from <xsl:text/>
+                  <xsl:value-of select="funding-source/institution-wrap/institution"/>
+                  <xsl:text/> has an award-id (<xsl:text/>
+                  <xsl:value-of select="$award-id-elem"/>
+                  <xsl:text/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <xsl:text/>
+                  <xsl:value-of select="$grants[1]/@doi"/>
+                  <xsl:text/> for ID <xsl:text/>
+                  <xsl:value-of select="$grants[1]/@award"/>
+                  <xsl:text/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M154"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M154"/>
@@ -12302,11 +12368,11 @@
 
 
 	  <!--RULE jsta-grant-doi-tests-->
-   <xsl:template match="funding-group/award-group[funding-source/institution-wrap/institution-id=$jsta-fundref-id]" priority="1000" mode="M155">
-      <xsl:variable name="jsta-grants" select="document($funders)//funder[@fundref=$jsta-fundref-id]/grant"/>
+   <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$jsta-fundref-id]" priority="1000" mode="M155">
+      <xsl:variable name="grants" select="document($funders)//funder[@fundref=$jsta-fundref-id]/grant"/>
       <xsl:variable name="award-id-elem" select="award-id"/>
       <xsl:variable name="award-id" select="if (matches(upper-case($award-id-elem),'JPMJ[A-Z0-9]+\s*$') and not(matches(upper-case($award-id-elem),'^JPMJ[A-Z0-9]+$'))) then concat('JPMJ',upper-case(replace(substring-after($award-id-elem,'JPMJ'),'\s+$','')))         else upper-case($award-id-elem)"/>
-      <xsl:variable name="grant-matches" select="if ($award-id='') then ()         else $jsta-grants[@award=$award-id]"/>
+      <xsl:variable name="grant-matches" select="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
 
 		    <!--REPORT warning-->
       <xsl:if test="$grant-matches">
@@ -12325,6 +12391,29 @@
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--ASSERT warning-->
+      <xsl:choose>
+         <xsl:when test="$grant-matches"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$grant-matches">
+               <xsl:attribute name="id">jsta-grant-doi-test-2</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[jsta-grant-doi-test-2] Funding entry from <xsl:text/>
+                  <xsl:value-of select="funding-source/institution-wrap/institution"/>
+                  <xsl:text/> has an award-id (<xsl:text/>
+                  <xsl:value-of select="$award-id-elem"/>
+                  <xsl:text/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <xsl:text/>
+                  <xsl:value-of select="$grants[1]/@doi"/>
+                  <xsl:text/> for ID <xsl:text/>
+                  <xsl:value-of select="$grants[1]/@award"/>
+                  <xsl:text/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M155"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M155"/>

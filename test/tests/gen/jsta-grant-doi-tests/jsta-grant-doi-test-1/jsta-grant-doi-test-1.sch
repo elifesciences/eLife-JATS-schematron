@@ -1293,17 +1293,17 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="funding-group/award-group[funding-source/institution-wrap/institution-id=$jsta-fundref-id]" id="jsta-grant-doi-tests">
-      <let name="jsta-grants" value="document($funders)//funder[@fundref=$jsta-fundref-id]/grant"/>
+    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$jsta-fundref-id]" id="jsta-grant-doi-tests">
+      <let name="grants" value="document($funders)//funder[@fundref=$jsta-fundref-id]/grant"/>
       <let name="award-id-elem" value="award-id"/>
       <let name="award-id" value="if (matches(upper-case($award-id-elem),'JPMJ[A-Z0-9]+\s*$') and not(matches(upper-case($award-id-elem),'^JPMJ[A-Z0-9]+$'))) then concat('JPMJ',upper-case(replace(substring-after($award-id-elem,'JPMJ'),'\s+$','')))         else upper-case($award-id-elem)"/>
-      <let name="grant-matches" value="if ($award-id='') then ()         else $jsta-grants[@award=$award-id]"/>
+      <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
       <report test="$grant-matches" role="warning" id="jsta-grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group/award-group[funding-source/institution-wrap/institution-id=$jsta-fundref-id]" role="error" id="jsta-grant-doi-tests-xspec-assert">funding-group/award-group[funding-source/institution-wrap/institution-id=$jsta-fundref-id] must be present.</assert>
+      <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$jsta-fundref-id]" role="error" id="jsta-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$jsta-fundref-id] must be present.</assert>
     </rule>
   </pattern>
 </schema>
