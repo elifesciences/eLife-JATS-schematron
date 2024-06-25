@@ -22,7 +22,8 @@
   <let name="funders" value="'../../../../../src/funders.xml'"/>
   <let name="wellcome-fundref-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
   <let name="gbmf-fundref-id" value="'http://dx.doi.org/10.13039/100000936'"/>
-  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$gbmf-fundref-id)"/>
+  <let name="jsta-fundref-id" value="'http://dx.doi.org/10.13039/501100002241'"/>
+  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$gbmf-fundref-id,$jsta-fundref-id)"/>
   <xsl:function name="e:is-prc" as="xs:boolean">
     <xsl:param name="elem" as="node()"/>
     <xsl:choose>
@@ -1292,17 +1293,17 @@
     
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="funding-group/award-group[funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" id="wellcome-grant-doi-tests">
-      <let name="wellcome-grants" value="document($funders)//funder[@fundref=$wellcome-fundref-ids]/grant"/>
+    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" id="wellcome-grant-doi-tests">
+      <let name="grants" value="document($funders)//funder[@fundref=$wellcome-fundref-ids]/grant"/>
       <let name="award-id-elem" value="award-id"/>
       <let name="award-id" value="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','')          else if (contains(lower-case($award-id-elem),'_z')) then replace(substring-before(lower-case($award-id-elem),'_z'),'[^\d]','')         else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>
-      <let name="grant-matches" value="if ($award-id='') then ()         else $wellcome-grants[@award=$award-id]"/>
+      <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
       <report test="$grant-matches" role="warning" id="wellcome-grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group/award-group[funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" role="error" id="wellcome-grant-doi-tests-xspec-assert">funding-group/award-group[funding-source/institution-wrap/institution-id=$wellcome-fundref-ids] must be present.</assert>
+      <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" role="error" id="wellcome-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-fundref-ids] must be present.</assert>
     </rule>
   </pattern>
 </schema>
