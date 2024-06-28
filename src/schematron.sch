@@ -7108,6 +7108,10 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert test="@fn-type='con'" 
         role="error" 
         id="auth-cont-fn-test-1">This fn must have an @fn-type='con'.</assert>
+
+      <report test="matches(.,'\.\s*$')" 
+        role="error" 
+        id="auth-cont-fn-test-2">Author contribution must not end with a full stop. This one does: <value-of select="."/></report>
     </rule>
     
     <rule context="fn-group[@content-type='ethics-information']" id="ethics-tests">
