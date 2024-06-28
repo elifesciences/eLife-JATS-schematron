@@ -9355,6 +9355,16 @@
         <x:expect-assert id="auth-cont-fn-test-1" role="error"/>
         <x:expect-not-assert id="auth-cont-fn-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="auth-cont-fn-test-2-pass">
+        <x:context href="../tests/gen/auth-cont-fn-tests/auth-cont-fn-test-2/pass.xml"/>
+        <x:expect-not-report id="auth-cont-fn-test-2" role="error"/>
+        <x:expect-not-assert id="auth-cont-fn-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="auth-cont-fn-test-2-fail">
+        <x:context href="../tests/gen/auth-cont-fn-tests/auth-cont-fn-test-2/fail.xml"/>
+        <x:expect-report id="auth-cont-fn-test-2" role="error"/>
+        <x:expect-not-assert id="auth-cont-fn-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ethics-tests">
       <x:scenario label="ethics-test-1-pass">
