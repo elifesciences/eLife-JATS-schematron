@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="ext-link-text.sch"?>
+<!--Context: ext-link[@ext-link-type='uri']
+Test: report    (.!=@xlink:href) and matches(.,'https?:|ftp:|www\.')
+Message: The text for a URL is '' (which looks like a URL), but it is not the same as the actual embedded link, which is ''. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/">https://elifesciences.org/</ext-link>
+    </article>
+</root>

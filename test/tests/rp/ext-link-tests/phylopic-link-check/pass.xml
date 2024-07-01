@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="phylopic-link-check.sch"?>
+<!--Context: ext-link[@ext-link-type='uri']
+Test: report    not(ancestor::fig/permissions[contains(.,'phylopic')]) and matches(@xlink:href,'phylopic\.org')
+Message: This link is to phylopic.org, which is a site where silhouettes/images are typically reproduced from. Please check whether any figures contain reproduced images from this site, and if so whether permissions have been obtained and/or copyright statements are correctly included. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/">https://elifesciences.org/</ext-link>
+    </article>
+</root>

@@ -824,6 +824,90 @@
         <x:expect-not-assert id="code-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="uri-checks">
+      <x:scenario label="uri-flag-pass">
+        <x:context href="../tests/rp/uri-checks/uri-flag/pass.xml"/>
+        <x:expect-not-report id="uri-flag" role="error"/>
+        <x:expect-not-assert id="uri-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="uri-flag-fail">
+        <x:context href="../tests/rp/uri-checks/uri-flag/fail.xml"/>
+        <x:expect-report id="uri-flag" role="error"/>
+        <x:expect-not-assert id="uri-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="ext-link-tests">
+      <x:scenario label="url-conformance-test-pass">
+        <x:context href="../tests/rp/ext-link-tests/url-conformance-test/pass.xml"/>
+        <x:expect-not-assert id="url-conformance-test" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="url-conformance-test-fail">
+        <x:context href="../tests/rp/ext-link-tests/url-conformance-test/fail.xml"/>
+        <x:expect-assert id="url-conformance-test" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ftp-credentials-flag-pass">
+        <x:context href="../tests/rp/ext-link-tests/ftp-credentials-flag/pass.xml"/>
+        <x:expect-not-report id="ftp-credentials-flag" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ftp-credentials-flag-fail">
+        <x:context href="../tests/rp/ext-link-tests/ftp-credentials-flag/fail.xml"/>
+        <x:expect-report id="ftp-credentials-flag" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="url-fullstop-report-pass">
+        <x:context href="../tests/rp/ext-link-tests/url-fullstop-report/pass.xml"/>
+        <x:expect-not-report id="url-fullstop-report" role="error"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="url-fullstop-report-fail">
+        <x:context href="../tests/rp/ext-link-tests/url-fullstop-report/fail.xml"/>
+        <x:expect-report id="url-fullstop-report" role="error"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="url-space-report-pass">
+        <x:context href="../tests/rp/ext-link-tests/url-space-report/pass.xml"/>
+        <x:expect-not-report id="url-space-report" role="error"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="url-space-report-fail">
+        <x:context href="../tests/rp/ext-link-tests/url-space-report/fail.xml"/>
+        <x:expect-report id="url-space-report" role="error"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ext-link-text-pass">
+        <x:context href="../tests/rp/ext-link-tests/ext-link-text/pass.xml"/>
+        <x:expect-not-report id="ext-link-text" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ext-link-text-fail">
+        <x:context href="../tests/rp/ext-link-tests/ext-link-text/fail.xml"/>
+        <x:expect-report id="ext-link-text" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ext-link-doi-check-pass">
+        <x:context href="../tests/rp/ext-link-tests/ext-link-doi-check/pass.xml"/>
+        <x:expect-not-report id="ext-link-doi-check" role="error"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ext-link-doi-check-fail">
+        <x:context href="../tests/rp/ext-link-tests/ext-link-doi-check/fail.xml"/>
+        <x:expect-report id="ext-link-doi-check" role="error"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="phylopic-link-check-pass">
+        <x:context href="../tests/rp/ext-link-tests/phylopic-link-check/pass.xml"/>
+        <x:expect-not-report id="phylopic-link-check" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="phylopic-link-check-fail">
+        <x:context href="../tests/rp/ext-link-tests/phylopic-link-check/fail.xml"/>
+        <x:expect-report id="phylopic-link-check" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="unallowed-symbol-tests">
       <x:scenario label="replacement-character-presence-pass">
         <x:context href="../tests/rp/unallowed-symbol-tests/replacement-character-presence/pass.xml"/>
