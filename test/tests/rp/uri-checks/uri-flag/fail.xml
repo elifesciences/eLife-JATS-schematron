@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="uri-flag.sch"?>
+<!--Context: uri
+Test: report    .
+Message: The uri element is not permitted. Instead use ext-link with the attribute link-type="uri". -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <uri></uri>
+    </article>
+</root>

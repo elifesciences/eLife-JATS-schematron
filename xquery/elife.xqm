@@ -440,7 +440,7 @@ return delete node $x,
                               ' or ')}" role="error" id="{concat($rule/@id,'-xspec-assert')}">{$test} must be present.</assert>
             else <assert test="{concat('descendant::',$test)}" role="error" id="{concat($rule/@id,'-xspec-assert')}">{$test} must be present.</assert> 
     return 
-    if ($id=('code-flag','preformat-flag','strike-warning')) then ()
+    if ($id=('code-flag','preformat-flag','strike-warning','uri-flag')) then ()
     else insert node 
         <pattern id="root-pattern">
         <rule context="root" id="root-rule">
