@@ -199,7 +199,7 @@
         <xsl:value-of select="'Retraction:'"/>
       </xsl:when>
       <xsl:when test="$s = 'Expression of Concern'">
-        <xsl:value-of select="'Expression of Concern:'"/>
+        <xsl:value-of select="'Expression of concern:'"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="'undefined'"/>

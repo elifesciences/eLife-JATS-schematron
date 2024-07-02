@@ -16,6 +16,10 @@
       <x:context href="../tests/preprint-changes/singular-aff/input.xml"/>
       <x:expect label="Testing the template: singular-aff" href="../tests/preprint-changes/singular-aff/output.xml"/>
     </x:scenario>
+    <x:scenario label="remove-fullstops-from-author-names">
+      <x:context href="../tests/preprint-changes/remove-fullstops-from-author-names/input.xml"/>
+      <x:expect label="Testing the template: remove-fullstops-from-author-names" href="../tests/preprint-changes/remove-fullstops-from-author-names/output.xml"/>
+    </x:scenario>
     <x:scenario label="all-caps-to-sentence">
       <x:context href="../tests/preprint-changes/all-caps-to-sentence/input.xml"/>
       <x:expect label="Testing the template: all-caps-to-sentence" href="../tests/preprint-changes/all-caps-to-sentence/output.xml"/>

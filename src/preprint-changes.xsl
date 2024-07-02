@@ -64,6 +64,31 @@
             <xsl:apply-templates select="*|text()"/>
         </aff>
     </xsl:template>
+
+    <!-- Strip full stops from author names -->
+    <xsl:template xml:id="remove-fullstops-from-author-names" match="article-meta//contrib[@contrib-type='author']/name/(given-names|surname)">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:choose>
+                <xsl:when test="matches(.,'\.')">
+                    <xsl:choose>
+                        <!-- If there's an initial followed by a word, e.g. de A. M. M. Armas
+                                then just go for de A M M Armas -->
+                        <xsl:when test="matches(.,'\p{Lu}\.?\s+\p{Lu}\p{Ll}+')">
+                            <xsl:value-of select="replace(.,'\.','')"/>
+                        </xsl:when>
+                        <!-- otherwise remove all spaces after fullstops as well -->
+                        <xsl:otherwise>
+                            <xsl:value-of select="replace(replace(replace(.,'(\p{Lu})\.+\s*(\p{Lu})', '$1$2'),'(\p{Lu})\.+\s*(\p{Lu})', '$1$2'),'\.+$','')"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="*|text()"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:copy>
+    </xsl:template>
     
     <!-- Change all caps titles to sentence case for known phrases, e.g. REFERENCES -> References -->
     <xsl:template xml:id="all-caps-to-sentence" match="title[(upper-case(.)=. or lower-case(.)=.) and not(*) and not(parent::caption)]">
