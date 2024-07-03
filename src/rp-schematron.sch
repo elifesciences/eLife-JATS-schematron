@@ -280,6 +280,10 @@
     <report test="not(ancestor::fig/permissions[contains(.,'phylopic')]) and matches(@xlink:href,'phylopic\.org')" role="warning" id="phylopic-link-check">[phylopic-link-check] This link is to phylopic.org, which is a site where silhouettes/images are typically reproduced from. Please check whether any figures contain reproduced images from this site, and if so whether permissions have been obtained and/or copyright statements are correctly included.</report>
     </rule></pattern>
 
+    <pattern id="footnote-checks-pattern"><rule context="fn-group[fn]" id="footnote-checks">
+        <assert test="ancestor::notes" role="error" id="body-footnote">[body-footnote] This preprint has footnotes appended to the content. EPP cannot render these, so they need adding to the text.</assert>
+      </rule></pattern>
+
     <pattern id="unallowed-symbol-tests-pattern"><rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
       
       <report test="contains(.,'�')" role="error" id="replacement-character-presence">[replacement-character-presence] <name/> element contains the replacement character '�' which is not allowed.</report>

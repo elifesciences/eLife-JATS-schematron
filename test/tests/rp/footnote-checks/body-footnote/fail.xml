@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="body-footnote.sch"?>
+<!--Context: fn-group[fn]
+Test: assert    ancestor::notes
+Message: This preprint has footnotes appended to the content. EPP cannot render these, so they need adding to the text. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <back>
+            <fn-group>
+                <fn/>
+            </fn-group>
+        </back>
+    </article>
+</root>

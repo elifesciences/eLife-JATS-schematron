@@ -908,6 +908,18 @@
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="footnote-checks">
+      <x:scenario label="body-footnote-pass">
+        <x:context href="../tests/rp/footnote-checks/body-footnote/pass.xml"/>
+        <x:expect-not-assert id="body-footnote" role="error"/>
+        <x:expect-not-assert id="footnote-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="body-footnote-fail">
+        <x:context href="../tests/rp/footnote-checks/body-footnote/fail.xml"/>
+        <x:expect-assert id="body-footnote" role="error"/>
+        <x:expect-not-assert id="footnote-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="unallowed-symbol-tests">
       <x:scenario label="replacement-character-presence-pass">
         <x:context href="../tests/rp/unallowed-symbol-tests/replacement-character-presence/pass.xml"/>
