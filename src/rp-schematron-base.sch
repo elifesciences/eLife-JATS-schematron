@@ -544,6 +544,14 @@
     </rule>
     </pattern>
 
+    <pattern id="footnotes">
+      <rule context="fn-group[fn]" id="footnote-checks">
+        <assert test="ancestor::notes"
+          role="error" 
+          id="body-footnote">This preprint has footnotes appended to the content. EPP cannot render these, so they need adding to the text.</assert>
+      </rule>
+    </pattern>
+
     <pattern id="symbol-checks">
       <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
       
