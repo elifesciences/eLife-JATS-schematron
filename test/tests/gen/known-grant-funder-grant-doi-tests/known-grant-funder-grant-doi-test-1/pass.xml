@@ -1,5 +1,5 @@
-<?oxygen SCHSchema="gbmf-grant-doi-test-1.sch"?>
-<!--Context: funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$gbmf-fundref-id]
+<?oxygen SCHSchema="known-grant-funder-grant-doi-test-1.sch"?>
+<!--Context: funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-fundref-ids]
 Test: report    $grant-matches
 Message: Funding entry from  has an award-id () which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
@@ -8,11 +8,11 @@ Message: Funding entry from  has an award-id () which could potentially be repla
       <award-group id="fund1">
         <funding-source>
           <institution-wrap>
-            <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100000936</institution-id>
-            <institution>Gordon and Betty Moore Foundation</institution>
+            <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/501100002241</institution-id>
+            <institution>Japan Science and Technology Agency</institution>
           </institution-wrap>
         </funding-source>
-        <award-id>12239</award-id>
+        <award-id>Investigator Award</award-id>
         <principal-award-recipient>
           <name>
             <surname>Claus</surname>
@@ -20,14 +20,14 @@ Message: Funding entry from  has an award-id () which could potentially be repla
           </name>
         </principal-award-recipient>
       </award-group>
-       <award-group id="fund2">
+        <award-group id="fund2">
         <funding-source>
           <institution-wrap>
-            <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100000936</institution-id>
-            <institution>Gordon and Betty Moore Foundation</institution>
+            <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100000913</institution-id>
+            <institution>James S McDonnell Foundation</institution>
           </institution-wrap>
         </funding-source>
-        <award-id>9336.01</award-id>
+        <award-id>Investigator Award</award-id>
         <principal-award-recipient>
           <name>
             <surname>Claus</surname>
@@ -38,11 +38,26 @@ Message: Funding entry from  has an award-id () which could potentially be repla
       <award-group id="fund3">
         <funding-source>
           <institution-wrap>
+            <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/501100002428</institution-id>
+            <institution>Austrian Science Fund</institution>
+          </institution-wrap>
+        </funding-source>
+        <award-id>Investigator Award</award-id>
+        <principal-award-recipient>
+          <name>
+            <surname>Claus</surname>
+            <given-names>Santa</given-names>
+          </name>
+        </principal-award-recipient>
+      </award-group>
+        <award-group id="fund4">
+        <funding-source>
+          <institution-wrap>
             <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100000936</institution-id>
             <institution>Gordon and Betty Moore Foundation</institution>
           </institution-wrap>
         </funding-source>
-        <award-id>gbmf9361</award-id>
+        <award-id>Investigator Award</award-id>
         <principal-award-recipient>
           <name>
             <surname>Claus</surname>

@@ -3454,6 +3454,18 @@
         <x:expect-not-assert id="general-grant-doi-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="general-funding-no-award-id-tests">
+      <x:scenario label="grant-doi-test-3-pass">
+        <x:context href="../tests/gen/general-funding-no-award-id-tests/grant-doi-test-3/pass.xml"/>
+        <x:expect-not-report id="grant-doi-test-3" role="warning"/>
+        <x:expect-not-assert id="general-funding-no-award-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="grant-doi-test-3-fail">
+        <x:context href="../tests/gen/general-funding-no-award-id-tests/grant-doi-test-3/fail.xml"/>
+        <x:expect-report id="grant-doi-test-3" role="warning"/>
+        <x:expect-not-assert id="general-funding-no-award-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="wellcome-grant-doi-tests">
       <x:scenario label="wellcome-grant-doi-test-1-pass">
         <x:context href="../tests/gen/wellcome-grant-doi-tests/wellcome-grant-doi-test-1/pass.xml"/>
@@ -3476,48 +3488,26 @@
         <x:expect-not-assert id="wellcome-grant-doi-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
-    <x:scenario label="gbmf-grant-doi-tests">
-      <x:scenario label="gbmf-grant-doi-test-1-pass">
-        <x:context href="../tests/gen/gbmf-grant-doi-tests/gbmf-grant-doi-test-1/pass.xml"/>
-        <x:expect-not-report id="gbmf-grant-doi-test-1" role="warning"/>
-        <x:expect-not-assert id="gbmf-grant-doi-tests-xspec-assert" role="error"/>
+    <x:scenario label="known-grant-funder-grant-doi-tests">
+      <x:scenario label="known-grant-funder-grant-doi-test-1-pass">
+        <x:context href="../tests/gen/known-grant-funder-grant-doi-tests/known-grant-funder-grant-doi-test-1/pass.xml"/>
+        <x:expect-not-report id="known-grant-funder-grant-doi-test-1" role="warning"/>
+        <x:expect-not-assert id="known-grant-funder-grant-doi-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="gbmf-grant-doi-test-1-fail">
-        <x:context href="../tests/gen/gbmf-grant-doi-tests/gbmf-grant-doi-test-1/fail.xml"/>
-        <x:expect-report id="gbmf-grant-doi-test-1" role="warning"/>
-        <x:expect-not-assert id="gbmf-grant-doi-tests-xspec-assert" role="error"/>
+      <x:scenario label="known-grant-funder-grant-doi-test-1-fail">
+        <x:context href="../tests/gen/known-grant-funder-grant-doi-tests/known-grant-funder-grant-doi-test-1/fail.xml"/>
+        <x:expect-report id="known-grant-funder-grant-doi-test-1" role="warning"/>
+        <x:expect-not-assert id="known-grant-funder-grant-doi-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="gbmf-grant-doi-test-2-pass">
-        <x:context href="../tests/gen/gbmf-grant-doi-tests/gbmf-grant-doi-test-2/pass.xml"/>
-        <x:expect-not-assert id="gbmf-grant-doi-test-2" role="warning"/>
-        <x:expect-not-assert id="gbmf-grant-doi-tests-xspec-assert" role="error"/>
+      <x:scenario label="known-grant-funder-grant-doi-test-2-pass">
+        <x:context href="../tests/gen/known-grant-funder-grant-doi-tests/known-grant-funder-grant-doi-test-2/pass.xml"/>
+        <x:expect-not-assert id="known-grant-funder-grant-doi-test-2" role="warning"/>
+        <x:expect-not-assert id="known-grant-funder-grant-doi-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="gbmf-grant-doi-test-2-fail">
-        <x:context href="../tests/gen/gbmf-grant-doi-tests/gbmf-grant-doi-test-2/fail.xml"/>
-        <x:expect-assert id="gbmf-grant-doi-test-2" role="warning"/>
-        <x:expect-not-assert id="gbmf-grant-doi-tests-xspec-assert" role="error"/>
-      </x:scenario>
-    </x:scenario>
-    <x:scenario label="jsta-grant-doi-tests">
-      <x:scenario label="jsta-grant-doi-test-1-pass">
-        <x:context href="../tests/gen/jsta-grant-doi-tests/jsta-grant-doi-test-1/pass.xml"/>
-        <x:expect-not-report id="jsta-grant-doi-test-1" role="warning"/>
-        <x:expect-not-assert id="jsta-grant-doi-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="jsta-grant-doi-test-1-fail">
-        <x:context href="../tests/gen/jsta-grant-doi-tests/jsta-grant-doi-test-1/fail.xml"/>
-        <x:expect-report id="jsta-grant-doi-test-1" role="warning"/>
-        <x:expect-not-assert id="jsta-grant-doi-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="jsta-grant-doi-test-2-pass">
-        <x:context href="../tests/gen/jsta-grant-doi-tests/jsta-grant-doi-test-2/pass.xml"/>
-        <x:expect-not-assert id="jsta-grant-doi-test-2" role="warning"/>
-        <x:expect-not-assert id="jsta-grant-doi-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="jsta-grant-doi-test-2-fail">
-        <x:context href="../tests/gen/jsta-grant-doi-tests/jsta-grant-doi-test-2/fail.xml"/>
-        <x:expect-assert id="jsta-grant-doi-test-2" role="warning"/>
-        <x:expect-not-assert id="jsta-grant-doi-tests-xspec-assert" role="error"/>
+      <x:scenario label="known-grant-funder-grant-doi-test-2-fail">
+        <x:context href="../tests/gen/known-grant-funder-grant-doi-tests/known-grant-funder-grant-doi-test-2/fail.xml"/>
+        <x:expect-assert id="known-grant-funder-grant-doi-test-2" role="warning"/>
+        <x:expect-not-assert id="known-grant-funder-grant-doi-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="award-id-tests">
@@ -3623,6 +3613,16 @@
       <x:scenario label="institution-id-test-5-fail">
         <x:context href="../tests/gen/institution-id-tests/institution-id-test-5/fail.xml"/>
         <x:expect-report id="institution-id-test-5" role="error"/>
+        <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="wellcome-institution-id-test-pass">
+        <x:context href="../tests/gen/institution-id-tests/wellcome-institution-id-test/pass.xml"/>
+        <x:expect-not-report id="wellcome-institution-id-test" role="warning"/>
+        <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="wellcome-institution-id-test-fail">
+        <x:context href="../tests/gen/institution-id-tests/wellcome-institution-id-test/fail.xml"/>
+        <x:expect-report id="wellcome-institution-id-test" role="warning"/>
         <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

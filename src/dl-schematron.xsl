@@ -1216,6 +1216,51 @@
          </xsl:for-each>
       </xsl:element>
   </xsl:function>
+   <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:alter-award-id">
+      <xsl:param name="award-id-elem" as="xs:string"/>
+      <xsl:param name="fundref-id" as="xs:string"/>
+      <xsl:choose>
+      
+         <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000936'">
+        
+            <xsl:value-of select="if (matches($award-id-elem,'^\d+(\.\d+)?$')) then concat('GBMF',$award-id-elem)          else if (not(matches(upper-case($award-id-elem),'^GBMF'))) then concat('GBMF',replace($award-id-elem,'[^\d\.]',''))          else upper-case($award-id-elem)"/>
+         </xsl:when>
+      
+         <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/501100002241'">
+        
+            <xsl:value-of select="if (matches(upper-case($award-id-elem),'JPMJ[A-Z0-9]+\s*$') and not(matches(upper-case($award-id-elem),'^JPMJ[A-Z0-9]+$'))) then concat('JPMJ',upper-case(replace(substring-after($award-id-elem,'JPMJ'),'\s+$','')))         else upper-case($award-id-elem)"/>
+         </xsl:when>
+      
+         <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000913'">
+        
+            <xsl:value-of select="if (matches(upper-case($award-id-elem),'JSMF2\d+$')) then substring-after($award-id-elem,'JSMF')         else replace($award-id-elem,'[^\d\-]','')"/>
+         </xsl:when>
+      
+         <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/501100002428'">
+        
+            <xsl:value-of select="if (matches($award-id-elem,'\d\-')) then replace(substring-before($award-id-elem,'-'),'[^A-Z\d]','')         else replace($award-id-elem,'[^A-Z\d]','')"/>
+         </xsl:when>
+      
+         <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000968'">
+        
+            <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\([A-Z\d]+\)')) then substring-before(substring-after($award-id-elem,'('),')')         else $award-id-elem"/>
+         </xsl:when>
+      
+         <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000968'">
+        
+            <xsl:value-of select="if (contains(upper-case($award-id-elem),'2020')) then concat('2020',replace(substring-after($award-id-elem,'2020'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2021')) then concat('2021',replace(substring-after($award-id-elem,'2021'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2022')) then concat('2022',replace(substring-after($award-id-elem,'2022'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2023')) then concat('2023',replace(substring-after($award-id-elem,'2023'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2024')) then concat('2024',replace(substring-after($award-id-elem,'2024'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'CEEC')) then concat('CEEC',replace(substring-after(upper-case($award-id-elem),'CEEC'),'[^A-Z0-9/]',''))         else if (contains(upper-case($award-id-elem),'PTDC/')) then concat('PTDC/',replace(substring-after(upper-case($award-id-elem),'PTDC/'),'[^A-Z0-9/\-]',''))         else if (contains(upper-case($award-id-elem),'DL 57/')) then concat('DL 57/',replace(substring-after(upper-case($award-id-elem),'DL 57/'),'[^A-Z0-9/\-]',''))         else $award-id-elem"/>
+         </xsl:when>
+      
+         <xsl:when test="$fundref-id=('http://dx.doi.org/10.13039/100010663','http://dx.doi.org/10.13039/100010665','http://dx.doi.org/10.13039/100010669','http://dx.doi.org/10.13039/100010675','http://dx.doi.org/10.13039/100010677','http://dx.doi.org/10.13039/100010679','http://dx.doi.org/10.13039/100010680','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100019180')">
+        
+            <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\(\d+\)')) then substring-before(substring-after($award-id-elem,'('),')')         else if (matches($award-id-elem,'\d{6,9}')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>
+         </xsl:when>
+      
+         <xsl:otherwise>
+            <xsl:value-of select="$award-id-elem"/>
+         </xsl:otherwise>
+      </xsl:choose>
+  </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:get-weekday" as="xs:integer?">
       <xsl:param name="date" as="xs:anyAtomicType?"/>
       <xsl:sequence select="       if (empty($date)) then ()       else xs:integer((xs:date($date) - xs:date('1901-01-06')) div xs:dayTimeDuration('P1D')) mod 7       "/>
@@ -1849,9 +1894,8 @@
    <xsl:param name="MSAs" select="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
    <xsl:param name="funders" select="'funders.xml'"/>
    <xsl:param name="wellcome-fundref-ids" select="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
-   <xsl:param name="gbmf-fundref-id" select="'http://dx.doi.org/10.13039/100000936'"/>
-   <xsl:param name="jsta-fundref-id" select="'http://dx.doi.org/10.13039/501100002241'"/>
-   <xsl:param name="grant-doi-exception-funder-ids" select="($wellcome-fundref-ids,$gbmf-fundref-id,$jsta-fundref-id)"/>
+   <xsl:param name="known-grant-funder-fundref-ids" select="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968')"/>
+   <xsl:param name="grant-doi-exception-funder-ids" select="($wellcome-fundref-ids,$known-grant-funder-fundref-ids)"/>
    <xsl:param name="org-regex" select="'b\.\p{Zs}?subtilis|bacillus\p{Zs}?subtilis|d\.\p{Zs}?melanogaster|drosophila\p{Zs}?melanogaster|e\.\p{Zs}?coli|escherichia\p{Zs}?coli|s\.\p{Zs}?pombe|schizosaccharomyces\p{Zs}?pombe|s\.\p{Zs}?cerevisiae|saccharomyces\p{Zs}?cerevisiae|c\.\p{Zs}?elegans|caenorhabditis\p{Zs}?elegans|a\.\p{Zs}?thaliana|arabidopsis\p{Zs}?thaliana|m\.\p{Zs}?thermophila|myceliophthora\p{Zs}?thermophila|dictyostelium|p\.\p{Zs}?falciparum|plasmodium\p{Zs}?falciparum|s\.\p{Zs}?enterica|salmonella\p{Zs}?enterica|s\.\p{Zs}?pyogenes|streptococcus\p{Zs}?pyogenes|p\.\p{Zs}?dumerilii|platynereis\p{Zs}?dumerilii|p\.\p{Zs}?cynocephalus|papio\p{Zs}?cynocephalus|o\.\p{Zs}?fasciatus|oncopeltus\p{Zs}?fasciatus|n\.\p{Zs}?crassa|neurospora\p{Zs}?crassa|c\.\p{Zs}?intestinalis|ciona\p{Zs}?intestinalis|e\.\p{Zs}?cuniculi|encephalitozoon\p{Zs}?cuniculi|h\.\p{Zs}?salinarum|halobacterium\p{Zs}?salinarum|s\.\p{Zs}?solfataricus|sulfolobus\p{Zs}?solfataricus|s\.\p{Zs}?mediterranea|schmidtea\p{Zs}?mediterranea|s\.\p{Zs}?rosetta|salpingoeca\p{Zs}?rosetta|n\.\p{Zs}?vectensis|nematostella\p{Zs}?vectensis|s\.\p{Zs}?aureus|staphylococcus\p{Zs}?aureus|v\.\p{Zs}?cholerae|vibrio\p{Zs}?cholerae|t\.\p{Zs}?thermophila|tetrahymena\p{Zs}?thermophila|c\.\p{Zs}?reinhardtii|chlamydomonas\p{Zs}?reinhardtii|n\.\p{Zs}?attenuata|nicotiana\p{Zs}?attenuata|e\.\p{Zs}?carotovora|erwinia\p{Zs}?carotovora|e\.\p{Zs}?faecalis|h\.\p{Zs}?sapiens|homo\p{Zs}?sapiens|c\.\p{Zs}?trachomatis|chlamydia\p{Zs}?trachomatis|enterococcus\p{Zs}?faecalis|x\.\p{Zs}?laevis|xenopus\p{Zs}?laevis|x\.\p{Zs}?tropicalis|xenopus\p{Zs}?tropicalis|m\.\p{Zs}?musculus|mus\p{Zs}?musculus|d\.\p{Zs}?immigrans|drosophila\p{Zs}?immigrans|d\.\p{Zs}?subobscura|drosophila\p{Zs}?subobscura|d\.\p{Zs}?affinis|drosophila\p{Zs}?affinis|d\.\p{Zs}?obscura|drosophila\p{Zs}?obscura|f\.\p{Zs}?tularensis|francisella\p{Zs}?tularensis|p\.\p{Zs}?plantaginis|podosphaera\p{Zs}?plantaginis|p\.\p{Zs}?lanceolata|plantago\p{Zs}?lanceolata|m\.\p{Zs}?trossulus|mytilus\p{Zs}?trossulus|m\.\p{Zs}?edulis|mytilus\p{Zs}?edulis|m\.\p{Zs}?chilensis|mytilus\p{Zs}?chilensis|u\.\p{Zs}?maydis|ustilago\p{Zs}?maydis|p\.\p{Zs}?knowlesi|plasmodium\p{Zs}?knowlesi|p\.\p{Zs}?aeruginosa|pseudomonas\p{Zs}?aeruginosa|t\.\p{Zs}?brucei|trypanosoma\p{Zs}?brucei|t\.\p{Zs}?gondii|toxoplasma\p{Zs}?gondii|d\.\p{Zs}?rerio|danio\p{Zs}?rerio|yimenosaurus|lesothosaurus\p{Zs}?diagnosticus|l\.\p{Zs}?diagnosticus|scelidosaurus\p{Zs}?harrisonii|s\.\p{Zs}?harrisonii|haya\p{Zs}?griva|h\.\p{Zs}?griva|polacanthus\p{Zs}?foxii|p\.\p{Zs}?foxii|scutellosaurus\p{Zs}?lawleri|s\.\p{Zs}?lawleri|saichania\p{Zs}?chulsanensis|s\.\p{Zs}?chulsanensis|gargoyleosaurus\p{Zs}?parkpinorum|g\.\p{Zs}?parkpinorum|europelta\p{Zs}?carbonensis|e\.\p{Zs}?carbonensis|stegosaurus\p{Zs}?stenops|s\.\p{Zs}?stenops|pinacosaurus\p{Zs}?grangeri|p\.\p{Zs}?grangeri|tatisaurus\p{Zs}?oehleri|t\.\p{Zs}?oehleri|hungarosaurus\p{Zs}?tormai|h\.\p{Zs}?tormai|bienosaurus\p{Zs}?lufengensis|b\.\p{Zs}?lufengensis|fabrosaurus\p{Zs}?australis|f\.\p{Zs}?australis|chinshakiangosaurus\p{Zs}?chunghoensis|c\.\p{Zs}?chunghoensis|euoplocephalus\p{Zs}?tutus|e\.\p{Zs}?tutus|drosophila|xenopus|salmonella|g\.\p{Zs}?beringei|gorilla\p{Zs}?beringei|m\.\p{Zs}?assamensis|macaca\p{Zs}?assamensis|m\.\p{Zs}?fuscata|macaca\p{Zs}?fuscata|m\.\p{Zs}?mulatta|macaca\p{Zs}?mulatta|m\.\p{Zs}?nemestrina|macaca\p{Zs}?nemestrina|m\.\p{Zs}?sphinx|mandrillus\p{Zs}?sphinx|p\.\p{Zs}?anubis|papio\p{Zs}?anubis|p\.\p{Zs}?hamadryas|papio\p{Zs}?hamadryas|p\.\p{Zs}?paniscus|pan\p{Zs}?paniscus|p\.\p{Zs}?troglodytes|pan\p{Zs}?troglodytes'"/>
    <xsl:param name="sec-title-regex" select="string-join(     for $x in tokenize($org-regex,'\|')     return concat('^',$x,'$')     ,'|')"/>
    <xsl:param name="latin-regex" select="'in\p{Zs}+vitro|ex\p{Zs}+vitro|in\p{Zs}+vivo|ex\p{Zs}+vivo|a\p{Zs}+priori|a\p{Zs}+posteriori|de\p{Zs}+novo|in\p{Zs}+utero|in\p{Zs}+natura|in\p{Zs}+situ|in\p{Zs}+planta|in\p{Zs}+cellulo|rete\p{Zs}+mirabile|nomen\p{Zs}+novum| sensu |ad\p{Zs}+libitum|in\p{Zs}+ovo'"/>

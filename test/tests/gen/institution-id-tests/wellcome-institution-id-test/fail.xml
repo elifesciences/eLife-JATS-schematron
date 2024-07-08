@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="wellcome-institution-id-test.sch"?>
+<!--Context: article//award-group//institution-wrap/institution-id
+Test: report    .=('http://dx.doi.org/10.13039/100004440','http://dx.doi.org/10.13039/100028897','http://dx.doi.org/10.13039/501100009053','http://dx.doi.org/10.13039/501100013372','http://dx.doi.org/10.13039/501100020194','http://dx.doi.org/10.13039/501100021773','http://dx.doi.org/10.13039/501100023312','http://dx.doi.org/10.13039/501100024310')
+Message:  element in funding entry for  is . This is an uncommon funder - should the funder be listed as 'Wellcome Trust' (http://dx.doi.org/10.13039/100010269) instead. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <award-group id="fund2">
+            <funding-source>
+                <institution-wrap>
+                    <institution-id>http://dx.doi.org/10.13039/100004440</institution-id>
+                    <institution>Wellcome</institution>
+                </institution-wrap>
+            </funding-source>
+        </award-group>
+    </article>
+</root>

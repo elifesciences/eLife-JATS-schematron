@@ -1,0 +1,24 @@
+<?oxygen SCHSchema="grant-doi-test-3.sch"?>
+<!--Context: funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id]
+Test: report    $grant-doi-count gt 29
+Message: Funding entry from  has not award-id, but the funder is known to mint grant DOIs (for example in the format  for ID ). Is there a missing grant DOI or award ID for this funding? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <funding-group>
+            <award-group id="fund2">
+                <funding-source>
+                    <institution-wrap>
+                        <institution-id institution-id-type="ror">https://ror.org/01pv73b02</institution-id>
+                        <institution>Czech Science Foundation</institution>
+                    </institution-wrap>
+                </funding-source>
+                <principal-award-recipient>
+                    <name>
+                        <surname>Zoolander</surname>
+                        <given-names>Derek</given-names>
+                    </name>
+                </principal-award-recipient>
+            </award-group>
+        </funding-group>
+    </article>
+</root>
