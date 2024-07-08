@@ -3382,6 +3382,16 @@
 	    id="grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</report>
       
 	</rule>
+
+    <rule context="funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id]" id="general-funding-no-award-id-tests">
+      <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
+      <let name="funder-entry" value="document($funders)//funder[@fundref=$funder-id]"/>
+      <let name="grant-doi-count" value="count($funder-entry//*:grant)"/>
+      
+      <report test="$grant-doi-count gt 29"
+	       role="warning" 
+	       id="grant-doi-test-3">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has not award-id, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Is there a missing grant DOI or award ID for this funding?</report>
+    </rule>
     
     <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" id="wellcome-grant-doi-tests">
       <let name="grants" value="document($funders)//funder[@fundref=$wellcome-fundref-ids]/grant"/>

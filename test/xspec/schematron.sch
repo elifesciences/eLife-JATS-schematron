@@ -2704,6 +2704,15 @@
       
 	</rule>
   </pattern>
+  <pattern id="general-funding-no-award-id-tests-pattern">
+    <rule context="funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id]" id="general-funding-no-award-id-tests">
+      <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
+      <let name="funder-entry" value="document($funders)//funder[@fundref=$funder-id]"/>
+      <let name="grant-doi-count" value="count($funder-entry//*:grant)"/>
+      
+      <report test="$grant-doi-count gt 29" role="warning" id="grant-doi-test-3">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has not award-id, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Is there a missing grant DOI or award ID for this funding?</report>
+    </rule>
+  </pattern>
   <pattern id="wellcome-grant-doi-tests-pattern">
     <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" id="wellcome-grant-doi-tests">
       <let name="grants" value="document($funders)//funder[@fundref=$wellcome-fundref-ids]/grant"/>
@@ -9720,6 +9729,7 @@
       <assert test="descendant::article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))]" role="error" id="max-planck-fund-statement-tests-xspec-assert">article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))] must be present.</assert>
       <assert test="descendant::funding-group/award-group" role="error" id="award-group-tests-xspec-assert">funding-group/award-group must be present.</assert>
       <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" role="error" id="general-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]] must be present.</assert>
+      <assert test="descendant::funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id]" role="error" id="general-funding-no-award-id-tests-xspec-assert">funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id] must be present.</assert>
       <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" role="error" id="wellcome-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-fundref-ids] must be present.</assert>
       <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$gbmf-fundref-id]" role="error" id="gbmf-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$gbmf-fundref-id] must be present.</assert>
       <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$jsta-fundref-id]" role="error" id="jsta-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$jsta-fundref-id] must be present.</assert>

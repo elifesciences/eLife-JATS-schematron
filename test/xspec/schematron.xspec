@@ -3454,6 +3454,18 @@
         <x:expect-not-assert id="general-grant-doi-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="general-funding-no-award-id-tests">
+      <x:scenario label="grant-doi-test-3-pass">
+        <x:context href="../tests/gen/general-funding-no-award-id-tests/grant-doi-test-3/pass.xml"/>
+        <x:expect-not-report id="grant-doi-test-3" role="warning"/>
+        <x:expect-not-assert id="general-funding-no-award-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="grant-doi-test-3-fail">
+        <x:context href="../tests/gen/general-funding-no-award-id-tests/grant-doi-test-3/fail.xml"/>
+        <x:expect-report id="grant-doi-test-3" role="warning"/>
+        <x:expect-not-assert id="general-funding-no-award-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="wellcome-grant-doi-tests">
       <x:scenario label="wellcome-grant-doi-test-1-pass">
         <x:context href="../tests/gen/wellcome-grant-doi-tests/wellcome-grant-doi-test-1/pass.xml"/>
