@@ -2392,6 +2392,8 @@
         <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-4" test="*" role="error" id="institution-id-test-4">The <name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains child element(s) (<value-of select="string-join(distinct-values(*/name()),', ')"/>) which is not allowed.</report>
       
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-5" test="(normalize-space(.) != '') and not(matches(.,'^http[s]?://d?x?\.?doi.org/10.13039/\d*$'))" role="error" id="institution-id-test-5"><name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains the following text - <value-of select="."/> - which is not a fundref doi.</report>
+
+      <report test=".=('http://dx.doi.org/10.13039/100004440','http://dx.doi.org/10.13039/100028897','http://dx.doi.org/10.13039/501100009053','http://dx.doi.org/10.13039/501100013372','http://dx.doi.org/10.13039/501100020194','http://dx.doi.org/10.13039/501100021773','http://dx.doi.org/10.13039/501100023312','http://dx.doi.org/10.13039/501100024310')" role="warning" id="wellcome-institution-id-test"><name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> is <value-of select="."/>. This is an uncommon funder - should the funder be listed as 'Wellcome Trust' (http://dx.doi.org/10.13039/100010269) instead.</report>
       
     </rule></pattern><pattern id="institution-id-doi-tests-pattern"><rule context="article//award-group//institution-wrap/institution-id[@institution-id-type='doi']" id="institution-id-doi-tests">
       

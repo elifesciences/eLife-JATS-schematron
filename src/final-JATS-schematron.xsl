@@ -12825,6 +12825,24 @@
                <xsl:text/> - which is not a fundref doi.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+
+		    <!--REPORT warning-->
+      <xsl:if test=".=('http://dx.doi.org/10.13039/100004440','http://dx.doi.org/10.13039/100028897','http://dx.doi.org/10.13039/501100009053','http://dx.doi.org/10.13039/501100013372','http://dx.doi.org/10.13039/501100020194','http://dx.doi.org/10.13039/501100021773','http://dx.doi.org/10.13039/501100023312','http://dx.doi.org/10.13039/501100024310')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".=('http://dx.doi.org/10.13039/100004440','http://dx.doi.org/10.13039/100028897','http://dx.doi.org/10.13039/501100009053','http://dx.doi.org/10.13039/501100013372','http://dx.doi.org/10.13039/501100020194','http://dx.doi.org/10.13039/501100021773','http://dx.doi.org/10.13039/501100023312','http://dx.doi.org/10.13039/501100024310')">
+            <xsl:attribute name="id">wellcome-institution-id-test</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[wellcome-institution-id-test] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element in funding entry for <xsl:text/>
+               <xsl:value-of select="parent::institution-wrap/institution"/>
+               <xsl:text/> is <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. This is an uncommon funder - should the funder be listed as 'Wellcome Trust' (http://dx.doi.org/10.13039/100010269) instead.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M161"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M161"/>
