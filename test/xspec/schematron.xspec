@@ -3554,6 +3554,28 @@
         <x:expect-not-assert id="jsmf-grant-doi-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="asf-grant-doi-tests">
+      <x:scenario label="asf-grant-doi-test-1-pass">
+        <x:context href="../tests/gen/asf-grant-doi-tests/asf-grant-doi-test-1/pass.xml"/>
+        <x:expect-not-report id="asf-grant-doi-test-1" role="warning"/>
+        <x:expect-not-assert id="asf-grant-doi-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="asf-grant-doi-test-1-fail">
+        <x:context href="../tests/gen/asf-grant-doi-tests/asf-grant-doi-test-1/fail.xml"/>
+        <x:expect-report id="asf-grant-doi-test-1" role="warning"/>
+        <x:expect-not-assert id="asf-grant-doi-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="asf-grant-doi-test-2-pass">
+        <x:context href="../tests/gen/asf-grant-doi-tests/asf-grant-doi-test-2/pass.xml"/>
+        <x:expect-not-assert id="asf-grant-doi-test-2" role="warning"/>
+        <x:expect-not-assert id="asf-grant-doi-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="asf-grant-doi-test-2-fail">
+        <x:context href="../tests/gen/asf-grant-doi-tests/asf-grant-doi-test-2/fail.xml"/>
+        <x:expect-assert id="asf-grant-doi-test-2" role="warning"/>
+        <x:expect-not-assert id="asf-grant-doi-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="award-id-tests">
       <x:scenario label="award-id-test-1-pass">
         <x:context href="../tests/gen/award-id-tests/award-id-test-1/pass.xml"/>

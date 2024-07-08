@@ -45,7 +45,8 @@
   <let name="gbmf-fundref-id" value="'http://dx.doi.org/10.13039/100000936'"/>
   <let name="jsta-fundref-id" value="'http://dx.doi.org/10.13039/501100002241'"/>
   <let name="jsmf-fundref-id" value="'http://dx.doi.org/10.13039/100000913'"/>
-  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$gbmf-fundref-id,$jsta-fundref-id,$jsmf-fundref-id)"/>  
+  <let name="asf-fundref-id" value="'http://dx.doi.org/10.13039/501100002428'"/>
+  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$gbmf-fundref-id,$jsta-fundref-id,$jsmf-fundref-id,$asf-fundref-id)"/>  
 
   <!--=== Custom functions ===-->
   <xsl:function name="e:is-prc" as="xs:boolean">
@@ -3469,6 +3470,25 @@
       <assert test="$grant-matches"
         role="warning" 
         id="jsmf-grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
+
+    </rule>
+
+    <!-- Austrian Science Fund grant DOIs -->
+    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$asf-fundref-id]" id="asf-grant-doi-tests">
+      <let name="grants" value="document($funders)//funder[@fundref=$asf-fundref-id]/grant"/>
+      <let name="award-id-elem" value="award-id"/>
+      <let name="award-id" value="if (matches($award-id-elem,'\d\-')) then replace(substring-before($award-id-elem,'-'),'[^A-Z\d]','')
+        else replace($award-id-elem,'[^A-Z\d]','')"/> 
+      <let name="grant-matches" value="if ($award-id='') then ()
+        else $grants[@award=$award-id]"/>
+      
+      <report test="$grant-matches"
+        role="warning"
+        id="asf-grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
+
+      <assert test="$grant-matches"
+        role="warning" 
+        id="asf-grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
 
     </rule>
     
