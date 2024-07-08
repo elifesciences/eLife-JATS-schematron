@@ -1438,6 +1438,13 @@
         <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\([A-Z\d]+\)')) then substring-before(substring-after($award-id-elem,'('),')')
         else $award-id-elem"/>
       </xsl:when>
+      <!-- H2020 European Research Council -->
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100010663'">
+        <!-- H2020 ERC grant DOIs are registered as numbers: 694640, 101002163 -->
+        <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\([A-Z\d]+\)')) then substring-before(substring-after($award-id-elem,'('),')')
+        else if (matches($award-id-elem,'\d{6,9}')) then replace($award-id-elem,'[^\d]','')
+        else $award-id-elem"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$award-id-elem"/>
       </xsl:otherwise>
