@@ -34,11 +34,8 @@
   <let name="funders" value="'funders.xml'"/>
   <!-- Grant DOI enabling -->
   <let name="wellcome-fundref-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
-  <let name="gbmf-fundref-id" value="'http://dx.doi.org/10.13039/100000936'"/>
-  <let name="jsta-fundref-id" value="'http://dx.doi.org/10.13039/501100002241'"/>
-  <let name="jsmf-fundref-id" value="'http://dx.doi.org/10.13039/100000913'"/>
-  <let name="asf-fundref-id" value="'http://dx.doi.org/10.13039/501100002428'"/>
-  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$gbmf-fundref-id,$jsta-fundref-id,$jsmf-fundref-id,$asf-fundref-id)"/>  
+  <let name="known-grant-funder-fundref-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968')"/>
+  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$known-grant-funder-fundref-ids)"/>  
 
   <!--=== Custom functions ===-->
   <xsl:function name="e:is-prc" as="xs:boolean">
@@ -1338,6 +1335,40 @@
       </xsl:for-each>
     </xsl:element>
   </xsl:function>
+
+  <!-- Funders may have internal grant DOIs or indistinct conventions for award IDs
+            this function is an attempt to account for this to better match award ids with grant DOIs -->
+   <xsl:function name="e:alter-award-id">
+    <xsl:param name="award-id-elem" as="xs:string"/>
+    <xsl:param name="fundref-id" as="xs:string"/>
+    <xsl:choose>
+      <!-- GBMF -->
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000936'">
+        <!-- GBMF grant DOIs are registered like so: GBMF0000 -->
+        <xsl:value-of select="if (matches($award-id-elem,'^\d+(\.\d+)?$')) then concat('GBMF',$award-id-elem)          else if (not(matches(upper-case($award-id-elem),'^GBMF'))) then concat('GBMF',replace($award-id-elem,'[^\d\.]',''))          else upper-case($award-id-elem)"/>
+      </xsl:when>
+      <!-- Japan Science and Technology Agency -->
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/501100002241'">
+        <!-- JSTA grant DOIs are registered like so: GBMF0000 -->
+        <xsl:value-of select="if (matches(upper-case($award-id-elem),'JPMJ[A-Z0-9]+\s*$') and not(matches(upper-case($award-id-elem),'^JPMJ[A-Z0-9]+$'))) then concat('JPMJ',upper-case(replace(substring-after($award-id-elem,'JPMJ'),'\s+$','')))         else upper-case($award-id-elem)"/>
+      </xsl:when>
+      <!-- James S McDonnell Foundation -->
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000913'">
+        <!-- JSMF grant DOIs are registered like so: 220020527, 2020-1543, 99-55, 91-8 -->
+        <xsl:value-of select="if (matches(upper-case($award-id-elem),'JSMF2\d+$')) then substring-after($award-id-elem,'JSMF')         else replace($award-id-elem,'[^\d\-]','')"/>
+      </xsl:when>
+      <!-- Austrian Science Fund -->
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/501100002428'">
+        <!-- ASF grant DOIs are registered in many ways: PAT8306623, EFP45, J1974, Z54 -->
+        <xsl:value-of select="if (matches($award-id-elem,'\d\-')) then replace(substring-before($award-id-elem,'-'),'[^A-Z\d]','')         else replace($award-id-elem,'[^A-Z\d]','')"/>
+      </xsl:when>
+      <!-- American Heart Association -->
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000968'">
+        <!-- ASF grant DOIs are registered in many ways: 24CDA1264317, 23SCEFIA1157994, 24POST1187422 -->
+        <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\([A-Z\d]+\)')) then substring-before(substring-after($award-id-elem,'('),')')         else $award-id-elem"/>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:function>
   
   <!-- returns integer for day of week 1 = Monday, 2 = Tuesday etc. -->
   <xsl:function name="e:get-weekday" as="xs:integer?">
@@ -2341,46 +2372,17 @@
       <report test="$grant-matches" role="warning" id="wellcome-grant-doi-test-1">[wellcome-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
 
       <assert test="$grant-matches" role="warning" id="wellcome-grant-doi-test-2">[wellcome-grant-doi-test-2] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
-      
-    </rule></pattern><pattern id="gbmf-grant-doi-tests-pattern"><rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$gbmf-fundref-id]" id="gbmf-grant-doi-tests">
-      <let name="grants" value="document($funders)//funder[@fundref=$gbmf-fundref-id]/grant"/>
+    </rule></pattern><pattern id="known-grant-funder-grant-doi-tests-pattern"><rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-fundref-ids]" id="known-grant-funder-grant-doi-tests">
+      <let name="fundref-id" value="funding-source/institution-wrap/institution-id"/>
+      <let name="grants" value="document($funders)//funder[@fundref=$fundref-id]/grant"/>
       <let name="award-id-elem" value="award-id"/>
-      <let name="award-id" value="if (matches($award-id-elem,'^\d+(\.\d+)?$')) then concat('GBMF',$award-id-elem)         else if (not(matches(upper-case($award-id-elem),'^GBMF'))) then concat('GBMF',replace($award-id-elem,'[^\d\.]',''))         else upper-case($award-id-elem)"/> 
+      <!-- Make use of custom function to try and account for variations within funder conventions -->
+      <let name="award-id" value="e:alter-award-id($award-id-elem,$fundref-id)"/>
       <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
-      
-      <report test="$grant-matches" role="warning" id="gbmf-grant-doi-test-1">[gbmf-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
+    
+      <report test="$grant-matches" role="warning" id="known-grant-funder-grant-doi-test-1">[known-grant-funder-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
 
-      <assert test="$grant-matches" role="warning" id="gbmf-grant-doi-test-2">[gbmf-grant-doi-test-2] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
-      
-    </rule></pattern><pattern id="jsta-grant-doi-tests-pattern"><rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$jsta-fundref-id]" id="jsta-grant-doi-tests">
-      <let name="grants" value="document($funders)//funder[@fundref=$jsta-fundref-id]/grant"/>
-      <let name="award-id-elem" value="award-id"/>
-      <let name="award-id" value="if (matches(upper-case($award-id-elem),'JPMJ[A-Z0-9]+\s*$') and not(matches(upper-case($award-id-elem),'^JPMJ[A-Z0-9]+$'))) then concat('JPMJ',upper-case(replace(substring-after($award-id-elem,'JPMJ'),'\s+$','')))         else upper-case($award-id-elem)"/> 
-      <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
-      
-      <report test="$grant-matches" role="warning" id="jsta-grant-doi-test-1">[jsta-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
-
-      <assert test="$grant-matches" role="warning" id="jsta-grant-doi-test-2">[jsta-grant-doi-test-2] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
-      
-    </rule></pattern><pattern id="jsmf-grant-doi-tests-pattern"><rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$jsmf-fundref-id]" id="jsmf-grant-doi-tests">
-      <let name="grants" value="document($funders)//funder[@fundref=$jsmf-fundref-id]/grant"/>
-      <let name="award-id-elem" value="award-id"/>
-      <let name="award-id" value="if (matches(upper-case($award-id-elem),'JSMF2\d+$')) then substring-after($award-id-elem,'JSMF')         else replace($award-id-elem,'[^\d\-]','')"/> 
-      <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
-      
-      <report test="$grant-matches" role="warning" id="jsmf-grant-doi-test-1">[jsmf-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
-
-      <assert test="$grant-matches" role="warning" id="jsmf-grant-doi-test-2">[jsmf-grant-doi-test-2] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
-
-    </rule></pattern><pattern id="asf-grant-doi-tests-pattern"><rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$asf-fundref-id]" id="asf-grant-doi-tests">
-      <let name="grants" value="document($funders)//funder[@fundref=$asf-fundref-id]/grant"/>
-      <let name="award-id-elem" value="award-id"/>
-      <let name="award-id" value="if (matches($award-id-elem,'\d\-')) then replace(substring-before($award-id-elem,'-'),'[^A-Z\d]','')         else replace($award-id-elem,'[^A-Z\d]','')"/> 
-      <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
-      
-      <report test="$grant-matches" role="warning" id="asf-grant-doi-test-1">[asf-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
-
-      <assert test="$grant-matches" role="warning" id="asf-grant-doi-test-2">[asf-grant-doi-test-2] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
+      <assert test="$grant-matches" role="warning" id="known-grant-funder-grant-doi-test-2">[known-grant-funder-grant-doi-test-2] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
 
     </rule></pattern><pattern id="award-id-tests-pattern"><rule context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>

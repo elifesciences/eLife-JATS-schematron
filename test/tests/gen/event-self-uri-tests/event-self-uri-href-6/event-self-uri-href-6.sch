@@ -21,11 +21,8 @@
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   <let name="funders" value="'../../../../../src/funders.xml'"/>
   <let name="wellcome-fundref-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
-  <let name="gbmf-fundref-id" value="'http://dx.doi.org/10.13039/100000936'"/>
-  <let name="jsta-fundref-id" value="'http://dx.doi.org/10.13039/501100002241'"/>
-  <let name="jsmf-fundref-id" value="'http://dx.doi.org/10.13039/100000913'"/>
-  <let name="asf-fundref-id" value="'http://dx.doi.org/10.13039/501100002428'"/>
-  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$gbmf-fundref-id,$jsta-fundref-id,$jsmf-fundref-id,$asf-fundref-id)"/>
+  <let name="known-grant-funder-fundref-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968')"/>
+  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$known-grant-funder-fundref-ids)"/>
   <xsl:function name="e:is-prc" as="xs:boolean">
     <xsl:param name="elem" as="node()"/>
     <xsl:choose>
@@ -1283,6 +1280,37 @@
         </xsl:if>
       </xsl:for-each>
     </xsl:element>
+  </xsl:function>
+  <xsl:function name="e:alter-award-id">
+    <xsl:param name="award-id-elem" as="xs:string"/>
+    <xsl:param name="fundref-id" as="xs:string"/>
+    <xsl:choose>
+      
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000936'">
+        
+        <xsl:value-of select="if (matches($award-id-elem,'^\d+(\.\d+)?$')) then concat('GBMF',$award-id-elem)          else if (not(matches(upper-case($award-id-elem),'^GBMF'))) then concat('GBMF',replace($award-id-elem,'[^\d\.]',''))          else upper-case($award-id-elem)"/>
+      </xsl:when>
+      
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/501100002241'">
+        
+        <xsl:value-of select="if (matches(upper-case($award-id-elem),'JPMJ[A-Z0-9]+\s*$') and not(matches(upper-case($award-id-elem),'^JPMJ[A-Z0-9]+$'))) then concat('JPMJ',upper-case(replace(substring-after($award-id-elem,'JPMJ'),'\s+$','')))         else upper-case($award-id-elem)"/>
+      </xsl:when>
+      
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000913'">
+        
+        <xsl:value-of select="if (matches(upper-case($award-id-elem),'JSMF2\d+$')) then substring-after($award-id-elem,'JSMF')         else replace($award-id-elem,'[^\d\-]','')"/>
+      </xsl:when>
+      
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/501100002428'">
+        
+        <xsl:value-of select="if (matches($award-id-elem,'\d\-')) then replace(substring-before($award-id-elem,'-'),'[^A-Z\d]','')         else replace($award-id-elem,'[^A-Z\d]','')"/>
+      </xsl:when>
+      
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000968'">
+        
+        <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\([A-Z\d]+\)')) then substring-before(substring-after($award-id-elem,'('),')')         else $award-id-elem"/>
+      </xsl:when>
+    </xsl:choose>
   </xsl:function>
   <xsl:function name="e:get-weekday" as="xs:integer?">
     <xsl:param name="date" as="xs:anyAtomicType?"/>

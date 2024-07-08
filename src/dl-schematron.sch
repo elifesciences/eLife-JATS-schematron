@@ -34,11 +34,8 @@
   <let name="funders" value="'funders.xml'"/>
   <!-- Grant DOI enabling -->
   <let name="wellcome-fundref-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
-  <let name="gbmf-fundref-id" value="'http://dx.doi.org/10.13039/100000936'"/>
-  <let name="jsta-fundref-id" value="'http://dx.doi.org/10.13039/501100002241'"/>
-  <let name="jsmf-fundref-id" value="'http://dx.doi.org/10.13039/100000913'"/>
-  <let name="asf-fundref-id" value="'http://dx.doi.org/10.13039/501100002428'"/>
-  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$gbmf-fundref-id,$jsta-fundref-id,$jsmf-fundref-id,$asf-fundref-id)"/>  
+  <let name="known-grant-funder-fundref-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968')"/>
+  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$known-grant-funder-fundref-ids)"/>  
 
   <!--=== Custom functions ===-->
   <xsl:function name="e:is-prc" as="xs:boolean">
@@ -1282,6 +1279,40 @@
         </xsl:if>
       </xsl:for-each>
     </xsl:element>
+  </xsl:function>
+
+  <!-- Funders may have internal grant DOIs or indistinct conventions for award IDs
+            this function is an attempt to account for this to better match award ids with grant DOIs -->
+   <xsl:function name="e:alter-award-id">
+    <xsl:param name="award-id-elem" as="xs:string"/>
+    <xsl:param name="fundref-id" as="xs:string"/>
+    <xsl:choose>
+      <!-- GBMF -->
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000936'">
+        <!-- GBMF grant DOIs are registered like so: GBMF0000 -->
+        <xsl:value-of select="if (matches($award-id-elem,'^\d+(\.\d+)?$')) then concat('GBMF',$award-id-elem)          else if (not(matches(upper-case($award-id-elem),'^GBMF'))) then concat('GBMF',replace($award-id-elem,'[^\d\.]',''))          else upper-case($award-id-elem)"/>
+      </xsl:when>
+      <!-- Japan Science and Technology Agency -->
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/501100002241'">
+        <!-- JSTA grant DOIs are registered like so: GBMF0000 -->
+        <xsl:value-of select="if (matches(upper-case($award-id-elem),'JPMJ[A-Z0-9]+\s*$') and not(matches(upper-case($award-id-elem),'^JPMJ[A-Z0-9]+$'))) then concat('JPMJ',upper-case(replace(substring-after($award-id-elem,'JPMJ'),'\s+$','')))         else upper-case($award-id-elem)"/>
+      </xsl:when>
+      <!-- James S McDonnell Foundation -->
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000913'">
+        <!-- JSMF grant DOIs are registered like so: 220020527, 2020-1543, 99-55, 91-8 -->
+        <xsl:value-of select="if (matches(upper-case($award-id-elem),'JSMF2\d+$')) then substring-after($award-id-elem,'JSMF')         else replace($award-id-elem,'[^\d\-]','')"/>
+      </xsl:when>
+      <!-- Austrian Science Fund -->
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/501100002428'">
+        <!-- ASF grant DOIs are registered in many ways: PAT8306623, EFP45, J1974, Z54 -->
+        <xsl:value-of select="if (matches($award-id-elem,'\d\-')) then replace(substring-before($award-id-elem,'-'),'[^A-Z\d]','')         else replace($award-id-elem,'[^A-Z\d]','')"/>
+      </xsl:when>
+      <!-- American Heart Association -->
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000968'">
+        <!-- ASF grant DOIs are registered in many ways: 24CDA1264317, 23SCEFIA1157994, 24POST1187422 -->
+        <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\([A-Z\d]+\)')) then substring-before(substring-after($award-id-elem,'('),')')         else $award-id-elem"/>
+      </xsl:when>
+    </xsl:choose>
   </xsl:function>
   
   <!-- returns integer for day of week 1 = Monday, 2 = Tuesday etc. -->

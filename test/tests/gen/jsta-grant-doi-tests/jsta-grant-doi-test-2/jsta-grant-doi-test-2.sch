@@ -25,7 +25,8 @@
   <let name="jsta-fundref-id" value="'http://dx.doi.org/10.13039/501100002241'"/>
   <let name="jsmf-fundref-id" value="'http://dx.doi.org/10.13039/100000913'"/>
   <let name="asf-fundref-id" value="'http://dx.doi.org/10.13039/501100002428'"/>
-  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$gbmf-fundref-id,$jsta-fundref-id,$jsmf-fundref-id,$asf-fundref-id)"/>
+  <let name="aha-fundref-id" value="'http://dx.doi.org/10.13039/100000968'"/>
+  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$gbmf-fundref-id,$jsta-fundref-id,$jsmf-fundref-id,$asf-fundref-id,$aha-fundref-id)"/>
   <xsl:function name="e:is-prc" as="xs:boolean">
     <xsl:param name="elem" as="node()"/>
     <xsl:choose>
