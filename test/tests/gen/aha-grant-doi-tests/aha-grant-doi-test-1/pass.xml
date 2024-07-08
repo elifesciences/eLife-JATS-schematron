@@ -1,5 +1,0 @@
-<?oxygen SCHSchema="aha-grant-doi-test-1.sch"?>
-<!--Context: funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$aha-fundref-id]
-Test: report    $grant-matches
-Message: Funding entry from  has an award-id () which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: . -->
-<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

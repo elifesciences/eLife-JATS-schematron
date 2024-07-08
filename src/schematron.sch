@@ -1438,6 +1438,9 @@
         <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\([A-Z\d]+\)')) then substring-before(substring-after($award-id-elem,'('),')')
         else $award-id-elem"/>
       </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$award-id-elem"/>
+      </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
   
