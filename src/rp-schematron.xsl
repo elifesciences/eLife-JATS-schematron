@@ -2388,8 +2388,8 @@
       </xsl:if>
 
 		    <!--REPORT warning-->
-      <xsl:if test="(.!=@xlink:href) and matches(.,'https?:|ftp:|www\.')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(.!=@xlink:href) and matches(.,'https?:|ftp:|www\.')">
+      <xsl:if test="(.!=@xlink:href) and matches(.,'https?:|ftp:')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(.!=@xlink:href) and matches(.,'https?:|ftp:')">
             <xsl:attribute name="id">ext-link-text</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hyyhg-ext-link-text</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
