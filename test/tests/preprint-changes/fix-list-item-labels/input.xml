@@ -1,4 +1,4 @@
-<!--testing template with id: fix-list-item-labels-->
+<!--Testing template with id: fix-list-item-labels-->
 <sec>
 <list list-type="simple">
 <list-item><label>1.</label><p>…</p></list-item>
