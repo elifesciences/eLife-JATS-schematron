@@ -272,8 +272,8 @@
         <xsl:variable name="label-type">
             <xsl:choose>
                 <xsl:when test="every $label in $clean-labels satisfies matches($label,'^\d+$')">order</xsl:when>
-                <xsl:when test="every $label in $clean-labels satisfies matches($label,'^[i]+$')">roman-lower</xsl:when>
-                <xsl:when test="every $label in $clean-labels satisfies matches($label,'^[I]+$')">roman-upper</xsl:when>
+                <xsl:when test="every $label in $clean-labels satisfies matches($label,'^[ivxl]+$')">roman-lower</xsl:when>
+                <xsl:when test="every $label in $clean-labels satisfies matches($label,'^[IVXL]+$')">roman-upper</xsl:when>
                 <xsl:when test="every $label in $clean-labels satisfies matches($label,'^[a-z]+$')">alpha-lower</xsl:when>
                 <xsl:when test="every $label in $clean-labels satisfies matches($label,'^[A-Z]+$')">alpha-upper</xsl:when>
                 <xsl:otherwise>unknown</xsl:otherwise>
@@ -332,13 +332,13 @@
                 <xsl:when test="count($distinct-labels)=1 and $distinct-labels=$bullet-variants">
                     <xsl:apply-templates select="@*[name()!='list-type']"/>
                     <xsl:attribute name="list-type">bullet</xsl:attribute>
-                    <xsl:apply-templates select="list-item|*|text()|comment()|processing-instruction()" mode="list-item-without-label"/>
+                    <xsl:apply-templates select="*|text()|comment()|processing-instruction()" mode="list-item-without-label"/>
                 </xsl:when>
                 <!-- list is arithmetic (i.e. increases by a contant amount each time: 1,2,3; A,B,C; a,b,c; and so on) -->
                 <xsl:when test="empty($non-arithmetic-labels)">
                     <xsl:apply-templates select="@*[name()!='list-type']"/>
                     <xsl:attribute name="list-type" select="$label-type"/>
-                    <xsl:apply-templates select="list-item|*|text()|comment()|processing-instruction()" mode="list-item-without-label"/>
+                    <xsl:apply-templates select="*|text()|comment()|processing-instruction()" mode="list-item-without-label"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>
