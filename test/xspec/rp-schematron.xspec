@@ -281,6 +281,16 @@
         <x:expect-report id="given-names-test-15" role="info"/>
         <x:expect-not-assert id="given-names-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="given-names-test-16-pass">
+        <x:context href="../tests/rp/given-names-tests/given-names-test-16/pass.xml"/>
+        <x:expect-not-report id="given-names-test-16" role="warning"/>
+        <x:expect-not-assert id="given-names-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="given-names-test-16-fail">
+        <x:context href="../tests/rp/given-names-tests/given-names-test-16/fail.xml"/>
+        <x:expect-report id="given-names-test-16" role="warning"/>
+        <x:expect-not-assert id="given-names-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="name-child-tests">
       <x:scenario label="disallowed-child-assert-pass">

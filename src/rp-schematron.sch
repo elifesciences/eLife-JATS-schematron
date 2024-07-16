@@ -96,6 +96,7 @@
       
       <report test="matches(normalize-space(.),'[A-Za-z]\p{Zs}[A-za-z]\p{Zs}[A-za-z]\p{Zs}[A-za-z]|[A-Za-z]\p{Zs}[A-za-z]\p{Zs}[A-za-z]$|^[A-za-z]\p{Zs}[A-za-z]$')" role="info" id="given-names-test-15">[given-names-test-15] given-names contains initials with spaces. Ensure that the space(s) is removed between initials - '<value-of select="."/>'.</report>
 		
+      <report test="matches(.,'^[\p{Lu}\s]+$')" role="warning" id="given-names-test-16">[given-names-test-16] given-names for author is made up only of uppercase letters (and spaces) '<value-of select="."/>'. Are they initials? Should the authors full goven-names be introduced instead?</report>
 	   </rule></pattern><pattern id="name-child-tests-pattern"><rule context="contrib-group//name/*" id="name-child-tests">
       <assert test="local-name() = ('surname','given-names','suffix')" role="error" id="disallowed-child-assert">[disallowed-child-assert] <value-of select="local-name()"/> is not supported as a child of name.</assert>
     </rule></pattern><pattern id="orcid-name-checks-pattern"><rule context="article/front/article-meta/contrib-group[1]" id="orcid-name-checks">

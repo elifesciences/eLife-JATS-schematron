@@ -294,18 +294,30 @@
                     <xsl:for-each select="$clean-labels">
                         <xsl:variable name="p" select="position()"/>
                         <xsl:variable name="prev" select="$clean-labels[$p - 1]"/>
-                        <xsl:if test=".=''">
-                            <xsl:value-of select="."/>
-                        </xsl:if>
-                        <xsl:if test="$p=1 and not(.=('a','A'))">
-                            <xsl:value-of select="."/>
-                        </xsl:if>
-                        <xsl:if test="(string-length(.) gt 2)">
-                            <xsl:value-of select="."/>
-                        </xsl:if>
-                        <xsl:if test="(string-to-codepoints(.)[1] - 1) != string-to-codepoints($clean-labels[$p - 1])[1]">
-                            <xsl:value-of select="."/>
-                        </xsl:if>
+                        <xsl:choose>
+                            <xsl:when test=".=''">
+                                <xsl:value-of select="'unknown'"/>
+                            </xsl:when>
+                            <xsl:when test="$p=1 and not(.=('a','A'))">
+                                <xsl:value-of select="."/>
+                            </xsl:when>
+                            <xsl:when test="(string-length(.) gt 2)">
+                                <xsl:value-of select="."/>
+                            </xsl:when>
+                            <xsl:when test="(string-length(.) = 2) and string-length($prev)=1">
+                                <xsl:if test="lower-case(.)!='aa' or lower-case($prev)!='z'">
+                                    <xsl:value-of select="."/>
+                                </xsl:if>
+                            </xsl:when>
+                            <xsl:when test="(string-length(.) = 2) and string-length($prev)=2">
+                                <xsl:if test="(substring(.,1,1) != substring($prev,1,1)) or ((string-to-codepoints(.)[2] - 1) != string-to-codepoints($prev)[2])">
+                                    <xsl:value-of select="."/>
+                                </xsl:if>
+                            </xsl:when>
+                            <xsl:when test="(string-to-codepoints(.)[1] - 1) != string-to-codepoints($prev)[1]">
+                                <xsl:value-of select="."/>
+                            </xsl:when>
+                        </xsl:choose>
                     </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>

@@ -176,6 +176,9 @@
         role="info" 
         id="given-names-test-15">given-names contains initials with spaces. Ensure that the space(s) is removed between initials - '<value-of select="."/>'.</report>
 		
+      <report test="matches(.,'^[\p{Lu}\s]+$')" 
+        role="warning" 
+        id="given-names-test-16">given-names for author is made up only of uppercase letters (and spaces) '<value-of select="."/>'. Are they initials? Should the authors full goven-names be introduced instead?</report>
 	   </rule>
 
     <rule context="contrib-group//name/*" id="name-child-tests">
