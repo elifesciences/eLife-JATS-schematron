@@ -1,0 +1,80 @@
+<!--Testing template with id: fix-list-item-labels-->
+<sec>
+<list list-type="order">
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p>
+<list list-type="alpha-lower">
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p>
+<list list-type="simple">
+<list-item><label>b)</label><p>…</p></list-item>
+<list-item><label>z)</label><p>…</p></list-item>
+<list-item><label>x)</label><p>…</p>
+</list-item>
+</list>
+</list-item>
+<list-item><p>…</p></list-item>
+</list>
+</list-item>
+<list-item><p>…</p></list-item>
+</list>
+<list list-type="simple">
+<list-item><label>1)</label><p>…</p></list-item>
+<list-item><label>4)</label><p>…</p></list-item>
+<list-item><label>3)</label><p>…</p></list-item>
+</list>
+<list list-type="simple">
+<list-item><label>(Z).</label><p>…</p></list-item>
+<list-item><label>(X-Y).</label><p>…</p></list-item>
+</list>
+<list list-type="alpha-upper">
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+</list>
+<list list-type="bullet">
+<list-item><p>…</p></list-item>
+<list-item><p>…</p>
+<list list-type="bullet">
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+</list>
+<list list-type="bullet">
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+</list>
+<list list-type="bullet">
+<list-item><p>…</p></list-item>
+<list-item><p>…</p></list-item>
+</list>
+</list-item>
+</list>
+</sec>

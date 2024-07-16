@@ -1,4 +1,4 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:saxon="http://saxon.sf.net/" xmlns:schold="http://www.ascc.net/xml/schematron" xmlns:iso="http://purl.oclc.org/dsdl/schematron" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:dc="http://purl.org/dc/terms/" xmlns:e="https://elifesciences.org/namespace" xmlns:file="java.io.File" xmlns:java="http://www.java.com/" version="2.0"><!--Implementers: please note that overriding process-prolog or process-root is 
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:dc="http://purl.org/dc/terms/" xmlns:e="https://elifesciences.org/namespace" xmlns:file="java.io.File" xmlns:iso="http://purl.oclc.org/dsdl/schematron" xmlns:java="http://www.java.com/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:saxon="http://saxon.sf.net/" xmlns:schold="http://www.ascc.net/xml/schematron" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="2.0"><!--Implementers: please note that overriding process-prolog or process-root is 
     the preferred method for meta-stylesheets to use where possible. -->
    <xsl:param name="archiveDirParameter"/>
    <xsl:param name="archiveNameParameter"/>
@@ -7,16 +7,10 @@
    <xsl:variable name="document-uri">
       <xsl:value-of select="document-uri(/)"/>
    </xsl:variable>
-
    <!--PHASES-->
-
-
    <!--PROLOG-->
    <xsl:output xmlns:svrl="http://purl.oclc.org/dsdl/svrl" method="xml" omit-xml-declaration="no" standalone="yes" indent="yes"/>
-
    <!--XSD TYPES FOR XSLT2-->
-
-
    <!--KEYS AND FUNCTIONS-->
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:is-prc" as="xs:boolean">
       <xsl:param name="elem" as="node()"/>
@@ -28,7 +22,7 @@
             <xsl:value-of select="e:is-prc-helper($elem/ancestor::article[1])"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:is-prc-helper" as="xs:boolean">
       <xsl:param name="article" as="node()"/>
       <xsl:choose>
@@ -39,7 +33,7 @@
             <xsl:value-of select="false()"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:get-version" as="xs:string">
       <xsl:param name="elem" as="node()"/>
       <xsl:choose>
@@ -50,7 +44,7 @@
             <xsl:value-of select="e:get-version-helper($elem/ancestor::article[1])"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:get-version-helper" as="xs:string">
       <xsl:param name="article" as="node()"/>
       <xsl:choose>
@@ -61,7 +55,7 @@
             <xsl:value-of select="'1'"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:titleCaseToken" as="xs:string">
       <xsl:param name="s" as="xs:string"/>
       <xsl:choose>
@@ -84,11 +78,10 @@
             <xsl:value-of select="concat(upper-case(substring($s, 1, 1)), lower-case(substring($s, 2)))"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:titleCase" as="xs:string">
       <xsl:param name="s" as="xs:string"/>
       <xsl:choose>
-      
          <xsl:when test="lower-case($s)='protein kinase a'">
             <xsl:value-of select="'Protein Kinase A'"/>
          </xsl:when>
@@ -129,7 +122,7 @@
             <xsl:value-of select="e:titleCaseToken($s)"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:article-type2title" as="xs:string">
       <xsl:param name="s" as="xs:string"/>
       <xsl:choose>
@@ -152,7 +145,7 @@
             <xsl:value-of select="'undefined'"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:sec-type2title" as="xs:string">
       <xsl:param name="s" as="xs:string"/>
       <xsl:choose>
@@ -190,7 +183,7 @@
             <xsl:value-of select="'undefined'"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:fig-id-type" as="xs:string">
       <xsl:param name="s" as="xs:string"/>
       <xsl:choose>
@@ -228,11 +221,11 @@
             <xsl:value-of select="'undefined'"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:stripDiacritics" as="xs:string">
       <xsl:param name="string" as="xs:string"/>
       <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨıɉꝁłøɍŧɏƶ','bcdeghiijklortyz'),'[\p{M}’]',''),'æ','ae'),'ß','ss')"/>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:ref-list-string" as="xs:string">
       <xsl:param name="ref"/>
       <xsl:choose>
@@ -249,7 +242,7 @@
             <xsl:value-of select="'zzzzz 9999'"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:ref-list-string2" as="xs:string">
       <xsl:param name="ref"/>
       <xsl:choose>
@@ -269,7 +262,7 @@
             <xsl:value-of select="'zzzzz 9999'"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:get-collab-or-surname" as="xs:string?">
       <xsl:param name="collab-or-name"/>
       <xsl:choose>
@@ -281,7 +274,7 @@
          </xsl:when>
          <xsl:otherwise/>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:cite-name-text" as="xs:string">
       <xsl:param name="person-group"/>
       <xsl:choose>
@@ -313,7 +306,7 @@
             <xsl:value-of select="'undetermined'"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:citation-format1" as="xs:string">
       <xsl:param name="element-citation"/>
       <xsl:choose>
@@ -330,7 +323,7 @@
             <xsl:value-of select="', '"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:citation-format2" as="xs:string">
       <xsl:param name="element-citation"/>
       <xsl:choose>
@@ -347,7 +340,7 @@
             <xsl:value-of select="', '"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:ref-cite-list">
       <xsl:param name="ref-list" as="node()"/>
       <xsl:element name="list">
@@ -364,7 +357,7 @@
             </xsl:element>
          </xsl:for-each>
       </xsl:element>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:non-distinct-citations">
       <xsl:param name="cite-list" as="node()"/>
       <xsl:element name="list">
@@ -399,7 +392,7 @@
             </xsl:choose>
          </xsl:for-each>
       </xsl:element>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:get-name" as="xs:string">
       <xsl:param name="name"/>
       <xsl:choose>
@@ -416,11 +409,10 @@
             <xsl:value-of select="$name/surname[1]"/>
          </xsl:when>
          <xsl:otherwise>
-        
             <xsl:value-of select="'No elements present'"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:get-collab">
       <xsl:param name="collab"/>
       <xsl:for-each select="$collab/(*|text())">
@@ -431,7 +423,7 @@
             </xsl:otherwise>
          </xsl:choose>
       </xsl:for-each>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:isbn-sum" as="xs:integer">
       <xsl:param name="s" as="xs:string"/>
       <xsl:choose>
@@ -468,11 +460,11 @@
             <xsl:value-of select="number('1')"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:escape-for-regex" as="xs:string">
       <xsl:param name="arg" as="xs:string?"/>
       <xsl:sequence select="replace($arg,'(\.|\[|\]|\\|\||\-|\^|\$|\?|\*|\+|\{|\}|\(|\))','\\$1')"/>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:get-ordinal" as="xs:string">
       <xsl:param name="value" as="xs:integer?"/>
       <xsl:if test="translate(string($value), '0123456789', '') = '' and number($value) &gt; 0">
@@ -496,7 +488,7 @@
             </xsl:otherwise>
          </xsl:choose>
       </xsl:if>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:org-conform" as="xs:string">
       <xsl:param name="s" as="xs:string"/>
       <xsl:choose>
@@ -1033,7 +1025,7 @@
             </xsl:element>
          </xsl:if>
       </xsl:element>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:get-xrefs">
       <xsl:param name="article"/>
       <xsl:param name="object-id"/>
@@ -1081,7 +1073,7 @@
             </xsl:choose>
          </xsl:for-each>
       </xsl:element>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:get-iso-pub-date">
       <xsl:param name="element"/>
       <xsl:choose>
@@ -1091,7 +1083,7 @@
          </xsl:when>
          <xsl:otherwise/>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:get-copyright-holder">
       <xsl:param name="contrib-group"/>
       <xsl:variable name="author-count" select="count($contrib-group/contrib[@contrib-type='author'])"/>
@@ -1127,39 +1119,33 @@
                </xsl:otherwise>
             </xsl:choose>
          </xsl:when>
-      
          <xsl:otherwise>
             <xsl:variable name="is-equal-contrib" select="if ($contrib-group/contrib[@contrib-type='author'][1]/@equal-contrib='yes') then true() else false()"/>
             <xsl:choose>
                <xsl:when test="$is-equal-contrib">
-            
                   <xsl:variable name="equal-contrib-rid" select="$contrib-group/contrib[@contrib-type='author'][1]/xref[starts-with(@rid,'equal-contrib')]/@rid"/>
                   <xsl:variable name="first-authors" select="$contrib-group/contrib[@contrib-type='author' and @equal-contrib='yes' and xref[@rid=$equal-contrib-rid] and not(preceding-sibling::contrib[not(xref[@rid=$equal-contrib-rid])])]"/>
                   <xsl:choose>
-              
                      <xsl:when test="$author-count = 3 and count($first-authors) = 3">
                         <xsl:value-of select="concat(e:get-surname($contrib-group/contrib[@contrib-type='author'][1]),                   ', ',                   e:get-surname($contrib-group/contrib[@contrib-type='author'][2]),                   ' and ',                   e:get-surname($contrib-group/contrib[@contrib-type='author'][3]))"/>
                      </xsl:when>
-              
                      <xsl:when test="count($first-authors) gt 3">
                         <xsl:variable name="first-auth-string" select="string-join(for $auth in $contrib-group/contrib[@contrib-type='author'][position() lt 4] return e:get-surname($auth),', ')"/>
                         <xsl:value-of select="concat($first-auth-string,' et al')"/>
                      </xsl:when>
-              
                      <xsl:otherwise>
                         <xsl:variable name="first-auth-string" select="string-join(for $auth in $first-authors return e:get-surname($auth),', ')"/>
                         <xsl:value-of select="concat($first-auth-string,' et al')"/>
                      </xsl:otherwise>
                   </xsl:choose>
                </xsl:when>
-          
                <xsl:otherwise>
                   <xsl:value-of select="concat(e:get-surname($contrib-group/contrib[@contrib-type='author'][1]),' et al')"/>
                </xsl:otherwise>
             </xsl:choose>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:get-surname" as="text()">
       <xsl:param name="contrib"/>
       <xsl:choose>
@@ -1170,12 +1156,11 @@
             <xsl:value-of select="$contrib//name[1]/surname[1]"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:insight-box" as="element()">
       <xsl:param name="box" as="xs:string"/>
       <xsl:param name="cite-text" as="xs:string"/>
-      <xsl:variable name="box-text" select="substring-after(substring-after($box,'article'),' ')"/> 
-    
+      <xsl:variable name="box-text" select="substring-after(substring-after($box,'article'),' ')"/>
       <xsl:element name="list">
          <xsl:for-each select="tokenize($cite-text,'\p{Zs}')">
             <xsl:choose>
@@ -1200,7 +1185,7 @@
             </xsl:choose>
          </xsl:for-each>
       </xsl:element>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:list-panels">
       <xsl:param name="caption" as="xs:string"/>
       <xsl:element name="list">
@@ -1215,72 +1200,51 @@
             </xsl:if>
          </xsl:for-each>
       </xsl:element>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:alter-award-id">
       <xsl:param name="award-id-elem" as="xs:string"/>
       <xsl:param name="fundref-id" as="xs:string"/>
       <xsl:choose>
-      
          <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000936'">
-        
             <xsl:value-of select="if (matches($award-id-elem,'^\d+(\.\d+)?$')) then concat('GBMF',$award-id-elem)          else if (not(matches(upper-case($award-id-elem),'^GBMF'))) then concat('GBMF',replace($award-id-elem,'[^\d\.]',''))          else upper-case($award-id-elem)"/>
          </xsl:when>
-      
          <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/501100002241'">
-        
             <xsl:value-of select="if (matches(upper-case($award-id-elem),'JPMJ[A-Z0-9]+\s*$') and not(matches(upper-case($award-id-elem),'^JPMJ[A-Z0-9]+$'))) then concat('JPMJ',upper-case(replace(substring-after($award-id-elem,'JPMJ'),'\s+$','')))         else upper-case($award-id-elem)"/>
          </xsl:when>
-      
          <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000913'">
-        
             <xsl:value-of select="if (matches(upper-case($award-id-elem),'JSMF2\d+$')) then substring-after($award-id-elem,'JSMF')         else replace($award-id-elem,'[^\d\-]','')"/>
          </xsl:when>
-      
          <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/501100002428'">
-        
             <xsl:value-of select="if (matches($award-id-elem,'\d\-')) then replace(substring-before($award-id-elem,'-'),'[^A-Z\d]','')         else replace($award-id-elem,'[^A-Z\d]','')"/>
          </xsl:when>
-      
          <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000968'">
-        
             <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\([A-Z\d]+\)')) then substring-before(substring-after($award-id-elem,'('),')')         else $award-id-elem"/>
          </xsl:when>
-      
          <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000968'">
-        
             <xsl:value-of select="if (contains(upper-case($award-id-elem),'2020')) then concat('2020',replace(substring-after($award-id-elem,'2020'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2021')) then concat('2021',replace(substring-after($award-id-elem,'2021'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2022')) then concat('2022',replace(substring-after($award-id-elem,'2022'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2023')) then concat('2023',replace(substring-after($award-id-elem,'2023'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2024')) then concat('2024',replace(substring-after($award-id-elem,'2024'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'CEEC')) then concat('CEEC',replace(substring-after(upper-case($award-id-elem),'CEEC'),'[^A-Z0-9/]',''))         else if (contains(upper-case($award-id-elem),'PTDC/')) then concat('PTDC/',replace(substring-after(upper-case($award-id-elem),'PTDC/'),'[^A-Z0-9/\-]',''))         else if (contains(upper-case($award-id-elem),'DL 57/')) then concat('DL 57/',replace(substring-after(upper-case($award-id-elem),'DL 57/'),'[^A-Z0-9/\-]',''))         else $award-id-elem"/>
          </xsl:when>
-      
          <xsl:when test="$fundref-id=('http://dx.doi.org/10.13039/100010663','http://dx.doi.org/10.13039/100010665','http://dx.doi.org/10.13039/100010669','http://dx.doi.org/10.13039/100010675','http://dx.doi.org/10.13039/100010677','http://dx.doi.org/10.13039/100010679','http://dx.doi.org/10.13039/100010680','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100019180')">
-        
             <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\(\d+\)')) then substring-before(substring-after($award-id-elem,'('),')')         else if (matches($award-id-elem,'\d{6,9}')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>
          </xsl:when>
-      
          <xsl:otherwise>
             <xsl:value-of select="$award-id-elem"/>
          </xsl:otherwise>
       </xsl:choose>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:get-weekday" as="xs:integer?">
       <xsl:param name="date" as="xs:anyAtomicType?"/>
       <xsl:sequence select="       if (empty($date)) then ()       else xs:integer((xs:date($date) - xs:date('1901-01-06')) div xs:dayTimeDuration('P1D')) mod 7       "/>
-  </xsl:function>
+   </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:line-count" as="xs:integer">
       <xsl:param name="arg" as="xs:string?"/>
-    
       <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
-    
-  </xsl:function>
-
+   </xsl:function>
    <!--DEFAULT RULES-->
-
-
    <!--MODE: SCHEMATRON-SELECT-FULL-PATH-->
    <!--This mode can be used to generate an ugly though full XPath for locators-->
    <xsl:template match="*" mode="schematron-select-full-path">
       <xsl:apply-templates select="." mode="schematron-get-full-path"/>
    </xsl:template>
-
    <!--MODE: SCHEMATRON-FULL-PATH-->
    <!--This mode can be used to generate an ugly though full XPath for locators-->
    <xsl:template match="*" mode="schematron-get-full-path">
@@ -1318,7 +1282,6 @@
          </xsl:otherwise>
       </xsl:choose>
    </xsl:template>
-
    <!--MODE: SCHEMATRON-FULL-PATH-2-->
    <!--This mode can be used to generate prefixed XPath for humans-->
    <xsl:template match="node() | @*" mode="schematron-get-full-path-2">
@@ -1352,7 +1315,6 @@
          <xsl:text/>/@<xsl:value-of select="name(.)"/>
       </xsl:if>
    </xsl:template>
-
    <!--MODE: GENERATE-ID-FROM-PATH -->
    <xsl:template match="/" mode="generate-id-from-path"/>
    <xsl:template match="text()" mode="generate-id-from-path">
@@ -1376,7 +1338,6 @@
       <xsl:text>.</xsl:text>
       <xsl:value-of select="concat('.',name(),'-',1+count(preceding-sibling::*[name()=name(current())]),'-')"/>
    </xsl:template>
-
    <!--MODE: GENERATE-ID-2 -->
    <xsl:template match="/" mode="generate-id-2">U</xsl:template>
    <xsl:template match="*" mode="generate-id-2" priority="2">
@@ -1399,7 +1360,6 @@
    </xsl:template>
    <!--Strip characters-->
    <xsl:template match="text()" priority="-1"/>
-
    <!--SCHEMA SETUP-->
    <xsl:template match="/">
       <svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl" title="eLife Schematron" schemaVersion="">
@@ -1881,7 +1841,6 @@
          <xsl:apply-templates select="/" mode="M111"/>
       </svrl:schematron-output>
    </xsl:template>
-
    <!--SCHEMATRON PATTERNS-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">eLife Schematron</svrl:text>
    <xsl:param name="features-subj" select="('Feature Article', 'Insight', 'Editorial')"/>
@@ -1899,16 +1858,12 @@
    <xsl:param name="org-regex" select="'b\.\p{Zs}?subtilis|bacillus\p{Zs}?subtilis|d\.\p{Zs}?melanogaster|drosophila\p{Zs}?melanogaster|e\.\p{Zs}?coli|escherichia\p{Zs}?coli|s\.\p{Zs}?pombe|schizosaccharomyces\p{Zs}?pombe|s\.\p{Zs}?cerevisiae|saccharomyces\p{Zs}?cerevisiae|c\.\p{Zs}?elegans|caenorhabditis\p{Zs}?elegans|a\.\p{Zs}?thaliana|arabidopsis\p{Zs}?thaliana|m\.\p{Zs}?thermophila|myceliophthora\p{Zs}?thermophila|dictyostelium|p\.\p{Zs}?falciparum|plasmodium\p{Zs}?falciparum|s\.\p{Zs}?enterica|salmonella\p{Zs}?enterica|s\.\p{Zs}?pyogenes|streptococcus\p{Zs}?pyogenes|p\.\p{Zs}?dumerilii|platynereis\p{Zs}?dumerilii|p\.\p{Zs}?cynocephalus|papio\p{Zs}?cynocephalus|o\.\p{Zs}?fasciatus|oncopeltus\p{Zs}?fasciatus|n\.\p{Zs}?crassa|neurospora\p{Zs}?crassa|c\.\p{Zs}?intestinalis|ciona\p{Zs}?intestinalis|e\.\p{Zs}?cuniculi|encephalitozoon\p{Zs}?cuniculi|h\.\p{Zs}?salinarum|halobacterium\p{Zs}?salinarum|s\.\p{Zs}?solfataricus|sulfolobus\p{Zs}?solfataricus|s\.\p{Zs}?mediterranea|schmidtea\p{Zs}?mediterranea|s\.\p{Zs}?rosetta|salpingoeca\p{Zs}?rosetta|n\.\p{Zs}?vectensis|nematostella\p{Zs}?vectensis|s\.\p{Zs}?aureus|staphylococcus\p{Zs}?aureus|v\.\p{Zs}?cholerae|vibrio\p{Zs}?cholerae|t\.\p{Zs}?thermophila|tetrahymena\p{Zs}?thermophila|c\.\p{Zs}?reinhardtii|chlamydomonas\p{Zs}?reinhardtii|n\.\p{Zs}?attenuata|nicotiana\p{Zs}?attenuata|e\.\p{Zs}?carotovora|erwinia\p{Zs}?carotovora|e\.\p{Zs}?faecalis|h\.\p{Zs}?sapiens|homo\p{Zs}?sapiens|c\.\p{Zs}?trachomatis|chlamydia\p{Zs}?trachomatis|enterococcus\p{Zs}?faecalis|x\.\p{Zs}?laevis|xenopus\p{Zs}?laevis|x\.\p{Zs}?tropicalis|xenopus\p{Zs}?tropicalis|m\.\p{Zs}?musculus|mus\p{Zs}?musculus|d\.\p{Zs}?immigrans|drosophila\p{Zs}?immigrans|d\.\p{Zs}?subobscura|drosophila\p{Zs}?subobscura|d\.\p{Zs}?affinis|drosophila\p{Zs}?affinis|d\.\p{Zs}?obscura|drosophila\p{Zs}?obscura|f\.\p{Zs}?tularensis|francisella\p{Zs}?tularensis|p\.\p{Zs}?plantaginis|podosphaera\p{Zs}?plantaginis|p\.\p{Zs}?lanceolata|plantago\p{Zs}?lanceolata|m\.\p{Zs}?trossulus|mytilus\p{Zs}?trossulus|m\.\p{Zs}?edulis|mytilus\p{Zs}?edulis|m\.\p{Zs}?chilensis|mytilus\p{Zs}?chilensis|u\.\p{Zs}?maydis|ustilago\p{Zs}?maydis|p\.\p{Zs}?knowlesi|plasmodium\p{Zs}?knowlesi|p\.\p{Zs}?aeruginosa|pseudomonas\p{Zs}?aeruginosa|t\.\p{Zs}?brucei|trypanosoma\p{Zs}?brucei|t\.\p{Zs}?gondii|toxoplasma\p{Zs}?gondii|d\.\p{Zs}?rerio|danio\p{Zs}?rerio|yimenosaurus|lesothosaurus\p{Zs}?diagnosticus|l\.\p{Zs}?diagnosticus|scelidosaurus\p{Zs}?harrisonii|s\.\p{Zs}?harrisonii|haya\p{Zs}?griva|h\.\p{Zs}?griva|polacanthus\p{Zs}?foxii|p\.\p{Zs}?foxii|scutellosaurus\p{Zs}?lawleri|s\.\p{Zs}?lawleri|saichania\p{Zs}?chulsanensis|s\.\p{Zs}?chulsanensis|gargoyleosaurus\p{Zs}?parkpinorum|g\.\p{Zs}?parkpinorum|europelta\p{Zs}?carbonensis|e\.\p{Zs}?carbonensis|stegosaurus\p{Zs}?stenops|s\.\p{Zs}?stenops|pinacosaurus\p{Zs}?grangeri|p\.\p{Zs}?grangeri|tatisaurus\p{Zs}?oehleri|t\.\p{Zs}?oehleri|hungarosaurus\p{Zs}?tormai|h\.\p{Zs}?tormai|bienosaurus\p{Zs}?lufengensis|b\.\p{Zs}?lufengensis|fabrosaurus\p{Zs}?australis|f\.\p{Zs}?australis|chinshakiangosaurus\p{Zs}?chunghoensis|c\.\p{Zs}?chunghoensis|euoplocephalus\p{Zs}?tutus|e\.\p{Zs}?tutus|drosophila|xenopus|salmonella|g\.\p{Zs}?beringei|gorilla\p{Zs}?beringei|m\.\p{Zs}?assamensis|macaca\p{Zs}?assamensis|m\.\p{Zs}?fuscata|macaca\p{Zs}?fuscata|m\.\p{Zs}?mulatta|macaca\p{Zs}?mulatta|m\.\p{Zs}?nemestrina|macaca\p{Zs}?nemestrina|m\.\p{Zs}?sphinx|mandrillus\p{Zs}?sphinx|p\.\p{Zs}?anubis|papio\p{Zs}?anubis|p\.\p{Zs}?hamadryas|papio\p{Zs}?hamadryas|p\.\p{Zs}?paniscus|pan\p{Zs}?paniscus|p\.\p{Zs}?troglodytes|pan\p{Zs}?troglodytes'"/>
    <xsl:param name="sec-title-regex" select="string-join(     for $x in tokenize($org-regex,'\|')     return concat('^',$x,'$')     ,'|')"/>
    <xsl:param name="latin-regex" select="'in\p{Zs}+vitro|ex\p{Zs}+vitro|in\p{Zs}+vivo|ex\p{Zs}+vivo|a\p{Zs}+priori|a\p{Zs}+posteriori|de\p{Zs}+novo|in\p{Zs}+utero|in\p{Zs}+natura|in\p{Zs}+situ|in\p{Zs}+planta|in\p{Zs}+cellulo|rete\p{Zs}+mirabile|nomen\p{Zs}+novum| sensu |ad\p{Zs}+libitum|in\p{Zs}+ovo'"/>
-
    <!--PATTERN research-article-pattern-->
-
-
-	  <!--RULE research-article-->
+   <!--RULE research-article-->
    <xsl:template match="article[@article-type='research-article']" priority="1000" mode="M61">
       <xsl:variable name="disp-channel" select="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <xsl:variable name="is-prc" select="e:is-prc(.)"/>
-
-		    <!--REPORT warning-->
+      <!--REPORT warning-->
       <xsl:if test="if ($is-prc) then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])      else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($is-prc) then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report']) else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])">
             <xsl:attribute name="id">test-r-article-d-letter</xsl:attribute>
@@ -1923,8 +1878,7 @@
                <xsl:text/> should almost always be present for research articles. This one doesn't have one. Check that this is correct.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT warning-->
+      <!--REPORT warning-->
       <xsl:if test="$disp-channel = 'Feature Article' and not(sub-article[@article-type='decision-letter'])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$disp-channel = 'Feature Article' and not(sub-article[@article-type='decision-letter'])">
             <xsl:attribute name="id">final-test-r-article-d-letter-feat</xsl:attribute>
@@ -1937,8 +1891,7 @@
             <svrl:text>A decision letter should be present for research articles. Feature template 5s almost always have a decision letter, but this one does not. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT warning-->
+      <!--REPORT warning-->
       <xsl:if test="$disp-channel != 'Scientific Correspondence' and not(sub-article[@article-type=('reply','author-comment')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$disp-channel != 'Scientific Correspondence' and not(sub-article[@article-type=('reply','author-comment')])">
             <xsl:attribute name="id">test-r-article-a-reply</xsl:attribute>
@@ -1956,15 +1909,11 @@
    <xsl:template match="@*|node()" priority="-2" mode="M61">
       <xsl:apply-templates select="*" mode="M61"/>
    </xsl:template>
-
    <!--PATTERN research-article-sub-article-pattern-->
-
-
-	  <!--RULE research-article-sub-article-->
+   <!--RULE research-article-sub-article-->
    <xsl:template match="article[@article-type='research-article' and sub-article]" priority="1000" mode="M62">
       <xsl:variable name="disp-channel" select="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="$disp-channel != 'Scientific Correspondence' and not(sub-article[not(@article-type=('reply','author-comment'))])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$disp-channel != 'Scientific Correspondence' and not(sub-article[not(@article-type=('reply','author-comment'))])">
             <xsl:attribute name="id">r-article-sub-articles</xsl:attribute>
@@ -1985,19 +1934,15 @@
    <xsl:template match="@*|node()" priority="-2" mode="M62">
       <xsl:apply-templates select="*" mode="M62"/>
    </xsl:template>
-
    <!--PATTERN ar-fig-tests-pattern-->
-
-
-	  <!--RULE ar-fig-tests-->
+   <!--RULE ar-fig-tests-->
    <xsl:template match="fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" priority="1000" mode="M63">
       <xsl:variable name="article-type" select="ancestor::article/@article-type"/>
       <xsl:variable name="count" select="count(ancestor::body//fig)"/>
       <xsl:variable name="pos" select="$count - count(following::fig)"/>
       <xsl:variable name="no" select="substring-after(@id,'fig')"/>
       <xsl:variable name="id-based-label" select="concat('Author response image ',$no,'.')"/>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="if ($article-type = ($features-article-types,$notice-article-types)) then ()         else not(label)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($article-type = ($features-article-types,$notice-article-types)) then () else not(label)">
             <xsl:attribute name="id">ar-fig-test-2</xsl:attribute>
@@ -2010,8 +1955,7 @@
             <svrl:text>Author Response fig must have a label.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--ASSERT warning-->
+      <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="graphic"/>
          <xsl:otherwise>
@@ -2027,8 +1971,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--ASSERT warning-->
+      <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="$no = string($pos)"/>
          <xsl:otherwise>
@@ -2055,15 +1998,11 @@
    <xsl:template match="@*|node()" priority="-2" mode="M63">
       <xsl:apply-templates select="*" mode="M63"/>
    </xsl:template>
-
    <!--PATTERN disp-quote-tests-pattern-->
-
-
-	  <!--RULE disp-quote-tests-->
+   <!--RULE disp-quote-tests-->
    <xsl:template match="disp-quote" priority="1000" mode="M64">
       <xsl:variable name="subj" select="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-
-		    <!--REPORT warning-->
+      <!--REPORT warning-->
       <xsl:if test="ancestor::sub-article[not(@article-type=('reply','author-comment'))]">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::sub-article[not(@article-type=('reply','author-comment'))]">
             <xsl:attribute name="id">disp-quote-test-1</xsl:attribute>
@@ -2084,17 +2023,13 @@
    <xsl:template match="@*|node()" priority="-2" mode="M64">
       <xsl:apply-templates select="*" mode="M64"/>
    </xsl:template>
-
    <!--PATTERN dl-video-specific-pattern-->
-
-
-	  <!--RULE dl-video-specific-->
+   <!--RULE dl-video-specific-->
    <xsl:template match="sub-article[@article-type=('decision-letter','referee-report')]/body//media[@mimetype='video']" priority="1000" mode="M65">
       <xsl:variable name="count" select="count(ancestor::body//media[@mimetype='video'])"/>
       <xsl:variable name="pos" select="$count - count(following::media[@mimetype='video' and ancestor::sub-article/@article-type=('decision-letter','referee-report')])"/>
       <xsl:variable name="no" select="substring-after(@id,'video')"/>
-
-		    <!--ASSERT warning-->
+      <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="$no = string($pos)"/>
          <xsl:otherwise>
@@ -2120,17 +2055,13 @@
    <xsl:template match="@*|node()" priority="-2" mode="M65">
       <xsl:apply-templates select="*" mode="M65"/>
    </xsl:template>
-
    <!--PATTERN ar-video-specific-pattern-->
-
-
-	  <!--RULE ar-video-specific-->
+   <!--RULE ar-video-specific-->
    <xsl:template match="sub-article[@article-type=('reply','author-comment')]/body//media[@mimetype='video']" priority="1000" mode="M66">
       <xsl:variable name="count" select="count(ancestor::body//media[@mimetype='video'])"/>
       <xsl:variable name="pos" select="$count - count(following::media[@mimetype='video'])"/>
       <xsl:variable name="no" select="substring-after(@id,'video')"/>
-
-		    <!--ASSERT warning-->
+      <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="$no = string($pos)"/>
          <xsl:otherwise>
@@ -2156,11 +2087,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M66">
       <xsl:apply-templates select="*" mode="M66"/>
    </xsl:template>
-
    <!--PATTERN rep-fig-tests-pattern-->
-
-
-	  <!--RULE rep-fig-tests-->
+   <!--RULE rep-fig-tests-->
    <xsl:template match="sub-article[@article-type=('reply','author-comment')]//fig" priority="1000" mode="M67">
 
 		<!--ASSERT error-->
@@ -2179,8 +2107,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="matches(label[1],'^Author response image [0-9]{1,3}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')"/>
          <xsl:otherwise>
@@ -2202,11 +2129,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M67">
       <xsl:apply-templates select="*" mode="M67"/>
    </xsl:template>
-
    <!--PATTERN dec-fig-tests-pattern-->
-
-
-	  <!--RULE dec-fig-tests-->
+   <!--RULE dec-fig-tests-->
    <xsl:template match="sub-article[@article-type='decision-letter']//fig" priority="1000" mode="M68">
 
 		<!--ASSERT error-->
@@ -2225,8 +2149,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="matches(label[1],'^Decision letter image [0-9]{1,3}\.$')"/>
          <xsl:otherwise>
@@ -2248,11 +2171,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M68">
       <xsl:apply-templates select="*" mode="M68"/>
    </xsl:template>
-
    <!--PATTERN ed-eval-title-tests-pattern-->
-
-
-	  <!--RULE ed-eval-title-tests-->
+   <!--RULE ed-eval-title-tests-->
    <xsl:template match="sub-article[@article-type='editor-report']/front-stub/title-group" priority="1000" mode="M69">
 
 		<!--ASSERT error-->
@@ -2278,11 +2198,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M69">
       <xsl:apply-templates select="*" mode="M69"/>
    </xsl:template>
-
    <!--PATTERN dec-letter-title-tests-pattern-->
-
-
-	  <!--RULE dec-letter-title-tests-->
+   <!--RULE dec-letter-title-tests-->
    <xsl:template match="sub-article[@article-type='decision-letter']/front-stub/title-group" priority="1000" mode="M70">
 
 		<!--ASSERT error-->
@@ -2309,11 +2226,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M70">
       <xsl:apply-templates select="*" mode="M70"/>
    </xsl:template>
-
    <!--PATTERN reply-title-tests-pattern-->
-
-
-	  <!--RULE reply-title-tests-->
+   <!--RULE reply-title-tests-->
    <xsl:template match="sub-article[@article-type=('reply','author-comment')]/front-stub/title-group" priority="1000" mode="M71">
 
 		<!--ASSERT error-->
@@ -2340,11 +2254,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M71">
       <xsl:apply-templates select="*" mode="M71"/>
    </xsl:template>
-
    <!--PATTERN rep-fig-ids-pattern-->
-
-
-	  <!--RULE rep-fig-ids-->
+   <!--RULE rep-fig-ids-->
    <xsl:template match="sub-article//fig[not(@specific-use='child-fig')]" priority="1000" mode="M72">
 
 		<!--ASSERT error-->
@@ -2371,11 +2282,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M72">
       <xsl:apply-templates select="*" mode="M72"/>
    </xsl:template>
-
    <!--PATTERN rep-fig-sup-ids-pattern-->
-
-
-	  <!--RULE rep-fig-sup-ids-->
+   <!--RULE rep-fig-sup-ids-->
    <xsl:template match="sub-article//fig[@specific-use='child-fig']" priority="1000" mode="M73">
 
 		<!--ASSERT error-->
@@ -2402,11 +2310,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M73">
       <xsl:apply-templates select="*" mode="M73"/>
    </xsl:template>
-
    <!--PATTERN disp-formula-ids-pattern-->
-
-
-	  <!--RULE disp-formula-ids-->
+   <!--RULE disp-formula-ids-->
    <xsl:template match="disp-formula" priority="1000" mode="M74">
 
 		<!--REPORT error-->
@@ -2430,11 +2335,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M74">
       <xsl:apply-templates select="*" mode="M74"/>
    </xsl:template>
-
    <!--PATTERN mml-math-ids-pattern-->
-
-
-	  <!--RULE mml-math-ids-->
+   <!--RULE mml-math-ids-->
    <xsl:template match="disp-formula/mml:math" priority="1000" mode="M75">
 
 		<!--REPORT error-->
@@ -2458,11 +2360,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M75">
       <xsl:apply-templates select="*" mode="M75"/>
    </xsl:template>
-
    <!--PATTERN resp-table-wrap-ids-pattern-->
-
-
-	  <!--RULE resp-table-wrap-ids-->
+   <!--RULE resp-table-wrap-ids-->
    <xsl:template match="sub-article//table-wrap" priority="1000" mode="M76">
 
 		<!--ASSERT warning-->
@@ -2487,18 +2386,14 @@
    <xsl:template match="@*|node()" priority="-2" mode="M76">
       <xsl:apply-templates select="*" mode="M76"/>
    </xsl:template>
-
    <!--PATTERN dec-letter-reply-tests-pattern-->
-
-
-	  <!--RULE dec-letter-reply-tests-->
+   <!--RULE dec-letter-reply-tests-->
    <xsl:template match="article/sub-article" priority="1000" mode="M77">
       <xsl:variable name="is-prc" select="e:is-prc(.)"/>
       <xsl:variable name="sub-article-types" select="('editor-report','referee-report','author-comment','decision-letter','reply')"/>
       <xsl:variable name="sub-article-count" select="count(parent::article/sub-article)"/>
       <xsl:variable name="id-convention" select="if (@article-type='editor-report') then 'sa0'         else if (@article-type='decision-letter') then 'sa1'         else if (@article-type='reply') then 'sa2'         else if (@article-type='author-comment') then concat('sa',$sub-article-count - 1)         else concat('sa',count(preceding-sibling::sub-article))"/>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="@article-type=$sub-article-types"/>
          <xsl:otherwise>
@@ -2516,8 +2411,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="@id = $id-convention"/>
          <xsl:otherwise>
@@ -2537,8 +2431,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="count(front-stub) = 1"/>
          <xsl:otherwise>
@@ -2554,8 +2447,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="count(body) = 1"/>
          <xsl:otherwise>
@@ -2571,8 +2463,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="not($is-prc) and @article-type='referee-report'">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($is-prc) and @article-type='referee-report'">
             <xsl:attribute name="id">sub-article-1</xsl:attribute>
@@ -2586,8 +2477,7 @@
                <xsl:text/>' is not permitted as the article-type for a sub-article in a non-PRC article. Provided this is in fact a non-PRC article, the article-type should be 'decision-letter'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="not($is-prc) and @article-type='author-comment'">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($is-prc) and @article-type='author-comment'">
             <xsl:attribute name="id">sub-article-2</xsl:attribute>
@@ -2601,8 +2491,7 @@
                <xsl:text/>' is not permitted as the article-type for a sub-article in a non-PRC article. Provided this is in fact a non-PRC article, the article-type should be 'response'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="$is-prc and @article-type='decision-letter'">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$is-prc and @article-type='decision-letter'">
             <xsl:attribute name="id">sub-article-3</xsl:attribute>
@@ -2616,8 +2505,7 @@
                <xsl:text/>' is not permitted as the article-type for a sub-article in PRC articles. Provided this is in fact a PRC article, the article-type should be 'referee-report'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="$is-prc and @article-type='reply'">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$is-prc and @article-type='reply'">
             <xsl:attribute name="id">sub-article-4</xsl:attribute>
@@ -2637,11 +2525,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M77">
       <xsl:apply-templates select="*" mode="M77"/>
    </xsl:template>
-
    <!--PATTERN dec-letter-reply-content-tests-pattern-->
-
-
-	  <!--RULE dec-letter-reply-content-tests-->
+   <!--RULE dec-letter-reply-content-tests-->
    <xsl:template match="article/sub-article//p" priority="1000" mode="M78">
 
 		<!--REPORT error-->
@@ -2662,8 +2547,7 @@
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT warning-->
+      <!--REPORT warning-->
       <xsl:if test="matches(.,'&lt;\p{Zs}?/?\p{Zs}?[a-z]*\p{Zs}?/?\p{Zs}?&gt;')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'&lt;\p{Zs}?/?\p{Zs}?[a-z]*\p{Zs}?/?\p{Zs}?&gt;')">
             <xsl:attribute name="id">dec-letter-reply-test-6</xsl:attribute>
@@ -2687,15 +2571,11 @@
    <xsl:template match="@*|node()" priority="-2" mode="M78">
       <xsl:apply-templates select="*" mode="M78"/>
    </xsl:template>
-
    <!--PATTERN dec-letter-reply-content-tests-2-pattern-->
-
-
-	  <!--RULE dec-letter-reply-content-tests-2-->
+   <!--RULE dec-letter-reply-content-tests-2-->
    <xsl:template match="article/sub-article//p[not(ancestor::disp-quote)]" priority="1000" mode="M79">
       <xsl:variable name="regex" select="'\p{Zs}([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict\p{Zs}[Oo]f\p{Zs}[Ii]nterest|([Aa]re|[Aa]m)\p{Zs}[Ss]hocked|[Ss]trongly\p{Zs}[Dd]isagree)[^\p{L}]'"/>
-
-		    <!--REPORT warning-->
+      <!--REPORT warning-->
       <xsl:if test="matches(.,$regex)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,$regex)">
             <xsl:attribute name="id">dec-letter-reply-test-7</xsl:attribute>
@@ -2721,11 +2601,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M79">
       <xsl:apply-templates select="*" mode="M79"/>
    </xsl:template>
-
    <!--PATTERN ed-eval-front-tests-pattern-->
-
-
-	  <!--RULE ed-eval-front-tests-->
+   <!--RULE ed-eval-front-tests-->
    <xsl:template match="sub-article[@article-type='editor-report']/front-stub" priority="1000" mode="M80">
 
 		<!--ASSERT error-->
@@ -2743,8 +2620,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="count(contrib-group) = 1"/>
          <xsl:otherwise>
@@ -2761,8 +2637,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="count(related-object) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(related-object) gt 1">
             <xsl:attribute name="id">ed-eval-front-test-3</xsl:attribute>
@@ -2782,11 +2657,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M80">
       <xsl:apply-templates select="*" mode="M80"/>
    </xsl:template>
-
    <!--PATTERN ed-eval-front-child-tests-pattern-->
-
-
-	  <!--RULE ed-eval-front-child-tests-->
+   <!--RULE ed-eval-front-child-tests-->
    <xsl:template match="sub-article[@article-type='editor-report']/front-stub/*" priority="1000" mode="M81">
 
 		<!--ASSERT error-->
@@ -2813,11 +2685,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M81">
       <xsl:apply-templates select="*" mode="M81"/>
    </xsl:template>
-
    <!--PATTERN ed-eval-contrib-group-tests-pattern-->
-
-
-	  <!--RULE ed-eval-contrib-group-tests-->
+   <!--RULE ed-eval-contrib-group-tests-->
    <xsl:template match="sub-article[@article-type='editor-report']/front-stub/contrib-group" priority="1000" mode="M82">
 
 		<!--ASSERT error-->
@@ -2841,16 +2710,12 @@
    <xsl:template match="@*|node()" priority="-2" mode="M82">
       <xsl:apply-templates select="*" mode="M82"/>
    </xsl:template>
-
    <!--PATTERN ed-eval-author-tests-pattern-->
-
-
-	  <!--RULE ed-eval-author-tests-->
+   <!--RULE ed-eval-author-tests-->
    <xsl:template match="sub-article[@article-type='editor-report']/front-stub/contrib-group/contrib[@contrib-type='author' and name]" priority="1000" mode="M83">
       <xsl:variable name="rev-ed-name" select="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section'][1]/contrib[@contrib-type='editor'][1]/name[1])"/>
       <xsl:variable name="name" select="e:get-name(name[1])"/>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="$name = $rev-ed-name"/>
          <xsl:otherwise>
@@ -2875,15 +2740,11 @@
    <xsl:template match="@*|node()" priority="-2" mode="M83">
       <xsl:apply-templates select="*" mode="M83"/>
    </xsl:template>
-
    <!--PATTERN ed-eval-rel-obj-tests-pattern-->
-
-
-	  <!--RULE ed-eval-rel-obj-tests-->
+   <!--RULE ed-eval-rel-obj-tests-->
    <xsl:template match="sub-article[@article-type='editor-report']/front-stub/related-object" priority="1000" mode="M84">
       <xsl:variable name="event-preprint-doi" select="for $x in ancestor::article//article-meta/pub-history/event[1]/self-uri[@content-type='preprint'][1]/@xlink:href                                         return substring-after($x,'.org/')"/>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="matches(@id,'^sa0ro\d$')"/>
          <xsl:otherwise>
@@ -2900,8 +2761,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="@object-id-type='id'"/>
          <xsl:otherwise>
@@ -2916,8 +2776,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="@link-type='continued-by'"/>
          <xsl:otherwise>
@@ -2932,8 +2791,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="matches(@object-id,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')"/>
          <xsl:otherwise>
@@ -2950,8 +2808,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="@object-id = $event-preprint-doi"/>
          <xsl:otherwise>
@@ -2970,8 +2827,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="@xlink:href = (         concat('https://sciety.org/articles/activity/',@object-id),         concat('https://sciety.org/articles/',@object-id)         )"/>
          <xsl:otherwise>
@@ -2990,8 +2846,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="@xlink:href = (         concat('https://sciety.org/articles/activity/',$event-preprint-doi),         concat('https://sciety.org/articles/',$event-preprint-doi)         )"/>
          <xsl:otherwise>
@@ -3016,11 +2871,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M84">
       <xsl:apply-templates select="*" mode="M84"/>
    </xsl:template>
-
    <!--PATTERN ed-report-kwd-group-pattern-->
-
-
-	  <!--RULE ed-report-kwd-group-->
+   <!--RULE ed-report-kwd-group-->
    <xsl:template match="sub-article[@article-type='editor-report']/front-stub/kwd-group" priority="1000" mode="M85">
 
 		<!--ASSERT error-->
@@ -3040,8 +2892,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="@kwd-group-type='claim-importance' and count(kwd) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@kwd-group-type='claim-importance' and count(kwd) gt 1">
             <xsl:attribute name="id">ed-report-kwd-group-3</xsl:attribute>
@@ -3060,8 +2911,7 @@
                <xsl:text/>. This is not permitted, please check which single importance keyword should be used.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT warning-->
+      <!--REPORT warning-->
       <xsl:if test="@kwd-group-type='evidence-strength' and count(kwd) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@kwd-group-type='evidence-strength' and count(kwd) gt 1">
             <xsl:attribute name="id">ed-report-kwd-group-2</xsl:attribute>
@@ -3086,15 +2936,11 @@
    <xsl:template match="@*|node()" priority="-2" mode="M85">
       <xsl:apply-templates select="*" mode="M85"/>
    </xsl:template>
-
    <!--PATTERN ed-report-claim-kwds-pattern-->
-
-
-	  <!--RULE ed-report-claim-kwds-->
+   <!--RULE ed-report-claim-kwds-->
    <xsl:template match="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" priority="1000" mode="M86">
       <xsl:variable name="allowed-vals" select="('Landmark', 'Fundamental', 'Important', 'Valuable', 'Useful')"/>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test=".=$allowed-vals"/>
          <xsl:otherwise>
@@ -3120,15 +2966,11 @@
    <xsl:template match="@*|node()" priority="-2" mode="M86">
       <xsl:apply-templates select="*" mode="M86"/>
    </xsl:template>
-
    <!--PATTERN ed-report-evidence-kwds-pattern-->
-
-
-	  <!--RULE ed-report-evidence-kwds-->
+   <!--RULE ed-report-evidence-kwds-->
    <xsl:template match="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" priority="1000" mode="M87">
       <xsl:variable name="allowed-vals" select="('Exceptional', 'Compelling', 'Convincing', 'Solid', 'Incomplete', 'Inadequate')"/>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test=".=$allowed-vals"/>
          <xsl:otherwise>
@@ -3154,11 +2996,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M87">
       <xsl:apply-templates select="*" mode="M87"/>
    </xsl:template>
-
    <!--PATTERN ed-report-kwds-pattern-->
-
-
-	  <!--RULE ed-report-kwds-->
+   <!--RULE ed-report-kwds-->
    <xsl:template match="sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" priority="1000" mode="M88">
 
 		<!--REPORT error-->
@@ -3175,8 +3014,7 @@
                <xsl:text/>, there is another kwd with that value witin the same kwd-group, so this one is either incorrect or superfluous and should be deleted.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="some $x in ancestor::sub-article[1]/body/p//bold satisfies contains(lower-case($x),lower-case(.))"/>
          <xsl:otherwise>
@@ -3195,8 +3033,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="*">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*">
             <xsl:attribute name="id">ed-report-kwd-3</xsl:attribute>
@@ -3218,15 +3055,11 @@
    <xsl:template match="@*|node()" priority="-2" mode="M88">
       <xsl:apply-templates select="*" mode="M88"/>
    </xsl:template>
-
    <!--PATTERN dec-letter-front-tests-pattern-->
-
-
-	  <!--RULE dec-letter-front-tests-->
+   <!--RULE dec-letter-front-tests-->
    <xsl:template match="sub-article[@article-type='decision-letter']/front-stub" priority="1000" mode="M89">
       <xsl:variable name="count" select="count(contrib-group)"/>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="count(article-id[@pub-id-type='doi']) = 1"/>
          <xsl:otherwise>
@@ -3242,8 +3075,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="$count gt 0"/>
          <xsl:otherwise>
@@ -3259,8 +3091,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="$count gt 2">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$count gt 2">
             <xsl:attribute name="id">dec-letter-front-test-3</xsl:attribute>
@@ -3273,8 +3104,7 @@
             <svrl:text>decision letter front-stub contains more than 2 contrib-group elements.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT warning-->
+      <!--REPORT warning-->
       <xsl:if test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'(All|The) reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/|doi.org/10.24072/pci.evolbiol')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'(All|The) reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/|doi.org/10.24072/pci.evolbiol')])">
             <xsl:attribute name="id">dec-letter-front-test-4</xsl:attribute>
@@ -3293,11 +3123,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M89">
       <xsl:apply-templates select="*" mode="M89"/>
    </xsl:template>
-
    <!--PATTERN dec-letter-editor-tests-pattern-->
-
-
-	  <!--RULE dec-letter-editor-tests-->
+   <!--RULE dec-letter-editor-tests-->
    <xsl:template match="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" priority="1000" mode="M90">
 
 		<!--ASSERT warning-->
@@ -3316,8 +3143,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--REPORT warning-->
+      <!--REPORT warning-->
       <xsl:if test="contrib[not(@contrib-type) or @contrib-type!='editor']">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contrib[not(@contrib-type) or @contrib-type!='editor']">
             <xsl:attribute name="id">dec-letter-editor-test-2</xsl:attribute>
@@ -3336,16 +3162,12 @@
    <xsl:template match="@*|node()" priority="-2" mode="M90">
       <xsl:apply-templates select="*" mode="M90"/>
    </xsl:template>
-
    <!--PATTERN dec-letter-editor-tests-2-pattern-->
-
-
-	  <!--RULE dec-letter-editor-tests-2-->
+   <!--RULE dec-letter-editor-tests-2-->
    <xsl:template match="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor']" priority="1000" mode="M91">
       <xsl:variable name="name" select="e:get-name(name[1])"/>
       <xsl:variable name="role" select="role[1]"/>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="$role=('Reviewing Editor','Senior and Reviewing Editor')"/>
          <xsl:otherwise>
@@ -3371,11 +3193,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M91">
       <xsl:apply-templates select="*" mode="M91"/>
    </xsl:template>
-
    <!--PATTERN dec-letter-reviewer-tests-pattern-->
-
-
-	  <!--RULE dec-letter-reviewer-tests-->
+   <!--RULE dec-letter-reviewer-tests-->
    <xsl:template match="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" priority="1000" mode="M92">
 
 		<!--ASSERT error-->
@@ -3394,8 +3213,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="contrib[not(@contrib-type) or @contrib-type!='reviewer']">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contrib[not(@contrib-type) or @contrib-type!='reviewer']">
             <xsl:attribute name="id">dec-letter-reviewer-test-2</xsl:attribute>
@@ -3408,8 +3226,7 @@
             <svrl:text>Second contrib-group in decision letter contains a contrib which is not marked up as a reviewer (contrib[@contrib-type='reviewer']).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT warning-->
+      <!--REPORT warning-->
       <xsl:if test="count(contrib[@contrib-type='reviewer']) gt 5">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(contrib[@contrib-type='reviewer']) gt 5">
             <xsl:attribute name="id">dec-letter-reviewer-test-6</xsl:attribute>
@@ -3428,15 +3245,11 @@
    <xsl:template match="@*|node()" priority="-2" mode="M92">
       <xsl:apply-templates select="*" mode="M92"/>
    </xsl:template>
-
    <!--PATTERN dec-letter-reviewer-tests-2-pattern-->
-
-
-	  <!--RULE dec-letter-reviewer-tests-2-->
+   <!--RULE dec-letter-reviewer-tests-2-->
    <xsl:template match="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]/contrib[@contrib-type='reviewer']" priority="1000" mode="M93">
       <xsl:variable name="name" select="e:get-name(name[1])"/>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="role='Reviewer'"/>
          <xsl:otherwise>
@@ -3462,11 +3275,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M93">
       <xsl:apply-templates select="*" mode="M93"/>
    </xsl:template>
-
    <!--PATTERN dec-letter-body-tests-pattern-->
-
-
-	  <!--RULE dec-letter-body-tests-->
+   <!--RULE dec-letter-body-tests-->
    <xsl:template match="sub-article[@article-type='decision-letter']/body" priority="1000" mode="M94">
 
 		<!--ASSERT error-->
@@ -3491,11 +3301,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M94">
       <xsl:apply-templates select="*" mode="M94"/>
    </xsl:template>
-
    <!--PATTERN dec-letter-body-p-tests-pattern-->
-
-
-	  <!--RULE dec-letter-body-p-tests-->
+   <!--RULE dec-letter-body-p-tests-->
    <xsl:template match="sub-article[@article-type=('decision-letter','referee-report')]/body//p" priority="1000" mode="M95">
 
 		<!--REPORT error-->
@@ -3513,8 +3320,7 @@
                <xsl:text/>' must contain an embedded link pointing to https://www.reviewcommons.org/.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="contains(lower-case(.),'reviewed and recommended by peer community in evolutionary biology') and not(child::ext-link[matches(@xlink:href,'doi.org/10.24072/pci.evolbiol')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(lower-case(.),'reviewed and recommended by peer community in evolutionary biology') and not(child::ext-link[matches(@xlink:href,'doi.org/10.24072/pci.evolbiol')])">
             <xsl:attribute name="id">dec-letter-body-test-3</xsl:attribute>
@@ -3533,17 +3339,13 @@
    <xsl:template match="@*|node()" priority="-2" mode="M95">
       <xsl:apply-templates select="*" mode="M95"/>
    </xsl:template>
-
    <!--PATTERN dec-letter-box-tests-pattern-->
-
-
-	  <!--RULE dec-letter-box-tests-->
+   <!--RULE dec-letter-box-tests-->
    <xsl:template match="sub-article[@article-type='decision-letter']/body/boxed-text[1]" priority="1000" mode="M96">
       <xsl:variable name="permitted-text-1" select="'^Our editorial process produces two outputs: \(?i\) public reviews designed to be posted alongside the preprint for the benefit of readers; \(?ii\) feedback on the manuscript for the authors, including requests for revisions, shown below.$'"/>
       <xsl:variable name="permitted-text-2" select="'^Our editorial process produces two outputs: \(?i\) public reviews designed to be posted alongside the preprint for the benefit of readers; \(?ii\) feedback on the manuscript for the authors, including requests for revisions, shown below. We also include an acceptance summary that explains what the editors found interesting or important about the work.$'"/>
       <xsl:variable name="permitted-text-3" select="'^In the interests of transparency, eLife publishes the most substantive revision requests and the accompanying author responses.$'"/>
-
-		    <!--ASSERT warning-->
+      <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="matches(.,concat($permitted-text-1,'|',$permitted-text-2,'|',$permitted-text-3))"/>
          <xsl:otherwise>
@@ -3561,8 +3363,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="matches(.,concat($permitted-text-1,'|',$permitted-text-2)) and not(descendant::ext-link[contains(@xlink:href,'sciety.org/') and .='public reviews'])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,concat($permitted-text-1,'|',$permitted-text-2)) and not(descendant::ext-link[contains(@xlink:href,'sciety.org/') and .='public reviews'])">
             <xsl:attribute name="id">dec-letter-box-test-2</xsl:attribute>
@@ -3575,8 +3376,7 @@
             <svrl:text>At the top of the decision letter, the text 'public reviews' must contain an embedded link to Sciety where the public review for this article's preprint is located.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="matches(.,concat($permitted-text-1,'|',$permitted-text-2)) and not(descendant::ext-link[.='the preprint'])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,concat($permitted-text-1,'|',$permitted-text-2)) and not(descendant::ext-link[.='the preprint'])">
             <xsl:attribute name="id">dec-letter-box-test-3</xsl:attribute>
@@ -3595,11 +3395,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M96">
       <xsl:apply-templates select="*" mode="M96"/>
    </xsl:template>
-
    <!--PATTERN decision-missing-table-tests-pattern-->
-
-
-	  <!--RULE decision-missing-table-tests-->
+   <!--RULE decision-missing-table-tests-->
    <xsl:template match="sub-article[@article-type='decision-letter']" priority="1000" mode="M97">
 
 		<!--REPORT warning-->
@@ -3621,11 +3418,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M97">
       <xsl:apply-templates select="*" mode="M97"/>
    </xsl:template>
-
    <!--PATTERN reply-front-tests-pattern-->
-
-
-	  <!--RULE reply-front-tests-->
+   <!--RULE reply-front-tests-->
    <xsl:template match="sub-article[@article-type=('reply','author-comment')]/front-stub" priority="1000" mode="M98">
 
 		<!--ASSERT error-->
@@ -3650,11 +3444,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M98">
       <xsl:apply-templates select="*" mode="M98"/>
    </xsl:template>
-
    <!--PATTERN reply-body-tests-pattern-->
-
-
-	  <!--RULE reply-body-tests-->
+   <!--RULE reply-body-tests-->
    <xsl:template match="sub-article[@article-type=('reply','author-comment')]/body" priority="1000" mode="M99">
 
 		<!--REPORT warning-->
@@ -3670,8 +3461,7 @@
             <svrl:text>author response doesn't contain a disp-quote. This is very likely to be incorrect. Please check the original file.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="count(p) = 0">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(p) = 0">
             <xsl:attribute name="id">reply-body-test-2</xsl:attribute>
@@ -3690,11 +3480,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M99">
       <xsl:apply-templates select="*" mode="M99"/>
    </xsl:template>
-
    <!--PATTERN reply-disp-quote-tests-pattern-->
-
-
-	  <!--RULE reply-disp-quote-tests-->
+   <!--RULE reply-disp-quote-tests-->
    <xsl:template match="sub-article[@article-type=('reply','author-comment')]/body//disp-quote" priority="1000" mode="M100">
 
 		<!--ASSERT warning-->
@@ -3719,15 +3506,11 @@
    <xsl:template match="@*|node()" priority="-2" mode="M100">
       <xsl:apply-templates select="*" mode="M100"/>
    </xsl:template>
-
    <!--PATTERN reply-missing-disp-quote-tests-pattern-->
-
-
-	  <!--RULE reply-missing-disp-quote-tests-->
+   <!--RULE reply-missing-disp-quote-tests-->
    <xsl:template match="sub-article[@article-type=('reply','author-comment')]/body//p[not(ancestor::disp-quote)]" priority="1000" mode="M101">
       <xsl:variable name="free-text" select="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
-
-		    <!--REPORT warning-->
+      <!--REPORT warning-->
       <xsl:if test="(count(*)=1) and (child::italic) and ($free-text='')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count(*)=1) and (child::italic) and ($free-text='')">
             <xsl:attribute name="id">reply-missing-disp-quote-test-1</xsl:attribute>
@@ -3746,11 +3529,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M101">
       <xsl:apply-templates select="*" mode="M101"/>
    </xsl:template>
-
    <!--PATTERN reply-missing-disp-quote-tests-2-pattern-->
-
-
-	  <!--RULE reply-missing-disp-quote-tests-2-->
+   <!--RULE reply-missing-disp-quote-tests-2-->
    <xsl:template match="sub-article[@article-type=('reply','author-comment')]//italic[not(ancestor::disp-quote)]" priority="1000" mode="M102">
 
 		<!--REPORT warning-->
@@ -3776,11 +3556,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M102">
       <xsl:apply-templates select="*" mode="M102"/>
    </xsl:template>
-
    <!--PATTERN reply-missing-table-tests-pattern-->
-
-
-	  <!--RULE reply-missing-table-tests-->
+   <!--RULE reply-missing-table-tests-->
    <xsl:template match="sub-article[@article-type=('reply','author-comment')]" priority="1000" mode="M103">
 
 		<!--REPORT warning-->
@@ -3802,11 +3579,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M103">
       <xsl:apply-templates select="*" mode="M103"/>
    </xsl:template>
-
    <!--PATTERN sub-article-ext-link-tests-pattern-->
-
-
-	  <!--RULE sub-article-ext-link-tests-->
+   <!--RULE sub-article-ext-link-tests-->
    <xsl:template match="sub-article//ext-link" priority="1000" mode="M104">
 
 		<!--REPORT error-->
@@ -3834,11 +3608,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M104">
       <xsl:apply-templates select="*" mode="M104"/>
    </xsl:template>
-
    <!--PATTERN sub-article-ref-p-tests-pattern-->
-
-
-	  <!--RULE sub-article-ref-p-tests-->
+   <!--RULE sub-article-ref-p-tests-->
    <xsl:template match="sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p']" priority="1000" mode="M105">
 
 		<!--REPORT warning-->
@@ -3863,15 +3634,11 @@
    <xsl:template match="@*|node()" priority="-2" mode="M105">
       <xsl:apply-templates select="*" mode="M105"/>
    </xsl:template>
-
    <!--PATTERN ref-report-front-pattern-->
-
-
-	  <!--RULE ref-report-front-->
+   <!--RULE ref-report-front-->
    <xsl:template match="sub-article[@article-type='referee-report']/front-stub" priority="1000" mode="M106">
       <xsl:variable name="count" select="count(contrib-group)"/>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="count(article-id[@pub-id-type='doi']) = 1"/>
          <xsl:otherwise>
@@ -3887,8 +3654,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="$count = 1"/>
          <xsl:otherwise>
@@ -3909,11 +3675,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M106">
       <xsl:apply-templates select="*" mode="M106"/>
    </xsl:template>
-
    <!--PATTERN sub-article-contrib-tests-pattern-->
-
-
-	  <!--RULE sub-article-contrib-tests-->
+   <!--RULE sub-article-contrib-tests-->
    <xsl:template match="sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib" priority="1000" mode="M107">
 
 		<!--ASSERT error-->
@@ -3933,8 +3696,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="name or anonymous or collab"/>
          <xsl:otherwise>
@@ -3949,8 +3711,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="(name and anonymous) or (collab and anonymous) or (name and collab)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(name and anonymous) or (collab and anonymous) or (name and collab)">
             <xsl:attribute name="id">sub-article-contrib-test-3</xsl:attribute>
@@ -3964,8 +3725,7 @@
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="role"/>
          <xsl:otherwise>
@@ -3988,16 +3748,12 @@
    <xsl:template match="@*|node()" priority="-2" mode="M107">
       <xsl:apply-templates select="*" mode="M107"/>
    </xsl:template>
-
    <!--PATTERN sub-article-role-tests-pattern-->
-
-
-	  <!--RULE sub-article-role-tests-->
+   <!--RULE sub-article-role-tests-->
    <xsl:template match="sub-article/front-stub/contrib-group/contrib/role" priority="1000" mode="M108">
       <xsl:variable name="sub-article-type" select="ancestor::sub-article[1]/@article-type"/>
       <xsl:variable name="sub-title" select="ancestor::sub-article[1]/front-stub[1]/title-group[1]/article-title[1]"/>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="lower-case($sub-title)='recommendations for authors' and not(parent::contrib/preceding-sibling::contrib) and not(@specific-use='editor')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="lower-case($sub-title)='recommendations for authors' and not(parent::contrib/preceding-sibling::contrib) and not(@specific-use='editor')">
             <xsl:attribute name="id">sub-article-role-test-1</xsl:attribute>
@@ -4011,8 +3767,7 @@
                <xsl:text/> must have the attribute specific-use='editor'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="$sub-article-type='referee-report' and (lower-case($sub-title)!='recommendations for authors' or parent::contrib/preceding-sibling::contrib) and not(@specific-use='referee')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$sub-article-type='referee-report' and (lower-case($sub-title)!='recommendations for authors' or parent::contrib/preceding-sibling::contrib) and not(@specific-use='referee')">
             <xsl:attribute name="id">sub-article-role-test-2</xsl:attribute>
@@ -4024,8 +3779,7 @@
             <svrl:text>The role element for this contributor must have the attribute specific-use='referee'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="$sub-article-type='author-comment' and not(@specific-use='author')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$sub-article-type='author-comment' and not(@specific-use='author')">
             <xsl:attribute name="id">sub-article-role-test-3</xsl:attribute>
@@ -4037,8 +3791,7 @@
             <svrl:text>The role element for contributors in the author response must have the attribute specific-use='author'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="@specific-use='author' and .!='Author'">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@specific-use='author' and .!='Author'">
             <xsl:attribute name="id">sub-article-role-test-4</xsl:attribute>
@@ -4052,8 +3805,7 @@
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="@specific-use='editor' and not(.=('Senior and Reviewing Editor','Reviewing Editor'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@specific-use='editor' and not(.=('Senior and Reviewing Editor','Reviewing Editor'))">
             <xsl:attribute name="id">sub-article-role-test-5</xsl:attribute>
@@ -4067,8 +3819,7 @@
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="@specific-use='referee' and .!='Reviewer'">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@specific-use='referee' and .!='Reviewer'">
             <xsl:attribute name="id">sub-article-role-test-6</xsl:attribute>
@@ -4088,11 +3839,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M108">
       <xsl:apply-templates select="*" mode="M108"/>
    </xsl:template>
-
    <!--PATTERN ref-report-editor-tests-pattern-->
-
-
-	  <!--RULE ref-report-editor-tests-->
+   <!--RULE ref-report-editor-tests-->
    <xsl:template match="sub-article[@article-type='referee-report']/front-stub[lower-case(title-group[1]/article-title[1])='recommendations for authors']" priority="1000" mode="M109">
 
 		<!--ASSERT error-->
@@ -4112,8 +3860,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--ASSERT error-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="count(descendant::contrib[role[@specific-use='referee']]) &gt; 0"/>
          <xsl:otherwise>
@@ -4134,11 +3881,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M109">
       <xsl:apply-templates select="*" mode="M109"/>
    </xsl:template>
-
    <!--PATTERN ref-report-reviewer-tests-pattern-->
-
-
-	  <!--RULE ref-report-reviewer-tests-->
+   <!--RULE ref-report-reviewer-tests-->
    <xsl:template match="sub-article[@article-type='referee-report' and contains(lower-case(front-stub[1]/title-group[1]/article-title[1]),'public review')]/front-stub" priority="1000" mode="M110">
 
 		<!--ASSERT error-->
@@ -4158,8 +3902,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="descendant::contrib[not(role[@specific-use='referee'])]">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::contrib[not(role[@specific-use='referee'])]">
             <xsl:attribute name="id">ref-report-reviewer-test-2</xsl:attribute>
@@ -4177,16 +3920,12 @@
    <xsl:template match="@*|node()" priority="-2" mode="M110">
       <xsl:apply-templates select="*" mode="M110"/>
    </xsl:template>
-
    <!--PATTERN feature-template-tests-pattern-->
-
-
-	  <!--RULE feature-template-tests-->
+   <!--RULE feature-template-tests-->
    <xsl:template match="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" priority="1000" mode="M111">
       <xsl:variable name="template" select="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
       <xsl:variable name="type" select="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="($template = ('1','2','3')) and child::sub-article">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($template = ('1','2','3')) and child::sub-article">
             <xsl:attribute name="id">feature-template-test-1</xsl:attribute>
@@ -4204,8 +3943,7 @@
                <xsl:text/> but it has a decision letter or author response, which cannot be correct, as only template 5s are allowed these.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-
-		    <!--REPORT error-->
+      <!--REPORT error-->
       <xsl:if test="($template = '5') and not(@article-type='research-article')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($template = '5') and not(@article-type='research-article')">
             <xsl:attribute name="id">feature-template-test-2</xsl:attribute>

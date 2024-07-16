@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="given-names-test-16.sch"?>
+<!--Context: name/given-names
+Test: report    matches(.,'^[\p{Lu}\s]+$')
+Message: given-names for author is made up only of uppercase letters (and spaces) ''. Are they initials? Should the authors full goven-names be introduced instead? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<article>
+<name>
+<surname>Zoolander</surname>
+<given-names>Derek Ben</given-names>
+</name>
+</article>
+</root>

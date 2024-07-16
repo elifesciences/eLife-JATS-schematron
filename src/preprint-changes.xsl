@@ -104,7 +104,7 @@
             'discussion( (and|&amp;) (results?|conclusions?))?',
             'fundings?( sources)?',
             'key\s?words?',
-            '(supplementa(ry|l)|additional) (information|files?|figures?|tables?|materials?)',
+            '(supplementa(ry|l)|additional) (informations?|files?|figures?|tables?|materials?|videos?)',
             '(data|resource|code|software|materials?)( and (data|resource|code|software|materials?))? (avail(a|i)bi?li?ty|accessibi?li?ty)( statement)?',
             'summary|highlights?|teaser',
             '(impact|significance|competing interests?|(conflicts?|declarations?) (of interests?|disclosures?))\s?(statements?)?',
@@ -262,6 +262,95 @@
                  <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+
+    <!-- Make unnecessary list item labels semantic -->
+    <xsl:template xml:id="fix-list-item-labels" match="list[@list-type='simple' and list-item[label] and not(@continued-from) and not(@prefix-word)]">
+        <xsl:variable name="distinct-labels" select="distinct-values(./list-item/label)"/>
+        <xsl:variable name="bullet-variants" select="('○','-','•','▪','◦','–','●','□')"/>
+        <xsl:variable name="clean-labels" select="for $label in $distinct-labels return replace($label,'[^\p{L}\d]','')"/>
+        <xsl:variable name="label-type">
+            <xsl:choose>
+                <xsl:when test="every $label in $clean-labels satisfies matches($label,'^\d+$')">order</xsl:when>
+                <xsl:when test="every $label in $clean-labels satisfies matches($label,'^[i]+$')">roman-lower</xsl:when>
+                <xsl:when test="every $label in $clean-labels satisfies matches($label,'^[I]+$')">roman-upper</xsl:when>
+                <xsl:when test="every $label in $clean-labels satisfies matches($label,'^[a-z]+$')">alpha-lower</xsl:when>
+                <xsl:when test="every $label in $clean-labels satisfies matches($label,'^[A-Z]+$')">alpha-upper</xsl:when>
+                <xsl:otherwise>unknown</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <!-- If the list is in order and starts from 1, a or A (roman numerals are too complex to validate) -->
+        <xsl:variable name="non-arithmetic-labels" as="xs:string*">
+            <xsl:choose>
+                <xsl:when test="$label-type='order'">
+                    <xsl:for-each select="./list-item">
+                        <xsl:variable name="clean-label" select="replace(./label[1],'[^\d+]','')"/>
+                        <xsl:if test="number($clean-label) != position()">
+                           <xsl:value-of select="."/>
+                       </xsl:if>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:when test="$label-type=('alpha-lower','alpha-upper')">
+                    <xsl:for-each select="$clean-labels">
+                        <xsl:variable name="p" select="position()"/>
+                        <xsl:variable name="prev" select="$clean-labels[$p - 1]"/>
+                        <xsl:choose>
+                            <xsl:when test=".=''">
+                                <xsl:value-of select="'unknown'"/>
+                            </xsl:when>
+                            <xsl:when test="$p=1 and not(.=('a','A'))">
+                                <xsl:value-of select="."/>
+                            </xsl:when>
+                            <xsl:when test="(string-length(.) gt 2)">
+                                <xsl:value-of select="."/>
+                            </xsl:when>
+                            <xsl:when test="(string-length(.) = 2) and string-length($prev)=1">
+                                <xsl:if test="lower-case(.)!='aa' or lower-case($prev)!='z'">
+                                    <xsl:value-of select="."/>
+                                </xsl:if>
+                            </xsl:when>
+                            <xsl:when test="(string-length(.) = 2) and string-length($prev)=2">
+                                <xsl:if test="(substring(.,1,1) != substring($prev,1,1)) or ((string-to-codepoints(.)[2] - 1) != string-to-codepoints($prev)[2])">
+                                    <xsl:value-of select="."/>
+                                </xsl:if>
+                            </xsl:when>
+                            <xsl:when test="(string-to-codepoints(.)[1] - 1) != string-to-codepoints($prev)[1]">
+                                <xsl:value-of select="."/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="'unknown'"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        
+        <xsl:copy>
+            <xsl:choose>
+                <!-- bullet list with one label -->
+                <xsl:when test="count($distinct-labels)=1 and $distinct-labels=$bullet-variants">
+                    <xsl:apply-templates select="@*[name()!='list-type']"/>
+                    <xsl:attribute name="list-type">bullet</xsl:attribute>
+                    <xsl:apply-templates select="list-item|*|text()|comment()|processing-instruction()" mode="list-item-without-label"/>
+                </xsl:when>
+                <!-- list is arithmetic (i.e. increases by a contant amount each time: 1,2,3; A,B,C; a,b,c; and so on) -->
+                <xsl:when test="empty($non-arithmetic-labels)">
+                    <xsl:apply-templates select="@*[name()!='list-type']"/>
+                    <xsl:attribute name="list-type" select="$label-type"/>
+                    <xsl:apply-templates select="list-item|*|text()|comment()|processing-instruction()" mode="list-item-without-label"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:copy>
+    </xsl:template>
+
+    <xsl:template match="list-item[label]" mode="list-item-without-label">
+        <xsl:copy>
+            <xsl:apply-templates select="*[name()!='label']|@*|text()|comment()|processing-instruction()"/>
+        </xsl:copy>
     </xsl:template>
 
 </xsl:stylesheet>

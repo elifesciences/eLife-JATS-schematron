@@ -52,5 +52,9 @@
       <x:context href="../tests/preprint-changes/strip-bold-italic-from-above-xref/input.xml"/>
       <x:expect label="Testing the template: strip-bold-italic-from-above-xref" href="../tests/preprint-changes/strip-bold-italic-from-above-xref/output.xml"/>
     </x:scenario>
+    <x:scenario label="fix-list-item-labels">
+      <x:context href="../tests/preprint-changes/fix-list-item-labels/input.xml"/>
+      <x:expect label="Testing the template: fix-list-item-labels" href="../tests/preprint-changes/fix-list-item-labels/output.xml"/>
+    </x:scenario>
   </x:scenario>
 </x:description>

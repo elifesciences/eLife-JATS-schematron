@@ -1,0 +1,80 @@
+<!--Testing template with id: fix-list-item-labels-->
+<sec>
+<list list-type="simple">
+<list-item><label>1.</label><p>…</p></list-item>
+<list-item><label>2.</label><p>…</p></list-item>
+<list-item><label>3.</label><p>…</p>
+<list list-type="simple">
+<list-item><label>a)</label><p>…</p></list-item>
+<list-item><label>b)</label><p>…</p></list-item>
+<list-item><label>c)</label><p>…</p>
+<list list-type="simple">
+<list-item><label>b)</label><p>…</p></list-item>
+<list-item><label>z)</label><p>…</p></list-item>
+<list-item><label>x)</label><p>…</p>
+</list-item>
+</list>
+</list-item>
+<list-item><label>d)</label><p>…</p></list-item>
+</list>
+</list-item>
+<list-item><label>4.</label><p>…</p></list-item>
+</list>
+<list list-type="simple">
+<list-item><label>1)</label><p>…</p></list-item>
+<list-item><label>4)</label><p>…</p></list-item>
+<list-item><label>3)</label><p>…</p></list-item>
+</list>
+<list list-type="simple">
+<list-item><label>(Z).</label><p>…</p></list-item>
+<list-item><label>(X-Y).</label><p>…</p></list-item>
+</list>
+<list list-type="simple">
+<list-item><label>(A).</label><p>…</p></list-item>
+<list-item><label>(B).</label><p>…</p></list-item>
+<list-item><label>(C).</label><p>…</p></list-item>
+<list-item><label>(D).</label><p>…</p></list-item>
+<list-item><label>(E).</label><p>…</p></list-item>
+<list-item><label>(F).</label><p>…</p></list-item>
+<list-item><label>(G).</label><p>…</p></list-item>
+<list-item><label>(H).</label><p>…</p></list-item>
+<list-item><label>(I).</label><p>…</p></list-item>
+<list-item><label>(J).</label><p>…</p></list-item>
+<list-item><label>(K).</label><p>…</p></list-item>
+<list-item><label>(L).</label><p>…</p></list-item>
+<list-item><label>(M).</label><p>…</p></list-item>
+<list-item><label>(N).</label><p>…</p></list-item>
+<list-item><label>(O).</label><p>…</p></list-item>
+<list-item><label>(P).</label><p>…</p></list-item>
+<list-item><label>(Q).</label><p>…</p></list-item>
+<list-item><label>(R).</label><p>…</p></list-item>
+<list-item><label>(S).</label><p>…</p></list-item>
+<list-item><label>(T).</label><p>…</p></list-item>
+<list-item><label>(U).</label><p>…</p></list-item>
+<list-item><label>(V).</label><p>…</p></list-item>
+<list-item><label>(W).</label><p>…</p></list-item>
+<list-item><label>(X).</label><p>…</p></list-item>
+<list-item><label>(Y).</label><p>…</p></list-item>
+<list-item><label>(Z).</label><p>…</p></list-item>
+<list-item><label>(AA).</label><p>…</p></list-item>
+<list-item><label>(AB).</label><p>…</p></list-item>
+<list-item><label>(AC).</label><p>…</p></list-item>
+</list>
+<list list-type="bullet">
+<list-item><p>…</p></list-item>
+<list-item><p>…</p>
+<list list-type="simple">
+<list-item><label>-</label><p>…</p></list-item>
+<list-item><label>-</label><p>…</p></list-item>
+</list>
+<list list-type="simple">
+<list-item><label>▪</label><p>…</p></list-item>
+<list-item><label>▪</label><p>…</p></list-item>
+</list>
+<list list-type="simple">
+<list-item><label>◦</label><p>…</p></list-item>
+<list-item><label>◦</label><p>…</p></list-item>
+</list>
+</list-item>
+</list>
+</sec>
