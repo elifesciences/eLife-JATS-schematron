@@ -901,8 +901,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test=".">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".">
+      <xsl:if test="starts-with(.,'P')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(.,'P')">
             <xsl:attribute name="id">not-real-just-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">

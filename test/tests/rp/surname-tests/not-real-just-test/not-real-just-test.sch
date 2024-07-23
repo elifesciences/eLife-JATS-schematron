@@ -34,7 +34,7 @@
   </xsl:function>
   <pattern id="surname-tests-pattern">
     <rule context="contrib-group//name/surname" id="surname-tests">
-      <report test="." role="warning" id="not-real-just-test">[not-real-just-test] IGNORE</report>
+      <report test="starts-with(.,'P')" role="warning" id="not-real-just-test">[not-real-just-test] IGNORE</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

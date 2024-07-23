@@ -84,7 +84,7 @@
 	    
 	    <report test="matches(.,'[\(\)\[\]]')" role="warning" id="surname-test-9">surname contains brackets - '<value-of select="."/>'. Should the bracketed text be placed in the given-names field instead?</report>
 
-        <report test="." role="warning" id="not-real-just-test">IGNORE</report>
+        <report test="starts-with(.,'P')" role="warning" id="not-real-just-test">IGNORE</report>
 	  </rule>
   </pattern>
   <pattern id="given-names-tests-pattern">

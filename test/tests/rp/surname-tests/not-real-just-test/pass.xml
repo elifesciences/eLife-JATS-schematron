@@ -1,5 +1,11 @@
 <?oxygen SCHSchema="not-real-just-test.sch"?>
 <!--Context: contrib-group//name/surname
-Test: report    .
+Test: report    starts-with(.,'P')
 Message: IGNORE -->
-<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<contrib-group>
+<name>
+<surname>Eter</surname>
+</name>
+</contrib-group>
+</root>
