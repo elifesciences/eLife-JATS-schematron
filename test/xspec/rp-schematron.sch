@@ -83,6 +83,8 @@
 	    <report test="matches(.,'^[A-Z]{1,2}\.?\p{Zs}') and (string-length(.) gt 3)" role="warning" id="surname-test-8">surname looks to start with initial - '<value-of select="."/>'. Should '<value-of select="substring-before(.,' ')"/>' be placed in the given-names field?</report>
 	    
 	    <report test="matches(.,'[\(\)\[\]]')" role="warning" id="surname-test-9">surname contains brackets - '<value-of select="."/>'. Should the bracketed text be placed in the given-names field instead?</report>
+
+        <report test="." role="warning" id="not-real-just-test">IGNORE</report>
 	  </rule>
   </pattern>
   <pattern id="given-names-tests-pattern">

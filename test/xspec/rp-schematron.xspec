@@ -159,6 +159,16 @@
         <x:expect-report id="surname-test-9" role="warning"/>
         <x:expect-not-assert id="surname-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="not-real-just-test-pass">
+        <x:context href="../tests/rp/surname-tests/not-real-just-test/pass.xml"/>
+        <x:expect-not-report id="not-real-just-test" role="warning"/>
+        <x:expect-not-assert id="surname-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="not-real-just-test-fail">
+        <x:context href="../tests/rp/surname-tests/not-real-just-test/fail.xml"/>
+        <x:expect-report id="not-real-just-test" role="warning"/>
+        <x:expect-not-assert id="surname-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="given-names-tests">
       <x:scenario label="given-names-test-3-pass">

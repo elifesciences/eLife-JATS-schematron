@@ -900,6 +900,17 @@
                <xsl:text/>'. Should the bracketed text be placed in the given-names field instead?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test=".">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".">
+            <xsl:attribute name="id">not-real-just-test</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[not-real-just-test] IGNORE</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M18"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M18"/>
