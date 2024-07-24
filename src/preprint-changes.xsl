@@ -46,6 +46,31 @@
             <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
     </xsl:template>
+
+    <!-- Replace preprint server information with eLife 
+    <xsl:template xml:id="journal-meta" match="journal-meta">
+        <journal-meta>
+        <xsl:text>&#xa;</xsl:text>
+            <journal-id journal-id-type="nlm-ta">elife</journal-id>
+            <xsl:text>&#xa;</xsl:text>
+            <journal-id journal-id-type="publisher-id">eLife</journal-id>
+            <xsl:text>&#xa;</xsl:text>
+            <journal-title-group>
+            <xsl:text>&#xa;</xsl:text>
+                <journal-title>eLife</journal-title>
+            <xsl:text>&#xa;</xsl:text>
+            </journal-title-group>
+            <xsl:text>&#xa;</xsl:text>
+            <issn publication-format="electronic" pub-type="epub">2050-084X</issn>
+            <xsl:text>&#xa;</xsl:text>
+            <publisher>
+            <xsl:text>&#xa;</xsl:text>
+                <publisher-name>eLife Sciences Publications, Ltd</publisher-name>
+            <xsl:text>&#xa;</xsl:text>
+            </publisher>
+            <xsl:text>&#xa;</xsl:text>
+        </journal-meta>
+    </xsl:template> -->
     
     <!-- Handle cases where there is a singular affiliation without links from the authors -->
     <xsl:template xml:id="singular-aff-contrib" match="article-meta/contrib-group[count(aff) = 1 and not(contrib[@contrib-type='author' and xref[@ref-type='aff']])]/contrib[@contrib-type='author' and not(xref[@ref-type='aff'])]">
