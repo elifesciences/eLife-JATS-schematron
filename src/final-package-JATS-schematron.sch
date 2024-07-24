@@ -3340,6 +3340,10 @@
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-3" test="$open-square gt $close-square" role="warning" id="bracket-test-3"><name/> element contains more left '[' than right ']' square brackets (<value-of select="$open-square"/> and <value-of select="$close-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) gt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/></report>
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-4" test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\]')) and ($open-square lt $close-square)" role="warning" id="bracket-test-4"><name/> element contains more right ']' than left '[' square brackets (<value-of select="$close-square"/> and <value-of select="$open-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) lt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/></report>
+
+      <report test="matches(.,'[\(\[]\p{Zs}+')" role="warning" id="bracket-test-5"><name/> element contains an opening bracket immediately followed by a space (e.g. '( ' or '[ '). Should the space be removed? <value-of select="."/></report>
+
+      <report test="matches(.,'\p{Zs}+[\)\]]')" role="warning" id="bracket-test-6"><name/> element contains a closeing bracket immediately preceded by a space (e.g. ' )' or ' ]'). Should the space be removed? <value-of select="."/></report>
     </rule></pattern><pattern id="body-box-tests-pattern"><rule context="article/body//boxed-text[not(parent::body) or preceding-sibling::*]" id="body-box-tests">
       
       <assert test="matches(label[1],'^Box \d{1,2}\.$')" role="error" id="body-box-label-test"><name/> element must have a label in the format "Box 0.".</assert>

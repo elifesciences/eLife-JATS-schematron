@@ -17392,6 +17392,38 @@
             </svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(.,'[\(\[]\p{Zs}+')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[\(\[]\p{Zs}+')">
+            <xsl:attribute name="id">bracket-test-5</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[bracket-test-5] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element contains an opening bracket immediately followed by a space (e.g. '( ' or '[ '). Should the space be removed? <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(.,'\p{Zs}+[\)\]]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Zs}+[\)\]]')">
+            <xsl:attribute name="id">bracket-test-6</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[bracket-test-6] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element contains a closeing bracket immediately preceded by a space (e.g. ' )' or ' ]'). Should the space be removed? <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M246"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M246"/>

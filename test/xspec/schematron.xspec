@@ -6901,6 +6901,26 @@
         <x:expect-report id="bracket-test-4" role="warning"/>
         <x:expect-not-assert id="bracket-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="bracket-test-5-pass">
+        <x:context href="../tests/gen/bracket-tests/bracket-test-5/pass.xml"/>
+        <x:expect-not-report id="bracket-test-5" role="warning"/>
+        <x:expect-not-assert id="bracket-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="bracket-test-5-fail">
+        <x:context href="../tests/gen/bracket-tests/bracket-test-5/fail.xml"/>
+        <x:expect-report id="bracket-test-5" role="warning"/>
+        <x:expect-not-assert id="bracket-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="bracket-test-6-pass">
+        <x:context href="../tests/gen/bracket-tests/bracket-test-6/pass.xml"/>
+        <x:expect-not-report id="bracket-test-6" role="warning"/>
+        <x:expect-not-assert id="bracket-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="bracket-test-6-fail">
+        <x:context href="../tests/gen/bracket-tests/bracket-test-6/fail.xml"/>
+        <x:expect-report id="bracket-test-6" role="warning"/>
+        <x:expect-not-assert id="bracket-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="body-box-tests">
       <x:scenario label="body-box-label-test-pass">
