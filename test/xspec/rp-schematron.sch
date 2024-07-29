@@ -173,6 +173,16 @@
      </rule>
   </pattern>
 
+    <pattern id="collab-checks-pattern">
+    <rule context="collab" id="collab-checks">
+        <report test="matches(.,'^\p{Z}+')" role="error" id="collab-check-1">collab element cannot start with space(s). This one does: <value-of select="."/>
+      </report>
+
+        <report test="matches(.,'\p{Z}+$')" role="error" id="collab-check-2">collab element cannot end with space(s). This one does: <value-of select="."/>
+      </report>
+     </rule>
+  </pattern>
+
     <pattern id="ref-etal-checks-pattern">
     <rule context="mixed-citation[person-group]//etal" id="ref-etal-checks">
         <assert test="parent::person-group" role="error" id="ref-etal-1">If the etal element is included in a reference, and that reference has a person-group element, then the etal should also be included in the person-group element. But this one is a child of <value-of select="parent::*/name()"/>.</assert>
@@ -568,6 +578,7 @@
       <assert test="descendant::ref-list" role="error" id="ref-list-checks-xspec-assert">ref-list must be present.</assert>
       <assert test="descendant::ref//year" role="error" id="ref-year-checks-xspec-assert">ref//year must be present.</assert>
       <assert test="descendant::mixed-citation//name  or descendant:: mixed-citation//string-name" role="error" id="ref-name-checks-xspec-assert">mixed-citation//name | mixed-citation//string-name must be present.</assert>
+      <assert test="descendant::collab" role="error" id="collab-checks-xspec-assert">collab must be present.</assert>
       <assert test="descendant::mixed-citation[person-group]//etal" role="error" id="ref-etal-checks-xspec-assert">mixed-citation[person-group]//etal must be present.</assert>
       <assert test="descendant::ref//pub-id[@pub-id-type='doi']" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::ref" role="error" id="ref-checks-xspec-assert">ref must be present.</assert>

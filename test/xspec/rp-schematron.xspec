@@ -416,6 +416,28 @@
         <x:expect-not-assert id="ref-name-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="collab-checks">
+      <x:scenario label="collab-check-1-pass">
+        <x:context href="../tests/rp/collab-checks/collab-check-1/pass.xml"/>
+        <x:expect-not-report id="collab-check-1" role="error"/>
+        <x:expect-not-assert id="collab-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-check-1-fail">
+        <x:context href="../tests/rp/collab-checks/collab-check-1/fail.xml"/>
+        <x:expect-report id="collab-check-1" role="error"/>
+        <x:expect-not-assert id="collab-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-check-2-pass">
+        <x:context href="../tests/rp/collab-checks/collab-check-2/pass.xml"/>
+        <x:expect-not-report id="collab-check-2" role="error"/>
+        <x:expect-not-assert id="collab-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-check-2-fail">
+        <x:context href="../tests/rp/collab-checks/collab-check-2/fail.xml"/>
+        <x:expect-report id="collab-check-2" role="error"/>
+        <x:expect-not-assert id="collab-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="ref-etal-checks">
       <x:scenario label="ref-etal-1-pass">
         <x:context href="../tests/rp/ref-etal-checks/ref-etal-1/pass.xml"/>

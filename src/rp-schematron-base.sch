@@ -258,6 +258,18 @@
      </rule>
     </pattern>
 
+    <pattern id="collab">
+      <rule context="collab" id="collab-checks">
+        <report test="matches(.,'^\p{Z}+')" 
+        role="error" 
+        id="collab-check-1">collab element cannot start with space(s). This one does: <value-of select="."/></report>
+
+        <report test="matches(.,'\p{Z}+$')" 
+        role="error" 
+        id="collab-check-2">collab element cannot end with space(s). This one does: <value-of select="."/></report>
+     </rule>
+    </pattern>
+
     <pattern id="ref-etal">
       <rule context="mixed-citation[person-group]//etal" id="ref-etal-checks">
         <assert test="parent::person-group" 
