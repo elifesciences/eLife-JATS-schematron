@@ -213,6 +213,10 @@
         <assert test="article-title" 
         role="error" 
         id="journal-ref-article-title">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no article-title element.</assert>
+
+        <report test="text()[matches(.,'\p{L}')]" 
+        role="warning" 
+        id="journal-ref-text-content">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}')],'; ')"/>. Is it tagged correctly?</report>
      </rule>
     </pattern>
 
@@ -225,6 +229,10 @@
         <assert test="article-title" 
         role="error" 
         id="preprint-ref-article-title">This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no article-title element.</assert>
+
+        <report test="text()[matches(.,'\p{L}')]" 
+        role="warning" 
+        id="preprint-ref-text-content">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}')],'; ')"/>. Is it tagged correctly?</report>
      </rule>
     </pattern>
 

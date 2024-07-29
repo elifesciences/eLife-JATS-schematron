@@ -1223,6 +1223,21 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <!--REPORT warning-->
+      <xsl:if test="text()[matches(.,'\p{L}')]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="text()[matches(.,'\p{L}')]">
+            <xsl:attribute name="id">journal-ref-text-content</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[journal-ref-text-content] This journal reference (<xsl:text/>
+               <xsl:value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>
+               <xsl:text/>) has untagged textual content - <xsl:text/>
+               <xsl:value-of select="string-join(text()[matches(.,'\p{L}')],'; ')"/>
+               <xsl:text/>. Is it tagged correctly?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M22"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M22"/>
@@ -1265,6 +1280,21 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <!--REPORT warning-->
+      <xsl:if test="text()[matches(.,'\p{L}')]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="text()[matches(.,'\p{L}')]">
+            <xsl:attribute name="id">preprint-ref-text-content</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[preprint-ref-text-content] This journal reference (<xsl:text/>
+               <xsl:value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>
+               <xsl:text/>) has untagged textual content - <xsl:text/>
+               <xsl:value-of select="string-join(text()[matches(.,'\p{L}')],'; ')"/>
+               <xsl:text/>. Is it tagged correctly?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M23"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M23"/>
