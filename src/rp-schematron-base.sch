@@ -471,6 +471,15 @@
       </rule>
     </pattern>
 
+    <pattern id="p">
+      <rule context="p[(count(*)=1) and (child::bold or child::italic)]" id="p-bold-checks">
+        <let name="free-text" value="replace(normalize-space(string-join(for $x in self::*/text() return $x,'')),' ','')"/>
+        <report test="$free-text=''"
+        role="warning" 
+        id="p-all-bold">Content of p element is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
+      </rule>
+    </pattern>
+
     <pattern id="article-metadata">
       <rule context="article/front/article-meta" id="general-article-meta-checks">
         <let name="distinct-emails" value="distinct-values((descendant::contrib[@contrib-type='author']/email, author-notes/corresp/email))"/>

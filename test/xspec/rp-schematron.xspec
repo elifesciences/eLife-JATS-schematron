@@ -788,6 +788,18 @@
         <x:expect-not-assert id="title-toc-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="p-bold-checks">
+      <x:scenario label="p-all-bold-pass">
+        <x:context href="../tests/rp/p-bold-checks/p-all-bold/pass.xml"/>
+        <x:expect-not-report id="p-all-bold" role="warning"/>
+        <x:expect-not-assert id="p-bold-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="p-all-bold-fail">
+        <x:context href="../tests/rp/p-bold-checks/p-all-bold/fail.xml"/>
+        <x:expect-report id="p-all-bold" role="warning"/>
+        <x:expect-not-assert id="p-bold-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="general-article-meta-checks">
       <x:scenario label="article-id-pass">
         <x:context href="../tests/rp/general-article-meta-checks/article-id/pass.xml"/>
