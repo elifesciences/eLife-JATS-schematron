@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="collab-check-3.sch"?>
+<!--Context: collab
+Test: assert    normalize-space(.)=.
+Message: collab element seems to contain odd spacing. Is it correct? '' -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <collab>The R Core Development Team</collab>
+    </article>
+</root>

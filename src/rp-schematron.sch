@@ -143,6 +143,8 @@
         <report test="matches(.,'^\p{Z}+')" role="error" id="collab-check-1">[collab-check-1] collab element cannot start with space(s). This one does: <value-of select="."/></report>
 
         <report test="matches(.,'\p{Z}+$')" role="error" id="collab-check-2">[collab-check-2] collab element cannot end with space(s). This one does: <value-of select="."/></report>
+
+        <assert test="normalize-space(.)=." role="warning" id="collab-check-3">[collab-check-3] collab element seems to contain odd spacing. Is it correct? '<value-of select="."/>'</assert>
      </rule></pattern>
 
     <pattern id="ref-etal-checks-pattern"><rule context="mixed-citation[person-group]//etal" id="ref-etal-checks">

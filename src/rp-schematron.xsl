@@ -1390,6 +1390,22 @@
             </svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--ASSERT warning-->
+      <xsl:choose>
+         <xsl:when test="normalize-space(.)=."/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=.">
+               <xsl:attribute name="id">collab-check-3</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[collab-check-3] collab element seems to contain odd spacing. Is it correct? '<xsl:text/>
+                  <xsl:value-of select="."/>
+                  <xsl:text/>'</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M27"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M27"/>
