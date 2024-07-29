@@ -348,6 +348,28 @@
         <x:expect-not-assert id="journal-ref-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="preprint-ref-checks">
+      <x:scenario label="preprint-ref-source-pass">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-source/pass.xml"/>
+        <x:expect-not-assert id="preprint-ref-source" role="error"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-ref-source-fail">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-source/fail.xml"/>
+        <x:expect-assert id="preprint-ref-source" role="error"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-ref-article-title-pass">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-article-title/pass.xml"/>
+        <x:expect-not-assert id="preprint-ref-article-title" role="error"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-ref-article-title-fail">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-article-title/fail.xml"/>
+        <x:expect-assert id="preprint-ref-article-title" role="error"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="ref-list-checks">
       <x:scenario label="indistinct-ref-labels-pass">
         <x:context href="../tests/rp/ref-list-checks/indistinct-ref-labels/pass.xml"/>
