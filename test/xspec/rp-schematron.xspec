@@ -347,6 +347,48 @@
         <x:expect-assert id="journal-ref-article-title" role="error"/>
         <x:expect-not-assert id="journal-ref-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="journal-ref-text-content-pass">
+        <x:context href="../tests/rp/journal-ref-checks/journal-ref-text-content/pass.xml"/>
+        <x:expect-not-report id="journal-ref-text-content" role="warning"/>
+        <x:expect-not-assert id="journal-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="journal-ref-text-content-fail">
+        <x:context href="../tests/rp/journal-ref-checks/journal-ref-text-content/fail.xml"/>
+        <x:expect-report id="journal-ref-text-content" role="warning"/>
+        <x:expect-not-assert id="journal-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="preprint-ref-checks">
+      <x:scenario label="preprint-ref-source-pass">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-source/pass.xml"/>
+        <x:expect-not-assert id="preprint-ref-source" role="error"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-ref-source-fail">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-source/fail.xml"/>
+        <x:expect-assert id="preprint-ref-source" role="error"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-ref-article-title-pass">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-article-title/pass.xml"/>
+        <x:expect-not-assert id="preprint-ref-article-title" role="error"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-ref-article-title-fail">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-article-title/fail.xml"/>
+        <x:expect-assert id="preprint-ref-article-title" role="error"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-ref-text-content-pass">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-text-content/pass.xml"/>
+        <x:expect-not-report id="preprint-ref-text-content" role="warning"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-ref-text-content-fail">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-text-content/fail.xml"/>
+        <x:expect-report id="preprint-ref-text-content" role="warning"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-list-checks">
       <x:scenario label="indistinct-ref-labels-pass">
@@ -392,6 +434,38 @@
         <x:context href="../tests/rp/ref-name-checks/ref-surname/fail.xml"/>
         <x:expect-assert id="ref-surname" role="error"/>
         <x:expect-not-assert id="ref-name-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="collab-checks">
+      <x:scenario label="collab-check-1-pass">
+        <x:context href="../tests/rp/collab-checks/collab-check-1/pass.xml"/>
+        <x:expect-not-report id="collab-check-1" role="error"/>
+        <x:expect-not-assert id="collab-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-check-1-fail">
+        <x:context href="../tests/rp/collab-checks/collab-check-1/fail.xml"/>
+        <x:expect-report id="collab-check-1" role="error"/>
+        <x:expect-not-assert id="collab-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-check-2-pass">
+        <x:context href="../tests/rp/collab-checks/collab-check-2/pass.xml"/>
+        <x:expect-not-report id="collab-check-2" role="error"/>
+        <x:expect-not-assert id="collab-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-check-2-fail">
+        <x:context href="../tests/rp/collab-checks/collab-check-2/fail.xml"/>
+        <x:expect-report id="collab-check-2" role="error"/>
+        <x:expect-not-assert id="collab-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-check-3-pass">
+        <x:context href="../tests/rp/collab-checks/collab-check-3/pass.xml"/>
+        <x:expect-not-assert id="collab-check-3" role="warning"/>
+        <x:expect-not-assert id="collab-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-check-3-fail">
+        <x:context href="../tests/rp/collab-checks/collab-check-3/fail.xml"/>
+        <x:expect-assert id="collab-check-3" role="warning"/>
+        <x:expect-not-assert id="collab-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="ref-etal-checks">
@@ -732,6 +806,18 @@
         <x:context href="../tests/rp/title-toc-checks/toc-title-contains-citation/fail.xml"/>
         <x:expect-report id="toc-title-contains-citation" role="error"/>
         <x:expect-not-assert id="title-toc-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="p-bold-checks">
+      <x:scenario label="p-all-bold-pass">
+        <x:context href="../tests/rp/p-bold-checks/p-all-bold/pass.xml"/>
+        <x:expect-not-report id="p-all-bold" role="warning"/>
+        <x:expect-not-assert id="p-bold-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="p-all-bold-fail">
+        <x:context href="../tests/rp/p-bold-checks/p-all-bold/fail.xml"/>
+        <x:expect-report id="p-all-bold" role="warning"/>
+        <x:expect-not-assert id="p-bold-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="general-article-meta-checks">

@@ -213,6 +213,26 @@
         <assert test="article-title" 
         role="error" 
         id="journal-ref-article-title">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no article-title element.</assert>
+
+        <report test="text()[matches(.,'\p{L}')]" 
+        role="warning" 
+        id="journal-ref-text-content">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}')],'; ')"/>. Is it tagged correctly?</report>
+     </rule>
+    </pattern>
+
+    <pattern id="preprint-ref">
+     <rule context="mixed-citation[@publication-type='preprint']" id="preprint-ref-checks">
+        <assert test="source" 
+        role="error" 
+        id="preprint-ref-source">This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no source element.</assert>
+
+        <assert test="article-title" 
+        role="error" 
+        id="preprint-ref-article-title">This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no article-title element.</assert>
+
+        <report test="text()[matches(.,'\p{L}')]" 
+        role="warning" 
+        id="preprint-ref-text-content">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}')],'; ')"/>. Is it tagged correctly?</report>
      </rule>
     </pattern>
 
@@ -243,6 +263,22 @@
         <assert test="surname" 
         role="error" 
         id="ref-surname"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have a surname element.</assert>
+     </rule>
+    </pattern>
+
+    <pattern id="collab">
+      <rule context="collab" id="collab-checks">
+        <report test="matches(.,'^\p{Z}+')" 
+        role="error" 
+        id="collab-check-1">collab element cannot start with space(s). This one does: <value-of select="."/></report>
+
+        <report test="matches(.,'\p{Z}+$')" 
+        role="error" 
+        id="collab-check-2">collab element cannot end with space(s). This one does: <value-of select="."/></report>
+
+        <assert test="normalize-space(.)=." 
+        role="warning" 
+        id="collab-check-3">collab element seems to contain odd spacing. Is it correct? '<value-of select="."/>'</assert>
      </rule>
     </pattern>
 
@@ -440,6 +476,15 @@
         <report test="xref" 
           role="error" 
           id="toc-title-contains-citation"><name/> element contains a citation and will appear within the table of contents on EPP. This will cause images not to load. Please either remove the citaiton or make it plain text.</report>
+      </rule>
+    </pattern>
+
+    <pattern id="p">
+      <rule context="p[(count(*)=1) and (child::bold or child::italic)]" id="p-bold-checks">
+        <let name="free-text" value="replace(normalize-space(string-join(for $x in self::*/text() return $x,'')),' ','')"/>
+        <report test="$free-text=''"
+        role="warning" 
+        id="p-all-bold">Content of p element is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
       </rule>
     </pattern>
 

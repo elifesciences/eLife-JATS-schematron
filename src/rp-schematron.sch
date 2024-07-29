@@ -115,6 +115,16 @@
         <assert test="source" role="error" id="journal-ref-source">[journal-ref-source] This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no source element.</assert>
 
         <assert test="article-title" role="error" id="journal-ref-article-title">[journal-ref-article-title] This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no article-title element.</assert>
+
+        <report test="text()[matches(.,'\p{L}')]" role="warning" id="journal-ref-text-content">[journal-ref-text-content] This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}')],'; ')"/>. Is it tagged correctly?</report>
+     </rule></pattern>
+
+    <pattern id="preprint-ref-checks-pattern"><rule context="mixed-citation[@publication-type='preprint']" id="preprint-ref-checks">
+        <assert test="source" role="error" id="preprint-ref-source">[preprint-ref-source] This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no source element.</assert>
+
+        <assert test="article-title" role="error" id="preprint-ref-article-title">[preprint-ref-article-title] This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no article-title element.</assert>
+
+        <report test="text()[matches(.,'\p{L}')]" role="warning" id="preprint-ref-text-content">[preprint-ref-text-content] This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}')],'; ')"/>. Is it tagged correctly?</report>
      </rule></pattern>
 
     <pattern id="ref-list-checks-pattern"><rule context="ref-list" id="ref-list-checks">
@@ -131,6 +141,14 @@
 
     <pattern id="ref-name-checks-pattern"><rule context="mixed-citation//name | mixed-citation//string-name" id="ref-name-checks">
         <assert test="surname" role="error" id="ref-surname">[ref-surname] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have a surname element.</assert>
+     </rule></pattern>
+
+    <pattern id="collab-checks-pattern"><rule context="collab" id="collab-checks">
+        <report test="matches(.,'^\p{Z}+')" role="error" id="collab-check-1">[collab-check-1] collab element cannot start with space(s). This one does: <value-of select="."/></report>
+
+        <report test="matches(.,'\p{Z}+$')" role="error" id="collab-check-2">[collab-check-2] collab element cannot end with space(s). This one does: <value-of select="."/></report>
+
+        <assert test="normalize-space(.)=." role="warning" id="collab-check-3">[collab-check-3] collab element seems to contain odd spacing. Is it correct? '<value-of select="."/>'</assert>
      </rule></pattern>
 
     <pattern id="ref-etal-checks-pattern"><rule context="mixed-citation[person-group]//etal" id="ref-etal-checks">
@@ -226,6 +244,11 @@
         <report test="lower-case(.)=." role="warning" id="title-lower-case">[title-lower-case] Content of &lt;title&gt; element is entirely in lower-case case: Is that correct? '<value-of select="."/>'</report>
      </rule></pattern><pattern id="title-toc-checks-pattern"><rule context="article/body/sec/title|article/back/sec/title" id="title-toc-checks">
         <report test="xref" role="error" id="toc-title-contains-citation">[toc-title-contains-citation] <name/> element contains a citation and will appear within the table of contents on EPP. This will cause images not to load. Please either remove the citaiton or make it plain text.</report>
+      </rule></pattern>
+
+    <pattern id="p-bold-checks-pattern"><rule context="p[(count(*)=1) and (child::bold or child::italic)]" id="p-bold-checks">
+        <let name="free-text" value="replace(normalize-space(string-join(for $x in self::*/text() return $x,'')),' ','')"/>
+        <report test="$free-text=''" role="warning" id="p-all-bold">[p-all-bold] Content of p element is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
       </rule></pattern>
 
     <pattern id="general-article-meta-checks-pattern"><rule context="article/front/article-meta" id="general-article-meta-checks">

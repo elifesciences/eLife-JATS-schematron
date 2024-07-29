@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="preprint-ref-source.sch"?>
+<!--Context: mixed-citation[@publication-type='preprint']
+Test: assert    source
+Message: This preprint reference () has no source element. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mixed-citation publication-type="preprint"><source/></mixed-citation>
+    </article>
+</root>

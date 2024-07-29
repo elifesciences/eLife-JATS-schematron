@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="preprint-ref-text-content.sch"?>
+<!--Context: mixed-citation[@publication-type='preprint']
+Test: report    text()[matches(.,'\p{L}')]
+Message: This journal reference () has untagged textual content - . Is it tagged correctly? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mixed-citation publication-type="preprint"><string-name><given-names>K. E.</given-names> <surname>Wilson</surname></string-name> <etal>et al.</etal>, <article-title>Difficidin and oxydifficidin: novel broad spectrum antibacterial antibiotics produced by Bacillus subtilis</article-title>. II. Isolation and physico-chemical characterization. <source>J Antibiot (Tokyo)</source> <volume>40</volume>, <fpage>1682</fpage>–<lpage>1691</lpage> (<year>1987</year>).</mixed-citation>
+    </article>
+</root>

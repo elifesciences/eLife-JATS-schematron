@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="collab-check-2.sch"?>
+<!--Context: collab
+Test: report    matches(.,'\p{Z}+$')
+Message: collab element cannot end with space(s). This one does:  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <collab>The R Core Development Team </collab>
+    </article>
+</root>

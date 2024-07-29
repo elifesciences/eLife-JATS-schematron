@@ -139,6 +139,18 @@
         <assert test="source" role="error" id="journal-ref-source">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no source element.</assert>
 
         <assert test="article-title" role="error" id="journal-ref-article-title">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no article-title element.</assert>
+
+        <report test="text()[matches(.,'\p{L}')]" role="warning" id="journal-ref-text-content">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}')],'; ')"/>. Is it tagged correctly?</report>
+     </rule>
+  </pattern>
+
+    <pattern id="preprint-ref-checks-pattern">
+    <rule context="mixed-citation[@publication-type='preprint']" id="preprint-ref-checks">
+        <assert test="source" role="error" id="preprint-ref-source">This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no source element.</assert>
+
+        <assert test="article-title" role="error" id="preprint-ref-article-title">This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no article-title element.</assert>
+
+        <report test="text()[matches(.,'\p{L}')]" role="warning" id="preprint-ref-text-content">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}')],'; ')"/>. Is it tagged correctly?</report>
      </rule>
   </pattern>
 
@@ -162,6 +174,18 @@
     <rule context="mixed-citation//name | mixed-citation//string-name" id="ref-name-checks">
         <assert test="surname" role="error" id="ref-surname">
         <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have a surname element.</assert>
+     </rule>
+  </pattern>
+
+    <pattern id="collab-checks-pattern">
+    <rule context="collab" id="collab-checks">
+        <report test="matches(.,'^\p{Z}+')" role="error" id="collab-check-1">collab element cannot start with space(s). This one does: <value-of select="."/>
+      </report>
+
+        <report test="matches(.,'\p{Z}+$')" role="error" id="collab-check-2">collab element cannot end with space(s). This one does: <value-of select="."/>
+      </report>
+
+        <assert test="normalize-space(.)=." role="warning" id="collab-check-3">collab element seems to contain odd spacing. Is it correct? '<value-of select="."/>'</assert>
      </rule>
   </pattern>
 
@@ -322,6 +346,13 @@
     <rule context="article/body/sec/title|article/back/sec/title" id="title-toc-checks">
         <report test="xref" role="error" id="toc-title-contains-citation">
         <name/> element contains a citation and will appear within the table of contents on EPP. This will cause images not to load. Please either remove the citaiton or make it plain text.</report>
+      </rule>
+  </pattern>
+
+    <pattern id="p-bold-checks-pattern">
+    <rule context="p[(count(*)=1) and (child::bold or child::italic)]" id="p-bold-checks">
+        <let name="free-text" value="replace(normalize-space(string-join(for $x in self::*/text() return $x,'')),' ','')"/>
+        <report test="$free-text=''" role="warning" id="p-all-bold">Content of p element is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
       </rule>
   </pattern>
 
@@ -556,9 +587,11 @@
       <assert test="descendant::contrib-group//name/*" role="error" id="name-child-tests-xspec-assert">contrib-group//name/* must be present.</assert>
       <assert test="descendant::article/front/article-meta/contrib-group[1]" role="error" id="orcid-name-checks-xspec-assert">article/front/article-meta/contrib-group[1] must be present.</assert>
       <assert test="descendant::mixed-citation[@publication-type='journal']" role="error" id="journal-ref-checks-xspec-assert">mixed-citation[@publication-type='journal'] must be present.</assert>
+      <assert test="descendant::mixed-citation[@publication-type='preprint']" role="error" id="preprint-ref-checks-xspec-assert">mixed-citation[@publication-type='preprint'] must be present.</assert>
       <assert test="descendant::ref-list" role="error" id="ref-list-checks-xspec-assert">ref-list must be present.</assert>
       <assert test="descendant::ref//year" role="error" id="ref-year-checks-xspec-assert">ref//year must be present.</assert>
       <assert test="descendant::mixed-citation//name  or descendant:: mixed-citation//string-name" role="error" id="ref-name-checks-xspec-assert">mixed-citation//name | mixed-citation//string-name must be present.</assert>
+      <assert test="descendant::collab" role="error" id="collab-checks-xspec-assert">collab must be present.</assert>
       <assert test="descendant::mixed-citation[person-group]//etal" role="error" id="ref-etal-checks-xspec-assert">mixed-citation[person-group]//etal must be present.</assert>
       <assert test="descendant::ref//pub-id[@pub-id-type='doi']" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::ref" role="error" id="ref-checks-xspec-assert">ref must be present.</assert>
@@ -578,6 +611,7 @@
       <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-checks-xspec-assert">graphic|inline-graphic must be present.</assert>
       <assert test="descendant::title" role="error" id="title-checks-xspec-assert">title must be present.</assert>
       <assert test="descendant::article/body/sec/title or descendant::article/back/sec/title" role="error" id="title-toc-checks-xspec-assert">article/body/sec/title|article/back/sec/title must be present.</assert>
+      <assert test="descendant::p[(count(*)=1) and (child::bold or child::italic)]" role="error" id="p-bold-checks-xspec-assert">p[(count(*)=1) and (child::bold or child::italic)] must be present.</assert>
       <assert test="descendant::article/front/article-meta" role="error" id="general-article-meta-checks-xspec-assert">article/front/article-meta must be present.</assert>
       <assert test="descendant::article/front/article-meta/article-version" role="error" id="article-version-checks-xspec-assert">article/front/article-meta/article-version must be present.</assert>
       <assert test="descendant::title" role="error" id="digest-title-checks-xspec-assert">title must be present.</assert>
