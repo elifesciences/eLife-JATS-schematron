@@ -1015,6 +1015,16 @@
         <x:expect-report id="phylopic-link-check" role="warning"/>
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ext-link-child-test-5-pass">
+        <x:context href="../tests/rp/ext-link-tests/ext-link-child-test-5/pass.xml"/>
+        <x:expect-not-report id="ext-link-child-test-5" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ext-link-child-test-5-fail">
+        <x:context href="../tests/rp/ext-link-tests/ext-link-child-test-5/fail.xml"/>
+        <x:expect-report id="ext-link-child-test-5" role="warning"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="footnote-checks">
       <x:scenario label="body-footnote-pass">
