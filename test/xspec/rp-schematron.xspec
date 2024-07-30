@@ -1,5 +1,17 @@
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" schematron="rp-schematron.sch">
   <x:scenario label="schematron">
+    <x:scenario label="biorender-tests">
+      <x:scenario label="biorender-check-pass">
+        <x:context href="../tests/rp/biorender-tests/biorender-check/pass.xml"/>
+        <x:expect-not-report id="biorender-check" role="warning"/>
+        <x:expect-not-assert id="biorender-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="biorender-check-fail">
+        <x:context href="../tests/rp/biorender-tests/biorender-check/fail.xml"/>
+        <x:expect-report id="biorender-check" role="warning"/>
+        <x:expect-not-assert id="biorender-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="article-title-checks">
       <x:scenario label="article-title-all-caps-pass">
         <x:context href="../tests/rp/article-title-checks/article-title-all-caps/pass.xml"/>

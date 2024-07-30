@@ -38,6 +38,14 @@
 
   
 
+    <pattern id="biorender-tests-pattern"><rule context="article" id="biorender-tests">
+      
+      <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
+
+       <report test="matches(lower-case($article-text),'biorend[eo]r')" role="warning" id="biorender-check">[biorender-check] Article text contains a mention of bioRender. Since bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only), if any images were created using bioRender a blanket permissions statement will need to be added for the Reviewed Preprint: 'Any parts of this image created with BioRender are not made available under the same license as the Reviewed Preprint, and are © 2024, BioRender Inc.'</report>
+
+    </rule></pattern>
+
     <pattern id="article-title-checks-pattern"><rule context="article-meta/title-group/article-title" id="article-title-checks">
         <report test=". = upper-case(.)" role="error" id="article-title-all-caps">[article-title-all-caps] Article title is in all caps - <value-of select="."/>. Please change to sentence case.</report>
      </rule></pattern>
