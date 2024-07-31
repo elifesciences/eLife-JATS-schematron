@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="custom-meta-test-2.sch"?>
 <!--Context: article-meta/custom-meta-group/custom-meta
-Test: report    ($type = $research-subj) and not(meta-name = ('Author impact statement','publishing-route'))
+Test: report    ($type = ($research-subj,$notice-article-types)) and not(meta-name = ('Author impact statement','publishing-route'))
 Message: The value of meta-name can only be 'Author impact statement' or 'publishing-route'. Currently it is . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>

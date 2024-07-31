@@ -13,11 +13,11 @@
   <ns uri="http://www.java.com/" prefix="java"/>
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
-  <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
+  <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Scientific Correspondence', 'Review Article')"/>
   <let name="notice-article-types" value="('correction','retraction','expression-of-concern')"/>
   <let name="notice-display-types" value="('Correction','Retraction','Expression of Concern')"/>
   <let name="allowed-article-types" value="('research-article','review-article',$features-article-types, $notice-article-types)"/>
-  <let name="allowed-disp-subj" value="($research-subj, $features-subj)"/>
+  <let name="allowed-disp-subj" value="($research-subj, $features-subj,$notice-display-types)"/>
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   <let name="funders" value="'../../../../../src/funders.xml'"/>
   <let name="wellcome-fundref-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
@@ -1339,7 +1339,7 @@
   <pattern id="content-containers">
     <rule context="disp-quote" id="disp-quote-tests">
       <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
-      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hq129-disp-quote-test-2" test="not(ancestor::sub-article) and ($subj=$research-subj)" role="error" id="disp-quote-test-2">Display quote in a <value-of select="$subj"/> is not allowed. Please capture as paragraph instead - '<value-of select="."/>'</report>
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hq129-disp-quote-test-2" test="not(ancestor::sub-article) and ($subj=($research-subj,$notice-article-types))" role="error" id="disp-quote-test-2">Display quote in a <value-of select="$subj"/> is not allowed. Please capture as paragraph instead - '<value-of select="."/>'</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

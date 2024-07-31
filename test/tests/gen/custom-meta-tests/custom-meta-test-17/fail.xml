@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="custom-meta-test-17.sch"?>
 <!--Context: article-meta/custom-meta-group/custom-meta
-Test: report    ($type = $research-subj) and ($pos=2) and (meta-name != 'publishing-route')
+Test: report    ($type = ($research-subj,$notice-article-types)) and ($pos=2) and (meta-name != 'publishing-route')
 Message: The value of the 2nd meta-name can only be 'publishing-route'. Currently it is . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article article-type="research-article">
