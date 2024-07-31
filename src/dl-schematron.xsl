@@ -1845,11 +1845,11 @@
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">eLife Schematron</svrl:text>
    <xsl:param name="features-subj" select="('Feature Article', 'Insight', 'Editorial')"/>
    <xsl:param name="features-article-types" select="('article-commentary','editorial','discussion')"/>
-   <xsl:param name="research-subj" select="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
+   <xsl:param name="research-subj" select="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Scientific Correspondence', 'Review Article')"/>
    <xsl:param name="notice-article-types" select="('correction','retraction','expression-of-concern')"/>
    <xsl:param name="notice-display-types" select="('Correction','Retraction','Expression of Concern')"/>
    <xsl:param name="allowed-article-types" select="('research-article','review-article',$features-article-types, $notice-article-types)"/>
-   <xsl:param name="allowed-disp-subj" select="($research-subj, $features-subj)"/>
+   <xsl:param name="allowed-disp-subj" select="($research-subj, $features-subj,$notice-display-types)"/>
    <xsl:param name="MSAs" select="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
    <xsl:param name="funders" select="'funders.xml'"/>
    <xsl:param name="wellcome-fundref-ids" select="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>

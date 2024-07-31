@@ -6066,11 +6066,11 @@
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">eLife Schematron</svrl:text>
    <xsl:param name="features-subj" select="('Feature Article', 'Insight', 'Editorial')"/>
    <xsl:param name="features-article-types" select="('article-commentary','editorial','discussion')"/>
-   <xsl:param name="research-subj" select="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
+   <xsl:param name="research-subj" select="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Scientific Correspondence', 'Review Article')"/>
    <xsl:param name="notice-article-types" select="('correction','retraction','expression-of-concern')"/>
    <xsl:param name="notice-display-types" select="('Correction','Retraction','Expression of Concern')"/>
    <xsl:param name="allowed-article-types" select="('research-article','review-article',$features-article-types, $notice-article-types)"/>
-   <xsl:param name="allowed-disp-subj" select="($research-subj, $features-subj)"/>
+   <xsl:param name="allowed-disp-subj" select="($research-subj, $features-subj,$notice-display-types)"/>
    <xsl:param name="MSAs" select="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
    <xsl:param name="funders" select="'funders.xml'"/>
    <xsl:param name="wellcome-fundref-ids" select="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
@@ -12390,8 +12390,8 @@
          </xsl:otherwise>
       </xsl:choose>
       <!--REPORT error-->
-      <xsl:if test="($type = $research-subj) and not(meta-name = ('Author impact statement','publishing-route'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type = $research-subj) and not(meta-name = ('Author impact statement','publishing-route'))">
+      <xsl:if test="($type = ($research-subj,$notice-article-types)) and not(meta-name = ('Author impact statement','publishing-route'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type = ($research-subj,$notice-article-types)) and not(meta-name = ('Author impact statement','publishing-route'))">
             <xsl:attribute name="id">custom-meta-test-2</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
@@ -12404,8 +12404,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="($type = $research-subj) and ($pos=2) and  (meta-name != 'publishing-route')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type = $research-subj) and ($pos=2) and (meta-name != 'publishing-route')">
+      <xsl:if test="($type = ($research-subj,$notice-article-types)) and ($pos=2) and  (meta-name != 'publishing-route')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type = ($research-subj,$notice-article-types)) and ($pos=2) and (meta-name != 'publishing-route')">
             <xsl:attribute name="id">custom-meta-test-17</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -17280,8 +17280,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="not(ancestor::sub-article) and ($subj=$research-subj)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(ancestor::sub-article) and ($subj=$research-subj)">
+      <xsl:if test="not(ancestor::sub-article) and ($subj=($research-subj,$notice-article-types))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(ancestor::sub-article) and ($subj=($research-subj,$notice-article-types))">
             <xsl:attribute name="id">disp-quote-test-2</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hq129-disp-quote-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>

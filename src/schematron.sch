@@ -27,7 +27,7 @@
   <!-- Features specific values included here for convenience -->
   <let name="features-subj" value="('Feature Article', 'Insight', 'Editorial')"/>
   <let name="features-article-types" value="('article-commentary','editorial','discussion')"/>
-  <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Correction', 'Retraction', 'Scientific Correspondence', 'Review Article')"/>
+  <let name="research-subj" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Scientific Correspondence', 'Review Article')"/>
   
   <!-- Notice type articles -->
   <let name="notice-article-types" value="('correction','retraction','expression-of-concern')"/>
@@ -35,7 +35,7 @@
   
   <!-- All article types -->
   <let name="allowed-article-types" value="('research-article','review-article',$features-article-types, $notice-article-types)"/>
-  <let name="allowed-disp-subj" value="($research-subj, $features-subj)"/> 
+  <let name="allowed-disp-subj" value="($research-subj, $features-subj,$notice-display-types)"/> 
   
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   
@@ -3690,11 +3690,11 @@
         id="custom-meta-test-1">One meta-name must be present in custom-meta.</assert>
       
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-2" 
-        test="($type = $research-subj) and not(meta-name = ('Author impact statement','publishing-route'))" 
+        test="($type = ($research-subj,$notice-article-types)) and not(meta-name = ('Author impact statement','publishing-route'))" 
         role="error" 
         id="custom-meta-test-2">The value of meta-name can only be 'Author impact statement' or 'publishing-route'. Currently it is <value-of select="meta-name"/>.</report>
       
-      <report test="($type = $research-subj) and ($pos=2) and  (meta-name != 'publishing-route')" 
+      <report test="($type = ($research-subj,$notice-article-types)) and ($pos=2) and  (meta-name != 'publishing-route')" 
         role="error" 
         id="custom-meta-test-17">The value of the 2nd meta-name can only be 'publishing-route'. Currently it is <value-of select="meta-name"/>.</report>
       
@@ -5521,7 +5521,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="disp-quote-test-1">Content is tagged as a display quote, which is almost definitely incorrect, since it's within peer review material that is not an author response - <value-of select="."/></report>
       
       <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hq129-disp-quote-test-2" 
-        test="not(ancestor::sub-article) and ($subj=$research-subj)" 
+        test="not(ancestor::sub-article) and ($subj=($research-subj,$notice-article-types))" 
         role="error"
         id="disp-quote-test-2">Display quote in a <value-of select="$subj"/> is not allowed. Please capture as paragraph instead - '<value-of select="."/>'</report>
     </rule>
