@@ -2,7 +2,7 @@
 <!--Context: article/front/article-meta
 Test: report    not($article-type = $notice-article-types) and not(self-uri[starts-with(@xlink:href,concat('elife-', $article-id))])
 Message: self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx = the article-id. Currently it is . It should start with elife-. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="research-article">
     <front>
       <article-meta>
@@ -24,7 +24,7 @@ Message: self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx =
             signals and learning</article-title>
         </title-group>
         <contrib-group>
-          <contrib contrib-type="author" corresp="yes" id="author-0000">
+          <contrib contrib-type="author" corresp="yes">
             <name>
               <surname>Zoolander</surname>
               <given-names>Derek</given-names>
@@ -34,7 +34,7 @@ Message: self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx =
             <xref ref-type="aff" rid="aff1">1</xref>
             <xref ref-type="other" rid="fund1"/>
           </contrib>
-          <contrib contrib-type="author" id="author-47476">
+          <contrib contrib-type="author">
             <name>
               <surname>Hansel</surname>
             </name>

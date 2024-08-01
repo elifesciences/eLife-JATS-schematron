@@ -2,12 +2,12 @@
 <!--Context: article[@article-type=('research-article','review-article','discussion')]//article-meta[not(descendant::custom-meta[meta-name='Template']/meta-value='3')]/contrib-group[1][count(contrib[@contrib-type='author' and @corresp='yes']) gt 1]/contrib[@contrib-type='author' and @corresp='yes' and name]
 Test: report    $normalized-name != $name
 Message:  has a name with letters that have diacritics, marks, or a name with special characters. Please ensure that their initials display correctly in the PDF in the 'For correspondence' section on the first page. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="research-article">
     <front>
       <article-meta>
         <contrib-group>
-          <contrib contrib-type="author" id="author-189776">
+          <contrib contrib-type="author">
             <name>
               <surname>Lai</surname>
               <given-names>Mi</given-names>
@@ -17,7 +17,7 @@ Message:  has a name with letters that have diacritics, marks, or a name with sp
             <xref ref-type="fn" rid="con1"/>
             <xref ref-type="fn" rid="conf1"/>
           </contrib>
-          <contrib contrib-type="author" id="author-189777">
+          <contrib contrib-type="author">
             <name>
               <surname>Al Rijjal</surname>
               <given-names>Dana</given-names>
@@ -28,7 +28,7 @@ Message:  has a name with letters that have diacritics, marks, or a name with sp
             <xref ref-type="fn" rid="con2"/>
             <xref ref-type="fn" rid="conf1"/>
           </contrib>
-          <contrib contrib-type="author" corresp="yes" id="author-189778">
+          <contrib contrib-type="author" corresp="yes">
             <name>
               <surname>Rost</surname>
               <given-names>Hannes L</given-names>
@@ -38,7 +38,7 @@ Message:  has a name with letters that have diacritics, marks, or a name with sp
             <xref ref-type="fn" rid="con3"/>
             <xref ref-type="fn" rid="conf1"/>
           </contrib>
-          <contrib contrib-type="author" corresp="yes" id="author-189779">
+          <contrib contrib-type="author" corresp="yes">
             <name>
               <surname>Dai</surname>
               <given-names>Feihan F</given-names>
@@ -48,7 +48,7 @@ Message:  has a name with letters that have diacritics, marks, or a name with sp
             <xref ref-type="fn" rid="con4"/>
             <xref ref-type="fn" rid="conf1"/>
           </contrib>
-          <contrib contrib-type="author" corresp="yes" id="author-189780">
+          <contrib contrib-type="author" corresp="yes">
             <name>
               <surname>Gunderson</surname>
               <given-names>Erica P</given-names>
@@ -61,7 +61,7 @@ Message:  has a name with letters that have diacritics, marks, or a name with sp
             <xref ref-type="fn" rid="con5"/>
             <xref ref-type="fn" rid="conf2"/>
           </contrib>
-          <contrib contrib-type="author" corresp="yes" id="author-27489">
+          <contrib contrib-type="author" corresp="yes">
             <name>
               <surname>Wheeler</surname>
               <given-names>Michael B</given-names>

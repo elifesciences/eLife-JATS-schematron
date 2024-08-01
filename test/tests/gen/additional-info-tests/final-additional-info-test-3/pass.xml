@@ -2,11 +2,11 @@
 <!--Context: sec[@sec-type='additional-information']
 Test: report    if (e:get-version(.)='1' and $article-type = ('research-article','review-article')) then (not(fn-group[@content-type='author-contribution'])) else ()
 Message: Missing author contributions. This type of sec in research content must have a child fn-group[@content-type='author-contribution']. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="research-article" dtd-version="1.1">
     <front>
       <article-meta>...<contrib-group>
-        <contrib contrib-type="author" id="author-125026" equal-contrib="yes">
+        <contrib contrib-type="author" equal-contrib="yes">
           <name>
             <surname>Mevers</surname>
             <given-names>Emily</given-names>

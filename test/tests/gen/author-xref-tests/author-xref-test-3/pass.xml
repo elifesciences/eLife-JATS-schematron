@@ -2,10 +2,10 @@
 <!--Context: article-meta//contrib[@contrib-type='author']/xref
 Test: report    (@ref-type='fn') and contains(@rid,'pa') and following-sibling::xref[@ref-type='aff' or contains(@rid,'equal')]
 Message: Present address type footnote links from authors must appear after affiliation and equal contribution links (if there is one). For , their present address link (to ) appears before an affiliation link or equal contribution link. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <article-meta>
-      <contrib contrib-type="author" id="author-85867">
+      <contrib contrib-type="author">
         <name>
           <surname>Kallappagoudar</surname>
           <given-names>Satish</given-names>

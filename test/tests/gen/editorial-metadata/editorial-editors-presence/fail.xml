@@ -2,12 +2,12 @@
 <!--Context: article[@article-type='editorial']/front/article-meta
 Test: report    contrib-group[@content-type='section']
 Message: Editorials cannot contain Editors and/or Reviewers. This one has a contrib-group[@content-type='section'] containing . -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="editorial">
     <front>
       <article-meta>
         <contrib-group>
-          <contrib contrib-type="author" corresp="yes" id="author-90400">
+          <contrib contrib-type="author" corresp="yes">
             <name>
               <surname>Eisen</surname>
               <given-names>Michael B</given-names>
@@ -18,10 +18,11 @@ Message: Editorials cannot contain Editors and/or Reviewers. This one has a cont
             <xref ref-type="fn" rid="con1"/>
             <xref ref-type="fn" rid="conf1"/>
             <bio>
-              <p><bold>Michael B Eisen</bold> is the Editor-in-Chief of eLife</p>
+              <p>
+                <bold>Michael B Eisen</bold> is the Editor-in-Chief of eLife</p>
             </bio>
           </contrib>
-          <contrib contrib-type="author" id="author-8518">
+          <contrib contrib-type="author">
             <name>
               <surname>Akhmanova</surname>
               <given-names>Anna</given-names>
@@ -31,10 +32,11 @@ Message: Editorials cannot contain Editors and/or Reviewers. This one has a cont
             <xref ref-type="fn" rid="con2"/>
             <xref ref-type="fn" rid="conf2"/>
             <bio>
-              <p><bold>Anna Akhmanova</bold> is a Deputy Editor of eLife</p>
+              <p>
+                <bold>Anna Akhmanova</bold> is a Deputy Editor of eLife</p>
             </bio>
           </contrib>
-          <contrib contrib-type="author" id="author-1044">
+          <contrib contrib-type="author">
             <name>
               <surname>Behrens</surname>
               <given-names>Timothy E</given-names>
@@ -44,10 +46,11 @@ Message: Editorials cannot contain Editors and/or Reviewers. This one has a cont
             <xref ref-type="fn" rid="con3"/>
             <xref ref-type="fn" rid="conf2"/>
             <bio>
-              <p><bold>Timothy E Behrens</bold> is a Deputy Editor of eLife</p>
+              <p>
+                <bold>Timothy E Behrens</bold> is a Deputy Editor of eLife</p>
             </bio>
           </contrib>
-          <contrib contrib-type="author" id="author-1030">
+          <contrib contrib-type="author">
             <name>
               <surname>Weigel</surname>
               <given-names>Detlef</given-names>
@@ -57,7 +60,8 @@ Message: Editorials cannot contain Editors and/or Reviewers. This one has a cont
             <xref ref-type="fn" rid="con4"/>
             <xref ref-type="fn" rid="conf2"/>
             <bio>
-              <p><bold>Detlef Weigel</bold> is a Deputy Editor of eLife</p>
+              <p>
+                <bold>Detlef Weigel</bold> is a Deputy Editor of eLife</p>
             </bio>
           </contrib>
           <aff id="aff1">
