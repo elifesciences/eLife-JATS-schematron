@@ -230,9 +230,9 @@
         role="error" 
         id="journal-ref-article-title">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no article-title element.</assert>
 
-        <report test="text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|vol|and|pp?)[:\.]?'))]" 
+        <report test="text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|vol|and|pp?|in)[:\.]?'))]" 
         role="warning" 
-        id="journal-ref-text-content">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|vol|and|pp?)[:\.]?'))],'; ')"/>. Is it tagged correctly?</report>
+        id="journal-ref-text-content">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|vol|and|pp?|in)[:\.]?'))],'; ')"/>. Is it tagged correctly?</report>
      </rule>
     </pattern>
 
@@ -303,6 +303,14 @@
         <assert test="parent::person-group" 
         role="error" 
         id="ref-etal-1">If the etal element is included in a reference, and that reference has a person-group element, then the etal should also be included in the person-group element. But this one is a child of <value-of select="parent::*/name()"/>.</assert>
+     </rule>
+    </pattern>
+
+    <pattern id="ref-comment">
+      <rule context="comment" id="ref-comment-checks">
+        <report test="ancestor::mixed-citation" 
+        role="warning" 
+        id="ref-comment-1">Reference (with id=<value-of select="ancestor::ref/@id"/>) contains a comment element. Is this correct? <value-of select="."/></report>
      </rule>
     </pattern>
 

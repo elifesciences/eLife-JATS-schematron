@@ -47,7 +47,7 @@
         </xsl:copy>
     </xsl:template>
 
-    <!-- Replace preprint server information with eLife 
+    <!-- Replace preprint server information with eLife -->
     <xsl:template xml:id="journal-meta" match="journal-meta">
         <journal-meta>
         <xsl:text>&#xa;</xsl:text>
@@ -70,49 +70,6 @@
             </publisher>
             <xsl:text>&#xa;</xsl:text>
         </journal-meta>
-    </xsl:template> -->
-    
-    <!-- Handle cases where there is a singular affiliation without links from the authors -->
-    <xsl:template xml:id="singular-aff-contrib" match="article-meta/contrib-group[count(aff) = 1 and not(contrib[@contrib-type='author' and xref[@ref-type='aff']])]/contrib[@contrib-type='author' and not(xref[@ref-type='aff'])]">
-        <xsl:copy>
-            <xsl:apply-templates select="@*"/>
-            <xsl:apply-templates select="*|text()"/>
-            <!-- label unknown -->
-            <xref ref-type="aff" rid="aff1"/>
-        </xsl:copy>
-    </xsl:template>
-    
-    <!-- In cases where there is one affiliation for all authors, add id for affiliation so that it can be linked -->
-    <xsl:template xml:id="singular-aff" match="article-meta/contrib-group[contrib[@contrib-type='author'] and count(aff) = 1 and not(contrib[@contrib-type='author' and xref[@ref-type='aff']])]/aff">
-        <aff id="aff1">
-            <xsl:apply-templates select="@*[name()!='id']"/>
-            <xsl:apply-templates select="*|text()"/>
-        </aff>
-    </xsl:template>
-
-    <!-- Strip full stops from author names -->
-    <xsl:template xml:id="remove-fullstops-from-author-names" match="article-meta//contrib[@contrib-type='author']/name/given-names|article-meta//contrib[@contrib-type='author']/name/surname">
-        <xsl:copy>
-            <xsl:apply-templates select="@*"/>
-            <xsl:choose>
-                <xsl:when test="matches(.,'\.')">
-                    <xsl:choose>
-                        <!-- If there's an initial followed by a word, e.g. de A. M. M. Armas
-                                then just go for de A M M Armas -->
-                        <xsl:when test="matches(.,'\p{Lu}\.?\s+\p{Lu}\p{Ll}+')">
-                            <xsl:value-of select="replace(.,'\.','')"/>
-                        </xsl:when>
-                        <!-- otherwise remove all spaces after fullstops as well -->
-                        <xsl:otherwise>
-                            <xsl:value-of select="replace(replace(replace(.,'(\p{Lu})\.+\s*(\p{Lu})', '$1$2'),'(\p{Lu})\.+\s*(\p{Lu})', '$1$2'),'\.+$','')"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:apply-templates select="*|text()"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:copy>
     </xsl:template>
     
     <!-- Change all caps titles to sentence case for known phrases, e.g. REFERENCES -> References -->
@@ -195,7 +152,7 @@
     </xsl:template>
 
     <!-- Convert uri elements to ext-link -->
-    <xsl:template xml:id="uri-to-ext-link" match="uri">
+    <xsl:template match="uri">
         <xsl:choose>
             <xsl:when test="ancestor::mixed-citation and matches(lower-case(.),'^https?://(dx\.)?doi\.org/')">
                 <xsl:element name="pub-id">
@@ -257,150 +214,6 @@
                 <xsl:value-of select="generate-id(.)"/>
             </xsl:attribute>
             <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
-        </xsl:copy>
-    </xsl:template>
-
-    <!-- Strip unnecessary bolding and italicisation from inside citations -->
-    <xsl:template xml:id="strip-bold-italic-around-xref" match="xref/bold[italic[not(xref)]]
-                                                                    |xref/bold/italic[not(xref)]
-                                                                    |bold[italic[xref]]
-                                                                    |xref/italic[bold[not(xref)]]
-                                                                    |xref/italic/bold[not(xref)]
-                                                                    |italic[bold[xref]]">
-         <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
-    </xsl:template>
-
-    <!-- Strip unnecessary bolding and italicisation above citations -->
-    <xsl:template xml:id="strip-bold-italic-from-above-xref" match="bold[xref]|italic[xref]">
-        <xsl:choose> 
-            <!-- if there's a text node that contains anything other than punctuation -->
-            <xsl:when test="text()[matches(.,'[^\s\p{P}]')] or *[not(name()=('bold','italic','xref'))]">
-                <xsl:for-each select="node()">
-                    <xsl:choose>
-                        <xsl:when test="self::xref">
-                            <xsl:apply-templates select="."/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:choose>
-                                <!-- if the text node is just space -->
-                                <xsl:when test="self::text() and matches(.,'^\p{Z}+$')">
-                                    <xsl:apply-templates select="."/>
-                                </xsl:when>
-                                <!-- reintroduce styling for unknown content -->
-                                <xsl:when test="parent::bold[parent::italic]">
-                                    <italic><bold><xsl:apply-templates select="."/></bold></italic>
-                                </xsl:when>
-                                <xsl:when test="parent::bold">
-                                    <bold><xsl:apply-templates select="."/></bold>
-                                </xsl:when>
-                                <xsl:when test="parent::italic[parent::bold]">
-                                    <bold><italic><xsl:apply-templates select="."/></italic></bold>
-                                </xsl:when>
-                                <xsl:when test="parent::italic">
-                                    <italic><xsl:apply-templates select="."/></italic>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:copy>
-                                        <xsl:apply-templates select="."/>
-                                    </xsl:copy>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:for-each>
-            </xsl:when>
-            <xsl:otherwise>
-                 <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
-    <!-- Make unnecessary list item labels semantic -->
-    <xsl:template xml:id="fix-list-item-labels" match="list[@list-type='simple' and list-item[label] and not(@continued-from) and not(@prefix-word)]">
-        <xsl:variable name="distinct-labels" select="distinct-values(./list-item/label)"/>
-        <xsl:variable name="bullet-variants" select="('○','-','•','▪','◦','–','●','□')"/>
-        <xsl:variable name="clean-labels" select="for $label in $distinct-labels return replace($label,'[^\p{L}\d]','')"/>
-        <xsl:variable name="label-type">
-            <xsl:choose>
-                <xsl:when test="every $label in $clean-labels satisfies matches($label,'^\d+$')">order</xsl:when>
-                <xsl:when test="every $label in $clean-labels satisfies matches($label,'^[ivxl]+$')">roman-lower</xsl:when>
-                <xsl:when test="every $label in $clean-labels satisfies matches($label,'^[IVXL]+$')">roman-upper</xsl:when>
-                <xsl:when test="every $label in $clean-labels satisfies matches($label,'^[a-z]+$')">alpha-lower</xsl:when>
-                <xsl:when test="every $label in $clean-labels satisfies matches($label,'^[A-Z]+$')">alpha-upper</xsl:when>
-                <xsl:otherwise>unknown</xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <!-- If the list is in order and starts from 1, a or A (roman numerals are too complex to validate) -->
-        <xsl:variable name="non-arithmetic-labels" as="xs:string*">
-            <xsl:choose>
-                <xsl:when test="$label-type='order'">
-                    <xsl:for-each select="./list-item">
-                        <xsl:variable name="clean-label" select="replace(./label[1],'[^\d+]','')"/>
-                        <xsl:if test="number($clean-label) != position()">
-                           <xsl:value-of select="."/>
-                       </xsl:if>
-                    </xsl:for-each>
-                </xsl:when>
-                <xsl:when test="$label-type=('alpha-lower','alpha-upper')">
-                    <xsl:for-each select="$clean-labels">
-                        <xsl:variable name="p" select="position()"/>
-                        <xsl:variable name="prev" select="$clean-labels[$p - 1]"/>
-                        <xsl:choose>
-                            <xsl:when test=".=''">
-                                <xsl:value-of select="'unknown'"/>
-                            </xsl:when>
-                            <xsl:when test="$p=1 and not(.=('a','A'))">
-                                <xsl:value-of select="."/>
-                            </xsl:when>
-                            <xsl:when test="(string-length(.) gt 2)">
-                                <xsl:value-of select="."/>
-                            </xsl:when>
-                            <xsl:when test="(string-length(.) = 2) and string-length($prev)=1">
-                                <xsl:if test="lower-case(.)!='aa' or lower-case($prev)!='z'">
-                                    <xsl:value-of select="."/>
-                                </xsl:if>
-                            </xsl:when>
-                            <xsl:when test="(string-length(.) = 2) and string-length($prev)=2">
-                                <xsl:if test="(substring(.,1,1) != substring($prev,1,1)) or ((string-to-codepoints(.)[2] - 1) != string-to-codepoints($prev)[2])">
-                                    <xsl:value-of select="."/>
-                                </xsl:if>
-                            </xsl:when>
-                            <xsl:when test="(string-to-codepoints(.)[1] - 1) != string-to-codepoints($prev)[1]">
-                                <xsl:value-of select="."/>
-                            </xsl:when>
-                        </xsl:choose>
-                    </xsl:for-each>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="'unknown'"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        
-        <xsl:copy>
-            <xsl:choose>
-                <!-- bullet list with one label -->
-                <xsl:when test="count($distinct-labels)=1 and $distinct-labels=$bullet-variants">
-                    <xsl:apply-templates select="@*[name()!='list-type']"/>
-                    <xsl:attribute name="list-type">bullet</xsl:attribute>
-                    <xsl:apply-templates select="*|text()|comment()|processing-instruction()" mode="list-item-without-label"/>
-                </xsl:when>
-                <!-- list is arithmetic (i.e. increases by a contant amount each time: 1,2,3; A,B,C; a,b,c; and so on) -->
-                <xsl:when test="empty($non-arithmetic-labels)">
-                    <xsl:apply-templates select="@*[name()!='list-type']"/>
-                    <xsl:attribute name="list-type" select="$label-type"/>
-                    <xsl:apply-templates select="*|text()|comment()|processing-instruction()" mode="list-item-without-label"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:copy>
-    </xsl:template>
-
-    <xsl:template match="list-item[label]" mode="list-item-without-label">
-        <xsl:copy>
-            <xsl:apply-templates select="*[name()!='label']|@*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
     </xsl:template>
 

@@ -492,6 +492,18 @@
         <x:expect-not-assert id="ref-etal-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="ref-comment-checks">
+      <x:scenario label="ref-comment-1-pass">
+        <x:context href="../tests/rp/ref-comment-checks/ref-comment-1/pass.xml"/>
+        <x:expect-not-report id="ref-comment-1" role="warning"/>
+        <x:expect-not-assert id="ref-comment-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-comment-1-fail">
+        <x:context href="../tests/rp/ref-comment-checks/ref-comment-1/fail.xml"/>
+        <x:expect-report id="ref-comment-1" role="warning"/>
+        <x:expect-not-assert id="ref-comment-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="ref-pub-id-checks">
       <x:scenario label="ref-doi-conformance-pass">
         <x:context href="../tests/rp/ref-pub-id-checks/ref-doi-conformance/pass.xml"/>

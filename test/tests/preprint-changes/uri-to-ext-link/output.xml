@@ -1,0 +1,7 @@
+<!--Testing template with id: uri-to-ext-link-->
+<p xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/">eLife</ext-link>
+<ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/">https://elifesciences.org/</ext-link>
+<mixed-citation><pub-id pub-id-type="doi">10.7554/eLife.90565.2</pub-id></mixed-citation>
+<mixed-citation><ext-link ext-link-type="uri" xlink:href="https://elifesciences.org/">https://elifesciences.org/</ext-link></mixed-citation>
+</p>

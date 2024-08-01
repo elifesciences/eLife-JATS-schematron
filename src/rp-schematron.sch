@@ -124,7 +124,7 @@
 
         <assert test="article-title" role="error" id="journal-ref-article-title">[journal-ref-article-title] This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no article-title element.</assert>
 
-        <report test="text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|vol|and|pp?)[:\.]?'))]" role="warning" id="journal-ref-text-content">[journal-ref-text-content] This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|vol|and|pp?)[:\.]?'))],'; ')"/>. Is it tagged correctly?</report>
+        <report test="text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|vol|and|pp?|in)[:\.]?'))]" role="warning" id="journal-ref-text-content">[journal-ref-text-content] This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|vol|and|pp?|in)[:\.]?'))],'; ')"/>. Is it tagged correctly?</report>
      </rule></pattern>
 
     <pattern id="preprint-ref-checks-pattern"><rule context="mixed-citation[@publication-type='preprint']" id="preprint-ref-checks">
@@ -161,6 +161,10 @@
 
     <pattern id="ref-etal-checks-pattern"><rule context="mixed-citation[person-group]//etal" id="ref-etal-checks">
         <assert test="parent::person-group" role="error" id="ref-etal-1">[ref-etal-1] If the etal element is included in a reference, and that reference has a person-group element, then the etal should also be included in the person-group element. But this one is a child of <value-of select="parent::*/name()"/>.</assert>
+     </rule></pattern>
+
+    <pattern id="ref-comment-checks-pattern"><rule context="comment" id="ref-comment-checks">
+        <report test="ancestor::mixed-citation" role="warning" id="ref-comment-1">[ref-comment-1] Reference (with id=<value-of select="ancestor::ref/@id"/>) contains a comment element. Is this correct? <value-of select="."/></report>
      </rule></pattern>
 
     <pattern id="ref-pub-id-checks-pattern"><rule context="ref//pub-id[@pub-id-type='doi']" id="ref-pub-id-checks">
