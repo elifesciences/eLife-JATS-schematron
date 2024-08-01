@@ -306,6 +306,14 @@
      </rule>
     </pattern>
 
+    <pattern id="ref-comment">
+      <rule context="comment" id="ref-comment-checks">
+        <report test="ancestor::mixed-citation" 
+        role="warning" 
+        id="ref-comment-1">Reference (with id=<value-of select="ancestor::ref/@id"/>) contains a comment element. Is this correct? <value-of select="."/></report>
+     </rule>
+    </pattern>
+
     <pattern id="ref-pub-id">
       <rule context="ref//pub-id[@pub-id-type='doi']" id="ref-pub-id-checks">
         <assert test="matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')" 

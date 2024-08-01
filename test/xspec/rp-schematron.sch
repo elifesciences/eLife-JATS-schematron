@@ -205,6 +205,13 @@
      </rule>
   </pattern>
 
+    <pattern id="ref-comment-checks-pattern">
+    <rule context="comment" id="ref-comment-checks">
+        <report test="ancestor::mixed-citation" role="warning" id="ref-comment-1">Reference (with id=<value-of select="ancestor::ref/@id"/>) contains a comment element. Is this correct? <value-of select="."/>
+      </report>
+     </rule>
+  </pattern>
+
     <pattern id="ref-pub-id-checks-pattern">
     <rule context="ref//pub-id[@pub-id-type='doi']" id="ref-pub-id-checks">
         <assert test="matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')" role="error" id="ref-doi-conformance">&lt;pub-id pub-id="doi"&gt; in reference (id=<value-of select="ancestor::ref/@id"/>) does not contain a valid DOI: '<value-of select="."/>'.</assert>
@@ -606,6 +613,7 @@
       <assert test="descendant::mixed-citation//name  or descendant:: mixed-citation//string-name" role="error" id="ref-name-checks-xspec-assert">mixed-citation//name | mixed-citation//string-name must be present.</assert>
       <assert test="descendant::collab" role="error" id="collab-checks-xspec-assert">collab must be present.</assert>
       <assert test="descendant::mixed-citation[person-group]//etal" role="error" id="ref-etal-checks-xspec-assert">mixed-citation[person-group]//etal must be present.</assert>
+      <assert test="descendant::comment" role="error" id="ref-comment-checks-xspec-assert">comment must be present.</assert>
       <assert test="descendant::ref//pub-id[@pub-id-type='doi']" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::ref" role="error" id="ref-checks-xspec-assert">ref must be present.</assert>
       <assert test="descendant::mixed-citation" role="error" id="mixed-citation-checks-xspec-assert">mixed-citation must be present.</assert>

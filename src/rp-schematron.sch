@@ -163,6 +163,10 @@
         <assert test="parent::person-group" role="error" id="ref-etal-1">[ref-etal-1] If the etal element is included in a reference, and that reference has a person-group element, then the etal should also be included in the person-group element. But this one is a child of <value-of select="parent::*/name()"/>.</assert>
      </rule></pattern>
 
+    <pattern id="ref-comment-checks-pattern"><rule context="comment" id="ref-comment-checks">
+        <report test="ancestor::mixed-citation" role="warning" id="ref-comment-1">[ref-comment-1] Reference (with id=<value-of select="ancestor::ref/@id"/>) contains a comment element. Is this correct? <value-of select="."/></report>
+     </rule></pattern>
+
     <pattern id="ref-pub-id-checks-pattern"><rule context="ref//pub-id[@pub-id-type='doi']" id="ref-pub-id-checks">
         <assert test="matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')" role="error" id="ref-doi-conformance">[ref-doi-conformance] &lt;pub-id pub-id="doi"&gt; in reference (id=<value-of select="ancestor::ref/@id"/>) does not contain a valid DOI: '<value-of select="."/>'.</assert>
      </rule></pattern>
