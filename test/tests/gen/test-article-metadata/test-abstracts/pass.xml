@@ -2,7 +2,7 @@
 <!--Context: article/front/article-meta
 Test: report    not($article-type = $notice-article-types) and ($abs-count gt 2 or $abs-standard-count != 1 or $digest-count gt 1 or ($abs-count != $abs-standard-count + $digest-count))
 Message: There must either be only one abstract or one abstract and one abstract[@abstract-type="plain-language-summary"]. No other variations are allowed. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="research-article">
     <front>
       <article-meta>
@@ -24,7 +24,7 @@ Message: There must either be only one abstract or one abstract and one abstract
             signals and learning</article-title>
         </title-group>
         <contrib-group>
-          <contrib contrib-type="author" corresp="yes" id="author-0000">
+          <contrib contrib-type="author" corresp="yes">
             <name>
               <surname>Zoolander</surname>
               <given-names>Derek</given-names>
@@ -34,7 +34,7 @@ Message: There must either be only one abstract or one abstract and one abstract
             <xref ref-type="aff" rid="aff1">1</xref>
             <xref ref-type="other" rid="fund1"/>
           </contrib>
-          <contrib contrib-type="author" id="author-47476">
+          <contrib contrib-type="author">
             <name>
               <surname>Hansel</surname>
             </name>

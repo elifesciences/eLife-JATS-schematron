@@ -2,10 +2,10 @@
 <!--Context: article-meta//contrib[@contrib-type='author']/xref
 Test: report    (@ref-type='aff') and preceding-sibling::xref[not(@ref-type='aff')]
 Message: Affiliation footnote links (xrefs) from authors must be the first type of link. For , their affiliation link -  - appears after another non-affiliation link, when it should appear before it. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <article-meta>
-      <contrib contrib-type="author" id="author-85867">
+      <contrib contrib-type="author">
         <name>
           <surname>Kallappagoudar</surname>
           <given-names>Satish</given-names>

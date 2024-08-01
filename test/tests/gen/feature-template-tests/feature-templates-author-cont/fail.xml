@@ -2,7 +2,7 @@
 <!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]
 Test: report    back/fn-group[@content-type='author-contribution'] and $template = '1'
 Message:  articles should not have any Author contributions. This  has . Please remove the author contributions. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="discussion" dtd-version="1.1">
     <front>
       <article-meta>
@@ -18,7 +18,7 @@ Message:  articles should not have any Author contributions. This  has . Please 
           <article-title>Being vulnerable</article-title>
         </title-group>
         <contrib-group>
-          <contrib contrib-type="author" corresp="yes" id="author-189586">
+          <contrib contrib-type="author" corresp="yes">
             <name>
               <surname>Hunt</surname>
               <given-names>Jasper Elan</given-names>
@@ -29,7 +29,8 @@ Message:  articles should not have any Author contributions. This  has . Please 
             <xref ref-type="fn" rid="con1"/>
             <xref ref-type="fn" rid="conf1"/>
             <bio>
-              <p><bold>Jasper Elan Hunt</bold> is in the Department of Physiology, Anatomy and
+              <p>
+                <bold>Jasper Elan Hunt</bold> is in the Department of Physiology, Anatomy and
                 Genetics, University of Oxford, Oxford, United Kingdom</p>
             </bio>
           </contrib>
@@ -56,7 +57,12 @@ Message:  articles should not have any Author contributions. This  has . Please 
       </article-meta>
     </front>
     <back>
-      <fn-group content-type="author-contribution"><title>Author contributions</title><fn fn-type="con" id="con1"><p>Writing - original draft, Writing - review and editing</p></fn></fn-group>
+      <fn-group content-type="author-contribution">
+        <title>Author contributions</title>
+        <fn fn-type="con" id="con1">
+          <p>Writing - original draft, Writing - review and editing</p>
+        </fn>
+      </fn-group>
     </back>
   </article>
 </root>

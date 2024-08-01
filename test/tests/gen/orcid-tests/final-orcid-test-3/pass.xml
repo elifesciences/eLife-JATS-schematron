@@ -2,10 +2,10 @@
 <!--Context: contrib-id[@contrib-id-type='orcid']
 Test: report    (preceding::contrib-id[@contrib-id-type='orcid']/text() = $text) or (following::contrib-id[@contrib-id-type='orcid']/text() = $text)
 Message: 's ORCiD is the same as another author's - . Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please raise a query with production so that they can raise it with the authors. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <contrib-group>
-      <contrib contrib-type="author" equal-contrib="yes" id="author-129295">
+      <contrib contrib-type="author" equal-contrib="yes">
         <name>
           <surname>Sheen</surname>
           <given-names>Mee Rie</given-names>
@@ -16,7 +16,7 @@ Message: 's ORCiD is the same as another author's - . Duplicated ORCiDs are not 
         <xref ref-type="fn" rid="conf1"/>
         <xref ref-type="fn" rid="pa1">§</xref>
       </contrib>
-      <contrib contrib-type="author" equal-contrib="yes" id="author-129296">
+      <contrib contrib-type="author" equal-contrib="yes">
         <name>
           <surname>Fields</surname>
           <given-names>Jennifer L</given-names>
@@ -26,7 +26,7 @@ Message: 's ORCiD is the same as another author's - . Duplicated ORCiDs are not 
         <xref ref-type="fn" rid="con2"/>
         <xref ref-type="fn" rid="conf2"/>
       </contrib>
-      <contrib contrib-type="author" equal-contrib="yes" id="author-129297">
+      <contrib contrib-type="author" equal-contrib="yes">
         <name>
           <surname>Northan</surname>
           <given-names>Brian</given-names>
@@ -36,7 +36,7 @@ Message: 's ORCiD is the same as another author's - . Duplicated ORCiDs are not 
         <xref ref-type="fn" rid="con3"/>
         <xref ref-type="fn" rid="conf3"/>
       </contrib>
-      <contrib contrib-type="author" equal-contrib="yes" id="author-18945">
+      <contrib contrib-type="author" equal-contrib="yes">
         <name>
           <surname>Lacoste</surname>
           <given-names>Judith</given-names>
@@ -46,7 +46,7 @@ Message: 's ORCiD is the same as another author's - . Duplicated ORCiDs are not 
         <xref ref-type="fn" rid="con4"/>
         <xref ref-type="fn" rid="conf4"/>
       </contrib>
-      <contrib contrib-type="author" id="author-18944">
+      <contrib contrib-type="author">
         <name>
           <surname>Ang</surname>
           <given-names>Lay-Hong</given-names>
@@ -55,7 +55,7 @@ Message: 's ORCiD is the same as another author's - . Duplicated ORCiDs are not 
         <xref ref-type="fn" rid="con5"/>
         <xref ref-type="fn" rid="conf5"/>
       </contrib>
-      <contrib contrib-type="author" id="author-33234">
+      <contrib contrib-type="author">
         <name>
           <surname>Fiering</surname>
           <given-names>Steven</given-names>

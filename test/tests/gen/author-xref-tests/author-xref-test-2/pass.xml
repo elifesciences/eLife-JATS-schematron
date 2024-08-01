@@ -2,10 +2,10 @@
 <!--Context: article-meta//contrib[@contrib-type='author']/xref
 Test: report    (@ref-type='fn') and contains(@rid,'equal') and preceding-sibling::xref[not(@ref-type='aff')]
 Message: Equal contribution links from authors must appear after affiliation footnote links. For , their equal contribution link (to ) appears after another non-affiliation link, when it should appear before it. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <article-meta>
-      <contrib contrib-type="author" id="author-85867">
+      <contrib contrib-type="author">
         <name>
           <surname>Kallappagoudar</surname>
           <given-names>Satish</given-names>

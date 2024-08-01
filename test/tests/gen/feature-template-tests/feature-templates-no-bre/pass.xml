@@ -2,7 +2,7 @@
 <!--Context: article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]
 Test: report    front/article-meta/contrib-group[@content-type='section'] and ($template != '5')
 Message:  is a template , which means that it should not have any BREs. This  has . Please remove any senior/reviewing editors. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article article-type="discussion" dtd-version="1.1">
     <front>
       <journal-meta>
@@ -31,7 +31,7 @@ Message:  is a template , which means that it should not have any BREs. This  ha
           <article-title>Being vulnerable</article-title>
         </title-group>
         <contrib-group>
-          <contrib contrib-type="author" corresp="yes" id="author-189586">
+          <contrib contrib-type="author" corresp="yes">
             <name>
               <surname>Hunt</surname>
               <given-names>Jasper Elan</given-names>
@@ -42,7 +42,8 @@ Message:  is a template , which means that it should not have any BREs. This  ha
             <xref ref-type="fn" rid="con1"/>
             <xref ref-type="fn" rid="conf1"/>
             <bio>
-              <p><bold>Jasper Elan Hunt</bold> is in the Department of Physiology, Anatomy and
+              <p>
+                <bold>Jasper Elan Hunt</bold> is in the Department of Physiology, Anatomy and
                 Genetics, University of Oxford, Oxford, United Kingdom</p>
             </bio>
           </contrib>

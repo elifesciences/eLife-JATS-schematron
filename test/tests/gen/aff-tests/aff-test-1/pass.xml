@@ -2,18 +2,18 @@
 <!--Context: article-meta/contrib-group/aff
 Test: assert    parent::contrib-group//contrib//xref/@rid = @id
 Message: aff elements that are direct children of contrib-group must have an xref in that contrib-group pointing to them. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
   <article>
     <article-meta>
       <contrib-group>
-        <contrib contrib-type="author" id="author-000001">
+        <contrib contrib-type="author">
           <name>
             <surname>Zoolander</surname>
             <given-names>Derek</given-names>
           </name>
           <xref ref-type="aff" rid="aff1">1</xref>
         </contrib>
-        <contrib contrib-type="author" id="author-000002">
+        <contrib contrib-type="author">
           <name>
             <surname>Hansel</surname>
           </name>
