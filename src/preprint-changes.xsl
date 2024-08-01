@@ -193,6 +193,32 @@
             <xsl:value-of select="substring(@xlink:href, (string-length(@xlink:href) - string-length(substring-after(lower-case(@xlink:href),'doi.org/')) + 1))"/>
         </xsl:element>
     </xsl:template>
+
+    <!-- Convert uri elements to ext-link -->
+    <xsl:template xml:id="uri-to-ext-link" match="uri">
+        <xsl:choose>
+            <xsl:when test="ancestor::mixed-citation and matches(lower-case(.),'^https?://(dx\.)?doi\.org/')">
+                <xsl:element name="pub-id">
+                    <xsl:attribute name="pub-id-type">doi</xsl:attribute>
+                    <xsl:value-of select="substring(., (string-length(.) - string-length(substring-after(lower-case(.),'doi.org/')) + 1))"/>
+                </xsl:element>
+            </xsl:when>
+            <xsl:when test="./@xlink:href">
+                <xsl:element name="ext-link">
+                    <xsl:attribute name="ext-link-type">uri</xsl:attribute>
+                    <xsl:attribute name="xlink:href"><xsl:value-of select="./@xlink:href"/></xsl:attribute>
+                    <xsl:value-of select="."/>
+                </xsl:element>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:element name="ext-link">
+                    <xsl:attribute name="ext-link-type">uri</xsl:attribute>
+                    <xsl:attribute name="xlink:href"><xsl:value-of select="."/></xsl:attribute>
+                    <xsl:value-of select="."/>
+                </xsl:element>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
     
     <!-- Change publication-type="website" to "web" for consistency across all eLife content -->
     <xsl:template xml:id="web-ref-type" match="mixed-citation[@publication-type='website']|element-citation-citation[@publication-type='website']">

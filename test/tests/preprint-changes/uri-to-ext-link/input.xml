@@ -1,0 +1,7 @@
+<!--Testing template with id: uri-to-ext-link-->
+<p xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<uri xlink:href="https://elifesciences.org/">eLife</uri>
+<uri>https://elifesciences.org/</uri>
+<mixed-citation><uri>https://doi.org/10.7554/eLife.90565.2</uri></mixed-citation>
+<mixed-citation><uri>https://elifesciences.org/</uri></mixed-citation>
+</p>
