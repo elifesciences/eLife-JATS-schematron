@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="comp-int-fn-test-5.sch"?>
+<!--Context: fn-group[@content-type='competing-interest']/fn
+Test: report    preceding::fn[lower-case(.)=$lower-case]
+Message: Competing interests footnotes must be distinct. This one (with the id ) is the same as another one (with the id ):  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <fn-group content-type="competing-interest">
+            <title>Competing interests</title>
+            <fn fn-type="COI-statement" id="conf1"><p>No competing interests declared</p></fn>
+            <fn fn-type="COI-statement" id="conf2"><p>Author name 1 is employed by Derek Zoolander Center for Kids Who Can't Read Good</p></fn>
+            <fn fn-type="COI-statement" id="conf3"><p>Author name 2 is employed by Derek Zoolander Center for Kids Who Can't Read Good, and blah</p></fn></fn-group>
+    </article>
+</root>

@@ -9363,6 +9363,16 @@
         <x:expect-report id="comp-int-fn-test-4" role="error"/>
         <x:expect-not-assert id="comp-int-fn-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="comp-int-fn-test-5-pass">
+        <x:context href="../tests/gen/comp-int-fn-tests/comp-int-fn-test-5/pass.xml"/>
+        <x:expect-not-report id="comp-int-fn-test-5" role="error"/>
+        <x:expect-not-assert id="comp-int-fn-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="comp-int-fn-test-5-fail">
+        <x:context href="../tests/gen/comp-int-fn-tests/comp-int-fn-test-5/fail.xml"/>
+        <x:expect-report id="comp-int-fn-test-5" role="error"/>
+        <x:expect-not-assert id="comp-int-fn-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="auth-cont-fn-tests">
       <x:scenario label="auth-cont-fn-test-1-pass">
