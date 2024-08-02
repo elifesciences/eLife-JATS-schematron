@@ -1339,7 +1339,8 @@
   <pattern id="back">
     <rule context="fn-group[@content-type='competing-interest']/fn" id="comp-int-fn-tests">
       <let name="lower-case" value="lower-case(.)"/>
-      <report test="matches(.,'\.\p{Zs}*$')" role="error" id="comp-int-fn-test-4">Competing interests footnote ends with full stop - <value-of select="."/> - Please remove the full stop.</report>
+      <report test="preceding::fn[lower-case(.)=$lower-case]" role="error" id="comp-int-fn-test-5">Competing interests footnotes must be distinct. This one (with the id <value-of select="@id"/>) is the same as another one (with the id <value-of select="string-join(preceding::fn[lower-case(.)=$lower-case]/@id,'; ')"/>): <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

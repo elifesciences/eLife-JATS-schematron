@@ -21877,8 +21877,8 @@
    <!--PATTERN comp-int-fn-tests-pattern-->
    <!--RULE comp-int-fn-tests-->
    <xsl:template match="fn-group[@content-type='competing-interest']/fn" priority="1000" mode="M350">
-
-		<!--ASSERT error-->
+      <xsl:variable name="lower-case" select="lower-case(.)"/>
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="@fn-type='COI-statement'"/>
          <xsl:otherwise>
@@ -21916,6 +21916,24 @@
             <svrl:text>[comp-int-fn-test-4] Competing interests footnote ends with full stop - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/> - Please remove the full stop.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="preceding::fn[lower-case(.)=$lower-case]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="preceding::fn[lower-case(.)=$lower-case]">
+            <xsl:attribute name="id">comp-int-fn-test-5</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[comp-int-fn-test-5] Competing interests footnotes must be distinct. This one (with the id <xsl:text/>
+               <xsl:value-of select="@id"/>
+               <xsl:text/>) is the same as another one (with the id <xsl:text/>
+               <xsl:value-of select="string-join(preceding::fn[lower-case(.)=$lower-case]/@id,'; ')"/>
+               <xsl:text/>): <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M350"/>

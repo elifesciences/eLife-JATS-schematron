@@ -5191,12 +5191,16 @@
   </pattern>
   <pattern id="comp-int-fn-tests-pattern">
     <rule context="fn-group[@content-type='competing-interest']/fn" id="comp-int-fn-tests">
+      <let name="lower-case" value="lower-case(.)"/>
       
       <assert test="@fn-type='COI-statement'" role="error" id="comp-int-fn-test-2">fn element must have an @fn-type='COI-statement' as it is a child of fn-group[@content-type='competing-interest'].</assert>
       
       <report test="contains(lower-case(.),'the other authors')" role="error" id="comp-int-fn-test-3">Competing interests footnote contains information about other authors - '<value-of select="."/>'. These footnotes should only contain information about that specific author.</report>
       
       <report test="matches(.,'\.\p{Zs}*$')" role="error" id="comp-int-fn-test-4">Competing interests footnote ends with full stop - <value-of select="."/> - Please remove the full stop.</report>
+
+      <report test="preceding::fn[lower-case(.)=$lower-case]" role="error" id="comp-int-fn-test-5">Competing interests footnotes must be distinct. This one (with the id <value-of select="@id"/>) is the same as another one (with the id <value-of select="string-join(preceding::fn[lower-case(.)=$lower-case]/@id,'; ')"/>): <value-of select="."/>
+      </report>
       
     </rule>
   </pattern>

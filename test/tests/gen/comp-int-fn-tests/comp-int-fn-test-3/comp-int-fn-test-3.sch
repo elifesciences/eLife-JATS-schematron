@@ -1338,6 +1338,7 @@
   </xsl:function>
   <pattern id="back">
     <rule context="fn-group[@content-type='competing-interest']/fn" id="comp-int-fn-tests">
+      <let name="lower-case" value="lower-case(.)"/>
       <report test="contains(lower-case(.),'the other authors')" role="error" id="comp-int-fn-test-3">Competing interests footnote contains information about other authors - '<value-of select="."/>'. These footnotes should only contain information about that specific author.</report>
     </rule>
   </pattern>

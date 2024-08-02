@@ -1338,6 +1338,7 @@
   </xsl:function>
   <pattern id="back">
     <rule context="fn-group[@content-type='competing-interest']/fn" id="comp-int-fn-tests">
+      <let name="lower-case" value="lower-case(.)"/>
       <assert test="@fn-type='COI-statement'" role="error" id="comp-int-fn-test-2">fn element must have an @fn-type='COI-statement' as it is a child of fn-group[@content-type='competing-interest'].</assert>
     </rule>
   </pattern>
