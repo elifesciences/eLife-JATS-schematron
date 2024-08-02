@@ -1146,7 +1146,7 @@
             </xsl:attribute>
             <svrl:text>[given-names-test-16] given-names for author is made up only of uppercase letters (and spaces) '<xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/>'. Are they initials? Should the authors full goven-names be introduced instead?</svrl:text>
+               <xsl:text/>'. Are they initials? Should the authors full given-names be introduced instead?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M20"/>

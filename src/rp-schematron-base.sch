@@ -194,7 +194,7 @@
 		
       <report test="matches(.,'^[\p{Lu}\s]+$')" 
         role="warning" 
-        id="given-names-test-16">given-names for author is made up only of uppercase letters (and spaces) '<value-of select="."/>'. Are they initials? Should the authors full goven-names be introduced instead?</report>
+        id="given-names-test-16">given-names for author is made up only of uppercase letters (and spaces) '<value-of select="."/>'. Are they initials? Should the authors full given-names be introduced instead?</report>
 	   </rule>
 
     <rule context="contrib-group//name/*" id="name-child-tests">
