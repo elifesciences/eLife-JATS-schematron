@@ -44,6 +44,10 @@
       <x:context href="../tests/preprint-changes/web-ref-type/input.xml"/>
       <x:expect label="Testing the template: web-ref-type" href="../tests/preprint-changes/web-ref-type/output.xml"/>
     </x:scenario>
+    <x:scenario label="other-ref-type">
+      <x:context href="../tests/preprint-changes/other-ref-type/input.xml"/>
+      <x:expect label="Testing the template: other-ref-type" href="../tests/preprint-changes/other-ref-type/output.xml"/>
+    </x:scenario>
     <x:scenario label="biorender-permissions">
       <x:context href="../tests/preprint-changes/biorender-permissions/input.xml"/>
       <x:expect label="Testing the template: biorender-permissions" href="../tests/preprint-changes/biorender-permissions/output.xml"/>

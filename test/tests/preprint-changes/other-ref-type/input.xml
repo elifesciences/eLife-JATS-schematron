@@ -1,0 +1,6 @@
+<!--Testing template with id: other-ref-type-->
+<refs>
+    <mixed-citation publication-type="other"><article-title/> <source>bioRxiv</source></mixed-citation>
+    <mixed-citation publication-type="other"><article-title/> <source>arXiv</source></mixed-citation>
+    <mixed-citation publication-type="other"><article-title/> <source>OSF preprints</source></mixed-citation>
+</refs>

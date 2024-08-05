@@ -254,6 +254,23 @@
         </xsl:copy>
     </xsl:template>
 
+    <!-- Attempt to determine correct type/content for publication-type="other"
+            Just trying preprints to begin with -->
+    <xsl:template xml:id="other-ref-type" match="mixed-citation[@publication-type='other']">
+        <xsl:variable name="preprint-regex" select="'^(biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra)$'"/>
+        <xsl:copy>
+            <xsl:choose>
+                <xsl:when test="matches(lower-case(source[1]),$preprint-regex)">
+                    <xsl:attribute name="publication-type">preprint</xsl:attribute>
+                    <xsl:apply-templates select="@*[name()!='publication-type']|*|text()|comment()|processing-instruction()"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>    
+                </xsl:otherwise>
+        </xsl:choose>
+        </xsl:copy>
+    </xsl:template>
+
     <!-- Add blanket biorender statement for any object with a caption that mentions it -->
     <xsl:template xml:id="biorender-permissions" match="*[caption[contains(lower-case(.),'biorender')] and not(permissions[contains(lower-case(.),'biorender')])]">
         <xsl:variable name="current-year" select="year-from-date(current-date())"/>
