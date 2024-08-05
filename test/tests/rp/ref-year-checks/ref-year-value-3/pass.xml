@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="ref-year-value-3.sch"?>
+<!--Context: ref//year
+Test: report    matches(.,'^\d+$') and number(.) lt 1800
+Message: Ref with id  has a year element which is less than 1800, which is almost certain to be incorrect. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <article>
+            <ref>
+                <year>1966</year>
+            </ref>
+        </article>
+</root>
