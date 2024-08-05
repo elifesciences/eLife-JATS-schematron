@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="authorea-doi-conformance.sch"?>
-<!--Context: article/front[journal-meta[lower-case(journal-id)='authorea']]/article-meta/article-id[@pub-id-type='doi']
+<!--Context: article/front[journal-meta[lower-case(journal-id[1])='authorea']]/article-meta/article-id[@pub-id-type='doi']
 Test: assert    matches(.,'^10\.22541/au\.\d+\.\d+/v\d$')
 Message: Authorea preprints must have a <article-id pub-id-type="doi"> element with a value that matches the regex '^10\.22541/au\.\d+\.\d+/v\d$'. In other words, the current DOI listed is not a valid Authorea DOI: ''. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">

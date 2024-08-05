@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="arxiv-publisher.sch"?>
-<!--Context: article/front/journal-meta[lower-case(journal-id)='arxiv']
+<!--Context: article/front/journal-meta[lower-case(journal-id[1])='arxiv']
 Test: assert    publisher/publisher-name='Cornell University'
 Message: arXiv preprints must have a <publisher-name> element with the value 'Cornell University', inside a <publisher> element. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">

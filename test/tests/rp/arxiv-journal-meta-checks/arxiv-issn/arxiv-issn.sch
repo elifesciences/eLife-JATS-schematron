@@ -33,13 +33,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="arxiv-journal-meta-checks-pattern">
-    <rule context="article/front/journal-meta[lower-case(journal-id)='arxiv']" id="arxiv-journal-meta-checks">
+    <rule context="article/front/journal-meta[lower-case(journal-id[1])='arxiv']" id="arxiv-journal-meta-checks">
       <assert test="issn[@pub-type='epub']='2331-8422'" role="error" id="arxiv-issn">[arxiv-issn] arXiv preprints must have a &lt;issn pub-type="epub"&gt; element with the value '2331-8422'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/journal-meta[lower-case(journal-id)='arxiv']" role="error" id="arxiv-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id)='arxiv'] must be present.</assert>
+      <assert test="descendant::article/front/journal-meta[lower-case(journal-id[1])='arxiv']" role="error" id="arxiv-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id[1])='arxiv'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

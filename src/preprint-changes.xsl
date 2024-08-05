@@ -219,13 +219,55 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+
+    <!-- Fixes common tagging error with lpage in journal refs -->
+    <xsl:template xml:id="journal-ref-lpage" match="mixed-citation[@publication-type='journal' and lpage]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:for-each select="*|text()">
+                <xsl:choose>
+                    <xsl:when test="self::lpage and matches(following-sibling::text()[1],'^[\s\.]+e\d')">
+                        <xsl:copy>
+                            <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+                            <xsl:value-of select="concat('.',substring-before(replace(following-sibling::text()[1],'^[\s+\.]',''),' '))"/>
+                        </xsl:copy>
+                    </xsl:when>
+                    <xsl:when test="self::text() and preceding-sibling::*[1][name()='lpage'] and matches(.,'^[\s\.]+e\d')">
+                        <xsl:value-of select="concat(' ',substring-after(replace(.,'^[\s+\.]',''),' '))"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy>
+                            <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+                        </xsl:copy>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:copy>
+    </xsl:template>
     
     <!-- Change publication-type="website" to "web" for consistency across all eLife content -->
-    <xsl:template xml:id="web-ref-type" match="mixed-citation[@publication-type='website']|element-citation-citation[@publication-type='website']">
+    <xsl:template xml:id="web-ref-type" match="mixed-citation[@publication-type='website']|element-citation[@publication-type='website']">
         <xsl:copy>
             <xsl:attribute name="publication-type">web</xsl:attribute>
             <xsl:apply-templates select="@*[name()!='publication-type']"/>
             <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- Attempt to determine correct type/content for publication-type="other"
+            Just trying preprints to begin with -->
+    <xsl:template xml:id="other-ref-type" match="mixed-citation[@publication-type='other']">
+        <xsl:variable name="preprint-regex" select="'^(biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra)$'"/>
+        <xsl:copy>
+            <xsl:choose>
+                <xsl:when test="matches(lower-case(source[1]),$preprint-regex)">
+                    <xsl:attribute name="publication-type">preprint</xsl:attribute>
+                    <xsl:apply-templates select="@*[name()!='publication-type']|*|text()|comment()|processing-instruction()"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>    
+                </xsl:otherwise>
+        </xsl:choose>
         </xsl:copy>
     </xsl:template>
 

@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="authorea-publisher.sch"?>
-<!--Context: article/front/journal-meta[lower-case(journal-id)='authorea']
+<!--Context: article/front/journal-meta[lower-case(journal-id[1])='authorea']
 Test: assert    publisher/publisher-name='Authorea, Inc'
 Message: Authorea preprints must have a <publisher-name> element with the value 'Authorea, Inc', inside a <publisher> element. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">

@@ -33,13 +33,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="psyarxiv-journal-meta-checks-pattern">
-    <rule context="article/front/journal-meta[lower-case(journal-id)='psyarxiv']" id="psyarxiv-journal-meta-checks">
+    <rule context="article/front/journal-meta[lower-case(journal-id[1])='psyarxiv']" id="psyarxiv-journal-meta-checks">
       <assert test="journal-title-group/journal-title='PsyArXiv'" role="error" id="psyarxiv-journal-title">[psyarxiv-journal-title] PsyArXiv preprints must have a &lt;journal-title&gt; element with the value 'PsyArXiv' inside a &lt;journal-title-group&gt; element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/journal-meta[lower-case(journal-id)='psyarxiv']" role="error" id="psyarxiv-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id)='psyarxiv'] must be present.</assert>
+      <assert test="descendant::article/front/journal-meta[lower-case(journal-id[1])='psyarxiv']" role="error" id="psyarxiv-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id[1])='psyarxiv'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -33,13 +33,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="osf-journal-meta-checks-pattern">
-    <rule context="article/front/journal-meta[lower-case(journal-id)='osf preprints']" id="osf-journal-meta-checks">
+    <rule context="article/front/journal-meta[lower-case(journal-id[1])='osf preprints']" id="osf-journal-meta-checks">
       <assert test="journal-title-group/journal-title='OSF Preprints'" role="error" id="osf-journal-title">[osf-journal-title] Preprints on OSF must have a &lt;journal-title&gt; element with the value 'OSF Preprints' inside a &lt;journal-title-group&gt; element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/journal-meta[lower-case(journal-id)='osf preprints']" role="error" id="osf-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id)='osf preprints'] must be present.</assert>
+      <assert test="descendant::article/front/journal-meta[lower-case(journal-id[1])='osf preprints']" role="error" id="osf-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id[1])='osf preprints'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

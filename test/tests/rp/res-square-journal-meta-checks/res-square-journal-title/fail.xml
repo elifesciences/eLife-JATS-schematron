@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="res-square-journal-title.sch"?>
-<!--Context: article/front/journal-meta[lower-case(journal-id)='rs']
+<!--Context: article/front/journal-meta[lower-case(journal-id[1])='rs']
 Test: assert    journal-title-group/journal-title='Research Square'
 Message: Research Square preprints must have a <journal-title> element with the value 'Research Square' inside a <journal-title-group> element. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">

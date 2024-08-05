@@ -33,13 +33,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="res-square-journal-meta-checks-pattern">
-    <rule context="article/front/journal-meta[lower-case(journal-id)='rs']" id="res-square-journal-meta-checks">
+    <rule context="article/front/journal-meta[lower-case(journal-id[1])='rs']" id="res-square-journal-meta-checks">
       <assert test="issn[@pub-type='epub']='2693-5015'" role="error" id="res-square-issn">[res-square-issn] Research Square preprints must have a &lt;issn pub-type="epub"&gt; element with the value '2693-5015'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/journal-meta[lower-case(journal-id)='rs']" role="error" id="res-square-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id)='rs'] must be present.</assert>
+      <assert test="descendant::article/front/journal-meta[lower-case(journal-id[1])='rs']" role="error" id="res-square-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id[1])='rs'] must be present.</assert>
     </rule>
   </pattern>
 </schema>
