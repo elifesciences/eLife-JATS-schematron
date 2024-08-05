@@ -33,13 +33,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="ecoevorxiv-journal-meta-checks-pattern">
-    <rule context="article/front/journal-meta[lower-case(journal-id)='ecoevorxiv']" id="ecoevorxiv-journal-meta-checks">
+    <rule context="article/front/journal-meta[lower-case(journal-id[1])='ecoevorxiv']" id="ecoevorxiv-journal-meta-checks">
       <assert test="publisher/publisher-name='Society for Open, Reliable, and Transparent Ecology and Evolutionary Biology (SORTEE)'" role="error" id="ecoevorxiv-publisher">[ecoevorxiv-publisher] EcoEvoRxiv preprints must have a &lt;publisher-name&gt; element with the value 'Society for Open, Reliable, and Transparent Ecology and Evolutionary Biology (SORTEE)', inside a &lt;publisher&gt; element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/journal-meta[lower-case(journal-id)='ecoevorxiv']" role="error" id="ecoevorxiv-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id)='ecoevorxiv'] must be present.</assert>
+      <assert test="descendant::article/front/journal-meta[lower-case(journal-id[1])='ecoevorxiv']" role="error" id="ecoevorxiv-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id[1])='ecoevorxiv'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

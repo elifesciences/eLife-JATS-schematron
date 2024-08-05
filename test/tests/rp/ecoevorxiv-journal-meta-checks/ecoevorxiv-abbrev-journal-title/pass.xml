@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="ecoevorxiv-abbrev-journal-title.sch"?>
-<!--Context: article/front/journal-meta[lower-case(journal-id)='ecoevorxiv']
+<!--Context: article/front/journal-meta[lower-case(journal-id[1])='ecoevorxiv']
 Test: assert    journal-title-group/abbrev-journal-title[@abbrev-type='publisher']='EcoEvoRxiv'
 Message: EcoEvoRxiv preprints must have a <abbrev-journal-title abbrev-type="publisher"> element with the value 'EcoEvoRxiv' inside a <journal-title-group> element. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
