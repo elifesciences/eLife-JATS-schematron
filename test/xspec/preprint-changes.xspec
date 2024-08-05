@@ -36,6 +36,10 @@
       <x:context href="../tests/preprint-changes/uri-to-ext-link/input.xml"/>
       <x:expect label="Testing the template: uri-to-ext-link" href="../tests/preprint-changes/uri-to-ext-link/output.xml"/>
     </x:scenario>
+    <x:scenario label="journal-ref-lpage">
+      <x:context href="../tests/preprint-changes/journal-ref-lpage/input.xml"/>
+      <x:expect label="Testing the template: journal-ref-lpage" href="../tests/preprint-changes/journal-ref-lpage/output.xml"/>
+    </x:scenario>
     <x:scenario label="web-ref-type">
       <x:context href="../tests/preprint-changes/web-ref-type/input.xml"/>
       <x:expect label="Testing the template: web-ref-type" href="../tests/preprint-changes/web-ref-type/output.xml"/>
