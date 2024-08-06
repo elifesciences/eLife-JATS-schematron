@@ -272,9 +272,9 @@
           role="warning" 
           id="ref-year-value-2">Ref with id <value-of select="ancestor::ref/@id"/> has a year element which does not contain a digit. Is it correct? (it's acceptable for this element to contain 'no date' or equivalent non-numerical information relating to year of publication)</assert>
         
-        <report test="matches(.,'^\d+$') and number(.) lt 1800"
+        <report test="matches(.,'^\d{4}[a-z]?$') and number(replace(.,'[^\d]','')) lt 1800"
           role="warning" 
-          id="ref-year-value-3">Ref with id <value-of select="ancestor::ref/@id"/> has a year element which is less than 1800, which is almost certain to be incorrect.</report>
+          id="ref-year-value-3">Ref with id <value-of select="ancestor::ref/@id"/> has a year element which is less than 1800, which is almost certain to be incorrect: <value-of select="."/>.</report>
      </rule>
      </pattern>
 

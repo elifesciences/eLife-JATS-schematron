@@ -1403,8 +1403,8 @@
          </xsl:otherwise>
       </xsl:choose>
       <!--REPORT warning-->
-      <xsl:if test="matches(.,'^\d+$') and number(.) lt 1800">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^\d+$') and number(.) lt 1800">
+      <xsl:if test="matches(.,'^\d{4}[a-z]?$') and number(replace(.,'[^\d]','')) lt 1800">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^\d{4}[a-z]?$') and number(replace(.,'[^\d]','')) lt 1800">
             <xsl:attribute name="id">ref-year-value-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -1412,7 +1412,9 @@
             </xsl:attribute>
             <svrl:text>[ref-year-value-3] Ref with id <xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
-               <xsl:text/> has a year element which is less than 1800, which is almost certain to be incorrect.</svrl:text>
+               <xsl:text/> has a year element which is less than 1800, which is almost certain to be incorrect: <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M26"/>
