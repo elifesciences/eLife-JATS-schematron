@@ -189,6 +189,23 @@
      </rule>
   </pattern>
 
+    <pattern id="pub-id-pattern">
+    <rule context="pub-id" id="pub-id">
+
+        <assert test="@pub-id-type" role="error" id="pub-id-check-1">
+        <name/> does not have a pub-id-type attribute.</assert>
+
+        <report test="ancestor::mixed-citation[@publication-type='journal'] and not(@pub-id-type=('doi','pmid','pmcid','issn'))" role="error" id="pub-id-check-2">
+        <name/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','issn'.</report>
+
+        <report test="ancestor::mixed-citation[@publication-type='book'] and not(@pub-id-type=('doi','pmid','pmcid','isbn'))" role="error" id="pub-id-check-3">
+        <name/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','isbn'.</report>
+
+        <report test="ancestor::mixed-citation[@publication-type='preprint'] and not(@pub-id-type=('doi','pmid','pmcid','arxiv'))" role="error" id="pub-id-check-4">
+        <name/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','arxiv'.</report>
+     </rule>
+  </pattern>
+
     <pattern id="collab-checks-pattern">
     <rule context="collab" id="collab-checks">
         <report test="matches(.,'^\p{Z}+')" role="error" id="collab-check-1">collab element cannot start with space(s). This one does: <value-of select="."/>
@@ -613,6 +630,7 @@
       <assert test="descendant::ref-list" role="error" id="ref-list-checks-xspec-assert">ref-list must be present.</assert>
       <assert test="descendant::ref//year" role="error" id="ref-year-checks-xspec-assert">ref//year must be present.</assert>
       <assert test="descendant::mixed-citation//name  or descendant:: mixed-citation//string-name" role="error" id="ref-name-checks-xspec-assert">mixed-citation//name | mixed-citation//string-name must be present.</assert>
+      <assert test="descendant::pub-id" role="error" id="pub-id-xspec-assert">pub-id must be present.</assert>
       <assert test="descendant::collab" role="error" id="collab-checks-xspec-assert">collab must be present.</assert>
       <assert test="descendant::mixed-citation[person-group]//etal" role="error" id="ref-etal-checks-xspec-assert">mixed-citation[person-group]//etal must be present.</assert>
       <assert test="descendant::comment" role="error" id="ref-comment-checks-xspec-assert">comment must be present.</assert>

@@ -286,6 +286,27 @@
      </rule>
     </pattern>
 
+    <pattern id="pub-ids">
+      <rule context="pub-id" id="pub-id">
+
+        <assert test="@pub-id-type" 
+          role="error" 
+          id="pub-id-check-1"><name/> does not have a pub-id-type attribute.</assert>
+
+        <report test="ancestor::mixed-citation[@publication-type='journal'] and not(@pub-id-type=('doi','pmid','pmcid','issn'))" 
+          role="error" 
+          id="pub-id-check-2"><name/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','issn'.</report>
+
+        <report test="ancestor::mixed-citation[@publication-type='book'] and not(@pub-id-type=('doi','pmid','pmcid','isbn'))" 
+          role="error" 
+          id="pub-id-check-3"><name/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','isbn'.</report>
+
+        <report test="ancestor::mixed-citation[@publication-type='preprint'] and not(@pub-id-type=('doi','pmid','pmcid','arxiv'))" 
+          role="error" 
+          id="pub-id-check-4"><name/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','arxiv'.</report>
+     </rule>
+    </pattern>
+
     <pattern id="collab">
       <rule context="collab" id="collab-checks">
         <report test="matches(.,'^\p{Z}+')" 
