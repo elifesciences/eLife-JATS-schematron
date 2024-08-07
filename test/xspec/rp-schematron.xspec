@@ -1100,6 +1100,18 @@
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="ext-link-tests-2">
+      <x:scenario label="ext-link-type-test-1-pass">
+        <x:context href="../tests/rp/ext-link-tests-2/ext-link-type-test-1/pass.xml"/>
+        <x:expect-not-assert id="ext-link-type-test-1" role="error"/>
+        <x:expect-not-assert id="ext-link-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ext-link-type-test-1-fail">
+        <x:context href="../tests/rp/ext-link-tests-2/ext-link-type-test-1/fail.xml"/>
+        <x:expect-assert id="ext-link-type-test-1" role="error"/>
+        <x:expect-not-assert id="ext-link-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="footnote-checks">
       <x:scenario label="body-footnote-pass">
         <x:context href="../tests/rp/footnote-checks/body-footnote/pass.xml"/>

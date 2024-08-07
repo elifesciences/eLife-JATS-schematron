@@ -687,6 +687,12 @@
         role="warning" 
         id="ext-link-child-test-5">ext-link looks like it points to a review dryad dataset - <value-of select="."/>. Should it be updated?</report>
     </rule>
+
+    <rule context="ext-link" id="ext-link-tests-2">
+      <assert test="@ext-link-type='uri'" 
+        role="error" 
+        id="ext-link-type-test-1">ext-link must have the attribute ext-link-type="uri". This one does not. It contains the text: <value-of select="."/></assert>
+    </rule>
     </pattern>
 
     <pattern id="footnotes">

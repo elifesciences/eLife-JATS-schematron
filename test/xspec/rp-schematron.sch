@@ -503,6 +503,12 @@
     <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#ext-link-child-test-5" test="contains(@xlink:href,'datadryad.org/review?')" role="warning" id="ext-link-child-test-5">ext-link looks like it points to a review dryad dataset - <value-of select="."/>. Should it be updated?</report>
     </rule>
   </pattern>
+  <pattern id="ext-link-tests-2-pattern">
+    <rule context="ext-link" id="ext-link-tests-2">
+      <assert test="@ext-link-type='uri'" role="error" id="ext-link-type-test-1">ext-link must have the attribute ext-link-type="uri". This one does not. It contains the text: <value-of select="."/>
+      </assert>
+    </rule>
+  </pattern>
 
     <pattern id="footnote-checks-pattern">
     <rule context="fn-group[fn]" id="footnote-checks">
@@ -698,6 +704,7 @@
       <assert test="descendant::article/front/article-meta/article-version" role="error" id="article-version-checks-xspec-assert">article/front/article-meta/article-version must be present.</assert>
       <assert test="descendant::title" role="error" id="digest-title-checks-xspec-assert">title must be present.</assert>
       <assert test="descendant::ext-link[@ext-link-type='uri']" role="error" id="ext-link-tests-xspec-assert">ext-link[@ext-link-type='uri'] must be present.</assert>
+      <assert test="descendant::ext-link" role="error" id="ext-link-tests-2-xspec-assert">ext-link must be present.</assert>
       <assert test="descendant::fn-group[fn]" role="error" id="footnote-checks-xspec-assert">fn-group[fn] must be present.</assert>
       <assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link" role="error" id="unallowed-symbol-tests-xspec-assert">p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</assert>
       <assert test="descendant::article/front/journal-meta[lower-case(journal-id[1])='arxiv']" role="error" id="arxiv-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id[1])='arxiv'] must be present.</assert>
