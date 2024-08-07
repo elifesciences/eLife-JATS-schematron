@@ -89,14 +89,14 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="name-tests-pattern">
-    <rule context="contrib-group//name" id="name-tests">
-      <report test="count(given-names) gt 1" role="error" id="given-names-test-1">[given-names-test-1] Each name must contain only one given-names element.</report>
+  <pattern id="issn-conformity-pattern">
+    <rule context="ref//pub-id[@pub-id-type='issn']|issn" id="issn-conformity">
+      <assert test="e:is-valid-issn(.)" role="error" id="issn-conformity-test">[issn-conformity-test] pub-id contains an invalid ISSN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::contrib-group//name" role="error" id="name-tests-xspec-assert">contrib-group//name must be present.</assert>
+      <assert test="descendant::ref//pub-id[@pub-id-type='issn'] or descendant::issn" role="error" id="issn-conformity-xspec-assert">ref//pub-id[@pub-id-type='issn']|issn must be present.</assert>
     </rule>
   </pattern>
 </schema>
