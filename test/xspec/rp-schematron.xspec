@@ -517,13 +517,65 @@
     <x:scenario label="ref-pub-id-checks">
       <x:scenario label="ref-doi-conformance-pass">
         <x:context href="../tests/rp/ref-pub-id-checks/ref-doi-conformance/pass.xml"/>
-        <x:expect-not-assert id="ref-doi-conformance" role="error"/>
+        <x:expect-not-report id="ref-doi-conformance" role="error"/>
         <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ref-doi-conformance-fail">
         <x:context href="../tests/rp/ref-pub-id-checks/ref-doi-conformance/fail.xml"/>
-        <x:expect-assert id="ref-doi-conformance" role="error"/>
+        <x:expect-report id="ref-doi-conformance" role="error"/>
         <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-check-1-pass">
+        <x:context href="../tests/rp/ref-pub-id-checks/pub-id-check-1/pass.xml"/>
+        <x:expect-not-assert id="pub-id-check-1" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-check-1-fail">
+        <x:context href="../tests/rp/ref-pub-id-checks/pub-id-check-1/fail.xml"/>
+        <x:expect-assert id="pub-id-check-1" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-check-2-pass">
+        <x:context href="../tests/rp/ref-pub-id-checks/pub-id-check-2/pass.xml"/>
+        <x:expect-not-report id="pub-id-check-2" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-check-2-fail">
+        <x:context href="../tests/rp/ref-pub-id-checks/pub-id-check-2/fail.xml"/>
+        <x:expect-report id="pub-id-check-2" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-check-3-pass">
+        <x:context href="../tests/rp/ref-pub-id-checks/pub-id-check-3/pass.xml"/>
+        <x:expect-not-report id="pub-id-check-3" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-check-3-fail">
+        <x:context href="../tests/rp/ref-pub-id-checks/pub-id-check-3/fail.xml"/>
+        <x:expect-report id="pub-id-check-3" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-check-4-pass">
+        <x:context href="../tests/rp/ref-pub-id-checks/pub-id-check-4/pass.xml"/>
+        <x:expect-not-report id="pub-id-check-4" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-check-4-fail">
+        <x:context href="../tests/rp/ref-pub-id-checks/pub-id-check-4/fail.xml"/>
+        <x:expect-report id="pub-id-check-4" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="isbn-conformity">
+      <x:scenario label="isbn-conformity-test-pass">
+        <x:context href="../tests/rp/isbn-conformity/isbn-conformity-test/pass.xml"/>
+        <x:expect-not-assert id="isbn-conformity-test" role="error"/>
+        <x:expect-not-assert id="isbn-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="isbn-conformity-test-fail">
+        <x:context href="../tests/rp/isbn-conformity/isbn-conformity-test/fail.xml"/>
+        <x:expect-assert id="isbn-conformity-test" role="error"/>
+        <x:expect-not-assert id="isbn-conformity-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="ref-checks">

@@ -14,7 +14,45 @@
     <ns uri="java.io.File" prefix="file"/>
     <ns uri="http://www.java.com/" prefix="java"/>
     <ns uri="http://manuscriptexchange.org" prefix="meca"/>
-
+    
+    <xsl:function name="e:isbn-sum" as="xs:integer">
+    <xsl:param name="s" as="xs:string"/>
+    <xsl:choose>
+      <xsl:when test="string-length($s) = 10">
+        <xsl:variable name="d1" select="number(substring($s,1,1)) * 10"/>
+        <xsl:variable name="d2" select="number(substring($s,2,1)) * 9"/>
+        <xsl:variable name="d3" select="number(substring($s,3,1)) * 8"/>
+        <xsl:variable name="d4" select="number(substring($s,4,1)) * 7"/>
+        <xsl:variable name="d5" select="number(substring($s,5,1)) * 6"/>
+        <xsl:variable name="d6" select="number(substring($s,6,1)) * 5"/>
+        <xsl:variable name="d7" select="number(substring($s,7,1)) * 4"/>
+        <xsl:variable name="d8" select="number(substring($s,8,1)) * 3"/>
+        <xsl:variable name="d9" select="number(substring($s,9,1)) * 2"/>
+        <xsl:variable name="d10" select="number(substring($s,10,1)) * 1"/>
+        <xsl:value-of select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10) mod 11"/>
+      </xsl:when>
+      <xsl:when test="string-length($s) = 13">
+        <xsl:variable name="d1" select="number(substring($s,1,1))"/>
+        <xsl:variable name="d2" select="number(substring($s,2,1)) * 3"/>
+        <xsl:variable name="d3" select="number(substring($s,3,1))"/>
+        <xsl:variable name="d4" select="number(substring($s,4,1)) * 3"/>
+        <xsl:variable name="d5" select="number(substring($s,5,1))"/>
+        <xsl:variable name="d6" select="number(substring($s,6,1)) * 3"/>
+        <xsl:variable name="d7" select="number(substring($s,7,1))"/>
+        <xsl:variable name="d8" select="number(substring($s,8,1)) * 3"/>
+        <xsl:variable name="d9" select="number(substring($s,9,1))"/>
+        <xsl:variable name="d10" select="number(substring($s,10,1)) * 3"/>
+        <xsl:variable name="d11" select="number(substring($s,11,1))"/>
+        <xsl:variable name="d12" select="number(substring($s,12,1)) * 3"/>
+        <xsl:variable name="d13" select="number(substring($s,13,1))"/>
+        <xsl:value-of select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10 + $d11 + $d12 + $d13) mod 10"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="number('1')"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+    
     <xsl:function name="e:get-name" as="xs:string">
     <xsl:param name="name"/>
     <xsl:choose>
@@ -215,9 +253,29 @@
   </pattern>
 
     <pattern id="ref-pub-id-checks-pattern">
-    <rule context="ref//pub-id[@pub-id-type='doi']" id="ref-pub-id-checks">
-        <assert test="matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')" role="error" id="ref-doi-conformance">&lt;pub-id pub-id="doi"&gt; in reference (id=<value-of select="ancestor::ref/@id"/>) does not contain a valid DOI: '<value-of select="."/>'.</assert>
+    <rule context="ref//pub-id" id="ref-pub-id-checks">
+        <report test="@pub-id-type='doi' and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="error" id="ref-doi-conformance">&lt;pub-id pub-id="doi"&gt; in reference (id=<value-of select="ancestor::ref/@id"/>) does not contain a valid DOI: '<value-of select="."/>'.</report>
+      
+        <assert test="@pub-id-type" role="error" id="pub-id-check-1">
+        <name/> does not have a pub-id-type attribute.</assert>
+
+        <report test="ancestor::mixed-citation[@publication-type='journal'] and not(@pub-id-type=('doi','pmid','pmcid','issn'))" role="error" id="pub-id-check-2">
+        <name/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','issn'.</report>
+
+        <report test="ancestor::mixed-citation[@publication-type='book'] and not(@pub-id-type=('doi','pmid','pmcid','isbn'))" role="error" id="pub-id-check-3">
+        <name/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','isbn'.</report>
+
+        <report test="ancestor::mixed-citation[@publication-type='preprint'] and not(@pub-id-type=('doi','pmid','pmcid','arxiv'))" role="error" id="pub-id-check-4">
+        <name/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','arxiv'.</report>
      </rule>
+  </pattern>
+  <pattern id="isbn-conformity-pattern">
+    <rule context="ref//pub-id[@pub-id-type='isbn']" id="isbn-conformity">
+        <let name="t" value="translate(.,'-','')"/>
+        <let name="sum" value="e:isbn-sum($t)"/>
+      
+        <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#isbn-conformity-test" test="$sum = 0" role="error" id="isbn-conformity-test">pub-id contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
+      </rule>
   </pattern>
   
     <pattern id="ref-checks-pattern">
@@ -616,7 +674,8 @@
       <assert test="descendant::collab" role="error" id="collab-checks-xspec-assert">collab must be present.</assert>
       <assert test="descendant::mixed-citation[person-group]//etal" role="error" id="ref-etal-checks-xspec-assert">mixed-citation[person-group]//etal must be present.</assert>
       <assert test="descendant::comment" role="error" id="ref-comment-checks-xspec-assert">comment must be present.</assert>
-      <assert test="descendant::ref//pub-id[@pub-id-type='doi']" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id[@pub-id-type='doi'] must be present.</assert>
+      <assert test="descendant::ref//pub-id" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id must be present.</assert>
+      <assert test="descendant::ref//pub-id[@pub-id-type='isbn']" role="error" id="isbn-conformity-xspec-assert">ref//pub-id[@pub-id-type='isbn'] must be present.</assert>
       <assert test="descendant::ref" role="error" id="ref-checks-xspec-assert">ref must be present.</assert>
       <assert test="descendant::mixed-citation" role="error" id="mixed-citation-checks-xspec-assert">mixed-citation must be present.</assert>
       <assert test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>

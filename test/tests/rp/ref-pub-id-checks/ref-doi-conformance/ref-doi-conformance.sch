@@ -12,6 +12,43 @@
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
   <ns uri="http://manuscriptexchange.org" prefix="meca"/>
+  <xsl:function name="e:isbn-sum" as="xs:integer">
+    <xsl:param name="s" as="xs:string"/>
+    <xsl:choose>
+      <xsl:when test="string-length($s) = 10">
+        <xsl:variable name="d1" select="number(substring($s,1,1)) * 10"/>
+        <xsl:variable name="d2" select="number(substring($s,2,1)) * 9"/>
+        <xsl:variable name="d3" select="number(substring($s,3,1)) * 8"/>
+        <xsl:variable name="d4" select="number(substring($s,4,1)) * 7"/>
+        <xsl:variable name="d5" select="number(substring($s,5,1)) * 6"/>
+        <xsl:variable name="d6" select="number(substring($s,6,1)) * 5"/>
+        <xsl:variable name="d7" select="number(substring($s,7,1)) * 4"/>
+        <xsl:variable name="d8" select="number(substring($s,8,1)) * 3"/>
+        <xsl:variable name="d9" select="number(substring($s,9,1)) * 2"/>
+        <xsl:variable name="d10" select="number(substring($s,10,1)) * 1"/>
+        <xsl:value-of select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10) mod 11"/>
+      </xsl:when>
+      <xsl:when test="string-length($s) = 13">
+        <xsl:variable name="d1" select="number(substring($s,1,1))"/>
+        <xsl:variable name="d2" select="number(substring($s,2,1)) * 3"/>
+        <xsl:variable name="d3" select="number(substring($s,3,1))"/>
+        <xsl:variable name="d4" select="number(substring($s,4,1)) * 3"/>
+        <xsl:variable name="d5" select="number(substring($s,5,1))"/>
+        <xsl:variable name="d6" select="number(substring($s,6,1)) * 3"/>
+        <xsl:variable name="d7" select="number(substring($s,7,1))"/>
+        <xsl:variable name="d8" select="number(substring($s,8,1)) * 3"/>
+        <xsl:variable name="d9" select="number(substring($s,9,1))"/>
+        <xsl:variable name="d10" select="number(substring($s,10,1)) * 3"/>
+        <xsl:variable name="d11" select="number(substring($s,11,1))"/>
+        <xsl:variable name="d12" select="number(substring($s,12,1)) * 3"/>
+        <xsl:variable name="d13" select="number(substring($s,13,1))"/>
+        <xsl:value-of select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10 + $d11 + $d12 + $d13) mod 10"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="number('1')"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
   <xsl:function name="e:get-name" as="xs:string">
     <xsl:param name="name"/>
     <xsl:choose>
@@ -33,13 +70,13 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="ref-pub-id-checks-pattern">
-    <rule context="ref//pub-id[@pub-id-type='doi']" id="ref-pub-id-checks">
-      <assert test="matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')" role="error" id="ref-doi-conformance">[ref-doi-conformance] &lt;pub-id pub-id="doi"&gt; in reference (id=<value-of select="ancestor::ref/@id"/>) does not contain a valid DOI: '<value-of select="."/>'.</assert>
+    <rule context="ref//pub-id" id="ref-pub-id-checks">
+      <report test="@pub-id-type='doi' and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="error" id="ref-doi-conformance">[ref-doi-conformance] &lt;pub-id pub-id="doi"&gt; in reference (id=<value-of select="ancestor::ref/@id"/>) does not contain a valid DOI: '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref//pub-id[@pub-id-type='doi']" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id[@pub-id-type='doi'] must be present.</assert>
+      <assert test="descendant::ref//pub-id" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id must be present.</assert>
     </rule>
   </pattern>
 </schema>
