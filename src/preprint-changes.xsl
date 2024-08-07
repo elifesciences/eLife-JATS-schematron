@@ -237,7 +237,7 @@
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:copy>
-                            <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+                            <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>
                         </xsl:copy>
                     </xsl:otherwise>
                 </xsl:choose>
