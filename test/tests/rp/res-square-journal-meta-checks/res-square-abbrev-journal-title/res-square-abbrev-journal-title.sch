@@ -49,6 +49,26 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:is-valid-issn" as="xs:boolean">
+      <xsl:param name="s" as="xs:string"/>
+      <xsl:choose>
+        <xsl:when test="not(matches($s,'^\d{4}\-\d{3}[\dX]$'))">
+          <xsl:value-of select="false()"/>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:variable name="d1" select="number(substring($s,1,1)) * 8"/>
+            <xsl:variable name="d2" select="number(substring($s,2,1)) * 7"/>
+            <xsl:variable name="d3" select="number(substring($s,3,1)) * 6"/>
+            <xsl:variable name="d4" select="number(substring($s,4,1)) * 5"/>
+            <xsl:variable name="d5" select="number(substring($s,6,1)) * 4"/>
+            <xsl:variable name="d6" select="number(substring($s,7,1)) * 3"/>
+            <xsl:variable name="d7" select="number(substring($s,8,1)) * 2"/>
+            <xsl:variable name="calc" select="11 - (number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7) mod 11)"/>
+            <xsl:variable name="check" select="if (substring($s,9,1)='X') then 10 else number(substring($s,9,1))"/>
+            <xsl:value-of select="$calc = $check"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:function>
   <xsl:function name="e:get-name" as="xs:string">
     <xsl:param name="name"/>
     <xsl:choose>

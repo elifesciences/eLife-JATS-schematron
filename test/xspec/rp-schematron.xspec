@@ -578,6 +578,18 @@
         <x:expect-not-assert id="isbn-conformity-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="issn-conformity">
+      <x:scenario label="issn-conformity-test-pass">
+        <x:context href="../tests/rp/issn-conformity/issn-conformity-test/pass.xml"/>
+        <x:expect-not-assert id="issn-conformity-test" role="error"/>
+        <x:expect-not-assert id="issn-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="issn-conformity-test-fail">
+        <x:context href="../tests/rp/issn-conformity/issn-conformity-test/fail.xml"/>
+        <x:expect-assert id="issn-conformity-test" role="error"/>
+        <x:expect-not-assert id="issn-conformity-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="ref-checks">
       <x:scenario label="ref-empty-pass">
         <x:context href="../tests/rp/ref-checks/ref-empty/pass.xml"/>
@@ -1098,6 +1110,18 @@
         <x:context href="../tests/rp/ext-link-tests/ext-link-child-test-5/fail.xml"/>
         <x:expect-report id="ext-link-child-test-5" role="warning"/>
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="ext-link-tests-2">
+      <x:scenario label="ext-link-type-test-1-pass">
+        <x:context href="../tests/rp/ext-link-tests-2/ext-link-type-test-1/pass.xml"/>
+        <x:expect-not-assert id="ext-link-type-test-1" role="error"/>
+        <x:expect-not-assert id="ext-link-tests-2-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ext-link-type-test-1-fail">
+        <x:context href="../tests/rp/ext-link-tests-2/ext-link-type-test-1/fail.xml"/>
+        <x:expect-assert id="ext-link-type-test-1" role="error"/>
+        <x:expect-not-assert id="ext-link-tests-2-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="footnote-checks">

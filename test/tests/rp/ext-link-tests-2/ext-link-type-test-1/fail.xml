@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="ext-link-type-test-1.sch"?>
+<!--Context: ext-link
+Test: assert    @ext-link-type='uri'
+Message: ext-link must have the attribute ext-link-type="uri". This one does not. It contains the text:  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ext-link>test</ext-link>
+    </article>
+</root>

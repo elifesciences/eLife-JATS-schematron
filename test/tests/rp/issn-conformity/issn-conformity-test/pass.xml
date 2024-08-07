@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="issn-conformity-test.sch"?>
+<!--Context: ref//pub-id[@pub-id-type='issn']|issn
+Test: assert    e:is-valid-issn(.)
+Message: pub-id contains an invalid ISSN - ''. Should it be captured as another type of pub-id? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+    <issn>2050-084X</issn>
+    <issn>2331-8422</issn>
+    <issn>1544-9173</issn>
+    <issn>1476-4687</issn>
+    <issn>0260-9592</issn>    
+    <issn>0032-888X</issn>
+    <issn>2049-4246</issn>
+    <ref>
+        <pub-id pub-id-type="issn">2050-084X</pub-id>
+    </ref>
+    </article>
+</root>
