@@ -977,36 +977,6 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="media-checks">
-      <x:scenario label="media-test-1-pass">
-        <x:context href="../tests/rp/media-checks/media-test-1/pass.xml"/>
-        <x:expect-not-assert id="media-test-1" role="error"/>
-        <x:expect-not-assert id="media-checks-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="media-test-1-fail">
-        <x:context href="../tests/rp/media-checks/media-test-1/fail.xml"/>
-        <x:expect-assert id="media-test-1" role="error"/>
-        <x:expect-not-assert id="media-checks-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="media-test-2-pass">
-        <x:context href="../tests/rp/media-checks/media-test-2/pass.xml"/>
-        <x:expect-not-assert id="media-test-2" role="error"/>
-        <x:expect-not-assert id="media-checks-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="media-test-2-fail">
-        <x:context href="../tests/rp/media-checks/media-test-2/fail.xml"/>
-        <x:expect-assert id="media-test-2" role="error"/>
-        <x:expect-not-assert id="media-checks-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="media-test-2a-pass">
-        <x:context href="../tests/rp/media-checks/media-test-2a/pass.xml"/>
-        <x:expect-not-report id="media-test-2a" role="error"/>
-        <x:expect-not-assert id="media-checks-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="media-test-2a-fail">
-        <x:context href="../tests/rp/media-checks/media-test-2a/fail.xml"/>
-        <x:expect-report id="media-test-2a" role="error"/>
-        <x:expect-not-assert id="media-checks-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="media-test-3-pass">
         <x:context href="../tests/rp/media-checks/media-test-3/pass.xml"/>
         <x:expect-not-assert id="media-test-3" role="error"/>

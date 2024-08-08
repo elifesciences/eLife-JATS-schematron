@@ -1,0 +1,9 @@
+<!--Testing template with id: graphics-->
+<root xmlns:xlink="http://www.w3.org/1999/xlink">
+    <graphic mimetype="image" mime-subtype="jpeg" xlink:href="fig1.jpg"/>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="fig2.png"/>
+    <graphic mimetype="image" mime-subtype="tiff" xlink:href="fig3.tif"/>
+    <inline-graphic mimetype="image" mime-subtype="tiff" xlink:href="image1.tiff"/>
+    <inline-graphic mimetype="image" mime-subtype="jpeg" xlink:href="image2.jpeg"/>
+    <inline-graphic mimetype="image" mime-subtype="png" xlink:href="image3.png"/>
+</root>

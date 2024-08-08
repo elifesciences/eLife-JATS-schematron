@@ -91,7 +91,6 @@
   </xsl:function>
   <pattern id="media-checks-pattern">
     <rule context="media" id="media-checks">
-      <let name="file" value="@mime-subtype"/>
       <let name="link" value="@xlink:href"/>
       <report test="*" role="error" id="media-test-13">[media-test-13] Media element cannot contain child elements. This one has the following element(s) <value-of select="string-join(*/name(),'; ')"/>.</report>
     </rule>

@@ -91,7 +91,6 @@
   </xsl:function>
   <pattern id="media-checks-pattern">
     <rule context="media" id="media-checks">
-      <let name="file" value="@mime-subtype"/>
       <let name="link" value="@xlink:href"/>
       <report test="text()" role="error" id="media-test-12">[media-test-12] Media element cannot contain text. This one has <value-of select="string-join(text(),'')"/>.</report>
     </rule>

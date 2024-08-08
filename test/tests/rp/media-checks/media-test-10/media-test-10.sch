@@ -91,9 +91,8 @@
   </xsl:function>
   <pattern id="media-checks-pattern">
     <rule context="media" id="media-checks">
-      <let name="file" value="@mime-subtype"/>
       <let name="link" value="@xlink:href"/>
-      <report test="preceding::media/@xlink:href = $link" role="error" id="media-test-10">[media-test-10] Media file for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/@mimetype='video') then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')         else replace(preceding::media[@xlink:href=$link][1]/parent::*/label,'\.','')"/>.</report>
+      <report test="preceding::media/@xlink:href = $link" role="error" id="media-test-10">[media-test-10] Media file for <value-of select="if (parent::*/label) then parent::*/label else 'media'"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/parent::*/label) then preceding::media[@xlink:href=$link][1]/parent::*/label         else 'another file'"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
