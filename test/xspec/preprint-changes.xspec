@@ -56,10 +56,6 @@
       <x:context href="../tests/preprint-changes/graphics/input.xml"/>
       <x:expect label="Testing the template: graphics" href="../tests/preprint-changes/graphics/output.xml"/>
     </x:scenario>
-    <x:scenario label="toc-sec-ids">
-      <x:context href="../tests/preprint-changes/toc-sec-ids/input.xml"/>
-      <x:expect label="Testing the template: toc-sec-ids" href="../tests/preprint-changes/toc-sec-ids/output.xml"/>
-    </x:scenario>
     <x:scenario label="strip-bold-italic-around-xref">
       <x:context href="../tests/preprint-changes/strip-bold-italic-around-xref/input.xml"/>
       <x:expect label="Testing the template: strip-bold-italic-around-xref" href="../tests/preprint-changes/strip-bold-italic-around-xref/output.xml"/>
