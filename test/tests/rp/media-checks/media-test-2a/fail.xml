@@ -1,9 +1,0 @@
-<?oxygen SCHSchema="media-test-2a.sch"?>
-<!--Context: media
-Test: report    matches(@mime-subtype,'^(video|application|text|image|audio|chemical)')
-Message: @mime-subtype value on media starts with a mimetype which is incorrect. This attribute should only contain the mime-subtype (for example for a PDF, the mimetype is application and the mime-subtype is pdf). A list of common mime/mime-subtypes can be found here: https://www.iana.org/assignments/media-types/media-types.xhtml#application -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article>
-    <media mimetype="video" mime-subtype="video/mp4"/>
-  </article>
-</root>

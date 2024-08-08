@@ -2519,47 +2519,7 @@
    <!--PATTERN media-checks-pattern-->
    <!--RULE media-checks-->
    <xsl:template match="media" priority="1000" mode="M54">
-      <xsl:variable name="file" select="@mime-subtype"/>
       <xsl:variable name="link" select="@xlink:href"/>
-      <!--ASSERT error-->
-      <xsl:choose>
-         <xsl:when test="@mimetype=('video','application','text','image','audio','chemical')"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@mimetype=('video','application','text','image','audio','chemical')">
-               <xsl:attribute name="id">media-test-1</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[media-test-1] media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'.</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
-      <!--ASSERT error-->
-      <xsl:choose>
-         <xsl:when test="normalize-space(@mime-subtype)!=''"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(@mime-subtype)!=''">
-               <xsl:attribute name="id">media-test-2</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[media-test-2] media must have @mime-subtype. A list of common mime/mime-subtypes can be found here: https://www.iana.org/assignments/media-types/media-types.xhtml#application</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
-      <!--REPORT error-->
-      <xsl:if test="matches(@mime-subtype,'^(video|application|text|image|audio|chemical)')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@mime-subtype,'^(video|application|text|image|audio|chemical)')">
-            <xsl:attribute name="id">media-test-2a</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[media-test-2a] @mime-subtype value on media starts with a mimetype which is incorrect. This attribute should only contain the mime-subtype (for example for a PDF, the mimetype is application and the mime-subtype is pdf). A list of common mime/mime-subtypes can be found here: https://www.iana.org/assignments/media-types/media-types.xhtml#application</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,15}$')"/>
@@ -2583,11 +2543,11 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[media-test-10] Media file for <xsl:text/>
-               <xsl:value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/>
+               <xsl:value-of select="if (parent::*/label) then parent::*/label else 'media'"/>
                <xsl:text/> (<xsl:text/>
                <xsl:value-of select="$link"/>
                <xsl:text/>) is the same as the one used for <xsl:text/>
-               <xsl:value-of select="if (preceding::media[@xlink:href=$link][1]/@mimetype='video') then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')         else replace(preceding::media[@xlink:href=$link][1]/parent::*/label,'\.','')"/>
+               <xsl:value-of select="if (preceding::media[@xlink:href=$link][1]/parent::*/label) then preceding::media[@xlink:href=$link][1]/parent::*/label         else 'another file'"/>
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
