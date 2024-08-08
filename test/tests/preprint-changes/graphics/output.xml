@@ -1,4 +1,4 @@
-<!--Testing template with id: graphic mimetype="image" mime-subtype="tiff"s-->
+<!--Testing template with id: graphics-->
 <root xmlns:xlink="http://www.w3.org/1999/xlink">
     <graphic mimetype="image" mime-subtype="jpeg" xlink:href="fig1.jpg"/>
     <graphic mimetype="image" mime-subtype="png" xlink:href="fig2.png"/>
