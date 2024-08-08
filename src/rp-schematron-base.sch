@@ -133,6 +133,22 @@
         <report test=". = upper-case(.)" 
         role="error" 
         id="article-title-all-caps">Article title is in all caps - <value-of select="."/>. Please change to sentence case.</report>
+       
+       <report test="matches(.,'[*¶†‡§¥⁑╀◊♯࿎ł#]$')" 
+        role="warning" 
+        id="article-title-check-1">Article title ends with a '<value-of select="substring(.,string-length(.))"/>' character: '<value-of select="."/>'. Is this a note indicator? If so, since notes are not supported in EPP, this should be removed.</report>
+     </rule>
+      
+      <rule context="article-meta/title-group/article-title/*" id="article-title-children-checks">
+        <let name="permitted-children" value="('italic','sup','sub')"/>
+       
+        <assert test="name()=$permitted-children" 
+          role="error" 
+          id="article-title-children-check-1"><name/> is not supported as a child of article title. Please remove this element (and any child content, as appropriate).</assert>
+        
+        <report test="normalize-space(.)=''" 
+          role="error" 
+          id="article-title-children-check-2">Child elements of article-title must contain text content. This <name/> element is empty.</report>
      </rule>
     </pattern>
 

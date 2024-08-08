@@ -110,6 +110,18 @@
     <pattern id="article-title-checks-pattern">
     <rule context="article-meta/title-group/article-title" id="article-title-checks">
         <report test=". = upper-case(.)" role="error" id="article-title-all-caps">Article title is in all caps - <value-of select="."/>. Please change to sentence case.</report>
+       
+       <report test="matches(.,'[*¶†‡§¥⁑╀◊♯࿎ł#]$')" role="warning" id="article-title-check-1">Article title ends with a '<value-of select="substring(.,string-length(.))"/>' character: '<value-of select="."/>'. Is this a note indicator? If so, since notes are not supported in EPP, this should be removed.</report>
+     </rule>
+  </pattern>
+  <pattern id="article-title-children-checks-pattern">
+    <rule context="article-meta/title-group/article-title/*" id="article-title-children-checks">
+        <let name="permitted-children" value="('italic','sup','sub')"/>
+       
+        <assert test="name()=$permitted-children" role="error" id="article-title-children-check-1">
+        <name/> is not supported as a child of article title. Please remove this element (and any child content, as appropriate).</assert>
+        
+        <report test="normalize-space(.)=''" role="error" id="article-title-children-check-2">Child elements of article-title must contain text content. This <name/> element is empty.</report>
      </rule>
   </pattern>
 
@@ -751,6 +763,7 @@
     <rule context="root" id="root-rule">
       <assert test="descendant::article" role="error" id="biorender-tests-xspec-assert">article must be present.</assert>
       <assert test="descendant::article-meta/title-group/article-title" role="error" id="article-title-checks-xspec-assert">article-meta/title-group/article-title must be present.</assert>
+      <assert test="descendant::article-meta/title-group/article-title/*" role="error" id="article-title-children-checks-xspec-assert">article-meta/title-group/article-title/* must be present.</assert>
       <assert test="descendant::article-meta/contrib-group/contrib[@contrib-type='author' and not(collab)]" role="error" id="author-contrib-checks-xspec-assert">article-meta/contrib-group/contrib[@contrib-type='author' and not(collab)] must be present.</assert>
       <assert test="descendant::contrib[@contrib-type='author']" role="error" id="author-corresp-checks-xspec-assert">contrib[@contrib-type='author'] must be present.</assert>
       <assert test="descendant::contrib-group//name" role="error" id="name-tests-xspec-assert">contrib-group//name must be present.</assert>
