@@ -89,15 +89,15 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="fig-child-checks-pattern">
-    <rule context="fig/*" id="fig-child-checks">
-      <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
-      <assert test="name()=$supported-fig-children" role="error" id="fig-child-conformance">[fig-child-conformance] <name/> is not supported as a child of &lt;fig&gt;.</assert>
+  <pattern id="supplementary-material-child-checks-pattern">
+    <rule context="supplementary-material/*" id="supplementary-material-child-checks">
+      <let name="permitted-children" value="('label','caption','media')"/>
+      <assert test="name()=$permitted-children" role="error" id="supplementary-material-child-test-1">[supplementary-material-child-test-1] <name/> is not supported as a child of supplementary-material. The only permitted children are: <value-of select="string-join($permitted-children,'; ')"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/*" role="error" id="fig-child-checks-xspec-assert">fig/* must be present.</assert>
+      <assert test="descendant::supplementary-material/*" role="error" id="supplementary-material-child-checks-xspec-assert">supplementary-material/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

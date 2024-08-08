@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="media-test-13.sch"?>
+<!--Context: media
+Test: report    *
+Message: Media element cannot contain child elements. This one has the following element(s) . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <supplementary-material>
+        <media mimetype="video"/>
+    </supplementary-material>
+  </article>
+</root>

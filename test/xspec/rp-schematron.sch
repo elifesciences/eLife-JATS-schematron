@@ -357,7 +357,7 @@
     <rule context="fig/*" id="fig-child-checks">
         <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
         <assert test="name()=$supported-fig-children" role="error" id="fig-child-conformance">
-        <value-of select="name()"/> is not supported as a child of &lt;fig&gt;.</assert>
+        <name/> is not supported as a child of &lt;fig&gt;.</assert>
      </rule>
   </pattern>
   <pattern id="fig-label-checks-pattern">
@@ -390,6 +390,27 @@
         
         <report test="matches(lower-case(.),'^\s*fig')" role="warning" id="table-wrap-label-fig">Label for table ('<value-of select="."/>') starts with text that suggests its a figure. Should this content be captured as a figure instead of a table?</report>
      </rule>
+  </pattern>
+  
+    <pattern id="supplementary-material-checks-pattern">
+    <rule context="supplementary-material" id="supplementary-material-checks">
+        
+        <!-- Temporary error while no support for supplementary-material in EPP 
+                sec sec-type="supplementary-material" is stripped from XML via xslt -->
+        <assert test="ancestor::sec[@sec-type='supplementary-material']" role="error" id="supplementary-material-temp-test">supplementary-material element is not placed within a &lt;sec sec-type="supplementary-material"&gt;. There is currently no support for supplementary-material in RPs. Please either move the supplementary-material under an existing &lt;sec sec-type="supplementary-material"&gt; or add a new &lt;sec sec-type="supplementary-material"&gt; around this an any other supplementary-material.</assert>
+        
+        <assert test="media" role="error" id="supplementary-material-test-1">supplementary-material does not have a child media. It must either have a file or be deleted.</assert>
+        
+        <report test="count(media) gt 1" role="error" id="supplementary-material-test-2">supplementary-material has <value-of select="count(media)"/> child media elements. Each file must be wrapped in its own supplementary-material.</report>
+      </rule>
+  </pattern>
+  <pattern id="supplementary-material-child-checks-pattern">
+    <rule context="supplementary-material/*" id="supplementary-material-child-checks">
+        <let name="permitted-children" value="('label','caption','media')"/>
+        
+        <assert test="name()=$permitted-children" role="error" id="supplementary-material-child-test-1">
+        <name/> is not supported as a child of supplementary-material. The only permitted children are: <value-of select="string-join($permitted-children,'; ')"/>.</assert>
+      </rule>
   </pattern>
 
     <pattern id="disp-formula-checks-pattern">
@@ -435,6 +456,34 @@
         
         <assert test="$file=$image-file-types" role="error" id="graphic-check-2">
         <name/> must have an xlink:href attribute that ends with an image file type extension. <value-of select="if ($file!='') then $file else @xlink:href"/> is not one of <value-of select="string-join($image-file-types,', ')"/>.</assert>
+     </rule>
+  </pattern>
+  
+      <pattern id="media-checks-pattern">
+    <rule context="media" id="media-checks">
+        <let name="file" value="@mime-subtype"/>
+        <let name="link" value="@xlink:href"/>
+        
+      <assert test="@mimetype=('video','application','text','image','audio','chemical')" role="error" id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'.</assert>
+      
+      <assert test="@mime-subtype" role="error" id="media-test-2">media must have @mime-subtype. A list of common mime/mime-subtypes can be found here: https://www.iana.org/assignments/media-types/media-types.xhtml#application</assert>
+        
+        <report test="matches(@mime-subtype,'^(video|application|text|image|audio|chemical)')" role="error" id="media-test-2a">@mime-subtype value on media starts with a mimetype which is incorrcet. This attribute should only contain the mime-subtype (for example for a PDF, the mimetype is application and the mime-subtype is pdf). A list of common mime/mime-subtypes can be found here: https://www.iana.org/assignments/media-types/media-types.xhtml#application</report>
+      
+      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,15}$')" role="error" id="media-test-3">media must have an @xlink:href which contains a file reference.</assert>
+        
+      <report test="preceding::media/@xlink:href = $link" role="error" id="media-test-10">Media file for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/@mimetype='video') then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')         else replace(preceding::media[@xlink:href=$link][1]/parent::*/label,'\.','')"/>.</report>
+        
+      <report test="text()" role="error" id="media-test-12">Media element cannot contain text. This one has <value-of select="string-join(text(),'')"/>.</report>
+        
+      <report test="*" role="error" id="media-test-13">Media element cannot contain child elements. This one has the following element(s) <value-of select="string-join(*/name(),'; ')"/>.</report>
+     </rule>
+  </pattern>
+  
+    <pattern id="sec-checks-pattern">
+    <rule context="sec" id="sec-checks">
+
+        <report test="@sec-type='supplementary-material' and *[not(name()=('label','title','supplementary-material'))]" role="warning" id="sec-supplementary-material">&lt;sec sec-type='supplementary-material'&gt; contains elements other than supplementary-material: <value-of select="string-join(*[not(name()=('label','title','supplementary-material'))]/name(),'; ')"/>. These will currently be stripped from the content rendered on EPP. Should they be moved out of the section or is that OK?'</report>
      </rule>
   </pattern>
 
@@ -718,12 +767,16 @@
       <assert test="descendant::table-wrap" role="error" id="table-wrap-checks-xspec-assert">table-wrap must be present.</assert>
       <assert test="descendant::table-wrap/*" role="error" id="table-wrap-child-checks-xspec-assert">table-wrap/* must be present.</assert>
       <assert test="descendant::table-wrap/label" role="error" id="table-wrap-label-checks-xspec-assert">table-wrap/label must be present.</assert>
+      <assert test="descendant::supplementary-material" role="error" id="supplementary-material-checks-xspec-assert">supplementary-material must be present.</assert>
+      <assert test="descendant::supplementary-material/*" role="error" id="supplementary-material-child-checks-xspec-assert">supplementary-material/* must be present.</assert>
       <assert test="descendant::disp-formula" role="error" id="disp-formula-checks-xspec-assert">disp-formula must be present.</assert>
       <assert test="descendant::inline-formula" role="error" id="inline-formula-checks-xspec-assert">inline-formula must be present.</assert>
       <assert test="descendant::alternatives[parent::disp-formula]" role="error" id="disp-equation-alternatives-checks-xspec-assert">alternatives[parent::disp-formula] must be present.</assert>
       <assert test="descendant::alternatives[parent::inline-formula]" role="error" id="inline-equation-alternatives-checks-xspec-assert">alternatives[parent::inline-formula] must be present.</assert>
       <assert test="descendant::list" role="error" id="list-checks-xspec-assert">list must be present.</assert>
       <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-checks-xspec-assert">graphic|inline-graphic must be present.</assert>
+      <assert test="descendant::media" role="error" id="media-checks-xspec-assert">media must be present.</assert>
+      <assert test="descendant::sec" role="error" id="sec-checks-xspec-assert">sec must be present.</assert>
       <assert test="descendant::title" role="error" id="title-checks-xspec-assert">title must be present.</assert>
       <assert test="descendant::article/body/sec/title or descendant::article/back/sec/title" role="error" id="title-toc-checks-xspec-assert">article/body/sec/title|article/back/sec/title must be present.</assert>
       <assert test="descendant::p[(count(*)=1) and (child::bold or child::italic)]" role="error" id="p-bold-checks-xspec-assert">p[(count(*)=1) and (child::bold or child::italic)] must be present.</assert>

@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="supplementary-material-child-test-1.sch"?>
+<!--Context: supplementary-material/*
+Test: assert    name()=$permitted-children
+Message:  is not supported as a child of supplementary-material. The only permitted children are: . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <supplementary-material>
+            <label/>
+            <caption/>
+            <media/>
+            <p/>
+            <permissions/>
+            <abstract/>
+            <fig/>
+            <table-wrap/>
+        </supplementary-material>
+    </article>
+</root>

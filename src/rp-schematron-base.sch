@@ -482,7 +482,7 @@
         <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
         <assert test="name()=$supported-fig-children" 
         role="error" 
-        id="fig-child-conformance"><value-of select="name()"/> is not supported as a child of &lt;fig>.</assert>
+        id="fig-child-conformance"><name/> is not supported as a child of &lt;fig>.</assert>
      </rule>
       
       <rule context="fig/label" id="fig-label-checks">
@@ -524,6 +524,33 @@
           role="warning" 
           id="table-wrap-label-fig">Label for table ('<value-of select="."/>') starts with text that suggests its a figure. Should this content be captured as a figure instead of a table?</report>
      </rule>
+    </pattern>
+  
+    <pattern id="supplementary-material">
+      <rule context="supplementary-material" id="supplementary-material-checks">
+        
+        <!-- Temporary error while no support for supplementary-material in EPP 
+                sec sec-type="supplementary-material" is stripped from XML via xslt -->
+        <assert test="ancestor::sec[@sec-type='supplementary-material']"
+          role="error" 
+          id="supplementary-material-temp-test">supplementary-material element is not placed within a &lt;sec sec-type="supplementary-material">. There is currently no support for supplementary-material in RPs. Please either move the supplementary-material under an existing &lt;sec sec-type="supplementary-material"> or add a new &lt;sec sec-type="supplementary-material"> around this an any other supplementary-material.</assert>
+        
+        <assert test="media"
+          role="error" 
+          id="supplementary-material-test-1">supplementary-material does not have a child media. It must either have a file or be deleted.</assert>
+        
+        <report test="count(media) gt 1"
+          role="error" 
+          id="supplementary-material-test-2">supplementary-material has <value-of select="count(media)"/> child media elements. Each file must be wrapped in its own supplementary-material.</report>
+      </rule>
+      
+      <rule context="supplementary-material/*" id="supplementary-material-child-checks">
+        <let name="permitted-children" value="('label','caption','media')"/>
+        
+        <assert test="name()=$permitted-children"
+          role="error" 
+          id="supplementary-material-child-test-1"><name/> is not supported as a child of supplementary-material. The only permitted children are: <value-of select="string-join($permitted-children,'; ')"/>.</assert>
+      </rule>
     </pattern>
 
     <pattern id="equation">
@@ -578,6 +605,52 @@
      </rule>
        
      </pattern>
+  
+      <pattern id="media">
+      <rule context="media" id="media-checks">
+        <let name="file" value="@mime-subtype"/>
+        <let name="link" value="@xlink:href"/>
+        
+      <assert test="@mimetype=('video','application','text','image','audio','chemical')" 
+        role="error" 
+        id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'.</assert>
+      
+      <assert test="@mime-subtype" 
+        role="error" 
+        id="media-test-2">media must have @mime-subtype. A list of common mime/mime-subtypes can be found here: https://www.iana.org/assignments/media-types/media-types.xhtml#application</assert>
+        
+        <report test="matches(@mime-subtype,'^(video|application|text|image|audio|chemical)')" 
+          role="error" 
+          id="media-test-2a">@mime-subtype value on media starts with a mimetype which is incorrcet. This attribute should only contain the mime-subtype (for example for a PDF, the mimetype is application and the mime-subtype is pdf). A list of common mime/mime-subtypes can be found here: https://www.iana.org/assignments/media-types/media-types.xhtml#application</report>
+      
+      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,15}$')" 
+        role="error" 
+        id="media-test-3">media must have an @xlink:href which contains a file reference.</assert>
+        
+      <report test="preceding::media/@xlink:href = $link" 
+        role="error" 
+        id="media-test-10">Media file for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/@mimetype='video') then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')
+        else replace(preceding::media[@xlink:href=$link][1]/parent::*/label,'\.','')"/>.</report>
+        
+      <report test="text()" 
+        role="error" 
+        id="media-test-12">Media element cannot contain text. This one has <value-of select="string-join(text(),'')"/>.</report>
+        
+      <report test="*" 
+        role="error" 
+        id="media-test-13">Media element cannot contain child elements. This one has the following element(s) <value-of select="string-join(*/name(),'; ')"/>.</report>
+     </rule>
+       
+     </pattern>
+  
+    <pattern id="sec">
+      <rule context="sec" id="sec-checks">
+
+        <report test="@sec-type='supplementary-material' and *[not(name()=('label','title','supplementary-material'))]" 
+          role="warning" 
+          id="sec-supplementary-material">&lt;sec sec-type='supplementary-material'> contains elements other than supplementary-material: <value-of select="string-join(*[not(name()=('label','title','supplementary-material'))]/name(),'; ')"/>. These will currently be stripped from the content rendered on EPP. Should they be moved out of the section or is that OK?'</report>
+     </rule>
+    </pattern>
 
     <pattern id="title">
      <rule context="title" id="title-checks">

@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="media-test-12.sch"?>
+<!--Context: media
+Test: report    text()
+Message: Media element cannot contain text. This one has . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <media>text<label>1</label><caption><title>some title</title><p>some caption</p></caption><graphic/>text</media>
+  </article>
+</root>

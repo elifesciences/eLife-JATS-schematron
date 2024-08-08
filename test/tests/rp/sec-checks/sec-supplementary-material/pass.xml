@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="sec-supplementary-material.sch"?>
+<!--Context: sec
+Test: report    @sec-type='supplementary-material' and *[not(name()=('label','title','supplementary-material'))]
+Message: <sec sec-type='supplementary-material'> contains elements other than supplementary-material: . These will currently be stripped from the content rendered on EPP. Should they be moved out of the section or is that OK?' -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+     <article>
+         <sec sec-type="supplementary-material">
+             <label>2.</label>
+             <title>Files</title>
+             <supplementary-material/>
+         </sec>
+     </article>
+</root>
