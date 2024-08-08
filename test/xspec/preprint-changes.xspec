@@ -52,6 +52,10 @@
       <x:context href="../tests/preprint-changes/biorender-permissions/input.xml"/>
       <x:expect label="Testing the template: biorender-permissions" href="../tests/preprint-changes/biorender-permissions/output.xml"/>
     </x:scenario>
+    <x:scenario label="graphics">
+      <x:context href="../tests/preprint-changes/graphics/input.xml"/>
+      <x:expect label="Testing the template: graphics" href="../tests/preprint-changes/graphics/output.xml"/>
+    </x:scenario>
     <x:scenario label="toc-sec-ids">
       <x:context href="../tests/preprint-changes/toc-sec-ids/input.xml"/>
       <x:expect label="Testing the template: toc-sec-ids" href="../tests/preprint-changes/toc-sec-ids/output.xml"/>

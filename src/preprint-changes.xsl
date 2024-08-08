@@ -9,6 +9,8 @@
     version="3.0">
 
     <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="yes"/>
+    
+    <xsl:variable name="mimetypes" select="doc('mimetypes.xml')"/>
 
      <xsl:template match="*|@*|text()|comment()|processing-instruction()">
         <xsl:copy>
@@ -290,6 +292,56 @@
                 <xsl:text>&#xa;</xsl:text>
             </permissions>
         </xsl:copy>
+    </xsl:template>
+    
+    <!-- introduce mimetype and mime-subtype when missing -->
+    <xsl:template xml:id="graphics" match="graphic|inline-graphic">
+        <xsl:choose>
+            <xsl:when test="./@mime-subtype">
+                <xsl:copy>
+                    <xsl:apply-templates select="@*[name()!='mimetype']"/>
+                    <xsl:attribute name="mimetype">image</xsl:attribute>
+                    <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+                </xsl:copy>
+            </xsl:when>
+            <!-- No link to file, cannot determine mime-subtype -->
+            <xsl:when test="not(@xlink:href)">
+                <xsl:copy>
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:variable name="file" select="tokenize(lower-case(@xlink:href),'\.')[last()]"/>
+                <xsl:variable name="mime-subtype" select="$mimetypes//*:file[@extension=$file]/@mime-subtype"/>
+                <xsl:variable name="mime-subtype">
+                    <xsl:choose>
+                        <xsl:when test="$file=('tif','tiff')">tiff</xsl:when>
+                        <xsl:when test="$file=('jpeg','jpg')">jpeg</xsl:when>
+                        <xsl:when test="$file='png'">png</xsl:when>
+                        <xsl:otherwise>unknown</xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:choose>
+                    <!-- no @mime-subtype -->
+                    <xsl:when test="$mime-subtype!='unknown'">
+                        <xsl:copy>
+                            <xsl:apply-templates select="@*[name()!='mimetype']"/>
+                            <xsl:attribute name="mimetype">image</xsl:attribute>
+                            <xsl:attribute name="mime-subtype"><xsl:value-of select="$mime-subtype"/></xsl:attribute>
+                            <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+                        </xsl:copy>
+                    </xsl:when>
+                    <!-- It is not a known/supported image type -->
+                    <xsl:otherwise>
+                        <xsl:copy>
+                            <xsl:apply-templates select="@*[name()!='mimetype']"/>
+                            <xsl:attribute name="mimetype">image</xsl:attribute>
+                            <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+                        </xsl:copy>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     <!-- Introduce id for top-level sections (with titles) that don't have them, so they appear in the TOC on EPP -->
