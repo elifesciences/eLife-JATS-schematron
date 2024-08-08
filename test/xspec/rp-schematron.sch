@@ -448,7 +448,8 @@
   
      <pattern id="graphic-checks-pattern">
     <rule context="graphic|inline-graphic" id="graphic-checks">
-        <let name="file" value="tokenize(lower-case(@xlink:href),'\.')[last()]"/>
+        <let name="link" value="lower-case(@xlink:href)"/>
+        <let name="file" value="tokenize($link,'\.')[last()]"/>
         <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
         
         <assert test="normalize-space(@xlink:href)!=''" role="error" id="graphic-check-1">
@@ -456,6 +457,23 @@
         
         <assert test="$file=$image-file-types" role="error" id="graphic-check-2">
         <name/> must have an xlink:href attribute that ends with an image file type extension. <value-of select="if ($file!='') then $file else @xlink:href"/> is not one of <value-of select="string-join($image-file-types,', ')"/>.</assert>
+        
+        <report test="contains(@mime-subtype,'tiff') and not($file=('tif','tiff'))" role="error" id="graphic-test-1">
+        <name/> has tiff mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
+        
+        <assert test="normalize-space(@mime-subtype)!=''" role="error" id="graphic-test-2">
+        <name/> must have a mime-subtype attribute.</assert>
+      
+        <report test="contains(@mime-subtype,'jpeg') and not($file=('jpg','jpeg'))" role="error" id="graphic-test-3">
+        <name/> has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
+        
+        <assert test="@mimetype='image'" role="error" id="graphic-test-4">
+        <name/> must have a @mimetype='image'.</assert>
+        
+        <report test="@mime-subtype='png' and $file!='png'" role="error" id="graphic-test-5">
+        <name/> has png mime-subtype but filename does not end with '.png'. This cannot be correct.</report>
+        
+        <report test="preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link" role="error" id="graphic-test-6">Image file for <value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/> (<value-of select="@xlink:href"/>) is the same as the one used for another graphic or inline-graphic.</report>
      </rule>
   </pattern>
   

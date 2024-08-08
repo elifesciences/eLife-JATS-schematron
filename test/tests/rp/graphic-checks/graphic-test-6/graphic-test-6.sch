@@ -94,7 +94,7 @@
       <let name="link" value="lower-case(@xlink:href)"/>
       <let name="file" value="tokenize($link,'\.')[last()]"/>
       <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
-      <assert test="$file=$image-file-types" role="error" id="graphic-check-2">[graphic-check-2] <name/> must have an xlink:href attribute that ends with an image file type extension. <value-of select="if ($file!='') then $file else @xlink:href"/> is not one of <value-of select="string-join($image-file-types,', ')"/>.</assert>
+      <report test="preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link" role="error" id="graphic-test-6">[graphic-test-6] Image file for <value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/> (<value-of select="@xlink:href"/>) is the same as the one used for another graphic or inline-graphic.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

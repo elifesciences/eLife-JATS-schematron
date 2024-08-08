@@ -2385,7 +2385,8 @@
    <!--PATTERN graphic-checks-pattern-->
    <!--RULE graphic-checks-->
    <xsl:template match="graphic|inline-graphic" priority="1000" mode="M53">
-      <xsl:variable name="file" select="tokenize(lower-case(@xlink:href),'\.')[last()]"/>
+      <xsl:variable name="link" select="lower-case(@xlink:href)"/>
+      <xsl:variable name="file" select="tokenize($link,'\.')[last()]"/>
       <xsl:variable name="image-file-types" select="('tif','tiff','gif','jpg','jpeg','png')"/>
       <!--ASSERT error-->
       <xsl:choose>
@@ -2423,6 +2424,92 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <!--REPORT error-->
+      <xsl:if test="contains(@mime-subtype,'tiff') and not($file=('tif','tiff'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(@mime-subtype,'tiff') and not($file=('tif','tiff'))">
+            <xsl:attribute name="id">graphic-test-1</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[graphic-test-1] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> has tiff mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="normalize-space(@mime-subtype)!=''"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(@mime-subtype)!=''">
+               <xsl:attribute name="id">graphic-test-2</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[graphic-test-2] <xsl:text/>
+                  <xsl:value-of select="name(.)"/>
+                  <xsl:text/> must have a mime-subtype attribute.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <!--REPORT error-->
+      <xsl:if test="contains(@mime-subtype,'jpeg') and not($file=('jpg','jpeg'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(@mime-subtype,'jpeg') and not($file=('jpg','jpeg'))">
+            <xsl:attribute name="id">graphic-test-3</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[graphic-test-3] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="@mimetype='image'"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@mimetype='image'">
+               <xsl:attribute name="id">graphic-test-4</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[graphic-test-4] <xsl:text/>
+                  <xsl:value-of select="name(.)"/>
+                  <xsl:text/> must have a @mimetype='image'.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <!--REPORT error-->
+      <xsl:if test="@mime-subtype='png' and $file!='png'">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@mime-subtype='png' and $file!='png'">
+            <xsl:attribute name="id">graphic-test-5</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[graphic-test-5] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> has png mime-subtype but filename does not end with '.png'. This cannot be correct.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link">
+            <xsl:attribute name="id">graphic-test-6</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[graphic-test-6] Image file for <xsl:text/>
+               <xsl:value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/>
+               <xsl:text/> (<xsl:text/>
+               <xsl:value-of select="@xlink:href"/>
+               <xsl:text/>) is the same as the one used for another graphic or inline-graphic.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M53"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M53"/>

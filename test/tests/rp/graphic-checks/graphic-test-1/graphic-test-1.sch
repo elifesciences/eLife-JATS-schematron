@@ -94,7 +94,7 @@
       <let name="link" value="lower-case(@xlink:href)"/>
       <let name="file" value="tokenize($link,'\.')[last()]"/>
       <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
-      <assert test="$file=$image-file-types" role="error" id="graphic-check-2">[graphic-check-2] <name/> must have an xlink:href attribute that ends with an image file type extension. <value-of select="if ($file!='') then $file else @xlink:href"/> is not one of <value-of select="string-join($image-file-types,', ')"/>.</assert>
+      <report test="contains(@mime-subtype,'tiff') and not($file=('tif','tiff'))" role="error" id="graphic-test-1">[graphic-test-1] <name/> has tiff mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

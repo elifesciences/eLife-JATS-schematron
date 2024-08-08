@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="graphic-test-4.sch"?>
+<!--Context: graphic|inline-graphic
+Test: assert    @mimetype='image'
+Message:  must have a @mimetype='image'. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <graphic mimetype="image" mime-subtype="tiff" xlink:href="fig1.tif"/>
+    </article>
+</root>
