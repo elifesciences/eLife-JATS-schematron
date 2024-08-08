@@ -93,7 +93,7 @@
     <rule context="media" id="media-checks">
       <let name="file" value="@mime-subtype"/>
       <let name="link" value="@xlink:href"/>
-      <assert test="@mime-subtype" role="error" id="media-test-2">[media-test-2] media must have @mime-subtype. A list of common mime/mime-subtypes can be found here: https://www.iana.org/assignments/media-types/media-types.xhtml#application</assert>
+      <assert test="normalize-space(@mime-subtype)!=''" role="error" id="media-test-2">[media-test-2] media must have @mime-subtype. A list of common mime/mime-subtypes can be found here: https://www.iana.org/assignments/media-types/media-types.xhtml#application</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

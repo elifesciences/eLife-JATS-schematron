@@ -347,7 +347,7 @@
         
       <assert test="@mimetype=('video','application','text','image','audio','chemical')" role="error" id="media-test-1">[media-test-1] media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'.</assert>
       
-      <assert test="@mime-subtype" role="error" id="media-test-2">[media-test-2] media must have @mime-subtype. A list of common mime/mime-subtypes can be found here: https://www.iana.org/assignments/media-types/media-types.xhtml#application</assert>
+      <assert test="normalize-space(@mime-subtype)!=''" role="error" id="media-test-2">[media-test-2] media must have @mime-subtype. A list of common mime/mime-subtypes can be found here: https://www.iana.org/assignments/media-types/media-types.xhtml#application</assert>
         
         <report test="matches(@mime-subtype,'^(video|application|text|image|audio|chemical)')" role="error" id="media-test-2a">[media-test-2a] @mime-subtype value on media starts with a mimetype which is incorrect. This attribute should only contain the mime-subtype (for example for a PDF, the mimetype is application and the mime-subtype is pdf). A list of common mime/mime-subtypes can be found here: https://www.iana.org/assignments/media-types/media-types.xhtml#application</report>
       

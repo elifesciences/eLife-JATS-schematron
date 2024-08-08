@@ -2450,9 +2450,9 @@
       </xsl:choose>
       <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="@mime-subtype"/>
+         <xsl:when test="normalize-space(@mime-subtype)!=''"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@mime-subtype">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(@mime-subtype)!=''">
                <xsl:attribute name="id">media-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
