@@ -23,6 +23,38 @@
         <x:expect-report id="article-title-all-caps" role="error"/>
         <x:expect-not-assert id="article-title-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="article-title-check-1-pass">
+        <x:context href="../tests/rp/article-title-checks/article-title-check-1/pass.xml"/>
+        <x:expect-not-report id="article-title-check-1" role="warning"/>
+        <x:expect-not-assert id="article-title-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-title-check-1-fail">
+        <x:context href="../tests/rp/article-title-checks/article-title-check-1/fail.xml"/>
+        <x:expect-report id="article-title-check-1" role="warning"/>
+        <x:expect-not-assert id="article-title-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="article-title-children-checks">
+      <x:scenario label="article-title-children-check-1-pass">
+        <x:context href="../tests/rp/article-title-children-checks/article-title-children-check-1/pass.xml"/>
+        <x:expect-not-assert id="article-title-children-check-1" role="error"/>
+        <x:expect-not-assert id="article-title-children-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-title-children-check-1-fail">
+        <x:context href="../tests/rp/article-title-children-checks/article-title-children-check-1/fail.xml"/>
+        <x:expect-assert id="article-title-children-check-1" role="error"/>
+        <x:expect-not-assert id="article-title-children-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-title-children-check-2-pass">
+        <x:context href="../tests/rp/article-title-children-checks/article-title-children-check-2/pass.xml"/>
+        <x:expect-not-report id="article-title-children-check-2" role="error"/>
+        <x:expect-not-assert id="article-title-children-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-title-children-check-2-fail">
+        <x:context href="../tests/rp/article-title-children-checks/article-title-children-check-2/fail.xml"/>
+        <x:expect-report id="article-title-children-check-2" role="error"/>
+        <x:expect-not-assert id="article-title-children-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="author-contrib-checks">
       <x:scenario label="author-contrb-no-aff-xref-pass">

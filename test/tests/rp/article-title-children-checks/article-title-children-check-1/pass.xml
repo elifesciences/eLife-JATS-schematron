@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="article-title-children-check-1.sch"?>
+<!--Context: article-meta/title-group/article-title/*
+Test: assert    name()=$permitted-children
+Message:  is not supported as a child of article title. Please remove this element (and any child content, as appropriate). -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>
