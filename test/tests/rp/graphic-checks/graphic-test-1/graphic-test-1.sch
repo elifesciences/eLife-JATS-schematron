@@ -89,15 +89,17 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="fig-child-checks-pattern">
-    <rule context="fig/*" id="fig-child-checks">
-      <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
-      <assert test="name()=$supported-fig-children" role="error" id="fig-child-conformance">[fig-child-conformance] <name/> is not supported as a child of &lt;fig&gt;.</assert>
+  <pattern id="graphic-checks-pattern">
+    <rule context="graphic|inline-graphic" id="graphic-checks">
+      <let name="link" value="lower-case(@xlink:href)"/>
+      <let name="file" value="tokenize($link,'\.')[last()]"/>
+      <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
+      <report test="contains(@mime-subtype,'tiff') and not($file=('tif','tiff'))" role="error" id="graphic-test-1">[graphic-test-1] <name/> has tiff mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/*" role="error" id="fig-child-checks-xspec-assert">fig/* must be present.</assert>
+      <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-checks-xspec-assert">graphic|inline-graphic must be present.</assert>
     </rule>
   </pattern>
 </schema>

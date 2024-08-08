@@ -279,7 +279,7 @@
         <assert test="graphic" role="error" id="fig-graphic-conformance">[fig-graphic-conformance] <value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>
      </rule></pattern><pattern id="fig-child-checks-pattern"><rule context="fig/*" id="fig-child-checks">
         <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
-        <assert test="name()=$supported-fig-children" role="error" id="fig-child-conformance">[fig-child-conformance] <value-of select="name()"/> is not supported as a child of &lt;fig&gt;.</assert>
+        <assert test="name()=$supported-fig-children" role="error" id="fig-child-conformance">[fig-child-conformance] <name/> is not supported as a child of &lt;fig&gt;.</assert>
      </rule></pattern><pattern id="fig-label-checks-pattern"><rule context="fig/label" id="fig-label-checks">
         <report test="normalize-space(.)=''" role="error" id="fig-wrap-empty">[fig-wrap-empty] Label for fig is empty. Either remove the elment or add the missing content.</report>
         
@@ -299,6 +299,21 @@
         
         <report test="matches(lower-case(.),'^\s*fig')" role="warning" id="table-wrap-label-fig">[table-wrap-label-fig] Label for table ('<value-of select="."/>') starts with text that suggests its a figure. Should this content be captured as a figure instead of a table?</report>
      </rule></pattern>
+  
+    <pattern id="supplementary-material-checks-pattern"><rule context="supplementary-material" id="supplementary-material-checks">
+        
+        <!-- Temporary error while no support for supplementary-material in EPP 
+                sec sec-type="supplementary-material" is stripped from XML via xslt -->
+        <assert test="ancestor::sec[@sec-type='supplementary-material']" role="error" id="supplementary-material-temp-test">[supplementary-material-temp-test] supplementary-material element is not placed within a &lt;sec sec-type="supplementary-material"&gt;. There is currently no support for supplementary-material in RPs. Please either move the supplementary-material under an existing &lt;sec sec-type="supplementary-material"&gt; or add a new &lt;sec sec-type="supplementary-material"&gt; around this an any other supplementary-material.</assert>
+        
+        <assert test="media" role="error" id="supplementary-material-test-1">[supplementary-material-test-1] supplementary-material does not have a child media. It must either have a file or be deleted.</assert>
+        
+        <report test="count(media) gt 1" role="error" id="supplementary-material-test-2">[supplementary-material-test-2] supplementary-material has <value-of select="count(media)"/> child media elements. Each file must be wrapped in its own supplementary-material.</report>
+      </rule></pattern><pattern id="supplementary-material-child-checks-pattern"><rule context="supplementary-material/*" id="supplementary-material-child-checks">
+        <let name="permitted-children" value="('label','caption','media')"/>
+        
+        <assert test="name()=$permitted-children" role="error" id="supplementary-material-child-test-1">[supplementary-material-child-test-1] <name/> is not supported as a child of supplementary-material. The only permitted children are: <value-of select="string-join($permitted-children,'; ')"/>.</assert>
+      </rule></pattern>
 
     <pattern id="disp-formula-checks-pattern"><rule context="disp-formula" id="disp-formula-checks">
           <!-- adjust when support is added for mathML -->
@@ -318,12 +333,49 @@
      </rule></pattern>
   
      <pattern id="graphic-checks-pattern"><rule context="graphic|inline-graphic" id="graphic-checks">
-        <let name="file" value="tokenize(lower-case(@xlink:href),'\.')[last()]"/>
+        <let name="link" value="lower-case(@xlink:href)"/>
+        <let name="file" value="tokenize($link,'\.')[last()]"/>
         <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
         
         <assert test="normalize-space(@xlink:href)!=''" role="error" id="graphic-check-1">[graphic-check-1] <name/> must have an xlink:href attribute. This one does not.</assert>
         
         <assert test="$file=$image-file-types" role="error" id="graphic-check-2">[graphic-check-2] <name/> must have an xlink:href attribute that ends with an image file type extension. <value-of select="if ($file!='') then $file else @xlink:href"/> is not one of <value-of select="string-join($image-file-types,', ')"/>.</assert>
+        
+        <report test="contains(@mime-subtype,'tiff') and not($file=('tif','tiff'))" role="error" id="graphic-test-1">[graphic-test-1] <name/> has tiff mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
+        
+        <assert test="normalize-space(@mime-subtype)!=''" role="error" id="graphic-test-2">[graphic-test-2] <name/> must have a mime-subtype attribute.</assert>
+      
+        <report test="contains(@mime-subtype,'jpeg') and not($file=('jpg','jpeg'))" role="error" id="graphic-test-3">[graphic-test-3] <name/> has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
+        
+        <assert test="@mimetype='image'" role="error" id="graphic-test-4">[graphic-test-4] <name/> must have a @mimetype='image'.</assert>
+        
+        <report test="@mime-subtype='png' and $file!='png'" role="error" id="graphic-test-5">[graphic-test-5] <name/> has png mime-subtype but filename does not end with '.png'. This cannot be correct.</report>
+        
+        <report test="preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link" role="error" id="graphic-test-6">[graphic-test-6] Image file for <value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/> (<value-of select="@xlink:href"/>) is the same as the one used for another graphic or inline-graphic.</report>
+     </rule></pattern>
+  
+      <pattern id="media-checks-pattern"><rule context="media" id="media-checks">
+        <let name="file" value="@mime-subtype"/>
+        <let name="link" value="@xlink:href"/>
+        
+      <assert test="@mimetype=('video','application','text','image','audio','chemical')" role="error" id="media-test-1">[media-test-1] media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'.</assert>
+      
+      <assert test="normalize-space(@mime-subtype)!=''" role="error" id="media-test-2">[media-test-2] media must have @mime-subtype. A list of common mime/mime-subtypes can be found here: https://www.iana.org/assignments/media-types/media-types.xhtml#application</assert>
+        
+        <report test="matches(@mime-subtype,'^(video|application|text|image|audio|chemical)')" role="error" id="media-test-2a">[media-test-2a] @mime-subtype value on media starts with a mimetype which is incorrect. This attribute should only contain the mime-subtype (for example for a PDF, the mimetype is application and the mime-subtype is pdf). A list of common mime/mime-subtypes can be found here: https://www.iana.org/assignments/media-types/media-types.xhtml#application</report>
+      
+      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,15}$')" role="error" id="media-test-3">[media-test-3] media must have an @xlink:href which contains a file reference.</assert>
+        
+      <report test="preceding::media/@xlink:href = $link" role="error" id="media-test-10">[media-test-10] Media file for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/@mimetype='video') then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')         else replace(preceding::media[@xlink:href=$link][1]/parent::*/label,'\.','')"/>.</report>
+        
+      <report test="text()" role="error" id="media-test-12">[media-test-12] Media element cannot contain text. This one has <value-of select="string-join(text(),'')"/>.</report>
+        
+      <report test="*" role="error" id="media-test-13">[media-test-13] Media element cannot contain child elements. This one has the following element(s) <value-of select="string-join(*/name(),'; ')"/>.</report>
+     </rule></pattern>
+  
+    <pattern id="sec-checks-pattern"><rule context="sec" id="sec-checks">
+
+        <report test="@sec-type='supplementary-material' and *[not(name()=('label','title','supplementary-material'))]" role="warning" id="sec-supplementary-material">[sec-supplementary-material] &lt;sec sec-type='supplementary-material'&gt; contains elements other than supplementary-material: <value-of select="string-join(*[not(name()=('label','title','supplementary-material'))]/name(),'; ')"/>. These will currently be stripped from the content rendered on EPP. Should they be moved out of the section or is that OK?'</report>
      </rule></pattern>
 
     <pattern id="title-checks-pattern"><rule context="title" id="title-checks">

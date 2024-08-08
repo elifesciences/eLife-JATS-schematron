@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="media-test-3.sch"?>
+<!--Context: media
+Test: assert    matches(@xlink:href,'\.[\p{L}\p{N}]{1,15}$')
+Message: media must have an @xlink:href which contains a file reference. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <media mimetype="text" mime-subtype="xml" xlink:href="file.xml"/>
+  </article>
+</root>

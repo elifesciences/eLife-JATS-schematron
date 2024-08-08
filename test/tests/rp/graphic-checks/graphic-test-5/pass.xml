@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="graphic-test-5.sch"?>
+<!--Context: graphic|inline-graphic
+Test: report    @mime-subtype='png' and $file!='png'
+Message:  has png mime-subtype but filename does not end with '.png'. This cannot be correct. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <graphic mimetype="image" mime-subtype="png" xlink:href="fig1.png"/>
+    </article>
+</root>

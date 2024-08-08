@@ -89,15 +89,14 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="fig-child-checks-pattern">
-    <rule context="fig/*" id="fig-child-checks">
-      <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
-      <assert test="name()=$supported-fig-children" role="error" id="fig-child-conformance">[fig-child-conformance] <name/> is not supported as a child of &lt;fig&gt;.</assert>
+  <pattern id="supplementary-material-checks-pattern">
+    <rule context="supplementary-material" id="supplementary-material-checks">
+      <report test="count(media) gt 1" role="error" id="supplementary-material-test-2">[supplementary-material-test-2] supplementary-material has <value-of select="count(media)"/> child media elements. Each file must be wrapped in its own supplementary-material.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/*" role="error" id="fig-child-checks-xspec-assert">fig/* must be present.</assert>
+      <assert test="descendant::supplementary-material" role="error" id="supplementary-material-checks-xspec-assert">supplementary-material must be present.</assert>
     </rule>
   </pattern>
 </schema>

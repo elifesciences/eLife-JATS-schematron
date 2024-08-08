@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="media-test-2.sch"?>
+<!--Context: media
+Test: assert    normalize-space(@mime-subtype)!=''
+Message: media must have @mime-subtype. A list of common mime/mime-subtypes can be found here: https://www.iana.org/assignments/media-types/media-types.xhtml#application -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <media mimetype="video"/>
+  </article>
+</root>

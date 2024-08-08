@@ -89,15 +89,16 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="fig-child-checks-pattern">
-    <rule context="fig/*" id="fig-child-checks">
-      <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
-      <assert test="name()=$supported-fig-children" role="error" id="fig-child-conformance">[fig-child-conformance] <name/> is not supported as a child of &lt;fig&gt;.</assert>
+  <pattern id="media-checks-pattern">
+    <rule context="media" id="media-checks">
+      <let name="file" value="@mime-subtype"/>
+      <let name="link" value="@xlink:href"/>
+      <report test="text()" role="error" id="media-test-12">[media-test-12] Media element cannot contain text. This one has <value-of select="string-join(text(),'')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/*" role="error" id="fig-child-checks-xspec-assert">fig/* must be present.</assert>
+      <assert test="descendant::media" role="error" id="media-checks-xspec-assert">media must be present.</assert>
     </rule>
   </pattern>
 </schema>

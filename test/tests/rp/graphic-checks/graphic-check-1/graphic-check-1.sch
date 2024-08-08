@@ -91,7 +91,8 @@
   </xsl:function>
   <pattern id="graphic-checks-pattern">
     <rule context="graphic|inline-graphic" id="graphic-checks">
-      <let name="file" value="tokenize(lower-case(@xlink:href),'\.')[last()]"/>
+      <let name="link" value="lower-case(@xlink:href)"/>
+      <let name="file" value="tokenize($link,'\.')[last()]"/>
       <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
       <assert test="normalize-space(@xlink:href)!=''" role="error" id="graphic-check-1">[graphic-check-1] <name/> must have an xlink:href attribute. This one does not.</assert>
     </rule>
