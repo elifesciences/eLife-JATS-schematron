@@ -2573,6 +2573,19 @@
                <xsl:text/>) is the same as the one used for another graphic or inline-graphic.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="@mime-subtype='gif' and $file!='gif'">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@mime-subtype='gif' and $file!='gif'">
+            <xsl:attribute name="id">graphic-test-7</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[graphic-test-7] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> has gif mime-subtype but filename does not end with '.gif'. This cannot be correct.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M54"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M54"/>

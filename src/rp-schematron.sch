@@ -360,6 +360,8 @@
         <report test="@mime-subtype='png' and $file!='png'" role="error" id="graphic-test-5">[graphic-test-5] <name/> has png mime-subtype but filename does not end with '.png'. This cannot be correct.</report>
         
         <report test="preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link" role="error" id="graphic-test-6">[graphic-test-6] Image file for <value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/> (<value-of select="@xlink:href"/>) is the same as the one used for another graphic or inline-graphic.</report>
+        
+        <report test="@mime-subtype='gif' and $file!='gif'" role="error" id="graphic-test-7">[graphic-test-7] <name/> has gif mime-subtype but filename does not end with '.gif'. This cannot be correct.</report>
      </rule></pattern>
   
       <pattern id="media-checks-pattern"><rule context="media" id="media-checks">

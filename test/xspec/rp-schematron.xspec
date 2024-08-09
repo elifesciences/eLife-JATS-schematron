@@ -1007,6 +1007,16 @@
         <x:expect-report id="graphic-test-6" role="error"/>
         <x:expect-not-assert id="graphic-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="graphic-test-7-pass">
+        <x:context href="../tests/rp/graphic-checks/graphic-test-7/pass.xml"/>
+        <x:expect-not-report id="graphic-test-7" role="error"/>
+        <x:expect-not-assert id="graphic-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="graphic-test-7-fail">
+        <x:context href="../tests/rp/graphic-checks/graphic-test-7/fail.xml"/>
+        <x:expect-report id="graphic-test-7" role="error"/>
+        <x:expect-not-assert id="graphic-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="media-checks">
       <x:scenario label="media-test-3-pass">
