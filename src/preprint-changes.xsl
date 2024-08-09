@@ -355,6 +355,7 @@
                     <xsl:choose>
                         <xsl:when test="$file=('tif','tiff')">tiff</xsl:when>
                         <xsl:when test="$file=('jpeg','jpg')">jpeg</xsl:when>
+                        <xsl:when test="$file='gif'">gif</xsl:when>
                         <xsl:when test="$file='png'">png</xsl:when>
                         <xsl:otherwise>unknown</xsl:otherwise>
                     </xsl:choose>

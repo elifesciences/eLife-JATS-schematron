@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="graphic-test-7.sch"?>
+<!--Context: graphic|inline-graphic
+Test: report    @mime-subtype='gif' and $file!='gif'
+Message:  has gif mime-subtype but filename does not end with '.gif'. This cannot be correct. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <graphic mimetype="image" mime-subtype="gif" xlink:href="fig1.gif"/>
+    </article>
+</root>
