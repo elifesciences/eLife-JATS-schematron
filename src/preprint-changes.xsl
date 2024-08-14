@@ -75,12 +75,12 @@
     </xsl:template>
     
     <!-- Changes to article-meta: 
-            Introduce flag to distinguish between reviewed-preprint and VOR XML  -->
+            Introduce flag to distinguish between reviewed-preprint and VOR XML 
     <xsl:template xml:id="article-meta" match="article-meta"> 
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:apply-templates select="*[name()='article-id']|*[name()=('article-id','article-version','article-version-alternatives')]/preceding-sibling::text()"/>
-            <!-- multiple article versions need to be wrapped in <article-version-alternatives> -->
+            <!- - multiple article versions need to be wrapped in <article-version-alternatives> - ->
             <xsl:choose>
                 <xsl:when test="./article-version-alternatives">
                     <article-version-alternatives>
@@ -110,7 +110,7 @@
             </xsl:choose>
             <xsl:apply-templates select="*[not(name()=('article-id','article-version','article-version-alternatives'))]|*[name()=('article-version','article-version-alternatives')]/following-sibling::text()|comment()|processing-instruction()"/>
         </xsl:copy>
-    </xsl:template>
+    </xsl:template>-->
     
     <!-- Handle cases where there is a singular affiliation without links from the authors -->
     <xsl:template xml:id="singular-aff-contrib" match="article-meta/contrib-group[count(aff) = 1 and not(contrib[@contrib-type='author' and xref[@ref-type='aff']])]/contrib[@contrib-type='author' and not(xref[@ref-type='aff'])]">

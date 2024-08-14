@@ -12,10 +12,6 @@
       <x:context href="../tests/preprint-changes/journal-meta/input.xml"/>
       <x:expect label="Testing the template: journal-meta" href="../tests/preprint-changes/journal-meta/output.xml"/>
     </x:scenario>
-    <x:scenario label="article-meta">
-      <x:context href="../tests/preprint-changes/article-meta/input.xml"/>
-      <x:expect label="Testing the template: article-meta" href="../tests/preprint-changes/article-meta/output.xml"/>
-    </x:scenario>
     <x:scenario label="singular-aff-contrib">
       <x:context href="../tests/preprint-changes/singular-aff-contrib/input.xml"/>
       <x:expect label="Testing the template: singular-aff-contrib" href="../tests/preprint-changes/singular-aff-contrib/output.xml"/>
