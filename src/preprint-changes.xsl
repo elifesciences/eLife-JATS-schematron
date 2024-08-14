@@ -49,7 +49,7 @@
         </xsl:copy>
     </xsl:template>
 
-    <!-- Replace preprint server information with eLife 
+    <!-- Replace preprint server information with eLife -->
     <xsl:template xml:id="journal-meta" match="journal-meta">
         <journal-meta>
         <xsl:text>&#xa;</xsl:text>
@@ -72,7 +72,7 @@
             </publisher>
             <xsl:text>&#xa;</xsl:text>
         </journal-meta>
-    </xsl:template> -->
+    </xsl:template>
     
     <!-- Changes to article-meta: 
             Introduce flag to distinguish between reviewed-preprint and VOR XML 
@@ -110,7 +110,7 @@
             </xsl:choose>
             <xsl:apply-templates select="*[not(name()=('article-id','article-version','article-version-alternatives'))]|*[name()=('article-version','article-version-alternatives')]/following-sibling::text()|comment()|processing-instruction()"/>
         </xsl:copy>
-    </xsl:template> -->
+    </xsl:template>-->
     
     <!-- Handle cases where there is a singular affiliation without links from the authors -->
     <xsl:template xml:id="singular-aff-contrib" match="article-meta/contrib-group[count(aff) = 1 and not(contrib[@contrib-type='author' and xref[@ref-type='aff']])]/contrib[@contrib-type='author' and not(xref[@ref-type='aff'])]">
