@@ -92,6 +92,7 @@
   <pattern id="mixed-citation-checks-pattern">
     <rule context="mixed-citation" id="mixed-citation-checks">
       <let name="publication-type-values" value="('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')"/>
+      <let name="name-elems" value="('name','string-name','collab','on-behalf-of','etal')"/>
       <report test="not(normalize-space(.)=('','.')) and (string-length(normalize-space(.)) lt 6)" role="warning" id="mixed-citation-empty-2">[mixed-citation-empty-2] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) only contains <value-of select="string-length(normalize-space(.))"/> characters.</report>
     </rule>
   </pattern>

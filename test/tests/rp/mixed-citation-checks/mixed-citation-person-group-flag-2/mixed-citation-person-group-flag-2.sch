@@ -93,7 +93,7 @@
     <rule context="mixed-citation" id="mixed-citation-checks">
       <let name="publication-type-values" value="('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')"/>
       <let name="name-elems" value="('name','string-name','collab','on-behalf-of','etal')"/>
-      <assert test="normalize-space(@publication-type)!=''" role="error" id="mixed-citation-publication-type-presence">[mixed-citation-publication-type-presence] <name/> must have a publication-type attribute with a non-empty value.</assert>
+      <assert test="person-group[@person-group-type='author']" role="warning" id="mixed-citation-person-group-flag-2">[mixed-citation-person-group-flag-2] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have an author person-group. Is that correct?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

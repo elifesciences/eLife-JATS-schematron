@@ -93,7 +93,7 @@
     <rule context="mixed-citation" id="mixed-citation-checks">
       <let name="publication-type-values" value="('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')"/>
       <let name="name-elems" value="('name','string-name','collab','on-behalf-of','etal')"/>
-      <assert test="normalize-space(@publication-type)!=''" role="error" id="mixed-citation-publication-type-presence">[mixed-citation-publication-type-presence] <name/> must have a publication-type attribute with a non-empty value.</assert>
+      <report test="*[name()=$name-elems]" role="error" id="mixed-citation-person-group-flag-1">[mixed-citation-person-group-flag-1] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) has child name elements (<value-of select="string-join(distinct-values(*[name()=$name-elems]/name()),'; ')"/>). These all need to be placed in a person-group element with the appropriate person-group-type attribute.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

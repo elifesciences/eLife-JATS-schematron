@@ -632,6 +632,38 @@
         <x:expect-not-assert id="issn-conformity-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="ref-person-group-checks">
+      <x:scenario label="ref-person-group-type-pass">
+        <x:context href="../tests/rp/ref-person-group-checks/ref-person-group-type/pass.xml"/>
+        <x:expect-not-assert id="ref-person-group-type" role="error"/>
+        <x:expect-not-assert id="ref-person-group-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-person-group-type-fail">
+        <x:context href="../tests/rp/ref-person-group-checks/ref-person-group-type/fail.xml"/>
+        <x:expect-assert id="ref-person-group-type" role="error"/>
+        <x:expect-not-assert id="ref-person-group-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-person-group-type-book-pass">
+        <x:context href="../tests/rp/ref-person-group-checks/ref-person-group-type-book/pass.xml"/>
+        <x:expect-not-report id="ref-person-group-type-book" role="warning"/>
+        <x:expect-not-assert id="ref-person-group-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-person-group-type-book-fail">
+        <x:context href="../tests/rp/ref-person-group-checks/ref-person-group-type-book/fail.xml"/>
+        <x:expect-report id="ref-person-group-type-book" role="warning"/>
+        <x:expect-not-assert id="ref-person-group-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-person-group-type-other-pass">
+        <x:context href="../tests/rp/ref-person-group-checks/ref-person-group-type-other/pass.xml"/>
+        <x:expect-not-report id="ref-person-group-type-other" role="warning"/>
+        <x:expect-not-assert id="ref-person-group-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-person-group-type-other-fail">
+        <x:context href="../tests/rp/ref-person-group-checks/ref-person-group-type-other/fail.xml"/>
+        <x:expect-report id="ref-person-group-type-other" role="warning"/>
+        <x:expect-not-assert id="ref-person-group-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="ref-checks">
       <x:scenario label="ref-empty-pass">
         <x:context href="../tests/rp/ref-checks/ref-empty/pass.xml"/>
@@ -703,6 +735,26 @@
       <x:scenario label="mixed-citation-other-publication-flag-fail">
         <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-other-publication-flag/fail.xml"/>
         <x:expect-report id="mixed-citation-other-publication-flag" role="warning"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mixed-citation-person-group-flag-1-pass">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-person-group-flag-1/pass.xml"/>
+        <x:expect-not-report id="mixed-citation-person-group-flag-1" role="error"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mixed-citation-person-group-flag-1-fail">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-person-group-flag-1/fail.xml"/>
+        <x:expect-report id="mixed-citation-person-group-flag-1" role="error"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mixed-citation-person-group-flag-2-pass">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-person-group-flag-2/pass.xml"/>
+        <x:expect-not-assert id="mixed-citation-person-group-flag-2" role="warning"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mixed-citation-person-group-flag-2-fail">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-person-group-flag-2/fail.xml"/>
+        <x:expect-assert id="mixed-citation-person-group-flag-2" role="warning"/>
         <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

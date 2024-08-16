@@ -89,16 +89,14 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="mixed-citation-checks-pattern">
-    <rule context="mixed-citation" id="mixed-citation-checks">
-      <let name="publication-type-values" value="('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')"/>
-      <let name="name-elems" value="('name','string-name','collab','on-behalf-of','etal')"/>
-      <assert test="normalize-space(@publication-type)!=''" role="error" id="mixed-citation-publication-type-presence">[mixed-citation-publication-type-presence] <name/> must have a publication-type attribute with a non-empty value.</assert>
+  <pattern id="ref-person-group-checks-pattern">
+    <rule context="ref//person-group" id="ref-person-group-checks">
+      <report test="ancestor::mixed-citation[@publication-type='book'] and not(normalize-space(@person-group-type)=('','author','editor'))" role="warning" id="ref-person-group-type-book">[ref-person-group-type-book] This <name/> inside a book reference has the person-group-type '<value-of select="@person-group-type"/>'. Is that correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mixed-citation" role="error" id="mixed-citation-checks-xspec-assert">mixed-citation must be present.</assert>
+      <assert test="descendant::ref//person-group" role="error" id="ref-person-group-checks-xspec-assert">ref//person-group must be present.</assert>
     </rule>
   </pattern>
 </schema>
