@@ -3568,6 +3568,10 @@
         role="warning" 
         id="wellcome-institution-id-test"><name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> is <value-of select="."/>. This is an uncommon funder - should the funder be listed as 'Wellcome Trust' (http://dx.doi.org/10.13039/100010269) instead.</report>
       
+      <report test=".=('http://dx.doi.org/10.13039/100001003','http://dx.doi.org/10.13039/100008349','http://dx.doi.org/10.13039/100016133','http://dx.doi.org/10.13039/100017346','http://dx.doi.org/10.13039/100019718','http://dx.doi.org/10.13039/100020968','http://dx.doi.org/10.13039/501100001645','http://dx.doi.org/10.13039/501100008454','http://dx.doi.org/10.13039/501100014089')" 
+        role="warning" 
+        id="boehringer-institution-id-test">Please check funding for <value-of select="parent::institution-wrap/institution"/> carefully, as there are numerous similarly named, but different insitutions (e.g. Boehringer Ingelheim Stiftung; Boehringer Ingelheim Fonds; Boehringer Ingelheim; Boehringer Ingelheim [insert-country-name]).</report>
+      
     </rule>
     
     <rule context="article//award-group//institution-wrap/institution-id[@institution-id-type='doi']" id="institution-id-doi-tests">

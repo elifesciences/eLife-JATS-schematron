@@ -12196,6 +12196,19 @@
                <xsl:text/>. This is an uncommon funder - should the funder be listed as 'Wellcome Trust' (http://dx.doi.org/10.13039/100010269) instead.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test=".=('http://dx.doi.org/10.13039/100001003','http://dx.doi.org/10.13039/100008349','http://dx.doi.org/10.13039/100016133','http://dx.doi.org/10.13039/100017346','http://dx.doi.org/10.13039/100019718','http://dx.doi.org/10.13039/100020968','http://dx.doi.org/10.13039/501100001645','http://dx.doi.org/10.13039/501100008454','http://dx.doi.org/10.13039/501100014089')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".=('http://dx.doi.org/10.13039/100001003','http://dx.doi.org/10.13039/100008349','http://dx.doi.org/10.13039/100016133','http://dx.doi.org/10.13039/100017346','http://dx.doi.org/10.13039/100019718','http://dx.doi.org/10.13039/100020968','http://dx.doi.org/10.13039/501100001645','http://dx.doi.org/10.13039/501100008454','http://dx.doi.org/10.13039/501100014089')">
+            <xsl:attribute name="id">boehringer-institution-id-test</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[boehringer-institution-id-test] Please check funding for <xsl:text/>
+               <xsl:value-of select="parent::institution-wrap/institution"/>
+               <xsl:text/> carefully, as there are numerous similarly named, but different insitutions (e.g. Boehringer Ingelheim Stiftung; Boehringer Ingelheim Fonds; Boehringer Ingelheim; Boehringer Ingelheim [insert-country-name]).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M160"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M160"/>

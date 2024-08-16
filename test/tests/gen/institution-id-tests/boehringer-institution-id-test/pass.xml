@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="boehringer-institution-id-test.sch"?>
+<!--Context: article//award-group//institution-wrap/institution-id
+Test: report    .=('http://dx.doi.org/10.13039/100001003','http://dx.doi.org/10.13039/100008349','http://dx.doi.org/10.13039/100016133','http://dx.doi.org/10.13039/100017346','http://dx.doi.org/10.13039/100019718','http://dx.doi.org/10.13039/100020968','http://dx.doi.org/10.13039/501100001645','http://dx.doi.org/10.13039/501100008454','http://dx.doi.org/10.13039/501100014089')
+Message: Please check funding for  carefully, as there are numerous similarly named, but different insitutions (e.g. Boehringer Ingelheim Stiftung; Boehringer Ingelheim Fonds; Boehringer Ingelheim; Boehringer Ingelheim [insert-country-name]). -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <award-group id="fund2">
+            <funding-source>
+                <institution-wrap>
+                    <institution-id>http://dx.doi.org/10.13039/100010269</institution-id>
+                    <institution>Wellcome Trust</institution>
+                </institution-wrap>
+            </funding-source>
+        </award-group>
+    </article>
+</root>

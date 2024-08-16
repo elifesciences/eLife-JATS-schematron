@@ -3625,6 +3625,16 @@
         <x:expect-report id="wellcome-institution-id-test" role="warning"/>
         <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="boehringer-institution-id-test-pass">
+        <x:context href="../tests/gen/institution-id-tests/boehringer-institution-id-test/pass.xml"/>
+        <x:expect-not-report id="boehringer-institution-id-test" role="warning"/>
+        <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="boehringer-institution-id-test-fail">
+        <x:context href="../tests/gen/institution-id-tests/boehringer-institution-id-test/fail.xml"/>
+        <x:expect-report id="boehringer-institution-id-test" role="warning"/>
+        <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="institution-id-doi-tests">
       <x:scenario label="institution-id-test-6-pass">
