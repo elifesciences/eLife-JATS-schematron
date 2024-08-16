@@ -6847,7 +6847,7 @@
    <!--RULE article-dois-prc-->
    <xsl:template match="article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']" priority="1000" mode="M70">
       <xsl:variable name="article-id" select="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
-      <xsl:variable name="latest-rp-doi" select="parent::article-meta/pub-history/event[position()=last()]/self-uri/@xlink:href"/>
+      <xsl:variable name="latest-rp-doi" select="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint']/@xlink:href"/>
       <xsl:variable name="latest-rp-doi-version" select="tokenize($latest-rp-doi,'\.')[last()]"/>
       <!--ASSERT error-->
       <xsl:choose>
@@ -9544,12 +9544,12 @@
    <!--PATTERN rp-event-tests-pattern-->
    <!--RULE rp-event-tests-->
    <xsl:template match="event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" priority="1000" mode="M118">
-      <xsl:variable name="rp-link" select="self-uri/@xlink:href"/>
+      <xsl:variable name="rp-link" select="self-uri[@content-type='reviewed-preprint']/@xlink:href"/>
       <xsl:variable name="rp-version" select="replace($rp-link,'^.*\.','')"/>
       <xsl:variable name="rp-pub-date" select="date[@date-type='reviewed-preprint']/@iso-8601-date"/>
       <xsl:variable name="sent-for-review-date" select="ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date"/>
       <xsl:variable name="preprint-pub-date" select="parent::pub-history/event/date[@date-type='preprint']/@iso-8601-date"/>
-      <xsl:variable name="later-rp-events" select="parent::pub-history/event[date[@date-type='reviewed-preprint'] and replace(self-uri[1]/@xlink:href,'^.*\.','') gt $rp-version]"/>
+      <xsl:variable name="later-rp-events" select="parent::pub-history/event[date[@date-type='reviewed-preprint'] and replace(self-uri[@content-type='reviewed-preprint'][1]/@xlink:href,'^.*\.','') gt $rp-version]"/>
       <!--REPORT error-->
       <xsl:if test="($preprint-pub-date and $preprint-pub-date != '') and         $preprint-pub-date ge $rp-pub-date">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($preprint-pub-date and $preprint-pub-date != '') and $preprint-pub-date ge $rp-pub-date">
@@ -9599,7 +9599,7 @@
                <xsl:text/>) is the same or an earlier date than publication date for a later reviewed preprint version date (<xsl:text/>
                <xsl:value-of select="$later-rp-events/date/@iso-8601-date[. = $rp-pub-date]"/>
                <xsl:text/> for version(s) <xsl:text/>
-               <xsl:value-of select="$later-rp-events/self-uri[1]/@xlink:href/replace(.,'^.*\.','')"/>
+               <xsl:value-of select="$later-rp-events/self-uri[@content-type='reviewed-preprint'][1]/@xlink:href/replace(.,'^.*\.','')"/>
                <xsl:text/>). This must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
