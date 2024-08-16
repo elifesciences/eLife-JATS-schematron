@@ -1924,6 +1924,23 @@
          </xsl:otherwise>
       </xsl:choose>
       <!--REPORT warning-->
+      <xsl:if test="./@person-group-type = preceding-sibling::person-group/@person-group-type">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="./@person-group-type = preceding-sibling::person-group/@person-group-type">
+            <xsl:attribute name="id">ref-person-group-type-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-person-group-type-2] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/>s within a reference should be distinct. There are numerous person-groups with the person-group-type <xsl:text/>
+               <xsl:value-of select="@person-group-type"/>
+               <xsl:text/> within this reference (id=<xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
       <xsl:if test="ancestor::mixed-citation[@publication-type='book'] and not(normalize-space(@person-group-type)=('','author','editor'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::mixed-citation[@publication-type='book'] and not(normalize-space(@person-group-type)=('','author','editor'))">
             <xsl:attribute name="id">ref-person-group-type-book</xsl:attribute>
