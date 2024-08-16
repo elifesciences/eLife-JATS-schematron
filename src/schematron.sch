@@ -1847,6 +1847,25 @@
         id="funding-exception"><value-of select="descendant::subj-group[@subj-group-type='display-channel'][1]/subject[1]"/>s cannot have funding, but this one has a funding-group element. Please remove it.</report>
       
     </rule>
+    
+    <rule context="article-version" id="article-version">
+      
+      <assert test="parent::article-meta" 
+        role="error" 
+        id="article-version-test-1"><name/> must be a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
+      <assert test="@article-version-type='publication-state'" 
+        role="error" 
+        id="article-version-test-2"><name/> must a article-version-type="publication-state" attribute. This one does not.</assert>
+      
+      <report test="@*[name()!='article-version-type']" 
+        role="error" 
+        id="article-version-test-3">The only attribute permitted on <name/> is article-version-type (with the value "publication-state"). This one has the following unallowed attribute(s): <value-of select="string-join(@*[name()!='article-version-type']/name(),'; ')"/>.</report>
+      
+      <assert test=".='version of record'" 
+        role="error" 
+        id="article-version-test-4"><name/> must contain the text 'version of record'. This one contains '<value-of select="."/>'.</assert>
+      
+    </rule>
 	 
    <rule context="article-meta/article-categories" id="test-article-categories">
 	 <let name="article-type" value="ancestor::article/@article-type"/>
@@ -14735,6 +14754,7 @@ else self::*/local-name() = $allowed-p-blocks"
         'article-id',
         'article-meta',
         'article-title',
+        'article-version',
         'attrib',
         'author-notes',
         'award-group',
