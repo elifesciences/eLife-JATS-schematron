@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="pub-id-check-5.sch"?>
+<!--Context: ref//pub-id
+Test: report    ancestor::mixed-citation[@publication-type='web']
+Message: Web reference (with id ) has a   (). This must be incorrect. Either the publication-type for the reference needs changing, or the pub-id should be changed to another element. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref id="ID1">
+            <mixed-citation publication-type="web"><pub-id>some ID</pub-id></mixed-citation>
+        </ref>
+    </article>
+</root>

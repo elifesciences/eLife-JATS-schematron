@@ -332,8 +332,8 @@
         <let name="labels" value="./ref/label"/>
         <let name="indistinct-labels" value="for $label in distinct-values($labels) return $label[count($labels[. = $label]) gt 1]"/>
         <assert test="empty($indistinct-labels)" 
-        role="error" 
-        id="indistinct-ref-labels">Duplicate labels in reference list - <value-of select="string-join($indistinct-labels,'; ')"/>. Have there been typesetting errors?</assert>
+          role="error" 
+          id="indistinct-ref-labels">Duplicate labels in reference list - <value-of select="string-join($indistinct-labels,'; ')"/>. Have there been typesetting errors?</assert>
      </rule>
     </pattern>
 
@@ -414,6 +414,10 @@
         <report test="ancestor::mixed-citation[@publication-type='preprint'] and not(@pub-id-type=('doi','pmid','pmcid','arxiv'))" 
           role="error" 
           id="pub-id-check-4"><name/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','arxiv'.</report>
+
+        <report test="ancestor::mixed-citation[@publication-type='web']" 
+          role="error" 
+          id="pub-id-check-5">Web reference (with id <value-of select="ancestor::ref/@id"/>) has a <name/> <value-of select="if (@pub-id-type) then concat('with a pub-id-type ',@pub-id-type) else 'with no pub-id-type'"/> (<value-of select="."/>). This must be incorrect. Either the publication-type for the reference needs changing, or the pub-id should be changed to another element.</report>
      </rule>
 
       <rule context="ref//pub-id[@pub-id-type='isbn']|isbn" id="isbn-conformity">

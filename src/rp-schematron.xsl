@@ -1814,6 +1814,26 @@
                <xsl:text/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','arxiv'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="ancestor::mixed-citation[@publication-type='web']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::mixed-citation[@publication-type='web']">
+            <xsl:attribute name="id">pub-id-check-5</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pub-id-check-5] Web reference (with id <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>) has a <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/>
+               <xsl:text/>
+               <xsl:value-of select="if (@pub-id-type) then concat('with a pub-id-type ',@pub-id-type) else 'with no pub-id-type'"/>
+               <xsl:text/> (<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>). This must be incorrect. Either the publication-type for the reference needs changing, or the pub-id should be changed to another element.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M34"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M34"/>

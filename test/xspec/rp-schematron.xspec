@@ -597,6 +597,16 @@
         <x:expect-report id="pub-id-check-4" role="error"/>
         <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="pub-id-check-5-pass">
+        <x:context href="../tests/rp/ref-pub-id-checks/pub-id-check-5/pass.xml"/>
+        <x:expect-not-report id="pub-id-check-5" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-check-5-fail">
+        <x:context href="../tests/rp/ref-pub-id-checks/pub-id-check-5/fail.xml"/>
+        <x:expect-report id="pub-id-check-5" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="isbn-conformity">
       <x:scenario label="isbn-conformity-test-pass">
