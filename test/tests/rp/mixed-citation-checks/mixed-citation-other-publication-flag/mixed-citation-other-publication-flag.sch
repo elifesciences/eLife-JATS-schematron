@@ -92,6 +92,7 @@
   <pattern id="mixed-citation-checks-pattern">
     <rule context="mixed-citation" id="mixed-citation-checks">
       <let name="publication-type-values" value="('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')"/>
+      <let name="name-elems" value="('name','string-name','collab','on-behalf-of','etal')"/>
       <report test="@publication-type='other'" role="warning" id="mixed-citation-other-publication-flag">[mixed-citation-other-publication-flag] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) has a publication-type='other'. Is that correct?</report>
     </rule>
   </pattern>

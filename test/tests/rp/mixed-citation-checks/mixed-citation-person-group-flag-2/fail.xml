@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="mixed-citation-person-group-flag-2.sch"?>
+<!--Context: mixed-citation
+Test: assert    person-group[@person-group-type='author']
+Message:  in reference (id=) does not have an author person-group. Is that correct? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+<mixed-citation publication-type="journal"><string-name><surname>Claus</surname>, <given-names>S.</given-names></string-name>, ..., <string-name><surname>Zoolander</surname>, <given-names>D.</given-names></string-name>, <etal>et al.</etal> (<year>2019</year>). <article-title>...</article-title>. <source>...</source> <volume>...</volume>, <fpage>..</fpage>–<lpage>..</lpage>.</mixed-citation>
+    </article>
+</root>

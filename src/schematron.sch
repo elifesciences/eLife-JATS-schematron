@@ -1783,7 +1783,7 @@
     
     <rule context="article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois-prc">
       <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
-      <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri/@xlink:href"/>
+      <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint']/@xlink:href"/>
       <let name="latest-rp-doi-version" value="tokenize($latest-rp-doi,'\.')[last()]"/>
       
       <assert test="starts-with(.,'10.7554/eLife.')" 
@@ -1845,6 +1845,25 @@
       <report test="funding-group" 
         role="error" 
         id="funding-exception"><value-of select="descendant::subj-group[@subj-group-type='display-channel'][1]/subject[1]"/>s cannot have funding, but this one has a funding-group element. Please remove it.</report>
+      
+    </rule>
+    
+    <rule context="article-version" id="article-version">
+      
+      <assert test="parent::article-meta" 
+        role="error" 
+        id="article-version-test-1"><name/> must be a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
+      <assert test="@article-version-type='publication-state'" 
+        role="error" 
+        id="article-version-test-2"><name/> must a article-version-type="publication-state" attribute. This one does not.</assert>
+      
+      <report test="@*[name()!='article-version-type']" 
+        role="error" 
+        id="article-version-test-3">The only attribute permitted on <name/> is article-version-type (with the value "publication-state"). This one has the following unallowed attribute(s): <value-of select="string-join(@*[name()!='article-version-type']/name(),'; ')"/>.</report>
+      
+      <assert test=".='version of record'" 
+        role="error" 
+        id="article-version-test-4"><name/> must contain the text 'version of record'. This one contains '<value-of select="."/>'.</assert>
       
     </rule>
 	 
@@ -2718,12 +2737,12 @@
     </rule>
     
     <rule context="event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" id="rp-event-tests">
-      <let name="rp-link" value="self-uri/@xlink:href"/>
+      <let name="rp-link" value="self-uri[@content-type='reviewed-preprint']/@xlink:href"/>
       <let name="rp-version" value="replace($rp-link,'^.*\.','')"/>
       <let name="rp-pub-date" value="date[@date-type='reviewed-preprint']/@iso-8601-date"/>
       <let name="sent-for-review-date" value="ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date"/>
       <let name="preprint-pub-date" value="parent::pub-history/event/date[@date-type='preprint']/@iso-8601-date"/>
-      <let name="later-rp-events" value="parent::pub-history/event[date[@date-type='reviewed-preprint'] and replace(self-uri[1]/@xlink:href,'^.*\.','') gt $rp-version]"/>
+      <let name="later-rp-events" value="parent::pub-history/event[date[@date-type='reviewed-preprint'] and replace(self-uri[@content-type='reviewed-preprint'][1]/@xlink:href,'^.*\.','') gt $rp-version]"/>
       
       <report test="($preprint-pub-date and $preprint-pub-date != '') and
         $preprint-pub-date ge $rp-pub-date"
@@ -2737,7 +2756,7 @@
       
       <report test="$later-rp-events/date/@iso-8601-date = $rp-pub-date"
         role="error" 
-        id="rp-event-test-3">Reviewed preprint publication date (<value-of select="$rp-pub-date"/>) in the publication history (for RP version <value-of select="$rp-version"/>) is the same or an earlier date than publication date for a later reviewed preprint version date (<value-of select="$later-rp-events/date/@iso-8601-date[. = $rp-pub-date]"/> for version(s) <value-of select="$later-rp-events/self-uri[1]/@xlink:href/replace(.,'^.*\.','')"/>). This must be incorrect.</report>
+        id="rp-event-test-3">Reviewed preprint publication date (<value-of select="$rp-pub-date"/>) in the publication history (for RP version <value-of select="$rp-version"/>) is the same or an earlier date than publication date for a later reviewed preprint version date (<value-of select="$later-rp-events/date/@iso-8601-date[. = $rp-pub-date]"/> for version(s) <value-of select="$later-rp-events/self-uri[@content-type='reviewed-preprint'][1]/@xlink:href/replace(.,'^.*\.','')"/>). This must be incorrect.</report>
       
     </rule>
     
@@ -3567,6 +3586,10 @@
       <report test=".=('http://dx.doi.org/10.13039/100004440','http://dx.doi.org/10.13039/100028897','http://dx.doi.org/10.13039/501100009053','http://dx.doi.org/10.13039/501100013372','http://dx.doi.org/10.13039/501100020194','http://dx.doi.org/10.13039/501100021773','http://dx.doi.org/10.13039/501100023312','http://dx.doi.org/10.13039/501100024310')" 
         role="warning" 
         id="wellcome-institution-id-test"><name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> is <value-of select="."/>. This is an uncommon funder - should the funder be listed as 'Wellcome Trust' (http://dx.doi.org/10.13039/100010269) instead.</report>
+      
+      <report test=".=('http://dx.doi.org/10.13039/100001003','http://dx.doi.org/10.13039/100008349','http://dx.doi.org/10.13039/100016133','http://dx.doi.org/10.13039/100017346','http://dx.doi.org/10.13039/100019718','http://dx.doi.org/10.13039/100020968','http://dx.doi.org/10.13039/501100001645','http://dx.doi.org/10.13039/501100008454','http://dx.doi.org/10.13039/501100014089')" 
+        role="warning" 
+        id="boehringer-institution-id-test">Please check funding for <value-of select="parent::institution-wrap/institution"/> carefully, as there are numerous similarly named, but different insitutions (e.g. Boehringer Ingelheim Stiftung; Boehringer Ingelheim Fonds; Boehringer Ingelheim; Boehringer Ingelheim [insert-country-name]).</report>
       
     </rule>
     
@@ -14731,6 +14754,7 @@ else self::*/local-name() = $allowed-p-blocks"
         'article-id',
         'article-meta',
         'article-title',
+        'article-version',
         'attrib',
         'author-notes',
         'award-group',

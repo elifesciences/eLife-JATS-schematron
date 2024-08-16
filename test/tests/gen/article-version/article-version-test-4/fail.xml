@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="article-version-test-4.sch"?>
+<!--Context: article-version
+Test: assert    .='version of record'
+Message:  must contain the text 'version of record'. This one contains ''. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <article-version article-version-type="publication-state">verison of record</article-version>
+        </article-meta>
+    </article>
+</root>

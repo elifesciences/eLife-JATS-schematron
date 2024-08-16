@@ -1339,7 +1339,7 @@
   <pattern id="article-metadata">
     <rule context="article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois-prc">
       <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
-      <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri/@xlink:href"/>
+      <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint']/@xlink:href"/>
       <let name="latest-rp-doi-version" value="tokenize($latest-rp-doi,'\.')[last()]"/>
       <report test="not(@specific-use) and (preceding-sibling::article-id[@pub-id-type='doi'] or following-sibling::article-id[@pub-id-type='doi' and not(@specific-use)])" role="error" id="prc-article-dois-5">Article level concept DOI must be first in article-meta, and there can only be one. This concept DOI has a preceding DOI or following concept DOI.</report>
     </rule>

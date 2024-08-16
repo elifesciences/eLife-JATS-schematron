@@ -332,8 +332,8 @@
         <let name="labels" value="./ref/label"/>
         <let name="indistinct-labels" value="for $label in distinct-values($labels) return $label[count($labels[. = $label]) gt 1]"/>
         <assert test="empty($indistinct-labels)" 
-        role="error" 
-        id="indistinct-ref-labels">Duplicate labels in reference list - <value-of select="string-join($indistinct-labels,'; ')"/>. Have there been typesetting errors?</assert>
+          role="error" 
+          id="indistinct-ref-labels">Duplicate labels in reference list - <value-of select="string-join($indistinct-labels,'; ')"/>. Have there been typesetting errors?</assert>
      </rule>
     </pattern>
 
@@ -414,6 +414,10 @@
         <report test="ancestor::mixed-citation[@publication-type='preprint'] and not(@pub-id-type=('doi','pmid','pmcid','arxiv'))" 
           role="error" 
           id="pub-id-check-4"><name/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','arxiv'.</report>
+
+        <report test="ancestor::mixed-citation[@publication-type='web']" 
+          role="error" 
+          id="pub-id-check-5">Web reference (with id <value-of select="ancestor::ref/@id"/>) has a <name/> <value-of select="if (@pub-id-type) then concat('with a pub-id-type ',@pub-id-type) else 'with no pub-id-type'"/> (<value-of select="."/>). This must be incorrect. Either the publication-type for the reference needs changing, or the pub-id should be changed to another element.</report>
      </rule>
 
       <rule context="ref//pub-id[@pub-id-type='isbn']|isbn" id="isbn-conformity">
@@ -432,6 +436,27 @@
           id="issn-conformity-test">pub-id contains an invalid ISSN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
       </rule>
     </pattern>
+
+    <pattern id="ref-person-group">
+      <rule context="ref//person-group" id="ref-person-group-checks">
+      
+        <assert test="normalize-space(@person-group-type)!=''" 
+          role="error" 
+          id="ref-person-group-type"><name/> must have a person-group-type attribute with a non-empty value.</assert>
+        
+        <report test="./@person-group-type = preceding-sibling::person-group/@person-group-type" 
+          role="warning" 
+          id="ref-person-group-type-2"><name/>s within a reference should be distinct. There are numerous person-groups with the person-group-type <value-of select="@person-group-type"/> within this reference (id=<value-of select="ancestor::ref/@id"/>).</report>
+        
+        <report test="ancestor::mixed-citation[@publication-type='book'] and not(normalize-space(@person-group-type)=('','author','editor'))" 
+          role="warning" 
+          id="ref-person-group-type-book">This <name/> inside a book reference has the person-group-type '<value-of select="@person-group-type"/>'. Is that correct?</report>
+        
+        <report test="ancestor::mixed-citation[@publication-type=('journal','data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')] and not(normalize-space(@person-group-type)=('','author'))" 
+          role="warning" 
+          id="ref-person-group-type-other">This <name/> inside a <value-of select="ancestor::mixed-citation/@publication-type"/> reference has the person-group-type '<value-of select="@person-group-type"/>'. Is that correct?</report>
+     </rule>
+    </pattern>
   
     <pattern id="ref">
       <rule context="ref" id="ref-checks">
@@ -448,6 +473,7 @@
     <pattern id="mixed-citation">
       <rule context="mixed-citation" id="mixed-citation-checks">
         <let name="publication-type-values" value="('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')"/>
+        <let name="name-elems" value="('name','string-name','collab','on-behalf-of','etal')"/>
         
         <report test="normalize-space(.)=('','.')" 
           role="error" 
@@ -468,6 +494,14 @@
         <report test="@publication-type='other'" 
           role="warning" 
           id="mixed-citation-other-publication-flag"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) has a publication-type='other'. Is that correct?</report>
+
+        <report test="*[name()=$name-elems]" 
+          role="error" 
+          id="mixed-citation-person-group-flag-1"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) has child name elements (<value-of select="string-join(distinct-values(*[name()=$name-elems]/name()),'; ')"/>). These all need to be placed in a person-group element with the appropriate person-group-type attribute.</report>
+
+        <assert test="person-group[@person-group-type='author']" 
+          role="warning" 
+          id="mixed-citation-person-group-flag-2"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have an author person-group. Is that correct?</assert>
      </rule>
     </pattern>
 

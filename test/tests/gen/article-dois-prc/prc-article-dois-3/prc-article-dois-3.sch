@@ -1339,7 +1339,7 @@
   <pattern id="article-metadata">
     <rule context="article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois-prc">
       <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
-      <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri/@xlink:href"/>
+      <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint']/@xlink:href"/>
       <let name="latest-rp-doi-version" value="tokenize($latest-rp-doi,'\.')[last()]"/>
       <report test="@specific-use and not(contains(.,$article-id))" role="error" id="prc-article-dois-3">Article level specific version DOI must contain the article-id (<value-of select="$article-id"/>). Currently it does not <value-of select="."/>
       </report>

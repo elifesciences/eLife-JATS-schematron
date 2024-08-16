@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="ref-person-group-type-book.sch"?>
+<!--Context: ref//person-group
+Test: report    ancestor::mixed-citation[@publication-type='book'] and not(normalize-space(@person-group-type)=('','author','editor'))
+Message: This  inside a book reference has the person-group-type ''. Is that correct? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref id="c1"><mixed-citation publication-type="book"><person-group person-group-type="author"><string-name><surname>Claus</surname>, <given-names>S.</given-names></string-name>, ...</person-group> (<year>2019</year>). <chapter-title>...</chapter-title>. In <person-group person-group-type="editor"><string-name><surname>Zoolander</surname>, <given-names>D.</given-names></string-name></person-group> (Ed.) <source>...</source> <volume>...</volume>, <fpage>..</fpage>–<lpage>..</lpage>.</mixed-citation></ref>
+    </article>
+</root>

@@ -626,6 +626,48 @@
         <x:expect-not-assert id="article-metadata-exceptions-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="article-version">
+      <x:scenario label="article-version-test-1-pass">
+        <x:context href="../tests/gen/article-version/article-version-test-1/pass.xml"/>
+        <x:expect-not-assert id="article-version-test-1" role="error"/>
+        <x:expect-not-assert id="article-version-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-version-test-1-fail">
+        <x:context href="../tests/gen/article-version/article-version-test-1/fail.xml"/>
+        <x:expect-assert id="article-version-test-1" role="error"/>
+        <x:expect-not-assert id="article-version-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-version-test-2-pass">
+        <x:context href="../tests/gen/article-version/article-version-test-2/pass.xml"/>
+        <x:expect-not-assert id="article-version-test-2" role="error"/>
+        <x:expect-not-assert id="article-version-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-version-test-2-fail">
+        <x:context href="../tests/gen/article-version/article-version-test-2/fail.xml"/>
+        <x:expect-assert id="article-version-test-2" role="error"/>
+        <x:expect-not-assert id="article-version-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-version-test-3-pass">
+        <x:context href="../tests/gen/article-version/article-version-test-3/pass.xml"/>
+        <x:expect-not-report id="article-version-test-3" role="error"/>
+        <x:expect-not-assert id="article-version-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-version-test-3-fail">
+        <x:context href="../tests/gen/article-version/article-version-test-3/fail.xml"/>
+        <x:expect-report id="article-version-test-3" role="error"/>
+        <x:expect-not-assert id="article-version-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-version-test-4-pass">
+        <x:context href="../tests/gen/article-version/article-version-test-4/pass.xml"/>
+        <x:expect-not-assert id="article-version-test-4" role="error"/>
+        <x:expect-not-assert id="article-version-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-version-test-4-fail">
+        <x:context href="../tests/gen/article-version/article-version-test-4/fail.xml"/>
+        <x:expect-assert id="article-version-test-4" role="error"/>
+        <x:expect-not-assert id="article-version-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="test-article-categories">
       <x:scenario label="disp-subj-test-pass">
         <x:context href="../tests/gen/test-article-categories/disp-subj-test/pass.xml"/>
@@ -3623,6 +3665,16 @@
       <x:scenario label="wellcome-institution-id-test-fail">
         <x:context href="../tests/gen/institution-id-tests/wellcome-institution-id-test/fail.xml"/>
         <x:expect-report id="wellcome-institution-id-test" role="warning"/>
+        <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="boehringer-institution-id-test-pass">
+        <x:context href="../tests/gen/institution-id-tests/boehringer-institution-id-test/pass.xml"/>
+        <x:expect-not-report id="boehringer-institution-id-test" role="warning"/>
+        <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="boehringer-institution-id-test-fail">
+        <x:context href="../tests/gen/institution-id-tests/boehringer-institution-id-test/fail.xml"/>
+        <x:expect-report id="boehringer-institution-id-test" role="warning"/>
         <x:expect-not-assert id="institution-id-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
