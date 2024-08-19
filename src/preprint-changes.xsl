@@ -259,9 +259,45 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    
+    <!-- wrapper for mixed-citation templates to run in sequence -->
+    <xsl:template match="mixed-citation">
+         <xsl:variable name="mixed-citation-with-person-group">
+             <xsl:apply-templates select="." mode="mixed-citation-round-1"/>
+         </xsl:variable>
+        <xsl:apply-templates select="$mixed-citation-with-person-group" mode="mixed-citation-round-2"/>
+    </xsl:template>
+
+    <!-- Introduces author person-groups into refs when they are missing-->
+    <xsl:template xml:id="add-person-group" mode="mixed-citation-round-1" match="mixed-citation[not(person-group[@person-group-type='author'])]">
+        <xsl:variable name="name-elems" select="('name','string-name','collab','on-behalf-of','etal')"/>
+        <xsl:copy>
+            <xsl:choose>
+                <xsl:when test="./*[name()=$name-elems]">
+                    <xsl:apply-templates select="@*"/>
+                    <xsl:element name="person-group">
+                    <xsl:attribute name="person-group-type">author</xsl:attribute>
+                        <xsl:for-each select="./*[name()=$name-elems]|./text()[following-sibling::*[name()=$name-elems]]">
+                            <xsl:copy>
+                              <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>
+                            </xsl:copy>
+                        </xsl:for-each>
+                    </xsl:element>
+                    <xsl:for-each select="./*[not(name()=$name-elems)]|./*[name()=$name-elems][last()]/following-sibling::text()|./text()[preceding-sibling::*[not(name()=$name-elems)]]">
+                        <xsl:copy>
+                            <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>
+                        </xsl:copy>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:copy>
+    </xsl:template>
 
     <!-- Fixes common tagging error with lpage in journal refs -->
-    <xsl:template xml:id="journal-ref-lpage" match="mixed-citation[@publication-type='journal' and lpage]">
+    <xsl:template xml:id="journal-ref-lpage" mode="mixed-citation-round-2" match="mixed-citation[@publication-type='journal' and lpage]">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:for-each select="*|text()">
@@ -286,7 +322,7 @@
     </xsl:template>
     
     <!-- Change publication-type="website" to "web" for consistency across all eLife content -->
-    <xsl:template xml:id="web-ref-type" match="mixed-citation[@publication-type='website']|element-citation[@publication-type='website']">
+    <xsl:template xml:id="web-ref-type" mode="mixed-citation-round-2" match="mixed-citation[@publication-type='website']|element-citation[@publication-type='website']">
         <xsl:copy>
             <xsl:attribute name="publication-type">web</xsl:attribute>
             <xsl:apply-templates select="@*[name()!='publication-type']"/>
@@ -296,7 +332,7 @@
 
     <!-- Attempt to determine correct type/content for publication-type="other"
             Just trying preprints to begin with -->
-    <xsl:template xml:id="other-ref-type" match="mixed-citation[@publication-type='other']">
+    <xsl:template xml:id="other-ref-type" mode="mixed-citation-round-2" match="mixed-citation[@publication-type='other']">
         <xsl:variable name="preprint-regex" select="'^(biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra)$'"/>
         <xsl:copy>
             <xsl:choose>
