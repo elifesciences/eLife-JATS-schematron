@@ -278,15 +278,11 @@
                     <xsl:element name="person-group">
                     <xsl:attribute name="person-group-type">author</xsl:attribute>
                         <xsl:for-each select="./*[name()=$name-elems]|./text()[following-sibling::*[name()=$name-elems]]">
-                            <xsl:copy>
-                              <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>
-                            </xsl:copy>
+                            <xsl:apply-templates select="."/>
                         </xsl:for-each>
                     </xsl:element>
                     <xsl:for-each select="./*[not(name()=$name-elems)]|./*[name()=$name-elems][last()]/following-sibling::text()|./text()[preceding-sibling::*[not(name()=$name-elems)]]">
-                        <xsl:copy>
-                            <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>
-                        </xsl:copy>
+                        <xsl:apply-templates select="."/>
                     </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
@@ -315,9 +311,7 @@
                                 <xsl:value-of select="concat(' ',substring-after(replace(.,'^[\s+\.]',''),' '))"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:copy>
-                                    <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>
-                                </xsl:copy>
+                                <xsl:apply-templates select="."/>
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
