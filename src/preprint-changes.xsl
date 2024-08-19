@@ -260,25 +260,6 @@
         </xsl:choose>
     </xsl:template>
 
-    <!-- Introduce author person-group for citations without them -->
-    <xsl:template xml:id="add-person-group" match="mixed-citation[not(person-group[@person-group-type='author'])]/(*[name()=$name-elems]|text()[following-sibling::*[name()=$name-elems]])">
-        <xsl:choose>
-            <xsl:when test="self::* and not(./preceding-sibling::*[name()=$name-elems])">
-                <xsl:element name="person-group">
-                <xsl:attribute name="person-group-type">author</xsl:attribute>
-                <xsl:copy>
-                    <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>
-                </xsl:copy>
-                <xsl:for-each select="./following-sibling::*[name()=$name-elems]|./following-sibling::text()[following-sibling::*[name()=$name-elems]]">
-                    <xsl:copy>
-                        <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>
-                    </xsl:copy>
-                </xsl:for-each>
-                </xsl:element>
-            </xsl:when>
-        </xsl:choose>
-    </xsl:template>
-
     <!-- Fixes common tagging error with lpage in journal refs -->
     <xsl:template xml:id="journal-ref-lpage" match="mixed-citation[@publication-type='journal' and lpage]">
         <xsl:copy>
