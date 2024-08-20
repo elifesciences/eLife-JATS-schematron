@@ -12,32 +12,27 @@
 <publisher-name>eLife Sciences Publications, Ltd</publisher-name>
 </publisher>
 </journal-meta>
-<article-meta>
-            ...
+<article-meta><article-version article-version-type="publication-state">reviewed preprint</article-version>
 <title-group>
-<article-title/>
-</title-group>
-<contrib-group>
+<article-title />
+</title-group><contrib-group>
 <contrib contrib-type="author" corresp="yes">
 <name>
 <surname>Claus</surname>
 <given-names>Santa</given-names>
 </name>
 <xref ref-type="corresp" rid="cor1">*</xref>
-<xref ref-type="aff" rid="aff1"/></contrib>
+<xref ref-type="aff" rid="aff1" /></contrib>
 <contrib contrib-type="author">
 <name>
 <surname>Elf</surname>
 <given-names>Top</given-names>
 </name>
-<xref ref-type="aff" rid="aff1"/></contrib>
+<xref ref-type="aff" rid="aff1" /></contrib>
 <aff id="aff1"><institution>North Pole Enterprises LLC</institution></aff>
-</contrib-group>
-<author-notes>
+</contrib-group><author-notes>
 <corresp id="cor1"><label>*</label>Corresponding author. <email>s.claus@north.pole</email></corresp>
-</author-notes>
-            ...
-<abstract>
+</author-notes><abstract>
 <p>This is the abstract</p>
 </abstract>
 <abstract abstract-type="teaser">
@@ -49,10 +44,8 @@
 <p>A plain language summary</p>
 </abstract>
 <abstract abstract-type="graphical">
-<fig/>
-</abstract>
-...
-</article-meta>
+<fig />
+</abstract></article-meta>
         ...
 </front>
 <body>
@@ -79,10 +72,10 @@
 <back>
 <ref-list>
 <ref id="r1">
-<mixed-citation publication-type="journal"><pub-id pub-id-type="doi">10.7554/eLife.09560</pub-id></mixed-citation>
+<mixed-citation publication-type="journal"><pub-id pub-id-type="doi">10.7554/eLife.09560</pub-id> <year>no date</year></mixed-citation>
 </ref>
 <ref id="r2">
-<mixed-citation publication-type="web">The internet</mixed-citation>
+<mixed-citation publication-type="web">The internet <year>no date</year></mixed-citation>
 </ref>
 </ref-list>
 </back>

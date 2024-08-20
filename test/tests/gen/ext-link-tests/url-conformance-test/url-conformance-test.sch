@@ -1342,7 +1342,7 @@
       <let name="parent" value="parent::*[1]/local-name()"/>
       <let name="form-children" value="string-join(         for $x in child::* return if ($x/local-name()=$formatting-elems) then $x/local-name()         else ()         ,', ')"/>
       <let name="non-form-children" value="string-join(         for $x in child::* return if ($x/local-name()=$formatting-elems) then ()         else ($x/local-name())         ,', ')"/>
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)\[\]+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

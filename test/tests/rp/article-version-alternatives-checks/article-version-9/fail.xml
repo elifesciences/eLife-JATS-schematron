@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="article-version-9.sch"?>
+<!--Context: article/front/article-meta/article-version-alternatives
+Test: assert    article-version[@article-version-type='preprint-version']
+Message: article-version-alternatives must contain a <article-version article-version-type="preprint-version">. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <front>
+            <journal-meta>
+                <journal-id>elife</journal-id>
+            </journal-meta>
+            <article-meta>
+                <article-version-alternatives>
+                    <article-version article-version-type="publication-state">reviewed preprint</article-version>
+                </article-version-alternatives>
+            </article-meta>
+        </front>
+    </article>
+</root>

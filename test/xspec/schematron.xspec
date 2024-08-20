@@ -235,6 +235,16 @@
         <x:expect-assert id="test-article-id" role="error"/>
         <x:expect-not-assert id="test-article-metadata-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="test-article-version-presence-pass">
+        <x:context href="../tests/gen/test-article-metadata/test-article-version-presence/pass.xml"/>
+        <x:expect-not-assert id="test-article-version-presence" role="error"/>
+        <x:expect-not-assert id="test-article-metadata-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="test-article-version-presence-fail">
+        <x:context href="../tests/gen/test-article-metadata/test-article-version-presence/fail.xml"/>
+        <x:expect-assert id="test-article-version-presence" role="error"/>
+        <x:expect-not-assert id="test-article-metadata-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="test-article-presence-pass">
         <x:context href="../tests/gen/test-article-metadata/test-article-presence/pass.xml"/>
         <x:expect-not-assert id="test-article-presence" role="error"/>

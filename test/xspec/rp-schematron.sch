@@ -560,6 +560,7 @@
 
     <pattern id="general-article-meta-checks-pattern">
     <rule context="article/front/article-meta" id="general-article-meta-checks">
+        <let name="is-reviewed-preprint" value="parent::front/journal-meta/lower-case(journal-id[1])='elife'"/>
         <let name="distinct-emails" value="distinct-values((descendant::contrib[@contrib-type='author']/email, author-notes/corresp/email))"/>
         <let name="distinct-email-count" value="count($distinct-emails)"/>
         <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
@@ -567,7 +568,9 @@
         
         <assert test="article-id[@pub-id-type='doi']" role="error" id="article-id">article-meta must contain at least one DOI - a &lt;article-id pub-id-type="doi"&gt; element.</assert>
 
-        <assert test="count(article-version)=1" role="error" id="article-version-1">article-meta must contain one (and only one) &lt;article-version&gt; element.</assert>
+        <report test="not($is-reviewed-preprint) and not(count(article-version)=1)" role="error" id="article-version-1">article-meta in preprints must contain one (and only one) &lt;article-version&gt; element.</report>
+        
+        <report test="$is-reviewed-preprint and not(count(article-version-alternatives)=1)" role="error" id="article-version-3">article-meta in reviewed preprints must contain one (and only one) &lt;article-version-alternatives&gt; element.</report>
 
         <assert test="count(contrib-group)=1" role="error" id="article-contrib-group">article-meta must contain one (and only one) &lt;contrib-group&gt; element.</assert>
         
@@ -577,8 +580,28 @@
       </rule>
   </pattern>
   <pattern id="article-version-checks-pattern">
-    <rule context="article/front/article-meta/article-version" id="article-version-checks">
-        <assert test="matches(.,'^1\.\d+$')" role="error" id="article-version-2">article-must be in the format 1.x (e.g. 1.11). This one is '<value-of select="."/>'.</assert>
+    <rule context="article/front/article-meta//article-version" id="article-version-checks">
+        
+        <report test="parent::article-meta and not(@article-version-type) and not(matches(.,'^1\.\d+$'))" role="error" id="article-version-2">article-version must be in the format 1.x (e.g. 1.11). This one is '<value-of select="."/>'.</report>
+        
+        <report test="parent::article-version-alternatives and not(@article-version-type=('publication-state','preprint-version'))" role="error" id="article-version-4">article-version placed within article-meta-alternatives must have an article-version-type attribute with either the value 'publication-state' or 'preprint-version'.</report>
+        
+        <report test="@article-version-type='preprint-version' and not(matches(.,'^1\.\d+$'))" role="error" id="article-version-5">article-version with the attribute article-version-type="preprint-version" must contain text in the format 1.x (e.g. 1.11). This one has '<value-of select="."/>'.</report>
+        
+        <report test="@article-version-type='publication-state' and .!='reviewed preprint'" role="error" id="article-version-6">article-version with the attribute article-version-type="publication-state" must contain the text 'reviewed preprint'. This one has '<value-of select="."/>'.</report>
+        
+        <report test="./@article-version-type = preceding-sibling::article-version/@article-version-type" role="error" id="article-version-7">article-version must be distinct. There is one or more article-version elements with the article-version-type <value-of select="@article-version-type"/>.</report>
+        
+        <report test="@*[name()!='article-version-type']" role="error" id="article-version-11">The only attribute permitted on <name/> is article-version-type. This one has the following unallowed attribute(s): <value-of select="string-join(@*[name()!='article-version-type']/name(),'; ')"/>.</report>
+      </rule>
+  </pattern>
+  <pattern id="article-version-alternatives-checks-pattern">
+    <rule context="article/front/article-meta/article-version-alternatives" id="article-version-alternatives-checks">
+        <assert test="count(article-version)=2" role="error" id="article-version-8">article-version-alternatives must contain 2 and only 2 article-version elements. This one has '<value-of select="count(article-version)"/>'.</assert>
+        
+        <assert test="article-version[@article-version-type='preprint-version']" role="error" id="article-version-9">article-version-alternatives must contain a &lt;article-version article-version-type="preprint-version"&gt;.</assert>
+        
+        <assert test="article-version[@article-version-type='publication-state']" role="error" id="article-version-10">article-version-alternatives must contain a &lt;article-version article-version-type="publication-state"&gt;.</assert>
       </rule>
   </pattern>
 
@@ -611,7 +634,7 @@
     <rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests">
       
       <!-- Needs further testing. Presume that we want to ensure a url follows certain URI schemes. -->
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)\[\]+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
       
       <report test="matches(@xlink:href,'^(ftp|sftp)://\S+:\S+@')" role="warning" id="ftp-credentials-flag">@xlink:href contains what looks like a link to an FTP site which contains credentials (username and password) - '<value-of select="@xlink:href"/>'. If the link without credentials works (<value-of select="concat(substring-before(@xlink:href,'://'),'://',substring-after(@xlink:href,'@'))"/>), then please replace it with that.</report>
       
@@ -833,7 +856,8 @@
       <assert test="descendant::article/body/sec/title or descendant::article/back/sec/title" role="error" id="title-toc-checks-xspec-assert">article/body/sec/title|article/back/sec/title must be present.</assert>
       <assert test="descendant::p[(count(*)=1) and (child::bold or child::italic)]" role="error" id="p-bold-checks-xspec-assert">p[(count(*)=1) and (child::bold or child::italic)] must be present.</assert>
       <assert test="descendant::article/front/article-meta" role="error" id="general-article-meta-checks-xspec-assert">article/front/article-meta must be present.</assert>
-      <assert test="descendant::article/front/article-meta/article-version" role="error" id="article-version-checks-xspec-assert">article/front/article-meta/article-version must be present.</assert>
+      <assert test="descendant::article/front/article-meta//article-version" role="error" id="article-version-checks-xspec-assert">article/front/article-meta//article-version must be present.</assert>
+      <assert test="descendant::article/front/article-meta/article-version-alternatives" role="error" id="article-version-alternatives-checks-xspec-assert">article/front/article-meta/article-version-alternatives must be present.</assert>
       <assert test="descendant::title" role="error" id="digest-title-checks-xspec-assert">title must be present.</assert>
       <assert test="descendant::ext-link[@ext-link-type='uri']" role="error" id="ext-link-tests-xspec-assert">ext-link[@ext-link-type='uri'] must be present.</assert>
       <assert test="descendant::ext-link" role="error" id="ext-link-tests-2-xspec-assert">ext-link must be present.</assert>

@@ -12,6 +12,10 @@
       <x:context href="../tests/preprint-changes/journal-meta/input.xml"/>
       <x:expect label="Testing the template: journal-meta" href="../tests/preprint-changes/journal-meta/output.xml"/>
     </x:scenario>
+    <x:scenario label="add-article-version">
+      <x:context href="../tests/preprint-changes/add-article-version/input.xml"/>
+      <x:expect label="Testing the template: add-article-version" href="../tests/preprint-changes/add-article-version/output.xml"/>
+    </x:scenario>
     <x:scenario label="singular-aff-contrib">
       <x:context href="../tests/preprint-changes/singular-aff-contrib/input.xml"/>
       <x:expect label="Testing the template: singular-aff-contrib" href="../tests/preprint-changes/singular-aff-contrib/output.xml"/>
@@ -47,6 +51,10 @@
     <x:scenario label="fix-common-ref-issues">
       <x:context href="../tests/preprint-changes/fix-common-ref-issues/input.xml"/>
       <x:expect label="Testing the template: fix-common-ref-issues" href="../tests/preprint-changes/fix-common-ref-issues/output.xml"/>
+    </x:scenario>
+    <x:scenario label="add-year-to-ref">
+      <x:context href="../tests/preprint-changes/add-year-to-ref/input.xml"/>
+      <x:expect label="Testing the template: add-year-to-ref" href="../tests/preprint-changes/add-year-to-ref/output.xml"/>
     </x:scenario>
     <x:scenario label="biorender-permissions">
       <x:context href="../tests/preprint-changes/biorender-permissions/input.xml"/>

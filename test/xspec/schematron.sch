@@ -1521,7 +1521,10 @@
     <let name="is-prc" value="e:is-prc(.)"/>
     
 	<assert test="matches($article-id,'^\d{5,6}$')" role="error" id="test-article-id">article-id must consist only of 5 or 6 digits. Currently it is <value-of select="article-id[@pub-id-type='publisher-id']"/>
-      </assert> 
+      </assert>
+    
+    <assert test="count(article-version) = 1" role="error" id="test-article-version-presence">There must be one article-version element in the article-meta. Currently there are <value-of select="count(article-version)"/>
+      </assert>
 	   
      <assert test="count(article-categories) = 1" role="error" id="test-article-presence">There must be one article-categories element in the article-meta. Currently there are <value-of select="count(article-categories)"/>
       </assert>
@@ -1653,6 +1656,7 @@
       
       <assert test="parent::article-meta" role="error" id="article-version-test-1">
         <name/> must be a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
+      
       <assert test="@article-version-type='publication-state'" role="error" id="article-version-test-2">
         <name/> must a article-version-type="publication-state" attribute. This one does not.</assert>
       
@@ -3164,7 +3168,7 @@
         id="broken-uri-test">Broken URI in @xlink:href</assert>-->
       
       <!-- Needs further testing. Presume that we want to ensure a url follows certain URI schemes. -->
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)\[\]+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
       
       <report test="matches(@xlink:href,'^(ftp|sftp)://\S+:\S+@')" role="warning" id="ftp-credentials-flag">@xlink:href contains what looks like a link to an FTP site which contains credentials (username and password) - '<value-of select="@xlink:href"/>'. If the link without credentials works (<value-of select="concat(substring-before(@xlink:href,'://'),'://',substring-after(@xlink:href,'@'))"/>), then please replace it with that and notify the authors that you have done so. If the link without credentials does not work, please query with the authors in order to obtain a link without credentials.</report>
       
