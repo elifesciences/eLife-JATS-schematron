@@ -1,18 +1,17 @@
 <!--Testing template with name: singular-aff-->
-<article-meta>
+<article-meta xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article-version article-version-type="publication-state">reviewed preprint</article-version>
 <contrib-group>
 <contrib contrib-type="author">
 <name>
 <surname>Claus</surname>
 <given-names>Santa</given-names>
 </name>
-<xref ref-type="aff" rid="aff1"/></contrib>
+<xref ref-type="aff" rid="aff1" /></contrib>
 <contrib contrib-type="author">
 <name>
 <surname>Elf</surname>
 <given-names>Top</given-names>
 </name>
-<xref ref-type="aff" rid="aff1"/></contrib>
+<xref ref-type="aff" rid="aff1" /></contrib>
 <aff id="aff1"><institution>North Pole Enterprises LLC</institution></aff>
-</contrib-group>
-</article-meta>
+</contrib-group></article-meta>

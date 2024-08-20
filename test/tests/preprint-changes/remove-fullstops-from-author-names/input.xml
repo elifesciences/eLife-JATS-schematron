@@ -1,20 +1,22 @@
 <!--Testing template with id: remove-fullstops-from-author-names-->
 <article-meta>
-    <contrib contrib-type="author">
-        <name>
-            <surname>Claus</surname>
-            <given-names>Santa S. J.</given-names>
-        </name>
-    </contrib>
-    <contrib contrib-type="author">
-        <name>
-            <surname>Claus</surname>
-            <given-names>S. J.</given-names>
-        </name>
-    </contrib>
-    <contrib contrib-type="author">
-        <name>
-            <surname>de A. M. M. Armas</surname>
-        </name>
-    </contrib>
+<contrib-group>
+<contrib contrib-type="author">
+<name>
+<surname>Claus</surname>
+<given-names>Santa S. J.</given-names>
+</name>
+</contrib>
+<contrib contrib-type="author">
+<name>
+<surname>Claus</surname>
+<given-names>S. J.</given-names>
+</name>
+</contrib>
+<contrib contrib-type="author">
+<name>
+<surname>de A. M. M. Armas</surname>
+</name>
+</contrib>
+</contrib-group>
 </article-meta>
