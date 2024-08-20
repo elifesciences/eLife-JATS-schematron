@@ -89,19 +89,14 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="general-article-meta-checks-pattern">
-    <rule context="article/front/article-meta" id="general-article-meta-checks">
-      <let name="is-reviewed-preprint" value="parent::front/journal-meta/lower-case(journal-id[1])='elife'"/>
-      <let name="distinct-emails" value="distinct-values((descendant::contrib[@contrib-type='author']/email, author-notes/corresp/email))"/>
-      <let name="distinct-email-count" value="count($distinct-emails)"/>
-      <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
-      <let name="corresp-author-count" value="count($corresp-authors)"/>
-      <assert test="count(contrib-group)=1" role="error" id="article-contrib-group">[article-contrib-group] article-meta must contain one (and only one) &lt;contrib-group&gt; element.</assert>
+  <pattern id="article-version-checks-pattern">
+    <rule context="article/front/article-meta//article-version" id="article-version-checks">
+      <report test="./@article-version-type = preceding-sibling::article-version/@article-version-type" role="error" id="article-version-7">[article-version-7] article-version must be distinct. There is one or more article-version elements with the article-version-type <value-of select="@article-version-type"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/article-meta" role="error" id="general-article-meta-checks-xspec-assert">article/front/article-meta must be present.</assert>
+      <assert test="descendant::article/front/article-meta//article-version" role="error" id="article-version-checks-xspec-assert">article/front/article-meta//article-version must be present.</assert>
     </rule>
   </pattern>
 </schema>

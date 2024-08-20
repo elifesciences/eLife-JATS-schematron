@@ -748,6 +748,7 @@
 
     <pattern id="article-metadata">
       <rule context="article/front/article-meta" id="general-article-meta-checks">
+        <let name="is-reviewed-preprint" value="parent::front/journal-meta/lower-case(journal-id[1])='elife'"/>
         <let name="distinct-emails" value="distinct-values((descendant::contrib[@contrib-type='author']/email, author-notes/corresp/email))"/>
         <let name="distinct-email-count" value="count($distinct-emails)"/>
         <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
@@ -757,9 +758,13 @@
         role="error" 
         id="article-id">article-meta must contain at least one DOI - a &lt;article-id pub-id-type="doi"> element.</assert>
 
-        <assert test="count(article-version)=1" 
-        role="error" 
-        id="article-version-1">article-meta must contain one (and only one) &lt;article-version> element.</assert>
+        <report test="not($is-reviewed-preprint) and not(count(article-version)=1)" 
+          role="error" 
+          id="article-version-1">article-meta in preprints must contain one (and only one) &lt;article-version> element.</report>
+        
+        <report test="$is-reviewed-preprint and not(count(article-version-alternatives)=1)" 
+          role="error" 
+          id="article-version-3">article-meta in reviewed preprints must contain one (and only one) &lt;article-version-alternatives> element.</report>
 
         <assert test="count(contrib-group)=1" 
         role="error" 
@@ -774,10 +779,41 @@
         id="article-email-corresp-author-count-equivalence">The number of corresponding authors (<value-of select="$corresp-author-count"/>: <value-of select="string-join($corresp-authors,'; ')"/>) is not equal to the number of distinct email addresses (<value-of select="$distinct-email-count"/>: <value-of select="string-join($distinct-emails,'; ')"/>). Is this correct?</assert>
       </rule>
 
-      <rule context="article/front/article-meta/article-version" id="article-version-checks">
-        <assert test="matches(.,'^1\.\d+$')" 
-        role="error" 
-        id="article-version-2">article-must be in the format 1.x (e.g. 1.11). This one is '<value-of select="."/>'.</assert>
+      <rule context="article/front/article-meta//article-version" id="article-version-checks">
+        
+        <report test="parent::article-meta and not(@article-version-type) and not(matches(.,'^1\.\d+$'))" 
+          role="error" 
+          id="article-version-2">article-version must be in the format 1.x (e.g. 1.11). This one is '<value-of select="."/>'.</report>
+        
+        <report test="parent::article-version-alternatives and not(@article-version-type=('publication-state','preprint-version'))" 
+          role="error" 
+          id="article-version-4">article-version placed within article-meta-alternatives must have an article-version-type attribute with either the value 'publication-state' or 'preprint-version'.</report>
+        
+        <report test="@article-version-type='preprint-version' and not(matches(.,'^1\.\d+$'))" 
+          role="error" 
+          id="article-version-5">article-version with the attribute article-version-type="preprint-version" must contain text in the format 1.x (e.g. 1.11). This one has '<value-of select="."/>'.</report>
+        
+        <report test="@article-version-type='publication-state' and .!='reviewed preprint'" 
+          role="error" 
+          id="article-version-6">article-version with the attribute article-version-type="publication-state" must contain the text 'reviewed preprint'. This one has '<value-of select="."/>'.</report>
+        
+        <report test="./@article-version-type = preceding-sibling::article-version/@article-version-type" 
+          role="error" 
+          id="article-version-7">article-version must be distinct. There is one or more article-version elements with the article-version-type <value-of select="@article-version-type"/>.</report>
+      </rule>
+      
+      <rule context="article/front/article-meta/article-version-alternatives" id="article-version-alternatives-checks">
+        <assert test="count(article-version)=2" 
+          role="error" 
+          id="article-version-8">article-version-alternatives must contain 2 and only 2 article-version elements. This one has '<value-of select="count(article-version)"/>'.</assert>
+        
+        <assert test="article-version[@article-version-type='preprint-version']" 
+          role="error" 
+          id="article-version-9">article-version-alternatives must contain a &lt;article-version article-version-type="preprint-version">.</assert>
+        
+        <assert test="article-version[@article-version-type='publication-state']" 
+          role="error" 
+          id="article-version-10">article-version-alternatives must contain a &lt;article-version article-version-type="publication-state">.</assert>
       </rule>
     </pattern>
 

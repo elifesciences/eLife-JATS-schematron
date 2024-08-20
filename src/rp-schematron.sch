@@ -413,6 +413,7 @@
       </rule></pattern>
 
     <pattern id="general-article-meta-checks-pattern"><rule context="article/front/article-meta" id="general-article-meta-checks">
+        <let name="is-reviewed-preprint" value="parent::front/journal-meta/lower-case(journal-id[1])='elife'"/>
         <let name="distinct-emails" value="distinct-values((descendant::contrib[@contrib-type='author']/email, author-notes/corresp/email))"/>
         <let name="distinct-email-count" value="count($distinct-emails)"/>
         <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
@@ -420,15 +421,32 @@
         
         <assert test="article-id[@pub-id-type='doi']" role="error" id="article-id">[article-id] article-meta must contain at least one DOI - a &lt;article-id pub-id-type="doi"&gt; element.</assert>
 
-        <assert test="count(article-version)=1" role="error" id="article-version-1">[article-version-1] article-meta must contain one (and only one) &lt;article-version&gt; element.</assert>
+        <report test="not($is-reviewed-preprint) and not(count(article-version)=1)" role="error" id="article-version-1">[article-version-1] article-meta in preprints must contain one (and only one) &lt;article-version&gt; element.</report>
+        
+        <report test="$is-reviewed-preprint and not(count(article-version-alternatives)=1)" role="error" id="article-version-3">[article-version-3] article-meta in reviewed preprints must contain one (and only one) &lt;article-version-alternatives&gt; element.</report>
 
         <assert test="count(contrib-group)=1" role="error" id="article-contrib-group">[article-contrib-group] article-meta must contain one (and only one) &lt;contrib-group&gt; element.</assert>
         
         <assert test="(descendant::contrib[@contrib-type='author' and email]) or (descendant::contrib[@contrib-type='author']/xref[@ref-type='corresp']/@rid=./author-notes/corresp/@id)" role="error" id="article-no-emails">[article-no-emails] This preprint has no emails for corresponding authors, which must be incorrect.</assert>
         
         <assert test="$corresp-author-count=$distinct-email-count" role="warning" id="article-email-corresp-author-count-equivalence">[article-email-corresp-author-count-equivalence] The number of corresponding authors (<value-of select="$corresp-author-count"/>: <value-of select="string-join($corresp-authors,'; ')"/>) is not equal to the number of distinct email addresses (<value-of select="$distinct-email-count"/>: <value-of select="string-join($distinct-emails,'; ')"/>). Is this correct?</assert>
-      </rule></pattern><pattern id="article-version-checks-pattern"><rule context="article/front/article-meta/article-version" id="article-version-checks">
-        <assert test="matches(.,'^1\.\d+$')" role="error" id="article-version-2">[article-version-2] article-must be in the format 1.x (e.g. 1.11). This one is '<value-of select="."/>'.</assert>
+      </rule></pattern><pattern id="article-version-checks-pattern"><rule context="article/front/article-meta//article-version" id="article-version-checks">
+        
+        <report test="parent::article-meta and not(@article-version-type) and not(matches(.,'^1\.\d+$'))" role="error" id="article-version-2">[article-version-2] article-version must be in the format 1.x (e.g. 1.11). This one is '<value-of select="."/>'.</report>
+        
+        <report test="parent::article-version-alternatives and not(@article-version-type=('publication-state','preprint-version'))" role="error" id="article-version-4">[article-version-4] article-version placed within article-meta-alternatives must have an article-version-type attribute with either the value 'publication-state' or 'preprint-version'.</report>
+        
+        <report test="@article-version-type='preprint-version' and not(matches(.,'^1\.\d+$'))" role="error" id="article-version-5">[article-version-5] article-version with the attribute article-version-type="preprint-version" must contain text in the format 1.x (e.g. 1.11). This one has '<value-of select="."/>'.</report>
+        
+        <report test="@article-version-type='publication-state' and .!='reviewed preprint'" role="error" id="article-version-6">[article-version-6] article-version with the attribute article-version-type="publication-state" must contain the text 'reviewed preprint'. This one has '<value-of select="."/>'.</report>
+        
+        <report test="./@article-version-type = preceding-sibling::article-version/@article-version-type" role="error" id="article-version-7">[article-version-7] article-version must be distinct. There is one or more article-version elements with the article-version-type <value-of select="@article-version-type"/>.</report>
+      </rule></pattern><pattern id="article-version-alternatives-checks-pattern"><rule context="article/front/article-meta/article-version-alternatives" id="article-version-alternatives-checks">
+        <assert test="count(article-version)=2" role="error" id="article-version-8">[article-version-8] article-version-alternatives must contain 2 and only 2 article-version elements. This one has '<value-of select="count(article-version)"/>'.</assert>
+        
+        <assert test="article-version[@article-version-type='preprint-version']" role="error" id="article-version-9">[article-version-9] article-version-alternatives must contain a &lt;article-version article-version-type="preprint-version"&gt;.</assert>
+        
+        <assert test="article-version[@article-version-type='publication-state']" role="error" id="article-version-10">[article-version-10] article-version-alternatives must contain a &lt;article-version article-version-type="publication-state"&gt;.</assert>
       </rule></pattern>
 
     <pattern id="digest-title-checks-pattern"><rule context="title" id="digest-title-checks">
