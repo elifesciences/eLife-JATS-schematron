@@ -3082,6 +3082,21 @@
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="@*[name()!='article-version-type']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@*[name()!='article-version-type']">
+            <xsl:attribute name="id">article-version-11</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[article-version-11] The only attribute permitted on <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> is article-version-type. This one has the following unallowed attribute(s): <xsl:text/>
+               <xsl:value-of select="string-join(@*[name()!='article-version-type']/name(),'; ')"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M62"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M62"/>

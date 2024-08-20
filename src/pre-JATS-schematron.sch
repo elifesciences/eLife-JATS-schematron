@@ -1433,7 +1433,9 @@
     <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
     <let name="is-prc" value="e:is-prc(.)"/>
     
-	<assert test="matches($article-id,'^\d{5,6}$')" role="error" id="test-article-id">[test-article-id] article-id must consist only of 5 or 6 digits. Currently it is <value-of select="article-id[@pub-id-type='publisher-id']"/></assert> 
+	<assert test="matches($article-id,'^\d{5,6}$')" role="error" id="test-article-id">[test-article-id] article-id must consist only of 5 or 6 digits. Currently it is <value-of select="article-id[@pub-id-type='publisher-id']"/></assert>
+    
+    <assert test="count(article-version) = 1" role="error" id="test-article-version-presence">[test-article-version-presence] There must be one article-version element in the article-meta. Currently there are <value-of select="count(article-version)"/></assert>
 	   
      <assert test="count(article-categories) = 1" role="error" id="test-article-presence">[test-article-presence] There must be one article-categories element in the article-meta. Currently there are <value-of select="count(article-categories)"/></assert>
 	   
@@ -1533,6 +1535,7 @@
     </rule></pattern><pattern id="article-version-pattern"><rule context="article-version" id="article-version">
       
       <assert test="parent::article-meta" role="error" id="article-version-test-1">[article-version-test-1] <name/> must be a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
+      
       <assert test="@article-version-type='publication-state'" role="error" id="article-version-test-2">[article-version-test-2] <name/> must a article-version-type="publication-state" attribute. This one does not.</assert>
       
       <report test="@*[name()!='article-version-type']" role="error" id="article-version-test-3">[article-version-test-3] The only attribute permitted on <name/> is article-version-type (with the value "publication-state"). This one has the following unallowed attribute(s): <value-of select="string-join(@*[name()!='article-version-type']/name(),'; ')"/>.</report>

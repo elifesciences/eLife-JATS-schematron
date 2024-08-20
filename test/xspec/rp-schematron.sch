@@ -591,6 +591,8 @@
         <report test="@article-version-type='publication-state' and .!='reviewed preprint'" role="error" id="article-version-6">article-version with the attribute article-version-type="publication-state" must contain the text 'reviewed preprint'. This one has '<value-of select="."/>'.</report>
         
         <report test="./@article-version-type = preceding-sibling::article-version/@article-version-type" role="error" id="article-version-7">article-version must be distinct. There is one or more article-version elements with the article-version-type <value-of select="@article-version-type"/>.</report>
+        
+        <report test="@*[name()!='article-version-type']" role="error" id="article-version-11">The only attribute permitted on <name/> is article-version-type. This one has the following unallowed attribute(s): <value-of select="string-join(@*[name()!='article-version-type']/name(),'; ')"/>.</report>
       </rule>
   </pattern>
   <pattern id="article-version-alternatives-checks-pattern">

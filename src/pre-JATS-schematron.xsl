@@ -6498,6 +6498,23 @@
       </xsl:choose>
       <!--ASSERT error-->
       <xsl:choose>
+         <xsl:when test="count(article-version) = 1"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(article-version) = 1">
+               <xsl:attribute name="id">test-article-version-presence</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[test-article-version-presence] There must be one article-version element in the article-meta. Currently there are <xsl:text/>
+                  <xsl:value-of select="count(article-version)"/>
+                  <xsl:text/>
+               </svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <!--ASSERT error-->
+      <xsl:choose>
          <xsl:when test="count(article-categories) = 1"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(article-categories) = 1">

@@ -1521,7 +1521,10 @@
     <let name="is-prc" value="e:is-prc(.)"/>
     
 	<assert test="matches($article-id,'^\d{5,6}$')" role="error" id="test-article-id">article-id must consist only of 5 or 6 digits. Currently it is <value-of select="article-id[@pub-id-type='publisher-id']"/>
-      </assert> 
+      </assert>
+    
+    <assert test="count(article-version) = 1" role="error" id="test-article-version-presence">There must be one article-version element in the article-meta. Currently there are <value-of select="count(article-version)"/>
+      </assert>
 	   
      <assert test="count(article-categories) = 1" role="error" id="test-article-presence">There must be one article-categories element in the article-meta. Currently there are <value-of select="count(article-categories)"/>
       </assert>
@@ -1653,6 +1656,7 @@
       
       <assert test="parent::article-meta" role="error" id="article-version-test-1">
         <name/> must be a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
+      
       <assert test="@article-version-type='publication-state'" role="error" id="article-version-test-2">
         <name/> must a article-version-type="publication-state" attribute. This one does not.</assert>
       
