@@ -79,10 +79,10 @@
 <back>
 <ref-list>
 <ref id="r1">
-<mixed-citation publication-type="journal"><pub-id pub-id-type="doi">10.7554/eLife.09560</pub-id></mixed-citation>
+<mixed-citation publication-type="journal"><pub-id pub-id-type="doi">10.7554/eLife.09560</pub-id> <year>no date</year></mixed-citation>
 </ref>
 <ref id="r2">
-<mixed-citation publication-type="web">The internet</mixed-citation>
+<mixed-citation publication-type="web">The internet <year>no date</year></mixed-citation>
 </ref>
 </ref-list>
 </back>
