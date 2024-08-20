@@ -265,7 +265,10 @@
          <xsl:variable name="mixed-citation-round-1">
              <xsl:apply-templates select="." mode="mixed-citation-round-1"/>
          </xsl:variable>
-        <xsl:apply-templates select="$mixed-citation-round-1" mode="mixed-citation-round-2"/>
+         <xsl:variable name="mixed-citation-round-2">
+            <xsl:apply-templates select="$mixed-citation-round-1" mode="mixed-citation-round-2"/>
+         </xsl:variable>
+        <xsl:apply-templates select="$mixed-citation-round-2" mode="mixed-citation-round-3"/>
     </xsl:template>
 
     <!-- Introduces author person-groups into refs when they are missing-->
@@ -342,6 +345,23 @@
             </xsl:choose>
         </xsl:copy>
     </xsl:template>
+    
+    <!-- Introduces missing year in mixed-citation -->
+     <xsl:template xml:id="add-year-to-ref" mode="mixed-citation-round-3" match="mixed-citation">
+         <xsl:copy>
+            <xsl:choose>
+                <!-- introduce a year at the end of the reference -->
+                <xsl:when test="not(year)">
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                    <xsl:text> </xsl:text>
+                    <year>no date</year>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                </xsl:otherwise>
+            </xsl:choose>
+         </xsl:copy>
+     </xsl:template>
     
     
     <!-- Add blanket biorender statement for any object with a caption that mentions it -->
