@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="url-conformance-test.sch"?>
 <!--Context: ext-link[@ext-link-type='uri']
-Test: assert    matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&<>//=]*)$|^ftp://.|^tel:.|^mailto:.')
+Test: assert    matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)\[\]+.~#?!&<>//=]*)$|^ftp://.|^tel:.|^mailto:.')
 Message: @xlink:href doesn't look like a URL - ''. Is this correct? -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
