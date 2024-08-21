@@ -218,6 +218,10 @@
 
     <pattern id="ref-name-checks-pattern"><rule context="mixed-citation//name | mixed-citation//string-name" id="ref-name-checks">
         <assert test="surname" role="error" id="ref-surname">[ref-surname] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have a surname element.</assert>
+     </rule></pattern><pattern id="ref-name-space-checks-pattern"><rule context="mixed-citation//given-names | mixed-citation//surname" id="ref-name-space-checks">
+        <report test="matches(.,'^\p{Z}+')" role="error" id="ref-name-space-start">[ref-name-space-start] <name/> element cannot start with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
+
+        <report test="matches(.,'\p{Z}+$')" role="error" id="ref-name-space-end">[ref-name-space-end] <name/> element cannot end with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
      </rule></pattern>
 
     <pattern id="collab-checks-pattern"><rule context="collab" id="collab-checks">

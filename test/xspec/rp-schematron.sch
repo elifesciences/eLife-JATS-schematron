@@ -259,6 +259,15 @@
         <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have a surname element.</assert>
      </rule>
   </pattern>
+  <pattern id="ref-name-space-checks-pattern">
+    <rule context="mixed-citation//given-names | mixed-citation//surname" id="ref-name-space-checks">
+        <report test="matches(.,'^\p{Z}+')" role="error" id="ref-name-space-start">
+        <name/> element cannot start with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
+
+        <report test="matches(.,'\p{Z}+$')" role="error" id="ref-name-space-end">
+        <name/> element cannot end with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
+     </rule>
+  </pattern>
 
     <pattern id="collab-checks-pattern">
     <rule context="collab" id="collab-checks">
@@ -826,6 +835,7 @@
       <assert test="descendant::ref-list" role="error" id="ref-list-checks-xspec-assert">ref-list must be present.</assert>
       <assert test="descendant::ref//year" role="error" id="ref-year-checks-xspec-assert">ref//year must be present.</assert>
       <assert test="descendant::mixed-citation//name  or descendant:: mixed-citation//string-name" role="error" id="ref-name-checks-xspec-assert">mixed-citation//name | mixed-citation//string-name must be present.</assert>
+      <assert test="descendant::mixed-citation//given-names  or descendant:: mixed-citation//surname" role="error" id="ref-name-space-checks-xspec-assert">mixed-citation//given-names | mixed-citation//surname must be present.</assert>
       <assert test="descendant::collab" role="error" id="collab-checks-xspec-assert">collab must be present.</assert>
       <assert test="descendant::mixed-citation[person-group]//etal" role="error" id="ref-etal-checks-xspec-assert">mixed-citation[person-group]//etal must be present.</assert>
       <assert test="descendant::comment" role="error" id="ref-comment-checks-xspec-assert">comment must be present.</assert>

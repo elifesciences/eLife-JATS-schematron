@@ -490,6 +490,28 @@
         <x:expect-not-assert id="ref-name-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="ref-name-space-checks">
+      <x:scenario label="ref-name-space-start-pass">
+        <x:context href="../tests/rp/ref-name-space-checks/ref-name-space-start/pass.xml"/>
+        <x:expect-not-report id="ref-name-space-start" role="error"/>
+        <x:expect-not-assert id="ref-name-space-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-name-space-start-fail">
+        <x:context href="../tests/rp/ref-name-space-checks/ref-name-space-start/fail.xml"/>
+        <x:expect-report id="ref-name-space-start" role="error"/>
+        <x:expect-not-assert id="ref-name-space-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-name-space-end-pass">
+        <x:context href="../tests/rp/ref-name-space-checks/ref-name-space-end/pass.xml"/>
+        <x:expect-not-report id="ref-name-space-end" role="error"/>
+        <x:expect-not-assert id="ref-name-space-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-name-space-end-fail">
+        <x:context href="../tests/rp/ref-name-space-checks/ref-name-space-end/fail.xml"/>
+        <x:expect-report id="ref-name-space-end" role="error"/>
+        <x:expect-not-assert id="ref-name-space-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="collab-checks">
       <x:scenario label="collab-check-1-pass">
         <x:context href="../tests/rp/collab-checks/collab-check-1/pass.xml"/>
