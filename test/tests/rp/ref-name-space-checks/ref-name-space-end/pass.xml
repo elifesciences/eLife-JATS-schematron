@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="ref-name-space-end.sch"?>
+<!--Context: mixed-citation//given-names | mixed-citation//surname
+Test: report    matches(.,'\p{Z}+$')
+Message:  element cannot end with space(s). This one (in ref with id=) does: ''. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref id="c18"><mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Claus</surname>, <given-names>S.</given-names></string-name></person-group> (<year>2016</year>).</mixed-citation></ref>
+    </article>
+</root>
