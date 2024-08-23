@@ -327,6 +327,14 @@
      </rule>
     </pattern>
 
+    <pattern id="book-ref">
+     <rule context="mixed-citation[@publication-type='book']" id="book-ref-checks">
+        <assert test="source" 
+        role="error" 
+        id="book-ref-source">This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no source element.</assert>
+     </rule>
+    </pattern>
+
     <pattern id="ref-labels">
      <rule context="ref-list" id="ref-list-checks">
         <let name="labels" value="./ref/label"/>

@@ -202,6 +202,10 @@
         <report test="text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|and|pp?)[:\.]?'))]" role="warning" id="preprint-ref-text-content">[preprint-ref-text-content] This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|and|pp?)[:\.]?'))],'; ')"/>. Is it tagged correctly?</report>
      </rule></pattern>
 
+    <pattern id="book-ref-checks-pattern"><rule context="mixed-citation[@publication-type='book']" id="book-ref-checks">
+        <assert test="source" role="error" id="book-ref-source">[book-ref-source] This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no source element.</assert>
+     </rule></pattern>
+
     <pattern id="ref-list-checks-pattern"><rule context="ref-list" id="ref-list-checks">
         <let name="labels" value="./ref/label"/>
         <let name="indistinct-labels" value="for $label in distinct-values($labels) return $label[count($labels[. = $label]) gt 1]"/>
