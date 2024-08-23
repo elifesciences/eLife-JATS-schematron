@@ -235,6 +235,12 @@
      </rule>
   </pattern>
 
+    <pattern id="book-ref-checks-pattern">
+    <rule context="mixed-citation[@publication-type='book']" id="book-ref-checks">
+        <assert test="source" role="error" id="book-ref-source">This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no source element.</assert>
+     </rule>
+  </pattern>
+
     <pattern id="ref-list-checks-pattern">
     <rule context="ref-list" id="ref-list-checks">
         <let name="labels" value="./ref/label"/>
@@ -577,6 +583,8 @@
         
         <assert test="article-id[@pub-id-type='doi']" role="error" id="article-id">article-meta must contain at least one DOI - a &lt;article-id pub-id-type="doi"&gt; element.</assert>
 
+        <report test="article-version[not(@article-version-type)] or article-version-alternatives/article-version[@article-version-type='publication-state']" role="info" id="article-version-flag">This is preprint version <value-of select="if (article-version-alternatives/article-version[@article-version-type='publication-state']) then article-version-alternatives/article-version[@article-version-type='publication-state'] else article-version[not(@article-version-type)]"/>.</report>
+
         <report test="not($is-reviewed-preprint) and not(count(article-version)=1)" role="error" id="article-version-1">article-meta in preprints must contain one (and only one) &lt;article-version&gt; element.</report>
         
         <report test="$is-reviewed-preprint and not(count(article-version-alternatives)=1)" role="error" id="article-version-3">article-meta in reviewed preprints must contain one (and only one) &lt;article-version-alternatives&gt; element.</report>
@@ -832,6 +840,7 @@
       <assert test="descendant::article/front/article-meta/contrib-group[1]" role="error" id="orcid-name-checks-xspec-assert">article/front/article-meta/contrib-group[1] must be present.</assert>
       <assert test="descendant::mixed-citation[@publication-type='journal']" role="error" id="journal-ref-checks-xspec-assert">mixed-citation[@publication-type='journal'] must be present.</assert>
       <assert test="descendant::mixed-citation[@publication-type='preprint']" role="error" id="preprint-ref-checks-xspec-assert">mixed-citation[@publication-type='preprint'] must be present.</assert>
+      <assert test="descendant::mixed-citation[@publication-type='book']" role="error" id="book-ref-checks-xspec-assert">mixed-citation[@publication-type='book'] must be present.</assert>
       <assert test="descendant::ref-list" role="error" id="ref-list-checks-xspec-assert">ref-list must be present.</assert>
       <assert test="descendant::ref//year" role="error" id="ref-year-checks-xspec-assert">ref//year must be present.</assert>
       <assert test="descendant::mixed-citation//name  or descendant:: mixed-citation//string-name" role="error" id="ref-name-checks-xspec-assert">mixed-citation//name | mixed-citation//string-name must be present.</assert>

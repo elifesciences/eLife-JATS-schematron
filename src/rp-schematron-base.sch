@@ -327,6 +327,14 @@
      </rule>
     </pattern>
 
+    <pattern id="book-ref">
+     <rule context="mixed-citation[@publication-type='book']" id="book-ref-checks">
+        <assert test="source" 
+        role="error" 
+        id="book-ref-source">This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no source element.</assert>
+     </rule>
+    </pattern>
+
     <pattern id="ref-labels">
      <rule context="ref-list" id="ref-list-checks">
         <let name="labels" value="./ref/label"/>
@@ -767,6 +775,10 @@
         <assert test="article-id[@pub-id-type='doi']"
         role="error" 
         id="article-id">article-meta must contain at least one DOI - a &lt;article-id pub-id-type="doi"> element.</assert>
+
+        <report test="article-version[not(@article-version-type)] or article-version-alternatives/article-version[@article-version-type='publication-state']"
+          role="info" 
+          id="article-version-flag">This is preprint version <value-of select="if (article-version-alternatives/article-version[@article-version-type='publication-state']) then article-version-alternatives/article-version[@article-version-type='publication-state'] else article-version[not(@article-version-type)]"/>.</report>
 
         <report test="not($is-reviewed-preprint) and not(count(article-version)=1)" 
           role="error" 
