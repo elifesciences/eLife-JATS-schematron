@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="article-version-flag.sch"?>
 <!--Context: article/front/article-meta
-Test: report    article-version[not(@article-version-type)] or article-version-alternatives/article-version[@article-version-type='publication-state']
+Test: report    article-version[not(@article-version-type)] or article-version-alternatives/article-version[@article-version-type='preprint-version']
 Message: This is preprint version . -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
@@ -10,7 +10,7 @@ Message: This is preprint version . -->
             </journal-meta>
             <article-meta>
                 <article-version-alternatives>
-                    <article-version article-version-type="publication-state">1.123345647</article-version>
+                    <article-version article-version-type="preprint-version">1.123345647</article-version>
                 </article-version-alternatives>
             </article-meta>
         </front>

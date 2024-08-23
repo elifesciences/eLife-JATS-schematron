@@ -776,9 +776,9 @@
         role="error" 
         id="article-id">article-meta must contain at least one DOI - a &lt;article-id pub-id-type="doi"> element.</assert>
 
-        <report test="article-version[not(@article-version-type)] or article-version-alternatives/article-version[@article-version-type='publication-state']"
+        <report test="article-version[not(@article-version-type)] or article-version-alternatives/article-version[@article-version-type='preprint-version']"
           role="info" 
-          id="article-version-flag">This is preprint version <value-of select="if (article-version-alternatives/article-version[@article-version-type='publication-state']) then article-version-alternatives/article-version[@article-version-type='publication-state'] else article-version[not(@article-version-type)]"/>.</report>
+          id="article-version-flag">This is preprint version <value-of select="if (article-version-alternatives/article-version[@article-version-type='preprint-version']) then article-version-alternatives/article-version[@article-version-type='preprint-version'] else article-version[not(@article-version-type)]"/>.</report>
 
         <report test="not($is-reviewed-preprint) and not(count(article-version)=1)" 
           role="error" 
