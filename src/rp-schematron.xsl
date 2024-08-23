@@ -2990,6 +2990,19 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <!--REPORT info-->
+      <xsl:if test="article-version[not(@article-version-type)] or article-version-alternatives/article-version[@article-version-type='publication-state']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="article-version[not(@article-version-type)] or article-version-alternatives/article-version[@article-version-type='publication-state']">
+            <xsl:attribute name="id">article-version-flag</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[article-version-flag] This is preprint version <xsl:text/>
+               <xsl:value-of select="if (article-version-alternatives/article-version[@article-version-type='publication-state']) then article-version-alternatives/article-version[@article-version-type='publication-state'] else article-version[not(@article-version-type)]"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <!--REPORT error-->
       <xsl:if test="not($is-reviewed-preprint) and not(count(article-version)=1)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($is-reviewed-preprint) and not(count(article-version)=1)">
