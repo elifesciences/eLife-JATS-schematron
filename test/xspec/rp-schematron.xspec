@@ -1439,6 +1439,16 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="xref-checks">
+      <x:scenario label="xref-attributes-pass">
+        <x:context href="../tests/rp/xref-checks/xref-attributes/pass.xml"/>
+        <x:expect-not-report id="xref-attributes" role="warning"/>
+        <x:expect-not-assert id="xref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="xref-attributes-fail">
+        <x:context href="../tests/rp/xref-checks/xref-attributes/fail.xml"/>
+        <x:expect-report id="xref-attributes" role="warning"/>
+        <x:expect-not-assert id="xref-checks-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="xref-parent-pass">
         <x:context href="../tests/rp/xref-checks/xref-parent/pass.xml"/>
         <x:expect-not-report id="xref-parent" role="error"/>

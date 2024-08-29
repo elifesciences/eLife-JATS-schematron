@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="xref-attributes.sch"?>
+<!--Context: xref
+Test: report    @*[not(name()=$allowed-attributes)]
+Message: This xref element has the following attribute(s) which are not supported: . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <p><xref custom-type="miner" alt="Hansen" specific-use="blue-steel" ref-type="fashion" rid="derelicte">Zoolander</xref></p>
+    </article>
+</root>

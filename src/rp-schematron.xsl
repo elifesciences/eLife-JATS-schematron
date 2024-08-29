@@ -3358,8 +3358,21 @@
    <!--PATTERN xref-checks-pattern-->
    <!--RULE xref-checks-->
    <xsl:template match="xref" priority="1000" mode="M70">
-
-		<!--REPORT error-->
+      <xsl:variable name="allowed-attributes" select="('ref-type','rid')"/>
+      <!--REPORT warning-->
+      <xsl:if test="@*[not(name()=$allowed-attributes)]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@*[not(name()=$allowed-attributes)]">
+            <xsl:attribute name="id">xref-attributes</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[xref-attributes] This xref element has the following attribute(s) which are not supported: <xsl:text/>
+               <xsl:value-of select="string-join(@*[not(name()=$allowed-attributes)]/name(),'; ')"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
       <xsl:if test="parent::xref">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="parent::xref">
             <xsl:attribute name="id">xref-parent</xsl:attribute>

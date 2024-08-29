@@ -877,6 +877,12 @@
 
     <pattern id="xref">
      <rule context="xref" id="xref-checks">
+        <let name="allowed-attributes" value="('ref-type','rid')"/>
+
+        <report test="@*[not(name()=$allowed-attributes)]" 
+        role="warning" 
+        id="xref-attributes">This xref element has the following attribute(s) which are not supported: <value-of select="string-join(@*[not(name()=$allowed-attributes)]/name(),'; ')"/>.</report>
+
         <report test="parent::xref" 
         role="error" 
         id="xref-parent">This xref element containing '<value-of select="."/>' is a child of another xref. Nested xrefs are not supported - it must be either stripped or moved so that it is a child of another element.</report>
