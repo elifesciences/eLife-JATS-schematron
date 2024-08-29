@@ -28,6 +28,14 @@
       <x:context href="../tests/preprint-changes/remove-fullstops-from-author-names/input.xml"/>
       <x:expect label="Testing the template: remove-fullstops-from-author-names" href="../tests/preprint-changes/remove-fullstops-from-author-names/output.xml"/>
     </x:scenario>
+    <x:scenario label="strip-counts">
+      <x:context href="../tests/preprint-changes/strip-counts/input.xml"/>
+      <x:expect label="Testing the template: strip-counts" href="../tests/preprint-changes/strip-counts/output.xml"/>
+    </x:scenario>
+    <x:scenario label="strip-pdf-self-uri">
+      <x:context href="../tests/preprint-changes/strip-pdf-self-uri/input.xml"/>
+      <x:expect label="Testing the template: strip-pdf-self-uri" href="../tests/preprint-changes/strip-pdf-self-uri/output.xml"/>
+    </x:scenario>
     <x:scenario label="all-caps-to-sentence">
       <x:context href="../tests/preprint-changes/all-caps-to-sentence/input.xml"/>
       <x:expect label="Testing the template: all-caps-to-sentence" href="../tests/preprint-changes/all-caps-to-sentence/output.xml"/>

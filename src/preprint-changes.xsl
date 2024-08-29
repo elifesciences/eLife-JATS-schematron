@@ -121,7 +121,29 @@
                     <xsl:text>&#xa;</xsl:text>
                 </xsl:otherwise>
             </xsl:choose>
-            <xsl:apply-templates select="*[not(name()=('article-id','article-version','article-version-alternatives'))]|*[name()=('article-version','article-version-alternatives')]/following-sibling::text()|comment()|processing-instruction()"/>
+            <xsl:apply-templates select="*[not(name()=('article-id','article-version','article-version-alternatives','custom-meta-group'))]|*[name()=('article-version','article-version-alternatives')]/following-sibling::text()[not(preceding-sibling::*[1]/name()=('counts','self-uri','custom-meta-group'))]|comment()|processing-instruction()"/>
+            <xsl:element name="custom-meta-group">
+                <xsl:text>&#xa;</xsl:text>
+                <xsl:if test="custom-meta-group">
+                    <xsl:for-each select="./custom-meta-group/custom-meta|./custom-meta-group/text()[not(position()=1 and .='&#xa;')]">
+                        <xsl:apply-templates select="."/>
+                    </xsl:for-each>
+                </xsl:if>
+                <xsl:element name="custom-meta">
+                    <xsl:attribute name="specific-use">meta-only</xsl:attribute>
+                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:element name="meta-name">
+                        <xsl:text>publishing-route</xsl:text>
+                    </xsl:element>
+                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:element name="meta-value">
+                        <xsl:text>prc</xsl:text>
+                    </xsl:element>
+                    <xsl:text>&#xa;</xsl:text>
+                </xsl:element>
+                <xsl:text>&#xa;</xsl:text>
+            </xsl:element>
+            <xsl:text>&#xa;</xsl:text>
         </xsl:copy>
     </xsl:template>
     
@@ -167,6 +189,12 @@
             </xsl:choose>
         </xsl:copy>
     </xsl:template>
+        
+    <!-- Remove counts from article-meta -->
+    <xsl:template xml:id="strip-counts" match="article-meta/counts"/>
+
+    <!-- Remove self-uri for PDF from article-meta -->
+    <xsl:template xml:id="strip-pdf-self-uri" match="article-meta/self-uri[@content-type='pdf']"/>
     
     <!-- Change all caps titles to sentence case for known phrases, e.g. REFERENCES -> References -->
     <xsl:template xml:id="all-caps-to-sentence" match="title[(upper-case(.)=. or lower-case(.)=.) and not(*) and not(parent::caption)]">
