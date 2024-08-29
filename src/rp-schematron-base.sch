@@ -875,6 +875,14 @@
      </rule>
     </pattern>
 
+    <pattern id="xref">
+     <rule context="xref" id="xref-checks">
+        <report test="parent::xref" 
+        role="error" 
+        id="xref-parent">This xref element containing '<value-of select="."/>' is a child of another xref. Nested xrefs are not supported - it must be either stripped or moved so that it is a child of another element.</report>
+     </rule>
+    </pattern>
+
     <pattern id="ext-link">
     <rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests">
       

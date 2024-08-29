@@ -1438,6 +1438,18 @@
         <x:expect-not-assert id="uri-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="xref-checks">
+      <x:scenario label="xref-parent-pass">
+        <x:context href="../tests/rp/xref-checks/xref-parent/pass.xml"/>
+        <x:expect-not-report id="xref-parent" role="error"/>
+        <x:expect-not-assert id="xref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="xref-parent-fail">
+        <x:context href="../tests/rp/xref-checks/xref-parent/fail.xml"/>
+        <x:expect-report id="xref-parent" role="error"/>
+        <x:expect-not-assert id="xref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="ext-link-tests">
       <x:scenario label="url-conformance-test-pass">
         <x:context href="../tests/rp/ext-link-tests/url-conformance-test/pass.xml"/>
