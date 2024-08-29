@@ -1,0 +1,8 @@
+<!--Testing template with id: strip-counts-->
+<article-meta>
+<article-id pub-id-type="doi">...</article-id>
+<article-version>1.2</article-version>
+<counts>
+<page-count count="42"/>
+</counts>
+</article-meta>

@@ -14,4 +14,10 @@
 </name>
 <xref ref-type="aff" rid="aff1" /></contrib>
 <aff id="aff1"><institution>North Pole Enterprises LLC</institution></aff>
-</contrib-group></article-meta>
+</contrib-group><custom-meta-group>
+<custom-meta specific-use="meta-only">
+<meta-name>publishing-route</meta-name>
+<meta-value>prc</meta-value>
+</custom-meta>
+</custom-meta-group>
+</article-meta>
