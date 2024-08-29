@@ -2,5 +2,5 @@
 <article-meta>
 <article-id pub-id-type="doi">...</article-id>
 <article-version>1.2</article-version>
-<self-uri xlink:href="....pdf" content-type="pdf" xlink:role="full-text"/>
+<self-uri content-type="pdf"/>
 </article-meta>

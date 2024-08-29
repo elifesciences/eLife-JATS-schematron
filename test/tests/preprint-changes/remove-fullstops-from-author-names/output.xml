@@ -18,4 +18,10 @@
 <surname>de A M M Armas</surname>
 </name>
 </contrib>
-</contrib-group></article-meta>
+</contrib-group><custom-meta-group>
+<custom-meta specific-use="meta-only">
+<meta-name>publishing-route</meta-name>
+<meta-value>prc</meta-value>
+</custom-meta>
+</custom-meta-group>
+</article-meta>
