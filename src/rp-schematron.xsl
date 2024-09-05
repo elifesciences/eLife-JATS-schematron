@@ -2922,6 +2922,20 @@
                <xsl:text/>. These will currently be stripped from the content rendered on EPP. Should they be moved out of the section or is that OK?'</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="*[not(name()=('label','title','sec-meta'))]"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*[not(name()=('label','title','sec-meta'))]">
+               <xsl:attribute name="id">sec-empty</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[sec-empty] sec element is not populated with any content. Either there's a mistake or the section should be removed.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M59"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M59"/>
