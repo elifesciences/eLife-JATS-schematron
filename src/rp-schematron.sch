@@ -405,6 +405,8 @@
     <pattern id="sec-checks-pattern"><rule context="sec" id="sec-checks">
 
         <report test="@sec-type='supplementary-material' and *[not(name()=('label','title','supplementary-material'))]" role="warning" id="sec-supplementary-material">[sec-supplementary-material] &lt;sec sec-type='supplementary-material'&gt; contains elements other than supplementary-material: <value-of select="string-join(*[not(name()=('label','title','supplementary-material'))]/name(),'; ')"/>. These will currently be stripped from the content rendered on EPP. Should they be moved out of the section or is that OK?'</report>
+
+        <assert test="*[not(name()=('label','title','sec-meta'))]" role="error" id="sec-empty">[sec-empty] sec element is not populated with any content. Either there's a mistake or the section should be removed.</assert>
      </rule></pattern>
 
     <pattern id="title-checks-pattern"><rule context="title" id="title-checks">
