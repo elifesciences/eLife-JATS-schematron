@@ -9006,7 +9006,7 @@
       
       <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-punctuation-test" test="matches($para,'\p{P}\p{Zs}*?$')" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</assert>
       
-      <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-bracket-test" test="matches($para,'\.\)?\p{Zs}*?$|:\p{Zs}*?$|\?\p{Zs}*?$|!\p{Zs}*?$|\.”\p{Zs}*?|\.&quot;\p{Zs}*?')" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-bracket-test" test="matches($para,'([\?:]|\.[\)”&quot;]?)\p{Zs}*$')" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</assert>
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-space-test" test="matches(.,'\p{Zs}$')" role="warning" id="p-space-test">paragraph ends with space(s). Is this correct? '<value-of select="."/>'</report>
     </rule>

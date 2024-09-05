@@ -39502,9 +39502,9 @@
       </xsl:choose>
       <!--ASSERT warning-->
       <xsl:choose>
-         <xsl:when test="matches($para,'\.\)?\p{Zs}*?$|:\p{Zs}*?$|\?\p{Zs}*?$|!\p{Zs}*?$|\.”\p{Zs}*?|\.&quot;\p{Zs}*?')"/>
+         <xsl:when test="matches($para,'([\?:]|\.[\)”&quot;]?)\p{Zs}*$')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($para,'\.\)?\p{Zs}*?$|:\p{Zs}*?$|\?\p{Zs}*?$|!\p{Zs}*?$|\.”\p{Zs}*?|\.&quot;\p{Zs}*?')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($para,'([\?:]|\.[\)”&quot;]?)\p{Zs}*$')">
                <xsl:attribute name="id">p-bracket-test</xsl:attribute>
                <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-bracket-test</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
