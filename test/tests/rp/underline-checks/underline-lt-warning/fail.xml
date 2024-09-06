@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="underline-lt-warning.sch"?>
+<!--Context: underline
+Test: report    replace(.,'[\s\.]','')='<'
+Message: underline element contains a less than symbol (). Should this a less than or equal to symbol instead (≤)? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <underline> &lt; .</underline>
+    </article>
+</root>
