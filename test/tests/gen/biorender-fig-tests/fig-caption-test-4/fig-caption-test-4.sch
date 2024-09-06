@@ -1338,8 +1338,9 @@
   </xsl:function>
   <pattern id="further-fig-tests">
     <rule context="fig/caption/p[not(child::supplementary-material)] | fig/attrib" id="biorender-fig-tests">
+      <let name="is-cc0" value="contains(lower-case(ancestor::article[1]/front[1]/descendant::permissions[1]/license[1]/@xlink:href),'creativecommons.org/publicdomain/zero/')"/>
       <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>
-      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#hm6gy-pre-fig-caption-test-4" test="matches(lower-case(.),'biorend[eo]r') and not(ancestor::fig/permissions[matches(lower-case(.),'biorend[eo]r')])" role="warning" id="pre-fig-caption-test-4">Caption or attrib for <value-of select="$label"/> contains what looks like a mention of bioRender and does not have a permissions statement that refers to bioRender. bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only). Once the authors have obtained permission, this figure needs to contain a copyright statement indicating which license it is available under (e.g. CC BY-NC-ND).</report>
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#hm6gy-pre-fig-caption-test-4" test="$is-cc0 and matches(lower-case(.),'biorend[eo]r') and not(ancestor::fig/permissions[matches(lower-case(.),'biorend[eo]r')])" role="error" id="fig-caption-test-4">Caption or attrib for <value-of select="$label"/> contains what looks like a mention of bioRender. Since the overall license for the article is CC0, and bioRender can (only) be licensed CC BY, a permissions statement needs to abe added (e.g. © <value-of select="year-from-date(current-date())"/>, {authors}. Parts of this image created with BioRender are made available under a Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

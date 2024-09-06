@@ -4521,29 +4521,12 @@
 
     </rule>
   </pattern>
-  <pattern id="biorender-tests-pattern">
-    <rule context="article" id="biorender-tests">
-      <!-- exclude ref list and figures from this check -->
-      <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
-
-       <report test="matches(lower-case($article-text),'biorend[eo]r')" role="warning" id="biorender-check">Article text contains a reference to bioRender. Since bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only), if any images were created using bioRender, the authors will need to obtain permission to share them under a permissive license. Once the authors have obtained permission, any bioRender figures need to contain a copyright statement indicating which license they are available under (e.g. CC BY-NC-ND).</report>
-
-    </rule>
-  </pattern>
   <pattern id="biorender-fig-tests-pattern">
     <rule context="fig/caption/p[not(child::supplementary-material)] | fig/attrib" id="biorender-fig-tests">
+      <let name="is-cc0" value="contains(lower-case(ancestor::article[1]/front[1]/descendant::permissions[1]/license[1]/@xlink:href),'creativecommons.org/publicdomain/zero/')"/>
       <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>    
 
-      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#hm6gy-pre-fig-caption-test-4" test="matches(lower-case(.),'biorend[eo]r') and not(ancestor::fig/permissions[matches(lower-case(.),'biorend[eo]r')])" role="warning" id="pre-fig-caption-test-4">Caption or attrib for <value-of select="$label"/> contains what looks like a mention of bioRender and does not have a permissions statement that refers to bioRender. bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only). Once the authors have obtained permission, this figure needs to contain a copyright statement indicating which license it is available under (e.g. CC BY-NC-ND).</report>
-
-    <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#hql2f-final-fig-caption-test-4" test="matches(lower-case(.),'biorend[eo]r') and not(ancestor::fig/permissions[matches(lower-case(.),'biorend[eo]r')])" role="error" id="final-fig-caption-test-4">Caption or attrib for <value-of select="$label"/> contains what looks like a mention of bioRender and does not have a permissions statement that refers to bioRender. bioRender do not permit content to be published under a CC-BY license (https://help.biorender.com/en/articles/8601313-creative-commons-licensing-for-biorender-figures-premium-only). Once the authors have obtained permission, this figure needs to contain a copyright statement indicating which license it is available under (e.g. CC BY-NC-ND).</report>
-
-    </rule>
-  </pattern>
-  <pattern id="biorender-permissions-tests-pattern">
-    <rule context="permissions[matches(lower-case(license[1]/license-p[1]),'biorend[eo]r')]/copyright-holder" id="biorender-permissions-tests">    
-
-      <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#h76ko-biorender-permissions-tes-1" test=".='BioRender Inc'" role="error" id="biorender-permissions-tes-1">permissions element mentions bioRender, but the copyright holder is not 'BioRender Inc' which is incorrect. The current copyright holder is: <value-of select="."/>. The license text is: <value-of select="parent::permissions/license[1]/license-p[1]"/>.</assert>
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#hm6gy-pre-fig-caption-test-4" test="$is-cc0 and matches(lower-case(.),'biorend[eo]r') and not(ancestor::fig/permissions[matches(lower-case(.),'biorend[eo]r')])" role="error" id="fig-caption-test-4">Caption or attrib for <value-of select="$label"/> contains what looks like a mention of bioRender. Since the overall license for the article is CC0, and bioRender can (only) be licensed CC BY, a permissions statement needs to abe added (e.g. © <value-of select="year-from-date(current-date())"/>, {authors}. Parts of this image created with BioRender are made available under a Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.).</report>
 
     </rule>
   </pattern>
@@ -9934,9 +9917,7 @@
       <assert test="descendant::permissions[not(parent::article-meta)]//license-p//ext-link" role="error" id="permissions-3b-xspec-assert">permissions[not(parent::article-meta)]//license-p//ext-link must be present.</assert>
       <assert test="descendant::permissions[not(parent::article-meta)]//license" role="error" id="permissions-3c-xspec-assert">permissions[not(parent::article-meta)]//license must be present.</assert>
       <assert test="descendant::fig/caption/p[not(child::supplementary-material)]" role="error" id="fig-caption-tests-xspec-assert">fig/caption/p[not(child::supplementary-material)] must be present.</assert>
-      <assert test="descendant::article" role="error" id="biorender-tests-xspec-assert">article must be present.</assert>
       <assert test="descendant::fig/caption/p[not(child::supplementary-material)]  or descendant:: fig/attrib" role="error" id="biorender-fig-tests-xspec-assert">fig/caption/p[not(child::supplementary-material)] | fig/attrib must be present.</assert>
-      <assert test="descendant::permissions[matches(lower-case(license[1]/license-p[1]),'biorend[eo]r')]/copyright-holder" role="error" id="biorender-permissions-tests-xspec-assert">permissions[matches(lower-case(license[1]/license-p[1]),'biorend[eo]r')]/copyright-holder must be present.</assert>
       <assert test="descendant::fig/caption/p/bold" role="error" id="fig-panel-tests-xspec-assert">fig/caption/p/bold must be present.</assert>
       <assert test="descendant::article[@article-type='research-article']/body" role="error" id="ra-body-tests-xspec-assert">article[@article-type='research-article']/body must be present.</assert>
       <assert test="descendant::article[@article-type='research-article' and descendant::article-meta[not(//subj-group[@subj-group-type='display-channel']/subject[lower-case(.)='feature article']) and //subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" role="error" id="medicine-section-tests-xspec-assert">article[@article-type='research-article' and descendant::article-meta[not(//subj-group[@subj-group-type='display-channel']/subject[lower-case(.)='feature article']) and //subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec must be present.</assert>

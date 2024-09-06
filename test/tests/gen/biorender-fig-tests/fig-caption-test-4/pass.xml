@@ -1,0 +1,34 @@
+<?oxygen SCHSchema="fig-caption-test-4.sch"?>
+<!--Context: fig/caption/p[not(child::supplementary-material)] | fig/attrib
+Test: report    $is-cc0 and matches(lower-case(.),'biorend[eo]r') and not(ancestor::fig/permissions[matches(lower-case(.),'biorend[eo]r')])
+Message: Caption or attrib for  contains what looks like a mention of bioRender. Since the overall license for the article is CC0, and bioRender can (only) be licensed CC BY, a permissions statement needs to abe added (e.g. © , {authors}. Parts of this image created with BioRender are made available under a Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.). -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <front>
+            <article-meta>
+                <permissions>
+                    <ali:free_to_read/>
+                    <license xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">
+                      <ali:license_ref>http://creativecommons.org/publicdomain/zero/1.0/</ali:license_ref>
+                        <license-p>This is an open-access article, free of all copyright, and may be freely reproduced, distributed, transmitted, modified, built upon, or otherwise used by anyone for any lawful purpose. The work is made available under the
+<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons CC0 public domain dedication</ext-link>.</license-p>
+                    </license>
+                </permissions>
+            </article-meta>
+        </front>
+        <fig>
+            <caption>
+                <p>Panel X created by bioRender.</p>
+            </caption>
+            <permissions>
+                <copyright-statement>© 2014, copyright holder</copyright-statement>
+                <copyright-year>2014</copyright-year>
+                <copyright-holder>copyright holder</copyright-holder>
+                <license>
+                    <ali:license_ref>https://creativecommons.org/licenses/by-nc-nd/4.0/</ali:license_ref>
+                    <license-p>Panel X created with BioRender and is made available under a <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use and redistribution provided that the original author and source are credited.</license-p>
+                </license>
+            </permissions>
+        </fig>
+    </article>
+</root>
