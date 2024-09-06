@@ -7810,50 +7810,16 @@
         <x:expect-not-assert id="fig-caption-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
-    <x:scenario label="biorender-tests">
-      <x:scenario label="biorender-check-pass">
-        <x:context href="../tests/gen/biorender-tests/biorender-check/pass.xml"/>
-        <x:expect-not-report id="biorender-check" role="warning"/>
-        <x:expect-not-assert id="biorender-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="biorender-check-fail">
-        <x:context href="../tests/gen/biorender-tests/biorender-check/fail.xml"/>
-        <x:expect-report id="biorender-check" role="warning"/>
-        <x:expect-not-assert id="biorender-tests-xspec-assert" role="error"/>
-      </x:scenario>
-    </x:scenario>
     <x:scenario label="biorender-fig-tests">
-      <x:scenario label="pre-fig-caption-test-4-pass">
-        <x:context href="../tests/gen/biorender-fig-tests/pre-fig-caption-test-4/pass.xml"/>
-        <x:expect-not-report id="pre-fig-caption-test-4" role="warning"/>
+      <x:scenario label="fig-caption-test-4-pass">
+        <x:context href="../tests/gen/biorender-fig-tests/fig-caption-test-4/pass.xml"/>
+        <x:expect-not-report id="fig-caption-test-4" role="error"/>
         <x:expect-not-assert id="biorender-fig-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="pre-fig-caption-test-4-fail">
-        <x:context href="../tests/gen/biorender-fig-tests/pre-fig-caption-test-4/fail.xml"/>
-        <x:expect-report id="pre-fig-caption-test-4" role="warning"/>
+      <x:scenario label="fig-caption-test-4-fail">
+        <x:context href="../tests/gen/biorender-fig-tests/fig-caption-test-4/fail.xml"/>
+        <x:expect-report id="fig-caption-test-4" role="error"/>
         <x:expect-not-assert id="biorender-fig-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="final-fig-caption-test-4-pass">
-        <x:context href="../tests/gen/biorender-fig-tests/final-fig-caption-test-4/pass.xml"/>
-        <x:expect-not-report id="final-fig-caption-test-4" role="error"/>
-        <x:expect-not-assert id="biorender-fig-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="final-fig-caption-test-4-fail">
-        <x:context href="../tests/gen/biorender-fig-tests/final-fig-caption-test-4/fail.xml"/>
-        <x:expect-report id="final-fig-caption-test-4" role="error"/>
-        <x:expect-not-assert id="biorender-fig-tests-xspec-assert" role="error"/>
-      </x:scenario>
-    </x:scenario>
-    <x:scenario label="biorender-permissions-tests">
-      <x:scenario label="biorender-permissions-tes-1-pass">
-        <x:context href="../tests/gen/biorender-permissions-tests/biorender-permissions-tes-1/pass.xml"/>
-        <x:expect-not-assert id="biorender-permissions-tes-1" role="error"/>
-        <x:expect-not-assert id="biorender-permissions-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="biorender-permissions-tes-1-fail">
-        <x:context href="../tests/gen/biorender-permissions-tests/biorender-permissions-tes-1/fail.xml"/>
-        <x:expect-assert id="biorender-permissions-tes-1" role="error"/>
-        <x:expect-not-assert id="biorender-permissions-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="fig-panel-tests">

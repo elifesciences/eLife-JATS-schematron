@@ -32,7 +32,14 @@
 <aff id="aff1"><institution>North Pole Enterprises LLC</institution></aff>
 </contrib-group><author-notes>
 <corresp id="cor1"><label>*</label>Corresponding author. <email>s.claus@north.pole</email></corresp>
-</author-notes><abstract>
+</author-notes><permissions>
+<ali:free_to_read/>
+<license xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">
+<ali:license_ref>http://creativecommons.org/publicdomain/zero/1.0/</ali:license_ref>
+<license-p>This is an open-access article, free of all copyright, and may be freely reproduced, distributed, transmitted, modified, built upon, or otherwise used by anyone for any lawful purpose. The work is made available under the
+<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons CC0 public domain dedication</ext-link>.</license-p>
+</license>
+</permissions><abstract>
 <p>This is the abstract</p>
 </abstract>
 <abstract abstract-type="teaser">
@@ -55,7 +62,7 @@
         ...
 </front>
 <body>
-<sec id="d13e80">
+<sec id="d13e96">
 <title>Introduction</title>
 </sec>
 <sec id="s2">
@@ -65,10 +72,11 @@
 <p>Images were created using BioRender.com.</p>
 </caption>
 <permissions>
-<copyright-statement>© 2024, BioRender Inc</copyright-statement>
+<copyright-statement>© 2024, Claus and Elf</copyright-statement>
 <copyright-year>2024</copyright-year>
-<copyright-holder>BioRender Inc</copyright-holder>
-<license><license-p>Any parts of this image created with <ext-link ext-link-type="uri" xlink:href="https://www.biorender.com/">BioRender</ext-link> are not made available under the same license as the Reviewed Preprint, and are © 2024, BioRender Inc.</license-p></license>
+<copyright-holder>Claus and Elf</copyright-holder>
+<license xlink:href="http://creativecommons.org/licenses/by/4.0/"><ali:license_ref>http://creativecommons.org/licenses/by/4.0/</ali:license_ref>
+<license-p>Parts of this image created with <ext-link ext-link-type="uri" xlink:href="https://www.biorender.com/">BioRender</ext-link> are made available under a <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use and redistribution provided that the original author and source are credited.</license-p></license>
 </permissions></fig>
 </sec>
 <sec id="s3">
