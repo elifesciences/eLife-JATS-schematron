@@ -5,12 +5,43 @@
     xmlns:mml="http://www.w3.org/1998/Math/MathML"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:ali="http://www.niso.org/schemas/ali/1.0/"
-    exclude-result-prefixes="xs xsi"
+    xmlns:e="https://elifesciences.org/namespace"
+    exclude-result-prefixes="xs xsi e"
     version="3.0">
 
     <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="yes"/>
 
     <xsl:variable name="name-elems" select="('string-name','collab','on-behalf-of','etal')"/>
+
+    <xsl:function name="e:get-copyright-holder">
+        <xsl:param name="contrib-group"/>
+        <xsl:variable name="author-count" select="count($contrib-group/contrib[@contrib-type = 'author'])"/>
+        <xsl:choose>
+            <xsl:when test="$author-count lt 1"/>
+            <xsl:when test="$author-count = 1">
+                <xsl:value-of select="e:get-surname($contrib-group/contrib[@contrib-type = 'author'][1])"/>
+            </xsl:when>
+            <xsl:when test="$author-count = 2">
+                <xsl:value-of select="concat(e:get-surname($contrib-group/contrib[@contrib-type = 'author'][1]), ' and ', e:get-surname($contrib-group/contrib[@contrib-type = 'author'][2]))"/>
+            </xsl:when>
+            <!-- author count is 3+ -->
+            <xsl:otherwise>
+                <xsl:value-of select="concat(e:get-surname($contrib-group/contrib[@contrib-type = 'author'][1]), ' et al')"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
+    <xsl:function name="e:get-surname" as="text()">
+        <xsl:param name="contrib"/>
+        <xsl:choose>
+            <xsl:when test="$contrib/collab">
+                <xsl:value-of select="$contrib/collab[1]/text()[1]"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$contrib//name[1]/surname[1]"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
 
      <xsl:template match="*|@*|text()|comment()|processing-instruction()">
         <xsl:copy>
@@ -405,24 +436,33 @@
      </xsl:template>
     
     
-    <!-- Add blanket biorender statement for any object with a caption that mentions it -->
-    <xsl:template xml:id="biorender-permissions" match="*[caption[contains(lower-case(.),'biorender')] and not(permissions[contains(lower-case(.),'biorender')])]">
+    <!-- Add a CC-BY biorender statement for CC0 RPs -->
+    <xsl:template xml:id="biorender-permissions" match="article[front//permissions/license/@xlink:href[contains(lower-case(.),'creativecommons.org/publicdomain/zero/')]]//*[caption[contains(lower-case(.),'biorender')]]">
         <xsl:variable name="current-year" select="year-from-date(current-date())"/>
+        <xsl:variable name="author-contrib-group" select="ancestor::article/front/article-meta/contrib-group[1]"/>
+        <xsl:variable name="copyright-holder" select="e:get-copyright-holder($author-contrib-group)"/>
         <xsl:copy>
             <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
-            <permissions>
-                <xsl:text>&#xa;</xsl:text>
-                <copyright-statement><xsl:value-of select="concat('© ',$current-year,', BioRender Inc')"/></copyright-statement>
-                <xsl:text>&#xa;</xsl:text>
-                <copyright-year><xsl:value-of select="$current-year"/></copyright-year>
-                <xsl:text>&#xa;</xsl:text>
-                <copyright-holder>BioRender Inc</copyright-holder>
-                <xsl:text>&#xa;</xsl:text>
-                <license>
-                    <license-p><xsl:text>Any parts of this image created with </xsl:text><ext-link ext-link-type="uri" xlink:href="https://www.biorender.com/">BioRender</ext-link><xsl:text> are not made available under the same license as the Reviewed Preprint, and are © </xsl:text><xsl:value-of select="$current-year"/><xsl:text>, BioRender Inc.</xsl:text></license-p>
-                </license>
-                <xsl:text>&#xa;</xsl:text>
-            </permissions>
+            <xsl:choose>
+                <xsl:when test="permissions[contains(.,$copyright-holder) and contains(.,'biorender')]"/>
+                <xsl:otherwise>
+                    <permissions>
+                        <xsl:text>&#xa;</xsl:text>
+                        <copyright-statement><xsl:value-of select="concat('© ',$current-year,', ', $copyright-holder)"/></copyright-statement>
+                        <xsl:text>&#xa;</xsl:text>
+                        <copyright-year><xsl:value-of select="$current-year"/></copyright-year>
+                        <xsl:text>&#xa;</xsl:text>
+                        <copyright-holder><xsl:value-of select="$copyright-holder"/></copyright-holder>
+                        <xsl:text>&#xa;</xsl:text>
+                        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+                            <ali:license_ref>http://creativecommons.org/licenses/by/4.0/</ali:license_ref>
+                            <xsl:text>&#xa;</xsl:text>
+                            <license-p><xsl:text>Parts of this image created with </xsl:text><ext-link ext-link-type="uri" xlink:href="https://www.biorender.com/">BioRender</ext-link><xsl:text> are made available under a </xsl:text><ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link><xsl:text>, which permits unrestricted use and redistribution provided that the original author and source are credited.</xsl:text></license-p>
+                        </license>
+                        <xsl:text>&#xa;</xsl:text>
+                    </permissions>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:copy>
     </xsl:template>
     
