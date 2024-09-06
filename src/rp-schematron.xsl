@@ -2258,6 +2258,46 @@
             <svrl:text>[underline-warning] underline element contains more than 20 characters. Is this tracked change formatting that's been erroneously retained?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(lower-case(.),'www\.|(f|ht)tp|^link\s|\slink\s')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'www\.|(f|ht)tp|^link\s|\slink\s')">
+            <xsl:attribute name="id">underline-link-warning</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[underline-link-warning] Should this underline element be a link (ext-link) instead? <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="replace(.,'[\s\.]','')='&gt;'">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="replace(.,'[\s\.]','')='&gt;'">
+            <xsl:attribute name="id">underline-gt-warning</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[underline-gt-warning] underline element contains a greater than symbol (<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>). Should this a greater than or equal to symbol instead (≥)?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="replace(.,'[\s\.]','')='&lt;'">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="replace(.,'[\s\.]','')='&lt;'">
+            <xsl:attribute name="id">underline-lt-warning</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[underline-lt-warning] underline element contains a less than symbol (<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>). Should this a less than or equal to symbol instead (≤)?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M42"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M42"/>

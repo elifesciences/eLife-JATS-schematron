@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="underline-link-warning.sch"?>
+<!--Context: underline
+Test: report    matches(lower-case(.),'www\.|(f|ht)tp|^link\s|\slink\s')
+Message: Should this underline element be a link (ext-link) instead?  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <underline>Emphasis</underline>
+    </article>
+</root>

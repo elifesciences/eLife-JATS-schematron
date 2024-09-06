@@ -813,6 +813,36 @@
         <x:expect-report id="underline-warning" role="warning"/>
         <x:expect-not-assert id="underline-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="underline-link-warning-pass">
+        <x:context href="../tests/rp/underline-checks/underline-link-warning/pass.xml"/>
+        <x:expect-not-report id="underline-link-warning" role="warning"/>
+        <x:expect-not-assert id="underline-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="underline-link-warning-fail">
+        <x:context href="../tests/rp/underline-checks/underline-link-warning/fail.xml"/>
+        <x:expect-report id="underline-link-warning" role="warning"/>
+        <x:expect-not-assert id="underline-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="underline-gt-warning-pass">
+        <x:context href="../tests/rp/underline-checks/underline-gt-warning/pass.xml"/>
+        <x:expect-not-report id="underline-gt-warning" role="warning"/>
+        <x:expect-not-assert id="underline-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="underline-gt-warning-fail">
+        <x:context href="../tests/rp/underline-checks/underline-gt-warning/fail.xml"/>
+        <x:expect-report id="underline-gt-warning" role="warning"/>
+        <x:expect-not-assert id="underline-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="underline-lt-warning-pass">
+        <x:context href="../tests/rp/underline-checks/underline-lt-warning/pass.xml"/>
+        <x:expect-not-report id="underline-lt-warning" role="warning"/>
+        <x:expect-not-assert id="underline-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="underline-lt-warning-fail">
+        <x:context href="../tests/rp/underline-checks/underline-lt-warning/fail.xml"/>
+        <x:expect-report id="underline-lt-warning" role="warning"/>
+        <x:expect-not-assert id="underline-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="fig-checks">
       <x:scenario label="fig-graphic-conformance-pass">

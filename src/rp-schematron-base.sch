@@ -520,6 +520,18 @@
         <report test="string-length(.) gt 20" 
         role="warning" 
         id="underline-warning">underline element contains more than 20 characters. Is this tracked change formatting that's been erroneously retained?</report>
+      
+        <report test="matches(lower-case(.),'www\.|(f|ht)tp|^link\s|\slink\s')" 
+        role="warning" 
+        id="underline-link-warning">Should this underline element be a link (ext-link) instead? <value-of select="."/></report>
+
+        <report test="replace(.,'[\s\.]','')='&gt;'" 
+        role="warning" 
+        id="underline-gt-warning">underline element contains a greater than symbol (<value-of select="."/>). Should this a greater than or equal to symbol instead (&#x2265;)?</report>
+
+        <report test="replace(.,'[\s\.]','')='&lt;'" 
+        role="warning" 
+        id="underline-lt-warning">underline element contains a less than symbol (<value-of select="."/>). Should this a less than or equal to symbol instead (&#x2264;)?</report>
      </rule>
     </pattern>
 
