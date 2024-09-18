@@ -1,0 +1,26 @@
+<?oxygen SCHSchema="ed-report-kwd-group-2.sch"?>
+<!--Context: sub-article[@article-type='editor-report']/front-stub/kwd-group
+Test: report    @kwd-group-type='evidence-strength' and count(kwd) gt 1
+Message:  type kwd-group has  keywords: . This is unusual, please check this is correct. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article id="sa0" article-type="editor-report">
+      <front-stub>
+        <article-id pub-id-type="doi">10.7554/eLife.1234567890.4.sa0</article-id>
+        <title-group>
+          <article-title>eLife assessment</article-title>
+        </title-group>
+        <kwd-group kwd-group-type="claim-importance">
+          <kwd>Noteworthy</kwd>
+        </kwd-group>
+        <kwd-group kwd-group-type="evidence-strength">
+          <kwd>Compelling</kwd>
+          <kwd>Incomplete</kwd>
+        </kwd-group>
+      </front-stub>
+      <body>
+        <p>The terms in use are <bold>noteworthy</bold>. And the data is <bold>compelling</bold>, but <bold>incomplete</bold>.</p>
+      </body>
+    </sub-article>
+  </article>
+</root>

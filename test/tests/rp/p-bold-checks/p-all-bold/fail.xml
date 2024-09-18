@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="p-all-bold.sch"?>
-<!--Context: p[(count(*)=1) and (child::bold or child::italic)]
+<!--Context: p[not(ancestor::sub-article) and (count(*)=1) and (child::bold or child::italic)]
 Test: report    $free-text=''
 Message: Content of p element is entirely in  - ''. Is this correct? -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">

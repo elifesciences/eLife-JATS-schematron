@@ -1,0 +1,27 @@
+<?oxygen SCHSchema="ed-report-evidence-kwd-1.sch"?>
+<!--Context: sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd
+Test: assert    .=$allowed-vals
+Message: Keyword contains , but it is in a 'claim-importance' keyword group, meaning it should have one of the following values:  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <sub-article id="sa0" article-type="editor-report">
+      <front-stub>
+        <article-id pub-id-type="doi">10.7554/eLife.1234567890.4.sa0</article-id>
+        <title-group>
+          <article-title>eLife assessment</article-title>
+        </title-group>
+        <kwd-group kwd-group-type="claim-importance">
+          <kwd>Noteworthy</kwd>
+          <kwd>boooring :yawning_face:</kwd>
+        </kwd-group>
+        <kwd-group kwd-group-type="evidence-strength">
+          <kwd>Compelling</kwd>
+          <kwd>Gorgeous :heart_eyes:</kwd>
+        </kwd-group>
+      </front-stub>
+      <body>
+        <p>The terms in use are <bold>noteworthy</bold> but <bold>flawed</bold>. And the data is <bold>compelling</bold>, but <bold>incomplete</bold>.</p>
+      </body>
+    </sub-article>
+  </article>
+</root>
