@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="biorender-check.sch"?>
+<!--Context: article
+Test: report    matches(lower-case($article-text),'biorend[eo]r')
+Message: Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}". -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <back>
+            <fig>
+                <caption>
+                    <p>Images created with bioRender.com</p>
+                </caption>
+            </fig>
+        </back>
+    </article>
+</root>
