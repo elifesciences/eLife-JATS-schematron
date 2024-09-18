@@ -18986,7 +18986,7 @@
             </xsl:attribute>
             <svrl:text>[fig-caption-test-4] Caption or attrib for <xsl:text/>
                <xsl:value-of select="$label"/>
-               <xsl:text/> contains what looks like a mention of bioRender. Since the overall license for the article is CC0, and bioRender can (only) be licensed CC BY, a permissions statement needs to abe added (e.g. © <xsl:text/>
+               <xsl:text/> contains what looks like a mention of bioRender. Since the overall license for the article is CC0, and bioRender can (only) be licensed CC BY, a permissions statement needs to be added (e.g. © <xsl:text/>
                <xsl:value-of select="year-from-date(current-date())"/>
                <xsl:text/>, {authors}. Parts of this image created with BioRender are made available under a Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.).</svrl:text>
          </svrl:successful-report>
