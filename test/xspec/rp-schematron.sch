@@ -566,7 +566,7 @@
   </pattern>
 
     <pattern id="p-bold-checks-pattern">
-    <rule context="p[(count(*)=1) and (child::bold or child::italic)]" id="p-bold-checks">
+    <rule context="p[not(ancestor::sub-article) and (count(*)=1) and (child::bold or child::italic)]" id="p-bold-checks">
         <let name="free-text" value="replace(normalize-space(string-join(for $x in self::*/text() return $x,'')),' ','')"/>
         <report test="$free-text=''" role="warning" id="p-all-bold">Content of p element is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
       </rule>
@@ -922,7 +922,7 @@
       <assert test="descendant::sec" role="error" id="sec-checks-xspec-assert">sec must be present.</assert>
       <assert test="descendant::title" role="error" id="title-checks-xspec-assert">title must be present.</assert>
       <assert test="descendant::article/body/sec/title or descendant::article/back/sec/title" role="error" id="title-toc-checks-xspec-assert">article/body/sec/title|article/back/sec/title must be present.</assert>
-      <assert test="descendant::p[(count(*)=1) and (child::bold or child::italic)]" role="error" id="p-bold-checks-xspec-assert">p[(count(*)=1) and (child::bold or child::italic)] must be present.</assert>
+      <assert test="descendant::p[not(ancestor::sub-article) and (count(*)=1) and (child::bold or child::italic)]" role="error" id="p-bold-checks-xspec-assert">p[not(ancestor::sub-article) and (count(*)=1) and (child::bold or child::italic)] must be present.</assert>
       <assert test="descendant::article/front/article-meta" role="error" id="general-article-meta-checks-xspec-assert">article/front/article-meta must be present.</assert>
       <assert test="descendant::article/front/article-meta//article-version" role="error" id="article-version-checks-xspec-assert">article/front/article-meta//article-version must be present.</assert>
       <assert test="descendant::article/front/article-meta/article-version-alternatives" role="error" id="article-version-alternatives-checks-xspec-assert">article/front/article-meta/article-version-alternatives must be present.</assert>

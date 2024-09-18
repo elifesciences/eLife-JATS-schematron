@@ -415,7 +415,7 @@
         <report test="xref" role="error" id="toc-title-contains-citation">[toc-title-contains-citation] <name/> element contains a citation and will appear within the table of contents on EPP. This will cause images not to load. Please either remove the citaiton or make it plain text.</report>
       </rule></pattern>
 
-    <pattern id="p-bold-checks-pattern"><rule context="p[(count(*)=1) and (child::bold or child::italic)]" id="p-bold-checks">
+    <pattern id="p-bold-checks-pattern"><rule context="p[not(ancestor::sub-article) and (count(*)=1) and (child::bold or child::italic)]" id="p-bold-checks">
         <let name="free-text" value="replace(normalize-space(string-join(for $x in self::*/text() return $x,'')),' ','')"/>
         <report test="$free-text=''" role="warning" id="p-all-bold">[p-all-bold] Content of p element is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
       </rule></pattern>

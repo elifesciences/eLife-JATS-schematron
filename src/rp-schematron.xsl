@@ -3049,7 +3049,7 @@
    </xsl:template>
    <!--PATTERN p-bold-checks-pattern-->
    <!--RULE p-bold-checks-->
-   <xsl:template match="p[(count(*)=1) and (child::bold or child::italic)]" priority="1000" mode="M61">
+   <xsl:template match="p[not(ancestor::sub-article) and (count(*)=1) and (child::bold or child::italic)]" priority="1000" mode="M61">
       <xsl:variable name="free-text" select="replace(normalize-space(string-join(for $x in self::*/text() return $x,'')),' ','')"/>
       <!--REPORT warning-->
       <xsl:if test="$free-text=''">

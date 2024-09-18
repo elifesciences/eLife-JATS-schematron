@@ -756,7 +756,7 @@
     </pattern>
 
     <pattern id="p">
-      <rule context="p[(count(*)=1) and (child::bold or child::italic)]" id="p-bold-checks">
+      <rule context="p[not(ancestor::sub-article) and (count(*)=1) and (child::bold or child::italic)]" id="p-bold-checks">
         <let name="free-text" value="replace(normalize-space(string-join(for $x in self::*/text() return $x,'')),' ','')"/>
         <report test="$free-text=''"
         role="warning" 
