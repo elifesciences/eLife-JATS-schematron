@@ -723,6 +723,47 @@
     </rule>
   </pattern>
 
+    <pattern id="ed-report-kwd-group-pattern">
+    <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group" id="ed-report-kwd-group">
+      
+      <assert test="@kwd-group-type=('claim-importance','evidence-strength')" role="error" id="ed-report-kwd-group-1">kwd-group in <value-of select="parent::*/title-group/article-title"/> must have the attribute kwd-group-type with the value 'claim-importance' or 'evidence-strength'. This one does not.</assert>
+
+      <report test="@kwd-group-type='claim-importance' and count(kwd) gt 1" role="error" id="ed-report-kwd-group-3">
+        <value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. This is not permitted, please check which single importance keyword should be used.</report>
+      
+      <report test="@kwd-group-type='evidence-strength' and count(kwd) gt 1" role="warning" id="ed-report-kwd-group-2">
+        <value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. This is unusual, please check this is correct.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="ed-report-kwds-pattern">
+    <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" id="ed-report-kwds">
+      
+        <report test="preceding-sibling::kwd = ." role="error" id="ed-report-kwd-1">Keyword contains <value-of select="."/>, there is another kwd with that value witin the same kwd-group, so this one is either incorrect or superfluous and should be deleted.</report>
+      
+        <assert test="some $x in ancestor::sub-article[1]/body/p//bold satisfies contains(lower-case($x),lower-case(.))" role="error" id="ed-report-kwd-2">Keyword contains <value-of select="."/>, but this term is not bolded in the text of the <value-of select="ancestor::front-stub/title-group/article-title"/>.</assert>
+      
+        <report test="*" role="error" id="ed-report-kwd-3">Keywords in <value-of select="ancestor::front-stub/title-group/article-title"/> cannot contain elements, only text. This one has: <value-of select="string-join(distinct-values(*/name()),'; ')"/>.</report>
+    </rule>
+  </pattern>
+  <pattern id="ed-report-claim-kwds-pattern">
+    <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" id="ed-report-claim-kwds">
+      <let name="allowed-vals" value="('Landmark', 'Fundamental', 'Important', 'Valuable', 'Useful')"/>
+      
+      <assert test=".=$allowed-vals" role="error" id="ed-report-claim-kwd-1">Keyword contains <value-of select="."/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/>
+      </assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="ed-report-evidence-kwds-pattern">
+    <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" id="ed-report-evidence-kwds">
+      <let name="allowed-vals" value="('Exceptional', 'Compelling', 'Convincing', 'Solid', 'Incomplete', 'Inadequate')"/>
+      
+      <assert test=".=$allowed-vals" role="error" id="ed-report-evidence-kwd-1">Keyword contains <value-of select="."/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/>
+      </assert>
+    </rule>
+  </pattern>
+
     <pattern id="arxiv-journal-meta-checks-pattern">
     <rule context="article/front/journal-meta[lower-case(journal-id[1])='arxiv']" id="arxiv-journal-meta-checks">
         <assert test="journal-id[@journal-id-type='publisher-id']='arXiv'" role="error" id="arxiv-journal-id">arXiv preprints must have a &lt;journal-id journal-id-type="publisher-id"&gt; element with the value 'arXiv'.</assert>
@@ -891,6 +932,10 @@
       <assert test="descendant::ext-link" role="error" id="ext-link-tests-2-xspec-assert">ext-link must be present.</assert>
       <assert test="descendant::fn-group[fn]" role="error" id="footnote-checks-xspec-assert">fn-group[fn] must be present.</assert>
       <assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link" role="error" id="unallowed-symbol-tests-xspec-assert">p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group" role="error" id="ed-report-kwd-group-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" role="error" id="ed-report-kwds-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" role="error" id="ed-report-claim-kwds-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" role="error" id="ed-report-evidence-kwds-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd must be present.</assert>
       <assert test="descendant::article/front/journal-meta[lower-case(journal-id[1])='arxiv']" role="error" id="arxiv-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id[1])='arxiv'] must be present.</assert>
       <assert test="descendant::article/front[journal-meta[lower-case(journal-id[1])='arxiv']]/article-meta/article-id[@pub-id-type='doi']" role="error" id="arxiv-doi-checks-xspec-assert">article/front[journal-meta[lower-case(journal-id[1])='arxiv']]/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::article/front/journal-meta[lower-case(journal-id[1])='rs']" role="error" id="res-square-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id[1])='rs'] must be present.</assert>
