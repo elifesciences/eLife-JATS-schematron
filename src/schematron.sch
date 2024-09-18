@@ -6163,6 +6163,20 @@ else self::*/local-name() = $allowed-p-blocks"
 
     </rule>
 
+    <rule context="article" id="biorender-tests">
+      <!-- exclude ref list and figures from this check -->
+      <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*
+          return
+          if ($x/ancestor::ref-list) then ()
+          else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()
+          else $x/text(),'')"/>
+
+       <report test="matches(lower-case($article-text),'biorend[eo]r')" 
+        role="warning" 
+        id="biorender-check">Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</report>
+
+    </rule>
+
     <rule context="fig/caption/p[not(child::supplementary-material)] | fig/attrib" id="biorender-fig-tests">
       <let name="is-cc0" value="contains(lower-case(ancestor::article[1]/front[1]/descendant::permissions[1]/license[1]/@xlink:href),'creativecommons.org/publicdomain/zero/')"/>
       <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>    

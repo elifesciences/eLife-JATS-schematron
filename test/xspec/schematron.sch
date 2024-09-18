@@ -4521,6 +4521,15 @@
 
     </rule>
   </pattern>
+  <pattern id="biorender-tests-pattern">
+    <rule context="article" id="biorender-tests">
+      <!-- exclude ref list and figures from this check -->
+      <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
+
+       <report test="matches(lower-case($article-text),'biorend[eo]r')" role="warning" id="biorender-check">Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</report>
+
+    </rule>
+  </pattern>
   <pattern id="biorender-fig-tests-pattern">
     <rule context="fig/caption/p[not(child::supplementary-material)] | fig/attrib" id="biorender-fig-tests">
       <let name="is-cc0" value="contains(lower-case(ancestor::article[1]/front[1]/descendant::permissions[1]/license[1]/@xlink:href),'creativecommons.org/publicdomain/zero/')"/>
@@ -9917,6 +9926,7 @@
       <assert test="descendant::permissions[not(parent::article-meta)]//license-p//ext-link" role="error" id="permissions-3b-xspec-assert">permissions[not(parent::article-meta)]//license-p//ext-link must be present.</assert>
       <assert test="descendant::permissions[not(parent::article-meta)]//license" role="error" id="permissions-3c-xspec-assert">permissions[not(parent::article-meta)]//license must be present.</assert>
       <assert test="descendant::fig/caption/p[not(child::supplementary-material)]" role="error" id="fig-caption-tests-xspec-assert">fig/caption/p[not(child::supplementary-material)] must be present.</assert>
+      <assert test="descendant::article" role="error" id="biorender-tests-xspec-assert">article must be present.</assert>
       <assert test="descendant::fig/caption/p[not(child::supplementary-material)]  or descendant:: fig/attrib" role="error" id="biorender-fig-tests-xspec-assert">fig/caption/p[not(child::supplementary-material)] | fig/attrib must be present.</assert>
       <assert test="descendant::fig/caption/p/bold" role="error" id="fig-panel-tests-xspec-assert">fig/caption/p/bold must be present.</assert>
       <assert test="descendant::article[@article-type='research-article']/body" role="error" id="ra-body-tests-xspec-assert">article[@article-type='research-article']/body must be present.</assert>
