@@ -802,6 +802,18 @@
         <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="back-tests">
+      <x:scenario label="no-ref-list-pass">
+        <x:context href="../tests/rp/back-tests/no-ref-list/pass.xml"/>
+        <x:expect-not-assert id="no-ref-list" role="error"/>
+        <x:expect-not-assert id="back-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="no-ref-list-fail">
+        <x:context href="../tests/rp/back-tests/no-ref-list/fail.xml"/>
+        <x:expect-assert id="no-ref-list" role="error"/>
+        <x:expect-not-assert id="back-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="strike-checks">
       <x:scenario label="strike-warning-pass">
         <x:context href="../tests/rp/strike-checks/strike-warning/pass.xml"/>

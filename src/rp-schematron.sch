@@ -103,7 +103,7 @@
 
        <report test="matches(lower-case($article-text),'biorend[eo]r')" role="warning" id="biorender-check">[biorender-check] Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</report>
 
-    </rule></pattern>
+      </rule></pattern>
 
     <pattern id="article-title-checks-pattern"><rule context="article-meta/title-group/article-title" id="article-title-checks">
         <report test=". = upper-case(.)" role="error" id="article-title-all-caps">[article-title-all-caps] Article title is in all caps - <value-of select="."/>. Please change to sentence case.</report>
@@ -300,6 +300,12 @@
 
         <assert test="person-group[@person-group-type='author']" role="warning" id="mixed-citation-person-group-flag-2">[mixed-citation-person-group-flag-2] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have an author person-group. Is that correct?</assert>
      </rule></pattern>
+
+    <pattern id="back-tests-pattern"><rule context="back" id="back-tests">
+
+       <assert test="ref-list" role="error" id="no-ref-list">[no-ref-list] This preprint has no reference list (as a child of back), which must be incorrect.</assert>
+
+      </rule></pattern>
 
     <pattern id="strike-checks-pattern"><rule context="strike" id="strike-checks">
         <report test="." role="warning" id="strike-warning">[strike-warning] strike element is present. Is this tracked change formatting that's been erroneously retained? Should this text be deleted?</report>
