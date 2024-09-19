@@ -125,7 +125,7 @@
         role="warning" 
         id="biorender-check">Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</report>
 
-    </rule>
+      </rule>
     </pattern>
 
     <pattern id="article-title">
@@ -521,6 +521,16 @@
           role="warning" 
           id="mixed-citation-person-group-flag-2"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have an author person-group. Is that correct?</assert>
      </rule>
+    </pattern>
+
+    <pattern id="back">
+      <rule context="back" id="back-tests">
+
+       <assert test="ref-list" 
+        role="error" 
+        id="no-ref-list">This preprint has no reference list (as a child of back), which must be incorrect.</assert>
+
+      </rule>
     </pattern>
 
     <pattern id="strike">
