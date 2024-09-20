@@ -251,7 +251,9 @@
             '(figures?|tables?) supplements',
             'ethic(s|al)( declarations?|statements?)?',
             'patient cohort details',
-            'abbreviations?|glossary'
+            'abbreviations?|glossary',
+            'quantification (and|&amp;) statistical analysis',
+            'experimental (model (and|&amp;) subject details|procedures)'
         )"/>
         <xsl:variable name="regex" select="concat('^(',string-join($phrases,'|'),')$')"/>
         <xsl:choose>
