@@ -22,6 +22,7 @@
         <xsl:copy>
             <xsl:choose>
                 <xsl:when test="not(*) and .=upper-case(.)">
+                    <xsl:apply-templates select="@*"/>
                     <xsl:value-of select="concat(substring(.,1,1),lower-case(substring(.,2)))"/>
                 </xsl:when>
                 <xsl:otherwise>
