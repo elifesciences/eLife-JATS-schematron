@@ -21,7 +21,8 @@
     <xsl:template match="*[name()=('sec','app')]/title">
         <xsl:copy>
             <xsl:choose>
-                <xsl:when test="">
+                <xsl:when test="not(*) and .=upper-case(.)">
+                    <xsl:value-of select="concat(substring(.,1,1),lower-case(substring(.,2)))"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
