@@ -198,14 +198,50 @@
                     <xsl:choose>
                         <xsl:when test="./author-notes/corresp">
                             <xsl:variable name="corresp-emails" select="./author-notes/corresp/email"/>
+                            <xsl:variable name="corresp-authors" select="./contrib-group/contrib[xref[@ref-type='corresp']]"/>
                             <xsl:choose>
                                 <!-- When there are no emails in corresp -->
                                 <xsl:when test="count($corresp-emails)=0">
                                     <xsl:apply-templates select="./contrib-group|./author-notes|text()[preceding-sibling::contrib-group and following-sibling::author-notes]"/>
                                 </xsl:when>
+                                <!-- When there's 1 corresponding author/email -->
+                                <xsl:when test="count($corresp-emails)=1 and count($corresp-authors)=1">
+                                    <xsl:element name="contrib-group">
+                                        <xsl:apply-templates select="./contrib-group/@*"/>
+                                        <xsl:for-each select="./contrib-group/contrib">
+                                            <xsl:copy>
+                                                <xsl:choose>
+                                                    <xsl:when test="xref[@ref-type='corresp']">
+                                                        <xsl:if test="not(./@corresp='yes')">
+                                                            <xsl:attribute name="corresp">yes</xsl:attribute>
+                                                        </xsl:if>
+                                                        <xsl:apply-templates select="*[not(@ref-type='corresp')]|text()[not(following-sibling::*[1]/@ref-type='corresp')]"/>
+                                                        <xsl:element name="email">
+                                                            <xsl:value-of select="$corresp-emails"/>
+                                                        </xsl:element>
+                                                        <xsl:text>&#xa;</xsl:text>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                        <xsl:apply-templates select="@*|*|text()"/>
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
+                                            </xsl:copy>
+                                            <xsl:text>&#xa;</xsl:text>
+                                        </xsl:for-each>
+                                        <xsl:copy-of select="./contrib-group/*[name()!='contrib']|./contrib-group/text()[not(following-sibling::contrib) and not(preceding-sibling::*[1]/name()='contrib')]|./contrib-group/comment()"/>
+                                    </xsl:element>
+                                    <xsl:choose>
+                                        <xsl:when test="./author-notes/*[name()!='corresp']">
+                                            <xsl:text>&#xa;</xsl:text>
+                                            <xsl:element name="author-notes">
+                                                <xsl:copy-of select="./author-notes/*[name()!='corresp']|./author-notes/text()[preceding-sibling::corresp]"/>
+                                            </xsl:element>
+                                        </xsl:when>
+                                        <xsl:otherwise/>
+                                    </xsl:choose>
+                                </xsl:when>
                                 <xsl:otherwise>
                                     <!-- Attempt to match emails to authors -->
-                                    <xsl:variable name="corresp-authors" select="./contrib-group/contrib[xref[@ref-type='corresp']]"/>
                                     <xsl:choose>
                                         <!-- corresp email and author counts match - we can attempt to match them up -->
                                         <xsl:when test="count($corresp-emails) = count($corresp-authors)">
@@ -245,12 +281,11 @@
                                                                     <xsl:if test="not(./@corresp='yes')">
                                                                         <xsl:attribute name="corresp">yes</xsl:attribute>
                                                                     </xsl:if>
-                                                                    <xsl:apply-templates select="./name|*[following-sibling::name]|text()[following-sibling::name]"/>
-                                                                    <xsl:text>&#xa;</xsl:text>
+                                                                    <xsl:apply-templates select="*[not(@ref-type='corresp')]|text()[not(following-sibling::*[1]/@ref-type='corresp')]"/>
                                                                     <xsl:element name="email">
                                                                         <xsl:value-of select="$email"/>
                                                                     </xsl:element>
-                                                                    <xsl:apply-templates select="*[preceding-sibling::name and not(@ref-type='corresp')]|text()[preceding-sibling::name and not(following-sibling::*[1]/@ref-type='corresp')]"/>
+                                                                    <xsl:text>&#xa;</xsl:text>
                                                                 </xsl:when>
                                                                 <xsl:otherwise>
                                                                     <xsl:apply-templates select="@*|*|text()"/>
