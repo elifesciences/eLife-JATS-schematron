@@ -954,6 +954,10 @@
         test="contains(@xlink:href,'datadryad.org/review?')" 
         role="warning" 
         id="ext-link-child-test-5">ext-link looks like it points to a review dryad dataset - <value-of select="."/>. Should it be updated?</report>
+
+    <report test="contains(@xlink:href,'paperpile.com')"
+        role="error"
+        id="paper-pile-test">This paperpile hyperlink should be removed: '<value-of select="@xlink:href"/>' embedded in the text '<value-of select="."/>'.</report>
     </rule>
 
     <rule context="ext-link" id="ext-link-tests-2">

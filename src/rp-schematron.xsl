@@ -3631,6 +3631,21 @@
                <xsl:text/>. Should it be updated?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="contains(@xlink:href,'paperpile.com')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(@xlink:href,'paperpile.com')">
+            <xsl:attribute name="id">paper-pile-test</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[paper-pile-test] This paperpile hyperlink should be removed: '<xsl:text/>
+               <xsl:value-of select="@xlink:href"/>
+               <xsl:text/>' embedded in the text '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M72"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M72"/>
