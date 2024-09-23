@@ -189,7 +189,7 @@
     <!-- corresp element handling 
         1. Attempt to match up emails and remove corresp
         2. If no match is found and there is an email, remove all content except emails from corresp -->
-    <xsl:template xml:id="handle corresp" mode="article-meta-round-2" match="article-meta">
+    <xsl:template xml:id="handle-corresp" mode="article-meta-round-2" match="article-meta">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:apply-templates select="*[following-sibling::contrib-group]|text()[following-sibling::contrib-group]"/>

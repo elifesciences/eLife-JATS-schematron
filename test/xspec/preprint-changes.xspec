@@ -16,9 +16,9 @@
       <x:context href="../tests/preprint-changes/add-article-version/input.xml"/>
       <x:expect label="Testing the template: add-article-version" href="../tests/preprint-changes/add-article-version/output.xml"/>
     </x:scenario>
-    <x:scenario label="handle corresp">
-      <x:context href="../tests/preprint-changes/handle corresp/input.xml"/>
-      <x:expect label="Testing the template: handle corresp" href="../tests/preprint-changes/handle corresp/output.xml"/>
+    <x:scenario label="handle-corresp">
+      <x:context href="../tests/preprint-changes/handle-corresp/input.xml"/>
+      <x:expect label="Testing the template: handle-corresp" href="../tests/preprint-changes/handle-corresp/output.xml"/>
     </x:scenario>
     <x:scenario label="singular-aff-contrib">
       <x:context href="../tests/preprint-changes/singular-aff-contrib/input.xml"/>
