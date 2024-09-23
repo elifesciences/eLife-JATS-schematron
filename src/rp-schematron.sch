@@ -454,6 +454,8 @@
         <assert test="(descendant::contrib[@contrib-type='author' and email]) or (descendant::contrib[@contrib-type='author']/xref[@ref-type='corresp']/@rid=./author-notes/corresp/@id)" role="error" id="article-no-emails">[article-no-emails] This preprint has no emails for corresponding authors, which must be incorrect.</assert>
         
         <assert test="$corresp-author-count=$distinct-email-count" role="warning" id="article-email-corresp-author-count-equivalence">[article-email-corresp-author-count-equivalence] The number of corresponding authors (<value-of select="$corresp-author-count"/>: <value-of select="string-join($corresp-authors,'; ')"/>) is not equal to the number of distinct email addresses (<value-of select="$distinct-email-count"/>: <value-of select="string-join($distinct-emails,'; ')"/>). Is this correct?</assert>
+
+        <report test="$corresp-author-count=$distinct-email-count and author-notes/corresp" role="warning" id="article-corresp">[article-corresp] The number of corresponding authors and distinct emails is the same, but a match between them has been unable to be made. As its stands the corresp will display on EPP: <value-of select="author-notes/corresp"/>.</report>
       </rule></pattern><pattern id="article-version-checks-pattern"><rule context="article/front/article-meta//article-version" id="article-version-checks">
         
         <report test="parent::article-meta and not(@article-version-type) and not(matches(.,'^1\.\d+$'))" role="error" id="article-version-2">[article-version-2] article-version must be in the format 1.x (e.g. 1.11). This one is '<value-of select="."/>'.</report>

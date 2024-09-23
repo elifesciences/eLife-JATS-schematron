@@ -1347,6 +1347,16 @@
         <x:expect-assert id="article-email-corresp-author-count-equivalence" role="warning"/>
         <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="article-corresp-pass">
+        <x:context href="../tests/rp/general-article-meta-checks/article-corresp/pass.xml"/>
+        <x:expect-not-report id="article-corresp" role="warning"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-corresp-fail">
+        <x:context href="../tests/rp/general-article-meta-checks/article-corresp/fail.xml"/>
+        <x:expect-report id="article-corresp" role="warning"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="article-version-checks">
       <x:scenario label="article-version-2-pass">
