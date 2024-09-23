@@ -212,6 +212,7 @@
                                             <xsl:copy>
                                                 <xsl:choose>
                                                     <xsl:when test="xref[@ref-type='corresp']">
+                                                        <xsl:apply-templates select="@*"/>
                                                         <xsl:if test="not(./@corresp='yes')">
                                                             <xsl:attribute name="corresp">yes</xsl:attribute>
                                                         </xsl:if>
