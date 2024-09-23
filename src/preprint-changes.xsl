@@ -192,9 +192,9 @@
     <xsl:template xml:id="handle-corresp" mode="article-meta-round-2" match="article-meta">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
-            <xsl:apply-templates select="*[following-sibling::contrib-group]|text()[following-sibling::contrib-group]"/>
             <xsl:choose>
                 <xsl:when test="./author-notes">
+                    <xsl:apply-templates select="*[following-sibling::contrib-group]|text()[following-sibling::contrib-group]"/>
                     <xsl:choose>
                         <xsl:when test="./author-notes/corresp">
                             <xsl:variable name="corresp-emails" select="./author-notes/corresp/email"/>
@@ -259,9 +259,11 @@
                                                             </xsl:copy>
                                                             <xsl:text>&#xa;</xsl:text>
                                                         </xsl:for-each>
+                                                        <xsl:copy-of select="./contrib-group/*[name()!='contrib']|./contrib-group/text()[not(following-sibling::contrib) and not(preceding-sibling::*[1]/name()='contrib')]|./contrib-group/comment()"/>
                                                     </xsl:element>
                                                     <xsl:choose>
                                                         <xsl:when test="./author-notes/*[name()!='corresp']">
+                                                            <xsl:text>&#xa;</xsl:text>
                                                             <xsl:element name="author-notes">
                                                                 <xsl:copy-of select="./author-notes/*[name()!='corresp']|./author-notes/text()[preceding-sibling::corresp]"/>
                                                     </xsl:element>
@@ -323,7 +325,7 @@
                     <xsl:apply-templates select="*[preceding-sibling::author-notes]|text()[preceding-sibling::author-notes]"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:apply-templates select="./contrib-group|*[preceding-sibling::contrib-group and name()!='author-notes']|text()[preceding-sibling::contrib-group]"/>
+                    <xsl:apply-templates select="*|text()"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:copy>

@@ -15,13 +15,12 @@
 <article-meta><article-version article-version-type="publication-state">reviewed preprint</article-version>
 <title-group>
 <article-title />
-</title-group><contrib-group>
-<contrib contrib-type="author" corresp="yes">
+</title-group><contrib-group><contrib contrib-type="author" corresp="yes">
 <name>
 <surname>Claus</surname>
 <given-names>Santa</given-names>
 </name>
-<xref ref-type="corresp" rid="cor1">*</xref>
+<email>s.claus@north.pole</email>
 <xref ref-type="aff" rid="aff1" /></contrib>
 <contrib contrib-type="author">
 <name>
@@ -30,9 +29,7 @@
 </name>
 <xref ref-type="aff" rid="aff1" /></contrib>
 <aff id="aff1"><institution>North Pole Enterprises LLC</institution></aff>
-</contrib-group><author-notes>
-<corresp id="cor1"><label>*</label>Corresponding author. <email>s.claus@north.pole</email></corresp>
-</author-notes><permissions>
+</contrib-group><permissions>
 <ali:free_to_read/>
 <license xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">
 <ali:license_ref>http://creativecommons.org/publicdomain/zero/1.0/</ali:license_ref>
