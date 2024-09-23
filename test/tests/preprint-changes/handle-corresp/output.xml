@@ -18,13 +18,13 @@
 </contrib>
 <contrib contrib-type="author" corresp="yes">
 <name><surname>Handel</surname><given-names>Tracy M</given-names></name>
-<email>thandel@health.ucsd.edu</email>
 <xref ref-type="aff" rid="a1">a</xref>
+<email>thandel@health.ucsd.edu</email>
 </contrib>
 <contrib contrib-type="author" corresp="yes">
 <name><surname>Millar</surname><given-names>David P</given-names></name>
-<email>millar@scripps.edu</email>
 <xref ref-type="aff" rid="a2">b</xref>
+<email>millar@scripps.edu</email>
 </contrib>
 <aff id="a1"><label>a</label><institution>Skaggs School of Pharmacy and Pharmaceutical Sciences, Department of Pharmacology, University of California San Diego</institution>, <city>La Jolla</city>, <country>Unites States</country></aff>
 <aff id="a2"><label>b</label><institution>Department of Integrative Structural and Computational Biology, The Scripps Research Institute</institution>, <city>La Jolla</city>, <country>Unites States</country></aff>

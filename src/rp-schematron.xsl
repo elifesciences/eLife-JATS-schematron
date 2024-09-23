@@ -3242,6 +3242,19 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <!--REPORT warning-->
+      <xsl:if test="$corresp-author-count=$distinct-email-count and author-notes/corresp">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$corresp-author-count=$distinct-email-count and author-notes/corresp">
+            <xsl:attribute name="id">article-corresp</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[article-corresp] The number of corresponding authors and distinct emails is the same, but a match between them has been unable to be made. As its stands the corresp will display on EPP: <xsl:text/>
+               <xsl:value-of select="author-notes/corresp"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M64"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M64"/>
@@ -3629,6 +3642,21 @@
             <svrl:text>[ext-link-child-test-5] ext-link looks like it points to a review dryad dataset - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>. Should it be updated?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="contains(@xlink:href,'paperpile.com')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(@xlink:href,'paperpile.com')">
+            <xsl:attribute name="id">paper-pile-test</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[paper-pile-test] This paperpile hyperlink should be removed: '<xsl:text/>
+               <xsl:value-of select="@xlink:href"/>
+               <xsl:text/>' embedded in the text '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M72"/>

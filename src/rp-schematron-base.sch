@@ -823,8 +823,12 @@
         id="article-no-emails">This preprint has no emails for corresponding authors, which must be incorrect.</assert>
         
         <assert test="$corresp-author-count=$distinct-email-count" 
-        role="warning" 
-        id="article-email-corresp-author-count-equivalence">The number of corresponding authors (<value-of select="$corresp-author-count"/>: <value-of select="string-join($corresp-authors,'; ')"/>) is not equal to the number of distinct email addresses (<value-of select="$distinct-email-count"/>: <value-of select="string-join($distinct-emails,'; ')"/>). Is this correct?</assert>
+          role="warning" 
+          id="article-email-corresp-author-count-equivalence">The number of corresponding authors (<value-of select="$corresp-author-count"/>: <value-of select="string-join($corresp-authors,'; ')"/>) is not equal to the number of distinct email addresses (<value-of select="$distinct-email-count"/>: <value-of select="string-join($distinct-emails,'; ')"/>). Is this correct?</assert>
+
+        <report test="$corresp-author-count=$distinct-email-count and author-notes/corresp" 
+          role="warning" 
+          id="article-corresp">The number of corresponding authors and distinct emails is the same, but a match between them has been unable to be made. As its stands the corresp will display on EPP: <value-of select="author-notes/corresp"/>.</report>
       </rule>
 
       <rule context="article/front/article-meta//article-version" id="article-version-checks">
@@ -954,6 +958,10 @@
         test="contains(@xlink:href,'datadryad.org/review?')" 
         role="warning" 
         id="ext-link-child-test-5">ext-link looks like it points to a review dryad dataset - <value-of select="."/>. Should it be updated?</report>
+
+    <report test="contains(@xlink:href,'paperpile.com')"
+        role="error"
+        id="paper-pile-test">This paperpile hyperlink should be removed: '<value-of select="@xlink:href"/>' embedded in the text '<value-of select="."/>'.</report>
     </rule>
 
     <rule context="ext-link" id="ext-link-tests-2">
