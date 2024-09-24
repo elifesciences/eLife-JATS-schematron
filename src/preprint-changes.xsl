@@ -459,6 +459,21 @@
     <!-- Remove self-uri for PDF from article-meta -->
     <xsl:template xml:id="strip-pdf-self-uri" match="article-meta/self-uri[@content-type='pdf']"/>
     
+    <!-- Change capitalisation of eLife [aA]ssessment -->
+    <xsl:template xml:id="assessment-capitalisation" match="sub-article/front-stub//article-title">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:choose>
+                <xsl:when test="replace(.,'[\s:\n\.]','')='eLifeassessment'">
+                    <xsl:text>eLife Assessment</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="*|text()"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:copy>
+    </xsl:template>
+    
     <!-- Change all caps titles to sentence case for known phrases, e.g. REFERENCES -> References -->
     <xsl:template xml:id="all-caps-to-sentence" match="title[(upper-case(.)=. or lower-case(.)=.) and not(*) and not(parent::caption)]">
         <xsl:variable name="phrases" select="(

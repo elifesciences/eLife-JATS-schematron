@@ -40,6 +40,10 @@
       <x:context href="../tests/preprint-changes/strip-pdf-self-uri/input.xml"/>
       <x:expect label="Testing the template: strip-pdf-self-uri" href="../tests/preprint-changes/strip-pdf-self-uri/output.xml"/>
     </x:scenario>
+    <x:scenario label="assessment-capitalisation">
+      <x:context href="../tests/preprint-changes/assessment-capitalisation/input.xml"/>
+      <x:expect label="Testing the template: assessment-capitalisation" href="../tests/preprint-changes/assessment-capitalisation/output.xml"/>
+    </x:scenario>
     <x:scenario label="all-caps-to-sentence">
       <x:context href="../tests/preprint-changes/all-caps-to-sentence/input.xml"/>
       <x:expect label="Testing the template: all-caps-to-sentence" href="../tests/preprint-changes/all-caps-to-sentence/output.xml"/>
