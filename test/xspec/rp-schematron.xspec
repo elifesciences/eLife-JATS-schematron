@@ -370,6 +370,28 @@
         <x:expect-not-assert id="orcid-name-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="affiliation-checks">
+      <x:scenario label="aff-no-country-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-no-country/pass.xml"/>
+        <x:expect-not-report id="aff-no-country" role="warning"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-no-country-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-no-country/fail.xml"/>
+        <x:expect-report id="aff-no-country" role="warning"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-multiple-country-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-multiple-country/pass.xml"/>
+        <x:expect-not-report id="aff-multiple-country" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-multiple-country-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-multiple-country/fail.xml"/>
+        <x:expect-report id="aff-multiple-country" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="journal-ref-checks">
       <x:scenario label="journal-ref-source-pass">
         <x:context href="../tests/rp/journal-ref-checks/journal-ref-source/pass.xml"/>

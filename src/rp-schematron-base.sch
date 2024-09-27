@@ -293,6 +293,19 @@
         id="duplicate-orcid-test">There is more than one author with the following ORCiD(s) - <value-of select="if (count($indistinct-orcids) gt 1) then concat(string-join($indistinct-orcids[position() != last()],', '),' and ',$indistinct-orcids[last()]) else $indistinct-orcids"/> - which must be incorrect.</assert>
       
     </rule>
+
+    <rule context="aff" id="affiliation-checks">
+      <let name="country-count" value="count(descendant::country)"/>
+      
+      <report test="$country-count lt 1" 
+        role="warning" 
+        id="aff-no-country">Affiliation does not contain a country element: <value-of select="."/></report>
+
+      <report test="$country-count gt 1" 
+        role="error" 
+        id="aff-multiple-country">Affilitaion contains more than one country element: <value-of select="string-join(descendant::country,'; ')"/> in <value-of select="."/></report>
+    
+    </rule>
     </pattern>
 
     <pattern id="journal-ref">

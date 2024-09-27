@@ -214,6 +214,18 @@
       
     </rule>
   </pattern>
+  <pattern id="affiliation-checks-pattern">
+    <rule context="aff" id="affiliation-checks">
+      <let name="country-count" value="count(descendant::country)"/>
+      
+      <report test="$country-count lt 1" role="warning" id="aff-no-country">Affiliation does not contain a country element: <value-of select="."/>
+      </report>
+
+      <report test="$country-count gt 1" role="error" id="aff-multiple-country">Affilitaion contains more than one country element: <value-of select="string-join(descendant::country,'; ')"/> in <value-of select="."/>
+      </report>
+    
+    </rule>
+  </pattern>
 
     <pattern id="journal-ref-checks-pattern">
     <rule context="mixed-citation[@publication-type='journal']" id="journal-ref-checks">
@@ -910,6 +922,7 @@
       <assert test="descendant::name/given-names" role="error" id="given-names-tests-xspec-assert">name/given-names must be present.</assert>
       <assert test="descendant::contrib-group//name/*" role="error" id="name-child-tests-xspec-assert">contrib-group//name/* must be present.</assert>
       <assert test="descendant::article/front/article-meta/contrib-group[1]" role="error" id="orcid-name-checks-xspec-assert">article/front/article-meta/contrib-group[1] must be present.</assert>
+      <assert test="descendant::aff" role="error" id="affiliation-checks-xspec-assert">aff must be present.</assert>
       <assert test="descendant::mixed-citation[@publication-type='journal']" role="error" id="journal-ref-checks-xspec-assert">mixed-citation[@publication-type='journal'] must be present.</assert>
       <assert test="descendant::mixed-citation[@publication-type='preprint']" role="error" id="preprint-ref-checks-xspec-assert">mixed-citation[@publication-type='preprint'] must be present.</assert>
       <assert test="descendant::mixed-citation[@publication-type='book']" role="error" id="book-ref-checks-xspec-assert">mixed-citation[@publication-type='book'] must be present.</assert>
