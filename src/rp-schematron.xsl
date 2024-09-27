@@ -1534,7 +1534,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[aff-multiple-country] Affilitaion contains more than one country element: <xsl:text/>
+            <svrl:text>[aff-multiple-country] Affiliation contains more than one country element: <xsl:text/>
                <xsl:value-of select="string-join(descendant::country,'; ')"/>
                <xsl:text/> in <xsl:text/>
                <xsl:value-of select="."/>
@@ -1550,7 +1550,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[aff-multiple-institution] Affilitaion contains more than one institution element: <xsl:text/>
+            <svrl:text>[aff-multiple-institution] Affiliation contains more than one institution element: <xsl:text/>
                <xsl:value-of select="string-join(descendant::institution,'; ')"/>
                <xsl:text/> in <xsl:text/>
                <xsl:value-of select="."/>

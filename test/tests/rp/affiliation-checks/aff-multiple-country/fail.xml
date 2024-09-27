@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="aff-multiple-country.sch"?>
 <!--Context: aff
 Test: report    $country-count gt 1
-Message: Affilitaion contains more than one country element:  in  -->
+Message: Affiliation contains more than one country element:  in  -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <aff><label>1</label> <institution>Derek Zoolander Center for Kids Who Can't Read Good</institution>, <country>Singapore</country> <country>United States</country></aff>

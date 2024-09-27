@@ -92,7 +92,7 @@
   <pattern id="affiliation-checks-pattern">
     <rule context="aff" id="affiliation-checks">
       <let name="country-count" value="count(descendant::country)"/>
-      <report test="$country-count gt 1" role="error" id="aff-multiple-country">[aff-multiple-country] Affilitaion contains more than one country element: <value-of select="string-join(descendant::country,'; ')"/> in <value-of select="."/>
+      <report test="$country-count gt 1" role="error" id="aff-multiple-country">[aff-multiple-country] Affiliation contains more than one country element: <value-of select="string-join(descendant::country,'; ')"/> in <value-of select="."/>
       </report>
     </rule>
   </pattern>

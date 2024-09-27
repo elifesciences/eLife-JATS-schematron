@@ -92,7 +92,7 @@
   <pattern id="affiliation-checks-pattern">
     <rule context="aff" id="affiliation-checks">
       <let name="country-count" value="count(descendant::country)"/>
-      <report test="count(descendant::institution) gt 1" role="warning" id="aff-multiple-institution">[aff-multiple-institution] Affilitaion contains more than one institution element: <value-of select="string-join(descendant::institution,'; ')"/> in <value-of select="."/>
+      <report test="count(descendant::institution) gt 1" role="warning" id="aff-multiple-institution">[aff-multiple-institution] Affiliation contains more than one institution element: <value-of select="string-join(descendant::institution,'; ')"/> in <value-of select="."/>
       </report>
     </rule>
   </pattern>

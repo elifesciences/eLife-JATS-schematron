@@ -303,11 +303,11 @@
 
       <report test="$country-count gt 1" 
         role="error" 
-        id="aff-multiple-country">Affilitaion contains more than one country element: <value-of select="string-join(descendant::country,'; ')"/> in <value-of select="."/></report>
+        id="aff-multiple-country">Affiliation contains more than one country element: <value-of select="string-join(descendant::country,'; ')"/> in <value-of select="."/></report>
 
       <report test="count(descendant::institution) gt 1" 
         role="warning" 
-        id="aff-multiple-institution">Affilitaion contains more than one institution element: <value-of select="string-join(descendant::institution,'; ')"/> in <value-of select="."/></report>
+        id="aff-multiple-institution">Affiliation contains more than one institution element: <value-of select="string-join(descendant::institution,'; ')"/> in <value-of select="."/></report>
     
     </rule>
     </pattern>
