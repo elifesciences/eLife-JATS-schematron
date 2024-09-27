@@ -184,6 +184,15 @@
       
       <assert test="empty($indistinct-orcids)" role="error" id="duplicate-orcid-test">[duplicate-orcid-test] There is more than one author with the following ORCiD(s) - <value-of select="if (count($indistinct-orcids) gt 1) then concat(string-join($indistinct-orcids[position() != last()],', '),' and ',$indistinct-orcids[last()]) else $indistinct-orcids"/> - which must be incorrect.</assert>
       
+    </rule></pattern><pattern id="affiliation-checks-pattern"><rule context="aff" id="affiliation-checks">
+      <let name="country-count" value="count(descendant::country)"/>
+      
+      <report test="$country-count lt 1" role="warning" id="aff-no-country">[aff-no-country] Affiliation does not contain a country element: <value-of select="."/></report>
+
+      <report test="$country-count gt 1" role="error" id="aff-multiple-country">[aff-multiple-country] Affiliation contains more than one country element: <value-of select="string-join(descendant::country,'; ')"/> in <value-of select="."/></report>
+
+      <report test="count(descendant::institution) gt 1" role="warning" id="aff-multiple-institution">[aff-multiple-institution] Affiliation contains more than one institution element: <value-of select="string-join(descendant::institution,'; ')"/> in <value-of select="."/></report>
+    
     </rule></pattern>
 
     <pattern id="journal-ref-checks-pattern"><rule context="mixed-citation[@publication-type='journal']" id="journal-ref-checks">
