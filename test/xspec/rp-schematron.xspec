@@ -391,6 +391,16 @@
         <x:expect-report id="aff-multiple-country" role="error"/>
         <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="aff-multiple-institution-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-multiple-institution/pass.xml"/>
+        <x:expect-not-report id="aff-multiple-institution" role="warning"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-multiple-institution-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-multiple-institution/fail.xml"/>
+        <x:expect-report id="aff-multiple-institution" role="warning"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="journal-ref-checks">
       <x:scenario label="journal-ref-source-pass">

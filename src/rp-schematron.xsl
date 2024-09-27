@@ -1542,6 +1542,22 @@
             </svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="count(descendant::institution) gt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(descendant::institution) gt 1">
+            <xsl:attribute name="id">aff-multiple-institution</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[aff-multiple-institution] Affilitaion contains more than one institution element: <xsl:text/>
+               <xsl:value-of select="string-join(descendant::institution,'; ')"/>
+               <xsl:text/> in <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M26"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M26"/>

@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="aff-multiple-institution.sch"?>
+<!--Context: aff
+Test: report    count(descendant::institution) gt 1
+Message: Affilitaion contains more than one institution element:  in  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <aff><label>1</label> <institution>Derek Zoolander Center</institution> for <institution>Kids Who Can't Read Good</institution>, <city>Singapore</city> <country>United States</country></aff>
+    </article>
+</root>
