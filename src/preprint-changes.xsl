@@ -377,19 +377,49 @@
                                         <xsl:otherwise>
                                             <xsl:apply-templates select="./contrib-group|text()[preceding-sibling::contrib-group and following-sibling::author-notes]"/>
                                             <xsl:element name="author-notes">
-                                                <xsl:copy-of select="./author-notes/text()[following-sibling::corresp]"/>
-                                                <xsl:comment><xsl:value-of select="./author-notes/corresp"/></xsl:comment>
-                                                <xsl:text>&#xa;</xsl:text>
-                                                <xsl:element name="corresp">
-                                                    <xsl:copy-of select="./author-notes/corresp/@id|./author-notes/corresp/label"/>
-                                                    <xsl:for-each select="./author-notes/corresp/email">
-                                                        <xsl:if test="position() gt 1">
-                                                            <xsl:text>; </xsl:text>
-                                                        </xsl:if>
-                                                        <xsl:copy><xsl:value-of select="."/></xsl:copy>
-                                                    </xsl:for-each>
-                                                </xsl:element>
-                                                <xsl:copy-of select="./author-notes/*[name()!='corresp']|./author-notes/text()[preceding-sibling::corresp]"/>
+                                                <xsl:choose>
+                                                    <!-- If there are two or more corresps for some reason -->
+                                                    <xsl:when test="count(./author-notes/corresp) gt 1">
+                                                        <xsl:for-each select="./author-notes/corresp">
+                                                            <xsl:text>&#xa;</xsl:text>
+                                                            <xsl:choose>
+                                                                <xsl:when test="./email">
+                                                                    <xsl:comment><xsl:value-of select="."/></xsl:comment>
+                                                                    <xsl:text>&#xa;</xsl:text>
+                                                                    <xsl:element name="corresp">
+                                                                        <xsl:copy-of select="./@id|./label"/>
+                                                                        <xsl:for-each select="./email">
+                                                                            <xsl:if test="position() gt 1">
+                                                                                <xsl:text>; </xsl:text>
+                                                                            </xsl:if>
+                                                                            <xsl:copy><xsl:value-of select="."/></xsl:copy>
+                                                                        </xsl:for-each>
+                                                                   </xsl:element>
+                                                                </xsl:when>
+                                                                <xsl:otherwise>
+                                                                    <xsl:copy-of select="."/>
+                                                                </xsl:otherwise>
+                                                            </xsl:choose>
+                                                        </xsl:for-each>
+                                                        <xsl:text>&#xa;</xsl:text>
+                                                        <xsl:copy-of select="./author-notes/*[name()!='corresp']|./author-notes/text()[preceding-sibling::*[name()!='corresp']]"/>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                        <xsl:copy-of select="./author-notes/text()[following-sibling::corresp]"/>
+                                                        <xsl:comment><xsl:value-of select="./author-notes/corresp"/></xsl:comment>
+                                                        <xsl:text>&#xa;</xsl:text>
+                                                        <xsl:element name="corresp">
+                                                            <xsl:copy-of select="./author-notes/corresp/@id|./author-notes/corresp/label"/>
+                                                            <xsl:for-each select="./author-notes/corresp/email">
+                                                                <xsl:if test="position() gt 1">
+                                                                    <xsl:text>; </xsl:text>
+                                                                </xsl:if>
+                                                                <xsl:copy><xsl:value-of select="."/></xsl:copy>
+                                                            </xsl:for-each>
+                                                        </xsl:element>
+                                                        <xsl:copy-of select="./author-notes/*[name()!='corresp']|./author-notes/text()[preceding-sibling::corresp]"/>
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
                                             </xsl:element>
                                         </xsl:otherwise>
                                     </xsl:choose>
