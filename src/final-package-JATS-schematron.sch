@@ -2547,7 +2547,7 @@
       
       
       
-      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#final-custom-meta-test-9" test="lower-case($subj)!='scientific correspondence' and matches(.,'[Ww]e show|[Ww]e present|[Tt]his study|[Tt]his paper| et al\.')" role="error" id="final-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#final-custom-meta-test-9" test="lower-case($subj)!='scientific correspondence' and matches(.,'[Ww]e show|[Ww]e present|[Tt]his (study|paper|work)| et al\.')" role="error" id="final-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed.</report>
       
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-10" test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of numbers, which must be incorrect.</report>
       
