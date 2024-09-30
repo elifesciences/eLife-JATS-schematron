@@ -12657,8 +12657,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="matches(.,'[Ww]e show|[Ww]e present|[Tt]his study|[Tt]his paper| et al\.')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Ww]e show|[Ww]e present|[Tt]his study|[Tt]his paper| et al\.')">
+      <xsl:if test="matches(.,'[Ww]e show|[Ww]e present|[Tt]his (study|paper|work)| et al\.')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Ww]e show|[Ww]e present|[Tt]his (study|paper|work)| et al\.')">
             <xsl:attribute name="id">pre-custom-meta-test-9</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-custom-meta-test-9</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>

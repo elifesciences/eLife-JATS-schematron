@@ -3783,12 +3783,12 @@
         id="custom-meta-test-8">Impact statement contains a colon or semi-colon, which is likely incorrect. It needs to be a proper sentence.</report>
       
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-custom-meta-test-9" 
-        test="matches(.,'[Ww]e show|[Ww]e present|[Tt]his study|[Tt]his paper| et al\.')" 
+        test="matches(.,'[Ww]e show|[Ww]e present|[Tt]his (study|paper|work)| et al\.')" 
         role="warning" 
         id="pre-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed.</report>
       
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#final-custom-meta-test-9" 
-        test="lower-case($subj)!='scientific correspondence' and matches(.,'[Ww]e show|[Ww]e present|[Tt]his study|[Tt]his paper| et al\.')" 
+        test="lower-case($subj)!='scientific correspondence' and matches(.,'[Ww]e show|[Ww]e present|[Tt]his (study|paper|work)| et al\.')" 
         role="error" 
         id="final-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed.</report>
       
