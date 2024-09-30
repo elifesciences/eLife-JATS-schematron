@@ -847,6 +847,12 @@
           role="warning" 
           id="article-corresp">The number of corresponding authors and distinct emails is the same, but a match between them has been unable to be made. As its stands the corresp will display on EPP: <value-of select="author-notes/corresp"/>.</report>
       </rule>
+      
+      <rule context="article/front/article-meta/author-notes" id="author-notes-checks">
+        <report test="count(corresp) gt 1" 
+          role="error" 
+          id="multiple-corresp">author-notes contains <value-of select="count(corresp)"/> corresp elements. There should only be one. Either these can be collated into one corresp or one of these is a footnote which has been incorrectly captured.</report>
+     </rule>
 
       <rule context="article/front/article-meta//article-version" id="article-version-checks">
         

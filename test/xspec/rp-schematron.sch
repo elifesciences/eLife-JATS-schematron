@@ -630,6 +630,11 @@
         <report test="$corresp-author-count=$distinct-email-count and author-notes/corresp" role="warning" id="article-corresp">The number of corresponding authors and distinct emails is the same, but a match between them has been unable to be made. As its stands the corresp will display on EPP: <value-of select="author-notes/corresp"/>.</report>
       </rule>
   </pattern>
+  <pattern id="author-notes-checks-pattern">
+    <rule context="article/front/article-meta/author-notes" id="author-notes-checks">
+        <report test="count(corresp) gt 1" role="error" id="multiple-corresp">author-notes contains <value-of select="count(corresp)"/> corresp elements. There should only be one. Either these can be collated into one corresp or one of these is a footnote which has been incorrectly captured.</report>
+     </rule>
+  </pattern>
   <pattern id="article-version-checks-pattern">
     <rule context="article/front/article-meta//article-version" id="article-version-checks">
         
@@ -964,6 +969,7 @@
       <assert test="descendant::article/body/sec/title or descendant::article/back/sec/title" role="error" id="title-toc-checks-xspec-assert">article/body/sec/title|article/back/sec/title must be present.</assert>
       <assert test="descendant::p[not(ancestor::sub-article) and (count(*)=1) and (child::bold or child::italic)]" role="error" id="p-bold-checks-xspec-assert">p[not(ancestor::sub-article) and (count(*)=1) and (child::bold or child::italic)] must be present.</assert>
       <assert test="descendant::article/front/article-meta" role="error" id="general-article-meta-checks-xspec-assert">article/front/article-meta must be present.</assert>
+      <assert test="descendant::article/front/article-meta/author-notes" role="error" id="author-notes-checks-xspec-assert">article/front/article-meta/author-notes must be present.</assert>
       <assert test="descendant::article/front/article-meta//article-version" role="error" id="article-version-checks-xspec-assert">article/front/article-meta//article-version must be present.</assert>
       <assert test="descendant::article/front/article-meta/article-version-alternatives" role="error" id="article-version-alternatives-checks-xspec-assert">article/front/article-meta/article-version-alternatives must be present.</assert>
       <assert test="descendant::title" role="error" id="digest-title-checks-xspec-assert">title must be present.</assert>
