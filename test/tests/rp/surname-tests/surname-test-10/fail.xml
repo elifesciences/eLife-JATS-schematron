@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="surname-test-10.sch"?>
+<!--Context: contrib-group//name/surname
+Test: report    matches(.,'\s') and not(matches(lower-case(.),'^de[lrn]? |^v[ao]n |^el |^te[rn] |^l[ae] |^zur |^d[ia] '))
+Message: surname contains space(s) - ''. Has it been captured correctly? Should any namee be moved to given-names? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <contrib-group>
+            <name>
+                <surname>Vander Merwe</surname>
+            </name>
+        </contrib-group>
+    </article>
+</root>
