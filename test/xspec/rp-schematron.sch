@@ -662,6 +662,11 @@
         <assert test="article-version[@article-version-type='publication-state']" role="error" id="article-version-10">article-version-alternatives must contain a &lt;article-version article-version-type="publication-state"&gt;.</assert>
       </rule>
   </pattern>
+  <pattern id="preprint-pub-checks-pattern">
+    <rule context="article/front/article-meta/pub-date[@pub-type='epub']/year" id="preprint-pub-checks">
+        <assert test=".=('2024','2025')" role="warning" id="preprint-pub-date-1">This preprint version was posted in <value-of select="."/>. Is it the correct version that corresponds to the version submitted to eLife?</assert>
+      </rule>
+  </pattern>
 
     <pattern id="digest-title-checks-pattern">
     <rule context="title" id="digest-title-checks">
@@ -974,6 +979,7 @@
       <assert test="descendant::article/front/article-meta/author-notes" role="error" id="author-notes-checks-xspec-assert">article/front/article-meta/author-notes must be present.</assert>
       <assert test="descendant::article/front/article-meta//article-version" role="error" id="article-version-checks-xspec-assert">article/front/article-meta//article-version must be present.</assert>
       <assert test="descendant::article/front/article-meta/article-version-alternatives" role="error" id="article-version-alternatives-checks-xspec-assert">article/front/article-meta/article-version-alternatives must be present.</assert>
+      <assert test="descendant::article/front/article-meta/pub-date[@pub-type='epub']/year" role="error" id="preprint-pub-checks-xspec-assert">article/front/article-meta/pub-date[@pub-type='epub']/year must be present.</assert>
       <assert test="descendant::title" role="error" id="digest-title-checks-xspec-assert">title must be present.</assert>
       <assert test="descendant::xref" role="error" id="xref-checks-xspec-assert">xref must be present.</assert>
       <assert test="descendant::ext-link[@ext-link-type='uri']" role="error" id="ext-link-tests-xspec-assert">ext-link[@ext-link-type='uri'] must be present.</assert>
