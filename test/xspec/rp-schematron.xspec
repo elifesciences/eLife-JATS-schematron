@@ -1506,6 +1506,18 @@
         <x:expect-not-assert id="article-version-alternatives-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="preprint-pub-checks">
+      <x:scenario label="preprint-pub-date-1-pass">
+        <x:context href="../tests/rp/preprint-pub-checks/preprint-pub-date-1/pass.xml"/>
+        <x:expect-not-assert id="preprint-pub-date-1" role="warning"/>
+        <x:expect-not-assert id="preprint-pub-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-pub-date-1-fail">
+        <x:context href="../tests/rp/preprint-pub-checks/preprint-pub-date-1/fail.xml"/>
+        <x:expect-assert id="preprint-pub-date-1" role="warning"/>
+        <x:expect-not-assert id="preprint-pub-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="digest-title-checks">
       <x:scenario label="digest-flag-pass">
         <x:context href="../tests/rp/digest-title-checks/digest-flag/pass.xml"/>
