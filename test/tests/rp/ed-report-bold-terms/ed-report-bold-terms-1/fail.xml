@@ -1,0 +1,21 @@
+<?oxygen SCHSchema="ed-report-bold-terms-1.sch"?>
+<!--Context: sub-article[@article-type='editor-report']/body/p[1]//bold
+Test: assert    lower-case(.)=$allowed-vals
+Message: Bold phrase in eLife Assessment -  - is not one of the permitted terms from the vocabulary. Should the bold formatting be removed? These are currently bolded terms  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article id="sa0" article-type="editor-report">
+        <front-stub>
+            <kwd-group kwd-group-type="claim-importance">
+                <kwd>Useful</kwd>
+            </kwd-group>
+            <kwd-group kwd-group-type="evidence-strength">
+                <kwd>Incomplete</kwd>
+            </kwd-group>
+        </front-stub>
+        <body>
+            <p>This work is <bold>garish</bold> but the evidence <bold>fantastical</bold>.</p>
+        </body>
+    </sub-article>
+    </article>
+</root>

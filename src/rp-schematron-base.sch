@@ -1056,6 +1056,17 @@
 
     <pattern id="assessment-checks">
 
+      <rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-report-front-stub">
+      
+      <assert test="kwd-group[@kwd-group-type='evidence-strength']" 
+        role="warning" 
+        id="ed-report-str-kwd-presence">eLife Assessment does not have a strength keyword group. Is that correct?</assert>
+
+      <assert test="kwd-group[@kwd-group-type='claim-importance']" 
+        role="warning" 
+        id="ed-report-sig-kwd-presence">eLife Assessment does not have a significance keyword group. Is that correct?</assert>
+    </rule>
+
       <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group" id="ed-report-kwd-group">
       
       <assert test="@kwd-group-type=('claim-importance','evidence-strength')" 
@@ -1102,6 +1113,19 @@
       <assert test=".=$allowed-vals"
         role="error" 
         id="ed-report-evidence-kwd-1">Keyword contains <value-of select="."/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/></assert>
+    </rule>
+
+    <rule context="sub-article[@article-type='editor-report']/body/p[1]//bold" id="ed-report-bold-terms">
+      <let name="allowed-vals" value="('landmark', 'fundamental', 'important', 'valuable', 'useful', 'exceptional', 'compelling', 'convincing', 'convincingly', 'solid', 'incomplete', 'incompletely', 'inadequate', 'inadequately')"/>
+      <let name="generated-kwd" value="concat(upper-case(substring(.,1,1)),replace(lower-case(substring(.,2)),'ly$',''))"/>
+      
+      <assert test="lower-case(.)=$allowed-vals"
+        role="error" 
+        id="ed-report-bold-terms-1">Bold phrase in eLife Assessment - <value-of select="."/> - is not one of the permitted terms from the vocabulary. Should the bold formatting be removed? These are currently bolded terms <value-of select="string-join($allowed-vals,', ')"/></assert>
+
+      <report test="lower-case(.)=$allowed-vals and not($generated-kwd=ancestor::sub-article/front-stub/kwd-group/kwd)"
+        role="error" 
+        id="ed-report-bold-terms-2">Bold phrase in eLife Assessment - <value-of select="."/> - is one of the permitted vocabulary terms, but there's no corresponding keyword in the metadata (in a kwd-group in the front-stub).</report>
     </rule>
 
     </pattern>
