@@ -1796,6 +1796,28 @@
         <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="ed-report-front-stub">
+      <x:scenario label="ed-report-str-kwd-presence-pass">
+        <x:context href="../tests/rp/ed-report-front-stub/ed-report-str-kwd-presence/pass.xml"/>
+        <x:expect-not-assert id="ed-report-str-kwd-presence" role="warning"/>
+        <x:expect-not-assert id="ed-report-front-stub-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-str-kwd-presence-fail">
+        <x:context href="../tests/rp/ed-report-front-stub/ed-report-str-kwd-presence/fail.xml"/>
+        <x:expect-assert id="ed-report-str-kwd-presence" role="warning"/>
+        <x:expect-not-assert id="ed-report-front-stub-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-sig-kwd-presence-pass">
+        <x:context href="../tests/rp/ed-report-front-stub/ed-report-sig-kwd-presence/pass.xml"/>
+        <x:expect-not-assert id="ed-report-sig-kwd-presence" role="warning"/>
+        <x:expect-not-assert id="ed-report-front-stub-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-sig-kwd-presence-fail">
+        <x:context href="../tests/rp/ed-report-front-stub/ed-report-sig-kwd-presence/fail.xml"/>
+        <x:expect-assert id="ed-report-sig-kwd-presence" role="warning"/>
+        <x:expect-not-assert id="ed-report-front-stub-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="ed-report-kwd-group">
       <x:scenario label="ed-report-kwd-group-1-pass">
         <x:context href="../tests/rp/ed-report-kwd-group/ed-report-kwd-group-1/pass.xml"/>
@@ -1882,6 +1904,28 @@
         <x:context href="../tests/rp/ed-report-evidence-kwds/ed-report-evidence-kwd-1/fail.xml"/>
         <x:expect-assert id="ed-report-evidence-kwd-1" role="error"/>
         <x:expect-not-assert id="ed-report-evidence-kwds-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="ed-report-bold-terms">
+      <x:scenario label="ed-report-bold-terms-1-pass">
+        <x:context href="../tests/rp/ed-report-bold-terms/ed-report-bold-terms-1/pass.xml"/>
+        <x:expect-not-assert id="ed-report-bold-terms-1" role="error"/>
+        <x:expect-not-assert id="ed-report-bold-terms-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-bold-terms-1-fail">
+        <x:context href="../tests/rp/ed-report-bold-terms/ed-report-bold-terms-1/fail.xml"/>
+        <x:expect-assert id="ed-report-bold-terms-1" role="error"/>
+        <x:expect-not-assert id="ed-report-bold-terms-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-bold-terms-2-pass">
+        <x:context href="../tests/rp/ed-report-bold-terms/ed-report-bold-terms-2/pass.xml"/>
+        <x:expect-not-report id="ed-report-bold-terms-2" role="error"/>
+        <x:expect-not-assert id="ed-report-bold-terms-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-bold-terms-2-fail">
+        <x:context href="../tests/rp/ed-report-bold-terms/ed-report-bold-terms-2/fail.xml"/>
+        <x:expect-report id="ed-report-bold-terms-2" role="error"/>
+        <x:expect-not-assert id="ed-report-bold-terms-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="arxiv-journal-meta-checks">
