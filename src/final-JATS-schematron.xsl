@@ -8898,9 +8898,9 @@
       <xsl:variable name="allowed-contrib-blocks-features" select="($allowed-contrib-blocks, 'bio')"/>
       <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]       else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features]       else if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features]       else self::*[local-name() = $allowed-contrib-blocks]"/>
+         <xsl:when test="if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]       else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features]       else if ($article-type = ($features-article-types,'expression-of-concern')) then self::*[local-name() = $allowed-contrib-blocks-features]       else self::*[local-name() = $allowed-contrib-blocks]"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')] else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features] else if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features] else self::*[local-name() = $allowed-contrib-blocks]">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')] else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features] else if ($article-type = ($features-article-types,'expression-of-concern')) then self::*[local-name() = $allowed-contrib-blocks-features] else self::*[local-name() = $allowed-contrib-blocks]">
                <xsl:attribute name="id">author-children-test</xsl:attribute>
                <xsl:attribute name="flag">version-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
