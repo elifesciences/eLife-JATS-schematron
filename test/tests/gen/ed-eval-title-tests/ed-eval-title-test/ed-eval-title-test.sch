@@ -1338,7 +1338,7 @@
   </xsl:function>
   <pattern id="title-conformance">
     <rule context="sub-article[@article-type='editor-report']/front-stub/title-group" id="ed-eval-title-tests">
-      <assert test="article-title = (&quot;Editor's evaluation&quot;,'eLife assessment')" role="error" flag="dl-ar" id="ed-eval-title-test">A sub-article[@article-type='editor-report'] must have the title "eLife assessment" or "Editor's evaluation". Currently it is <value-of select="article-title"/>.</assert>
+      <assert test="article-title = (&quot;Editor's evaluation&quot;,'eLife assessment','eLife Assessment')" role="error" flag="dl-ar" id="ed-eval-title-test">A sub-article[@article-type='editor-report'] must have the title "eLife Assessment" or "Editor's evaluation". Currently it is <value-of select="article-title"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

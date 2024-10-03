@@ -6552,10 +6552,10 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/title-group" id="ed-eval-title-tests">
       
-      <assert test="article-title = (&quot;Editor&apos;s evaluation&quot;,'eLife assessment')" 
+      <assert test="article-title = (&quot;Editor&apos;s evaluation&quot;,'eLife assessment','eLife Assessment')" 
         role="error" 
         flag="dl-ar"
-        id="ed-eval-title-test">A sub-article[@article-type='editor-report'] must have the title "eLife assessment" or "Editor's evaluation". Currently it is <value-of select="article-title"/>.</assert>
+        id="ed-eval-title-test">A sub-article[@article-type='editor-report'] must have the title "eLife Assessment" or "Editor's evaluation". Currently it is <value-of select="article-title"/>.</assert>
     </rule>
     
     <rule context="sub-article[@article-type='decision-letter']/front-stub/title-group" id="dec-letter-title-tests">
@@ -7332,12 +7332,22 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert test="count(contrib-group) = 1" 
         role="error" 
         flag="dl-ar"
-        id="ed-eval-front-test-2">editor evaluation front-stub must contain 1 (and only 1) contrib-group element. This one has <value-of select="count(contrib-group)"/>.</assert>
+        id="ed-eval-front-test-2">editor report front-stub must contain 1 (and only 1) contrib-group element. This one has <value-of select="count(contrib-group)"/>.</assert>
       
       <report test="count(related-object) gt 1" 
         role="error" 
         flag="dl-ar"
-        id="ed-eval-front-test-3">editor evaluation front-stub must contain 1 or 0 related-object elements. This one has <value-of select="count(related-object)"/>.</report>
+        id="ed-eval-front-test-3">editor report front-stub must contain 1 or 0 related-object elements. This one has <value-of select="count(related-object)"/>.</report>
+
+      <report test="e:is-prc(.) and not(kwd-group[@kwd-group-type='evidence-strength'])" 
+        role="error" 
+        flag="dl-ar"
+        id="ed-eval-front-test-4">eLife Assessment front-stub does not contain a strength term keyword group, which must be incorrect.</report>
+
+      <report test="e:is-prc(.) and not(kwd-group[@kwd-group-type='claim-importance'])" 
+        role="warning" 
+        flag="dl-ar"
+        id="ed-eval-front-test-5">eLife Assessment front-stub does not contain a significance term keyword group, which is very unusual. Is that correct?</report>
     </rule>
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/*" id="ed-eval-front-child-tests">
@@ -7468,6 +7478,19 @@ else self::*/local-name() = $allowed-p-blocks"
         flag="dl-ar"
         id="ed-report-kwd-3">Keywords in <value-of select="ancestor::front-stub/title-group/article-title"/> cannot contain elements, only text. This one has: <value-of select="string-join(distinct-values(*/name()),'; ')"/>.</report>
       
+    </rule>
+
+    <rule context="sub-article[@article-type='editor-report' and e:is-prc(.)]/body/p[1]//bold" id="ed-report-bold-terms">
+      <let name="allowed-vals" value="('landmark', 'fundamental', 'important', 'valuable', 'useful', 'exceptional', 'compelling', 'convincing', 'convincingly', 'solid', 'incomplete', 'incompletely', 'inadequate', 'inadequately')"/>
+      <let name="generated-kwd" value="concat(upper-case(substring(.,1,1)),replace(lower-case(substring(.,2)),'ly$',''))"/>
+      
+      <assert test="lower-case(.)=$allowed-vals"
+        role="error" 
+        id="ed-report-bold-terms-1">Bold phrase in eLife Assessment - <value-of select="."/> - is not one of the permitted terms from the vocabulary. Should the bold formatting be removed? These are currently bolded terms <value-of select="string-join($allowed-vals,', ')"/></assert>
+
+      <report test="lower-case(.)=$allowed-vals and not($generated-kwd=ancestor::sub-article/front-stub/kwd-group/kwd)"
+        role="error" 
+        id="ed-report-bold-terms-2">Bold phrase in eLife Assessment - <value-of select="."/> - is one of the permitted vocabulary terms, but there's no corresponding keyword in the metadata (in a kwd-group in the front-stub).</report>
     </rule>
     
     <rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">

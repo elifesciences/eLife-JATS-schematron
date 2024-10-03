@@ -1338,7 +1338,7 @@
   </xsl:function>
   <pattern id="dec-letter-auth-response">
     <rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-eval-front-tests">
-      <assert test="count(contrib-group) = 1" role="error" flag="dl-ar" id="ed-eval-front-test-2">editor evaluation front-stub must contain 1 (and only 1) contrib-group element. This one has <value-of select="count(contrib-group)"/>.</assert>
+      <assert test="count(contrib-group) = 1" role="error" flag="dl-ar" id="ed-eval-front-test-2">editor report front-stub must contain 1 (and only 1) contrib-group element. This one has <value-of select="count(contrib-group)"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
