@@ -3822,7 +3822,7 @@
       <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-broken-unicode-test" test="matches(.,'&amp;#x\d')" role="warning" id="ethics-broken-unicode-test">Ethics statement likely contains a broken unicode - <value-of select="."/>.</report>
     </rule></pattern><pattern id="ed-eval-title-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/title-group" id="ed-eval-title-tests">
       
-      <assert test="article-title = (&quot;Editor's evaluation&quot;,'eLife assessment')" role="error" id="ed-eval-title-test">A sub-article[@article-type='editor-report'] must have the title "eLife assessment" or "Editor's evaluation". Currently it is <value-of select="article-title"/>.</assert>
+      <assert test="article-title = (&quot;Editor's evaluation&quot;,'eLife assessment','eLife Assessment')" role="error" id="ed-eval-title-test">A sub-article[@article-type='editor-report'] must have the title "eLife Assessment" or "Editor's evaluation". Currently it is <value-of select="article-title"/>.</assert>
     </rule></pattern><pattern id="dec-letter-title-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/front-stub/title-group" id="dec-letter-title-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-title-test" test="article-title = 'Decision letter'" role="error" id="dec-letter-title-test">title-group must contain article-title which contains 'Decision letter'. Currently it is <value-of select="article-title"/>.</assert>
@@ -4165,9 +4165,13 @@
       
       <assert test="count(article-id[@pub-id-type='doi']) = 1" role="error" id="ed-eval-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
       
-      <assert test="count(contrib-group) = 1" role="error" id="ed-eval-front-test-2">editor evaluation front-stub must contain 1 (and only 1) contrib-group element. This one has <value-of select="count(contrib-group)"/>.</assert>
+      <assert test="count(contrib-group) = 1" role="error" id="ed-eval-front-test-2">editor report front-stub must contain 1 (and only 1) contrib-group element. This one has <value-of select="count(contrib-group)"/>.</assert>
       
-      <report test="count(related-object) gt 1" role="error" id="ed-eval-front-test-3">editor evaluation front-stub must contain 1 or 0 related-object elements. This one has <value-of select="count(related-object)"/>.</report>
+      <report test="count(related-object) gt 1" role="error" id="ed-eval-front-test-3">editor report front-stub must contain 1 or 0 related-object elements. This one has <value-of select="count(related-object)"/>.</report>
+
+      <report test="e:is-prc(.) and not(kwd-group[@kwd-group-type='evidence-strength'])" role="error" id="ed-eval-front-test-4">eLife Assessment front-stub does not contain a strength term keyword group, which must be incorrect.</report>
+
+      <report test="e:is-prc(.) and not(kwd-group[@kwd-group-type='claim-importance'])" role="warning" id="ed-eval-front-test-5">eLife Assessment front-stub does not contain a significance term keyword group, which is very unusual. Is that correct?</report>
     </rule></pattern><pattern id="ed-eval-front-child-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/*" id="ed-eval-front-child-tests">
       
       <assert test="name()=('article-id','title-group','contrib-group','kwd-group','related-object')" role="error" id="ed-eval-front-child-test-1"><name/> element is not allowed in the front-stub for an Editor's evaluation. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</assert>
@@ -4221,6 +4225,13 @@
       
       <report test="*" role="error" id="ed-report-kwd-3">Keywords in <value-of select="ancestor::front-stub/title-group/article-title"/> cannot contain elements, only text. This one has: <value-of select="string-join(distinct-values(*/name()),'; ')"/>.</report>
       
+    </rule></pattern><pattern id="ed-report-bold-terms-pattern"><rule context="sub-article[@article-type='editor-report' and e:is-prc(.)]/body/p[1]//bold" id="ed-report-bold-terms">
+      <let name="allowed-vals" value="('landmark', 'fundamental', 'important', 'valuable', 'useful', 'exceptional', 'compelling', 'convincing', 'convincingly', 'solid', 'incomplete', 'incompletely', 'inadequate', 'inadequately')"/>
+      <let name="generated-kwd" value="concat(upper-case(substring(.,1,1)),replace(lower-case(substring(.,2)),'ly$',''))"/>
+      
+      <assert test="lower-case(.)=$allowed-vals" role="error" id="ed-report-bold-terms-1">Bold phrase in eLife Assessment - <value-of select="."/> - is not one of the permitted terms from the vocabulary. Should the bold formatting be removed? These are currently bolded terms <value-of select="string-join($allowed-vals,', ')"/></assert>
+
+      <report test="lower-case(.)=$allowed-vals and not($generated-kwd=ancestor::sub-article/front-stub/kwd-group/kwd)" role="error" id="ed-report-bold-terms-2">Bold phrase in eLife Assessment - <value-of select="."/> - is one of the permitted vocabulary terms, but there's no corresponding keyword in the metadata (in a kwd-group in the front-stub).</report>
     </rule></pattern><pattern id="dec-letter-front-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
       <let name="count" value="count(contrib-group)"/>
       

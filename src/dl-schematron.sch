@@ -1449,7 +1449,7 @@
   
   <pattern id="ed-eval-title-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/title-group" id="ed-eval-title-tests">
       
-      <assert test="article-title = (&quot;Editor's evaluation&quot;,'eLife assessment')" role="error" flag="dl-ar" id="ed-eval-title-test">A sub-article[@article-type='editor-report'] must have the title "eLife assessment" or "Editor's evaluation". Currently it is <value-of select="article-title"/>.</assert>
+      <assert test="article-title = (&quot;Editor's evaluation&quot;,'eLife assessment','eLife Assessment')" role="error" flag="dl-ar" id="ed-eval-title-test">A sub-article[@article-type='editor-report'] must have the title "eLife Assessment" or "Editor's evaluation". Currently it is <value-of select="article-title"/>.</assert>
     </rule></pattern><pattern id="dec-letter-title-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/front-stub/title-group" id="dec-letter-title-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-title-test" test="article-title = 'Decision letter'" role="error" flag="dl-ar" id="dec-letter-title-test">title-group must contain article-title which contains 'Decision letter'. Currently it is <value-of select="article-title"/>.</assert>
@@ -1522,9 +1522,13 @@
       
       <assert test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="ed-eval-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
       
-      <assert test="count(contrib-group) = 1" role="error" flag="dl-ar" id="ed-eval-front-test-2">editor evaluation front-stub must contain 1 (and only 1) contrib-group element. This one has <value-of select="count(contrib-group)"/>.</assert>
+      <assert test="count(contrib-group) = 1" role="error" flag="dl-ar" id="ed-eval-front-test-2">editor report front-stub must contain 1 (and only 1) contrib-group element. This one has <value-of select="count(contrib-group)"/>.</assert>
       
-      <report test="count(related-object) gt 1" role="error" flag="dl-ar" id="ed-eval-front-test-3">editor evaluation front-stub must contain 1 or 0 related-object elements. This one has <value-of select="count(related-object)"/>.</report>
+      <report test="count(related-object) gt 1" role="error" flag="dl-ar" id="ed-eval-front-test-3">editor report front-stub must contain 1 or 0 related-object elements. This one has <value-of select="count(related-object)"/>.</report>
+
+      <report test="e:is-prc(.) and not(kwd-group[@kwd-group-type='evidence-strength'])" role="error" flag="dl-ar" id="ed-eval-front-test-4">eLife Assessment front-stub does not contain a strength term keyword group, which must be incorrect.</report>
+
+      <report test="e:is-prc(.) and not(kwd-group[@kwd-group-type='claim-importance'])" role="warning" flag="dl-ar" id="ed-eval-front-test-5">eLife Assessment front-stub does not contain a significance term keyword group, which is very unusual. Is that correct?</report>
     </rule></pattern><pattern id="ed-eval-front-child-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/*" id="ed-eval-front-child-tests">
       
       <assert test="name()=('article-id','title-group','contrib-group','kwd-group','related-object')" role="error" flag="dl-ar" id="ed-eval-front-child-test-1"><name/> element is not allowed in the front-stub for an Editor's evaluation. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</assert>

@@ -1,0 +1,36 @@
+<?oxygen SCHSchema="ed-report-bold-terms-1.sch"?>
+<!--Context: sub-article[@article-type='editor-report' and e:is-prc(.)]/body/p[1]//bold
+Test: assert    lower-case(.)=$allowed-vals
+Message: Bold phrase in eLife Assessment -  - is not one of the permitted terms from the vocabulary. Should the bold formatting be removed? These are currently bolded terms  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+    <article>
+        <front>
+            <article-meta>
+                <custom-meta-group>
+                    <custom-meta specific-use="meta-only">
+                        <meta-name>publishing-route</meta-name>
+                        <meta-value>prc</meta-value>
+                    </custom-meta>
+                </custom-meta-group>
+            </article-meta>
+        </front>
+        <sub-article article-type="editor-report" id="sa0">
+            <front-stub>
+                <article-id pub-id-type="doi">10.7554/eLife.1223344533222344323.4.sa0</article-id>
+                <title-group>
+                    <article-title>eLife Assessment</article-title>
+                </title-group>
+                <kwd-group kwd-group-type="evidence-strength">
+                    <kwd>Solid</kwd>
+                </kwd-group>
+                <kwd-group kwd-group-type="claim-importance">
+                    <kwd>Useful</kwd>
+                </kwd-group>
+            </front-stub>
+            <body>
+                <p>The work is <bold>useful</bold> and the evidence is <bold>solid</bold>.</p>
+            </body>
+        </sub-article>
+    </article>
+</root>

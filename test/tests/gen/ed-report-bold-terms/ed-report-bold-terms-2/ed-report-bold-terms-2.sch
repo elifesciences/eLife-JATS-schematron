@@ -1337,13 +1337,15 @@
     
   </xsl:function>
   <pattern id="dec-letter-auth-response">
-    <rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-eval-front-tests">
-      <report test="count(related-object) gt 1" role="error" flag="dl-ar" id="ed-eval-front-test-3">editor report front-stub must contain 1 or 0 related-object elements. This one has <value-of select="count(related-object)"/>.</report>
+    <rule context="sub-article[@article-type='editor-report' and e:is-prc(.)]/body/p[1]//bold" id="ed-report-bold-terms">
+      <let name="allowed-vals" value="('landmark', 'fundamental', 'important', 'valuable', 'useful', 'exceptional', 'compelling', 'convincing', 'convincingly', 'solid', 'incomplete', 'incompletely', 'inadequate', 'inadequately')"/>
+      <let name="generated-kwd" value="concat(upper-case(substring(.,1,1)),replace(lower-case(substring(.,2)),'ly$',''))"/>
+      <report test="lower-case(.)=$allowed-vals and not($generated-kwd=ancestor::sub-article/front-stub/kwd-group/kwd)" role="error" id="ed-report-bold-terms-2">Bold phrase in eLife Assessment - <value-of select="."/> - is one of the permitted vocabulary terms, but there's no corresponding keyword in the metadata (in a kwd-group in the front-stub).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='editor-report']/front-stub" role="error" id="ed-eval-front-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='editor-report' and e:is-prc(.)]/body/p[1]//bold" role="error" id="ed-report-bold-terms-xspec-assert">sub-article[@article-type='editor-report' and e:is-prc(.)]/body/p[1]//bold must be present.</assert>
     </rule>
   </pattern>
 </schema>

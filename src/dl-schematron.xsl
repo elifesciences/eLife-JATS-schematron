@@ -2177,16 +2177,16 @@
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="article-title = (&quot;Editor's evaluation&quot;,'eLife assessment')"/>
+         <xsl:when test="article-title = (&quot;Editor's evaluation&quot;,'eLife assessment','eLife Assessment')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="article-title = (&quot;Editor's evaluation&quot;,'eLife assessment')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="article-title = (&quot;Editor's evaluation&quot;,'eLife assessment','eLife Assessment')">
                <xsl:attribute name="id">ed-eval-title-test</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>A sub-article[@article-type='editor-report'] must have the title "eLife assessment" or "Editor's evaluation". Currently it is <xsl:text/>
+               <svrl:text>A sub-article[@article-type='editor-report'] must have the title "eLife Assessment" or "Editor's evaluation". Currently it is <xsl:text/>
                   <xsl:value-of select="article-title"/>
                   <xsl:text/>.</svrl:text>
             </svrl:failed-assert>
@@ -2631,7 +2631,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>editor evaluation front-stub must contain 1 (and only 1) contrib-group element. This one has <xsl:text/>
+               <svrl:text>editor report front-stub must contain 1 (and only 1) contrib-group element. This one has <xsl:text/>
                   <xsl:value-of select="count(contrib-group)"/>
                   <xsl:text/>.</svrl:text>
             </svrl:failed-assert>
@@ -2646,9 +2646,33 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>editor evaluation front-stub must contain 1 or 0 related-object elements. This one has <xsl:text/>
+            <svrl:text>editor report front-stub must contain 1 or 0 related-object elements. This one has <xsl:text/>
                <xsl:value-of select="count(related-object)"/>
                <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="e:is-prc(.) and not(kwd-group[@kwd-group-type='evidence-strength'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-prc(.) and not(kwd-group[@kwd-group-type='evidence-strength'])">
+            <xsl:attribute name="id">ed-eval-front-test-4</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>eLife Assessment front-stub does not contain a strength term keyword group, which must be incorrect.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="e:is-prc(.) and not(kwd-group[@kwd-group-type='claim-importance'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-prc(.) and not(kwd-group[@kwd-group-type='claim-importance'])">
+            <xsl:attribute name="id">ed-eval-front-test-5</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>eLife Assessment front-stub does not contain a significance term keyword group, which is very unusual. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M80"/>
