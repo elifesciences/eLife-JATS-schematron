@@ -2,8 +2,7 @@
 <!--Context: sub-article[@article-type='editor-report' and e:is-prc(.)]/body/p[1]//bold
 Test: report    lower-case(.)=$allowed-vals and not($generated-kwd=ancestor::sub-article/front-stub/kwd-group/kwd)
 Message: Bold phrase in eLife Assessment -  - is one of the permitted vocabulary terms, but there's no corresponding keyword in the metadata (in a kwd-group in the front-stub). -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-    xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
     <article>
         <front>
             <article-meta>
