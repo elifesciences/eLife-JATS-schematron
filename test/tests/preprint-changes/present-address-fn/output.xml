@@ -1,0 +1,15 @@
+<!--Testing template with id: present-address-fn-->
+<article-meta xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><author-notes>
+<!--*Corresponding author. s.claus@north.pole-->
+<corresp id="cor1"><label>*</label><email>s.claus@north.pole</email></corresp>
+<fn id="n1" fn-type="abbr"><p><bold>Abbreviations</bold>: CI, confidence interval; EPA, endogenously driven pro/antisaccade; rPT, raw processing time; RT, reaction time; SE, standard error;</p></fn>
+<fn id="n2" fn-type="present-address"><label>‡</label><p><bold>Present address</bold>: Department of Biochemistry, University of Zurich, Winterthurerstr. 190, CH-8057 Zurich, Switzerland</p></fn>
+<fn id="n3" fn-type="present-address"><label>§</label><p>Present address: Massachusetts <italic>Institute</italic> of <bold>Technology</bold>, Picower Institute for Learning and Memory, 43 Vassar St, Cambridge, MA 02139, United States</p></fn>
+<fn id="n4" fn-type="present-address"><label>¶</label><p>Present address: Vertex Pharmaceuticals, 50 Northern Avenue, Boston, Mass. 02210, United States</p></fn>
+</author-notes><custom-meta-group>
+<custom-meta specific-use="meta-only">
+<meta-name>publishing-route</meta-name>
+<meta-value>prc</meta-value>
+</custom-meta>
+</custom-meta-group>
+</article-meta>
