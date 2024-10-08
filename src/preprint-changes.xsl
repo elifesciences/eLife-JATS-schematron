@@ -458,6 +458,24 @@
         </aff>
     </xsl:template>
 
+    <!-- Introduce text for present address type footnotes -->
+    <xsl:template xml:id="present-address-fn" match="article-meta/author-notes//fn[@fn-type='present-address']">
+        <xsl:copy>
+            <xsl:choose>
+                <xsl:when test="matches(lower-case(./p[1]),'^\s*present address')">
+                    <xsl:apply-templates select="@*|*|text()"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="@*|label"/>
+                    <xsl:element name="p">
+                        <xsl:text>Present address: </xsl:text>
+                        <xsl:copy-of select="./p/*|./p/text()"/>
+                    </xsl:element>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:copy>
+    </xsl:template>
+
     <!-- Strip full stops from author names -->
     <xsl:template xml:id="remove-fullstops-from-author-names" match="article-meta//contrib[@contrib-type='author']/name/given-names|article-meta//contrib[@contrib-type='author']/name/surname">
         <xsl:copy>
