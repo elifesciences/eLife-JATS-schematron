@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="book-source-2.sch"?>
+<!--Context: mixed-citation[@publication-type='book']/source
+Test: report    matches(lower-case(.),'\.\s+in:\s+')
+Message: The source in book reference () contains '. In: ' - . Are the details captured correctly? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mixed-citation publication-type="book">
+            <person-group person-group-type="author"><string-name><surname>Ting</surname>, <given-names>J.T.</given-names></string-name>, <string-name><surname>Daigle</surname>, <given-names>T.L.</given-names></string-name>, <string-name><surname>Chen</surname>, <given-names>Q.</given-names></string-name>, and <string-name><surname>Feng</surname>, <given-names>G.</given-names></string-name></person-group>
+            (<year>2014</year>). 
+            <source>Acute Brain Slice Methods for Adult and Aging Animals: Application of Targeted Patch Clamp Analysis and Optogenetics. In: Patch-Clamp Methods and Protocols</source>, 
+            <person-group person-group-type="editor"><given-names>M. Martina</given-names>, and <string-name><given-names>S.</given-names> <surname>Taverna</surname></string-name></person-group>, eds. 
+            (<publisher-name>Springer</publisher-name> <publisher-loc>New York</publisher-loc>), pp. <fpage>221</fpage>–<lpage>242</lpage>. 
+            <pub-id pub-id-type="doi">10.1007/978-1-4939-1096-0_14</pub-id>.
+        </mixed-citation>
+    </article>
+</root>

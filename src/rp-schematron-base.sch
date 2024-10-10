@@ -353,7 +353,30 @@
         <assert test="source" 
         role="error" 
         id="book-ref-source">This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no source element.</assert>
+       
+       <report test="count(source) gt 1" 
+        role="error" 
+        id="book-ref-source-2">This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has more than 1 source element.</report>
+       
+       <report test="not(chapter-title) and person-group[@person-group-type='editor']" 
+        role="warning" 
+        id="book-ref-editor">This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has an editor person-group but no chapter-title element. Have all the details been captured correctly?</report>
+       
+       <report test="not(chapter-title) and publisher-name[italic]" 
+        role="warning" 
+        id="book-ref-pub-name-1">This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a publisher-name with italics and no chapter-title element. Have all the details been captured correctly?</report>
      </rule>
+      
+      <rule context="mixed-citation[@publication-type='book']/source" id="book-ref-source-checks">
+        
+        <report test="matches(lower-case(.),'^chapter\s|\s+chapter\s+')" 
+        role="warning" 
+        id="book-source-1">The source in book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) contains 'chapter' - <value-of select="."/>. Are the details captured correctly?</report>
+        
+        <report test="matches(lower-case(.),'\.\s+in:\s+')" 
+        role="warning" 
+        id="book-source-2">The source in book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) contains '. In: ' - <value-of select="."/>. Are the details captured correctly?</report>
+      </rule>
     </pattern>
 
     <pattern id="ref-labels">

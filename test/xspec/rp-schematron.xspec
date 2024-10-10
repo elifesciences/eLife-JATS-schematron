@@ -487,6 +487,58 @@
         <x:expect-assert id="book-ref-source" role="error"/>
         <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="book-ref-source-2-pass">
+        <x:context href="../tests/rp/book-ref-checks/book-ref-source-2/pass.xml"/>
+        <x:expect-not-report id="book-ref-source-2" role="error"/>
+        <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="book-ref-source-2-fail">
+        <x:context href="../tests/rp/book-ref-checks/book-ref-source-2/fail.xml"/>
+        <x:expect-report id="book-ref-source-2" role="error"/>
+        <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="book-ref-editor-pass">
+        <x:context href="../tests/rp/book-ref-checks/book-ref-editor/pass.xml"/>
+        <x:expect-not-report id="book-ref-editor" role="warning"/>
+        <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="book-ref-editor-fail">
+        <x:context href="../tests/rp/book-ref-checks/book-ref-editor/fail.xml"/>
+        <x:expect-report id="book-ref-editor" role="warning"/>
+        <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="book-ref-pub-name-1-pass">
+        <x:context href="../tests/rp/book-ref-checks/book-ref-pub-name-1/pass.xml"/>
+        <x:expect-not-report id="book-ref-pub-name-1" role="warning"/>
+        <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="book-ref-pub-name-1-fail">
+        <x:context href="../tests/rp/book-ref-checks/book-ref-pub-name-1/fail.xml"/>
+        <x:expect-report id="book-ref-pub-name-1" role="warning"/>
+        <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="book-ref-source-checks">
+      <x:scenario label="book-source-1-pass">
+        <x:context href="../tests/rp/book-ref-source-checks/book-source-1/pass.xml"/>
+        <x:expect-not-report id="book-source-1" role="warning"/>
+        <x:expect-not-assert id="book-ref-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="book-source-1-fail">
+        <x:context href="../tests/rp/book-ref-source-checks/book-source-1/fail.xml"/>
+        <x:expect-report id="book-source-1" role="warning"/>
+        <x:expect-not-assert id="book-ref-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="book-source-2-pass">
+        <x:context href="../tests/rp/book-ref-source-checks/book-source-2/pass.xml"/>
+        <x:expect-not-report id="book-source-2" role="warning"/>
+        <x:expect-not-assert id="book-ref-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="book-source-2-fail">
+        <x:context href="../tests/rp/book-ref-source-checks/book-source-2/fail.xml"/>
+        <x:expect-report id="book-source-2" role="warning"/>
+        <x:expect-not-assert id="book-ref-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-list-checks">
       <x:scenario label="indistinct-ref-labels-pass">
