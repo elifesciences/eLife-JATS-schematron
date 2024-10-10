@@ -500,6 +500,9 @@
             </xsl:choose>
         </xsl:copy>
     </xsl:template>
+
+    <!-- Remove degrees from contrib -->
+    <xsl:template xml:id="remove-degrees-from-contrib" match="contrib/degrees"/>
         
     <!-- Remove counts from article-meta -->
     <xsl:template xml:id="strip-counts" match="article-meta/counts"/>

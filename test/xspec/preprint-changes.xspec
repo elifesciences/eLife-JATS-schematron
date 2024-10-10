@@ -36,6 +36,10 @@
       <x:context href="../tests/preprint-changes/remove-fullstops-from-author-names/input.xml"/>
       <x:expect label="Testing the template: remove-fullstops-from-author-names" href="../tests/preprint-changes/remove-fullstops-from-author-names/output.xml"/>
     </x:scenario>
+    <x:scenario label="remove-degrees-from-contrib">
+      <x:context href="../tests/preprint-changes/remove-degrees-from-contrib/input.xml"/>
+      <x:expect label="Testing the template: remove-degrees-from-contrib" href="../tests/preprint-changes/remove-degrees-from-contrib/output.xml"/>
+    </x:scenario>
     <x:scenario label="strip-counts">
       <x:context href="../tests/preprint-changes/strip-counts/input.xml"/>
       <x:expect label="Testing the template: strip-counts" href="../tests/preprint-changes/strip-counts/output.xml"/>
