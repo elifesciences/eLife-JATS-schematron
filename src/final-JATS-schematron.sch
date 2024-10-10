@@ -5381,7 +5381,7 @@
       
       <assert test="matches(lower-case(p[1]),'10.7554/elife.\d{5,6}')" role="error" id="notice-box-5">[notice-box-5] The first paragraph in boxed text at the start of a <value-of select="$display-subject"/> should contain the citation details for the related article, but this one does not contain an eLife DOI.</assert>
       
-      <assert test="matches(p[2],'^Published ([1-9]|[1-2][0-9]|3[0-1]) (January|February|March|April|May|June|July|August|September|October|November|December) 20([1][2-9]|[2][1-9])')" role="error" id="notice-box-6">[notice-box-6] The second paragraph in boxed text at the start of a <value-of select="$display-subject"/> should contain the full publication for the related article in the format 'Published 13 January 2022', but this one does not.</assert>
+      <assert test="matches(p[2],'^Published ([1-9]|[1-2][0-9]|3[0-1]) (January|February|March|April|May|June|July|August|September|October|November|December) 20([1][2-9]|[2][0-9])')" role="error" id="notice-box-6">[notice-box-6] The second paragraph in boxed text at the start of a <value-of select="$display-subject"/> should contain the full publication for the related article in the format 'Published 13 January 2022', but this one does not.</assert>
     </rule></pattern>
   
   <pattern id="gene-primer-sequence-pattern"><rule context="p[not(child::table-wrap)]" id="gene-primer-sequence">

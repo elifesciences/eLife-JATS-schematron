@@ -29138,9 +29138,9 @@
       </xsl:choose>
       <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(p[2],'^Published ([1-9]|[1-2][0-9]|3[0-1]) (January|February|March|April|May|June|July|August|September|October|November|December) 20([1][2-9]|[2][1-9])')"/>
+         <xsl:when test="matches(p[2],'^Published ([1-9]|[1-2][0-9]|3[0-1]) (January|February|March|April|May|June|July|August|September|October|November|December) 20([1][2-9]|[2][0-9])')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(p[2],'^Published ([1-9]|[1-2][0-9]|3[0-1]) (January|February|March|April|May|June|July|August|September|October|November|December) 20([1][2-9]|[2][1-9])')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(p[2],'^Published ([1-9]|[1-2][0-9]|3[0-1]) (January|February|March|April|May|June|July|August|September|October|November|December) 20([1][2-9]|[2][0-9])')">
                <xsl:attribute name="id">notice-box-6</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">

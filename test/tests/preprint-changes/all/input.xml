@@ -76,12 +76,11 @@
 </body>
 <back>
 <ref-list>
-<ref id="r1">
-<mixed-citation publication-type="journal"><ext-link ext-link-type="uri" xlink:href="https://doi.org/10.7554/eLife.09560">https://doi.org/10.7554/eLife.09560</ext-link></mixed-citation>
-</ref>
-<ref id="r2">
-<mixed-citation publication-type="website">The internet</mixed-citation>
-</ref>
+<ref id="c1"><label>1.</label><mixed-citation publication-type="website"><string-name><surname>Chiti</surname>, <given-names>F.</given-names></string-name> &amp; <string-name><surname>Dobson</surname>, <given-names>C. M</given-names></string-name>. <article-title>Protein misfolding, functional amyloid, and human disease</article-title>. <source>Annu Rev Biochem</source> <volume>75</volume>, (<year>2006</year>).</mixed-citation></ref>
+<ref id="c2"><label>2.</label><mixed-citation publication-type="journal"><string-name><surname>Ozbey</surname> <given-names>NP</given-names></string-name>, <etal>et al.</etal> <article-title>Tyramine Acts Downstream of Neuronal XBP-1s to Coordinate Inter-tissue UPR(ER) Activation and Behavior in C. elegans</article-title>. <source>Dev Cell</source> <volume>55</volume>, <fpage>754</fpage>–<lpage>770</lpage>.e756 (<year>2020</year>). <uri>https://doi.org/10.1016/j.tibs.2017.08.001</uri></mixed-citation></ref>
+<ref id="c3"><label>3.</label><mixed-citation publication-type="other"><year>2024</year><article-title/> <source>bioRxiv</source></mixed-citation></ref>
+<ref id="c4"><label>4.</label><mixed-citation publication-type="book"><string-name><given-names>A.</given-names> <surname>Nagy</surname></string-name>, <string-name><given-names>M.</given-names> <surname>Gertsenstein</surname></string-name>, <string-name><given-names>K.</given-names> <surname>Vintersten</surname></string-name>, <string-name><given-names>R.</given-names> <surname>Behringer</surname></string-name>, <chapter-title>Manipulating the mouse embryo: a laboratory manual</chapter-title> (<publisher-name>Cold Spring Harbor Laboratory Press Cold Spring Harbor</publisher-name>, NY:, <year>2003</year>), vol. <volume>10</volume>.</mixed-citation></ref>
+<ref id="c5"><label>5.</label><mixed-citation publication-type="book"><string-name><given-names>J. M.</given-names> <surname>Glynn</surname></string-name>, <string-name><given-names>T. G.</given-names> <surname>Cotter</surname></string-name>, <string-name><given-names>D. R.</given-names> <surname>Green</surname></string-name> (<year>1992</year>) <article-title>Apoptosis induced by actinomycin D, camptothecin or aphidicolin can occur in all phases of the cell cycle</article-title>. (<publisher-loc>Portland</publisher-loc> <publisher-name>Press Ltd</publisher-name>.).</mixed-citation></ref>
 </ref-list>
 </back>
 </article>

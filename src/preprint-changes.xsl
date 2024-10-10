@@ -688,6 +688,28 @@
                         </xsl:choose>
                     </xsl:for-each>
                 </xsl:when>
+                <!-- Change chapter-title to source in books -->
+                <xsl:when test="@publication-type='book'">
+                    <xsl:choose>
+                        <xsl:when test="count(chapter-title)=1 and not(source)">
+                            <xsl:apply-templates select="@*|*[following-sibling::chapter-title]|text()[following-sibling::chapter-title]|comment()[following-sibling::chapter-title]|processing-instruction()[following-sibling::chapter-title]"/>
+                            <xsl:element name="source">
+                                <xsl:copy-of select="./chapter-title/*|./chapter-title/text()"/>
+                            </xsl:element>
+                            <xsl:apply-templates select="*[preceding-sibling::chapter-title]|text()[preceding-sibling::chapter-title]|comment()[preceding-sibling::chapter-title]|processing-instruction()[preceding-sibling::chapter-title]"/>
+                        </xsl:when>
+                        <xsl:when test="count(article-title)=1 and not(source)">
+                            <xsl:apply-templates select="@*|*[following-sibling::article-title]|text()[following-sibling::article-title]|comment()[following-sibling::article-title]|processing-instruction()[following-sibling::article-title]"/>
+                            <xsl:element name="source">
+                                <xsl:copy-of select="./article-title/*|./article-title/text()"/>
+                            </xsl:element>
+                            <xsl:apply-templates select="*[preceding-sibling::article-title]|text()[preceding-sibling::article-title]|comment()[preceding-sibling::article-title]|processing-instruction()[preceding-sibling::article-title]"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
                 <!-- Change publication-type="website" to "web" for consistency across all eLife content -->
                 <xsl:when test="@publication-type='website'">
                      <xsl:attribute name="publication-type">web</xsl:attribute>
