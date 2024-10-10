@@ -13538,6 +13538,80 @@
         <x:expect-not-assert id="retraction-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="notice-body-tests">
+      <x:scenario label="notice-body-test-1-pass">
+        <x:context href="../tests/gen/notice-body-tests/notice-body-test-1/pass.xml"/>
+        <x:expect-not-assert id="notice-body-test-1" role="error"/>
+        <x:expect-not-assert id="notice-body-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="notice-body-test-1-fail">
+        <x:context href="../tests/gen/notice-body-tests/notice-body-test-1/fail.xml"/>
+        <x:expect-assert id="notice-body-test-1" role="error"/>
+        <x:expect-not-assert id="notice-body-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="notice-box-tests">
+      <x:scenario label="notice-box-1-pass">
+        <x:context href="../tests/gen/notice-box-tests/notice-box-1/pass.xml"/>
+        <x:expect-not-assert id="notice-box-1" role="error"/>
+        <x:expect-not-assert id="notice-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="notice-box-1-fail">
+        <x:context href="../tests/gen/notice-box-tests/notice-box-1/fail.xml"/>
+        <x:expect-assert id="notice-box-1" role="error"/>
+        <x:expect-not-assert id="notice-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="notice-box-2-pass">
+        <x:context href="../tests/gen/notice-box-tests/notice-box-2/pass.xml"/>
+        <x:expect-not-report id="notice-box-2" role="error"/>
+        <x:expect-not-assert id="notice-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="notice-box-2-fail">
+        <x:context href="../tests/gen/notice-box-tests/notice-box-2/fail.xml"/>
+        <x:expect-report id="notice-box-2" role="error"/>
+        <x:expect-not-assert id="notice-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="notice-box-3-pass">
+        <x:context href="../tests/gen/notice-box-tests/notice-box-3/pass.xml"/>
+        <x:expect-not-assert id="notice-box-3" role="error"/>
+        <x:expect-not-assert id="notice-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="notice-box-3-fail">
+        <x:context href="../tests/gen/notice-box-tests/notice-box-3/fail.xml"/>
+        <x:expect-assert id="notice-box-3" role="error"/>
+        <x:expect-not-assert id="notice-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="notice-box-4-pass">
+        <x:context href="../tests/gen/notice-box-tests/notice-box-4/pass.xml"/>
+        <x:expect-not-assert id="notice-box-4" role="error"/>
+        <x:expect-not-assert id="notice-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="notice-box-4-fail">
+        <x:context href="../tests/gen/notice-box-tests/notice-box-4/fail.xml"/>
+        <x:expect-assert id="notice-box-4" role="error"/>
+        <x:expect-not-assert id="notice-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="notice-box-5-pass">
+        <x:context href="../tests/gen/notice-box-tests/notice-box-5/pass.xml"/>
+        <x:expect-not-assert id="notice-box-5" role="error"/>
+        <x:expect-not-assert id="notice-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="notice-box-5-fail">
+        <x:context href="../tests/gen/notice-box-tests/notice-box-5/fail.xml"/>
+        <x:expect-assert id="notice-box-5" role="error"/>
+        <x:expect-not-assert id="notice-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="notice-box-6-pass">
+        <x:context href="../tests/gen/notice-box-tests/notice-box-6/pass.xml"/>
+        <x:expect-not-assert id="notice-box-6" role="error"/>
+        <x:expect-not-assert id="notice-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="notice-box-6-fail">
+        <x:context href="../tests/gen/notice-box-tests/notice-box-6/fail.xml"/>
+        <x:expect-assert id="notice-box-6" role="error"/>
+        <x:expect-not-assert id="notice-box-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="gene-primer-sequence">
       <x:scenario label="gene-primer-sequence-test-pass">
         <x:context href="../tests/gen/gene-primer-sequence/gene-primer-sequence-test/pass.xml"/>

@@ -5367,6 +5367,27 @@
       
       <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hqq70-retr-se-bre" test="descendant::contrib-group[@content-type='section']" role="error" id="retr-SE-BRE"><value-of select="$display-subject"/> notices must not contain any Senior or Reviewing Editors.</report>
        
+    </rule></pattern><pattern id="notice-body-tests-pattern"><rule context="article[@article-type = ('retraction','expression-of-concern','correction')]/body" id="notice-body-tests">
+      <let name="display-subject" value="ancestor::article//article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>    
+
+      <assert test="*[1]/name()='boxed-text'" role="error" id="notice-body-test-1">The first child element of body in a <value-of select="$display-subject"/> must be boxed-text. This one has <value-of select="*[1]/name()"/>.</assert>
+
+    </rule></pattern><pattern id="notice-box-tests-pattern"><rule context="article[@article-type = ('retraction','expression-of-concern','correction')]/body/boxed-text[1]" id="notice-box-tests">
+      <let name="display-subject" value="ancestor::article//article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
+      <let name="notice-title" value="ancestor::article[1]/descendant::article-meta[1]/descendant::article-title[1]"/>
+      <let name="obj-title" value="substring-after($notice-title,': ')"/>   
+
+      <assert test="count(p)=2" role="error" id="notice-box-1">The boxed-text at the start of a <value-of select="$display-subject"/> notice should contain 2 paragraphs. The first should contain the citation details for the related article. The second should state the fulld ate on which it was published. This boxed-text has <value-of select="count(p)"/> p elements.</assert>
+      
+      <report test="*/name()!='p'" role="error" id="notice-box-2"><name/> in boxed-text at the start of a <value-of select="$display-subject"/> notice is not allowed. Only p is permitted.</report>
+
+      <assert test="contains(p[1],$obj-title)" role="error" id="notice-box-3">The first paragraph in boxed text at the start of this <value-of select="$display-subject"/> does not contain the title of the related article as written in the title of the notice. Related article title (from notice title) = '<value-of select="$obj-title"/>'. First boxed-text para = '<value-of select="p[1]"/>'</assert>
+      
+      <assert test="contains(p[1],'eLife')" role="error" id="notice-box-4">The first paragraph in boxed text at the start of a <value-of select="$display-subject"/> should contain the citation details for the related article, but this one does not contain the word 'eLife'.</assert>
+      
+      <assert test="matches(lower-case(p[1]),'10.7554/elife.\d{5,6}')" role="error" id="notice-box-5">The first paragraph in boxed text at the start of a <value-of select="$display-subject"/> should contain the citation details for the related article, but this one does not contain an eLife DOI.</assert>
+      
+      <assert test="matches(p[2],'^Published ([1-9]|[1-2][0-9]|3[0-1]) (January|February|March|April|May|June|July|August|September|October|November|December) 20([1][2-9]|[2][1-9])')" role="error" id="notice-box-6">The second paragraph in boxed text at the start of a <value-of select="$display-subject"/> should contain the full publication for the related article in the format 'Published 13 January 2022', but this one does not.</assert>
     </rule></pattern>
   
   <pattern id="gene-primer-sequence-pattern"><rule context="p[not(child::table-wrap)]" id="gene-primer-sequence">
