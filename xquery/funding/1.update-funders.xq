@@ -1,7 +1,7 @@
 declare variable $sch := doc('../../src/schematron.sch');
 
 let $src := substring-before($sch/base-uri(),'schematron.sch')
-let $fundref := parse-xml(fetch:text('https://gitlab.com/crossref/open_funder_registry/raw/master/registry.rdf'))
+let $fundref := parse-xml(fetch:text('https://gitlab.com/crossref/open_funder_registry/-/raw/main/registry.rdf'))
 let $api-query := 'https://api.crossref.org/works?filter=type-name:Grant&amp;facet=funder-doi:*'
 let $response := json:parse(fetch:text($api-query))
 let $grant-doi-registering-funder-dois := for $obj in $response//*:facets/*:funder-doi/*:values/* 
