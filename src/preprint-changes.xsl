@@ -640,7 +640,10 @@
          <xsl:variable name="mixed-citation-round-2">
             <xsl:apply-templates select="$mixed-citation-round-1" mode="mixed-citation-round-2"/>
          </xsl:variable>
-        <xsl:apply-templates select="$mixed-citation-round-2" mode="mixed-citation-round-3"/>
+        <xsl:variable name="mixed-citation-round-3">
+            <xsl:apply-templates select="$mixed-citation-round-2" mode="mixed-citation-round-3"/>
+         </xsl:variable>
+        <xsl:apply-templates select="$mixed-citation-round-3" mode="mixed-citation-round-4"/>
     </xsl:template>
 
     <!-- Introduces author person-groups into refs when they are missing-->
@@ -719,20 +722,6 @@
                      <xsl:apply-templates select="@*[name()!='publication-type']"/>
                      <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
                 </xsl:when>
-                <!-- Attempt to determine correct type/content for publication-type="other"
-                        Just trying preprints to begin with -->
-                <xsl:when test="@publication-type='other'">
-                    <xsl:variable name="preprint-regex" select="'^(biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra)$'"/>
-                    <xsl:choose>
-                        <xsl:when test="matches(lower-case(source[1]),$preprint-regex)">
-                            <xsl:attribute name="publication-type">preprint</xsl:attribute>
-                            <xsl:apply-templates select="@*[name()!='publication-type']|*|text()|comment()|processing-instruction()"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>    
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
                 </xsl:otherwise>
@@ -749,6 +738,22 @@
                     <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
                     <xsl:text> </xsl:text>
                     <year>no date</year>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                </xsl:otherwise>
+            </xsl:choose>
+         </xsl:copy>
+     </xsl:template>
+    
+    <!-- Fixes mistagged preprints -->
+     <xsl:template xml:id="find-and-tag-preprint-refs" mode="mixed-citation-round-4" match="mixed-citation">
+         <xsl:variable name="preprint-regex" select="'^(biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra)$'"/>
+         <xsl:copy>
+            <xsl:choose>
+                <xsl:when test="@publication-type!='preprint' and matches(lower-case(source[1]),$preprint-regex)">
+                    <xsl:attribute name="publication-type">preprint</xsl:attribute>
+                    <xsl:apply-templates select="@*[name()!='publication-type']|*|text()|comment()|processing-instruction()"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
