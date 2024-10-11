@@ -1,0 +1,7 @@
+<?oxygen SCHSchema="journal-source-1.sch"?>
+<!--Context: mixed-citation[@publication-type='journal']/source
+Test: report    matches(lower-case(.),$preprint-regex)
+Message: Journal reference () has has a source which suggests it might be a preprint - . Is it tagged correctly? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Zoolander</surname>, <given-names>D</given-names></string-name></person-group>. (<year>2024</year>). <article-title>The title</article-title>. <source>Journal of Fashion</source>, <volume>23</volume>(<issue>8</issue>), <fpage>3483</fpage>–<lpage>3490</lpage>.</mixed-citation>
+</root>
