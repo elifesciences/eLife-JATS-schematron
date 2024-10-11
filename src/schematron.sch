@@ -2245,7 +2245,7 @@
         role="error" 
         id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
-	  <report test="matches(.,'^\p{Ll}') and not(matches(.,'^de[lrn]? |^van |^von |^el |^te[rn] '))" 
+	  <report test="matches(.,'^\p{Ll}') and not(matches(.,'^de[lrn]? |^van |^von |^el |^te[rn] |^da '))" 
         role="warning" 
         id="surname-test-5">surname doesn't begin with a capital letter - <value-of select="."/>. Is this correct?</report>
 	  
