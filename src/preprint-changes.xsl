@@ -656,7 +656,16 @@
                     <xsl:element name="person-group">
                     <xsl:attribute name="person-group-type">author</xsl:attribute>
                         <xsl:for-each select="./*[name()=$name-elems]|./text()[following-sibling::*[name()=$name-elems]]">
-                            <xsl:apply-templates select="."/>
+                            <xsl:choose>
+                                <xsl:when test="self::text() and matches(.,'^\.?,?\s*(…|\.{3,4})\s*(&amp;\s*|and\s*)?$')">
+                                    <xsl:text>, </xsl:text>
+                                    <etal>…</etal>
+                                    <xsl:text> </xsl:text>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:apply-templates select="."/>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:for-each>
                     </xsl:element>
                     <xsl:for-each select="./*[not(name()=$name-elems)]|./*[name()=$name-elems][last()]/following-sibling::text()|./text()[preceding-sibling::*[not(name()=$name-elems)]]">
