@@ -1336,17 +1336,16 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="article-metadata">
-    <rule context="funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id]" id="general-funding-no-award-id-tests">
-      <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
-      <let name="funder-entry" value="document($funders)//funder[@fundref=$funder-id]"/>
-      <let name="grant-doi-count" value="count($funder-entry//*:grant)"/>
-      <report test="$grant-doi-count gt 29" role="warning" id="grant-doi-test-3">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has no award-id, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Is there a missing grant DOI or award ID for this funding?</report>
+  <pattern id="further-fig-tests">
+    <rule context="fig/caption/p[not(child::supplementary-material)] | fig/attrib" id="biorender-fig-tests">
+      <let name="is-cc0" value="contains(lower-case(ancestor::article[1]/front[1]/descendant::permissions[1]/license[1]/@xlink:href),'creativecommons.org/publicdomain/zero/')"/>
+      <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>
+      <report see="https://elifeproduction.slab.com/posts/other-cc-by-licenses-l9qe8qny?shr=l9qe8qny#h0e4d-bio-render-permissions" test="descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]" role="warning" id="pre-fig-biorender-test-1">Caption or attrib for <value-of select="$label"/> contains a bioRender link, but it does not look like a bioRender 'unique figure citation URL'. If one has not been provided by the authors please add the relevent query asking for one.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id]" role="error" id="general-funding-no-award-id-tests-xspec-assert">funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id] must be present.</assert>
+      <assert test="descendant::fig/caption/p[not(child::supplementary-material)]  or descendant:: fig/attrib" role="error" id="biorender-fig-tests-xspec-assert">fig/caption/p[not(child::supplementary-material)] | fig/attrib must be present.</assert>
     </rule>
   </pattern>
 </schema>

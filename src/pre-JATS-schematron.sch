@@ -2343,7 +2343,7 @@
       <let name="funder-entry" value="document($funders)//funder[@fundref=$funder-id]"/>
       <let name="grant-doi-count" value="count($funder-entry//*:grant)"/>
       
-      <report test="$grant-doi-count gt 29" role="warning" id="grant-doi-test-3">[grant-doi-test-3] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has not award-id, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Is there a missing grant DOI or award ID for this funding?</report>
+      <report test="$grant-doi-count gt 29" role="warning" id="grant-doi-test-3">[grant-doi-test-3] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has no award-id, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Is there a missing grant DOI or award ID for this funding?</report>
     </rule></pattern><pattern id="wellcome-grant-doi-tests-pattern"><rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" id="wellcome-grant-doi-tests">
       <let name="grants" value="document($funders)//funder[@fundref=$wellcome-fundref-ids]/grant"/>
       <let name="award-id-elem" value="award-id"/>
@@ -3588,6 +3588,10 @@
       <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>    
 
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#hm6gy-pre-fig-caption-test-4" test="$is-cc0 and matches(lower-case(.),'biorend[eo]r') and not(ancestor::fig/permissions[matches(lower-case(.),'biorend[eo]r')])" role="error" id="fig-caption-test-4">[fig-caption-test-4] Caption or attrib for <value-of select="$label"/> contains what looks like a mention of bioRender. Since the overall license for the article is CC0, and bioRender can (only) be licensed CC BY, a permissions statement needs to be added (e.g. © <value-of select="year-from-date(current-date())"/>, {authors}. Parts of this image created with BioRender are made available under a Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.).</report>
+
+      <report see="https://elifeproduction.slab.com/posts/other-cc-by-licenses-l9qe8qny?shr=l9qe8qny#h0e4d-bio-render-permissions" test="descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]" role="warning" id="pre-fig-biorender-test-1">[pre-fig-biorender-test-1] Caption or attrib for <value-of select="$label"/> contains a bioRender link, but it does not look like a bioRender 'unique figure citation URL'. If one has not been provided by the authors please add the relevent query asking for one.</report>
+
+      
 
     </rule></pattern><pattern id="fig-panel-tests-pattern"><rule context="fig/caption/p/bold" id="fig-panel-tests">
       <let name="first-character" value="substring(.,1, 1)"/>

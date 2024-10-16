@@ -12000,7 +12000,7 @@
             </xsl:attribute>
             <svrl:text>[grant-doi-test-3] Funding entry from <xsl:text/>
                <xsl:value-of select="funding-source/institution-wrap/institution"/>
-               <xsl:text/> has not award-id, but the funder is known to mint grant DOIs (for example in the format <xsl:text/>
+               <xsl:text/> has no award-id, but the funder is known to mint grant DOIs (for example in the format <xsl:text/>
                <xsl:value-of select="$funder-entry/descendant::*:grant[1]/@doi"/>
                <xsl:text/> for ID <xsl:text/>
                <xsl:value-of select="$funder-entry/descendant::*:grant[1]/@award"/>
@@ -19187,6 +19187,20 @@
                <xsl:text/> contains what looks like a mention of bioRender. Since the overall license for the article is CC0, and bioRender can (only) be licensed CC BY, a permissions statement needs to be added (e.g. © <xsl:text/>
                <xsl:value-of select="year-from-date(current-date())"/>
                <xsl:text/>, {authors}. Parts of this image created with BioRender are made available under a Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]">
+            <xsl:attribute name="id">final-fig-biorender-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/other-cc-by-licenses-l9qe8qny?shr=l9qe8qny#h0e4d-bio-render-permissions</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[final-fig-biorender-test-1] Caption or attrib for <xsl:text/>
+               <xsl:value-of select="$label"/>
+               <xsl:text/> contains a bioRender link, but it does not look like a bioRender 'unique figure citation URL'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M280"/>
