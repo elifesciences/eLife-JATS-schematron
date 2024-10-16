@@ -455,6 +455,16 @@
         <x:expect-report id="journal-source-1" role="warning"/>
         <x:expect-not-assert id="journal-source-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="journal-source-2-pass">
+        <x:context href="../tests/rp/journal-source-checks/journal-source-2/pass.xml"/>
+        <x:expect-not-report id="journal-source-2" role="warning"/>
+        <x:expect-not-assert id="journal-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="journal-source-2-fail">
+        <x:context href="../tests/rp/journal-source-checks/journal-source-2/fail.xml"/>
+        <x:expect-report id="journal-source-2" role="warning"/>
+        <x:expect-not-assert id="journal-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="preprint-ref-checks">
       <x:scenario label="preprint-ref-source-pass">

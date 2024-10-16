@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="journal-source-2.sch"?>
+<!--Context: mixed-citation[@publication-type='journal']/source
+Test: report    matches(lower-case(.),'^i{1,3}\.\s') and parent::*/article-title
+Message: Journal reference () has a source that starts with a roman numeral. Is part of the article-title captured in source? Source = . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Ghiradella</surname>, <given-names>H.</given-names></string-name> and <string-name><surname>Radigan</surname>, <given-names>W</given-names></string-name></person-group>. (<year>1976</year>). <article-title>Development of butterfly scales</article-title>. <source>II. Struts, lattices and surface tension. J Morphol</source> <volume>150</volume>, <fpage>279</fpage>–<lpage>297</lpage>.</mixed-citation>
+    </article>
+</root>
