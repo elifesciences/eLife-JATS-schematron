@@ -9338,6 +9338,9 @@
       
       <report test="matches(lower-case(.),'(^|\s)(data|datasets)(\s|\?|\.|!)') and matches(lower-case(.),'(^|\s)request(\s|\?|\.|!|$)')" role="warning" id="data-request-check">
         <name/> element contains text that has the words data (or dataset(s)) as well as request. Is this a statement that data is available on request? If so, has this been approved by the editors?</report>
+
+      <report test="matches(lower-case(.),'^mmethods[\s\.]|\smmethods[\s\.]')" role="error" id="mmethods-typo-check">
+        <name/> element contains a typo ('mmethods') - <value-of select="."/>.</report>
       
     </rule>
   </pattern>

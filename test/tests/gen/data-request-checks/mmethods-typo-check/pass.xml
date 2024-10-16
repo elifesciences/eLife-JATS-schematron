@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="mmethods-typo-check.sch"?>
+<!--Context: p|td|th|title
+Test: report    matches(lower-case(.),'^mmethods[\s\.]|\smmethods[\s\.]')
+Message:  element contains a typo ('mmethods') - . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <p>Materials and methods.</p>
+    </article>
+</root>

@@ -40809,6 +40809,21 @@
                <xsl:text/> element contains text that has the words data (or dataset(s)) as well as request. Is this a statement that data is available on request? If so, has this been approved by the editors?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="matches(lower-case(.),'^mmethods[\s\.]|\smmethods[\s\.]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'^mmethods[\s\.]|\smmethods[\s\.]')">
+            <xsl:attribute name="id">mmethods-typo-check</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mmethods-typo-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element contains a typo ('mmethods') - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M570"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M570"/>

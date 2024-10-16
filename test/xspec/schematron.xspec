@@ -21357,6 +21357,16 @@
         <x:expect-report id="data-request-check" role="warning"/>
         <x:expect-not-assert id="data-request-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="mmethods-typo-check-pass">
+        <x:context href="../tests/gen/data-request-checks/mmethods-typo-check/pass.xml"/>
+        <x:expect-not-report id="mmethods-typo-check" role="error"/>
+        <x:expect-not-assert id="data-request-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mmethods-typo-check-fail">
+        <x:context href="../tests/gen/data-request-checks/mmethods-typo-check/fail.xml"/>
+        <x:expect-report id="mmethods-typo-check" role="error"/>
+        <x:expect-not-assert id="data-request-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="doi-journal-ref-checks">
       <x:scenario label="journal-doi-test-1-pass">
