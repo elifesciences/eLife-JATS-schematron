@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pre-fig-biorender-test-1.sch"?>
 <!--Context: fig/caption/p[not(child::supplementary-material)] | fig/attrib
 Test: report    descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]
-Message: Caption or attrib for  contains a bioRender link, but it does not look like a bioRender 'unique figure citation URL'. If one has not been provided by the authors please add the relevent query asking for one. -->
+Message: Caption or attrib for  contains a BioRender link, but it does not look like a BioRender 'unique figure citation URL'. If one has not been provided by the authors please add the relevant query asking for one. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <fig>

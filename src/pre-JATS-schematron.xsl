@@ -18988,7 +18988,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[biorender-check] Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</svrl:text>
+            <svrl:text>[biorender-check] Article text contains a reference to BioRender. Any figures created with BioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M277"/>
@@ -19013,7 +19013,7 @@
             </xsl:attribute>
             <svrl:text>[fig-caption-test-4] Caption or attrib for <xsl:text/>
                <xsl:value-of select="$label"/>
-               <xsl:text/> contains what looks like a mention of bioRender. Since the overall license for the article is CC0, and bioRender can (only) be licensed CC BY, a permissions statement needs to be added (e.g. © <xsl:text/>
+               <xsl:text/> contains what looks like a mention of BioRender. Since the overall license for the article is CC0, and BioRender can (only) be licensed CC BY, a permissions statement needs to be added (e.g. © <xsl:text/>
                <xsl:value-of select="year-from-date(current-date())"/>
                <xsl:text/>, {authors}. Parts of this image created with BioRender are made available under a Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.).</svrl:text>
          </svrl:successful-report>
@@ -19029,7 +19029,7 @@
             </xsl:attribute>
             <svrl:text>[pre-fig-biorender-test-1] Caption or attrib for <xsl:text/>
                <xsl:value-of select="$label"/>
-               <xsl:text/> contains a bioRender link, but it does not look like a bioRender 'unique figure citation URL'. If one has not been provided by the authors please add the relevent query asking for one.</svrl:text>
+               <xsl:text/> contains a BioRender link, but it does not look like a BioRender 'unique figure citation URL'. If one has not been provided by the authors please add the relevant query asking for one.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M278"/>
