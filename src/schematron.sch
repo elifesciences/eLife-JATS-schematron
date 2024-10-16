@@ -3487,7 +3487,7 @@
       
       <report test="$grant-doi-count gt 29"
 	       role="warning" 
-	       id="grant-doi-test-3">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has not award-id, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Is there a missing grant DOI or award ID for this funding?</report>
+	       id="grant-doi-test-3">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has no award-id, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Is there a missing grant DOI or award ID for this funding?</report>
     </rule>
     
     <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" id="wellcome-grant-doi-tests">
@@ -6173,7 +6173,7 @@ else self::*/local-name() = $allowed-p-blocks"
 
        <report test="matches(lower-case($article-text),'biorend[eo]r')" 
         role="warning" 
-        id="biorender-check">Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</report>
+        id="biorender-check">Article text contains a reference to BioRender. Any figures created with BioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</report>
 
     </rule>
 
@@ -6184,7 +6184,17 @@ else self::*/local-name() = $allowed-p-blocks"
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#hm6gy-pre-fig-caption-test-4" 
         test="$is-cc0 and matches(lower-case(.),'biorend[eo]r') and not(ancestor::fig/permissions[matches(lower-case(.),'biorend[eo]r')])" 
         role="error" 
-        id="fig-caption-test-4">Caption or attrib for <value-of select="$label"/> contains what looks like a mention of bioRender. Since the overall license for the article is CC0, and bioRender can (only) be licensed CC BY, a permissions statement needs to be added (e.g. © <value-of select="year-from-date(current-date())"/>, {authors}. Parts of this image created with BioRender are made available under a Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.).</report>
+        id="fig-caption-test-4">Caption or attrib for <value-of select="$label"/> contains what looks like a mention of BioRender. Since the overall license for the article is CC0, and BioRender can (only) be licensed CC BY, a permissions statement needs to be added (e.g. © <value-of select="year-from-date(current-date())"/>, {authors}. Parts of this image created with BioRender are made available under a Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.).</report>
+
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty?shr=rqdavyty#hjmtk-pre-fig-biorender-test-1" 
+        test="descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]" 
+        role="warning" 
+        id="pre-fig-biorender-test-1">Caption or attrib for <value-of select="$label"/> contains a BioRender link, but it does not look like a BioRender 'unique figure citation URL'. If one has not been provided by the authors please add the relevant query asking for one.</report>
+
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty?shr=rqdavyty#hquuu-final-fig-biorender-test-1" 
+        test="descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]" 
+        role="error" 
+        id="final-fig-biorender-test-1">Caption or attrib for <value-of select="$label"/> contains a BioRender link, but it does not look like a BioRender 'unique figure citation URL'.</report>
 
     </rule>
     
@@ -14203,6 +14213,10 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="matches(lower-case(.),'(^|\s)(data|datasets)(\s|\?|\.|!)') and matches(lower-case(.),'(^|\s)request(\s|\?|\.|!|$)')" 
         role="warning" 
         id="data-request-check"><name/> element contains text that has the words data (or dataset(s)) as well as request. Is this a statement that data is available on request? If so, has this been approved by the editors?</report>
+
+      <report test="matches(lower-case(.),'^mmethods[\s\.]|\smmethods[\s\.]')" 
+        role="error" 
+        id="mmethods-typo-check"><name/> element contains a typo ('mmethods') - <value-of select="."/>.</report>
       
     </rule>
   </pattern>

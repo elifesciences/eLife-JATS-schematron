@@ -1336,15 +1336,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
     
   </xsl:function>
-  <pattern id="further-fig-tests">
-    <rule context="article" id="biorender-tests">
-      <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
-      <report test="matches(lower-case($article-text),'biorend[eo]r')" role="warning" id="biorender-check">Article text contains a reference to BioRender. Any figures created with BioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</report>
+  <pattern id="house-style">
+    <rule context="p|td|th|title" id="data-request-checks">
+      <report test="matches(lower-case(.),'^mmethods[\s\.]|\smmethods[\s\.]')" role="error" id="mmethods-typo-check">
+        <name/> element contains a typo ('mmethods') - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article" role="error" id="biorender-tests-xspec-assert">article must be present.</assert>
+      <assert test="descendant::p or descendant::td or descendant::th or descendant::title" role="error" id="data-request-checks-xspec-assert">p|td|th|title must be present.</assert>
     </rule>
   </pattern>
 </schema>

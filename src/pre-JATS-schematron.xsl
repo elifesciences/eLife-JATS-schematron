@@ -11845,7 +11845,7 @@
             </xsl:attribute>
             <svrl:text>[grant-doi-test-3] Funding entry from <xsl:text/>
                <xsl:value-of select="funding-source/institution-wrap/institution"/>
-               <xsl:text/> has not award-id, but the funder is known to mint grant DOIs (for example in the format <xsl:text/>
+               <xsl:text/> has no award-id, but the funder is known to mint grant DOIs (for example in the format <xsl:text/>
                <xsl:value-of select="$funder-entry/descendant::*:grant[1]/@doi"/>
                <xsl:text/> for ID <xsl:text/>
                <xsl:value-of select="$funder-entry/descendant::*:grant[1]/@award"/>
@@ -18988,7 +18988,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[biorender-check] Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</svrl:text>
+            <svrl:text>[biorender-check] Article text contains a reference to BioRender. Any figures created with BioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M277"/>
@@ -19013,9 +19013,23 @@
             </xsl:attribute>
             <svrl:text>[fig-caption-test-4] Caption or attrib for <xsl:text/>
                <xsl:value-of select="$label"/>
-               <xsl:text/> contains what looks like a mention of bioRender. Since the overall license for the article is CC0, and bioRender can (only) be licensed CC BY, a permissions statement needs to be added (e.g. © <xsl:text/>
+               <xsl:text/> contains what looks like a mention of BioRender. Since the overall license for the article is CC0, and BioRender can (only) be licensed CC BY, a permissions statement needs to be added (e.g. © <xsl:text/>
                <xsl:value-of select="year-from-date(current-date())"/>
                <xsl:text/>, {authors}. Parts of this image created with BioRender are made available under a Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]">
+            <xsl:attribute name="id">pre-fig-biorender-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty?shr=rqdavyty#hjmtk-pre-fig-biorender-test-1</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pre-fig-biorender-test-1] Caption or attrib for <xsl:text/>
+               <xsl:value-of select="$label"/>
+               <xsl:text/> contains a BioRender link, but it does not look like a BioRender 'unique figure citation URL'. If one has not been provided by the authors please add the relevant query asking for one.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M278"/>
@@ -40793,6 +40807,21 @@
             <svrl:text>[data-request-check] <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> element contains text that has the words data (or dataset(s)) as well as request. Is this a statement that data is available on request? If so, has this been approved by the editors?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="matches(lower-case(.),'^mmethods[\s\.]|\smmethods[\s\.]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'^mmethods[\s\.]|\smmethods[\s\.]')">
+            <xsl:attribute name="id">mmethods-typo-check</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mmethods-typo-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element contains a typo ('mmethods') - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M570"/>

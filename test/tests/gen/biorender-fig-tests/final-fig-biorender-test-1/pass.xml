@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="final-fig-biorender-test-1.sch"?>
+<!--Context: fig/caption/p[not(child::supplementary-material)] | fig/attrib
+Test: report    descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]
+Message: Caption or attrib for  contains a BioRender link, but it does not look like a BioRender 'unique figure citation URL'. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <fig>
+            <label>Example figure for illustrative purposes.</label>
+            <caption><p>text <ext-link link-type="uri" xlink:href="https://www.biorender.com/j99d044">https://www.biorender.com/j99d044</ext-link>. text.</p></caption>
+        </fig>
+    </article>
+</root>
