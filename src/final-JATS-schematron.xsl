@@ -19193,7 +19193,7 @@
       <xsl:if test="descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]">
             <xsl:attribute name="id">final-fig-biorender-test-1</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/other-cc-by-licenses-l9qe8qny?shr=l9qe8qny#h0e4d-bio-render-permissions</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty?shr=rqdavyty#hquuu-final-fig-biorender-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
