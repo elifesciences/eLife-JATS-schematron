@@ -4,6 +4,10 @@
       <x:context href="../tests/preprint-changes/all/input.xml"/>
       <x:expect label="Testing all templates" href="../tests/preprint-changes/all/output.xml"/>
     </x:scenario>
+    <x:scenario label="ack-title">
+      <x:context href="../tests/preprint-changes/ack-title/input.xml"/>
+      <x:expect label="Testing the template: ack-title" href="../tests/preprint-changes/ack-title/output.xml"/>
+    </x:scenario>
     <x:scenario label="article-changes">
       <x:context href="../tests/preprint-changes/article-changes/input.xml"/>
       <x:expect label="Testing the template: article-changes" href="../tests/preprint-changes/article-changes/output.xml"/>

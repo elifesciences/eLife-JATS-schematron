@@ -91,7 +91,7 @@
   </xsl:function>
   <pattern id="surname-tests-pattern">
     <rule context="contrib-group//name/surname" id="surname-tests">
-      <report test="matches(.,'^\p{Ll}') and not(matches(.,'^de[lrn]? |^van |^von |^el |^te[rn] |^da '))" role="warning" id="surname-test-5">[surname-test-5] surname doesn't begin with a capital letter - <value-of select="."/>. Is this correct?</report>
+      <report test="matches(.,'^\p{Ll}') and not(matches(.,'^de[lrn]? |^van |^von |^el |^te[rn] |^d[ai] '))" role="warning" id="surname-test-5">[surname-test-5] surname doesn't begin with a capital letter - <value-of select="."/>. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
