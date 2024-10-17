@@ -49,6 +49,28 @@
         </xsl:copy>
     </xsl:template>
 
+    <!-- fix common typos in ack titles -->
+    <xsl:template xml:id="ack-title" match="ack/title">
+        <xsl:copy>
+            <xsl:choose>
+                <!-- UK spelling -->
+                <xsl:when test="matches(lower-case(.),'^a(c?k|k?c)[nl]?ol?w?e?le?(d?g|g?d)ements?[\.:\s]?$')">
+                    <xsl:apply-templates select="@*"/>
+                    <xsl:text>Acknowledgements</xsl:text>
+                </xsl:when>
+                <!-- US spelling -->
+                <xsl:when test="matches(lower-case(.),'^a(c?k|k?c)[nl]?ol?w?e?le?(d?g|g?d)ments?[\.:\s]?$')">
+                    <xsl:apply-templates select="@*"/>
+                    <xsl:text>Acknowledgments</xsl:text>
+                </xsl:when>
+                <!-- Something else?? -->
+                <xsl:otherwise>
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:copy>
+    </xsl:template>
+
     <!-- Update dtd-version attribute to 1.3
          remove specific-use attribute
          change article-type to conform with VORs
@@ -569,7 +591,7 @@
     </xsl:template>
     
     <!-- Change all caps titles to sentence case for known phrases, e.g. REFERENCES -> References -->
-    <xsl:template xml:id="all-caps-to-sentence" match="title[(upper-case(.)=. or lower-case(.)=.) and not(*) and not(parent::caption)]">
+    <xsl:template xml:id="all-caps-to-sentence" match="title[(upper-case(.)=. or lower-case(.)=.) and not(*) and not(parent::caption) and not(parent::ack)]">
         <xsl:variable name="phrases" select="(
             'bibliography( (and|&amp;) references?)?',
             '(graphical )?abstract',
@@ -578,7 +600,6 @@
             '(model|methods?)(( and| &amp;) (results|materials?))?',
             'introu?duction',
             '(results?|conclusions?)( (and|&amp;) discussion)?',
-            'ac?knowled?ge?ments?',
             'discussion( (and|&amp;) (results?|conclusions?))?',
             'fundings?( sources)?',
             'key\s?words?',

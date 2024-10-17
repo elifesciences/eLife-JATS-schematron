@@ -1,2 +1,23 @@
 <!--Testing template with id: ack-title-->
-<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+<back>
+    <ack>
+        <title>Acknowledgements</title>
+        <p>...</p>
+    </ack>
+    <ack>
+        <title>AKNOWLEDGEMENTS</title>
+        <p>...</p>
+    </ack>
+    <ack>
+        <title>ACKNOWLEDGMENTS:</title>
+        <p>...</p>
+    </ack>
+    <ack>
+        <title>Ackowlegment</title>
+        <p>...</p>
+    </ack>
+    <ack>
+        <title>Acknowledgements / Funding</title>
+        <p>...</p>
+    </ack>
+</back>
