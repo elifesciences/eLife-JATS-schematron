@@ -43,6 +43,11 @@
         </xsl:choose>
     </xsl:function>
 
+    <xsl:function name="e:stripDiacritics" as="xs:string">
+        <xsl:param name="string" as="xs:string"/>
+        <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨıɉꝁłøɍŧɏƶ','bcdeghiijklortyz'),'[\p{M}’]',''),'æ','ae'),'ß','ss')"/>
+    </xsl:function>
+
      <xsl:template match="*|@*|text()|comment()|processing-instruction()">
         <xsl:copy>
             <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
@@ -271,10 +276,10 @@
                                             <xsl:variable name="match-round-1">
                                                 <matches>
                                                     <xsl:for-each select="$corresp-authors">
-                                                        <xsl:variable name="given-name" select="lower-case(./name[1]/given-names[1])"/>
-                                                        <xsl:variable name="surname" select="lower-case(./name[1]/surname[1])"/>
+                                                        <xsl:variable name="given-name" select="e:stripDiacritics(lower-case(./name[1]/given-names[1]))"/>
+                                                        <xsl:variable name="surname" select="e:stripDiacritics(lower-case(./name[1]/surname[1]))"/>
                                                         <xsl:for-each select="$corresp-emails">
-                                                            <xsl:variable name="local-part" select="lower-case(substring-before(.,'@'))"/>
+                                                            <xsl:variable name="local-part" select="e:stripDiacritics(lower-case(substring-before(.,'@')))"/>
                                                             <xsl:choose>
                                                                 <xsl:when test="contains($local-part,$surname) and contains($local-part,$given-name)">
                                                                     <match name="{concat($given-name,' ',$surname)}" email="{.}" confidence="1"/>
@@ -301,7 +306,7 @@
                                                                 <xsl:when test="xref[@ref-type='corresp']">
                                                                     <xsl:variable name="given-name" select="lower-case(./name[1]/given-names[1])"/>
                                                                     <xsl:variable name="surname" select="lower-case(./name[1]/surname[1])"/>
-                                                                    <xsl:variable name="name" select="concat($given-name,' ',$surname)"/>
+                                                                    <xsl:variable name="name" select="e:stripDiacritics(concat($given-name,' ',$surname))"/>
                                                                     <xsl:variable name="email" select="$match-round-1//*:match[@name=$name]/@email"/>
                                                                     <xsl:apply-templates select="@*"/>
                                                                     <xsl:if test="not(./@corresp='yes')">
@@ -342,7 +347,7 @@
                                                                 <xsl:when test="xref[@ref-type='corresp']">
                                                                     <xsl:variable name="given-name" select="lower-case(./name[1]/given-names[1])"/>
                                                                     <xsl:variable name="surname" select="lower-case(./name[1]/surname[1])"/>
-                                                                    <xsl:variable name="name" select="concat($given-name,' ',$surname)"/>
+                                                                    <xsl:variable name="name" select="e:stripDiacritics(concat($given-name,' ',$surname))"/>
                                                                     <xsl:variable name="email" select="if ($match-round-1//*:match[@name=$name]) then $match-round-1//*:match[@name=$name]/@email
                                                                                                        else $corresp-emails[not(. = $match-round-1//*:match/@email)]"/>
                                                                     <xsl:apply-templates select="@*"/>
@@ -384,7 +389,7 @@
                                                                 <xsl:when test="xref[@ref-type='corresp']">
                                                                     <xsl:variable name="given-name" select="lower-case(./name[1]/given-names[1])"/>
                                                                     <xsl:variable name="surname" select="lower-case(./name[1]/surname[1])"/>
-                                                                    <xsl:variable name="name" select="concat($given-name,' ',$surname)"/>
+                                                                    <xsl:variable name="name" select="e:stripDiacritics(concat($given-name,' ',$surname))"/>
                                                                     <xsl:variable name="max-conf-match" select="max($match-round-1//*:match[@name=$name]/@confidence)"/>
                                                                     <xsl:variable name="email" select="if ($match-round-1//*:match[@name=$name]) then $match-round-1//*:match[@name=$name and @confidence=$max-conf-match]/@email
                                                                                                        else $corresp-emails[not(. = $match-round-1//*:match/@email)]"/>
