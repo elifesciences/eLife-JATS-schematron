@@ -89,14 +89,14 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="inline-equation-alternatives-checks-pattern">
-    <rule context="alternatives[parent::inline-formula]" id="inline-equation-alternatives-checks">
-      <assert test="inline-graphic and mml:math" role="error" id="inline-equation-alternatives-conformance">[inline-equation-alternatives-conformance] alternatives element within <value-of select="parent::*/name()"/> must have both an inline-graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
+  <pattern id="ref-label-checks-pattern">
+    <rule context="ref-list[ref/label]/ref" id="ref-label-checks">
+      <report test="not(label) and (preceding-sibling::ref[label] or following-sibling::ref[label])" role="warning" id="ref-label-2">[ref-label-2] ref with id <value-of select="@id"/> doesn't have a label, but other refs within the same ref-list do. Has there been a processing error?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::alternatives[parent::inline-formula]" role="error" id="inline-equation-alternatives-checks-xspec-assert">alternatives[parent::inline-formula] must be present.</assert>
+      <assert test="descendant::ref-list[ref/label]/ref" role="error" id="ref-label-checks-xspec-assert">ref-list[ref/label]/ref must be present.</assert>
     </rule>
   </pattern>
 </schema>

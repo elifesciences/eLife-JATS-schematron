@@ -399,6 +399,24 @@
         <assert test="empty($indistinct-labels)" 
           role="error" 
           id="indistinct-ref-labels">Duplicate labels in reference list - <value-of select="string-join($indistinct-labels,'; ')"/>. Have there been typesetting errors?</assert>
+
+        <report test="ref/label[matches(.,'^\p{P}*\d+[a-zA-Z]?\p{P}*$')] and ref/label[not(matches(.,'^\p{P}*\d+[a-zA-Z]?\p{P}*$'))]" 
+          role="warning" 
+          id="ref-label-types">This ref-list has labels in the format '<value-of select="ref/label[matches(.,'^\p{P}*\d+[a-zA-Z]?\p{P}*$')][1]"/>' as well as labels in the format '<value-of select="ref/label[not(matches(.,'^\p{P}*\d+[a-zA-Z]?\p{P}*$'))][1]"/>'. Is that correct?</report>
+     </rule>
+
+      <rule context="ref-list[ref/label[matches(.,'^\p{P}*\d+\p{P}*$')] and not(ref/label[not(matches(.,'^\p{P}*\d+\p{P}*$'))])]/ref[label]" id="ref-numeric-label-checks">
+        <let name="numeric-label" value="number(replace(./label[1],'[^\d]',''))"/>
+        <let name="pos" value="count(parent::ref-list/ref[label]) - count(following-sibling::ref[label])"/>
+        <assert test="$numeric-label = $pos" 
+          role="warning" 
+          id="ref-label-1">ref with id <value-of select="@id"/> has the label <value-of select="$numeric-label"/>, but according to its position it should be labelled as number <value-of select="$pos"/>. Has there been a processing error?</assert>
+     </rule>
+
+      <rule context="ref-list[ref/label]/ref" id="ref-label-checks">
+        <report test="not(label) and (preceding-sibling::ref[label] or following-sibling::ref[label])" 
+          role="warning" 
+          id="ref-label-2">ref with id <value-of select="@id"/> doesn't have a label, but other refs within the same ref-list do. Has there been a processing error?</report>
      </rule>
     </pattern>
 
@@ -718,13 +736,13 @@
         <rule context="alternatives[parent::disp-formula]" id="disp-equation-alternatives-checks">
           <assert test="graphic and mml:math" 
           role="error" 
-          id="disp-equation-alternatives-conformance">alternaives element within <value-of select="parent::*/name()"/> must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
+          id="disp-equation-alternatives-conformance">alternatives element within <value-of select="parent::*/name()"/> must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
       </rule>
       
         <rule context="alternatives[parent::inline-formula]" id="inline-equation-alternatives-checks">
           <assert test="inline-graphic and mml:math" 
           role="error" 
-          id="inline-equation-alternatives-conformance">alternaives element within <value-of select="parent::*/name()"/> must have both an inline-graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
+          id="inline-equation-alternatives-conformance">alternatives element within <value-of select="parent::*/name()"/> must have both an inline-graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
       </rule>
     </pattern>
 
