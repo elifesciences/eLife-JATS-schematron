@@ -620,7 +620,7 @@
             'patient cohort details',
             'abbreviations?|glossary',
             'quantification (and|&amp;) statistical analysis',
-            'experimental (model (and|&amp;) subject details|procedures)'
+            'experimental (design and statistical analysis|model( details)?|(model (and|&amp;)( study)? (subject|participant) details|procedures))'
         )"/>
         <xsl:variable name="regex" select="concat('^(',string-join($phrases,'|'),')$')"/>
         <xsl:choose>
