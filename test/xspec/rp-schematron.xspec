@@ -573,6 +573,40 @@
         <x:expect-assert id="indistinct-ref-labels" role="error"/>
         <x:expect-not-assert id="ref-list-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ref-label-types-pass">
+        <x:context href="../tests/rp/ref-list-checks/ref-label-types/pass.xml"/>
+        <x:expect-not-report id="ref-label-types" role="warning"/>
+        <x:expect-not-assert id="ref-list-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-label-types-fail">
+        <x:context href="../tests/rp/ref-list-checks/ref-label-types/fail.xml"/>
+        <x:expect-report id="ref-label-types" role="warning"/>
+        <x:expect-not-assert id="ref-list-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="ref-numeric-label-checks">
+      <x:scenario label="ref-label-1-pass">
+        <x:context href="../tests/rp/ref-numeric-label-checks/ref-label-1/pass.xml"/>
+        <x:expect-not-assert id="ref-label-1" role="warning"/>
+        <x:expect-not-assert id="ref-numeric-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-label-1-fail">
+        <x:context href="../tests/rp/ref-numeric-label-checks/ref-label-1/fail.xml"/>
+        <x:expect-assert id="ref-label-1" role="warning"/>
+        <x:expect-not-assert id="ref-numeric-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="ref-label-checks">
+      <x:scenario label="ref-label-2-pass">
+        <x:context href="../tests/rp/ref-label-checks/ref-label-2/pass.xml"/>
+        <x:expect-not-report id="ref-label-2" role="warning"/>
+        <x:expect-not-assert id="ref-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-label-2-fail">
+        <x:context href="../tests/rp/ref-label-checks/ref-label-2/fail.xml"/>
+        <x:expect-report id="ref-label-2" role="warning"/>
+        <x:expect-not-assert id="ref-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-year-checks">
       <x:scenario label="ref-year-value-1-pass">

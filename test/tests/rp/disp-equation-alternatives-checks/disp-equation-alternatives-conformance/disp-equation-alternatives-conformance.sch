@@ -91,7 +91,7 @@
   </xsl:function>
   <pattern id="disp-equation-alternatives-checks-pattern">
     <rule context="alternatives[parent::disp-formula]" id="disp-equation-alternatives-checks">
-      <assert test="graphic and mml:math" role="error" id="disp-equation-alternatives-conformance">[disp-equation-alternatives-conformance] alternaives element within <value-of select="parent::*/name()"/> must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
+      <assert test="graphic and mml:math" role="error" id="disp-equation-alternatives-conformance">[disp-equation-alternatives-conformance] alternatives element within <value-of select="parent::*/name()"/> must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

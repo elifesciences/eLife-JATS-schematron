@@ -1,0 +1,23 @@
+<?oxygen SCHSchema="ref-label-types.sch"?>
+<!--Context: ref-list
+Test: report    ref/label[matches(.,'^\p{P}*\d+[a-zA-Z]?\p{P}*$')] and ref/label[not(matches(.,'^\p{P}*\d+[a-zA-Z]?\p{P}*$'))]
+Message: This ref-list has labels in the format '' as well as labels in the format ''. Is that correct? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref-list>
+            <ref id="a1"><label>(1)</label></ref>
+            <ref id="a2"><label>(2)</label></ref>
+            <ref id="a3"><label>(3)</label></ref>
+        </ref-list>
+        <ref-list>
+            <ref id="b1"><label>1a.</label></ref>
+            <ref id="b2"><label>1b.</label></ref>
+            <ref id="b3"><label>2.</label></ref>
+        </ref-list>
+        <ref-list>
+            <ref id="d1"><label>[Smith et al., 2020]</label></ref>
+            <ref id="d2"><label>[Smith et al., 2022]</label></ref>
+            <ref id="d3"><label>[Smith et al., 1979]</label></ref>
+        </ref-list>
+    </article>
+</root>
