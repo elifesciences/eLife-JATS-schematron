@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ref-label-types.sch"?>
 <!--Context: ref-list
 Test: report    ref/label[matches(.,'^\p{P}*\d+[a-zA-Z]?\p{P}*$')] and ref/label[not(matches(.,'^\p{P}*\d+[a-zA-Z]?\p{P}*$'))]
-Message: This ref-list has labels in the format '' as well as labels int he format ''. Is that correct? -->
+Message: This ref-list has labels in the format '' as well as labels in the format ''. Is that correct? -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <ref-list>

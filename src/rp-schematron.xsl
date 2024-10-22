@@ -1939,7 +1939,7 @@
             </xsl:attribute>
             <svrl:text>[ref-label-types] This ref-list has labels in the format '<xsl:text/>
                <xsl:value-of select="ref/label[matches(.,'^\p{P}*\d+[a-zA-Z]?\p{P}*$')][1]"/>
-               <xsl:text/>' as well as labels int he format '<xsl:text/>
+               <xsl:text/>' as well as labels in the format '<xsl:text/>
                <xsl:value-of select="ref/label[not(matches(.,'^\p{P}*\d+[a-zA-Z]?\p{P}*$'))][1]"/>
                <xsl:text/>'. Is that correct?</svrl:text>
          </svrl:successful-report>
