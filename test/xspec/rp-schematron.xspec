@@ -963,6 +963,26 @@
         <x:expect-assert id="no-ref-list" role="error"/>
         <x:expect-not-assert id="back-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="no-author-response-1-pass">
+        <x:context href="../tests/rp/back-tests/no-author-response-1/pass.xml"/>
+        <x:expect-not-report id="no-author-response-1" role="warning"/>
+        <x:expect-not-assert id="back-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="no-author-response-1-fail">
+        <x:context href="../tests/rp/back-tests/no-author-response-1/fail.xml"/>
+        <x:expect-report id="no-author-response-1" role="warning"/>
+        <x:expect-not-assert id="back-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="no-author-response-2-pass">
+        <x:context href="../tests/rp/back-tests/no-author-response-2/pass.xml"/>
+        <x:expect-not-report id="no-author-response-2" role="warning"/>
+        <x:expect-not-assert id="back-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="no-author-response-2-fail">
+        <x:context href="../tests/rp/back-tests/no-author-response-2/fail.xml"/>
+        <x:expect-report id="no-author-response-2" role="warning"/>
+        <x:expect-not-assert id="back-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="strike-checks">
       <x:scenario label="strike-warning-pass">

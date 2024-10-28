@@ -600,11 +600,20 @@
 
     <pattern id="back">
       <rule context="back" id="back-tests">
+        <let name="is-revised-rp" value="if (ancestor::article//article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
+        <let name="rp-version" value="tokenize(ancestor::article//article-meta/article-id[@specific-use='version'],'\.')[last()]"/>
 
        <assert test="ref-list" 
         role="error" 
         id="no-ref-list">This preprint has no reference list (as a child of back), which must be incorrect.</assert>
-
+  
+       <report test="$is-revised-rp and not(sub-article[@article-type='author-comment'])" 
+        role="warning" 
+        id="no-author-response-1">Revised Reviewed Preprint (version <value-of select="$rp-version"/>) does not have an author response, which is unusual. Is that correct?</report>
+        
+        <report test="not($is-revised-rp) and (number($rp-version) gt 1) and not(sub-article[@article-type='author-comment'])" 
+        role="warning" 
+        id="no-author-response-2">Revised Reviewed Preprint (version <value-of select="$rp-version"/>) does not have an author response, which is unusual. Is that correct?</report>
       </rule>
     </pattern>
 

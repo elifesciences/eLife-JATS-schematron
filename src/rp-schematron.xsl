@@ -2647,8 +2647,9 @@
    <!--PATTERN back-tests-pattern-->
    <!--RULE back-tests-->
    <xsl:template match="back" priority="1000" mode="M47">
-
-		<!--ASSERT error-->
+      <xsl:variable name="is-revised-rp" select="if (ancestor::article//article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
+      <xsl:variable name="rp-version" select="tokenize(ancestor::article//article-meta/article-id[@specific-use='version'],'\.')[last()]"/>
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="ref-list"/>
          <xsl:otherwise>
@@ -2662,6 +2663,32 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <!--REPORT warning-->
+      <xsl:if test="$is-revised-rp and not(sub-article[@article-type='author-comment'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$is-revised-rp and not(sub-article[@article-type='author-comment'])">
+            <xsl:attribute name="id">no-author-response-1</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[no-author-response-1] Revised Reviewed Preprint (version <xsl:text/>
+               <xsl:value-of select="$rp-version"/>
+               <xsl:text/>) does not have an author response, which is unusual. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="not($is-revised-rp) and (number($rp-version) gt 1) and not(sub-article[@article-type='author-comment'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($is-revised-rp) and (number($rp-version) gt 1) and not(sub-article[@article-type='author-comment'])">
+            <xsl:attribute name="id">no-author-response-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[no-author-response-2] Revised Reviewed Preprint (version <xsl:text/>
+               <xsl:value-of select="$rp-version"/>
+               <xsl:text/>) does not have an author response, which is unusual. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M47"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M47"/>
