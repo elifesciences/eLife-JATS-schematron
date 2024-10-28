@@ -889,9 +889,9 @@
           role="error" 
           id="article-version-3">article-meta in reviewed preprints must contain one (and only one) &lt;article-version-alternatives> element.</report>
 
-        <assert test="count(contrib-group)=1" 
+        <assert test="count(contrib-group)=(1,2)" 
         role="error" 
-        id="article-contrib-group">article-meta must contain one (and only one) &lt;contrib-group> element.</assert>
+        id="article-contrib-group">article-meta must contain either one or two &lt;contrib-group> elements. This one contains <value-of select="count(contrib-group)"/>.</assert>
         
         <assert test="(descendant::contrib[@contrib-type='author' and email]) or (descendant::contrib[@contrib-type='author']/xref[@ref-type='corresp']/@rid=./author-notes/corresp/@id)" 
         role="error" 

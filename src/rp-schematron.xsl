@@ -3532,15 +3532,17 @@
       </xsl:if>
       <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="count(contrib-group)=1"/>
+         <xsl:when test="count(contrib-group)=(1,2)"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(contrib-group)=1">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(contrib-group)=(1,2)">
                <xsl:attribute name="id">article-contrib-group</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[article-contrib-group] article-meta must contain one (and only one) &lt;contrib-group&gt; element.</svrl:text>
+               <svrl:text>[article-contrib-group] article-meta must contain either one or two &lt;contrib-group&gt; elements. This one contains <xsl:text/>
+                  <xsl:value-of select="count(contrib-group)"/>
+                  <xsl:text/>.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
