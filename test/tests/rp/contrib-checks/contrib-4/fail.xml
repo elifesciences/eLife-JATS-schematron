@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="contrib-4.sch"?>
+<!--Context: article/front/article-meta/contrib-group/contrib
+Test: report    parent::contrib-group[preceding-sibling::contrib-group and not(following-sibling::contrib-group)] and not(@contrib-type=('editor','senior_editor'))
+Message: The second contrib-group in article-meta should (only) contain Reviewing and Senior Editors. This contrib is placed in that group, but it has the contrib-type . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <front>
+            <article-meta>
+                <contrib-group>
+                    <contrib contrib-type="author"/>
+                    <contrib contrib-type="author"/>
+                </contrib-group>
+                <contrib-group>
+                    <contrib contrib-type="author"/>
+                    <contrib contrib-type="senior_editor"/>
+                </contrib-group>
+            </article-meta>
+        </front>
+    </article>
+</root>

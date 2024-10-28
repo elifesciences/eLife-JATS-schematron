@@ -89,16 +89,14 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="back-tests-pattern">
-    <rule context="back" id="back-tests">
-      <let name="is-revised-rp" value="if (ancestor::article//article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
-      <let name="rp-version" value="tokenize(ancestor::article//article-meta/article-id[@specific-use='version'],'\.')[last()]"/>
-      <assert test="ref-list" role="error" id="no-ref-list">[no-ref-list] This preprint has no reference list (as a child of back), which must be incorrect.</assert>
+  <pattern id="ref-name-space-checks-pattern">
+    <rule context="mixed-citation//given-names | mixed-citation//surname" id="ref-name-space-checks">
+      <report test="not(*) and (normalize-space(.)='')" role="error" id="ref-name-empty">[ref-name-empty] <name/> element must not be empty.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
+      <assert test="descendant::mixed-citation//given-names  or descendant:: mixed-citation//surname" role="error" id="ref-name-space-checks-xspec-assert">mixed-citation//given-names | mixed-citation//surname must be present.</assert>
     </rule>
   </pattern>
 </schema>

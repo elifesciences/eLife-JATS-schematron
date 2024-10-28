@@ -96,7 +96,7 @@
       <let name="distinct-email-count" value="count($distinct-emails)"/>
       <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
       <let name="corresp-author-count" value="count($corresp-authors)"/>
-      <assert test="count(contrib-group)=1" role="error" id="article-contrib-group">[article-contrib-group] article-meta must contain one (and only one) &lt;contrib-group&gt; element.</assert>
+      <assert test="count(contrib-group)=(1,2)" role="error" id="article-contrib-group">[article-contrib-group] article-meta must contain either one or two &lt;contrib-group&gt; elements. This one contains <value-of select="count(contrib-group)"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -451,6 +451,10 @@
         <report test="matches(.,'\p{Z}+$')" 
           role="error" 
           id="ref-name-space-end"><name/> element cannot end with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
+        
+        <report test="not(*) and (normalize-space(.)='')" 
+          role="error" 
+          id="ref-name-empty"><name/> element must not be empty.</report>
      </rule>
     </pattern>
 
@@ -600,11 +604,20 @@
 
     <pattern id="back">
       <rule context="back" id="back-tests">
+        <let name="is-revised-rp" value="if (ancestor::article//article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
+        <let name="rp-version" value="tokenize(ancestor::article//article-meta/article-id[@specific-use='version'],'\.')[last()]"/>
 
        <assert test="ref-list" 
         role="error" 
         id="no-ref-list">This preprint has no reference list (as a child of back), which must be incorrect.</assert>
-
+  
+       <report test="$is-revised-rp and not(sub-article[@article-type='author-comment'])" 
+        role="warning" 
+        id="no-author-response-1">Revised Reviewed Preprint (version <value-of select="$rp-version"/>) does not have an author response, which is unusual. Is that correct?</report>
+        
+        <report test="not($is-revised-rp) and (number($rp-version) gt 1) and not(sub-article[@article-type='author-comment'])" 
+        role="warning" 
+        id="no-author-response-2">Revised Reviewed Preprint (version <value-of select="$rp-version"/>) does not have an author response, which is unusual. Is that correct?</report>
       </rule>
     </pattern>
 
@@ -889,9 +902,9 @@
           role="error" 
           id="article-version-3">article-meta in reviewed preprints must contain one (and only one) &lt;article-version-alternatives> element.</report>
 
-        <assert test="count(contrib-group)=1" 
+        <assert test="count(contrib-group)=(1,2)" 
         role="error" 
-        id="article-contrib-group">article-meta must contain one (and only one) &lt;contrib-group> element.</assert>
+        id="article-contrib-group">article-meta must contain either one or two &lt;contrib-group> elements. This one contains <value-of select="count(contrib-group)"/>.</assert>
         
         <assert test="(descendant::contrib[@contrib-type='author' and email]) or (descendant::contrib[@contrib-type='author']/xref[@ref-type='corresp']/@rid=./author-notes/corresp/@id)" 
         role="error" 
@@ -957,6 +970,24 @@
         <assert test=".=('2024','2025')" 
           role="warning" 
           id="preprint-pub-date-1">This preprint version was posted in <value-of select="."/>. Is it the correct version that corresponds to the version submitted to eLife?</assert>
+      </rule>
+
+      <rule context="article/front/article-meta/contrib-group/contrib" id="contrib-checks">
+        <report test="parent::contrib-group[not(preceding-sibling::contrib-group)] and @contrib-type!='author'" 
+          role="error" 
+          id="contrib-1">Contrib with the type '<value-of select="@contrib-type"/>' is present in author contrib-group (the first contrib-group within article-meta). This is not correct.</report>
+
+        <report test="parent::contrib-group[not(preceding-sibling::contrib-group)] and not(@contrib-type)" 
+          role="error" 
+          id="contrib-2">Contrib without the attribute contrib-type="author" is present in author contrib-group (the first contrib-group within article-meta). This is not correct.</report>
+
+        <report test="parent::contrib-group[preceding-sibling::contrib-group and not(following-sibling::contrib-group)] and not(@contrib-type)" 
+          role="error" 
+          id="contrib-3">The second contrib-group in article-meta should (only) contain Reviewing and Senior Editors. This contrib is placed in that group, but it does not have a contrib-type. Add the correct contrib-type for the Editor.</report>
+
+        <report test="parent::contrib-group[preceding-sibling::contrib-group and not(following-sibling::contrib-group)] and not(@contrib-type=('editor','senior_editor'))" 
+          role="error" 
+          id="contrib-4">The second contrib-group in article-meta should (only) contain Reviewing and Senior Editors. This contrib is placed in that group, but it has the contrib-type <value-of select="@contrib-type"/>.</report>
       </rule>
     </pattern>
 
