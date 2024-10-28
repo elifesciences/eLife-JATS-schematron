@@ -1626,6 +1626,48 @@
         <x:expect-not-assert id="preprint-pub-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="contrib-checks">
+      <x:scenario label="contrib-1-pass">
+        <x:context href="../tests/rp/contrib-checks/contrib-1/pass.xml"/>
+        <x:expect-not-report id="contrib-1" role="error"/>
+        <x:expect-not-assert id="contrib-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="contrib-1-fail">
+        <x:context href="../tests/rp/contrib-checks/contrib-1/fail.xml"/>
+        <x:expect-report id="contrib-1" role="error"/>
+        <x:expect-not-assert id="contrib-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="contrib-2-pass">
+        <x:context href="../tests/rp/contrib-checks/contrib-2/pass.xml"/>
+        <x:expect-not-report id="contrib-2" role="error"/>
+        <x:expect-not-assert id="contrib-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="contrib-2-fail">
+        <x:context href="../tests/rp/contrib-checks/contrib-2/fail.xml"/>
+        <x:expect-report id="contrib-2" role="error"/>
+        <x:expect-not-assert id="contrib-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="contrib-3-pass">
+        <x:context href="../tests/rp/contrib-checks/contrib-3/pass.xml"/>
+        <x:expect-not-report id="contrib-3" role="error"/>
+        <x:expect-not-assert id="contrib-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="contrib-3-fail">
+        <x:context href="../tests/rp/contrib-checks/contrib-3/fail.xml"/>
+        <x:expect-report id="contrib-3" role="error"/>
+        <x:expect-not-assert id="contrib-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="contrib-4-pass">
+        <x:context href="../tests/rp/contrib-checks/contrib-4/pass.xml"/>
+        <x:expect-not-report id="contrib-4" role="error"/>
+        <x:expect-not-assert id="contrib-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="contrib-4-fail">
+        <x:context href="../tests/rp/contrib-checks/contrib-4/fail.xml"/>
+        <x:expect-report id="contrib-4" role="error"/>
+        <x:expect-not-assert id="contrib-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="digest-title-checks">
       <x:scenario label="digest-flag-pass">
         <x:context href="../tests/rp/digest-title-checks/digest-flag/pass.xml"/>

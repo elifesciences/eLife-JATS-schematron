@@ -516,6 +516,14 @@
         <assert test="article-version[@article-version-type='publication-state']" role="error" id="article-version-10">[article-version-10] article-version-alternatives must contain a &lt;article-version article-version-type="publication-state"&gt;.</assert>
       </rule></pattern><pattern id="preprint-pub-checks-pattern"><rule context="article/front/article-meta/pub-date[@pub-type='epub']/year" id="preprint-pub-checks">
         <assert test=".=('2024','2025')" role="warning" id="preprint-pub-date-1">[preprint-pub-date-1] This preprint version was posted in <value-of select="."/>. Is it the correct version that corresponds to the version submitted to eLife?</assert>
+      </rule></pattern><pattern id="contrib-checks-pattern"><rule context="article/front/article-meta/contrib-group/contrib" id="contrib-checks">
+        <report test="parent::contrib-group[not(preceding-sibling::contrib-group)] and @contrib-type!='author'" role="error" id="contrib-1">[contrib-1] Contrib with the type '<value-of select="@contrib-type"/>' is present in author contrib-group (the first contrib-group within article-meta). This is not correct.</report>
+
+        <report test="parent::contrib-group[not(preceding-sibling::contrib-group)] and not(@contrib-type)" role="error" id="contrib-2">[contrib-2] Contrib without the attribute contrib-type="author" is present in author contrib-group (the first contrib-group within article-meta). This is not correct.</report>
+
+        <report test="parent::contrib-group[preceding-sibling::contrib-group and not(following-sibling::contrib-group)] and not(@contrib-type)" role="error" id="contrib-3">[contrib-3] The second contrib-group in article-meta should (only) contain Reviewing and Senior Editors. This contrib is placed in that group, but it does not have a contrib-type. Add the correct contrib-type for the Editor.</report>
+
+        <report test="parent::contrib-group[preceding-sibling::contrib-group and not(following-sibling::contrib-group)] and not(@contrib-type=('editor','senior_editor'))" role="error" id="contrib-4">[contrib-4] The second contrib-group in article-meta should (only) contain Reviewing and Senior Editors. This contrib is placed in that group, but it has the contrib-type <value-of select="@contrib-type"/>.</report>
       </rule></pattern>
 
     <pattern id="digest-title-checks-pattern"><rule context="title" id="digest-title-checks">
