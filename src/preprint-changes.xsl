@@ -221,21 +221,22 @@
             <xsl:apply-templates select="@*"/>
             <xsl:choose>
                 <xsl:when test="./author-notes">
-                    <xsl:apply-templates select="*[following-sibling::contrib-group]|text()[following-sibling::contrib-group]"/>
+                    <xsl:apply-templates select="*[name()!='contrib-group' and following-sibling::contrib-group]|text()[following-sibling::contrib-group]"/>
                     <xsl:choose>
                         <xsl:when test="./author-notes/corresp/email">
                             <xsl:variable name="corresp-emails" select="./author-notes/corresp/email"/>
-                            <xsl:variable name="corresp-authors" select="./contrib-group/contrib[xref[@ref-type='corresp']]"/>
+                            <xsl:variable name="corresp-authors" select="./contrib-group/contrib[@contrib-type='author' and xref[@ref-type='corresp']]"/>
                             <xsl:choose>
                                 <!-- When there are no emails in corresp -->
                                 <xsl:when test="count($corresp-emails)=0">
-                                    <xsl:apply-templates select="./contrib-group|./author-notes|text()[preceding-sibling::contrib-group and following-sibling::author-notes]"/>
+                                    <xsl:apply-templates select="./author-notes|text()[preceding-sibling::contrib-group and following-sibling::author-notes]"/>
                                 </xsl:when>
                                 <!-- When there's 1 corresponding author/email -->
                                 <xsl:when test="count($corresp-emails)=1 and count($corresp-authors)=1">
                                     <xsl:element name="contrib-group">
-                                        <xsl:apply-templates select="./contrib-group/@*"/>
-                                        <xsl:for-each select="./contrib-group/contrib">
+                                        <xsl:apply-templates select="./contrib-group[not(@content-type='section')]/@*"/>
+                                        <xsl:text>&#xa;</xsl:text>
+                                        <xsl:for-each select="./contrib-group/contrib[@contrib-type='author']">
                                             <xsl:copy>
                                                 <xsl:choose>
                                                     <xsl:when test="xref[@ref-type='corresp']">
@@ -256,8 +257,13 @@
                                             </xsl:copy>
                                             <xsl:text>&#xa;</xsl:text>
                                         </xsl:for-each>
-                                        <xsl:copy-of select="./contrib-group/*[name()!='contrib']|./contrib-group/text()[not(following-sibling::contrib) and not(preceding-sibling::*[1]/name()='contrib')]|./contrib-group/comment()"/>
+                                        <xsl:copy-of select="./contrib-group[not(@content-type='section')]/*[name()!='contrib']|./contrib-group[not(@content-type='section')]/text()[not(following-sibling::contrib) and not(preceding-sibling::*[1]/name()='contrib')]|./contrib-group[not(@content-type='section')]/comment()"/>
                                     </xsl:element>
+                                    <xsl:if test="./contrib-group[@content-type='section']">
+                                        <xsl:text>&#xa;</xsl:text>
+                                        <xsl:copy-of select="./contrib-group[@content-type='section']"/>
+                                        <xsl:text>&#xa;</xsl:text>
+                                    </xsl:if>    
                                     <xsl:choose>
                                         <xsl:when test="./author-notes/*[name()!='corresp']">
                                             <xsl:text>&#xa;</xsl:text>
@@ -300,7 +306,7 @@
                                                 <xsl:when test="(count(distinct-values($match-round-1//*:match/@email)) = count($corresp-emails)) and (count($match-round-1//*:match) = count($corresp-authors))">
                                                     <xsl:element name="contrib-group">
                                                         <xsl:apply-templates select="./contrib-group/@*"/>
-                                                        <xsl:for-each select="./contrib-group/contrib">
+                                                        <xsl:for-each select="./contrib-group/contrib[@contrib-type='author']">
                                                             <xsl:copy>
                                                             <xsl:choose>
                                                                 <xsl:when test="xref[@ref-type='corresp']">
@@ -325,8 +331,13 @@
                                                             </xsl:copy>
                                                             <xsl:text>&#xa;</xsl:text>
                                                         </xsl:for-each>
-                                                        <xsl:copy-of select="./contrib-group/*[name()!='contrib']|./contrib-group/text()[not(following-sibling::contrib) and not(preceding-sibling::*[1]/name()='contrib')]|./contrib-group/comment()"/>
+                                                        <xsl:copy-of select="./contrib-group[not(@content-type='section')]/*[name()!='contrib']|./contrib-group[not(@content-type='section')]/text()[not(following-sibling::contrib) and not(preceding-sibling::*[1]/name()='contrib')]|./contrib-group[not(@content-type='section')]/comment()"/>
                                                     </xsl:element>
+                                                    <xsl:if test="./contrib-group[@content-type='section']">
+                                                        <xsl:text>&#xa;</xsl:text>
+                                                        <xsl:copy-of select="./contrib-group[@content-type='section']"/>
+                                                        <xsl:text>&#xa;</xsl:text>
+                                                    </xsl:if>
                                                     <xsl:choose>
                                                         <xsl:when test="./author-notes/*[name()!='corresp']">
                                                             <xsl:text>&#xa;</xsl:text>
@@ -367,8 +378,13 @@
                                                             </xsl:copy>
                                                             <xsl:text>&#xa;</xsl:text>
                                                         </xsl:for-each>
-                                                        <xsl:copy-of select="./contrib-group/*[name()!='contrib']|./contrib-group/text()[not(following-sibling::contrib) and not(preceding-sibling::*[1]/name()='contrib')]|./contrib-group/comment()"/>
+                                                        <xsl:copy-of select="./contrib-group[not(@content-type='section')]/*[name()!='contrib']|./contrib-group[not(@content-type='section')]/text()[not(following-sibling::contrib) and not(preceding-sibling::*[1]/name()='contrib')]|./contrib-group[not(@content-type='section')]/comment()"/>
                                                     </xsl:element>
+                                                    <xsl:if test="./contrib-group[@content-type='section']">
+                                                        <xsl:text>&#xa;</xsl:text>
+                                                        <xsl:copy-of select="./contrib-group[@content-type='section']"/>
+                                                        <xsl:text>&#xa;</xsl:text>
+                                                    </xsl:if>
                                                     <xsl:choose>
                                                         <xsl:when test="./author-notes/*[name()!='corresp']">
                                                             <xsl:text>&#xa;</xsl:text>
@@ -410,8 +426,13 @@
                                                             </xsl:copy>
                                                             <xsl:text>&#xa;</xsl:text>
                                                         </xsl:for-each>
-                                                        <xsl:copy-of select="./contrib-group/*[name()!='contrib']|./contrib-group/text()[not(following-sibling::contrib) and not(preceding-sibling::*[1]/name()='contrib')]|./contrib-group/comment()"/>
+                                                        <xsl:copy-of select="./contrib-group[not(@content-type='section')]/*[name()!='contrib']|./contrib-group[not(@content-type='section')]/text()[not(following-sibling::contrib) and not(preceding-sibling::*[1]/name()='contrib')]|./contrib-group[not(@content-type='section')]/comment()"/>
                                                     </xsl:element>
+                                                    <xsl:if test="./contrib-group[@content-type='section']">
+                                                        <xsl:text>&#xa;</xsl:text>
+                                                        <xsl:copy-of select="./contrib-group[@content-type='section']"/>
+                                                        <xsl:text>&#xa;</xsl:text>
+                                                    </xsl:if>
                                                     <xsl:choose>
                                                         <xsl:when test="./author-notes/*[name()!='corresp']">
                                                             <xsl:text>&#xa;</xsl:text>
@@ -510,7 +531,7 @@
     </xsl:template>
     
     <!-- Handle cases where there is a singular affiliation without links from the authors -->
-    <xsl:template xml:id="singular-aff-contrib" match="article-meta/contrib-group[count(aff) = 1 and not(contrib[@contrib-type='author' and xref[@ref-type='aff']])]/contrib[@contrib-type='author' and not(xref[@ref-type='aff'])]">
+    <xsl:template xml:id="singular-aff-contrib" match="article-meta/contrib-group[contrib[@contrib-type='author'] and count(aff) = 1 and not(contrib[@contrib-type='author' and xref[@ref-type='aff']])]/contrib[@contrib-type='author' and not(xref[@ref-type='aff'])]">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:apply-templates select="*|text()"/>
