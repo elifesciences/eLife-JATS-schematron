@@ -1,6 +1,7 @@
 <!--Testing template with id: handle-corresp-->
 <article-meta xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article-version article-version-type="publication-state">reviewed preprint</article-version>
-<contrib-group><contrib contrib-type="author">
+<contrib-group>
+<contrib contrib-type="author">
 <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0001-9907-295X</contrib-id>
 <name><surname>Schafer</surname><given-names>Christopher T</given-names></name>
 <xref ref-type="aff" rid="a1">a</xref>
@@ -29,6 +30,37 @@
 <aff id="a1"><label>a</label><institution>Skaggs School of Pharmacy and Pharmaceutical Sciences, Department of Pharmacology, University of California San Diego</institution>, <city>La Jolla</city>, <country>Unites States</country></aff>
 <aff id="a2"><label>b</label><institution>Department of Integrative Structural and Computational Biology, The Scripps Research Institute</institution>, <city>La Jolla</city>, <country>Unites States</country></aff>
 </contrib-group>
+<contrib-group content-type="section">
+<contrib contrib-type="editor">
+<name>
+<surname>Claus</surname>
+<given-names>Santa</given-names>
+</name>
+<role>Reviewing Editor</role>
+<aff>
+<institution-wrap>
+<institution>North Pole Enterprises</institution>
+</institution-wrap>
+<addr-line><named-content content-type="city">North Pole</named-content></addr-line>
+<country>Wouldn't you like to know</country>
+</aff>
+</contrib>
+<contrib contrib-type="senior_editor">
+<name>
+<surname>Zoolander</surname>
+<given-names>D</given-names>
+</name>
+<role>Senior Editor</role>
+<aff>
+<institution-wrap>
+<institution>Derek Zoolander's Center For Kids Who Can't Read Good</institution>
+</institution-wrap>
+<addr-line><named-content content-type="city">New York</named-content></addr-line>
+<country>United States</country>
+</aff>
+</contrib>
+</contrib-group>
+
 <author-notes>
 <fn id="n1" fn-type="present-address"><label>1</label><p>Present address: Amsterdam Institute for Molecular and Life Sciences, Department of Medicinal Chemistry, Faculty of Science, Vrije Universiteit Amsterdam, 1081 HV Amsterdam, Netherlands</p></fn>
 <fn id="n2" fn-type="present-address"><label>2</label><p>Present address: LUMICKS, 1105 AG Amsterdam, Netherlands</p></fn>
