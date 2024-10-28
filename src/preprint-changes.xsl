@@ -354,7 +354,7 @@
                                                      <xsl:element name="contrib-group">
                                                         <xsl:apply-templates select="./contrib-group[not(@content-type='section')]/@*"/>
                                                         <xsl:text>&#xa;</xsl:text>
-                                                        <xsl:for-each select="./contrib-group/contrib">
+                                                        <xsl:for-each select="./contrib-group/contrib[@contrib-type='author']">
                                                             <xsl:copy>
                                                             <xsl:choose>
                                                                 <xsl:when test="xref[@ref-type='corresp']">
@@ -402,7 +402,7 @@
                                                      <xsl:element name="contrib-group">
                                                         <xsl:apply-templates select="./contrib-group[not(@content-type='section')]/@*"/>
                                                         <xsl:text>&#xa;</xsl:text>
-                                                        <xsl:for-each select="./contrib-group/contrib">
+                                                        <xsl:for-each select="./contrib-group/contrib[@contrib-type='author']">
                                                             <xsl:copy>
                                                             <xsl:choose>
                                                                 <xsl:when test="xref[@ref-type='corresp']">
