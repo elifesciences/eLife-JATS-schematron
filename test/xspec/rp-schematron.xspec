@@ -673,6 +673,16 @@
         <x:expect-report id="ref-name-space-end" role="error"/>
         <x:expect-not-assert id="ref-name-space-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ref-name-empty-pass">
+        <x:context href="../tests/rp/ref-name-space-checks/ref-name-empty/pass.xml"/>
+        <x:expect-not-report id="ref-name-empty" role="error"/>
+        <x:expect-not-assert id="ref-name-space-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-name-empty-fail">
+        <x:context href="../tests/rp/ref-name-space-checks/ref-name-empty/fail.xml"/>
+        <x:expect-report id="ref-name-empty" role="error"/>
+        <x:expect-not-assert id="ref-name-space-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="collab-checks">
       <x:scenario label="collab-check-1-pass">

@@ -451,6 +451,10 @@
         <report test="matches(.,'\p{Z}+$')" 
           role="error" 
           id="ref-name-space-end"><name/> element cannot end with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
+        
+        <report test="not(*) and (normalize-space(.)='')" 
+          role="error" 
+          id="ref-name-empty"><name/> element must not be empty.</report>
      </rule>
     </pattern>
 

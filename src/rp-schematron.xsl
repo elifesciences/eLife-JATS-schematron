@@ -2135,6 +2135,19 @@
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="not(*) and (normalize-space(.)='')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(*) and (normalize-space(.)='')">
+            <xsl:attribute name="id">ref-name-empty</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-name-empty] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element must not be empty.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M37"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M37"/>

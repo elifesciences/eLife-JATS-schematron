@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="ref-name-empty.sch"?>
+<!--Context: mixed-citation//given-names | mixed-citation//surname
+Test: report    not(*) and (normalize-space(.)='')
+Message:  element must not be empty. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mixed-citation>
+            <name>
+                <surname>Claus</surname>
+                <given-names>Santa</given-names>
+            </name>
+        </mixed-citation>
+        <mixed-citation>
+            <string-name><surname>Claus</surname>, <given-names>Santa</given-names>
+            </string-name>
+        </mixed-citation>
+    </article>
+</root>

@@ -263,6 +263,8 @@
         <report test="matches(.,'^\p{Z}+')" role="error" id="ref-name-space-start">[ref-name-space-start] <name/> element cannot start with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
 
         <report test="matches(.,'\p{Z}+$')" role="error" id="ref-name-space-end">[ref-name-space-end] <name/> element cannot end with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
+        
+        <report test="not(*) and (normalize-space(.)='')" role="error" id="ref-name-empty">[ref-name-empty] <name/> element must not be empty.</report>
      </rule></pattern>
 
     <pattern id="collab-checks-pattern"><rule context="collab" id="collab-checks">
