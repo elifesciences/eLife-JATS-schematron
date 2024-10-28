@@ -305,7 +305,8 @@
                                                 <!-- All distinct matches have been easily found -->
                                                 <xsl:when test="(count(distinct-values($match-round-1//*:match/@email)) = count($corresp-emails)) and (count($match-round-1//*:match) = count($corresp-authors))">
                                                     <xsl:element name="contrib-group">
-                                                        <xsl:apply-templates select="./contrib-group/@*"/>
+                                                        <xsl:apply-templates select="./contrib-group[not(@content-type='section')]/@*"/>
+                                                        <xsl:text>&#xa;</xsl:text>
                                                         <xsl:for-each select="./contrib-group/contrib[@contrib-type='author']">
                                                             <xsl:copy>
                                                             <xsl:choose>
@@ -350,8 +351,9 @@
                                                 </xsl:when>
                                                 <!-- All distinct matches except for one have been found -->
                                                 <xsl:when test="((count(distinct-values($match-round-1//*:match/@email)) + 1) = count($corresp-emails)) and ((count($match-round-1//*:match) + 1)  = count($corresp-authors))">
-                                                    <xsl:element name="contrib-group">
-                                                        <xsl:apply-templates select="./contrib-group/@*"/>
+                                                     <xsl:element name="contrib-group">
+                                                        <xsl:apply-templates select="./contrib-group[not(@content-type='section')]/@*"/>
+                                                        <xsl:text>&#xa;</xsl:text>
                                                         <xsl:for-each select="./contrib-group/contrib">
                                                             <xsl:copy>
                                                             <xsl:choose>
@@ -397,8 +399,9 @@
                                                 </xsl:when>
                                                 <!-- There have been some duplicate matches -->
                                                 <xsl:when test="(count(distinct-values($match-round-1//*:match/@email)) = count($corresp-emails)) and (count(distinct-values($match-round-1//*:match/@email)) = count($corresp-authors)) and (count(distinct-values($match-round-1//*:match/@email)) lt count($match-round-1//*:match))">
-                                                    <xsl:element name="contrib-group">
-                                                        <xsl:apply-templates select="./contrib-group/@*"/>
+                                                     <xsl:element name="contrib-group">
+                                                        <xsl:apply-templates select="./contrib-group[not(@content-type='section')]/@*"/>
+                                                        <xsl:text>&#xa;</xsl:text>
                                                         <xsl:for-each select="./contrib-group/contrib">
                                                             <xsl:copy>
                                                             <xsl:choose>
