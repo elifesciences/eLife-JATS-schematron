@@ -1537,6 +1537,38 @@
         <x:expect-report id="article-corresp" role="warning"/>
         <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="article-id-1-pass">
+        <x:context href="../tests/rp/general-article-meta-checks/article-id-1/pass.xml"/>
+        <x:expect-not-report id="article-id-1" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-id-1-fail">
+        <x:context href="../tests/rp/general-article-meta-checks/article-id-1/fail.xml"/>
+        <x:expect-report id="article-id-1" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-id-2-pass">
+        <x:context href="../tests/rp/general-article-meta-checks/article-id-2/pass.xml"/>
+        <x:expect-not-report id="article-id-2" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-id-2-fail">
+        <x:context href="../tests/rp/general-article-meta-checks/article-id-2/fail.xml"/>
+        <x:expect-report id="article-id-2" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="general-article-id-checks">
+      <x:scenario label="article-id-3-pass">
+        <x:context href="../tests/rp/general-article-id-checks/article-id-3/pass.xml"/>
+        <x:expect-not-assert id="article-id-3" role="error"/>
+        <x:expect-not-assert id="general-article-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-id-3-fail">
+        <x:context href="../tests/rp/general-article-id-checks/article-id-3/fail.xml"/>
+        <x:expect-assert id="article-id-3" role="error"/>
+        <x:expect-not-assert id="general-article-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="author-notes-checks">
       <x:scenario label="multiple-corresp-pass">
