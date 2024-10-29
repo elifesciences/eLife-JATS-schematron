@@ -235,8 +235,8 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">biorender-tests-pattern</xsl:attribute>
-            <xsl:attribute name="name">biorender-tests-pattern</xsl:attribute>
+            <xsl:attribute name="id">article-tests-pattern</xsl:attribute>
+            <xsl:attribute name="name">article-tests-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M16"/>
@@ -1009,10 +1009,12 @@
    </xsl:template>
    <!--SCHEMATRON PATTERNS-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">eLife reviewed preprint schematron</svrl:text>
-   <!--PATTERN biorender-tests-pattern-->
-   <!--RULE biorender-tests-->
+   <!--PATTERN article-tests-pattern-->
+   <!--RULE article-tests-->
    <xsl:template match="article" priority="1000" mode="M16">
       <xsl:variable name="article-text" select="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
+      <xsl:variable name="is-revised-rp" select="if (descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
+      <xsl:variable name="rp-version" select="tokenize(descendant::article-meta/article-id[@specific-use='version'][1],'\.')[last()]"/>
       <!--REPORT warning-->
       <xsl:if test="matches(lower-case($article-text),'biorend[eo]r')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case($article-text),'biorend[eo]r')">
@@ -1022,6 +1024,32 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[biorender-check] Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="$is-revised-rp and not(sub-article[@article-type='author-comment'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$is-revised-rp and not(sub-article[@article-type='author-comment'])">
+            <xsl:attribute name="id">no-author-response-1</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[no-author-response-1] Revised Reviewed Preprint (version <xsl:text/>
+               <xsl:value-of select="$rp-version"/>
+               <xsl:text/>) does not have an author response, which is unusual. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="not($is-revised-rp) and (number($rp-version) gt 1) and not(sub-article[@article-type='author-comment'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($is-revised-rp) and (number($rp-version) gt 1) and not(sub-article[@article-type='author-comment'])">
+            <xsl:attribute name="id">no-author-response-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[no-author-response-2] Revised Reviewed Preprint (version <xsl:text/>
+               <xsl:value-of select="$rp-version"/>
+               <xsl:text/>) does not have an author response, which is unusual. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M16"/>
@@ -2660,9 +2688,8 @@
    <!--PATTERN back-tests-pattern-->
    <!--RULE back-tests-->
    <xsl:template match="back" priority="1000" mode="M47">
-      <xsl:variable name="is-revised-rp" select="if (ancestor::article//article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
-      <xsl:variable name="rp-version" select="tokenize(ancestor::article//article-meta/article-id[@specific-use='version'],'\.')[last()]"/>
-      <!--ASSERT error-->
+
+		<!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="ref-list"/>
          <xsl:otherwise>
@@ -2676,32 +2703,6 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <!--REPORT warning-->
-      <xsl:if test="$is-revised-rp and not(sub-article[@article-type='author-comment'])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$is-revised-rp and not(sub-article[@article-type='author-comment'])">
-            <xsl:attribute name="id">no-author-response-1</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[no-author-response-1] Revised Reviewed Preprint (version <xsl:text/>
-               <xsl:value-of select="$rp-version"/>
-               <xsl:text/>) does not have an author response, which is unusual. Is that correct?</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-      <!--REPORT warning-->
-      <xsl:if test="not($is-revised-rp) and (number($rp-version) gt 1) and not(sub-article[@article-type='author-comment'])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($is-revised-rp) and (number($rp-version) gt 1) and not(sub-article[@article-type='author-comment'])">
-            <xsl:attribute name="id">no-author-response-2</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[no-author-response-2] Revised Reviewed Preprint (version <xsl:text/>
-               <xsl:value-of select="$rp-version"/>
-               <xsl:text/>) does not have an author response, which is unusual. Is that correct?</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
       <xsl:apply-templates select="*" mode="M47"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M47"/>

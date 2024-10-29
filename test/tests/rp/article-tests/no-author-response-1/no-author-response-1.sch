@@ -89,16 +89,17 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="back-tests-pattern">
-    <rule context="back" id="back-tests">
-      <let name="is-revised-rp" value="if (ancestor::article//article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
-      <let name="rp-version" value="tokenize(ancestor::article//article-meta/article-id[@specific-use='version'],'\.')[last()]"/>
-      <report test="not($is-revised-rp) and (number($rp-version) gt 1) and not(sub-article[@article-type='author-comment'])" role="warning" id="no-author-response-2">[no-author-response-2] Revised Reviewed Preprint (version <value-of select="$rp-version"/>) does not have an author response, which is unusual. Is that correct?</report>
+  <pattern id="article-tests-pattern">
+    <rule context="article" id="article-tests">
+      <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
+      <let name="is-revised-rp" value="if (descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
+      <let name="rp-version" value="tokenize(descendant::article-meta/article-id[@specific-use='version'][1],'\.')[last()]"/>
+      <report test="$is-revised-rp and not(sub-article[@article-type='author-comment'])" role="warning" id="no-author-response-1">[no-author-response-1] Revised Reviewed Preprint (version <value-of select="$rp-version"/>) does not have an author response, which is unusual. Is that correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
+      <assert test="descendant::article" role="error" id="article-tests-xspec-assert">article must be present.</assert>
     </rule>
   </pattern>
 </schema>
