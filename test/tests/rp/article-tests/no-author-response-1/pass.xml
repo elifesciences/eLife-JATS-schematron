@@ -1,6 +1,6 @@
-<?oxygen SCHSchema="no-author-response-2.sch"?>
-<!--Context: back
-Test: report    not($is-revised-rp) and (number($rp-version) gt 1) and not(sub-article[@article-type='author-comment'])
+<?oxygen SCHSchema="no-author-response-1.sch"?>
+<!--Context: article
+Test: report    $is-revised-rp and not(sub-article[@article-type='author-comment'])
 Message: Revised Reviewed Preprint (version ) does not have an author response, which is unusual. Is that correct? -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
