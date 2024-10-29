@@ -451,6 +451,10 @@
         <assert test="surname" 
         role="error" 
         id="ref-surname"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have a surname element.</assert>
+        
+        <report test="name()='string-name' and text()[not(matches(.,'^[\s\p{P}]*$'))]" 
+        role="error" 
+        id="ref-string-name-text"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) has child text containing content. This content should either be tagged or moved into a different appropriate tag, as appropriate.</report>
      </rule>
 
       <rule context="mixed-citation//given-names | mixed-citation//surname" id="ref-name-space-checks">

@@ -2128,6 +2128,21 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <!--REPORT error-->
+      <xsl:if test="name()='string-name' and text()[not(matches(.,'^[\s\p{P}]*$'))]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="name()='string-name' and text()[not(matches(.,'^[\s\p{P}]*$'))]">
+            <xsl:attribute name="id">ref-string-name-text</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-string-name-text] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in reference (id=<xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>) has child text containing content. This content should either be tagged or moved into a different appropriate tag, as appropriate.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M36"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M36"/>

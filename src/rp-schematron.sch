@@ -265,6 +265,8 @@
 
     <pattern id="ref-name-checks-pattern"><rule context="mixed-citation//name | mixed-citation//string-name" id="ref-name-checks">
         <assert test="surname" role="error" id="ref-surname">[ref-surname] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have a surname element.</assert>
+        
+        <report test="name()='string-name' and text()[not(matches(.,'^[\s\p{P}]*$'))]" role="error" id="ref-string-name-text">[ref-string-name-text] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) has child text containing content. This content should either be tagged or moved into a different appropriate tag, as appropriate.</report>
      </rule></pattern><pattern id="ref-name-space-checks-pattern"><rule context="mixed-citation//given-names | mixed-citation//surname" id="ref-name-space-checks">
         <report test="matches(.,'^\p{Z}+')" role="error" id="ref-name-space-start">[ref-name-space-start] <name/> element cannot start with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
 

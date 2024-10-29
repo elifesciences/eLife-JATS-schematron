@@ -671,6 +671,16 @@
         <x:expect-assert id="ref-surname" role="error"/>
         <x:expect-not-assert id="ref-name-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ref-string-name-text-pass">
+        <x:context href="../tests/rp/ref-name-checks/ref-string-name-text/pass.xml"/>
+        <x:expect-not-report id="ref-string-name-text" role="error"/>
+        <x:expect-not-assert id="ref-name-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-string-name-text-fail">
+        <x:context href="../tests/rp/ref-name-checks/ref-string-name-text/fail.xml"/>
+        <x:expect-report id="ref-string-name-text" role="error"/>
+        <x:expect-not-assert id="ref-name-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-name-space-checks">
       <x:scenario label="ref-name-space-start-pass">
