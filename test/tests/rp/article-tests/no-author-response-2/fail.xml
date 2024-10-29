@@ -11,8 +11,6 @@ Message: Revised Reviewed Preprint (version ) does not have an author response, 
                 <article-id pub-id-type="doi" specific-use="version">10.7554/eLife.123456.2</article-id>
             </article-meta>
         </front>
-        <back>
-            <sub-article article-type="editor-report"/>
-        </back>
+        <sub-article article-type="editor-report"/>
     </article>
 </root>
