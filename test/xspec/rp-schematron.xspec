@@ -671,6 +671,16 @@
         <x:expect-assert id="ref-surname" role="error"/>
         <x:expect-not-assert id="ref-name-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ref-string-name-text-pass">
+        <x:context href="../tests/rp/ref-name-checks/ref-string-name-text/pass.xml"/>
+        <x:expect-not-report id="ref-string-name-text" role="error"/>
+        <x:expect-not-assert id="ref-name-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-string-name-text-fail">
+        <x:context href="../tests/rp/ref-name-checks/ref-string-name-text/fail.xml"/>
+        <x:expect-report id="ref-string-name-text" role="error"/>
+        <x:expect-not-assert id="ref-name-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-name-space-checks">
       <x:scenario label="ref-name-space-start-pass">
@@ -1536,6 +1546,38 @@
         <x:context href="../tests/rp/general-article-meta-checks/article-corresp/fail.xml"/>
         <x:expect-report id="article-corresp" role="warning"/>
         <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-id-1-pass">
+        <x:context href="../tests/rp/general-article-meta-checks/article-id-1/pass.xml"/>
+        <x:expect-not-report id="article-id-1" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-id-1-fail">
+        <x:context href="../tests/rp/general-article-meta-checks/article-id-1/fail.xml"/>
+        <x:expect-report id="article-id-1" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-id-2-pass">
+        <x:context href="../tests/rp/general-article-meta-checks/article-id-2/pass.xml"/>
+        <x:expect-not-report id="article-id-2" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-id-2-fail">
+        <x:context href="../tests/rp/general-article-meta-checks/article-id-2/fail.xml"/>
+        <x:expect-report id="article-id-2" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="general-article-id-checks">
+      <x:scenario label="article-id-3-pass">
+        <x:context href="../tests/rp/general-article-id-checks/article-id-3/pass.xml"/>
+        <x:expect-not-assert id="article-id-3" role="error"/>
+        <x:expect-not-assert id="general-article-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-id-3-fail">
+        <x:context href="../tests/rp/general-article-id-checks/article-id-3/fail.xml"/>
+        <x:expect-assert id="article-id-3" role="error"/>
+        <x:expect-not-assert id="general-article-id-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="author-notes-checks">

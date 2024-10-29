@@ -451,6 +451,10 @@
         <assert test="surname" 
         role="error" 
         id="ref-surname"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have a surname element.</assert>
+        
+        <report test="name()='string-name' and text()[not(matches(.,'^[\s\p{P}]*$'))]" 
+        role="error" 
+        id="ref-string-name-text"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) has child text containing content. This content should either be tagged or moved into a different appropriate tag, as appropriate.</report>
      </rule>
 
       <rule context="mixed-citation//given-names | mixed-citation//surname" id="ref-name-space-checks">
@@ -917,7 +921,21 @@
         <report test="$corresp-author-count=$distinct-email-count and author-notes/corresp" 
           role="warning" 
           id="article-corresp">The number of corresponding authors and distinct emails is the same, but a match between them has been unable to be made. As its stands the corresp will display on EPP: <value-of select="author-notes/corresp"/>.</report>
+
+        <report test="$is-reviewed-preprint and not(count(article-id[@pub-id-type='publisher-id'])=1)" 
+          role="error" 
+          id="article-id-1">Reviewed preprints must have one (and only one) publisher-id. This one has <value-of select="count(article-id[@pub-id-type='publisher-id'])"/>.</report>
+      
+        <report test="$is-reviewed-preprint and not(count(article-id[@pub-id-type='doi'])=2)" 
+          role="error" 
+          id="article-id-2">Reviewed preprints must have two DOIs. This one has <value-of select="count(article-id[@pub-id-type='doi'])"/>.</report>
       </rule>
+
+         <rule context="article/front/article-meta/article-id" id="general-article-id-checks">
+            <assert test="@pub-id-type=('publisher-id','doi')" 
+              role="error" 
+              id="article-id-3">article-id must have a pub-id-type with a value of 'publisher-id' or 'doi'. This one has <value-of select="if (@publisher-id) then @publisher-id else 'no publisher-id attribute'"/>.</assert>
+         </rule>
       
       <rule context="article/front/article-meta/author-notes" id="author-notes-checks">
         <report test="count(corresp) gt 1" 
