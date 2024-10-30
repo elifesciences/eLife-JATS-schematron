@@ -1,5 +1,9 @@
-<?oxygen SCHSchema="permissions-info.sch"?>
-<!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//permissions
+<?oxygen SCHSchema="permissions-info.sch"?><!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//permissions
 Test: report    license
-Message: This article is licensed under a license.  -->
-<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>
+Message: This article is licensed under a license.  --><root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <permissions/>
+    </front>
+  </article>
+</root>

@@ -1,5 +1,20 @@
-<?oxygen SCHSchema="license-p-test-2.sch"?>
-<!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license/license-p
+<?oxygen SCHSchema="license-p-test-2.sch"?><!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license/license-p
 Test: report    ($license-type='cc0') and .!=$cc0-text
-Message: The text in license-p is incorrect (). Since this article is CC0 licensed, the text should be . -->
-<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>
+Message: The text in license-p is incorrect (). Since this article is CC0 licensed, the text should be . --><root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <article-meta>
+        <permissions>
+          <copyright-statement>© 2021, Claus et al</copyright-statement>
+          <copyright-year>2021</copyright-year>
+          <copyright-holder>Claus et al</copyright-holder>
+          <ali:free_to_read/>
+          <license xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">
+            <ali:license_ref>http://creativecommons.org/publicdomain/zero/1.0/</ali:license_ref>
+            <license-p>This is an open-access smarticle, free of all copyright, and may be freely reproduced, distributed, transmitted, modified, built upon, or otherwise used by anyone for any lawful purpose. The work is made available under the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons CC0 public domain dedication</ext-link>.</license-p>
+          </license>
+        </permissions>
+      </article-meta>
+    </front>
+  </article>
+</root>

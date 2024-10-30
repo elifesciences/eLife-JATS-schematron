@@ -1,5 +1,14 @@
-<?oxygen SCHSchema="license-p-test-3.sch"?>
-<!--Context: permissions/license[@xlink:href]/license-p
+<?oxygen SCHSchema="license-p-test-3.sch"?><!--Context: permissions/license[@xlink:href]/license-p
 Test: assert    some $x in ext-link satisfies $x/@xlink:href = $license-link
-Message: If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: . Links in the license-p: . -->
-<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>
+Message: If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: . Links in the license-p: . --><root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <permissions>
+      <copyright-statement>© 2018, Nikbakht et al</copyright-statement>
+      <copyright-year>2018</copyright-year>
+      <copyright-holder>Nikbakht et al</copyright-holder>
+      <license xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">
+        <license-p>Figure 1A-C has been reproduced from Figure 1 of <xref ref-type="bibr" rid="bib37">Nikbakht et al., 2018</xref>, under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution - NonCommercial - NoDerivs (CC BY-NC-ND 4.0) license.</ext-link></license-p> 
+      </license>
+    </permissions>
+  </article>
+</root>
