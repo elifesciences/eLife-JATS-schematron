@@ -3,7 +3,7 @@
 Test: assert    some $x in ext-link satisfies $x/@xlink:href = $license-link
 Message: If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: . Links in the license-p: . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
-  <article>
+  <article><front><journal-meta><journal-id>eLife</journal-id></journal-meta></front>
     <permissions>
       <copyright-statement>© 2018, Nikbakht et al</copyright-statement>
       <copyright-year>2018</copyright-year>

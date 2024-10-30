@@ -4,7 +4,7 @@ Test: report    copyright-year
 Message: This is a CC0 licensed article (), but there is a copyright-year () which is not correct. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <front>
+    <front><journal-meta><journal-id>eLife</journal-id></journal-meta>
       <article-meta>
         <permissions>
           <copyright-year>The year 300</copyright-year>

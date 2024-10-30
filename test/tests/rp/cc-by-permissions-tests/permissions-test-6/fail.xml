@@ -4,7 +4,7 @@ Test: assert    copyright-year = $authoritative-year
 Message: copyright-year must match the year of first reviewed preprint publication date. Currently copyright-year= and authoritative pub-date=. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
-    <front>
+    <front><journal-meta><journal-id>eLife</journal-id></journal-meta>
       <article-meta>
         <pub-date date-type="publication" publication-format="electronic">
           <year>2018</year>

@@ -4,7 +4,7 @@ Test: assert    copyright-statement
 Message: permissions must contain copyright-statement in CC BY licensed articles. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
-    <front>
+    <front><journal-meta><journal-id>eLife</journal-id></journal-meta>
       <permissions>
         <copyright-year>2019</copyright-year>
         <copyright-holder>Smith et al</copyright-holder>

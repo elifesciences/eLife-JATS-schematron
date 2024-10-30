@@ -4,7 +4,7 @@ Test: assert    ali:free_to_read
 Message: permissions must contain an ali:free_to_read element. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
-    <front>
+    <front><journal-meta><journal-id>eLife</journal-id></journal-meta>
       <permissions>
         <copyright-statement>© 2019, Smith et al</copyright-statement>
         <copyright-year>2019</copyright-year>
