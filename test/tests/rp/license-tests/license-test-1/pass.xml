@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="license-test-1.sch"?>
+<!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license
+Test: assert    ali:license_ref
+Message: license must contain ali:license_ref. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

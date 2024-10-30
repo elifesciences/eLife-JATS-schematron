@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="permissions-test-3.sch"?>
+<!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@xlink:href,'creativecommons.org/licenses/by/')]
+Test: assert    copyright-holder
+Message: permissions must contain copyright-holder in CC BY licensed articles. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

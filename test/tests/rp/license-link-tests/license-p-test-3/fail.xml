@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="license-p-test-3.sch"?>
+<!--Context: permissions/license[@xlink:href]/license-p
+Test: assert    some $x in ext-link satisfies $x/@xlink:href = $license-link
+Message: If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: . Links in the license-p: . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

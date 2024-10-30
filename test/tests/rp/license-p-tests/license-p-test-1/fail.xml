@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="license-p-test-1.sch"?>
+<!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license/license-p
+Test: report    ($license-type='ccby') and .!=$ccby-text
+Message: The text in license-p is incorrect (). Since this article is CCBY licensed, the text should be . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>
