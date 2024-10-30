@@ -120,7 +120,7 @@
             </xsl:choose>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
+            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' &amp; ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
