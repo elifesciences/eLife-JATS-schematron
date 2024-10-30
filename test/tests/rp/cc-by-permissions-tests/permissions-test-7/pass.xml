@@ -1,0 +1,48 @@
+<?oxygen SCHSchema="permissions-test-7.sch"?>
+<!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@xlink:href,'creativecommons.org/licenses/by/')]
+Test: assert    copyright-holder = $copyright-holder
+Message: copyright-holder is incorrect. If the article has one author then it should be their surname (or collab name). If it has two authors it should be the surname (or collab name) of the first, then ' & ' and then the surname (or collab name) of the second. If three or more, it should be the surname (or collab name) of the first, and then ' et al'. Currently it's '' when based on the author list it should be ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front><journal-meta><journal-id>eLife</journal-id></journal-meta>
+      <article-meta>
+        <contrib-group>
+          <contrib contrib-type="author">
+            <name>
+              <surname>Smith</surname>
+              <given-names>J</given-names>
+            </name>
+          </contrib>
+          <contrib contrib-type="author">
+            <name>
+              <surname>Smith</surname>
+              <given-names>K</given-names>
+            </name>
+          </contrib>
+          <contrib contrib-type="author">
+            <name>
+              <surname>Smith</surname>
+              <given-names>L</given-names>
+            </name>
+          </contrib>
+        </contrib-group>
+        <pub-date date-type="publication" publication-format="electronic">
+          <year>2019</year>
+          <month>09</month>
+          <day>01</day>
+        </pub-date>
+        <permissions>
+          <copyright-statement>© 2019, Smith et al</copyright-statement>
+          <copyright-year>2019</copyright-year>
+          <copyright-holder>Smith et al</copyright-holder>
+          <ali:free_to_read/>
+          <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+            <ali:license_ref>http://creativecommons.org/licenses/by/4.0/</ali:license_ref>
+            <license-p>This article is distributed under the terms of the<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use and
+              redistribution provided that the original author and source are credited.</license-p>
+          </license>
+        </permissions>
+      </article-meta>
+    </front>
+  </article>
+</root>

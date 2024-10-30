@@ -1,0 +1,26 @@
+<?oxygen SCHSchema="permissions-test-16.sch"?>
+<!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@xlink:href,'creativecommons.org/licenses/by/')]
+Test: report    ancestor::article-meta/contrib-group[1]/aff[country='United States']//institution[matches(lower-case(.),'national institutes of health|office of the director|national cancer institute|^nci$|national eye institute|^nei$|national heart,? lung,? and blood institute|^nhlbi$|national human genome research institute|^nhgri$|national institute on aging|^nia$|national institute on alcohol abuse and alcoholism|^niaaa$|national institute of allergy and infectious diseases|^niaid$|national institute of arthritis and musculoskeletal and skin diseases|^niams$|national institute of biomedical imaging and bioengineering|^nibib$|national institute of child health and human development|^nichd$|national institute on deafness and other communication disorders|^nidcd$|national institute of dental and craniofacial research|^nidcr$|national institute of diabetes and digestive and kidney diseases|^niddk$|national institute on drug abuse|^nida$|national institute of environmental health sciences|^niehs$|national institute of general medical sciences|^nigms$|national institute of mental health|^nimh$|national institute on minority health and health disparities|^nimhd$|national institute of neurological disorders and stroke|^ninds$|national institute of nursing research|^ninr$|national library of medicine|^nlm$|center for information technology|^cit$|center for scientific review|^csr$|fogarty international center|^fic$|national center for advancing translational sciences|^ncats$|national center for complementary and integrative health|^nccih$|nih clinical center|^nih cc$')]
+Message: This article is CC-BY, but one or more of the authors are affiliated with the NIH (). Should it be CC0 instead? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front><journal-meta><journal-id>eLife</journal-id></journal-meta>
+      <article-meta>
+        <contrib-group>
+          <aff>
+            <institution>Something else</institution>
+            <country>United States</country>
+          </aff>
+        </contrib-group>
+        <permissions>
+          <copyright-year>2022</copyright-year>
+          <ali:free_to_read/>
+          <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+            <ali:license_ref>http://creativecommons.org/licenses/by/4.0/</ali:license_ref>
+            <license-p>This article is distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use and redistribution provided that the original author and source are credited.</license-p>
+          </license>
+        </permissions>
+      </article-meta>
+    </front>
+  </article>
+</root>

@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="cc-0-test-2.sch"?>
+<!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@xlink:href,'creativecommons.org/publicdomain/zero')]
+Test: report    copyright-year
+Message: This is a CC0 licensed article (), but there is a copyright-year () which is not correct. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front><journal-meta><journal-id>eLife</journal-id></journal-meta>
+      <article-meta>
+        <permissions>
+          <copyright-year>The year 300</copyright-year>
+          <license xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">
+            <license-p>This is an open-access article, free of all copyright, and may be freely reproduced, distributed, transmitted, modified, built upon, or otherwise used by anyone for any lawful purpose. The work is made available under the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons CC0</ext-link> public domain dedication.</license-p>
+          </license>
+        </permissions>
+      </article-meta>
+    </front>
+  </article>
+</root>

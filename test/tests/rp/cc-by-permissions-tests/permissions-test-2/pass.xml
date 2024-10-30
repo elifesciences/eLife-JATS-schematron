@@ -1,0 +1,22 @@
+<?oxygen SCHSchema="permissions-test-2.sch"?>
+<!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@xlink:href,'creativecommons.org/licenses/by/')]
+Test: assert    matches(copyright-year[1],'^[0-9]{4}$')
+Message: permissions must contain copyright-year in the format 0000 in CC BY licensed articles. Currently it is . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front><journal-meta><journal-id>eLife</journal-id></journal-meta>
+      <permissions>
+        <copyright-statement>© 2019, Smith et al</copyright-statement>
+        <copyright-year>2019</copyright-year>
+        <copyright-holder>Smith et al</copyright-holder>
+        <ali:free_to_read/>
+        <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+          <ali:license_ref>http://creativecommons.org/licenses/by/4.0/</ali:license_ref>
+          <license-p>This article is distributed under the terms of the<ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/4.0/">Creative
+            Commons Attribution License</ext-link>, which permits unrestricted use and
+            redistribution provided that the original author and source are credited.</license-p>
+        </license>
+      </permissions>
+    </front>
+  </article>
+</root>
