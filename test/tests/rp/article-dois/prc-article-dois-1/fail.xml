@@ -1,0 +1,21 @@
+<?oxygen SCHSchema="prc-article-dois-1.sch"?>
+<!--Context: article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']
+Test: assert    starts-with(.,'10.7554/eLife.')
+Message: Article level DOI must start with '10.7554/eLife.'. Currently it is  -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front><journal-meta><journal-id>eLife</journal-id></journal-meta>
+      <article-meta>
+        <article-id pub-id-type="publisher-id">00000</article-id>
+        <article-id pub-id-type="doi">10.7554/eLidsafe.00001</article-id>
+        <article-id pub-id-type="doi" specific-version="version">10.7554/eLife.00001.0</article-id>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>publishing-route</meta-name>
+            <meta-value>prc</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>
