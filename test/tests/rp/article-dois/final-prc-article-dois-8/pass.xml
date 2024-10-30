@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="final-prc-article-dois-8.sch"?>
+<!--Context: article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']
+Test: report    @specific-use and number(substring-after(.,concat($article-id,'.'))) != (number($latest-rp-doi-version)+1)
+Message: The version DOI for this Reviewed preprint version needs to end with a number that is one more than whatever number the last published reviewed preprint version DOI ends with. This version DOI ends with  (), whereas the latest reviewed preprint DOI in the publication history ends with  (). Either there is a missing reviewed preprint publication event in the publication history, or the version DOI is incorrect. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

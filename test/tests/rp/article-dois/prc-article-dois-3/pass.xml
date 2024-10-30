@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="prc-article-dois-3.sch"?>
+<!--Context: article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']
+Test: report    @specific-use and not(contains(.,$article-id))
+Message: Article level specific version DOI must contain the article-id (). Currently it does not  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

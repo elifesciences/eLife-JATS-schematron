@@ -747,6 +747,39 @@
             <assert test="@pub-id-type=('publisher-id','doi')" role="error" id="article-id-3">article-id must have a pub-id-type with a value of 'publisher-id' or 'doi'. This one has <value-of select="if (@publisher-id) then @publisher-id else 'no publisher-id attribute'"/>.</assert>
          </rule>
   </pattern>
+  <pattern id="publisher-article-id-checks-pattern">
+    <rule context="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='publisher-id']" id="publisher-article-id-checks">
+        <assert test="matches(.,'^1?\d{5}$')" role="error" id="publisher-id-1">article-id with the attribute pub-id-type="publisher-id" must contyain the 5 or 6 digit article number. This one contains <value-of select="."/>.</assert>
+      </rule>
+  </pattern>
+  <pattern id="article-dois-pattern">
+    <rule context="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']" id="article-dois">
+      <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
+      <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint']/@xlink:href"/>
+      <let name="latest-rp-doi-version" value="tokenize($latest-rp-doi,'\.')[last()]"/>
+      
+      <assert test="starts-with(.,'10.7554/eLife.')" role="error" id="prc-article-dois-1">Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="."/>
+      </assert>
+      
+      <report test="not(@specific-use) and substring-after(.,'10.7554/eLife.') != $article-id" role="error" id="prc-article-dois-2">Article level concept DOI must be a concatenation of '10.7554/eLife.' and the article-id. Currently it is <value-of select="."/>
+      </report>
+      
+      <report test="@specific-use and not(contains(.,$article-id))" role="error" id="prc-article-dois-3">Article level specific version DOI must contain the article-id (<value-of select="$article-id"/>). Currently it does not <value-of select="."/>
+      </report>
+      
+      <report test="@specific-use and not(matches(.,'^10.7554/eLife\.\d{5,6}\.\d$'))" role="error" id="prc-article-dois-4">Article level specific version DOI must be in the format 10.7554/eLife.00000.0. Currently it is <value-of select="."/>
+      </report>
+      
+      <report test="not(@specific-use) and (preceding-sibling::article-id[@pub-id-type='doi'] or following-sibling::article-id[@pub-id-type='doi' and not(@specific-use)])" role="error" id="prc-article-dois-5">Article level concept DOI must be first in article-meta, and there can only be one. This concept DOI has a preceding DOI or following concept DOI.</report>
+      
+      <report test="@specific-use and (following-sibling::article-id[@pub-id-type='doi'] or preceding-sibling::article-id[@pub-id-type='doi' and @specific-use])" role="error" id="prc-article-dois-6">Article level version DOI must be second in article-meta. This version DOI has a following sibling DOI or a preceding version specific DOI.</report>
+      
+      <report test="@specific-use and @specific-use!='version'" role="error" id="prc-article-dois-7">Article DOI has a specific-use attribute value <value-of select="@specific-use"/>. The only permitted value is 'version'.</report>
+      
+      <report test="@specific-use and number(substring-after(.,concat($article-id,'.'))) != (number($latest-rp-doi-version)+1)" role="error" id="final-prc-article-dois-8">The version DOI for this Reviewed preprint version needs to end with a number that is one more than whatever number the last published reviewed preprint version DOI ends with. This version DOI ends with <value-of select="substring-after(.,concat($article-id,'.'))"/> (<value-of select="."/>), whereas the latest reviewed preprint DOI in the publication history ends with <value-of select="$latest-rp-doi-version"/> (<value-of select="$latest-rp-doi"/>). Either there is a missing reviewed preprint publication event in the publication history, or the version DOI is incorrect.</report>
+      
+      </rule>
+  </pattern>
   <pattern id="author-notes-checks-pattern">
     <rule context="article/front/article-meta/author-notes" id="author-notes-checks">
         <report test="count(corresp) gt 1" role="error" id="multiple-corresp">author-notes contains <value-of select="count(corresp)"/> corresp elements. There should only be one. Either these can be collated into one corresp or one of these is a footnote which has been incorrectly captured.</report>
@@ -1219,6 +1252,8 @@
       <assert test="descendant::p[not(ancestor::sub-article) and (count(*)=1) and (child::bold or child::italic)]" role="error" id="p-bold-checks-xspec-assert">p[not(ancestor::sub-article) and (count(*)=1) and (child::bold or child::italic)] must be present.</assert>
       <assert test="descendant::article/front/article-meta" role="error" id="general-article-meta-checks-xspec-assert">article/front/article-meta must be present.</assert>
       <assert test="descendant::article/front/article-meta/article-id" role="error" id="general-article-id-checks-xspec-assert">article/front/article-meta/article-id must be present.</assert>
+      <assert test="descendant::article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='publisher-id']" role="error" id="publisher-article-id-checks-xspec-assert">article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='publisher-id'] must be present.</assert>
+      <assert test="descendant::article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']" role="error" id="article-dois-xspec-assert">article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::article/front/article-meta/author-notes" role="error" id="author-notes-checks-xspec-assert">article/front/article-meta/author-notes must be present.</assert>
       <assert test="descendant::article/front/article-meta//article-version" role="error" id="article-version-checks-xspec-assert">article/front/article-meta//article-version must be present.</assert>
       <assert test="descendant::article/front/article-meta/article-version-alternatives" role="error" id="article-version-alternatives-checks-xspec-assert">article/front/article-meta/article-version-alternatives must be present.</assert>
