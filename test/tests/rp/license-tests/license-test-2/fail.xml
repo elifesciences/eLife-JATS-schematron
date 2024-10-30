@@ -1,6 +1,8 @@
-<?oxygen SCHSchema="license-test-2.sch"?><!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license
+<?oxygen SCHSchema="license-test-2.sch"?>
+<!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license
 Test: assert    count(license-p) = 1
-Message: license must contain one and only one license-p. --><root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+Message: license must contain one and only one license-p. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front>
       <permissions>

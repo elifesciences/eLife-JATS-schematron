@@ -1,6 +1,8 @@
-<?oxygen SCHSchema="license-p-test-4.sch"?><!--Context: permissions/license[ali:license_ref]/license-p
+<?oxygen SCHSchema="license-p-test-4.sch"?>
+<!--Context: permissions/license[ali:license_ref]/license-p
 Test: assert    some $x in ext-link satisfies $x/@xlink:href = $ali-ref
-Message: If a license contains an ali:license_ref element, there must be a link in license-p that matches the link in the ali:license_ref element. ali:license_ref link: . Links in the license-p: . --><root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+Message: If a license contains an ali:license_ref element, there must be a link in license-p that matches the link in the ali:license_ref element. ali:license_ref link: . Links in the license-p: . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <permissions>
       <copyright-statement>© 2018, Nikbakht et al</copyright-statement>
