@@ -749,7 +749,7 @@
   </pattern>
   <pattern id="publisher-article-id-checks-pattern">
     <rule context="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='publisher-id']" id="publisher-article-id-checks">
-        <assert test="matches(.,'^1?\d{5}$')" role="error" id="publisher-id-1">article-id with the attribute pub-id-type="publisher-id" must contyain the 5 or 6 digit article number. This one contains <value-of select="."/>.</assert>
+        <assert test="matches(.,'^1?\d{5}$')" role="error" id="publisher-id-1">article-id with the attribute pub-id-type="publisher-id" must contain the 5 or 6 digit manuscript tracking number. This one contains <value-of select="."/>.</assert>
       </rule>
   </pattern>
   <pattern id="article-dois-pattern">

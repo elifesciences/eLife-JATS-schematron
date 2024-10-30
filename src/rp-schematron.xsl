@@ -3874,7 +3874,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[publisher-id-1] article-id with the attribute pub-id-type="publisher-id" must contyain the 5 or 6 digit article number. This one contains <xsl:text/>
+               <svrl:text>[publisher-id-1] article-id with the attribute pub-id-type="publisher-id" must contain the 5 or 6 digit manuscript tracking number. This one contains <xsl:text/>
                   <xsl:value-of select="."/>
                   <xsl:text/>.</svrl:text>
             </svrl:failed-assert>

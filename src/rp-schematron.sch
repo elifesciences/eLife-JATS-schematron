@@ -566,7 +566,7 @@
       </rule></pattern><pattern id="general-article-id-checks-pattern"><rule context="article/front/article-meta/article-id" id="general-article-id-checks">
             <assert test="@pub-id-type=('publisher-id','doi')" role="error" id="article-id-3">[article-id-3] article-id must have a pub-id-type with a value of 'publisher-id' or 'doi'. This one has <value-of select="if (@publisher-id) then @publisher-id else 'no publisher-id attribute'"/>.</assert>
          </rule></pattern><pattern id="publisher-article-id-checks-pattern"><rule context="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='publisher-id']" id="publisher-article-id-checks">
-        <assert test="matches(.,'^1?\d{5}$')" role="error" id="publisher-id-1">[publisher-id-1] article-id with the attribute pub-id-type="publisher-id" must contyain the 5 or 6 digit article number. This one contains <value-of select="."/>.</assert>
+        <assert test="matches(.,'^1?\d{5}$')" role="error" id="publisher-id-1">[publisher-id-1] article-id with the attribute pub-id-type="publisher-id" must contain the 5 or 6 digit manuscript tracking number. This one contains <value-of select="."/>.</assert>
       </rule></pattern><pattern id="article-dois-pattern"><rule context="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']" id="article-dois">
       <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
       <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint']/@xlink:href"/>

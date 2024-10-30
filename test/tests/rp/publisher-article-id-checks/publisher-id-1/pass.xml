@@ -1,5 +1,14 @@
 <?oxygen SCHSchema="publisher-id-1.sch"?>
 <!--Context: article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='publisher-id']
 Test: assert    matches(.,'^1?\d{5}$')
-Message: article-id with the attribute pub-id-type="publisher-id" must contyain the 5 or 6 digit article number. This one contains . -->
-<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>
+Message: article-id with the attribute pub-id-type="publisher-id" must contain the 5 or 6 digit manuscript tracking number. This one contains . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <front>
+            <journal-meta><journal-id>eLife</journal-id></journal-meta>
+            <article-meta>
+                <article-id pub-id-type="publisher-id">98142</article-id>
+            </article-meta>
+        </front>
+    </article>
+</root>
