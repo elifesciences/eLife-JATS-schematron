@@ -740,6 +740,10 @@
         <report test="$is-reviewed-preprint and not(count(article-id[@pub-id-type='publisher-id'])=1)" role="error" id="article-id-1">Reviewed preprints must have one (and only one) publisher-id. This one has <value-of select="count(article-id[@pub-id-type='publisher-id'])"/>.</report>
       
         <report test="$is-reviewed-preprint and not(count(article-id[@pub-id-type='doi'])=2)" role="error" id="article-id-2">Reviewed preprints must have two DOIs. This one has <value-of select="count(article-id[@pub-id-type='doi'])"/>.</report>
+        
+        <report test="$is-reviewed-preprint and not(count(volume)=1)" role="error" id="volume-presence">Reviewed preprints must have (and only one) volume. This one has <value-of select="count(volume)"/>.</report>
+        
+        <report test="$is-reviewed-preprint and not(count(elocation-id)=1)" role="error" id="elocation-id-presence">Reviewed preprints must have (and only one) elocation-id. This one has <value-of select="count(elocation-id)"/>.</report>
       </rule>
   </pattern>
   <pattern id="general-article-id-checks-pattern">
@@ -832,6 +836,15 @@
         <let name="pub-date" value=" if (not($is-first-version)) then parent::article-meta/pub-history[1]/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]          else if (ancestor::article-meta/pub-date[@date-type='publication' and @publication-format='electronic']) then ancestor::article-meta/pub-date[@date-type='publication' and @publication-format='electronic'][1]/year[1]          else string(year-from-date(current-date()))"/>
       
         <assert test=". = number($pub-date) - 2011" role="error" id="volume-test-1">volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</assert>
+      </rule>
+  </pattern>
+  <pattern id="elocation-id-test-pattern">
+    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id" id="elocation-id-test">
+        <let name="msid" value="parent::article-meta/article-id[@pub-id-type='publisher-id']"/>
+        
+        <assert test="matches(.,'^RP\d{5,6}$')" role="error" id="elocation-id-test-1">The content of elocation-id must 'RP' followed by a 5 or 6 digit MSID. This is not in that format: <value-of select="."/>.</assert>
+        
+        <report test="$msid and not(.=concat('RP',$msid))" role="error" id="elocation-id-test-2">The content of elocation-id must 'RP' followed by the 5 or 6 digit MSID (<value-of select="$msid"/>). This is not in that format (<value-of select="."/> != <value-of select="concat('RP',$msid)"/>).</report>
       </rule>
   </pattern>
 
@@ -1292,6 +1305,7 @@
       <assert test="descendant::article/front/article-meta/pub-date[@pub-type='epub']/year" role="error" id="preprint-pub-checks-xspec-assert">article/front/article-meta/pub-date[@pub-type='epub']/year must be present.</assert>
       <assert test="descendant::article/front/article-meta/contrib-group/contrib" role="error" id="contrib-checks-xspec-assert">article/front/article-meta/contrib-group/contrib must be present.</assert>
       <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/volume" role="error" id="volume-test-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/volume must be present.</assert>
+      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id" role="error" id="elocation-id-test-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id must be present.</assert>
       <assert test="descendant::abstract[parent::article-meta]" role="error" id="abstract-checks-xspec-assert">abstract[parent::article-meta] must be present.</assert>
       <assert test="descendant::abstract[parent::article-meta]/*" role="error" id="abstract-child-checks-xspec-assert">abstract[parent::article-meta]/* must be present.</assert>
       <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']//permissions" role="error" id="front-permissions-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']//permissions must be present.</assert>

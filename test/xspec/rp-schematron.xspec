@@ -1567,6 +1567,26 @@
         <x:expect-report id="article-id-2" role="error"/>
         <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="volume-presence-pass">
+        <x:context href="../tests/rp/general-article-meta-checks/volume-presence/pass.xml"/>
+        <x:expect-not-report id="volume-presence" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="volume-presence-fail">
+        <x:context href="../tests/rp/general-article-meta-checks/volume-presence/fail.xml"/>
+        <x:expect-report id="volume-presence" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="elocation-id-presence-pass">
+        <x:context href="../tests/rp/general-article-meta-checks/elocation-id-presence/pass.xml"/>
+        <x:expect-not-report id="elocation-id-presence" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="elocation-id-presence-fail">
+        <x:context href="../tests/rp/general-article-meta-checks/elocation-id-presence/fail.xml"/>
+        <x:expect-report id="elocation-id-presence" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="general-article-id-checks">
       <x:scenario label="article-id-3-pass">
@@ -1844,6 +1864,28 @@
         <x:context href="../tests/rp/volume-test/volume-test-1/fail.xml"/>
         <x:expect-assert id="volume-test-1" role="error"/>
         <x:expect-not-assert id="volume-test-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="elocation-id-test">
+      <x:scenario label="elocation-id-test-1-pass">
+        <x:context href="../tests/rp/elocation-id-test/elocation-id-test-1/pass.xml"/>
+        <x:expect-not-assert id="elocation-id-test-1" role="error"/>
+        <x:expect-not-assert id="elocation-id-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="elocation-id-test-1-fail">
+        <x:context href="../tests/rp/elocation-id-test/elocation-id-test-1/fail.xml"/>
+        <x:expect-assert id="elocation-id-test-1" role="error"/>
+        <x:expect-not-assert id="elocation-id-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="elocation-id-test-2-pass">
+        <x:context href="../tests/rp/elocation-id-test/elocation-id-test-2/pass.xml"/>
+        <x:expect-not-report id="elocation-id-test-2" role="error"/>
+        <x:expect-not-assert id="elocation-id-test-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="elocation-id-test-2-fail">
+        <x:context href="../tests/rp/elocation-id-test/elocation-id-test-2/fail.xml"/>
+        <x:expect-report id="elocation-id-test-2" role="error"/>
+        <x:expect-not-assert id="elocation-id-test-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="abstract-checks">

@@ -986,6 +986,14 @@
         <report test="$is-reviewed-preprint and not(count(article-id[@pub-id-type='doi'])=2)" 
           role="error" 
           id="article-id-2">Reviewed preprints must have two DOIs. This one has <value-of select="count(article-id[@pub-id-type='doi'])"/>.</report>
+        
+        <report test="$is-reviewed-preprint and not(count(volume)=1)" 
+          role="error" 
+          id="volume-presence">Reviewed preprints must have (and only one) volume. This one has <value-of select="count(volume)"/>.</report>
+        
+        <report test="$is-reviewed-preprint and not(count(elocation-id)=1)" 
+          role="error" 
+          id="elocation-id-presence">Reviewed preprints must have (and only one) elocation-id. This one has <value-of select="count(elocation-id)"/>.</report>
       </rule>
 
          <rule context="article/front/article-meta/article-id" id="general-article-id-checks">
@@ -1122,6 +1130,18 @@
         <assert test=". = number($pub-date) - 2011" 
           role="error" 
           id="volume-test-1">volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</assert>
+      </rule>
+      
+      <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id" id="elocation-id-test">
+        <let name="msid" value="parent::article-meta/article-id[@pub-id-type='publisher-id']"/>
+        
+        <assert test="matches(.,'^RP\d{5,6}$')" 
+          role="error" 
+          id="elocation-id-test-1">The content of elocation-id must 'RP' followed by a 5 or 6 digit MSID. This is not in that format: <value-of select="."/>.</assert>
+        
+        <report test="$msid and not(.=concat('RP',$msid))" 
+          role="error" 
+          id="elocation-id-test-2">The content of elocation-id must 'RP' followed by the 5 or 6 digit MSID (<value-of select="$msid"/>). This is not in that format (<value-of select="."/> != <value-of select="concat('RP',$msid)"/>).</report>
       </rule>
     </pattern>
 
