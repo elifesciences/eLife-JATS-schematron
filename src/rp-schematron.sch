@@ -659,6 +659,10 @@
         <report test="following-sibling::event[date[@iso-8601-date lt $date]]" role="error" id="event-test-4">[event-test-4] Events in pub-history must be ordered chronologically in descending order. This event has a date (<value-of select="$date"/>) which is later than the date of a following event (<value-of select="preceding-sibling::event[date[@iso-8601-date lt $date]][1]"/>).</report>
       
       <report test="date and self-uri and date[1]/@date-type != self-uri[1]/@content-type" role="error" id="event-test-5">[event-test-5] This event in pub-history has a date with the date-type <value-of select="date[1]/@date-type"/>, but a self-uri with the content-type <value-of select="self-uri[1]/@content-type"/>. These values should be the same, so one (or both of them) are incorrect.</report>
+    </rule></pattern><pattern id="event-child-tests-pattern"><rule context="event/*" id="event-child-tests">
+      <let name="allowed-elems" value="('event-desc','date','self-uri')"/>
+      
+      <assert test="name()=$allowed-elems" role="error" id="event-child">[event-child] <name/> is not allowed in an event element. The only permitted children of event are <value-of select="string-join($allowed-elems,', ')"/>.</assert>
     </rule></pattern>
 
     <pattern id="abstract-checks-pattern"><rule context="abstract[parent::article-meta]" id="abstract-checks">
