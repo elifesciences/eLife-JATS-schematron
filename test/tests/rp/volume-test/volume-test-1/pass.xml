@@ -1,0 +1,48 @@
+<?oxygen SCHSchema="volume-test-1.sch"?>
+<!--Context: front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/volume
+Test: report    .='' or (. != (number($pub-date) - 2011))
+Message: volume is incorrect. It should be . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front>
+      <journal-meta>
+        <journal-id>eLife</journal-id>
+      </journal-meta>
+      <article-meta>
+      <article-id pub-id-type="publisher-id">00000</article-id>
+      <article-id pub-id-type="doi">10.7554/eLife.00000</article-id>
+      <pub-date date-type="publication" publication-format="electronic">
+        <year>2029</year>
+      </pub-date>
+      <volume>12</volume>
+      <elocation-id>e00000</elocation-id>
+      <pub-history>
+        <event>
+          <event-desc>Preprint posted</event-desc>
+          <date date-type="preprint" iso-8601-date="2024-07-17">
+            <day>17</day>
+            <month>07</month>
+            <year>2022</year>
+          </date>
+        </event>
+        <event>
+          <event-desc>Reviewed preprint v1</event-desc>
+          <date date-type="reviewed-preprint" iso-8601-date="2024-08-27">
+            <day>27</day>
+            <month>08</month>
+            <year>2023</year>
+          </date>
+        </event>
+        <event>
+          <event-desc>Reviewed preprint v2</event-desc>
+          <date date-type="reviewed-preprint" iso-8601-date="2024-09-23">
+            <day>23</day>
+            <month>09</month>
+            <year>2024</year>
+          </date>
+        </event>
+      </pub-history>
+    </article-meta>
+    </front>
+  </article>
+</root>

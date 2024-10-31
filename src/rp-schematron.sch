@@ -563,6 +563,10 @@
         <report test="$is-reviewed-preprint and not(count(article-id[@pub-id-type='publisher-id'])=1)" role="error" id="article-id-1">[article-id-1] Reviewed preprints must have one (and only one) publisher-id. This one has <value-of select="count(article-id[@pub-id-type='publisher-id'])"/>.</report>
       
         <report test="$is-reviewed-preprint and not(count(article-id[@pub-id-type='doi'])=2)" role="error" id="article-id-2">[article-id-2] Reviewed preprints must have two DOIs. This one has <value-of select="count(article-id[@pub-id-type='doi'])"/>.</report>
+        
+        <report test="$is-reviewed-preprint and not(count(volume)=1)" role="error" id="volume-presence">[volume-presence] Reviewed preprints must have (and only one) volume. This one has <value-of select="count(volume)"/>.</report>
+        
+        <report test="$is-reviewed-preprint and not(count(elocation-id)=1)" role="error" id="elocation-id-presence">[elocation-id-presence] Reviewed preprints must have (and only one) elocation-id. This one has <value-of select="count(elocation-id)"/>.</report>
       </rule></pattern><pattern id="general-article-id-checks-pattern"><rule context="article/front/article-meta/article-id" id="general-article-id-checks">
             <assert test="@pub-id-type=('publisher-id','doi')" role="error" id="article-id-3">[article-id-3] article-id must have a pub-id-type with a value of 'publisher-id' or 'doi'. This one has <value-of select="if (@publisher-id) then @publisher-id else 'no publisher-id attribute'"/>.</assert>
          </rule></pattern><pattern id="publisher-article-id-checks-pattern"><rule context="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='publisher-id']" id="publisher-article-id-checks">
@@ -619,6 +623,17 @@
         <report test="parent::contrib-group[preceding-sibling::contrib-group and not(following-sibling::contrib-group)] and not(@contrib-type)" role="error" id="contrib-3">[contrib-3] The second contrib-group in article-meta should (only) contain Reviewing and Senior Editors. This contrib is placed in that group, but it does not have a contrib-type. Add the correct contrib-type for the Editor.</report>
 
         <report test="parent::contrib-group[preceding-sibling::contrib-group and not(following-sibling::contrib-group)] and not(@contrib-type=('editor','senior_editor'))" role="error" id="contrib-4">[contrib-4] The second contrib-group in article-meta should (only) contain Reviewing and Senior Editors. This contrib is placed in that group, but it has the contrib-type <value-of select="@contrib-type"/>.</report>
+      </rule></pattern><pattern id="volume-test-pattern"><rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/volume" id="volume-test">
+        <let name="is-first-version" value="if (ancestor::article-meta/article-id[@specific-use='version' and ends-with(.,'.1')]) then true()                                           else if (not(ancestor::article-meta/pub-history[event[date[@date-type='reviewed-preprint']]])) then true()                                           else false()"/>
+        <let name="pub-date" value=" if (not($is-first-version)) then parent::article-meta/pub-history[1]/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]          else if (ancestor::article-meta/pub-date[@date-type='publication' and @publication-format='electronic']) then ancestor::article-meta/pub-date[@date-type='publication' and @publication-format='electronic'][1]/year[1]          else string(year-from-date(current-date()))"/>
+      
+        <report test=".='' or (. != (number($pub-date) - 2011))" role="error" id="volume-test-1">[volume-test-1] volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</report>
+      </rule></pattern><pattern id="elocation-id-test-pattern"><rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id" id="elocation-id-test">
+        <let name="msid" value="parent::article-meta/article-id[@pub-id-type='publisher-id']"/>
+        
+        <assert test="matches(.,'^RP\d{5,6}$')" role="error" id="elocation-id-test-1">[elocation-id-test-1] The content of elocation-id must 'RP' followed by a 5 or 6 digit MSID. This is not in that format: <value-of select="."/>.</assert>
+        
+        <report test="$msid and not(.=concat('RP',$msid))" role="error" id="elocation-id-test-2">[elocation-id-test-2] The content of elocation-id must 'RP' followed by the 5 or 6 digit MSID (<value-of select="$msid"/>). This is not in that format (<value-of select="."/> != <value-of select="concat('RP',$msid)"/>).</report>
       </rule></pattern>
 
     <pattern id="abstract-checks-pattern"><rule context="abstract[parent::article-meta]" id="abstract-checks">
