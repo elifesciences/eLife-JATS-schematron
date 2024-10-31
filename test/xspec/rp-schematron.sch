@@ -827,6 +827,30 @@
       </rule>
   </pattern>
 
+    <pattern id="abstract-checks-pattern">
+    <rule context="abstract[parent::article-meta]" id="abstract-checks">
+        <let name="allowed-types" value="('structured','plain-language-summary','teaser','summary','graphical')"/>
+        <report test="preceding::abstract[not(@abstract-type)] and not(@abstract-type)" role="error" id="abstract-test-1">There should only be one abstract without an abstract-type (for the common-garden abstract). This asbtract does not have an abstract-type, but there is also a preceding abstract without an abstract-type. One of these needs to be given an abstract-type with the allowed values ('structured' for a syrctured abstract with sections; 'plain-language-summary' for a digest or author provided plain summary; 'teaser' for an impact statement; 'summary' for a general summary that's in addition to the common-garden abstract; 'graphical' for a graphical abstract).</report>
+
+        <report test="@abstract-type and not(@abstract-type=$allowed-types)" role="error" id="abstract-test-2">abstract has an abstract-type (<value-of select="@abstract-type"/>), but it's not one of the permiited values: <value-of select="string-join($allowed-types,'; ')"/>.</report>
+        
+        <report test="matches(lower-case(title[1]),'funding')" role="error" id="abstract-test-3">abstract has a title that indicates it contains funding information (<value-of select="title[1]"/>) If this is funding information, it should be captured as a section in back or as part of an (if existing) structured abstract.</report>
+        
+        <report test="matches(lower-case(title[1]),'data')" role="error" id="abstract-test-4">abstract has a title that indicates it contains a data availability statement (<value-of select="title[1]"/>) If this is a data availability statement, it should be captured as a section in back.</report>
+        
+        <report test="descendant::fig and not(@abstract-type='graphical')" role="error" id="abstract-test-5">abstract has a descendant fig, but it does not have the attribute abstract-type="graphical". If it is a graphical abstract, it should have that type. If it's not a graphical abstract the content should be moved out of &lt;abstract&gt;</report>
+        
+        <report test="@abstract-type=$allowed-types and ./@abstract-type = preceding-sibling::abstract/@abstract-type" role="warning" id="abstract-test-6">abstract has the abstract-type '<value-of select="@abstract-type"/>', which is a permitted value, but it is not the only abstract with that type. It is very unlikely that two abstracts with the same abstract-type are required.</report>
+      </rule>
+  </pattern>
+  <pattern id="abstract-child-checks-pattern">
+    <rule context="abstract[parent::article-meta]/*" id="abstract-child-checks">
+        <let name="allowed-children" value="('label','title','sec','p','fig','list')"/>
+        <assert test="name()=$allowed-children" role="error" id="abstract-child-test-1">
+        <name/> is not permitted within abstract.</assert>
+      </rule>
+  </pattern>
+
     <pattern id="front-permissions-tests-pattern">
     <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions" id="front-permissions-tests">
 	  <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
@@ -1259,6 +1283,8 @@
       <assert test="descendant::article/front/article-meta/article-version-alternatives" role="error" id="article-version-alternatives-checks-xspec-assert">article/front/article-meta/article-version-alternatives must be present.</assert>
       <assert test="descendant::article/front/article-meta/pub-date[@pub-type='epub']/year" role="error" id="preprint-pub-checks-xspec-assert">article/front/article-meta/pub-date[@pub-type='epub']/year must be present.</assert>
       <assert test="descendant::article/front/article-meta/contrib-group/contrib" role="error" id="contrib-checks-xspec-assert">article/front/article-meta/contrib-group/contrib must be present.</assert>
+      <assert test="descendant::abstract[parent::article-meta]" role="error" id="abstract-checks-xspec-assert">abstract[parent::article-meta] must be present.</assert>
+      <assert test="descendant::abstract[parent::article-meta]/*" role="error" id="abstract-child-checks-xspec-assert">abstract[parent::article-meta]/* must be present.</assert>
       <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']//permissions" role="error" id="front-permissions-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']//permissions must be present.</assert>
       <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@xlink:href,'creativecommons.org/licenses/by/')]" role="error" id="cc-by-permissions-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@xlink:href,'creativecommons.org/licenses/by/')] must be present.</assert>
       <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@xlink:href,'creativecommons.org/publicdomain/zero')]" role="error" id="cc-0-permissions-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@xlink:href,'creativecommons.org/publicdomain/zero')] must be present.</assert>
