@@ -1,0 +1,22 @@
+<?oxygen SCHSchema="abstract-test-5.sch"?>
+<!--Context: abstract[parent::article-meta]
+Test: report    descendant::fig and not(@abstract-type='graphical')
+Message: abstract has a descendant fig, but it does not have the attribute abstract-type="graphical". If it is a graphical abstract, it should have that type. If it's not a graphical abstract the content should be moved out of <abstract> -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <abstract>
+                <p>
+                    <fig id="ufig1" position="float" orientation="portrait" fig-type="figure"/>
+                </p>
+            </abstract>
+            <abstract abstract-type="teaser">
+                <title>Teaser</title>
+                <p/>
+            </abstract>
+            <abstract abstract-type="teaser">
+                <fig id="ufig1" position="float" orientation="portrait" fig-type="figure"/>
+            </abstract>
+        </article-meta>
+    </article>
+</root>

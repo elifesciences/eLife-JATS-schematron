@@ -4334,6 +4334,17 @@
                <xsl:text/>) If this is a data availability statement, it should be captured as a section in back.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="descendant::fig and not(@abstract-type='graphical')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::fig and not(@abstract-type='graphical')">
+            <xsl:attribute name="id">abstract-test-5</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[abstract-test-5] abstract has a descendant fig, but it does not have the attribute abstract-type="graphical". If it is a graphical abstract, it should have that type. If it's not a graphical abstract the content should be moved out of &lt;abstract&gt;</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M80"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M80"/>
