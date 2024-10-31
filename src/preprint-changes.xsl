@@ -221,7 +221,7 @@
             <xsl:apply-templates select="@*"/>
             <xsl:choose>
                 <xsl:when test="./author-notes">
-                    <xsl:apply-templates select="*[name()!='contrib-group' and following-sibling::contrib-group]|text()[following-sibling::contrib-group]"/>
+                    <xsl:apply-templates select="*[name()!='contrib-group' and following-sibling::contrib-group]|text()[following-sibling::contrib-group and not(preceding-sibling::contrib-group)]"/>
                     <xsl:choose>
                         <xsl:when test="./author-notes/corresp/email">
                             <xsl:variable name="corresp-emails" select="./author-notes/corresp/email"/>
@@ -262,7 +262,6 @@
                                     <xsl:if test="./contrib-group[@content-type='section']">
                                         <xsl:text>&#xa;</xsl:text>
                                         <xsl:copy-of select="./contrib-group[@content-type='section']"/>
-                                        <xsl:text>&#xa;</xsl:text>
                                     </xsl:if>    
                                     <xsl:choose>
                                         <xsl:when test="./author-notes/*[name()!='corresp']">
@@ -337,7 +336,6 @@
                                                     <xsl:if test="./contrib-group[@content-type='section']">
                                                         <xsl:text>&#xa;</xsl:text>
                                                         <xsl:copy-of select="./contrib-group[@content-type='section']"/>
-                                                        <xsl:text>&#xa;</xsl:text>
                                                     </xsl:if>
                                                     <xsl:choose>
                                                         <xsl:when test="./author-notes/*[name()!='corresp']">
@@ -385,7 +383,6 @@
                                                     <xsl:if test="./contrib-group[@content-type='section']">
                                                         <xsl:text>&#xa;</xsl:text>
                                                         <xsl:copy-of select="./contrib-group[@content-type='section']"/>
-                                                        <xsl:text>&#xa;</xsl:text>
                                                     </xsl:if>
                                                     <xsl:choose>
                                                         <xsl:when test="./author-notes/*[name()!='corresp']">
@@ -434,7 +431,6 @@
                                                     <xsl:if test="./contrib-group[@content-type='section']">
                                                         <xsl:text>&#xa;</xsl:text>
                                                         <xsl:copy-of select="./contrib-group[@content-type='section']"/>
-                                                        <xsl:text>&#xa;</xsl:text>
                                                     </xsl:if>
                                                     <xsl:choose>
                                                         <xsl:when test="./author-notes/*[name()!='corresp']">
