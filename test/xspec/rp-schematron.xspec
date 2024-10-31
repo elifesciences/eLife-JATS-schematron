@@ -1855,6 +1855,38 @@
         <x:expect-report id="abstract-test-2" role="error"/>
         <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="abstract-test-3-pass">
+        <x:context href="../tests/rp/abstract-checks/abstract-test-3/pass.xml"/>
+        <x:expect-not-report id="abstract-test-3" role="error"/>
+        <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-test-3-fail">
+        <x:context href="../tests/rp/abstract-checks/abstract-test-3/fail.xml"/>
+        <x:expect-report id="abstract-test-3" role="error"/>
+        <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-test-4-pass">
+        <x:context href="../tests/rp/abstract-checks/abstract-test-4/pass.xml"/>
+        <x:expect-not-report id="abstract-test-4" role="error"/>
+        <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-test-4-fail">
+        <x:context href="../tests/rp/abstract-checks/abstract-test-4/fail.xml"/>
+        <x:expect-report id="abstract-test-4" role="error"/>
+        <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="abstract-child-checks">
+      <x:scenario label="abstract-child-test-1-pass">
+        <x:context href="../tests/rp/abstract-child-checks/abstract-child-test-1/pass.xml"/>
+        <x:expect-not-assert id="abstract-child-test-1" role="error"/>
+        <x:expect-not-assert id="abstract-child-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-child-test-1-fail">
+        <x:context href="../tests/rp/abstract-child-checks/abstract-child-test-1/fail.xml"/>
+        <x:expect-assert id="abstract-child-test-1" role="error"/>
+        <x:expect-not-assert id="abstract-child-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="front-permissions-tests">
       <x:scenario label="permissions-test-4-pass">

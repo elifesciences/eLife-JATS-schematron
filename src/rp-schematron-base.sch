@@ -1122,6 +1122,21 @@
         <report test="@abstract-type and not(@abstract-type=$allowed-types)" 
           role="error" 
           id="abstract-test-2">abstract has an abstract-type (<value-of select="@abstract-type"/>), but it's not one of the permiited values: <value-of select="string-join($allowed-types,'; ')"/>.</report>
+        
+        <report test="matches(lower-case(title[1]),'funding')" 
+          role="error" 
+          id="abstract-test-3">abstract has a title that indicates it contains funding information (<value-of select="title[1]"/>) If this is funding information, it should be captured as a section in back or as part of an (if existing) structured abstract.</report>
+        
+        <report test="matches(lower-case(title[1]),'data')" 
+          role="error" 
+          id="abstract-test-4">abstract has a title that indicates it contains a data availability statement (<value-of select="title[1]"/>) If this is a data availability statement, it should be captured as a section in back.</report>
+      </rule>
+      
+      <rule context="abstract[parent::article-meta]/*" id="abstract-child-checks">
+        <let name="allowed-children" value="('label','title','sec','p','fig','list')"/>
+        <assert test="name()=$allowed-children" 
+          role="error" 
+          id="abstract-child-test-1"><name/> is not permitted within abstract.</assert>
       </rule>
     </pattern>
 
