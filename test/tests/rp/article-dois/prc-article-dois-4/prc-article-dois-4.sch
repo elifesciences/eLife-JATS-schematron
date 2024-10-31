@@ -147,7 +147,7 @@
     <rule context="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']" id="article-dois">
       <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
       <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint']/@xlink:href"/>
-      <let name="latest-rp-doi-version" value="tokenize($latest-rp-doi,'\.')[last()]"/>
+      <let name="latest-rp-doi-version" value="if ($latest-rp-doi) then tokenize($latest-rp-doi,'\.')[last()]                                                else '0'"/>
       <report test="@specific-use and not(matches(.,'^10.7554/eLife\.\d{5,6}\.\d$'))" role="error" id="prc-article-dois-4">[prc-article-dois-4] Article level specific version DOI must be in the format 10.7554/eLife.00000.0. Currently it is <value-of select="."/>
       </report>
     </rule>

@@ -3891,7 +3891,7 @@
    <xsl:template match="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']" priority="1000" mode="M74">
       <xsl:variable name="article-id" select="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
       <xsl:variable name="latest-rp-doi" select="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint']/@xlink:href"/>
-      <xsl:variable name="latest-rp-doi-version" select="tokenize($latest-rp-doi,'\.')[last()]"/>
+      <xsl:variable name="latest-rp-doi-version" select="if ($latest-rp-doi) then tokenize($latest-rp-doi,'\.')[last()]                                                else '0'"/>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="starts-with(.,'10.7554/eLife.')"/>
@@ -4000,11 +4000,9 @@
                <xsl:value-of select="substring-after(.,concat($article-id,'.'))"/>
                <xsl:text/> (<xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/>), whereas the latest reviewed preprint DOI in the publication history ends with <xsl:text/>
-               <xsl:value-of select="$latest-rp-doi-version"/>
-               <xsl:text/> (<xsl:text/>
-               <xsl:value-of select="$latest-rp-doi"/>
-               <xsl:text/>). Either there is a missing reviewed preprint publication event in the publication history, or the version DOI is incorrect.</svrl:text>
+               <xsl:text/>), whereas <xsl:text/>
+               <xsl:value-of select="if ($latest-rp-doi-version='0') then 'there is no previous reviewed preprint version in the pub-history' else concat('the latest reviewed preprint DOI in the publication history ends with ',$latest-rp-doi-version,' (',$latest-rp-doi,')')"/>
+               <xsl:text/>. Either there is a missing reviewed preprint publication event in the publication history, or the version DOI is incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M74"/>
@@ -4342,7 +4340,7 @@
       <xsl:variable name="copyright-holder" select="e:get-copyright-holder($author-contrib-group)"/>
       <xsl:variable name="license-type" select="license/@xlink:href"/>
       <xsl:variable name="is-first-version" select="if (ancestor::article-meta/article-id[@specific-use='version' and ends-with(.,'.1')]) then true()                                           else if (not(ancestor::article-meta/pub-history[event[date[@date-type='reviewed-preprint']]])) then true()                                           else false()"/>
-      <xsl:variable name="authoritative-year" select="if (not($is-first-version)) then ancestor::article-meta/pub-history/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]         else ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year[1]"/>
+      <xsl:variable name="authoritative-year" select="if (not($is-first-version)) then ancestor::article-meta/pub-history/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]         else if (ancestor::article-meta/pub-date[@date-type='publication' and @publication-format='electronic']) then ancestor::article-meta/pub-date[@date-type='publication' and @publication-format='electronic']/year         else string(year-from-date(current-date()))"/>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="copyright-statement"/>
