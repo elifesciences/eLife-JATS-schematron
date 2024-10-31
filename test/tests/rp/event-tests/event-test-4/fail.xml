@@ -1,0 +1,27 @@
+<?oxygen SCHSchema="event-test-4.sch"?>
+<!--Context: event
+Test: report    following-sibling::event[date[@iso-8601-date lt $date]]
+Message: Events in pub-history must be ordered chronologically in descending order. This event has a date () which is later than the date of a following event (). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <pub-history>
+        <event>
+          <date date-type="preprint" iso-8601-date="2079-01-01"/>
+        </event>
+        <event>
+          <date date-type="reviewed-preprint" iso-8601-date="2022-01-01"/>
+        </event>
+        <event>
+          <date date-type="reviewed-preprint" iso-8601-date="2023-01-01"/>
+        </event>
+      </pub-history>
+      <custom-meta-group>
+        <custom-meta specific-use="meta-only">
+          <meta-name>publishing-route</meta-name>
+          <meta-value>prc</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </article>
+</root>

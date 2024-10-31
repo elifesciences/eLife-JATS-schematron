@@ -1143,6 +1143,63 @@
           role="error" 
           id="elocation-id-test-2">The content of elocation-id must 'RP' followed by the 5 or 6 digit MSID (<value-of select="$msid"/>). This is not in that format (<value-of select="."/> != <value-of select="concat('RP',$msid)"/>).</report>
       </rule>
+      
+      <rule context="article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history" id="pub-history-tests">
+        <let name="version-from-doi" value="tokenize(ancestor::article-meta/article-id[@pub-id-type='doi' and @specific-use='version'][1],'\.')[last()]"/>
+        <let name="is-revised-rp" value="if ($version-from-doi=('','1')) then false() else true()"/>
+      
+      <assert test="parent::article-meta" 
+        role="error" 
+        id="pub-history-parent"><name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
+      
+      <assert test="count(event) ge 1" 
+        role="error" 
+        id="pub-history-events-1"><name/> in Reviewed Preprints must have at least one event element. This one has <value-of select="count(event)"/> event elements.</assert>
+      
+      <report test="count(event[self-uri[@content-type='preprint']]) != 1" 
+        role="error" 
+        id="pub-history-events-2"><name/> must contain one, and only one preprint event (an event with a self-uri[@content-type='preprint'] element). This one has <value-of select="count(event[self-uri[@content-type='preprint']])"/> preprint event elements.</report>
+      
+      <report test="$is-revised-rp and (count(event[self-uri[@content-type='reviewed-preprint']]) != (number($version-from-doi) - 1))" 
+        role="error" 
+        id="pub-history-events-3">The <name/> for revised reviewed preprints must have one event (with a self-uri[@content-type='reviewed-preprint'] element) element for each of the previous reviewed preprint versions. There are <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint publication events in pub-history,. but since this is reviewed preprint version <value-of select="$version-from-doi"/> there should be <value-of select="number($version-from-doi) - 1"/>.</report>
+      
+      <report test="count(event[self-uri[@content-type='reviewed-preprint']]) gt 3" 
+        role="warning" 
+        id="pub-history-events-4"><name/> has <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint event elements, which is unusual. Is this correct?</report>
+    </rule>
+      
+      <rule context="event" id="event-tests">
+      <let name="date" value="date[1]/@iso-8601-date"/>
+      
+      <assert test="event-desc" 
+        role="error" 
+        id="event-test-1"><name/> must contain an event-desc element. This one does not.</assert>
+      
+      <assert test="date[@date-type=('preprint','reviewed-preprint')]" 
+        role="error" 
+        id="event-test-2"><name/> must contain a date element with the attribute date-type="preprint" or date-type="reviewed-preprint". This one does not.</assert>
+      
+      <assert test="self-uri" 
+        role="error" 
+        id="event-test-3"><name/> must contain a self-uri element. This one does not.</assert>
+        
+        <report test="following-sibling::event[date[@iso-8601-date lt $date]]" 
+          role="error" 
+          id="event-test-4">Events in pub-history must be ordered chronologically in descending order. This event has a date (<value-of select="$date"/>) which is later than the date of a following event (<value-of select="preceding-sibling::event[date[@iso-8601-date lt $date]][1]"/>).</report>
+      
+      <report test="date and self-uri and date[1]/@date-type != self-uri[1]/@content-type" 
+        role="error" 
+        id="event-test-5">This event in pub-history has a date with the date-type <value-of select="date[1]/@date-type"/>, but a self-uri with the content-type <value-of select="self-uri[1]/@content-type"/>. These values should be the same, so one (or both of them) are incorrect.</report>
+    </rule>
+      
+      <rule context="event/*" id="event-child-tests">
+      <let name="allowed-elems" value="('event-desc','date','self-uri')"/>
+      
+      <assert test="name()=$allowed-elems" 
+        role="error" 
+        id="event-child"><name/> is not allowed in an event element. The only permitted children of event are <value-of select="string-join($allowed-elems,', ')"/>.</assert>
+    </rule>
     </pattern>
 
     <pattern id="abstracts">

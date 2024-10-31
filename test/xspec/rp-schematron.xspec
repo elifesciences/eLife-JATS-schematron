@@ -1888,6 +1888,122 @@
         <x:expect-not-assert id="elocation-id-test-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="pub-history-tests">
+      <x:scenario label="pub-history-parent-pass">
+        <x:context href="../tests/rp/pub-history-tests/pub-history-parent/pass.xml"/>
+        <x:expect-not-assert id="pub-history-parent" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-parent-fail">
+        <x:context href="../tests/rp/pub-history-tests/pub-history-parent/fail.xml"/>
+        <x:expect-assert id="pub-history-parent" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-events-1-pass">
+        <x:context href="../tests/rp/pub-history-tests/pub-history-events-1/pass.xml"/>
+        <x:expect-not-assert id="pub-history-events-1" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-events-1-fail">
+        <x:context href="../tests/rp/pub-history-tests/pub-history-events-1/fail.xml"/>
+        <x:expect-assert id="pub-history-events-1" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-events-2-pass">
+        <x:context href="../tests/rp/pub-history-tests/pub-history-events-2/pass.xml"/>
+        <x:expect-not-report id="pub-history-events-2" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-events-2-fail">
+        <x:context href="../tests/rp/pub-history-tests/pub-history-events-2/fail.xml"/>
+        <x:expect-report id="pub-history-events-2" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-events-3-pass">
+        <x:context href="../tests/rp/pub-history-tests/pub-history-events-3/pass.xml"/>
+        <x:expect-not-report id="pub-history-events-3" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-events-3-fail">
+        <x:context href="../tests/rp/pub-history-tests/pub-history-events-3/fail.xml"/>
+        <x:expect-report id="pub-history-events-3" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-events-4-pass">
+        <x:context href="../tests/rp/pub-history-tests/pub-history-events-4/pass.xml"/>
+        <x:expect-not-report id="pub-history-events-4" role="warning"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-events-4-fail">
+        <x:context href="../tests/rp/pub-history-tests/pub-history-events-4/fail.xml"/>
+        <x:expect-report id="pub-history-events-4" role="warning"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="event-tests">
+      <x:scenario label="event-test-1-pass">
+        <x:context href="../tests/rp/event-tests/event-test-1/pass.xml"/>
+        <x:expect-not-assert id="event-test-1" role="error"/>
+        <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-test-1-fail">
+        <x:context href="../tests/rp/event-tests/event-test-1/fail.xml"/>
+        <x:expect-assert id="event-test-1" role="error"/>
+        <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-test-2-pass">
+        <x:context href="../tests/rp/event-tests/event-test-2/pass.xml"/>
+        <x:expect-not-assert id="event-test-2" role="error"/>
+        <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-test-2-fail">
+        <x:context href="../tests/rp/event-tests/event-test-2/fail.xml"/>
+        <x:expect-assert id="event-test-2" role="error"/>
+        <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-test-3-pass">
+        <x:context href="../tests/rp/event-tests/event-test-3/pass.xml"/>
+        <x:expect-not-assert id="event-test-3" role="error"/>
+        <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-test-3-fail">
+        <x:context href="../tests/rp/event-tests/event-test-3/fail.xml"/>
+        <x:expect-assert id="event-test-3" role="error"/>
+        <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-test-4-pass">
+        <x:context href="../tests/rp/event-tests/event-test-4/pass.xml"/>
+        <x:expect-not-report id="event-test-4" role="error"/>
+        <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-test-4-fail">
+        <x:context href="../tests/rp/event-tests/event-test-4/fail.xml"/>
+        <x:expect-report id="event-test-4" role="error"/>
+        <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-test-5-pass">
+        <x:context href="../tests/rp/event-tests/event-test-5/pass.xml"/>
+        <x:expect-not-report id="event-test-5" role="error"/>
+        <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-test-5-fail">
+        <x:context href="../tests/rp/event-tests/event-test-5/fail.xml"/>
+        <x:expect-report id="event-test-5" role="error"/>
+        <x:expect-not-assert id="event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="event-child-tests">
+      <x:scenario label="event-child-pass">
+        <x:context href="../tests/rp/event-child-tests/event-child/pass.xml"/>
+        <x:expect-not-assert id="event-child" role="error"/>
+        <x:expect-not-assert id="event-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-child-fail">
+        <x:context href="../tests/rp/event-child-tests/event-child/fail.xml"/>
+        <x:expect-assert id="event-child" role="error"/>
+        <x:expect-not-assert id="event-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="abstract-checks">
       <x:scenario label="abstract-test-1-pass">
         <x:context href="../tests/rp/abstract-checks/abstract-test-1/pass.xml"/>

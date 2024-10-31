@@ -1,0 +1,30 @@
+<?oxygen SCHSchema="pub-history-events-3.sch"?>
+<!--Context: article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history
+Test: report    $is-revised-rp and (count(event[self-uri[@content-type='reviewed-preprint']]) != (number($version-from-doi) - 1))
+Message: The  for revised reviewed preprints must have one event (with a self-uri[@content-type='reviewed-preprint'] element) element for each of the previous reviewed preprint versions. There are  reviewed preprint publication events in pub-history,. but since this is reviewed preprint version  there should be . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front><journal-meta><journal-id>eLife</journal-id></journal-meta>
+      <article-meta>
+        <article-id pub-id-type="doi" specific-use="version">10.7554/eLife.12345.3</article-id>
+        <pub-history>
+          <event>
+            <self-uri content-type="preprint"/>
+          </event>
+          <event>
+            <self-uri content-type="reviewed-preprint"/>
+          </event>
+          <event>
+            <self-uri content-type="reviewed-preprint"/>
+          </event>
+        </pub-history>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>publishing-route</meta-name>
+            <meta-value>prc</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+  </article>
+</root>
