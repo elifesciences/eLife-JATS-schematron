@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="pub-history-events-1.sch"?>
+<!--Context: front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/pub-history
+Test: assert    count(event) ge 1
+Message:  in Reviewed Preprints must have at least one event element. This one has  event elements. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>

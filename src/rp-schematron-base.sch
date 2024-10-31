@@ -1143,6 +1143,31 @@
           role="error" 
           id="elocation-id-test-2">The content of elocation-id must 'RP' followed by the 5 or 6 digit MSID (<value-of select="$msid"/>). This is not in that format (<value-of select="."/> != <value-of select="concat('RP',$msid)"/>).</report>
       </rule>
+      
+      <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/pub-history" id="pub-history-tests">
+        <let name="version-from-doi" value="tokenize(ancestor::article-meta/article-id[@pub-id-type='doi' and @specific-use='version'][1],'\.')[last()]"/>
+        <let name="is-revised-rp" value="if ($version-from-doi=('','1')) then false() else true()"/>
+      
+      <assert test="parent::article-meta" 
+        role="error" 
+        id="pub-history-parent"><name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
+      
+      <assert test="count(event) ge 1" 
+        role="error" 
+        id="pub-history-events-1"><name/> in Reviewed Preprints must have at least one event element. This one has <value-of select="count(event)"/> event elements.</assert>
+      
+      <report test="count(event[self-uri[@content-type='preprint']]) != 1" 
+        role="error" 
+        id="pub-history-events-2"><name/> must contain one, and only one preprint event (an event with a self-uri[@content-type='preprint'] element). This one has <value-of select="count(event[self-uri[@content-type='preprint']])"/> preprint event elements.</report>
+      
+      <report test="$is-revised-rp and (count(event[self-uri[@content-type='reviewed-preprint']]) != (number($version-from-doi) - 1))" 
+        role="error" 
+        id="pub-history-events-3">The <name/> for revised reviewed preprints must have one event (with a self-uri[@content-type='reviewed-preprint'] element) element for each of the previous reviewed preprint versions. There are <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint publication events in pub-history,. but since this is reviewed preprint version <value-of select="$version-from-doi"/> there should be <value-of select="number($version-from-doi) - 1"/>.</report>
+      
+      <report test="count(event[self-uri[@content-type='reviewed-preprint']]) gt 4" 
+        role="warning" 
+        id="pub-history-events-4"><name/> has <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint event elements, which is unusual. Is this correct?</report>
+    </rule>
     </pattern>
 
     <pattern id="abstracts">
