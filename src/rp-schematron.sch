@@ -621,6 +621,13 @@
         <report test="parent::contrib-group[preceding-sibling::contrib-group and not(following-sibling::contrib-group)] and not(@contrib-type=('editor','senior_editor'))" role="error" id="contrib-4">[contrib-4] The second contrib-group in article-meta should (only) contain Reviewing and Senior Editors. This contrib is placed in that group, but it has the contrib-type <value-of select="@contrib-type"/>.</report>
       </rule></pattern>
 
+    <pattern id="abstract-checks-pattern"><rule context="abstract[parent::article-meta]" id="abstract-checks">
+        <let name="allowed-types" value="('structured','plain-language-summary','teaser','summary','graphical')"/>
+        <report test="preceding::abstract[not(@abstract-type)] and not(@abstract-type)" role="error" id="abstract-test-1">[abstract-test-1] There should only be one abstract without an abstract-type (for the common-garden abstract). This asbtract does not have an abstract-type, but there is also a preceding abstract without an abstract-type. One of these needs to be given an abstract-type with the allowed values ('structured' for a syrctured abstract with sections; 'plain-language-summary' for a digest or author provided plain summary; 'teaser' for an impact statement; 'summary' for a general summary that's in addition to the common-garden abstract; 'graphical' for a graphical abstract).</report>
+
+        <report test="@abstract-type and not(@abstract-type=$allowed-types)" role="error" id="abstract-test-2">[abstract-test-2] abstract has an abstract-type (<value-of select="@abstract-type"/>), but it's not one of the permiited values: <value-of select="string-join($allowed-types,'; ')"/>.</report>
+      </rule></pattern>
+
     <pattern id="front-permissions-tests-pattern"><rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions" id="front-permissions-tests">
 	  <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
 	  <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>

@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="abstract-test-2.sch"?>
+<!--Context: abstract[parent::article-meta]
+Test: report    @abstract-type and not(@abstract-type=$allowed-types)
+Message: abstract has an abstract-type (), but it's not one of the permiited values: . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <abstract>
+                <p/>
+            </abstract>
+            <abstract abstract-type="impact-statement">
+                <title>Teaser</title>
+                <p/>
+            </abstract>
+            <abstract abstract-type="fig">
+                <fig id="ufig1" position="float" orientation="portrait" fig-type="figure"/>
+            </abstract>
+        </article-meta>
+    </article>
+</root>

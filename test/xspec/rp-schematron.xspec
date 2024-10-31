@@ -1834,6 +1834,28 @@
         <x:expect-not-assert id="contrib-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="abstract-checks">
+      <x:scenario label="abstract-test-1-pass">
+        <x:context href="../tests/rp/abstract-checks/abstract-test-1/pass.xml"/>
+        <x:expect-not-report id="abstract-test-1" role="error"/>
+        <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-test-1-fail">
+        <x:context href="../tests/rp/abstract-checks/abstract-test-1/fail.xml"/>
+        <x:expect-report id="abstract-test-1" role="error"/>
+        <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-test-2-pass">
+        <x:context href="../tests/rp/abstract-checks/abstract-test-2/pass.xml"/>
+        <x:expect-not-report id="abstract-test-2" role="error"/>
+        <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-test-2-fail">
+        <x:context href="../tests/rp/abstract-checks/abstract-test-2/fail.xml"/>
+        <x:expect-report id="abstract-test-2" role="error"/>
+        <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="front-permissions-tests">
       <x:scenario label="permissions-test-4-pass">
         <x:context href="../tests/rp/front-permissions-tests/permissions-test-4/pass.xml"/>
