@@ -1168,6 +1168,30 @@
         role="warning" 
         id="pub-history-events-4"><name/> has <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint event elements, which is unusual. Is this correct?</report>
     </rule>
+      
+      <rule context="event" id="event-tests">
+      <let name="date" value="date[1]/@iso-8601-date"/>
+      
+      <assert test="event-desc" 
+        role="error" 
+        id="event-test-1"><name/> must contain an event-desc element. This one does not.</assert>
+      
+      <assert test="date[@date-type=('preprint','reviewed-preprint')]" 
+        role="error" 
+        id="event-test-2"><name/> must contain a date element with the attribute date-type="preprint" or date-type="reviewed-preprint". This one does not.</assert>
+      
+      <assert test="self-uri" 
+        role="error" 
+        id="event-test-3"><name/> must contain a self-uri element. This one does not.</assert>
+        
+        <report test="following-sibling::event[date[@iso-8601-date lt $date]]" 
+          role="error" 
+          id="event-test-4">Events in pub-history must be ordered chronologically in descending order. This event has a date (<value-of select="$date"/>) which is later than the date of a following event (<value-of select="preceding-sibling::event[date[@iso-8601-date lt $date]][1]"/>).</report>
+      
+      <report test="date and self-uri and date[1]/@date-type != self-uri[1]/@content-type" 
+        role="error" 
+        id="event-test-5">This event in pub-history has a date with the date-type <value-of select="date[1]/@date-type"/>, but a self-uri with the content-type <value-of select="self-uri[1]/@content-type"/>. These values should be the same, so one (or both of them) are incorrect.</report>
+    </rule>
     </pattern>
 
     <pattern id="abstracts">
