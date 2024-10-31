@@ -3906,9 +3906,9 @@
       <let name="pub-date" value=" if ($is-prc) then parent::article-meta/pub-history[1]/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]
         else parent::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year[1]"/>
       
-      <assert test=". = number($pub-date) - 2011" 
+      <report test=".='' or (. != (number($pub-date) - 2011))" 
         role="error" 
-        id="volume-test-1">Journal volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</assert>
+        id="volume-test-1">Journal volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</report>
     </rule>
   </pattern>
 

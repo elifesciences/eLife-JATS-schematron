@@ -1127,9 +1127,9 @@
          else if (ancestor::article-meta/pub-date[@date-type='publication' and @publication-format='electronic']) then ancestor::article-meta/pub-date[@date-type='publication' and @publication-format='electronic'][1]/year[1]
          else string(year-from-date(current-date()))"/>
       
-        <assert test=". = number($pub-date) - 2011" 
+        <report test=".='' or (. != (number($pub-date) - 2011))" 
           role="error" 
-          id="volume-test-1">volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</assert>
+          id="volume-test-1">volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</report>
       </rule>
       
       <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id" id="elocation-id-test">

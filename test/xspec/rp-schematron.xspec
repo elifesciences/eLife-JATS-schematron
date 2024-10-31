@@ -1857,12 +1857,12 @@
     <x:scenario label="volume-test">
       <x:scenario label="volume-test-1-pass">
         <x:context href="../tests/rp/volume-test/volume-test-1/pass.xml"/>
-        <x:expect-not-assert id="volume-test-1" role="error"/>
+        <x:expect-not-report id="volume-test-1" role="error"/>
         <x:expect-not-assert id="volume-test-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="volume-test-1-fail">
         <x:context href="../tests/rp/volume-test/volume-test-1/fail.xml"/>
-        <x:expect-assert id="volume-test-1" role="error"/>
+        <x:expect-report id="volume-test-1" role="error"/>
         <x:expect-not-assert id="volume-test-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
