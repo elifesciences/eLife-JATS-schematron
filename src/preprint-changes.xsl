@@ -678,8 +678,11 @@
                     <xsl:when test="matches(./lower-case(title[1]),'lay summary|digest')">
                         <xsl:attribute name="abstract-type">plain-language-summary</xsl:attribute>
                     </xsl:when>
-                    <xsl:when test="not(./sec) and matches(./lower-case(title[1]),'statement|summary')">
+                    <xsl:when test="not(./sec) and matches(./lower-case(title[1]),'statement|summary|teaser')">
                         <xsl:attribute name="abstract-type">teaser</xsl:attribute>
+                    </xsl:when>
+                    <xsl:when test="not(./sec) and (matches(./lower-case(title[1]),'highlight|importance|significance') or ./list)">
+                        <xsl:attribute name="abstract-type">summary</xsl:attribute>
                     </xsl:when>
                     <xsl:when test="./fig or matches(./lower-case(title[1]),'graphic')">
                         <xsl:attribute name="abstract-type">graphical</xsl:attribute>
