@@ -570,7 +570,7 @@
       </rule></pattern><pattern id="article-dois-pattern"><rule context="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']" id="article-dois">
       <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
       <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint']/@xlink:href"/>
-      <let name="latest-rp-doi-version" value="tokenize($latest-rp-doi,'\.')[last()]"/>
+      <let name="latest-rp-doi-version" value="if ($latest-rp-doi) then tokenize($latest-rp-doi,'\.')[last()]                                                else '0'"/>
       
       <assert test="starts-with(.,'10.7554/eLife.')" role="error" id="prc-article-dois-1">[prc-article-dois-1] Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="."/></assert>
       
@@ -586,7 +586,7 @@
       
       <report test="@specific-use and @specific-use!='version'" role="error" id="prc-article-dois-7">[prc-article-dois-7] Article DOI has a specific-use attribute value <value-of select="@specific-use"/>. The only permitted value is 'version'.</report>
       
-      <report test="@specific-use and number(substring-after(.,concat($article-id,'.'))) != (number($latest-rp-doi-version)+1)" role="error" id="final-prc-article-dois-8">[final-prc-article-dois-8] The version DOI for this Reviewed preprint version needs to end with a number that is one more than whatever number the last published reviewed preprint version DOI ends with. This version DOI ends with <value-of select="substring-after(.,concat($article-id,'.'))"/> (<value-of select="."/>), whereas the latest reviewed preprint DOI in the publication history ends with <value-of select="$latest-rp-doi-version"/> (<value-of select="$latest-rp-doi"/>). Either there is a missing reviewed preprint publication event in the publication history, or the version DOI is incorrect.</report>
+      <report test="@specific-use and number(substring-after(.,concat($article-id,'.'))) != (number($latest-rp-doi-version)+1)" role="error" id="final-prc-article-dois-8">[final-prc-article-dois-8] The version DOI for this Reviewed preprint version needs to end with a number that is one more than whatever number the last published reviewed preprint version DOI ends with. This version DOI ends with <value-of select="substring-after(.,concat($article-id,'.'))"/> (<value-of select="."/>), whereas <value-of select="if ($latest-rp-doi-version='0') then 'there is no previous reviewed preprint version in the pub-history' else concat('the latest reviewed preprint DOI in the publication history ends with ',$latest-rp-doi-version,' (',$latest-rp-doi,')')"/>. Either there is a missing reviewed preprint publication event in the publication history, or the version DOI is incorrect.</report>
       
       </rule></pattern><pattern id="author-notes-checks-pattern"><rule context="article/front/article-meta/author-notes" id="author-notes-checks">
         <report test="count(corresp) gt 1" role="error" id="multiple-corresp">[multiple-corresp] author-notes contains <value-of select="count(corresp)"/> corresp elements. There should only be one. Either these can be collated into one corresp or one of these is a footnote which has been incorrectly captured.</report>
@@ -640,7 +640,7 @@
       <let name="license-type" value="license/@xlink:href"/>
       <let name="is-first-version" value="if (ancestor::article-meta/article-id[@specific-use='version' and ends-with(.,'.1')]) then true()                                           else if (not(ancestor::article-meta/pub-history[event[date[@date-type='reviewed-preprint']]])) then true()                                           else false()"/>
       <!-- dirty - needs doing based on first date rather than just position? -->
-      <let name="authoritative-year" value="if (not($is-first-version)) then ancestor::article-meta/pub-history/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]         else ancestor::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year[1]"/>
+      <let name="authoritative-year" value="if (not($is-first-version)) then ancestor::article-meta/pub-history/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]         else year-from-date(current-date())"/>
       
       <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-1" test="copyright-statement" role="error" id="permissions-test-1">[permissions-test-1] permissions must contain copyright-statement in CC BY licensed articles.</assert>
       
