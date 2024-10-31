@@ -4345,6 +4345,19 @@
             <svrl:text>[abstract-test-5] abstract has a descendant fig, but it does not have the attribute abstract-type="graphical". If it is a graphical abstract, it should have that type. If it's not a graphical abstract the content should be moved out of &lt;abstract&gt;</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="@abstract-type=$allowed-types and ./@abstract-type = preceding-sibling::abstract/@abstract-type">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@abstract-type=$allowed-types and ./@abstract-type = preceding-sibling::abstract/@abstract-type">
+            <xsl:attribute name="id">abstract-test-6</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[abstract-test-6] abstract has the abstract-type '<xsl:text/>
+               <xsl:value-of select="@abstract-type"/>
+               <xsl:text/>', which is a permitted value, but it is not the only abstract with that type. It is very unlikely that two abstracts with the same abstract-type are required.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M80"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M80"/>

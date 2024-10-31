@@ -632,6 +632,8 @@
         <report test="matches(lower-case(title[1]),'data')" role="error" id="abstract-test-4">[abstract-test-4] abstract has a title that indicates it contains a data availability statement (<value-of select="title[1]"/>) If this is a data availability statement, it should be captured as a section in back.</report>
         
         <report test="descendant::fig and not(@abstract-type='graphical')" role="error" id="abstract-test-5">[abstract-test-5] abstract has a descendant fig, but it does not have the attribute abstract-type="graphical". If it is a graphical abstract, it should have that type. If it's not a graphical abstract the content should be moved out of &lt;abstract&gt;</report>
+        
+        <report test="@abstract-type=$allowed-types and ./@abstract-type = preceding-sibling::abstract/@abstract-type" role="warning" id="abstract-test-6">[abstract-test-6] abstract has the abstract-type '<value-of select="@abstract-type"/>', which is a permitted value, but it is not the only abstract with that type. It is very unlikely that two abstracts with the same abstract-type are required.</report>
       </rule></pattern><pattern id="abstract-child-checks-pattern"><rule context="abstract[parent::article-meta]/*" id="abstract-child-checks">
         <let name="allowed-children" value="('label','title','sec','p','fig','list')"/>
         <assert test="name()=$allowed-children" role="error" id="abstract-child-test-1">[abstract-child-test-1] <name/> is not permitted within abstract.</assert>
