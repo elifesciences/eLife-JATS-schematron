@@ -848,7 +848,7 @@
       </rule>
   </pattern>
   <pattern id="pub-history-tests-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/pub-history" id="pub-history-tests">
+    <rule context="article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history" id="pub-history-tests">
         <let name="version-from-doi" value="tokenize(ancestor::article-meta/article-id[@pub-id-type='doi' and @specific-use='version'][1],'\.')[last()]"/>
         <let name="is-revised-rp" value="if ($version-from-doi=('','1')) then false() else true()"/>
       
@@ -863,7 +863,7 @@
       
       <report test="$is-revised-rp and (count(event[self-uri[@content-type='reviewed-preprint']]) != (number($version-from-doi) - 1))" role="error" id="pub-history-events-3">The <name/> for revised reviewed preprints must have one event (with a self-uri[@content-type='reviewed-preprint'] element) element for each of the previous reviewed preprint versions. There are <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint publication events in pub-history,. but since this is reviewed preprint version <value-of select="$version-from-doi"/> there should be <value-of select="number($version-from-doi) - 1"/>.</report>
       
-      <report test="count(event[self-uri[@content-type='reviewed-preprint']]) gt 4" role="warning" id="pub-history-events-4">
+      <report test="count(event[self-uri[@content-type='reviewed-preprint']]) gt 3" role="warning" id="pub-history-events-4">
         <name/> has <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint event elements, which is unusual. Is this correct?</report>
     </rule>
   </pattern>
@@ -1326,7 +1326,7 @@
       <assert test="descendant::article/front/article-meta/contrib-group/contrib" role="error" id="contrib-checks-xspec-assert">article/front/article-meta/contrib-group/contrib must be present.</assert>
       <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/volume" role="error" id="volume-test-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/volume must be present.</assert>
       <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id" role="error" id="elocation-id-test-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id must be present.</assert>
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/pub-history" role="error" id="pub-history-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/pub-history must be present.</assert>
+      <assert test="descendant::article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history must be present.</assert>
       <assert test="descendant::abstract[parent::article-meta]" role="error" id="abstract-checks-xspec-assert">abstract[parent::article-meta] must be present.</assert>
       <assert test="descendant::abstract[parent::article-meta]/*" role="error" id="abstract-child-checks-xspec-assert">abstract[parent::article-meta]/* must be present.</assert>
       <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']//permissions" role="error" id="front-permissions-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']//permissions must be present.</assert>

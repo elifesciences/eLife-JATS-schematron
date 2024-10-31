@@ -4400,7 +4400,7 @@
    </xsl:template>
    <!--PATTERN pub-history-tests-pattern-->
    <!--RULE pub-history-tests-->
-   <xsl:template match="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/pub-history" priority="1000" mode="M82">
+   <xsl:template match="article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history" priority="1000" mode="M82">
       <xsl:variable name="version-from-doi" select="tokenize(ancestor::article-meta/article-id[@pub-id-type='doi' and @specific-use='version'][1],'\.')[last()]"/>
       <xsl:variable name="is-revised-rp" select="if ($version-from-doi=('','1')) then false() else true()"/>
       <!--ASSERT error-->
@@ -4474,8 +4474,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="count(event[self-uri[@content-type='reviewed-preprint']]) gt 4">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(event[self-uri[@content-type='reviewed-preprint']]) gt 4">
+      <xsl:if test="count(event[self-uri[@content-type='reviewed-preprint']]) gt 3">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(event[self-uri[@content-type='reviewed-preprint']]) gt 3">
             <xsl:attribute name="id">pub-history-events-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">

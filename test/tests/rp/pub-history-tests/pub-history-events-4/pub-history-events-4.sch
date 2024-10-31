@@ -144,15 +144,15 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="pub-history-tests-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/pub-history" id="pub-history-tests">
+    <rule context="article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history" id="pub-history-tests">
       <let name="version-from-doi" value="tokenize(ancestor::article-meta/article-id[@pub-id-type='doi' and @specific-use='version'][1],'\.')[last()]"/>
       <let name="is-revised-rp" value="if ($version-from-doi=('','1')) then false() else true()"/>
-      <report test="count(event[self-uri[@content-type='reviewed-preprint']]) gt 4" role="warning" id="pub-history-events-4">[pub-history-events-4] <name/> has <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint event elements, which is unusual. Is this correct?</report>
+      <report test="count(event[self-uri[@content-type='reviewed-preprint']]) gt 3" role="warning" id="pub-history-events-4">[pub-history-events-4] <name/> has <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint event elements, which is unusual. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/pub-history" role="error" id="pub-history-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/pub-history must be present.</assert>
+      <assert test="descendant::article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history must be present.</assert>
     </rule>
   </pattern>
 </schema>

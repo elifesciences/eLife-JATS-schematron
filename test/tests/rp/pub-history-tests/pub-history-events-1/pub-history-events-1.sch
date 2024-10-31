@@ -144,7 +144,7 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="pub-history-tests-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/pub-history" id="pub-history-tests">
+    <rule context="article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history" id="pub-history-tests">
       <let name="version-from-doi" value="tokenize(ancestor::article-meta/article-id[@pub-id-type='doi' and @specific-use='version'][1],'\.')[last()]"/>
       <let name="is-revised-rp" value="if ($version-from-doi=('','1')) then false() else true()"/>
       <assert test="count(event) ge 1" role="error" id="pub-history-events-1">[pub-history-events-1] <name/> in Reviewed Preprints must have at least one event element. This one has <value-of select="count(event)"/> event elements.</assert>
@@ -152,7 +152,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/pub-history" role="error" id="pub-history-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/pub-history must be present.</assert>
+      <assert test="descendant::article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history must be present.</assert>
     </rule>
   </pattern>
 </schema>
