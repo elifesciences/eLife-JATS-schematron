@@ -3962,6 +3962,32 @@
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="$is-reviewed-preprint and not(count(history)=1)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$is-reviewed-preprint and not(count(history)=1)">
+            <xsl:attribute name="id">history-presence</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[history-presence] Reviewed preprints must have (and only one) history. This one has <xsl:text/>
+               <xsl:value-of select="count(history)"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="$is-reviewed-preprint and not(count(pub-history)=1)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$is-reviewed-preprint and not(count(pub-history)=1)">
+            <xsl:attribute name="id">pub-history-presence</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pub-history-presence] Reviewed preprints must have (and only one) pub-history. This one has <xsl:text/>
+               <xsl:value-of select="count(pub-history)"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M71"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M71"/>
@@ -4467,15 +4493,15 @@
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="date[@date-type='sent-for-review']"/>
+         <xsl:when test="count(date[@date-type='sent-for-review']) = 1"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="date[@date-type='sent-for-review']">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(date[@date-type='sent-for-review']) = 1">
                <xsl:attribute name="id">prc-history-date-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[prc-history-date-test-1] history must contain date[@date-type='sent-for-review'] in Reviewed preprints.</svrl:text>
+               <svrl:text>[prc-history-date-test-1] history must contain one (and only one) date[@date-type='sent-for-review'] in Reviewed preprints.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>

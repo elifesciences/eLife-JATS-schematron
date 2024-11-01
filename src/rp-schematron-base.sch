@@ -994,6 +994,14 @@
         <report test="$is-reviewed-preprint and not(count(elocation-id)=1)" 
           role="error" 
           id="elocation-id-presence">Reviewed preprints must have (and only one) elocation-id. This one has <value-of select="count(elocation-id)"/>.</report>
+        
+        <report test="$is-reviewed-preprint and not(count(history)=1)" 
+          role="error" 
+          id="history-presence">Reviewed preprints must have (and only one) history. This one has <value-of select="count(history)"/>.</report>
+        
+        <report test="$is-reviewed-preprint and not(count(pub-history)=1)" 
+          role="error" 
+          id="pub-history-presence">Reviewed preprints must have (and only one) pub-history. This one has <value-of select="count(pub-history)"/>.</report>
       </rule>
 
          <rule context="article/front/article-meta/article-id" id="general-article-id-checks">
@@ -1146,9 +1154,9 @@
       
       <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/history" id="history-tests">
       
-        <assert test="date[@date-type='sent-for-review']" 
+        <assert test="count(date[@date-type='sent-for-review']) = 1" 
           role="error" 
-          id="prc-history-date-test-1">history must contain date[@date-type='sent-for-review'] in Reviewed preprints.</assert>
+          id="prc-history-date-test-1">history must contain one (and only one) date[@date-type='sent-for-review'] in Reviewed preprints.</assert>
       
         <report test="date[@date-type!='sent-for-review' or not(@date-type)]" 
           role="error" 

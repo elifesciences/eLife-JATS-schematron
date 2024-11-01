@@ -1587,6 +1587,26 @@
         <x:expect-report id="elocation-id-presence" role="error"/>
         <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="history-presence-pass">
+        <x:context href="../tests/rp/general-article-meta-checks/history-presence/pass.xml"/>
+        <x:expect-not-report id="history-presence" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="history-presence-fail">
+        <x:context href="../tests/rp/general-article-meta-checks/history-presence/fail.xml"/>
+        <x:expect-report id="history-presence" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-presence-pass">
+        <x:context href="../tests/rp/general-article-meta-checks/pub-history-presence/pass.xml"/>
+        <x:expect-not-report id="pub-history-presence" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-presence-fail">
+        <x:context href="../tests/rp/general-article-meta-checks/pub-history-presence/fail.xml"/>
+        <x:expect-report id="pub-history-presence" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="general-article-id-checks">
       <x:scenario label="article-id-3-pass">
