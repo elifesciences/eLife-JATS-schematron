@@ -145,7 +145,7 @@
   </xsl:function>
   <pattern id="pub-history-tests-pattern">
     <rule context="article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history" id="pub-history-tests">
-      <let name="version-from-doi" value="tokenize(ancestor::article-meta/article-id[@pub-id-type='doi' and @specific-use='version'][1],'\.')[last()]"/>
+      <let name="version-from-doi" value="replace(ancestor::article-meta[1]/article-id[@pub-id-type='doi' and @specific-use='version'][1],'^.*\.','')"/>
       <let name="is-revised-rp" value="if ($version-from-doi=('','1')) then false() else true()"/>
       <report test="count(event[self-uri[@content-type='reviewed-preprint']]) gt 3" role="warning" id="pub-history-events-4">[pub-history-events-4] <name/> has <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint event elements, which is unusual. Is this correct?</report>
     </rule>

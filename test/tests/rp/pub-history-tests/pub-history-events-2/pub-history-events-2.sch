@@ -145,7 +145,7 @@
   </xsl:function>
   <pattern id="pub-history-tests-pattern">
     <rule context="article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history" id="pub-history-tests">
-      <let name="version-from-doi" value="tokenize(ancestor::article-meta/article-id[@pub-id-type='doi' and @specific-use='version'][1],'\.')[last()]"/>
+      <let name="version-from-doi" value="replace(ancestor::article-meta[1]/article-id[@pub-id-type='doi' and @specific-use='version'][1],'^.*\.','')"/>
       <let name="is-revised-rp" value="if ($version-from-doi=('','1')) then false() else true()"/>
       <report test="count(event[self-uri[@content-type='preprint']]) != 1" role="error" id="pub-history-events-2">[pub-history-events-2] <name/> must contain one, and only one preprint event (an event with a self-uri[@content-type='preprint'] element). This one has <value-of select="count(event[self-uri[@content-type='preprint']])"/> preprint event elements.</report>
     </rule>
