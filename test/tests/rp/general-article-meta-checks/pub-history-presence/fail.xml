@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="pub-history-presence.sch"?>
+<!--Context: article/front/article-meta
+Test: report    $is-reviewed-preprint and not(count(pub-history)=1)
+Message: Reviewed preprints must have (and only one) pub-history. This one has . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front>
+      <journal-meta>
+        <journal-id>eLife</journal-id>
+      </journal-meta>
+     <article-meta>
+      <history/>
+     
+    </article-meta>
+    </front>
+  </article>
+</root>

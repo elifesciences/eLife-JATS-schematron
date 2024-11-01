@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="final-fig-biorender-test-1.sch"?>
 <!--Context: fig/caption/p[not(child::supplementary-material)] | fig/attrib
-Test: report    descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]
+Test: report    not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')]) and (descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com')] or matches(lower-case(.),'biorender.com'))
 Message: Caption or attrib for  contains a BioRender link, but it does not look like a BioRender 'unique figure citation URL'. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>

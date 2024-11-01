@@ -145,7 +145,7 @@
   </xsl:function>
   <pattern id="pub-history-tests-pattern">
     <rule context="article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history" id="pub-history-tests">
-      <let name="version-from-doi" value="tokenize(ancestor::article-meta/article-id[@pub-id-type='doi' and @specific-use='version'][1],'\.')[last()]"/>
+      <let name="version-from-doi" value="replace(ancestor::article-meta[1]/article-id[@pub-id-type='doi' and @specific-use='version'][1],'^.*\.','')"/>
       <let name="is-revised-rp" value="if ($version-from-doi=('','1')) then false() else true()"/>
       <assert test="parent::article-meta" role="error" id="pub-history-parent">[pub-history-parent] <name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
     </rule>

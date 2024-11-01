@@ -1,0 +1,46 @@
+<?oxygen SCHSchema="rp-event-test-3.sch"?>
+<!--Context: event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']
+Test: report    $later-rp-events/date/@iso-8601-date = $rp-pub-date
+Message: Reviewed preprint publication date () in the publication history (for RP version ) is the same or an earlier date than publication date for a later reviewed preprint version date ( for version(s) ). This must be incorrect. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <history>
+        <date date-type="sent-for-review" iso-8601-date="2022-11-01">
+          <day>01</day>
+          <month>11</month>
+          <year>2022</year>
+        </date>
+      </history>
+      <pub-history>
+        <event>
+          <event-desc>Preprint posted</event-desc>
+          <date date-type="preprint" iso-8601-date="2022-11-01">
+            <day>01</day>
+            <month>11</month>
+            <year>2022</year>
+          </date>
+          <self-uri content-type="preprint" xlink:href="https://doi.org/10.1101/2022.11.01.514717"/>
+        </event>
+        <event>
+          <event-desc>Reviewed preprint v1</event-desc>
+          <date date-type="reviewed-preprint" iso-8601-date="2022-12-01">
+            <day>01</day>
+            <month>12</month>
+            <year>2022</year>
+          </date>
+          <self-uri content-type="reviewed-preprint" xlink:href="https://doi.org/10.7554/eLife.84338.1"/>
+        </event>
+        <event>
+          <event-desc>Reviewed preprint v2</event-desc>
+          <date date-type="reviewed-preprint" iso-8601-date="2023-01-01">
+            <day>01</day>
+            <month>01</month>
+            <year>2023</year>
+          </date>
+          <self-uri content-type="reviewed-preprint" xlink:href="https://doi.org/10.7554/eLife.84338.2"/>
+        </event>
+      </pub-history>
+    </article-meta>
+  </article>
+</root>

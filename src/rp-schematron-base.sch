@@ -178,7 +178,7 @@
           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()
           else $x/text(),'')"/>
       <let name="is-revised-rp" value="if (descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
-        <let name="rp-version" value="tokenize(descendant::article-meta/article-id[@specific-use='version'][1],'\.')[last()]"/>
+        <let name="rp-version" value="replace(descendant::article-meta[1]/article-id[@specific-use='version'][1],'^.*\.','')"/>
 
        <report test="matches(lower-case($article-text),'biorend[eo]r')" 
         role="warning" 
@@ -994,6 +994,14 @@
         <report test="$is-reviewed-preprint and not(count(elocation-id)=1)" 
           role="error" 
           id="elocation-id-presence">Reviewed preprints must have (and only one) elocation-id. This one has <value-of select="count(elocation-id)"/>.</report>
+        
+        <report test="$is-reviewed-preprint and not(count(history)=1)" 
+          role="error" 
+          id="history-presence">Reviewed preprints must have (and only one) history. This one has <value-of select="count(history)"/>.</report>
+        
+        <report test="$is-reviewed-preprint and not(count(pub-history)=1)" 
+          role="error" 
+          id="pub-history-presence">Reviewed preprints must have (and only one) pub-history. This one has <value-of select="count(pub-history)"/>.</report>
       </rule>
 
          <rule context="article/front/article-meta/article-id" id="general-article-id-checks">
@@ -1009,9 +1017,9 @@
       </rule>
       
       <rule context="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']" id="article-dois">
-      <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
+      <let name="article-id" value="parent::article-meta[1]/article-id[@pub-id-type='publisher-id'][1]"/>
       <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint']/@xlink:href"/>
-      <let name="latest-rp-doi-version" value="if ($latest-rp-doi) then tokenize($latest-rp-doi,'\.')[last()]
+      <let name="latest-rp-doi-version" value="if ($latest-rp-doi) then replace($latest-rp-doi,'^.*\.','')
                                                else '0'"/>
       
       <assert test="starts-with(.,'10.7554/eLife.')" 
@@ -1144,8 +1152,20 @@
           id="elocation-id-test-2">The content of elocation-id must 'RP' followed by the 5 or 6 digit MSID (<value-of select="$msid"/>). This is not in that format (<value-of select="."/> != <value-of select="concat('RP',$msid)"/>).</report>
       </rule>
       
+      <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/history" id="history-tests">
+      
+        <assert test="count(date[@date-type='sent-for-review']) = 1" 
+          role="error" 
+          id="prc-history-date-test-1">history must contain one (and only one) date[@date-type='sent-for-review'] in Reviewed preprints.</assert>
+      
+        <report test="date[@date-type!='sent-for-review' or not(@date-type)]" 
+          role="error" 
+          id="prc-history-date-test-2">Reviewed preprints can only have sent-for-review dates in their history. This one has a <value-of select="if (date[@date-type!='sent-for-review']) then date[@date-type!='sent-for-review']/@date-type else 'undefined'"/> date.</report>
+      
+    </rule>
+      
       <rule context="article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history" id="pub-history-tests">
-        <let name="version-from-doi" value="tokenize(ancestor::article-meta/article-id[@pub-id-type='doi' and @specific-use='version'][1],'\.')[last()]"/>
+        <let name="version-from-doi" value="replace(ancestor::article-meta[1]/article-id[@pub-id-type='doi' and @specific-use='version'][1],'^.*\.','')"/>
         <let name="is-revised-rp" value="if ($version-from-doi=('','1')) then false() else true()"/>
       
       <assert test="parent::article-meta" 
@@ -1199,6 +1219,116 @@
       <assert test="name()=$allowed-elems" 
         role="error" 
         id="event-child"><name/> is not allowed in an event element. The only permitted children of event are <value-of select="string-join($allowed-elems,', ')"/>.</assert>
+    </rule>
+      
+      <rule context="event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" id="rp-event-tests">
+      <let name="rp-link" value="self-uri[@content-type='reviewed-preprint']/@xlink:href"/>
+      <let name="rp-version" value="replace($rp-link,'^.*\.','')"/>
+      <let name="rp-pub-date" value="date[@date-type='reviewed-preprint']/@iso-8601-date"/>
+      <let name="sent-for-review-date" value="ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date"/>
+      <let name="preprint-pub-date" value="parent::pub-history/event/date[@date-type='preprint']/@iso-8601-date"/>
+      <let name="later-rp-events" value="parent::pub-history/event[date[@date-type='reviewed-preprint'] and replace(self-uri[@content-type='reviewed-preprint'][1]/@xlink:href,'^.*\.','') gt $rp-version]"/>
+      
+      <report test="($preprint-pub-date and $preprint-pub-date != '') and
+        $preprint-pub-date ge $rp-pub-date"
+        role="error" 
+        id="rp-event-test-1">Reviewed preprint publication date (<value-of select="$rp-pub-date"/>) in the publication history (for RP version <value-of select="$rp-version"/>) is the same or an earlier date than the preprint posted date (<value-of select="$preprint-pub-date"/>), which must be incorrect.</report>
+      
+      <report test="($sent-for-review-date and $sent-for-review-date != '') and
+        $sent-for-review-date ge $rp-pub-date"
+        role="error" 
+        id="rp-event-test-2">Reviewed preprint publication date (<value-of select="$rp-pub-date"/>) in the publication history (for RP version <value-of select="$rp-version"/>) is the same or an earlier date than the sent for review date (<value-of select="$sent-for-review-date"/>), which must be incorrect.</report>
+      
+      <report test="$later-rp-events/date/@iso-8601-date = $rp-pub-date"
+        role="error" 
+        id="rp-event-test-3">Reviewed preprint publication date (<value-of select="$rp-pub-date"/>) in the publication history (for RP version <value-of select="$rp-version"/>) is the same or an earlier date than publication date for a later reviewed preprint version date (<value-of select="$later-rp-events/date/@iso-8601-date[. = $rp-pub-date]"/> for version(s) <value-of select="$later-rp-events/self-uri[@content-type='reviewed-preprint'][1]/@xlink:href/replace(.,'^.*\.','')"/>). This must be incorrect.</report>
+        
+      <assert test="self-uri[@content-type='editor-report']"
+        role="error" 
+        id="rp-event-test-4">The event-desc for Reviewed preprint publication events must have a &lt;self-uri content-type="editor-report"> (which has a DOI link to the eLife Assessment for that version).</assert>
+        
+     <assert test="self-uri[@content-type='referee-report']"
+        role="error" 
+        id="rp-event-test-5">The event-desc for Reviewed preprint publication events must have at least one &lt;self-uri content-type="referee-report"> (which has a DOI link to a public review for that version).</assert>
+    </rule>
+      
+      <rule context="event-desc" id="event-desc-tests">
+      
+      <report test="parent::event/self-uri[1][@content-type='preprint'] and .!='Preprint posted'" 
+        role="error" 
+        id="event-desc-content"><name/> that's a child of a preprint event must contain the text 'Preprint posted'. This one does not (<value-of select="."/>).</report>
+      
+      <report test="parent::event/self-uri[1][@content-type='reviewed-preprint'] and .!=concat('Reviewed preprint v',replace(parent::event[1]/self-uri[1][@content-type='reviewed-preprint']/@xlink:href,'^.*\.',''))" 
+        role="error" 
+        id="event-desc-content-2"><name/> that's a child of a Reviewed preprint event must contain the text 'Reviewed preprint v' followwd by the verison number for that Reviewed preprint version. This one does not (<value-of select="."/> != <value-of select="concat('Reviewed preprint v',replace(parent::event[1]/self-uri[1][@content-type='reviewed-preprint']/@xlink:href,'^.*\.',''))"/>).</report>
+      
+      <report test="*" 
+        role="error" 
+        id="event-desc-elems"><name/> cannot contain elements. This one has the following: <value-of select="string-join(distinct-values(*/name()),', ')"/>.</report>
+      
+    </rule>
+      
+      <rule context="event/date" id="event-date-tests">
+      
+      <assert test="day and month and year" 
+        role="error" 
+        id="event-date-child"><name/> in event must have a day, month and year element. This one does not.</assert>
+      
+      <assert test="@date-type=('preprint','reviewed-preprint')" 
+        role="error" 
+        id="event-date-type"><name/> in event must have a date-type attribute with the value 'preprint' or 'reviewed-preprint'.</assert>
+    </rule>
+      
+      <rule context="event/self-uri" id="event-self-uri-tests">
+      <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
+      
+      <assert test="@content-type=('preprint','reviewed-preprint','editor-report','referee-report','author-comment')" 
+        role="error" 
+        id="event-self-uri-content-type"><name/> in event must have the attribute content-type="preprint" or content-type="reviewed-preprint". This one does not.</assert>
+      
+      <report test="@content-type=('preprint','reviewed-preprint') and (* or normalize-space(.)!='')" 
+        role="error" 
+        id="event-self-uri-content-1"><name/> with the content-type <value-of select="@content-type"/> must not have any child elements or text. This one does.</report>
+        
+      <report test="@content-type='editor-report' and (* or not(matches(.,'^eLife [Aa]ssessment$')))" 
+        role="error" 
+        id="event-self-uri-content-2"><name/> with the content-type <value-of select="@content-type"/> must not have any child elements, and contain the text 'eLife Assessment'. This one does not.</report>
+        
+      <report test="@content-type='referee-report' and (* or .='')" 
+        role="error" 
+        id="event-self-uri-content-3"><name/> with the content-type <value-of select="@content-type"/> must not have any child elements, and contain the title of the public review as text. This self-uri either has child elements or it is empty.</report>
+        
+      <report test="@content-type='author-comment' and (* or not(matches(.,'^Author [Rr]esponse:?\s?$')))" 
+        role="error" 
+        id="event-self-uri-content-4"><name/> with the content-type <value-of select="@content-type"/> must not have any child elements, and contain the title of the text 'Author response'. This one does not.</report>
+      
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$')" 
+        role="error" 
+        id="event-self-uri-href-1"><name/> in event must have an xlink:href attribute containing a link to the preprint. This one does not have a valid URI - <value-of select="@xlink:href"/>.</assert>
+      
+      <report test="matches(lower-case(@xlink:href),'(bio|med)rxiv')" 
+        role="error" 
+        id="event-self-uri-href-2"><name/> in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. bioRxiv and medRxiv preprint have dois, and this one points to one of those, but it is not a doi - <value-of select="@xlink:href"/>.</report>
+      
+      <assert test="matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')" 
+        role="warning" 
+        id="event-self-uri-href-3"><name/> in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. This one is not a doi - <value-of select="@xlink:href"/>. Please check whether there is a doi that can be used instead.</assert>
+      
+      <report test="@content-type='reviewed-preprint' and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]$'))" 
+        role="error" 
+        id="event-self-uri-href-4"><name/> in event has the attribute content-type="reviewed-preprint", but the xlink:href attribute does not contain an eLife version specific DOI - <value-of select="@xlink:href"/>.</report>
+      
+      <report test="(@content-type!='reviewed-preprint' or not(@content-type)) and matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.\d$')" 
+        role="error" 
+        id="event-self-uri-href-5"><name/> in event does not have the attribute content-type="reviewed-preprint", but the xlink:href attribute contains an eLife version specific DOI - <value-of select="@xlink:href"/>. If it's a preprint event, the link should be to a preprint. If it's an event for reviewed preprint publication, then it should have the attribute content-type!='reviewed-preprint'.</report>
+      
+      <report test="@content-type='reviewed-preprint' and not(contains(@xlink:href,$article-id))" 
+        role="error" 
+        id="event-self-uri-href-6"><name/> in event the attribute content-type="reviewed-preprint", but the xlink:href attribute value (<value-of select="@xlink:href"/>) does not contain the article id (<value-of select="$article-id"/>) which must be incorrect, since this should be the version DOI for the reviewed preprint version.</report>
+        
+      <report test="@content-type=('editor-report','referee-report','author-comment') and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]\.sa\d+$'))" 
+        role="error" 
+        id="event-self-uri-href-7"><name/> in event has the attribute content-type="<value-of select="@content-type"/>", but the xlink:href attribute does not contain an eLife peer review DOI - <value-of select="@xlink:href"/>.</report>
     </rule>
     </pattern>
 

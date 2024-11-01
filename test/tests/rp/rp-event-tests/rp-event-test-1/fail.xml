@@ -1,0 +1,37 @@
+<?oxygen SCHSchema="rp-event-test-1.sch"?>
+<!--Context: event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']
+Test: report    ($preprint-pub-date and $preprint-pub-date != '') and $preprint-pub-date ge $rp-pub-date
+Message: Reviewed preprint publication date () in the publication history (for RP version ) is the same or an earlier date than the preprint posted date (), which must be incorrect. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <history>
+        <date date-type="sent-for-review" iso-8601-date="2022-11-01">
+          <day>01</day>
+          <month>11</month>
+          <year>2022</year>
+        </date>
+      </history>
+      <pub-history>
+        <event>
+          <event-desc>This manuscript was published as a preprint.</event-desc>
+          <date date-type="preprint" iso-8601-date="2022-11-01">
+            <day>01</day>
+            <month>11</month>
+            <year>2022</year>
+          </date>
+          <self-uri content-type="preprint" xlink:href="https://doi.org/10.1101/2022.11.01.514717"/>
+        </event>
+        <event>
+          <event-desc>This manuscript was published as a reviewed preprint.</event-desc>
+          <date date-type="reviewed-preprint" iso-8601-date="2022-11-01">
+            <day>01</day>
+            <month>11</month>
+            <year>2022</year>
+          </date>
+          <self-uri content-type="reviewed-preprint" xlink:href="https://doi.org/10.7554/eLife.84338.1"/>
+        </event>
+      </pub-history>
+    </article-meta>
+  </article>
+</root>
