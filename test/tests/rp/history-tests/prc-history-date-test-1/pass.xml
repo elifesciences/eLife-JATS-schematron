@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="prc-history-date-test-1.sch"?>
 <!--Context: front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/history
-Test: assert    date[@date-type='sent-for-review']
-Message: history must contain date[@date-type='sent-for-review'] in Reviewed preprints. -->
+Test: assert    count(date[@date-type='sent-for-review']) = 1
+Message: history must contain one (and only one) date[@date-type='sent-for-review'] in Reviewed preprints. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

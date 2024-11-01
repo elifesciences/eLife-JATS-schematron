@@ -145,7 +145,7 @@
   </xsl:function>
   <pattern id="history-tests-pattern">
     <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/history" id="history-tests">
-      <assert test="date[@date-type='sent-for-review']" role="error" id="prc-history-date-test-1">[prc-history-date-test-1] history must contain date[@date-type='sent-for-review'] in Reviewed preprints.</assert>
+      <assert test="count(date[@date-type='sent-for-review']) = 1" role="error" id="prc-history-date-test-1">[prc-history-date-test-1] history must contain one (and only one) date[@date-type='sent-for-review'] in Reviewed preprints.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
