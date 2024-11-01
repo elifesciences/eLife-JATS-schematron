@@ -19187,8 +19187,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]">
+      <xsl:if test="not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')]) and (descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com')] or matches(lower-case(.),'biorender.com'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')]) and (descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com')] or matches(lower-case(.),'biorender.com'))">
             <xsl:attribute name="id">final-fig-biorender-test-1</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty?shr=rqdavyty#hquuu-final-fig-biorender-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>

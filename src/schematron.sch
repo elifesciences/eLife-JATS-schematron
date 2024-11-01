@@ -6187,12 +6187,12 @@ else self::*/local-name() = $allowed-p-blocks"
         id="fig-caption-test-4">Caption or attrib for <value-of select="$label"/> contains what looks like a mention of BioRender. Since the overall license for the article is CC0, and BioRender can (only) be licensed CC BY, a permissions statement needs to be added (e.g. © <value-of select="year-from-date(current-date())"/>, {authors}. Parts of this image created with BioRender are made available under a Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.).</report>
 
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty?shr=rqdavyty#hjmtk-pre-fig-biorender-test-1" 
-        test="descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]" 
+        test="not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')]) and (descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com')] or matches(lower-case(.),'biorender.com'))" 
         role="warning" 
         id="pre-fig-biorender-test-1">Caption or attrib for <value-of select="$label"/> contains a BioRender link, but it does not look like a BioRender 'unique figure citation URL'. If one has not been provided by the authors please add the relevant query asking for one.</report>
 
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty?shr=rqdavyty#hquuu-final-fig-biorender-test-1" 
-        test="descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]" 
+        test="not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')]) and (descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com')] or matches(lower-case(.),'biorender.com'))" 
         role="error" 
         id="final-fig-biorender-test-1">Caption or attrib for <value-of select="$label"/> contains a BioRender link, but it does not look like a BioRender 'unique figure citation URL'.</report>
 

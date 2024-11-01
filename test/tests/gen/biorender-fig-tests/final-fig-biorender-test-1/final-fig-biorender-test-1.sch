@@ -1340,7 +1340,7 @@
     <rule context="fig/caption/p[not(child::supplementary-material)] | fig/attrib" id="biorender-fig-tests">
       <let name="is-cc0" value="contains(lower-case(ancestor::article[1]/front[1]/descendant::permissions[1]/license[1]/@xlink:href),'creativecommons.org/publicdomain/zero/')"/>
       <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>
-      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty?shr=rqdavyty#hquuu-final-fig-biorender-test-1" test="descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com') and not(matches(lower-case(@xlink:href),'biorender.com/[a-z\d]'))]" role="error" id="final-fig-biorender-test-1">Caption or attrib for <value-of select="$label"/> contains a BioRender link, but it does not look like a BioRender 'unique figure citation URL'.</report>
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty?shr=rqdavyty#hquuu-final-fig-biorender-test-1" test="not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')]) and (descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com')] or matches(lower-case(.),'biorender.com'))" role="error" id="final-fig-biorender-test-1">Caption or attrib for <value-of select="$label"/> contains a BioRender link, but it does not look like a BioRender 'unique figure citation URL'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
