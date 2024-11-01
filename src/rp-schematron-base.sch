@@ -1305,6 +1305,10 @@
       <report test="@content-type='reviewed-preprint' and not(contains(@xlink:href,$article-id))" 
         role="error" 
         id="event-self-uri-href-6"><name/> in event the attribute content-type="reviewed-preprint", but the xlink:href attribute value (<value-of select="@xlink:href"/>) does not contain the article id (<value-of select="$article-id"/>) which must be incorrect, since this should be the version DOI for the reviewed preprint version.</report>
+        
+      <report test="@content-type=('editor-report','referee-report','author-comment') and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]\.sa\d+$'))" 
+        role="error" 
+        id="event-self-uri-href-7"><name/> in event has the attribute content-type="<value-of select="@content-type"/>", but the xlink:href attribute does not contain an eLife peer review DOI - <value-of select="@xlink:href"/>.</report>
     </rule>
     </pattern>
 

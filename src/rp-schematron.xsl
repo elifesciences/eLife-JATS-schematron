@@ -5037,6 +5037,23 @@
                <xsl:text/>) which must be incorrect, since this should be the version DOI for the reviewed preprint version.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="@content-type=('editor-report','referee-report','author-comment') and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]\.sa\d+$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@content-type=('editor-report','referee-report','author-comment') and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]\.sa\d+$'))">
+            <xsl:attribute name="id">event-self-uri-href-7</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[event-self-uri-href-7] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in event has the attribute content-type="<xsl:text/>
+               <xsl:value-of select="@content-type"/>
+               <xsl:text/>", but the xlink:href attribute does not contain an eLife peer review DOI - <xsl:text/>
+               <xsl:value-of select="@xlink:href"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M88"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M88"/>
