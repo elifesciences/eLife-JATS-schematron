@@ -1222,6 +1222,14 @@
       <report test="$later-rp-events/date/@iso-8601-date = $rp-pub-date"
         role="error" 
         id="rp-event-test-3">Reviewed preprint publication date (<value-of select="$rp-pub-date"/>) in the publication history (for RP version <value-of select="$rp-version"/>) is the same or an earlier date than publication date for a later reviewed preprint version date (<value-of select="$later-rp-events/date/@iso-8601-date[. = $rp-pub-date]"/> for version(s) <value-of select="$later-rp-events/self-uri[@content-type='reviewed-preprint'][1]/@xlink:href/replace(.,'^.*\.','')"/>). This must be incorrect.</report>
+        
+      <assert test="self-uri[@content-type='editor-report']"
+        role="error" 
+        id="rp-event-test-4">The event-desc for Reviewed preprint publication events must have a &lt;self-uri content-type="editor-report"> (which has a DOI link to the eLife Assessment for that version).</assert>
+        
+     <assert test="self-uri[@content-type='referee-report']"
+        role="error" 
+        id="rp-event-test-5">The event-desc for Reviewed preprint publication events must have at least one &lt;self-uri content-type="referee-report"> (which has a DOI link to a public review for that version).</assert>
     </rule>
     </pattern>
 

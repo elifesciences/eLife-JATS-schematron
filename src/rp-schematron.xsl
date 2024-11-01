@@ -4699,6 +4699,34 @@
                <xsl:text/>). This must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="self-uri[@content-type='editor-report']"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="self-uri[@content-type='editor-report']">
+               <xsl:attribute name="id">rp-event-test-4</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[rp-event-test-4] The event-desc for Reviewed preprint publication events must have a &lt;self-uri content-type="editor-report"&gt; (which has a DOI link to the eLife Assessment for that version).</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="self-uri[@content-type='referee-report']"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="self-uri[@content-type='referee-report']">
+               <xsl:attribute name="id">rp-event-test-5</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[rp-event-test-5] The event-desc for Reviewed preprint publication events must have at least one &lt;self-uri content-type="referee-report"&gt; (which has a DOI link to a public review for that version).</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M85"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M85"/>

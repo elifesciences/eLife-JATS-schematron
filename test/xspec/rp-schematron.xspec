@@ -2035,6 +2035,26 @@
         <x:expect-report id="rp-event-test-3" role="error"/>
         <x:expect-not-assert id="rp-event-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="rp-event-test-4-pass">
+        <x:context href="../tests/rp/rp-event-tests/rp-event-test-4/pass.xml"/>
+        <x:expect-not-assert id="rp-event-test-4" role="error"/>
+        <x:expect-not-assert id="rp-event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="rp-event-test-4-fail">
+        <x:context href="../tests/rp/rp-event-tests/rp-event-test-4/fail.xml"/>
+        <x:expect-assert id="rp-event-test-4" role="error"/>
+        <x:expect-not-assert id="rp-event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="rp-event-test-5-pass">
+        <x:context href="../tests/rp/rp-event-tests/rp-event-test-5/pass.xml"/>
+        <x:expect-not-assert id="rp-event-test-5" role="error"/>
+        <x:expect-not-assert id="rp-event-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="rp-event-test-5-fail">
+        <x:context href="../tests/rp/rp-event-tests/rp-event-test-5/fail.xml"/>
+        <x:expect-assert id="rp-event-test-5" role="error"/>
+        <x:expect-not-assert id="rp-event-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="abstract-checks">
       <x:scenario label="abstract-test-1-pass">

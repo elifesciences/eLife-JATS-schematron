@@ -1,7 +1,7 @@
-<?oxygen SCHSchema="rp-event-test-3.sch"?>
+<?oxygen SCHSchema="rp-event-test-5.sch"?>
 <!--Context: event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']
-Test: report    $later-rp-events/date/@iso-8601-date = $rp-pub-date
-Message: Reviewed preprint publication date () in the publication history (for RP version ) is the same or an earlier date than publication date for a later reviewed preprint version date ( for version(s) ). This must be incorrect. -->
+Test: assert    self-uri[@content-type='referee-report']
+Message: The event-desc for Reviewed preprint publication events must have at least one <self-uri content-type="referee-report"> (which has a DOI link to a public review for that version). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <article-meta>
