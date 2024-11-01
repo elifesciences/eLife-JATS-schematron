@@ -847,6 +847,15 @@
         <report test="$msid and not(.=concat('RP',$msid))" role="error" id="elocation-id-test-2">The content of elocation-id must 'RP' followed by the 5 or 6 digit MSID (<value-of select="$msid"/>). This is not in that format (<value-of select="."/> != <value-of select="concat('RP',$msid)"/>).</report>
       </rule>
   </pattern>
+  <pattern id="history-tests-pattern">
+    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/history" id="history-tests">
+      
+        <assert test="date[@date-type='sent-for-review']" role="error" id="prc-history-date-test-1">history must contain date[@date-type='sent-for-review'] in Reviewed preprints.</assert>
+      
+        <report test="date[@date-type!='sent-for-review' or not(@date-type)]" role="error" id="prc-history-date-test-2">Reviewed preprints can only have sent-for-review dates in their history. This one has a <value-of select="if (date[@date-type!='sent-for-review']) then date[@date-type!='sent-for-review']/@date-type else 'undefined'"/> date.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="pub-history-tests-pattern">
     <rule context="article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history" id="pub-history-tests">
         <let name="version-from-doi" value="replace(ancestor::article-meta[1]/article-id[@pub-id-type='doi' and @specific-use='version'][1],'^.*\.','')"/>
@@ -1437,6 +1446,7 @@
       <assert test="descendant::article/front/article-meta/contrib-group/contrib" role="error" id="contrib-checks-xspec-assert">article/front/article-meta/contrib-group/contrib must be present.</assert>
       <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/volume" role="error" id="volume-test-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/volume must be present.</assert>
       <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id" role="error" id="elocation-id-test-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id must be present.</assert>
+      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/history" role="error" id="history-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/history must be present.</assert>
       <assert test="descendant::article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history must be present.</assert>
       <assert test="descendant::event" role="error" id="event-tests-xspec-assert">event must be present.</assert>
       <assert test="descendant::event/*" role="error" id="event-child-tests-xspec-assert">event/* must be present.</assert>

@@ -1888,6 +1888,28 @@
         <x:expect-not-assert id="elocation-id-test-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="history-tests">
+      <x:scenario label="prc-history-date-test-1-pass">
+        <x:context href="../tests/rp/history-tests/prc-history-date-test-1/pass.xml"/>
+        <x:expect-not-assert id="prc-history-date-test-1" role="error"/>
+        <x:expect-not-assert id="history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="prc-history-date-test-1-fail">
+        <x:context href="../tests/rp/history-tests/prc-history-date-test-1/fail.xml"/>
+        <x:expect-assert id="prc-history-date-test-1" role="error"/>
+        <x:expect-not-assert id="history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="prc-history-date-test-2-pass">
+        <x:context href="../tests/rp/history-tests/prc-history-date-test-2/pass.xml"/>
+        <x:expect-not-report id="prc-history-date-test-2" role="error"/>
+        <x:expect-not-assert id="history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="prc-history-date-test-2-fail">
+        <x:context href="../tests/rp/history-tests/prc-history-date-test-2/fail.xml"/>
+        <x:expect-report id="prc-history-date-test-2" role="error"/>
+        <x:expect-not-assert id="history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="pub-history-tests">
       <x:scenario label="pub-history-parent-pass">
         <x:context href="../tests/rp/pub-history-tests/pub-history-parent/pass.xml"/>
