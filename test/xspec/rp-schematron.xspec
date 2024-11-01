@@ -2056,6 +2056,38 @@
         <x:expect-not-assert id="rp-event-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="event-desc-tests">
+      <x:scenario label="event-desc-content-pass">
+        <x:context href="../tests/rp/event-desc-tests/event-desc-content/pass.xml"/>
+        <x:expect-not-report id="event-desc-content" role="error"/>
+        <x:expect-not-assert id="event-desc-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-desc-content-fail">
+        <x:context href="../tests/rp/event-desc-tests/event-desc-content/fail.xml"/>
+        <x:expect-report id="event-desc-content" role="error"/>
+        <x:expect-not-assert id="event-desc-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-desc-content-2-pass">
+        <x:context href="../tests/rp/event-desc-tests/event-desc-content-2/pass.xml"/>
+        <x:expect-not-report id="event-desc-content-2" role="error"/>
+        <x:expect-not-assert id="event-desc-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-desc-content-2-fail">
+        <x:context href="../tests/rp/event-desc-tests/event-desc-content-2/fail.xml"/>
+        <x:expect-report id="event-desc-content-2" role="error"/>
+        <x:expect-not-assert id="event-desc-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-desc-elems-pass">
+        <x:context href="../tests/rp/event-desc-tests/event-desc-elems/pass.xml"/>
+        <x:expect-not-report id="event-desc-elems" role="error"/>
+        <x:expect-not-assert id="event-desc-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-desc-elems-fail">
+        <x:context href="../tests/rp/event-desc-tests/event-desc-elems/fail.xml"/>
+        <x:expect-report id="event-desc-elems" role="error"/>
+        <x:expect-not-assert id="event-desc-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="abstract-checks">
       <x:scenario label="abstract-test-1-pass">
         <x:context href="../tests/rp/abstract-checks/abstract-test-1/pass.xml"/>

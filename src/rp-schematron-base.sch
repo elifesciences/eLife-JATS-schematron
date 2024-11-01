@@ -1231,6 +1231,22 @@
         role="error" 
         id="rp-event-test-5">The event-desc for Reviewed preprint publication events must have at least one &lt;self-uri content-type="referee-report"> (which has a DOI link to a public review for that version).</assert>
     </rule>
+      
+      <rule context="event-desc" id="event-desc-tests">
+      
+      <report test="parent::event/self-uri[1][@content-type='preprint'] and .!='Preprint posted'" 
+        role="error" 
+        id="event-desc-content"><name/> that's a child of a preprint event must contain the text 'Preprint posted'. This one does not (<value-of select="."/>).</report>
+      
+      <report test="parent::event/self-uri[1][@content-type='reviewed-preprint'] and .!=concat('Reviewed preprint v',replace(parent::event[1]/self-uri[1][@content-type='reviewed-preprint']/@xlink:href,'^.*\.',''))" 
+        role="error" 
+        id="event-desc-content-2"><name/> that's a child of a Reviewed preprint event must contain the text 'Reviewed preprint v' followwd by the verison number for that Reviewed preprint version. This one does not (<value-of select="."/> != <value-of select="concat('Reviewed preprint v',replace(parent::event[1]/self-uri[1][@content-type='reviewed-preprint']/@xlink:href,'^.*\.',''))"/>).</report>
+      
+      <report test="*" 
+        role="error" 
+        id="event-desc-elems"><name/> cannot contain elements. This one has the following: <value-of select="string-join(distinct-values(*/name()),', ')"/>.</report>
+      
+    </rule>
     </pattern>
 
     <pattern id="abstracts">
