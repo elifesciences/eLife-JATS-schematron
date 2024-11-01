@@ -4879,22 +4879,66 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <!--ASSERT error-->
-      <xsl:choose>
-         <xsl:when test="not(*) and normalize-space(.)=''"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(*) and normalize-space(.)=''">
-               <xsl:attribute name="id">event-self-uri-content</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[event-self-uri-content] <xsl:text/>
-                  <xsl:value-of select="name(.)"/>
-                  <xsl:text/> in event must be empty. This one contains elements and/or text.</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
+      <!--REPORT error-->
+      <xsl:if test="@content-type=('preprint','reviewed-preprint') and (* or normalize-space(.)!='')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@content-type=('preprint','reviewed-preprint') and (* or normalize-space(.)!='')">
+            <xsl:attribute name="id">event-self-uri-content-1</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[event-self-uri-content-1] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> with the content-type <xsl:text/>
+               <xsl:value-of select="@content-type"/>
+               <xsl:text/> must not have any child elements or text. This one does.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="@content-type='editor-report' and (* or not(matches(.,'^eLife [Aa]ssessment$')))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@content-type='editor-report' and (* or not(matches(.,'^eLife [Aa]ssessment$')))">
+            <xsl:attribute name="id">event-self-uri-content-2</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[event-self-uri-content-2] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> with the content-type <xsl:text/>
+               <xsl:value-of select="@content-type"/>
+               <xsl:text/> must not have any child elements, and contain the text 'eLife Assessment'. This one does not.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="@content-type='referee-report' and (* or .='')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@content-type='referee-report' and (* or .='')">
+            <xsl:attribute name="id">event-self-uri-content-3</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[event-self-uri-content-3] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> with the content-type <xsl:text/>
+               <xsl:value-of select="@content-type"/>
+               <xsl:text/> must not have any child elements, and contain the title of the public review as text. This self-uri either has child elements or it is empty.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="@content-type='author-comment' and (* or not(matches(.,'^Author [Rr]esponse:?\s?$')))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@content-type='author-comment' and (* or not(matches(.,'^Author [Rr]esponse:?\s?$')))">
+            <xsl:attribute name="id">event-self-uri-content-4</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[event-self-uri-content-4] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> with the content-type <xsl:text/>
+               <xsl:value-of select="@content-type"/>
+               <xsl:text/> must not have any child elements, and contain the title of the text 'Author response'. This one does not.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$')"/>

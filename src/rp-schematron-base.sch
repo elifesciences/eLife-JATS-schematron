@@ -1266,9 +1266,21 @@
         role="error" 
         id="event-self-uri-content-type"><name/> in event must have the attribute content-type="preprint" or content-type="reviewed-preprint". This one does not.</assert>
       
-      <assert test="not(*) and normalize-space(.)=''" 
+      <report test="@content-type=('preprint','reviewed-preprint') and (* or normalize-space(.)!='')" 
         role="error" 
-        id="event-self-uri-content"><name/> in event must be empty. This one contains elements and/or text.</assert>
+        id="event-self-uri-content-1"><name/> with the content-type <value-of select="@content-type"/> must not have any child elements or text. This one does.</report>
+        
+      <report test="@content-type='editor-report' and (* or not(matches(.,'^eLife [Aa]ssessment$')))" 
+        role="error" 
+        id="event-self-uri-content-2"><name/> with the content-type <value-of select="@content-type"/> must not have any child elements, and contain the text 'eLife Assessment'. This one does not.</report>
+        
+      <report test="@content-type='referee-report' and (* or .='')" 
+        role="error" 
+        id="event-self-uri-content-3"><name/> with the content-type <value-of select="@content-type"/> must not have any child elements, and contain the title of the public review as text. This self-uri either has child elements or it is empty.</report>
+        
+      <report test="@content-type='author-comment' and (* or not(matches(.,'^Author [Rr]esponse:?\s?$')))" 
+        role="error" 
+        id="event-self-uri-content-4"><name/> with the content-type <value-of select="@content-type"/> must not have any child elements, and contain the title of the text 'Author response'. This one does not.</report>
       
       <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$')" 
         role="error" 

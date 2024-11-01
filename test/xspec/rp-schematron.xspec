@@ -2121,14 +2121,44 @@
         <x:expect-assert id="event-self-uri-content-type" role="error"/>
         <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="event-self-uri-content-pass">
-        <x:context href="../tests/rp/event-self-uri-tests/event-self-uri-content/pass.xml"/>
-        <x:expect-not-assert id="event-self-uri-content" role="error"/>
+      <x:scenario label="event-self-uri-content-1-pass">
+        <x:context href="../tests/rp/event-self-uri-tests/event-self-uri-content-1/pass.xml"/>
+        <x:expect-not-report id="event-self-uri-content-1" role="error"/>
         <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="event-self-uri-content-fail">
-        <x:context href="../tests/rp/event-self-uri-tests/event-self-uri-content/fail.xml"/>
-        <x:expect-assert id="event-self-uri-content" role="error"/>
+      <x:scenario label="event-self-uri-content-1-fail">
+        <x:context href="../tests/rp/event-self-uri-tests/event-self-uri-content-1/fail.xml"/>
+        <x:expect-report id="event-self-uri-content-1" role="error"/>
+        <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-self-uri-content-2-pass">
+        <x:context href="../tests/rp/event-self-uri-tests/event-self-uri-content-2/pass.xml"/>
+        <x:expect-not-report id="event-self-uri-content-2" role="error"/>
+        <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-self-uri-content-2-fail">
+        <x:context href="../tests/rp/event-self-uri-tests/event-self-uri-content-2/fail.xml"/>
+        <x:expect-report id="event-self-uri-content-2" role="error"/>
+        <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-self-uri-content-3-pass">
+        <x:context href="../tests/rp/event-self-uri-tests/event-self-uri-content-3/pass.xml"/>
+        <x:expect-not-report id="event-self-uri-content-3" role="error"/>
+        <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-self-uri-content-3-fail">
+        <x:context href="../tests/rp/event-self-uri-tests/event-self-uri-content-3/fail.xml"/>
+        <x:expect-report id="event-self-uri-content-3" role="error"/>
+        <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-self-uri-content-4-pass">
+        <x:context href="../tests/rp/event-self-uri-tests/event-self-uri-content-4/pass.xml"/>
+        <x:expect-not-report id="event-self-uri-content-4" role="error"/>
+        <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="event-self-uri-content-4-fail">
+        <x:context href="../tests/rp/event-self-uri-tests/event-self-uri-content-4/fail.xml"/>
+        <x:expect-report id="event-self-uri-content-4" role="error"/>
         <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="event-self-uri-href-1-pass">
