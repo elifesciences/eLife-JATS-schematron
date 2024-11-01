@@ -1,6 +1,8 @@
-<?oxygen SCHSchema="event-self-uri-content.sch"?><!--Context: event/self-uri
+<?oxygen SCHSchema="event-self-uri-content.sch"?>
+<!--Context: event/self-uri
 Test: assert    not(*) and normalize-space(.)=''
-Message:  in event must be empty. This one contains elements and/or text. --><root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+Message:  in event must be empty. This one contains elements and/or text. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <pub-history>
       <event>

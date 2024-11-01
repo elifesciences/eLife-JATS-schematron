@@ -1,6 +1,8 @@
-<?oxygen SCHSchema="event-self-uri-href-2.sch"?><!--Context: event/self-uri
+<?oxygen SCHSchema="event-self-uri-href-2.sch"?>
+<!--Context: event/self-uri
 Test: report    matches(lower-case(@xlink:href),'(bio|med)rxiv')
-Message:  in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. bioRxiv and medRxiv preprint have dois, and this one points to one of those, but it is not a doi - . --><root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+Message:  in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. bioRxiv and medRxiv preprint have dois, and this one points to one of those, but it is not a doi - . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <pub-history>
       <event>
