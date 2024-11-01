@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="event-self-uri-href-2.sch"?><!--Context: event/self-uri
+Test: report    matches(lower-case(@xlink:href),'(bio|med)rxiv')
+Message:  in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. bioRxiv and medRxiv preprint have dois, and this one points to one of those, but it is not a doi - . --><root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <pub-history>
+      <event>
+        <event-desc>This manuscript was published as a preprint at bioRxiv.</event-desc>
+        <date date-type="preprint" iso-8601-date="2021-03-02">
+          <day>02</day>
+          <month>03</month>
+          <year>2021</year>
+        </date>
+        <self-uri content-type="preprint" xlink:href="https://www.medrxiv.org/content/10.1101/2021.06.27.21259397v1"/>
+      </event>
+    </pub-history>
+  </article>
+</root>

@@ -688,6 +688,29 @@
       
       <report test="*" role="error" id="event-desc-elems">[event-desc-elems] <name/> cannot contain elements. This one has the following: <value-of select="string-join(distinct-values(*/name()),', ')"/>.</report>
       
+    </rule></pattern><pattern id="event-date-tests-pattern"><rule context="event/date" id="event-date-tests">
+      
+      <assert test="day and month and year" role="error" id="event-date-child">[event-date-child] <name/> in event must have a day, month and year element. This one does not.</assert>
+      
+      <assert test="@date-type=('preprint','reviewed-preprint')" role="error" id="event-date-type">[event-date-type] <name/> in event must have a date-type attribute with the value 'preprint' or 'reviewed-preprint'.</assert>
+    </rule></pattern><pattern id="event-self-uri-tests-pattern"><rule context="event/self-uri" id="event-self-uri-tests">
+      <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
+      
+      <assert test="@content-type=('preprint','reviewed-preprint','editor-report','referee-report','author-comment')" role="error" id="event-self-uri-content-type">[event-self-uri-content-type] <name/> in event must have the attribute content-type="preprint" or content-type="reviewed-preprint". This one does not.</assert>
+      
+      <assert test="not(*) and normalize-space(.)=''" role="error" id="event-self-uri-content">[event-self-uri-content] <name/> in event must be empty. This one contains elements and/or text.</assert>
+      
+      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$')" role="error" id="event-self-uri-href-1">[event-self-uri-href-1] <name/> in event must have an xlink:href attribute containing a link to the preprint. This one does not have a valid URI - <value-of select="@xlink:href"/>.</assert>
+      
+      <report test="matches(lower-case(@xlink:href),'(bio|med)rxiv')" role="error" id="event-self-uri-href-2">[event-self-uri-href-2] <name/> in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. bioRxiv and medRxiv preprint have dois, and this one points to one of those, but it is not a doi - <value-of select="@xlink:href"/>.</report>
+      
+      <assert test="matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')" role="warning" id="event-self-uri-href-3">[event-self-uri-href-3] <name/> in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. This one is not a doi - <value-of select="@xlink:href"/>. Please check whether there is a doi that can be used instead.</assert>
+      
+      <report test="@content-type='reviewed-preprint' and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]$'))" role="error" id="event-self-uri-href-4">[event-self-uri-href-4] <name/> in event has the attribute content-type="reviewed-preprint", but the xlink:href attribute does not contain an eLife version specific DOI - <value-of select="@xlink:href"/>.</report>
+      
+      <report test="(@content-type!='reviewed-preprint' or not(@content-type)) and matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.\d$')" role="error" id="event-self-uri-href-5">[event-self-uri-href-5] <name/> in event does not have the attribute content-type="reviewed-preprint", but the xlink:href attribute contains an eLife version specific DOI - <value-of select="@xlink:href"/>. If it's a preprint event, the link should be to a preprint. If it's an event for reviewed preprint publication, then it should have the attribute content-type!='reviewed-preprint'.</report>
+      
+      <report test="@content-type='reviewed-preprint' and not(contains(@xlink:href,$article-id))" role="error" id="event-self-uri-href-6">[event-self-uri-href-6] <name/> in event the attribute content-type="reviewed-preprint", but the xlink:href attribute value (<value-of select="@xlink:href"/>) does not contain the article id (<value-of select="$article-id"/>) which must be incorrect, since this should be the version DOI for the reviewed preprint version.</report>
     </rule></pattern>
 
     <pattern id="abstract-checks-pattern"><rule context="abstract[parent::article-meta]" id="abstract-checks">

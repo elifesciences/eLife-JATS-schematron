@@ -1,0 +1,28 @@
+<?oxygen SCHSchema="event-self-uri-href-5.sch"?><!--Context: event/self-uri
+Test: report    (@content-type!='reviewed-preprint' or not(@content-type)) and matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.\d$')
+Message:  in event does not have the attribute content-type="reviewed-preprint", but the xlink:href attribute contains an eLife version specific DOI - . If it's a preprint event, the link should be to a preprint. If it's an event for reviewed preprint publication, then it should have the attribute content-type!='reviewed-preprint'. --><root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <pub-history>
+        <event>
+          <date date-type="preprint" iso-8601-date="1979-01-01"/>
+          <self-uri content-type="preprint" xlink:href="https://some-preprint-server/preprint-xyz"/>
+        </event>
+        <event>
+          <date date-type="reviewed-preprint" iso-8601-date="2022-01-01"/>
+          <self-uri content-type="preprint" xlink:href="https://doi.org/10.7554/eLife.1234567890.1"/>
+        </event>
+        <event>
+          <date date-type="reviewed-preprint" iso-8601-date="2023-01-01"/>
+          <self-uri content-type="reviewed-preprint" xlink:href="https://doi.org/10.7554/eLife.1234567890.1"/>
+        </event>
+      </pub-history>
+      <custom-meta-group>
+        <custom-meta specific-use="meta-only">
+          <meta-name>publishing-route</meta-name>
+          <meta-value>prc</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </article-meta>
+  </article>
+</root>
