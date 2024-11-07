@@ -147,7 +147,7 @@
     <rule context="article/front/article-meta/author-notes/fn" id="author-notes-fn-checks">
       <let name="id" value="@id"/>
       <let name="known-types" value="('abbr','con','coi-statement','deceased','equal','financial-disclosure','presented-at','present-address','supported-by')"/>
-      <report test="@fn-type='deceased' and not(ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)" role="error" id="author-fn-3">[author-fn-3] Deceased type footnote (id=<value-of select="$id"/>) in author-notes is not linked to from any specific author, which must be a mistake. "<value-of select="."/>"</report>
+      <report test="@fn-type=('abbr','con','coi-statement','financial-disclosure','presented-at','supported-by') and (ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)" role="warning" id="author-fn-4">[author-fn-4] <value-of select="@fn-type"/> type footnote (id=<value-of select="$id"/>) in author-notes usually contains content that relates to all authors instead of a subset. This one however is linked to from <value-of select="ancestor::article-meta//contrib[@contrib-type='author'][xref/@rid = $id]"/> author(s) (<value-of select="string-join(for $x in ancestor::article-meta//contrib[@contrib-type='author'][xref/@rid = $id] return e:get-name($x/name[1]),'; ')"/>). "<value-of select="."/>"</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

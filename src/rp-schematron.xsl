@@ -4207,6 +4207,7 @@
    <!--RULE author-notes-fn-checks-->
    <xsl:template match="article/front/article-meta/author-notes/fn" priority="1000" mode="M76">
       <xsl:variable name="id" select="@id"/>
+      <xsl:variable name="known-types" select="('abbr','con','coi-statement','deceased','equal','financial-disclosure','presented-at','present-address','supported-by')"/>
       <!--REPORT error-->
       <xsl:if test="@fn-type='present-address' and not(ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@fn-type='present-address' and not(ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)">
@@ -4250,6 +4251,46 @@
             <svrl:text>[author-fn-3] Deceased type footnote (id=<xsl:text/>
                <xsl:value-of select="$id"/>
                <xsl:text/>) in author-notes is not linked to from any specific author, which must be a mistake. "<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>"</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="@fn-type=('abbr','con','coi-statement','financial-disclosure','presented-at','supported-by') and (ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@fn-type=('abbr','con','coi-statement','financial-disclosure','presented-at','supported-by') and (ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)">
+            <xsl:attribute name="id">author-fn-4</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[author-fn-4] <xsl:text/>
+               <xsl:value-of select="@fn-type"/>
+               <xsl:text/> type footnote (id=<xsl:text/>
+               <xsl:value-of select="$id"/>
+               <xsl:text/>) in author-notes usually contains content that relates to all authors instead of a subset. This one however is linked to from <xsl:text/>
+               <xsl:value-of select="ancestor::article-meta//contrib[@contrib-type='author'][xref/@rid = $id]"/>
+               <xsl:text/> author(s) (<xsl:text/>
+               <xsl:value-of select="string-join(for $x in ancestor::article-meta//contrib[@contrib-type='author'][xref/@rid = $id] return e:get-name($x/name[1]),'; ')"/>
+               <xsl:text/>). "<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>"</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="@fn-type and not(@fn-type=$known-types)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@fn-type and not(@fn-type=$known-types)">
+            <xsl:attribute name="id">author-fn-5</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[author-fn-5] footnote with id <xsl:text/>
+               <xsl:value-of select="$id"/>
+               <xsl:text/> has the fn-type '<xsl:text/>
+               <xsl:value-of select="@fn-type"/>
+               <xsl:text/>' which is not one of the known values (<xsl:text/>
+               <xsl:value-of select="string-join($known-types,'; ')"/>
+               <xsl:text/>). Should it be changed to be one of the values? "<xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>"</svrl:text>
          </svrl:successful-report>

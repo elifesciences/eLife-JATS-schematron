@@ -1,0 +1,27 @@
+<?oxygen SCHSchema="author-fn-4.sch"?>
+<!--Context: article/front/article-meta/author-notes/fn
+Test: report    @fn-type=('abbr','con','coi-statement','financial-disclosure','presented-at','supported-by') and (ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)
+Message:  type footnote (id=) in author-notes usually contains content that relates to all authors instead of a subset. This one however is linked to from  author(s) (). "" -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <front>
+            <article-meta>
+                <contrib-group>
+                    <contrib contrib-type="author"/>
+                    <contrib contrib-type="author"/>
+                </contrib-group>
+                <author-notes>
+                    <fn id="fn1" fn-type="abbr"><p/></fn>
+                    <fn id="fn2" fn-type="con"><p/></fn>
+                    <fn id="fn3" fn-type="coi-statement"><p/></fn>
+                    <fn id="fn4" fn-type="deceased"><p/></fn>
+                    <fn id="fn5" fn-type="equal"><p/></fn>
+                    <fn id="fn6" fn-type="financial-disclosure"><p/></fn>
+                    <fn id="fn7" fn-type="presented-at"><p/></fn>
+                    <fn id="fn8" fn-type="present-address"><p/></fn>
+                    <fn id="fn9" fn-type="supported-by"><p/></fn>
+                </author-notes>
+            </article-meta>
+        </front>
+    </article>
+</root>
