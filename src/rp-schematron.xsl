@@ -4206,18 +4206,35 @@
    <!--PATTERN author-notes-fn-checks-pattern-->
    <!--RULE author-notes-fn-checks-->
    <xsl:template match="article/front/article-meta/author-notes/fn" priority="1000" mode="M76">
-
-		<!--REPORT error-->
-      <xsl:if test="@fn-type='present-address' and not(./@id = ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@fn-type='present-address' and not(./@id = ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid)">
+      <xsl:variable name="id" select="@id"/>
+      <!--REPORT error-->
+      <xsl:if test="@fn-type='present-address' and not(ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@fn-type='present-address' and not(ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)">
             <xsl:attribute name="id">author-fn-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[author-fn-1] Present address type footnote (id=<xsl:text/>
-               <xsl:value-of select="@id"/>
+               <xsl:value-of select="$id"/>
                <xsl:text/>) in author-notes is not linked to from any specific author, which must be a mistake. "<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>"</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="@fn-type='equal' and (count(ancestor::article-meta//contrib[@contrib-type='author'][xref/@rid = $id]) lt 2)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@fn-type='equal' and (count(ancestor::article-meta//contrib[@contrib-type='author'][xref/@rid = $id]) lt 2)">
+            <xsl:attribute name="id">author-fn-2</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[author-fn-2] Equal author type footnote (id=<xsl:text/>
+               <xsl:value-of select="$id"/>
+               <xsl:text/>) in author-notes is linked to from <xsl:text/>
+               <xsl:value-of select="count(ancestor::article-meta//contrib[@contrib-type='author'][xref/@rid = $id])"/>
+               <xsl:text/> author(s), which must be a mistake. "<xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>"</svrl:text>
          </svrl:successful-report>

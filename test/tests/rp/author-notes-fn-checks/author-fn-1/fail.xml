@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="author-fn-1.sch"?>
 <!--Context: article/front/article-meta/author-notes/fn
-Test: report    @fn-type='present-address' and not(./@id = ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid)
+Test: report    @fn-type='present-address' and not(ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)
 Message: Present address type footnote (id=) in author-notes is not linked to from any specific author, which must be a mistake. "" -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>

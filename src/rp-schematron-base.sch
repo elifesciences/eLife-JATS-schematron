@@ -1063,9 +1063,14 @@
      </rule>
 
       <rule context="article/front/article-meta/author-notes/fn" id="author-notes-fn-checks">
-        <report test="@fn-type='present-address' and not(./@id = ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid)" 
+        <let name="id" value="@id"/>
+        <report test="@fn-type='present-address' and not(ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)" 
           role="error" 
-          id="author-fn-1">Present address type footnote (id=<value-of select="@id"/>) in author-notes is not linked to from any specific author, which must be a mistake. "<value-of select="."/>"</report>
+          id="author-fn-1">Present address type footnote (id=<value-of select="$id"/>) in author-notes is not linked to from any specific author, which must be a mistake. "<value-of select="."/>"</report>
+        
+        <report test="@fn-type='equal' and (count(ancestor::article-meta//contrib[@contrib-type='author'][xref/@rid = $id]) lt 2)" 
+          role="error" 
+          id="author-fn-2">Equal author type footnote (id=<value-of select="$id"/>) in author-notes is linked to from <value-of select="count(ancestor::article-meta//contrib[@contrib-type='author'][xref/@rid = $id])"/> author(s), which must be a mistake. "<value-of select="."/>"</report>
      </rule>
 
       <rule context="article/front/article-meta//article-version" id="article-version-checks">
