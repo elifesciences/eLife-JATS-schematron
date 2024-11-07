@@ -614,6 +614,40 @@
             </xsl:choose>
         </xsl:copy>
     </xsl:template>
+
+    <!-- Add editor as author of eLife Assessment -->
+    <xsl:template xml:id="assessment-capitalisation" match="article[//article-meta/contrib-group[@content-type='section']/contrib[@contrib-type='editor']]/sub-article[@article-type='editor-report']/front-stub">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:apply-templates select="*[name()!='kwd-group' and following-sibling::kwd-group]|text()[following-sibling::kwd-group and not(preceding-sibling::kwd-group)]"/>
+            <xsl:variable name="editor" select="ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[@contrib-type='editor']"/>
+            <xsl:element name="contrib-group">
+                <xsl:text>&#xa;</xsl:text>
+                <xsl:element name="contrib">
+                    <xsl:attribute name="contrib-type">author</xsl:attribute>
+                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:copy-of select="$editor/*:name"/>
+                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:element name="role">
+                        <xsl:attribute name="specific-use">editor</xsl:attribute>
+                        <xsl:text>Reviewing Editor</xsl:text>
+                    </xsl:element>
+                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:if test="$editor/contrib-id">
+                        <xsl:copy-of select="$editor/contrib-id"/>
+                        <xsl:text>&#xa;</xsl:text>
+                    </xsl:if>
+                    <xsl:if test="$editor/aff">
+                        <xsl:copy-of select="$editor/aff"/>
+                        <xsl:text>&#xa;</xsl:text>
+                    </xsl:if>
+                </xsl:element>
+                <xsl:text>&#xa;</xsl:text>
+            </xsl:element>
+            <xsl:text>&#xa;</xsl:text>
+            <xsl:apply-templates select="kwd-group|text()[preceding-sibling::kwd-group]"/>
+        </xsl:copy>
+    </xsl:template>
     
     <!-- Change all caps titles to sentence case for known phrases, e.g. REFERENCES -> References -->
     <xsl:template xml:id="all-caps-to-sentence" match="title[(upper-case(.)=. or lower-case(.)=.) and not(*) and not(parent::caption) and not(parent::ack)]">
