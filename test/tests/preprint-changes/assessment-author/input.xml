@@ -1,0 +1,40 @@
+<!--Testing template with id: assessment-author-->
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<front>
+<article-meta>
+<contrib-group content-type="section">
+<contrib contrib-type="editor">
+<name>
+<surname>Claus</surname>
+<given-names>Santa</given-names>
+</name>
+<role>Reviewing Editor</role>
+<aff>
+<institution-wrap>
+<institution>University of Presentology</institution>
+</institution-wrap>
+<addr-line><named-content content-type="city">North Pole</named-content></addr-line>
+<country>North Pole</country>
+</aff>
+</contrib>
+</contrib-group>
+</article-meta>
+</front>
+<sub-article id="sa0" article-type="editor-report">
+<front-stub>
+<article-id pub-id-type="doi">10.7554/eLife.123455342432421.2.sa3</article-id>
+<title-group>
+<article-title>eLife Assessment</article-title>
+</title-group>
+<kwd-group kwd-group-type="claim-importance">
+<kwd>Important</kwd>
+</kwd-group>
+<kwd-group kwd-group-type="evidence-strength">
+<kwd>Solid</kwd>
+</kwd-group>
+</front-stub>
+<body>
+<p>This study presents an <bold>important</bold> finding on the role of presents in Christmas. The evidence supporting these findings is <bold>solid</bold>.</p>
+</body>
+</sub-article>
+</article>
