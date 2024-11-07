@@ -603,6 +603,8 @@
         <report test="@fn-type='present-address' and not(ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)" role="error" id="author-fn-1">[author-fn-1] Present address type footnote (id=<value-of select="$id"/>) in author-notes is not linked to from any specific author, which must be a mistake. "<value-of select="."/>"</report>
         
         <report test="@fn-type='equal' and (count(ancestor::article-meta//contrib[@contrib-type='author'][xref/@rid = $id]) lt 2)" role="error" id="author-fn-2">[author-fn-2] Equal author type footnote (id=<value-of select="$id"/>) in author-notes is linked to from <value-of select="count(ancestor::article-meta//contrib[@contrib-type='author'][xref/@rid = $id])"/> author(s), which must be a mistake. "<value-of select="."/>"</report>
+        
+        <report test="@fn-type='deceased' and not(ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)" role="error" id="author-fn-3">[author-fn-3] Deceased type footnote (id=<value-of select="$id"/>) in author-notes is not linked to from any specific author, which must be a mistake. "<value-of select="."/>"</report>
      </rule></pattern><pattern id="article-version-checks-pattern"><rule context="article/front/article-meta//article-version" id="article-version-checks">
         
         <report test="parent::article-meta and not(@article-version-type) and not(matches(.,'^1\.\d+$'))" role="error" id="article-version-2">[article-version-2] article-version must be in the format 1.x (e.g. 1.11). This one is '<value-of select="."/>'.</report>

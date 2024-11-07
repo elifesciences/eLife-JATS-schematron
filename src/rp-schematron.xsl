@@ -4239,6 +4239,21 @@
                <xsl:text/>"</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="@fn-type='deceased' and not(ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@fn-type='deceased' and not(ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)">
+            <xsl:attribute name="id">author-fn-3</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[author-fn-3] Deceased type footnote (id=<xsl:text/>
+               <xsl:value-of select="$id"/>
+               <xsl:text/>) in author-notes is not linked to from any specific author, which must be a mistake. "<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>"</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M76"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M76"/>
