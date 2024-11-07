@@ -569,6 +569,32 @@
             </xsl:choose>
         </xsl:copy>
     </xsl:template>
+    
+    <!-- Map wildcard fn-types to known/suggested ones -->
+    <xsl:template xml:id="author-fn-types" match="article-meta/author-notes//fn[@fn-type and not(@fn-type=('abbr','con','coi-statement','deceased','equal','financial-disclosure','presented-at','present-address','current-aff','Present-address','current-address','current-adrress','supported-by'))]">
+        <xsl:copy>
+            <xsl:choose>
+                <xsl:when test="lower-case(@fn-type)=('conflict','interest')">
+                    <xsl:apply-templates select="@*[name()!='fn-type']"/>
+                    <xsl:attribute name="fn-type">coi-statement</xsl:attribute>
+                    <xsl:apply-templates select="*|text()|processing-instruction()|comment()"/>
+                </xsl:when>
+                <xsl:when test="lower-case(@fn-type)=('equ','equl')">
+                    <xsl:apply-templates select="@*[name()!='fn-type']"/>
+                    <xsl:attribute name="fn-type">equal</xsl:attribute>
+                    <xsl:apply-templates select="*|text()|processing-instruction()|comment()"/>
+                </xsl:when>
+                <xsl:when test="lower-case(@fn-type)=('supported-by') and @fn-type!='supported-by'">
+                    <xsl:apply-templates select="@*[name()!='fn-type']"/>
+                    <xsl:attribute name="fn-type">supported-by</xsl:attribute>
+                    <xsl:apply-templates select="*|text()|processing-instruction()|comment()"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="@*|*|text()|processing-instruction()|comment()"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:copy>
+    </xsl:template>
 
     <!-- Strip full stops from author names -->
     <xsl:template xml:id="remove-fullstops-from-author-names" match="article-meta//contrib[@contrib-type='author']/name/given-names|article-meta//contrib[@contrib-type='author']/name/surname">
