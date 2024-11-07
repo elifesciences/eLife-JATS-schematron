@@ -2,6 +2,9 @@
 <article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
 <front>
 <article-meta>
+<contrib-group>
+<contrib contrib-type="author"/>
+</contrib-group>
 <contrib-group content-type="section">
 <contrib contrib-type="editor">
 <name>
@@ -24,7 +27,7 @@
 <front-stub>
 <article-id pub-id-type="doi">10.7554/eLife.123455342432421.2.sa3</article-id>
 <title-group>
-<article-title>eLife Assessment</article-title>
+<article-title>eLife assessment</article-title>
 </title-group>
 <kwd-group kwd-group-type="claim-importance">
 <kwd>Important</kwd>
