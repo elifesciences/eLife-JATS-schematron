@@ -36,6 +36,10 @@
       <x:context href="../tests/preprint-changes/present-address-fn/input.xml"/>
       <x:expect label="Testing the template: present-address-fn" href="../tests/preprint-changes/present-address-fn/output.xml"/>
     </x:scenario>
+    <x:scenario label="author-fn-types">
+      <x:context href="../tests/preprint-changes/author-fn-types/input.xml"/>
+      <x:expect label="Testing the template: author-fn-types" href="../tests/preprint-changes/author-fn-types/output.xml"/>
+    </x:scenario>
     <x:scenario label="remove-fullstops-from-author-names">
       <x:context href="../tests/preprint-changes/remove-fullstops-from-author-names/input.xml"/>
       <x:expect label="Testing the template: remove-fullstops-from-author-names" href="../tests/preprint-changes/remove-fullstops-from-author-names/output.xml"/>

@@ -1726,6 +1726,58 @@
         <x:expect-not-assert id="author-notes-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="author-notes-fn-checks">
+      <x:scenario label="author-fn-1-pass">
+        <x:context href="../tests/rp/author-notes-fn-checks/author-fn-1/pass.xml"/>
+        <x:expect-not-report id="author-fn-1" role="error"/>
+        <x:expect-not-assert id="author-notes-fn-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-fn-1-fail">
+        <x:context href="../tests/rp/author-notes-fn-checks/author-fn-1/fail.xml"/>
+        <x:expect-report id="author-fn-1" role="error"/>
+        <x:expect-not-assert id="author-notes-fn-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-fn-2-pass">
+        <x:context href="../tests/rp/author-notes-fn-checks/author-fn-2/pass.xml"/>
+        <x:expect-not-report id="author-fn-2" role="error"/>
+        <x:expect-not-assert id="author-notes-fn-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-fn-2-fail">
+        <x:context href="../tests/rp/author-notes-fn-checks/author-fn-2/fail.xml"/>
+        <x:expect-report id="author-fn-2" role="error"/>
+        <x:expect-not-assert id="author-notes-fn-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-fn-3-pass">
+        <x:context href="../tests/rp/author-notes-fn-checks/author-fn-3/pass.xml"/>
+        <x:expect-not-report id="author-fn-3" role="error"/>
+        <x:expect-not-assert id="author-notes-fn-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-fn-3-fail">
+        <x:context href="../tests/rp/author-notes-fn-checks/author-fn-3/fail.xml"/>
+        <x:expect-report id="author-fn-3" role="error"/>
+        <x:expect-not-assert id="author-notes-fn-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-fn-4-pass">
+        <x:context href="../tests/rp/author-notes-fn-checks/author-fn-4/pass.xml"/>
+        <x:expect-not-report id="author-fn-4" role="warning"/>
+        <x:expect-not-assert id="author-notes-fn-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-fn-4-fail">
+        <x:context href="../tests/rp/author-notes-fn-checks/author-fn-4/fail.xml"/>
+        <x:expect-report id="author-fn-4" role="warning"/>
+        <x:expect-not-assert id="author-notes-fn-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-fn-5-pass">
+        <x:context href="../tests/rp/author-notes-fn-checks/author-fn-5/pass.xml"/>
+        <x:expect-not-report id="author-fn-5" role="warning"/>
+        <x:expect-not-assert id="author-notes-fn-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-fn-5-fail">
+        <x:context href="../tests/rp/author-notes-fn-checks/author-fn-5/fail.xml"/>
+        <x:expect-report id="author-fn-5" role="warning"/>
+        <x:expect-not-assert id="author-notes-fn-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="article-version-checks">
       <x:scenario label="article-version-2-pass">
         <x:context href="../tests/rp/article-version-checks/article-version-2/pass.xml"/>

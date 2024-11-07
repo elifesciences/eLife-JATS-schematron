@@ -549,18 +549,48 @@
     </xsl:template>
 
     <!-- Introduce text for present address type footnotes -->
-    <xsl:template xml:id="present-address-fn" match="article-meta/author-notes//fn[@fn-type='present-address']">
+    <xsl:template xml:id="present-address-fn" match="article-meta/author-notes//fn[@fn-type=('present-address','current-aff','Present-address','current-address','current-adrress')]">
         <xsl:copy>
             <xsl:choose>
-                <xsl:when test="matches(lower-case(./p[1]),'^\s*present address')">
-                    <xsl:apply-templates select="@*|*|text()"/>
+                <xsl:when test="matches(lower-case(./p[1]),'^\s*(present|current) address')">
+                    <xsl:apply-templates select="@*[name()!='fn-type']"/>
+                    <xsl:attribute name="fn-type">present-address</xsl:attribute>
+                    <xsl:apply-templates select="*|text()"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:apply-templates select="@*|label"/>
+                    <xsl:apply-templates select="@*[name()!='fn-type']"/>
+                    <xsl:attribute name="fn-type">present-address</xsl:attribute>
+                    <xsl:apply-templates select="label"/>
                     <xsl:element name="p">
                         <xsl:text>Present address: </xsl:text>
                         <xsl:copy-of select="./p/*|./p/text()"/>
                     </xsl:element>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- Map wildcard fn-types to known/suggested ones -->
+    <xsl:template xml:id="author-fn-types" match="article-meta/author-notes//fn[@fn-type and not(@fn-type=('abbr','con','coi-statement','deceased','equal','financial-disclosure','presented-at','present-address','current-aff','Present-address','current-address','current-adrress','supported-by'))]">
+        <xsl:copy>
+            <xsl:choose>
+                <xsl:when test="lower-case(@fn-type)=('conflict','interest')">
+                    <xsl:apply-templates select="@*[name()!='fn-type']"/>
+                    <xsl:attribute name="fn-type">coi-statement</xsl:attribute>
+                    <xsl:apply-templates select="*|text()|processing-instruction()|comment()"/>
+                </xsl:when>
+                <xsl:when test="lower-case(@fn-type)=('equ','equl')">
+                    <xsl:apply-templates select="@*[name()!='fn-type']"/>
+                    <xsl:attribute name="fn-type">equal</xsl:attribute>
+                    <xsl:apply-templates select="*|text()|processing-instruction()|comment()"/>
+                </xsl:when>
+                <xsl:when test="lower-case(@fn-type)=('supported-by') and @fn-type!='supported-by'">
+                    <xsl:apply-templates select="@*[name()!='fn-type']"/>
+                    <xsl:attribute name="fn-type">supported-by</xsl:attribute>
+                    <xsl:apply-templates select="*|text()|processing-instruction()|comment()"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="@*|*|text()|processing-instruction()|comment()"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:copy>
