@@ -1062,6 +1062,12 @@
           id="multiple-corresp">author-notes contains <value-of select="count(corresp)"/> corresp elements. There should only be one. Either these can be collated into one corresp or one of these is a footnote which has been incorrectly captured.</report>
      </rule>
 
+      <rule context="article/front/article-meta/author-notes/fn" id="author-notes-fn-checks">
+        <report test="@fn-type='present-address' and not(./@id = ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid)" 
+          role="error" 
+          id="author-fn-1">Present address type footnote (id=<value-of select="@id"/>) in author-notes is not linked to from any specific author, which must be a mistake. "<value-of select="."/>"</report>
+     </rule>
+
       <rule context="article/front/article-meta//article-version" id="article-version-checks">
         
         <report test="parent::article-meta and not(@article-version-type) and not(matches(.,'^1\.\d+$'))" 

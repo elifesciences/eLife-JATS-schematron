@@ -793,6 +793,11 @@
         <report test="count(corresp) gt 1" role="error" id="multiple-corresp">author-notes contains <value-of select="count(corresp)"/> corresp elements. There should only be one. Either these can be collated into one corresp or one of these is a footnote which has been incorrectly captured.</report>
      </rule>
   </pattern>
+  <pattern id="author-notes-fn-checks-pattern">
+    <rule context="article/front/article-meta/author-notes/fn" id="author-notes-fn-checks">
+        <report test="@fn-type='present-address' and not(./@id = ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid)" role="error" id="author-fn-1">Present address type footnote (id=<value-of select="@id"/>) in author-notes is not linked to from any specific author, which must be a mistake. "<value-of select="."/>"</report>
+     </rule>
+  </pattern>
   <pattern id="article-version-checks-pattern">
     <rule context="article/front/article-meta//article-version" id="article-version-checks">
         
@@ -1444,6 +1449,7 @@
       <assert test="descendant::article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='publisher-id']" role="error" id="publisher-article-id-checks-xspec-assert">article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='publisher-id'] must be present.</assert>
       <assert test="descendant::article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']" role="error" id="article-dois-xspec-assert">article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::article/front/article-meta/author-notes" role="error" id="author-notes-checks-xspec-assert">article/front/article-meta/author-notes must be present.</assert>
+      <assert test="descendant::article/front/article-meta/author-notes/fn" role="error" id="author-notes-fn-checks-xspec-assert">article/front/article-meta/author-notes/fn must be present.</assert>
       <assert test="descendant::article/front/article-meta//article-version" role="error" id="article-version-checks-xspec-assert">article/front/article-meta//article-version must be present.</assert>
       <assert test="descendant::article/front/article-meta/article-version-alternatives" role="error" id="article-version-alternatives-checks-xspec-assert">article/front/article-meta/article-version-alternatives must be present.</assert>
       <assert test="descendant::article/front/article-meta/pub-date[@pub-type='epub']/year" role="error" id="preprint-pub-checks-xspec-assert">article/front/article-meta/pub-date[@pub-type='epub']/year must be present.</assert>
