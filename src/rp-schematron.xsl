@@ -1939,6 +1939,49 @@
             </svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="count(descendant::institution-id) gt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(descendant::institution-id) gt 1">
+            <xsl:attribute name="id">aff-multiple-ids</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[aff-multiple-ids] Affiliation contains more than one institution-id element: <xsl:text/>
+               <xsl:value-of select="string-join(descendant::institution-id,'; ')"/>
+               <xsl:text/> in <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="count(institution-wrap) = 0">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(institution-wrap) = 0">
+            <xsl:attribute name="id">aff-no-wrap</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[aff-no-wrap] Affiliation doesn't have an institution-wrap element (the container for institution name and id). Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="count(descendant::institution-wrap) gt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(descendant::institution-wrap) gt 1">
+            <xsl:attribute name="id">aff-mutliple-wraps</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[aff-mutliple-wraps] Affiliation contains more than one institution-wrap element: <xsl:text/>
+               <xsl:value-of select="string-join(descendant::institution-wrap/*,'; ')"/>
+               <xsl:text/> in <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M28"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M28"/>

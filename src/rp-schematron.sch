@@ -257,6 +257,12 @@
       <report test="$country-count gt 1" role="error" id="aff-multiple-country">[aff-multiple-country] Affiliation contains more than one country element: <value-of select="string-join(descendant::country,'; ')"/> in <value-of select="."/></report>
 
       <report test="count(descendant::institution) gt 1" role="warning" id="aff-multiple-institution">[aff-multiple-institution] Affiliation contains more than one institution element: <value-of select="string-join(descendant::institution,'; ')"/> in <value-of select="."/></report>
+      
+      <report test="count(descendant::institution-id) gt 1" role="error" id="aff-multiple-ids">[aff-multiple-ids] Affiliation contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/></report>
+      
+      <report test="count(institution-wrap) = 0" role="warning" id="aff-no-wrap">[aff-no-wrap] Affiliation doesn't have an institution-wrap element (the container for institution name and id). Is that correct?</report>
+      
+      <report test="count(descendant::institution-wrap) gt 1" role="error" id="aff-mutliple-wraps">[aff-mutliple-wraps] Affiliation contains more than one institution-wrap element: <value-of select="string-join(descendant::institution-wrap/*,'; ')"/> in <value-of select="."/></report>
     
     </rule></pattern>
 

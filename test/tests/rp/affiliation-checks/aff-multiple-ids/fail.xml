@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="aff-multiple-ids.sch"?>
+<!--Context: aff
+Test: report    count(descendant::institution-id) gt 1
+Message: Affiliation contains more than one institution-id element:  in  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <aff id="a1"><label>a</label><institution-wrap>
+<!--Option 1: Closenss score = 1.0 | Name = Duke University-->
+<institution-id institution-id-type="ror">https://ror.org/00py81415</institution-id>
+ 
+<!--Option 2: Closenss score = 1.0 | Name = Duke Medical Center-->
+<institution-id institution-id-type="ror">https://ror.org/03njmea73</institution-id>
+ 
+<!--Option 3: Closenss score = 1.0 | Name = Duke University Hospital-->
+<institution-id institution-id-type="ror">https://ror.org/04bct7p84</institution-id>
+<institution>Department of Molecular Genetics and Microbiology, Duke University Medical Center</institution></institution-wrap>, <city>Durham</city>, <country>USA</country></aff>
+    </article>
+</root>

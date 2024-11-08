@@ -431,6 +431,36 @@
         <x:expect-report id="aff-multiple-institution" role="warning"/>
         <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="aff-multiple-ids-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-multiple-ids/pass.xml"/>
+        <x:expect-not-report id="aff-multiple-ids" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-multiple-ids-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-multiple-ids/fail.xml"/>
+        <x:expect-report id="aff-multiple-ids" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-no-wrap-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-no-wrap/pass.xml"/>
+        <x:expect-not-report id="aff-no-wrap" role="warning"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-no-wrap-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-no-wrap/fail.xml"/>
+        <x:expect-report id="aff-no-wrap" role="warning"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-mutliple-wraps-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-mutliple-wraps/pass.xml"/>
+        <x:expect-not-report id="aff-mutliple-wraps" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-mutliple-wraps-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-mutliple-wraps/fail.xml"/>
+        <x:expect-report id="aff-mutliple-wraps" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="journal-ref-checks">
       <x:scenario label="journal-ref-source-pass">
