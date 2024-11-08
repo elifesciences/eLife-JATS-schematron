@@ -63,7 +63,8 @@
             <xsl:variable name="d5" select="number(substring($s,6,1)) * 4"/>
             <xsl:variable name="d6" select="number(substring($s,7,1)) * 3"/>
             <xsl:variable name="d7" select="number(substring($s,8,1)) * 2"/>
-            <xsl:variable name="calc" select="11 - (number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7) mod 11)"/>
+            <xsl:variable name="remainder" select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7) mod 11"/>
+            <xsl:variable name="calc" select="if ($remainder=0) then 0 else (11 - $remainder)"/>
             <xsl:variable name="check" select="if (substring($s,9,1)='X') then 10 else number(substring($s,9,1))"/>
             <xsl:value-of select="$calc = $check"/>
          </xsl:otherwise>
