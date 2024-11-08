@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="aff-institution-wrap-test-2.sch"?>
+<!--Context: aff//institution-wrap
+Test: assert    parent::aff
+Message: institution-wrap must be a child of aff. This one has  as its parent. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <aff id="a1"><label>a</label><institution-wrap><institution-id institution-id-type="ror">https://ror.org/03njmea73</institution-id><institution>Department of Molecular Genetics and Microbiology, Duke University Medical Center</institution></institution-wrap>, <city>Durham</city>, <country>USA</country></aff>
+    </article>
+</root>

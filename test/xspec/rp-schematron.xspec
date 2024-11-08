@@ -431,6 +431,120 @@
         <x:expect-report id="aff-multiple-institution" role="warning"/>
         <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="aff-multiple-ids-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-multiple-ids/pass.xml"/>
+        <x:expect-not-report id="aff-multiple-ids" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-multiple-ids-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-multiple-ids/fail.xml"/>
+        <x:expect-report id="aff-multiple-ids" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-no-wrap-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-no-wrap/pass.xml"/>
+        <x:expect-not-report id="aff-no-wrap" role="warning"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-no-wrap-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-no-wrap/fail.xml"/>
+        <x:expect-report id="aff-no-wrap" role="warning"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-mutliple-wraps-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-mutliple-wraps/pass.xml"/>
+        <x:expect-not-report id="aff-mutliple-wraps" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-mutliple-wraps-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-mutliple-wraps/fail.xml"/>
+        <x:expect-report id="aff-mutliple-wraps" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="aff-institution-wrap-tests">
+      <x:scenario label="aff-institution-wrap-test-1-pass">
+        <x:context href="../tests/rp/aff-institution-wrap-tests/aff-institution-wrap-test-1/pass.xml"/>
+        <x:expect-not-assert id="aff-institution-wrap-test-1" role="error"/>
+        <x:expect-not-assert id="aff-institution-wrap-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-institution-wrap-test-1-fail">
+        <x:context href="../tests/rp/aff-institution-wrap-tests/aff-institution-wrap-test-1/fail.xml"/>
+        <x:expect-assert id="aff-institution-wrap-test-1" role="error"/>
+        <x:expect-not-assert id="aff-institution-wrap-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-institution-wrap-test-2-pass">
+        <x:context href="../tests/rp/aff-institution-wrap-tests/aff-institution-wrap-test-2/pass.xml"/>
+        <x:expect-not-assert id="aff-institution-wrap-test-2" role="error"/>
+        <x:expect-not-assert id="aff-institution-wrap-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-institution-wrap-test-2-fail">
+        <x:context href="../tests/rp/aff-institution-wrap-tests/aff-institution-wrap-test-2/fail.xml"/>
+        <x:expect-assert id="aff-institution-wrap-test-2" role="error"/>
+        <x:expect-not-assert id="aff-institution-wrap-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-institution-wrap-test-3-pass">
+        <x:context href="../tests/rp/aff-institution-wrap-tests/aff-institution-wrap-test-3/pass.xml"/>
+        <x:expect-not-report id="aff-institution-wrap-test-3" role="error"/>
+        <x:expect-not-assert id="aff-institution-wrap-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-institution-wrap-test-3-fail">
+        <x:context href="../tests/rp/aff-institution-wrap-tests/aff-institution-wrap-test-3/fail.xml"/>
+        <x:expect-report id="aff-institution-wrap-test-3" role="error"/>
+        <x:expect-not-assert id="aff-institution-wrap-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-institution-wrap-test-4-pass">
+        <x:context href="../tests/rp/aff-institution-wrap-tests/aff-institution-wrap-test-4/pass.xml"/>
+        <x:expect-not-assert id="aff-institution-wrap-test-4" role="error"/>
+        <x:expect-not-assert id="aff-institution-wrap-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-institution-wrap-test-4-fail">
+        <x:context href="../tests/rp/aff-institution-wrap-tests/aff-institution-wrap-test-4/fail.xml"/>
+        <x:expect-assert id="aff-institution-wrap-test-4" role="error"/>
+        <x:expect-not-assert id="aff-institution-wrap-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-institution-wrap-test-5-pass">
+        <x:context href="../tests/rp/aff-institution-wrap-tests/aff-institution-wrap-test-5/pass.xml"/>
+        <x:expect-not-assert id="aff-institution-wrap-test-5" role="error"/>
+        <x:expect-not-assert id="aff-institution-wrap-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-institution-wrap-test-5-fail">
+        <x:context href="../tests/rp/aff-institution-wrap-tests/aff-institution-wrap-test-5/fail.xml"/>
+        <x:expect-assert id="aff-institution-wrap-test-5" role="error"/>
+        <x:expect-not-assert id="aff-institution-wrap-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="aff-institution-id-tests">
+      <x:scenario label="aff-institution-id-test-1-pass">
+        <x:context href="../tests/rp/aff-institution-id-tests/aff-institution-id-test-1/pass.xml"/>
+        <x:expect-not-assert id="aff-institution-id-test-1" role="error"/>
+        <x:expect-not-assert id="aff-institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-institution-id-test-1-fail">
+        <x:context href="../tests/rp/aff-institution-id-tests/aff-institution-id-test-1/fail.xml"/>
+        <x:expect-assert id="aff-institution-id-test-1" role="error"/>
+        <x:expect-not-assert id="aff-institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-institution-id-test-2-pass">
+        <x:context href="../tests/rp/aff-institution-id-tests/aff-institution-id-test-2/pass.xml"/>
+        <x:expect-not-assert id="aff-institution-id-test-2" role="error"/>
+        <x:expect-not-assert id="aff-institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-institution-id-test-2-fail">
+        <x:context href="../tests/rp/aff-institution-id-tests/aff-institution-id-test-2/fail.xml"/>
+        <x:expect-assert id="aff-institution-id-test-2" role="error"/>
+        <x:expect-not-assert id="aff-institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-institution-id-test-3-pass">
+        <x:context href="../tests/rp/aff-institution-id-tests/aff-institution-id-test-3/pass.xml"/>
+        <x:expect-not-report id="aff-institution-id-test-3" role="error"/>
+        <x:expect-not-assert id="aff-institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-institution-id-test-3-fail">
+        <x:context href="../tests/rp/aff-institution-id-tests/aff-institution-id-test-3/fail.xml"/>
+        <x:expect-report id="aff-institution-id-test-3" role="error"/>
+        <x:expect-not-assert id="aff-institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="journal-ref-checks">
       <x:scenario label="journal-ref-source-pass">

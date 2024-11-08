@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="aff-mutliple-wraps.sch"?>
+<!--Context: aff
+Test: report    count(descendant::institution-wrap) gt 1
+Message: Affiliation contains more than one institution-wrap element:  in  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <aff id="a1"><label>a</label><institution-wrap><institution-id institution-id-type="ror">https://ror.org/03njmea73</institution-id><institution>Department of Molecular Genetics and Microbiology</institution></institution-wrap>, <institution-wrap><institution-id institution-id-type="ror">https://ror.org/03njmea73</institution-id><institution>Duke University Medical Center</institution></institution-wrap><city>Durham</city>, <country>USA</country></aff>
+    </article>
+</root>
