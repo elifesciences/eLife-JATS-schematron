@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="aff-institution-wrap-test-3.sch"?>
-<!--Context: aff//institution-wrap
-Test: report    text()
+<!--Context: aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap
+Test: report    count(institution-id)=1 and text()
 Message: institution-wrap cannot contain text. It can only contain elements. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>

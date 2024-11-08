@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="aff-institution-wrap-test-2.sch"?>
-<!--Context: aff//institution-wrap
+<!--Context: aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap
 Test: assert    parent::aff
 Message: institution-wrap must be a child of aff. This one has  as its parent. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
