@@ -2008,7 +2008,7 @@
    </xsl:template>
    <!--PATTERN aff-institution-wrap-tests-pattern-->
    <!--RULE aff-institution-wrap-tests-->
-   <xsl:template match="aff//institution-wrap" priority="1000" mode="M29">
+   <xsl:template match="aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap" priority="1000" mode="M29">
       <xsl:variable name="display" select="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content','city'))],', ')"/>
       <!--ASSERT error-->
       <xsl:choose>
@@ -2044,8 +2044,8 @@
          </xsl:otherwise>
       </xsl:choose>
       <!--REPORT error-->
-      <xsl:if test="text()">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="text()">
+      <xsl:if test="count(institution-id)=1 and text()">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(institution-id)=1 and text()">
             <xsl:attribute name="id">aff-institution-wrap-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -2054,22 +2054,6 @@
             <svrl:text>[aff-institution-wrap-test-3] institution-wrap cannot contain text. It can only contain elements.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <!--ASSERT error-->
-      <xsl:choose>
-         <xsl:when test="count(institution-id) = 1"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(institution-id) = 1">
-               <xsl:attribute name="id">aff-institution-wrap-test-4</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[aff-institution-wrap-test-4] institution-wrap must contain 1 and only 1 institution-id elements. This one has <xsl:text/>
-                  <xsl:value-of select="count(institution-id)"/>
-                  <xsl:text/>.</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="count(institution[not(@*)]) = 1"/>

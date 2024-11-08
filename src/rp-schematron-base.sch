@@ -394,7 +394,7 @@
     
     </rule>
       
-      <rule context="aff//institution-wrap" id="aff-institution-wrap-tests">
+      <rule context="aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap" id="aff-institution-wrap-tests">
       <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content','city'))],', ')"/>
       
       <assert test="institution-id and institution[not(@*)]" 
@@ -405,13 +405,9 @@
         role="error" 
         id="aff-institution-wrap-test-2">institution-wrap must be a child of aff. This one has <value-of select="parent::*/name()"/> as its parent.</assert>
       
-      <report test="text()" 
+      <report test="count(institution-id)=1 and text()" 
         role="error" 
         id="aff-institution-wrap-test-3">institution-wrap cannot contain text. It can only contain elements.</report>
-      
-      <assert test="count(institution-id) = 1" 
-        role="error" 
-        id="aff-institution-wrap-test-4">institution-wrap must contain 1 and only 1 institution-id elements. This one has <value-of select="count(institution-id)"/>.</assert>
       
       <assert test="count(institution[not(@*)]) = 1" 
         role="error" 
