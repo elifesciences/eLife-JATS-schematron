@@ -6,23 +6,29 @@ Message: Affiliation contains more than one institution-id element:  in  -->
     <article>
         <aff id="a1"><label>a</label><institution-wrap>
 
+
 <!--Context: aff
 Test: report    count(descendant::institution-id) gt 1
 Message: Affiliation contains more than one institution-id element:  in  -->
+
 
 <institution-id institution-id-type="ror">https://ror.org/00py81415</institution-id>
  
 
+
 <!--Context: aff
 Test: report    count(descendant::institution-id) gt 1
 Message: Affiliation contains more than one institution-id element:  in  -->
+
 
 <institution-id institution-id-type="ror">https://ror.org/03njmea73</institution-id>
  
 
+
 <!--Context: aff
 Test: report    count(descendant::institution-id) gt 1
 Message: Affiliation contains more than one institution-id element:  in  -->
+
 
 <institution-id institution-id-type="ror">https://ror.org/04bct7p84</institution-id>
 <institution>Department of Molecular Genetics and Microbiology, Duke University Medical Center</institution></institution-wrap>, <city>Durham</city>, <country>USA</country></aff>

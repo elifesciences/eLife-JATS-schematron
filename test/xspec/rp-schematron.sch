@@ -304,7 +304,7 @@
   </pattern>
   <pattern id="aff-institution-wrap-tests-pattern">
     <rule context="aff//institution-wrap" id="aff-institution-wrap-tests">
-      <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
+      <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content','city'))],', ')"/>
       
       <assert test="institution-id and institution[not(@*)]" role="error" id="aff-institution-wrap-test-1">If an affiliation has an institution wrap, then it must have both an institution-id and an institution. If there is no ROR for this institution, then it should be captured as a single institution element without institution-wrap. This institution-wrap does not have both elements - <value-of select="$display"/>
       </assert>
@@ -316,6 +316,17 @@
       <assert test="count(institution-id) = 1" role="error" id="aff-institution-wrap-test-4">institution-wrap must contain 1 and only 1 institution-id elements. This one has <value-of select="count(institution-id)"/>.</assert>
       
       <assert test="count(institution[not(@*)]) = 1" role="error" id="aff-institution-wrap-test-5">institution-wrap must contain 1 and only 1 institution elements. This one has <value-of select="count(institution[not(@*)])"/>.</assert>
+      
+    </rule>
+  </pattern>
+  <pattern id="aff-institution-id-tests-pattern">
+    <rule context="aff//institution-id" id="aff-institution-id-tests">
+      
+      <assert test="@institution-id-type='ror'" role="error" id="aff-institution-id-test-1">institution-id in aff must have the attribute institution-id-type="ror".</assert>
+      
+      <assert test="matches(.,'https?://ror\.org/[a-z0-9]{9}')" role="error" id="aff-institution-id-test-2">institution-id in aff must a value which is a valid ROR id. '<value-of select="."/>' is not a valid ROR id.</assert>
+      
+      <report test="*" role="error" id="aff-institution-id-test-3">institution-id in aff cannot contain elements, only text (which is a valid ROR id). This one contains the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
       
     </rule>
   </pattern>
@@ -1445,6 +1456,7 @@
       <assert test="descendant::article/front/article-meta/contrib-group[1]" role="error" id="orcid-name-checks-xspec-assert">article/front/article-meta/contrib-group[1] must be present.</assert>
       <assert test="descendant::aff" role="error" id="affiliation-checks-xspec-assert">aff must be present.</assert>
       <assert test="descendant::aff//institution-wrap" role="error" id="aff-institution-wrap-tests-xspec-assert">aff//institution-wrap must be present.</assert>
+      <assert test="descendant::aff//institution-id" role="error" id="aff-institution-id-tests-xspec-assert">aff//institution-id must be present.</assert>
       <assert test="descendant::mixed-citation[@publication-type='journal']" role="error" id="journal-ref-checks-xspec-assert">mixed-citation[@publication-type='journal'] must be present.</assert>
       <assert test="descendant::mixed-citation[@publication-type='journal']/source" role="error" id="journal-source-checks-xspec-assert">mixed-citation[@publication-type='journal']/source must be present.</assert>
       <assert test="descendant::mixed-citation[@publication-type='preprint']" role="error" id="preprint-ref-checks-xspec-assert">mixed-citation[@publication-type='preprint'] must be present.</assert>

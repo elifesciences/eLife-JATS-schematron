@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="aff-institution-id-test-2.sch"?>
+<!--Context: aff//institution-id
+Test: assert    matches(.,'https?://ror\.org/[a-z0-9]{9}')
+Message: institution-id in aff must a value which is a valid ROR id. '' is not a valid ROR id. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <aff id="a1"><label>a</label><institution-wrap><institution-id institution-id-type="ror">03njmea73</institution-id><institution>Department of Molecular Genetics and Microbiology, Duke University Medical Center</institution></institution-wrap>, <city>Durham</city>, <country>USA</country></aff>
+    </article>
+</root>

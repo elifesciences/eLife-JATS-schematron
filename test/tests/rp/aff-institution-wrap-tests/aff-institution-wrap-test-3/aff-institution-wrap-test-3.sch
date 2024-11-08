@@ -145,7 +145,7 @@
   </xsl:function>
   <pattern id="aff-institution-wrap-tests-pattern">
     <rule context="aff//institution-wrap" id="aff-institution-wrap-tests">
-      <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
+      <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content','city'))],', ')"/>
       <report test="text()" role="error" id="aff-institution-wrap-test-3">[aff-institution-wrap-test-3] institution-wrap cannot contain text. It can only contain elements.</report>
     </rule>
   </pattern>

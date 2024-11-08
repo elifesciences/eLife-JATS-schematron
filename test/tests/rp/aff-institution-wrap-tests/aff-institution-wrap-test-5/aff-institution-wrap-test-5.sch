@@ -145,7 +145,7 @@
   </xsl:function>
   <pattern id="aff-institution-wrap-tests-pattern">
     <rule context="aff//institution-wrap" id="aff-institution-wrap-tests">
-      <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
+      <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content','city'))],', ')"/>
       <assert test="count(institution[not(@*)]) = 1" role="error" id="aff-institution-wrap-test-5">[aff-institution-wrap-test-5] institution-wrap must contain 1 and only 1 institution elements. This one has <value-of select="count(institution[not(@*)])"/>.</assert>
     </rule>
   </pattern>

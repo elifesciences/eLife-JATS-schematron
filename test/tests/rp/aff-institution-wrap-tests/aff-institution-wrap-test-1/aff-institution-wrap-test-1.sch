@@ -145,7 +145,7 @@
   </xsl:function>
   <pattern id="aff-institution-wrap-tests-pattern">
     <rule context="aff//institution-wrap" id="aff-institution-wrap-tests">
-      <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
+      <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content','city'))],', ')"/>
       <assert test="institution-id and institution[not(@*)]" role="error" id="aff-institution-wrap-test-1">[aff-institution-wrap-test-1] If an affiliation has an institution wrap, then it must have both an institution-id and an institution. If there is no ROR for this institution, then it should be captured as a single institution element without institution-wrap. This institution-wrap does not have both elements - <value-of select="$display"/>
       </assert>
     </rule>

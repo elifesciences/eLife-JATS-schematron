@@ -265,7 +265,7 @@
       <report test="count(descendant::institution-wrap) gt 1" role="error" id="aff-mutliple-wraps">[aff-mutliple-wraps] Affiliation contains more than one institution-wrap element: <value-of select="string-join(descendant::institution-wrap/*,'; ')"/> in <value-of select="."/></report>
     
     </rule></pattern><pattern id="aff-institution-wrap-tests-pattern"><rule context="aff//institution-wrap" id="aff-institution-wrap-tests">
-      <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
+      <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content','city'))],', ')"/>
       
       <assert test="institution-id and institution[not(@*)]" role="error" id="aff-institution-wrap-test-1">[aff-institution-wrap-test-1] If an affiliation has an institution wrap, then it must have both an institution-id and an institution. If there is no ROR for this institution, then it should be captured as a single institution element without institution-wrap. This institution-wrap does not have both elements - <value-of select="$display"/></assert>
       
@@ -276,6 +276,14 @@
       <assert test="count(institution-id) = 1" role="error" id="aff-institution-wrap-test-4">[aff-institution-wrap-test-4] institution-wrap must contain 1 and only 1 institution-id elements. This one has <value-of select="count(institution-id)"/>.</assert>
       
       <assert test="count(institution[not(@*)]) = 1" role="error" id="aff-institution-wrap-test-5">[aff-institution-wrap-test-5] institution-wrap must contain 1 and only 1 institution elements. This one has <value-of select="count(institution[not(@*)])"/>.</assert>
+      
+    </rule></pattern><pattern id="aff-institution-id-tests-pattern"><rule context="aff//institution-id" id="aff-institution-id-tests">
+      
+      <assert test="@institution-id-type='ror'" role="error" id="aff-institution-id-test-1">[aff-institution-id-test-1] institution-id in aff must have the attribute institution-id-type="ror".</assert>
+      
+      <assert test="matches(.,'https?://ror\.org/[a-z0-9]{9}')" role="error" id="aff-institution-id-test-2">[aff-institution-id-test-2] institution-id in aff must a value which is a valid ROR id. '<value-of select="."/>' is not a valid ROR id.</assert>
+      
+      <report test="*" role="error" id="aff-institution-id-test-3">[aff-institution-id-test-3] institution-id in aff cannot contain elements, only text (which is a valid ROR id). This one contains the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
       
     </rule></pattern>
 

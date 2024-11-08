@@ -418,6 +418,22 @@
         id="aff-institution-wrap-test-5">institution-wrap must contain 1 and only 1 institution elements. This one has <value-of select="count(institution[not(@*)])"/>.</assert>
       
     </rule>
+      
+      <rule context="aff//institution-id" id="aff-institution-id-tests">
+      
+      <assert test="@institution-id-type='ror'" 
+        role="error" 
+        id="aff-institution-id-test-1">institution-id in aff must have the attribute institution-id-type="ror".</assert>
+      
+      <assert test="matches(.,'https?://ror\.org/[a-z0-9]{9}')" 
+        role="error" 
+        id="aff-institution-id-test-2">institution-id in aff must a value which is a valid ROR id. '<value-of select="."/>' is not a valid ROR id.</assert>
+      
+      <report test="*" 
+        role="error" 
+        id="aff-institution-id-test-3">institution-id in aff cannot contain elements, only text (which is a valid ROR id). This one contains the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
+      
+    </rule>
     </pattern>
 
     <pattern id="journal-ref">
