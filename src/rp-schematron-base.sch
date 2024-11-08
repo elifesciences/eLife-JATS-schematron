@@ -393,6 +393,31 @@
         id="aff-mutliple-wraps">Affiliation contains more than one institution-wrap element: <value-of select="string-join(descendant::institution-wrap/*,'; ')"/> in <value-of select="."/></report>
     
     </rule>
+      
+      <rule context="aff//institution-wrap" id="aff-institution-wrap-tests">
+      <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content','city'))],', ')"/>
+      
+      <assert test="institution-id and institution[not(@*)]" 
+        role="error" 
+        id="aff-institution-wrap-test-1">If an affiliation has an institution wrap, then it must have both an institution-id and an institution. If there is no ROR for this institution, then it should be captured as a single institution element without institution-wrap. This institution-wrap does not have both elements - <value-of select="$display"/></assert>
+      
+      <assert test="parent::aff" 
+        role="error" 
+        id="aff-institution-wrap-test-2">institution-wrap must be a child of aff. This one has <value-of select="parent::*/name()"/> as its parent.</assert>
+      
+      <report test="text()" 
+        role="error" 
+        id="aff-institution-wrap-test-3">institution-wrap cannot contain text. It can only contain elements.</report>
+      
+      <assert test="count(institution-id) = 1" 
+        role="error" 
+        id="aff-institution-wrap-test-4">institution-wrap must contain 1 and only 1 institution-id elements. This one has <value-of select="count(institution-id)"/>.</assert>
+      
+      <assert test="count(institution[not(@*)]) = 1" 
+        role="error" 
+        id="aff-institution-wrap-test-5">institution-wrap must contain 1 and only 1 institution elements. This one has <value-of select="count(institution[not(@*)])"/>.</assert>
+      
+    </rule>
     </pattern>
 
     <pattern id="journal-ref">
