@@ -22691,8 +22691,11 @@
    <!--PATTERN ed-report-bold-terms-pattern-->
    <!--RULE ed-report-bold-terms-->
    <xsl:template match="sub-article[@article-type='editor-report' and e:is-prc(.)]/body/p[1]//bold" priority="1000" mode="M364">
-      <xsl:variable name="allowed-vals" select="('landmark', 'fundamental', 'important', 'valuable', 'useful', 'exceptional', 'compelling', 'convincing', 'convincingly', 'solid', 'incomplete', 'incompletely', 'inadequate', 'inadequately')"/>
-      <xsl:variable name="generated-kwd" select="concat(upper-case(substring(.,1,1)),replace(lower-case(substring(.,2)),'ly$',''))"/>
+      <xsl:variable name="str-kwds" select="('exceptional', 'compelling', 'convincing', 'convincingly', 'solid', 'incomplete', 'incompletely', 'inadequate', 'inadequately')"/>
+      <xsl:variable name="sig-kwds" select="('landmark', 'fundamental', 'important', 'valuable', 'useful')"/>
+      <xsl:variable name="allowed-vals" select="($str-kwds,$sig-kwds)"/>
+      <xsl:variable name="normalized-kwd" select="replace(lower-case(.),'ly$','')"/>
+      <xsl:variable name="title-case-kwd" select="concat(upper-case(substring($normalized-kwd,1,1)),lower-case(substring($normalized-kwd,2)))"/>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="lower-case(.)=$allowed-vals"/>
@@ -22713,8 +22716,8 @@
          </xsl:otherwise>
       </xsl:choose>
       <!--REPORT error-->
-      <xsl:if test="lower-case(.)=$allowed-vals and not($generated-kwd=ancestor::sub-article/front-stub/kwd-group/kwd)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="lower-case(.)=$allowed-vals and not($generated-kwd=ancestor::sub-article/front-stub/kwd-group/kwd)">
+      <xsl:if test="lower-case(.)=$allowed-vals and not($title-case-kwd=ancestor::sub-article/front-stub/kwd-group/kwd)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="lower-case(.)=$allowed-vals and not($title-case-kwd=ancestor::sub-article/front-stub/kwd-group/kwd)">
             <xsl:attribute name="id">ed-report-bold-terms-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -22723,6 +22726,21 @@
             <svrl:text>[ed-report-bold-terms-2] Bold phrase in eLife Assessment - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/> - is one of the permitted vocabulary terms, but there's no corresponding keyword in the metadata (in a kwd-group in the front-stub).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="preceding-sibling::bold[replace(lower-case(.),'ly$','') = $normalized-kwd]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="preceding-sibling::bold[replace(lower-case(.),'ly$','') = $normalized-kwd]">
+            <xsl:attribute name="id">ed-report-bold-terms-3</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ed-report-bold-terms-3] There is more than one of the same <xsl:text/>
+               <xsl:value-of select="if (replace(lower-case(.),'ly$','')=$str-kwds) then 'strength' else 'significance'"/>
+               <xsl:text/> keywords in the assessment - <xsl:text/>
+               <xsl:value-of select="$normalized-kwd"/>
+               <xsl:text/>. This is very likely to be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M364"/>
