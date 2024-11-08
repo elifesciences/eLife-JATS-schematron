@@ -150,7 +150,7 @@
       <let name="allowed-vals" value="($str-kwds,$sig-kwds)"/>
       <let name="normalized-kwd" value="replace(lower-case(.),'ly$','')"/>
       <let name="title-case-kwd" value="concat(upper-case(substring($normalized-kwd,1,1)),lower-case(substring($normalized-kwd,2)))"/>
-      <report test="lower-case(.)=$allowed-vals and not($title-case-kwd=ancestor::sub-article/front-stub/kwd-group/kwd)" role="error" id="ed-report-bold-terms-2">[ed-report-bold-terms-2] Bold phrase in eLife Assessment - <value-of select="."/> - is one of the permitted vocabulary terms, but there's no corresponding keyword in the metadata (in a kwd-group in the front-stub).</report>
+      <report test="preceding-sibling::bold[replace(lower-case(.),'ly$','') = $normalized-kwd]" role="warning" id="ed-report-bold-terms-3">[ed-report-bold-terms-3] There is more than one of the same <value-of select="if (replace(lower-case(.),'ly$','')=$str-kwds) then 'strength' else 'significance'"/> keywords in the assessment - <value-of select="$normalized-kwd"/>. This is very likely to be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

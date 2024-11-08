@@ -1,0 +1,31 @@
+<?oxygen SCHSchema="ed-report-bold-terms-3.sch"?>
+<!--Context: sub-article[@article-type='editor-report' and e:is-prc(.)]/body/p[1]//bold
+Test: report    preceding-sibling::bold[replace(lower-case(.),'ly$','') = $normalized-kwd]
+Message: There is more than one of the same  keywords in the assessment - . This is very likely to be incorrect. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <front>
+            <article-meta>
+                <custom-meta-group>
+                    <custom-meta specific-use="meta-only">
+                        <meta-name>publishing-route</meta-name>
+                        <meta-value>prc</meta-value>
+                    </custom-meta>
+                </custom-meta-group>
+            </article-meta>
+        </front>
+        <sub-article id="sa0" article-type="editor-report">
+        <front-stub>
+            <kwd-group kwd-group-type="claim-importance">
+                <kwd>Useful</kwd>
+            </kwd-group>
+            <kwd-group kwd-group-type="evidence-strength">
+                <kwd>Incomplete</kwd>
+            </kwd-group>
+        </front-stub>
+        <body>
+            <p>This <bold>incomplete</bold> work is <bold>useful</bold> but the evidence <bold>incompletely</bold> shown.</p>
+        </body>
+    </sub-article>
+    </article>
+</root>
