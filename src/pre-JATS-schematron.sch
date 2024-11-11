@@ -6069,7 +6069,7 @@
       
       <report test="matches($lc,'mycobacterium\p{Zs}?tuberculosis') and not(italic[contains(.,'Mycobacterium tuberculosis')])" role="info" id="mycobacteriumtuberculosis-ref-article-title-check">[mycobacteriumtuberculosis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Mycobacterium tuberculosis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-      <report test="matches($lc,'m\.\p{Zs}?troglodytes') and not(italic[contains(.,'M. bovis')])" role="info" id="mbovis-ref-article-title-check">[mbovis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'M. bovis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'m\.\p{Zs}?bovis') and not(italic[contains(.,'M. bovis')])" role="info" id="mbovis-ref-article-title-check">[mbovis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'M. bovis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'mycobacterium\p{Zs}?bovis') and not(italic[contains(.,'Mycobacterium bovis')])" role="info" id="mycobacteriumbovis-ref-article-title-check">[mycobacteriumbovis-ref-article-title-check] ref <value-of select="ancestor::ref/@id"/> references an organism - 'Mycobacterium bovis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
@@ -6395,7 +6395,7 @@
       
       <report test="matches($lc,'mycobacterium\p{Zs}?tuberculosis') and not(italic[contains(.,'Mycobacterium tuberculosis')])" role="info" id="mycobacteriumtuberculosis-article-title-check">[mycobacteriumtuberculosis-article-title-check] <name/> contains an organism - 'Mycobacterium tuberculosis' - but there is no italic element with that correct capitalisation or spacing.</report>
 
-      <report test="matches($lc,'m\.\p{Zs}?troglodytes') and not(italic[contains(.,'M. bovis')])" role="info" id="mbovis-article-title-check">[mbovis-article-title-check] <name/> contains an organism - 'M. bovis' - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="matches($lc,'m\.\p{Zs}?bovis') and not(italic[contains(.,'M. bovis')])" role="info" id="mbovis-article-title-check">[mbovis-article-title-check] <name/> contains an organism - 'M. bovis' - but there is no italic element with that correct capitalisation or spacing.</report>
       
       <report test="matches($lc,'mycobacterium\p{Zs}?bovis') and not(italic[contains(.,'Mycobacterium bovis')])" role="info" id="mycobacteriumbovis-article-title-check">[mycobacteriumbovis-article-title-check] <name/> contains an organism - 'Mycobacterium bovis' - but there is no italic element with that correct capitalisation or spacing.</report>
 

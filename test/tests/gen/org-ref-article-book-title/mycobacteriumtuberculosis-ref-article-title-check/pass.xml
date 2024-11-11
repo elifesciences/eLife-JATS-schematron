@@ -1,3 +1,5 @@
-<?oxygen SCHSchema="mycobacteriumtuberculosis-ref-article-title-check.sch"?><!--Context: element-citation/article-title|element-citation/chapter-title|element-citation/source|element-citation/data-title
+<?oxygen SCHSchema="mycobacteriumtuberculosis-ref-article-title-check.sch"?>
+<!--Context: element-citation/article-title|element-citation/chapter-title|element-citation/source|element-citation/data-title
 Test: report    matches($lc,'mycobacterium\p{Zs}?tuberculosis') and not(italic[contains(.,'Mycobacterium tuberculosis')])
-Message: ref  references an organism - 'Mycobacterium tuberculosis' - but there is no italic element with that correct capitalisation or spacing. --><root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article><element-citation><article-title><italic>Mycobacterium tuberculosis</italic></article-title></element-citation></article></root>
+Message: ref  references an organism - 'Mycobacterium tuberculosis' - but there is no italic element with that correct capitalisation or spacing. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article><element-citation><article-title><italic>Mycobacterium tuberculosis</italic></article-title></element-citation></article></root>

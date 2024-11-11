@@ -33250,8 +33250,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT info-->
-      <xsl:if test="matches($lc,'m\.\p{Zs}?troglodytes') and not(italic[contains(.,'M. bovis')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?troglodytes') and not(italic[contains(.,'M. bovis')])">
+      <xsl:if test="matches($lc,'m\.\p{Zs}?bovis') and not(italic[contains(.,'M. bovis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?bovis') and not(italic[contains(.,'M. bovis')])">
             <xsl:attribute name="id">mbovis-ref-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
@@ -35500,8 +35500,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT info-->
-      <xsl:if test="matches($lc,'m\.\p{Zs}?troglodytes') and not(italic[contains(.,'M. bovis')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?troglodytes') and not(italic[contains(.,'M. bovis')])">
+      <xsl:if test="matches($lc,'m\.\p{Zs}?bovis') and not(italic[contains(.,'M. bovis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?bovis') and not(italic[contains(.,'M. bovis')])">
             <xsl:attribute name="id">mbovis-article-title-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
