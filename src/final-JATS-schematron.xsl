@@ -975,6 +975,30 @@
          <xsl:when test="matches($s,'pan\p{Zs}?troglodytes')">
             <xsl:value-of select="'Pan troglodytes'"/>
          </xsl:when>
+         <xsl:when test="matches($s,'m\.\p{Zs}?fortuitum')">
+            <xsl:value-of select="'M. fortuitum'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'mycobacterium\p{Zs}?fortuitum')">
+            <xsl:value-of select="'Mycobacterium fortuitum'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'m\.\p{Zs}?smegmatis')">
+            <xsl:value-of select="'M. smegmatis'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'mycobacterium\p{Zs}?smegmatis')">
+            <xsl:value-of select="'Mycobacterium smegmatis'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'m\.\p{Zs}?tuberculosis')">
+            <xsl:value-of select="'M. tuberculosis'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'mycobacterium\p{Zs}?tuberculosis')">
+            <xsl:value-of select="'Mycobacterium tuberculosis'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'m\.\p{Zs}?bovis')">
+            <xsl:value-of select="'M. bovis'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'mycobacterium\p{Zs}?bovis')">
+            <xsl:value-of select="'Mycobacterium bovis'"/>
+         </xsl:when>
          <xsl:when test="matches($s,'xenopus')">
             <xsl:value-of select="'Xenopus'"/>
          </xsl:when>
@@ -6166,7 +6190,7 @@
    <xsl:param name="wellcome-fundref-ids" select="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
    <xsl:param name="known-grant-funder-fundref-ids" select="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968')"/>
    <xsl:param name="grant-doi-exception-funder-ids" select="($wellcome-fundref-ids,$known-grant-funder-fundref-ids)"/>
-   <xsl:param name="org-regex" select="'b\.\p{Zs}?subtilis|bacillus\p{Zs}?subtilis|d\.\p{Zs}?melanogaster|drosophila\p{Zs}?melanogaster|e\.\p{Zs}?coli|escherichia\p{Zs}?coli|s\.\p{Zs}?pombe|schizosaccharomyces\p{Zs}?pombe|s\.\p{Zs}?cerevisiae|saccharomyces\p{Zs}?cerevisiae|c\.\p{Zs}?elegans|caenorhabditis\p{Zs}?elegans|a\.\p{Zs}?thaliana|arabidopsis\p{Zs}?thaliana|m\.\p{Zs}?thermophila|myceliophthora\p{Zs}?thermophila|dictyostelium|p\.\p{Zs}?falciparum|plasmodium\p{Zs}?falciparum|s\.\p{Zs}?enterica|salmonella\p{Zs}?enterica|s\.\p{Zs}?pyogenes|streptococcus\p{Zs}?pyogenes|p\.\p{Zs}?dumerilii|platynereis\p{Zs}?dumerilii|p\.\p{Zs}?cynocephalus|papio\p{Zs}?cynocephalus|o\.\p{Zs}?fasciatus|oncopeltus\p{Zs}?fasciatus|n\.\p{Zs}?crassa|neurospora\p{Zs}?crassa|c\.\p{Zs}?intestinalis|ciona\p{Zs}?intestinalis|e\.\p{Zs}?cuniculi|encephalitozoon\p{Zs}?cuniculi|h\.\p{Zs}?salinarum|halobacterium\p{Zs}?salinarum|s\.\p{Zs}?solfataricus|sulfolobus\p{Zs}?solfataricus|s\.\p{Zs}?mediterranea|schmidtea\p{Zs}?mediterranea|s\.\p{Zs}?rosetta|salpingoeca\p{Zs}?rosetta|n\.\p{Zs}?vectensis|nematostella\p{Zs}?vectensis|s\.\p{Zs}?aureus|staphylococcus\p{Zs}?aureus|v\.\p{Zs}?cholerae|vibrio\p{Zs}?cholerae|t\.\p{Zs}?thermophila|tetrahymena\p{Zs}?thermophila|c\.\p{Zs}?reinhardtii|chlamydomonas\p{Zs}?reinhardtii|n\.\p{Zs}?attenuata|nicotiana\p{Zs}?attenuata|e\.\p{Zs}?carotovora|erwinia\p{Zs}?carotovora|e\.\p{Zs}?faecalis|h\.\p{Zs}?sapiens|homo\p{Zs}?sapiens|c\.\p{Zs}?trachomatis|chlamydia\p{Zs}?trachomatis|enterococcus\p{Zs}?faecalis|x\.\p{Zs}?laevis|xenopus\p{Zs}?laevis|x\.\p{Zs}?tropicalis|xenopus\p{Zs}?tropicalis|m\.\p{Zs}?musculus|mus\p{Zs}?musculus|d\.\p{Zs}?immigrans|drosophila\p{Zs}?immigrans|d\.\p{Zs}?subobscura|drosophila\p{Zs}?subobscura|d\.\p{Zs}?affinis|drosophila\p{Zs}?affinis|d\.\p{Zs}?obscura|drosophila\p{Zs}?obscura|f\.\p{Zs}?tularensis|francisella\p{Zs}?tularensis|p\.\p{Zs}?plantaginis|podosphaera\p{Zs}?plantaginis|p\.\p{Zs}?lanceolata|plantago\p{Zs}?lanceolata|m\.\p{Zs}?trossulus|mytilus\p{Zs}?trossulus|m\.\p{Zs}?edulis|mytilus\p{Zs}?edulis|m\.\p{Zs}?chilensis|mytilus\p{Zs}?chilensis|u\.\p{Zs}?maydis|ustilago\p{Zs}?maydis|p\.\p{Zs}?knowlesi|plasmodium\p{Zs}?knowlesi|p\.\p{Zs}?aeruginosa|pseudomonas\p{Zs}?aeruginosa|t\.\p{Zs}?brucei|trypanosoma\p{Zs}?brucei|t\.\p{Zs}?gondii|toxoplasma\p{Zs}?gondii|d\.\p{Zs}?rerio|danio\p{Zs}?rerio|yimenosaurus|lesothosaurus\p{Zs}?diagnosticus|l\.\p{Zs}?diagnosticus|scelidosaurus\p{Zs}?harrisonii|s\.\p{Zs}?harrisonii|haya\p{Zs}?griva|h\.\p{Zs}?griva|polacanthus\p{Zs}?foxii|p\.\p{Zs}?foxii|scutellosaurus\p{Zs}?lawleri|s\.\p{Zs}?lawleri|saichania\p{Zs}?chulsanensis|s\.\p{Zs}?chulsanensis|gargoyleosaurus\p{Zs}?parkpinorum|g\.\p{Zs}?parkpinorum|europelta\p{Zs}?carbonensis|e\.\p{Zs}?carbonensis|stegosaurus\p{Zs}?stenops|s\.\p{Zs}?stenops|pinacosaurus\p{Zs}?grangeri|p\.\p{Zs}?grangeri|tatisaurus\p{Zs}?oehleri|t\.\p{Zs}?oehleri|hungarosaurus\p{Zs}?tormai|h\.\p{Zs}?tormai|bienosaurus\p{Zs}?lufengensis|b\.\p{Zs}?lufengensis|fabrosaurus\p{Zs}?australis|f\.\p{Zs}?australis|chinshakiangosaurus\p{Zs}?chunghoensis|c\.\p{Zs}?chunghoensis|euoplocephalus\p{Zs}?tutus|e\.\p{Zs}?tutus|drosophila|xenopus|salmonella|g\.\p{Zs}?beringei|gorilla\p{Zs}?beringei|m\.\p{Zs}?assamensis|macaca\p{Zs}?assamensis|m\.\p{Zs}?fuscata|macaca\p{Zs}?fuscata|m\.\p{Zs}?mulatta|macaca\p{Zs}?mulatta|m\.\p{Zs}?nemestrina|macaca\p{Zs}?nemestrina|m\.\p{Zs}?sphinx|mandrillus\p{Zs}?sphinx|p\.\p{Zs}?anubis|papio\p{Zs}?anubis|p\.\p{Zs}?hamadryas|papio\p{Zs}?hamadryas|p\.\p{Zs}?paniscus|pan\p{Zs}?paniscus|p\.\p{Zs}?troglodytes|pan\p{Zs}?troglodytes'"/>
+   <xsl:param name="org-regex" select="'b\.\p{Zs}?subtilis|bacillus\p{Zs}?subtilis|d\.\p{Zs}?melanogaster|drosophila\p{Zs}?melanogaster|e\.\p{Zs}?coli|escherichia\p{Zs}?coli|s\.\p{Zs}?pombe|schizosaccharomyces\p{Zs}?pombe|s\.\p{Zs}?cerevisiae|saccharomyces\p{Zs}?cerevisiae|c\.\p{Zs}?elegans|caenorhabditis\p{Zs}?elegans|a\.\p{Zs}?thaliana|arabidopsis\p{Zs}?thaliana|m\.\p{Zs}?thermophila|myceliophthora\p{Zs}?thermophila|dictyostelium|p\.\p{Zs}?falciparum|plasmodium\p{Zs}?falciparum|s\.\p{Zs}?enterica|salmonella\p{Zs}?enterica|s\.\p{Zs}?pyogenes|streptococcus\p{Zs}?pyogenes|p\.\p{Zs}?dumerilii|platynereis\p{Zs}?dumerilii|p\.\p{Zs}?cynocephalus|papio\p{Zs}?cynocephalus|o\.\p{Zs}?fasciatus|oncopeltus\p{Zs}?fasciatus|n\.\p{Zs}?crassa|neurospora\p{Zs}?crassa|c\.\p{Zs}?intestinalis|ciona\p{Zs}?intestinalis|e\.\p{Zs}?cuniculi|encephalitozoon\p{Zs}?cuniculi|h\.\p{Zs}?salinarum|halobacterium\p{Zs}?salinarum|s\.\p{Zs}?solfataricus|sulfolobus\p{Zs}?solfataricus|s\.\p{Zs}?mediterranea|schmidtea\p{Zs}?mediterranea|s\.\p{Zs}?rosetta|salpingoeca\p{Zs}?rosetta|n\.\p{Zs}?vectensis|nematostella\p{Zs}?vectensis|s\.\p{Zs}?aureus|staphylococcus\p{Zs}?aureus|v\.\p{Zs}?cholerae|vibrio\p{Zs}?cholerae|t\.\p{Zs}?thermophila|tetrahymena\p{Zs}?thermophila|c\.\p{Zs}?reinhardtii|chlamydomonas\p{Zs}?reinhardtii|n\.\p{Zs}?attenuata|nicotiana\p{Zs}?attenuata|e\.\p{Zs}?carotovora|erwinia\p{Zs}?carotovora|e\.\p{Zs}?faecalis|h\.\p{Zs}?sapiens|homo\p{Zs}?sapiens|c\.\p{Zs}?trachomatis|chlamydia\p{Zs}?trachomatis|enterococcus\p{Zs}?faecalis|x\.\p{Zs}?laevis|xenopus\p{Zs}?laevis|x\.\p{Zs}?tropicalis|xenopus\p{Zs}?tropicalis|m\.\p{Zs}?musculus|mus\p{Zs}?musculus|d\.\p{Zs}?immigrans|drosophila\p{Zs}?immigrans|d\.\p{Zs}?subobscura|drosophila\p{Zs}?subobscura|d\.\p{Zs}?affinis|drosophila\p{Zs}?affinis|d\.\p{Zs}?obscura|drosophila\p{Zs}?obscura|f\.\p{Zs}?tularensis|francisella\p{Zs}?tularensis|p\.\p{Zs}?plantaginis|podosphaera\p{Zs}?plantaginis|p\.\p{Zs}?lanceolata|plantago\p{Zs}?lanceolata|m\.\p{Zs}?trossulus|mytilus\p{Zs}?trossulus|m\.\p{Zs}?edulis|mytilus\p{Zs}?edulis|m\.\p{Zs}?chilensis|mytilus\p{Zs}?chilensis|u\.\p{Zs}?maydis|ustilago\p{Zs}?maydis|p\.\p{Zs}?knowlesi|plasmodium\p{Zs}?knowlesi|p\.\p{Zs}?aeruginosa|pseudomonas\p{Zs}?aeruginosa|t\.\p{Zs}?brucei|trypanosoma\p{Zs}?brucei|t\.\p{Zs}?gondii|toxoplasma\p{Zs}?gondii|d\.\p{Zs}?rerio|danio\p{Zs}?rerio|yimenosaurus|lesothosaurus\p{Zs}?diagnosticus|l\.\p{Zs}?diagnosticus|scelidosaurus\p{Zs}?harrisonii|s\.\p{Zs}?harrisonii|haya\p{Zs}?griva|h\.\p{Zs}?griva|polacanthus\p{Zs}?foxii|p\.\p{Zs}?foxii|scutellosaurus\p{Zs}?lawleri|s\.\p{Zs}?lawleri|saichania\p{Zs}?chulsanensis|s\.\p{Zs}?chulsanensis|gargoyleosaurus\p{Zs}?parkpinorum|g\.\p{Zs}?parkpinorum|europelta\p{Zs}?carbonensis|e\.\p{Zs}?carbonensis|stegosaurus\p{Zs}?stenops|s\.\p{Zs}?stenops|pinacosaurus\p{Zs}?grangeri|p\.\p{Zs}?grangeri|tatisaurus\p{Zs}?oehleri|t\.\p{Zs}?oehleri|hungarosaurus\p{Zs}?tormai|h\.\p{Zs}?tormai|bienosaurus\p{Zs}?lufengensis|b\.\p{Zs}?lufengensis|fabrosaurus\p{Zs}?australis|f\.\p{Zs}?australis|chinshakiangosaurus\p{Zs}?chunghoensis|c\.\p{Zs}?chunghoensis|euoplocephalus\p{Zs}?tutus|e\.\p{Zs}?tutus|drosophila|xenopus|salmonella|g\.\p{Zs}?beringei|gorilla\p{Zs}?beringei|m\.\p{Zs}?assamensis|macaca\p{Zs}?assamensis|m\.\p{Zs}?fuscata|macaca\p{Zs}?fuscata|m\.\p{Zs}?mulatta|macaca\p{Zs}?mulatta|m\.\p{Zs}?nemestrina|macaca\p{Zs}?nemestrina|m\.\p{Zs}?sphinx|mandrillus\p{Zs}?sphinx|p\.\p{Zs}?anubis|papio\p{Zs}?anubis|p\.\p{Zs}?hamadryas|papio\p{Zs}?hamadryas|p\.\p{Zs}?paniscus|pan\p{Zs}?paniscus|p\.\p{Zs}?troglodytes|pan\p{Zs}?troglodytes|m\.\p{Zs}?fortuitum|mycobacterium\p{Zs}?fortuitum|m\.\p{Zs}?smegmatis|mycobacterium\p{Zs}?smegmatis|m\.\p{Zs}?tuberculosis|mycobacterium\p{Zs}?tuberculosis|m\.\p{Zs}?bovis|mycobacterium\p{Zs}?bovis'"/>
    <xsl:param name="sec-title-regex" select="string-join(     for $x in tokenize($org-regex,'\|')     return concat('^',$x,'$')     ,'|')"/>
    <xsl:param name="latin-regex" select="'in\p{Zs}+vitro|ex\p{Zs}+vitro|in\p{Zs}+vivo|ex\p{Zs}+vivo|a\p{Zs}+priori|a\p{Zs}+posteriori|de\p{Zs}+novo|in\p{Zs}+utero|in\p{Zs}+natura|in\p{Zs}+situ|in\p{Zs}+planta|in\p{Zs}+cellulo|rete\p{Zs}+mirabile|nomen\p{Zs}+novum| sensu |ad\p{Zs}+libitum|in\p{Zs}+ovo'"/>
    <!--PATTERN covid-prologue-pattern-->
@@ -33422,6 +33446,110 @@
                <xsl:text/> references an organism - 'Pan troglodytes' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'m\.\p{Zs}?fortuitum') and not(italic[contains(.,'M. fortuitum')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?fortuitum') and not(italic[contains(.,'M. fortuitum')])">
+            <xsl:attribute name="id">mfortuitum-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mfortuitum-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'M. fortuitum' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'mycobacterium\p{Zs}?fortuitum') and not(italic[contains(.,'Mycobacterium fortuitum')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'mycobacterium\p{Zs}?fortuitum') and not(italic[contains(.,'Mycobacterium fortuitum')])">
+            <xsl:attribute name="id">mycobacteriumfortuitum-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mycobacteriumfortuitum-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'Mycobacterium fortuitum' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'m\.\p{Zs}?smegmatis') and not(italic[contains(.,'M. smegmatis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?smegmatis') and not(italic[contains(.,'M. smegmatis')])">
+            <xsl:attribute name="id">msmegmatis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[msmegmatis-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'M. smegmatis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'mycobacterium\p{Zs}?smegmatis') and not(italic[contains(.,'Mycobacterium smegmatis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'mycobacterium\p{Zs}?smegmatis') and not(italic[contains(.,'Mycobacterium smegmatis')])">
+            <xsl:attribute name="id">mycobacteriumsmegmatis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mycobacteriumsmegmatis-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'Mycobacterium smegmatis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'m\.\p{Zs}?tuberculosis') and not(italic[contains(.,'M. tuberculosis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?tuberculosis') and not(italic[contains(.,'M. tuberculosis')])">
+            <xsl:attribute name="id">mtuberculosis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mtuberculosis-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'M. tuberculosis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'mycobacterium\p{Zs}?tuberculosis') and not(italic[contains(.,'Mycobacterium tuberculosis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'mycobacterium\p{Zs}?tuberculosis') and not(italic[contains(.,'Mycobacterium tuberculosis')])">
+            <xsl:attribute name="id">mycobacteriumtuberculosis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mycobacteriumtuberculosis-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'Mycobacterium tuberculosis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'m\.\p{Zs}?bovis') and not(italic[contains(.,'M. bovis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?bovis') and not(italic[contains(.,'M. bovis')])">
+            <xsl:attribute name="id">mbovis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mbovis-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'M. bovis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'mycobacterium\p{Zs}?bovis') and not(italic[contains(.,'Mycobacterium bovis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'mycobacterium\p{Zs}?bovis') and not(italic[contains(.,'Mycobacterium bovis')])">
+            <xsl:attribute name="id">mycobacteriumbovis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mycobacteriumbovis-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'Mycobacterium bovis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M502"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M502"/>
@@ -35566,6 +35694,110 @@
             <svrl:text>[pantroglodytes-article-title-check] <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Pan troglodytes' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'m\.\p{Zs}?fortuitum') and not(italic[contains(.,'M. fortuitum')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?fortuitum') and not(italic[contains(.,'M. fortuitum')])">
+            <xsl:attribute name="id">mfortuitum-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mfortuitum-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'M. fortuitum' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'mycobacterium\p{Zs}?fortuitum') and not(italic[contains(.,'Mycobacterium fortuitum')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'mycobacterium\p{Zs}?fortuitum') and not(italic[contains(.,'Mycobacterium fortuitum')])">
+            <xsl:attribute name="id">mycobacteriumfortuitum-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mycobacteriumfortuitum-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'Mycobacterium fortuitum' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'m\.\p{Zs}?smegmatis') and not(italic[contains(.,'M. smegmatis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?smegmatis') and not(italic[contains(.,'M. smegmatis')])">
+            <xsl:attribute name="id">msmegmatis-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[msmegmatis-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'M. smegmatis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'mycobacterium\p{Zs}?smegmatis') and not(italic[contains(.,'Mycobacterium smegmatis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'mycobacterium\p{Zs}?smegmatis') and not(italic[contains(.,'Mycobacterium smegmatis')])">
+            <xsl:attribute name="id">mycobacteriumsmegmatis-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mycobacteriumsmegmatis-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'Mycobacterium smegmatis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'m\.\p{Zs}?tuberculosis') and not(italic[contains(.,'M. tuberculosis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?tuberculosis') and not(italic[contains(.,'M. tuberculosis')])">
+            <xsl:attribute name="id">mtuberculosis-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mtuberculosis-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'M. tuberculosis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'mycobacterium\p{Zs}?tuberculosis') and not(italic[contains(.,'Mycobacterium tuberculosis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'mycobacterium\p{Zs}?tuberculosis') and not(italic[contains(.,'Mycobacterium tuberculosis')])">
+            <xsl:attribute name="id">mycobacteriumtuberculosis-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mycobacteriumtuberculosis-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'Mycobacterium tuberculosis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'m\.\p{Zs}?bovis') and not(italic[contains(.,'M. bovis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?bovis') and not(italic[contains(.,'M. bovis')])">
+            <xsl:attribute name="id">mbovis-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mbovis-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'M. bovis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'mycobacterium\p{Zs}?bovis') and not(italic[contains(.,'Mycobacterium bovis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'mycobacterium\p{Zs}?bovis') and not(italic[contains(.,'Mycobacterium bovis')])">
+            <xsl:attribute name="id">mycobacteriumbovis-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mycobacteriumbovis-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'Mycobacterium bovis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->

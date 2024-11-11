@@ -16335,6 +16335,86 @@
         <x:expect-report id="pantroglodytes-ref-article-title-check" role="info"/>
         <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="mfortuitum-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/mfortuitum-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mfortuitum-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mfortuitum-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/mfortuitum-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="mfortuitum-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mycobacteriumfortuitum-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/mycobacteriumfortuitum-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mycobacteriumfortuitum-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mycobacteriumfortuitum-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/mycobacteriumfortuitum-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="mycobacteriumfortuitum-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="msmegmatis-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/msmegmatis-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="msmegmatis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="msmegmatis-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/msmegmatis-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="msmegmatis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mycobacteriumsmegmatis-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/mycobacteriumsmegmatis-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mycobacteriumsmegmatis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mycobacteriumsmegmatis-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/mycobacteriumsmegmatis-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="mycobacteriumsmegmatis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mtuberculosis-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/mtuberculosis-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mtuberculosis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mtuberculosis-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/mtuberculosis-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="mtuberculosis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mycobacteriumtuberculosis-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/mycobacteriumtuberculosis-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mycobacteriumtuberculosis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mycobacteriumtuberculosis-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/mycobacteriumtuberculosis-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="mycobacteriumtuberculosis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mbovis-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/mbovis-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mbovis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mbovis-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/mbovis-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="mbovis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mycobacteriumbovis-ref-article-title-check-pass">
+        <x:context href="../tests/gen/org-ref-article-book-title/mycobacteriumbovis-ref-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mycobacteriumbovis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mycobacteriumbovis-ref-article-title-check-fail">
+        <x:context href="../tests/gen/org-ref-article-book-title/mycobacteriumbovis-ref-article-title-check/fail.xml"/>
+        <x:expect-report id="mycobacteriumbovis-ref-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-ref-article-book-title-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="org-title-kwd">
       <x:scenario label="bssubtilis-article-title-check-pass">
@@ -17875,6 +17955,86 @@
       <x:scenario label="pantroglodytes-article-title-check-fail">
         <x:context href="../tests/gen/org-title-kwd/pantroglodytes-article-title-check/fail.xml"/>
         <x:expect-report id="pantroglodytes-article-title-check" role="warning"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mfortuitum-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/mfortuitum-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mfortuitum-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mfortuitum-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/mfortuitum-article-title-check/fail.xml"/>
+        <x:expect-report id="mfortuitum-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mycobacteriumfortuitum-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/mycobacteriumfortuitum-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mycobacteriumfortuitum-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mycobacteriumfortuitum-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/mycobacteriumfortuitum-article-title-check/fail.xml"/>
+        <x:expect-report id="mycobacteriumfortuitum-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="msmegmatis-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/msmegmatis-article-title-check/pass.xml"/>
+        <x:expect-not-report id="msmegmatis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="msmegmatis-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/msmegmatis-article-title-check/fail.xml"/>
+        <x:expect-report id="msmegmatis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mycobacteriumsmegmatis-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/mycobacteriumsmegmatis-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mycobacteriumsmegmatis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mycobacteriumsmegmatis-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/mycobacteriumsmegmatis-article-title-check/fail.xml"/>
+        <x:expect-report id="mycobacteriumsmegmatis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mtuberculosis-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/mtuberculosis-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mtuberculosis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mtuberculosis-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/mtuberculosis-article-title-check/fail.xml"/>
+        <x:expect-report id="mtuberculosis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mycobacteriumtuberculosis-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/mycobacteriumtuberculosis-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mycobacteriumtuberculosis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mycobacteriumtuberculosis-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/mycobacteriumtuberculosis-article-title-check/fail.xml"/>
+        <x:expect-report id="mycobacteriumtuberculosis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mbovis-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/mbovis-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mbovis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mbovis-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/mbovis-article-title-check/fail.xml"/>
+        <x:expect-report id="mbovis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mycobacteriumbovis-article-title-check-pass">
+        <x:context href="../tests/gen/org-title-kwd/mycobacteriumbovis-article-title-check/pass.xml"/>
+        <x:expect-not-report id="mycobacteriumbovis-article-title-check" role="info"/>
+        <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mycobacteriumbovis-article-title-check-fail">
+        <x:context href="../tests/gen/org-title-kwd/mycobacteriumbovis-article-title-check/fail.xml"/>
+        <x:expect-report id="mycobacteriumbovis-article-title-check" role="info"/>
         <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="drosophila-article-title-check-pass">
