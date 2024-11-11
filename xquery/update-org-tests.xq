@@ -22,16 +22,10 @@ let $base := doc('../src/schematron.sch')
 let $base-uri := substring-before(base-uri($base),'src')
 let $folder := $base-uri||"/test/tests/gen/"
 
-for $x in tokenize('gorilla beringei
-macaca assamensis
-macaca fuscata
-macaca mulatta
-macaca nemestrina
-mandrillus sphinx
-papio anubis
-papio hamadryas
-pan paniscus
-pan troglodytes','\n')
+for $x in tokenize('mycobacterium fortuitum
+mycobacterium smegmatis
+mycobacterium tuberculosis
+mycobacterium bovis','\n')
 return 
   if (contains($x,' ')) then 
   let $z := replace($x,' ','')

@@ -11,9 +11,11 @@ Message: Affiliation contains more than one institution-id element:  in  -->
 
 
 
+
 <!--Context: aff
 Test: report    count(descendant::institution-id) gt 1
 Message: Affiliation contains more than one institution-id element:  in  -->
+
 
 
 
@@ -28,9 +30,11 @@ Message: Affiliation contains more than one institution-id element:  in  -->
 
 
 
+
 <!--Context: aff
 Test: report    count(descendant::institution-id) gt 1
 Message: Affiliation contains more than one institution-id element:  in  -->
+
 
 
 
@@ -45,9 +49,11 @@ Message: Affiliation contains more than one institution-id element:  in  -->
 
 
 
+
 <!--Context: aff
 Test: report    count(descendant::institution-id) gt 1
 Message: Affiliation contains more than one institution-id element:  in  -->
+
 
 
 
