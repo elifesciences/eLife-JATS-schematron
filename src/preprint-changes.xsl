@@ -813,7 +813,7 @@
                     <xsl:attribute name="person-group-type">author</xsl:attribute>
                         <xsl:for-each select="./*[name()=$name-elems]|./text()[following-sibling::*[name()=$name-elems]]">
                             <xsl:choose>
-                                <xsl:when test="self::text() and matches(.,'^\.?,?\s*(…|\.{3,4})\s*(&amp;\s*|and\s*)?$')">
+                                <xsl:when test="self::text() and matches(.,'^\.?,?\s*(…|\.{3,4}|. . .)\s*(&amp;\s*|and\s*)?$')">
                                     <xsl:text>, </xsl:text>
                                     <etal>…</etal>
                                     <xsl:text> </xsl:text>
@@ -854,6 +854,22 @@
                                 <xsl:value-of select="concat(' ',substring-after(replace(.,'^[\s+\.]',''),' '))"/>
                             </xsl:when>
                             <xsl:otherwise>
+                                <xsl:apply-templates select="."/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
+                </xsl:when>
+                <!-- change fpage tagging to elocation-id in eLife refs -->
+                <xsl:when test="@publication-type='journal' and lower-case(source[1])='elife' and fpage">
+                    <xsl:apply-templates select="@*"/>
+                    <xsl:for-each select="*|text()">
+                        <xsl:choose>
+                            <xsl:when test="self::fpage">
+                                <xsl:element name="elocation-id">
+                                    <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+                                </xsl:element>
+                            </xsl:when>
+                        <xsl:otherwise>
                                 <xsl:apply-templates select="."/>
                             </xsl:otherwise>
                         </xsl:choose>
