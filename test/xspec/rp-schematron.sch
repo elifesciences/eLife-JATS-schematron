@@ -1077,7 +1077,7 @@
 	
 	  <assert test="license" role="error" id="permissions-test-5">permissions must contain license.</assert>
 	  
-	  <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-9" test="($license-type = 'http://creativecommons.org/publicdomain/zero/1.0/', 'https://creativecommons.org/publicdomain/zero/1.0/', 'http://creativecommons.org/licenses/by/4.0/', 'https://creativecommons.org/licenses/by/4.0/')" role="error" id="permissions-test-9">license does not have an @xlink:href which is equal to 'https://creativecommons.org/publicdomain/zero/1.0/' or 'https://creativecommons.org/licenses/by/4.0/'.</assert>
+	  <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-9" test="$license-type = ('http://creativecommons.org/publicdomain/zero/1.0/', 'https://creativecommons.org/publicdomain/zero/1.0/', 'http://creativecommons.org/licenses/by/4.0/', 'https://creativecommons.org/licenses/by/4.0/')" role="error" id="permissions-test-9">license does not have an @xlink:href which is equal to 'https://creativecommons.org/publicdomain/zero/1.0/' or 'https://creativecommons.org/licenses/by/4.0/'.</assert>
 	  
 	  <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-info" test="license" role="info" id="permissions-info">This article is licensed under a<value-of select="      if (contains($license-type,'publicdomain/zero')) then ' CC0 1.0'      else if (contains($license-type,'by/4.0')) then ' CC BY 4.0'      else if (contains($license-type,'by/3.0')) then ' CC BY 3.0'      else 'n unknown'"/> license. <value-of select="$license-type"/>
       </report>
