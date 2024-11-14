@@ -2876,7 +2876,7 @@
         id="permissions-test-5">permissions must contain license.</assert>
 	  
 	  <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-9" 
-	    test="($license-type = 'http://creativecommons.org/publicdomain/zero/1.0/') or ($license-type = 'http://creativecommons.org/licenses/by/4.0/')" 
+	    test="($license-type = 'http://creativecommons.org/publicdomain/zero/1.0/', 'https://creativecommons.org/publicdomain/zero/1.0/', 'http://creativecommons.org/licenses/by/4.0/', 'https://creativecommons.org/licenses/by/4.0/')" 
         role="error" 
         id="permissions-test-9">license does not have an @xlink:href which is equal to 'http://creativecommons.org/publicdomain/zero/1.0/' or 'http://creativecommons.org/licenses/by/4.0/'.</assert>
 	  
