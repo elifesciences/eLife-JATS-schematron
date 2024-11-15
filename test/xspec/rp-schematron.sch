@@ -1329,6 +1329,13 @@
     </rule>
   </pattern>
 
+    <pattern id="ar-bold-checks-pattern">
+    <rule context="sub-article[@article-type='author-comment']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic)]" id="ar-bold-checks">
+        <assert test="matches(.,'Author response (image|table) \d\d?\.')" role="error" id="ar-bold-image">The bold text in a label preceding an image in the author response must be in the format 'Author response image 1.' or 'Author response table 1.' - this one is not - <value-of select="."/>
+      </assert>
+      </rule>
+  </pattern>
+
     <pattern id="arxiv-journal-meta-checks-pattern">
     <rule context="article/front/journal-meta[lower-case(journal-id[1])='arxiv']" id="arxiv-journal-meta-checks">
         <assert test="journal-id[@journal-id-type='publisher-id']='arXiv'" role="error" id="arxiv-journal-id">arXiv preprints must have a &lt;journal-id journal-id-type="publisher-id"&gt; element with the value 'arXiv'.</assert>
@@ -1538,6 +1545,7 @@
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" role="error" id="ed-report-claim-kwds-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd must be present.</assert>
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" role="error" id="ed-report-evidence-kwds-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd must be present.</assert>
       <assert test="descendant::sub-article[@article-type='editor-report']/body/p[1]//bold" role="error" id="ed-report-bold-terms-xspec-assert">sub-article[@article-type='editor-report']/body/p[1]//bold must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='author-comment']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic)]" role="error" id="ar-bold-checks-xspec-assert">sub-article[@article-type='author-comment']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic)] must be present.</assert>
       <assert test="descendant::article/front/journal-meta[lower-case(journal-id[1])='arxiv']" role="error" id="arxiv-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id[1])='arxiv'] must be present.</assert>
       <assert test="descendant::article/front[journal-meta[lower-case(journal-id[1])='arxiv']]/article-meta/article-id[@pub-id-type='doi']" role="error" id="arxiv-doi-checks-xspec-assert">article/front[journal-meta[lower-case(journal-id[1])='arxiv']]/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::article/front/journal-meta[lower-case(journal-id[1])='rs']" role="error" id="res-square-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id[1])='rs'] must be present.</assert>

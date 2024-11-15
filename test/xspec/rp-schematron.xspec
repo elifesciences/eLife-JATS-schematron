@@ -3138,6 +3138,18 @@
         <x:expect-not-assert id="ed-report-bold-terms-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="ar-bold-checks">
+      <x:scenario label="ar-bold-image-pass">
+        <x:context href="../tests/rp/ar-bold-checks/ar-bold-image/pass.xml"/>
+        <x:expect-not-assert id="ar-bold-image" role="error"/>
+        <x:expect-not-assert id="ar-bold-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ar-bold-image-fail">
+        <x:context href="../tests/rp/ar-bold-checks/ar-bold-image/fail.xml"/>
+        <x:expect-assert id="ar-bold-image" role="error"/>
+        <x:expect-not-assert id="ar-bold-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="arxiv-journal-meta-checks">
       <x:scenario label="arxiv-journal-id-pass">
         <x:context href="../tests/rp/arxiv-journal-meta-checks/arxiv-journal-id/pass.xml"/>

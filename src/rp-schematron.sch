@@ -974,6 +974,10 @@
       <report test="preceding-sibling::bold[replace(lower-case(.),'ly$','') = $normalized-kwd]" role="warning" id="ed-report-bold-terms-3">[ed-report-bold-terms-3] There is more than one of the same <value-of select="if (replace(lower-case(.),'ly$','')=$str-kwds) then 'strength' else 'significance'"/> keywords in the assessment - <value-of select="$normalized-kwd"/>. This is very likely to be incorrect.</report>
     </rule></pattern>
 
+    <pattern id="ar-bold-checks-pattern"><rule context="sub-article[@article-type='author-comment']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic)]" id="ar-bold-checks">
+        <assert test="matches(.,'Author response (image|table) \d\d?\.')" role="error" id="ar-bold-image">[ar-bold-image] The bold text in a label preceding an image in the author response must be in the format 'Author response image 1.' or 'Author response table 1.' - this one is not - <value-of select="."/></assert>
+      </rule></pattern>
+
     <pattern id="arxiv-journal-meta-checks-pattern"><rule context="article/front/journal-meta[lower-case(journal-id[1])='arxiv']" id="arxiv-journal-meta-checks">
         <assert test="journal-id[@journal-id-type='publisher-id']='arXiv'" role="error" id="arxiv-journal-id">[arxiv-journal-id] arXiv preprints must have a &lt;journal-id journal-id-type="publisher-id"&gt; element with the value 'arXiv'.</assert>
 

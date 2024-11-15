@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="ar-bold-image.sch"?>
+<!--Context: sub-article[@article-type='author-comment']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic)]
+Test: assert    matches(.,'Author response (image|table) \d\d?\.')
+Message: The bold text in a label preceding an image in the author response must be in the format 'Author response image 1.' or 'Author response table 1.' - this one is not -  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article id="sa4" article-type="author-comment">
+            <body>
+                <p><bold>Author response image 2.</bold></p>
+<p>PC loading matrices for each recorded mouse. The units recorded in each mouse are ranked in descending order of response dependency to stimulus azimuth based on  the p value of the chi square test. Units above the red dotted line display a chi square p value &lt; 0.05, units below this line have p values &gt;= 0.05.</p>
+<p><ext-link ext-link-type="uri" xlink:href="https://imgur.com/QHdnJkL"><inline-graphic xlink:href="https://i.imgur.com/QHdnJkL.jpg" mimetype="image" mime-subtype="jpeg"/></ext-link></p>
+            </body>
+        </sub-article>
+    </article>
+</root>
