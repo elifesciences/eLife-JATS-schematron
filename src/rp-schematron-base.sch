@@ -1825,6 +1825,15 @@
 
     </pattern>
 
+    <pattern id="author-response-checks">
+      <!-- Need to change this wehn peer review XML is handled differently -->
+      <rule context="sub-article[@article-type='author-comment']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic)]" id="ar-bold-checks">
+        <assert test="matches(.,'Author response (image|table) \d\d?\.')" 
+          role="error" 
+          id="ar-bold-image">The bold text in a label preceding an image in the author response must be in the format 'Author response image 1.' or 'Author response table 1.' - this one is not - <value-of select="."/></assert>
+      </rule>
+    </pattern>
+
     <pattern id="arxiv-metadata">
      <rule context="article/front/journal-meta[lower-case(journal-id[1])='arxiv']" id="arxiv-journal-meta-checks">
         <assert test="journal-id[@journal-id-type='publisher-id']='arXiv'" 
