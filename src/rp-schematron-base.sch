@@ -1176,6 +1176,15 @@
           role="error" 
           id="article-version-10">article-version-alternatives must contain a &lt;article-version article-version-type="publication-state">.</assert>
       </rule>
+      
+      <rule context="article/front[journal-meta/journal-id='elife']/article-meta[matches(replace(article-id[@specific-use='version'][1],'^.*\.',''),'^\d\d?$') and matches(descendant::article-version[@article-version-type='preprint-version'][1],'^1\.\d+$')]" id="rp-and-preprint-version-checks">
+        <let name="preprint-version" value="number(substring-after(descendant::article-version[@article-version-type='preprint-version'][1],'.'))"/>
+        <let name="rp-version" value="number(replace(article-id[@specific-use='version'][1],'^.*\.',''))"/>
+        
+        <assert test="$rp-version le $preprint-version" 
+          role="error" 
+          id="article-version-12">This is Reviewed Preprint version <value-of select="$rp-version"/>, but according to the article-version, it's based on preprint version <value-of select="$preprint-version"/>. This cannot be correct.</assert>
+      </rule>
 
       <rule context="article/front/article-meta/pub-date[@pub-type='epub']/year" id="preprint-pub-checks">
         <assert test=".=('2024','2025')" 
