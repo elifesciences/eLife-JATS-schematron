@@ -1976,6 +1976,18 @@
         <x:expect-not-assert id="article-version-alternatives-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="rp-and-preprint-version-checks">
+      <x:scenario label="article-version-12-pass">
+        <x:context href="../tests/rp/rp-and-preprint-version-checks/article-version-12/pass.xml"/>
+        <x:expect-not-assert id="article-version-12" role="error"/>
+        <x:expect-not-assert id="rp-and-preprint-version-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-version-12-fail">
+        <x:context href="../tests/rp/rp-and-preprint-version-checks/article-version-12/fail.xml"/>
+        <x:expect-assert id="article-version-12" role="error"/>
+        <x:expect-not-assert id="rp-and-preprint-version-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="preprint-pub-checks">
       <x:scenario label="preprint-pub-date-1-pass">
         <x:context href="../tests/rp/preprint-pub-checks/preprint-pub-date-1/pass.xml"/>
