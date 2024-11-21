@@ -149,7 +149,7 @@
       <let name="xml-lang-value" value="@xml:lang"/>
       <let name="languages" value="'../../../../../src/languages.xml'"/>
       <let name="subtag-description" value="string-join(document($languages)//*:item[@subtag=$xml-lang-value]/*:description,' / ')"/>
-      <report test="exists($subtag-description)" role="warning" id="abstract-lang-test-2">[abstract-lang-test-2] <name/> has an xml:lang attribute with the value '<value-of select="$xml-lang-value"/>', which corresponds to the following language: <value-of select="$subtag-description"/>. Please check this is correct.</report>
+      <report test="$subtag-description!=''" role="warning" id="abstract-lang-test-2">[abstract-lang-test-2] <name/> has an xml:lang attribute with the value '<value-of select="$xml-lang-value"/>', which corresponds to the following language: <value-of select="$subtag-description"/>. Please check this is correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

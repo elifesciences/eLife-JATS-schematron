@@ -149,7 +149,7 @@
       <let name="xml-lang-value" value="@xml:lang"/>
       <let name="languages" value="'../../../../../src/languages.xml'"/>
       <let name="subtag-description" value="string-join(document($languages)//*:item[@subtag=$xml-lang-value]/*:description,' / ')"/>
-      <assert test="exists($subtag-description)" role="error" id="abstract-lang-test-1">[abstract-lang-test-1] The xml:lang attribute on <name/> must contain one of the IETF RFC 5646 subtags. '<value-of select="@xml:lang"/>' is not one of these values.</assert>
+      <assert test="$subtag-description!=''" role="error" id="abstract-lang-test-1">[abstract-lang-test-1] The xml:lang attribute on <name/> must contain one of the IETF RFC 5646 subtags. '<value-of select="@xml:lang"/>' is not one of these values.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

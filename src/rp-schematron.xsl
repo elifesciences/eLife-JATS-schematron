@@ -5600,9 +5600,9 @@
       <xsl:variable name="subtag-description" select="string-join(document($languages)//*:item[@subtag=$xml-lang-value]/*:description,' / ')"/>
       <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="exists($subtag-description)"/>
+         <xsl:when test="$subtag-description!=''"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="exists($subtag-description)">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$subtag-description!=''">
                <xsl:attribute name="id">abstract-lang-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
@@ -5617,8 +5617,8 @@
          </xsl:otherwise>
       </xsl:choose>
       <!--REPORT warning-->
-      <xsl:if test="exists($subtag-description)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="exists($subtag-description)">
+      <xsl:if test="$subtag-description!=''">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$subtag-description!=''">
             <xsl:attribute name="id">abstract-lang-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
