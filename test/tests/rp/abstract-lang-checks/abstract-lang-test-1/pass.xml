@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="abstract-lang-test-1.sch"?>
+<!--Context: abstract[@xml:lang]
+Test: assert    $subtag-description!=''
+Message: The xml:lang attribute on  must contain one of the IETF RFC 5646 subtags. '' is not one of these values. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <abstract xml:lang="es"/>
+            <abstract xml:lang="de"/>
+            <abstract xml:lang="ga"/>
+            <abstract xml:lang="ht"/>
+            <abstract xml:lang="ho"/>
+            <abstract xml:lang="zu"/>
+        </article-meta>
+    </article>
+</root>

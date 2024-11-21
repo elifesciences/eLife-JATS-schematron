@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="abstract-lang-test-2.sch"?>
+<!--Context: abstract[@xml:lang]
+Test: report    $subtag-description!=''
+Message:  has an xml:lang attribute with the value '', which corresponds to the following language: . Please check this is correct. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <abstract xml:lang=""/>
+        </article-meta>
+    </article>
+</root>
