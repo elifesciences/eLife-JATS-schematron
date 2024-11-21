@@ -790,6 +790,13 @@
       </rule></pattern><pattern id="abstract-child-checks-pattern"><rule context="abstract[parent::article-meta]/*" id="abstract-child-checks">
         <let name="allowed-children" value="('label','title','sec','p','fig','list')"/>
         <assert test="name()=$allowed-children" role="error" id="abstract-child-test-1">[abstract-child-test-1] <name/> is not permitted within abstract.</assert>
+      </rule></pattern><pattern id="abstract-lang-checks-pattern"><rule context="abstract[@xml:lang]" id="abstract-lang-checks">
+        <let name="xml-lang-value" value="@xml:lang"/>
+        <let name="languages" value="'languages.xml'"/>
+        <let name="subtag-description" value="string-join(document($languages)//*:item[@subtag=$xml-lang-value]/*:description,' / ')"/>
+        <assert test="exists($subtag-description)" role="error" id="abstract-lang-test-1">[abstract-lang-test-1] The xml:lang attribute on <name/> must contain one of the IETF RFC 5646 subtags. '<value-of select="@xml:lang"/>' is not one of these values.</assert>
+        
+        <report test="exists($subtag-description)" role="warning" id="abstract-lang-test-2">[abstract-lang-test-2] <name/> has an xml:lang attribute with the value '<value-of select="$xml-lang-value"/>', which corresponds to the following language: <value-of select="$subtag-description"/>. Please check this is correct.</report>
       </rule></pattern>
 
     <pattern id="front-permissions-tests-pattern"><rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions" id="front-permissions-tests">
