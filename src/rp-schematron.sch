@@ -776,7 +776,7 @@
 
     <pattern id="abstract-checks-pattern"><rule context="abstract[parent::article-meta]" id="abstract-checks">
         <let name="allowed-types" value="('structured','plain-language-summary','teaser','summary','graphical')"/>
-        <report test="preceding::abstract[not(@abstract-type)] and not(@abstract-type)" role="error" id="abstract-test-1">[abstract-test-1] There should only be one abstract without an abstract-type (for the common-garden abstract). This asbtract does not have an abstract-type, but there is also a preceding abstract without an abstract-type. One of these needs to be given an abstract-type with the allowed values ('structured' for a syrctured abstract with sections; 'plain-language-summary' for a digest or author provided plain summary; 'teaser' for an impact statement; 'summary' for a general summary that's in addition to the common-garden abstract; 'graphical' for a graphical abstract).</report>
+        <report test="preceding::abstract[not(@abstract-type) and not(@xml:lang)] and not(@abstract-type) and not(@xml:lang)" role="error" id="abstract-test-1">[abstract-test-1] There should only be one abstract without an abstract-type attribute (for the common-garden abstract) or xml:lang attirbute (for common-garden abstract in a language other than english). This asbtract does not have an abstract-type, but there is also a preceding abstract without an abstract-type or xml:lang. One of these needs to be given an abstract-type with the allowed values ('structured' for a syrctured abstract with sections; 'plain-language-summary' for a digest or author provided plain summary; 'teaser' for an impact statement; 'summary' for a general summary that's in addition to the common-garden abstract; 'graphical' for a graphical abstract).</report>
 
         <report test="@abstract-type and not(@abstract-type=$allowed-types)" role="error" id="abstract-test-2">[abstract-test-2] abstract has an abstract-type (<value-of select="@abstract-type"/>), but it's not one of the permiited values: <value-of select="string-join($allowed-types,'; ')"/>.</report>
         
@@ -790,6 +790,13 @@
       </rule></pattern><pattern id="abstract-child-checks-pattern"><rule context="abstract[parent::article-meta]/*" id="abstract-child-checks">
         <let name="allowed-children" value="('label','title','sec','p','fig','list')"/>
         <assert test="name()=$allowed-children" role="error" id="abstract-child-test-1">[abstract-child-test-1] <name/> is not permitted within abstract.</assert>
+      </rule></pattern><pattern id="abstract-lang-checks-pattern"><rule context="abstract[@xml:lang]" id="abstract-lang-checks">
+        <let name="xml-lang-value" value="@xml:lang"/>
+        <let name="languages" value="'languages.xml'"/>
+        <let name="subtag-description" value="string-join(document($languages)//*:item[@subtag=$xml-lang-value]/*:description,' / ')"/>
+        <assert test="$subtag-description!=''" role="error" id="abstract-lang-test-1">[abstract-lang-test-1] The xml:lang attribute on <name/> must contain one of the IETF RFC 5646 subtags. '<value-of select="@xml:lang"/>' is not one of these values.</assert>
+        
+        <report test="$subtag-description!=''" role="warning" id="abstract-lang-test-2">[abstract-lang-test-2] <name/> has an xml:lang attribute with the value '<value-of select="$xml-lang-value"/>', which corresponds to the following language: <value-of select="$subtag-description"/>. Please check this is correct.</report>
       </rule></pattern>
 
     <pattern id="front-permissions-tests-pattern"><rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions" id="front-permissions-tests">

@@ -144,15 +144,17 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="abstract-checks-pattern">
-    <rule context="abstract[parent::article-meta]" id="abstract-checks">
-      <let name="allowed-types" value="('structured','plain-language-summary','teaser','summary','graphical')"/>
-      <report test="preceding::abstract[not(@abstract-type) and not(@xml:lang)] and not(@abstract-type) and not(@xml:lang)" role="error" id="abstract-test-1">[abstract-test-1] There should only be one abstract without an abstract-type attribute (for the common-garden abstract) or xml:lang attirbute (for common-garden abstract in a language other than english). This asbtract does not have an abstract-type, but there is also a preceding abstract without an abstract-type or xml:lang. One of these needs to be given an abstract-type with the allowed values ('structured' for a syrctured abstract with sections; 'plain-language-summary' for a digest or author provided plain summary; 'teaser' for an impact statement; 'summary' for a general summary that's in addition to the common-garden abstract; 'graphical' for a graphical abstract).</report>
+  <pattern id="abstract-lang-checks-pattern">
+    <rule context="abstract[@xml:lang]" id="abstract-lang-checks">
+      <let name="xml-lang-value" value="@xml:lang"/>
+      <let name="languages" value="'../../../../../src/languages.xml'"/>
+      <let name="subtag-description" value="string-join(document($languages)//*:item[@subtag=$xml-lang-value]/*:description,' / ')"/>
+      <report test="$subtag-description!=''" role="warning" id="abstract-lang-test-2">[abstract-lang-test-2] <name/> has an xml:lang attribute with the value '<value-of select="$xml-lang-value"/>', which corresponds to the following language: <value-of select="$subtag-description"/>. Please check this is correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::abstract[parent::article-meta]" role="error" id="abstract-checks-xspec-assert">abstract[parent::article-meta] must be present.</assert>
+      <assert test="descendant::abstract[@xml:lang]" role="error" id="abstract-lang-checks-xspec-assert">abstract[@xml:lang] must be present.</assert>
     </rule>
   </pattern>
 </schema>

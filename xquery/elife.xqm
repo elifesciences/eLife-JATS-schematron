@@ -23,7 +23,7 @@ declare function elife:schema-let($assert-or-report){
         for $x in $copy1//xsl:function[@name="java:file-exists"]
 return delete node $x,
 
-        for $x in $copy1//*:let[@name=("countries","publisher-locations","journals","publishers","funders","registries","credit-roles","rors")]
+        for $x in $copy1//*:let[@name=("countries","publisher-locations","journals","publishers","funders","registries","credit-roles","rors","languages")]
         let $new-v := concat("'../../../../../src/",substring-after($x/@value,"'"))
         return 
         replace value of node $x/@value with $new-v,
@@ -409,6 +409,11 @@ return delete node $x,
 
         for $x in $copy1//*:let[@name="list"]
         let $new-v := "document('../../../../../src/us-uk-list.xml')"
+        return 
+        replace value of node $x/@value with $new-v,
+        
+        for $x in $copy1//*:let[@name=("countries","publisher-locations","journals","publishers","funders","registries","credit-roles","rors","languages")]
+        let $new-v := concat("'../../../../../src/",substring-after($x/@value,"'"))
         return 
         replace value of node $x/@value with $new-v,
 
