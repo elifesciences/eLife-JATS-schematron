@@ -347,6 +347,8 @@
        
 
        <report test="matches(lower-case(.),'^i{1,3}\.\s') and parent::*/article-title" role="warning" id="journal-source-2">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with a roman numeral. Is part of the article-title captured in source? Source = <value-of select="."/>.</report>
+
+       <report test="matches(lower-case(.),'^(symposium|conference|proc\.?|proceeding|meeting|workshop)|\s?(symposium|conference|proc\.?|proceeding|meeting|workshop)\s?|(symposium|conference|proc\.?|proceeding|meeting|workshop)$')" role="warning" id="journal-source-3">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
      </rule>
   </pattern>
 
@@ -377,6 +379,8 @@
         <report test="matches(lower-case(.),'^chapter\s|\s+chapter\s+')" role="warning" id="book-source-1">The source in book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) contains 'chapter' - <value-of select="."/>. Are the details captured correctly?</report>
         
         <report test="matches(lower-case(.),'\.\s+in:\s+')" role="warning" id="book-source-2">The source in book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) contains '. In: ' - <value-of select="."/>. Are the details captured correctly?</report>
+
+        <report test="matches(lower-case(.),'^(symposium|conference|proc\.?|proceeding|meeting|workshop)|\s?(symposium|conference|proc\.?|proceeding|meeting|workshop)\s?|(symposium|conference|proc\.?|proceeding|meeting|workshop)$')" role="warning" id="book-source-3">Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
       </rule>
   </pattern>
 
