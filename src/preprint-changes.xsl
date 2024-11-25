@@ -50,22 +50,21 @@
     
     <xsl:function name="e:toTitleCase" as="xs:string">
         <xsl:param name="input" as="xs:string"/>
-        <xsl:variable name="upper-exceptions" select="('PLOS','OSF','JOSS','JAMA','EMBO','RNA','BMJ','PRIDE','CRAN','EMDB','SSRN','EMPIAR','NEJM','FEMS','JMLR','APMIS','ISME','FASEB','PNAS','JBO','JBJS','AAPS','NIPS','BJOG','ISMRM')"/>
-        <xsl:variable name="case-exceptions" select="('eLife','iScience','eNeuro','arXiv','bioRxiv','medRxiv','ChemRxiv','PeerJ','PsyArXiv','PaleorXiv','AfricArXiv','EcoEvoRxiv')"/>
-        <xsl:variable name="lower-exceptions" select="('and', 'or', 'of', 'the', 'in', 'on', 'with', 'a', 'an')"/>
-        <xsl:variable name="words" select="tokenize($input,'\s+')" />
-        <xsl:variable name="processed-words">
-            <xsl:for-each select="$words">
+        <xsl:variable name="upper-exceptions" as="xs:string*" select="('PLOS','OSF','JOSS','JAMA','EMBO','RNA','BMJ','PRIDE','CRAN','EMDB','SSRN','EMPIAR','NEJM','FEMS','JMLR','APMIS','ISME','FASEB','PNAS','JBO','JBJS','AAPS','NIPS','BJOG','ISMRM')"/>
+        <xsl:variable name="case-exceptions" as="xs:string*" select="('eLife','iScience','eNeuro','arXiv','bioRxiv','medRxiv','ChemRxiv','PeerJ','PsyArXiv','PaleorXiv','AfricArXiv','EcoEvoRxiv')"/>
+        <xsl:variable name="lower-exceptions" as="xs:string*" select="('and', 'or', 'of', 'the', 'in', 'on', 'with', 'a', 'an')"/>
+        <xsl:variable name="processed-words" as="xs:string*">
+            <xsl:for-each select="tokenize($input,'\s+')">
                 <xsl:variable name="val" select="."/>
                 <xsl:choose>
-                    <xsl:when test="position()=1 and not(lower-case(.)=$case-exceptions) and not(upper-case(.)=$upper-exceptions)">
+                    <xsl:when test="some $example in $case-exceptions satisfies (lower-case($example)=lower-case($val))">
+                        <xsl:value-of select="$case-exceptions[lower-case(.)=lower-case($val)]"/>
+                    </xsl:when>
+                    <xsl:when test="position()=1 and not(upper-case(.)=$upper-exceptions)">
                         <xsl:value-of select="concat(upper-case(substring(.,1,1)),lower-case(substring(.,2)))"/>
                     </xsl:when>
                     <xsl:when test="upper-case(.)=$upper-exceptions">
                         <xsl:value-of select="upper-case(.)"/>
-                    </xsl:when>
-                    <xsl:when test="some $example in $case-exceptions satisfies (lower-case($example)=lower-case($val))">
-                        <xsl:value-of select="$case-exceptions[lower-case(.)=lower-case($val)]"/>
                     </xsl:when>
                     <xsl:when test="lower-case(.)=($lower-exceptions)">
                         <xsl:value-of select="lower-case(.)"/>
@@ -79,7 +78,7 @@
                 </xsl:choose>
             </xsl:for-each>
         </xsl:variable>
-         <xsl:sequence select="string-join($processed-words,' ')" />
+        <xsl:value-of select="string-join($processed-words,' ')"/>
     </xsl:function>
 
      <xsl:template match="*|@*|text()|comment()|processing-instruction()">
@@ -833,11 +832,7 @@
         <xsl:variable name="mixed-citation-round-3">
             <xsl:apply-templates select="$mixed-citation-round-2" mode="mixed-citation-round-3"/>
          </xsl:variable>
-         <xsl:variable name="mixed-citation-round-4">
-            <xsl:apply-templates select="$mixed-citation-round-3" mode="mixed-citation-round-4"/>
-         </xsl:variable>
-        <xsl:apply-templates select="$mixed-citation-round-4" mode="mixed-citation-round-5"/>
-
+        <xsl:apply-templates select="$mixed-citation-round-3" mode="mixed-citation-round-4"/>
     </xsl:template>
 
     <!-- Introduces author person-groups into refs when they are missing-->
@@ -982,7 +977,7 @@
      </xsl:template>
     
     <!-- Fixes mistagged and all caps source elements -->
-     <xsl:template xml:id="ref-source-fixes" mode="mixed-citation-round-4" match="mixed-citation//source">
+     <xsl:template xml:id="ref-source-fixes" match="mixed-citation//source">
          <xsl:choose>
                 <xsl:when test="matches(lower-case(.),'^in\s')">
                     <xsl:choose>

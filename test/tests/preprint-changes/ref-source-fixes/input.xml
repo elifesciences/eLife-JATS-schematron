@@ -1,5 +1,6 @@
 <!--Testing template with id: ref-source-fixes-->
 <ref-list>
+<ref id="c3"><label>3.</label><mixed-citation publication-type="other"><string-name><surname>Claus</surname> <given-names>S</given-names></string-name>, <etal>et al</etal> (<year>2021</year>) <chapter-title>..</chapter-title>. <source>In AGAINST METHOD</source></mixed-citation></ref>
 <ref id="c4"><label>4.</label><mixed-citation publication-type="other"><string-name><surname>Claus</surname> <given-names>S</given-names></string-name>, <etal>et al</etal> (<year>2021</year>) <article-title>..</article-title>. <source>AGAINST METHOD</source></mixed-citation></ref>
 <ref id="c5"><label>5.</label><mixed-citation publication-type="journal"><string-name><surname>Claus</surname> <given-names>S</given-names></string-name>, <etal>et al</etal> (<year>2021</year>) <article-title>..</article-title>. <source>PLOS ONE</source></mixed-citation></ref>
 <ref id="c6"><label>6.</label><mixed-citation publication-type="preprint"><string-name><surname>Claus</surname> <given-names>S</given-names></string-name>, <etal>et al</etal> (<year>2021</year>) <article-title>..</article-title>. <source>BIORXIV</source></mixed-citation></ref>
