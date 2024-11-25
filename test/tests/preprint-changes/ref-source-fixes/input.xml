@@ -1,0 +1,8 @@
+<!--Testing template with id: ref-source-fixes-->
+<ref-list>
+<ref id="c4"><label>4.</label><mixed-citation publication-type="other"><string-name><surname>Claus</surname> <given-names>S</given-names></string-name>, <etal>et al</etal> (<year>2021</year>) <article-title>..</article-title>. <source>AGAINST METHOD</source></mixed-citation></ref>
+<ref id="c5"><label>5.</label><mixed-citation publication-type="journal"><string-name><surname>Claus</surname> <given-names>S</given-names></string-name>, <etal>et al</etal> (<year>2021</year>) <article-title>..</article-title>. <source>PLOS ONE</source></mixed-citation></ref>
+<ref id="c6"><label>6.</label><mixed-citation publication-type="preprint"><string-name><surname>Claus</surname> <given-names>S</given-names></string-name>, <etal>et al</etal> (<year>2021</year>) <article-title>..</article-title>. <source>BIORXIV</source></mixed-citation></ref>
+<ref id="c7"><label>7.</label><mixed-citation publication-type="journal"><string-name><surname>Huckesfeld</surname> <given-names>S</given-names></string-name>, <etal>et al</etal> (<year>2021</year>) <article-title>Unveiling the sensory and interneuronal pathways of the neuroendocrine connectome in Drosophila</article-title>. <source>ELIFE</source> <volume>10</volume>:<elocation-id>e65745</elocation-id></mixed-citation></ref>
+<ref id="c8"><label>8.</label><mixed-citation publication-type="journal"><string-name><surname>Huckesfeld</surname> <given-names>S</given-names></string-name>, <etal>et al</etal> (<year>2021</year>) <article-title>..</article-title>. <source>PLANT PHYSIOLOGY</source> <volume>10</volume>:<elocation-id>e65745</elocation-id></mixed-citation></ref>
+</ref-list>
