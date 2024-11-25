@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="journal-source-3.sch"?>
+<!--Context: mixed-citation[@publication-type='journal']/source
+Test: report    matches(lower-case(.),'^(symposium|conference|proc\.?|proceeding|meeting|workshop)|\s?(symposium|conference|proc\.?|proceeding|meeting|workshop)\s?|(symposium|conference|proc\.?|proceeding|meeting|workshop)$')
+Message: Journal reference () has the following source, ''. Should it be captured as a conference proceeding instead? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref id="c1">
+            <mixed-citation publication-type="journal">
+                <source>Proceedings of the 20th International Conference on World Wide Web</source>
+            </mixed-citation>
+        </ref>
+    </article>
+</root>
