@@ -147,7 +147,7 @@
   <pattern id="journal-source-checks-pattern">
     <rule context="mixed-citation[@publication-type='journal']/source" id="journal-source-checks">
       <let name="preprint-regex" value="'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra'"/>
-      <report test="matches(lower-case(.),'^(symposium|conference|proc\.?|proceeding|meeting|workshop)|\s?(symposium|conference|proc\.?|proceeding|meeting|workshop)\s?|(symposium|conference|proc\.?|proceeding|meeting|workshop)$')" role="warning" id="journal-source-3">[journal-source-3] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
+      <report test="matches(lower-case(.),'^(symposium|conference|meeting|workshop)|\s?(symposium|conference|meeting|workshop)\s?|(symposium|conference|meeting|workshop)$')" role="warning" id="journal-source-3">[journal-source-3] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

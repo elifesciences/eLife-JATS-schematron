@@ -147,7 +147,7 @@
   <pattern id="affiliation-checks-pattern">
     <rule context="aff" id="affiliation-checks">
       <let name="country-count" value="count(descendant::country)"/>
-      <report test="institution-wrap[not(institution-id)]" role="error" id="aff-has-wrap-no-id">[aff-has-wrap-no-id] aff contains institution-wrap, but that institution-wrap does not have a child institution-id. institution-wrap should only be used when there is an institution-id for the institution.</report>
+      <report test="institution-wrap[not(institution-id)] and not(ancestor::contrib-group[@content-type='section']) and not(ancestor::sub-article)" role="error" id="aff-has-wrap-no-id">[aff-has-wrap-no-id] aff contains institution-wrap, but that institution-wrap does not have a child institution-id. institution-wrap should only be used when there is an institution-id for the institution.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

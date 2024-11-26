@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="aff-has-wrap-no-id.sch"?>
 <!--Context: aff
-Test: report    institution-wrap[not(institution-id)]
+Test: report    institution-wrap[not(institution-id)] and not(ancestor::contrib-group[@content-type='section']) and not(ancestor::sub-article)
 Message: aff contains institution-wrap, but that institution-wrap does not have a child institution-id. institution-wrap should only be used when there is an institution-id for the institution. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>

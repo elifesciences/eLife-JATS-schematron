@@ -298,7 +298,7 @@
       
       <report test="ancestor::article/journal-meta/lower-case(journal-id[1])='elife' and count(institution-wrap) = 0" role="warning" id="aff-no-wrap">Affiliation doesn't have an institution-wrap element (the container for institution name and id). Is that correct?</report>
       
-      <report test="institution-wrap[not(institution-id)]" role="error" id="aff-has-wrap-no-id">aff contains institution-wrap, but that institution-wrap does not have a child institution-id. institution-wrap should only be used when there is an institution-id for the institution.</report>
+      <report test="institution-wrap[not(institution-id)] and not(ancestor::contrib-group[@content-type='section']) and not(ancestor::sub-article)" role="error" id="aff-has-wrap-no-id">aff contains institution-wrap, but that institution-wrap does not have a child institution-id. institution-wrap should only be used when there is an institution-id for the institution.</report>
       
       <report test="institution-wrap[not(institution)]" role="error" id="aff-has-wrap-no-inst">aff contains institution-wrap, but that institution-wrap does not have a child institution.</report>
       
@@ -352,7 +352,7 @@
 
        <report test="matches(lower-case(.),'^i{1,3}\.\s') and parent::*/article-title" role="warning" id="journal-source-2">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with a roman numeral. Is part of the article-title captured in source? Source = <value-of select="."/>.</report>
 
-       <report test="matches(lower-case(.),'^(symposium|conference|proc\.?|proceeding|meeting|workshop)|\s?(symposium|conference|proc\.?|proceeding|meeting|workshop)\s?|(symposium|conference|proc\.?|proceeding|meeting|workshop)$')" role="warning" id="journal-source-3">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
+       <report test="matches(lower-case(.),'^(symposium|conference|meeting|workshop)|\s?(symposium|conference|meeting|workshop)\s?|(symposium|conference|meeting|workshop)$')" role="warning" id="journal-source-3">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
      </rule>
   </pattern>
 
