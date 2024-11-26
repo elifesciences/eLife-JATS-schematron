@@ -298,7 +298,7 @@
       
       <report test="ancestor::article/journal-meta/lower-case(journal-id[1])='elife' and count(institution-wrap) = 0" role="warning" id="aff-no-wrap">Affiliation doesn't have an institution-wrap element (the container for institution name and id). Is that correct?</report>
       
-      <report test="institution-wrap[not(institution-id)]" role="error" id="aff-has-wrap-no-id">aff contains institution-wrap, but that institution-wrap does not have a child institution-id. institution-wrap should only be used when there is an institution-id for the institution.</report>
+      <report test="institution-wrap[not(institution-id)] and not(ancestor::contrib-group[@content-type='section']) and not(ancestor::sub-article)" role="error" id="aff-has-wrap-no-id">aff contains institution-wrap, but that institution-wrap does not have a child institution-id. institution-wrap should only be used when there is an institution-id for the institution.</report>
       
       <report test="institution-wrap[not(institution)]" role="error" id="aff-has-wrap-no-inst">aff contains institution-wrap, but that institution-wrap does not have a child institution.</report>
       
