@@ -1,9 +1,12 @@
 <?oxygen SCHSchema="aff-no-wrap.sch"?>
 <!--Context: aff
-Test: report    count(institution-wrap) = 0
+Test: report    ancestor::article/journal-meta/lower-case(journal-id[1])='elife' and count(institution-wrap) = 0
 Message: Affiliation doesn't have an institution-wrap element (the container for institution name and id). Is that correct? -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
+        <journal-meta>
+            <journal-id>elife</journal-id>
+        </journal-meta>
         <aff id="a1"><label>a</label><institution-id institution-id-type="ror">https://ror.org/03njmea73</institution-id><institution>Department of Molecular Genetics and Microbiology, Duke University Medical Center</institution>, <city>Durham</city>, <country>USA</country></aff>
     </article>
 </root>

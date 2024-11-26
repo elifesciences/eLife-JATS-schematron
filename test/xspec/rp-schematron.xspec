@@ -451,6 +451,26 @@
         <x:expect-report id="aff-no-wrap" role="warning"/>
         <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="aff-has-wrap-no-id-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-has-wrap-no-id/pass.xml"/>
+        <x:expect-not-report id="aff-has-wrap-no-id" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-has-wrap-no-id-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-has-wrap-no-id/fail.xml"/>
+        <x:expect-report id="aff-has-wrap-no-id" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-has-wrap-no-inst-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-has-wrap-no-inst/pass.xml"/>
+        <x:expect-not-report id="aff-has-wrap-no-inst" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-has-wrap-no-inst-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-has-wrap-no-inst/fail.xml"/>
+        <x:expect-report id="aff-has-wrap-no-inst" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="aff-mutliple-wraps-pass">
         <x:context href="../tests/rp/affiliation-checks/aff-mutliple-wraps/pass.xml"/>
         <x:expect-not-report id="aff-mutliple-wraps" role="error"/>

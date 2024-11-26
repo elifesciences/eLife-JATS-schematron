@@ -2002,14 +2002,36 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="count(institution-wrap) = 0">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(institution-wrap) = 0">
+      <xsl:if test="ancestor::article/journal-meta/lower-case(journal-id[1])='elife' and count(institution-wrap) = 0">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::article/journal-meta/lower-case(journal-id[1])='elife' and count(institution-wrap) = 0">
             <xsl:attribute name="id">aff-no-wrap</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[aff-no-wrap] Affiliation doesn't have an institution-wrap element (the container for institution name and id). Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="institution-wrap[not(institution-id)]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="institution-wrap[not(institution-id)]">
+            <xsl:attribute name="id">aff-has-wrap-no-id</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[aff-has-wrap-no-id] aff contains institution-wrap, but that institution-wrap does not have a child institution-id. institution-wrap should only be used when there is an institution-id for the institution.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="institution-wrap[not(institution)]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="institution-wrap[not(institution)]">
+            <xsl:attribute name="id">aff-has-wrap-no-inst</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[aff-has-wrap-no-inst] aff contains institution-wrap, but that institution-wrap does not have a child institution.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
