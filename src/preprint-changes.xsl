@@ -291,6 +291,10 @@
                                             <xsl:text>&#xa;</xsl:text>
                                         </xsl:for-each>
                                         <xsl:copy-of select="./contrib-group[not(@content-type='section')]/*[name()!='contrib']|./contrib-group[not(@content-type='section')]/text()[not(following-sibling::contrib) and not(preceding-sibling::*[1]/name()='contrib')]|./contrib-group[not(@content-type='section')]/comment()"/>
+                                        <xsl:if test="./aff">
+                                            <xsl:copy-of select="./aff|./aff/preceding-sibling::text()[1]"/>
+                                            <xsl:text>&#xa;</xsl:text>
+                                        </xsl:if>
                                     </xsl:element>
                                     <xsl:if test="./contrib-group[@content-type='section']">
                                         <xsl:text>&#xa;</xsl:text>
@@ -365,6 +369,10 @@
                                                             <xsl:text>&#xa;</xsl:text>
                                                         </xsl:for-each>
                                                         <xsl:copy-of select="./contrib-group[not(@content-type='section')]/*[name()!='contrib']|./contrib-group[not(@content-type='section')]/text()[not(following-sibling::contrib) and not(preceding-sibling::*[1]/name()='contrib')]|./contrib-group[not(@content-type='section')]/comment()"/>
+                                                        <xsl:if test="./aff">
+                                                            <xsl:copy-of select="./aff|./aff/preceding-sibling::text()[1]"/>
+                                                            <xsl:text>&#xa;</xsl:text>
+                                                        </xsl:if>
                                                     </xsl:element>
                                                     <xsl:if test="./contrib-group[@content-type='section']">
                                                         <xsl:text>&#xa;</xsl:text>
@@ -412,6 +420,10 @@
                                                             <xsl:text>&#xa;</xsl:text>
                                                         </xsl:for-each>
                                                         <xsl:copy-of select="./contrib-group[not(@content-type='section')]/*[name()!='contrib']|./contrib-group[not(@content-type='section')]/text()[not(following-sibling::contrib) and not(preceding-sibling::*[1]/name()='contrib')]|./contrib-group[not(@content-type='section')]/comment()"/>
+                                                         <xsl:if test="./aff">
+                                                            <xsl:copy-of select="./aff|./aff/preceding-sibling::text()[1]"/>
+                                                            <xsl:text>&#xa;</xsl:text>
+                                                        </xsl:if>
                                                     </xsl:element>
                                                     <xsl:if test="./contrib-group[@content-type='section']">
                                                         <xsl:text>&#xa;</xsl:text>
@@ -460,6 +472,10 @@
                                                             <xsl:text>&#xa;</xsl:text>
                                                         </xsl:for-each>
                                                         <xsl:copy-of select="./contrib-group[not(@content-type='section')]/*[name()!='contrib']|./contrib-group[not(@content-type='section')]/text()[not(following-sibling::contrib) and not(preceding-sibling::*[1]/name()='contrib')]|./contrib-group[not(@content-type='section')]/comment()"/>
+                                                         <xsl:if test="./aff">
+                                                            <xsl:copy-of select="./aff|./aff/preceding-sibling::text()[1]"/>
+                                                            <xsl:text>&#xa;</xsl:text>
+                                                        </xsl:if>
                                                     </xsl:element>
                                                     <xsl:if test="./contrib-group[@content-type='section']">
                                                         <xsl:text>&#xa;</xsl:text>
@@ -477,7 +493,7 @@
                                                 </xsl:when>
                                                 <!-- matches cannot be found easily - this will need doing manually if desired -->
                                                 <xsl:otherwise>
-                                                    <xsl:apply-templates select="./contrib-group|text()[preceding-sibling::contrib-group and following-sibling::author-notes]"/>
+                                                    <xsl:apply-templates select="./contrib-group|./aff|text()[preceding-sibling::contrib-group and following-sibling::author-notes]"/>
                                                     <xsl:element name="author-notes">
                                                         <xsl:copy-of select="./author-notes/text()[following-sibling::corresp]"/>
                                                         <xsl:comment><xsl:value-of select="./author-notes/corresp"/></xsl:comment>
@@ -498,7 +514,7 @@
                                         </xsl:when>
                                         <!-- corresp email and author counts do not match - this will need doing manually if desired -->
                                         <xsl:otherwise>
-                                            <xsl:apply-templates select="./contrib-group|text()[preceding-sibling::contrib-group and following-sibling::author-notes]"/>
+                                            <xsl:apply-templates select="./contrib-group|./aff|text()[preceding-sibling::contrib-group and following-sibling::author-notes]"/>
                                             <xsl:element name="author-notes">
                                                 <xsl:choose>
                                                     <!-- If there are two or more corresps for some reason -->
@@ -550,7 +566,7 @@
                             </xsl:choose>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:apply-templates select="./contrib-group|./author-notes|text()[preceding-sibling::contrib-group and following-sibling::author-notes]"/>
+                            <xsl:apply-templates select="./contrib-group|./aff|./author-notes|text()[preceding-sibling::contrib-group and following-sibling::author-notes]"/>
                         </xsl:otherwise>
                     </xsl:choose>
                     <xsl:apply-templates select="*[preceding-sibling::author-notes]|text()[preceding-sibling::author-notes]"/>
