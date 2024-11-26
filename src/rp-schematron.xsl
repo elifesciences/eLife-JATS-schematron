@@ -2013,6 +2013,28 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
+      <xsl:if test="institution-wrap[not(institution-id)]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="institution-wrap[not(institution-id)]">
+            <xsl:attribute name="id">aff-has-wrap-no-id</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[aff-has-wrap-no-id] aff contains institution-wrap, but that institution-wrap does not have a child institution-id. institution-wrap should only be used when there is an institution-id for the institution.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="institution-wrap[not(institution)]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="institution-wrap[not(institution)]">
+            <xsl:attribute name="id">aff-has-wrap-no-inst</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[aff-has-wrap-no-inst] aff contains institution-wrap, but that institution-wrap does not have a child institution.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
       <xsl:if test="count(descendant::institution-wrap) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(descendant::institution-wrap) gt 1">
             <xsl:attribute name="id">aff-mutliple-wraps</xsl:attribute>
