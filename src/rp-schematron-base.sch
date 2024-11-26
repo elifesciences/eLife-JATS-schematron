@@ -385,7 +385,7 @@
         role="error" 
         id="aff-multiple-ids">Affiliation contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/></report>
       
-      <report test="count(institution-wrap) = 0" 
+      <report test="ancestor::article/journal-meta/lower-case(journal-id[1])='elife' and count(institution-wrap) = 0" 
         role="warning" 
         id="aff-no-wrap">Affiliation doesn't have an institution-wrap element (the container for institution name and id). Is that correct?</report>
       

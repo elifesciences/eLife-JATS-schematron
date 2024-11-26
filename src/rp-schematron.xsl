@@ -2002,8 +2002,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="count(institution-wrap) = 0">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(institution-wrap) = 0">
+      <xsl:if test="ancestor::article/journal-meta/lower-case(journal-id[1])='elife' and count(institution-wrap) = 0">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::article/journal-meta/lower-case(journal-id[1])='elife' and count(institution-wrap) = 0">
             <xsl:attribute name="id">aff-no-wrap</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
