@@ -998,6 +998,16 @@
         <assert test="matches(.,'Author response (image|table) \d\d?\.')" role="error" id="ar-bold-image">[ar-bold-image] The bold text in a label preceding an image in the author response must be in the format 'Author response image 1.' or 'Author response table 1.' - this one is not - <value-of select="."/></assert>
       </rule></pattern>
 
+    <pattern id="sub-article-title-checks-pattern"><rule context="sub-article/front-stub/title-group/article-title" id="sub-article-title-checks">
+        <let name="type" value="ancestor::sub-article/@article-type"/>
+        
+        <report test="$type='editor-report' and not(matches(.,'^eLife [aA]ssessment$'))" role="error" id="sub-article-title-check-1">[sub-article-title-check-1] The title of an <value-of select="$type"/> type sub-article should be 'eLife Assessment'. This one is: <value-of select="."/></report>
+        
+        <report test="$type='referee-report' and not(matches(.,'^Reviewer #\d\d? \([Pp]ublic [Rr]eview\):?$|^Joint [Pp]ublic [Rr]eview$'))" role="error" id="sub-article-title-check-2">[sub-article-title-check-2] The title of a <value-of select="$type"/> type sub-article should be in one of the following formats: 'Reviewer #0 (public review)' or 'Joint public review'. This one is: <value-of select="."/></report>
+        
+        <report test="$type='author-comment' and not(matches(.,'^Author [Rr]esponse:?$'))" role="error" id="sub-article-title-check-3">[sub-article-title-check-3] The title of a <value-of select="$type"/> type sub-article should be 'Author response'. This one is: <value-of select="."/></report>
+      </rule></pattern>
+
     <pattern id="arxiv-journal-meta-checks-pattern"><rule context="article/front/journal-meta[lower-case(journal-id[1])='arxiv']" id="arxiv-journal-meta-checks">
         <assert test="journal-id[@journal-id-type='publisher-id']='arXiv'" role="error" id="arxiv-journal-id">[arxiv-journal-id] arXiv preprints must have a &lt;journal-id journal-id-type="publisher-id"&gt; element with the value 'arXiv'.</assert>
 
