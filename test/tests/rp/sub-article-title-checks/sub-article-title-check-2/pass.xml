@@ -1,0 +1,29 @@
+<?oxygen SCHSchema="sub-article-title-check-2.sch"?>
+<!--Context: sub-article/front-stub/title-group/article-title
+Test: report    $type='referee-report' and not(matches(.,'^Reviewer #\d\d? \([Pp]ublic [Rr]eview\):?$|^Joint [Pp]ublic [Rr]eview$'))
+Message: The title of a  type sub-article should be in one of the following formats: 'Reviewer #0 (public review)' or 'Joint public review'. This one is:  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article article-type="referee-report">
+            <front-stub>
+                <title-group>
+                    <article-title>Reviewer #1 (Public Review):</article-title>
+                </title-group>
+            </front-stub>
+        </sub-article>
+        <sub-article article-type="referee-report">
+            <front-stub>
+                <title-group>
+                    <article-title>Reviewer #10 (Public Review):</article-title>
+                </title-group>
+            </front-stub>
+        </sub-article>
+        <sub-article article-type="referee-report">
+            <front-stub>
+                <title-group>
+                    <article-title>Joint Public Review</article-title>
+                </title-group>
+            </front-stub>
+        </sub-article>
+    </article>
+</root>
