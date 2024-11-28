@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="sub-article-title-check-3.sch"?>
+<!--Context: sub-article/front-stub/title-group/article-title
+Test: report    $type='author-comment' and not(matches(.,'^Author [Rr]esponse:?$'))
+Message: The title of a  type sub-article should be 'Author response'. This one is:  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article article-type="author-comment">
+            <front-stub>
+                <title-group>
+                    <article-title>Response to reviewers</article-title>
+                </title-group>
+            </front-stub>
+        </sub-article>
+    </article>
+</root>

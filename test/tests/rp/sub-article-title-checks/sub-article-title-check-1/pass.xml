@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="sub-article-title-check-1.sch"?>
+<!--Context: sub-article/front-stub/title-group/article-title
+Test: report    $type='editor-report' and not(matches(.,'^eLife [aA]ssessment$'))
+Message: The title of an  type sub-article should be 'eLife Assessment'. This one is:  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article article-type="editor-report">
+            <front-stub>
+                <title-group>
+                    <article-title>eLife Assessment</article-title>
+                </title-group>
+            </front-stub>
+        </sub-article>
+    </article>
+</root>
