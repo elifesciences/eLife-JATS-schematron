@@ -882,6 +882,24 @@
       <let name="ali-ref" value="parent::license/ali:license_ref"/>
       
       <assert test="some $x in ext-link satisfies $x/@xlink:href = $ali-ref" role="error" id="license-p-test-4">[license-p-test-4] If a license contains an ali:license_ref element, there must be a link in license-p that matches the link in the ali:license_ref element. ali:license_ref link: <value-of select="$ali-ref"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
+    </rule></pattern><pattern id="fig-permissions-check-pattern"><rule context="fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]" id="fig-permissions-check">
+      <let name="label" value="replace(label[1],'\.','')"/>
+      
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-1" test="matches(caption[1],'[Rr]eproduced from')" role="warning" id="reproduce-test-1">[reproduce-test-1] The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-2" test="matches(caption[1],'[Rr]eproduced [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-2">[reproduce-test-2] The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-3" test="matches(caption[1],'[Aa]dapted from|[Aa]dapted with')" role="warning" id="reproduce-test-3">[reproduce-test-3] The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-4" test="matches(caption[1],'[Rr]eprinted from')" role="warning" id="reproduce-test-4">[reproduce-test-4] The caption for <value-of select="$label"/> contains the text 'reprinted from', but has no permissions. Is this correct?</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-5" test="matches(caption[1],'[Rr]eprinted [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-5">[reproduce-test-5] The caption for <value-of select="$label"/> contains the text 'reprinted with permission', but has no permissions. Is this correct?</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-6" test="matches(caption[1],'[Mm]odified from')" role="warning" id="reproduce-test-6">[reproduce-test-6] The caption for <value-of select="$label"/> contains the text 'modified from', but has no permissions. Is this correct?</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-7" test="matches(caption[1],'[Mm]odified [Ww]ith')" role="warning" id="reproduce-test-7">[reproduce-test-7] The caption for <value-of select="$label"/> contains the text 'modified with', but has no permissions. Is this correct?</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-8" test="matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-8">[reproduce-test-8] The caption for <value-of select="$label"/> contains the text 'used with permission', but has no permissions. Is this correct?</report>
     </rule></pattern>
 
     <pattern id="digest-title-checks-pattern"><rule context="title" id="digest-title-checks">

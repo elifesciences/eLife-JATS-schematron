@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="reproduce-test-4.sch"?>
+<!--Context: fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]
+Test: report    matches(caption[1],'[Rr]eprinted from')
+Message: The caption for  contains the text 'reprinted from', but has no permissions. Is this correct? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>
