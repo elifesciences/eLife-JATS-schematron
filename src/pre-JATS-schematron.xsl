@@ -13711,7 +13711,7 @@
    <!--PATTERN software-heritage-tests-pattern-->
    <!--RULE software-heritage-tests-->
    <xsl:template match="ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" priority="1000" mode="M183">
-      <xsl:variable name="version" select="replace(substring-after(ext-link[1]/@xlink:href,'anchor='),'/$','')"/>
+      <xsl:variable name="version" select="replace(substring-after(ext-link[1]/@xlink:href,'anchor='),'(;path=.*)?/$','')"/>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="matches(ext-link[1]/@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*')"/>

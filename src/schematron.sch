@@ -4186,7 +4186,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" 
       id="software-heritage-tests">
-      <let name="version" value="replace(substring-after(ext-link[1]/@xlink:href,'anchor='),'/$','')"/>
+      <let name="version" value="replace(substring-after(ext-link[1]/@xlink:href,'anchor='),'(;path=.*)?/$','')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-2" 
         test="matches(ext-link[1]/@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*')" 

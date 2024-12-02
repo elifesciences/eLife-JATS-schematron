@@ -2683,7 +2683,7 @@
 
     <report test="not(ancestor::fig/permissions[contains(.,'phylopic')]) and matches(@xlink:href,'phylopic\.org')" role="warning" id="phylopic-link-check">[phylopic-link-check] This link is to phylopic.org, which is a site where silhouettes/images are typically reproduced from. Please check whether any figures contain reproduced images from this site, and if so whether permissions have been obtained and/or copyright statements are correctly included.</report>
     </rule></pattern><pattern id="software-heritage-tests-pattern"><rule context="ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" id="software-heritage-tests">
-      <let name="version" value="replace(substring-after(ext-link[1]/@xlink:href,'anchor='),'/$','')"/>
+      <let name="version" value="replace(substring-after(ext-link[1]/@xlink:href,'anchor='),'(;path=.*)?/$','')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-2" test="matches(ext-link[1]/@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*')" role="error" id="software-heritage-test-2">[software-heritage-test-2] Software heritage links in references must be the directory link with contextual information. '<value-of select="ext-link[1]/@xlink:href"/>' is not a directory link with contextual information.</assert>
       
