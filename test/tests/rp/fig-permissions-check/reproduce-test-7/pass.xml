@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="reproduce-test-7.sch"?>
+<!--Context: fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]
+Test: report    matches(caption[1],'[Mm]odified [Ww]ith')
+Message: The caption for  contains the text 'modified with', but has no permissions. Is this correct? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article><front><journal-meta><journal-id>eLife</journal-id></journal-meta></front>
+    <body>
+      <fig id="fig1">
+        <label>Figure 1.</label>
+        <caption>
+          <title>Title.</title>
+          <p>Smith et al., 19992</p>
+        </caption>
+      </fig>
+    </body>
+  </article>
+</root>

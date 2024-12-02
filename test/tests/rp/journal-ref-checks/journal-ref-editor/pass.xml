@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="journal-ref-editor.sch"?>
+<!--Context: mixed-citation[@publication-type='journal']
+Test: report    person-group[@person-group-type='editor']
+Message: This journal reference () has an editor person-group. This info isn;t typically included in journal refs. Is it really a journal ref? Does it really contain editors? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mixed-citation publication-type="journal">
+            <person-group person-group-type="author"/>
+        </mixed-citation>
+    </article>
+</root>
