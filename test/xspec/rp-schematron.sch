@@ -199,6 +199,10 @@
         <report test="@corresp='yes' and not(email) and not(xref[@ref-type='corresp'])" role="error" id="author-corresp-no-email">Author <value-of select="e:get-name(name[1])"/> has the attribute corresp="yes", but they do not have a child email element or an xref with the attribute ref-type="corresp".</report>
         
         <report test="not(@corresp='yes') and (email or xref[@ref-type='corresp'])" role="error" id="author-email-no-corresp">Author <value-of select="e:get-name(name[1])"/> does not have the attribute corresp="yes", but they have a child email element or an xref with the attribute ref-type="corresp".</report>
+        
+        <report test="(xref/@rid = ancestor::article-meta/author-notes/fn[@fn-type='equal']/@id) and not(@equal-contrib='yes')" role="error" id="author-equal-contrib-1">Author <value-of select="e:get-name(name[1])"/> does not have the attribute equal-contrib="yes", but they have a child xref element that points to a footnote with the fn-type 'equal'.</report>
+        
+        <report test="not(xref/@rid = ancestor::article-meta/author-notes/fn[@fn-type='equal']/@id) and @equal-contrib='yes'" role="error" id="author-equal-contrib-2">Author <value-of select="e:get-name(name[1])"/> has the attribute equal-contrib="yes", but they do not have a child xref element that points to a footnote with the fn-type 'equal'.</report>
      </rule>
   </pattern>
   <pattern id="name-tests-pattern">

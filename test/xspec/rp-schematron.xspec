@@ -109,6 +109,26 @@
         <x:expect-report id="author-email-no-corresp" role="error"/>
         <x:expect-not-assert id="author-corresp-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="author-equal-contrib-1-pass">
+        <x:context href="../tests/rp/author-corresp-checks/author-equal-contrib-1/pass.xml"/>
+        <x:expect-not-report id="author-equal-contrib-1" role="error"/>
+        <x:expect-not-assert id="author-corresp-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-equal-contrib-1-fail">
+        <x:context href="../tests/rp/author-corresp-checks/author-equal-contrib-1/fail.xml"/>
+        <x:expect-report id="author-equal-contrib-1" role="error"/>
+        <x:expect-not-assert id="author-corresp-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-equal-contrib-2-pass">
+        <x:context href="../tests/rp/author-corresp-checks/author-equal-contrib-2/pass.xml"/>
+        <x:expect-not-report id="author-equal-contrib-2" role="error"/>
+        <x:expect-not-assert id="author-corresp-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-equal-contrib-2-fail">
+        <x:context href="../tests/rp/author-corresp-checks/author-equal-contrib-2/fail.xml"/>
+        <x:expect-report id="author-equal-contrib-2" role="error"/>
+        <x:expect-not-assert id="author-corresp-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="name-tests">
       <x:scenario label="surname-test-1-pass">

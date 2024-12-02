@@ -1,0 +1,22 @@
+<?oxygen SCHSchema="author-equal-contrib-1.sch"?>
+<!--Context: contrib[@contrib-type='author']
+Test: report    (xref/@rid = ancestor::article-meta/author-notes/fn[@fn-type='equal']/@id) and not(@equal-contrib='yes')
+Message: Author  does not have the attribute equal-contrib="yes", but they have a child xref element that points to a footnote with the fn-type 'equal'. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <contrib-group>
+                <contrib contrib-type="author" equal-contrib="yes">
+                    <name>
+                        <surname>Claus</surname>
+                        <given-names>Santa</given-names>
+                    </name>
+                    <xref ref-type="author-notes" rid="n1">*</xref>
+                </contrib>
+            </contrib-group>
+            <author-notes>
+                <fn fn-type="equal" id="n1"/>
+            </author-notes>
+        </article-meta>
+    </article>
+</root>
