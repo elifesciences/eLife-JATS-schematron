@@ -1362,7 +1362,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" id="software-heritage-tests">
-      <let name="version" value="replace(substring-after(ext-link[1]/@xlink:href,'anchor='),'/$','')"/>
+      <let name="version" value="replace(substring-after(ext-link[1]/@xlink:href,'anchor='),'(;path=.*)?/$','')"/>
       <assert see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-3" test="version[1]=$version" role="error" id="software-heritage-test-3">The version number for Software heritage references must be the revision SWHID without contextual information. '<value-of select="version[1]"/>' is not. Based on the link, the version should be '<value-of select="$version"/>'.</assert>
     </rule>
   </pattern>
