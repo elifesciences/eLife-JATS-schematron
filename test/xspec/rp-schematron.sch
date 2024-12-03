@@ -300,7 +300,7 @@
       <report test="count(descendant::institution-id) gt 1" role="error" id="aff-multiple-ids">Affiliation contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/>
       </report>
       
-      <report test="ancestor::article/journal-meta/lower-case(journal-id[1])='elife' and count(institution-wrap) = 0" role="warning" id="aff-no-wrap">Affiliation doesn't have an institution-wrap element (the container for institution name and id). Is that correct?</report>
+      <report test="ancestor::article//journal-meta/lower-case(journal-id[1])='elife' and count(institution-wrap) = 0" role="warning" id="aff-no-wrap">Affiliation doesn't have an institution-wrap element (the container for institution name and id). Is that correct?</report>
       
       <report test="institution-wrap[not(institution-id)] and not(ancestor::contrib-group[@content-type='section']) and not(ancestor::sub-article)" role="error" id="aff-has-wrap-no-id">aff contains institution-wrap, but that institution-wrap does not have a child institution-id. institution-wrap should only be used when there is an institution-id for the institution.</report>
       
@@ -1397,7 +1397,7 @@
         <report test="$type='editor-report' and not(matches(.,'^eLife [aA]ssessment$'))" role="error" id="sub-article-title-check-1">The title of an <value-of select="$type"/> type sub-article should be 'eLife Assessment'. This one is: <value-of select="."/>
       </report>
         
-        <report test="$type='referee-report' and not(matches(.,'^Reviewer #\d\d? \([Pp]ublic [Rr]eview\):?$|^Joint [Pp]ublic [Rr]eview$'))" role="error" id="sub-article-title-check-2">The title of a <value-of select="$type"/> type sub-article should be in one of the following formats: 'Reviewer #0 (public review)' or 'Joint public review'. This one is: <value-of select="."/>
+        <report test="$type='referee-report' and not(matches(.,'^Reviewer #\d\d? \([Pp]ublic [Rr]eview\):?$|^Joint [Pp]ublic [Rr]eview:?$'))" role="error" id="sub-article-title-check-2">The title of a <value-of select="$type"/> type sub-article should be in one of the following formats: 'Reviewer #0 (public review)' or 'Joint public review'. This one is: <value-of select="."/>
       </report>
         
         <report test="$type='author-comment' and not(matches(.,'^Author [Rr]esponse:?$'))" role="error" id="sub-article-title-check-3">The title of a <value-of select="$type"/> type sub-article should be 'Author response'. This one is: <value-of select="."/>

@@ -147,7 +147,7 @@
   <pattern id="sub-article-title-checks-pattern">
     <rule context="sub-article/front-stub/title-group/article-title" id="sub-article-title-checks">
       <let name="type" value="ancestor::sub-article/@article-type"/>
-      <report test="$type='referee-report' and not(matches(.,'^Reviewer #\d\d? \([Pp]ublic [Rr]eview\):?$|^Joint [Pp]ublic [Rr]eview$'))" role="error" id="sub-article-title-check-2">[sub-article-title-check-2] The title of a <value-of select="$type"/> type sub-article should be in one of the following formats: 'Reviewer #0 (public review)' or 'Joint public review'. This one is: <value-of select="."/>
+      <report test="$type='referee-report' and not(matches(.,'^Reviewer #\d\d? \([Pp]ublic [Rr]eview\):?$|^Joint [Pp]ublic [Rr]eview:?$'))" role="error" id="sub-article-title-check-2">[sub-article-title-check-2] The title of a <value-of select="$type"/> type sub-article should be in one of the following formats: 'Reviewer #0 (public review)' or 'Joint public review'. This one is: <value-of select="."/>
       </report>
     </rule>
   </pattern>
