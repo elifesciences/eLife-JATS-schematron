@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="journal-source-4.sch"?>
+<!--Context: mixed-citation[@publication-type='journal']/source
+Test: report    matches(lower-case(.),'^in[^a-z]')
+Message: Journal reference () has a source that beginds with 'In ', ''. Should that text be moved out of the source? And is it a different type of reference? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mixed-citation publication-type="journal">
+            <article-title>That article</article-title> in <source>eLife</source>
+        </mixed-citation>
+    </article>
+</root>

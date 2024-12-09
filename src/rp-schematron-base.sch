@@ -491,6 +491,10 @@
        <report test="matches(lower-case(.),'^(symposium|conference|meeting|workshop)\s|\s?(symposium|conference|meeting|workshop)\s?|\s(symposium|conference|meeting|workshop)$')" 
         role="warning" 
         id="journal-source-3">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
+       
+       <report test="matches(lower-case(.),'^in[^a-z]')" 
+        role="warning" 
+        id="journal-source-4">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that beginds with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
      </rule>
     </pattern>
 
@@ -506,8 +510,14 @@
 
         <report test="text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|and|pp?)[:\.]?'))]" 
         role="warning" 
-        id="preprint-ref-text-content">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|and|pp?)[:\.]?'))],'; ')"/>. Is it tagged correctly?</report>
+        id="preprint-ref-text-content">This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|and|pp?)[:\.]?'))],'; ')"/>. Is it tagged correctly?</report>
      </rule>
+      
+      <rule context="mixed-citation[@publication-type='preprint']/source" id="preprint-source-checks">
+        <report test="matches(lower-case(.),'^in[^a-z]')" 
+        role="warning" 
+        id="preprint-source">Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that beginds with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
+      </rule>
     </pattern>
 
     <pattern id="book-ref">
@@ -542,6 +552,10 @@
         <report test="matches(lower-case(.),'^(symposium|conference|proc\.?|proceeding|meeting|workshop)|\s?(symposium|conference|proc\.?|proceeding|meeting|workshop)\s?|(symposium|conference|proc\.?|proceeding|meeting|workshop)$')" 
         role="warning" 
         id="book-source-3">Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
+        
+        <report test="matches(lower-case(.),'^in[^a-z]')" 
+        role="warning" 
+        id="book-source-4">Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that beginds with 'In ', '<value-of select="."/>'. Should that text be moved out of the source?</report>
       </rule>
     </pattern>
 
