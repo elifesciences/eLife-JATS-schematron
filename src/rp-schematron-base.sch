@@ -494,7 +494,7 @@
        
        <report test="matches(lower-case(.),'^in[^a-z]')" 
         role="warning" 
-        id="journal-source-4">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that beginds with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
+        id="journal-source-4">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
      </rule>
     </pattern>
 
@@ -514,9 +514,9 @@
      </rule>
       
       <rule context="mixed-citation[@publication-type='preprint']/source" id="preprint-source-checks">
-        <report test="matches(lower-case(.),'^in[^a-z]')" 
+        <report test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')" 
         role="warning" 
-        id="preprint-source">Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that beginds with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
+        id="preprint-source">Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
       </rule>
     </pattern>
 
@@ -545,19 +545,37 @@
         role="warning" 
         id="book-source-1">The source in book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) contains 'chapter' - <value-of select="."/>. Are the details captured correctly?</report>
         
-        <report test="matches(lower-case(.),'\.\s+in:\s+')" 
+        <report test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')" 
         role="warning" 
-        id="book-source-2">The source in book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) contains '. In: ' - <value-of select="."/>. Are the details captured correctly?</report>
+        id="book-source-2">The source in book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) starts with 'In: ' - <value-of select="."/>. Are the details captured correctly?</report>
 
         <report test="matches(lower-case(.),'^(symposium|conference|proc\.?|proceeding|meeting|workshop)|\s?(symposium|conference|proc\.?|proceeding|meeting|workshop)\s?|(symposium|conference|proc\.?|proceeding|meeting|workshop)$')" 
         role="warning" 
         id="book-source-3">Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
-        
-        <report test="matches(lower-case(.),'^in[^a-z]')" 
-        role="warning" 
-        id="book-source-4">Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that beginds with 'In ', '<value-of select="."/>'. Should that text be moved out of the source?</report>
       </rule>
     </pattern>
+  
+  <pattern id="confproc-ref">
+     <rule context="mixed-citation[@publication-type='confproc']" id="confproc-ref-checks">
+        <assert test="conf-name" 
+        role="error" 
+        id="confproc-ref-conf-name">This conference reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no conf-name element.</assert>
+       
+       <report test="count(conf-name) gt 1" 
+        role="error" 
+        id="confproc-ref-conf-name-2">This conference reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has more than 1 conf-name element.</report>
+       
+       <assert test="article-title" 
+        role="warning" 
+        id="confproc-ref-article-title">This conference reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no article-title element.</assert>
+     </rule>
+    
+    <rule context="mixed-citation[@publication-type='confproc']/conf-name" id="confproc-conf-name-checks">
+      <report test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')" 
+        role="warning" 
+        id="confproc-conf-name">The conf-name in conference reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) starts with 'In: ' - <value-of select="."/>. Are the details captured correctly?</report>
+    </rule>
+  </pattern>
 
     <pattern id="ref-labels">
      <rule context="ref-list" id="ref-list-checks">

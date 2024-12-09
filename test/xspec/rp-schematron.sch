@@ -364,7 +364,7 @@
 
        <report test="matches(lower-case(.),'^(symposium|conference|meeting|workshop)\s|\s?(symposium|conference|meeting|workshop)\s?|\s(symposium|conference|meeting|workshop)$')" role="warning" id="journal-source-3">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
        
-       <report test="matches(lower-case(.),'^in[^a-z]')" role="warning" id="journal-source-4">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that beginds with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
+       <report test="matches(lower-case(.),'^in[^a-z]')" role="warning" id="journal-source-4">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
      </rule>
   </pattern>
 
@@ -379,7 +379,7 @@
   </pattern>
   <pattern id="preprint-source-checks-pattern">
     <rule context="mixed-citation[@publication-type='preprint']/source" id="preprint-source-checks">
-        <report test="matches(lower-case(.),'^in[^a-z]')" role="warning" id="preprint-source">Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that beginds with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
+        <report test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')" role="warning" id="preprint-source">Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
       </rule>
   </pattern>
 
@@ -399,12 +399,25 @@
         
         <report test="matches(lower-case(.),'^chapter\s|\s+chapter\s+')" role="warning" id="book-source-1">The source in book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) contains 'chapter' - <value-of select="."/>. Are the details captured correctly?</report>
         
-        <report test="matches(lower-case(.),'\.\s+in:\s+')" role="warning" id="book-source-2">The source in book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) contains '. In: ' - <value-of select="."/>. Are the details captured correctly?</report>
+        <report test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')" role="warning" id="book-source-2">The source in book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) starts with 'In: ' - <value-of select="."/>. Are the details captured correctly?</report>
 
         <report test="matches(lower-case(.),'^(symposium|conference|proc\.?|proceeding|meeting|workshop)|\s?(symposium|conference|proc\.?|proceeding|meeting|workshop)\s?|(symposium|conference|proc\.?|proceeding|meeting|workshop)$')" role="warning" id="book-source-3">Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
-        
-        <report test="matches(lower-case(.),'^in[^a-z]')" role="warning" id="book-source-4">Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that beginds with 'In ', '<value-of select="."/>'. Should that text be moved out of the source?</report>
       </rule>
+  </pattern>
+  
+  <pattern id="confproc-ref-checks-pattern">
+    <rule context="mixed-citation[@publication-type='confproc']" id="confproc-ref-checks">
+        <assert test="conf-name" role="error" id="confproc-ref-conf-name">This conference reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no conf-name element.</assert>
+       
+       <report test="count(conf-name) gt 1" role="error" id="confproc-ref-conf-name-2">This conference reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has more than 1 conf-name element.</report>
+       
+       <assert test="article-title" role="warning" id="confproc-ref-article-title">This conference reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no article-title element.</assert>
+     </rule>
+  </pattern>
+  <pattern id="confproc-conf-name-checks-pattern">
+    <rule context="mixed-citation[@publication-type='confproc']/conf-name" id="confproc-conf-name-checks">
+      <report test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')" role="warning" id="confproc-conf-name">The conf-name in conference reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) starts with 'In: ' - <value-of select="."/>. Are the details captured correctly?</report>
+    </rule>
   </pattern>
 
     <pattern id="ref-list-checks-pattern">
@@ -1557,6 +1570,8 @@
       <assert test="descendant::mixed-citation[@publication-type='preprint']/source" role="error" id="preprint-source-checks-xspec-assert">mixed-citation[@publication-type='preprint']/source must be present.</assert>
       <assert test="descendant::mixed-citation[@publication-type='book']" role="error" id="book-ref-checks-xspec-assert">mixed-citation[@publication-type='book'] must be present.</assert>
       <assert test="descendant::mixed-citation[@publication-type='book']/source" role="error" id="book-ref-source-checks-xspec-assert">mixed-citation[@publication-type='book']/source must be present.</assert>
+      <assert test="descendant::mixed-citation[@publication-type='confproc']" role="error" id="confproc-ref-checks-xspec-assert">mixed-citation[@publication-type='confproc'] must be present.</assert>
+      <assert test="descendant::mixed-citation[@publication-type='confproc']/conf-name" role="error" id="confproc-conf-name-checks-xspec-assert">mixed-citation[@publication-type='confproc']/conf-name must be present.</assert>
       <assert test="descendant::ref-list" role="error" id="ref-list-checks-xspec-assert">ref-list must be present.</assert>
       <assert test="descendant::ref-list[ref/label[matches(.,'^\p{P}*\d+\p{P}*$')] and not(ref/label[not(matches(.,'^\p{P}*\d+\p{P}*$'))])]/ref[label]" role="error" id="ref-numeric-label-checks-xspec-assert">ref-list[ref/label[matches(.,'^\p{P}*\d+\p{P}*$')] and not(ref/label[not(matches(.,'^\p{P}*\d+\p{P}*$'))])]/ref[label] must be present.</assert>
       <assert test="descendant::ref-list[ref/label]/ref" role="error" id="ref-label-checks-xspec-assert">ref-list[ref/label]/ref must be present.</assert>

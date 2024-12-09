@@ -144,14 +144,14 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="book-ref-source-checks-pattern">
-    <rule context="mixed-citation[@publication-type='book']/source" id="book-ref-source-checks">
-      <report test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')" role="warning" id="book-source-2">[book-source-2] The source in book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) starts with 'In: ' - <value-of select="."/>. Are the details captured correctly?</report>
+  <pattern id="confproc-ref-checks-pattern">
+    <rule context="mixed-citation[@publication-type='confproc']" id="confproc-ref-checks">
+      <assert test="conf-name" role="error" id="confproc-ref-conf-name">[confproc-ref-conf-name] This conference reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no conf-name element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mixed-citation[@publication-type='book']/source" role="error" id="book-ref-source-checks-xspec-assert">mixed-citation[@publication-type='book']/source must be present.</assert>
+      <assert test="descendant::mixed-citation[@publication-type='confproc']" role="error" id="confproc-ref-checks-xspec-assert">mixed-citation[@publication-type='confproc'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

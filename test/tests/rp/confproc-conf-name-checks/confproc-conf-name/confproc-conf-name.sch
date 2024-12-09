@@ -144,14 +144,14 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="book-ref-source-checks-pattern">
-    <rule context="mixed-citation[@publication-type='book']/source" id="book-ref-source-checks">
-      <report test="matches(lower-case(.),'^in[^a-z]')" role="warning" id="book-source-4">[book-source-4] Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that beginds with 'In ', '<value-of select="."/>'. Should that text be moved out of the source?</report>
+  <pattern id="confproc-conf-name-checks-pattern">
+    <rule context="mixed-citation[@publication-type='confproc']/conf-name" id="confproc-conf-name-checks">
+      <report test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')" role="warning" id="confproc-conf-name">[confproc-conf-name] The conf-name in conference reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) starts with 'In: ' - <value-of select="."/>. Are the details captured correctly?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mixed-citation[@publication-type='book']/source" role="error" id="book-ref-source-checks-xspec-assert">mixed-citation[@publication-type='book']/source must be present.</assert>
+      <assert test="descendant::mixed-citation[@publication-type='confproc']/conf-name" role="error" id="confproc-conf-name-checks-xspec-assert">mixed-citation[@publication-type='confproc']/conf-name must be present.</assert>
     </rule>
   </pattern>
 </schema>

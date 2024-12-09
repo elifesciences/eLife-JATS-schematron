@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="book-source-2.sch"?>
 <!--Context: mixed-citation[@publication-type='book']/source
-Test: report    matches(lower-case(.),'\.\s+in:\s+')
-Message: The source in book reference () contains '. In: ' - . Are the details captured correctly? -->
+Test: report    matches(lower-case(.),'^(\.\s*)?in[^a-z]')
+Message: The source in book reference () starts with 'In: ' - . Are the details captured correctly? -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <mixed-citation publication-type="book">
