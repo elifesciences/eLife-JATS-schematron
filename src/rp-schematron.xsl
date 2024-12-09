@@ -1349,6 +1349,34 @@
             <svrl:text>[biorender-check] Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="sub-article[@article-type='editor-report']"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="sub-article[@article-type='editor-report']">
+               <xsl:attribute name="id">no-assessment</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[no-assessment] A Reviewed Preprint must have an eLife Assessment, but this one does not.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="sub-article[@article-type='referee-report']"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="sub-article[@article-type='referee-report']">
+               <xsl:attribute name="id">no-public-review</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[no-public-review] A Reviewed Preprint must have at least one Public Review, but this one does not.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <!--REPORT warning-->
       <xsl:if test="$is-revised-rp and not(sub-article[@article-type='author-comment'])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$is-revised-rp and not(sub-article[@article-type='author-comment'])">

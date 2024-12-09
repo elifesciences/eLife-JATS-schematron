@@ -163,6 +163,10 @@
         <let name="rp-version" value="replace(descendant::article-meta[1]/article-id[@specific-use='version'][1],'^.*\.','')"/>
 
        <report test="matches(lower-case($article-text),'biorend[eo]r')" role="warning" id="biorender-check">Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</report>
+        
+        <assert test="sub-article[@article-type='editor-report']" role="error" id="no-assessment">A Reviewed Preprint must have an eLife Assessment, but this one does not.</assert>
+        
+        <assert test="sub-article[@article-type='referee-report']" role="error" id="no-public-review">A Reviewed Preprint must have at least one Public Review, but this one does not.</assert>
 
         <report test="$is-revised-rp and not(sub-article[@article-type='author-comment'])" role="warning" id="no-author-response-1">Revised Reviewed Preprint (version <value-of select="$rp-version"/>) does not have an author response, which is unusual. Is that correct?</report>
         

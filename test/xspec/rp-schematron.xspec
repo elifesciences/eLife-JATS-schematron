@@ -11,6 +11,26 @@
         <x:expect-report id="biorender-check" role="warning"/>
         <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="no-assessment-pass">
+        <x:context href="../tests/rp/article-tests/no-assessment/pass.xml"/>
+        <x:expect-not-assert id="no-assessment" role="error"/>
+        <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="no-assessment-fail">
+        <x:context href="../tests/rp/article-tests/no-assessment/fail.xml"/>
+        <x:expect-assert id="no-assessment" role="error"/>
+        <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="no-public-review-pass">
+        <x:context href="../tests/rp/article-tests/no-public-review/pass.xml"/>
+        <x:expect-not-assert id="no-public-review" role="error"/>
+        <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="no-public-review-fail">
+        <x:context href="../tests/rp/article-tests/no-public-review/fail.xml"/>
+        <x:expect-assert id="no-public-review" role="error"/>
+        <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="no-author-response-1-pass">
         <x:context href="../tests/rp/article-tests/no-author-response-1/pass.xml"/>
         <x:expect-not-report id="no-author-response-1" role="warning"/>

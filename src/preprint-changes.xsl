@@ -978,7 +978,7 @@
     
     <!-- Fixes mistagged preprints -->
      <xsl:template xml:id="find-and-tag-preprint-refs" mode="mixed-citation-round-4" match="mixed-citation">
-         <xsl:variable name="preprint-regex" select="'^(biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra)$'"/>
+         <xsl:variable name="preprint-regex" select="'^(biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra|ecoevorxiv)$'"/>
          <xsl:copy>
             <xsl:choose>
                 <xsl:when test="@publication-type!='preprint' and matches(lower-case(source[1]),$preprint-regex)">

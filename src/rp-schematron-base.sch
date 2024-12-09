@@ -184,6 +184,14 @@
        <report test="matches(lower-case($article-text),'biorend[eo]r')" 
         role="warning" 
         id="biorender-check">Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</report>
+        
+        <assert test="sub-article[@article-type='editor-report']" 
+          role="error" 
+          id="no-assessment">A Reviewed Preprint must have an eLife Assessment, but this one does not.</assert>
+        
+        <assert test="sub-article[@article-type='referee-report']" 
+          role="error" 
+          id="no-public-review">A Reviewed Preprint must have at least one Public Review, but this one does not.</assert>
 
         <report test="$is-revised-rp and not(sub-article[@article-type='author-comment'])" 
         role="warning" 
