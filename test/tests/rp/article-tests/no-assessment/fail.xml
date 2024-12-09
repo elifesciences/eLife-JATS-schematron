@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="no-assessment.sch"?>
+<!--Context: article
+Test: assert    sub-article[@article-type='editor-report']
+Message: A Reviewed Preprint must have an eLife Assessment, but this one does not. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article article-type="author-comment"/>
+    </article>
+</root>

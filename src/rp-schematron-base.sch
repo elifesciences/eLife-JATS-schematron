@@ -184,6 +184,14 @@
        <report test="matches(lower-case($article-text),'biorend[eo]r')" 
         role="warning" 
         id="biorender-check">Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</report>
+        
+        <assert test="sub-article[@article-type='editor-report']" 
+          role="error" 
+          id="no-assessment">A Reviewed Preprint must have an eLife Assessment, but this one does not.</assert>
+        
+        <assert test="sub-article[@article-type='referee-report']" 
+          role="error" 
+          id="no-public-review">A Reviewed Preprint must have at least one Public Review, but this one does not.</assert>
 
         <report test="$is-revised-rp and not(sub-article[@article-type='author-comment'])" 
         role="warning" 
@@ -749,6 +757,12 @@
           role="warning" 
           id="mixed-citation-person-group-flag-2"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have an author person-group. Is that correct?</assert>
      </rule>
+      
+      <rule context="mixed-citation/*" id="mixed-citation-child-checks">
+        <report test="not(*) and (normalize-space(.)='')" 
+          role="error" 
+          id="mixed-citation-child-1"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) is empty, which cannot be correct.</report>
+      </rule>
     </pattern>
 
     <pattern id="back">

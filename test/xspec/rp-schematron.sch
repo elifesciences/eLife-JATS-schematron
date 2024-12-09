@@ -163,6 +163,10 @@
         <let name="rp-version" value="replace(descendant::article-meta[1]/article-id[@specific-use='version'][1],'^.*\.','')"/>
 
        <report test="matches(lower-case($article-text),'biorend[eo]r')" role="warning" id="biorender-check">Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</report>
+        
+        <assert test="sub-article[@article-type='editor-report']" role="error" id="no-assessment">A Reviewed Preprint must have an eLife Assessment, but this one does not.</assert>
+        
+        <assert test="sub-article[@article-type='referee-report']" role="error" id="no-public-review">A Reviewed Preprint must have at least one Public Review, but this one does not.</assert>
 
         <report test="$is-revised-rp and not(sub-article[@article-type='author-comment'])" role="warning" id="no-author-response-1">Revised Reviewed Preprint (version <value-of select="$rp-version"/>) does not have an author response, which is unusual. Is that correct?</report>
         
@@ -557,6 +561,12 @@
         <assert test="person-group[@person-group-type='author']" role="warning" id="mixed-citation-person-group-flag-2">
         <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have an author person-group. Is that correct?</assert>
      </rule>
+  </pattern>
+  <pattern id="mixed-citation-child-checks-pattern">
+    <rule context="mixed-citation/*" id="mixed-citation-child-checks">
+        <report test="not(*) and (normalize-space(.)='')" role="error" id="mixed-citation-child-1">
+        <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) is empty, which cannot be correct.</report>
+      </rule>
   </pattern>
 
     <pattern id="back-tests-pattern">
@@ -1552,6 +1562,7 @@
       <assert test="descendant::ref//person-group" role="error" id="ref-person-group-checks-xspec-assert">ref//person-group must be present.</assert>
       <assert test="descendant::ref" role="error" id="ref-checks-xspec-assert">ref must be present.</assert>
       <assert test="descendant::mixed-citation" role="error" id="mixed-citation-checks-xspec-assert">mixed-citation must be present.</assert>
+      <assert test="descendant::mixed-citation/*" role="error" id="mixed-citation-child-checks-xspec-assert">mixed-citation/* must be present.</assert>
       <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
       <assert test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>
       <assert test="descendant::fig" role="error" id="fig-checks-xspec-assert">fig must be present.</assert>
