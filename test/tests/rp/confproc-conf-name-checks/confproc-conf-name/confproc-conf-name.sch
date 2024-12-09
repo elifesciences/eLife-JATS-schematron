@@ -144,15 +144,14 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="journal-source-checks-pattern">
-    <rule context="mixed-citation[@publication-type='journal']/source" id="journal-source-checks">
-      <let name="preprint-regex" value="'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra'"/>
-      <report test="matches(lower-case(.),'^(symposium|conference|meeting|workshop)\s|\s?(symposium|conference|meeting|workshop)\s?|\s(symposium|conference|meeting|workshop)$')" role="warning" id="journal-source-3">[journal-source-3] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
+  <pattern id="confproc-conf-name-checks-pattern">
+    <rule context="mixed-citation[@publication-type='confproc']/conf-name" id="confproc-conf-name-checks">
+      <report test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')" role="warning" id="confproc-conf-name">[confproc-conf-name] The conf-name in conference reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) starts with 'In: ' - <value-of select="."/>. Are the details captured correctly?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mixed-citation[@publication-type='journal']/source" role="error" id="journal-source-checks-xspec-assert">mixed-citation[@publication-type='journal']/source must be present.</assert>
+      <assert test="descendant::mixed-citation[@publication-type='confproc']/conf-name" role="error" id="confproc-conf-name-checks-xspec-assert">mixed-citation[@publication-type='confproc']/conf-name must be present.</assert>
     </rule>
   </pattern>
 </schema>

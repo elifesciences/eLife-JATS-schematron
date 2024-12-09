@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="confproc-ref-conf-name.sch"?>
+<!--Context: mixed-citation[@publication-type='confproc']
+Test: assert    conf-name
+Message: This conference reference () has no conf-name element. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mixed-citation publication-type="confproc">
+            <article-title>This poster</article-title> at This conference
+        </mixed-citation>
+    </article>
+</root>

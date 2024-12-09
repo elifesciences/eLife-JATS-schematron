@@ -669,6 +669,16 @@
         <x:expect-report id="journal-source-3" role="warning"/>
         <x:expect-not-assert id="journal-source-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="journal-source-4-pass">
+        <x:context href="../tests/rp/journal-source-checks/journal-source-4/pass.xml"/>
+        <x:expect-not-report id="journal-source-4" role="warning"/>
+        <x:expect-not-assert id="journal-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="journal-source-4-fail">
+        <x:context href="../tests/rp/journal-source-checks/journal-source-4/fail.xml"/>
+        <x:expect-report id="journal-source-4" role="warning"/>
+        <x:expect-not-assert id="journal-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="preprint-ref-checks">
       <x:scenario label="preprint-ref-source-pass">
@@ -700,6 +710,18 @@
         <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-text-content/fail.xml"/>
         <x:expect-report id="preprint-ref-text-content" role="warning"/>
         <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="preprint-source-checks">
+      <x:scenario label="preprint-source-pass">
+        <x:context href="../tests/rp/preprint-source-checks/preprint-source/pass.xml"/>
+        <x:expect-not-report id="preprint-source" role="warning"/>
+        <x:expect-not-assert id="preprint-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-source-fail">
+        <x:context href="../tests/rp/preprint-source-checks/preprint-source/fail.xml"/>
+        <x:expect-report id="preprint-source" role="warning"/>
+        <x:expect-not-assert id="preprint-source-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="book-ref-checks">
@@ -774,6 +796,50 @@
         <x:context href="../tests/rp/book-ref-source-checks/book-source-3/fail.xml"/>
         <x:expect-report id="book-source-3" role="warning"/>
         <x:expect-not-assert id="book-ref-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="confproc-ref-checks">
+      <x:scenario label="confproc-ref-conf-name-pass">
+        <x:context href="../tests/rp/confproc-ref-checks/confproc-ref-conf-name/pass.xml"/>
+        <x:expect-not-assert id="confproc-ref-conf-name" role="error"/>
+        <x:expect-not-assert id="confproc-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="confproc-ref-conf-name-fail">
+        <x:context href="../tests/rp/confproc-ref-checks/confproc-ref-conf-name/fail.xml"/>
+        <x:expect-assert id="confproc-ref-conf-name" role="error"/>
+        <x:expect-not-assert id="confproc-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="confproc-ref-conf-name-2-pass">
+        <x:context href="../tests/rp/confproc-ref-checks/confproc-ref-conf-name-2/pass.xml"/>
+        <x:expect-not-report id="confproc-ref-conf-name-2" role="error"/>
+        <x:expect-not-assert id="confproc-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="confproc-ref-conf-name-2-fail">
+        <x:context href="../tests/rp/confproc-ref-checks/confproc-ref-conf-name-2/fail.xml"/>
+        <x:expect-report id="confproc-ref-conf-name-2" role="error"/>
+        <x:expect-not-assert id="confproc-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="confproc-ref-article-title-pass">
+        <x:context href="../tests/rp/confproc-ref-checks/confproc-ref-article-title/pass.xml"/>
+        <x:expect-not-assert id="confproc-ref-article-title" role="warning"/>
+        <x:expect-not-assert id="confproc-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="confproc-ref-article-title-fail">
+        <x:context href="../tests/rp/confproc-ref-checks/confproc-ref-article-title/fail.xml"/>
+        <x:expect-assert id="confproc-ref-article-title" role="warning"/>
+        <x:expect-not-assert id="confproc-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="confproc-conf-name-checks">
+      <x:scenario label="confproc-conf-name-pass">
+        <x:context href="../tests/rp/confproc-conf-name-checks/confproc-conf-name/pass.xml"/>
+        <x:expect-not-report id="confproc-conf-name" role="warning"/>
+        <x:expect-not-assert id="confproc-conf-name-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="confproc-conf-name-fail">
+        <x:context href="../tests/rp/confproc-conf-name-checks/confproc-conf-name/fail.xml"/>
+        <x:expect-report id="confproc-conf-name" role="warning"/>
+        <x:expect-not-assert id="confproc-conf-name-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="ref-list-checks">
