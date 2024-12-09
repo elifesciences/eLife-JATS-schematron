@@ -757,6 +757,12 @@
           role="warning" 
           id="mixed-citation-person-group-flag-2"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have an author person-group. Is that correct?</assert>
      </rule>
+      
+      <rule context="mixed-citation/*" id="mixed-citation-child-checks">
+        <report test="not(*) and (normalize-space(.)='')" 
+          role="error" 
+          id="mixed-citation-child-1"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) is empty, which cannot be correct.</report>
+      </rule>
     </pattern>
 
     <pattern id="back">

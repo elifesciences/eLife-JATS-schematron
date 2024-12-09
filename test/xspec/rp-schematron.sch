@@ -562,6 +562,12 @@
         <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have an author person-group. Is that correct?</assert>
      </rule>
   </pattern>
+  <pattern id="mixed-citation-child-checks-pattern">
+    <rule context="mixed-citation/*" id="mixed-citation-child-checks">
+        <report test="not(*) and (normalize-space(.)='')" role="error" id="mixed-citation-child-1">
+        <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) is empty, which cannot be correct.</report>
+      </rule>
+  </pattern>
 
     <pattern id="back-tests-pattern">
     <rule context="back" id="back-tests">
@@ -1556,6 +1562,7 @@
       <assert test="descendant::ref//person-group" role="error" id="ref-person-group-checks-xspec-assert">ref//person-group must be present.</assert>
       <assert test="descendant::ref" role="error" id="ref-checks-xspec-assert">ref must be present.</assert>
       <assert test="descendant::mixed-citation" role="error" id="mixed-citation-checks-xspec-assert">mixed-citation must be present.</assert>
+      <assert test="descendant::mixed-citation/*" role="error" id="mixed-citation-child-checks-xspec-assert">mixed-citation/* must be present.</assert>
       <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
       <assert test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>
       <assert test="descendant::fig" role="error" id="fig-checks-xspec-assert">fig must be present.</assert>

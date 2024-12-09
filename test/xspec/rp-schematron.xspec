@@ -1186,6 +1186,18 @@
         <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="mixed-citation-child-checks">
+      <x:scenario label="mixed-citation-child-1-pass">
+        <x:context href="../tests/rp/mixed-citation-child-checks/mixed-citation-child-1/pass.xml"/>
+        <x:expect-not-report id="mixed-citation-child-1" role="error"/>
+        <x:expect-not-assert id="mixed-citation-child-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mixed-citation-child-1-fail">
+        <x:context href="../tests/rp/mixed-citation-child-checks/mixed-citation-child-1/fail.xml"/>
+        <x:expect-report id="mixed-citation-child-1" role="error"/>
+        <x:expect-not-assert id="mixed-citation-child-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="back-tests">
       <x:scenario label="no-ref-list-pass">
         <x:context href="../tests/rp/back-tests/no-ref-list/pass.xml"/>
