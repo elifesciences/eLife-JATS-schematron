@@ -2594,8 +2594,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')">
+      <xsl:if test="matches(lower-case(.),'^(\.\s*)?in[^a-z]|\.\s+in:\s+')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'^(\.\s*)?in[^a-z]|\.\s+in:\s+')">
             <xsl:attribute name="id">book-source-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -2603,7 +2603,7 @@
             </xsl:attribute>
             <svrl:text>[book-source-2] The source in book reference (<xsl:text/>
                <xsl:value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>
-               <xsl:text/>) starts with 'In: ' - <xsl:text/>
+               <xsl:text/>) contains 'In: ' - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>. Are the details captured correctly?</svrl:text>
          </svrl:successful-report>
