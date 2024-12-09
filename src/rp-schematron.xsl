@@ -2365,8 +2365,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="matches(lower-case(.),'^(symposium|conference|meeting|workshop)|\s?(symposium|conference|meeting|workshop)\s?|(symposium|conference|meeting|workshop)$')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'^(symposium|conference|meeting|workshop)|\s?(symposium|conference|meeting|workshop)\s?|(symposium|conference|meeting|workshop)$')">
+      <xsl:if test="matches(lower-case(.),'^(symposium|conference|meeting|workshop)\s|\s?(symposium|conference|meeting|workshop)\s?|\s(symposium|conference|meeting|workshop)$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'^(symposium|conference|meeting|workshop)\s|\s?(symposium|conference|meeting|workshop)\s?|\s(symposium|conference|meeting|workshop)$')">
             <xsl:attribute name="id">journal-source-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">

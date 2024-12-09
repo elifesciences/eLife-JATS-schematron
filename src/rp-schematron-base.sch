@@ -488,7 +488,7 @@
         role="warning" 
         id="journal-source-2">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with a roman numeral. Is part of the article-title captured in source? Source = <value-of select="."/>.</report>
 
-       <report test="matches(lower-case(.),'^(symposium|conference|meeting|workshop)|\s?(symposium|conference|meeting|workshop)\s?|(symposium|conference|meeting|workshop)$')" 
+       <report test="matches(lower-case(.),'^(symposium|conference|meeting|workshop)\s|\s?(symposium|conference|meeting|workshop)\s?|\s(symposium|conference|meeting|workshop)$')" 
         role="warning" 
         id="journal-source-3">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
      </rule>
