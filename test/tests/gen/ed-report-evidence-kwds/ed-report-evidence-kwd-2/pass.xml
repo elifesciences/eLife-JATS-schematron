@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="ed-report-evidence-kwd-2.sch"?>
+<!--Context: sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd
+Test: report    .=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]
+Message: There is both an  and  kwd in the kwd-group for strength of evidence. Provided the  kwd is correct, please remove the  kwd from the kwd-group and unbold the term in the Assessment text. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article article-type="editor-report" id="sa0">
+            <front-stub>
+                <kwd-group kwd-group-type="evidence-strength">
+                    <kwd>Convincing</kwd>
+                </kwd-group>
+                </front-stub>
+            <body><p>This <bold>important</bold> study demonstrates ... The evidence supporting the proposed mechanism incomplete at this stagebut the authors provide <bold>convincing</bold> data.</p></body></sub-article>
+    </article>
+</root>

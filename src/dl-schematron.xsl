@@ -3017,7 +3017,9 @@
    <!--PATTERN ed-report-evidence-kwds-pattern-->
    <!--RULE ed-report-evidence-kwds-->
    <xsl:template match="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" priority="1000" mode="M87">
-      <xsl:variable name="allowed-vals" select="('Exceptional', 'Compelling', 'Convincing', 'Solid', 'Incomplete', 'Inadequate')"/>
+      <xsl:variable name="wos-go-vals" select="('Exceptional', 'Compelling', 'Convincing', 'Solid')"/>
+      <xsl:variable name="wos-no-go-vals" select="('Incomplete', 'Inadequate')"/>
+      <xsl:variable name="allowed-vals" select="($wos-go-vals,$wos-no-go-vals)"/>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test=".=$allowed-vals"/>
@@ -3038,6 +3040,26 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <!--REPORT error-->
+      <xsl:if test=".=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]">
+            <xsl:attribute name="id">ed-report-evidence-kwd-2</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>There is both an <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/> and <xsl:text/>
+               <xsl:value-of select="string-join(parent::*/kwd[.=$wos-go-vals],'; ')"/>
+               <xsl:text/> kwd in the kwd-group for strength of evidence. Provided the <xsl:text/>
+               <xsl:value-of select="string-join(parent::*/kwd[.=$wos-go-vals],'; ')"/>
+               <xsl:text/> kwd is correct, please remove the <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/> kwd from the kwd-group and unbold the term in the Assessment text.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M87"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M87"/>
