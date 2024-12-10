@@ -9034,25 +9034,28 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <!--REPORT warning-->
-      <xsl:if test="(preceding::contrib-id[@contrib-id-type='orcid']/text() = $text) or (following::contrib-id[@contrib-id-type='orcid']/text() = $text)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(preceding::contrib-id[@contrib-id-type='orcid']/text() = $text) or (following::contrib-id[@contrib-id-type='orcid']/text() = $text)">
-            <xsl:attribute name="id">pre-orcid-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[pre-orcid-test-3] <xsl:text/>
-               <xsl:value-of select="e:get-name(parent::*/name[1])"/>
-               <xsl:text/>'s ORCiD is the same as another author's - <xsl:text/>
-               <xsl:value-of select="."/>
-               <xsl:text/>. Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please add an author query - 'This ORCiD - <xsl:text/>
-               <xsl:value-of select="."/>
-               <xsl:text/> - is associated with <xsl:text/>
-               <xsl:value-of select="count(preceding::contrib-id[@contrib-id-type='orcid' and text()=$text]) + count(following::contrib-id[@contrib-id-type='orcid' and text()=$text]) + 1"/>
-               <xsl:text/> authors. Please confirm which author this ORCiD belongs to.'.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
+      <!--ASSERT warning-->
+      <xsl:choose>
+         <xsl:when test="count(ancestor::contrib-group//contrib-id[@contrib-id-type='orcid' and .=$text]) = 1"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(ancestor::contrib-group//contrib-id[@contrib-id-type='orcid' and .=$text]) = 1">
+               <xsl:attribute name="id">pre-orcid-test-3</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[pre-orcid-test-3] <xsl:text/>
+                  <xsl:value-of select="e:get-name(parent::*/name[1])"/>
+                  <xsl:text/>'s ORCiD is the same as another author's - <xsl:text/>
+                  <xsl:value-of select="."/>
+                  <xsl:text/>. Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please add an author query - 'This ORCiD - <xsl:text/>
+                  <xsl:value-of select="."/>
+                  <xsl:text/> - is associated with <xsl:text/>
+                  <xsl:value-of select="count(ancestor::contrib-group//contrib-id[@contrib-id-type='orcid' and .=$text])"/>
+                  <xsl:text/> authors. Please confirm which author this ORCiD belongs to.'.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M105"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M105"/>
