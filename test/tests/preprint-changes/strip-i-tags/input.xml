@@ -1,0 +1,5 @@
+<!--Testing template with id: strip-i-tags-->
+<sec id="s3">
+<p><italic><bold><i>some text</i></bold></italic></p>
+<p><i>ital<bold>ics</bold></i></p>
+</sec>

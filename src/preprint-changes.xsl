@@ -1125,6 +1125,20 @@
                                                                     |italic[bold[xref]]">
          <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
     </xsl:template>
+    
+    <!-- Strip or convert HTML <i> tags -->
+    <xsl:template xml:id="strip-i-tags" match="i">
+        <xsl:choose>
+            <xsl:when test="ancestor::italic">
+                <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:element name="italic">
+                    <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+                </xsl:element>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
 
     <!-- Strip unnecessary bolding and italicisation above citations -->
     <xsl:template xml:id="strip-bold-italic-from-above-xref" match="bold[xref]|italic[xref]">
