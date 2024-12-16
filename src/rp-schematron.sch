@@ -810,6 +810,9 @@
 
     <pattern id="abstract-checks-pattern"><rule context="abstract[parent::article-meta]" id="abstract-checks">
         <let name="allowed-types" value="('structured','plain-language-summary','teaser','summary','graphical')"/>
+        <!-- The only elements you'd expect to be permitted in an impact statement -->
+        <let name="impact-statement-elems" value="('title','p','italic','bold','sup','sub','sc','monospace','xref')"/>
+        <let name="word-count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
         <report test="preceding::abstract[not(@abstract-type) and not(@xml:lang)] and not(@abstract-type) and not(@xml:lang)" role="error" id="abstract-test-1">[abstract-test-1] There should only be one abstract without an abstract-type attribute (for the common-garden abstract) or xml:lang attirbute (for common-garden abstract in a language other than english). This asbtract does not have an abstract-type, but there is also a preceding abstract without an abstract-type or xml:lang. One of these needs to be given an abstract-type with the allowed values ('structured' for a syrctured abstract with sections; 'plain-language-summary' for a digest or author provided plain summary; 'teaser' for an impact statement; 'summary' for a general summary that's in addition to the common-garden abstract; 'graphical' for a graphical abstract).</report>
 
         <report test="@abstract-type and not(@abstract-type=$allowed-types)" role="error" id="abstract-test-2">[abstract-test-2] abstract has an abstract-type (<value-of select="@abstract-type"/>), but it's not one of the permiited values: <value-of select="string-join($allowed-types,'; ')"/>.</report>
@@ -821,6 +824,12 @@
         <report test="descendant::fig and not(@abstract-type='graphical')" role="error" id="abstract-test-5">[abstract-test-5] abstract has a descendant fig, but it does not have the attribute abstract-type="graphical". If it is a graphical abstract, it should have that type. If it's not a graphical abstract the content should be moved out of &lt;abstract&gt;</report>
         
         <report test="@abstract-type=$allowed-types and ./@abstract-type = preceding-sibling::abstract/@abstract-type" role="warning" id="abstract-test-6">[abstract-test-6] abstract has the abstract-type '<value-of select="@abstract-type"/>', which is a permitted value, but it is not the only abstract with that type. It is very unlikely that two abstracts with the same abstract-type are required.</report>
+        
+        <report test="@abstract-type='teaser' and descendant::*[not(name()=$impact-statement-elems)]" role="error" id="abstract-test-7">[abstract-test-7] abstract has the abstract-type 'teaser', meaning it is equivalent to an impact statement, but it has the following descendant elements, which prove it needs a different type <value-of select="string-join(distinct-values(descendant::*[not(name()=$impact-statement-elems)]/name()),'; ')"/>.</report>
+        
+        <report test="@abstract-type='teaser' and $word-count gt 60" role="warning" id="abstract-test-8">[abstract-test-8] abstract has the abstract-type 'teaser', meaning it is equivalent to an impact statement, but it has greater than 60 words (<value-of select="$word-count"/>).</report>
+        
+        <report test="@abstract-type='teaser' and count(p) gt 1" role="error" id="abstract-test-9">[abstract-test-9] abstract has the abstract-type 'teaser', meaning it is equivalent to an impact statement, but it has <value-of select="count(p)"/> paragraphs (whereas an impact statement would have only one paragraph).</report>
       </rule></pattern><pattern id="abstract-child-checks-pattern"><rule context="abstract[parent::article-meta]/*" id="abstract-child-checks">
         <let name="allowed-children" value="('label','title','sec','p','fig','list')"/>
         <assert test="name()=$allowed-children" role="error" id="abstract-child-test-1">[abstract-child-test-1] <name/> is not permitted within abstract.</assert>

@@ -149,7 +149,7 @@
       <let name="allowed-types" value="('structured','plain-language-summary','teaser','summary','graphical')"/>
       <let name="impact-statement-elems" value="('title','p','italic','bold','sup','sub','sc','monospace','xref')"/>
       <let name="word-count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
-      <report test="matches(lower-case(title[1]),'funding')" role="error" id="abstract-test-3">[abstract-test-3] abstract has a title that indicates it contains funding information (<value-of select="title[1]"/>) If this is funding information, it should be captured as a section in back or as part of an (if existing) structured abstract.</report>
+      <report test="@abstract-type='teaser' and $word-count gt 60" role="warning" id="abstract-test-8">[abstract-test-8] abstract has the abstract-type 'teaser', meaning it is equivalent to an impact statement, but it has greater than 60 words (<value-of select="$word-count"/>).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
