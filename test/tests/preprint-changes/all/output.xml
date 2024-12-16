@@ -115,6 +115,8 @@
 </sec>
 <sec id="s3">
 <title>Materials &amp; methods</title>
+<p><italic><bold>some text</bold></italic></p>
+<p><italic>ital<bold>ics</bold></italic></p>
 </sec>
 </body>
 <back>

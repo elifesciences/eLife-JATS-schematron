@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="abstract-test-8.sch"?>
+<!--Context: abstract[parent::article-meta]
+Test: report    @abstract-type='teaser' and $word-count gt 60
+Message: abstract has the abstract-type 'teaser', meaning it is equivalent to an impact statement, but it has greater than 60 words (). -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <abstract abstract-type="teaser">
+                <p>This is an <sc>i</sc>mpact <bold>statement</bold>, which is <italic>typically</italic> <sup>j</sup><sub>u</sub>st one sentence, but <xref>certainly</xref> not a long drawn out paragraph consisting of many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many many words.</p>
+            </abstract>
+        </article-meta>
+    </article>
+</root>
