@@ -10062,7 +10062,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <report see="https://elifeproduction.slab.com/posts/rri-ds-5k19v560#rrid-test" 
         test="($text-count gt $count)" 
         role="warning" 
-        id="rrid-test">'<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://identifiers.org/RRID/RRID:'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
+        id="rrid-test">'<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://identifiers.org/RRID:'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h6d61-org-test"  
         test="matches($t,$org-regex) and not(descendant::italic[contains(.,e:org-conform($t))]) and not(descendant::element-citation)" 

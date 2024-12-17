@@ -5802,6 +5802,8 @@
    <!--RULE abstract-checks-->
    <xsl:template match="abstract[parent::article-meta]" priority="1000" mode="M98">
       <xsl:variable name="allowed-types" select="('structured','plain-language-summary','teaser','summary','graphical')"/>
+      <xsl:variable name="impact-statement-elems" select="('title','p','italic','bold','sup','sub','sc','monospace','xref')"/>
+      <xsl:variable name="word-count" select="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <!--REPORT error-->
       <xsl:if test="preceding::abstract[not(@abstract-type) and not(@xml:lang)] and not(@abstract-type) and not(@xml:lang)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="preceding::abstract[not(@abstract-type) and not(@xml:lang)] and not(@abstract-type) and not(@xml:lang)">
@@ -5876,6 +5878,45 @@
             <svrl:text>[abstract-test-6] abstract has the abstract-type '<xsl:text/>
                <xsl:value-of select="@abstract-type"/>
                <xsl:text/>', which is a permitted value, but it is not the only abstract with that type. It is very unlikely that two abstracts with the same abstract-type are required.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="@abstract-type='teaser' and descendant::*[not(name()=$impact-statement-elems)]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@abstract-type='teaser' and descendant::*[not(name()=$impact-statement-elems)]">
+            <xsl:attribute name="id">abstract-test-7</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[abstract-test-7] abstract has the abstract-type 'teaser', meaning it is equivalent to an impact statement, but it has the following descendant elements, which prove it needs a different type <xsl:text/>
+               <xsl:value-of select="string-join(distinct-values(descendant::*[not(name()=$impact-statement-elems)]/name()),'; ')"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="@abstract-type='teaser' and $word-count gt 60">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@abstract-type='teaser' and $word-count gt 60">
+            <xsl:attribute name="id">abstract-test-8</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[abstract-test-8] abstract has the abstract-type 'teaser', meaning it is equivalent to an impact statement, but it has greater than 60 words (<xsl:text/>
+               <xsl:value-of select="$word-count"/>
+               <xsl:text/>).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="@abstract-type='teaser' and count(p) gt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@abstract-type='teaser' and count(p) gt 1">
+            <xsl:attribute name="id">abstract-test-9</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[abstract-test-9] abstract has the abstract-type 'teaser', meaning it is equivalent to an impact statement, but it has <xsl:text/>
+               <xsl:value-of select="count(p)"/>
+               <xsl:text/> paragraphs (whereas an impact statement would have only one paragraph).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M98"/>

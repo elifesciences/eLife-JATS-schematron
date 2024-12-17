@@ -2671,6 +2671,36 @@
         <x:expect-report id="abstract-test-6" role="warning"/>
         <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="abstract-test-7-pass">
+        <x:context href="../tests/rp/abstract-checks/abstract-test-7/pass.xml"/>
+        <x:expect-not-report id="abstract-test-7" role="error"/>
+        <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-test-7-fail">
+        <x:context href="../tests/rp/abstract-checks/abstract-test-7/fail.xml"/>
+        <x:expect-report id="abstract-test-7" role="error"/>
+        <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-test-8-pass">
+        <x:context href="../tests/rp/abstract-checks/abstract-test-8/pass.xml"/>
+        <x:expect-not-report id="abstract-test-8" role="warning"/>
+        <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-test-8-fail">
+        <x:context href="../tests/rp/abstract-checks/abstract-test-8/fail.xml"/>
+        <x:expect-report id="abstract-test-8" role="warning"/>
+        <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-test-9-pass">
+        <x:context href="../tests/rp/abstract-checks/abstract-test-9/pass.xml"/>
+        <x:expect-not-report id="abstract-test-9" role="error"/>
+        <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-test-9-fail">
+        <x:context href="../tests/rp/abstract-checks/abstract-test-9/fail.xml"/>
+        <x:expect-report id="abstract-test-9" role="error"/>
+        <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="abstract-child-checks">
       <x:scenario label="abstract-child-test-1-pass">

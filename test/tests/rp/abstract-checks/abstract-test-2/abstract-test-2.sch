@@ -147,6 +147,8 @@
   <pattern id="abstract-checks-pattern">
     <rule context="abstract[parent::article-meta]" id="abstract-checks">
       <let name="allowed-types" value="('structured','plain-language-summary','teaser','summary','graphical')"/>
+      <let name="impact-statement-elems" value="('title','p','italic','bold','sup','sub','sc','monospace','xref')"/>
+      <let name="word-count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <report test="@abstract-type and not(@abstract-type=$allowed-types)" role="error" id="abstract-test-2">[abstract-test-2] abstract has an abstract-type (<value-of select="@abstract-type"/>), but it's not one of the permiited values: <value-of select="string-join($allowed-types,'; ')"/>.</report>
     </rule>
   </pattern>

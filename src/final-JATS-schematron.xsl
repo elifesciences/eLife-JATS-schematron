@@ -29543,7 +29543,7 @@
                <xsl:value-of select="name(.)"/>
                <xsl:text/>' element contains what looks like <xsl:text/>
                <xsl:value-of select="$text-count - $count"/>
-               <xsl:text/> unlinked RRID(s). These should always be linked using 'https://identifiers.org/RRID/RRID:'. Element begins with <xsl:text/>
+               <xsl:text/> unlinked RRID(s). These should always be linked using 'https://identifiers.org/RRID:'. Element begins with <xsl:text/>
                <xsl:value-of select="substring(.,1,15)"/>
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
