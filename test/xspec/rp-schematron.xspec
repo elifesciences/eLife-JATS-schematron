@@ -3496,6 +3496,40 @@
         <x:expect-not-assert id="sub-article-title-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="sub-article-front-stub-checks">
+      <x:scenario label="sub-article-front-stub-check-1-pass">
+        <x:context href="../tests/rp/sub-article-front-stub-checks/sub-article-front-stub-check-1/pass.xml"/>
+        <x:expect-not-assert id="sub-article-front-stub-check-1" role="error"/>
+        <x:expect-not-assert id="sub-article-front-stub-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-article-front-stub-check-1-fail">
+        <x:context href="../tests/rp/sub-article-front-stub-checks/sub-article-front-stub-check-1/fail.xml"/>
+        <x:expect-assert id="sub-article-front-stub-check-1" role="error"/>
+        <x:expect-not-assert id="sub-article-front-stub-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="sub-article-doi-checks">
+      <x:scenario label="sub-article-doi-check-1-pass">
+        <x:context href="../tests/rp/sub-article-doi-checks/sub-article-doi-check-1/pass.xml"/>
+        <x:expect-not-assert id="sub-article-doi-check-1" role="error"/>
+        <x:expect-not-assert id="sub-article-doi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-article-doi-check-1-fail">
+        <x:context href="../tests/rp/sub-article-doi-checks/sub-article-doi-check-1/fail.xml"/>
+        <x:expect-assert id="sub-article-doi-check-1" role="error"/>
+        <x:expect-not-assert id="sub-article-doi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-article-doi-check-2-pass">
+        <x:context href="../tests/rp/sub-article-doi-checks/sub-article-doi-check-2/pass.xml"/>
+        <x:expect-not-assert id="sub-article-doi-check-2" role="error"/>
+        <x:expect-not-assert id="sub-article-doi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-article-doi-check-2-fail">
+        <x:context href="../tests/rp/sub-article-doi-checks/sub-article-doi-check-2/fail.xml"/>
+        <x:expect-assert id="sub-article-doi-check-2" role="error"/>
+        <x:expect-not-assert id="sub-article-doi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="arxiv-journal-meta-checks">
       <x:scenario label="arxiv-journal-id-pass">
         <x:context href="../tests/rp/arxiv-journal-meta-checks/arxiv-journal-id/pass.xml"/>

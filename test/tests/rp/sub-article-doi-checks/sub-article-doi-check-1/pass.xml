@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="sub-article-doi-check-1.sch"?>
+<!--Context: sub-article/front-stub/article-id[@pub-id-type='doi']
+Test: assert    matches(.,'^10\.7554/eLife\.\d{5,6}\.\d\.sa\d$')
+Message: The DOI for this sub-article does not match the permitted format: . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <article-id pub-id-type="doi" specific-use="version">10.7554/eLife.123456.1</article-id>
+        </article-meta>
+        <sub-article id="sa0" article-type="referee-report">
+            <front-stub>
+                <article-id pub-id-type="doi">10.7554/eLife.123456.1.sa0</article-id>
+            </front-stub>
+        </sub-article>
+    </article>
+</root>
