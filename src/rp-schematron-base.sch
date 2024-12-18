@@ -2005,6 +2005,23 @@
           role="error" 
           id="sub-article-title-check-3">The title of a <value-of select="$type"/> type sub-article should be 'Author response'. This one is: <value-of select="."/></report>
       </rule>
+      
+      <rule context="sub-article/front-stub" id="sub-article-front-stub-checks">       
+        <assert test="count(article-id[@pub-id-type='doi']) = 1" 
+          role="error" 
+          id="sub-article-front-stub-check-1">Sub-article must have one (and only one) &lt;article-id pub-id-type="doi"> element. This one does not.</assert>
+      </rule>
+      
+      <rule context="sub-article/front-stub/article-id[@pub-id-type='doi']" id="sub-article-doi-checks">       
+        <let name="article-version-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi' and @specific-use='version']"/>
+        <assert test="matches(.,'^10\.7554/eLife\.\d{5,6}\.\d\.sa\d$')" 
+          role="error" 
+          id="sub-article-doi-check-1">The DOI for this sub-article does not match the permitted format: <value-of select="."/>.</assert>
+        
+        <assert test="starts-with(.,$article-version-doi)" 
+          role="error" 
+          id="sub-article-doi-check-2">The DOI for this sub-article (<value-of select="."/>) does not start with the version DOI for the Reviewed Preprint (<value-of select="$article-version-doi"/>).</assert>
+      </rule>
     </pattern>
 
     <pattern id="arxiv-metadata">

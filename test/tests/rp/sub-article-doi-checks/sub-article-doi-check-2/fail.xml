@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="sub-article-doi-check-2.sch"?>
+<!--Context: sub-article/front-stub/article-id[@pub-id-type='doi']
+Test: assert    starts-with(.,$article-version-doi)
+Message: The DOI for this sub-article () does not start with the version DOI for the Reviewed Preprint (). -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <article-id pub-id-type="doi" specific-use="version">10.7554/eLife.123456.1</article-id>
+        </article-meta>
+        <sub-article id="sa0" article-type="referee-report">
+            <front-stub>
+                <article-id pub-id-type="doi">10.7554/eLife.123456.2.sa0</article-id>
+            </front-stub>
+        </sub-article>
+    </article>
+</root>
