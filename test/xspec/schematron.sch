@@ -5403,7 +5403,7 @@
       <assert test=".=$allowed-vals" role="error" flag="dl-ar" id="ed-report-evidence-kwd-1">Keyword contains <value-of select="."/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/>
       </assert>
       
-      <report test=".=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]" role="error" flag="dl-ar" id="ed-report-evidence-kwd-2">There is both an <value-of select="."/> and <value-of select="string-join(parent::*/kwd[.=$wos-go-vals],'; ')"/> kwd in the kwd-group for strength of evidence. Provided the <value-of select="string-join(parent::*/kwd[.=$wos-go-vals],'; ')"/> kwd is correct, please remove the <value-of select="."/> kwd from the kwd-group and unbold the term in the Assessment text.</report>
+      <report test=".=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]" role="warning" flag="dl-ar" id="ed-report-evidence-kwd-2">There is both an <value-of select="."/> and <value-of select="string-join(parent::*/kwd[.=$wos-go-vals],'; ')"/> kwd in the kwd-group for strength of evidence. Should <value-of select="."/> be changed to a different word in the Assessment and removed as a keyword?</report>
     </rule>
   </pattern>
   <pattern id="ed-report-kwds-pattern">

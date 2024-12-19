@@ -22652,12 +22652,12 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <!--REPORT error-->
+      <!--REPORT warning-->
       <xsl:if test=".=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]">
             <xsl:attribute name="id">ed-report-evidence-kwd-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
@@ -22665,11 +22665,9 @@
                <xsl:value-of select="."/>
                <xsl:text/> and <xsl:text/>
                <xsl:value-of select="string-join(parent::*/kwd[.=$wos-go-vals],'; ')"/>
-               <xsl:text/> kwd in the kwd-group for strength of evidence. Provided the <xsl:text/>
-               <xsl:value-of select="string-join(parent::*/kwd[.=$wos-go-vals],'; ')"/>
-               <xsl:text/> kwd is correct, please remove the <xsl:text/>
+               <xsl:text/> kwd in the kwd-group for strength of evidence. Should <xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/> kwd from the kwd-group and unbold the term in the Assessment text.</svrl:text>
+               <xsl:text/> be changed to a different word in the Assessment and removed as a keyword?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M362"/>
