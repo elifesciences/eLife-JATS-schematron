@@ -1361,7 +1361,7 @@
     
   </xsl:function>
   <pattern id="house-style">
-    <rule context="ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)]" id="rrid-link">
+    <rule context="ext-link[contains(lower-case(@xlink:href),'identifiers.org/rrid') and not(ancestor::sub-article)]" id="rrid-link">
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="lc" value="lower-case($pre-text)"/>
       <report see="https://elifeproduction.slab.com/posts/rri-ds-5k19v560#pre-rrid-spacing" test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" role="error" id="pre-rrid-spacing">RRID link should be preceded by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
@@ -1369,7 +1369,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)]" role="error" id="rrid-link-xspec-assert">ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)] must be present.</assert>
+      <assert test="descendant::ext-link[contains(lower-case(@xlink:href),'identifiers.org/rrid') and not(ancestor::sub-article)]" role="error" id="rrid-link-xspec-assert">ext-link[contains(lower-case(@xlink:href),'identifiers.org/rrid') and not(ancestor::sub-article)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

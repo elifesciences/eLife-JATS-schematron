@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="addgene-test.sch"?>
 <!--Context: table-wrap[@id='keyresource']//td
-Test: report    matches(lower-case(.),'addgene\p{Zs}?#?\p{Zs}?\d') and not(ext-link[matches(@xlink:href,'identifiers\.org/RRID/.*')])
-Message: td element containing - '' - looks like it contains an addgene number. Should this be changed to an RRID with a https://identifiers.org/RRID/RRID:addgene_{number} link? -->
+Test: report    matches(lower-case(.),'addgene\p{Zs}?#?\p{Zs}?\d') and not(ext-link[matches(@xlink:href,'identifiers\.org/RRID:.*')])
+Message: td element containing - '' - looks like it contains an addgene number. Should this be changed to an RRID with a https://identifiers.org/RRID:addgene_{number} link? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <table-wrap id="keyresource" position="anchor">

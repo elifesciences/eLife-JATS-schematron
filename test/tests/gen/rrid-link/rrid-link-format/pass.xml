@@ -1,7 +1,7 @@
-<?oxygen SCHSchema="pre-rrid-spacing.sch"?>
+<?oxygen SCHSchema="rrid-link-format.sch"?>
 <!--Context: ext-link[contains(lower-case(@xlink:href),'identifiers.org/rrid') and not(ancestor::sub-article)]
-Test: report    ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')
-Message: RRID link should be preceded by 'RRID:' with no space but instead it is preceded by ''. -->
+Test: report    matches(@xlink:href,'identifiers\.org/RRID/RRID:')
+Message: RRID links should be in the format 'https://identifiers.org/RRID:XXXX', but this one is not - . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <td valign="top">RRID:<ext-link ext-link-type="uri" xlink:href="https://identifiers.org/RRID:RRID:IMSR_JAX:006410">IMSR_JAX:006410</ext-link></td>

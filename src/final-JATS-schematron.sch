@@ -7063,7 +7063,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#PMCID-link-test" test="matches(.,'PMCID[:]?\p{Zs}?PMC[0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)" role="error" id="PMCID-link-test">[PMCID-link-test] td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect.</report>
       
-      <report test="matches(lower-case(.),'addgene\p{Zs}?#?\p{Zs}?\d') and not(ext-link[matches(@xlink:href,'identifiers\.org/RRID/.*')])" role="warning" id="addgene-test">[addgene-test] td element containing - '<value-of select="."/>' - looks like it contains an addgene number. Should this be changed to an RRID with a https://identifiers.org/RRID/RRID:addgene_{number} link?</report>
+      <report test="matches(lower-case(.),'addgene\p{Zs}?#?\p{Zs}?\d') and not(ext-link[matches(@xlink:href,'identifiers\.org/RRID:.*')])" role="warning" id="addgene-test">[addgene-test] td element containing - '<value-of select="."/>' - looks like it contains an addgene number. Should this be changed to an RRID with a https://identifiers.org/RRID:addgene_{number} link?</report>
       
     </rule></pattern><pattern id="colour-table-pattern"><rule context="table-wrap" id="colour-table">
       <let name="allowed-values" value="('background-color: #90CAF9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
@@ -7183,13 +7183,15 @@
       
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#final-pmid-spacing-table" test="ends-with($lc,'pmid: ') or ends-with($lc,'pmid ')" role="warning" id="final-pmid-spacing-table">[final-pmid-spacing-table] PMID link should be preceding by 'PMID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
-    </rule></pattern><pattern id="rrid-link-pattern"><rule context="ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)]" id="rrid-link">
+    </rule></pattern><pattern id="rrid-link-pattern"><rule context="ext-link[contains(lower-case(@xlink:href),'identifiers.org/rrid') and not(ancestor::sub-article)]" id="rrid-link">
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="lc" value="lower-case($pre-text)"/>
       
       
       
       <report see="https://elifeproduction.slab.com/posts/rri-ds-5k19v560#final-rrid-spacing" test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" role="warning" id="final-rrid-spacing">[final-rrid-spacing] RRID link should be preceded by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
+      
+      <report test="matches(@xlink:href,'identifiers\.org/RRID/RRID:')" role="error" id="rrid-link-format">[rrid-link-format] RRID links should be in the format 'https://identifiers.org/RRID:XXXX', but this one is not - <value-of select="@xlink:href"/>.</report>
     </rule></pattern><pattern id="ref-link-mandate-pattern"><rule context="ref-list/ref" id="ref-link-mandate">
       <let name="id" value="@id"/>
       

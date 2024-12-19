@@ -39671,8 +39671,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="matches(lower-case(.),'addgene\p{Zs}?#?\p{Zs}?\d') and not(ext-link[matches(@xlink:href,'identifiers\.org/RRID/.*')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'addgene\p{Zs}?#?\p{Zs}?\d') and not(ext-link[matches(@xlink:href,'identifiers\.org/RRID/.*')])">
+      <xsl:if test="matches(lower-case(.),'addgene\p{Zs}?#?\p{Zs}?\d') and not(ext-link[matches(@xlink:href,'identifiers\.org/RRID:.*')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'addgene\p{Zs}?#?\p{Zs}?\d') and not(ext-link[matches(@xlink:href,'identifiers\.org/RRID:.*')])">
             <xsl:attribute name="id">addgene-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -39680,7 +39680,7 @@
             </xsl:attribute>
             <svrl:text>[addgene-test] td element containing - '<xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/>' - looks like it contains an addgene number. Should this be changed to an RRID with a https://identifiers.org/RRID/RRID:addgene_{number} link?</svrl:text>
+               <xsl:text/>' - looks like it contains an addgene number. Should this be changed to an RRID with a https://identifiers.org/RRID:addgene_{number} link?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M538"/>
@@ -40322,7 +40322,7 @@
    </xsl:template>
    <!--PATTERN rrid-link-pattern-->
    <!--RULE rrid-link-->
-   <xsl:template match="ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)]" priority="1000" mode="M551">
+   <xsl:template match="ext-link[contains(lower-case(@xlink:href),'identifiers.org/rrid') and not(ancestor::sub-article)]" priority="1000" mode="M551">
       <xsl:variable name="pre-text" select="preceding-sibling::text()[1]"/>
       <xsl:variable name="lc" select="lower-case($pre-text)"/>
       <!--REPORT error-->
@@ -40337,6 +40337,19 @@
             <svrl:text>[pre-rrid-spacing] RRID link should be preceded by 'RRID:' with no space but instead it is preceded by '<xsl:text/>
                <xsl:value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>
                <xsl:text/>'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="matches(@xlink:href,'identifiers\.org/RRID/RRID:')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'identifiers\.org/RRID/RRID:')">
+            <xsl:attribute name="id">rrid-link-format</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[rrid-link-format] RRID links should be in the format 'https://identifiers.org/RRID:XXXX', but this one is not - <xsl:text/>
+               <xsl:value-of select="@xlink:href"/>
+               <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M551"/>

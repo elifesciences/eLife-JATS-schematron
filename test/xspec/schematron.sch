@@ -9026,7 +9026,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#PMCID-link-test" test="matches(.,'PMCID[:]?\p{Zs}?PMC[0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)" role="error" id="PMCID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect.</report>
       
-      <report test="matches(lower-case(.),'addgene\p{Zs}?#?\p{Zs}?\d') and not(ext-link[matches(@xlink:href,'identifiers\.org/RRID/.*')])" role="warning" id="addgene-test">td element containing - '<value-of select="."/>' - looks like it contains an addgene number. Should this be changed to an RRID with a https://identifiers.org/RRID/RRID:addgene_{number} link?</report>
+      <report test="matches(lower-case(.),'addgene\p{Zs}?#?\p{Zs}?\d') and not(ext-link[matches(@xlink:href,'identifiers\.org/RRID:.*')])" role="warning" id="addgene-test">td element containing - '<value-of select="."/>' - looks like it contains an addgene number. Should this be changed to an RRID with a https://identifiers.org/RRID:addgene_{number} link?</report>
       
     </rule>
   </pattern>
@@ -9214,13 +9214,15 @@
     </rule>
   </pattern>
   <pattern id="rrid-link-pattern">
-    <rule context="ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)]" id="rrid-link">
+    <rule context="ext-link[contains(lower-case(@xlink:href),'identifiers.org/rrid') and not(ancestor::sub-article)]" id="rrid-link">
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="lc" value="lower-case($pre-text)"/>
       
       <report see="https://elifeproduction.slab.com/posts/rri-ds-5k19v560#pre-rrid-spacing" test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" role="error" id="pre-rrid-spacing">RRID link should be preceded by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
       
       <report see="https://elifeproduction.slab.com/posts/rri-ds-5k19v560#final-rrid-spacing" test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" role="warning" id="final-rrid-spacing">RRID link should be preceded by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
+      
+      <report test="matches(@xlink:href,'identifiers\.org/RRID/RRID:')" role="error" id="rrid-link-format">RRID links should be in the format 'https://identifiers.org/RRID:XXXX', but this one is not - <value-of select="@xlink:href"/>.</report>
     </rule>
   </pattern>
   <pattern id="ref-link-mandate-pattern">
@@ -10322,7 +10324,7 @@
       <assert test="descendant::article" role="error" id="final-latin-conformance-xspec-assert">article must be present.</assert>
       <assert test="descendant::p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]" role="error" id="pubmed-link-xspec-assert">p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)] must be present.</assert>
       <assert test="descendant::table-wrap//ext-link[(contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov')) and not(ancestor::sub-article)]" role="error" id="pubmed-link-2-xspec-assert">table-wrap//ext-link[(contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov')) and not(ancestor::sub-article)] must be present.</assert>
-      <assert test="descendant::ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)]" role="error" id="rrid-link-xspec-assert">ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)] must be present.</assert>
+      <assert test="descendant::ext-link[contains(lower-case(@xlink:href),'identifiers.org/rrid') and not(ancestor::sub-article)]" role="error" id="rrid-link-xspec-assert">ext-link[contains(lower-case(@xlink:href),'identifiers.org/rrid') and not(ancestor::sub-article)] must be present.</assert>
       <assert test="descendant::ref-list/ref" role="error" id="ref-link-mandate-xspec-assert">ref-list/ref must be present.</assert>
       <assert test="descendant::fig[not(descendant::permissions)] or descendant::media[@mimetype='video' and not(descendant::permissions)] or descendant::table-wrap[not(descendant::permissions)] or descendant::supplementary-material[not(descendant::permissions)]" role="error" id="fig-permissions-check-xspec-assert">fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)] must be present.</assert>
       <assert test="descendant::xref[not(@ref-type='bibr')]" role="error" id="xref-formatting-xspec-assert">xref[not(@ref-type='bibr')] must be present.</assert>
