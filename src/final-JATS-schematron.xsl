@@ -22800,7 +22800,9 @@
    <!--PATTERN ed-report-evidence-kwds-pattern-->
    <!--RULE ed-report-evidence-kwds-->
    <xsl:template match="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" priority="1000" mode="M364">
-      <xsl:variable name="allowed-vals" select="('Exceptional', 'Compelling', 'Convincing', 'Solid', 'Incomplete', 'Inadequate')"/>
+      <xsl:variable name="wos-go-vals" select="('Exceptional', 'Compelling', 'Convincing', 'Solid')"/>
+      <xsl:variable name="wos-no-go-vals" select="('Incomplete', 'Inadequate')"/>
+      <xsl:variable name="allowed-vals" select="($wos-go-vals,$wos-no-go-vals)"/>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test=".=$allowed-vals"/>
@@ -22821,6 +22823,24 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <!--REPORT warning-->
+      <xsl:if test=".=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]">
+            <xsl:attribute name="id">ed-report-evidence-kwd-2</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ed-report-evidence-kwd-2] There is both an <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/> and <xsl:text/>
+               <xsl:value-of select="string-join(parent::*/kwd[.=$wos-go-vals],'; ')"/>
+               <xsl:text/> kwd in the kwd-group for strength of evidence. Should <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/> be changed to a different word in the Assessment and removed as a keyword?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M364"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M364"/>
