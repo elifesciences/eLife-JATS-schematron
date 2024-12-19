@@ -21109,6 +21109,16 @@
         <x:expect-report id="final-rrid-spacing" role="warning"/>
         <x:expect-not-assert id="rrid-link-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="rrid-link-format-pass">
+        <x:context href="../tests/gen/rrid-link/rrid-link-format/pass.xml"/>
+        <x:expect-not-report id="rrid-link-format" role="error"/>
+        <x:expect-not-assert id="rrid-link-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="rrid-link-format-fail">
+        <x:context href="../tests/gen/rrid-link/rrid-link-format/fail.xml"/>
+        <x:expect-report id="rrid-link-format" role="error"/>
+        <x:expect-not-assert id="rrid-link-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-link-mandate">
       <x:scenario label="pre-ref-link-presence-pass">
