@@ -1362,7 +1362,9 @@
   </xsl:function>
   <pattern id="dec-letter-auth-response">
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" id="ed-report-evidence-kwds">
-      <let name="allowed-vals" value="('Exceptional', 'Compelling', 'Convincing', 'Solid', 'Incomplete', 'Inadequate')"/>
+      <let name="wos-go-vals" value="('Exceptional', 'Compelling', 'Convincing', 'Solid')"/>
+      <let name="wos-no-go-vals" value="('Incomplete', 'Inadequate')"/>
+      <let name="allowed-vals" value="($wos-go-vals,$wos-no-go-vals)"/>
       <assert test=".=$allowed-vals" role="error" flag="dl-ar" id="ed-report-evidence-kwd-1">Keyword contains <value-of select="."/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/>
       </assert>
     </rule>
