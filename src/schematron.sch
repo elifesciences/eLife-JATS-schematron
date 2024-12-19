@@ -13737,9 +13737,9 @@ else self::*/local-name() = $allowed-p-blocks"
         id="PMCID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect.</report>
       
       <report
-        test="matches(lower-case(.),'addgene\p{Zs}?#?\p{Zs}?\d') and not(ext-link[matches(@xlink:href,'identifiers\.org/RRID/.*')])" 
+        test="matches(lower-case(.),'addgene\p{Zs}?#?\p{Zs}?\d') and not(ext-link[matches(@xlink:href,'identifiers\.org/RRID:.*')])" 
         role="warning" 
-        id="addgene-test">td element containing - '<value-of select="."/>' - looks like it contains an addgene number. Should this be changed to an RRID with a https://identifiers.org/RRID/RRID:addgene_{number} link?</report>
+        id="addgene-test">td element containing - '<value-of select="."/>' - looks like it contains an addgene number. Should this be changed to an RRID with a https://identifiers.org/RRID:addgene_{number} link?</report>
       
     </rule>
     
@@ -14019,7 +14019,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="final-pmid-spacing-table">PMID link should be preceding by 'PMID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
     </rule>
     
-    <rule context="ext-link[contains(@xlink:href,'scicrunch.org/resolver') and not(ancestor::sub-article)]" id="rrid-link">
+    <rule context="ext-link[contains(lower-case(@xlink:href),'identifiers.org/rrid') and not(ancestor::sub-article)]" id="rrid-link">
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="lc" value="lower-case($pre-text)"/>
       
@@ -14032,6 +14032,10 @@ else self::*/local-name() = $allowed-p-blocks"
         test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" 
         role="warning" 
         id="final-rrid-spacing">RRID link should be preceded by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
+      
+      <report test="matches(@xlink:href,'identifiers\.org/RRID/RRID:')" 
+        role="error" 
+        id="rrid-link-format">RRID links should be in the format 'https://identifiers.org/RRID:XXXX', but this one is not - <value-of select="@xlink:href"/>.</report>
     </rule>
     
     <rule context="ref-list/ref" id="ref-link-mandate">
