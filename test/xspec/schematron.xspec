@@ -7226,6 +7226,54 @@
         <x:expect-not-assert id="ar-video-specific-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="video-labels">
+      <x:scenario label="video-label-1-pass">
+        <x:context href="../tests/gen/video-labels/video-label-1/pass.xml"/>
+        <x:expect-not-report id="video-label-1" role="error"/>
+        <x:expect-not-assert id="video-labels-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="video-label-1-fail">
+        <x:context href="../tests/gen/video-labels/video-label-1/fail.xml"/>
+        <x:expect-report id="video-label-1" role="error"/>
+        <x:expect-not-assert id="video-labels-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="fig-video-labels">
+      <x:scenario label="fig-video-label-1-pass">
+        <x:context href="../tests/gen/fig-video-labels/fig-video-label-1/pass.xml"/>
+        <x:expect-not-report id="fig-video-label-1" role="error"/>
+        <x:expect-not-assert id="fig-video-labels-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-video-label-1-fail">
+        <x:context href="../tests/gen/fig-video-labels/fig-video-label-1/fail.xml"/>
+        <x:expect-report id="fig-video-label-1" role="error"/>
+        <x:expect-not-assert id="fig-video-labels-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="animation-labels">
+      <x:scenario label="animation-label-1-pass">
+        <x:context href="../tests/gen/animation-labels/animation-label-1/pass.xml"/>
+        <x:expect-not-report id="animation-label-1" role="error"/>
+        <x:expect-not-assert id="animation-labels-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="animation-label-1-fail">
+        <x:context href="../tests/gen/animation-labels/animation-label-1/fail.xml"/>
+        <x:expect-report id="animation-label-1" role="error"/>
+        <x:expect-not-assert id="animation-labels-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="fig-animation-labels">
+      <x:scenario label="fig-animation-label-1-pass">
+        <x:context href="../tests/gen/fig-animation-labels/fig-animation-label-1/pass.xml"/>
+        <x:expect-not-report id="fig-animation-label-1" role="error"/>
+        <x:expect-not-assert id="fig-animation-labels-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-animation-label-1-fail">
+        <x:context href="../tests/gen/fig-animation-labels/fig-animation-label-1/fail.xml"/>
+        <x:expect-report id="fig-animation-label-1" role="error"/>
+        <x:expect-not-assert id="fig-animation-labels-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="body-table-pos-conformance">
       <x:scenario label="pre-body-table-report-pass">
         <x:context href="../tests/gen/body-table-pos-conformance/pre-body-table-report/pass.xml"/>
