@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="video-label-1.sch"?>
+<!--Context: media/label[matches(lower-case(.),'^video \d+\.$')]
+Test: report    $number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))
+Message: Video has the label '', but there is no preceding video with the label number . Either they are not correctly ordered, or the label numbering is incorrect. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <media>
+            <label>Video 2.</label>
+        </media>
+        <media>
+            <label>Video 4.</label>
+        </media>
+        <media>
+            <label>Video 5.</label>
+        </media>
+        <media>
+            <label>Video 6.</label>
+        </media>
+    </article>
+</root>

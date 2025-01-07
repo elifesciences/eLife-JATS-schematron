@@ -3401,6 +3401,14 @@
       
     </rule>
   </pattern>
+  <pattern id="video-labels-pattern">
+    <rule context="media/label[matches(lower-case(.),'^video \d+\.$')]" id="video-labels">
+      <let name="number" value="number(replace(.,'[^\d]',''))"/>
+      
+      <report test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))" role="error" id="video-label-1">Video has the label '<value-of select="."/>', but there is no preceding video with the label number <value-of select="$number - 1"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="supplementary-material-tests-pattern">
     <rule context="supplementary-material" id="supplementary-material-tests">
       <let name="link" value="media[1]/@xlink:href"/>
@@ -9968,6 +9976,7 @@
       <assert test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
       <assert test="descendant::graphic[@xlink:href] or descendant::media[@xlink:href]" role="error" id="file-extension-tests-xspec-assert">graphic[@xlink:href]|media[@xlink:href] must be present.</assert>
       <assert test="descendant::media[child::label]" role="error" id="video-test-xspec-assert">media[child::label] must be present.</assert>
+      <assert test="descendant::media/label[matches(lower-case(.),'^video \d+\.$')]" role="error" id="video-labels-xspec-assert">media/label[matches(lower-case(.),'^video \d+\.$')] must be present.</assert>
       <assert test="descendant::supplementary-material" role="error" id="supplementary-material-tests-xspec-assert">supplementary-material must be present.</assert>
       <assert test="descendant::article/body//boxed-text//fig[not(@specific-use='child-fig')]//supplementary-material/label" role="error" id="box-supp-tests-xspec-assert">article/body//boxed-text//fig[not(@specific-use='child-fig')]//supplementary-material/label must be present.</assert>
       <assert test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')]" role="error" id="back-supplementary-file-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')] must be present.</assert>

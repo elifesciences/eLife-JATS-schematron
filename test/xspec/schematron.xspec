@@ -5156,6 +5156,18 @@
         <x:expect-not-assert id="video-test-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="video-labels">
+      <x:scenario label="video-label-1-pass">
+        <x:context href="../tests/gen/video-labels/video-label-1/pass.xml"/>
+        <x:expect-not-report id="video-label-1" role="error"/>
+        <x:expect-not-assert id="video-labels-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="video-label-1-fail">
+        <x:context href="../tests/gen/video-labels/video-label-1/fail.xml"/>
+        <x:expect-report id="video-label-1" role="error"/>
+        <x:expect-not-assert id="video-labels-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="supplementary-material-tests">
       <x:scenario label="supplementary-material-test-1-pass">
         <x:context href="../tests/gen/supplementary-material-tests/supplementary-material-test-1/pass.xml"/>

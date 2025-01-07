@@ -2813,6 +2813,11 @@
       
       
       
+    </rule></pattern><pattern id="video-labels-pattern"><rule context="media/label[matches(lower-case(.),'^video \d+\.$')]" id="video-labels">
+      <let name="number" value="number(replace(.,'[^\d]',''))"/>
+      
+      <report test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))" role="error" id="video-label-1">[video-label-1] Video has the label '<value-of select="."/>', but there is no preceding video with the label number <value-of select="$number - 1"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
+      
     </rule></pattern><pattern id="supplementary-material-tests-pattern"><rule context="supplementary-material" id="supplementary-material-tests">
       <let name="link" value="media[1]/@xlink:href"/>
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
