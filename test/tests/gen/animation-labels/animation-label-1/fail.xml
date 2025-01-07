@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="animation-label-1.sch"?>
+<!--Context: media/label[matches(lower-case(.),'^animation \d+\.$')]
+Test: report    $number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^animation \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^animation \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))
+Message: Animation has the label '', but there is no preceding animation with the label number . Either they are not correctly ordered, or the label numbering is incorrect. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <media>
+            <label>Animation 1.</label>
+        </media>
+        <media>
+            <label>Animation 3.</label>
+        </media>
+        <media>
+            <label>Animation 4.</label>
+        </media>
+    </article>
+</root>

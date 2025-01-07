@@ -3474,6 +3474,11 @@
       
       <report test="$number != 1 and (not(parent::media/preceding-sibling::media/label[contains(.,$figure-string)]) or (number(parent::media/preceding-sibling::media[label[contains(.,$figure-string)]][1]/label/replace(substring-after(.,'—'),'[^\d]','')) != ($number - 1)))" role="error" id="fig-video-label-1">[fig-video-label-1] Video has the label '<value-of select="."/>', but there is no preceding video with the label number <value-of select="concat($figure-string,'—video ',string($number - 1))"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
       
+    </rule></pattern><pattern id="animation-labels-pattern"><rule context="media/label[matches(lower-case(.),'^animation \d+\.$')]" id="animation-labels">
+      <let name="number" value="number(replace(.,'[^\d]',''))"/>
+      
+      <report test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^animation \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^animation \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))" role="error" id="animation-label-1">[animation-label-1] Animation has the label '<value-of select="."/>', but there is no preceding animation with the label number <value-of select="$number - 1"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
+      
     </rule></pattern>
   
   <pattern id="body-table-pos-conformance-pattern"><rule context="article[not(@article-type=$notice-article-types)]/body//table-wrap[matches(@id,'^table[\d]+$')]" id="body-table-pos-conformance">

@@ -4296,6 +4296,14 @@
       
     </rule>
   </pattern>
+  <pattern id="animation-labels-pattern">
+    <rule context="media/label[matches(lower-case(.),'^animation \d+\.$')]" id="animation-labels">
+      <let name="number" value="number(replace(.,'[^\d]',''))"/>
+      
+      <report test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^animation \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^animation \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))" role="error" id="animation-label-1">Animation has the label '<value-of select="."/>', but there is no preceding animation with the label number <value-of select="$number - 1"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
+      
+    </rule>
+  </pattern>
   
   <pattern id="body-table-pos-conformance-pattern">
     <rule context="article[not(@article-type=$notice-article-types)]/body//table-wrap[matches(@id,'^table[\d]+$')]" id="body-table-pos-conformance">
@@ -10052,6 +10060,7 @@
       <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body//media[@mimetype='video']" role="error" id="ar-video-specific-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body//media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::media/label[matches(lower-case(.),'^video \d+\.$')]" role="error" id="video-labels-xspec-assert">media/label[matches(lower-case(.),'^video \d+\.$')] must be present.</assert>
       <assert test="descendant::media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')]" role="error" id="fig-video-labels-xspec-assert">media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')] must be present.</assert>
+      <assert test="descendant::media/label[matches(lower-case(.),'^animation \d+\.$')]" role="error" id="animation-labels-xspec-assert">media/label[matches(lower-case(.),'^animation \d+\.$')] must be present.</assert>
       <assert test="descendant::article[not(@article-type=$notice-article-types)]/body//table-wrap[matches(@id,'^table[\d]+$')]" role="error" id="body-table-pos-conformance-xspec-assert">article[not(@article-type=$notice-article-types)]/body//table-wrap[matches(@id,'^table[\d]+$')] must be present.</assert>
       <assert test="descendant::article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')]" role="error" id="app-table-pos-conformance-xspec-assert">article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')] must be present.</assert>
       <assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" role="error" id="fig-specific-tests-xspec-assert">article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)] must be present.</assert>
