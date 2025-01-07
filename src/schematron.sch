@@ -7499,7 +7499,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test=".=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]"
         role="warning" 
         flag="dl-ar"
-        id="ed-report-evidence-kwd-2">There is both an <value-of select="."/> and <value-of select="string-join(parent::*/kwd[.=$wos-go-vals],'; ')"/> kwd in the kwd-group for strength of evidence. Should <value-of select="."/> be changed to a different word in the Assessment and removed as a keyword?</report>
+        id="ed-report-evidence-kwd-2">There is both an <value-of select="."/> and <value-of select="string-join(parent::*/kwd[.=$wos-go-vals],'; ')"/> kwd in the kwd-group for strength of evidence. Should <value-of select="."/> be unbolded or changed to a different word in the Assessment and removed as a keyword?</report>
     </rule>
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" id="ed-report-kwds">
