@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="abstract-test-10.sch"?>
+<!--Context: abstract[parent::article-meta]
+Test: report    @abstract-type='video' and not(descendant::*[name()=('ext-link','media','supplementary-file')])
+Message: abstract has the abstract-type 'video', but it does not have a media, supplementary-material or ext-link element. The abstract-type must be incorrect. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <abstract abstract-type="video">
+                <p><ext-link/></p>
+            </abstract>
+        </article-meta>
+    </article>
+</root>

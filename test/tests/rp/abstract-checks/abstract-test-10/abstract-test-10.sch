@@ -149,7 +149,7 @@
       <let name="allowed-types" value="('structured','plain-language-summary','teaser','summary','graphical','video')"/>
       <let name="impact-statement-elems" value="('title','p','italic','bold','sup','sub','sc','monospace','xref')"/>
       <let name="word-count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
-      <report test="@abstract-type='teaser' and count(p) gt 1" role="error" id="abstract-test-9">[abstract-test-9] abstract has the abstract-type 'teaser', meaning it is equivalent to an impact statement, but it has <value-of select="count(p)"/> paragraphs (whereas an impact statement would have only one paragraph).</report>
+      <report test="@abstract-type='video' and not(descendant::*[name()=('ext-link','media','supplementary-file')])" role="error" id="abstract-test-10">[abstract-test-10] abstract has the abstract-type 'video', but it does not have a media, supplementary-material or ext-link element. The abstract-type must be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

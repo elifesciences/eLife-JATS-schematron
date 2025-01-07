@@ -146,7 +146,7 @@
   </xsl:function>
   <pattern id="abstract-checks-pattern">
     <rule context="abstract[parent::article-meta]" id="abstract-checks">
-      <let name="allowed-types" value="('structured','plain-language-summary','teaser','summary','graphical')"/>
+      <let name="allowed-types" value="('structured','plain-language-summary','teaser','summary','graphical','video')"/>
       <let name="impact-statement-elems" value="('title','p','italic','bold','sup','sub','sc','monospace','xref')"/>
       <let name="word-count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <report test="descendant::fig and not(@abstract-type='graphical')" role="error" id="abstract-test-5">[abstract-test-5] abstract has a descendant fig, but it does not have the attribute abstract-type="graphical". If it is a graphical abstract, it should have that type. If it's not a graphical abstract the content should be moved out of &lt;abstract&gt;</report>
