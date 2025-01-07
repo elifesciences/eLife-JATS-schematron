@@ -3401,14 +3401,6 @@
       
     </rule>
   </pattern>
-  <pattern id="video-labels-pattern">
-    <rule context="media/label[matches(lower-case(.),'^video \d+\.$')]" id="video-labels">
-      <let name="number" value="number(replace(.,'[^\d]',''))"/>
-      
-      <report test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))" role="error" id="video-label-1">Video has the label '<value-of select="."/>', but there is no preceding video with the label number <value-of select="$number - 1"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
-      
-    </rule>
-  </pattern>
   <pattern id="supplementary-material-tests-pattern">
     <rule context="supplementary-material" id="supplementary-material-tests">
       <let name="link" value="media[1]/@xlink:href"/>
@@ -4285,6 +4277,23 @@
       
       <assert test="$no = string($pos)" role="error" id="final-ar-video-position-test">
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+    </rule>
+  </pattern>
+  <pattern id="video-labels-pattern">
+    <rule context="media/label[matches(lower-case(.),'^video \d+\.$')]" id="video-labels">
+      <let name="number" value="number(replace(.,'[^\d]',''))"/>
+      
+      <report test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))" role="error" id="video-label-1">Video has the label '<value-of select="."/>', but there is no preceding video with the label number <value-of select="$number - 1"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="fig-video-labels-pattern">
+    <rule context="media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')]" id="fig-video-labels">
+      <let name="figure-string" value="substring-before(.,'—')"/>
+      <let name="number" value="number(replace(substring-after(.,'—'),'[^\d]',''))"/>
+      
+      <report test="$number != 1 and (not(parent::media/preceding-sibling::media/label[contains(.,$figure-string)]) or (number(parent::media/preceding-sibling::media[label[contains(.,$figure-string)]][1]/label/replace(substring-after(.,'—'),'[^\d]','')) != ($number - 1)))" role="error" id="fig-video-label-1">Video has the label '<value-of select="."/>', but there is no preceding video with the label number <value-of select="concat($figure-string,'—video ',string($number - 1))"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
+      
     </rule>
   </pattern>
   
@@ -9976,7 +9985,6 @@
       <assert test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
       <assert test="descendant::graphic[@xlink:href] or descendant::media[@xlink:href]" role="error" id="file-extension-tests-xspec-assert">graphic[@xlink:href]|media[@xlink:href] must be present.</assert>
       <assert test="descendant::media[child::label]" role="error" id="video-test-xspec-assert">media[child::label] must be present.</assert>
-      <assert test="descendant::media/label[matches(lower-case(.),'^video \d+\.$')]" role="error" id="video-labels-xspec-assert">media/label[matches(lower-case(.),'^video \d+\.$')] must be present.</assert>
       <assert test="descendant::supplementary-material" role="error" id="supplementary-material-tests-xspec-assert">supplementary-material must be present.</assert>
       <assert test="descendant::article/body//boxed-text//fig[not(@specific-use='child-fig')]//supplementary-material/label" role="error" id="box-supp-tests-xspec-assert">article/body//boxed-text//fig[not(@specific-use='child-fig')]//supplementary-material/label must be present.</assert>
       <assert test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')]" role="error" id="back-supplementary-file-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')] must be present.</assert>
@@ -10042,6 +10050,8 @@
       <assert test="descendant::fig-group/media[@mimetype='video']" role="error" id="fig-video-specific-xspec-assert">fig-group/media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::sub-article[@article-type=('decision-letter','referee-report')]/body//media[@mimetype='video']" role="error" id="dl-video-specific-xspec-assert">sub-article[@article-type=('decision-letter','referee-report')]/body//media[@mimetype='video'] must be present.</assert>
       <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body//media[@mimetype='video']" role="error" id="ar-video-specific-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body//media[@mimetype='video'] must be present.</assert>
+      <assert test="descendant::media/label[matches(lower-case(.),'^video \d+\.$')]" role="error" id="video-labels-xspec-assert">media/label[matches(lower-case(.),'^video \d+\.$')] must be present.</assert>
+      <assert test="descendant::media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')]" role="error" id="fig-video-labels-xspec-assert">media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')] must be present.</assert>
       <assert test="descendant::article[not(@article-type=$notice-article-types)]/body//table-wrap[matches(@id,'^table[\d]+$')]" role="error" id="body-table-pos-conformance-xspec-assert">article[not(@article-type=$notice-article-types)]/body//table-wrap[matches(@id,'^table[\d]+$')] must be present.</assert>
       <assert test="descendant::article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')]" role="error" id="app-table-pos-conformance-xspec-assert">article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')] must be present.</assert>
       <assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" role="error" id="fig-specific-tests-xspec-assert">article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)] must be present.</assert>

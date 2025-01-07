@@ -4488,15 +4488,6 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="media/label[matches(lower-case(.),'^video \d+\.$')]" id="video-labels">
-      <let name="number" value="number(replace(.,'[^\d]',''))"/>
-      
-      <report test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))"
-        role="error" 
-        id="video-label-1">Video has the label '<value-of select="."/>', but there is no preceding video with the label number <value-of select="$number - 1"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
-      
-    </rule>
-    
     <rule context="supplementary-material" id="supplementary-material-tests">
       <let name="link" value="media[1]/@xlink:href"/>
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
@@ -5777,6 +5768,25 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert test="$no = string($pos)" 
         role="error" 
         id="final-ar-video-position-test"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+    </rule>
+    
+    <rule context="media/label[matches(lower-case(.),'^video \d+\.$')]" id="video-labels">
+      <let name="number" value="number(replace(.,'[^\d]',''))"/>
+      
+      <report test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))"
+        role="error" 
+        id="video-label-1">Video has the label '<value-of select="."/>', but there is no preceding video with the label number <value-of select="$number - 1"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
+      
+    </rule>
+    
+    <rule context="media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')]" id="fig-video-labels">
+      <let name="figure-string" value="substring-before(.,'—')"/>
+      <let name="number" value="number(replace(substring-after(.,'—'),'[^\d]',''))"/>
+      
+      <report test="$number != 1 and (not(parent::media/preceding-sibling::media/label[contains(.,$figure-string)]) or (number(parent::media/preceding-sibling::media[label[contains(.,$figure-string)]][1]/label/replace(substring-after(.,'—'),'[^\d]','')) != ($number - 1)))"
+        role="error" 
+        id="fig-video-label-1">Video has the label '<value-of select="."/>', but there is no preceding video with the label number <value-of select="concat($figure-string,'—video ',string($number - 1))"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
+      
     </rule>
     
   </pattern>
