@@ -22667,7 +22667,7 @@
                <xsl:value-of select="string-join(parent::*/kwd[.=$wos-go-vals],'; ')"/>
                <xsl:text/> kwd in the kwd-group for strength of evidence. Should <xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/> be changed to a different word in the Assessment and removed as a keyword?</svrl:text>
+               <xsl:text/> be unbolded or changed to a different word in the Assessment and removed as a keyword?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M362"/>
