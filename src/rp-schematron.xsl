@@ -5819,7 +5819,7 @@
    <!--PATTERN abstract-checks-pattern-->
    <!--RULE abstract-checks-->
    <xsl:template match="abstract[parent::article-meta]" priority="1000" mode="M98">
-      <xsl:variable name="allowed-types" select="('structured','plain-language-summary','teaser','summary','graphical')"/>
+      <xsl:variable name="allowed-types" select="('structured','plain-language-summary','teaser','summary','graphical','video')"/>
       <xsl:variable name="impact-statement-elems" select="('title','p','italic','bold','sup','sub','sc','monospace','xref')"/>
       <xsl:variable name="word-count" select="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <!--REPORT error-->
@@ -5935,6 +5935,17 @@
             <svrl:text>[abstract-test-9] abstract has the abstract-type 'teaser', meaning it is equivalent to an impact statement, but it has <xsl:text/>
                <xsl:value-of select="count(p)"/>
                <xsl:text/> paragraphs (whereas an impact statement would have only one paragraph).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="@abstract-type='video' and not(descendant::*[name()=('ext-link','media','supplementary-file')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@abstract-type='video' and not(descendant::*[name()=('ext-link','media','supplementary-file')])">
+            <xsl:attribute name="id">abstract-test-10</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[abstract-test-10] abstract has the abstract-type 'video', but it does not have a media, supplementary-material or ext-link element. The abstract-type must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M98"/>
