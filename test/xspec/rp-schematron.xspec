@@ -2701,6 +2701,16 @@
         <x:expect-report id="abstract-test-9" role="error"/>
         <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="abstract-test-10-pass">
+        <x:context href="../tests/rp/abstract-checks/abstract-test-10/pass.xml"/>
+        <x:expect-not-report id="abstract-test-10" role="error"/>
+        <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="abstract-test-10-fail">
+        <x:context href="../tests/rp/abstract-checks/abstract-test-10/fail.xml"/>
+        <x:expect-report id="abstract-test-10" role="error"/>
+        <x:expect-not-assert id="abstract-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="abstract-child-checks">
       <x:scenario label="abstract-child-test-1-pass">

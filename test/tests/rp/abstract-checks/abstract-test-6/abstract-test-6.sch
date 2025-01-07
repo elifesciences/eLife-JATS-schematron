@@ -146,7 +146,7 @@
   </xsl:function>
   <pattern id="abstract-checks-pattern">
     <rule context="abstract[parent::article-meta]" id="abstract-checks">
-      <let name="allowed-types" value="('structured','plain-language-summary','teaser','summary','graphical')"/>
+      <let name="allowed-types" value="('structured','plain-language-summary','teaser','summary','graphical','video')"/>
       <let name="impact-statement-elems" value="('title','p','italic','bold','sup','sub','sc','monospace','xref')"/>
       <let name="word-count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <report test="@abstract-type=$allowed-types and ./@abstract-type = preceding-sibling::abstract/@abstract-type" role="warning" id="abstract-test-6">[abstract-test-6] abstract has the abstract-type '<value-of select="@abstract-type"/>', which is a permitted value, but it is not the only abstract with that type. It is very unlikely that two abstracts with the same abstract-type are required.</report>
