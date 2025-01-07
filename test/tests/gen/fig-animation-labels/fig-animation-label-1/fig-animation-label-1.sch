@@ -1361,15 +1361,15 @@
     
   </xsl:function>
   <pattern id="video-tests">
-    <rule context="media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')]" id="fig-video-labels">
-      <let name="figure-string" value="substring-before(.,'—video')"/>
-      <let name="number" value="number(replace(substring-after(.,'—video'),'[^\d]',''))"/>
-      <report test="$number != 1 and (not(parent::media/preceding-sibling::media/label[contains(.,concat($figure-string,'—video'))]) or (number(parent::media/preceding-sibling::media[label[contains(.,concat($figure-string,'—video'))]][1]/label/replace(substring-after(.,'—'),'[^\d]','')) != ($number - 1)))" role="error" id="fig-video-label-1">Video has the label '<value-of select="."/>', but there is no preceding video with the label number <value-of select="concat($figure-string,'—video ',string($number - 1))"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
+    <rule context="media/label[matches(lower-case(.),'^figure \d+—animation \d+\.$')]" id="fig-animation-labels">
+      <let name="figure-string" value="substring-before(.,'—animation')"/>
+      <let name="number" value="number(replace(substring-after(.,'—animation'),'[^\d]',''))"/>
+      <report test="$number != 1 and (not(parent::media/preceding-sibling::media/label[contains(.,concat($figure-string,'—animation'))]) or (number(parent::media/preceding-sibling::media[label[contains(.,concat($figure-string,'—animation'))]][1]/label/replace(substring-after(.,'—'),'[^\d]','')) != ($number - 1)))" role="error" id="fig-animation-label-1">Animation has the label '<value-of select="."/>', but there is no preceding animation with the label number <value-of select="concat($figure-string,'—animation ',string($number - 1))"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')]" role="error" id="fig-video-labels-xspec-assert">media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')] must be present.</assert>
+      <assert test="descendant::media/label[matches(lower-case(.),'^figure \d+—animation \d+\.$')]" role="error" id="fig-animation-labels-xspec-assert">media/label[matches(lower-case(.),'^figure \d+—animation \d+\.$')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

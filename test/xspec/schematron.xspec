@@ -7262,6 +7262,18 @@
         <x:expect-not-assert id="animation-labels-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="fig-animation-labels">
+      <x:scenario label="fig-animation-label-1-pass">
+        <x:context href="../tests/gen/fig-animation-labels/fig-animation-label-1/pass.xml"/>
+        <x:expect-not-report id="fig-animation-label-1" role="error"/>
+        <x:expect-not-assert id="fig-animation-labels-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-animation-label-1-fail">
+        <x:context href="../tests/gen/fig-animation-labels/fig-animation-label-1/fail.xml"/>
+        <x:expect-report id="fig-animation-label-1" role="error"/>
+        <x:expect-not-assert id="fig-animation-labels-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="body-table-pos-conformance">
       <x:scenario label="pre-body-table-report-pass">
         <x:context href="../tests/gen/body-table-pos-conformance/pre-body-table-report/pass.xml"/>

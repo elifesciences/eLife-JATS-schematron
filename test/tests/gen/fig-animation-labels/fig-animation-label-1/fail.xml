@@ -1,0 +1,30 @@
+<?oxygen SCHSchema="fig-animation-label-1.sch"?>
+<!--Context: media/label[matches(lower-case(.),'^figure \d+—animation \d+\.$')]
+Test: report    $number != 1 and (not(parent::media/preceding-sibling::media/label[contains(.,concat($figure-string,'—animation'))]) or (number(parent::media/preceding-sibling::media[label[contains(.,concat($figure-string,'—animation'))]][1]/label/replace(substring-after(.,'—'),'[^\d]','')) != ($number - 1)))
+Message: Animation has the label '', but there is no preceding animation with the label number . Either they are not correctly ordered, or the label numbering is incorrect. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <fig-group>
+            <media>
+                <label>Figure 11—video 1.</label>
+            </media>
+            <media>
+                <label>Figure 11—video 2.</label>
+            </media>
+            <media>
+                <label>Figure 11—animation 1.</label>
+            </media>
+            <media>
+                <label>Figure 11—animation 3.</label>
+            </media>
+            <media>
+                <label>Figure 11—animation 4.</label>
+            </media>
+        </fig-group>
+        <fig-group>
+            <media>
+                <label>Figure 12—animation 2.</label>
+            </media>
+        </fig-group>
+    </article>
+</root>

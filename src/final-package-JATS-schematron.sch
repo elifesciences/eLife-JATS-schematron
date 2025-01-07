@@ -3475,15 +3475,21 @@
       <report test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))" role="error" id="video-label-1">Video has the label '<value-of select="."/>', but there is no preceding video with the label number <value-of select="$number - 1"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
       
     </rule></pattern><pattern id="fig-video-labels-pattern"><rule context="media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')]" id="fig-video-labels">
-      <let name="figure-string" value="substring-before(.,'—')"/>
-      <let name="number" value="number(replace(substring-after(.,'—'),'[^\d]',''))"/>
+      <let name="figure-string" value="substring-before(.,'—video')"/>
+      <let name="number" value="number(replace(substring-after(.,'—video'),'[^\d]',''))"/>
       
-      <report test="$number != 1 and (not(parent::media/preceding-sibling::media/label[contains(.,$figure-string)]) or (number(parent::media/preceding-sibling::media[label[contains(.,$figure-string)]][1]/label/replace(substring-after(.,'—'),'[^\d]','')) != ($number - 1)))" role="error" id="fig-video-label-1">Video has the label '<value-of select="."/>', but there is no preceding video with the label number <value-of select="concat($figure-string,'—video ',string($number - 1))"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
+      <report test="$number != 1 and (not(parent::media/preceding-sibling::media/label[contains(.,concat($figure-string,'—video'))]) or (number(parent::media/preceding-sibling::media[label[contains(.,concat($figure-string,'—video'))]][1]/label/replace(substring-after(.,'—'),'[^\d]','')) != ($number - 1)))" role="error" id="fig-video-label-1">Video has the label '<value-of select="."/>', but there is no preceding video with the label number <value-of select="concat($figure-string,'—video ',string($number - 1))"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
       
     </rule></pattern><pattern id="animation-labels-pattern"><rule context="media/label[matches(lower-case(.),'^animation \d+\.$')]" id="animation-labels">
       <let name="number" value="number(replace(.,'[^\d]',''))"/>
       
       <report test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^animation \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^animation \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))" role="error" id="animation-label-1">Animation has the label '<value-of select="."/>', but there is no preceding animation with the label number <value-of select="$number - 1"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
+      
+    </rule></pattern><pattern id="fig-animation-labels-pattern"><rule context="media/label[matches(lower-case(.),'^figure \d+—animation \d+\.$')]" id="fig-animation-labels">
+      <let name="figure-string" value="substring-before(.,'—animation')"/>
+      <let name="number" value="number(replace(substring-after(.,'—animation'),'[^\d]',''))"/>
+      
+      <report test="$number != 1 and (not(parent::media/preceding-sibling::media/label[contains(.,concat($figure-string,'—animation'))]) or (number(parent::media/preceding-sibling::media[label[contains(.,concat($figure-string,'—animation'))]][1]/label/replace(substring-after(.,'—'),'[^\d]','')) != ($number - 1)))" role="error" id="fig-animation-label-1">Animation has the label '<value-of select="."/>', but there is no preceding animation with the label number <value-of select="concat($figure-string,'—animation ',string($number - 1))"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
       
     </rule></pattern>
   
