@@ -10258,6 +10258,54 @@
         <x:expect-not-assert id="sub-article-ref-p-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="sub-article-dl-image-tests">
+      <x:scenario label="sub-article-dl-image-1-pass">
+        <x:context href="../tests/gen/sub-article-dl-image-tests/sub-article-dl-image-1/pass.xml"/>
+        <x:expect-not-report id="sub-article-dl-image-1" role="error"/>
+        <x:expect-not-assert id="sub-article-dl-image-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-article-dl-image-1-fail">
+        <x:context href="../tests/gen/sub-article-dl-image-tests/sub-article-dl-image-1/fail.xml"/>
+        <x:expect-report id="sub-article-dl-image-1" role="error"/>
+        <x:expect-not-assert id="sub-article-dl-image-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="sub-article-pr-image-tests">
+      <x:scenario label="sub-article-pr-image-1-pass">
+        <x:context href="../tests/gen/sub-article-pr-image-tests/sub-article-pr-image-1/pass.xml"/>
+        <x:expect-not-report id="sub-article-pr-image-1" role="error"/>
+        <x:expect-not-assert id="sub-article-pr-image-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-article-pr-image-1-fail">
+        <x:context href="../tests/gen/sub-article-pr-image-tests/sub-article-pr-image-1/fail.xml"/>
+        <x:expect-report id="sub-article-pr-image-1" role="error"/>
+        <x:expect-not-assert id="sub-article-pr-image-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="sub-article-ar-image-tests">
+      <x:scenario label="sub-article-ar-image-1-pass">
+        <x:context href="../tests/gen/sub-article-ar-image-tests/sub-article-ar-image-1/pass.xml"/>
+        <x:expect-not-report id="sub-article-ar-image-1" role="error"/>
+        <x:expect-not-assert id="sub-article-ar-image-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-article-ar-image-1-fail">
+        <x:context href="../tests/gen/sub-article-ar-image-tests/sub-article-ar-image-1/fail.xml"/>
+        <x:expect-report id="sub-article-ar-image-1" role="error"/>
+        <x:expect-not-assert id="sub-article-ar-image-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="sub-article-gen-image-tests">
+      <x:scenario label="sub-article-gen-image-1-pass">
+        <x:context href="../tests/gen/sub-article-gen-image-tests/sub-article-gen-image-1/pass.xml"/>
+        <x:expect-not-report id="sub-article-gen-image-1" role="error"/>
+        <x:expect-not-assert id="sub-article-gen-image-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-article-gen-image-1-fail">
+        <x:context href="../tests/gen/sub-article-gen-image-tests/sub-article-gen-image-1/fail.xml"/>
+        <x:expect-report id="sub-article-gen-image-1" role="error"/>
+        <x:expect-not-assert id="sub-article-gen-image-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="ref-report-front">
       <x:scenario label="ref-report-front-1-pass">
         <x:context href="../tests/gen/ref-report-front/ref-report-front-1/pass.xml"/>

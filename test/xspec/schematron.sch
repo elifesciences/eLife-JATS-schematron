@@ -5603,6 +5603,31 @@
       </report>
     </rule>
   </pattern>
+  <pattern id="sub-article-dl-image-tests-pattern">
+    <rule context="sub-article[@article-type='decision-letter']/body//bold" id="sub-article-dl-image-tests">
+      
+      <report test="matches(.,'[Dd]ecision letter image \d')" role="error" flag="dl-ar" id="sub-article-dl-image-1">Decision letter contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the decision letter image is missing, then it should be added).</report>
+    </rule>
+  </pattern>
+  <pattern id="sub-article-pr-image-tests-pattern">
+    <rule context="sub-article[@article-type='referee-report']/body//bold" id="sub-article-pr-image-tests">
+      
+      <report test="matches(.,'[Rr]eview image \d')" role="error" flag="dl-ar" id="sub-article-pr-image-1">Public review contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the review image is missing, then it should be added).</report>
+    </rule>
+  </pattern>
+  <pattern id="sub-article-ar-image-tests-pattern">
+    <rule context="sub-article[@article-type=('reply','author-comment')]/body//bold" id="sub-article-ar-image-tests">
+      
+      <report test="matches(.,'[Aa]uthor response image \d')" role="error" flag="dl-ar" id="sub-article-ar-image-1">Author response contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the author response image is missing, then it should be added).</report>
+    </rule>
+  </pattern>
+  <pattern id="sub-article-gen-image-tests-pattern">
+    <rule context="sub-article/body//bold[not(matches(.,'[Dd]ecision letter image \d|[Rr]eview image \d|[Aa]uthor response image \d'))]" id="sub-article-gen-image-tests">
+      
+      <report test="matches(.,'image \d')" role="error" flag="dl-ar" id="sub-article-gen-image-1">
+        <value-of select="ancestor::sub-article/front-stub//article-title"/> contains bold text that mentions an image: <value-of select="."/>. Is there a missing image?</report>
+    </rule>
+  </pattern>
   
   <pattern id="ref-report-front-pattern">
     <rule context="sub-article[@article-type='referee-report']/front-stub" id="ref-report-front">
@@ -10194,6 +10219,10 @@
       <assert test="descendant::sub-article[@article-type=('reply','author-comment')]" role="error" id="reply-missing-table-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')] must be present.</assert>
       <assert test="descendant::sub-article//ext-link" role="error" id="sub-article-ext-link-tests-xspec-assert">sub-article//ext-link must be present.</assert>
       <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p']" role="error" id="sub-article-ref-p-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p'] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='decision-letter']/body//bold" role="error" id="sub-article-dl-image-tests-xspec-assert">sub-article[@article-type='decision-letter']/body//bold must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='referee-report']/body//bold" role="error" id="sub-article-pr-image-tests-xspec-assert">sub-article[@article-type='referee-report']/body//bold must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body//bold" role="error" id="sub-article-ar-image-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body//bold must be present.</assert>
+      <assert test="descendant::sub-article/body//bold[not(matches(.,'[Dd]ecision letter image \d or descendant::[Rr]eview image \d or descendant::[Aa]uthor response image \d'))]" role="error" id="sub-article-gen-image-tests-xspec-assert">sub-article/body//bold[not(matches(.,'[Dd]ecision letter image \d|[Rr]eview image \d|[Aa]uthor response image \d'))] must be present.</assert>
       <assert test="descendant::sub-article[@article-type='referee-report']/front-stub" role="error" id="ref-report-front-xspec-assert">sub-article[@article-type='referee-report']/front-stub must be present.</assert>
       <assert test="descendant::sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib" role="error" id="sub-article-contrib-tests-xspec-assert">sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib must be present.</assert>
       <assert test="descendant::sub-article/front-stub/contrib-group/contrib/role" role="error" id="sub-article-role-tests-xspec-assert">sub-article/front-stub/contrib-group/contrib/role must be present.</assert>
