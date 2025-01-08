@@ -1361,14 +1361,14 @@
     
   </xsl:function>
   <pattern id="dec-letter-auth-response">
-    <rule context="sub-article/body//bold[not(matches(.,'[Dd]ecision letter image \d|[Rr]eview image \d|[Aa]uthor response image \d'))]" id="sub-article-gen-image-tests">
+    <rule context="sub-article/body//bold[not(matches(.,'[Dd]ecision letter (image|table) \d|[Rr]eview (image|table) \d|[Aa]uthor response (image|table) \d'))]" id="sub-article-gen-image-tests">
       <report test="matches(.,'image \d')" role="error" flag="dl-ar" id="sub-article-gen-image-1">
         <value-of select="ancestor::sub-article/front-stub//article-title"/> contains bold text that mentions an image: <value-of select="."/>. Is there a missing image?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article/body//bold[not(matches(.,'[Dd]ecision letter image \d or descendant::[Rr]eview image \d or descendant::[Aa]uthor response image \d'))]" role="error" id="sub-article-gen-image-tests-xspec-assert">sub-article/body//bold[not(matches(.,'[Dd]ecision letter image \d|[Rr]eview image \d|[Aa]uthor response image \d'))] must be present.</assert>
+      <assert test="descendant::sub-article/body//bold[not(matches(.,'[Dd]ecision letter (image or descendant::table) \d or descendant::[Rr]eview (image or descendant::table) \d or descendant::[Aa]uthor response (image or descendant::table) \d'))]" role="error" id="sub-article-gen-image-tests-xspec-assert">sub-article/body//bold[not(matches(.,'[Dd]ecision letter (image|table) \d|[Rr]eview (image|table) \d|[Aa]uthor response (image|table) \d'))] must be present.</assert>
     </rule>
   </pattern>
 </schema>
