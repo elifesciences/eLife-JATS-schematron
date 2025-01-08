@@ -7810,6 +7810,42 @@ else self::*/local-name() = $allowed-p-blocks"
         flag="dl-ar"
         id="sub-article-ref-p-test">The last paragraph of the author response looks like it contains various references. Should each reference be split out into its own paragraph? <value-of select="."/></report>
     </rule>
+    
+    <rule context="sub-article[@article-type='decision-letter']/body//bold" 
+      id="sub-article-dl-image-tests">
+      
+      <report test="matches(.,'[Dd]ecision letter image \d')"
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-dl-image-1">Decision letter contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the decision letter image is missing, then it should be added).</report>
+    </rule>
+    
+    <rule context="sub-article[@article-type='referee-report']/body//bold" 
+      id="sub-article-pr-image-tests">
+      
+      <report test="matches(.,'[Rr]eview image \d')"
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-pr-image-1">Public review contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the review image is missing, then it should be added).</report>
+    </rule>
+    
+    <rule context="sub-article[@article-type=('reply','author-comment')]/body//bold" 
+      id="sub-article-ar-image-tests">
+      
+      <report test="matches(.,'[Aa]uthor response image \d')"
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-ar-image-1">Author response contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the author response image is missing, then it should be added).</report>
+    </rule>
+    
+    <rule context="sub-article/body//bold[not(matches(.,'[Dd]ecision letter image \d|[Rr]eview image \d|[Aa]uthor response image \d'))]" 
+      id="sub-article-gen-image-tests">
+      
+      <report test="matches(.,'image \d')"
+        role="error" 
+        flag="dl-ar"
+        id="sub-article-gen-image-1"><value-of select="ancestor::sub-article/front-stub//article-title"/> contains bold text that mentions an image: <value-of select="."/>. Is there a missing image?</report>
+    </rule>
   </pattern>
   
   <pattern id="sub-article-version-2">
