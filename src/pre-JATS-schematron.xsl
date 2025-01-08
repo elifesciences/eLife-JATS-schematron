@@ -23567,6 +23567,20 @@
                <xsl:text/>. This should be changed to a citation (and if the decision letter image is missing, then it should be added).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="matches(.,'[Dd]ecision letter table \d')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Dd]ecision letter table \d')">
+            <xsl:attribute name="id">sub-article-dl-image-2</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[sub-article-dl-image-2] Decision letter contains bold text that mentions an table: <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. This should be changed to a citation (and if the decision letter table is missing, then it should be added).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M386"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M386"/>
@@ -23589,6 +23603,20 @@
             <svrl:text>[sub-article-pr-image-1] Public review contains bold text that mentions an image: <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>. This should be changed to a citation (and if the review image is missing, then it should be added).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="matches(.,'[Rr]eview table \d')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Rr]eview table \d')">
+            <xsl:attribute name="id">sub-article-pr-image-2</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[sub-article-pr-image-2] Public review contains bold text that mentions an table: <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. This should be changed to a citation (and if the review table is missing, then it should be added).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M387"/>
@@ -23615,6 +23643,20 @@
                <xsl:text/>. This should be changed to a citation (and if the author response image is missing, then it should be added).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="matches(.,'[Aa]uthor response table \d')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[Aa]uthor response table \d')">
+            <xsl:attribute name="id">sub-article-ar-image-2</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[sub-article-ar-image-2] Author response contains bold text that mentions an table: <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. This should be changed to a citation (and if the author response table is missing, then it should be added).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M388"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M388"/>
@@ -23623,7 +23665,7 @@
    </xsl:template>
    <!--PATTERN sub-article-gen-image-tests-pattern-->
    <!--RULE sub-article-gen-image-tests-->
-   <xsl:template match="sub-article/body//bold[not(matches(.,'[Dd]ecision letter image \d|[Rr]eview image \d|[Aa]uthor response image \d'))]" priority="1000" mode="M389">
+   <xsl:template match="sub-article/body//bold[not(matches(.,'[Dd]ecision letter (image|table) \d|[Rr]eview (image|table) \d|[Aa]uthor response (image|table) \d'))]" priority="1000" mode="M389">
 
 		<!--REPORT error-->
       <xsl:if test="matches(.,'image \d')">
@@ -23639,6 +23681,22 @@
                <xsl:text/> contains bold text that mentions an image: <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>. Is there a missing image?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="matches(.,'table \d')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'table \d')">
+            <xsl:attribute name="id">sub-article-gen-image-2</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[sub-article-gen-image-2] <xsl:text/>
+               <xsl:value-of select="ancestor::sub-article/front-stub//article-title"/>
+               <xsl:text/> contains bold text that mentions a table: <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. Is there a missing table?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M389"/>

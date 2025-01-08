@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="sub-article-pr-image-2.sch"?>
+<!--Context: sub-article[@article-type='referee-report']/body//bold
+Test: report    matches(.,'[Rr]eview table \d')
+Message: Public review contains bold text that mentions an table: . This should be changed to a citation (and if the review table is missing, then it should be added). -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article article-type="referee-report">
+            <body>
+                <p><bold>dummy text</bold></p>
+            </body>
+        </sub-article>
+    </article>
+</root>

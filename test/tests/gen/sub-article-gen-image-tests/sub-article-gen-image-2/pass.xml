@@ -1,7 +1,7 @@
-<?oxygen SCHSchema="sub-article-gen-image-1.sch"?>
+<?oxygen SCHSchema="sub-article-gen-image-2.sch"?>
 <!--Context: sub-article/body//bold[not(matches(.,'[Dd]ecision letter (image|table) \d|[Rr]eview (image|table) \d|[Aa]uthor response (image|table) \d'))]
-Test: report    matches(.,'image \d')
-Message:  contains bold text that mentions an image: . Is there a missing image? -->
+Test: report    matches(.,'table \d')
+Message:  contains bold text that mentions a table: . Is there a missing table? -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <sub-article article-type="decision-letter">

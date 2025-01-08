@@ -4378,15 +4378,23 @@
     </rule></pattern><pattern id="sub-article-dl-image-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/body//bold" id="sub-article-dl-image-tests">
       
       <report test="matches(.,'[Dd]ecision letter image \d')" role="error" id="sub-article-dl-image-1">Decision letter contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the decision letter image is missing, then it should be added).</report>
+      
+      <report test="matches(.,'[Dd]ecision letter table \d')" role="error" id="sub-article-dl-image-2">Decision letter contains bold text that mentions an table: <value-of select="."/>. This should be changed to a citation (and if the decision letter table is missing, then it should be added).</report>
     </rule></pattern><pattern id="sub-article-pr-image-tests-pattern"><rule context="sub-article[@article-type='referee-report']/body//bold" id="sub-article-pr-image-tests">
       
       <report test="matches(.,'[Rr]eview image \d')" role="error" id="sub-article-pr-image-1">Public review contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the review image is missing, then it should be added).</report>
+      
+      <report test="matches(.,'[Rr]eview table \d')" role="error" id="sub-article-pr-image-2">Public review contains bold text that mentions an table: <value-of select="."/>. This should be changed to a citation (and if the review table is missing, then it should be added).</report>
     </rule></pattern><pattern id="sub-article-ar-image-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body//bold" id="sub-article-ar-image-tests">
       
       <report test="matches(.,'[Aa]uthor response image \d')" role="error" id="sub-article-ar-image-1">Author response contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the author response image is missing, then it should be added).</report>
-    </rule></pattern><pattern id="sub-article-gen-image-tests-pattern"><rule context="sub-article/body//bold[not(matches(.,'[Dd]ecision letter image \d|[Rr]eview image \d|[Aa]uthor response image \d'))]" id="sub-article-gen-image-tests">
+      
+      <report test="matches(.,'[Aa]uthor response table \d')" role="error" id="sub-article-ar-image-2">Author response contains bold text that mentions an table: <value-of select="."/>. This should be changed to a citation (and if the author response table is missing, then it should be added).</report>
+    </rule></pattern><pattern id="sub-article-gen-image-tests-pattern"><rule context="sub-article/body//bold[not(matches(.,'[Dd]ecision letter (image|table) \d|[Rr]eview (image|table) \d|[Aa]uthor response (image|table) \d'))]" id="sub-article-gen-image-tests">
       
       <report test="matches(.,'image \d')" role="error" id="sub-article-gen-image-1"><value-of select="ancestor::sub-article/front-stub//article-title"/> contains bold text that mentions an image: <value-of select="."/>. Is there a missing image?</report>
+      
+      <report test="matches(.,'table \d')" role="error" id="sub-article-gen-image-2"><value-of select="ancestor::sub-article/front-stub//article-title"/> contains bold text that mentions a table: <value-of select="."/>. Is there a missing table?</report>
     </rule></pattern>
   
   <pattern id="ref-report-front-pattern"><rule context="sub-article[@article-type='referee-report']/front-stub" id="ref-report-front">
