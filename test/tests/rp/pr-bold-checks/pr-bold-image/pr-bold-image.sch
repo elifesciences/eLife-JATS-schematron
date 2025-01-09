@@ -144,16 +144,15 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="affiliation-checks-pattern">
-    <rule context="aff" id="affiliation-checks">
-      <let name="country-count" value="count(descendant::country)"/>
-      <let name="city-count" value="count(descendant::city)"/>
-      <report test="institution-wrap[not(institution-id)] and not(ancestor::contrib-group[@content-type='section']) and not(ancestor::sub-article)" role="error" id="aff-has-wrap-no-id">[aff-has-wrap-no-id] aff contains institution-wrap, but that institution-wrap does not have a child institution-id. institution-wrap should only be used when there is an institution-id for the institution.</report>
+  <pattern id="pr-bold-checks-pattern">
+    <rule context="sub-article[@article-type='referee-report']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)]" id="pr-bold-checks">
+      <assert test="matches(.,'Review (image|table) \d\d?\.')" role="error" id="pr-bold-image">[pr-bold-image] The bold text in a label preceding an image in a public review must be in the format 'Review 1.' or 'Review table 1.' - this one is not - <value-of select="."/>
+      </assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::aff" role="error" id="affiliation-checks-xspec-assert">aff must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='referee-report']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)]" role="error" id="pr-bold-checks-xspec-assert">sub-article[@article-type='referee-report']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

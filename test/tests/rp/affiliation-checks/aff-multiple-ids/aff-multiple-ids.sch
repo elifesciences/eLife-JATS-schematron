@@ -147,6 +147,7 @@
   <pattern id="affiliation-checks-pattern">
     <rule context="aff" id="affiliation-checks">
       <let name="country-count" value="count(descendant::country)"/>
+      <let name="city-count" value="count(descendant::city)"/>
       <report test="count(descendant::institution-id) gt 1" role="error" id="aff-multiple-ids">[aff-multiple-ids] Affiliation contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/>
       </report>
     </rule>

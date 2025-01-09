@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="aff-city-country.sch"?>
+<!--Context: aff
+Test: report    $city-count gt 1
+Message: Affiliation contains more than one city element:  in  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <aff id="a3"><label>3</label><institution>Nintendo Co., Ltd</institution>, <city>Kyoto</city>, <country>Japan</country></aff>
+    </article>
+</root>

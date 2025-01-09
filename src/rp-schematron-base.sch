@@ -384,6 +384,7 @@
 
     <rule context="aff" id="affiliation-checks">
       <let name="country-count" value="count(descendant::country)"/>
+      <let name="city-count" value="count(descendant::city)"/>
       
       <report test="$country-count lt 1" 
         role="warning" 
@@ -392,6 +393,14 @@
       <report test="$country-count gt 1" 
         role="error" 
         id="aff-multiple-country">Affiliation contains more than one country element: <value-of select="string-join(descendant::country,'; ')"/> in <value-of select="."/></report>
+      
+      <report test="$city-count lt 1" 
+        role="warning" 
+        id="aff-no-city">Affiliation does not contain a city element: <value-of select="."/></report>
+
+      <report test="$city-count gt 1" 
+        role="error" 
+        id="aff-city-country">Affiliation contains more than one city element: <value-of select="string-join(descendant::country,'; ')"/> in <value-of select="."/></report>
 
       <report test="count(descendant::institution) gt 1" 
         role="warning" 
@@ -831,8 +840,37 @@
         <report test="replace(.,'[\s\.]','')='&lt;'" 
         role="warning" 
         id="underline-lt-warning">underline element contains a less than symbol (<value-of select="."/>). Should this a less than or equal to symbol instead (&#x2264;)?</report>
+       
+       
+        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')"
+          role="warning" 
+          id="underline-check-1">Content of underline element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+       
+       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')"
+          role="warning" 
+          id="underline-check-2">Content of underline element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+       
+       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')"
+          role="warning" 
+          id="underline-check-3">Content of underline element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
      </rule>
     </pattern>
+  
+  <pattern id="bold">
+     <rule context="bold" id="bold-checks">
+        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')"
+          role="warning" 
+          id="bold-check-1">Content of bold element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+       
+       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')"
+          role="warning" 
+          id="bold-check-2">Content of bold element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+       
+       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')"
+          role="warning" 
+          id="bold-check-3">Content of bold element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+      </rule>
+   </pattern>
 
     <pattern id="fig">
      <rule context="fig" id="fig-checks">
@@ -1985,11 +2023,20 @@
     </pattern>
 
     <pattern id="author-response-checks">
-      <!-- Need to change this wehn peer review XML is handled differently -->
-      <rule context="sub-article[@article-type='author-comment']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic)]" id="ar-bold-checks">
+      <!-- Need to change this when peer review XML is handled differently -->
+      <rule context="sub-article[@article-type='author-comment']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)]" id="ar-bold-checks">
         <assert test="matches(.,'Author response (image|table) \d\d?\.')" 
           role="error" 
           id="ar-bold-image">The bold text in a label preceding an image in the author response must be in the format 'Author response image 1.' or 'Author response table 1.' - this one is not - <value-of select="."/></assert>
+      </rule>
+    </pattern>
+  
+    <pattern id="public-review-checks">
+      <!-- Need to change this when peer review XML is handled differently -->
+      <rule context="sub-article[@article-type='referee-report']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)]" id="pr-bold-checks">
+        <assert test="matches(.,'Review (image|table) \d\d?\.')" 
+          role="error" 
+          id="pr-bold-image">The bold text in a label preceding an image in a public review must be in the format 'Review 1.' or 'Review table 1.' - this one is not - <value-of select="."/></assert>
       </rule>
     </pattern>
 
@@ -2025,6 +2072,12 @@
         <assert test="starts-with(.,$article-version-doi)" 
           role="error" 
           id="sub-article-doi-check-2">The DOI for this sub-article (<value-of select="."/>) does not start with the version DOI for the Reviewed Preprint (<value-of select="$article-version-doi"/>).</assert>
+      </rule>
+      
+      <rule context="sub-article/body//p" id="sub-article-bold-image-checks">
+        <report test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic or ext-link[inline-graphic or graphic])" 
+          role="error" 
+          id="sub-article-bold-image-1">p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs.</report>
       </rule>
     </pattern>
 

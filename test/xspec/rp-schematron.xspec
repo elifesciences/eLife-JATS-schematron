@@ -461,6 +461,26 @@
         <x:expect-report id="aff-multiple-country" role="error"/>
         <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="aff-no-city-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-no-city/pass.xml"/>
+        <x:expect-not-report id="aff-no-city" role="warning"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-no-city-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-no-city/fail.xml"/>
+        <x:expect-report id="aff-no-city" role="warning"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-city-country-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-city-country/pass.xml"/>
+        <x:expect-not-report id="aff-city-country" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-city-country-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-city-country/fail.xml"/>
+        <x:expect-report id="aff-city-country" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="aff-multiple-institution-pass">
         <x:context href="../tests/rp/affiliation-checks/aff-multiple-institution/pass.xml"/>
         <x:expect-not-report id="aff-multiple-institution" role="warning"/>
@@ -1328,6 +1348,68 @@
         <x:context href="../tests/rp/underline-checks/underline-lt-warning/fail.xml"/>
         <x:expect-report id="underline-lt-warning" role="warning"/>
         <x:expect-not-assert id="underline-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="underline-check-1-pass">
+        <x:context href="../tests/rp/underline-checks/underline-check-1/pass.xml"/>
+        <x:expect-not-report id="underline-check-1" role="warning"/>
+        <x:expect-not-assert id="underline-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="underline-check-1-fail">
+        <x:context href="../tests/rp/underline-checks/underline-check-1/fail.xml"/>
+        <x:expect-report id="underline-check-1" role="warning"/>
+        <x:expect-not-assert id="underline-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="underline-check-2-pass">
+        <x:context href="../tests/rp/underline-checks/underline-check-2/pass.xml"/>
+        <x:expect-not-report id="underline-check-2" role="warning"/>
+        <x:expect-not-assert id="underline-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="underline-check-2-fail">
+        <x:context href="../tests/rp/underline-checks/underline-check-2/fail.xml"/>
+        <x:expect-report id="underline-check-2" role="warning"/>
+        <x:expect-not-assert id="underline-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="underline-check-3-pass">
+        <x:context href="../tests/rp/underline-checks/underline-check-3/pass.xml"/>
+        <x:expect-not-report id="underline-check-3" role="warning"/>
+        <x:expect-not-assert id="underline-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="underline-check-3-fail">
+        <x:context href="../tests/rp/underline-checks/underline-check-3/fail.xml"/>
+        <x:expect-report id="underline-check-3" role="warning"/>
+        <x:expect-not-assert id="underline-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="bold-checks">
+      <x:scenario label="bold-check-1-pass">
+        <x:context href="../tests/rp/bold-checks/bold-check-1/pass.xml"/>
+        <x:expect-not-report id="bold-check-1" role="warning"/>
+        <x:expect-not-assert id="bold-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="bold-check-1-fail">
+        <x:context href="../tests/rp/bold-checks/bold-check-1/fail.xml"/>
+        <x:expect-report id="bold-check-1" role="warning"/>
+        <x:expect-not-assert id="bold-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="bold-check-2-pass">
+        <x:context href="../tests/rp/bold-checks/bold-check-2/pass.xml"/>
+        <x:expect-not-report id="bold-check-2" role="warning"/>
+        <x:expect-not-assert id="bold-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="bold-check-2-fail">
+        <x:context href="../tests/rp/bold-checks/bold-check-2/fail.xml"/>
+        <x:expect-report id="bold-check-2" role="warning"/>
+        <x:expect-not-assert id="bold-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="bold-check-3-pass">
+        <x:context href="../tests/rp/bold-checks/bold-check-3/pass.xml"/>
+        <x:expect-not-report id="bold-check-3" role="warning"/>
+        <x:expect-not-assert id="bold-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="bold-check-3-fail">
+        <x:context href="../tests/rp/bold-checks/bold-check-3/fail.xml"/>
+        <x:expect-report id="bold-check-3" role="warning"/>
+        <x:expect-not-assert id="bold-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="fig-checks">
@@ -3474,6 +3556,18 @@
         <x:expect-not-assert id="ar-bold-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="pr-bold-checks">
+      <x:scenario label="pr-bold-image-pass">
+        <x:context href="../tests/rp/pr-bold-checks/pr-bold-image/pass.xml"/>
+        <x:expect-not-assert id="pr-bold-image" role="error"/>
+        <x:expect-not-assert id="pr-bold-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pr-bold-image-fail">
+        <x:context href="../tests/rp/pr-bold-checks/pr-bold-image/fail.xml"/>
+        <x:expect-assert id="pr-bold-image" role="error"/>
+        <x:expect-not-assert id="pr-bold-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="sub-article-title-checks">
       <x:scenario label="sub-article-title-check-1-pass">
         <x:context href="../tests/rp/sub-article-title-checks/sub-article-title-check-1/pass.xml"/>
@@ -3538,6 +3632,18 @@
         <x:context href="../tests/rp/sub-article-doi-checks/sub-article-doi-check-2/fail.xml"/>
         <x:expect-assert id="sub-article-doi-check-2" role="error"/>
         <x:expect-not-assert id="sub-article-doi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="sub-article-bold-image-checks">
+      <x:scenario label="sub-article-bold-image-1-pass">
+        <x:context href="../tests/rp/sub-article-bold-image-checks/sub-article-bold-image-1/pass.xml"/>
+        <x:expect-not-report id="sub-article-bold-image-1" role="error"/>
+        <x:expect-not-assert id="sub-article-bold-image-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-article-bold-image-1-fail">
+        <x:context href="../tests/rp/sub-article-bold-image-checks/sub-article-bold-image-1/fail.xml"/>
+        <x:expect-report id="sub-article-bold-image-1" role="error"/>
+        <x:expect-not-assert id="sub-article-bold-image-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="arxiv-journal-meta-checks">

@@ -144,16 +144,14 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="affiliation-checks-pattern">
-    <rule context="aff" id="affiliation-checks">
-      <let name="country-count" value="count(descendant::country)"/>
-      <let name="city-count" value="count(descendant::city)"/>
-      <report test="institution-wrap[not(institution-id)] and not(ancestor::contrib-group[@content-type='section']) and not(ancestor::sub-article)" role="error" id="aff-has-wrap-no-id">[aff-has-wrap-no-id] aff contains institution-wrap, but that institution-wrap does not have a child institution-id. institution-wrap should only be used when there is an institution-id for the institution.</report>
+  <pattern id="bold-checks-pattern">
+    <rule context="bold" id="bold-checks">
+      <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" id="bold-check-1">[bold-check-1] Content of bold element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::aff" role="error" id="affiliation-checks-xspec-assert">aff must be present.</assert>
+      <assert test="descendant::bold" role="error" id="bold-checks-xspec-assert">bold must be present.</assert>
     </rule>
   </pattern>
 </schema>

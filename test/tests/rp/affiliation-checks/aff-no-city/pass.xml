@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="aff-no-city.sch"?>
+<!--Context: aff
+Test: report    $city-count lt 1
+Message: Affiliation does not contain a city element:  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <aff id="a3"><label>3</label><institution>Nintendo Co., Ltd</institution>, <city>Kyoto</city>, <country>Japan</country></aff>
+    </article>
+</root>
