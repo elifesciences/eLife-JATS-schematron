@@ -1135,7 +1135,21 @@
             <xsl:attribute name="id">
                 <xsl:value-of select="generate-id(.)"/>
             </xsl:attribute>
+            <xsl:if test="not(@sec-type) and matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')">
+                <xsl:attribute name="sec-type">data-availability</xsl:attribute>
+            </xsl:if>
             <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- Add sec-type="data-availability" -->
+    <xsl:template xml:id="lower-level-sec-data-availability" match="sec[not(parent::back or parent::body) and not(@sec-type) and title and not(@id)]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:if test="matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')">
+                <xsl:attribute name="sec-type">data-availability</xsl:attribute>
+            </xsl:if>
+            <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
     </xsl:template>
 

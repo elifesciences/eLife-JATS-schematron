@@ -112,6 +112,10 @@
       <x:context href="../tests/preprint-changes/graphics/input.xml"/>
       <x:expect label="Testing the template: graphics" href="../tests/preprint-changes/graphics/output.xml"/>
     </x:scenario>
+    <x:scenario label="lower-level-sec-data-availability">
+      <x:context href="../tests/preprint-changes/lower-level-sec-data-availability/input.xml"/>
+      <x:expect label="Testing the template: lower-level-sec-data-availability" href="../tests/preprint-changes/lower-level-sec-data-availability/output.xml"/>
+    </x:scenario>
     <x:scenario label="strip-bold-italic-around-xref">
       <x:context href="../tests/preprint-changes/strip-bold-italic-around-xref/input.xml"/>
       <x:expect label="Testing the template: strip-bold-italic-around-xref" href="../tests/preprint-changes/strip-bold-italic-around-xref/output.xml"/>
