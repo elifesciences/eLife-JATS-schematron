@@ -3474,6 +3474,18 @@
         <x:expect-not-assert id="ar-bold-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="pr-bold-checks">
+      <x:scenario label="pr-bold-image-pass">
+        <x:context href="../tests/rp/pr-bold-checks/pr-bold-image/pass.xml"/>
+        <x:expect-not-assert id="pr-bold-image" role="error"/>
+        <x:expect-not-assert id="pr-bold-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pr-bold-image-fail">
+        <x:context href="../tests/rp/pr-bold-checks/pr-bold-image/fail.xml"/>
+        <x:expect-assert id="pr-bold-image" role="error"/>
+        <x:expect-not-assert id="pr-bold-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="sub-article-title-checks">
       <x:scenario label="sub-article-title-check-1-pass">
         <x:context href="../tests/rp/sub-article-title-checks/sub-article-title-check-1/pass.xml"/>
