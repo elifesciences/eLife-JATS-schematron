@@ -42,7 +42,7 @@
 <institution-wrap>
 <institution>North Pole Enterprises</institution>
 </institution-wrap>
-<addr-line><named-content content-type="city">North Pole</named-content></addr-line>
+<city>North Pole</city>
 <country>Wouldn't you like to know</country>
 </aff>
 </contrib>
@@ -56,7 +56,7 @@
 <institution-wrap>
 <institution>Derek Zoolander's Center For Kids Who Can't Read Good</institution>
 </institution-wrap>
-<addr-line><named-content content-type="city">New York</named-content></addr-line>
+<city>New York</city>
 <country>United States</country>
 </aff>
 </contrib>

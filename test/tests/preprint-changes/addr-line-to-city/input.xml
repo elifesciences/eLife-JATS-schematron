@@ -1,0 +1,2 @@
+<!--Testing template with id: addr-line-to-city-->
+<addr-line><named-content content-type="city">Cambridge</named-content></addr-line>
