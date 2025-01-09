@@ -147,6 +147,7 @@
   <pattern id="affiliation-checks-pattern">
     <rule context="aff" id="affiliation-checks">
       <let name="country-count" value="count(descendant::country)"/>
+      <let name="city-count" value="count(descendant::city)"/>
       <report test="$country-count lt 1" role="warning" id="aff-no-country">[aff-no-country] Affiliation does not contain a country element: <value-of select="."/>
       </report>
     </rule>

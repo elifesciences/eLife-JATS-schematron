@@ -148,7 +148,8 @@
     <rule context="aff" id="affiliation-checks">
       <let name="country-count" value="count(descendant::country)"/>
       <let name="city-count" value="count(descendant::city)"/>
-      <report test="institution-wrap[not(institution-id)] and not(ancestor::contrib-group[@content-type='section']) and not(ancestor::sub-article)" role="error" id="aff-has-wrap-no-id">[aff-has-wrap-no-id] aff contains institution-wrap, but that institution-wrap does not have a child institution-id. institution-wrap should only be used when there is an institution-id for the institution.</report>
+      <report test="$city-count lt 1" role="warning" id="aff-no-city">[aff-no-city] Affiliation does not contain a city element: <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -2083,6 +2083,7 @@
    <!--RULE affiliation-checks-->
    <xsl:template match="aff" priority="1000" mode="M28">
       <xsl:variable name="country-count" select="count(descendant::country)"/>
+      <xsl:variable name="city-count" select="count(descendant::city)"/>
       <!--REPORT warning-->
       <xsl:if test="$country-count lt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$country-count lt 1">
@@ -2106,6 +2107,36 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[aff-multiple-country] Affiliation contains more than one country element: <xsl:text/>
+               <xsl:value-of select="string-join(descendant::country,'; ')"/>
+               <xsl:text/> in <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="$city-count lt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$city-count lt 1">
+            <xsl:attribute name="id">aff-no-city</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[aff-no-city] Affiliation does not contain a city element: <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="$city-count gt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$city-count gt 1">
+            <xsl:attribute name="id">aff-city-country</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[aff-city-country] Affiliation contains more than one city element: <xsl:text/>
                <xsl:value-of select="string-join(descendant::country,'; ')"/>
                <xsl:text/> in <xsl:text/>
                <xsl:value-of select="."/>

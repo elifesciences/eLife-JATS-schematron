@@ -461,6 +461,26 @@
         <x:expect-report id="aff-multiple-country" role="error"/>
         <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="aff-no-city-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-no-city/pass.xml"/>
+        <x:expect-not-report id="aff-no-city" role="warning"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-no-city-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-no-city/fail.xml"/>
+        <x:expect-report id="aff-no-city" role="warning"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-city-country-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-city-country/pass.xml"/>
+        <x:expect-not-report id="aff-city-country" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-city-country-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-city-country/fail.xml"/>
+        <x:expect-report id="aff-city-country" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="aff-multiple-institution-pass">
         <x:context href="../tests/rp/affiliation-checks/aff-multiple-institution/pass.xml"/>
         <x:expect-not-report id="aff-multiple-institution" role="warning"/>
