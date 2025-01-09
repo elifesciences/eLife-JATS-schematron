@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="award-group-test-3.sch"?>
+<!--Context: funding-group/award-group
+Test: assert    principal-award-recipient
+Message: award-group should almost always contain a principal-award-recipient. If it is not clear which author(s) are associated with this funding, please query with the authors, and only leave it without an author if appropriate. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <article-meta>
+      <funding-group>
+        <award-group>
+          <funding-source/>
+          <principal-award-recipient/>
+        </award-group>
+      </funding-group>
+    </article-meta>
+  </article>
+</root>

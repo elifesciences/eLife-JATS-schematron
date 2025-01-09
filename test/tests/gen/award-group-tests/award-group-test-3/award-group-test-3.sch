@@ -1364,7 +1364,7 @@
     <rule context="funding-group/award-group" id="award-group-tests">
       <let name="id" value="@id"/>
       <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
-      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-4" test="count(award-id) gt 1" role="error" id="award-group-test-4">award-group may contain one and only one award-id.</report>
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-3" test="principal-award-recipient" role="warning" id="award-group-test-3">award-group should almost always contain a principal-award-recipient. If it is not clear which author(s) are associated with this funding, please query with the authors, and only leave it without an author if appropriate.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
