@@ -146,7 +146,7 @@
   </xsl:function>
   <pattern id="sub-article-bold-image-checks-pattern">
     <rule context="sub-article/body//p" id="sub-article-bold-image-checks">
-      <report test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic)" role="error" id="sub-article-bold-image-1">[sub-article-bold-image-1] p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs.</report>
+      <report test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic or ext-link[inline-graphic or graphic])" role="error" id="sub-article-bold-image-1">[sub-article-bold-image-1] p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -7291,7 +7291,7 @@
    </xsl:template>
    <!--PATTERN ar-bold-checks-pattern-->
    <!--RULE ar-bold-checks-->
-   <xsl:template match="sub-article[@article-type='author-comment']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic)]" priority="1000" mode="M124">
+   <xsl:template match="sub-article[@article-type='author-comment']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)]" priority="1000" mode="M124">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -7318,7 +7318,7 @@
    </xsl:template>
    <!--PATTERN pr-bold-checks-pattern-->
    <!--RULE pr-bold-checks-->
-   <xsl:template match="sub-article[@article-type='referee-report']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic)]" priority="1000" mode="M125">
+   <xsl:template match="sub-article[@article-type='referee-report']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)]" priority="1000" mode="M125">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -7474,8 +7474,8 @@
    <xsl:template match="sub-article/body//p" priority="1000" mode="M129">
 
 		<!--REPORT error-->
-      <xsl:if test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic)">
+      <xsl:if test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic or ext-link[inline-graphic or graphic])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic or ext-link[inline-graphic or graphic])">
             <xsl:attribute name="id">sub-article-bold-image-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
