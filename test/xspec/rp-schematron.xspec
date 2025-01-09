@@ -1773,6 +1773,16 @@
         <x:expect-assert id="sec-empty" role="error"/>
         <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="sec-data-availability-pass">
+        <x:context href="../tests/rp/sec-checks/sec-data-availability/pass.xml"/>
+        <x:expect-not-report id="sec-data-availability" role="warning"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-data-availability-fail">
+        <x:context href="../tests/rp/sec-checks/sec-data-availability/fail.xml"/>
+        <x:expect-report id="sec-data-availability" role="warning"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="title-checks">
       <x:scenario label="title-upper-case-pass">
