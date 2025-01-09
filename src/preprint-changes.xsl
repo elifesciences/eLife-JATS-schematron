@@ -717,7 +717,23 @@
                         <xsl:text>&#xa;</xsl:text>
                     </xsl:if>
                     <xsl:if test="$editor/aff">
-                        <xsl:copy-of select="$editor/aff"/>
+                        <xsl:element name="aff">
+                            <xsl:text>&#xa;</xsl:text>
+                            <xsl:if test="$editor/aff/*[name()=('institution','institution-wrap')]">
+                                <xsl:copy-of select="$editor/aff/*[name()=('institution','institution-wrap')]"/>
+                                <xsl:text>&#xa;</xsl:text>
+                            </xsl:if>
+                            <xsl:if test="$editor/aff/addr-line">
+                                <xsl:element name="city">
+                                    <xsl:value-of select="$editor/aff/addr-line"/>
+                                </xsl:element>
+                                <xsl:text>&#xa;</xsl:text>
+                            </xsl:if>
+                            <xsl:if test="$editor/aff/country">
+                                <xsl:copy-of select="$editor/aff/country"/>
+                                <xsl:text>&#xa;</xsl:text>
+                            </xsl:if>
+                        </xsl:element>
                         <xsl:text>&#xa;</xsl:text>
                     </xsl:if>
                 </xsl:element>
@@ -835,6 +851,13 @@
                 </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+    
+    <!-- Convert addr-line (with named-content) to city -->
+    <xsl:template xml:id="addr-line-to-city" match="addr-line[named-content[@content-type='city']]">
+        <xsl:element name="city">
+            <xsl:value-of select="."/>
+        </xsl:element>
     </xsl:template>
     
     <!-- wrapper for mixed-citation templates run in sequence -->
@@ -1112,7 +1135,21 @@
             <xsl:attribute name="id">
                 <xsl:value-of select="generate-id(.)"/>
             </xsl:attribute>
+            <xsl:if test="not(@sec-type) and matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')">
+                <xsl:attribute name="sec-type">data-availability</xsl:attribute>
+            </xsl:if>
             <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- Add sec-type="data-availability" -->
+    <xsl:template xml:id="lower-level-sec-data-availability" match="sec[not(parent::back or parent::body) and not(@sec-type) and title and not(@id)]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:if test="matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')">
+                <xsl:attribute name="sec-type">data-availability</xsl:attribute>
+            </xsl:if>
+            <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
     </xsl:template>
 

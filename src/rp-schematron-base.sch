@@ -1070,6 +1070,10 @@
         <assert test="*[not(name()=('label','title','sec-meta'))]" 
           role="error" 
           id="sec-empty">sec element is not populated with any content. Either there's a mistake or the section should be removed.</assert>
+        
+        <report test="@sec-type='data-availability' and preceding::sec[@sec-type='data-availability']" 
+          role="warning" 
+          id="sec-data-availability">sec has the sec-type 'data-availability', but there is one or more other secs with this same sec-type. Are they duplicates?</report>
      </rule>
     </pattern>
 
