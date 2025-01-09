@@ -717,7 +717,23 @@
                         <xsl:text>&#xa;</xsl:text>
                     </xsl:if>
                     <xsl:if test="$editor/aff">
-                        <xsl:copy-of select="$editor/aff"/>
+                        <xsl:element name="aff">
+                            <xsl:text>&#xa;</xsl:text>
+                            <xsl:if test="$editor/aff/*[name()=('institution','institution-wrap')]">
+                                <xsl:copy-of select="$editor/aff/*[name()=('institution','institution-wrap')]"/>
+                                <xsl:text>&#xa;</xsl:text>
+                            </xsl:if>
+                            <xsl:if test="$editor/aff/addr-line">
+                                <xsl:element name="city">
+                                    <xsl:value-of select="$editor/aff/addr-line"/>
+                                </xsl:element>
+                                <xsl:text>&#xa;</xsl:text>
+                            </xsl:if>
+                            <xsl:if test="$editor/aff/country">
+                                <xsl:copy-of select="$editor/aff/country"/>
+                                <xsl:text>&#xa;</xsl:text>
+                            </xsl:if>
+                        </xsl:element>
                         <xsl:text>&#xa;</xsl:text>
                     </xsl:if>
                 </xsl:element>
@@ -835,6 +851,13 @@
                 </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+    
+    <!-- Convert addr-line (with named-content) to city -->
+    <xsl:template xml:id="addr-line-to-city" match="addr-line[named-content[@content-type='city']]">
+        <xsl:element name="city">
+            <xsl:value-of select="."/>
+        </xsl:element>
     </xsl:template>
     
     <!-- wrapper for mixed-citation templates run in sequence -->
