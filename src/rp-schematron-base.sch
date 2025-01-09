@@ -2026,6 +2026,12 @@
           role="error" 
           id="sub-article-doi-check-2">The DOI for this sub-article (<value-of select="."/>) does not start with the version DOI for the Reviewed Preprint (<value-of select="$article-version-doi"/>).</assert>
       </rule>
+      
+      <rule context="sub-article/body//p" id="sub-article-bold-image-checks">
+        <report test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic)" 
+          role="error" 
+          id="sub-article-bold-image-1">p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs.</report>
+      </rule>
     </pattern>
 
     <pattern id="arxiv-metadata">

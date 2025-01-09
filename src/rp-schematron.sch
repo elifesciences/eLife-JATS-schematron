@@ -1068,6 +1068,8 @@
         <assert test="matches(.,'^10\.7554/eLife\.\d{5,6}\.\d\.sa\d$')" role="error" id="sub-article-doi-check-1">[sub-article-doi-check-1] The DOI for this sub-article does not match the permitted format: <value-of select="."/>.</assert>
         
         <assert test="starts-with(.,$article-version-doi)" role="error" id="sub-article-doi-check-2">[sub-article-doi-check-2] The DOI for this sub-article (<value-of select="."/>) does not start with the version DOI for the Reviewed Preprint (<value-of select="$article-version-doi"/>).</assert>
+      </rule></pattern><pattern id="sub-article-bold-image-checks-pattern"><rule context="sub-article/body//p" id="sub-article-bold-image-checks">
+        <report test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic)" role="error" id="sub-article-bold-image-1">[sub-article-bold-image-1] p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs.</report>
       </rule></pattern>
 
     <pattern id="arxiv-journal-meta-checks-pattern"><rule context="article/front/journal-meta[lower-case(journal-id[1])='arxiv']" id="arxiv-journal-meta-checks">

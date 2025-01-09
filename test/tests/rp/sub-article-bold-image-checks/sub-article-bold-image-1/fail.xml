@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="sub-article-bold-image-1.sch"?>
+<!--Context: sub-article/body//p
+Test: report    bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic)
+Message: p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article>
+            <body>
+                <p><bold>Author response image 1.</bold> <inline-graphic/></p>
+            </body>
+        </sub-article>
+    </article>
+</root>
