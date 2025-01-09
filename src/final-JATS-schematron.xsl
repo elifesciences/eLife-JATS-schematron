@@ -11927,7 +11927,6 @@
    <xsl:template match="funding-group/award-group" priority="1000" mode="M154">
       <xsl:variable name="id" select="@id"/>
       <xsl:variable name="institution" select="funding-source[1]/institution-wrap[1]/institution[1]"/>
-      <xsl:variable name="version" select="e:get-version(.)"/>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="funding-source"/>
@@ -11943,31 +11942,21 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <!--REPORT error-->
-      <xsl:if test="if ($version = '1') then not(principal-award-recipient)      else ()">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($version = '1') then not(principal-award-recipient) else ()">
-            <xsl:attribute name="id">final-award-group-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#final-award-group-test-3</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[final-award-group-test-3] award-group must contain a principal-award-recipient.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-      <!--REPORT error-->
-      <xsl:if test="if ($version != '1') then principal-award-recipient      else ()">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($version != '1') then principal-award-recipient else ()">
-            <xsl:attribute name="id">award-group-test-3-v2</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[award-group-test-3-v2] award-group must not contain a principal-award-recipient in <xsl:text/>
-               <xsl:value-of select="$version"/>
-               <xsl:text/> version XML.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
+      <!--ASSERT warning-->
+      <xsl:choose>
+         <xsl:when test="principal-award-recipient"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="principal-award-recipient">
+               <xsl:attribute name="id">award-group-test-3</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-3</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[award-group-test-3] award-group should almost always contain a principal-award-recipient. If it is not clear which author(s) are associated with this funding, please query with the authors, and only leave it without an author if appropriate.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <!--REPORT error-->
       <xsl:if test="count(award-id) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(award-id) gt 1">

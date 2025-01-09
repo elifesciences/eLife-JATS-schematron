@@ -2386,15 +2386,10 @@
     </rule></pattern><pattern id="award-group-tests-pattern"><rule context="funding-group/award-group" id="award-group-tests">
 	  <let name="id" value="@id"/>
 	  <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
-		<let name="version" value="e:get-version(.)"/>
 		
 		<assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-2" test="funding-source" role="error" id="award-group-test-2">[award-group-test-2] award-group must contain a funding-source.</assert>
 	  
-		
-	  
-	  <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#final-award-group-test-3" test="if ($version = '1') then not(principal-award-recipient)      else ()" role="error" id="final-award-group-test-3">[final-award-group-test-3] award-group must contain a principal-award-recipient.</report>
-	  
-	  <report test="if ($version != '1') then principal-award-recipient      else ()" role="error" id="award-group-test-3-v2">[award-group-test-3-v2] award-group must not contain a principal-award-recipient in <value-of select="$version"/> version XML.</report>
+		<assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-3" test="principal-award-recipient" role="warning" id="award-group-test-3">[award-group-test-3] award-group should almost always contain a principal-award-recipient. If it is not clear which author(s) are associated with this funding, please query with the authors, and only leave it without an author if appropriate.</assert>
 		
 		<report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-4" test="count(award-id) gt 1" role="error" id="award-group-test-4">[award-group-test-4] award-group may contain one and only one award-id.</report>
 		

@@ -1364,7 +1364,6 @@
     <rule context="funding-group/award-group" id="award-group-tests">
       <let name="id" value="@id"/>
       <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
-      <let name="version" value="e:get-version(.)"/>
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-2" test="funding-source" role="error" id="award-group-test-2">award-group must contain a funding-source.</assert>
     </rule>
   </pattern>
