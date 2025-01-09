@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="bold-check-2.sch"?>
+<!--Context: bold
+Test: report    not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')
+Message: Content of bold element suggests it's intended to be a table or supplementary file citation: . Either replace it with an xref or remove the bold formatting, as appropriate. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <bold>S1</bold>
+    </article>
+</root>

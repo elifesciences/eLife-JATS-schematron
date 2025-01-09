@@ -487,7 +487,22 @@
         <report test="replace(.,'[\s\.]','')='&gt;'" role="warning" id="underline-gt-warning">[underline-gt-warning] underline element contains a greater than symbol (<value-of select="."/>). Should this a greater than or equal to symbol instead (≥)?</report>
 
         <report test="replace(.,'[\s\.]','')='&lt;'" role="warning" id="underline-lt-warning">[underline-lt-warning] underline element contains a less than symbol (<value-of select="."/>). Should this a less than or equal to symbol instead (≤)?</report>
+       
+       
+        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" id="underline-check-1">[underline-check-1] Content of underline element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+       
+       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')" role="warning" id="underline-check-2">[underline-check-2] Content of underline element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+       
+       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')" role="warning" id="underline-check-3">[underline-check-3] Content of underline element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
      </rule></pattern>
+  
+  <pattern id="bold-checks-pattern"><rule context="bold" id="bold-checks">
+        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" id="bold-check-1">[bold-check-1] Content of bold element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+       
+       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')" role="warning" id="bold-check-2">[bold-check-2] Content of bold element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+       
+       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')" role="warning" id="bold-check-3">[bold-check-3] Content of bold element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+      </rule></pattern>
 
     <pattern id="fig-checks-pattern"><rule context="fig" id="fig-checks">
         <assert test="graphic" role="error" id="fig-graphic-conformance">[fig-graphic-conformance] <value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>

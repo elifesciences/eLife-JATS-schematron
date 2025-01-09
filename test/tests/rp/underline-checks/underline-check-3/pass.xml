@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="underline-check-3.sch"?>
+<!--Context: underline
+Test: report    not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')
+Message: Content of underline element suggests it's intended to be a video or supplementary file citation: . Either replace it with an xref or remove the bold formatting, as appropriate. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <underline>S1</underline>
+    </article>
+</root>
