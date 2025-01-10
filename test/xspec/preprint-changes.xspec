@@ -112,9 +112,9 @@
       <x:context href="../tests/preprint-changes/graphics/input.xml"/>
       <x:expect label="Testing the template: graphics" href="../tests/preprint-changes/graphics/output.xml"/>
     </x:scenario>
-    <x:scenario label="lower-level-sec-data-availability">
-      <x:context href="../tests/preprint-changes/lower-level-sec-data-availability/input.xml"/>
-      <x:expect label="Testing the template: lower-level-sec-data-availability" href="../tests/preprint-changes/lower-level-sec-data-availability/output.xml"/>
+    <x:scenario label="sec-data-availability">
+      <x:context href="../tests/preprint-changes/sec-data-availability/input.xml"/>
+      <x:expect label="Testing the template: sec-data-availability" href="../tests/preprint-changes/sec-data-availability/output.xml"/>
     </x:scenario>
     <x:scenario label="strip-bold-italic-around-xref">
       <x:context href="../tests/preprint-changes/strip-bold-italic-around-xref/input.xml"/>
@@ -131,6 +131,10 @@
     <x:scenario label="fix-list-item-labels">
       <x:context href="../tests/preprint-changes/fix-list-item-labels/input.xml"/>
       <x:expect label="Testing the template: fix-list-item-labels" href="../tests/preprint-changes/fix-list-item-labels/output.xml"/>
+    </x:scenario>
+    <x:scenario label="rearrange-back">
+      <x:context href="../tests/preprint-changes/rearrange-back/input.xml"/>
+      <x:expect label="Testing the template: rearrange-back" href="../tests/preprint-changes/rearrange-back/output.xml"/>
     </x:scenario>
   </x:scenario>
 </x:description>

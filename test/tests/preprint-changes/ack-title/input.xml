@@ -1,23 +1,23 @@
 <!--Testing template with id: ack-title-->
 <back>
-    <ack>
-        <title>Acknowledgements</title>
-        <p>...</p>
-    </ack>
-    <ack>
-        <title>AKNOWLEDGEMENTS</title>
-        <p>...</p>
-    </ack>
-    <ack>
-        <title>ACKNOWLEDGMENTS:</title>
-        <p>...</p>
-    </ack>
-    <ack>
-        <title>Ackowlegment</title>
-        <p>...</p>
-    </ack>
-    <ack>
-        <title>Acknowledgements / Funding</title>
-        <p>...</p>
-    </ack>
+<ack>
+<title>Acknowledgements</title>
+<p>...</p>
+</ack>
+<ack>
+<title>AKNOWLEDGEMENTS</title>
+<p>...</p>
+</ack>
+<ack>
+<title>ACKNOWLEDGMENTS:</title>
+<p>...</p>
+</ack>
+<ack>
+<title>Ackowlegment</title>
+<p>...</p>
+</ack>
+<ack>
+<title>Acknowledgements / Funding</title>
+<p>...</p>
+</ack>
 </back>

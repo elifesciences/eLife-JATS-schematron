@@ -118,9 +118,55 @@
 <p><italic><bold>some text</bold></italic></p>
 <p><italic>ital<bold>ics</bold></italic></p>
 </sec>
+
 </body>
 <back>
+<sec id="s8" sec-type="data-availability">
+<title>Data availability</title>
+<p>All data are available.</p>
+</sec>
+<ack>
+<title>Acknowledgements</title>
+<p>...</p>
+</ack>
+<ack>
+<title>Something else</title>
+<p>...</p>
+</ack>
+<sec id="d13e224" sec-type="additional-information">
+<title>Additional information</title>
+<sec id="s5">
+<title>Funding</title>
+<p>We acknowledge the following funding sources. ....</p>
+<p>Analysis was performed in Norway.</p>
+</sec>
+<sec id="s6">
+<title>Author contributions</title>
+<p>Conceptualisation: TK SD TH</p>
+<p>Methodology: TK SN TH</p>
+<p>Investigation: TK PMB MF SN KOC TH</p>
+<p>Visualization: TK MF TH</p>
+<p>Writing – original draft: TK PMB MF SN KOC TH</p>
+<p>Writing – review and editing: TK PMB MF SN KOC AF OAA LTW SD TH</p>
+</sec>
+<sec id="s7">
+<title>Competing interests</title>
+<p>OAA is a consultant to HealthLytix and has received speaker’s honorarium from Lundbeck and Synovion. SD has received speaker’s honorarium from Lundbeck. The other authors declare no conflict of interest.</p>
+</sec>
+<sec id="s9">
+<title>Code availability</title>
+<p>All code and software needed to generate the results is available as part of public resources: LD score regression (<ext-link ext-link-type="uri" xlink:href="https://github.com/bulik/ldsc">https://github.com/bulik/ldsc</ext-link>), FUMA (<ext-link ext-link-type="uri" xlink:href="https://fuma.ctglab.nl/">https://fuma.ctglab.nl/</ext-link>), MiXeR (<ext-link ext-link-type="uri" xlink:href="https://github.com/precimed/mixer">https://github.com/precimed/mixer</ext-link>), BM location (simulation, training, and model) <italic>[made public upon acceptance]</italic>.</p>
+</sec>
+</sec>
+<sec id="suppd13e224" sec-type="supplementary-material">
+<title>Additional files</title>
+<supplementary-material>
+<label>Supplementary materials</label>
+<media xlink:href="supplements/278950_file02.docx"/>
+</supplementary-material>
+</sec>
 <ref-list>
+<title>References</title>
 <ref id="c1"><label>1.</label><mixed-citation publication-type="web"><person-group person-group-type="author"><string-name><surname>Chiti</surname>, <given-names>F.</given-names></string-name> &amp; <string-name><surname>Dobson</surname>, <given-names>C. M</given-names></string-name></person-group>. <article-title>Protein misfolding, functional amyloid, and human disease</article-title>. <source>Annu Rev Biochem</source> <volume>75</volume>, (<year>2006</year>).</mixed-citation></ref>
 <ref id="c2"><label>2.</label><mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Ozbey</surname> <given-names>NP</given-names></string-name>, <etal>et al.</etal></person-group> <article-title>Tyramine Acts Downstream of Neuronal XBP-1s to Coordinate Inter-tissue UPR(ER) Activation and Behavior in C. elegans</article-title>. <source>Dev Cell</source> <volume>55</volume>, <fpage>754</fpage>–<lpage>770.e756</lpage> (<year>2020</year>). <pub-id pub-id-type="doi">10.1016/j.tibs.2017.08.001</pub-id></mixed-citation></ref>
 <ref id="c3"><label>3.</label><mixed-citation publication-type="preprint"><year>2024</year><article-title/> <source>bioRxiv</source></mixed-citation></ref>
@@ -130,5 +176,13 @@
 <ref id="c7"><label>7.</label><mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Huckesfeld</surname> <given-names>S</given-names></string-name>, <etal>et al</etal></person-group> (<year>2021</year>) <article-title>Unveiling the sensory and interneuronal pathways of the neuroendocrine connectome in Drosophila</article-title>. <source>eLife</source> <volume>10</volume>:<elocation-id>e65745</elocation-id></mixed-citation></ref>
 <ref id="c8"><label>8.</label><mixed-citation publication-type="journal"><person-group person-group-type="author"><string-name><surname>Huckesfeld</surname> <given-names>S</given-names></string-name>, <etal>et al</etal></person-group> (<year>2021</year>) <article-title>..</article-title>. <source>Plant Physiology</source> <volume>10</volume>:<elocation-id>e65745</elocation-id></mixed-citation></ref>
 </ref-list>
+<app-group>
+<app>
+<label>Appendix 1</label>
+</app>
+</app-group>
+<fn-group>
+<fn/>
+</fn-group>
 </back>
 </article>

@@ -1,0 +1,59 @@
+<!--Testing template with id: rearrange-back-->
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" dtd-version="1.1d2">
+<body>
+<sec sec-type="supplementary-material">
+<title>Supporting information</title>
+<supplementary-material>
+<label>Supplementary materials</label>
+<media xlink:href="supplements/278950_file02.docx" />
+</supplementary-material>
+</sec>
+</body>
+<back>
+<ack>
+<title>Acknowledgements</title>
+<p>...</p>
+</ack>
+<ack>
+<title>Something else</title>
+<p>...</p>
+</ack>
+<sec id="s5">
+<title>Funding</title>
+<p>We acknowledge the following funding sources. ....</p>
+<p>Analysis was performed in Norway.</p>
+</sec>
+<sec id="s6">
+<title>Author contributions</title>
+<p>Conceptualisation: TK SD TH</p>
+<p>Methodology: TK SN TH</p>
+<p>Investigation: TK PMB MF SN KOC TH</p>
+<p>Visualization: TK MF TH</p>
+<p>Writing &#x2013; original draft: TK PMB MF SN KOC TH</p>
+<p>Writing &#x2013; review and editing: TK PMB MF SN KOC AF OAA LTW SD TH</p>
+</sec>
+<sec id="s7">
+<title>COMPETING INTERESTS</title>
+<p>OAA is a consultant to HealthLytix and has received speaker&#x2019;s honorarium from Lundbeck and Synovion. SD has received speaker&#x2019;s honorarium from Lundbeck. The other authors declare no conflict of interest.</p>
+</sec>
+<sec id="s8" sec-type="data-availability">
+<title>DATA AVAILABILITY</title>
+<p>All data are available.</p>
+</sec>
+<sec id="s9">
+<title>CODE AVAILABILITY</title>
+<p>All code and software needed to generate the results is available as part of public resources: LD score regression (<ext-link ext-link-type="uri" xlink:href="https://github.com/bulik/ldsc">https://github.com/bulik/ldsc</ext-link>), FUMA (<ext-link ext-link-type="uri" xlink:href="https://fuma.ctglab.nl/">https://fuma.ctglab.nl/</ext-link>), MiXeR (<ext-link ext-link-type="uri" xlink:href="https://github.com/precimed/mixer">https://github.com/precimed/mixer</ext-link>), BM location (simulation, training, and model) <italic>[made public upon acceptance]</italic>.</p>
+</sec>
+<fn-group>
+<fn/>
+</fn-group>
+<ref-list>
+<title>REFERENCES</title>
+</ref-list>
+<app-group>
+<app>
+<label>Appendix 1</label>
+</app>
+</app-group>
+</back>
+</article>

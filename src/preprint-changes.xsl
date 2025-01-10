@@ -1130,24 +1130,24 @@
     </xsl:template>
     
     <!-- Introduce id for top-level sections (with titles) that don't have them, so they appear in the TOC on EPP -->
-    <xsl:template match="(body|back)/sec[title and not(@id)]">
+    <xsl:template match="(body|back)/sec[title and not(@id) and not(matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing'))]">
         <xsl:copy>
             <xsl:attribute name="id">
                 <xsl:value-of select="generate-id(.)"/>
             </xsl:attribute>
-            <xsl:if test="not(@sec-type) and matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')">
-                <xsl:attribute name="sec-type">data-availability</xsl:attribute>
-            </xsl:if>
             <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
     </xsl:template>
     
     <!-- Add sec-type="data-availability" -->
-    <xsl:template xml:id="lower-level-sec-data-availability" match="sec[not(parent::back or parent::body) and not(@sec-type) and title and not(@id)]">
+    <xsl:template xml:id="sec-data-availability" match="sec[(not(@sec-type) or @sec-type='data-availability') and matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')]">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
-            <xsl:if test="matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')">
-                <xsl:attribute name="sec-type">data-availability</xsl:attribute>
+            <xsl:attribute name="sec-type">data-availability</xsl:attribute>
+            <xsl:if test="not(@id)">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="generate-id(.)"/>
+                </xsl:attribute>
             </xsl:if>
             <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
@@ -1308,6 +1308,111 @@
     <xsl:template match="list-item[label]" mode="list-item-without-label">
         <xsl:copy>
             <xsl:apply-templates select="*[name()!='label']|@*|text()|comment()|processing-instruction()"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- remove sec[@sec-type='supplementary-material'] from body - it is copied into back in the template below -->
+    <xsl:template match="body">
+        <xsl:copy>
+            <xsl:apply-templates select="*[not(name()='sec' and @sec-type='supplementary-material')]|text()|comment()|processing-instruction()"></xsl:apply-templates>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- Re-arrange back content -->
+    <xsl:template xml:id="rearrange-back" match="back">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <!-- This is a section containing presumably complex content, so let's keep it as a child of back and place it first -->
+            <xsl:if test="sec[not(matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')) and not(@sec-type='supplementary-material') and (sec or descendant::fig or descendant::table-wrap or descendant::supplementary-material or descendant::disp-formula or descendant::inline-formula or descendant::statement or descendant::code or descendant::preformat or descendant::ref-list)]">
+                <xsl:for-each select="sec[not(matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing'))  and not(@sec-type='supplementary-material') and (sec or descendant::fig or descendant::table-wrap or descendant::supplementary-material or descendant::disp-formula or descendant::inline-formula or descendant::statement or descendant::code or descendant::preformat or descendant::ref-list)]">
+                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:copy>
+                        <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                    </xsl:copy>
+                </xsl:for-each>
+            </xsl:if>
+            <!-- Ensure data availability is a top level section -->
+            <xsl:if test="sec[@sec-type='data-availability' or (matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing'))]">
+                <xsl:for-each select="sec[@sec-type='data-availability' or (matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing'))]">
+                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:apply-templates select="."/>
+                </xsl:for-each>
+            </xsl:if>
+            <!-- Copy the acknowledgements -->
+            <xsl:if test="ack">
+                <xsl:for-each select="ack">
+                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:copy>
+                        <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                    </xsl:copy>
+                </xsl:for-each>
+            </xsl:if>
+            <!-- Move (presumed) simple sections into an additional information section -->
+            <xsl:if test="sec[not(matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')) and (not(@sec-type='supplementary-material' or sec or descendant::fig or descendant::table-wrap or descendant::supplementary-material or descendant::disp-formula or descendant::inline-formula or descendant::statement or descendant::code or descendant::preformat or descendant::ref-list))]">
+                <xsl:text>&#xa;</xsl:text>
+                <xsl:element name="sec">
+                    <xsl:choose>
+                        <xsl:when test="@id">
+                            <xsl:apply-templates select="@id"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="id">
+                                <xsl:value-of select="generate-id(.)"/>
+                            </xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    <xsl:attribute name="sec-type">additional-information</xsl:attribute>
+                    <xsl:text>&#xa;</xsl:text>
+                    <title>Additional information</title>
+                    <xsl:for-each select="glossary|sec[not(matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')) and (not(@sec-type='supplementary-material' or sec or descendant::fig or descendant::table-wrap or descendant::supplementary-material or descendant::disp-formula or descendant::inline-formula or descendant::statement or descendant::code or descendant::preformat or descendant::ref-list))]">
+                        <xsl:text>&#xa;</xsl:text>
+                        <xsl:copy>
+                            <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                        </xsl:copy>
+                    </xsl:for-each>
+                    <xsl:text>&#xa;</xsl:text>
+                </xsl:element>
+            </xsl:if>
+            <!-- Rename 'Supplementary Information' to 'Additional files' -->
+            <xsl:if test="ancestor::article//sec[@sec-type='supplementary-material' and (parent::body or parent::back)]">
+                <xsl:text>&#xa;</xsl:text>
+                <xsl:element name="sec">
+                    <xsl:choose>
+                        <xsl:when test="preceding-sibling::body/sec[@sec-type='supplementary-material' and @id]">
+                            <xsl:apply-templates select="preceding-sibling::body/sec[@sec-type='supplementary-material'][1]/@id"/>
+                        </xsl:when>
+                        <xsl:when test="sec[@sec-type='supplementary-material' and @id]">
+                            <xsl:apply-templates select="sec[@sec-type='supplementary-material'][1]/@id"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="id">
+                                <xsl:value-of select="concat('supp',generate-id(.))"/>
+                            </xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    <xsl:attribute name="sec-type">supplementary-material</xsl:attribute>
+                    <xsl:text>&#xa;</xsl:text>
+                    <title>Additional files</title>
+                    <xsl:for-each select="preceding-sibling::body/sec[@sec-type='supplementary-material']/*[name()!='title']|./sec[@sec-type='supplementary-material']/*[name()!='title']">
+                        <xsl:text>&#xa;</xsl:text>
+                        <xsl:apply-templates select="."/>
+                    </xsl:for-each>
+                    <xsl:text>&#xa;</xsl:text>
+                </xsl:element>
+            </xsl:if>
+            <xsl:if test="ref-list">
+                <xsl:text>&#xa;</xsl:text>
+                <xsl:apply-templates select="ref-list"/>
+            </xsl:if>
+            <xsl:if test="app-group">
+                <xsl:text>&#xa;</xsl:text>
+                <xsl:apply-templates select="app-group"/>
+            </xsl:if>
+            <xsl:if test="fn-group|bio|notes">
+                <xsl:text>&#xa;</xsl:text>
+                <xsl:apply-templates select="fn-group|bio|notes"/>
+            </xsl:if>
+            <xsl:text>&#xa;</xsl:text>
         </xsl:copy>
     </xsl:template>
 
