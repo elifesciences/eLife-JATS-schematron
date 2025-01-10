@@ -814,6 +814,18 @@
         id="no-ref-list">This preprint has no reference list (as a child of back), which must be incorrect.</assert>
       </rule>
     </pattern>
+  
+  <pattern id="ack">
+      <rule context="ack" id="ack-tests">
+       <assert test="*[not(name()=('label','title'))]" 
+        role="error" 
+        id="ack-no-content">Acknowledgements doesn't contain any content. Should it be removed?</assert>
+        
+        <report test="preceding::ack" 
+        role="warning" 
+        id="ack-dupe">This ack element follows another one. Should there really be more than one Acknowledgements?</report>
+      </rule>
+    </pattern>
 
     <pattern id="strike">
      <rule context="strike" id="strike-checks">

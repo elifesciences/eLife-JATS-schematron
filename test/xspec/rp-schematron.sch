@@ -604,6 +604,14 @@
        <assert test="ref-list" role="error" id="no-ref-list">This preprint has no reference list (as a child of back), which must be incorrect.</assert>
       </rule>
   </pattern>
+  
+  <pattern id="ack-tests-pattern">
+    <rule context="ack" id="ack-tests">
+       <assert test="*[not(name()=('label','title'))]" role="error" id="ack-no-content">Acknowledgements doesn't contain any content. Should it be removed?</assert>
+        
+        <report test="preceding::ack" role="warning" id="ack-dupe">This ack element follows another one. Should there really be more than one Acknowledgements?</report>
+      </rule>
+  </pattern>
 
     <pattern id="strike-checks-pattern">
     <rule context="strike" id="strike-checks">
@@ -1651,6 +1659,7 @@
       <assert test="descendant::mixed-citation" role="error" id="mixed-citation-checks-xspec-assert">mixed-citation must be present.</assert>
       <assert test="descendant::mixed-citation/*" role="error" id="mixed-citation-child-checks-xspec-assert">mixed-citation/* must be present.</assert>
       <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
+      <assert test="descendant::ack" role="error" id="ack-tests-xspec-assert">ack must be present.</assert>
       <assert test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>
       <assert test="descendant::bold" role="error" id="bold-checks-xspec-assert">bold must be present.</assert>
       <assert test="descendant::fig" role="error" id="fig-checks-xspec-assert">fig must be present.</assert>
