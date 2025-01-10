@@ -1362,8 +1362,8 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
-      <report test="contains(.,'□')" role="error" id="junk-character-presence-3">
-        <name/> element contains a junk character '□' which should be replaced or deleted.</report>
+      <report test="contains(.,'□')" role="warning" id="junk-character-presence-3">
+        <name/> element contains a possible junk character '□'. Unless it's at the end of a mathematical proof, this should be replaced or deleted.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
