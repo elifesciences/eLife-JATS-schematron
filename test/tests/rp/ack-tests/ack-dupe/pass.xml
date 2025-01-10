@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="ack-dupe.sch"?>
+<!--Context: ack
+Test: report    preceding::ack
+Message: This ack element follows another one. Should there really be more than one Acknowledgements? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ack/>
+    </article>
+</root>

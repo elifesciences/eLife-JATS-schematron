@@ -1296,6 +1296,28 @@
         <x:expect-not-assert id="back-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="ack-tests">
+      <x:scenario label="ack-no-content-pass">
+        <x:context href="../tests/rp/ack-tests/ack-no-content/pass.xml"/>
+        <x:expect-not-assert id="ack-no-content" role="error"/>
+        <x:expect-not-assert id="ack-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ack-no-content-fail">
+        <x:context href="../tests/rp/ack-tests/ack-no-content/fail.xml"/>
+        <x:expect-assert id="ack-no-content" role="error"/>
+        <x:expect-not-assert id="ack-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ack-dupe-pass">
+        <x:context href="../tests/rp/ack-tests/ack-dupe/pass.xml"/>
+        <x:expect-not-report id="ack-dupe" role="warning"/>
+        <x:expect-not-assert id="ack-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ack-dupe-fail">
+        <x:context href="../tests/rp/ack-tests/ack-dupe/fail.xml"/>
+        <x:expect-report id="ack-dupe" role="warning"/>
+        <x:expect-not-assert id="ack-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="strike-checks">
       <x:scenario label="strike-warning-pass">
         <x:context href="../tests/rp/strike-checks/strike-warning/pass.xml"/>
