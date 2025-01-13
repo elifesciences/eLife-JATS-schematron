@@ -616,6 +616,38 @@
         <x:expect-not-assert id="aff-institution-id-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="aff-ror-tests">
+      <x:scenario label="aff-ror-pass">
+        <x:context href="../tests/rp/aff-ror-tests/aff-ror/pass.xml"/>
+        <x:expect-not-assert id="aff-ror" role="warning"/>
+        <x:expect-not-assert id="aff-ror-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-ror-fail">
+        <x:context href="../tests/rp/aff-ror-tests/aff-ror/fail.xml"/>
+        <x:expect-assert id="aff-ror" role="warning"/>
+        <x:expect-not-assert id="aff-ror-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-ror-city-pass">
+        <x:context href="../tests/rp/aff-ror-tests/aff-ror-city/pass.xml"/>
+        <x:expect-not-report id="aff-ror-city" role="warning"/>
+        <x:expect-not-assert id="aff-ror-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-ror-city-fail">
+        <x:context href="../tests/rp/aff-ror-tests/aff-ror-city/fail.xml"/>
+        <x:expect-report id="aff-ror-city" role="warning"/>
+        <x:expect-not-assert id="aff-ror-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-ror-country-pass">
+        <x:context href="../tests/rp/aff-ror-tests/aff-ror-country/pass.xml"/>
+        <x:expect-not-report id="aff-ror-country" role="warning"/>
+        <x:expect-not-assert id="aff-ror-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-ror-country-fail">
+        <x:context href="../tests/rp/aff-ror-tests/aff-ror-country/fail.xml"/>
+        <x:expect-report id="aff-ror-country" role="warning"/>
+        <x:expect-not-assert id="aff-ror-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="journal-ref-checks">
       <x:scenario label="journal-ref-source-pass">
         <x:context href="../tests/rp/journal-ref-checks/journal-ref-source/pass.xml"/>

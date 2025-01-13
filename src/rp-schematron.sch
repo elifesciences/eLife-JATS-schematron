@@ -301,6 +301,18 @@
       
       <report test="*" role="error" id="aff-institution-id-test-3">[aff-institution-id-test-3] institution-id in aff cannot contain elements, only text (which is a valid ROR id). This one contains the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
       
+    </rule></pattern><pattern id="aff-ror-tests-pattern"><rule context="aff[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" id="aff-ror-tests">
+      <let name="rors" value="'rors.xml'"/>
+      <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
+      <let name="matching-ror" value="document($rors)//*:ror[*:id=$ror]"/>
+      <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content','city','country'))],', ')"/>
+      
+      <assert test="exists($matching-ror)" role="warning" id="aff-ror">[aff-ror] Affiliation (<value-of select="$display"/>) has a ROR id - <value-of select="$ror"/> - but it does not look like a correct one.</assert>
+      
+      <report test="(city or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(city[1],$matching-ror/*:city))" role="warning" id="aff-ror-city">[aff-ror-city] Affiliation has a ROR id, but its city is not the same one as in the ROR data. Is that OK? ROR has '<value-of select="$matching-ror/*:city"/>', but the affiliation city is <value-of select="city[1]"/>.</report>
+      
+      <report test="(country or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(country[1],$matching-ror/*:country))" role="warning" id="aff-ror-country">[aff-ror-country] Affiliation has a ROR id, but its country is not the same one as in the ROR data. Is that OK? ROR has '<value-of select="$matching-ror/*:country"/>', but the affiliation country is <value-of select="country[1]"/>.</report>
+      
     </rule></pattern>
 
     <pattern id="journal-ref-checks-pattern"><rule context="mixed-citation[@publication-type='journal']" id="journal-ref-checks">

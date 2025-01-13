@@ -348,6 +348,21 @@
       
     </rule>
   </pattern>
+  <pattern id="aff-ror-tests-pattern">
+    <rule context="aff[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" id="aff-ror-tests">
+      <let name="rors" value="'rors.xml'"/>
+      <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
+      <let name="matching-ror" value="document($rors)//*:ror[*:id=$ror]"/>
+      <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content','city','country'))],', ')"/>
+      
+      <assert test="exists($matching-ror)" role="warning" id="aff-ror">Affiliation (<value-of select="$display"/>) has a ROR id - <value-of select="$ror"/> - but it does not look like a correct one.</assert>
+      
+      <report test="(city or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(city[1],$matching-ror/*:city))" role="warning" id="aff-ror-city">Affiliation has a ROR id, but its city is not the same one as in the ROR data. Is that OK? ROR has '<value-of select="$matching-ror/*:city"/>', but the affiliation city is <value-of select="city[1]"/>.</report>
+      
+      <report test="(country or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(country[1],$matching-ror/*:country))" role="warning" id="aff-ror-country">Affiliation has a ROR id, but its country is not the same one as in the ROR data. Is that OK? ROR has '<value-of select="$matching-ror/*:country"/>', but the affiliation country is <value-of select="country[1]"/>.</report>
+      
+    </rule>
+  </pattern>
 
     <pattern id="journal-ref-checks-pattern">
     <rule context="mixed-citation[@publication-type='journal']" id="journal-ref-checks">
@@ -1634,6 +1649,7 @@
       <assert test="descendant::aff" role="error" id="affiliation-checks-xspec-assert">aff must be present.</assert>
       <assert test="descendant::aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap" role="error" id="aff-institution-wrap-tests-xspec-assert">aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap must be present.</assert>
       <assert test="descendant::aff//institution-id" role="error" id="aff-institution-id-tests-xspec-assert">aff//institution-id must be present.</assert>
+      <assert test="descendant::aff[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" role="error" id="aff-ror-tests-xspec-assert">aff[count(institution-wrap/institution-id[@institution-id-type='ror'])=1] must be present.</assert>
       <assert test="descendant::mixed-citation[@publication-type='journal']" role="error" id="journal-ref-checks-xspec-assert">mixed-citation[@publication-type='journal'] must be present.</assert>
       <assert test="descendant::mixed-citation[@publication-type='journal']/source" role="error" id="journal-source-checks-xspec-assert">mixed-citation[@publication-type='journal']/source must be present.</assert>
       <assert test="descendant::mixed-citation[@publication-type='preprint']" role="error" id="preprint-ref-checks-xspec-assert">mixed-citation[@publication-type='preprint'] must be present.</assert>
