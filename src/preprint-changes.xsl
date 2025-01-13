@@ -758,7 +758,7 @@
             'fundings?( sources)?',
             'key\s?words?',
             '(supplementa(ry|l)|additional) (informations?|files?|figures?|tables?|materials?|videos?)',
-            '(data|resource|code|software|materials?)( and (data|resource|code|software|materials?))? (avail(a|i)bi?li?ty|accessibi?li?ty)( statement)?',
+            '(data|resource|code|software|materials?)(( and |\s?/\s?)(data|resource|code|software|materials?))? (avail(a|i)bi?li?ty|accessibi?li?ty)( statement)?',
             'summary|highlights?|teaser',
             '(impact|significance|competing interests?|(conflicts?|declarations?) (of interests?|disclosures?))\s?(statements?)?',
             '(article( and| &amp;)?)?(authors?’? )?(contributions?|details?|information)',
