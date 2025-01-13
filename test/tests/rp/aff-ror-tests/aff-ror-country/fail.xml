@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="aff-ror-country.sch"?>
+<!--Context: aff[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]
+Test: report    (country or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(country[1],$matching-ror/*:country))
+Message: Affiliation has a ROR id, but its country is not the same one as in the ROR data. Is that OK? ROR has '', but the affiliation country is . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <aff>
+            <label>1</label>
+            <institution-wrap>
+                <institution-id institution-id-type="ror">https://ror.org/04rjz5883</institution-id>
+                <institution>eLife</institution>
+            </institution-wrap>
+            <city>Cambridge</city>
+            <country>United States</country>
+        </aff>
+    </article>
+</root>
