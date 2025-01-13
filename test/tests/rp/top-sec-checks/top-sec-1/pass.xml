@@ -1,0 +1,30 @@
+<?oxygen SCHSchema="top-sec-1.sch"?>
+<!--Context: sec[(parent::body or parent::back) and title]
+Test: report    parent::body and not(matches(lower-case(title[1]),$sec-regex)) and preceding-sibling::sec/title[1][matches(lower-case(.),$methods-regex)]
+Message: Section with the title '' is a child of body. Should it be a child of another section (e.g. methods) or placed within back (perhaps within an 'Additional infomation' section)? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <body>
+            <sec>
+                <label>1</label>
+                <title>Introduction</title>
+            </sec>
+            <sec>
+                <label>2</label>
+                <title>Results</title>
+            </sec>
+            <sec>
+                <label>3</label>
+                <title>Discussion</title>
+            </sec>
+            <sec>
+                <label>4</label>
+                <title>Materials &amp; methods</title>
+                <sec>
+                    <label>4.1</label>
+                    <title>Gene expression</title>
+                </sec>
+            </sec>
+        </body>
+    </article>
+</root>

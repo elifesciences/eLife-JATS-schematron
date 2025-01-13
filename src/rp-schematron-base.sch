@@ -1107,6 +1107,24 @@
           role="warning" 
           id="sec-data-availability">sec has the sec-type 'data-availability', but there is one or more other secs with this same sec-type. Are they duplicates?</report>
      </rule>
+      
+      <rule context="sec[(parent::body or parent::back) and title]" id="top-sec-checks">
+        <let name="top-sec-phrases" value="('(results?|conclusions?)( (and|&amp;) discussion)?',
+            'discussion( (and|&amp;) (results?|conclusions?))?')"/>
+        <let name="methods-phrases" value="('(materials? (and|&amp;)|experimental)?\s?methods?( details?|summary|(and|&amp;) materials?)?',
+            '(supplement(al|ary)? )?materials( (and|&amp;) correspondence)?',
+            '(model|methods?)(( and| &amp;) (results|materials?))?')"/>
+        <let name="methods-regex" value="concat('^(',string-join($methods-phrases,'|'),')$')"/>
+        <let name="sec-regex" value="concat('^(',string-join(($top-sec-phrases,$methods-phrases),'|'),')$')"/>
+               
+        <report test="parent::body and not(matches(lower-case(title[1]),$sec-regex)) and preceding-sibling::sec/title[1][matches(lower-case(.),$methods-regex)]" 
+          role="warning" 
+          id="top-sec-1">Section with the title '<value-of select="title[1]"/>' is a child of body. Should it be a child of another section (e.g. methods) or placed within back (perhaps within an 'Additional infomation' section)?</report>
+        
+        <report test="matches(label[1],'\d+\.\s?\d')" 
+          role="warning" 
+          id="top-sec-2">Section that is placed as a child of <value-of select="parent::*/name()"/> has a label which suggests it should be a subsection: <value-of select="label[1]"/>.</report>
+      </rule>
     </pattern>
 
     <pattern id="title">
