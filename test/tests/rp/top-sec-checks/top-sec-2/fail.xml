@@ -1,0 +1,30 @@
+<?oxygen SCHSchema="top-sec-2.sch"?>
+<!--Context: sec[(parent::body or parent::back) and title]
+Test: report    matches(label[1],'\d+\.\s?\d')
+Message: Section that is placed as a child of  has a label which suggests it should be a subsection: . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <body>
+            <sec>
+                <label>1</label>
+                <title>Introduction</title>
+            </sec>
+            <sec>
+                <label>2</label>
+                <title>Results</title>
+            </sec>
+            <sec>
+                <label>3</label>
+                <title>Discussion</title>
+            </sec>
+            <sec>
+                <label>4</label>
+                <title>Materials &amp; methods</title>
+            </sec>
+            <sec>
+                <label>4.1</label>
+                <title>Gene expression</title>
+            </sec>
+        </body>
+    </article>
+</root>
