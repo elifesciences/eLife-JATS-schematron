@@ -1,7 +1,7 @@
-<?oxygen SCHSchema="final-biorxiv-test-2.sch"?>
+<?oxygen SCHSchema="biorxiv-test-2.sch"?>
 <!--Context: element-citation[@publication-type='preprint']/source
 Test: report    matches($lc,'biorxiv') and not(starts-with(parent::element-citation/pub-id[@pub-id-type='doi'][1],'10.1101/'))
-Message: ref '' is captured as a  preprint, but it does not have a doi starting with the bioRxiv prefix, '10.1101/'. . -->
+Message: ref '' is captured as a  preprint, but it does not have a doi starting with the bioRxiv prefix, '10.1101/'. . Please check with eLife. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <ref id="bib22">
