@@ -1139,6 +1139,16 @@
         </xsl:copy>
     </xsl:template>
     
+    <!-- Introduce id for supplementary-material -->
+    <xsl:template match="supplementary-material[not(@id)]">
+        <xsl:copy>
+            <xsl:attribute name="id">
+                <xsl:value-of select="generate-id(.)"/>
+            </xsl:attribute>
+            <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+        </xsl:copy>
+    </xsl:template>
+    
     <!-- Add sec-type="data-availability" -->
     <xsl:template xml:id="sec-data-availability" match="sec[(not(@sec-type) or @sec-type='data-availability') and matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')]">
         <xsl:copy>
