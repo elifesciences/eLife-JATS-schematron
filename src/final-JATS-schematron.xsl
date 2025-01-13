@@ -37706,22 +37706,21 @@
                <xsl:text/>, which is not the correct proprietary capitalisation - 'bioRxiv'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <!--REPORT error-->
+      <!--REPORT warning-->
       <xsl:if test="matches($lc,'biorxiv') and not(starts-with(parent::element-citation/pub-id[@pub-id-type='doi'][1],'10.1101/'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'biorxiv') and not(starts-with(parent::element-citation/pub-id[@pub-id-type='doi'][1],'10.1101/'))">
-            <xsl:attribute name="id">final-biorxiv-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#biorxiv-test-2</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="id">biorxiv-test-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[final-biorxiv-test-2] ref '<xsl:text/>
+            <svrl:text>[biorxiv-test-2] ref '<xsl:text/>
                <xsl:value-of select="ancestor::ref/@id"/>
                <xsl:text/>' is captured as a <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/> preprint, but it does not have a doi starting with the bioRxiv prefix, '10.1101/'. <xsl:text/>
                <xsl:value-of select="if (parent::element-citation/pub-id[@pub-id-type='doi']) then concat('The doi does not point to bioRxiv - https://doi.org/',parent::element-citation/pub-id[@pub-id-type='doi'][1]) else 'The doi is missing'"/>
-               <xsl:text/>.</svrl:text>
+               <xsl:text/>. Please check with eLife.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
