@@ -10872,9 +10872,9 @@
       </xsl:choose>
       <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="@source-id"/>
+         <xsl:when test="@source-id!=''"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@source-id">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@source-id!=''">
                <xsl:attribute name="id">clintrial-related-object-3</xsl:attribute>
                <xsl:attribute name="see">https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-3</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
@@ -10883,7 +10883,7 @@
                </xsl:attribute>
                <svrl:text>[clintrial-related-object-3] <xsl:text/>
                   <xsl:value-of select="name(.)"/>
-                  <xsl:text/> must have an @source-id.</svrl:text>
+                  <xsl:text/> must have an @source-id with a non-empty value.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>

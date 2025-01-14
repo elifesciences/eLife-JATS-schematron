@@ -2564,8 +2564,8 @@
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-2" test="@source-type='clinical-trials-registry'" role="error" id="clintrial-related-object-2">
         <name/> must have an @source-type='clinical-trials-registry'.</assert>
       
-      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-3" test="@source-id" role="error" id="clintrial-related-object-3">
-        <name/> must have an @source-id.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-3" test="@source-id!=''" role="error" id="clintrial-related-object-3">
+        <name/> must have an @source-id with a non-empty value.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-4" test="@source-id-type='registry-name'" role="error" id="clintrial-related-object-4">
         <name/> must have an @source-id-type='registry-name'.</assert>

@@ -719,6 +719,12 @@
         <report test="@fn-type=('abbr','con','coi-statement','financial-disclosure','presented-at','supported-by') and (ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)" role="warning" id="author-fn-4">[author-fn-4] <value-of select="@fn-type"/> type footnote (id=<value-of select="$id"/>) in author-notes usually contains content that relates to all authors instead of a subset. This one however is linked to from <value-of select="ancestor::article-meta//contrib[@contrib-type='author'][xref/@rid = $id]"/> author(s) (<value-of select="string-join(for $x in ancestor::article-meta//contrib[@contrib-type='author'][xref/@rid = $id] return e:get-name($x/name[1]),'; ')"/>). "<value-of select="."/>"</report>
         
         <report test="@fn-type and not(@fn-type=$known-types)" role="warning" id="author-fn-5">[author-fn-5] footnote with id <value-of select="$id"/> has the fn-type '<value-of select="@fn-type"/>' which is not one of the known values (<value-of select="string-join($known-types,'; ')"/>). Should it be changed to be one of the values? "<value-of select="."/>"</report>
+        
+        <report test="@fn-type=('abbr','con','coi-statement','financial-disclosure','presented-at','supported-by') and @fn-type = preceding-sibling::fn/@fn-type" role="warning" id="author-fn-6">[author-fn-6] footnote with id <value-of select="$id"/> has the fn-type '<value-of select="@fn-type"/>', but there's another footnote with that same type. Are two separate notes necessary? Are they duplicates?</report>
+        
+        <report test="@fn-type='coi-statement' and preceding-sibling::fn[@fn-type='financial-disclosure']" role="warning" id="author-fn-7">[author-fn-7] footnote with id <value-of select="$id"/> has the fn-type '<value-of select="@fn-type"/>', but there's another footnote with the type 'financial-disclosure'. Are two separate notes necessary? Are they duplicates?</report>
+        
+        <report test="@fn-type='financial-disclosure' and preceding-sibling::fn[@fn-type='coi-statement']" role="warning" id="author-fn-8">[author-fn-8] footnote with id <value-of select="$id"/> has the fn-type '<value-of select="@fn-type"/>', but there's another footnote with the type 'coi-statement'. Are two separate notes necessary? Are they duplicates?</report>
      </rule></pattern><pattern id="article-version-checks-pattern"><rule context="article/front/article-meta//article-version" id="article-version-checks">
         
         <report test="parent::article-meta and not(@article-version-type) and not(matches(.,'^1\.\d+$'))" role="error" id="article-version-2">[article-version-2] article-version must be in the format 1.x (e.g. 1.11). This one is '<value-of select="."/>'.</report>
@@ -980,6 +986,45 @@
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-7" test="matches(caption[1],'[Mm]odified [Ww]ith')" role="warning" id="reproduce-test-7">[reproduce-test-7] The caption for <value-of select="$label"/> contains the text 'modified with', but has no permissions. Is this correct?</report>
       
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-8" test="matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-8">[reproduce-test-8] The caption for <value-of select="$label"/> contains the text 'used with permission', but has no permissions. Is this correct?</report>
+    </rule></pattern>
+  
+  <pattern id="clintrial-related-object-pattern"><rule context="related-object[@content-type or @document-id]" id="clintrial-related-object">
+      <let name="registries" value="'clinical-trial-registries.xml'"/>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-2" test="@source-type='clinical-trials-registry'" role="error" id="clintrial-related-object-2">[clintrial-related-object-2] <name/> must have an @source-type='clinical-trials-registry'.</assert>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-3" test="@source-id!=''" role="error" id="clintrial-related-object-3">[clintrial-related-object-3] <name/> must have an @source-id with a non-empty value.</assert>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-4" test="@source-id-type='registry-name'" role="error" id="clintrial-related-object-4">[clintrial-related-object-4] <name/> must have an @source-id-type='registry-name'.</assert>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-5" test="@document-id-type='clinical-trial-number'" role="error" id="clintrial-related-object-5">[clintrial-related-object-5] <name/> must have an @document-id-type='clinical-trial-number'.</assert>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-6" test="@document-id[not(matches(.,'\p{Zs}'))]" role="error" id="clintrial-related-object-6">[clintrial-related-object-6] <name/> must have an @document-id with a value that does not contain a space character.</assert>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-7" test="@xlink:href[not(matches(.,'\p{Zs}'))]" role="error" id="clintrial-related-object-7">[clintrial-related-object-7] <name/> must have an @xlink:href with a value that does not contain a space character.</assert>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-8" test="contains(.,@document-id/string())" role="warning" id="clintrial-related-object-8">[clintrial-related-object-8] <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not in the text, which is likely incorrect - <value-of select="."/>.</assert>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-11" test="some $x in document($registries)/registries/registry satisfies ($x/subtitle/string()=@source-id)" role="error" id="clintrial-related-object-11">[clintrial-related-object-11] <name/> @source-id value must be one of the subtitles of the Crossref clinical trial registries. "<value-of select="@source-id"/>" is not one of the following <value-of select="string-join(for $x in document($registries)/registries/registry return concat('&quot;',$x/subtitle/string(),'&quot; (',$x/doi/string(),')'),', ')"/></assert>
+      
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-12" test="@source-id='ClinicalTrials.gov' and @xlink:href!=concat('https://clinicaltrials.gov/show/',@document-id)" role="error" id="clintrial-related-object-12">[clintrial-related-object-12] ClinicalTrials.gov trial links are in the format https://clinicaltrials.gov/show/{number}. This <name/> has the link '<value-of select="@xlink:href"/>', which based on the clinical trial registry (<value-of select="@source-id"/>) and @document-id (<value-of select="@document-id"/>) is not right. Either the xlink:href is wrong (should it be <value-of select="concat('https://clinicaltrials.gov/show/',@document-id)"/> instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these).</report>
+
+      <report test="ends-with(@xlink:href,'.')" role="error" id="clintrial-related-object-14">[clintrial-related-object-14] <name/> has a @xlink:href attribute value which ends with a full stop, which is not correct - '<value-of select="@xlink:href"/>'.</report>
+      
+      <assert test="@xlink:href!=''" role="error" id="clintrial-related-object-17">[clintrial-related-object-17] <name/> must have an @xlink:href attribute with a non-empty value. This one does not.</assert>
+
+      <report test="ends-with(@document-id,'.')" role="error" id="clintrial-related-object-15">[clintrial-related-object-15] <name/> has an @document-id attribute value which ends with a full stop, which is not correct - '<value-of select="@document-id"/>'.</report>
+
+      <report test="ends-with(.,'.')" role="error" id="clintrial-related-object-16">[clintrial-related-object-16] Content within <name/> element ends with a full stop, which is not correct - '<value-of select="."/>'.</report>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-3" test="@content-type=('pre-results','results','post-results')" role="error" id="clintrial-related-object-18">[clintrial-related-object-18] <name/> must have a content-type attribute with one of the following values: pre-results, results, or post-results.</assert>
+      
+      <assert test="ancestor::abstract or parent::article-meta" role="error" id="clintrial-related-object-parent-1">[clintrial-related-object-parent-1] <name/> element must either be a descendant of abstract or a child or article-meta. This one is not.</assert>
+      
+      <report test="ancestor::abstract and not(parent::p/parent::sec/parent::abstract)" role="error" id="clintrial-related-object-parent-2">[clintrial-related-object-parent-2] If <name/> is a descendant of abstract, then it must be placed within a p element that is part of a subsection (i.e. it must be within a structured abstract). This one is not.</report>
+      
+      <report test="ancestor::abstract[sec] and not(parent::p/parent::sec/title[matches(lower-case(.),'clinical trial')])" role="warning" id="clintrial-related-object-parent-3">[clintrial-related-object-parent-3] <name/> is a descendant of (a sturctured) abstract, but it's not within a section that has a title indicating it's a clinical trial number. Is that right?</report>
+      
     </rule></pattern>
 
     <pattern id="digest-title-checks-pattern"><rule context="title" id="digest-title-checks">
