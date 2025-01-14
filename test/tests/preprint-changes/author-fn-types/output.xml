@@ -9,7 +9,8 @@
 <fn id="fn7" fn-type="author"><p/></fn>
 <fn id="fn8" fn-type="present-address"><p>Present address: </p></fn>
 <fn id="fn9" fn-type="label"><p/></fn>
-</author-notes><custom-meta-group>
+</author-notes>
+<custom-meta-group>
 <custom-meta specific-use="meta-only">
 <meta-name>publishing-route</meta-name>
 <meta-value>prc</meta-value>

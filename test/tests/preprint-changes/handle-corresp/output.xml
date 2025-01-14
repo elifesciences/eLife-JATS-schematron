@@ -1,5 +1,6 @@
 <!--Testing template with id: handle-corresp-->
-<article-meta xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article-version article-version-type="publication-state">reviewed preprint</article-version>
+<article-meta xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<article-version article-version-type="publication-state">reviewed preprint</article-version>
 <contrib-group>
 <contrib contrib-type="author">
 <contrib-id contrib-id-type="orcid">http://orcid.org/0000-0001-9907-295X</contrib-id>
@@ -64,7 +65,8 @@
 <fn id="n1" fn-type="present-address"><label>1</label><p>Present address: Amsterdam Institute for Molecular and Life Sciences, Department of Medicinal Chemistry, Faculty of Science, Vrije Universiteit Amsterdam, 1081 HV Amsterdam, Netherlands</p></fn>
 <fn id="n2" fn-type="present-address"><label>2</label><p>Present address: LUMICKS, 1105 AG Amsterdam, Netherlands</p></fn>
 <fn id="n3" fn-type="present-address"><label>3</label><p>Present address: Department of Biomedical Sciences, Faculty of Health and Medical Sciences, University of Copenhagen, 2200 Copenhagen, Denmark</p></fn>
-</author-notes><custom-meta-group>
+</author-notes>
+<custom-meta-group>
 <custom-meta specific-use="meta-only">
 <meta-name>publishing-route</meta-name>
 <meta-value>prc</meta-value>

@@ -175,9 +175,10 @@
     
     <!-- Changes to article-meta: 
             - Introduce flag to distinguish between reviewed-preprint and VOR XML
-            - If there are front//notes that should be in author-notes, and no extant author-notes, then add one in 
+            - If there are front//notes that should be in author-notes, and no extant author-notes, then add author-notes in
+            - Add clinical trial number(s) from notes as related-object 
     -->
-    <xsl:template xml:id="add-article-version" mode="article-meta-round-1" match="article-meta">
+    <xsl:template xml:id="article-meta-changes" mode="article-meta-round-1" match="article-meta">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:text>&#xa;</xsl:text>
@@ -307,6 +308,7 @@
             <xsl:apply-templates select="conference|conference/following-sibling::text()[1]"/>
             <xsl:apply-templates select="counts|counts/following-sibling::text()[1]"/>
             <xsl:element name="custom-meta-group">
+                <xsl:text>&#xa;</xsl:text>
                 <xsl:if test="custom-meta-group">
                     <xsl:for-each select="./custom-meta-group/custom-meta|./custom-meta-group/text()[not(position()=1 and .='&#xa;')]">
                         <xsl:apply-templates select="."/>
@@ -735,7 +737,6 @@
             <xsl:apply-templates select="@*|*|text()|processing-instruction()|comment()"/>
             <!-- Ignore clinical trial type notes - these are handled separately -->
             <xsl:for-each select="ancestor::article/front//notes[not(fn-group) and not(contains(@notes-type,'clinical'))]">
-                <xsl:text>&#xa;</xsl:text>
                 <xsl:element name="fn">
                     <xsl:attribute name="fn-type">coi-statement</xsl:attribute>
                     <xsl:element name="p">
@@ -752,13 +753,13 @@
                         </xsl:choose>
                     </xsl:element>
                 </xsl:element>
+                <xsl:text>&#xa;</xsl:text>
             </xsl:for-each>
-            <xsl:text>&#xa;</xsl:text>
         </xsl:copy>
     </xsl:template>
     
     <!-- Determine what to do with remaining notes after templates have run -->
-    <xsl:template xml:id="author-notes-notes-handling" match="article/front/notes">
+    <xsl:template xml:id="notes-handling" match="article/front/notes">
         <xsl:choose>
             <xsl:when test="not(@notes-type) and not(notes)">
                 <xsl:copy>

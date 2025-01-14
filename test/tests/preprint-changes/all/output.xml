@@ -12,23 +12,25 @@
 <publisher-name>eLife Sciences Publications, Ltd</publisher-name>
 </publisher>
 </journal-meta>
-<article-meta><article-version article-version-type="publication-state">reviewed preprint</article-version>
+<article-meta>
+<article-version article-version-type="publication-state">reviewed preprint</article-version>
 <title-group>
-<article-title />
-</title-group><contrib-group>
+<article-title/>
+</title-group>
+<contrib-group>
 <contrib contrib-type="author" corresp="yes">
 <name>
 <surname>Claus</surname>
 <given-names>Santa</given-names>
 </name>
-<xref ref-type="aff" rid="aff1" /><email>s.claus@north.pole</email>
+<xref ref-type="aff" rid="aff1"/><email>s.claus@north.pole</email>
 </contrib>
 <contrib contrib-type="author">
 <name>
 <surname>Elf</surname>
 <given-names>Top</given-names>
 </name>
-<xref ref-type="aff" rid="aff1" /></contrib>
+<xref ref-type="aff" rid="aff1"/></contrib>
 <aff id="aff1"><institution>North Pole Enterprises LLC</institution></aff>
 </contrib-group>
 <contrib-group content-type="section">
@@ -66,14 +68,18 @@
 <fn id="n2" fn-type="present-address"><label>‡</label><p><bold>Present address</bold>: Department of Biochemistry, University of Zurich, Winterthurerstr. 190, CH-8057 Zurich, Switzerland</p></fn>
 <fn id="n3" fn-type="present-address"><label>§</label><p>Present address: Massachusetts <italic>Institute</italic> of <bold>Technology</bold>, Picower Institute for Learning and Memory, 43 Vassar St, Cambridge, MA 02139, United States</p></fn>
 <fn id="n4" fn-type="present-address"><label>¶</label><p>Present address: Vertex Pharmaceuticals, 50 Northern Avenue, Boston, Mass. 02210, United States</p></fn>
-</author-notes><permissions>
+<fn fn-type="coi-statement"><p>Competing Interest Statement: The authors have declared no competing interest.</p></fn>
+</author-notes>
+<permissions>
 <ali:free_to_read/>
 <license xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">
 <ali:license_ref>http://creativecommons.org/publicdomain/zero/1.0/</ali:license_ref>
 <license-p>This is an open-access article, free of all copyright, and may be freely reproduced, distributed, transmitted, modified, built upon, or otherwise used by anyone for any lawful purpose. The work is made available under the
 <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons CC0 public domain dedication</ext-link>.</license-p>
 </license>
-</permissions><abstract>
+</permissions>
+<related-object content-type="" source-id="" source-id-type="registry-name" source-type="clinical-trial-registry" document-id="" document-id-type="clinical-trial-number" xlink:href="">DRKS00021419</related-object>
+<abstract>
 <p>This is the abstract</p>
 </abstract>
 <abstract abstract-type="teaser">
@@ -85,18 +91,25 @@
 <p>A plain language summary</p>
 </abstract>
 <abstract abstract-type="graphical">
-<fig />
-</abstract><custom-meta-group>
+<fig/>
+</abstract>
+...
+<custom-meta-group>
 <custom-meta specific-use="meta-only">
 <meta-name>publishing-route</meta-name>
 <meta-value>prc</meta-value>
 </custom-meta>
 </custom-meta-group>
 </article-meta>
-        ...
+<notes>
+<fn-group content-type="summary-of-updates">
+<title>Summary of Updates:</title>
+<fn fn-type="update"><p>Revisions for this version were made in response to peer review at eLife (96002v1).</p></fn>
+</fn-group>
+</notes>
 </front>
 <body>
-<sec id="d13e178">
+<sec id="d13e199">
 <title>Introduction</title>
 </sec>
 <sec id="s2">
@@ -133,7 +146,7 @@
 <title>Something else</title>
 <p>...</p>
 </ack>
-<sec id="d13e224" sec-type="additional-information">
+<sec id="d13e245" sec-type="additional-information">
 <title>Additional information</title>
 <sec id="s5">
 <title>Funding</title>
@@ -158,9 +171,9 @@
 <p>All code and software needed to generate the results is available as part of public resources: LD score regression (<ext-link ext-link-type="uri" xlink:href="https://github.com/bulik/ldsc">https://github.com/bulik/ldsc</ext-link>), FUMA (<ext-link ext-link-type="uri" xlink:href="https://fuma.ctglab.nl/">https://fuma.ctglab.nl/</ext-link>), MiXeR (<ext-link ext-link-type="uri" xlink:href="https://github.com/precimed/mixer">https://github.com/precimed/mixer</ext-link>), BM location (simulation, training, and model) <italic>[made public upon acceptance]</italic>.</p>
 </sec>
 </sec>
-<sec id="suppd13e224" sec-type="supplementary-material">
+<sec id="suppd13e245" sec-type="supplementary-material">
 <title>Additional files</title>
-<supplementary-material id="d13e215">
+<supplementary-material id="d13e236">
 <label>Supplementary materials</label>
 <media xlink:href="supplements/278950_file02.docx"/>
 </supplementary-material>
