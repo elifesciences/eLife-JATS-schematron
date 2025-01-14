@@ -26,7 +26,7 @@ Message:  must have an @document-id with a value that does not contain a space c
           </sec>
           <sec id="abs6">
             <title>Clinical trial number:</title>
-            <p><related-object id="RO1" source-type="clinical-trials-registry" source-id="ClinicalTrials.gov" source-id-type="registry-name" document-id-type="clinical-trial-number" xlink:href="https://clinicaltrials.gov/show/NCT02968459">NCT02968459.</related-object></p>
+            <p><related-object id="RO1" content-type="" source-type="clinical-trials-registry" source-id="ClinicalTrials.gov" source-id-type="registry-name" document-id-type="clinical-trial-number" xlink:href="https://clinicaltrials.gov/show/NCT02968459">NCT02968459.</related-object></p>
           </sec>
         </abstract>
       </article-meta>
