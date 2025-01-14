@@ -1,0 +1,119 @@
+<!--Testing template with id: article-meta-changes-->
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" article-type="research-article" dtd-version="1.3">
+<front>
+<article-meta>
+<article-id pub-id-type="publisher-id">00001</article-id>
+<article-id pub-id-type="doi">10.7554/eLife.00001</article-id>
+<article-id pub-id-type="doi" specific-use="version">10.7554/eLife.00001.2</article-id>
+<article-version-alternatives>
+<article-version article-version-type="publication-state">reviewed preprint</article-version>
+<article-version article-version-type="preprint-version">1.3</article-version>
+</article-version-alternatives><title-group>
+<article-title>Input-specific gating of NMDA amplification via HCN channels in mouse L2/3 pyramidal neurons</article-title>
+</title-group>
+<contrib-group>
+<contrib contrib-type="author" corresp="yes">
+<name><surname>Claus</surname><given-names>S</given-names></name>
+<xref ref-type="aff" rid="a1">1</xref>
+<email>claus.s@north-pole.ac.uk</email>
+</contrib>
+<aff id="a1"><label>1</label><institution>Department of Cell Biology, Emory University School of Medicine</institution>, Atlanta, GA, 30322, <country>USA</country></aff>
+</contrib-group>
+<contrib-group content-type="section">
+<contrib contrib-type="editor">
+<name>
+<surname>Scharfman</surname>
+<given-names>Helen E</given-names>
+</name>
+<role>Reviewing Editor</role>
+<aff>
+<institution-wrap>
+<institution>Nathan Kline Institute</institution>
+</institution-wrap>
+<city>Orangeburg</city>
+<country>United States of America</country>
+</aff>
+</contrib>
+<contrib contrib-type="senior_editor">
+<name>
+<surname>Poirazi</surname>
+<given-names>Panayiota</given-names>
+</name>
+<role>Senior Editor</role>
+<aff>
+<institution-wrap>
+<institution>FORTH Institute of Molecular Biology and Biotechnology</institution>
+</institution-wrap>
+<city>Heraklion</city>
+<country>Greece</country>
+</aff>
+</contrib>
+</contrib-group>
+<author-notes>
+<fn fn-type="coi-statement"><p>Competing Interest Statement: The authors have declared no competing interest.</p></fn>
+</author-notes>
+<pub-date pub-type="epub"><year>2024</year></pub-date>
+<volume>13</volume>
+<elocation-id>RP00001</elocation-id>
+<history>
+<date date-type="sent-for-review" iso-8601-date="2024-01-15">
+<day>15</day>
+<month>01</month>
+<year>2024</year>
+</date>
+</history>
+<pub-history>
+<event>
+<event-desc>Preprint posted</event-desc>
+<date date-type="preprint" iso-8601-date="2023-09-26">
+<day>26</day>
+<month>09</month>
+<year>2023</year>
+</date>
+<self-uri content-type="preprint" xlink:href="https://doi.org/10.1101/2023.09.25.559198"/>
+</event>
+<event>
+<event-desc>Reviewed preprint v1</event-desc>
+<date date-type="reviewed-preprint" iso-8601-date="2024-04-03">
+<day>03</day>
+<month>04</month>
+<year>2024</year>
+</date>
+<self-uri content-type="reviewed-preprint" xlink:href="https://doi.org/10.7554/eLife.00001.1"/>
+<self-uri content-type="editor-report" xlink:href="https://doi.org/10.7554/eLife.00001.1.sa3">eLife assessment</self-uri>
+<self-uri content-type="referee-report" xlink:href="https://doi.org/10.7554/eLife.00001.1.sa2">Reviewer #1 (Public Review):</self-uri>
+<self-uri content-type="referee-report" xlink:href="https://doi.org/10.7554/eLife.00001.1.sa1">Reviewer #2 (Public Review):</self-uri>
+<self-uri content-type="referee-report" xlink:href="https://doi.org/10.7554/eLife.00001.1.sa0">Reviewer #3 (Public Review):</self-uri>
+<self-uri content-type="author-comment" xlink:href="https://doi.org/10.7554/eLife.00001.1.sa4">Author Response</self-uri>
+</event>
+</pub-history>
+<permissions>
+<copyright-statement>© 2024, Claus et al</copyright-statement>
+<copyright-year>2024</copyright-year>
+<copyright-holder>Claus et al</copyright-holder>
+<ali:free_to_read/>
+<license xlink:href="https://creativecommons.org/licenses/by/4.0/">
+<ali:license_ref>https://creativecommons.org/licenses/by/4.0/</ali:license_ref>
+<license-p>This article is distributed under the terms of the <ext-link ext-link-type="uri" xlink:href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License</ext-link>, which permits unrestricted use and redistribution provided that the original author and source are credited.</license-p>
+</license>
+</permissions>
+<related-object content-type="" source-id="" source-id-type="registry-name" source-type="clinical-trial-registry" document-id="" document-id-type="clinical-trial-number" xlink:href="">DRKS00021419</related-object>
+<abstract>
+<title>Abstract</title><p>...</p>
+</abstract>
+
+<custom-meta-group>
+<custom-meta specific-use="meta-only">
+<meta-name>publishing-route</meta-name>
+<meta-value>prc</meta-value>
+</custom-meta>
+</custom-meta-group>
+</article-meta>
+<notes>
+<fn-group content-type="summary-of-updates">
+<title>Summary of Updates:</title>
+<fn fn-type="update"><p>Revisions for this version were made in response to peer review at eLife (96002v1).</p></fn>
+</fn-group>
+</notes>
+</front>
+</article>

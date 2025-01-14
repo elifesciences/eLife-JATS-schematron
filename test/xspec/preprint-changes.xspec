@@ -16,9 +16,9 @@
       <x:context href="../tests/preprint-changes/journal-meta/input.xml"/>
       <x:expect label="Testing the template: journal-meta" href="../tests/preprint-changes/journal-meta/output.xml"/>
     </x:scenario>
-    <x:scenario label="add-article-version">
-      <x:context href="../tests/preprint-changes/add-article-version/input.xml"/>
-      <x:expect label="Testing the template: add-article-version" href="../tests/preprint-changes/add-article-version/output.xml"/>
+    <x:scenario label="article-meta-changes">
+      <x:context href="../tests/preprint-changes/article-meta-changes/input.xml"/>
+      <x:expect label="Testing the template: article-meta-changes" href="../tests/preprint-changes/article-meta-changes/output.xml"/>
     </x:scenario>
     <x:scenario label="handle-corresp">
       <x:context href="../tests/preprint-changes/handle-corresp/input.xml"/>
@@ -39,6 +39,14 @@
     <x:scenario label="author-fn-types">
       <x:context href="../tests/preprint-changes/author-fn-types/input.xml"/>
       <x:expect label="Testing the template: author-fn-types" href="../tests/preprint-changes/author-fn-types/output.xml"/>
+    </x:scenario>
+    <x:scenario label="author-notes-notes-handling">
+      <x:context href="../tests/preprint-changes/author-notes-notes-handling/input.xml"/>
+      <x:expect label="Testing the template: author-notes-notes-handling" href="../tests/preprint-changes/author-notes-notes-handling/output.xml"/>
+    </x:scenario>
+    <x:scenario label="notes-handling">
+      <x:context href="../tests/preprint-changes/notes-handling/input.xml"/>
+      <x:expect label="Testing the template: notes-handling" href="../tests/preprint-changes/notes-handling/output.xml"/>
     </x:scenario>
     <x:scenario label="remove-fullstops-from-author-names">
       <x:context href="../tests/preprint-changes/remove-fullstops-from-author-names/input.xml"/>

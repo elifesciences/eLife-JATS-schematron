@@ -1,5 +1,6 @@
 <!--Testing template with id: remove-fullstops-from-author-names-->
-<article-meta><article-version article-version-type="publication-state">reviewed preprint</article-version>
+<article-meta>
+<article-version article-version-type="publication-state">reviewed preprint</article-version>
 <contrib-group>
 <contrib contrib-type="author">
 <name>
@@ -18,7 +19,8 @@
 <surname>de A M M Armas</surname>
 </name>
 </contrib>
-</contrib-group><custom-meta-group>
+</contrib-group>
+<custom-meta-group>
 <custom-meta specific-use="meta-only">
 <meta-name>publishing-route</meta-name>
 <meta-value>prc</meta-value>

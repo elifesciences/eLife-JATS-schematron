@@ -1,0 +1,20 @@
+<!--Testing template with id: author-notes-notes-handling-->
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<front>
+<article-meta>
+<author-notes>
+<fn/>
+</author-notes>
+</article-meta>
+<notes>
+<notes notes-type="competing-interest-statement">
+<title>Competing Interest Statement</title><p>The authors have declared no competing interest.</p></notes>
+<fn-group content-type="summary-of-updates">
+<title>Summary of Updates:</title>
+<fn fn-type="update"><p>Revisions for this version were made in response to peer review at eLife (96002v1).</p></fn>
+</fn-group>
+<notes notes-type="clinical-trial-statement">
+<title>Clinical Trial</title><p>DRKS00021419</p></notes>
+</notes>
+</front>
+</article>
