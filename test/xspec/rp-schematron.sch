@@ -1317,6 +1317,62 @@
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-8" test="matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-8">The caption for <value-of select="$label"/> contains the text 'used with permission', but has no permissions. Is this correct?</report>
     </rule>
   </pattern>
+  
+  <pattern id="clintrial-related-object-pattern">
+    <rule context="related-object[@content-type or @document-id]" id="clintrial-related-object">
+      <let name="registries" value="'clinical-trial-registries.xml'"/>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-2" test="@source-type='clinical-trials-registry'" role="error" id="clintrial-related-object-2">
+        <name/> must have an @source-type='clinical-trials-registry'.</assert>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-3" test="@source-id!=''" role="error" id="clintrial-related-object-3">
+        <name/> must have an @source-id with a non-empty value.</assert>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-4" test="@source-id-type='registry-name'" role="error" id="clintrial-related-object-4">
+        <name/> must have an @source-id-type='registry-name'.</assert>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-5" test="@document-id-type='clinical-trial-number'" role="error" id="clintrial-related-object-5">
+        <name/> must have an @document-id-type='clinical-trial-number'.</assert>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-6" test="@document-id[not(matches(.,'\p{Zs}'))]" role="error" id="clintrial-related-object-6">
+        <name/> must have an @document-id with a value that does not contain a space character.</assert>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-7" test="@xlink:href[not(matches(.,'\p{Zs}'))]" role="error" id="clintrial-related-object-7">
+        <name/> must have an @xlink:href with a value that does not contain a space character.</assert>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-8" test="contains(.,@document-id/string())" role="warning" id="clintrial-related-object-8">
+        <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not in the text, which is likely incorrect - <value-of select="."/>.</assert>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-11" test="some $x in document($registries)/registries/registry satisfies ($x/subtitle/string()=@source-id)" role="error" id="clintrial-related-object-11">
+        <name/> @source-id value must be one of the subtitles of the Crossref clinical trial registries. "<value-of select="@source-id"/>" is not one of the following <value-of select="string-join(for $x in document($registries)/registries/registry return concat('&quot;',$x/subtitle/string(),'&quot; (',$x/doi/string(),')'),', ')"/>
+      </assert>
+      
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-12" test="@source-id='ClinicalTrials.gov' and @xlink:href!=concat('https://clinicaltrials.gov/show/',@document-id)" role="error" id="clintrial-related-object-12">ClinicalTrials.gov trial links are in the format https://clinicaltrials.gov/show/{number}. This <name/> has the link '<value-of select="@xlink:href"/>', which based on the clinical trial registry (<value-of select="@source-id"/>) and @document-id (<value-of select="@document-id"/>) is not right. Either the xlink:href is wrong (should it be <value-of select="concat('https://clinicaltrials.gov/show/',@document-id)"/> instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these).</report>
+
+      <report test="ends-with(@xlink:href,'.')" role="error" id="clintrial-related-object-14">
+        <name/> has a @xlink:href attribute value which ends with a full stop, which is not correct - '<value-of select="@xlink:href"/>'.</report>
+      
+      <assert test="@xlink:href!=''" role="error" id="clintrial-related-object-17">
+        <name/> must have an @xlink:href attribute with a non-empty value. This one does not.</assert>
+
+      <report test="ends-with(@document-id,'.')" role="error" id="clintrial-related-object-15">
+        <name/> has an @document-id attribute value which ends with a full stop, which is not correct - '<value-of select="@document-id"/>'.</report>
+
+      <report test="ends-with(.,'.')" role="error" id="clintrial-related-object-16">Content within <name/> element ends with a full stop, which is not correct - '<value-of select="."/>'.</report>
+      
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-3" test="@content-type=('pre-results','results','post-results')" role="error" id="clintrial-related-object-18">
+        <name/> must have a content-type attribute with one of the following values: pre-results, results, or post-results.</assert>
+      
+      <assert test="ancestor::abstract or parent::article-meta" role="error" id="clintrial-related-object-parent-1">
+        <name/> element must either be a descendant of abstract or a child or article-meta. This one is not.</assert>
+      
+      <report test="ancestor::abstract and not(parent::p/parent::sec/parent::abstract)" role="error" id="clintrial-related-object-parent-2">If <name/> is a descendant of abstract, then it must be placed within a p element that is part of a subsection (i.e. it must be within a structured abstract). This one is not.</report>
+      
+      <report test="ancestor::abstract[sec] and not(parent::p/parent::sec/title[matches(lower-case(.),'clinical trial')])" role="warning" id="clintrial-related-object-parent-3">
+        <name/> is a descendant of (a sturctured) abstract, but it's not within a section that has a title indicating it's a clinical trial number. Is that right?</report>
+      
+    </rule>
+  </pattern>
 
     <pattern id="digest-title-checks-pattern">
     <rule context="title" id="digest-title-checks">
@@ -1742,6 +1798,7 @@
       <assert test="descendant::permissions/license[@xlink:href]/license-p" role="error" id="license-link-tests-xspec-assert">permissions/license[@xlink:href]/license-p must be present.</assert>
       <assert test="descendant::permissions/license[ali:license_ref]/license-p" role="error" id="license-ali-ref-link-tests-xspec-assert">permissions/license[ali:license_ref]/license-p must be present.</assert>
       <assert test="descendant::fig[not(descendant::permissions)] or descendant::media[@mimetype='video' and not(descendant::permissions)] or descendant::table-wrap[not(descendant::permissions)] or descendant::supplementary-material[not(descendant::permissions)]" role="error" id="fig-permissions-check-xspec-assert">fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)] must be present.</assert>
+      <assert test="descendant::related-object[@content-type or @document-id]" role="error" id="clintrial-related-object-xspec-assert">related-object[@content-type or @document-id] must be present.</assert>
       <assert test="descendant::title" role="error" id="digest-title-checks-xspec-assert">title must be present.</assert>
       <assert test="descendant::xref" role="error" id="xref-checks-xspec-assert">xref must be present.</assert>
       <assert test="descendant::ext-link[@ext-link-type='uri']" role="error" id="ext-link-tests-xspec-assert">ext-link[@ext-link-type='uri'] must be present.</assert>
