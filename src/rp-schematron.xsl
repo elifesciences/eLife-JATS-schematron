@@ -5173,6 +5173,51 @@
                <xsl:text/>"</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="@fn-type=('abbr','con','coi-statement','financial-disclosure','presented-at','supported-by') and @fn-type = preceding-sibling::fn/@fn-type">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@fn-type=('abbr','con','coi-statement','financial-disclosure','presented-at','supported-by') and @fn-type = preceding-sibling::fn/@fn-type">
+            <xsl:attribute name="id">author-fn-6</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[author-fn-6] footnote with id <xsl:text/>
+               <xsl:value-of select="$id"/>
+               <xsl:text/> has the fn-type '<xsl:text/>
+               <xsl:value-of select="@fn-type"/>
+               <xsl:text/>', but there's another footnote with that same type. Are two separate notes necessary? Are they duplicates?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="@fn-type='coi-statement' and preceding-sibling::fn[@fn-type='financial-disclosure']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@fn-type='coi-statement' and preceding-sibling::fn[@fn-type='financial-disclosure']">
+            <xsl:attribute name="id">author-fn-7</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[author-fn-7] footnote with id <xsl:text/>
+               <xsl:value-of select="$id"/>
+               <xsl:text/> has the fn-type '<xsl:text/>
+               <xsl:value-of select="@fn-type"/>
+               <xsl:text/>', but there's another footnote with the type 'financial-disclosure'. Are two separate notes necessary? Are they duplicates?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="@fn-type='financial-disclosure' and preceding-sibling::fn[@fn-type='coi-statement']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@fn-type='financial-disclosure' and preceding-sibling::fn[@fn-type='coi-statement']">
+            <xsl:attribute name="id">author-fn-8</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[author-fn-8] footnote with id <xsl:text/>
+               <xsl:value-of select="$id"/>
+               <xsl:text/> has the fn-type '<xsl:text/>
+               <xsl:value-of select="@fn-type"/>
+               <xsl:text/>', but there's another footnote with the type 'coi-statement'. Are two separate notes necessary? Are they duplicates?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M86"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M86"/>

@@ -1300,6 +1300,18 @@
         <report test="@fn-type and not(@fn-type=$known-types)" 
           role="warning" 
           id="author-fn-5">footnote with id <value-of select="$id"/> has the fn-type '<value-of select="@fn-type"/>' which is not one of the known values (<value-of select="string-join($known-types,'; ')"/>). Should it be changed to be one of the values? "<value-of select="."/>"</report>
+        
+        <report test="@fn-type=('abbr','con','coi-statement','financial-disclosure','presented-at','supported-by') and @fn-type = preceding-sibling::fn/@fn-type" 
+          role="warning" 
+          id="author-fn-6">footnote with id <value-of select="$id"/> has the fn-type '<value-of select="@fn-type"/>', but there's another footnote with that same type. Are two separate notes necessary? Are they duplicates?</report>
+        
+        <report test="@fn-type='coi-statement' and preceding-sibling::fn[@fn-type='financial-disclosure']" 
+          role="warning" 
+          id="author-fn-7">footnote with id <value-of select="$id"/> has the fn-type '<value-of select="@fn-type"/>', but there's another footnote with the type 'financial-disclosure'. Are two separate notes necessary? Are they duplicates?</report>
+        
+        <report test="@fn-type='financial-disclosure' and preceding-sibling::fn[@fn-type='coi-statement']" 
+          role="warning" 
+          id="author-fn-8">footnote with id <value-of select="$id"/> has the fn-type '<value-of select="@fn-type"/>', but there's another footnote with the type 'coi-statement'. Are two separate notes necessary? Are they duplicates?</report>
      </rule>
 
       <rule context="article/front/article-meta//article-version" id="article-version-checks">
