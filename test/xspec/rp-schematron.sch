@@ -1379,6 +1379,12 @@
       
     </rule>
   </pattern>
+  
+  <pattern id="notes-checks-pattern">
+    <rule context="front/notes" id="notes-checks">
+      <report test="fn-group[not(@content-type='summary-of-updates')] or *[name()!='fn-group']" role="error" id="notes-check-1">When present, the notes element should only be used to contain a revision summary (an fn-group with the content-type 'summary-of-updates'). This notes element contains other content. Is it redundant? Or should the content be moved elsewhere? (coi statements should be in author-notes; clinical trial numbers should be included in a structured abstract if it exists or as related-object in article-meta; data/code/ethics statements can be included in additional information in new or existing section(s), as appropriate)</report>
+    </rule>
+  </pattern>
 
     <pattern id="digest-title-checks-pattern">
     <rule context="title" id="digest-title-checks">
@@ -1805,6 +1811,7 @@
       <assert test="descendant::permissions/license[ali:license_ref]/license-p" role="error" id="license-ali-ref-link-tests-xspec-assert">permissions/license[ali:license_ref]/license-p must be present.</assert>
       <assert test="descendant::fig[not(descendant::permissions)] or descendant::media[@mimetype='video' and not(descendant::permissions)] or descendant::table-wrap[not(descendant::permissions)] or descendant::supplementary-material[not(descendant::permissions)]" role="error" id="fig-permissions-check-xspec-assert">fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)] must be present.</assert>
       <assert test="descendant::related-object[@content-type or @document-id]" role="error" id="clintrial-related-object-xspec-assert">related-object[@content-type or @document-id] must be present.</assert>
+      <assert test="descendant::front/notes" role="error" id="notes-checks-xspec-assert">front/notes must be present.</assert>
       <assert test="descendant::title" role="error" id="digest-title-checks-xspec-assert">title must be present.</assert>
       <assert test="descendant::xref" role="error" id="xref-checks-xspec-assert">xref must be present.</assert>
       <assert test="descendant::ext-link[@ext-link-type='uri']" role="error" id="ext-link-tests-xspec-assert">ext-link[@ext-link-type='uri'] must be present.</assert>

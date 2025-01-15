@@ -1941,6 +1941,14 @@
       
     </rule>
   </pattern>
+  
+  <pattern id="notes">
+    <rule context="front/notes" id="notes-checks">
+      <report test="fn-group[not(@content-type='summary-of-updates')] or *[name()!='fn-group']" 
+        role="error" 
+        id="notes-check-1">When present, the notes element should only be used to contain a revision summary (an fn-group with the content-type 'summary-of-updates'). This notes element contains other content. Is it redundant? Or should the content be moved elsewhere? (coi statements should be in author-notes; clinical trial numbers should be included in a structured abstract if it exists or as related-object in article-meta; data/code/ethics statements can be included in additional information in new or existing section(s), as appropriate)</report>
+    </rule>
+  </pattern>
 
     <pattern id="digest">
       <rule context="title" id="digest-title-checks">
