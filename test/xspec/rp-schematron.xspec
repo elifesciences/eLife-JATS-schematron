@@ -3415,12 +3415,12 @@
     <x:scenario label="notes-checks">
       <x:scenario label="notes-check-1-pass">
         <x:context href="../tests/rp/notes-checks/notes-check-1/pass.xml"/>
-        <x:expect-not-report id="notes-check-1" role="error"/>
+        <x:expect-not-report id="notes-check-1" role="warning"/>
         <x:expect-not-assert id="notes-checks-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="notes-check-1-fail">
         <x:context href="../tests/rp/notes-checks/notes-check-1/fail.xml"/>
-        <x:expect-report id="notes-check-1" role="error"/>
+        <x:expect-report id="notes-check-1" role="warning"/>
         <x:expect-not-assert id="notes-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

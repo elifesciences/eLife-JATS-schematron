@@ -7238,15 +7238,15 @@
    <!--RULE notes-checks-->
    <xsl:template match="front/notes" priority="1000" mode="M114">
 
-		<!--REPORT error-->
-      <xsl:if test="fn-group[not(@content-type='summary-of-updates')] or *[name()!='fn-group']">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="fn-group[not(@content-type='summary-of-updates')] or *[name()!='fn-group']">
+		<!--REPORT warning-->
+      <xsl:if test="fn-group[not(@content-type='summary-of-updates')] or notes[not(@notes-type='disclosures')]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="fn-group[not(@content-type='summary-of-updates')] or notes[not(@notes-type='disclosures')]">
             <xsl:attribute name="id">notes-check-1</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[notes-check-1] When present, the notes element should only be used to contain a revision summary (an fn-group with the content-type 'summary-of-updates'). This notes element contains other content. Is it redundant? Or should the content be moved elsewhere? (coi statements should be in author-notes; clinical trial numbers should be included in a structured abstract if it exists or as related-object in article-meta; data/code/ethics statements can be included in additional information in new or existing section(s), as appropriate)</svrl:text>
+            <svrl:text>[notes-check-1] When present, the notes element should only be used to contain a revision summary (an fn-group with the content-type 'summary-of-updates'). This notes element contains other content. Is it redundant? Or should the content be moved elsewhere? (coi statements should be in author-notes; clinical trial numbers should be included as a realted-object in a structured abstract (if it already exists) or as related-object in article-meta; data/code/ethics/funding statements can be included in additional information in new or existing section(s), as appropriate)</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M114"/>
