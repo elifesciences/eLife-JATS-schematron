@@ -1026,6 +1026,10 @@
       <report test="ancestor::abstract[sec] and not(parent::p/parent::sec/title[matches(lower-case(.),'clinical trial')])" role="warning" id="clintrial-related-object-parent-3">[clintrial-related-object-parent-3] <name/> is a descendant of (a sturctured) abstract, but it's not within a section that has a title indicating it's a clinical trial number. Is that right?</report>
       
     </rule></pattern>
+  
+  <pattern id="notes-checks-pattern"><rule context="front/notes" id="notes-checks">
+      <report test="fn-group[not(@content-type='summary-of-updates')] or *[name()!='fn-group']" role="error" id="notes-check-1">[notes-check-1] When present, the notes element should only be used to contain a revision summary (an fn-group with the content-type 'summary-of-updates'). This notes element contains other content. Is it redundant? Or should the content be moved elsewhere? (coi statements should be in author-notes; clinical trial numbers should be included in a structured abstract if it exists or as related-object in article-meta; data/code/ethics statements can be included in additional information in new or existing section(s), as appropriate)</report>
+    </rule></pattern>
 
     <pattern id="digest-title-checks-pattern"><rule context="title" id="digest-title-checks">
         <report test="matches(lower-case(.),'^\s*(elife\s)?digest\s*$')" role="error" id="digest-flag">[digest-flag] <value-of select="parent::*/name()"/> element has a title containing 'digest' - <value-of select="."/>. If this is referring to an plain language summary written by the authors it should be renamed to plain language summary (or similar) in order to not suggest to readers this was written by the features team.</report>
