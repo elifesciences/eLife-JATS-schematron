@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="wash-dc-test-1.sch"?>
+<!--Context: front//aff//named-content[@content-type='city']
+Test: report    (lower-case(.) = 'washington') and (ancestor::aff/country/text() = 'United States')
+Message:  has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the corrcet city. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front>
+      <aff>
+        <named-content content-type="city">Washington</named-content>
+          <country>United States</country>
+      </aff>
+    </front>
+  </article>
+</root>

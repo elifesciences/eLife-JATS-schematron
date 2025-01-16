@@ -36927,6 +36927,19 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
+      <xsl:if test="(lower-case(.) = 'washington') and (ancestor::aff/country/text() = 'United States')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(lower-case(.) = 'washington') and (ancestor::aff/country/text() = 'United States')">
+            <xsl:attribute name="id">wash-dc-test-1</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[wash-dc-test-1] <xsl:text/>
+               <xsl:value-of select="ancestor::aff/@id"/>
+               <xsl:text/> has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the corrcet city.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
       <xsl:if test="matches(.,'�')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'�')">
             <xsl:attribute name="id">city-replacement-character-presence</xsl:attribute>
