@@ -12709,7 +12709,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="(lower-case(.) = 'washington') and (ancestor::aff/country/text() = 'United States')" 
         role="error" 
-        id="wash-dc-test-1"><value-of select="ancestor::aff/@id"/> has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the corrcet city.</report>
+        id="wash-dc-test-1"><value-of select="ancestor::aff/@id"/> has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the correct city.</report>
       
       <report test="matches(.,'�')" 
         role="error" 

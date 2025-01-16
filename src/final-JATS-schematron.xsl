@@ -36936,7 +36936,7 @@
             </xsl:attribute>
             <svrl:text>[wash-dc-test-1] <xsl:text/>
                <xsl:value-of select="ancestor::aff/@id"/>
-               <xsl:text/> has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the corrcet city.</svrl:text>
+               <xsl:text/> has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the correct city.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->

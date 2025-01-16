@@ -8478,7 +8478,7 @@
         <value-of select="ancestor::aff/@id"/> has 'Singapore' as its city but '<value-of select="ancestor::aff/country/text()"/>' as its country, which must be incorrect.</report>
       
       <report test="(lower-case(.) = 'washington') and (ancestor::aff/country/text() = 'United States')" role="error" id="wash-dc-test-1">
-        <value-of select="ancestor::aff/@id"/> has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the corrcet city.</report>
+        <value-of select="ancestor::aff/@id"/> has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the correct city.</report>
       
       <report test="matches(.,'�')" role="error" id="city-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed.</report>
