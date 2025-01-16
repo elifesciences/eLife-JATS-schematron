@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="sec-glossary.sch"?>
+<!--Context: sec
+Test: report    glossary and not(*[not(name()=('label','title','sec-meta','glossary'))])
+Message: sec element only contains a child glossary. Is it a redundant sec (which should be deleted)? Or perhaps it indicates the structure/hierarchy has been incorrectly captured. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sec>
+            <title/>
+            <glossary/>
+        </sec>
+    </article>
+</root>

@@ -1847,6 +1847,26 @@
         <x:expect-report id="sec-coi" role="warning"/>
         <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="sec-def-list-pass">
+        <x:context href="../tests/rp/sec-checks/sec-def-list/pass.xml"/>
+        <x:expect-not-report id="sec-def-list" role="error"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-def-list-fail">
+        <x:context href="../tests/rp/sec-checks/sec-def-list/fail.xml"/>
+        <x:expect-report id="sec-def-list" role="error"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-glossary-pass">
+        <x:context href="../tests/rp/sec-checks/sec-glossary/pass.xml"/>
+        <x:expect-not-report id="sec-glossary" role="warning"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-glossary-fail">
+        <x:context href="../tests/rp/sec-checks/sec-glossary/fail.xml"/>
+        <x:expect-report id="sec-glossary" role="warning"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="top-sec-checks">
       <x:scenario label="top-sec-1-pass">

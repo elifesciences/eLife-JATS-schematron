@@ -11226,7 +11226,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[pre-auth-aff-test-3] Author affiliations must have a top level institution. This one (with the id <xsl:text/>
+               <svrl:text>[pre-auth-aff-test-3] Author affiliations (&lt;aff&gt;) must include an &gt;institution&gt; tag. This one (with the id <xsl:text/>
                   <xsl:value-of select="@id"/>
                   <xsl:text/>) does not - <xsl:text/>
                   <xsl:value-of select="$display"/>
@@ -36661,7 +36661,7 @@
             </xsl:attribute>
             <svrl:text>[wash-dc-test-1] <xsl:text/>
                <xsl:value-of select="ancestor::aff/@id"/>
-               <xsl:text/> has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the corrcet city.</svrl:text>
+               <xsl:text/> has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the correct city.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->

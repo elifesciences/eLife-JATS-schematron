@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="sec-def-list.sch"?>
+<!--Context: sec
+Test: report    def-list and not(*[not(name()=('label','title','sec-meta','def-list'))])
+Message: sec element only contains a child def-list. This is therefore a glossary, not a sec. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sec>
+            <title/>
+            <def-list/>
+        </sec>
+    </article>
+</root>

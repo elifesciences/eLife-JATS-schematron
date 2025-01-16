@@ -2640,9 +2640,9 @@
       <assert test="addr-line[named-content[@content-type='city']]" role="error" id="final-auth-aff-test-2">Author affiliations must have a city. This one does not - <value-of select="$display"/>
       </assert>
       
-      <assert test="institution[not(@*)] or institution-wrap[institution[not(@*)]]" role="warning" id="pre-auth-aff-test-3">Author affiliations must have a top level institution. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/>. Please query the authors.</assert>
+      <assert test="institution[not(@*)] or institution-wrap[institution[not(@*)]]" role="warning" id="pre-auth-aff-test-3">Author affiliations (&lt;aff&gt;) must include an &gt;institution&gt; tag. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/>. Please query the authors.</assert>
       
-      <assert test="institution[not(@*)] or institution-wrap[institution[not(@*)]]" role="error" id="final-auth-aff-test-3">Author affiliations must have a top level institution. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/>
+      <assert test="institution[not(@*)] or institution-wrap[institution[not(@*)]]" role="error" id="final-auth-aff-test-3">Author affiliations (&lt;aff&gt;) must include an &gt;institution&gt; tag. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/>
       </assert>
     </rule>
   </pattern>
@@ -8478,7 +8478,7 @@
         <value-of select="ancestor::aff/@id"/> has 'Singapore' as its city but '<value-of select="ancestor::aff/country/text()"/>' as its country, which must be incorrect.</report>
       
       <report test="(lower-case(.) = 'washington') and (ancestor::aff/country/text() = 'United States')" role="error" id="wash-dc-test-1">
-        <value-of select="ancestor::aff/@id"/> has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the corrcet city.</report>
+        <value-of select="ancestor::aff/@id"/> has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the correct city.</report>
       
       <report test="matches(.,'�')" role="error" id="city-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed.</report>

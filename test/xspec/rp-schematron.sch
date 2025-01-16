@@ -821,6 +821,10 @@
         <report test="@sec-type='data-availability' and preceding::sec[@sec-type='data-availability']" role="warning" id="sec-data-availability">sec has the sec-type 'data-availability', but there is one or more other secs with this same sec-type. Are they duplicates?</report>
         
         <report test="title[1][matches(lower-case(.),'(compete?t?ing|conflicts?[\s-]of)[\s-]interest|disclosure|declaration|disclaimer')] and ancestor::article//article-meta/author-notes/fn[@fn-type='coi-statement']" role="warning" id="sec-coi">sec has a title suggesting it's a competing interest statement, but there is also a competing interest statement in author-notes. Are they duplicates? COI statements should be captured within author-notes, so this section should likely be deleted.</report>
+        
+        <report test="def-list and not(*[not(name()=('label','title','sec-meta','def-list'))])" role="error" id="sec-def-list">sec element only contains a child def-list. This is therefore a glossary, not a sec.</report>
+        
+        <report test="glossary and not(*[not(name()=('label','title','sec-meta','glossary'))])" role="warning" id="sec-glossary">sec element only contains a child glossary. Is it a redundant sec (which should be deleted)? Or perhaps it indicates the structure/hierarchy has been incorrectly captured.</report>
      </rule>
   </pattern>
   <pattern id="top-sec-checks-pattern">
