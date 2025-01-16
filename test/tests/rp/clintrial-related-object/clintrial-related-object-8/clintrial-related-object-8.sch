@@ -147,7 +147,7 @@
   <pattern id="clintrial-related-object-pattern">
     <rule context="related-object[@content-type or @document-id]" id="clintrial-related-object">
       <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
-      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-8" test="contains(.,@document-id/string())" role="warning" id="clintrial-related-object-8">[clintrial-related-object-8] <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not in the text, which is likely incorrect - <value-of select="."/>.</assert>
+      <assert test="contains(.,@document-id/string())" role="warning" id="clintrial-related-object-8">[clintrial-related-object-8] <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not in the text, which is likely incorrect - <value-of select="."/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

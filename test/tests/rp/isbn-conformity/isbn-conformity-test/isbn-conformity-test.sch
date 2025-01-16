@@ -148,7 +148,7 @@
     <rule context="ref//pub-id[@pub-id-type='isbn']|isbn" id="isbn-conformity">
       <let name="t" value="translate(.,'-','')"/>
       <let name="sum" value="e:isbn-sum($t)"/>
-      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#isbn-conformity-test" test="$sum = 0" role="error" id="isbn-conformity-test">[isbn-conformity-test] pub-id contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
+      <assert test="$sum = 0" role="error" id="isbn-conformity-test">[isbn-conformity-test] pub-id contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

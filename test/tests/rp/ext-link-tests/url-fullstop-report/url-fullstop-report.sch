@@ -146,7 +146,7 @@
   </xsl:function>
   <pattern id="ext-link-tests-pattern">
     <rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests">
-      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#htqb8-url-fullstop-report" test="matches(@xlink:href,'\.$')" role="error" id="url-fullstop-report">[url-fullstop-report] '<value-of select="@xlink:href"/>' - Link ends in a full stop which is incorrect.</report>
+      <report test="matches(@xlink:href,'\.$')" role="error" id="url-fullstop-report">[url-fullstop-report] '<value-of select="@xlink:href"/>' - Link ends in a full stop which is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

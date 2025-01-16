@@ -147,7 +147,7 @@
   <pattern id="clintrial-related-object-pattern">
     <rule context="related-object[@content-type or @document-id]" id="clintrial-related-object">
       <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
-      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-3" test="@source-id!=''" role="error" id="clintrial-related-object-3">[clintrial-related-object-3] <name/> must have an @source-id with a non-empty value.</assert>
+      <assert test="@source-id!=''" role="error" id="clintrial-related-object-3">[clintrial-related-object-3] <name/> must have an @source-id with a non-empty value.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
