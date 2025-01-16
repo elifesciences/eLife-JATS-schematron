@@ -18767,6 +18767,16 @@
         <x:expect-report id="institution-street-presence" role="warning"/>
         <x:expect-not-assert id="institution-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="institution-ampersand-presence-pass">
+        <x:context href="../tests/gen/institution-tests/institution-ampersand-presence/pass.xml"/>
+        <x:expect-not-report id="institution-ampersand-presence" role="warning"/>
+        <x:expect-not-assert id="institution-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="institution-ampersand-presence-fail">
+        <x:context href="../tests/gen/institution-tests/institution-ampersand-presence/fail.xml"/>
+        <x:expect-report id="institution-ampersand-presence" role="warning"/>
+        <x:expect-not-assert id="institution-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="department-tests">
       <x:scenario label="dept-replacement-character-presence-pass">

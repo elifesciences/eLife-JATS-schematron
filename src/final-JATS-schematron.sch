@@ -1789,7 +1789,7 @@
       <assert test="empty($auth-and-member)" role="warning" id="auth-and-member-test">[auth-and-member-test] Top level author(s) <value-of select="if (count($auth-and-member) gt 1) then concat(string-join($auth-and-member[position() != last()],', '),' and ',$auth-and-member[last()]) else $auth-and-member"/> are also a member of a group author. Is this correct?</assert>
     </rule></pattern><pattern id="author-xref-tests-pattern"><rule context="article-meta//contrib[@contrib-type='author']/xref" id="author-xref-tests">
       
-      <report test="(@ref-type='aff') and preceding-sibling::xref[not(@ref-type='aff')]" role="error" id="author-xref-test-1">[author-xref-test-1] Affiliation footnote links (xrefs) from authors must be the first type of link. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their affiliation link - <value-of select="."/> - appears after another non-affiliation link, when it should appear before it.</report>
+      <report test="(@ref-type='aff') and preceding-sibling::xref[not(@ref-type='aff')]" role="error" id="author-xref-test-1">[author-xref-test-1] Affiliation footnote links (xrefs) from authors must be the first type of link to be listed. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their affiliation link - <value-of select="."/> - appears after another non-affiliation link, when it should appear before it.</report>
       
       <report test="(@ref-type='fn') and contains(@rid,'equal') and preceding-sibling::xref[not(@ref-type='aff')]" role="error" id="author-xref-test-2">[author-xref-test-2] Equal contribution links from authors must appear after affiliation footnote links. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their equal contribution link (to <value-of select="idref(@rid)"/>) appears after another non-affiliation link, when it should appear before it.</report>
       
@@ -1888,9 +1888,9 @@
 	  
 	  <report test="if ($subj-type = $notice-display-types) then ()            else if ($type != 'author') then ()            else if (collab) then ()            else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)            else ()" role="warning" id="contrib-test-5">[contrib-test-5] Group author members should likely have an affiliation. <value-of select="$name"/> does not. Is this OK?</report>
 	  
-	  <report test="($type = 'senior_editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="warning" id="contrib-test-2">[contrib-test-2] The <value-of select="role[1]"/> doesn't have an affiliation - <value-of select="$name"/> - is this correct?</report>
+	  <report test="($type = 'senior_editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="warning" id="contrib-test-2">[contrib-test-2] The <value-of select="role[1]"/> doesn't have an affiliation - <value-of select="$name"/> - is this correct? Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</report>
 	  
-	  <report test="($type = 'editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="error" id="contrib-test-4">[contrib-test-4] The <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation. - is this correct?</report>
+	  <report test="($type = 'editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="error" id="contrib-test-4">[contrib-test-4] The <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</report>
 	  
 	     <report test="name and collab" role="error" id="contrib-test-3">[contrib-test-3] author contains both a child name and a child collab. This is not correct.</report>
 	  
@@ -6636,6 +6636,8 @@
       
       <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')" role="warning" id="institution-street-presence">[institution-street-presence] institution likely contains a street or building name, which is likely to be incorrect - <value-of select="."/>.</report>
       
+      <!-- contains an ampersand and is not a known exception -->
+      <report test="matches(replace(lower-case(.),'(texas a\s*&amp;\s*m|hygiene &amp; tropical|r\s*&amp;\s*d)',''),'&amp;')" role="warning" id="institution-ampersand-presence">[institution-ampersand-presence] institution contains an ampersand - <value-of select="."/>. It's eLife style to use 'and' instead of an ampersand except in cases where the ampersand is explicitly part of the institution name (e.g. Texas A&amp;M University). Should it be changed here?</report>
     </rule></pattern><pattern id="department-tests-pattern"><rule context="aff/institution[@content-type='dept']" id="department-tests">
       
       <report test="contains(.,'�')" role="error" id="dept-replacement-character-presence">[dept-replacement-character-presence] <name/> element contains the replacement character '�' which is unallowed.</report>

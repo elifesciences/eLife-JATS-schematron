@@ -1362,7 +1362,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta//contrib[@contrib-type='author']/xref" id="author-xref-tests">
-      <report test="(@ref-type='aff') and preceding-sibling::xref[not(@ref-type='aff')]" role="error" id="author-xref-test-1">Affiliation footnote links (xrefs) from authors must be the first type of link. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their affiliation link - <value-of select="."/> - appears after another non-affiliation link, when it should appear before it.</report>
+      <report test="(@ref-type='aff') and preceding-sibling::xref[not(@ref-type='aff')]" role="error" id="author-xref-test-1">Affiliation footnote links (xrefs) from authors must be the first type of link to be listed. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their affiliation link - <value-of select="."/> - appears after another non-affiliation link, when it should appear before it.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
