@@ -622,6 +622,8 @@
         <assert test="*[not(name()=('label','title','sec-meta'))]" role="error" id="sec-empty">[sec-empty] sec element is not populated with any content. Either there's a mistake or the section should be removed.</assert>
         
         <report test="@sec-type='data-availability' and preceding::sec[@sec-type='data-availability']" role="warning" id="sec-data-availability">[sec-data-availability] sec has the sec-type 'data-availability', but there is one or more other secs with this same sec-type. Are they duplicates?</report>
+        
+        <report test="title[1][matches(lower-case(.),'(compete?t?ing|conflicts?[\s-]of)[\s-]interest|disclosure|declaration|disclaimer')] and ancestor::article//article-meta/author-notes/fn[@fn-type='coi-statement']" role="warning" id="sec-coi">[sec-coi] sec has a title suggesting it's a competing interest statement, but there is also a competing interest statement in author-notes. Are they duplicates? COI statements should be captured within author-notes, so this section should likely be deleted.</report>
      </rule></pattern><pattern id="top-sec-checks-pattern"><rule context="sec[(parent::body or parent::back) and title]" id="top-sec-checks">
         <let name="top-sec-phrases" value="('(results?|conclusions?)( (and|&amp;) discussion)?',             'discussion( (and|&amp;) (results?|conclusions?))?')"/>
         <let name="methods-phrases" value="('(materials? (and|&amp;)|experimental)?\s?methods?( details?|summary|(and|&amp;) materials?)?',             '(supplement(al|ary)? )?materials( (and|&amp;) correspondence)?',             '(model|methods?)(( and| &amp;) (results|materials?))?')"/>
