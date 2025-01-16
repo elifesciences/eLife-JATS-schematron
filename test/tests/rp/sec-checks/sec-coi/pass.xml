@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="sec-coi.sch"?>
+<!--Context: sec
+Test: report    title[1][matches(lower-case(.),'(compete?t?ing|conflicts?[\s-]of)[\s-]interest|disclosure|declaration|disclaimer')] and ancestor::article//article-meta/author-notes/fn[@fn-type='coi-statement']
+Message: sec has a title suggesting it's a competing interest statement, but there is also a competing interest statement in author-notes. Are they duplicates? COI statements should be captured within author-notes, so this section should likely be deleted. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <front>
+            <article-meta>
+                <author-notes>
+                    <fn fn-type="coi-statement"/>
+                </author-notes>
+            </article-meta>
+        </front>
+        <back>
+            <sec>
+                <title>Data availability</title>
+            </sec>
+        </back>
+    </article>
+</root>

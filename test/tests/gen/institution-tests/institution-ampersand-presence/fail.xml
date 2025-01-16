@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="institution-ampersand-presence.sch"?>
+<!--Context: aff/institution[not(@*)]
+Test: report    matches(replace(lower-case(.),'(texas a\s*&\s*m|hygiene & tropical|r\s*&\s*d)',''),'&')
+Message: institution contains an ampersand - . It's eLife style to use 'and' instead of an ampersand except in cases where the ampersand is explicitly part of the institution name (e.g. Texas A&M University). Should it be changed here? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <aff><institution>Howard Hughes Medical Institute &amp; university of massachusetts medical school</institution></aff>
+        <aff><institution>Epidemiology &amp; Biostatistics</institution></aff>
+        <aff><institution>Brain &amp; Cognitive sciences department, MIT</institution></aff>
+    </article>
+</root>

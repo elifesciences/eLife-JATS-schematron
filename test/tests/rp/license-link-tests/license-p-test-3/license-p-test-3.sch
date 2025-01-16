@@ -147,7 +147,7 @@
   <pattern id="license-link-tests-pattern">
     <rule context="permissions/license[@xlink:href]/license-p" id="license-link-tests">
       <let name="license-link" value="parent::license/@xlink:href"/>
-      <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hx30h-p-test-3" test="some $x in ext-link satisfies $x/@xlink:href = $license-link" role="error" id="license-p-test-3">[license-p-test-3] If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: <value-of select="$license-link"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
+      <assert test="some $x in ext-link satisfies $x/@xlink:href = $license-link" role="error" id="license-p-test-3">[license-p-test-3] If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: <value-of select="$license-link"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

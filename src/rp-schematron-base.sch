@@ -739,8 +739,7 @@
         <let name="t" value="translate(.,'-','')"/>
         <let name="sum" value="e:isbn-sum($t)"/>
       
-        <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#isbn-conformity-test"
-          test="$sum = 0" 
+        <assert test="$sum = 0" 
           role="error" 
           id="isbn-conformity-test">pub-id contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
       </rule>
@@ -1106,6 +1105,10 @@
         <report test="@sec-type='data-availability' and preceding::sec[@sec-type='data-availability']" 
           role="warning" 
           id="sec-data-availability">sec has the sec-type 'data-availability', but there is one or more other secs with this same sec-type. Are they duplicates?</report>
+        
+        <report test="title[1][matches(lower-case(.),'(compete?t?ing|conflicts?[\s-]of)[\s-]interest|disclosure|declaration|disclaimer')] and ancestor::article//article-meta/author-notes/fn[@fn-type='coi-statement']" 
+          role="warning" 
+          id="sec-coi">sec has a title suggesting it's a competing interest statement, but there is also a competing interest statement in author-notes. Are they duplicates? COI statements should be captured within author-notes, so this section should likely be deleted.</report>
      </rule>
       
       <rule context="sec[(parent::body or parent::back) and title]" id="top-sec-checks">
@@ -1798,8 +1801,7 @@
     <rule context="permissions/license[@xlink:href]/license-p" id="license-link-tests">
       <let name="license-link" value="parent::license/@xlink:href"/>
       
-      <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hx30h-p-test-3"
-        test="some $x in ext-link satisfies $x/@xlink:href = $license-link" 
+      <assert test="some $x in ext-link satisfies $x/@xlink:href = $license-link" 
         role="error" 
         id="license-p-test-3">If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: <value-of select="$license-link"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
     </rule>
@@ -1845,8 +1847,7 @@
         role="warning" 
         id="reproduce-test-6">The caption for <value-of select="$label"/> contains the text 'modified from', but has no permissions. Is this correct?</report>
       
-      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-7"
-        test="matches(caption[1],'[Mm]odified [Ww]ith')" 
+      <report test="matches(caption[1],'[Mm]odified [Ww]ith')" 
         role="warning" 
         id="reproduce-test-7">The caption for <value-of select="$label"/> contains the text 'modified with', but has no permissions. Is this correct?</report>
       
@@ -1861,48 +1862,39 @@
     <rule context="related-object[@content-type or @document-id]" id="clintrial-related-object">
       <let name="registries" value="'clinical-trial-registries.xml'"/>
       
-      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-2"
-        test="@source-type='clinical-trials-registry'" 
+      <assert test="@source-type='clinical-trials-registry'" 
         role="error" 
         id="clintrial-related-object-2"><name/> must have an @source-type='clinical-trials-registry'.</assert>
       
-      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-3"
-        test="@source-id!=''" 
+      <assert test="@source-id!=''" 
         role="error" 
         id="clintrial-related-object-3"><name/> must have an @source-id with a non-empty value.</assert>
       
-      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-4"
-        test="@source-id-type='registry-name'" 
+      <assert test="@source-id-type='registry-name'" 
         role="error" 
         id="clintrial-related-object-4"><name/> must have an @source-id-type='registry-name'.</assert>
       
-      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-5"
-        test="@document-id-type='clinical-trial-number'" 
+      <assert test="@document-id-type='clinical-trial-number'" 
         role="error" 
         id="clintrial-related-object-5"><name/> must have an @document-id-type='clinical-trial-number'.</assert>
       
-      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-6"
-        test="@document-id[not(matches(.,'\p{Zs}'))]" 
+      <assert test="@document-id[not(matches(.,'\p{Zs}'))]" 
         role="error" 
         id="clintrial-related-object-6"><name/> must have an @document-id with a value that does not contain a space character.</assert>
       
-      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-7"
-        test="@xlink:href[not(matches(.,'\p{Zs}'))]" 
+      <assert test="@xlink:href[not(matches(.,'\p{Zs}'))]" 
         role="error" 
         id="clintrial-related-object-7"><name/> must have an @xlink:href with a value that does not contain a space character.</assert>
       
-      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-8"
-        test="contains(.,@document-id/string())" 
+      <assert test="contains(.,@document-id/string())" 
         role="warning" 
         id="clintrial-related-object-8"><name/> has an @document-id '<value-of select="@document-id"/>'. But this is not in the text, which is likely incorrect - <value-of select="."/>.</assert>
       
-      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-11"
-        test="some $x in document($registries)/registries/registry satisfies ($x/subtitle/string()=@source-id)" 
+      <assert test="some $x in document($registries)/registries/registry satisfies ($x/subtitle/string()=@source-id)" 
         role="error" 
         id="clintrial-related-object-11"><name/> @source-id value must be one of the subtitles of the Crossref clinical trial registries. "<value-of select="@source-id"/>" is not one of the following <value-of select="string-join(for $x in document($registries)/registries/registry return concat('&quot;',$x/subtitle/string(),'&quot; (',$x/doi/string(),')'),', ')"/></assert>
       
-      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-12"
-        test="@source-id='ClinicalTrials.gov' and @xlink:href!=concat('https://clinicaltrials.gov/show/',@document-id)" 
+      <report test="@source-id='ClinicalTrials.gov' and @xlink:href!=concat('https://clinicaltrials.gov/show/',@document-id)" 
         role="error" 
         id="clintrial-related-object-12">ClinicalTrials.gov trial links are in the format https://clinicaltrials.gov/show/{number}. This <name/> has the link '<value-of select="@xlink:href"/>', which based on the clinical trial registry (<value-of select="@source-id"/>) and @document-id (<value-of select="@document-id"/>) is not right. Either the xlink:href is wrong (should it be <value-of select="concat('https://clinicaltrials.gov/show/',@document-id)"/> instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these).</report>
 
@@ -1922,8 +1914,7 @@
         role="error" 
         id="clintrial-related-object-16">Content within <name/> element ends with a full stop, which is not correct - '<value-of select="."/>'.</report>
       
-      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-3"
-        test="@content-type=('pre-results','results','post-results')" 
+      <assert test="@content-type=('pre-results','results','post-results')" 
         role="error" 
         id="clintrial-related-object-18"><name/> must have a content-type attribute with one of the following values: pre-results, results, or post-results.</assert>
       
@@ -2008,18 +1999,15 @@
         role="warning" 
         id="ftp-credentials-flag">@xlink:href contains what looks like a link to an FTP site which contains credentials (username and password) - '<value-of select="@xlink:href"/>'. If the link without credentials works (<value-of select="concat(substring-before(@xlink:href,'://'),'://',substring-after(@xlink:href,'@'))"/>), then please replace it with that.</report>
       
-      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#htqb8-url-fullstop-report"
-        test="matches(@xlink:href,'\.$')" 
+      <report test="matches(@xlink:href,'\.$')" 
         role="error" 
         id="url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a full stop which is incorrect.</report>
       
-      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hjtq3-url-space-report"
-        test="matches(@xlink:href,'[\p{Zs}]')" 
+      <report test="matches(@xlink:href,'[\p{Zs}]')" 
         role="error" 
         id="url-space-report">'<value-of select="@xlink:href"/>' - Link contains a space which is incorrect.</report>
       
-      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hyyhg-ext-link-text"
-        test="(.!=@xlink:href) and matches(.,'https?:|ftp:')" 
+      <report test="(.!=@xlink:href) and matches(.,'https?:|ftp:')" 
         role="warning" 
         id="ext-link-text">The text for a URL is '<value-of select="."/>' (which looks like a URL), but it is not the same as the actual embedded link, which is '<value-of select="@xlink:href"/>'.</report>
 

@@ -2224,7 +2224,7 @@
       
       <report test="(@ref-type='aff') and preceding-sibling::xref[not(@ref-type='aff')]" 
         role="error" 
-        id="author-xref-test-1">Affiliation footnote links (xrefs) from authors must be the first type of link. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their affiliation link - <value-of select="."/> - appears after another non-affiliation link, when it should appear before it.</report>
+        id="author-xref-test-1">Affiliation footnote links (xrefs) from authors must be the first type of link to be listed. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their affiliation link - <value-of select="."/> - appears after another non-affiliation link, when it should appear before it.</report>
       
       <report test="(@ref-type='fn') and contains(@rid,'equal') and preceding-sibling::xref[not(@ref-type='aff')]" 
         role="error" 
@@ -2411,11 +2411,11 @@
 	  
 	  <report test="($type = 'senior_editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" 
         role="warning" 
-        id="contrib-test-2">The <value-of select="role[1]"/> doesn't have an affiliation - <value-of select="$name"/> - is this correct?</report>
+        id="contrib-test-2">The <value-of select="role[1]"/> doesn't have an affiliation - <value-of select="$name"/> - is this correct? Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</report>
 	  
 	  <report test="($type = 'editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" 
         role="error" 
-        id="contrib-test-4">The <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation. - is this correct?</report>
+        id="contrib-test-4">The <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</report>
 	  
 	     <report test="name and collab" 
         role="error" 
@@ -12707,6 +12707,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="singapore-test-2"><value-of select="ancestor::aff/@id"/> has 'Singapore' as its city but '<value-of select="ancestor::aff/country/text()"/>' as its country, which must be incorrect.</report>
       
+      <report test="(lower-case(.) = 'washington') and (ancestor::aff/country/text() = 'United States')" 
+        role="error" 
+        id="wash-dc-test-1"><value-of select="ancestor::aff/@id"/> has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the corrcet city.</report>
+      
       <report test="matches(.,'�')" 
         role="error" 
         id="city-replacement-character-presence"><name/> element contains the replacement character '�' which is unallowed.</report>
@@ -12743,6 +12747,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="institution-street-presence">institution likely contains a street or building name, which is likely to be incorrect - <value-of select="."/>.</report>
       
+      <!-- contains an ampersand and is not a known exception -->
+      <report test="matches(replace(lower-case(.),'(texas a\s*&amp;\s*m|hygiene &amp; tropical|r\s*&amp;\s*d)',''),'&amp;')" 
+        role="warning" 
+        id="institution-ampersand-presence">institution contains an ampersand - <value-of select="."/>. It's eLife style to use 'and' instead of an ampersand except in cases where the ampersand is explicitly part of the institution name (e.g. Texas A&amp;M University). Should it be changed here?</report>
     </rule>
     
     <rule context="aff/institution[@content-type='dept']" id="department-tests">

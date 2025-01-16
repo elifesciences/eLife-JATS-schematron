@@ -8332,7 +8332,7 @@
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[author-xref-test-1] Affiliation footnote links (xrefs) from authors must be the first type of link. For <xsl:text/>
+            <svrl:text>[author-xref-test-1] Affiliation footnote links (xrefs) from authors must be the first type of link to be listed. For <xsl:text/>
                <xsl:value-of select="e:get-name(preceding-sibling::name[1])"/>
                <xsl:text/>, their affiliation link - <xsl:text/>
                <xsl:value-of select="."/>
@@ -8875,7 +8875,7 @@
                <xsl:value-of select="role[1]"/>
                <xsl:text/> doesn't have an affiliation - <xsl:text/>
                <xsl:value-of select="$name"/>
-               <xsl:text/> - is this correct?</svrl:text>
+               <xsl:text/> - is this correct? Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
@@ -8890,7 +8890,7 @@
                <xsl:value-of select="role[1]"/>
                <xsl:text/> (<xsl:text/>
                <xsl:value-of select="$name"/>
-               <xsl:text/>) must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation. - is this correct?</svrl:text>
+               <xsl:text/>) must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
@@ -36927,6 +36927,19 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
+      <xsl:if test="(lower-case(.) = 'washington') and (ancestor::aff/country/text() = 'United States')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(lower-case(.) = 'washington') and (ancestor::aff/country/text() = 'United States')">
+            <xsl:attribute name="id">wash-dc-test-1</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[wash-dc-test-1] <xsl:text/>
+               <xsl:value-of select="ancestor::aff/@id"/>
+               <xsl:text/> has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the corrcet city.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
       <xsl:if test="matches(.,'�')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'�')">
             <xsl:attribute name="id">city-replacement-character-presence</xsl:attribute>
@@ -37050,6 +37063,19 @@
             <svrl:text>[institution-street-presence] institution likely contains a street or building name, which is likely to be incorrect - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(replace(lower-case(.),'(texas a\s*&amp;\s*m|hygiene &amp; tropical|r\s*&amp;\s*d)',''),'&amp;')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(replace(lower-case(.),'(texas a\s*&amp;\s*m|hygiene &amp; tropical|r\s*&amp;\s*d)',''),'&amp;')">
+            <xsl:attribute name="id">institution-ampersand-presence</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[institution-ampersand-presence] institution contains an ampersand - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. It's eLife style to use 'and' instead of an ampersand except in cases where the ampersand is explicitly part of the institution name (e.g. Texas A&amp;M University). Should it be changed here?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M518"/>

@@ -18685,6 +18685,16 @@
         <x:expect-report id="singapore-test-2" role="error"/>
         <x:expect-not-assert id="city-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="wash-dc-test-1-pass">
+        <x:context href="../tests/gen/city-tests/wash-dc-test-1/pass.xml"/>
+        <x:expect-not-report id="wash-dc-test-1" role="error"/>
+        <x:expect-not-assert id="city-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="wash-dc-test-1-fail">
+        <x:context href="../tests/gen/city-tests/wash-dc-test-1/fail.xml"/>
+        <x:expect-report id="wash-dc-test-1" role="error"/>
+        <x:expect-not-assert id="city-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="city-replacement-character-presence-pass">
         <x:context href="../tests/gen/city-tests/city-replacement-character-presence/pass.xml"/>
         <x:expect-not-report id="city-replacement-character-presence" role="error"/>
@@ -18765,6 +18775,16 @@
       <x:scenario label="institution-street-presence-fail">
         <x:context href="../tests/gen/institution-tests/institution-street-presence/fail.xml"/>
         <x:expect-report id="institution-street-presence" role="warning"/>
+        <x:expect-not-assert id="institution-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="institution-ampersand-presence-pass">
+        <x:context href="../tests/gen/institution-tests/institution-ampersand-presence/pass.xml"/>
+        <x:expect-not-report id="institution-ampersand-presence" role="warning"/>
+        <x:expect-not-assert id="institution-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="institution-ampersand-presence-fail">
+        <x:context href="../tests/gen/institution-tests/institution-ampersand-presence/fail.xml"/>
+        <x:expect-report id="institution-ampersand-presence" role="warning"/>
         <x:expect-not-assert id="institution-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

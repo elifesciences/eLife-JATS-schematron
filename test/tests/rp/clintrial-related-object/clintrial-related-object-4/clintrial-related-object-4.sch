@@ -147,7 +147,7 @@
   <pattern id="clintrial-related-object-pattern">
     <rule context="related-object[@content-type or @document-id]" id="clintrial-related-object">
       <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
-      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-4" test="@source-id-type='registry-name'" role="error" id="clintrial-related-object-4">[clintrial-related-object-4] <name/> must have an @source-id-type='registry-name'.</assert>
+      <assert test="@source-id-type='registry-name'" role="error" id="clintrial-related-object-4">[clintrial-related-object-4] <name/> must have an @source-id-type='registry-name'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
