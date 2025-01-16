@@ -11226,7 +11226,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[pre-auth-aff-test-3] Author affiliations must have a top level institution. This one (with the id <xsl:text/>
+               <svrl:text>[pre-auth-aff-test-3] Author affiliations (&lt;aff&gt;) must include an &gt;institution&gt; tag. This one (with the id <xsl:text/>
                   <xsl:value-of select="@id"/>
                   <xsl:text/>) does not - <xsl:text/>
                   <xsl:value-of select="$display"/>

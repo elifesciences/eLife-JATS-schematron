@@ -2305,7 +2305,7 @@
       
       
       
-      <assert test="institution[not(@*)] or institution-wrap[institution[not(@*)]]" role="error" id="final-auth-aff-test-3">Author affiliations must have a top level institution. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/></assert>
+      <assert test="institution[not(@*)] or institution-wrap[institution[not(@*)]]" role="error" id="final-auth-aff-test-3">Author affiliations (&lt;aff&gt;) must include an &gt;institution&gt; tag. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/></assert>
     </rule></pattern><pattern id="aff-institution-wrap-tests-pattern"><rule context="aff//institution-wrap" id="aff-institution-wrap-tests">
       <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
       

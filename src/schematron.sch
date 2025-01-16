@@ -3265,11 +3265,11 @@
       
       <assert test="institution[not(@*)] or institution-wrap[institution[not(@*)]]" 
         role="warning" 
-        id="pre-auth-aff-test-3">Author affiliations must have a top level institution. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/>. Please query the authors.</assert>
+        id="pre-auth-aff-test-3">Author affiliations (&lt;aff>) must include an &gt;institution> tag. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/>. Please query the authors.</assert>
       
       <assert test="institution[not(@*)] or institution-wrap[institution[not(@*)]]" 
         role="error" 
-        id="final-auth-aff-test-3">Author affiliations must have a top level institution. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/></assert>
+        id="final-auth-aff-test-3">Author affiliations (&lt;aff>) must include an &gt;institution> tag. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/></assert>
     </rule>
     
     <rule context="aff//institution-wrap" id="aff-institution-wrap-tests">
