@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="fig-caption-1.sch"?>
+<!--Context: fig/caption
+Test: report    not(title) and (count(p) gt 1)
+Message: Caption for figure ('') doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <fig>
+            <label>Figure 1.</label>
+            <caption>
+                <title>This is the title.</title>
+                <p>A) Description for panel A. B) Description for panel B.</p>
+            </caption>
+        </fig>
+    </article>
+</root>

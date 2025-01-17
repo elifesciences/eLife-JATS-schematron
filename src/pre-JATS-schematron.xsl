@@ -8766,7 +8766,7 @@
                <xsl:value-of select="role[1]"/>
                <xsl:text/> doesn't have an affiliation - <xsl:text/>
                <xsl:value-of select="$name"/>
-               <xsl:text/> - is this correct? Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</svrl:text>
+               <xsl:text/> - is this correct? Exeter: If it is not present in the eJP output, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
@@ -8781,7 +8781,7 @@
                <xsl:value-of select="role[1]"/>
                <xsl:text/> (<xsl:text/>
                <xsl:value-of select="$name"/>
-               <xsl:text/>) must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</svrl:text>
+               <xsl:text/>) must have an affiliation. Exeter: If it is not present in the eJP output, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->

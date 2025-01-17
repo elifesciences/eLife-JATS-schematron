@@ -2411,11 +2411,11 @@
 	  
 	  <report test="($type = 'senior_editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" 
         role="warning" 
-        id="contrib-test-2">The <value-of select="role[1]"/> doesn't have an affiliation - <value-of select="$name"/> - is this correct? Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</report>
+        id="contrib-test-2">The <value-of select="role[1]"/> doesn't have an affiliation - <value-of select="$name"/> - is this correct? Exeter: If it is not present in the eJP output, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</report>
 	  
 	  <report test="($type = 'editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" 
         role="error" 
-        id="contrib-test-4">The <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP ouput, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</report>
+        id="contrib-test-4">The <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP output, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</report>
 	  
 	     <report test="name and collab" 
         role="error" 

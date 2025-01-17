@@ -930,6 +930,18 @@
           role="warning" 
           id="fig-label-table">Label for figure ('<value-of select="."/>') starts with table. Should this content be captured as a table instead of a figure?</report>
      </rule>
+      
+      <rule context="fig/caption[p]/title" id="fig-title-checks">
+        <report test="matches(lower-case(.),'\.\p{Z}*a\p{P}\p{Z}*$')" 
+          role="warning" 
+          id="fig-title-1">Title for figure ('<value-of select="ancestor::fig/label"/>') potentially ends with a panel label. Should it be moved to the start of the next paragraph? <value-of select="."/></report>
+     </rule>
+      
+      <rule context="fig/caption" id="fig-caption-checks">
+        <report test="not(title) and (count(p) gt 1)" 
+          role="warning" 
+          id="fig-caption-1">Caption for figure ('<value-of select="ancestor::fig/label"/>') doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
+     </rule>
     </pattern>
 
     <pattern id="table-wrap">
