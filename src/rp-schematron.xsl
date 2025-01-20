@@ -5326,6 +5326,21 @@
                <xsl:text/>', but there's another footnote with the type 'coi-statement'. Are two separate notes necessary? Are they duplicates?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="label[matches(.,'[\d\p{L}]')]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="label[matches(.,'[\d\p{L}]')]">
+            <xsl:attribute name="id">author-fn-9</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[author-fn-9] footnote with id <xsl:text/>
+               <xsl:value-of select="$id"/>
+               <xsl:text/> has a label that contains a letter or number '<xsl:text/>
+               <xsl:value-of select="label[1]"/>
+               <xsl:text/>'. If they are part of a sequence that also includes affiliation labels this will look odd on EPP (as affiliation labels are not rendered). Should they be replaced with symbols? eLife's style is to follow this sequence: *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M88"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M88"/>

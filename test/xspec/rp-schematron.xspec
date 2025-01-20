@@ -2301,6 +2301,16 @@
         <x:expect-report id="author-fn-8" role="warning"/>
         <x:expect-not-assert id="author-notes-fn-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="author-fn-9-pass">
+        <x:context href="../tests/rp/author-notes-fn-checks/author-fn-9/pass.xml"/>
+        <x:expect-not-report id="author-fn-9" role="warning"/>
+        <x:expect-not-assert id="author-notes-fn-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-fn-9-fail">
+        <x:context href="../tests/rp/author-notes-fn-checks/author-fn-9/fail.xml"/>
+        <x:expect-report id="author-fn-9" role="warning"/>
+        <x:expect-not-assert id="author-notes-fn-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="article-version-checks">
       <x:scenario label="article-version-2-pass">
