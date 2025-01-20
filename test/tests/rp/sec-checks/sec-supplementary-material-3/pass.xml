@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="sec-supplementary-material-3.sch"?>
+<!--Context: sec
+Test: report    not(@sec-type=('additional-information','supplementary-material')) and not(descendant::supplementary-material or descendant::fig or descendant::table-wrap) and title[1][matches(lower-case(.),'(supporting|supplementary|supplemental|ancillary|additional) (information|files|material)')]
+Message: sec has a title suggesting its content might relate to additional files, but it doesn't contain a supplementary-material element. If this section contains captions for supplementary files, then these should be added to the appropriate <supplementary-material>. If the files are not present in the article at all, the captions should be removed (or the files added as new <supplementary-material>). -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sec id="s8">
+            <title>Supplementary Materials</title>
+            <p>Figures S1-S9</p>
+            <fig/>
+            <fig/>
+            <fig/>
+            <fig/>
+        </sec>
+    </article>
+</root>
