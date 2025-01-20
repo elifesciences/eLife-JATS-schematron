@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="author-fn-9.sch"?>
+<!--Context: article/front/article-meta/author-notes/fn
+Test: report    label[matches(.,'[\d\p{L}]')]
+Message: footnote with id  has a label that contains a letter or number ''. If they are part of a sequence that also includes affiliation labels this will look odd on EPP (as affiliation labels are not rendered). Should they be replaced with symbols? eLife's style is to follow this sequence: *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <front>
+            <article-meta>
+                <author-notes>
+                    <fn id="fn1"><label>*</label></fn>
+                </author-notes>
+            </article-meta>
+        </front>
+    </article>
+</root>
