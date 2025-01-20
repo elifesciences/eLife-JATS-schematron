@@ -1109,6 +1109,10 @@
         <report test="@sec-type='supplementary-material' and *[not(name()=('label','title','supplementary-material'))]" 
           role="warning" 
           id="sec-supplementary-material">&lt;sec sec-type='supplementary-material'> contains elements other than supplementary-material: <value-of select="string-join(*[not(name()=('label','title','supplementary-material'))]/name(),'; ')"/>. These will currently be stripped from the content rendered on EPP. Should they be moved out of the section or is that OK?'</report>
+        
+        <report test="@sec-type='supplementary-material' and not(supplementary-material)" 
+          role="error" 
+          id="sec-supplementary-material-2">&lt;sec sec-type="supplementary-material"> must contain at least one &lt;supplementary-material> element, but this one does not. If this section contains captions, then these should be added to the appropriate &lt;supplementary-material>. If the files are not present in the article at all, the captions should be removed (or the files added as new &lt;supplementary-material>).</report>
 
         <assert test="*[not(name()=('label','title','sec-meta'))]" 
           role="error" 

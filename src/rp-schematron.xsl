@@ -4594,6 +4594,17 @@
                <xsl:text/>. These will currently be stripped from the content rendered on EPP. Should they be moved out of the section or is that OK?'</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="@sec-type='supplementary-material' and not(supplementary-material)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@sec-type='supplementary-material' and not(supplementary-material)">
+            <xsl:attribute name="id">sec-supplementary-material-2</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[sec-supplementary-material-2] &lt;sec sec-type="supplementary-material"&gt; must contain at least one &lt;supplementary-material&gt; element, but this one does not. If this section contains captions, then these should be added to the appropriate &lt;supplementary-material&gt;. If the files are not present in the article at all, the captions should be removed (or the files added as new &lt;supplementary-material&gt;).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="*[not(name()=('label','title','sec-meta'))]"/>
