@@ -1851,6 +1851,16 @@
         <x:expect-report id="sec-supplementary-material-2" role="error"/>
         <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="sec-supplementary-material-3-pass">
+        <x:context href="../tests/rp/sec-checks/sec-supplementary-material-3/pass.xml"/>
+        <x:expect-not-report id="sec-supplementary-material-3" role="warning"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-supplementary-material-3-fail">
+        <x:context href="../tests/rp/sec-checks/sec-supplementary-material-3/fail.xml"/>
+        <x:expect-report id="sec-supplementary-material-3" role="warning"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="sec-empty-pass">
         <x:context href="../tests/rp/sec-checks/sec-empty/pass.xml"/>
         <x:expect-not-assert id="sec-empty" role="error"/>
