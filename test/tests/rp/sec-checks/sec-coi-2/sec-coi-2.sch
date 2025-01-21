@@ -144,14 +144,14 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="notes-checks-pattern">
-    <rule context="front/notes" id="notes-checks">
-      <report test="fn-group[not(@content-type='summary-of-updates')] or notes[not(@notes-type='disclosures')]" role="warning" id="notes-check-1">[notes-check-1] When present, the notes element should only be used to contain an author revision summary (an fn-group with the content-type 'summary-of-updates'). This notes element contains other content. Is it redundant? Or should the content be moved elsewhere? (coi statements should be in author-notes; clinical trial numbers should be included as a related-object in a structured abstract (if it already exists) or as related-object in article-meta; data/code/ethics/funding statements can be included in additional information in new or existing section(s), as appropriate)</report>
+  <pattern id="sec-checks-pattern">
+    <rule context="sec" id="sec-checks">
+      <report test="title[1][matches(lower-case(.),'(compete?t?ing|conflicts?[\s-]of)[\s-]interest|disclosure|declaration|disclaimer')] and not(ancestor::article//article-meta/author-notes/fn[@fn-type='coi-statement'])" role="warning" id="sec-coi-2">[sec-coi-2] sec has a title suggesting it's a competing interest statement. COI statements should be captured within author-notes, so this content should be moved into fn with the fn-type="coi-statement" within author-notes.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front/notes" role="error" id="notes-checks-xspec-assert">front/notes must be present.</assert>
+      <assert test="descendant::sec" role="error" id="sec-checks-xspec-assert">sec must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -231,8 +231,8 @@
                 <xsl:when test="not(./author-notes)">
                     <xsl:choose>
                         <xsl:when test="ancestor::article/front//notes[not(fn-group) and not(contains(@notes-type,'clinical'))]">
-                            <xsl:element name="author-notes">
-                                <xsl:if test="ancestor::article/front//notes[@notes-type]">
+                            <xsl:if test="ancestor::article/front//notes[@notes-type]">
+                                <xsl:element name="author-notes">
                                     <!-- Ignore clinical trial type notes for now - these are handled separately -->
                                     <xsl:for-each select="ancestor::article/front//notes[not(fn-group) and not(contains(@notes-type,'clinical'))]">
                                         <xsl:text>&#xa;</xsl:text>
@@ -253,8 +253,9 @@
                                         </xsl:element>
                                     </xsl:for-each>
                                     <xsl:text>&#xa;</xsl:text>
-                                </xsl:if>
-                            </xsl:element>
+                                </xsl:element>
+                                <xsl:text>&#xa;</xsl:text>
+                            </xsl:if>
                         </xsl:when>
                     </xsl:choose>
                 </xsl:when>

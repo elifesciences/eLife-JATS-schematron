@@ -1,0 +1,22 @@
+<?oxygen SCHSchema="sec-coi-2.sch"?>
+<!--Context: sec
+Test: report    title[1][matches(lower-case(.),'(compete?t?ing|conflicts?[\s-]of)[\s-]interest|disclosure|declaration|disclaimer')] and not(ancestor::article//article-meta/author-notes/fn[@fn-type='coi-statement'])
+Message: sec has a title suggesting it's a competing interest statement. COI statements should be captured within author-notes, so this content should be moved into fn with the fn-type="coi-statement" within author-notes. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <back>
+            <sec>
+                <title>Competing interest</title>
+            </sec>
+            <sec>
+                <title>Declaration of Interests</title>
+            </sec>
+            <sec>
+                <title>DISCLOSURES</title>
+            </sec>
+            <sec>
+                <title>coi disclosures</title>
+            </sec>
+        </back>
+    </article>
+</root>
