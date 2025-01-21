@@ -1891,6 +1891,16 @@
         <x:expect-report id="sec-coi" role="warning"/>
         <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="sec-coi-2-pass">
+        <x:context href="../tests/rp/sec-checks/sec-coi-2/pass.xml"/>
+        <x:expect-not-report id="sec-coi-2" role="warning"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-coi-2-fail">
+        <x:context href="../tests/rp/sec-checks/sec-coi-2/fail.xml"/>
+        <x:expect-report id="sec-coi-2" role="warning"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="sec-def-list-pass">
         <x:context href="../tests/rp/sec-checks/sec-def-list/pass.xml"/>
         <x:expect-not-report id="sec-def-list" role="error"/>
