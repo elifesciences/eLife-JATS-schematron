@@ -307,7 +307,7 @@
             <xsl:apply-templates select="funding-group|funding-group/following-sibling::text()[1]"/>
             <xsl:apply-templates select="support-group|support-group/following-sibling::text()[1]"/>
             <xsl:apply-templates select="conference|conference/following-sibling::text()[1]"/>
-            <xsl:apply-templates select="counts|counts/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="counts"/>
             <xsl:element name="custom-meta-group">
                 <xsl:text>&#xa;</xsl:text>
                 <xsl:if test="custom-meta-group">
@@ -737,9 +737,21 @@
         <xsl:copy>
             <xsl:apply-templates select="@*|*|text()|processing-instruction()|comment()"/>
             <!-- Ignore clinical trial type notes - these are handled separately -->
-            <xsl:for-each select="ancestor::article/front//notes[not(fn-group) and not(contains(@notes-type,'clinical'))]">
+            <xsl:for-each select="ancestor::article/front//notes[not(notes) and not(fn-group) and not(contains(@notes-type,'clinical')) and not(@notes-type='disclosures')]">
                 <xsl:element name="fn">
-                    <xsl:attribute name="fn-type">coi-statement</xsl:attribute>
+                    <xsl:choose>
+                        <xsl:when test="./@notes-type='competing-interest-statement'">
+                            <xsl:attribute name="fn-type">coi-statement</xsl:attribute>
+                        </xsl:when>
+                        <xsl:when test="./@notes-type">
+                            <xsl:attribute name="fn-type">
+                                <xsl:value-of select="./@notes-type"/>
+                            </xsl:attribute>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="fn-type">coi-statement</xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
                     <xsl:element name="p">
                         <xsl:choose>
                             <xsl:when test="./title">
@@ -747,8 +759,11 @@
                                 <xsl:text>: </xsl:text>
                                 <xsl:apply-templates select="./p/(*|text())"/>
                             </xsl:when>
-                            <xsl:otherwise>
+                            <xsl:when test="./@notes-type='competing-interest-statement'">
                                 <xsl:text>Competing interests: </xsl:text>
+                                <xsl:apply-templates select="./p/(*|text())"/>
+                            </xsl:when>
+                            <xsl:otherwise>
                                 <xsl:apply-templates select="./p/(*|text())"/>
                             </xsl:otherwise>
                         </xsl:choose>
@@ -767,24 +782,13 @@
                     <xsl:apply-templates select="@*|*|comment()|processing-instruction()"/>
                 </xsl:copy>
             </xsl:when>
-            <xsl:when test="fn-group or notes[not(@notes-type)]">
-                <xsl:choose>
-                    <xsl:when test="fn-group">
-                        <xsl:copy>
-                            <xsl:apply-templates select="@*"/>
-                            <xsl:text>&#xa;</xsl:text>
-                            <xsl:apply-templates select="./notes[not(@notes-type)]|./notes[not(@notes-type)]/following-sibling::text()[1]|fn-group|fn-group/following-sibling::text()[1]"/>
-                        </xsl:copy>
-                    </xsl:when>
-                    <xsl:when test="count(notes[not(@notes-type)]) gt 1">
-                        <xsl:copy>
-                            <xsl:apply-templates select="@*"/>
-                            <xsl:text>&#xa;</xsl:text>
-                            <xsl:apply-templates select="./notes[not(@notes-type)]|./notes[not(@notes-type)]/following-sibling::text()[1]"/>
-                        </xsl:copy>
-                    </xsl:when>
-                    <xsl:otherwise/>
-                </xsl:choose>
+            <!-- retain only the notes types and fn-groups we want here -->
+            <xsl:when test="fn-group or notes[not(@notes-type) or @notes-type='disclosures']">
+                <xsl:copy>
+                    <xsl:apply-templates select="@*"/>
+                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:apply-templates select="./notes[not(@notes-type) or @notes-type='disclosures']|./notes[not(@notes-type) or @notes-type='disclosures']/following-sibling::text()[1]|fn-group|fn-group/following-sibling::text()[1]"/>
+                </xsl:copy>
             </xsl:when>
             <xsl:otherwise/>
         </xsl:choose>
