@@ -292,7 +292,7 @@
                         <xsl:attribute name="content-type"/>
                         <xsl:attribute name="source-id"/>
                         <xsl:attribute name="source-id-type">registry-name</xsl:attribute>
-                        <xsl:attribute name="source-type">clinical-trial-registry</xsl:attribute>
+                        <xsl:attribute name="source-type">clinical-trials-registry</xsl:attribute>
                         <xsl:attribute name="document-id"/>
                         <xsl:attribute name="document-id-type">clinical-trial-number</xsl:attribute>
                         <xsl:attribute name="xlink:href"/>
