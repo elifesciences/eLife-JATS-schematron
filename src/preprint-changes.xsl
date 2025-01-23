@@ -1523,7 +1523,14 @@
                     <xsl:attribute name="sec-type">additional-information</xsl:attribute>
                     <xsl:text>&#xa;</xsl:text>
                     <title>Additional information</title>
-                    <xsl:for-each select="glossary|sec[not(matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')) and (not(@sec-type='supplementary-material' or sec or descendant::fig or descendant::table-wrap or descendant::supplementary-material or descendant::disp-formula or descendant::inline-formula or descendant::statement or descendant::code or descendant::preformat or descendant::ref-list))]">
+                    <xsl:for-each select="sec[not(matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')) and (not(@sec-type='supplementary-material' or sec or descendant::fig or descendant::table-wrap or descendant::supplementary-material or descendant::disp-formula or descendant::inline-formula or descendant::statement or descendant::code or descendant::preformat or descendant::ref-list))]">
+                        <xsl:text>&#xa;</xsl:text>
+                        <xsl:copy>
+                            <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                        </xsl:copy>
+                    </xsl:for-each>
+                    <!-- glossary must come after sec according to the DTD -->
+                    <xsl:for-each select="glossary">
                         <xsl:text>&#xa;</xsl:text>
                         <xsl:copy>
                             <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
