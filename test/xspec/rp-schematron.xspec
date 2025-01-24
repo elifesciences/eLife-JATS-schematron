@@ -619,12 +619,12 @@
     <x:scenario label="aff-ror-tests">
       <x:scenario label="aff-ror-pass">
         <x:context href="../tests/rp/aff-ror-tests/aff-ror/pass.xml"/>
-        <x:expect-not-assert id="aff-ror" role="warning"/>
+        <x:expect-not-assert id="aff-ror" role="error"/>
         <x:expect-not-assert id="aff-ror-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="aff-ror-fail">
         <x:context href="../tests/rp/aff-ror-tests/aff-ror/fail.xml"/>
-        <x:expect-assert id="aff-ror" role="warning"/>
+        <x:expect-assert id="aff-ror" role="error"/>
         <x:expect-not-assert id="aff-ror-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="aff-ror-city-pass">

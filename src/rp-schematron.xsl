@@ -2433,13 +2433,13 @@
       <xsl:variable name="ror" select="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
       <xsl:variable name="matching-ror" select="document($rors)//*:ror[*:id=$ror]"/>
       <xsl:variable name="display" select="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content','city','country'))],', ')"/>
-      <!--ASSERT warning-->
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="exists($matching-ror)"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="exists($matching-ror)">
                <xsl:attribute name="id">aff-ror</xsl:attribute>
-               <xsl:attribute name="role">warning</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
