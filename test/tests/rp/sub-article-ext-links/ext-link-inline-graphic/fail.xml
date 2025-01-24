@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="ext-link-inline-graphic.sch"?>
+<!--Context: sub-article/body//ext-link
+Test: report    inline-graphic
+Message: ext-link in sub-article has a child inline-graphic. Is this a figure or table (e.g. Author response image X) that should be captured semantically appropriately in the XML? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article>
+            <body>
+                <ext-link ext-link-type="uri" xlink:href="https://imgur.com/ZG5Rb3X"><inline-graphic xlink:href="https://i.imgur.com/ZG5Rb3X.jpg" mimetype="image" mime-subtype="jpeg"/></ext-link>
+            </body>
+        </sub-article>
+    </article>
+</root>

@@ -1199,6 +1199,10 @@
         <assert test="starts-with(.,$article-version-doi)" role="error" id="sub-article-doi-check-2">[sub-article-doi-check-2] The DOI for this sub-article (<value-of select="."/>) does not start with the version DOI for the Reviewed Preprint (<value-of select="$article-version-doi"/>).</assert>
       </rule></pattern><pattern id="sub-article-bold-image-checks-pattern"><rule context="sub-article/body//p" id="sub-article-bold-image-checks">
         <report test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic or ext-link[inline-graphic or graphic])" role="error" id="sub-article-bold-image-1">[sub-article-bold-image-1] p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs (so that they are correctly processed into fig or table-wrap).</report>
+      </rule></pattern><pattern id="sub-article-ext-links-pattern"><rule context="sub-article/body//ext-link" id="sub-article-ext-links">
+        <report test="not(inline-graphic) and matches(lower-case(@xlink:href),'imgur\.com')" role="warning" id="ext-link-imgur">[ext-link-imgur] ext-link in sub-article directs to imgur.com - <value-of select="@xlink:href"/>. Is this a figure or table (e.g. Author response image X) that should be captured semantically appropriately in the XML?</report>
+        
+        <report test="inline-graphic" role="error" id="ext-link-inline-graphic">[ext-link-inline-graphic] ext-link in sub-article has a child inline-graphic. Is this a figure or table (e.g. Author response image X) that should be captured semantically appropriately in the XML?</report>
       </rule></pattern>
 
     <pattern id="arxiv-journal-meta-checks-pattern"><rule context="article/front/journal-meta[lower-case(journal-id[1])='arxiv']" id="arxiv-journal-meta-checks">

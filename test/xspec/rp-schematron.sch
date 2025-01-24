@@ -1649,6 +1649,13 @@
         <report test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic or ext-link[inline-graphic or graphic])" role="error" id="sub-article-bold-image-1">p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs (so that they are correctly processed into fig or table-wrap).</report>
       </rule>
   </pattern>
+  <pattern id="sub-article-ext-links-pattern">
+    <rule context="sub-article/body//ext-link" id="sub-article-ext-links">
+        <report test="not(inline-graphic) and matches(lower-case(@xlink:href),'imgur\.com')" role="warning" id="ext-link-imgur">ext-link in sub-article directs to imgur.com - <value-of select="@xlink:href"/>. Is this a figure or table (e.g. Author response image X) that should be captured semantically appropriately in the XML?</report>
+        
+        <report test="inline-graphic" role="error" id="ext-link-inline-graphic">ext-link in sub-article has a child inline-graphic. Is this a figure or table (e.g. Author response image X) that should be captured semantically appropriately in the XML?</report>
+      </rule>
+  </pattern>
 
     <pattern id="arxiv-journal-meta-checks-pattern">
     <rule context="article/front/journal-meta[lower-case(journal-id[1])='arxiv']" id="arxiv-journal-meta-checks">
@@ -1884,6 +1891,7 @@
       <assert test="descendant::sub-article/front-stub" role="error" id="sub-article-front-stub-checks-xspec-assert">sub-article/front-stub must be present.</assert>
       <assert test="descendant::sub-article/front-stub/article-id[@pub-id-type='doi']" role="error" id="sub-article-doi-checks-xspec-assert">sub-article/front-stub/article-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::sub-article/body//p" role="error" id="sub-article-bold-image-checks-xspec-assert">sub-article/body//p must be present.</assert>
+      <assert test="descendant::sub-article/body//ext-link" role="error" id="sub-article-ext-links-xspec-assert">sub-article/body//ext-link must be present.</assert>
       <assert test="descendant::article/front/journal-meta[lower-case(journal-id[1])='arxiv']" role="error" id="arxiv-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id[1])='arxiv'] must be present.</assert>
       <assert test="descendant::article/front[journal-meta[lower-case(journal-id[1])='arxiv']]/article-meta/article-id[@pub-id-type='doi']" role="error" id="arxiv-doi-checks-xspec-assert">article/front[journal-meta[lower-case(journal-id[1])='arxiv']]/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::article/front/journal-meta[lower-case(journal-id[1])='rs']" role="error" id="res-square-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id[1])='rs'] must be present.</assert>

@@ -2289,6 +2289,16 @@
           role="error" 
           id="sub-article-bold-image-1">p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs (so that they are correctly processed into fig or table-wrap).</report>
       </rule>
+      
+      <rule context="sub-article/body//ext-link" id="sub-article-ext-links">
+        <report test="not(inline-graphic) and matches(lower-case(@xlink:href),'imgur\.com')" 
+          role="warning" 
+          id="ext-link-imgur">ext-link in sub-article directs to imgur.com - <value-of select="@xlink:href"/>. Is this a figure or table (e.g. Author response image X) that should be captured semantically appropriately in the XML?</report>
+        
+        <report test="inline-graphic" 
+          role="error" 
+          id="ext-link-inline-graphic">ext-link in sub-article has a child inline-graphic. Is this a figure or table (e.g. Author response image X) that should be captured semantically appropriately in the XML?</report>
+      </rule>
     </pattern>
 
     <pattern id="arxiv-metadata">

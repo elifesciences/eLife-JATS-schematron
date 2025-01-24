@@ -4108,6 +4108,28 @@
         <x:expect-not-assert id="sub-article-bold-image-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="sub-article-ext-links">
+      <x:scenario label="ext-link-imgur-pass">
+        <x:context href="../tests/rp/sub-article-ext-links/ext-link-imgur/pass.xml"/>
+        <x:expect-not-report id="ext-link-imgur" role="warning"/>
+        <x:expect-not-assert id="sub-article-ext-links-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ext-link-imgur-fail">
+        <x:context href="../tests/rp/sub-article-ext-links/ext-link-imgur/fail.xml"/>
+        <x:expect-report id="ext-link-imgur" role="warning"/>
+        <x:expect-not-assert id="sub-article-ext-links-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ext-link-inline-graphic-pass">
+        <x:context href="../tests/rp/sub-article-ext-links/ext-link-inline-graphic/pass.xml"/>
+        <x:expect-not-report id="ext-link-inline-graphic" role="error"/>
+        <x:expect-not-assert id="sub-article-ext-links-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ext-link-inline-graphic-fail">
+        <x:context href="../tests/rp/sub-article-ext-links/ext-link-inline-graphic/fail.xml"/>
+        <x:expect-report id="ext-link-inline-graphic" role="error"/>
+        <x:expect-not-assert id="sub-article-ext-links-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="arxiv-journal-meta-checks">
       <x:scenario label="arxiv-journal-id-pass">
         <x:context href="../tests/rp/arxiv-journal-meta-checks/arxiv-journal-id/pass.xml"/>
