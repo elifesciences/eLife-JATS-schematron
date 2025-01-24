@@ -1074,6 +1074,18 @@
          id="graphic-test-7"><name/> has gif mime-subtype but filename does not end with '.gif'. This cannot be correct.</report>
      </rule>
        
+       <rule context="graphic" id="graphic-placement">
+         <assert test="parent::fig or parent::table-wrap or parent::disp-formula or parent::alternatives[parent::table-wrap or parent::disp-formula]" 
+          role="error" 
+          id="graphic-test-8"><name/> can only be placed as a child of fig, table-wrap, disp-formula or alternatives (alternatives must in turn must be a child of either table-wrap or disp-formula). This one is a child of <value-of select="parent::*/name()"/></assert>
+       </rule>
+       
+       <rule context="inline-graphic" id="inline-checks">
+         <assert test="parent::inline-formula or parent::alternatives[parent::inline-formula] or ancestor::caption[parent::fig or parent::table-wrap]" 
+          role="warning" 
+          id="inline-graphic-test-1"><name/> is usually placed either in inline-formula (or alternatives which in turn is a child of inline-formula), or in the caption for a figure or table. This one is not (its a child of <value-of select="parent::*/name()"/>). Is that OK?</assert>
+       </rule>
+       
      </pattern>
   
       <pattern id="media">
@@ -1096,6 +1108,10 @@
       <report test="*" 
         role="error" 
         id="media-test-13">Media element cannot contain child elements. This one has the following element(s) <value-of select="string-join(*/name(),'; ')"/>.</report>
+        
+      <assert test="parent::supplementary-material" 
+        role="error" 
+        id="media-test-1">media element should only be placed as a child of supplementary-material. This one has the parent <value-of select="parent::*/name()"/></assert>
      </rule>
        
      </pattern>

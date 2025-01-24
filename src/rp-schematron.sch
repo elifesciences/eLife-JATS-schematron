@@ -602,7 +602,11 @@
         <report test="preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link" role="error" id="graphic-test-6">[graphic-test-6] Image file for <value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/> (<value-of select="@xlink:href"/>) is the same as the one used for another graphic or inline-graphic.</report>
         
         <report test="@mime-subtype='gif' and $file!='gif'" role="error" id="graphic-test-7">[graphic-test-7] <name/> has gif mime-subtype but filename does not end with '.gif'. This cannot be correct.</report>
-     </rule></pattern>
+     </rule></pattern><pattern id="graphic-placement-pattern"><rule context="graphic" id="graphic-placement">
+         <assert test="parent::fig or parent::table-wrap or parent::disp-formula or parent::alternatives[parent::table-wrap or parent::disp-formula]" role="error" id="graphic-test-8">[graphic-test-8] <name/> can only be placed as a child of fig, table-wrap, disp-formula or alternatives (alternatives must in turn must be a child of either table-wrap or disp-formula). This one is a child of <value-of select="parent::*/name()"/></assert>
+       </rule></pattern><pattern id="inline-checks-pattern"><rule context="inline-graphic" id="inline-checks">
+         <assert test="parent::inline-formula or parent::alternatives[parent::inline-formula] or ancestor::caption[parent::fig or parent::table-wrap]" role="warning" id="inline-graphic-test-1">[inline-graphic-test-1] <name/> is usually placed either in inline-formula (or alternatives which in turn is a child of inline-formula), or in the caption for a figure or table. This one is not (its a child of <value-of select="parent::*/name()"/>). Is that OK?</assert>
+       </rule></pattern>
   
       <pattern id="media-checks-pattern"><rule context="media" id="media-checks">
         <let name="link" value="@xlink:href"/>
@@ -614,6 +618,8 @@
       <report test="text()" role="error" id="media-test-12">[media-test-12] Media element cannot contain text. This one has <value-of select="string-join(text(),'')"/>.</report>
         
       <report test="*" role="error" id="media-test-13">[media-test-13] Media element cannot contain child elements. This one has the following element(s) <value-of select="string-join(*/name(),'; ')"/>.</report>
+        
+      <assert test="parent::supplementary-material" role="error" id="media-test-1">[media-test-1] media element should only be placed as a child of supplementary-material. This one has the parent <value-of select="parent::*/name()"/></assert>
      </rule></pattern>
   
     <pattern id="sec-checks-pattern"><rule context="sec" id="sec-checks">

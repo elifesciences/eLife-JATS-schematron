@@ -1788,6 +1788,30 @@
         <x:expect-not-assert id="graphic-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="graphic-placement">
+      <x:scenario label="graphic-test-8-pass">
+        <x:context href="../tests/rp/graphic-placement/graphic-test-8/pass.xml"/>
+        <x:expect-not-assert id="graphic-test-8" role="error"/>
+        <x:expect-not-assert id="graphic-placement-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="graphic-test-8-fail">
+        <x:context href="../tests/rp/graphic-placement/graphic-test-8/fail.xml"/>
+        <x:expect-assert id="graphic-test-8" role="error"/>
+        <x:expect-not-assert id="graphic-placement-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="inline-checks">
+      <x:scenario label="inline-graphic-test-1-pass">
+        <x:context href="../tests/rp/inline-checks/inline-graphic-test-1/pass.xml"/>
+        <x:expect-not-assert id="inline-graphic-test-1" role="warning"/>
+        <x:expect-not-assert id="inline-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="inline-graphic-test-1-fail">
+        <x:context href="../tests/rp/inline-checks/inline-graphic-test-1/fail.xml"/>
+        <x:expect-assert id="inline-graphic-test-1" role="warning"/>
+        <x:expect-not-assert id="inline-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="media-checks">
       <x:scenario label="media-test-3-pass">
         <x:context href="../tests/rp/media-checks/media-test-3/pass.xml"/>
@@ -1827,6 +1851,16 @@
       <x:scenario label="media-test-13-fail">
         <x:context href="../tests/rp/media-checks/media-test-13/fail.xml"/>
         <x:expect-report id="media-test-13" role="error"/>
+        <x:expect-not-assert id="media-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="media-test-1-pass">
+        <x:context href="../tests/rp/media-checks/media-test-1/pass.xml"/>
+        <x:expect-not-assert id="media-test-1" role="error"/>
+        <x:expect-not-assert id="media-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="media-test-1-fail">
+        <x:context href="../tests/rp/media-checks/media-test-1/fail.xml"/>
+        <x:expect-assert id="media-test-1" role="error"/>
         <x:expect-not-assert id="media-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
