@@ -1193,8 +1193,6 @@
         <assert test="starts-with(.,$article-version-doi)" role="error" id="sub-article-doi-check-2">[sub-article-doi-check-2] The DOI for this sub-article (<value-of select="."/>) does not start with the version DOI for the Reviewed Preprint (<value-of select="$article-version-doi"/>).</assert>
       </rule></pattern><pattern id="sub-article-bold-image-checks-pattern"><rule context="sub-article/body//p" id="sub-article-bold-image-checks">
         <report test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic or ext-link[inline-graphic or graphic])" role="error" id="sub-article-bold-image-1">[sub-article-bold-image-1] p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs (so that they are correctly processed into fig or table-wrap).</report>
-      </rule></pattern><pattern id="sub-article-inline-graphics-pattern"><rule context="sub-article/body//inline-graphic" id="sub-article-inline-graphics">
-        <assert test="parent::inline-formula or parent::alternatives[inline-formula]" role="error" id="sub-article-inline-graphic">[sub-article-inline-graphic] inline-graphic in sub-article should only be placed as a child of inline-formula (or a child of alternatives in inline-formula). This one is not (uri=<value-of select="@xlink:href"/>).</assert>
       </rule></pattern>
 
     <pattern id="arxiv-journal-meta-checks-pattern"><rule context="article/front/journal-meta[lower-case(journal-id[1])='arxiv']" id="arxiv-journal-meta-checks">

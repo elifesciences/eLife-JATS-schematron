@@ -4074,18 +4074,6 @@
         <x:expect-not-assert id="sub-article-bold-image-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
-    <x:scenario label="sub-article-inline-graphics">
-      <x:scenario label="sub-article-inline-graphic-pass">
-        <x:context href="../tests/rp/sub-article-inline-graphics/sub-article-inline-graphic/pass.xml"/>
-        <x:expect-not-assert id="sub-article-inline-graphic" role="error"/>
-        <x:expect-not-assert id="sub-article-inline-graphics-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="sub-article-inline-graphic-fail">
-        <x:context href="../tests/rp/sub-article-inline-graphics/sub-article-inline-graphic/fail.xml"/>
-        <x:expect-assert id="sub-article-inline-graphic" role="error"/>
-        <x:expect-not-assert id="sub-article-inline-graphics-xspec-assert" role="error"/>
-      </x:scenario>
-    </x:scenario>
     <x:scenario label="arxiv-journal-meta-checks">
       <x:scenario label="arxiv-journal-id-pass">
         <x:context href="../tests/rp/arxiv-journal-meta-checks/arxiv-journal-id/pass.xml"/>

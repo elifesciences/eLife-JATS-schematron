@@ -2273,12 +2273,6 @@
           role="error" 
           id="sub-article-bold-image-1">p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs (so that they are correctly processed into fig or table-wrap).</report>
       </rule>
-      
-      <rule context="sub-article/body//inline-graphic" id="sub-article-inline-graphics">
-        <assert test="parent::inline-formula or parent::alternatives[inline-formula]" 
-          role="error" 
-          id="sub-article-inline-graphic">inline-graphic in sub-article should only be placed as a child of inline-formula (or a child of alternatives in inline-formula). This one is not (uri=<value-of select="@xlink:href"/>).</assert>
-      </rule>
     </pattern>
 
     <pattern id="arxiv-metadata">
