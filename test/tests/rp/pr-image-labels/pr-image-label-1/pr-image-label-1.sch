@@ -144,14 +144,14 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="sub-article-bold-image-checks-pattern">
-    <rule context="sub-article/body//p" id="sub-article-bold-image-checks">
-      <report test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic or ext-link[inline-graphic or graphic])" role="error" id="sub-article-bold-image-1">[sub-article-bold-image-1] p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs (so that they are correctly processed into fig or table-wrap).</report>
+  <pattern id="pr-image-labels-pattern">
+    <rule context="sub-article[@article-type='referee-report']//fig/label" id="pr-image-labels">
+      <assert test="matches(.,'^Review image \d\d?\.$')" role="error" id="pr-image-label-1">[pr-image-label-1] Label for figures in public reviews must be in the format 'Review image 0.' This one is not: '<value-of select="."/>'</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article/body//p" role="error" id="sub-article-bold-image-checks-xspec-assert">sub-article/body//p must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='referee-report']//fig/label" role="error" id="pr-image-labels-xspec-assert">sub-article[@article-type='referee-report']//fig/label must be present.</assert>
     </rule>
   </pattern>
 </schema>

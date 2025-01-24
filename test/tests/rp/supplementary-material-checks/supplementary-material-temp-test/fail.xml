@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="supplementary-material-temp-test.sch"?>
 <!--Context: supplementary-material
 Test: assert    ancestor::sec[@sec-type='supplementary-material']
-Message: supplementary-material element is not placed within a <sec sec-type="supplementary-material">. There is currently no support for supplementary-material in RPs. Please either move the supplementary-material under an existing <sec sec-type="supplementary-material"> or add a new <sec sec-type="supplementary-material"> around this an any other supplementary-material. -->
+Message: supplementary-material element is not placed within a <sec sec-type="supplementary-material">. Is that correct?. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <sec>

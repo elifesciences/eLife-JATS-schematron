@@ -144,15 +144,14 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="pr-bold-checks-pattern">
-    <rule context="sub-article[@article-type='referee-report']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)]" id="pr-bold-checks">
-      <assert test="matches(.,'Review (image|table) \d\d?\.')" role="error" id="pr-bold-image">[pr-bold-image] The bold text in a label preceding an image in a public review must be in the format 'Review 1.' or 'Review table 1.' - this one is not - <value-of select="."/>
-      </assert>
+  <pattern id="ar-table-labels-pattern">
+    <rule context="sub-article[@article-type='author-comment']//table-wrap/label" id="ar-table-labels">
+      <assert test="matches(.,'^Author response table \d\d?\.$')" role="error" id="ar-table-label-1">[ar-table-label-1] Label for tables in the author response must be in the format 'Author response table 0.' This one is not: '<value-of select="."/>'</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='referee-report']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)]" role="error" id="pr-bold-checks-xspec-assert">sub-article[@article-type='referee-report']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='author-comment']//table-wrap/label" role="error" id="ar-table-labels-xspec-assert">sub-article[@article-type='author-comment']//table-wrap/label must be present.</assert>
     </rule>
   </pattern>
 </schema>

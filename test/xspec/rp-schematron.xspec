@@ -1595,12 +1595,12 @@
     <x:scenario label="supplementary-material-checks">
       <x:scenario label="supplementary-material-temp-test-pass">
         <x:context href="../tests/rp/supplementary-material-checks/supplementary-material-temp-test/pass.xml"/>
-        <x:expect-not-assert id="supplementary-material-temp-test" role="error"/>
+        <x:expect-not-assert id="supplementary-material-temp-test" role="warning"/>
         <x:expect-not-assert id="supplementary-material-checks-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="supplementary-material-temp-test-fail">
         <x:context href="../tests/rp/supplementary-material-checks/supplementary-material-temp-test/fail.xml"/>
-        <x:expect-assert id="supplementary-material-temp-test" role="error"/>
+        <x:expect-assert id="supplementary-material-temp-test" role="warning"/>
         <x:expect-not-assert id="supplementary-material-checks-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="supplementary-material-test-1-pass">
@@ -3948,28 +3948,52 @@
         <x:expect-not-assert id="ed-report-bold-terms-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
-    <x:scenario label="ar-bold-checks">
-      <x:scenario label="ar-bold-image-pass">
-        <x:context href="../tests/rp/ar-bold-checks/ar-bold-image/pass.xml"/>
-        <x:expect-not-assert id="ar-bold-image" role="error"/>
-        <x:expect-not-assert id="ar-bold-checks-xspec-assert" role="error"/>
+    <x:scenario label="ar-image-labels">
+      <x:scenario label="ar-image-label-1-pass">
+        <x:context href="../tests/rp/ar-image-labels/ar-image-label-1/pass.xml"/>
+        <x:expect-not-assert id="ar-image-label-1" role="error"/>
+        <x:expect-not-assert id="ar-image-labels-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="ar-bold-image-fail">
-        <x:context href="../tests/rp/ar-bold-checks/ar-bold-image/fail.xml"/>
-        <x:expect-assert id="ar-bold-image" role="error"/>
-        <x:expect-not-assert id="ar-bold-checks-xspec-assert" role="error"/>
+      <x:scenario label="ar-image-label-1-fail">
+        <x:context href="../tests/rp/ar-image-labels/ar-image-label-1/fail.xml"/>
+        <x:expect-assert id="ar-image-label-1" role="error"/>
+        <x:expect-not-assert id="ar-image-labels-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
-    <x:scenario label="pr-bold-checks">
-      <x:scenario label="pr-bold-image-pass">
-        <x:context href="../tests/rp/pr-bold-checks/pr-bold-image/pass.xml"/>
-        <x:expect-not-assert id="pr-bold-image" role="error"/>
-        <x:expect-not-assert id="pr-bold-checks-xspec-assert" role="error"/>
+    <x:scenario label="ar-table-labels">
+      <x:scenario label="ar-table-label-1-pass">
+        <x:context href="../tests/rp/ar-table-labels/ar-table-label-1/pass.xml"/>
+        <x:expect-not-assert id="ar-table-label-1" role="error"/>
+        <x:expect-not-assert id="ar-table-labels-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="pr-bold-image-fail">
-        <x:context href="../tests/rp/pr-bold-checks/pr-bold-image/fail.xml"/>
-        <x:expect-assert id="pr-bold-image" role="error"/>
-        <x:expect-not-assert id="pr-bold-checks-xspec-assert" role="error"/>
+      <x:scenario label="ar-table-label-1-fail">
+        <x:context href="../tests/rp/ar-table-labels/ar-table-label-1/fail.xml"/>
+        <x:expect-assert id="ar-table-label-1" role="error"/>
+        <x:expect-not-assert id="ar-table-labels-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="pr-image-labels">
+      <x:scenario label="pr-image-label-1-pass">
+        <x:context href="../tests/rp/pr-image-labels/pr-image-label-1/pass.xml"/>
+        <x:expect-not-assert id="pr-image-label-1" role="error"/>
+        <x:expect-not-assert id="pr-image-labels-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pr-image-label-1-fail">
+        <x:context href="../tests/rp/pr-image-labels/pr-image-label-1/fail.xml"/>
+        <x:expect-assert id="pr-image-label-1" role="error"/>
+        <x:expect-not-assert id="pr-image-labels-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="pr-table-labels">
+      <x:scenario label="pr-table-label-1-pass">
+        <x:context href="../tests/rp/pr-table-labels/pr-table-label-1/pass.xml"/>
+        <x:expect-not-assert id="pr-table-label-1" role="error"/>
+        <x:expect-not-assert id="pr-table-labels-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pr-table-label-1-fail">
+        <x:context href="../tests/rp/pr-table-labels/pr-table-label-1/fail.xml"/>
+        <x:expect-assert id="pr-table-label-1" role="error"/>
+        <x:expect-not-assert id="pr-table-labels-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="sub-article-title-checks">
@@ -4048,6 +4072,18 @@
         <x:context href="../tests/rp/sub-article-bold-image-checks/sub-article-bold-image-1/fail.xml"/>
         <x:expect-report id="sub-article-bold-image-1" role="error"/>
         <x:expect-not-assert id="sub-article-bold-image-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="sub-article-inline-graphics">
+      <x:scenario label="sub-article-inline-graphic-pass">
+        <x:context href="../tests/rp/sub-article-inline-graphics/sub-article-inline-graphic/pass.xml"/>
+        <x:expect-not-assert id="sub-article-inline-graphic" role="error"/>
+        <x:expect-not-assert id="sub-article-inline-graphics-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-article-inline-graphic-fail">
+        <x:context href="../tests/rp/sub-article-inline-graphics/sub-article-inline-graphic/fail.xml"/>
+        <x:expect-assert id="sub-article-inline-graphic" role="error"/>
+        <x:expect-not-assert id="sub-article-inline-graphics-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="arxiv-journal-meta-checks">

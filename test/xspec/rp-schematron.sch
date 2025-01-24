@@ -722,10 +722,7 @@
   
     <pattern id="supplementary-material-checks-pattern">
     <rule context="supplementary-material" id="supplementary-material-checks">
-        
-        <!-- Temporary error while no support for supplementary-material in EPP 
-                sec sec-type="supplementary-material" is stripped from XML via xslt -->
-        <assert test="ancestor::sec[@sec-type='supplementary-material']" role="error" id="supplementary-material-temp-test">supplementary-material element is not placed within a &lt;sec sec-type="supplementary-material"&gt;. There is currently no support for supplementary-material in RPs. Please either move the supplementary-material under an existing &lt;sec sec-type="supplementary-material"&gt; or add a new &lt;sec sec-type="supplementary-material"&gt; around this an any other supplementary-material.</assert>
+        <assert test="ancestor::sec[@sec-type='supplementary-material']" role="warning" id="supplementary-material-temp-test">supplementary-material element is not placed within a &lt;sec sec-type="supplementary-material"&gt;. Is that correct?.</assert>
         
         <assert test="media" role="error" id="supplementary-material-test-1">supplementary-material does not have a child media. It must either have a file or be deleted.</assert>
         
@@ -1582,17 +1579,25 @@
     </rule>
   </pattern>
 
-    <pattern id="ar-bold-checks-pattern">
-    <rule context="sub-article[@article-type='author-comment']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)]" id="ar-bold-checks">
-        <assert test="matches(.,'Author response (image|table) \d\d?\.')" role="error" id="ar-bold-image">The bold text in a label preceding an image in the author response must be in the format 'Author response image 1.' or 'Author response table 1.' - this one is not - <value-of select="."/>
-      </assert>
+    <pattern id="ar-image-labels-pattern">
+    <rule context="sub-article[@article-type='author-comment']//fig/label" id="ar-image-labels">
+        <assert test="matches(.,'^Author response image \d\d?\.$')" role="error" id="ar-image-label-1">Label for figures in the author response must be in the format 'Author response image 0.' This one is not: '<value-of select="."/>'</assert>
+      </rule>
+  </pattern>
+  <pattern id="ar-table-labels-pattern">
+    <rule context="sub-article[@article-type='author-comment']//table-wrap/label" id="ar-table-labels">
+        <assert test="matches(.,'^Author response table \d\d?\.$')" role="error" id="ar-table-label-1">Label for tables in the author response must be in the format 'Author response table 0.' This one is not: '<value-of select="."/>'</assert>
       </rule>
   </pattern>
   
-    <pattern id="pr-bold-checks-pattern">
-    <rule context="sub-article[@article-type='referee-report']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)]" id="pr-bold-checks">
-        <assert test="matches(.,'Review (image|table) \d\d?\.')" role="error" id="pr-bold-image">The bold text in a label preceding an image in a public review must be in the format 'Review 1.' or 'Review table 1.' - this one is not - <value-of select="."/>
-      </assert>
+    <pattern id="pr-image-labels-pattern">
+    <rule context="sub-article[@article-type='referee-report']//fig/label" id="pr-image-labels">
+        <assert test="matches(.,'^Review image \d\d?\.$')" role="error" id="pr-image-label-1">Label for figures in public reviews must be in the format 'Review image 0.' This one is not: '<value-of select="."/>'</assert>
+      </rule>
+  </pattern>
+  <pattern id="pr-table-labels-pattern">
+    <rule context="sub-article[@article-type='referee-report']//table-wrap/label" id="pr-table-labels">
+        <assert test="matches(.,'^Review table \d\d?\.$')" role="error" id="pr-table-label-1">Label for tables in public reviews must be in the format 'Review table 0.' This one is not: '<value-of select="."/>'</assert>
       </rule>
   </pattern>
 
@@ -1625,7 +1630,12 @@
   </pattern>
   <pattern id="sub-article-bold-image-checks-pattern">
     <rule context="sub-article/body//p" id="sub-article-bold-image-checks">
-        <report test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic or ext-link[inline-graphic or graphic])" role="error" id="sub-article-bold-image-1">p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs.</report>
+        <report test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic or ext-link[inline-graphic or graphic])" role="error" id="sub-article-bold-image-1">p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs (so that they are correctly processed into fig or table-wrap).</report>
+      </rule>
+  </pattern>
+  <pattern id="sub-article-inline-graphics-pattern">
+    <rule context="sub-article/body//inline-graphic" id="sub-article-inline-graphics">
+        <assert test="parent::inline-formula or parent::alternatives[inline-formula]" role="error" id="sub-article-inline-graphic">inline-graphic in sub-article should only be placed as a child of inline-formula (or a child of alternatives in inline-formula). This one is not (uri=<value-of select="@xlink:href"/>).</assert>
       </rule>
   </pattern>
 
@@ -1853,12 +1863,15 @@
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" role="error" id="ed-report-claim-kwds-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd must be present.</assert>
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" role="error" id="ed-report-evidence-kwds-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd must be present.</assert>
       <assert test="descendant::sub-article[@article-type='editor-report']/body/p[1]//bold" role="error" id="ed-report-bold-terms-xspec-assert">sub-article[@article-type='editor-report']/body/p[1]//bold must be present.</assert>
-      <assert test="descendant::sub-article[@article-type='author-comment']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)]" role="error" id="ar-bold-checks-xspec-assert">sub-article[@article-type='author-comment']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)] must be present.</assert>
-      <assert test="descendant::sub-article[@article-type='referee-report']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)]" role="error" id="pr-bold-checks-xspec-assert">sub-article[@article-type='referee-report']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='author-comment']//fig/label" role="error" id="ar-image-labels-xspec-assert">sub-article[@article-type='author-comment']//fig/label must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='author-comment']//table-wrap/label" role="error" id="ar-table-labels-xspec-assert">sub-article[@article-type='author-comment']//table-wrap/label must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='referee-report']//fig/label" role="error" id="pr-image-labels-xspec-assert">sub-article[@article-type='referee-report']//fig/label must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='referee-report']//table-wrap/label" role="error" id="pr-table-labels-xspec-assert">sub-article[@article-type='referee-report']//table-wrap/label must be present.</assert>
       <assert test="descendant::sub-article/front-stub/title-group/article-title" role="error" id="sub-article-title-checks-xspec-assert">sub-article/front-stub/title-group/article-title must be present.</assert>
       <assert test="descendant::sub-article/front-stub" role="error" id="sub-article-front-stub-checks-xspec-assert">sub-article/front-stub must be present.</assert>
       <assert test="descendant::sub-article/front-stub/article-id[@pub-id-type='doi']" role="error" id="sub-article-doi-checks-xspec-assert">sub-article/front-stub/article-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::sub-article/body//p" role="error" id="sub-article-bold-image-checks-xspec-assert">sub-article/body//p must be present.</assert>
+      <assert test="descendant::sub-article/body//inline-graphic" role="error" id="sub-article-inline-graphics-xspec-assert">sub-article/body//inline-graphic must be present.</assert>
       <assert test="descendant::article/front/journal-meta[lower-case(journal-id[1])='arxiv']" role="error" id="arxiv-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id[1])='arxiv'] must be present.</assert>
       <assert test="descendant::article/front[journal-meta[lower-case(journal-id[1])='arxiv']]/article-meta/article-id[@pub-id-type='doi']" role="error" id="arxiv-doi-checks-xspec-assert">article/front[journal-meta[lower-case(journal-id[1])='arxiv']]/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::article/front/journal-meta[lower-case(journal-id[1])='rs']" role="error" id="res-square-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id[1])='rs'] must be present.</assert>

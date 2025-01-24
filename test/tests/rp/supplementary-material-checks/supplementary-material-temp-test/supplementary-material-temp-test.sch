@@ -146,7 +146,7 @@
   </xsl:function>
   <pattern id="supplementary-material-checks-pattern">
     <rule context="supplementary-material" id="supplementary-material-checks">
-      <assert test="ancestor::sec[@sec-type='supplementary-material']" role="error" id="supplementary-material-temp-test">[supplementary-material-temp-test] supplementary-material element is not placed within a &lt;sec sec-type="supplementary-material"&gt;. There is currently no support for supplementary-material in RPs. Please either move the supplementary-material under an existing &lt;sec sec-type="supplementary-material"&gt; or add a new &lt;sec sec-type="supplementary-material"&gt; around this an any other supplementary-material.</assert>
+      <assert test="ancestor::sec[@sec-type='supplementary-material']" role="warning" id="supplementary-material-temp-test">[supplementary-material-temp-test] supplementary-material element is not placed within a &lt;sec sec-type="supplementary-material"&gt;. Is that correct?.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
