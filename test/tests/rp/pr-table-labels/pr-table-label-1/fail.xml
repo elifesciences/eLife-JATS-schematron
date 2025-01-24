@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="pr-table-label-1.sch"?>
+<!--Context: sub-article[@article-type='referee-report']//table-wrap/label
+Test: assert    matches(.,'^Review table \d\d?\.$')
+Message: Label for tables in public reviews must be in the format 'Review table 0.' This one is not: '' -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article article-type="referee-report">
+            <table-wrap>
+                <label>Review image 1.</label>
+            </table-wrap>
+        </sub-article>
+    </article>
+</root>

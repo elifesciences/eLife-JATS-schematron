@@ -1,0 +1,32 @@
+<?oxygen SCHSchema="inline-graphic-test-1.sch"?>
+<!--Context: inline-graphic
+Test: assert    parent::inline-formula or parent::alternatives[parent::inline-formula] or ancestor::caption[parent::fig or parent::table-wrap]
+Message:  is usually placed either in inline-formula (or alternatives which in turn is a child of inline-formula), or in the caption for a figure or table. This one is not (its a child of ). Is that OK? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <p>
+            <inline-graphic/>
+        </p>
+        <fig>
+            <inline-graphic/>
+        </fig>
+        <disp-formula>
+            <alternatives>
+                <mml:math/>
+                <inline-graphic/>
+            </alternatives>
+        </disp-formula>
+        <media>
+            <caption>
+                <title><inline-graphic/></title>
+                <p><inline-graphic/></p>
+            </caption>
+        </media>
+        <supplementary-material>
+            <caption>
+                <title><inline-graphic/></title>
+                <p><inline-graphic/></p>
+            </caption>
+        </supplementary-material>
+    </article>
+</root>

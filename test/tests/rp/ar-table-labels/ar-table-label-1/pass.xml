@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="ar-table-label-1.sch"?>
+<!--Context: sub-article[@article-type='author-comment']//table-wrap/label
+Test: assert    matches(.,'^Author response table \d\d?\.$')
+Message: Label for tables in the author response must be in the format 'Author response table 0.' This one is not: '' -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article article-type="author-comment">
+            <table-wrap>
+                <label>Author response table 1.</label>
+            </table-wrap>
+        </sub-article>
+    </article>
+</root>

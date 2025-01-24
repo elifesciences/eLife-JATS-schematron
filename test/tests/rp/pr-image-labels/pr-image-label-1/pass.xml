@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="pr-image-label-1.sch"?>
+<!--Context: sub-article[@article-type='referee-report']//fig/label
+Test: assert    matches(.,'^Review image \d\d?\.$')
+Message: Label for figures in public reviews must be in the format 'Review image 0.' This one is not: '' -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article article-type="referee-report">
+            <fig>
+                <label>Review image 1.</label>
+            </fig>
+        </sub-article>
+    </article>
+</root>

@@ -1,0 +1,29 @@
+<?oxygen SCHSchema="graphic-test-8.sch"?>
+<!--Context: graphic
+Test: assert    parent::fig or parent::table-wrap or parent::disp-formula or parent::alternatives[parent::table-wrap or parent::disp-formula]
+Message:  can only be placed as a child of fig, table-wrap, disp-formula or alternatives (alternatives must in turn must be a child of either table-wrap or disp-formula). This one is a child of  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <fig>
+            <graphic/>
+        </fig>
+        <table-wrap>
+            <graphic/>
+        </table-wrap>
+        <table-wrap>
+            <alternatives>
+                <table/>
+                <graphic/>
+            </alternatives>
+        </table-wrap>
+        <disp-formula>
+            <graphic/>
+        </disp-formula>
+        <disp-formula>
+            <alternatives>
+                <table/>
+                <graphic/>
+            </alternatives>
+        </disp-formula>
+    </article>
+</root>

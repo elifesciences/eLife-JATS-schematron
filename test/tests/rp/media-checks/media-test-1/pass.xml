@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="media-test-1.sch"?>
+<!--Context: media
+Test: assert    parent::supplementary-material
+Message: media element should only be placed as a child of supplementary-material. This one has the parent  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <supplementary-material>
+            <media/>
+        </supplementary-material>
+    </article>
+</root>

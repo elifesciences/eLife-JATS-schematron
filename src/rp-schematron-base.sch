@@ -972,12 +972,9 @@
   
     <pattern id="supplementary-material">
       <rule context="supplementary-material" id="supplementary-material-checks">
-        
-        <!-- Temporary error while no support for supplementary-material in EPP 
-                sec sec-type="supplementary-material" is stripped from XML via xslt -->
         <assert test="ancestor::sec[@sec-type='supplementary-material']"
-          role="error" 
-          id="supplementary-material-temp-test">supplementary-material element is not placed within a &lt;sec sec-type="supplementary-material">. There is currently no support for supplementary-material in RPs. Please either move the supplementary-material under an existing &lt;sec sec-type="supplementary-material"> or add a new &lt;sec sec-type="supplementary-material"> around this an any other supplementary-material.</assert>
+          role="warning" 
+          id="supplementary-material-temp-test">supplementary-material element is not placed within a &lt;sec sec-type="supplementary-material">. Is that correct?.</assert>
         
         <assert test="media"
           role="error" 
@@ -1077,6 +1074,18 @@
          id="graphic-test-7"><name/> has gif mime-subtype but filename does not end with '.gif'. This cannot be correct.</report>
      </rule>
        
+       <rule context="graphic" id="graphic-placement">
+         <assert test="parent::fig or parent::table-wrap or parent::disp-formula or parent::alternatives[parent::table-wrap or parent::disp-formula]" 
+          role="error" 
+          id="graphic-test-8"><name/> can only be placed as a child of fig, table-wrap, disp-formula or alternatives (alternatives must in turn must be a child of either table-wrap or disp-formula). This one is a child of <value-of select="parent::*/name()"/></assert>
+       </rule>
+       
+       <rule context="inline-graphic" id="inline-checks">
+         <assert test="parent::inline-formula or parent::alternatives[parent::inline-formula] or ancestor::caption[parent::fig or parent::table-wrap]" 
+          role="warning" 
+          id="inline-graphic-test-1"><name/> is usually placed either in inline-formula (or alternatives which in turn is a child of inline-formula), or in the caption for a figure or table. This one is not (its a child of <value-of select="parent::*/name()"/>). Is that OK?</assert>
+       </rule>
+       
      </pattern>
   
       <pattern id="media">
@@ -1099,6 +1108,10 @@
       <report test="*" 
         role="error" 
         id="media-test-13">Media element cannot contain child elements. This one has the following element(s) <value-of select="string-join(*/name(),'; ')"/>.</report>
+        
+      <assert test="parent::supplementary-material" 
+        role="error" 
+        id="media-test-1">media element should only be placed as a child of supplementary-material. This one has the parent <value-of select="parent::*/name()"/></assert>
      </rule>
        
      </pattern>
@@ -2210,20 +2223,30 @@
     </pattern>
 
     <pattern id="author-response-checks">
-      <!-- Need to change this when peer review XML is handled differently -->
-      <rule context="sub-article[@article-type='author-comment']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)]" id="ar-bold-checks">
-        <assert test="matches(.,'Author response (image|table) \d\d?\.')" 
+      <rule context="sub-article[@article-type='author-comment']//fig/label" id="ar-image-labels">
+        <assert test="matches(.,'^Author response image \d\d?\.$')" 
           role="error" 
-          id="ar-bold-image">The bold text in a label preceding an image in the author response must be in the format 'Author response image 1.' or 'Author response table 1.' - this one is not - <value-of select="."/></assert>
+          id="ar-image-label-1">Label for figures in the author response must be in the format 'Author response image 0.' This one is not: '<value-of select="."/>'</assert>
+      </rule>
+      
+      <rule context="sub-article[@article-type='author-comment']//table-wrap/label" id="ar-table-labels">
+        <assert test="matches(.,'^Author response table \d\d?\.$')" 
+          role="error" 
+          id="ar-table-label-1">Label for tables in the author response must be in the format 'Author response table 0.' This one is not: '<value-of select="."/>'</assert>
       </rule>
     </pattern>
   
     <pattern id="public-review-checks">
-      <!-- Need to change this when peer review XML is handled differently -->
-      <rule context="sub-article[@article-type='referee-report']/body//bold[not(preceding-sibling::text() or preceding-sibling::*) and (parent::p/following-sibling::*[1]/ext-link/inline-graphic or parent::p/following-sibling::*[1]/inline-graphic or parent::p/following-sibling::*[2]/ext-link/inline-graphic or parent::p/following-sibling::*[2]/inline-graphic)]" id="pr-bold-checks">
-        <assert test="matches(.,'Review (image|table) \d\d?\.')" 
+      <rule context="sub-article[@article-type='referee-report']//fig/label" id="pr-image-labels">
+        <assert test="matches(.,'^Review image \d\d?\.$')" 
           role="error" 
-          id="pr-bold-image">The bold text in a label preceding an image in a public review must be in the format 'Review 1.' or 'Review table 1.' - this one is not - <value-of select="."/></assert>
+          id="pr-image-label-1">Label for figures in public reviews must be in the format 'Review image 0.' This one is not: '<value-of select="."/>'</assert>
+      </rule>
+      
+      <rule context="sub-article[@article-type='referee-report']//table-wrap/label" id="pr-table-labels">
+        <assert test="matches(.,'^Review table \d\d?\.$')" 
+          role="error" 
+          id="pr-table-label-1">Label for tables in public reviews must be in the format 'Review table 0.' This one is not: '<value-of select="."/>'</assert>
       </rule>
     </pattern>
 
@@ -2264,7 +2287,17 @@
       <rule context="sub-article/body//p" id="sub-article-bold-image-checks">
         <report test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic or ext-link[inline-graphic or graphic])" 
           role="error" 
-          id="sub-article-bold-image-1">p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs.</report>
+          id="sub-article-bold-image-1">p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs (so that they are correctly processed into fig or table-wrap).</report>
+      </rule>
+      
+      <rule context="sub-article/body//ext-link" id="sub-article-ext-links">
+        <report test="not(inline-graphic) and matches(lower-case(@xlink:href),'imgur\.com')" 
+          role="warning" 
+          id="ext-link-imgur">ext-link in sub-article directs to imgur.com - <value-of select="@xlink:href"/>. Is this a figure or table (e.g. Author response image X) that should be captured semantically appropriately in the XML?</report>
+        
+        <report test="inline-graphic" 
+          role="error" 
+          id="ext-link-inline-graphic">ext-link in sub-article has a child inline-graphic. Is this a figure or table (e.g. Author response image X) that should be captured semantically appropriately in the XML?</report>
       </rule>
     </pattern>
 
