@@ -6,7 +6,7 @@ Message: ext-link in sub-article directs to imgur.com - . Is this a figure or ta
     <article>
         <sub-article>
             <body>
-                <ext-link ext-link-type="uri" xlink:href="https://imgur.com/ZG5Rb3X"><inline-graphic xlink:href="https://i.imgur.com/ZG5Rb3X.jpg" mimetype="image" mime-subtype="jpeg"/></ext-link>
+                <ext-link ext-link-type="uri" xlink:href="https://imgur.com/ZG5Rb3X"/>
             </body>
         </sub-article>
     </article>
