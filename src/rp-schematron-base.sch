@@ -472,7 +472,7 @@
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content','city','country'))],', ')"/>
       
       <assert test="exists($matching-ror)"
-        role="warning" 
+        role="error" 
         id="aff-ror">Affiliation (<value-of select="$display"/>) has a ROR id - <value-of select="$ror"/> - but it does not look like a correct one.</assert>
       
       <report test="(city or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(city[1],$matching-ror/*:city))"
