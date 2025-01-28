@@ -1335,6 +1335,20 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    
+    <!-- Strip or convert HTML <blockquote> tags -->
+    <xsl:template xml:id="strip-blockquote-tags" match="blockquote">
+        <xsl:choose>
+            <xsl:when test="ancestor::disp-quote">
+                <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:element name="disp-quote">
+                    <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+                </xsl:element>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
 
     <!-- Strip unnecessary bolding and italicisation above citations -->
     <xsl:template xml:id="strip-bold-italic-from-above-xref" match="bold[xref]|italic[xref]">
