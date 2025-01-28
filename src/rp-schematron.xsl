@@ -2569,8 +2569,8 @@
          </xsl:otherwise>
       </xsl:choose>
       <!--REPORT warning-->
-      <xsl:if test="text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|epub|vol|and|pp?|in|is[sb]n)[:\.]?'))]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|epub|vol|and|pp?|in|is[sb]n)[:\.]?'))]">
+      <xsl:if test="text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+((jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\p{Z}?\d?\d?|doi|pmid|epub|vol|and|pp?|in|is[sb]n)[:\.]?'))]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+((jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\p{Z}?\d?\d?|doi|pmid|epub|vol|and|pp?|in|is[sb]n)[:\.]?'))]">
             <xsl:attribute name="id">journal-ref-text-content</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -2579,7 +2579,7 @@
             <svrl:text>[journal-ref-text-content] This journal reference (<xsl:text/>
                <xsl:value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>
                <xsl:text/>) has untagged textual content - <xsl:text/>
-               <xsl:value-of select="string-join(text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|epub|vol|and|pp?|in|is[sb]n)[:\.]?'))],'; ')"/>
+               <xsl:value-of select="string-join(text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+((jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\p{Z}?\d?\d?|doi|pmid|epub|vol|and|pp?|in|is[sb]n)[:\.]?'))],'; ')"/>
                <xsl:text/>. Is it tagged correctly?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
