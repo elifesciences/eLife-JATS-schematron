@@ -192,6 +192,9 @@
 <app-group>
 <app>
 <label>Appendix 1</label>
+<disp-quote>
+<p>Some quoted text</p>
+</disp-quote>
 </app>
 </app-group>
 <fn-group>

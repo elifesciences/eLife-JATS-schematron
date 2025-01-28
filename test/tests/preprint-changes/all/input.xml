@@ -175,6 +175,9 @@
 <app-group>
 <app>
 <label>Appendix 1</label>
+<blockquote>
+<p>Some quoted text</p>
+</blockquote>
 </app>
 </app-group>
 </back>

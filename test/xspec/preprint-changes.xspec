@@ -132,6 +132,10 @@
       <x:context href="../tests/preprint-changes/strip-i-tags/input.xml"/>
       <x:expect label="Testing the template: strip-i-tags" href="../tests/preprint-changes/strip-i-tags/output.xml"/>
     </x:scenario>
+    <x:scenario label="strip-blockquote-tags">
+      <x:context href="../tests/preprint-changes/strip-blockquote-tags/input.xml"/>
+      <x:expect label="Testing the template: strip-blockquote-tags" href="../tests/preprint-changes/strip-blockquote-tags/output.xml"/>
+    </x:scenario>
     <x:scenario label="strip-bold-italic-from-above-xref">
       <x:context href="../tests/preprint-changes/strip-bold-italic-from-above-xref/input.xml"/>
       <x:expect label="Testing the template: strip-bold-italic-from-above-xref" href="../tests/preprint-changes/strip-bold-italic-from-above-xref/output.xml"/>
