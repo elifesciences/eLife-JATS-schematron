@@ -1528,14 +1528,25 @@
       <xsl:variable name="is-revised-rp" select="if (descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
       <xsl:variable name="rp-version" select="replace(descendant::article-meta[1]/article-id[@specific-use='version'][1],'^.*\.','')"/>
       <!--REPORT warning-->
-      <xsl:if test="matches(lower-case($article-text),'biorend[eo]r')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case($article-text),'biorend[eo]r')">
-            <xsl:attribute name="id">biorender-check</xsl:attribute>
+      <xsl:if test="not($is-revised-rp) and matches(lower-case($article-text),'biorend[eo]r')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($is-revised-rp) and matches(lower-case($article-text),'biorend[eo]r')">
+            <xsl:attribute name="id">biorender-check-v1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[biorender-check] Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</svrl:text>
+            <svrl:text>[biorender-check-v1] Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="$is-revised-rp and matches(lower-case($article-text),'biorend[eo]r')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$is-revised-rp and matches(lower-case($article-text),'biorend[eo]r')">
+            <xsl:attribute name="id">biorender-check-revised</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[biorender-check-revised] Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}". Since this is a revised RP, check to see if the first (or a previous) version had bioRender links.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--ASSERT error-->

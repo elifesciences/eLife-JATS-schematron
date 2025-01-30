@@ -161,7 +161,9 @@
       <let name="is-revised-rp" value="if (descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
         <let name="rp-version" value="replace(descendant::article-meta[1]/article-id[@specific-use='version'][1],'^.*\.','')"/>
 
-       <report test="matches(lower-case($article-text),'biorend[eo]r')" role="warning" id="biorender-check">[biorender-check] Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</report>
+       <report test="not($is-revised-rp) and matches(lower-case($article-text),'biorend[eo]r')" role="warning" id="biorender-check-v1">[biorender-check-v1] Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</report>
+        
+        <report test="$is-revised-rp and matches(lower-case($article-text),'biorend[eo]r')" role="warning" id="biorender-check-revised">[biorender-check-revised] Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}". Since this is a revised RP, check to see if the first (or a previous) version had bioRender links.</report>
         
         <assert test="sub-article[@article-type='editor-report']" role="error" id="no-assessment">[no-assessment] A Reviewed Preprint must have an eLife Assessment, but this one does not.</assert>
         
