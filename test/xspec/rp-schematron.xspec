@@ -1,14 +1,24 @@
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" schematron="rp-schematron.sch">
   <x:scenario label="schematron">
     <x:scenario label="article-tests">
-      <x:scenario label="biorender-check-pass">
-        <x:context href="../tests/rp/article-tests/biorender-check/pass.xml"/>
-        <x:expect-not-report id="biorender-check" role="warning"/>
+      <x:scenario label="biorender-check-v1-pass">
+        <x:context href="../tests/rp/article-tests/biorender-check-v1/pass.xml"/>
+        <x:expect-not-report id="biorender-check-v1" role="warning"/>
         <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="biorender-check-fail">
-        <x:context href="../tests/rp/article-tests/biorender-check/fail.xml"/>
-        <x:expect-report id="biorender-check" role="warning"/>
+      <x:scenario label="biorender-check-v1-fail">
+        <x:context href="../tests/rp/article-tests/biorender-check-v1/fail.xml"/>
+        <x:expect-report id="biorender-check-v1" role="warning"/>
+        <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="biorender-check-revised-pass">
+        <x:context href="../tests/rp/article-tests/biorender-check-revised/pass.xml"/>
+        <x:expect-not-report id="biorender-check-revised" role="warning"/>
+        <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="biorender-check-revised-fail">
+        <x:context href="../tests/rp/article-tests/biorender-check-revised/fail.xml"/>
+        <x:expect-report id="biorender-check-revised" role="warning"/>
         <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="no-assessment-pass">

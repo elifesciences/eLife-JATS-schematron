@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="biorender-check-v1.sch"?>
+<!--Context: article
+Test: report    not($is-revised-rp) and matches(lower-case($article-text),'biorend[eo]r')
+Message: Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}". -->
+<article>
+    <body>
+        <fig>
+            <caption>
+                <p>Figure 1 made with BioRender.com</p>
+            </caption>
+            <permissions>
+                <license><license-p>© 2024, BioRender Inc. Any parts of this image created with BioRender are not made available under the same license as the Reviewed Preprint, and are © 2024, BioRender Inc.</license-p></license>
+            </permissions>
+        </fig>
+    </body>
+</article>
