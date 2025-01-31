@@ -17,7 +17,7 @@
 <xref ref-type="aff" rid="a1">1</xref>
 <email>claus.s@north-pole.ac.uk</email>
 </contrib>
-<aff id="a1"><label>1</label><institution>Department of Cell Biology, Emory University School of Medicine</institution>, Atlanta, GA, 30322, <country>USA</country></aff>
+<aff id="a1"><label>1</label><institution>Department of Cell Biology, Emory University School of Medicine</institution>, Atlanta, GA, 30322, <country country="US">United States</country></aff>
 </contrib-group>
 <contrib-group content-type="section">
 <contrib contrib-type="editor">
@@ -31,7 +31,7 @@
 <institution>Nathan Kline Institute</institution>
 </institution-wrap>
 <city>Orangeburg</city>
-<country>United States of America</country>
+<country country="US">United States</country>
 </aff>
 </contrib>
 <contrib contrib-type="senior_editor">
@@ -45,7 +45,7 @@
 <institution>FORTH Institute of Molecular Biology and Biotechnology</institution>
 </institution-wrap>
 <city>Heraklion</city>
-<country>Greece</country>
+<country country="GR">Greece</country>
 </aff>
 </contrib>
 </contrib-group>

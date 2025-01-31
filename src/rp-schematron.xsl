@@ -7332,24 +7332,23 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <!--ASSERT error-->
+      <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="some $x in document($registries)/registries/registry satisfies ($x/subtitle/string()=@source-id)"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $x in document($registries)/registries/registry satisfies ($x/subtitle/string()=@source-id)">
                <xsl:attribute name="id">clintrial-related-object-11</xsl:attribute>
-               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
                <svrl:text>[clintrial-related-object-11] <xsl:text/>
                   <xsl:value-of select="name(.)"/>
-                  <xsl:text/> @source-id value must be one of the subtitles of the Crossref clinical trial registries. "<xsl:text/>
+                  <xsl:text/> @source-id value should almost always be one of the subtitles of the Crossref clinical trial registries. "<xsl:text/>
                   <xsl:value-of select="@source-id"/>
                   <xsl:text/>" is not one of the following <xsl:text/>
                   <xsl:value-of select="string-join(for $x in document($registries)/registries/registry return concat('&quot;',$x/subtitle/string(),'&quot; (',$x/doi/string(),')'),', ')"/>
-                  <xsl:text/>
-               </svrl:text>
+                  <xsl:text/>. Is that correct?</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>

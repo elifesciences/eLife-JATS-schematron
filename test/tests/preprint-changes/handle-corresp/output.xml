@@ -28,8 +28,8 @@
 <xref ref-type="aff" rid="a2">b</xref>
 <email>millar@scripps.edu</email>
 </contrib>
-<aff id="a1"><label>a</label><institution>Skaggs School of Pharmacy and Pharmaceutical Sciences, Department of Pharmacology, University of California San Diego</institution>, <city>La Jolla</city>, <country>Unites States</country></aff>
-<aff id="a2"><label>b</label><institution>Department of Integrative Structural and Computational Biology, The Scripps Research Institute</institution>, <city>La Jolla</city>, <country>Unites States</country></aff>
+<aff id="a1"><label>a</label><institution>Skaggs School of Pharmacy and Pharmaceutical Sciences, Department of Pharmacology, University of California San Diego</institution>, <city>La Jolla</city>, <country country="US">United States</country></aff>
+<aff id="a2"><label>b</label><institution>Department of Integrative Structural and Computational Biology, The Scripps Research Institute</institution>, <city>La Jolla</city>, <country country="US">United States</country></aff>
 </contrib-group>
 <contrib-group content-type="section">
 <contrib contrib-type="editor">
@@ -57,7 +57,7 @@
 <institution>Derek Zoolander's Center For Kids Who Can't Read Good</institution>
 </institution-wrap>
 <city>New York</city>
-<country>United States</country>
+<country country="US">United States</country>
 </aff>
 </contrib>
 </contrib-group>
