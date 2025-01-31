@@ -324,6 +324,27 @@
     
     </rule>
   </pattern>
+  <pattern id="country-tests-pattern">
+    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//aff/country" id="country-tests">
+      <let name="text" value="self::*/text()"/>
+      <let name="countries" value="'countries.xml'"/>
+      <let name="city" value="parent::aff/descendant::city[1]"/>
+      <let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>
+      
+      <assert test="$valid-country" role="warning" id="gen-country-test">affiliation contains a country which is not in the list of standardised countriy names - <value-of select="."/>. Is that OK? For a list of allowed countries, refer to https://github.com/elifesciences/eLife-JATS-schematron/blob/master/src/countries.xml.</assert>
+      
+      <report test="not(@country = $valid-country/@country)" role="warning" id="gen-country-iso-3166-test">country does not have a 2 letter ISO 3166-1 @country value. Should it be @country='<value-of select="$valid-country/@country"/>'?.</report>
+      
+      <report test="(. = 'Singapore') and ($city != 'Singapore')" role="error" id="singapore-test-1">
+        <value-of select="ancestor::aff/@id"/> has 'Singapore' as its country but '<value-of select="$city"/>' as its city, which must be incorrect.</report>
+      
+      <report test="(. != 'Taiwan') and  (matches(lower-case($city),'ta[i]?pei|tai\p{Zs}?chung|kaohsiung|taoyuan|tainan|hsinchu|keelung|chiayi|changhua|jhongli|tao-yuan|hualien'))" role="warning" id="taiwan-test">Affiliation has a Taiwanese city - <value-of select="$city"/> - but its country is '<value-of select="."/>'. Please check the original preprint/manuscript. If it has 'Taiwan' as the country in the original manuscript then ensure it is changed to 'Taiwan'.</report>
+      
+      <report test="(. != 'Republic of Korea') and  (matches(lower-case($city),'chuncheon|gyeongsan|daejeon|seoul|daegu|gwangju|ansan|goyang|suwon|gwanju|ochang|wonju|jeonnam|cheongju|ulsan|inharo|chonnam|miryang|pohang|deagu|gwangjin-gu|gyeonggi-do|incheon|gimhae|gyungnam|muan-gun|chungbuk|chungnam|ansung|cheongju-si'))" role="warning" id="s-korea-test">Affiliation has a South Korean city - <value-of select="$city"/> - but its country is '<value-of select="."/>', instead of 'Republic of Korea'.</report>
+      
+      <report test="replace(.,'\p{P}','') = 'Democratic Peoples Republic of Korea'" role="warning" id="n-korea-test">Affiliation has '<value-of select="."/>' as its country which is very likely to be incorrect.</report>
+    </rule>
+  </pattern>
   <pattern id="aff-institution-wrap-tests-pattern">
     <rule context="aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap" id="aff-institution-wrap-tests">
       <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content','city'))],', ')"/>
@@ -1783,6 +1804,7 @@
       <assert test="descendant::contrib-group//name/*" role="error" id="name-child-tests-xspec-assert">contrib-group//name/* must be present.</assert>
       <assert test="descendant::article/front/article-meta/contrib-group[1]" role="error" id="orcid-name-checks-xspec-assert">article/front/article-meta/contrib-group[1] must be present.</assert>
       <assert test="descendant::aff" role="error" id="affiliation-checks-xspec-assert">aff must be present.</assert>
+      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']//aff/country" role="error" id="country-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']//aff/country must be present.</assert>
       <assert test="descendant::aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap" role="error" id="aff-institution-wrap-tests-xspec-assert">aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap must be present.</assert>
       <assert test="descendant::aff//institution-id" role="error" id="aff-institution-id-tests-xspec-assert">aff//institution-id must be present.</assert>
       <assert test="descendant::aff[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" role="error" id="aff-ror-tests-xspec-assert">aff[count(institution-wrap/institution-id[@institution-id-type='ror'])=1] must be present.</assert>

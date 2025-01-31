@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="s-korea-test.sch"?>
+<!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//aff/country
+Test: report    (. != 'Republic of Korea') and (matches(lower-case($city),'chuncheon|gyeongsan|daejeon|seoul|daegu|gwangju|ansan|goyang|suwon|gwanju|ochang|wonju|jeonnam|cheongju|ulsan|inharo|chonnam|miryang|pohang|deagu|gwangjin-gu|gyeonggi-do|incheon|gimhae|gyungnam|muan-gun|chungbuk|chungnam|ansung|cheongju-si'))
+Message: Affiliation has a South Korean city -  - but its country is '', instead of 'Republic of Korea'. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <front><journal-meta><journal-id>eLife</journal-id></journal-meta>
+      <aff id="aff8">
+        <label>8</label>
+        <institution/>
+        <city>Seoul</city>
+        <country>Democtratic People's Republic of Korea</country>
+      </aff>
+    </front>
+  </article>
+</root>
