@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="gen-country-test.sch"?>
+<!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//aff/country
+Test: assert    $valid-country
+Message: affiliation contains a country which is not in the list of standardised countriy names - . Is that OK? For a list of allowed countries, refer to https://github.com/elifesciences/eLife-JATS-schematron/blob/master/src/countries.xml. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front><journal-meta><journal-id>eLife</journal-id></journal-meta>
+      <article-meta>
+        <aff>
+          <country>United Kindorm</country>
+        </aff>
+        <aff>
+          <country>United Straits</country>
+        </aff>
+      </article-meta>
+    </front>
+  </article>
+</root>
