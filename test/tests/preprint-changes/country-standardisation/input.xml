@@ -1,0 +1,30 @@
+<!--Testing template with id: country-standardisation-->
+<contrib-group>
+<aff>
+<country>USA</country>
+</aff>
+<aff>
+<country>United States of America.</country>
+</aff>
+<aff>
+<country>(UK)</country>
+</aff>
+<aff>
+<country>England</country>
+</aff>
+<aff>
+<country>P. R. China</country>
+</aff>
+<aff>
+<country>South Korea</country>
+</aff>
+<aff>
+<country>Vietnam</country>
+</aff>
+<aff>
+<country>SPAIN</country>
+</aff>
+<aff>
+<country>México</country>
+</aff>
+</contrib-group>
