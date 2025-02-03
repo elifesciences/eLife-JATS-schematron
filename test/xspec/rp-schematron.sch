@@ -436,6 +436,8 @@
        
        <report test="not(chapter-title) and person-group[@person-group-type='editor']" role="warning" id="book-ref-editor">This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has an editor person-group but no chapter-title element. Have all the details been captured correctly?</report>
        
+       <report test="chapter-title and not(person-group[@person-group-type='editor'])" role="warning" id="book-ref-editor-2">This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a chapter-title but no person-group element with the person-group-type editor. Have all the details been captured correctly?</report>
+       
        <report test="not(chapter-title) and publisher-name[italic]" role="warning" id="book-ref-pub-name-1">This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a publisher-name with italics and no chapter-title element. Have all the details been captured correctly?</report>
      </rule>
   </pattern>
@@ -1669,6 +1671,8 @@
   <pattern id="sub-article-bold-image-checks-pattern">
     <rule context="sub-article/body//p" id="sub-article-bold-image-checks">
         <report test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic or ext-link[inline-graphic or graphic])" role="error" id="sub-article-bold-image-1">p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs (so that they are correctly processed into fig or table-wrap).</report>
+        
+        <report test="bold[matches(lower-case(.),'(author response|review) (image|table)')]" role="error" id="sub-article-bold-image-2">p element contains bold text which looks like a label for an image or table. Since it's not been captured as a figure in the XML, it might either be misformatted in Kotahi/Hypothesis or there's a processing bug.</report>
       </rule>
   </pattern>
   <pattern id="sub-article-ext-links-pattern">

@@ -879,6 +879,16 @@
         <x:expect-report id="book-ref-editor" role="warning"/>
         <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="book-ref-editor-2-pass">
+        <x:context href="../tests/rp/book-ref-checks/book-ref-editor-2/pass.xml"/>
+        <x:expect-not-report id="book-ref-editor-2" role="warning"/>
+        <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="book-ref-editor-2-fail">
+        <x:context href="../tests/rp/book-ref-checks/book-ref-editor-2/fail.xml"/>
+        <x:expect-report id="book-ref-editor-2" role="warning"/>
+        <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="book-ref-pub-name-1-pass">
         <x:context href="../tests/rp/book-ref-checks/book-ref-pub-name-1/pass.xml"/>
         <x:expect-not-report id="book-ref-pub-name-1" role="warning"/>
@@ -4177,6 +4187,16 @@
       <x:scenario label="sub-article-bold-image-1-fail">
         <x:context href="../tests/rp/sub-article-bold-image-checks/sub-article-bold-image-1/fail.xml"/>
         <x:expect-report id="sub-article-bold-image-1" role="error"/>
+        <x:expect-not-assert id="sub-article-bold-image-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-article-bold-image-2-pass">
+        <x:context href="../tests/rp/sub-article-bold-image-checks/sub-article-bold-image-2/pass.xml"/>
+        <x:expect-not-report id="sub-article-bold-image-2" role="error"/>
+        <x:expect-not-assert id="sub-article-bold-image-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-article-bold-image-2-fail">
+        <x:context href="../tests/rp/sub-article-bold-image-checks/sub-article-bold-image-2/fail.xml"/>
+        <x:expect-report id="sub-article-bold-image-2" role="error"/>
         <x:expect-not-assert id="sub-article-bold-image-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

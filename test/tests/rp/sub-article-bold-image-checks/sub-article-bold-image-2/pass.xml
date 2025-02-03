@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="sub-article-bold-image-2.sch"?>
+<!--Context: sub-article/body//p
+Test: report    bold[matches(lower-case(.),'(author response|review) (image|table)')]
+Message: p element contains bold text which looks like a label for an image or table. Since it's not been captured as a figure in the XML, it might either be misformatted in Kotahi/Hypothesis or there's a processing bug. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article>
+            <body>
+                <p><bold>something bold</bold></p>
+            </body>
+        </sub-article>
+    </article>
+</root>

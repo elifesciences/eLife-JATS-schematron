@@ -2921,6 +2921,19 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
+      <xsl:if test="chapter-title and not(person-group[@person-group-type='editor'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="chapter-title and not(person-group[@person-group-type='editor'])">
+            <xsl:attribute name="id">book-ref-editor-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[book-ref-editor-2] This book reference (<xsl:text/>
+               <xsl:value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>
+               <xsl:text/>) has a chapter-title but no person-group element with the person-group-type editor. Have all the details been captured correctly?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
       <xsl:if test="not(chapter-title) and publisher-name[italic]">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(chapter-title) and publisher-name[italic]">
             <xsl:attribute name="id">book-ref-pub-name-1</xsl:attribute>
@@ -8599,6 +8612,17 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[sub-article-bold-image-1] p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs (so that they are correctly processed into fig or table-wrap).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="bold[matches(lower-case(.),'(author response|review) (image|table)')]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="bold[matches(lower-case(.),'(author response|review) (image|table)')]">
+            <xsl:attribute name="id">sub-article-bold-image-2</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[sub-article-bold-image-2] p element contains bold text which looks like a label for an image or table. Since it's not been captured as a figure in the XML, it might either be misformatted in Kotahi/Hypothesis or there's a processing bug.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M142"/>
