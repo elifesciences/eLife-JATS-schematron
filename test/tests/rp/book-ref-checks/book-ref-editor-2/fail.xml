@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="book-ref-editor-2.sch"?>
+<!--Context: mixed-citation[@publication-type='book']
+Test: report    chapter-title and not(person-group[@person-group-type='editor'])
+Message: This book reference () has a chapter-title but no person-group element with the person-group-type editor. Have all the details been captured correctly? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mixed-citation publication-type="book">
+           <chapter-title/>
+            <source/>
+        </mixed-citation>
+    </article>
+</root>
