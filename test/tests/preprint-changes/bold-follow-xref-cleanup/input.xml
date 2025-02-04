@@ -3,4 +3,9 @@
 <p>something <xref ref-type="fig">Figure 1</xref><bold>, bottom panel)</bold> something</p>
 <p>something <xref ref-type="fig">Figure 1</xref>; and Figure 2<bold>, bottom panel)</bold> something</p>
 <p>something <xref ref-type="table"><italic><bold>Table 1</bold></italic></xref><bold>, middle and lower;.</bold> Something</p>
+<p><xref><bold>Fig. 1Bc</bold></xref><bold> i, </bold></p>
+<p><xref>Fig5</xref><bold> E,F).</bold></p>
+<p><xref>Figure 4—figure supplement S4C</xref><bold> and D</bold></p>
+<p><xref><italic>Figure 1A</italic></xref><bold>&amp;C</bold></p>
+<p><xref>Fig. 3e</xref><bold>- f</bold></p>
 </sec>

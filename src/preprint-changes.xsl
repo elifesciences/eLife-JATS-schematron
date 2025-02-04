@@ -1382,7 +1382,7 @@
     <!-- Include certain bolded text within xref when it immediately follows that xref 
         e.g. <xref>Fig 1</xref><bold>, right)</bold> to <xref>Fig 1, right</xref>) 
         bold handling in template 'bold-follow-xref-cleanup' -->
-    <xsl:variable name="panel-regex" select="'^,?\s?(left|right|top|bottom|inset|lower|upper|middle)(\s(and\s)?(left|right|top|bottom|inset|lower|upper|middle))?(\s?panels?)?[;\),]?[\s\.]?$'"/>
+    <xsl:variable name="panel-regex" select="'^,?\s?(left|right|top|bottom|inset|lower|upper|middle)(\s(and\s)?(left|right|top|bottom|inset|lower|upper|middle))?(\s?panels?)?[;\),]?[\s\.]?$|^(\s?([,&amp;–\-]|and))*\s?[\p{L}](,?\s?[\p{L}]|\-\s?[\p{L}])?[;\),]?[\s\.]?$'"/>
     <xsl:template xml:id="fix-truncated-xrefs" match="xref[following-sibling::node()[1][name()='bold']]">
         <xsl:variable name="bold-text" select="following-sibling::node()[1]"/>
          <xsl:copy>
@@ -1401,6 +1401,9 @@
     <!-- Cleanup unnecessary bold elements that appear directly after xrefs -->
     <xsl:template xml:id="bold-follow-xref-cleanup" match="bold[preceding-sibling::node()[1][name()='xref']]">
         <xsl:choose>
+            <xsl:when test="matches(lower-case(.),'^\s?(and|&amp;|[,;\)])\s?\.?$')">
+                <xsl:apply-templates select="text()|comment()|processing-instruction()"/>
+            </xsl:when>
             <xsl:when test="matches(lower-case(.),$panel-regex)">
                 <xsl:choose>
                     <xsl:when test="matches(.,'[;\),][\s\.]$')">
@@ -1411,9 +1414,6 @@
                     </xsl:when>
                     <xsl:otherwise/>
                 </xsl:choose>
-            </xsl:when>
-            <xsl:when test="matches(lower-case(.),'^\s?(and|&amp;|,)\s?$')">
-                <xsl:apply-templates select="text()|comment()|processing-instruction()"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:copy>
