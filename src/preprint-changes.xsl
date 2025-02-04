@@ -1379,6 +1379,50 @@
          <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
     </xsl:template>
     
+    <!-- Include certain bolded text within xref when it immediately follows that xref 
+        e.g. <xref>Fig 1</xref><bold>, right)</bold> to <xref>Fig 1, right</xref>) 
+        bold handling in template 'bold-follow-xref-cleanup' -->
+    <xsl:variable name="panel-regex" select="'^,?\s?(left|right|top|bottom|inset|lower|upper|middle)(\s(and\s)?(left|right|top|bottom|inset|lower|upper|middle))?(\s?panels?)?[;\),]?[\s\.]?$|^(\s?([,&amp;–\-]|and))*\s?[\p{L}](,?\s?[\p{L}]|\-\s?[\p{L}])?[;\),]?[\s\.]?$'"/>
+    <xsl:template xml:id="fix-truncated-xrefs" match="xref[following-sibling::node()[1][name()='bold']]">
+        <xsl:variable name="bold-text" select="following-sibling::node()[1]"/>
+         <xsl:copy>
+             <xsl:choose>
+                 <xsl:when test="matches(lower-case($bold-text),$panel-regex) and not(matches(lower-case($bold-text),'^ to $'))">
+                     <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                     <xsl:value-of select="replace($bold-text,'[;\),][\s\.]?$','')"/>
+                 </xsl:when>
+                 <xsl:otherwise>
+                     <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                 </xsl:otherwise>
+             </xsl:choose>
+         </xsl:copy>
+    </xsl:template>
+    
+    <!-- Cleanup unnecessary bold elements that appear directly after xrefs -->
+    <xsl:template xml:id="bold-follow-xref-cleanup" match="bold[preceding-sibling::node()[1][name()='xref']]">
+        <xsl:choose>
+            <xsl:when test="matches(lower-case(.),'^\s?(and|to|&amp;|[,;\)])\s?\.?$')">
+                <xsl:apply-templates select="text()|comment()|processing-instruction()"/>
+            </xsl:when>
+            <xsl:when test="matches(lower-case(.),$panel-regex)">
+                <xsl:choose>
+                    <xsl:when test="matches(.,'[;\),][\s\.]$')">
+                        <xsl:value-of select="substring(.,string-length(.)-1)"/>
+                    </xsl:when>
+                    <xsl:when test="matches(.,'[\s\.;\),]$')">
+                        <xsl:value-of select="substring(.,string-length(.))"/>
+                    </xsl:when>
+                    <xsl:otherwise/>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy>
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
     <!-- Strip or convert HTML <i> tags -->
     <xsl:template xml:id="strip-i-tags" match="i">
         <xsl:choose>

@@ -1,0 +1,16 @@
+<!--Testing template with id: fix-truncated-xrefs-->
+<sec>
+<p>something <xref ref-type="fig">Figure 1</xref><bold>, bottom panel)</bold> something</p>
+<p>something <xref ref-type="fig">Figure 1</xref>; and Figure 2<bold>, bottom panel)</bold> something</p>
+<p>something <xref ref-type="table"><italic><bold>Table 1</bold></italic></xref><bold>, middle and lower;.</bold> Something</p>
+<p><xref><italic><bold>Fig. 1Bc</bold></italic></xref><bold> i, </bold></p>
+<p><xref>Fig5</xref><bold> E,F).</bold></p>
+<p><xref>Figure 4—figure supplement S4C</xref><bold> and D</bold></p>
+<p><xref><bold><italic>Figure 1A</italic></bold></xref><bold>&amp;C</bold></p>
+<p><xref>Fig. 3e</xref><bold>- f</bold></p>
+<p><xref>Figure 2, H1</xref><bold> to </bold></p>
+<p><xref>Figure 3A</xref><bold> vs. 3C</bold></p>
+<p><xref>Figure 4D</xref><bold> and </bold></p>
+<p><xref>Fig. 2c</xref><bold>; Table S4</bold></p>
+<p><xref>Figure 7</xref><bold>—Dataset 1</bold></p>
+</sec>
