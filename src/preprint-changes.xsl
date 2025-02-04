@@ -1387,7 +1387,7 @@
         <xsl:variable name="bold-text" select="following-sibling::node()[1]"/>
          <xsl:copy>
              <xsl:choose>
-                 <xsl:when test="matches(lower-case($bold-text),$panel-regex)">
+                 <xsl:when test="matches(lower-case($bold-text),$panel-regex) and not(matches(lower-case($bold-text),'^ to $'))">
                      <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
                      <xsl:value-of select="replace($bold-text,'[;\),][\s\.]?$','')"/>
                  </xsl:when>
@@ -1401,7 +1401,7 @@
     <!-- Cleanup unnecessary bold elements that appear directly after xrefs -->
     <xsl:template xml:id="bold-follow-xref-cleanup" match="bold[preceding-sibling::node()[1][name()='xref']]">
         <xsl:choose>
-            <xsl:when test="matches(lower-case(.),'^\s?(and|&amp;|[,;\)])\s?\.?$')">
+            <xsl:when test="matches(lower-case(.),'^\s?(and|to|&amp;|[,;\)])\s?\.?$')">
                 <xsl:apply-templates select="text()|comment()|processing-instruction()"/>
             </xsl:when>
             <xsl:when test="matches(lower-case(.),$panel-regex)">
