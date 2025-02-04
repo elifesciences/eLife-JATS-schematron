@@ -132,6 +132,14 @@
       <x:context href="../tests/preprint-changes/strip-bold-italic-around-xref/input.xml"/>
       <x:expect label="Testing the template: strip-bold-italic-around-xref" href="../tests/preprint-changes/strip-bold-italic-around-xref/output.xml"/>
     </x:scenario>
+    <x:scenario label="fix-truncated-xrefs">
+      <x:context href="../tests/preprint-changes/fix-truncated-xrefs/input.xml"/>
+      <x:expect label="Testing the template: fix-truncated-xrefs" href="../tests/preprint-changes/fix-truncated-xrefs/output.xml"/>
+    </x:scenario>
+    <x:scenario label="bold-follow-xref-cleanup">
+      <x:context href="../tests/preprint-changes/bold-follow-xref-cleanup/input.xml"/>
+      <x:expect label="Testing the template: bold-follow-xref-cleanup" href="../tests/preprint-changes/bold-follow-xref-cleanup/output.xml"/>
+    </x:scenario>
     <x:scenario label="strip-i-tags">
       <x:context href="../tests/preprint-changes/strip-i-tags/input.xml"/>
       <x:expect label="Testing the template: strip-i-tags" href="../tests/preprint-changes/strip-i-tags/output.xml"/>

@@ -1,0 +1,6 @@
+<!--Testing template with id: fix-truncated-xrefs-->
+<sec>
+<p>something <xref ref-type="fig">Figure 1</xref><bold>, bottom panel)</bold> something</p>
+<p>something <xref ref-type="fig">Figure 1</xref>; and Figure 2<bold>, bottom panel)</bold> something</p>
+<p>something <xref ref-type="table"><italic><bold>Table 1</bold></italic></xref><bold>, middle and lower;.</bold> Something</p>
+</sec>
