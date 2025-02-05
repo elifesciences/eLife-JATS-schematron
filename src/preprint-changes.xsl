@@ -80,6 +80,8 @@
         </xsl:variable>
         <xsl:value-of select="string-join($processed-words,' ')"/>
     </xsl:function>
+    
+    <xsl:variable name="panel-regex" select="'^,?\s?(left|right|top|bottom|inset|lower|upper|middle)(\s(and\s)?(left|right|top|bottom|inset|lower|upper|middle))?(\s?panels?)?[;\),]?[\s\.]?$|^(\s?([,&amp;–\-]|and))*\s?[\p{L}](,?\s?[\p{L}]|\-\s?[\p{L}])?[;\),]?[\s\.]?$'"/>
 
      <xsl:template match="*|@*|text()|comment()|processing-instruction()">
         <xsl:copy>
@@ -1382,7 +1384,6 @@
     <!-- Include certain bolded text within xref when it immediately follows that xref 
         e.g. <xref>Fig 1</xref><bold>, right)</bold> to <xref>Fig 1, right</xref>) 
         bold handling in template 'bold-follow-xref-cleanup' -->
-    <xsl:variable name="panel-regex" select="'^,?\s?(left|right|top|bottom|inset|lower|upper|middle)(\s(and\s)?(left|right|top|bottom|inset|lower|upper|middle))?(\s?panels?)?[;\),]?[\s\.]?$|^(\s?([,&amp;–\-]|and))*\s?[\p{L}](,?\s?[\p{L}]|\-\s?[\p{L}])?[;\),]?[\s\.]?$'"/>
     <xsl:template xml:id="fix-truncated-xrefs" match="xref[following-sibling::node()[1][name()='bold']]">
         <xsl:variable name="bold-text" select="following-sibling::node()[1]"/>
          <xsl:copy>
@@ -1456,39 +1457,55 @@
         <xsl:choose> 
             <!-- if there's a text node that contains anything other than punctuation -->
             <xsl:when test="text()[matches(.,'[^\s\p{P}]')] or *[not(name()=('bold','italic','xref'))]">
-                <xsl:for-each select="node()">
-                    <xsl:choose>
-                        <xsl:when test="self::xref">
-                            <xsl:apply-templates select="."/>
-                        </xsl:when>
-                        <xsl:otherwise>
+                <xsl:choose>
+                    <xsl:when test="count(text()) = 1 and count(xref) = 1 and xref/following-sibling::text() and matches(lower-case(text()[1]),$panel-regex)">
+                        <xsl:element name="xref">
+                            <xsl:apply-templates select="xref/@*|xref/*|xref/text()"/>
+                            <xsl:value-of select="replace(text()[1],'[;\),][\s\.]?$','')"/>
+                        </xsl:element>
+                        <xsl:if test="matches(.,'[;\),][\s\.]$')">
+                            <xsl:value-of select="substring(.,string-length(.)-1)"/>
+                        </xsl:if>
+                        <xsl:if test="matches(.,'[\s\.;\),]$')">
+                            <xsl:value-of select="substring(.,string-length(.))"/>
+                        </xsl:if>                
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:for-each select="node()">
                             <xsl:choose>
-                                <!-- if the text node is just space -->
-                                <xsl:when test="self::text() and matches(.,'^\p{Z}+$')">
+                                <xsl:when test="self::xref">
                                     <xsl:apply-templates select="."/>
                                 </xsl:when>
-                                <!-- reintroduce styling for unknown content -->
-                                <xsl:when test="parent::bold[parent::italic]">
-                                    <italic><bold><xsl:apply-templates select="."/></bold></italic>
-                                </xsl:when>
-                                <xsl:when test="parent::bold">
-                                    <bold><xsl:apply-templates select="."/></bold>
-                                </xsl:when>
-                                <xsl:when test="parent::italic[parent::bold]">
-                                    <bold><italic><xsl:apply-templates select="."/></italic></bold>
-                                </xsl:when>
-                                <xsl:when test="parent::italic">
-                                    <italic><xsl:apply-templates select="."/></italic>
-                                </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:copy>
-                                        <xsl:apply-templates select="."/>
-                                    </xsl:copy>
+                                    <xsl:choose>
+                                        <!-- if the text node is just space -->
+                                        <xsl:when test="self::text() and matches(.,'^\p{Z}+$')">
+                                            <xsl:apply-templates select="."/>
+                                        </xsl:when>
+                                        <!-- reintroduce styling for unknown content -->
+                                        <xsl:when test="parent::bold[parent::italic]">
+                                            <italic><bold><xsl:apply-templates select="."/></bold></italic>
+                                        </xsl:when>
+                                        <xsl:when test="parent::bold">
+                                            <bold><xsl:apply-templates select="."/></bold>
+                                        </xsl:when>
+                                        <xsl:when test="parent::italic[parent::bold]">
+                                            <bold><italic><xsl:apply-templates select="."/></italic></bold>
+                                        </xsl:when>
+                                        <xsl:when test="parent::italic">
+                                            <italic><xsl:apply-templates select="."/></italic>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:copy>
+                                                <xsl:apply-templates select="."/>
+                                            </xsl:copy>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
                                 </xsl:otherwise>
                             </xsl:choose>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:for-each>
+                        </xsl:for-each>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:when>
             <xsl:otherwise>
                  <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
