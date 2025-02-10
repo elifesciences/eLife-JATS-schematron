@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="preprint-source-2.sch"?>
 <!--Context: mixed-citation[@publication-type='preprint']/source
-Test: report    matches(.,'[“”]')
+Test: report    matches(.,'[“”"]')
 Message: Preprint reference () has a source that contains speech quotes - . Is that correct? -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>

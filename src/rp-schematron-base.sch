@@ -560,7 +560,7 @@
         role="warning" 
         id="journal-source-4">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
        
-       <report test="matches(.,'[“”]')" 
+       <report test="matches(.,'[“”&quot;]')" 
         role="warning" 
         id="journal-source-5">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
      </rule>
@@ -586,7 +586,7 @@
         role="warning" 
         id="preprint-source">Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
         
-        <report test="matches(.,'[“”]')" 
+        <report test="matches(.,'[“”&quot;]')" 
         role="warning" 
         id="preprint-source-2">Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
       </rule>
@@ -629,7 +629,7 @@
         role="warning" 
         id="book-source-3">Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
         
-        <report test="matches(.,'[“”]')" 
+        <report test="matches(.,'[“”&quot;]')" 
         role="warning" 
         id="book-source-4">Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
       </rule>
@@ -834,6 +834,22 @@
         id="ref-id"><name/> must have an id attribute with a non-empty value.</assert>
      </rule>
     </pattern>
+  
+  <pattern id="ref-article-title">
+      <rule context="ref//article-title" id="ref-article-title-checks">
+        <report test="matches(.,'^\s*[“”&quot;]|[“”&quot;]\.*$')" 
+          role="warning" 
+          id="ref-article-title-1"><name/> in ref starts or ends with speech quotes - <value-of select="."/>. Is that correct?.</report>
+      </rule>
+  </pattern>
+  
+  <pattern id="ref-chapter-title">
+      <rule context="ref//chapter-title" id="ref-chapter-title-checks">
+        <report test="matches(.,'^\s*[“”&quot;]|[“”&quot;]\.*$')" 
+          role="warning" 
+          id="ref-chapter-title-1"><name/> in ref starts or ends with speech quotes - <value-of select="."/>. Is that correct?.</report>
+      </rule>
+  </pattern>
   
     <pattern id="mixed-citation">
       <rule context="mixed-citation" id="mixed-citation-checks">

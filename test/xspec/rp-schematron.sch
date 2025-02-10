@@ -411,7 +411,7 @@
        
        <report test="matches(lower-case(.),'^in[^a-z]')" role="warning" id="journal-source-4">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
        
-       <report test="matches(.,'[“”]')" role="warning" id="journal-source-5">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
+       <report test="matches(.,'[“”&quot;]')" role="warning" id="journal-source-5">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
      </rule>
   </pattern>
 
@@ -428,7 +428,7 @@
     <rule context="mixed-citation[@publication-type='preprint']/source" id="preprint-source-checks">
         <report test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')" role="warning" id="preprint-source">Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
         
-        <report test="matches(.,'[“”]')" role="warning" id="preprint-source-2">Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
+        <report test="matches(.,'[“”&quot;]')" role="warning" id="preprint-source-2">Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
       </rule>
   </pattern>
 
@@ -454,7 +454,7 @@
 
         <report test="matches(lower-case(.),'^(symposium|conference|proc\.?|proceeding|meeting|workshop)|\s?(symposium|conference|proc\.?|proceeding|meeting|workshop)\s?|(symposium|conference|proc\.?|proceeding|meeting|workshop)$')" role="warning" id="book-source-3">Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
         
-        <report test="matches(.,'[“”]')" role="warning" id="book-source-4">Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
+        <report test="matches(.,'[“”&quot;]')" role="warning" id="book-source-4">Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
       </rule>
   </pattern>
   
@@ -608,6 +608,20 @@
         <assert test="normalize-space(@id)!=''" role="error" id="ref-id">
         <name/> must have an id attribute with a non-empty value.</assert>
      </rule>
+  </pattern>
+  
+  <pattern id="ref-article-title-checks-pattern">
+    <rule context="ref//article-title" id="ref-article-title-checks">
+        <report test="matches(.,'^\s*[“”&quot;]|[“”&quot;]\.*$')" role="warning" id="ref-article-title-1">
+        <name/> in ref starts or ends with speech quotes - <value-of select="."/>. Is that correct?.</report>
+      </rule>
+  </pattern>
+  
+  <pattern id="ref-chapter-title-checks-pattern">
+    <rule context="ref//chapter-title" id="ref-chapter-title-checks">
+        <report test="matches(.,'^\s*[“”&quot;]|[“”&quot;]\.*$')" role="warning" id="ref-chapter-title-1">
+        <name/> in ref starts or ends with speech quotes - <value-of select="."/>. Is that correct?.</report>
+      </rule>
   </pattern>
   
     <pattern id="mixed-citation-checks-pattern">
@@ -1843,6 +1857,8 @@
       <assert test="descendant::ref//pub-id[@pub-id-type='issn'] or descendant::issn" role="error" id="issn-conformity-xspec-assert">ref//pub-id[@pub-id-type='issn']|issn must be present.</assert>
       <assert test="descendant::ref//person-group" role="error" id="ref-person-group-checks-xspec-assert">ref//person-group must be present.</assert>
       <assert test="descendant::ref" role="error" id="ref-checks-xspec-assert">ref must be present.</assert>
+      <assert test="descendant::ref//article-title" role="error" id="ref-article-title-checks-xspec-assert">ref//article-title must be present.</assert>
+      <assert test="descendant::ref//chapter-title" role="error" id="ref-chapter-title-checks-xspec-assert">ref//chapter-title must be present.</assert>
       <assert test="descendant::mixed-citation" role="error" id="mixed-citation-checks-xspec-assert">mixed-citation must be present.</assert>
       <assert test="descendant::mixed-citation/*" role="error" id="mixed-citation-child-checks-xspec-assert">mixed-citation/* must be present.</assert>
       <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
