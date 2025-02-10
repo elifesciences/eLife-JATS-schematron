@@ -855,6 +855,10 @@
         <assert test="person-group[@person-group-type='author']" 
           role="warning" 
           id="mixed-citation-person-group-flag-2"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have an author person-group. Is that correct?</assert>
+        
+        <report test="starts-with(.,parent::ref/label)" 
+          role="error" 
+          id="mixed-citation-label"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) starts with the reference label.</report>
      </rule>
       
       <rule context="mixed-citation/*" id="mixed-citation-child-checks">

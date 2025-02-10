@@ -1385,6 +1385,16 @@
         <x:expect-assert id="mixed-citation-person-group-flag-2" role="warning"/>
         <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="mixed-citation-label-pass">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-label/pass.xml"/>
+        <x:expect-not-report id="mixed-citation-label" role="error"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mixed-citation-label-fail">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-label/fail.xml"/>
+        <x:expect-report id="mixed-citation-label" role="error"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="mixed-citation-child-checks">
       <x:scenario label="mixed-citation-child-1-pass">
