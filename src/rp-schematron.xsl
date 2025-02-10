@@ -2786,6 +2786,21 @@
                <xsl:text/>'. Should that text be moved out of the source? And is it a different type of reference?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(.,'[“”]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[“”]')">
+            <xsl:attribute name="id">journal-source-5</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[journal-source-5] Journal reference (<xsl:text/>
+               <xsl:value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>
+               <xsl:text/>) has a source that contains speech quotes - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M34"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M34"/>
@@ -2866,6 +2881,21 @@
                <xsl:text/>) has a source that starts with 'In ', '<xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>'. Should that text be moved out of the source? And is it a different type of reference?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(.,'[“”]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[“”]')">
+            <xsl:attribute name="id">preprint-source-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[preprint-source-2] Preprint reference (<xsl:text/>
+               <xsl:value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>
+               <xsl:text/>) has a source that contains speech quotes - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M36"/>
@@ -2999,6 +3029,21 @@
                <xsl:text/>) has the following source, '<xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>'. Should it be captured as a conference proceeding instead?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(.,'[“”]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[“”]')">
+            <xsl:attribute name="id">book-source-4</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[book-source-4] Book reference (<xsl:text/>
+               <xsl:value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>
+               <xsl:text/>) has a source that contains speech quotes - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M38"/>
