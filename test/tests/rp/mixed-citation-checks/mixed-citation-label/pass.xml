@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="mixed-citation-label.sch"?>
+<!--Context: mixed-citation
+Test: report    starts-with(.,parent::ref/label)
+Message:  in reference (id=) starts with the reference label. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref><label>51.</label><mixed-citation><collab>52 collabs</collab></mixed-citation></ref>
+    </article>
+</root>

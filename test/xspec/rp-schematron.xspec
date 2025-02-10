@@ -803,6 +803,16 @@
         <x:expect-report id="journal-source-4" role="warning"/>
         <x:expect-not-assert id="journal-source-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="journal-source-5-pass">
+        <x:context href="../tests/rp/journal-source-checks/journal-source-5/pass.xml"/>
+        <x:expect-not-report id="journal-source-5" role="warning"/>
+        <x:expect-not-assert id="journal-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="journal-source-5-fail">
+        <x:context href="../tests/rp/journal-source-checks/journal-source-5/fail.xml"/>
+        <x:expect-report id="journal-source-5" role="warning"/>
+        <x:expect-not-assert id="journal-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="preprint-ref-checks">
       <x:scenario label="preprint-ref-source-pass">
@@ -845,6 +855,16 @@
       <x:scenario label="preprint-source-fail">
         <x:context href="../tests/rp/preprint-source-checks/preprint-source/fail.xml"/>
         <x:expect-report id="preprint-source" role="warning"/>
+        <x:expect-not-assert id="preprint-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-source-2-pass">
+        <x:context href="../tests/rp/preprint-source-checks/preprint-source-2/pass.xml"/>
+        <x:expect-not-report id="preprint-source-2" role="warning"/>
+        <x:expect-not-assert id="preprint-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-source-2-fail">
+        <x:context href="../tests/rp/preprint-source-checks/preprint-source-2/fail.xml"/>
+        <x:expect-report id="preprint-source-2" role="warning"/>
         <x:expect-not-assert id="preprint-source-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -929,6 +949,16 @@
       <x:scenario label="book-source-3-fail">
         <x:context href="../tests/rp/book-ref-source-checks/book-source-3/fail.xml"/>
         <x:expect-report id="book-source-3" role="warning"/>
+        <x:expect-not-assert id="book-ref-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="book-source-4-pass">
+        <x:context href="../tests/rp/book-ref-source-checks/book-source-4/pass.xml"/>
+        <x:expect-not-report id="book-source-4" role="warning"/>
+        <x:expect-not-assert id="book-ref-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="book-source-4-fail">
+        <x:context href="../tests/rp/book-ref-source-checks/book-source-4/fail.xml"/>
+        <x:expect-report id="book-source-4" role="warning"/>
         <x:expect-not-assert id="book-ref-source-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -1314,6 +1344,30 @@
         <x:expect-not-assert id="ref-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="ref-article-title-checks">
+      <x:scenario label="ref-article-title-1-pass">
+        <x:context href="../tests/rp/ref-article-title-checks/ref-article-title-1/pass.xml"/>
+        <x:expect-not-report id="ref-article-title-1" role="warning"/>
+        <x:expect-not-assert id="ref-article-title-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-article-title-1-fail">
+        <x:context href="../tests/rp/ref-article-title-checks/ref-article-title-1/fail.xml"/>
+        <x:expect-report id="ref-article-title-1" role="warning"/>
+        <x:expect-not-assert id="ref-article-title-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="ref-chapter-title-checks">
+      <x:scenario label="ref-chapter-title-1-pass">
+        <x:context href="../tests/rp/ref-chapter-title-checks/ref-chapter-title-1/pass.xml"/>
+        <x:expect-not-report id="ref-chapter-title-1" role="warning"/>
+        <x:expect-not-assert id="ref-chapter-title-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-chapter-title-1-fail">
+        <x:context href="../tests/rp/ref-chapter-title-checks/ref-chapter-title-1/fail.xml"/>
+        <x:expect-report id="ref-chapter-title-1" role="warning"/>
+        <x:expect-not-assert id="ref-chapter-title-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="mixed-citation-checks">
       <x:scenario label="mixed-citation-empty-1-pass">
         <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-empty-1/pass.xml"/>
@@ -1383,6 +1437,16 @@
       <x:scenario label="mixed-citation-person-group-flag-2-fail">
         <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-person-group-flag-2/fail.xml"/>
         <x:expect-assert id="mixed-citation-person-group-flag-2" role="warning"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mixed-citation-label-pass">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-label/pass.xml"/>
+        <x:expect-not-report id="mixed-citation-label" role="error"/>
+        <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="mixed-citation-label-fail">
+        <x:context href="../tests/rp/mixed-citation-checks/mixed-citation-label/fail.xml"/>
+        <x:expect-report id="mixed-citation-label" role="error"/>
         <x:expect-not-assert id="mixed-citation-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
