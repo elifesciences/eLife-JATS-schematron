@@ -3949,8 +3949,8 @@
          </xsl:otherwise>
       </xsl:choose>
       <!--REPORT error-->
-      <xsl:if test="starts-with(.,parent::ref/label)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(.,parent::ref/label)">
+      <xsl:if test="parent::ref/label[.!=''] and starts-with(.,parent::ref[1]/label[1])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="parent::ref/label[.!=''] and starts-with(.,parent::ref[1]/label[1])">
             <xsl:attribute name="id">mixed-citation-label</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">

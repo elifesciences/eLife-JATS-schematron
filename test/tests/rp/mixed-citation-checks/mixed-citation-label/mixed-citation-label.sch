@@ -148,7 +148,7 @@
     <rule context="mixed-citation" id="mixed-citation-checks">
       <let name="publication-type-values" value="('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')"/>
       <let name="name-elems" value="('name','string-name','collab','on-behalf-of','etal')"/>
-      <report test="starts-with(.,parent::ref/label)" role="error" id="mixed-citation-label">[mixed-citation-label] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) starts with the reference label.</report>
+      <report test="parent::ref/label[.!=''] and starts-with(.,parent::ref[1]/label[1])" role="error" id="mixed-citation-label">[mixed-citation-label] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) starts with the reference label.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
