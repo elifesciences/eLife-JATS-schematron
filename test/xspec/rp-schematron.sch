@@ -660,6 +660,16 @@
         <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) is empty, which cannot be correct.</report>
       </rule>
   </pattern>
+  
+  <pattern id="comment-checks-pattern">
+    <rule context="comment" id="comment-checks">
+        <assert test="parent::mixed-citation" role="error" id="comment-1">
+        <name/> is only supported within mixed-citation, but this one is in <value-of select="parent::*/name()"/>.</assert>
+        
+        <assert test="matches(lower-case(.),'^((in|under) (preparation|press|review)|submitted)$')" role="warning" id="comment-2">
+        <name/> contains the content '<value-of select="."/>'. Is the tagging correct?</assert>
+      </rule>
+  </pattern>
 
     <pattern id="back-tests-pattern">
     <rule context="back" id="back-tests">
@@ -1861,6 +1871,7 @@
       <assert test="descendant::ref//chapter-title" role="error" id="ref-chapter-title-checks-xspec-assert">ref//chapter-title must be present.</assert>
       <assert test="descendant::mixed-citation" role="error" id="mixed-citation-checks-xspec-assert">mixed-citation must be present.</assert>
       <assert test="descendant::mixed-citation/*" role="error" id="mixed-citation-child-checks-xspec-assert">mixed-citation/* must be present.</assert>
+      <assert test="descendant::comment" role="error" id="comment-checks-xspec-assert">comment must be present.</assert>
       <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
       <assert test="descendant::ack" role="error" id="ack-tests-xspec-assert">ack must be present.</assert>
       <assert test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>
