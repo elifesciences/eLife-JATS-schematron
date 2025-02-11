@@ -906,19 +906,19 @@
             'introu?duction',
             '(results?|conclusions?)( (and|&amp;) discussion)?',
             'discussion( (and|&amp;) (results?|conclusions?))?',
-            'fundings?( sources)?',
+            'fundings?( (sources|information))?',
             'key\s?words?',
-            '(supplementa(ry|l)|additional) (informations?|files?|figures?|tables?|materials?|videos?)',
-            '(data|resource|code|software|materials?)(( and |\s?/\s?)(data|resource|code|software|materials?))? (avail(a|i)bi?li?ty|accessibi?li?ty)( statement)?',
+            '(supplementa(ry|l)|additional|supporting) (informations?|files?|figures?|tables?|materials?|videos?)(( and | &amp; )?(informations?|files?|figures?|tables?|materials?|videos?))?',
+            '(data|resource|code|software|methods|materials?)(( and |\s?/\s?|\s+)(data|resource|code|software|materials?))? (avail(a|i)bi?li?ty|accessibi?li?ty)( statement)?',
             'summary|highlights?|teaser',
-            '(impact|significance|competing interests?|(conflicts?|declarations?) (of interests?|disclosures?))\s?(statements?)?',
-            '(article( and| &amp;)?)?(authors?’? )?(contributions?|details?|information)',
-            'key resources? table',
+            '(authors? )?(impact|significance|competing interests?|(conflicts?|declarations?) (of interests?|disclosures?))\s?(disclosures?|statements?)?',
+            '(article( and| &amp;)? )?(authors?’? )?(contributions?|details?|information)',
+            '(key )?resources? table',
             '(supplement(al|ary)? )?(figure|table|material|(source )?(data|code)|references?)( supplement(al|ary)?)?( legends?)?',
             '(figures?|tables?) supplements',
-            'ethic(s|al)( declarations?|statements?)?',
+            'ethic(s|al)( declarations?|statements?|approvals?)?',
             'patient cohort details',
-            'abbreviations?|glossary',
+            'abbreviations?|glossary|footnotes?',
             'quantification (and|&amp;) statistical analysis',
             'experimental (design and statistical analysis|model( details)?|(model (and|&amp;)( study)? (subject|participant) details|procedures))'
         )"/>
@@ -928,6 +928,12 @@
             <xsl:copy>
                     <xsl:apply-templates select="@*"/>
                     <xsl:value-of select="concat(upper-case(substring(.,1,1)),lower-case(substring(.,2)))"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:when test="matches(.,'^\s*STAR ([*★+] )?METHODS?\s*$')">
+                <xsl:copy>
+                    <xsl:apply-templates select="@*"/>
+                    <xsl:text>STAR methods</xsl:text>
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
@@ -1605,7 +1611,7 @@
     <!-- remove sec[@sec-type='supplementary-material'] from body - it is copied into back in the template below -->
     <xsl:template match="body">
         <xsl:copy>
-            <xsl:apply-templates select="*[not(name()='sec' and @sec-type='supplementary-material')]|text()|comment()|processing-instruction()"></xsl:apply-templates>
+            <xsl:apply-templates select="*[not(name()='sec' and @sec-type='supplementary-material')]|text()|comment()|processing-instruction()"/>
         </xsl:copy>
     </xsl:template>
     
