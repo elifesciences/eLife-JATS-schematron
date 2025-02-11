@@ -1462,6 +1462,28 @@
         <x:expect-not-assert id="mixed-citation-child-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="comment-checks">
+      <x:scenario label="comment-1-pass">
+        <x:context href="../tests/rp/comment-checks/comment-1/pass.xml"/>
+        <x:expect-not-assert id="comment-1" role="error"/>
+        <x:expect-not-assert id="comment-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="comment-1-fail">
+        <x:context href="../tests/rp/comment-checks/comment-1/fail.xml"/>
+        <x:expect-assert id="comment-1" role="error"/>
+        <x:expect-not-assert id="comment-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="comment-2-pass">
+        <x:context href="../tests/rp/comment-checks/comment-2/pass.xml"/>
+        <x:expect-not-assert id="comment-2" role="warning"/>
+        <x:expect-not-assert id="comment-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="comment-2-fail">
+        <x:context href="../tests/rp/comment-checks/comment-2/fail.xml"/>
+        <x:expect-assert id="comment-2" role="warning"/>
+        <x:expect-not-assert id="comment-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="back-tests">
       <x:scenario label="no-ref-list-pass">
         <x:context href="../tests/rp/back-tests/no-ref-list/pass.xml"/>

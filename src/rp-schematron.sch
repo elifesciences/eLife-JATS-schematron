@@ -518,6 +518,12 @@
      </rule></pattern><pattern id="mixed-citation-child-checks-pattern"><rule context="mixed-citation/*" id="mixed-citation-child-checks">
         <report test="not(*) and (normalize-space(.)='')" role="error" id="mixed-citation-child-1">[mixed-citation-child-1] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) is empty, which cannot be correct.</report>
       </rule></pattern>
+  
+  <pattern id="comment-checks-pattern"><rule context="comment" id="comment-checks">
+        <assert test="parent::mixed-citation" role="error" id="comment-1">[comment-1] <name/> is only supported within mixed-citation, but this one is in <value-of select="parent::*/name()"/>.</assert>
+        
+        <assert test="matches(lower-case(.),'^((in|under) (preparation|press|review)|submitted)$')" role="warning" id="comment-2">[comment-2] <name/> contains the content '<value-of select="."/>'. Is the tagging correct?</assert>
+      </rule></pattern>
 
     <pattern id="back-tests-pattern"><rule context="back" id="back-tests">
 
