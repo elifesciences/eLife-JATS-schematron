@@ -146,7 +146,7 @@
   </xsl:function>
   <pattern id="sec-checks-pattern">
     <rule context="sec" id="sec-checks">
-      <report test="@sec-type='data-availability' and (preceding::sec[@sec-type='data-availability'] or ancestor::sec[@sec-type='data-availability'])" role="warning" id="sec-data-availability">[sec-data-availability] sec has the sec-type 'data-availability', but there is one or more other secs with this same sec-type. Are they duplicates?</report>
+      <report test="@sec-type='ethics-statement' and (preceding::sec[@sec-type='ethics-statement'] or ancestor::sec[@sec-type='ethics-statement'])" role="error" id="sec-ethics">[sec-ethics] sec has the sec-type 'ethics-statement', but there is one or more other secs with this same sec-type. Are they duplicates? There can only be one section with this sec-type (although it can have subsections with further distinctions that have separate 'ethics-...' sec-types - e.g. "ethics-approval-human", "ethics-approval-animal" etc.)</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

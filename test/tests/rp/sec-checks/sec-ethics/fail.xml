@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="sec-ethics.sch"?>
+<!--Context: sec
+Test: report    @sec-type='ethics-statement' and (preceding::sec[@sec-type='ethics-statement'] or ancestor::sec[@sec-type='ethics-statement'])
+Message: sec has the sec-type 'ethics-statement', but there is one or more other secs with this same sec-type. Are they duplicates? There can only be one section with this sec-type (although it can have subsections with further distinctions that have separate 'ethics-...' sec-types - e.g. "ethics-approval-human", "ethics-approval-animal" etc.) -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sec id="s6" sec-type="ethics-statement">
+            <title>Ethics</title>
+            <sec sec-type="ethics-statement">
+                <p>Human subjects: Fresh tissue samples were obtained upon informed consent from patients undergoing surgery at the Gynecology Division of the European Institute of Oncology (Milan). Sample collection was performed under the protocol number R789-IEO approved by the Ethics Committee of the European Institute of Oncology.</p>
+            </sec>
+            <sec sec-type="ethics-statement">
+                <p>Animal experimentation: All animal studies were performed following aÂ  protocol approved by the fully authorized animal facility of European Institute of Oncology and by the Italian Ministry of Health (as required by the Italian Law) (IACUCs number 1256/2015) and in accordance to EU directive 2010/63. Mouse tissues were obtained from Karolinska Institutet (Stockholm, Sweden) and IRCCS San Raffaele Scientific Institute (Milan, Italy), in accordance with Institutional Animal Care and Use Committees.</p>
+            </sec>
+        </sec>
+    </article>
+</root>
