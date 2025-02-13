@@ -2103,6 +2103,16 @@
         <x:expect-report id="sec-coi-2" role="warning"/>
         <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="sec-ethics-pass">
+        <x:context href="../tests/rp/sec-checks/sec-ethics/pass.xml"/>
+        <x:expect-not-report id="sec-ethics" role="error"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-ethics-fail">
+        <x:context href="../tests/rp/sec-checks/sec-ethics/fail.xml"/>
+        <x:expect-report id="sec-ethics" role="error"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="sec-def-list-pass">
         <x:context href="../tests/rp/sec-checks/sec-def-list/pass.xml"/>
         <x:expect-not-report id="sec-def-list" role="error"/>

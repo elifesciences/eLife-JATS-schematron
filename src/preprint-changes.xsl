@@ -756,13 +756,20 @@
                     </xsl:choose>
                     <xsl:element name="p">
                         <xsl:choose>
+                            <xsl:when test="./@notes-type='competing-interest-statement'">
+                                <xsl:text>Competing interests: </xsl:text>
+                                <xsl:choose>
+                                    <xsl:when test="count(p) = 1 and ./p[1]='The authors have declared no competing interest.'">
+                                        <xsl:text>No competing interests declared</xsl:text>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:apply-templates select="./p/(*|text())"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:when>
                             <xsl:when test="./title">
                                 <xsl:value-of select="./title"/>
                                 <xsl:text>: </xsl:text>
-                                <xsl:apply-templates select="./p/(*|text())"/>
-                            </xsl:when>
-                            <xsl:when test="./@notes-type='competing-interest-statement'">
-                                <xsl:text>Competing interests: </xsl:text>
                                 <xsl:apply-templates select="./p/(*|text())"/>
                             </xsl:when>
                             <xsl:otherwise>
@@ -1368,6 +1375,20 @@
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:attribute name="sec-type">data-availability</xsl:attribute>
+            <xsl:if test="not(@id)">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="generate-id(.)"/>
+                </xsl:attribute>
+            </xsl:if>
+            <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+        </xsl:copy>
+    </xsl:template>
+    
+     <!-- Add sec-type="ethics-statement" -->
+    <xsl:template xml:id="sec-ethics" match="sec[(not(@sec-type)) and matches(lower-case(title[1]),'ethics') and not(matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')) and not(ancestor::sec[matches(lower-case(title[1]),'ethics')])]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:attribute name="sec-type">ethics-statement</xsl:attribute>
             <xsl:if test="not(@id)">
                 <xsl:attribute name="id">
                     <xsl:value-of select="generate-id(.)"/>
