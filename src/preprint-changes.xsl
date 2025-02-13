@@ -756,13 +756,20 @@
                     </xsl:choose>
                     <xsl:element name="p">
                         <xsl:choose>
+                            <xsl:when test="./@notes-type='competing-interest-statement'">
+                                <xsl:text>Competing interests: </xsl:text>
+                                <xsl:choose>
+                                    <xsl:when test="count(p) = 1 and ./p[1]='The authors have declared no competing interest.'">
+                                        <xsl:text>No competing interests declared</xsl:text>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:apply-templates select="./p/(*|text())"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:when>
                             <xsl:when test="./title">
                                 <xsl:value-of select="./title"/>
                                 <xsl:text>: </xsl:text>
-                                <xsl:apply-templates select="./p/(*|text())"/>
-                            </xsl:when>
-                            <xsl:when test="./@notes-type='competing-interest-statement'">
-                                <xsl:text>Competing interests: </xsl:text>
                                 <xsl:apply-templates select="./p/(*|text())"/>
                             </xsl:when>
                             <xsl:otherwise>
