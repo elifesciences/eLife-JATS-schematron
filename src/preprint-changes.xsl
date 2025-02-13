@@ -1383,6 +1383,20 @@
             <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
     </xsl:template>
+    
+     <!-- Add sec-type="ethics-statement" -->
+    <xsl:template xml:id="sec-ethics" match="sec[(not(@sec-type)) and matches(lower-case(title[1]),'ethics') and not(matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')) and not(ancestor::sec[matches(lower-case(title[1]),'ethics')])]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:attribute name="sec-type">ethics-statement</xsl:attribute>
+            <xsl:if test="not(@id)">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="generate-id(.)"/>
+                </xsl:attribute>
+            </xsl:if>
+            <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+        </xsl:copy>
+    </xsl:template>
 
     <!-- Strip unnecessary bolding and italicisation from inside citations -->
     <xsl:template xml:id="strip-bold-italic-around-xref" match="xref/bold[italic[not(xref)]]

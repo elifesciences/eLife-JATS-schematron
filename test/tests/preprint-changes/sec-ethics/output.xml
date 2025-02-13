@@ -1,0 +1,13 @@
+<!--Testing template with id: sec-ethics-->
+<sec id="s4" sec-type="ethics-statement">
+<title>ETHICS STATEMENT</title>
+<sec>
+<title>Human</title>
+</sec>
+<sec>
+<title>Monkey</title>
+</sec>
+<sec>
+<title>Machine</title>
+</sec>
+</sec>
