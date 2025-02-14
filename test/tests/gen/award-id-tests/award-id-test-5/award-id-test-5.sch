@@ -1363,6 +1363,8 @@
   <pattern id="article-metadata">
     <rule context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>
+      <let name="funder-id" value="parent::award-group/descendant::institution-id[1]"/>
+      <let name="funder-name" value="parent::award-group/descendant::institution[1]"/>
       <report test="matches(.,'http[s]?://d?x?\.?doi.org/')" role="error" id="award-id-test-5">Award id contains a DOI link - <value-of select="."/>. If the award ID is for a grant DOI it should contain the DOI without the https://... protocol (e.g. 10.37717/220020477).</report>
     </rule>
   </pattern>

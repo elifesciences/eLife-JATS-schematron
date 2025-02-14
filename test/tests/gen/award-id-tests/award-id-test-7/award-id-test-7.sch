@@ -1365,7 +1365,7 @@
       <let name="id" value="parent::award-group/@id"/>
       <let name="funder-id" value="parent::award-group/descendant::institution-id[1]"/>
       <let name="funder-name" value="parent::award-group/descendant::institution[1]"/>
-      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-4" test="matches(.,'&amp;#x\d')" role="warning" id="award-id-test-4">Award id contains what looks like a broken unicode - <value-of select="."/>.</report>
+      <report test=". = preceding::award-id[parent::award-group/descendant::institution[1] = $funder-name]" role="error" id="award-id-test-7">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with the same funder name. This must be incorrect. Either the funder name or the award ID is wrong, or it is a duplicate that should be removed.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

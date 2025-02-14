@@ -12209,6 +12209,8 @@
    <!--RULE award-id-tests-->
    <xsl:template match="funding-group/award-group/award-id" priority="1000" mode="M159">
       <xsl:variable name="id" select="parent::award-group/@id"/>
+      <xsl:variable name="funder-id" select="parent::award-group/descendant::institution-id[1]"/>
+      <xsl:variable name="funder-name" select="parent::award-group/descendant::institution[1]"/>
       <!--REPORT warning-->
       <xsl:if test="matches(.,',|;')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,',|;')">
@@ -12278,6 +12280,45 @@
             <svrl:text>[award-id-test-5] Award id contains a DOI link - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>. If the award ID is for a grant DOI it should contain the DOI without the https://... protocol (e.g. 10.37717/220020477).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test=". = preceding::award-id[parent::award-group/descendant::institution-id[1] = $funder-id]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=". = preceding::award-id[parent::award-group/descendant::institution-id[1] = $funder-id]">
+            <xsl:attribute name="id">award-id-test-6</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[award-id-test-6] Funding entry has an award id - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/> - which is also used in another funding entry with the same funder ID. This must be incorrect. Either the funder ID or the award ID is wrong, or it is a duplicate that should be removed.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test=". = preceding::award-id[parent::award-group/descendant::institution[1] = $funder-name]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=". = preceding::award-id[parent::award-group/descendant::institution[1] = $funder-name]">
+            <xsl:attribute name="id">award-id-test-7</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[award-id-test-7] Funding entry has an award id - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/> - which is also used in another funding entry with the same funder name. This must be incorrect. Either the funder name or the award ID is wrong, or it is a duplicate that should be removed.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test=". = preceding::award-id[parent::award-group[not(descendant::institution[1] = $funder-name) and not(descendant::institution-id[1] = $funder-id)]]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=". = preceding::award-id[parent::award-group[not(descendant::institution[1] = $funder-name) and not(descendant::institution-id[1] = $funder-id)]]">
+            <xsl:attribute name="id">award-id-test-8</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[award-id-test-8] Funding entry has an award id - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/> - which is also used in another funding entry with a different funder. Has there been a mistake with the award id? If the grant was awarded jointly by two funders, then this capture is correct and should be retained.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M159"/>
