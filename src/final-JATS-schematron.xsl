@@ -11871,7 +11871,7 @@
    </xsl:template>
    <!--PATTERN wellcome-fund-statement-tests-pattern-->
    <!--RULE wellcome-fund-statement-tests-->
-   <xsl:template match="article-meta/funding-group[descendant::institution[lower-case(.)=('wellcome','wellcome trust')]]/funding-statement" priority="1000" mode="M152">
+   <xsl:template match="article-meta/funding-group[descendant::institution[matches(lower-case(.),'wellcome') and not(matches(lower-case(.),'burroughs'))]]/funding-statement" priority="1000" mode="M152">
 
 		<!--ASSERT warning-->
       <xsl:choose>

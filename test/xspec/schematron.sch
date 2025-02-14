@@ -2746,7 +2746,7 @@
     </rule>
   </pattern>
   <pattern id="wellcome-fund-statement-tests-pattern">
-    <rule context="article-meta/funding-group[descendant::institution[lower-case(.)=('wellcome','wellcome trust')]]/funding-statement" id="wellcome-fund-statement-tests">
+    <rule context="article-meta/funding-group[descendant::institution[matches(lower-case(.),'wellcome') and not(matches(lower-case(.),'burroughs'))]]/funding-statement" id="wellcome-fund-statement-tests">
       
       <assert test="matches(lower-case(.),'for the purpose of open access, the authors have applied a cc by public copyright license to any author accepted manuscript version arising from this submission\.')" role="warning" id="wellcome-fund-statement">This article has Wellcome funding declared, but the funding statement does not end with "For the purpose of Open Access, the authors have applied a CC BY public copyright license to any Author Accepted Manuscript version arising from this submission." is that correct? The funding statement is currently <value-of select="."/>.</assert>
       
@@ -9989,7 +9989,7 @@
       <assert test="descendant::addr-line" role="error" id="addr-line-parent-test-xspec-assert">addr-line must be present.</assert>
       <assert test="descendant::addr-line/*" role="error" id="addr-line-child-tests-xspec-assert">addr-line/* must be present.</assert>
       <assert test="descendant::article-meta/funding-group" role="error" id="funding-group-tests-xspec-assert">article-meta/funding-group must be present.</assert>
-      <assert test="descendant::article-meta/funding-group[descendant::institution[lower-case(.)=('wellcome','wellcome trust')]]/funding-statement" role="error" id="wellcome-fund-statement-tests-xspec-assert">article-meta/funding-group[descendant::institution[lower-case(.)=('wellcome','wellcome trust')]]/funding-statement must be present.</assert>
+      <assert test="descendant::article-meta/funding-group[descendant::institution[matches(lower-case(.),'wellcome') and not(matches(lower-case(.),'burroughs'))]]/funding-statement" role="error" id="wellcome-fund-statement-tests-xspec-assert">article-meta/funding-group[descendant::institution[matches(lower-case(.),'wellcome') and not(matches(lower-case(.),'burroughs'))]]/funding-statement must be present.</assert>
       <assert test="descendant::article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))]" role="error" id="max-planck-fund-statement-tests-xspec-assert">article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))] must be present.</assert>
       <assert test="descendant::funding-group/award-group" role="error" id="award-group-tests-xspec-assert">funding-group/award-group must be present.</assert>
       <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" role="error" id="general-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]] must be present.</assert>
