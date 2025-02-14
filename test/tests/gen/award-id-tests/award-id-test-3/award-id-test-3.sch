@@ -1363,6 +1363,8 @@
   <pattern id="article-metadata">
     <rule context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>
+      <let name="funder-id" value="parent::award-group/descendant::institution-id[1]"/>
+      <let name="funder-name" value="parent::award-group/descendant::institution[1]"/>
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-3" test="matches(.,'^\p{Zs}?[Nn]one[\.]?\p{Zs}?$')" role="error" id="award-id-test-3">Award id contains - <value-of select="."/> - This entry should be empty.</report>
     </rule>
   </pattern>
