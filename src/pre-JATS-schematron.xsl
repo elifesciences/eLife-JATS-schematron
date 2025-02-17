@@ -10957,9 +10957,9 @@
       </xsl:choose>
       <!--ASSERT warning-->
       <xsl:choose>
-         <xsl:when test="contains(.,@document-id/string())"/>
+         <xsl:when test="@document-id = ."/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,@document-id/string())">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@document-id = .">
                <xsl:attribute name="id">clintrial-related-object-8</xsl:attribute>
                <xsl:attribute name="see">https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-8</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
@@ -10970,7 +10970,7 @@
                   <xsl:value-of select="name(.)"/>
                   <xsl:text/> has an @document-id '<xsl:text/>
                   <xsl:value-of select="@document-id"/>
-                  <xsl:text/>'. But this is not in the text, which is likely incorrect - <xsl:text/>
+                  <xsl:text/>'. But this is not the text of the related-object, which is likely incorrect - <xsl:text/>
                   <xsl:value-of select="."/>
                   <xsl:text/>.</svrl:text>
             </svrl:failed-assert>

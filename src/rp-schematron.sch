@@ -363,6 +363,8 @@
         <assert test="article-title" role="error" id="preprint-ref-article-title">[preprint-ref-article-title] This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no article-title element.</assert>
 
         <report test="text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|and|pp?)[:\.]?'))]" role="warning" id="preprint-ref-text-content">[preprint-ref-text-content] This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+(doi|pmid|and|pp?)[:\.]?'))],'; ')"/>. Is it tagged correctly?</report>
+       
+       <report test="volume" role="error" id="preprint-ref-volume">[preprint-ref-volume] This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a volume - <value-of select="volume"/>. That information is either tagged incorrectly, or the publication-type is wrong.</report>
      </rule></pattern><pattern id="preprint-source-checks-pattern"><rule context="mixed-citation[@publication-type='preprint']/source" id="preprint-source-checks">
         <report test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')" role="warning" id="preprint-source">[preprint-source] Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
         
@@ -462,6 +464,8 @@
         <report test="ancestor::mixed-citation[@publication-type='preprint'] and not(@pub-id-type=('doi','pmid','pmcid','arxiv'))" role="error" id="pub-id-check-4">[pub-id-check-4] <name/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','arxiv'.</report>
 
         <report test="ancestor::mixed-citation[@publication-type='web']" role="error" id="pub-id-check-5">[pub-id-check-5] Web reference (with id <value-of select="ancestor::ref/@id"/>) has a <name/> <value-of select="if (@pub-id-type) then concat('with a pub-id-type ',@pub-id-type) else 'with no pub-id-type'"/> (<value-of select="."/>). This must be incorrect. Either the publication-type for the reference needs changing, or the pub-id should be changed to another element.</report>
+        
+        <report test="@pub-id-type='doi' and ancestor::mixed-citation[@publication-type=('journal','book','preprint')] and matches(following-sibling::text()[1],'^[\.\s]?[\.\s]?[/&lt;&gt;:\d\+\-]')" role="warning" id="pub-id-check-6">[pub-id-check-6] doi in <value-of select="ancestor::mixed-citation/@publication-type"/> ref is followd by text - '<value-of select="following-sibling::text()[1]"/>'. Should that text be part of the DOI or tagged in some other way?</report>
      </rule></pattern><pattern id="isbn-conformity-pattern"><rule context="ref//pub-id[@pub-id-type='isbn']|isbn" id="isbn-conformity">
         <let name="t" value="translate(.,'-','')"/>
         <let name="sum" value="e:isbn-sum($t)"/>
@@ -1069,7 +1073,7 @@
       
       <assert test="@xlink:href[not(matches(.,'\p{Zs}'))]" role="error" id="clintrial-related-object-7">[clintrial-related-object-7] <name/> must have an @xlink:href with a value that does not contain a space character.</assert>
       
-      <assert test="contains(.,@document-id/string())" role="warning" id="clintrial-related-object-8">[clintrial-related-object-8] <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not in the text, which is likely incorrect - <value-of select="."/>.</assert>
+      <assert test="@document-id = ." role="warning" id="clintrial-related-object-8">[clintrial-related-object-8] <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not the text of the related-object, which is likely incorrect - <value-of select="."/>.</assert>
       
       <assert test="some $x in document($registries)/registries/registry satisfies ($x/subtitle/string()=@source-id)" role="warning" id="clintrial-related-object-11">[clintrial-related-object-11] <name/> @source-id value should almost always be one of the subtitles of the Crossref clinical trial registries. "<value-of select="@source-id"/>" is not one of the following <value-of select="string-join(for $x in document($registries)/registries/registry return concat('&quot;',$x/subtitle/string(),'&quot; (',$x/doi/string(),')'),', ')"/>. Is that correct?</assert>
       

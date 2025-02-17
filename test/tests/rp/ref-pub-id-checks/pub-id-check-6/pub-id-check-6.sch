@@ -144,15 +144,14 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="clintrial-related-object-pattern">
-    <rule context="related-object[@content-type or @document-id]" id="clintrial-related-object">
-      <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
-      <assert test="@document-id = ." role="warning" id="clintrial-related-object-8">[clintrial-related-object-8] <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not the text of the related-object, which is likely incorrect - <value-of select="."/>.</assert>
+  <pattern id="ref-pub-id-checks-pattern">
+    <rule context="ref//pub-id" id="ref-pub-id-checks">
+      <report test="@pub-id-type='doi' and ancestor::mixed-citation[@publication-type=('journal','book','preprint')] and matches(following-sibling::text()[1],'^[\.\s]?[\.\s]?[/&lt;&gt;:\d\+\-]')" role="warning" id="pub-id-check-6">[pub-id-check-6] doi in <value-of select="ancestor::mixed-citation/@publication-type"/> ref is followd by text - '<value-of select="following-sibling::text()[1]"/>'. Should that text be part of the DOI or tagged in some other way?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::related-object[@content-type or @document-id]" role="error" id="clintrial-related-object-xspec-assert">related-object[@content-type or @document-id] must be present.</assert>
+      <assert test="descendant::ref//pub-id" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

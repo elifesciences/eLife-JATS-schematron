@@ -845,6 +845,16 @@
         <x:expect-report id="preprint-ref-text-content" role="warning"/>
         <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="preprint-ref-volume-pass">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-volume/pass.xml"/>
+        <x:expect-not-report id="preprint-ref-volume" role="error"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-ref-volume-fail">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-volume/fail.xml"/>
+        <x:expect-report id="preprint-ref-volume" role="error"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="preprint-source-checks">
       <x:scenario label="preprint-source-pass">
@@ -1253,6 +1263,16 @@
       <x:scenario label="pub-id-check-5-fail">
         <x:context href="../tests/rp/ref-pub-id-checks/pub-id-check-5/fail.xml"/>
         <x:expect-report id="pub-id-check-5" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-check-6-pass">
+        <x:context href="../tests/rp/ref-pub-id-checks/pub-id-check-6/pass.xml"/>
+        <x:expect-not-report id="pub-id-check-6" role="warning"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-check-6-fail">
+        <x:context href="../tests/rp/ref-pub-id-checks/pub-id-check-6/fail.xml"/>
+        <x:expect-report id="pub-id-check-6" role="warning"/>
         <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

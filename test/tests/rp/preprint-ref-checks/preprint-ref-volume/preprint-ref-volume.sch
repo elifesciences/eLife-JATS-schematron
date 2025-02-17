@@ -144,15 +144,14 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="clintrial-related-object-pattern">
-    <rule context="related-object[@content-type or @document-id]" id="clintrial-related-object">
-      <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
-      <assert test="@document-id = ." role="warning" id="clintrial-related-object-8">[clintrial-related-object-8] <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not the text of the related-object, which is likely incorrect - <value-of select="."/>.</assert>
+  <pattern id="preprint-ref-checks-pattern">
+    <rule context="mixed-citation[@publication-type='preprint']" id="preprint-ref-checks">
+      <report test="volume" role="error" id="preprint-ref-volume">[preprint-ref-volume] This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a volume - <value-of select="volume"/>. That information is either tagged incorrectly, or the publication-type is wrong.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::related-object[@content-type or @document-id]" role="error" id="clintrial-related-object-xspec-assert">related-object[@content-type or @document-id] must be present.</assert>
+      <assert test="descendant::mixed-citation[@publication-type='preprint']" role="error" id="preprint-ref-checks-xspec-assert">mixed-citation[@publication-type='preprint'] must be present.</assert>
     </rule>
   </pattern>
 </schema>
