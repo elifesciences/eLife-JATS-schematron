@@ -2026,9 +2026,9 @@
         role="error" 
         id="clintrial-related-object-7"><name/> must have an @xlink:href with a value that does not contain a space character.</assert>
       
-      <assert test="contains(.,@document-id/string())" 
+      <assert test="@document-id = ." 
         role="warning" 
-        id="clintrial-related-object-8"><name/> has an @document-id '<value-of select="@document-id"/>'. But this is not in the text, which is likely incorrect - <value-of select="."/>.</assert>
+        id="clintrial-related-object-8"><name/> has an @document-id '<value-of select="@document-id"/>'. But this is not the text of the related-object, which is likely incorrect - <value-of select="."/>.</assert>
       
       <assert test="some $x in document($registries)/registries/registry satisfies ($x/subtitle/string()=@source-id)" 
         role="warning" 

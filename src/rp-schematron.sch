@@ -1071,7 +1071,7 @@
       
       <assert test="@xlink:href[not(matches(.,'\p{Zs}'))]" role="error" id="clintrial-related-object-7">[clintrial-related-object-7] <name/> must have an @xlink:href with a value that does not contain a space character.</assert>
       
-      <assert test="contains(.,@document-id/string())" role="warning" id="clintrial-related-object-8">[clintrial-related-object-8] <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not in the text, which is likely incorrect - <value-of select="."/>.</assert>
+      <assert test="@document-id = ." role="warning" id="clintrial-related-object-8">[clintrial-related-object-8] <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not the text of the related-object, which is likely incorrect - <value-of select="."/>.</assert>
       
       <assert test="some $x in document($registries)/registries/registry satisfies ($x/subtitle/string()=@source-id)" role="warning" id="clintrial-related-object-11">[clintrial-related-object-11] <name/> @source-id value should almost always be one of the subtitles of the Crossref clinical trial registries. "<value-of select="@source-id"/>" is not one of the following <value-of select="string-join(for $x in document($registries)/registries/registry return concat('&quot;',$x/subtitle/string(),'&quot; (',$x/doi/string(),')'),', ')"/>. Is that correct?</assert>
       
