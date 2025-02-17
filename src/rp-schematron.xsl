@@ -3611,6 +3611,21 @@
                <xsl:text/>). This must be incorrect. Either the publication-type for the reference needs changing, or the pub-id should be changed to another element.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="@pub-id-type='doi' and ancestor::mixed-citation[@publication-type=('journal','book','preprint')] and matches(following-sibling::text()[1],'^[\.\s]?[\.\s]?[/&lt;&gt;:\d\+\-]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@pub-id-type='doi' and ancestor::mixed-citation[@publication-type=('journal','book','preprint')] and matches(following-sibling::text()[1],'^[\.\s]?[\.\s]?[/&lt;&gt;:\d\+\-]')">
+            <xsl:attribute name="id">pub-id-check-6</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pub-id-check-6] doi in <xsl:text/>
+               <xsl:value-of select="ancestor::mixed-citation/@publication-type"/>
+               <xsl:text/> ref is followd by text - '<xsl:text/>
+               <xsl:value-of select="following-sibling::text()[1]"/>
+               <xsl:text/>'. Should that text be part of the DOI or tagged in some other way?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M50"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M50"/>
