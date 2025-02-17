@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="clintrial-related-object-8.sch"?>
 <!--Context: related-object[@content-type or @document-id]
-Test: assert    contains(.,@document-id/string())
-Message:  has an @document-id ''. But this is not in the text, which is likely incorrect - . -->
+Test: assert    @document-id = .
+Message:  has an @document-id ''. But this is not the text of the related-object, which is likely incorrect - . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

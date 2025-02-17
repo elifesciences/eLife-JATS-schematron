@@ -1363,8 +1363,8 @@
   <pattern id="article-metadata">
     <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
       <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
-      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-8" test="contains(.,@document-id/string())" role="warning" id="clintrial-related-object-8">
-        <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not in the text, which is likely incorrect - <value-of select="."/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-8" test="@document-id = ." role="warning" id="clintrial-related-object-8">
+        <name/> has an @document-id '<value-of select="@document-id"/>'. But this is not the text of the related-object, which is likely incorrect - <value-of select="."/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
