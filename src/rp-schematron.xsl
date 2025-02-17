@@ -2885,6 +2885,21 @@
                <xsl:text/>. Is it tagged correctly?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="volume">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="volume">
+            <xsl:attribute name="id">preprint-ref-volume</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[preprint-ref-volume] This preprint reference (<xsl:text/>
+               <xsl:value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>
+               <xsl:text/>) has a volume - <xsl:text/>
+               <xsl:value-of select="volume"/>
+               <xsl:text/>. That information is either tagged incorrectly, or the publication-type is wrong.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M35"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M35"/>

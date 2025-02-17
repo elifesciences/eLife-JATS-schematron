@@ -845,6 +845,16 @@
         <x:expect-report id="preprint-ref-text-content" role="warning"/>
         <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="preprint-ref-volume-pass">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-volume/pass.xml"/>
+        <x:expect-not-report id="preprint-ref-volume" role="error"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-ref-volume-fail">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-volume/fail.xml"/>
+        <x:expect-report id="preprint-ref-volume" role="error"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="preprint-source-checks">
       <x:scenario label="preprint-source-pass">
