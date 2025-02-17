@@ -1239,6 +1239,13 @@
     <!-- Fixes mistagged and all caps source elements -->
      <xsl:template xml:id="ref-source-fixes" match="mixed-citation//source">
          <xsl:choose>
+             <!-- Fix casing for eLife -->
+             <xsl:when test="matches(lower-case(.),'^\s*elife\s*$') and not(matches(.,'^\s*eLife\s*$'))">
+                    <xsl:copy>
+                        <xsl:apply-templates select="@*"/>
+                        <xsl:text>eLife</xsl:text>
+                    </xsl:copy>
+                </xsl:when>
                 <xsl:when test="matches(lower-case(.),'^in\s')">
                     <xsl:choose>
                         <xsl:when test="(ancestor::mixed-citation/@publication-type=('preprint','journal','other')) and upper-case(.)=.">
