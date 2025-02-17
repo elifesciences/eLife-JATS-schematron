@@ -26,7 +26,7 @@ Message:  has an @document-id ''. But this is not the text of the related-object
           </sec>
           <sec id="abs6">
             <title>Clinical trial number:</title>
-            <p><related-object id="RO1" source-type="clinical-trials-registry" source-id="ClinicalTrials.gov" source-id-type="registry-name" document-id="NCT02968459" document-id-type="clinical-trial-number" xlink:href="https://clinicaltrials.gov/show/NCT02968459">bjirpebwivtprbwuip.</related-object></p>
+            <p><related-object id="RO1" source-type="clinical-trials-registry" source-id="ClinicalTrials.gov" source-id-type="registry-name" document-id="NCT02968459" document-id-type="clinical-trial-number" xlink:href="https://clinicaltrials.gov/show/NCT02968459">bjirpebwivtprbwuip</related-object>.</p>
           </sec>
         </abstract>
       </article-meta>
