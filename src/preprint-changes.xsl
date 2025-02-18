@@ -1100,6 +1100,44 @@
         <xsl:variable name="name-elems" select="('name','string-name','collab','on-behalf-of','etal')"/>
         <xsl:copy>
             <xsl:choose>
+                <!-- Handling edited collection refs -->
+                <xsl:when test="@publication-type='book' and not(person-group[@person-group-type='author']) and ./*[name()=$name-elems and following-sibling::chapter-title] and ./*[name()=$name-elems and preceding-sibling::chapter-title]">
+                    <xsl:apply-templates select="@*"/>
+                    <xsl:element name="person-group">
+                    <xsl:attribute name="person-group-type">author</xsl:attribute>
+                        <xsl:for-each select="./*[name()=$name-elems and following-sibling::chapter-title]|./text()[following-sibling::*[name()=$name-elems and following-sibling::chapter-title]]">
+                            <xsl:choose>
+                                <xsl:when test="self::text() and matches(.,'^\.?,?\s*(…|\.{3,4}|. . .)\s*(&amp;\s*|and\s*)?$')">
+                                    <xsl:text>, </xsl:text>
+                                    <etal>…</etal>
+                                    <xsl:text> </xsl:text>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:apply-templates select="."/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:for-each>
+                    </xsl:element>
+                    <xsl:apply-templates select="year|year/following-sibling::text()[1]|year/preceding-sibling::text()[1]"/>
+                    <xsl:apply-templates select="chapter-title|chapter-title/following-sibling::text()[1]"/>
+                    <xsl:element name="person-group">
+                    <xsl:attribute name="person-group-type">editor</xsl:attribute>
+                        <xsl:for-each select="./*[name()=$name-elems and preceding-sibling::chapter-title]|./text()[following-sibling::*[name()=$name-elems and preceding-sibling::chapter-title] and preceding-sibling::*[name()=$name-elems and preceding-sibling::chapter-title]]">
+                            <xsl:choose>
+                                <xsl:when test="self::text() and matches(.,'^\.?,?\s*(…|\.{3,4}|. . .)\s*(&amp;\s*|and\s*)?$')">
+                                    <xsl:text>, </xsl:text>
+                                    <etal>…</etal>
+                                    <xsl:text> </xsl:text>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:apply-templates select="."/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:for-each>
+                    </xsl:element>
+                    <xsl:apply-templates select="./*[not(name()=($name-elems,'year','chapter-title'))]|./*[name()=$name-elems][last()]/following-sibling::text()|./text()[preceding-sibling::*[not(name()=($name-elems,'year','chapter-title'))]]"/>
+                </xsl:when>
+                <!-- Any ref without an author person-group -->
                 <xsl:when test="not(person-group[@person-group-type='author']) and ./*[name()=$name-elems]">
                     <xsl:apply-templates select="@*"/>
                     <xsl:element name="person-group">
