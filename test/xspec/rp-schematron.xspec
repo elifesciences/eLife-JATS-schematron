@@ -1395,6 +1395,16 @@
         <x:expect-report id="ref-article-title-1" role="warning"/>
         <x:expect-not-assert id="ref-article-title-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ref-article-title-2-pass">
+        <x:context href="../tests/rp/ref-article-title-checks/ref-article-title-2/pass.xml"/>
+        <x:expect-not-report id="ref-article-title-2" role="warning"/>
+        <x:expect-not-assert id="ref-article-title-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-article-title-2-fail">
+        <x:context href="../tests/rp/ref-article-title-checks/ref-article-title-2/fail.xml"/>
+        <x:expect-report id="ref-article-title-2" role="warning"/>
+        <x:expect-not-assert id="ref-article-title-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-chapter-title-checks">
       <x:scenario label="ref-chapter-title-1-pass">

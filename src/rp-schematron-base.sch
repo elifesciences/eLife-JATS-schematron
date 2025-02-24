@@ -856,6 +856,10 @@
         <report test="matches(.,'^\s*[“”&quot;]|[“”&quot;]\.*$')" 
           role="warning" 
           id="ref-article-title-1"><name/> in ref starts or ends with speech quotes - <value-of select="."/>. Is that correct?.</report>
+        
+        <report test="upper-case(.)=." 
+          role="warning" 
+          id="ref-article-title-2"><name/> in ref is entirely in upper case - <value-of select="."/>. Is that correct?</report>
       </rule>
   </pattern>
   

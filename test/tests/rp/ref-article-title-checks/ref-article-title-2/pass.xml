@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="ref-article-title-2.sch"?>
+<!--Context: ref//article-title
+Test: report    upper-case(.)=.
+Message:  in ref is entirely in upper case - . Is that correct? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref>
+            <article-title>Scientific Publishing: How and why eLife selects papers for peer review</article-title>
+        </ref>
+    </article>
+</root>

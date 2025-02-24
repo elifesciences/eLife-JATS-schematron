@@ -3862,6 +3862,21 @@
                <xsl:text/>. Is that correct?.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="upper-case(.)=.">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="upper-case(.)=.">
+            <xsl:attribute name="id">ref-article-title-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-article-title-2] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in ref is entirely in upper case - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M55"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M55"/>
