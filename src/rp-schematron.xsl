@@ -3487,6 +3487,19 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <!--REPORT warning-->
+      <xsl:if test="matches(.,'^[\p{Z}\p{N}\p{P}]*$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^[\p{Z}\p{N}\p{P}]*$')">
+            <xsl:attribute name="id">collab-check-4</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[collab-check-4] collab element consists only of spaces, punctuation and/or numbers (or is empty) - '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'. Is it really a collab?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M47"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M47"/>

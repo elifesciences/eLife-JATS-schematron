@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="collab-check-4.sch"?>
+<!--Context: collab
+Test: report    matches(.,'^[\p{Z}\p{N}\p{P}]*$')
+Message: collab element consists only of spaces, punctuation and/or numbers (or is empty) - ''. Is it really a collab? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>
