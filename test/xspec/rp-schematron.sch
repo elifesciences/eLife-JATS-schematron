@@ -943,6 +943,8 @@
   <pattern id="sec-label-checks-pattern">
     <rule context="sec/label" id="sec-label-checks">
         <report test="matches(.,'[2-4]D')" role="warning" id="sec-label-1">Label for section contains 2D or similar - '<value-of select="."/>'. Is it really a label? Or just part of the title?</report>
+        
+        <report test="normalize-space(.)=''" role="error" id="sec-label-2">Section label is empty. This is not permitted.</report>
       </rule>
   </pattern>
 

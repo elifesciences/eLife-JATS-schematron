@@ -5275,6 +5275,17 @@
                <xsl:text/>'. Is it really a label? Or just part of the title?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="normalize-space(.)=''">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=''">
+            <xsl:attribute name="id">sec-label-2</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[sec-label-2] Section label is empty. This is not permitted.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M86"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M86"/>
