@@ -929,6 +929,16 @@
         <x:expect-report id="book-ref-pub-name-1" role="warning"/>
         <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="book-ref-article-title-pass">
+        <x:context href="../tests/rp/book-ref-checks/book-ref-article-title/pass.xml"/>
+        <x:expect-not-report id="book-ref-article-title" role="error"/>
+        <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="book-ref-article-title-fail">
+        <x:context href="../tests/rp/book-ref-checks/book-ref-article-title/fail.xml"/>
+        <x:expect-report id="book-ref-article-title" role="error"/>
+        <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="book-ref-source-checks">
       <x:scenario label="book-source-1-pass">
@@ -1179,6 +1189,16 @@
         <x:expect-assert id="collab-check-3" role="warning"/>
         <x:expect-not-assert id="collab-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="collab-check-4-pass">
+        <x:context href="../tests/rp/collab-checks/collab-check-4/pass.xml"/>
+        <x:expect-not-report id="collab-check-4" role="warning"/>
+        <x:expect-not-assert id="collab-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-check-4-fail">
+        <x:context href="../tests/rp/collab-checks/collab-check-4/fail.xml"/>
+        <x:expect-report id="collab-check-4" role="warning"/>
+        <x:expect-not-assert id="collab-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-etal-checks">
       <x:scenario label="ref-etal-1-pass">
@@ -1373,6 +1393,16 @@
       <x:scenario label="ref-article-title-1-fail">
         <x:context href="../tests/rp/ref-article-title-checks/ref-article-title-1/fail.xml"/>
         <x:expect-report id="ref-article-title-1" role="warning"/>
+        <x:expect-not-assert id="ref-article-title-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-article-title-2-pass">
+        <x:context href="../tests/rp/ref-article-title-checks/ref-article-title-2/pass.xml"/>
+        <x:expect-not-report id="ref-article-title-2" role="warning"/>
+        <x:expect-not-assert id="ref-article-title-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-article-title-2-fail">
+        <x:context href="../tests/rp/ref-article-title-checks/ref-article-title-2/fail.xml"/>
+        <x:expect-report id="ref-article-title-2" role="warning"/>
         <x:expect-not-assert id="ref-article-title-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
@@ -2174,6 +2204,28 @@
         <x:context href="../tests/rp/top-sec-checks/top-sec-2/fail.xml"/>
         <x:expect-report id="top-sec-2" role="warning"/>
         <x:expect-not-assert id="top-sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="sec-label-checks">
+      <x:scenario label="sec-label-1-pass">
+        <x:context href="../tests/rp/sec-label-checks/sec-label-1/pass.xml"/>
+        <x:expect-not-report id="sec-label-1" role="warning"/>
+        <x:expect-not-assert id="sec-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-label-1-fail">
+        <x:context href="../tests/rp/sec-label-checks/sec-label-1/fail.xml"/>
+        <x:expect-report id="sec-label-1" role="warning"/>
+        <x:expect-not-assert id="sec-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-label-2-pass">
+        <x:context href="../tests/rp/sec-label-checks/sec-label-2/pass.xml"/>
+        <x:expect-not-report id="sec-label-2" role="error"/>
+        <x:expect-not-assert id="sec-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-label-2-fail">
+        <x:context href="../tests/rp/sec-label-checks/sec-label-2/fail.xml"/>
+        <x:expect-report id="sec-label-2" role="error"/>
+        <x:expect-not-assert id="sec-label-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="title-checks">

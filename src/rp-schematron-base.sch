@@ -617,6 +617,10 @@
        <report test="not(chapter-title) and publisher-name[italic]" 
         role="warning" 
         id="book-ref-pub-name-1">This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a publisher-name with italics and no chapter-title element. Have all the details been captured correctly?</report>
+       
+       <report test="descendant::article-title" 
+        role="error" 
+        id="book-ref-article-title">This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a descendant article-title. This cannot be correct. It should either be a source or chapter-title (or something else entirely).</report>
      </rule>
       
       <rule context="mixed-citation[@publication-type='book']/source" id="book-ref-source-checks">
@@ -744,6 +748,10 @@
         <assert test="normalize-space(.)=." 
         role="warning" 
         id="collab-check-3">collab element seems to contain odd spacing. Is it correct? '<value-of select="."/>'</assert>
+        
+        <report test="matches(.,'^[\p{Z}\p{N}\p{P}]*$')" 
+        role="warning" 
+        id="collab-check-4">collab element consists only of spaces, punctuation and/or numbers (or is empty) - '<value-of select="."/>'. Is it really a collab?</report>
      </rule>
     </pattern>
 
@@ -848,6 +856,10 @@
         <report test="matches(.,'^\s*[“”&quot;]|[“”&quot;]\.*$')" 
           role="warning" 
           id="ref-article-title-1"><name/> in ref starts or ends with speech quotes - <value-of select="."/>. Is that correct?.</report>
+        
+        <report test="upper-case(.)=." 
+          role="warning" 
+          id="ref-article-title-2"><name/> in ref is entirely in upper case - <value-of select="."/>. Is that correct?</report>
       </rule>
   </pattern>
   
@@ -1267,6 +1279,16 @@
         <report test="matches(label[1],'\d+\.\s?\d')" 
           role="warning" 
           id="top-sec-2">Section that is placed as a child of <value-of select="parent::*/name()"/> has a label which suggests it should be a subsection: <value-of select="label[1]"/>.</report>
+      </rule>
+      
+      <rule context="sec/label" id="sec-label-checks">
+        <report test="matches(.,'[2-4]D')" 
+          role="warning" 
+          id="sec-label-1">Label for section contains 2D or similar - '<value-of select="."/>'. Is it really a label? Or just part of the title?</report>
+        
+        <report test="normalize-space(.)=''" 
+          role="error" 
+          id="sec-label-2">Section label is empty. This is not permitted.</report>
       </rule>
     </pattern>
 

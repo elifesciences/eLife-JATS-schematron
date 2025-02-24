@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="sec-label-1.sch"?>
+<!--Context: sec/label
+Test: report    matches(.,'[2-4]D')
+Message: Label for section contains 2D or similar - ''. Is it really a label? Or just part of the title? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sec>
+            <label/><title>3D labels for use in ..</title>
+        </sec>
+    </article>
+</root>

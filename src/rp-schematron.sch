@@ -381,6 +381,8 @@
        <report test="chapter-title and not(person-group[@person-group-type='editor'])" role="warning" id="book-ref-editor-2">[book-ref-editor-2] This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a chapter-title but no person-group element with the person-group-type editor. Have all the details been captured correctly?</report>
        
        <report test="not(chapter-title) and publisher-name[italic]" role="warning" id="book-ref-pub-name-1">[book-ref-pub-name-1] This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a publisher-name with italics and no chapter-title element. Have all the details been captured correctly?</report>
+       
+       <report test="descendant::article-title" role="error" id="book-ref-article-title">[book-ref-article-title] This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a descendant article-title. This cannot be correct. It should either be a source or chapter-title (or something else entirely).</report>
      </rule></pattern><pattern id="book-ref-source-checks-pattern"><rule context="mixed-citation[@publication-type='book']/source" id="book-ref-source-checks">
         
         <report test="matches(lower-case(.),'^chapter\s|\s+chapter\s+')" role="warning" id="book-source-1">[book-source-1] The source in book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) contains 'chapter' - <value-of select="."/>. Are the details captured correctly?</report>
@@ -442,6 +444,8 @@
         <report test="matches(.,'\p{Z}+$')" role="error" id="collab-check-2">[collab-check-2] collab element cannot end with space(s). This one does: <value-of select="."/></report>
 
         <assert test="normalize-space(.)=." role="warning" id="collab-check-3">[collab-check-3] collab element seems to contain odd spacing. Is it correct? '<value-of select="."/>'</assert>
+        
+        <report test="matches(.,'^[\p{Z}\p{N}\p{P}]*$')" role="warning" id="collab-check-4">[collab-check-4] collab element consists only of spaces, punctuation and/or numbers (or is empty) - '<value-of select="."/>'. Is it really a collab?</report>
      </rule></pattern>
 
     <pattern id="ref-etal-checks-pattern"><rule context="mixed-citation[person-group]//etal" id="ref-etal-checks">
@@ -494,6 +498,8 @@
   
   <pattern id="ref-article-title-checks-pattern"><rule context="ref//article-title" id="ref-article-title-checks">
         <report test="matches(.,'^\s*[“”&quot;]|[“”&quot;]\.*$')" role="warning" id="ref-article-title-1">[ref-article-title-1] <name/> in ref starts or ends with speech quotes - <value-of select="."/>. Is that correct?.</report>
+        
+        <report test="upper-case(.)=." role="warning" id="ref-article-title-2">[ref-article-title-2] <name/> in ref is entirely in upper case - <value-of select="."/>. Is that correct?</report>
       </rule></pattern>
   
   <pattern id="ref-chapter-title-checks-pattern"><rule context="ref//chapter-title" id="ref-chapter-title-checks">
@@ -699,6 +705,10 @@
         <report test="parent::body and not(matches(lower-case(title[1]),$sec-regex)) and preceding-sibling::sec/title[1][matches(lower-case(.),$methods-regex)]" role="warning" id="top-sec-1">[top-sec-1] Section with the title '<value-of select="title[1]"/>' is a child of body. Should it be a child of another section (e.g. methods) or placed within back (perhaps within an 'Additional infomation' section)?</report>
         
         <report test="matches(label[1],'\d+\.\s?\d')" role="warning" id="top-sec-2">[top-sec-2] Section that is placed as a child of <value-of select="parent::*/name()"/> has a label which suggests it should be a subsection: <value-of select="label[1]"/>.</report>
+      </rule></pattern><pattern id="sec-label-checks-pattern"><rule context="sec/label" id="sec-label-checks">
+        <report test="matches(.,'[2-4]D')" role="warning" id="sec-label-1">[sec-label-1] Label for section contains 2D or similar - '<value-of select="."/>'. Is it really a label? Or just part of the title?</report>
+        
+        <report test="normalize-space(.)=''" role="error" id="sec-label-2">[sec-label-2] Section label is empty. This is not permitted.</report>
       </rule></pattern>
 
     <pattern id="title-checks-pattern"><rule context="title" id="title-checks">
