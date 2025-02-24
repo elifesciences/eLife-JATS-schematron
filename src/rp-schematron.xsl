@@ -3018,11 +3018,11 @@
                <xsl:text/>) has a publisher-name with italics and no chapter-title element. Have all the details been captured correctly?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <!--REPORT warning-->
+      <!--REPORT error-->
       <xsl:if test="descendant::article-title">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::article-title">
             <xsl:attribute name="id">book-ref-article-title</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>

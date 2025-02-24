@@ -382,7 +382,7 @@
        
        <report test="not(chapter-title) and publisher-name[italic]" role="warning" id="book-ref-pub-name-1">[book-ref-pub-name-1] This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a publisher-name with italics and no chapter-title element. Have all the details been captured correctly?</report>
        
-       <report test="descendant::article-title" role="warning" id="book-ref-article-title">[book-ref-article-title] This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a descendant article-title. This cannot be correct. It should either be a source or chapter-title (or something else entirely).</report>
+       <report test="descendant::article-title" role="error" id="book-ref-article-title">[book-ref-article-title] This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a descendant article-title. This cannot be correct. It should either be a source or chapter-title (or something else entirely).</report>
      </rule></pattern><pattern id="book-ref-source-checks-pattern"><rule context="mixed-citation[@publication-type='book']/source" id="book-ref-source-checks">
         
         <report test="matches(lower-case(.),'^chapter\s|\s+chapter\s+')" role="warning" id="book-source-1">[book-source-1] The source in book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) contains 'chapter' - <value-of select="."/>. Are the details captured correctly?</report>
