@@ -2206,6 +2206,18 @@
         <x:expect-not-assert id="top-sec-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="sec-label-checks">
+      <x:scenario label="sec-label-1-pass">
+        <x:context href="../tests/rp/sec-label-checks/sec-label-1/pass.xml"/>
+        <x:expect-not-report id="sec-label-1" role="warning"/>
+        <x:expect-not-assert id="sec-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-label-1-fail">
+        <x:context href="../tests/rp/sec-label-checks/sec-label-1/fail.xml"/>
+        <x:expect-report id="sec-label-1" role="warning"/>
+        <x:expect-not-assert id="sec-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="title-checks">
       <x:scenario label="title-upper-case-pass">
         <x:context href="../tests/rp/title-checks/title-upper-case/pass.xml"/>

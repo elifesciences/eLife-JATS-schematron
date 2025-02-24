@@ -940,6 +940,11 @@
         <report test="matches(label[1],'\d+\.\s?\d')" role="warning" id="top-sec-2">Section that is placed as a child of <value-of select="parent::*/name()"/> has a label which suggests it should be a subsection: <value-of select="label[1]"/>.</report>
       </rule>
   </pattern>
+  <pattern id="sec-label-checks-pattern">
+    <rule context="sec/label" id="sec-label-checks">
+        <report test="matches(.,'[2-4]D')" role="warning" id="sec-label-1">Label for section contains 2D or similar - '<value-of select="."/>'. Is it really a label? Or just part of the title?</report>
+      </rule>
+  </pattern>
 
     <pattern id="title-checks-pattern">
     <rule context="title" id="title-checks">
@@ -1910,6 +1915,7 @@
       <assert test="descendant::media" role="error" id="media-checks-xspec-assert">media must be present.</assert>
       <assert test="descendant::sec" role="error" id="sec-checks-xspec-assert">sec must be present.</assert>
       <assert test="descendant::sec[(parent::body or parent::back) and title]" role="error" id="top-sec-checks-xspec-assert">sec[(parent::body or parent::back) and title] must be present.</assert>
+      <assert test="descendant::sec/label" role="error" id="sec-label-checks-xspec-assert">sec/label must be present.</assert>
       <assert test="descendant::title" role="error" id="title-checks-xspec-assert">title must be present.</assert>
       <assert test="descendant::article/body/sec/title or descendant::article/back/sec/title" role="error" id="title-toc-checks-xspec-assert">article/body/sec/title|article/back/sec/title must be present.</assert>
       <assert test="descendant::p[not(ancestor::sub-article) and (count(*)=1) and (child::bold or child::italic)]" role="error" id="p-bold-checks-xspec-assert">p[not(ancestor::sub-article) and (count(*)=1) and (child::bold or child::italic)] must be present.</assert>

@@ -705,6 +705,8 @@
         <report test="parent::body and not(matches(lower-case(title[1]),$sec-regex)) and preceding-sibling::sec/title[1][matches(lower-case(.),$methods-regex)]" role="warning" id="top-sec-1">[top-sec-1] Section with the title '<value-of select="title[1]"/>' is a child of body. Should it be a child of another section (e.g. methods) or placed within back (perhaps within an 'Additional infomation' section)?</report>
         
         <report test="matches(label[1],'\d+\.\s?\d')" role="warning" id="top-sec-2">[top-sec-2] Section that is placed as a child of <value-of select="parent::*/name()"/> has a label which suggests it should be a subsection: <value-of select="label[1]"/>.</report>
+      </rule></pattern><pattern id="sec-label-checks-pattern"><rule context="sec/label" id="sec-label-checks">
+        <report test="matches(.,'[2-4]D')" role="warning" id="sec-label-1">[sec-label-1] Label for section contains 2D or similar - '<value-of select="."/>'. Is it really a label? Or just part of the title?</report>
       </rule></pattern>
 
     <pattern id="title-checks-pattern"><rule context="title" id="title-checks">

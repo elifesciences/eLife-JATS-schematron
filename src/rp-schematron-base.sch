@@ -1280,6 +1280,12 @@
           role="warning" 
           id="top-sec-2">Section that is placed as a child of <value-of select="parent::*/name()"/> has a label which suggests it should be a subsection: <value-of select="label[1]"/>.</report>
       </rule>
+      
+      <rule context="sec/label" id="sec-label-checks">
+        <report test="matches(.,'[2-4]D')" 
+          role="warning" 
+          id="sec-label-1">Label for section contains 2D or similar - '<value-of select="."/>'. Is it really a label? Or just part of the title?</report>
+      </rule>
     </pattern>
 
     <pattern id="title">
