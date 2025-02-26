@@ -73,6 +73,90 @@
         </journal-meta>
     </xsl:template>
     
+    <!-- Changes to article-meta: 
+            - Introduce flag to distinguish between reviewed-preprint and VOR XML
+            - Ensure correct ordering of elements -->
+    <xsl:template xml:id="article-meta-changes" mode="article-meta-round-1" match="article-meta">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:text>&#xa;</xsl:text>
+            <xsl:apply-templates select="article-id|article-id/following-sibling::text()[1]"/>
+            <!-- multiple article versions need to be wrapped in <article-version-alternatives> -->
+            <xsl:choose>
+                <xsl:when test="./article-version-alternatives">
+                    <xsl:element name="article-version-alternatives">
+                        <xsl:text>&#xa;</xsl:text>
+                        <xsl:element name="article-version">
+                            <xsl:attribute name="article-version-type">publication-state</xsl:attribute>
+                            <xsl:text>reviewed preprint</xsl:text>
+                        </xsl:element>
+                        <xsl:text>&#xa;</xsl:text>
+                        <xsl:for-each select="./article-version-alternatives/article-version">
+                            <xsl:copy>
+                                <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                            </xsl:copy>
+                            <xsl:text>&#xa;</xsl:text>
+                        </xsl:for-each>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:when test="./article-version">
+                    <xsl:element name="article-version-alternatives">
+                        <xsl:text>&#xa;</xsl:text>
+                        <xsl:element name="article-version">
+                            <xsl:attribute name="article-version-type">publication-state</xsl:attribute>
+                            <xsl:text>reviewed preprint</xsl:text>
+                        </xsl:element>
+                        <xsl:text>&#xa;</xsl:text>
+                        <xsl:element name="article-version">
+                            <xsl:attribute name="article-version-type">preprint-version</xsl:attribute>
+                            <xsl:value-of select="./article-version"/>
+                        </xsl:element>
+                        <xsl:text>&#xa;</xsl:text>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:element name="article-version">
+                        <xsl:attribute name="article-version-type">publication-state</xsl:attribute>
+                        <xsl:text>reviewed preprint</xsl:text>
+                    </xsl:element>
+                    <xsl:text>&#xa;</xsl:text>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:apply-templates select="article-categories|article-categories/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="title-group|title-group/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="*[name()=('contrib-group','aff','aff-alternatives','x')]|*[name()=('contrib-group','aff','aff-alternatives','x')]/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="author-notes|author-notes/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="pub-date|pub-date/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="pub-date-not-available|pub-date-not-available/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="volume|volume/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="volume-id|volume-id/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="volume-series|volume-series/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="issue|issue/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="issue-id|issue-id/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="issue-title|issue-title/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="issue-title-group|issue-title-group/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="issue-sponsor|issue-sponsor/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="volume-issue-group|volume-issue-group/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="isbn|isbn/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="supplement|supplement/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="*[name()=('fpage','lpage','page-range','elocation-id')] | *[name()=('fpage','lpage','page-range','elocation-id')]/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="*[name()=('email','ext-link','uri','product','supplementary-material')] | *[name()=('email','ext-link','uri','product','supplementary-material')]/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="history|history/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="pub-history|pub-history/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="permissions|permissions/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="self-uri|self-uri/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="*[name()=('related-article','related-object')] | *[name()=('related-article','related-object')]/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="abstract|abstract/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="trans-abstract|trans-abstract/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="kwd-group|kwd-group/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="funding-group|funding-group/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="support-group|support-group/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="conference|conference/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="custom-meta-group|custom-meta-group/following-sibling::text()[1]"/>
+            <xsl:text>&#xa;</xsl:text>
+        </xsl:copy>
+    </xsl:template>
+    
     <!-- Change capitalisation of eLife [aA]ssessment -->
     <xsl:template xml:id="assessment-capitalisation" match="sub-article/front-stub//article-title">
         <xsl:copy>
