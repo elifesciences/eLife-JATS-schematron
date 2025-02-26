@@ -202,6 +202,7 @@
                             <xsl:text>&#xa;</xsl:text>
                         </xsl:for-each>
                     </xsl:element>
+                    <xsl:text>&#xa;</xsl:text>
                 </xsl:when>
                 <xsl:when test="./article-version">
                     <xsl:element name="article-version-alternatives">
@@ -217,6 +218,7 @@
                         </xsl:element>
                         <xsl:text>&#xa;</xsl:text>
                     </xsl:element>
+                    <xsl:text>&#xa;</xsl:text>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:element name="article-version">
