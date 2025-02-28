@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="clintrial-related-object-12.sch"?>
 <!--Context: related-object[@content-type or @document-id]
-Test: report    @source-id='ClinicalTrials.gov' and @xlink:href!=concat('https://clinicaltrials.gov/show/',@document-id)
+Test: report    @source-id='ClinicalTrials.gov' and not(@xlink:href=(concat('https://clinicaltrials.gov/study/',@document-id),concat('https://clinicaltrials.gov/show/',@document-id)))
 Message: ClinicalTrials.gov trial links are in the format https://clinicaltrials.gov/show/{number}. This  has the link '', which based on the clinical trial registry () and @document-id () is not right. Either the xlink:href is wrong (should it be  instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these). -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

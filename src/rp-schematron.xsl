@@ -7783,8 +7783,8 @@
          </xsl:otherwise>
       </xsl:choose>
       <!--REPORT error-->
-      <xsl:if test="@source-id='ClinicalTrials.gov' and @xlink:href!=concat('https://clinicaltrials.gov/show/',@document-id)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@source-id='ClinicalTrials.gov' and @xlink:href!=concat('https://clinicaltrials.gov/show/',@document-id)">
+      <xsl:if test="@source-id='ClinicalTrials.gov' and not(@xlink:href=(concat('https://clinicaltrials.gov/study/',@document-id),concat('https://clinicaltrials.gov/show/',@document-id)))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@source-id='ClinicalTrials.gov' and not(@xlink:href=(concat('https://clinicaltrials.gov/study/',@document-id),concat('https://clinicaltrials.gov/show/',@document-id)))">
             <xsl:attribute name="id">clintrial-related-object-12</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -7799,7 +7799,7 @@
                <xsl:text/>) and @document-id (<xsl:text/>
                <xsl:value-of select="@document-id"/>
                <xsl:text/>) is not right. Either the xlink:href is wrong (should it be <xsl:text/>
-               <xsl:value-of select="concat('https://clinicaltrials.gov/show/',@document-id)"/>
+               <xsl:value-of select="concat('https://clinicaltrials.gov/study/',@document-id)"/>
                <xsl:text/> instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
