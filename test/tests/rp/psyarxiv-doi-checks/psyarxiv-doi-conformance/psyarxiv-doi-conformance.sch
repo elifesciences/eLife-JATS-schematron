@@ -144,6 +144,30 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:get-ordinal" as="xs:string">
+    <xsl:param name="value" as="xs:integer?"/>
+    <xsl:if test="translate(string($value), '0123456789', '') = '' and number($value) &gt; 0">
+      <xsl:variable name="mod100" select="$value mod 100"/>
+      <xsl:variable name="mod10" select="$value mod 10"/>
+      <xsl:choose>
+        <xsl:when test="$mod100 = 11 or $mod100 = 12 or $mod100 = 13">
+          <xsl:value-of select="concat($value,'th')"/>
+        </xsl:when>
+        <xsl:when test="$mod10 = 1">
+          <xsl:value-of select="concat($value,'st')"/>
+        </xsl:when>
+        <xsl:when test="$mod10 = 2">
+          <xsl:value-of select="concat($value,'nd')"/>
+        </xsl:when>
+        <xsl:when test="$mod10 = 3">
+          <xsl:value-of select="concat($value,'rd')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="concat($value,'th')"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:function>
   <pattern id="psyarxiv-doi-checks-pattern">
     <rule context="article/front[journal-meta[lower-case(journal-id[1])='psyarxiv']]/article-meta/article-id[@pub-id-type='doi']" id="psyarxiv-doi-checks">
       <assert test="matches(.,'^10\.31234/osf\.io/[\da-z]+$')" role="error" id="psyarxiv-doi-conformance">[psyarxiv-doi-conformance] PsyArXiv preprints must have a &lt;article-id pub-id-type="doi"&gt; element with a value that matches the regex '^10\.31234/osf\.io/[\da-z]+$'. In other words, the current DOI listed is not a valid PsyArXiv DOI: '<value-of select="."/>'.</assert>

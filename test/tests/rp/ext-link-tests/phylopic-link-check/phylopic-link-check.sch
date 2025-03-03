@@ -144,6 +144,30 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:get-ordinal" as="xs:string">
+    <xsl:param name="value" as="xs:integer?"/>
+    <xsl:if test="translate(string($value), '0123456789', '') = '' and number($value) &gt; 0">
+      <xsl:variable name="mod100" select="$value mod 100"/>
+      <xsl:variable name="mod10" select="$value mod 10"/>
+      <xsl:choose>
+        <xsl:when test="$mod100 = 11 or $mod100 = 12 or $mod100 = 13">
+          <xsl:value-of select="concat($value,'th')"/>
+        </xsl:when>
+        <xsl:when test="$mod10 = 1">
+          <xsl:value-of select="concat($value,'st')"/>
+        </xsl:when>
+        <xsl:when test="$mod10 = 2">
+          <xsl:value-of select="concat($value,'nd')"/>
+        </xsl:when>
+        <xsl:when test="$mod10 = 3">
+          <xsl:value-of select="concat($value,'rd')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="concat($value,'th')"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:function>
   <pattern id="ext-link-tests-pattern">
     <rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests">
       <report test="not(ancestor::fig/permissions[contains(.,'phylopic')]) and matches(@xlink:href,'phylopic\.org')" role="warning" id="phylopic-link-check">[phylopic-link-check] This link is to phylopic.org, which is a site where silhouettes/images are typically reproduced from. Please check whether any figures contain reproduced images from this site, and if so whether permissions have been obtained and/or copyright statements are correctly included.</report>

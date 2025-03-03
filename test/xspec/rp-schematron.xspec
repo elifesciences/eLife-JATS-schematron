@@ -1047,6 +1047,16 @@
         <x:expect-report id="ref-label-types" role="warning"/>
         <x:expect-not-assert id="ref-list-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="multiple-ref-list-pass">
+        <x:context href="../tests/rp/ref-list-checks/multiple-ref-list/pass.xml"/>
+        <x:expect-not-report id="multiple-ref-list" role="warning"/>
+        <x:expect-not-assert id="ref-list-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="multiple-ref-list-fail">
+        <x:context href="../tests/rp/ref-list-checks/multiple-ref-list/fail.xml"/>
+        <x:expect-report id="multiple-ref-list" role="warning"/>
+        <x:expect-not-assert id="ref-list-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-numeric-label-checks">
       <x:scenario label="ref-label-1-pass">

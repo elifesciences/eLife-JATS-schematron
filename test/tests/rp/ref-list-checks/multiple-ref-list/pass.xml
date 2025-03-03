@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="multiple-ref-list.sch"?>
+<!--Context: ref-list
+Test: report    parent::back and preceding-sibling::ref-list[parent::back]
+Message: This is the  reference list that is a child of back, which is possibly incorrect. Most commonly  reference list would be included within a appendix or methods section. Is there an appendix that this should be placed? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <back>
+            <ref-list/>
+            <app-group>
+                <app>
+                    <ref-list/>
+                </app>
+            </app-group>
+        </back>
+    </article>
+</root>
