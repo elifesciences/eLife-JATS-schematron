@@ -849,13 +849,13 @@
       
         <assert test="$sum = 0" 
           role="error" 
-          id="isbn-conformity-test">pub-id contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
+          id="isbn-conformity-test"><name/> element contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of id?</assert>
       </rule>
       
       <rule context="ref//pub-id[@pub-id-type='issn']|issn" id="issn-conformity">
         <assert test="e:is-valid-issn(.)" 
           role="error" 
-          id="issn-conformity-test">pub-id contains an invalid ISSN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
+          id="issn-conformity-test"><name/> element contains an invalid ISSN - '<value-of select="."/>'. Should it be captured as another type of id?</assert>
       </rule>
     </pattern>
 

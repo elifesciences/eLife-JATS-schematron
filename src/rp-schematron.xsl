@@ -3775,9 +3775,11 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[isbn-conformity-test] pub-id contains an invalid ISBN - '<xsl:text/>
+               <svrl:text>[isbn-conformity-test] <xsl:text/>
+                  <xsl:value-of select="name(.)"/>
+                  <xsl:text/> element contains an invalid ISBN - '<xsl:text/>
                   <xsl:value-of select="."/>
-                  <xsl:text/>'. Should it be captured as another type of pub-id?</svrl:text>
+                  <xsl:text/>'. Should it be captured as another type of id?</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -3801,9 +3803,11 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[issn-conformity-test] pub-id contains an invalid ISSN - '<xsl:text/>
+               <svrl:text>[issn-conformity-test] <xsl:text/>
+                  <xsl:value-of select="name(.)"/>
+                  <xsl:text/> element contains an invalid ISSN - '<xsl:text/>
                   <xsl:value-of select="."/>
-                  <xsl:text/>'. Should it be captured as another type of pub-id?</svrl:text>
+                  <xsl:text/>'. Should it be captured as another type of id?</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>

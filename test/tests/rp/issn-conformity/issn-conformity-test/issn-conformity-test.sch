@@ -170,7 +170,7 @@
   </xsl:function>
   <pattern id="issn-conformity-pattern">
     <rule context="ref//pub-id[@pub-id-type='issn']|issn" id="issn-conformity">
-      <assert test="e:is-valid-issn(.)" role="error" id="issn-conformity-test">[issn-conformity-test] pub-id contains an invalid ISSN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
+      <assert test="e:is-valid-issn(.)" role="error" id="issn-conformity-test">[issn-conformity-test] <name/> element contains an invalid ISSN - '<value-of select="."/>'. Should it be captured as another type of id?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
