@@ -1245,6 +1245,36 @@
         <x:expect-report id="ref-doi-conformance" role="error"/>
         <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ref-pmid-conformance-pass">
+        <x:context href="../tests/rp/ref-pub-id-checks/ref-pmid-conformance/pass.xml"/>
+        <x:expect-not-report id="ref-pmid-conformance" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-pmid-conformance-fail">
+        <x:context href="../tests/rp/ref-pub-id-checks/ref-pmid-conformance/fail.xml"/>
+        <x:expect-report id="ref-pmid-conformance" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-pmcid-conformance-pass">
+        <x:context href="../tests/rp/ref-pub-id-checks/ref-pmcid-conformance/pass.xml"/>
+        <x:expect-not-report id="ref-pmcid-conformance" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-pmcid-conformance-fail">
+        <x:context href="../tests/rp/ref-pub-id-checks/ref-pmcid-conformance/fail.xml"/>
+        <x:expect-report id="ref-pmcid-conformance" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-arxiv-conformance-pass">
+        <x:context href="../tests/rp/ref-pub-id-checks/ref-arxiv-conformance/pass.xml"/>
+        <x:expect-not-report id="ref-arxiv-conformance" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-arxiv-conformance-fail">
+        <x:context href="../tests/rp/ref-pub-id-checks/ref-arxiv-conformance/fail.xml"/>
+        <x:expect-report id="ref-arxiv-conformance" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="pub-id-check-1-pass">
         <x:context href="../tests/rp/ref-pub-id-checks/pub-id-check-1/pass.xml"/>
         <x:expect-not-assert id="pub-id-check-1" role="error"/>

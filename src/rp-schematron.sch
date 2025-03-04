@@ -485,14 +485,20 @@
 
     <pattern id="ref-pub-id-checks-pattern"><rule context="ref//pub-id" id="ref-pub-id-checks">
         <report test="@pub-id-type='doi' and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="error" id="ref-doi-conformance">[ref-doi-conformance] &lt;pub-id pub-id="doi"&gt; in reference (id=<value-of select="ancestor::ref/@id"/>) does not contain a valid DOI: '<value-of select="."/>'.</report>
+        
+        <report test="(@pub-id-type='pmid') and not(matches(.,'^\d{3,10}$'))" role="error" id="ref-pmid-conformance">[ref-pmid-conformance] pub-id is tagged as a pmid, but it is not a number made up of between 3 and 10 digits - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
+        
+        <report test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{7,}$'))" role="error" id="ref-pmcid-conformance">[ref-pmcid-conformance] pub-id is tagged as a pmcid, but it is not a valid PMCID ('PMC' followed by 7+ digits) - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
+        
+        <report test="(@pub-id-type='arxiv') and not(matches(.,'^(\d{2}(0[1-9]|1[0-2])\.\d{5}|\d{2}(0[1-9]|1[0-2])\d{3})$'))" role="error" id="ref-arxiv-conformance">[ref-arxiv-conformance] pub-id is tagged as an arxiv id, but it is not a valid arxiv id (a number in the format yymm.nnnnn or yymmnnn) - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
       
         <assert test="@pub-id-type" role="error" id="pub-id-check-1">[pub-id-check-1] <name/> does not have a pub-id-type attribute.</assert>
 
         <report test="ancestor::mixed-citation[@publication-type='journal'] and not(@pub-id-type=('doi','pmid','pmcid','issn'))" role="error" id="pub-id-check-2">[pub-id-check-2] <name/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','issn'.</report>
 
-        <report test="ancestor::mixed-citation[@publication-type='book'] and not(@pub-id-type=('doi','pmid','pmcid','isbn'))" role="error" id="pub-id-check-3">[pub-id-check-3] <name/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','isbn'.</report>
+        <report test="ancestor::mixed-citation[@publication-type='book'] and not(@pub-id-type=('doi','pmid','pmcid','isbn'))" role="error" id="pub-id-check-3">[pub-id-check-3] <name/> is within a book reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','isbn'.</report>
 
-        <report test="ancestor::mixed-citation[@publication-type='preprint'] and not(@pub-id-type=('doi','pmid','pmcid','arxiv'))" role="error" id="pub-id-check-4">[pub-id-check-4] <name/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','arxiv'.</report>
+        <report test="ancestor::mixed-citation[@publication-type='preprint'] and not(@pub-id-type=('doi','pmid','pmcid','arxiv'))" role="error" id="pub-id-check-4">[pub-id-check-4] <name/> is within a preprint reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','arxiv'.</report>
 
         <report test="ancestor::mixed-citation[@publication-type='web']" role="error" id="pub-id-check-5">[pub-id-check-5] Web reference (with id <value-of select="ancestor::ref/@id"/>) has a <name/> <value-of select="if (@pub-id-type) then concat('with a pub-id-type ',@pub-id-type) else 'with no pub-id-type'"/> (<value-of select="."/>). This must be incorrect. Either the publication-type for the reference needs changing, or the pub-id should be changed to another element.</report>
         
@@ -501,9 +507,9 @@
         <let name="t" value="translate(.,'-','')"/>
         <let name="sum" value="e:isbn-sum($t)"/>
       
-        <assert test="$sum = 0" role="error" id="isbn-conformity-test">[isbn-conformity-test] pub-id contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
+        <assert test="$sum = 0" role="error" id="isbn-conformity-test">[isbn-conformity-test] <name/> element contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of id?</assert>
       </rule></pattern><pattern id="issn-conformity-pattern"><rule context="ref//pub-id[@pub-id-type='issn']|issn" id="issn-conformity">
-        <assert test="e:is-valid-issn(.)" role="error" id="issn-conformity-test">[issn-conformity-test] pub-id contains an invalid ISSN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
+        <assert test="e:is-valid-issn(.)" role="error" id="issn-conformity-test">[issn-conformity-test] <name/> element contains an invalid ISSN - '<value-of select="."/>'. Should it be captured as another type of id?</assert>
       </rule></pattern>
 
     <pattern id="ref-person-group-checks-pattern"><rule context="ref//person-group" id="ref-person-group-checks">

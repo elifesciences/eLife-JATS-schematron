@@ -168,16 +168,14 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
-  <pattern id="isbn-conformity-pattern">
-    <rule context="ref//pub-id[@pub-id-type='isbn']|isbn" id="isbn-conformity">
-      <let name="t" value="translate(.,'-','')"/>
-      <let name="sum" value="e:isbn-sum($t)"/>
-      <assert test="$sum = 0" role="error" id="isbn-conformity-test">[isbn-conformity-test] <name/> element contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of id?</assert>
+  <pattern id="ref-pub-id-checks-pattern">
+    <rule context="ref//pub-id" id="ref-pub-id-checks">
+      <report test="(@pub-id-type='pmid') and not(matches(.,'^\d{3,10}$'))" role="error" id="ref-pmid-conformance">[ref-pmid-conformance] pub-id is tagged as a pmid, but it is not a number made up of between 3 and 10 digits - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref//pub-id[@pub-id-type='isbn'] or descendant::isbn" role="error" id="isbn-conformity-xspec-assert">ref//pub-id[@pub-id-type='isbn']|isbn must be present.</assert>
+      <assert test="descendant::ref//pub-id" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id must be present.</assert>
     </rule>
   </pattern>
 </schema>
