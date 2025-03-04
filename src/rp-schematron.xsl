@@ -3625,6 +3625,45 @@
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="(@pub-id-type='pmid') and not(matches(.,'^\d{3,10}$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type='pmid') and not(matches(.,'^\d{3,10}$'))">
+            <xsl:attribute name="id">ref-pmid-conformance</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-pmid-conformance] pub-id is tagged as a pmid, but it is not a number made up of between 3 and 10 digits - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. The id must be either incorrect or have the wrong pub-id-type.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{7,}$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{7,}$'))">
+            <xsl:attribute name="id">ref-pmcid-conformance</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-pmcid-conformance] pub-id is tagged as a pmcid, but it is not a valid PMCID ('PMC' followed by 7+ digits) - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. The id must be either incorrect or have the wrong pub-id-type.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="(@pub-id-type='arxiv') and not(matches(.,'^(\d{2}(0[1-9]|1[0-2])\.\d{5}|\d{2}(0[1-9]|1[0-2])\d{3})$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type='arxiv') and not(matches(.,'^(\d{2}(0[1-9]|1[0-2])\.\d{5}|\d{2}(0[1-9]|1[0-2])\d{3})$'))">
+            <xsl:attribute name="id">ref-arxiv-conformance</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-arxiv-conformance] pub-id is tagged as an arxiv id, but it is not a valid arxiv id (a number in the format yymm.nnnnn or yymmnnn) - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. The id must be either incorrect or have the wrong pub-id-type.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="@pub-id-type"/>
@@ -3664,7 +3703,7 @@
             </xsl:attribute>
             <svrl:text>[pub-id-check-3] <xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','isbn'.</svrl:text>
+               <xsl:text/> is within a book reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','isbn'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
@@ -3677,7 +3716,7 @@
             </xsl:attribute>
             <svrl:text>[pub-id-check-4] <xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/> is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','arxiv'.</svrl:text>
+               <xsl:text/> is within a preprint reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','arxiv'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->

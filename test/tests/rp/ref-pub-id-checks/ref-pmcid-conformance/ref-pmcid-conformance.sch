@@ -170,7 +170,7 @@
   </xsl:function>
   <pattern id="ref-pub-id-checks-pattern">
     <rule context="ref//pub-id" id="ref-pub-id-checks">
-      <report test="ancestor::mixed-citation[@publication-type='book'] and not(@pub-id-type=('doi','pmid','pmcid','isbn'))" role="error" id="pub-id-check-3">[pub-id-check-3] <name/> is within a book reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','isbn'.</report>
+      <report test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{7,}$'))" role="error" id="ref-pmcid-conformance">[ref-pmcid-conformance] pub-id is tagged as a pmcid, but it is not a valid PMCID ('PMC' followed by 7+ digits) - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

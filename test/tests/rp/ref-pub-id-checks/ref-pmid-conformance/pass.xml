@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="ref-pmid-conformance.sch"?>
+<!--Context: ref//pub-id
+Test: report    (@pub-id-type='pmid') and not(matches(.,'^\d{3,10}$'))
+Message: pub-id is tagged as a pmid, but it is not a number made up of between 3 and 10 digits - . The id must be either incorrect or have the wrong pub-id-type. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref>
+            <pub-id pub-id-type="pmid">39041434</pub-id>
+            <pub-id pub-id-type="pmid">390</pub-id>
+            <pub-id pub-id-type="pmid">000000</pub-id>
+        </ref>
+    </article>
+</root>

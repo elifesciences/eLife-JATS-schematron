@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pub-id-check-4.sch"?>
 <!--Context: ref//pub-id
 Test: report    ancestor::mixed-citation[@publication-type='preprint'] and not(@pub-id-type=('doi','pmid','pmcid','arxiv'))
-Message:  is within a journal reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','arxiv'. -->
+Message:  is within a preprint reference, but it does not have one of the following permitted @pub-id-type values: 'doi','pmid','pmcid','arxiv'. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <ref><mixed-citation publication-type="preprint"><pub-id pub-id-type="arxiv">12345</pub-id></mixed-citation></ref>
