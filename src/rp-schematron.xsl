@@ -3639,8 +3639,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{7,}$'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{7,}$'))">
+      <xsl:if test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{7,15}$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{7,15}$'))">
             <xsl:attribute name="id">ref-pmcid-conformance</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">

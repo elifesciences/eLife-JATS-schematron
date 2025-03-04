@@ -810,7 +810,7 @@
         role="error" 
         id="ref-pmid-conformance">pub-id is tagged as a pmid, but it is not a number made up of between 3 and 10 digits - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
         
-        <report test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{7,}$'))" 
+        <report test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{7,15}$'))" 
         role="error" 
         id="ref-pmcid-conformance">pub-id is tagged as a pmcid, but it is not a valid PMCID ('PMC' followed by 7+ digits) - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
         
