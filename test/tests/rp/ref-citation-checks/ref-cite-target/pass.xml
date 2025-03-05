@@ -1,0 +1,10 @@
+<?oxygen SCHSchema="ref-cite-target.sch"?>
+<!--Context: xref[@ref-type='bibr']
+Test: assert    ancestor::article//*[@id=$rid]/name()='ref'
+Message: This reference citation points to a  element. This cannot be right. Either the rid value is wrong or the ref-type is incorrect. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <xref ref-type="bibr" rid="c1"/>
+        <ref id="c1"/>
+    </article>
+</root>

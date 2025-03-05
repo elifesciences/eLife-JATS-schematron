@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="ref-cite-superscript-1.sch"?>
+<!--Context: xref[@ref-type='bibr']
+Test: report    ((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'\d\s*([YZEPTGMkhdacm]?m|mm|cm|km|[µμ]m|nm|pm|fm|am|zm|ym)$')]
+Message: This reference citation contains superscript number(s), but is preceed by an SI unit abbreviation. Should the xref be removed and the superscript numbers be retained? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <p>Of course, PARP1 may have other functions in the S phase, including DNA repair<xref ref-type="bibr"><sup>43</sup></xref></p>
+    </article>
+</root>

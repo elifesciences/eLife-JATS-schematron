@@ -1171,6 +1171,13 @@
         <report test="@*[not(name()=$allowed-attributes)]" role="warning" id="xref-attributes">[xref-attributes] This xref element has the following attribute(s) which are not supported: <value-of select="string-join(@*[not(name()=$allowed-attributes)]/name(),'; ')"/>.</report>
 
         <report test="parent::xref" role="error" id="xref-parent">[xref-parent] This xref element containing '<value-of select="."/>' is a child of another xref. Nested xrefs are not supported - it must be either stripped or moved so that it is a child of another element.</report>
+     </rule></pattern><pattern id="ref-citation-checks-pattern"><rule context="xref[@ref-type='bibr']" id="ref-citation-checks">
+        <let name="rid" value="@rid"/>
+        
+        <assert test="ancestor::article//*[@id=$rid]/name()='ref'" role="error" id="ref-cite-target">[ref-cite-target] This reference citation points to a <value-of select="ancestor::article//*[@id=$rid]/name()"/> element. This cannot be right. Either the rid value is wrong or the ref-type is incorrect.</assert>
+        
+        <!-- match text that ends with an SI unit commonly followed by a superscript number-->
+        <report test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'\d\s*([YZEPTGMkhdacm]?m|mm|cm|km|[µμ]m|nm|pm|fm|am|zm|ym)$')]" role="warning" id="ref-cite-superscript-1">[ref-cite-superscript-1] This reference citation contains superscript number(s), but is preceed by an SI unit abbreviation. Should the xref be removed and the superscript numbers be retained?</report>
      </rule></pattern>
 
     <pattern id="ext-link-tests-pattern"><rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests">
