@@ -180,7 +180,7 @@
 
   
 
-     <pattern id="article-tests-pattern"><rule context="article" id="article-tests">
+     <pattern id="article-tests-pattern"><rule context="article[front/journal-meta/lower-case(journal-id[1])='elife']" id="article-tests">
       
       <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
       <let name="is-revised-rp" value="if (descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>

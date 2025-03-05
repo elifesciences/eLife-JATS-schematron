@@ -196,7 +196,7 @@
   </xsl:function>
 
      <pattern id="article">
-      <rule context="article" id="article-tests">
+      <rule context="article[front/journal-meta/lower-case(journal-id[1])='elife']" id="article-tests">
       <!-- exclude ref list and figures from this check -->
       <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*
           return
