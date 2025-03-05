@@ -181,7 +181,7 @@
   
 
      <pattern id="article-tests-pattern">
-    <rule context="article" id="article-tests">
+    <rule context="article[front/journal-meta/lower-case(journal-id[1])='elife']" id="article-tests">
       <!-- exclude ref list and figures from this check -->
       <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
       <let name="is-revised-rp" value="if (descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
@@ -346,7 +346,10 @@
       
       <report test="count(descendant::institution-wrap) gt 1" role="error" id="aff-mutliple-wraps">Affiliation contains more than one institution-wrap element: <value-of select="string-join(descendant::institution-wrap/*,'; ')"/> in <value-of select="."/>
       </report>
-    
+      
+      <assert test="ancestor::contrib-group" role="error" id="aff-ancestor">aff elements must be a descendant of contrib-group. This one is not.</assert>
+      
+      <assert test="parent::contrib-group or parent::contrib" role="error" id="aff-parent">aff elements must be a child of either contrib-group or contrib. This one is a child of <value-of select="parent::*/name()"/>.</assert>
     </rule>
   </pattern>
   <pattern id="country-tests-pattern">
@@ -1885,7 +1888,7 @@
     
 <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article" role="error" id="article-tests-xspec-assert">article must be present.</assert>
+      <assert test="descendant::article[front/journal-meta/lower-case(journal-id[1])='elife']" role="error" id="article-tests-xspec-assert">article[front/journal-meta/lower-case(journal-id[1])='elife'] must be present.</assert>
       <assert test="descendant::article-meta/title-group/article-title" role="error" id="article-title-checks-xspec-assert">article-meta/title-group/article-title must be present.</assert>
       <assert test="descendant::article-meta/title-group/article-title/*" role="error" id="article-title-children-checks-xspec-assert">article-meta/title-group/article-title/* must be present.</assert>
       <assert test="descendant::article-meta/contrib-group/contrib[@contrib-type='author' and not(collab)]" role="error" id="author-contrib-checks-xspec-assert">article-meta/contrib-group/contrib[@contrib-type='author' and not(collab)] must be present.</assert>

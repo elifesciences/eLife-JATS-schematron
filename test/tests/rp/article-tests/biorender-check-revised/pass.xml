@@ -1,9 +1,12 @@
 <?oxygen SCHSchema="biorender-check-revised.sch"?>
-<!--Context: article
+<!--Context: article[front/journal-meta/lower-case(journal-id[1])='elife']
 Test: report    $is-revised-rp and matches(lower-case($article-text),'biorend[eo]r')
 Message: Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}". Since this is a revised RP, check to see if the first (or a previous) version had bioRender links. -->
 <article>
     <front>
+        <journal-meta>
+            <journal-id>eLife</journal-id>
+        </journal-meta>
         <article-meta>
             <pub-history>
                 <event>

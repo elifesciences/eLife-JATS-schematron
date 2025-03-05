@@ -1592,7 +1592,7 @@
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">eLife reviewed preprint schematron</svrl:text>
    <!--PATTERN article-tests-pattern-->
    <!--RULE article-tests-->
-   <xsl:template match="article" priority="1000" mode="M19">
+   <xsl:template match="article[front/journal-meta/lower-case(journal-id[1])='elife']" priority="1000" mode="M19">
       <xsl:variable name="article-text" select="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
       <xsl:variable name="is-revised-rp" select="if (descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
       <xsl:variable name="rp-version" select="replace(descendant::article-meta[1]/article-id[@specific-use='version'][1],'^.*\.','')"/>
@@ -2422,6 +2422,36 @@
             </svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="ancestor::contrib-group"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::contrib-group">
+               <xsl:attribute name="id">aff-ancestor</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[aff-ancestor] aff elements must be a descendant of contrib-group. This one is not.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="parent::contrib-group or parent::contrib"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="parent::contrib-group or parent::contrib">
+               <xsl:attribute name="id">aff-parent</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[aff-parent] aff elements must be a child of either contrib-group or contrib. This one is a child of <xsl:text/>
+                  <xsl:value-of select="parent::*/name()"/>
+                  <xsl:text/>.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M29"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M29"/>

@@ -168,17 +168,16 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
-  <pattern id="article-tests-pattern">
-    <rule context="article[front/journal-meta/lower-case(journal-id[1])='elife']" id="article-tests">
-      <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
-      <let name="is-revised-rp" value="if (descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
-      <let name="rp-version" value="replace(descendant::article-meta[1]/article-id[@specific-use='version'][1],'^.*\.','')"/>
-      <report test="$is-revised-rp and not(sub-article[@article-type='author-comment'])" role="warning" id="no-author-response-1">[no-author-response-1] Revised Reviewed Preprint (version <value-of select="$rp-version"/>) does not have an author response, which is unusual. Is that correct?</report>
+  <pattern id="affiliation-checks-pattern">
+    <rule context="aff" id="affiliation-checks">
+      <let name="country-count" value="count(descendant::country)"/>
+      <let name="city-count" value="count(descendant::city)"/>
+      <assert test="parent::contrib-group or parent::contrib" role="error" id="aff-parent">[aff-parent] aff elements must be a child of either contrib-group or contrib. This one is a child of <value-of select="parent::*/name()"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[front/journal-meta/lower-case(journal-id[1])='elife']" role="error" id="article-tests-xspec-assert">article[front/journal-meta/lower-case(journal-id[1])='elife'] must be present.</assert>
+      <assert test="descendant::aff" role="error" id="affiliation-checks-xspec-assert">aff must be present.</assert>
     </rule>
   </pattern>
 </schema>
