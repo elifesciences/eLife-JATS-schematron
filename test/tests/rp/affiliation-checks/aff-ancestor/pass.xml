@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="aff-ancestor.sch"?>
+<!--Context: aff
+Test: assert    ancestor::contrib-group
+Message: aff elements must be a descendant of contrib-group. This one is not. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <contrib-group>
+            <contrib/>
+            <aff/>
+        </contrib-group>
+        <contrib-group>
+            <contrib>
+                <aff/>
+            </contrib>
+        </contrib-group>
+    </article>
+</root>

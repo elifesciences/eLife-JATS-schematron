@@ -308,7 +308,10 @@
       <report test="institution-wrap[not(institution)]" role="error" id="aff-has-wrap-no-inst">[aff-has-wrap-no-inst] aff contains institution-wrap, but that institution-wrap does not have a child institution.</report>
       
       <report test="count(descendant::institution-wrap) gt 1" role="error" id="aff-mutliple-wraps">[aff-mutliple-wraps] Affiliation contains more than one institution-wrap element: <value-of select="string-join(descendant::institution-wrap/*,'; ')"/> in <value-of select="."/></report>
-    
+      
+      <assert test="ancestor::contrib-group" role="error" id="aff-ancestor">[aff-ancestor] aff elements must be a descendant of contrib-group. This one is not.</assert>
+      
+      <assert test="parent::contrib-group or parent::contrib" role="error" id="aff-parent">[aff-parent] aff elements must be a child of either contrib-group or contrib. This one is a child of <value-of select="parent::*/name()"/>.</assert>
     </rule></pattern><pattern id="country-tests-pattern"><rule context="front[journal-meta/lower-case(journal-id[1])='elife']//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'countries.xml'"/>

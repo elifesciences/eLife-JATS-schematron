@@ -346,7 +346,10 @@
       
       <report test="count(descendant::institution-wrap) gt 1" role="error" id="aff-mutliple-wraps">Affiliation contains more than one institution-wrap element: <value-of select="string-join(descendant::institution-wrap/*,'; ')"/> in <value-of select="."/>
       </report>
-    
+      
+      <assert test="ancestor::contrib-group" role="error" id="aff-ancestor">aff elements must be a descendant of contrib-group. This one is not.</assert>
+      
+      <assert test="parent::contrib-group or parent::contrib" role="error" id="aff-parent">aff elements must be a child of either contrib-group or contrib. This one is a child of <value-of select="parent::*/name()"/>.</assert>
     </rule>
   </pattern>
   <pattern id="country-tests-pattern">

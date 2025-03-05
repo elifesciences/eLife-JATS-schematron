@@ -2422,6 +2422,36 @@
             </svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="ancestor::contrib-group"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::contrib-group">
+               <xsl:attribute name="id">aff-ancestor</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[aff-ancestor] aff elements must be a descendant of contrib-group. This one is not.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="parent::contrib-group or parent::contrib"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="parent::contrib-group or parent::contrib">
+               <xsl:attribute name="id">aff-parent</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[aff-parent] aff elements must be a child of either contrib-group or contrib. This one is a child of <xsl:text/>
+                  <xsl:value-of select="parent::*/name()"/>
+                  <xsl:text/>.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M29"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M29"/>

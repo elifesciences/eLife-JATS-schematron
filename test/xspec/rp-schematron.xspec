@@ -551,6 +551,26 @@
         <x:expect-report id="aff-mutliple-wraps" role="error"/>
         <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="aff-ancestor-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-ancestor/pass.xml"/>
+        <x:expect-not-assert id="aff-ancestor" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-ancestor-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-ancestor/fail.xml"/>
+        <x:expect-assert id="aff-ancestor" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-parent-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-parent/pass.xml"/>
+        <x:expect-not-assert id="aff-parent" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-parent-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-parent/fail.xml"/>
+        <x:expect-assert id="aff-parent" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="country-tests">
       <x:scenario label="gen-country-test-pass">
