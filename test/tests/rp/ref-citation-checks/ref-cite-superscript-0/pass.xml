@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="ref-cite-superscript-0.sch"?>
+<!--Context: xref[@ref-type='bibr']
+Test: report    ((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'[×x⋅]\s?([0-9]|10)$')]
+Message: This reference citation contains superscript number(s), but is preceed by a formula. Should the xref be removed and the superscript numbers be retained (as an exponent)? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <p>as in<sup><xref ref-type="bibr">20</xref></sup>.</p>
+    </article>
+</root>
