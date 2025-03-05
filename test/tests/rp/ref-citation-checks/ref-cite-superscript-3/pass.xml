@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="ref-cite-superscript-3.sch"?>
+<!--Context: xref[@ref-type='bibr']
+Test: report    (.='3' and (sup or ancestor::sup)) and preceding::text()[1][matches(.,'(^|\s)(As|Bi|NI|O|P|Sb)$')]
+Message: This reference citation contains superscript number(s), but is preceed by text that suggests it's part of atomic notation. Should the xref be removed and the superscript numbers be retained? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <p>X<sup><xref ref-type="bibr">3</xref></sup></p>
+    </article>
+</root>

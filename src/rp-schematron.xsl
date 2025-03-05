@@ -8238,6 +8238,28 @@
             <svrl:text>[ref-cite-superscript-1] This reference citation contains superscript number(s), but is preceed by an SI unit abbreviation. Should the xref be removed and the superscript numbers be retained?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="(.='2' and (sup or ancestor::sup)) and preceding::text()[1][matches(.,'(^|\s)(B[ar]|C[alou]?|Fe?|H[eg]?|I|M[gn]|N[ai]?|O|Pb?|S|Zn)$')]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(.='2' and (sup or ancestor::sup)) and preceding::text()[1][matches(.,'(^|\s)(B[ar]|C[alou]?|Fe?|H[eg]?|I|M[gn]|N[ai]?|O|Pb?|S|Zn)$')]">
+            <xsl:attribute name="id">ref-cite-superscript-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-cite-superscript-2] This reference citation contains superscript number(s), but is preceed by text that suggests it's part of atomic notation. Should the xref be removed and the superscript numbers be retained?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="(.='3' and (sup or ancestor::sup)) and preceding::text()[1][matches(.,'(^|\s)(As|Bi|NI|O|P|Sb)$')]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(.='3' and (sup or ancestor::sup)) and preceding::text()[1][matches(.,'(^|\s)(As|Bi|NI|O|P|Sb)$')]">
+            <xsl:attribute name="id">ref-cite-superscript-3</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-cite-superscript-3] This reference citation contains superscript number(s), but is preceed by text that suggests it's part of atomic notation. Should the xref be removed and the superscript numbers be retained?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M130"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M130"/>

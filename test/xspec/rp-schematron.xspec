@@ -3963,6 +3963,26 @@
         <x:expect-report id="ref-cite-superscript-1" role="warning"/>
         <x:expect-not-assert id="ref-citation-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ref-cite-superscript-2-pass">
+        <x:context href="../tests/rp/ref-citation-checks/ref-cite-superscript-2/pass.xml"/>
+        <x:expect-not-report id="ref-cite-superscript-2" role="warning"/>
+        <x:expect-not-assert id="ref-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-cite-superscript-2-fail">
+        <x:context href="../tests/rp/ref-citation-checks/ref-cite-superscript-2/fail.xml"/>
+        <x:expect-report id="ref-cite-superscript-2" role="warning"/>
+        <x:expect-not-assert id="ref-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-cite-superscript-3-pass">
+        <x:context href="../tests/rp/ref-citation-checks/ref-cite-superscript-3/pass.xml"/>
+        <x:expect-not-report id="ref-cite-superscript-3" role="warning"/>
+        <x:expect-not-assert id="ref-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-cite-superscript-3-fail">
+        <x:context href="../tests/rp/ref-citation-checks/ref-cite-superscript-3/fail.xml"/>
+        <x:expect-report id="ref-cite-superscript-3" role="warning"/>
+        <x:expect-not-assert id="ref-citation-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ext-link-tests">
       <x:scenario label="url-conformance-test-pass">
