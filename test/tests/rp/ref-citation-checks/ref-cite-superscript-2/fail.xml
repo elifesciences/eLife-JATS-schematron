@@ -1,0 +1,31 @@
+<?oxygen SCHSchema="ref-cite-superscript-2.sch"?>
+<!--Context: xref[@ref-type='bibr']
+Test: report    (.='2' and (sup or ancestor::sup)) and preceding::text()[1][matches(.,'(^|\s)(B[ar]|C[alou]?|Fe?|H[eg]?|I|M[gn]|N[ai]?|O|Pb?|S|Zn)$')]
+Message: This reference citation contains superscript number(s), but is preceed by text that suggests it's part of atomic notation. Should the xref be removed and the superscript numbers be retained? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <p>Ba<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>Br<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>C<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>Ca<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>Cl<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>Co<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>Cu<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>F<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>Fe<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>H<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>He<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>Hg<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>I<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>Mg<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>Mn<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>N<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>Na<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>Ni<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>O<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>P<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>Pb<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>S<sup><xref ref-type="bibr">2</xref></sup></p>
+        <p>Zn<sup><xref ref-type="bibr">2</xref></sup></p>
+    </article>
+</root>
