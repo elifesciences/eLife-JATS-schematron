@@ -3759,14 +3759,14 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{7,15}$'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{7,15}$'))">
+      <xsl:if test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{6,15}$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{6,15}$'))">
             <xsl:attribute name="id">ref-pmcid-conformance</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[ref-pmcid-conformance] pub-id is tagged as a pmcid, but it is not a valid PMCID ('PMC' followed by 7+ digits) - <xsl:text/>
+            <svrl:text>[ref-pmcid-conformance] pub-id is tagged as a pmcid, but it is not a valid PMCID ('PMC' followed by 6+ digits) - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>. The id must be either incorrect or have the wrong pub-id-type.</svrl:text>
          </svrl:successful-report>

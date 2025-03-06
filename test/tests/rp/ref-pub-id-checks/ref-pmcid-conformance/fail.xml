@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ref-pmcid-conformance.sch"?>
 <!--Context: ref//pub-id
-Test: report    (@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{7,15}$'))
-Message: pub-id is tagged as a pmcid, but it is not a valid PMCID ('PMC' followed by 7+ digits) - . The id must be either incorrect or have the wrong pub-id-type. -->
+Test: report    (@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{6,15}$'))
+Message: pub-id is tagged as a pmcid, but it is not a valid PMCID ('PMC' followed by 6+ digits) - . The id must be either incorrect or have the wrong pub-id-type. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <ref>
