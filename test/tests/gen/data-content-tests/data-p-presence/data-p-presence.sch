@@ -474,6 +474,33 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:is-valid-orcid" as="xs:boolean">
+      <xsl:param name="id" as="xs:string"/>
+      <xsl:variable name="digits" select="replace($id,'[^\d]','')"/>
+      <xsl:if test="string-length($digits) != 16">
+          <xsl:value-of select="false()"/>
+      </xsl:if>
+      <xsl:variable name="total" select="e:orcid-calculate-total($digits, 1, 0)"/>
+      <xsl:variable name="remainder" select="$total mod 11"/>
+      <xsl:variable name="result" select="(12 - $remainder) mod 11"/>
+      <xsl:variable name="check" select="if (substring($id,string-length($id))) then 10                                           else number(substring($id,string-length($id)))"/>
+      <xsl:value-of select="$result = $check"/>
+    </xsl:function>
+  <xsl:function name="e:orcid-calculate-total" as="xs:integer">
+        <xsl:param name="digits" as="xs:string"/>
+        <xsl:param name="index" as="xs:integer"/>
+        <xsl:param name="total" as="xs:integer"/>
+        <xsl:choose>
+            <xsl:when test="string-length($digits) le $index">
+                <xsl:value-of select="$total"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:variable name="digit" select="xs:integer(substring($digits, $index + 1, 1))"/>
+                <xsl:variable name="new-total" select="($total + $digit) * 2"/>
+                <xsl:value-of select="e:orcid-calculate-total($digits, $index+1, $new-total)"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
   <xsl:function name="e:escape-for-regex" as="xs:string">
     <xsl:param name="arg" as="xs:string?"/>
     <xsl:sequence select="replace($arg,'(\.|\[|\]|\\|\||\-|\^|\$|\?|\*|\+|\{|\}|\(|\))','\\$1')"/>
