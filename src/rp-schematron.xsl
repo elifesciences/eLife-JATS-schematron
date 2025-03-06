@@ -8309,8 +8309,8 @@
          </xsl:otherwise>
       </xsl:choose>
       <!--REPORT warning-->
-      <xsl:if test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'[×x⋅]\s?([0-9]|10)$')]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'[×x⋅]\s?([0-9]|10)$')]">
+      <xsl:if test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'([×x⋅]\s?[0-9]|10)$')]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'([×x⋅]\s?[0-9]|10)$')]">
             <xsl:attribute name="id">ref-cite-superscript-0</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">

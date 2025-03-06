@@ -2258,7 +2258,7 @@
           role="error" 
           id="ref-cite-target">This reference citation points to a <value-of select="ancestor::article//*[@id=$rid]/name()"/> element. This cannot be right. Either the rid value is wrong or the ref-type is incorrect.</assert>
         
-        <report test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'[×x⋅]\s?([0-9]|10)$')]"
+        <report test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'([×x⋅]\s?[0-9]|10)$')]"
           role="warning" 
           id="ref-cite-superscript-0">This reference citation contains superscript number(s), but is preceed by a formula. Should the xref be removed and the superscript numbers be retained (as an exponent)?</report>
         
