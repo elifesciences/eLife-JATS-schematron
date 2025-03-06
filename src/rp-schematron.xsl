@@ -3759,14 +3759,14 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{7,15}$'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{7,15}$'))">
+      <xsl:if test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{6,15}$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{6,15}$'))">
             <xsl:attribute name="id">ref-pmcid-conformance</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[ref-pmcid-conformance] pub-id is tagged as a pmcid, but it is not a valid PMCID ('PMC' followed by 7+ digits) - <xsl:text/>
+            <svrl:text>[ref-pmcid-conformance] pub-id is tagged as a pmcid, but it is not a valid PMCID ('PMC' followed by 6+ digits) - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>. The id must be either incorrect or have the wrong pub-id-type.</svrl:text>
          </svrl:successful-report>
@@ -8309,8 +8309,8 @@
          </xsl:otherwise>
       </xsl:choose>
       <!--REPORT warning-->
-      <xsl:if test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'[×x⋅]\s?([0-9]|10)$')]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'[×x⋅]\s?([0-9]|10)$')]">
+      <xsl:if test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'([×x⋅]\s?[0-9]|10)$')]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'([×x⋅]\s?[0-9]|10)$')]">
             <xsl:attribute name="id">ref-cite-superscript-0</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">

@@ -531,7 +531,7 @@
         
         <report test="(@pub-id-type='pmid') and not(matches(.,'^\d{3,10}$'))" role="error" id="ref-pmid-conformance">[ref-pmid-conformance] pub-id is tagged as a pmid, but it is not a number made up of between 3 and 10 digits - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
         
-        <report test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{7,15}$'))" role="error" id="ref-pmcid-conformance">[ref-pmcid-conformance] pub-id is tagged as a pmcid, but it is not a valid PMCID ('PMC' followed by 7+ digits) - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
+        <report test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{6,15}$'))" role="error" id="ref-pmcid-conformance">[ref-pmcid-conformance] pub-id is tagged as a pmcid, but it is not a valid PMCID ('PMC' followed by 6+ digits) - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
         
         <report test="(@pub-id-type='arxiv') and not(matches(.,'^(\d{2}(0[1-9]|1[0-2])\.\d{5}|\d{2}(0[1-9]|1[0-2])\d{3})$'))" role="error" id="ref-arxiv-conformance">[ref-arxiv-conformance] pub-id is tagged as an arxiv id, but it is not a valid arxiv id (a number in the format yymm.nnnnn or yymmnnn) - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
       
@@ -1216,7 +1216,7 @@
         
         <assert test="ancestor::article//*[@id=$rid]/name()='ref'" role="error" id="ref-cite-target">[ref-cite-target] This reference citation points to a <value-of select="ancestor::article//*[@id=$rid]/name()"/> element. This cannot be right. Either the rid value is wrong or the ref-type is incorrect.</assert>
         
-        <report test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'[×x⋅]\s?([0-9]|10)$')]" role="warning" id="ref-cite-superscript-0">[ref-cite-superscript-0] This reference citation contains superscript number(s), but is preceed by a formula. Should the xref be removed and the superscript numbers be retained (as an exponent)?</report>
+        <report test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'([×x⋅]\s?[0-9]|10)$')]" role="warning" id="ref-cite-superscript-0">[ref-cite-superscript-0] This reference citation contains superscript number(s), but is preceed by a formula. Should the xref be removed and the superscript numbers be retained (as an exponent)?</report>
         
         <!-- match text that ends with an SI unit commonly followed by a superscript number-->
         <report test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'\d\s*([YZEPTGMkhdacm]?m|mm|cm|km|[µμ]m|nm|pm|fm|am|zm|ym)$')]" role="warning" id="ref-cite-superscript-1">[ref-cite-superscript-1] This reference citation contains superscript number(s), but is preceed by an SI unit abbreviation. Should the xref be removed and the superscript numbers be retained?</report>
