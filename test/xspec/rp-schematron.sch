@@ -74,6 +74,40 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:function>
+  
+    <xsl:function name="e:is-valid-orcid" as="xs:boolean">
+      <xsl:param name="id" as="xs:string"/>
+      <xsl:variable name="digits" select="replace(upper-case($id),'[^\dX]','')"/>
+      <xsl:choose>
+        <xsl:when test="string-length($digits) != 16">
+            <xsl:value-of select="false()"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="total" select="e:orcid-calculate-total($digits, 1, 0)"/>
+          <xsl:variable name="remainder" select="$total mod 11"/>
+          <xsl:variable name="result" select="(12 - $remainder) mod 11"/>
+          <xsl:variable name="check" select="if (substring($id,string-length($id))) then 10                                                                             else number(substring($id,string-length($id)))"/>
+          <xsl:value-of select="$result = $check"/>
+      </xsl:otherwise>
+    </xsl:choose>
+    </xsl:function>
+  
+    <xsl:function name="e:orcid-calculate-total" as="xs:integer">
+        <xsl:param name="digits" as="xs:string"/>
+        <xsl:param name="index" as="xs:integer"/>
+        <xsl:param name="total" as="xs:integer"/>
+        <xsl:choose>
+            <xsl:when test="string-length($digits) le $index">
+                <xsl:value-of select="$total"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:variable name="char" select="substring($digits, $index + 1, 1)"/>
+              <xsl:variable name="digit" select="if ($char = 'X') then 10                                                  else xs:integer($char)"/>
+                <xsl:variable name="new-total" select="($total + $digit) * 2"/>
+                <xsl:value-of select="e:orcid-calculate-total($digits, $index+1, $new-total)"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
     
     <xsl:function name="e:get-name" as="xs:string">
     <xsl:param name="name"/>
@@ -314,6 +348,15 @@
       <assert test="empty($indistinct-orcids)" role="error" id="duplicate-orcid-test">There is more than one author with the following ORCiD(s) - <value-of select="if (count($indistinct-orcids) gt 1) then concat(string-join($indistinct-orcids[position() != last()],', '),' and ',$indistinct-orcids[last()]) else $indistinct-orcids"/> - which must be incorrect.</assert>
       
     </rule>
+  </pattern>
+  <pattern id="orcid-tests-pattern">
+    <rule context="contrib-id[@contrib-id-type='orcid']" id="orcid-tests">
+       
+	     <assert test="matches(.,'^http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]$')" role="error" id="orcid-test-2">contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'</assert>
+	  
+	     <assert test="e:is-valid-orcid(.)" role="error" id="orcid-test-4">contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL. <value-of select="."/> is not a valid ORCID URL.</assert>
+		
+		</rule>
   </pattern>
   <pattern id="affiliation-checks-pattern">
     <rule context="aff" id="affiliation-checks">
@@ -1915,6 +1958,7 @@
       <assert test="descendant::name/given-names" role="error" id="given-names-tests-xspec-assert">name/given-names must be present.</assert>
       <assert test="descendant::contrib-group//name/*" role="error" id="name-child-tests-xspec-assert">contrib-group//name/* must be present.</assert>
       <assert test="descendant::article/front/article-meta/contrib-group[1]" role="error" id="orcid-name-checks-xspec-assert">article/front/article-meta/contrib-group[1] must be present.</assert>
+      <assert test="descendant::contrib-id[@contrib-id-type='orcid']" role="error" id="orcid-tests-xspec-assert">contrib-id[@contrib-id-type='orcid'] must be present.</assert>
       <assert test="descendant::aff" role="error" id="affiliation-checks-xspec-assert">aff must be present.</assert>
       <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']//aff/country" role="error" id="country-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']//aff/country must be present.</assert>
       <assert test="descendant::aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap" role="error" id="aff-institution-wrap-tests-xspec-assert">aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap must be present.</assert>

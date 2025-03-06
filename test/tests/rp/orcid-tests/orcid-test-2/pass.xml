@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="orcid-test-2.sch"?>
+<!--Context: contrib-id[@contrib-id-type='orcid']
+Test: assert    matches(.,'^http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]$')
+Message: contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000' -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <contrib-id contrib-id-type="orcid">https://orcid.org/0000-0002-6048-1470</contrib-id>
+    </article>
+</root>
