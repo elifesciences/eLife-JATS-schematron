@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="orcid-test-4.sch"?>
+<!--Context: contrib-id[@contrib-id-type='orcid']
+Test: assert    e:is-valid-orcid(.)
+Message: contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL.  is not a valid ORCID URL. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <contrib-id contrib-id-type="orcid">https://orcid.org/0000-0002-6048-1470</contrib-id>
+    </article>
+</root>
