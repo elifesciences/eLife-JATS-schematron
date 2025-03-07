@@ -5452,8 +5452,11 @@
       <report test="@kwd-group-type='claim-importance' and count(kwd) gt 1" role="error" flag="dl-ar" id="ed-report-kwd-group-3">
         <value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. This is not permitted, please check which single importance keyword should be used.</report>
       
-      <report test="@kwd-group-type='evidence-strength' and count(kwd) gt 1" role="warning" flag="dl-ar" id="ed-report-kwd-group-2">
-        <value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. This is unusual, please check this is correct.</report>
+      <report test="@kwd-group-type='evidence-strength' and count(kwd) = 2" role="warning" flag="dl-ar" id="ed-report-kwd-group-2">
+        <value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. Please check this is correct.</report>
+      
+      <report test="@kwd-group-type='evidence-strength' and count(kwd) gt 2" role="error" flag="dl-ar" id="ed-report-kwd-group-4">
+        <value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. This is incorrect.</report>
       
     </rule>
   </pattern>

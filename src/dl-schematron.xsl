@@ -3028,8 +3028,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="@kwd-group-type='evidence-strength' and count(kwd) gt 1">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@kwd-group-type='evidence-strength' and count(kwd) gt 1">
+      <xsl:if test="@kwd-group-type='evidence-strength' and count(kwd) = 2">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@kwd-group-type='evidence-strength' and count(kwd) = 2">
             <xsl:attribute name="id">ed-report-kwd-group-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -3043,7 +3043,26 @@
                <xsl:value-of select="count(kwd)"/>
                <xsl:text/> keywords: <xsl:text/>
                <xsl:value-of select="string-join(kwd,'; ')"/>
-               <xsl:text/>. This is unusual, please check this is correct.</svrl:text>
+               <xsl:text/>. Please check this is correct.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="@kwd-group-type='evidence-strength' and count(kwd) gt 2">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@kwd-group-type='evidence-strength' and count(kwd) gt 2">
+            <xsl:attribute name="id">ed-report-kwd-group-4</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>
+               <xsl:text/>
+               <xsl:value-of select="@kwd-group-type"/>
+               <xsl:text/> type kwd-group has <xsl:text/>
+               <xsl:value-of select="count(kwd)"/>
+               <xsl:text/> keywords: <xsl:text/>
+               <xsl:value-of select="string-join(kwd,'; ')"/>
+               <xsl:text/>. This is incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M87"/>
