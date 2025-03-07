@@ -1,7 +1,7 @@
-<?oxygen SCHSchema="ed-report-kwd-group-2.sch"?>
+<?oxygen SCHSchema="ed-report-kwd-group-4.sch"?>
 <!--Context: sub-article[@article-type='editor-report']/front-stub/kwd-group
-Test: report    @kwd-group-type='evidence-strength' and count(kwd) = 2
-Message:  type kwd-group has  keywords: . Please check this is correct. -->
+Test: report    @kwd-group-type='evidence-strength' and count(kwd) gt 2
+Message:  type kwd-group has  keywords: . This is incorrect. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sub-article id="sa0" article-type="editor-report">

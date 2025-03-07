@@ -202,7 +202,7 @@
   </xsl:function>
   <pattern id="ed-report-kwd-group-pattern">
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group" id="ed-report-kwd-group">
-      <report test="@kwd-group-type='evidence-strength' and count(kwd) = 2" role="warning" id="ed-report-kwd-group-2">[ed-report-kwd-group-2] <value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. Please check this is correct.</report>
+      <report test="@kwd-group-type='evidence-strength' and count(kwd) gt 2" role="error" id="ed-report-kwd-group-4">[ed-report-kwd-group-4] <value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. This is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
