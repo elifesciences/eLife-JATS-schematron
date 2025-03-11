@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="ref-chapter-title-2.sch"?>
+<!--Context: ref//chapter-title
+Test: report    matches(.,'\?[^\s\p{P}]')
+Message:  in ref contains a question mark which may potentially be the result of a processing error - . Should it be repalced with other characters? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref>
+            <chapter-title>Zebra?sh</chapter-title>
+        </ref>
+    </article>
+</root>

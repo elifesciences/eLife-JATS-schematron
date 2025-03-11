@@ -955,6 +955,10 @@
         <report test="upper-case(.)=." 
           role="warning" 
           id="ref-article-title-2"><name/> in ref is entirely in upper case - <value-of select="."/>. Is that correct?</report>
+        
+        <report test="matches(.,'\?[^\s\p{P}]')" 
+          role="warning" 
+          id="ref-article-title-3"><name/> in ref contains a question mark which may potentially be the result of a processing error - <value-of select="."/>. Should it be repalced with other characters?</report>
       </rule>
   </pattern>
   
@@ -963,6 +967,18 @@
         <report test="matches(.,'^\s*[“”&quot;]|[“”&quot;]\.*$')" 
           role="warning" 
           id="ref-chapter-title-1"><name/> in ref starts or ends with speech quotes - <value-of select="."/>. Is that correct?.</report>
+        
+        <report test="matches(.,'\?[^\s\p{P}]')" 
+          role="warning" 
+          id="ref-chapter-title-2"><name/> in ref contains a question mark which may potentially be the result of a processing error - <value-of select="."/>. Should it be repalced with other characters?</report>
+      </rule>
+  </pattern>
+  
+  <pattern id="ref-source">
+      <rule context="ref//source" id="ref-source-checks">
+        <report test="matches(.,'\?[^\s\p{P}]')" 
+          role="warning" 
+          id="ref-source-1"><name/> in ref contains a question mark which may potentially be the result of a processing error - <value-of select="."/>. Should it be repalced with other characters?</report>
       </rule>
   </pattern>
   

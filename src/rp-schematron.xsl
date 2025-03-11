@@ -704,11 +704,20 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
+            <xsl:attribute name="id">ref-source-checks-pattern</xsl:attribute>
+            <xsl:attribute name="name">ref-source-checks-pattern</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M61"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
             <xsl:attribute name="id">mixed-citation-checks-pattern</xsl:attribute>
             <xsl:attribute name="name">mixed-citation-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M61"/>
+         <xsl:apply-templates select="/" mode="M62"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -717,7 +726,7 @@
             <xsl:attribute name="name">mixed-citation-child-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M62"/>
+         <xsl:apply-templates select="/" mode="M63"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -726,7 +735,7 @@
             <xsl:attribute name="name">comment-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M63"/>
+         <xsl:apply-templates select="/" mode="M64"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -735,7 +744,7 @@
             <xsl:attribute name="name">back-tests-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M64"/>
+         <xsl:apply-templates select="/" mode="M65"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -744,7 +753,7 @@
             <xsl:attribute name="name">ack-tests-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M65"/>
+         <xsl:apply-templates select="/" mode="M66"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -753,7 +762,7 @@
             <xsl:attribute name="name">strike-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M66"/>
+         <xsl:apply-templates select="/" mode="M67"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -762,7 +771,7 @@
             <xsl:attribute name="name">underline-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M67"/>
+         <xsl:apply-templates select="/" mode="M68"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -771,7 +780,7 @@
             <xsl:attribute name="name">bold-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M68"/>
+         <xsl:apply-templates select="/" mode="M69"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -4097,6 +4106,21 @@
                <xsl:text/>. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(.,'\?[^\s\p{P}]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\?[^\s\p{P}]')">
+            <xsl:attribute name="id">ref-article-title-3</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-article-title-3] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in ref contains a question mark which may potentially be the result of a processing error - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. Should it be repalced with other characters?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M59"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M59"/>
@@ -4122,15 +4146,55 @@
                <xsl:text/>. Is that correct?.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(.,'\?[^\s\p{P}]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\?[^\s\p{P}]')">
+            <xsl:attribute name="id">ref-chapter-title-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-chapter-title-2] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in ref contains a question mark which may potentially be the result of a processing error - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. Should it be repalced with other characters?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M60"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M60"/>
    <xsl:template match="@*|node()" priority="-2" mode="M60">
       <xsl:apply-templates select="*" mode="M60"/>
    </xsl:template>
+   <!--PATTERN ref-source-checks-pattern-->
+   <!--RULE ref-source-checks-->
+   <xsl:template match="ref//source" priority="1000" mode="M61">
+
+		<!--REPORT warning-->
+      <xsl:if test="matches(.,'\?[^\s\p{P}]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\?[^\s\p{P}]')">
+            <xsl:attribute name="id">ref-source-1</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-source-1] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in ref contains a question mark which may potentially be the result of a processing error - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. Should it be repalced with other characters?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <xsl:apply-templates select="*" mode="M61"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M61"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M61">
+      <xsl:apply-templates select="*" mode="M61"/>
+   </xsl:template>
    <!--PATTERN mixed-citation-checks-pattern-->
    <!--RULE mixed-citation-checks-->
-   <xsl:template match="mixed-citation" priority="1000" mode="M61">
+   <xsl:template match="mixed-citation" priority="1000" mode="M62">
       <xsl:variable name="publication-type-values" select="('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')"/>
       <xsl:variable name="name-elems" select="('name','string-name','collab','on-behalf-of','etal')"/>
       <!--REPORT error-->
@@ -4263,15 +4327,15 @@
                <xsl:text/>) starts with the reference label.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <xsl:apply-templates select="*" mode="M61"/>
+      <xsl:apply-templates select="*" mode="M62"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M61"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M61">
-      <xsl:apply-templates select="*" mode="M61"/>
+   <xsl:template match="text()" priority="-1" mode="M62"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M62">
+      <xsl:apply-templates select="*" mode="M62"/>
    </xsl:template>
    <!--PATTERN mixed-citation-child-checks-pattern-->
    <!--RULE mixed-citation-child-checks-->
-   <xsl:template match="mixed-citation/*" priority="1000" mode="M62">
+   <xsl:template match="mixed-citation/*" priority="1000" mode="M63">
 
 		<!--REPORT error-->
       <xsl:if test="not(*) and (normalize-space(.)='')">
@@ -4288,15 +4352,15 @@
                <xsl:text/>) is empty, which cannot be correct.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <xsl:apply-templates select="*" mode="M62"/>
+      <xsl:apply-templates select="*" mode="M63"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M62"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M62">
-      <xsl:apply-templates select="*" mode="M62"/>
+   <xsl:template match="text()" priority="-1" mode="M63"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M63">
+      <xsl:apply-templates select="*" mode="M63"/>
    </xsl:template>
    <!--PATTERN comment-checks-pattern-->
    <!--RULE comment-checks-->
-   <xsl:template match="comment" priority="1000" mode="M63">
+   <xsl:template match="comment" priority="1000" mode="M64">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -4334,15 +4398,15 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M63"/>
+      <xsl:apply-templates select="*" mode="M64"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M63"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M63">
-      <xsl:apply-templates select="*" mode="M63"/>
+   <xsl:template match="text()" priority="-1" mode="M64"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M64">
+      <xsl:apply-templates select="*" mode="M64"/>
    </xsl:template>
    <!--PATTERN back-tests-pattern-->
    <!--RULE back-tests-->
-   <xsl:template match="back" priority="1000" mode="M64">
+   <xsl:template match="back" priority="1000" mode="M65">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -4358,15 +4422,15 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M64"/>
+      <xsl:apply-templates select="*" mode="M65"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M64"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M64">
-      <xsl:apply-templates select="*" mode="M64"/>
+   <xsl:template match="text()" priority="-1" mode="M65"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M65">
+      <xsl:apply-templates select="*" mode="M65"/>
    </xsl:template>
    <!--PATTERN ack-tests-pattern-->
    <!--RULE ack-tests-->
-   <xsl:template match="ack" priority="1000" mode="M65">
+   <xsl:template match="ack" priority="1000" mode="M66">
 
 		<!--ASSERT error-->
       <xsl:choose>
@@ -4393,15 +4457,15 @@
             <svrl:text>[ack-dupe] This ack element follows another one. Should there really be more than one Acknowledgements?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <xsl:apply-templates select="*" mode="M65"/>
+      <xsl:apply-templates select="*" mode="M66"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M65"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M65">
-      <xsl:apply-templates select="*" mode="M65"/>
+   <xsl:template match="text()" priority="-1" mode="M66"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M66">
+      <xsl:apply-templates select="*" mode="M66"/>
    </xsl:template>
    <!--PATTERN strike-checks-pattern-->
    <!--RULE strike-checks-->
-   <xsl:template match="strike" priority="1000" mode="M66">
+   <xsl:template match="strike" priority="1000" mode="M67">
 
 		<!--REPORT warning-->
       <xsl:if test=".">
@@ -4414,15 +4478,15 @@
             <svrl:text>[strike-warning] strike element is present. Is this tracked change formatting that's been erroneously retained? Should this text be deleted?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <xsl:apply-templates select="*" mode="M66"/>
+      <xsl:apply-templates select="*" mode="M67"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M66"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M66">
-      <xsl:apply-templates select="*" mode="M66"/>
+   <xsl:template match="text()" priority="-1" mode="M67"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M67">
+      <xsl:apply-templates select="*" mode="M67"/>
    </xsl:template>
    <!--PATTERN underline-checks-pattern-->
    <!--RULE underline-checks-->
-   <xsl:template match="underline" priority="1000" mode="M67">
+   <xsl:template match="underline" priority="1000" mode="M68">
 
 		<!--REPORT warning-->
       <xsl:if test="string-length(.) gt 20">
@@ -4514,15 +4578,15 @@
                <xsl:text/>. Either replace it with an xref or remove the bold formatting, as appropriate.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <xsl:apply-templates select="*" mode="M67"/>
+      <xsl:apply-templates select="*" mode="M68"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M67"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M67">
-      <xsl:apply-templates select="*" mode="M67"/>
+   <xsl:template match="text()" priority="-1" mode="M68"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M68">
+      <xsl:apply-templates select="*" mode="M68"/>
    </xsl:template>
    <!--PATTERN bold-checks-pattern-->
    <!--RULE bold-checks-->
-   <xsl:template match="bold" priority="1000" mode="M68">
+   <xsl:template match="bold" priority="1000" mode="M69">
 
 		<!--REPORT warning-->
       <xsl:if test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')">
@@ -4563,11 +4627,11 @@
                <xsl:text/>. Either replace it with an xref or remove the bold formatting, as appropriate.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <xsl:apply-templates select="*" mode="M68"/>
+      <xsl:apply-templates select="*" mode="M69"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M68"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M68">
-      <xsl:apply-templates select="*" mode="M68"/>
+   <xsl:template match="text()" priority="-1" mode="M69"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M69">
+      <xsl:apply-templates select="*" mode="M69"/>
    </xsl:template>
    <!--PATTERN sc-checks-pattern-->
    <!--RULE sc-checks-->

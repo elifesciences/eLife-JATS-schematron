@@ -706,6 +706,9 @@
         
         <report test="upper-case(.)=." role="warning" id="ref-article-title-2">
         <name/> in ref is entirely in upper case - <value-of select="."/>. Is that correct?</report>
+        
+        <report test="matches(.,'\?[^\s\p{P}]')" role="warning" id="ref-article-title-3">
+        <name/> in ref contains a question mark which may potentially be the result of a processing error - <value-of select="."/>. Should it be repalced with other characters?</report>
       </rule>
   </pattern>
   
@@ -713,6 +716,16 @@
     <rule context="ref//chapter-title" id="ref-chapter-title-checks">
         <report test="matches(.,'^\s*[“”&quot;]|[“”&quot;]\.*$')" role="warning" id="ref-chapter-title-1">
         <name/> in ref starts or ends with speech quotes - <value-of select="."/>. Is that correct?.</report>
+        
+        <report test="matches(.,'\?[^\s\p{P}]')" role="warning" id="ref-chapter-title-2">
+        <name/> in ref contains a question mark which may potentially be the result of a processing error - <value-of select="."/>. Should it be repalced with other characters?</report>
+      </rule>
+  </pattern>
+  
+  <pattern id="ref-source-checks-pattern">
+    <rule context="ref//source" id="ref-source-checks">
+        <report test="matches(.,'\?[^\s\p{P}]')" role="warning" id="ref-source-1">
+        <name/> in ref contains a question mark which may potentially be the result of a processing error - <value-of select="."/>. Should it be repalced with other characters?</report>
       </rule>
   </pattern>
   
@@ -1997,6 +2010,7 @@
       <assert test="descendant::ref" role="error" id="ref-checks-xspec-assert">ref must be present.</assert>
       <assert test="descendant::ref//article-title" role="error" id="ref-article-title-checks-xspec-assert">ref//article-title must be present.</assert>
       <assert test="descendant::ref//chapter-title" role="error" id="ref-chapter-title-checks-xspec-assert">ref//chapter-title must be present.</assert>
+      <assert test="descendant::ref//source" role="error" id="ref-source-checks-xspec-assert">ref//source must be present.</assert>
       <assert test="descendant::mixed-citation" role="error" id="mixed-citation-checks-xspec-assert">mixed-citation must be present.</assert>
       <assert test="descendant::mixed-citation/*" role="error" id="mixed-citation-child-checks-xspec-assert">mixed-citation/* must be present.</assert>
       <assert test="descendant::comment" role="error" id="comment-checks-xspec-assert">comment must be present.</assert>
