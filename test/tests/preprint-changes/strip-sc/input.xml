@@ -1,0 +1,12 @@
+<!--Testing template with id: strip-sc-->
+<back>
+<sec id="s1">
+<title>I<sc>ntroduction</sc></title>
+</sec>
+<sec id="s2">
+<title>R<sc><italic>esults</italic></sc></title>
+</sec>
+<ack>
+<title><bold>A<sc>cknowledgments</sc></bold></title>
+</ack>
+</back>

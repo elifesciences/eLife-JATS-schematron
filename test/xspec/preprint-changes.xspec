@@ -76,6 +76,10 @@
       <x:context href="../tests/preprint-changes/all-caps-to-sentence/input.xml"/>
       <x:expect label="Testing the template: all-caps-to-sentence" href="../tests/preprint-changes/all-caps-to-sentence/output.xml"/>
     </x:scenario>
+    <x:scenario label="strip-sc">
+      <x:context href="../tests/preprint-changes/strip-sc/input.xml"/>
+      <x:expect label="Testing the template: strip-sc" href="../tests/preprint-changes/strip-sc/output.xml"/>
+    </x:scenario>
     <x:scenario label="abstract-types">
       <x:context href="../tests/preprint-changes/abstract-types/input.xml"/>
       <x:expect label="Testing the template: abstract-types" href="../tests/preprint-changes/abstract-types/output.xml"/>
