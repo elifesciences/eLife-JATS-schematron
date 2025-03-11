@@ -1798,6 +1798,18 @@
         <x:expect-not-assert id="bold-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="sc-checks">
+      <x:scenario label="sc-check-1-pass">
+        <x:context href="../tests/rp/sc-checks/sc-check-1/pass.xml"/>
+        <x:expect-not-report id="sc-check-1" role="warning"/>
+        <x:expect-not-assert id="sc-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sc-check-1-fail">
+        <x:context href="../tests/rp/sc-checks/sc-check-1/fail.xml"/>
+        <x:expect-report id="sc-check-1" role="warning"/>
+        <x:expect-not-assert id="sc-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="fig-checks">
       <x:scenario label="fig-graphic-conformance-pass">
         <x:context href="../tests/rp/fig-checks/fig-graphic-conformance/pass.xml"/>

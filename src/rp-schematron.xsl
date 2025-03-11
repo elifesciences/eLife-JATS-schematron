@@ -785,6 +785,15 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
+            <xsl:attribute name="id">sc-checks-pattern</xsl:attribute>
+            <xsl:attribute name="name">sc-checks-pattern</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M69"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
             <xsl:attribute name="id">fig-checks-pattern</xsl:attribute>
             <xsl:attribute name="name">fig-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
@@ -4616,6 +4625,29 @@
             <svrl:text>[bold-check-3] Content of bold element suggests it's intended to be a video or supplementary file citation: <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>. Either replace it with an xref or remove the bold formatting, as appropriate.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <xsl:apply-templates select="*" mode="M69"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M69"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M69">
+      <xsl:apply-templates select="*" mode="M69"/>
+   </xsl:template>
+   <!--PATTERN sc-checks-pattern-->
+   <!--RULE sc-checks-->
+   <xsl:template match="sc" priority="1000" mode="M69">
+
+		<!--REPORT warning-->
+      <xsl:if test=".">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".">
+            <xsl:attribute name="id">sc-check-1</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[sc-check-1] Content is in small caps - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/> - This formatting is not supported on EPP. Consider removing it or replacing the content with other formatting or (if necessary) different glyphs/characters in order to retain the original meaning.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M69"/>

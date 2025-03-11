@@ -265,7 +265,7 @@ declare function elife:sch2xspec-sch($sch){
          let $r := 
              <pattern id="root-pattern">
                 <rule context="root" id="root-rule">{
-                for $z in $t//sch:rule[not(@id=("missing-ref-cited","strike-tests","colour-styled-content","empty-attribute-test","strike-checks","preformat-checks","code-checks","uri-checks"))]
+                for $z in $t//sch:rule[not(@id=("missing-ref-cited","strike-tests","colour-styled-content","empty-attribute-test","strike-checks","preformat-checks","code-checks","uri-checks","sc-checks"))]
                 let $test := $z/@context/string()
                 return
                 if ($z/@id="covid-prologue") then <assert test="{concat('descendant::',$test)}" role="error" id="{concat($z/@id,'-xspec-assert')}">{$test} must be present.</assert>
@@ -445,7 +445,7 @@ return delete node $x,
                               ' or ')}" role="error" id="{concat($rule/@id,'-xspec-assert')}">{$test} must be present.</assert>
             else <assert test="{concat('descendant::',$test)}" role="error" id="{concat($rule/@id,'-xspec-assert')}">{$test} must be present.</assert> 
     return 
-    if ($id=('code-flag','preformat-flag','strike-warning','uri-flag')) then ()
+    if ($id=('code-flag','preformat-flag','strike-warning','uri-flag', 'sc-check-1')) then ()
     else insert node 
         <pattern id="root-pattern">
         <rule context="root" id="root-rule">

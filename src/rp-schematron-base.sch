@@ -1116,6 +1116,14 @@
           id="bold-check-3">Content of bold element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
       </rule>
    </pattern>
+  
+  <pattern id="sc">
+     <rule context="sc" id="sc-checks">
+        <report test="."
+          role="warning" 
+          id="sc-check-1">Content is in small caps - <value-of select="."/> - This formatting is not supported on EPP. Consider removing it or replacing the content with other formatting or (if necessary) different glyphs/characters in order to retain the original meaning.</report>
+      </rule>
+   </pattern>
 
     <pattern id="fig">
      <rule context="fig" id="fig-checks">

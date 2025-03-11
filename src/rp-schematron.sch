@@ -658,6 +658,10 @@
        
        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')" role="warning" id="bold-check-3">[bold-check-3] Content of bold element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
       </rule></pattern>
+  
+  <pattern id="sc-checks-pattern"><rule context="sc" id="sc-checks">
+        <report test="." role="warning" id="sc-check-1">[sc-check-1] Content is in small caps - <value-of select="."/> - This formatting is not supported on EPP. Consider removing it or replacing the content with other formatting or (if necessary) different glyphs/characters in order to retain the original meaning.</report>
+      </rule></pattern>
 
     <pattern id="fig-checks-pattern"><rule context="fig" id="fig-checks">
         <assert test="graphic" role="error" id="fig-graphic-conformance">[fig-graphic-conformance] <value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>

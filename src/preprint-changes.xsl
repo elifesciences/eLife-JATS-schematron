@@ -952,6 +952,11 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    
+    <!-- Remove small caps from titles -->
+    <xsl:template xml:id="strip-sc" match="title//sc">
+        <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+    </xsl:template>
 
     <!-- Capture additional content within asbtract as additional, sibling abstract(s) with JATS4R compliant abstract-type -->
     <xsl:template xml:id="abstract-types" match="article-meta/abstract[*:sec[preceding-sibling::p]]">
