@@ -1,5 +1,5 @@
 <!--Testing template with id: strip-sc-->
-<back>
+<sec id="s0">
 <sec id="s1">
 <title>Introduction</title>
 </sec>
@@ -7,6 +7,6 @@
 <title>R<italic>esults</italic></title>
 </sec>
 <ack>
-<title><bold>Acknowledgments</bold></title>
+<title>Acknowledgments</title>
 </ack>
-</back>
+</sec>
