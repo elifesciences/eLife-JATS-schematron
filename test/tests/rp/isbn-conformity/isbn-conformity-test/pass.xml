@@ -8,7 +8,7 @@ Message:  element contains an invalid ISBN - ''. Should it be captured as anothe
       <pub-id pub-id-type="isbn">1844674428</pub-id>
     </ref>
     <ref>
-      <pub-id pub-id-type="isbn">978-1844674428</pub-id>
+      <pub-id pub-id-type="isbn">9781844674428</pub-id>
     </ref>
   </article>
 </root>
