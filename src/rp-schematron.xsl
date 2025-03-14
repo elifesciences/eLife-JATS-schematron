@@ -12,7 +12,7 @@
    <xsl:output xmlns:svrl="http://purl.oclc.org/dsdl/svrl" method="xml" omit-xml-declaration="no" standalone="yes" indent="yes"/>
    <!--XSD TYPES FOR XSLT2-->
    <!--KEYS AND FUNCTIONS-->
-   <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:isbn-sum" as="xs:integer">
+   <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:is-valid-isbn" as="xs:boolean">
       <xsl:param name="s" as="xs:string"/>
       <xsl:choose>
          <xsl:when test="string-length($s) = 10">
@@ -26,7 +26,8 @@
             <xsl:variable name="d8" select="number(substring($s,8,1)) * 3"/>
             <xsl:variable name="d9" select="number(substring($s,9,1)) * 2"/>
             <xsl:variable name="d10" select="number(substring($s,10,1)) * 1"/>
-            <xsl:value-of select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10) mod 11"/>
+            <xsl:variable name="sum" select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10) mod 11"/>
+            <xsl:value-of select="$sum = 0"/>
          </xsl:when>
          <xsl:when test="string-length($s) = 13">
             <xsl:variable name="d1" select="number(substring($s,1,1))"/>
@@ -42,10 +43,11 @@
             <xsl:variable name="d11" select="number(substring($s,11,1))"/>
             <xsl:variable name="d12" select="number(substring($s,12,1)) * 3"/>
             <xsl:variable name="d13" select="number(substring($s,13,1))"/>
-            <xsl:value-of select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10 + $d11 + $d12 + $d13) mod 10"/>
+            <xsl:variable name="sum" select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10 + $d11 + $d12 + $d13) mod 10"/>
+            <xsl:value-of select="$sum = 0"/>
          </xsl:when>
          <xsl:otherwise>
-            <xsl:value-of select="number('1')"/>
+            <xsl:value-of select="false()"/>
          </xsl:otherwise>
       </xsl:choose>
    </xsl:function>
@@ -3902,12 +3904,11 @@
    <!--RULE isbn-conformity-->
    <xsl:template match="ref//pub-id[@pub-id-type='isbn']|isbn" priority="1000" mode="M55">
       <xsl:variable name="t" select="translate(.,'-','')"/>
-      <xsl:variable name="sum" select="e:isbn-sum($t)"/>
       <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="$sum = 0"/>
+         <xsl:when test="e:is-valid-isbn(.)"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$sum = 0">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-valid-isbn(.)">
                <xsl:attribute name="id">isbn-conformity-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">

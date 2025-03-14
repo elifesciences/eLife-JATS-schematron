@@ -15,7 +15,7 @@
     <ns uri="http://www.java.com/" prefix="java"/>
     <ns uri="http://manuscriptexchange.org" prefix="meca"/>
     
-    <xsl:function name="e:isbn-sum" as="xs:integer">
+    <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
       <xsl:when test="string-length($s) = 10">
@@ -29,7 +29,8 @@
         <xsl:variable name="d8" select="number(substring($s,8,1)) * 3"/>
         <xsl:variable name="d9" select="number(substring($s,9,1)) * 2"/>
         <xsl:variable name="d10" select="number(substring($s,10,1)) * 1"/>
-        <xsl:value-of select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10) mod 11"/>
+        <xsl:variable name="sum" select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10) mod 11"/>
+        <xsl:value-of select="$sum = 0"/>
       </xsl:when>
       <xsl:when test="string-length($s) = 13">
         <xsl:variable name="d1" select="number(substring($s,1,1))"/>
@@ -45,10 +46,11 @@
         <xsl:variable name="d11" select="number(substring($s,11,1))"/>
         <xsl:variable name="d12" select="number(substring($s,12,1)) * 3"/>
         <xsl:variable name="d13" select="number(substring($s,13,1))"/>
-        <xsl:value-of select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10 + $d11 + $d12 + $d13) mod 10"/>
+        <xsl:variable name="sum" select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10 + $d11 + $d12 + $d13) mod 10"/>
+        <xsl:value-of select="$sum = 0"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="number('1')"/>
+        <xsl:value-of select="false()"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
@@ -548,9 +550,8 @@
         <report test="@pub-id-type='doi' and ancestor::mixed-citation[@publication-type=('journal','book','preprint')] and matches(following-sibling::text()[1],'^[\.\s]?[\.\s]?[/&lt;&gt;:\d\+\-]')" role="warning" id="pub-id-check-6">[pub-id-check-6] doi in <value-of select="ancestor::mixed-citation/@publication-type"/> ref is followd by text - '<value-of select="following-sibling::text()[1]"/>'. Should that text be part of the DOI or tagged in some other way?</report>
      </rule></pattern><pattern id="isbn-conformity-pattern"><rule context="ref//pub-id[@pub-id-type='isbn']|isbn" id="isbn-conformity">
         <let name="t" value="translate(.,'-','')"/>
-        <let name="sum" value="e:isbn-sum($t)"/>
       
-        <assert test="$sum = 0" role="error" id="isbn-conformity-test">[isbn-conformity-test] <name/> element contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of id?</assert>
+        <assert test="e:is-valid-isbn(.)" role="error" id="isbn-conformity-test">[isbn-conformity-test] <name/> element contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of id?</assert>
       </rule></pattern><pattern id="issn-conformity-pattern"><rule context="ref//pub-id[@pub-id-type='issn']|issn" id="issn-conformity">
         <assert test="e:is-valid-issn(.)" role="error" id="issn-conformity-test">[issn-conformity-test] <name/> element contains an invalid ISSN - '<value-of select="."/>'. Should it be captured as another type of id?</assert>
       </rule></pattern>
