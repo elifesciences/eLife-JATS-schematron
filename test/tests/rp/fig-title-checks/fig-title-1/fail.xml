@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="fig-title-1.sch"?>
 <!--Context: fig/caption[p]/title
-Test: report    matches(lower-case(.),'\.\p{Z}*a\p{P}\p{Z}*$')
+Test: report    matches(lower-case(.),'\.\p{Z}*\p{P}?a(\p{Z}*[\p{Pd},&]\p{Z}*[b-z])?\p{P}?\p{Z}*$')
 Message: Title for figure ('') potentially ends with a panel label. Should it be moved to the start of the next paragraph?  -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>

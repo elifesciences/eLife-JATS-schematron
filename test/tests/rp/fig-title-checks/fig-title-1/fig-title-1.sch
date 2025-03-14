@@ -202,7 +202,7 @@
   </xsl:function>
   <pattern id="fig-title-checks-pattern">
     <rule context="fig/caption[p]/title" id="fig-title-checks">
-      <report test="matches(lower-case(.),'\.\p{Z}*a\p{P}\p{Z}*$')" role="warning" id="fig-title-1">[fig-title-1] Title for figure ('<value-of select="ancestor::fig/label"/>') potentially ends with a panel label. Should it be moved to the start of the next paragraph? <value-of select="."/>
+      <report test="matches(lower-case(.),'\.\p{Z}*\p{P}?a(\p{Z}*[\p{Pd},&amp;]\p{Z}*[b-z])?\p{P}?\p{Z}*$')" role="warning" id="fig-title-1">[fig-title-1] Title for figure ('<value-of select="ancestor::fig/label"/>') potentially ends with a panel label. Should it be moved to the start of the next paragraph? <value-of select="."/>
       </report>
     </rule>
   </pattern>

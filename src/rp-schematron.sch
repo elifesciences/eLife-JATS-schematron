@@ -675,7 +675,7 @@
         
         <report test="matches(lower-case(.),'^\s*table')" role="warning" id="fig-label-table">[fig-label-table] Label for figure ('<value-of select="."/>') starts with table. Should this content be captured as a table instead of a figure?</report>
      </rule></pattern><pattern id="fig-title-checks-pattern"><rule context="fig/caption[p]/title" id="fig-title-checks">
-        <report test="matches(lower-case(.),'\.\p{Z}*a\p{P}\p{Z}*$')" role="warning" id="fig-title-1">[fig-title-1] Title for figure ('<value-of select="ancestor::fig/label"/>') potentially ends with a panel label. Should it be moved to the start of the next paragraph? <value-of select="."/></report>
+        <report test="matches(lower-case(.),'\.\p{Z}*\p{P}?a(\p{Z}*[\p{Pd},&amp;]\p{Z}*[b-z])?\p{P}?\p{Z}*$')" role="warning" id="fig-title-1">[fig-title-1] Title for figure ('<value-of select="ancestor::fig/label"/>') potentially ends with a panel label. Should it be moved to the start of the next paragraph? <value-of select="."/></report>
      </rule></pattern><pattern id="fig-caption-checks-pattern"><rule context="fig/caption" id="fig-caption-checks">
         <let name="label" value="if (ancestor::fig/label) then ancestor::fig[1]/label[1] else 'unlabelled figure'"/>
         <let name="is-revised-rp" value="if (ancestor::article//article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>

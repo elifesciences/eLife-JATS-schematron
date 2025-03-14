@@ -4760,8 +4760,8 @@
    <xsl:template match="fig/caption[p]/title" priority="1000" mode="M74">
 
 		<!--REPORT warning-->
-      <xsl:if test="matches(lower-case(.),'\.\p{Z}*a\p{P}\p{Z}*$')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'\.\p{Z}*a\p{P}\p{Z}*$')">
+      <xsl:if test="matches(lower-case(.),'\.\p{Z}*\p{P}?a(\p{Z}*[\p{Pd},&amp;]\p{Z}*[b-z])?\p{P}?\p{Z}*$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'\.\p{Z}*\p{P}?a(\p{Z}*[\p{Pd},&amp;]\p{Z}*[b-z])?\p{P}?\p{Z}*$')">
             <xsl:attribute name="id">fig-title-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
