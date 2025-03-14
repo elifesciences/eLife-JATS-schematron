@@ -5,6 +5,6 @@ Message: isbn contains an invalid ISBN - ''. Should it be captured as another ty
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <isbn>1844674428</isbn>
-    <isbn>978-1844674428</isbn>
+    <isbn>9781844674428</isbn>
   </article>
 </root>

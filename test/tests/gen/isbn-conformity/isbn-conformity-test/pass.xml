@@ -8,7 +8,7 @@ Message: pub-id contains an invalid ISBN - ''. Should it be captured as another 
       <pub-id pub-id-type="isbn">1844674428</pub-id>
     </element-citation>
     <element-citation>
-      <pub-id pub-id-type="isbn">978-1844674428</pub-id>
+      <pub-id pub-id-type="isbn">9781844674428</pub-id>
     </element-citation>
   </article>
 </root>
