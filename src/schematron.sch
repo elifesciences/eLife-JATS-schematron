@@ -50,22 +50,17 @@
     <xsl:param name="elem" as="node()"/>
     <xsl:choose>
       <xsl:when test="$elem/name()='article'">
-        <xsl:value-of select="e:is-prc-helper($elem)"/>
+        <xsl:choose>
+          <xsl:when test="$elem//article-meta/custom-meta-group/custom-meta[meta-name='publishing-route']/meta-value='prc'">
+            <xsl:value-of select="true()"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="false()"/>
+          </xsl:otherwise>  
+        </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="e:is-prc-helper($elem/ancestor::article[1])"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:function>
-  
-  <xsl:function name="e:is-prc-helper" as="xs:boolean">
-    <xsl:param name="article" as="node()"/>
-    <xsl:choose>
-      <xsl:when test="$article//article-meta/custom-meta-group/custom-meta[meta-name='publishing-route']/meta-value='prc'">
-        <xsl:value-of select="true()"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="false()"/>
+        <xsl:value-of select="e:is-prc($elem/ancestor::article[1])"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
