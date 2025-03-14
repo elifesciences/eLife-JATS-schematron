@@ -677,7 +677,14 @@
      </rule></pattern><pattern id="fig-title-checks-pattern"><rule context="fig/caption[p]/title" id="fig-title-checks">
         <report test="matches(lower-case(.),'\.\p{Z}*a\p{P}\p{Z}*$')" role="warning" id="fig-title-1">[fig-title-1] Title for figure ('<value-of select="ancestor::fig/label"/>') potentially ends with a panel label. Should it be moved to the start of the next paragraph? <value-of select="."/></report>
      </rule></pattern><pattern id="fig-caption-checks-pattern"><rule context="fig/caption" id="fig-caption-checks">
-        <report test="not(title) and (count(p) gt 1)" role="warning" id="fig-caption-1">[fig-caption-1] Caption for figure ('<value-of select="ancestor::fig/label"/>') doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
+        <let name="label" value="if (ancestor::fig/label) then ancestor::fig[1]/label[1] else 'unlabelled figure'"/>
+        <let name="is-revised-rp" value="if (ancestor::article//article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
+        
+        <report test="not($is-revised-rp) and matches(lower-case(.),'biorend[eo]r') and not(matches(lower-case(.),'biorender.com/[a-zA-Z0-9]+'))" role="warning" id="fig-biorender-check-v1">[fig-biorender-check-v1] Caption for <value-of select="$label"/> mentions bioRender, but it does not contain a BioRender figure link in the format "BioRender.com/{figure-code}".</report>
+        
+        <report test="$is-revised-rp and matches(lower-case(.),'biorend[eo]r') and not(matches(lower-case(.),'biorender.com/[a-zA-Z0-9]+'))" role="warning" id="fig-biorender-check-revised">[fig-biorender-check-revised] Caption for <value-of select="$label"/> mentions bioRender, but it does not contain a BioRender figure link in the format "BioRender.com/{figure-code}". Since this is a revised RP, check to see if the first (or a previous) version had bioRender links.</report>
+        
+        <report test="not(title) and (count(p) gt 1)" role="warning" id="fig-caption-1">[fig-caption-1] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
      </rule></pattern>
 
     <pattern id="table-wrap-checks-pattern"><rule context="table-wrap" id="table-wrap-checks">
