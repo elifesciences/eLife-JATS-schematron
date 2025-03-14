@@ -2529,6 +2529,16 @@
         <x:expect-report id="permissions-test-16" role="warning"/>
         <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="permissions-test-17-pass">
+        <x:context href="../tests/gen/cc-by-permissions-tests/permissions-test-17/pass.xml"/>
+        <x:expect-not-report id="permissions-test-17" role="warning"/>
+        <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="permissions-test-17-fail">
+        <x:context href="../tests/gen/cc-by-permissions-tests/permissions-test-17/fail.xml"/>
+        <x:expect-report id="permissions-test-17" role="warning"/>
+        <x:expect-not-assert id="cc-by-permissions-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="cc-0-permissions-tests">
       <x:scenario label="cc-0-test-1-pass">
