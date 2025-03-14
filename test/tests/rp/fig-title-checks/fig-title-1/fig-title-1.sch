@@ -12,7 +12,7 @@
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
   <ns uri="http://manuscriptexchange.org" prefix="meca"/>
-  <xsl:function name="e:isbn-sum" as="xs:integer">
+  <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
       <xsl:when test="string-length($s) = 10">
@@ -26,7 +26,8 @@
         <xsl:variable name="d8" select="number(substring($s,8,1)) * 3"/>
         <xsl:variable name="d9" select="number(substring($s,9,1)) * 2"/>
         <xsl:variable name="d10" select="number(substring($s,10,1)) * 1"/>
-        <xsl:value-of select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10) mod 11"/>
+        <xsl:variable name="sum" select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10) mod 11"/>
+        <xsl:value-of select="$sum = 0"/>
       </xsl:when>
       <xsl:when test="string-length($s) = 13">
         <xsl:variable name="d1" select="number(substring($s,1,1))"/>
@@ -42,10 +43,11 @@
         <xsl:variable name="d11" select="number(substring($s,11,1))"/>
         <xsl:variable name="d12" select="number(substring($s,12,1)) * 3"/>
         <xsl:variable name="d13" select="number(substring($s,13,1))"/>
-        <xsl:value-of select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10 + $d11 + $d12 + $d13) mod 10"/>
+        <xsl:variable name="sum" select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10 + $d11 + $d12 + $d13) mod 10"/>
+        <xsl:value-of select="$sum = 0"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="number('1')"/>
+        <xsl:value-of select="false()"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
@@ -202,7 +204,7 @@
   </xsl:function>
   <pattern id="fig-title-checks-pattern">
     <rule context="fig/caption[p]/title" id="fig-title-checks">
-      <report test="matches(lower-case(.),'\.\p{Z}*a\p{P}\p{Z}*$')" role="warning" id="fig-title-1">[fig-title-1] Title for figure ('<value-of select="ancestor::fig/label"/>') potentially ends with a panel label. Should it be moved to the start of the next paragraph? <value-of select="."/>
+      <report test="matches(lower-case(.),'\.\p{Z}*\p{P}?a(\p{Z}*[\p{Pd},&amp;]\p{Z}*[b-z])?\p{P}?\p{Z}*$')" role="warning" id="fig-title-1">[fig-title-1] Title for figure ('<value-of select="ancestor::fig/label"/>') potentially ends with a panel label. Should it be moved to the start of the next paragraph? <value-of select="."/>
       </report>
     </rule>
   </pattern>

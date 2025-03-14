@@ -12,7 +12,7 @@
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
   <ns uri="http://manuscriptexchange.org" prefix="meca"/>
-  <xsl:function name="e:isbn-sum" as="xs:integer">
+  <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
       <xsl:when test="string-length($s) = 10">
@@ -26,7 +26,8 @@
         <xsl:variable name="d8" select="number(substring($s,8,1)) * 3"/>
         <xsl:variable name="d9" select="number(substring($s,9,1)) * 2"/>
         <xsl:variable name="d10" select="number(substring($s,10,1)) * 1"/>
-        <xsl:value-of select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10) mod 11"/>
+        <xsl:variable name="sum" select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10) mod 11"/>
+        <xsl:value-of select="$sum = 0"/>
       </xsl:when>
       <xsl:when test="string-length($s) = 13">
         <xsl:variable name="d1" select="number(substring($s,1,1))"/>
@@ -42,10 +43,11 @@
         <xsl:variable name="d11" select="number(substring($s,11,1))"/>
         <xsl:variable name="d12" select="number(substring($s,12,1)) * 3"/>
         <xsl:variable name="d13" select="number(substring($s,13,1))"/>
-        <xsl:value-of select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10 + $d11 + $d12 + $d13) mod 10"/>
+        <xsl:variable name="sum" select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10 + $d11 + $d12 + $d13) mod 10"/>
+        <xsl:value-of select="$sum = 0"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="number('1')"/>
+        <xsl:value-of select="false()"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
@@ -202,7 +204,9 @@
   </xsl:function>
   <pattern id="fig-caption-checks-pattern">
     <rule context="fig/caption" id="fig-caption-checks">
-      <report test="not(title) and (count(p) gt 1)" role="warning" id="fig-caption-1">[fig-caption-1] Caption for figure ('<value-of select="ancestor::fig/label"/>') doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
+      <let name="label" value="if (ancestor::fig/label) then ancestor::fig[1]/label[1] else 'unlabelled figure'"/>
+      <let name="is-revised-rp" value="if (ancestor::article//article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
+      <report test="not(title) and (count(p) gt 1)" role="warning" id="fig-caption-1">[fig-caption-1] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

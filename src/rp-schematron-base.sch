@@ -24,7 +24,7 @@
     <ns uri="http://www.java.com/" prefix="java"/>
     <ns uri="http://manuscriptexchange.org" prefix="meca"/>
     
-    <xsl:function name="e:isbn-sum" as="xs:integer">
+    <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
       <xsl:when test="string-length($s) = 10">
@@ -38,7 +38,8 @@
         <xsl:variable name="d8" select="number(substring($s,8,1)) * 3"/>
         <xsl:variable name="d9" select="number(substring($s,9,1)) * 2"/>
         <xsl:variable name="d10" select="number(substring($s,10,1)) * 1"/>
-        <xsl:value-of select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10) mod 11"/>
+        <xsl:variable name="sum" select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10) mod 11"/>
+        <xsl:value-of select="$sum = 0"/>
       </xsl:when>
       <xsl:when test="string-length($s) = 13">
         <xsl:variable name="d1" select="number(substring($s,1,1))"/>
@@ -54,10 +55,11 @@
         <xsl:variable name="d11" select="number(substring($s,11,1))"/>
         <xsl:variable name="d12" select="number(substring($s,12,1)) * 3"/>
         <xsl:variable name="d13" select="number(substring($s,13,1))"/>
-        <xsl:value-of select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10 + $d11 + $d12 + $d13) mod 10"/>
+        <xsl:variable name="sum" select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7 + $d8 + $d9 + $d10 + $d11 + $d12 + $d13) mod 10"/>
+        <xsl:value-of select="$sum = 0"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="number('1')"/>
+        <xsl:value-of select="false()"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
@@ -899,9 +901,8 @@
 
       <rule context="ref//pub-id[@pub-id-type='isbn']|isbn" id="isbn-conformity">
         <let name="t" value="translate(.,'-','')"/>
-        <let name="sum" value="e:isbn-sum($t)"/>
       
-        <assert test="$sum = 0" 
+        <assert test="e:is-valid-isbn(.)" 
           role="error" 
           id="isbn-conformity-test"><name/> element contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of id?</assert>
       </rule>
@@ -1154,15 +1155,26 @@
      </rule>
       
       <rule context="fig/caption[p]/title" id="fig-title-checks">
-        <report test="matches(lower-case(.),'\.\p{Z}*a\p{P}\p{Z}*$')" 
+        <report test="matches(lower-case(.),'\.\p{Z}*\p{P}?a(\p{Z}*[\p{Pd},&amp;]\p{Z}*[b-z])?\p{P}?\p{Z}*$')" 
           role="warning" 
           id="fig-title-1">Title for figure ('<value-of select="ancestor::fig/label"/>') potentially ends with a panel label. Should it be moved to the start of the next paragraph? <value-of select="."/></report>
      </rule>
       
       <rule context="fig/caption" id="fig-caption-checks">
+        <let name="label" value="if (ancestor::fig/label) then ancestor::fig[1]/label[1] else 'unlabelled figure'"/>
+        <let name="is-revised-rp" value="if (ancestor::article//article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
+        
+        <report test="not($is-revised-rp) and matches(lower-case(.),'biorend[eo]r') and not(matches(lower-case(.),'biorender.com/[a-zA-Z0-9]+'))" 
+        role="warning" 
+        id="fig-biorender-check-v1">Caption for <value-of select="$label"/> mentions bioRender, but it does not contain a BioRender figure link in the format "BioRender.com/{figure-code}".</report>
+        
+        <report test="$is-revised-rp and matches(lower-case(.),'biorend[eo]r') and not(matches(lower-case(.),'biorender.com/[a-zA-Z0-9]+'))" 
+        role="warning" 
+        id="fig-biorender-check-revised">Caption for <value-of select="$label"/> mentions bioRender, but it does not contain a BioRender figure link in the format "BioRender.com/{figure-code}". Since this is a revised RP, check to see if the first (or a previous) version had bioRender links.</report>
+        
         <report test="not(title) and (count(p) gt 1)" 
           role="warning" 
-          id="fig-caption-1">Caption for figure ('<value-of select="ancestor::fig/label"/>') doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
+          id="fig-caption-1">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
      </rule>
     </pattern>
 
