@@ -3073,6 +3073,21 @@
                <xsl:text/>. That information is either tagged incorrectly, or the publication-type is wrong.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="lpage">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="lpage">
+            <xsl:attribute name="id">preprint-ref-lpage</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[preprint-ref-lpage] This preprint reference (<xsl:text/>
+               <xsl:value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>
+               <xsl:text/>) has an lpage element - <xsl:text/>
+               <xsl:value-of select="lpage"/>
+               <xsl:text/>. That information is either tagged incorrectly, or the publication-type is wrong.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M39"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M39"/>

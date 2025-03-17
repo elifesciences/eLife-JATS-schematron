@@ -664,6 +664,10 @@
        <report test="volume" 
         role="error" 
         id="preprint-ref-volume">This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a volume - <value-of select="volume"/>. That information is either tagged incorrectly, or the publication-type is wrong.</report>
+       
+       <report test="lpage" 
+        role="error" 
+        id="preprint-ref-lpage">This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has an lpage element - <value-of select="lpage"/>. That information is either tagged incorrectly, or the publication-type is wrong.</report>
      </rule>
       
       <rule context="mixed-citation[@publication-type='preprint']/source" id="preprint-source-checks">
