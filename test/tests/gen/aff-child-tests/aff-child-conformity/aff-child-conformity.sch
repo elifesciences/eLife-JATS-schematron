@@ -1393,7 +1393,7 @@
   <pattern id="article-metadata">
     <rule context="aff/*" id="aff-child-tests">
       <let name="allowed-elems" value="('label','institution','institution-wrap','addr-line','country')"/>
-      <assert test="name()=$allowed-elems" role="error" id="aff-child-conformity">
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hrsm6-aff-child-conformity" test="name()=$allowed-elems" role="error" id="aff-child-conformity">
         <value-of select="name()"/> is not allowed as a child of &lt;aff&gt;.</assert>
     </rule>
   </pattern>

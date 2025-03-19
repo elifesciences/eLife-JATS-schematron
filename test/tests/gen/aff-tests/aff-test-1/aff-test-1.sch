@@ -1392,7 +1392,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/contrib-group/aff" id="aff-tests">
-      <assert test="parent::contrib-group//contrib//xref/@rid = @id" role="error" id="aff-test-1">aff elements that are direct children of contrib-group must have an xref in that contrib-group pointing to them.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h5tdf-aff-test-1" test="parent::contrib-group//contrib//xref/@rid = @id" role="error" id="aff-test-1">aff elements that are direct children of contrib-group must have an xref in that contrib-group pointing to them.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

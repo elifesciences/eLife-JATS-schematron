@@ -1393,7 +1393,7 @@
   <pattern id="article-metadata">
     <rule context="aff//institution-wrap" id="aff-institution-wrap-tests">
       <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
-      <assert test="count(institution-id) = 1" role="error" id="aff-institution-wrap-test-4">institution-wrap must contain 1 and only 1 institution-id elements. This one has <value-of select="count(institution-id)"/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjf05-aff-institution-wrap-test-4" test="count(institution-id) = 1" role="error" id="aff-institution-wrap-test-4">institution-wrap must contain 1 and only 1 institution-id elements. This one has <value-of select="count(institution-id)"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1393,7 +1393,7 @@
   <pattern id="article-metadata">
     <rule context="aff//institution-wrap" id="aff-institution-wrap-tests">
       <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
-      <assert test="parent::aff" role="error" id="aff-institution-wrap-test-2">institution-wrap must be a child of aff. This one has <value-of select="parent::*/name()"/> as its parent.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h07qo-aff-institution-wrap-test-2" test="parent::aff" role="error" id="aff-institution-wrap-test-2">institution-wrap must be a child of aff. This one has <value-of select="parent::*/name()"/> as its parent.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

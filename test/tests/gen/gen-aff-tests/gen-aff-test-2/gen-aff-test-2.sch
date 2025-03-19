@@ -1393,7 +1393,7 @@
   <pattern id="article-metadata">
     <rule context="aff" id="gen-aff-tests">
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
-      <report test="count(institution[@content-type='dept']) + count(institution-wrap/institution[@content-type='dept']) ge 1" role="warning" id="gen-aff-test-2">Affiliation has <value-of select="count(institution[@content-type='dept']) + count(institution-wrap/institution[@content-type='dept'])"/> department field(s) - <value-of select="$display"/>. Is this correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hg0km-gen-aff-test-2" test="count(institution[@content-type='dept']) + count(institution-wrap/institution[@content-type='dept']) ge 1" role="warning" id="gen-aff-test-2">Affiliation has <value-of select="count(institution[@content-type='dept']) + count(institution-wrap/institution[@content-type='dept'])"/> department field(s) - <value-of select="$display"/>. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

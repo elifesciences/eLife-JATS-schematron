@@ -1395,7 +1395,7 @@
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'../../../../../src/countries.xml'"/>
       <let name="city" value="parent::aff/descendant::named-content[@content-type='city'][1]"/>
-      <report test="$text = 'United States of America'" role="error" id="united-states-test-1">
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h54ah-united-states-test-1" test="$text = 'United States of America'" role="error" id="united-states-test-1">
         <value-of select="."/> is not allowed. This should be 'United States'.</report>
     </rule>
   </pattern>

@@ -1395,7 +1395,7 @@
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'../../../../../src/countries.xml'"/>
       <let name="city" value="parent::aff/descendant::named-content[@content-type='city'][1]"/>
-      <report test="replace(.,'\p{P}','') = 'Democratic Peoples Republic of Korea'" role="warning" id="n-korea-test">Affiliation has '<value-of select="."/>' as its country which is very likely to be incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h2i0t-n-korea-test" test="replace(.,'\p{P}','') = 'Democratic Peoples Republic of Korea'" role="warning" id="n-korea-test">Affiliation has '<value-of select="."/>' as its country which is very likely to be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1393,7 +1393,7 @@
   <pattern id="house-style">
     <rule context="aff/institution[not(@*)]" id="institution-tests">
       <let name="city" value="parent::*/addr-line[1]/named-content[@content-type='city'][1]"/>
-      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia$')" role="error" id="UC-no-test1">
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hfc9g-uc-no-test-1" test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia$')" role="error" id="UC-no-test1">
         <value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California, ',$city)"/> (provided there is a city tagged).</report>
     </rule>
   </pattern>

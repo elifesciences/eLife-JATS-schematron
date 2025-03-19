@@ -8249,6 +8249,7 @@
       <xsl:if test="(@ref-type='aff') and preceding-sibling::xref[not(@ref-type='aff')]">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@ref-type='aff') and preceding-sibling::xref[not(@ref-type='aff')]">
             <xsl:attribute name="id">author-xref-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hzwb3-author-xref-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -8279,6 +8280,7 @@
       <xsl:if test="(@ref-type='fn') and contains(@rid,'pa') and following-sibling::xref[@ref-type='aff' or contains(@rid,'equal')]">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@ref-type='fn') and contains(@rid,'pa') and following-sibling::xref[@ref-type='aff' or contains(@rid,'equal')]">
             <xsl:attribute name="id">author-xref-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hzwb3-author-xref-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -8762,6 +8764,7 @@
       <xsl:if test="if ($subj-type = $notice-display-types) then ()        else if (collab) then ()        else if (ancestor::collab) then ()        else if ($type != 'author') then ()        else count(xref[@ref-type='aff']) = 0">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if ($subj-type = $notice-display-types) then () else if (collab) then () else if (ancestor::collab) then () else if ($type != 'author') then () else count(xref[@ref-type='aff']) = 0">
             <xsl:attribute name="id">contrib-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjuk3-contrib-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -8788,6 +8791,7 @@
       <xsl:if test="($type = 'senior_editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type = 'senior_editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)">
             <xsl:attribute name="id">contrib-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjuk3-contrib-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -8803,6 +8807,7 @@
       <xsl:if test="($type = 'editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($type = 'editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)">
             <xsl:attribute name="id">contrib-test-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjuk3-contrib-test-4</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11224,6 +11229,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="parent::contrib-group//contrib//xref/@rid = @id">
                <xsl:attribute name="id">aff-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h5tdf-aff-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11248,6 +11254,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="country">
                <xsl:attribute name="id">pre-auth-aff-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hdxya-pre-auth-aff-test-1</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11264,6 +11271,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="addr-line[named-content[@content-type='city']]">
                <xsl:attribute name="id">pre-auth-aff-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h7l30-pre-auth-aff-test-2</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11280,6 +11288,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="institution[not(@*)] or institution-wrap[institution[not(@*)]]">
                <xsl:attribute name="id">pre-auth-aff-test-3</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h2v3t-pre-auth-aff-test-3</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11308,6 +11317,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="institution-id and institution[not(@*)]">
                <xsl:attribute name="id">aff-institution-wrap-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hx5tv-aff-institution-wrap-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11325,6 +11335,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="parent::aff">
                <xsl:attribute name="id">aff-institution-wrap-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h07qo-aff-institution-wrap-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11339,6 +11350,7 @@
       <xsl:if test="text()">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="text()">
             <xsl:attribute name="id">aff-institution-wrap-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h07qo-aff-institution-wrap-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11352,6 +11364,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(institution-id) = 1">
                <xsl:attribute name="id">aff-institution-wrap-test-4</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjf05-aff-institution-wrap-test-4</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11368,6 +11381,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(institution[not(@*)]) = 1">
                <xsl:attribute name="id">aff-institution-wrap-test-5</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hfnxv-aff-institution-wrap-test-5</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11394,6 +11408,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@institution-id-type='ror'">
                <xsl:attribute name="id">aff-institution-id-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h9fxi-aff-institution-id-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11408,6 +11423,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'https?://ror\.org/[a-z0-9]{9}')">
                <xsl:attribute name="id">aff-institution-id-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hqr61-aff-institution-id-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11422,6 +11438,7 @@
       <xsl:if test="*">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*">
             <xsl:attribute name="id">aff-institution-id-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h6qq5-aff-institution-id-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11445,6 +11462,7 @@
       <xsl:if test="count(institution[not(@*)]) + count(institution-wrap/institution[not(@*)]) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(institution[not(@*)]) + count(institution-wrap/institution[not(@*)]) gt 1">
             <xsl:attribute name="id">gen-aff-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hxnmu-gen-aff-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11460,6 +11478,7 @@
       <xsl:if test="count(institution[@content-type='dept']) + count(institution-wrap/institution[@content-type='dept']) ge 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(institution[@content-type='dept']) + count(institution-wrap/institution[@content-type='dept']) ge 1">
             <xsl:attribute name="id">gen-aff-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hg0km-gen-aff-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11475,6 +11494,7 @@
       <xsl:if test="count(label) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(label) gt 1">
             <xsl:attribute name="id">gen-aff-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hnan2-gen-aff-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11490,6 +11510,7 @@
       <xsl:if test="count(addr-line) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(addr-line) gt 1">
             <xsl:attribute name="id">gen-aff-test-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h2vgk-gen-aff-test-4</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11505,6 +11526,7 @@
       <xsl:if test="count(country) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(country) gt 1">
             <xsl:attribute name="id">gen-aff-test-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hvgj9-gen-aff-test-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11520,6 +11542,7 @@
       <xsl:if test="text()">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="text()">
             <xsl:attribute name="id">gen-aff-test-6</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hf1l4-gen-aff-test-6</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11547,6 +11570,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="name()=$allowed-elems">
                <xsl:attribute name="id">aff-child-conformity</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hrsm6-aff-child-conformity</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11576,6 +11600,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="exists($matching-ror)">
                <xsl:attribute name="id">aff-ror</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hentg-aff-ror</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11592,6 +11617,7 @@
       <xsl:if test="exists($matching-ror) and not(contains(institution-wrap[1]/institution[1],$matching-ror/*:name))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="exists($matching-ror) and not(contains(institution-wrap[1]/institution[1],$matching-ror/*:name))">
             <xsl:attribute name="id">aff-ror-name</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#htfjl-aff-ror-name</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11607,6 +11633,7 @@
       <xsl:if test="(addr-line/named-content[@content-type='city'] or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(addr-line[1]/named-content[@content-type='city'][1],$matching-ror/*:city))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(addr-line/named-content[@content-type='city'] or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(addr-line[1]/named-content[@content-type='city'][1],$matching-ror/*:city))">
             <xsl:attribute name="id">aff-ror-city</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hm6cn-aff-ror-city</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11622,6 +11649,7 @@
       <xsl:if test="(country or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(country[1],$matching-ror/*:country))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(country or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(country[1],$matching-ror/*:country))">
             <xsl:attribute name="id">aff-ror-country</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hux4f-aff-ror-country</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11649,6 +11677,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="parent::aff">
                <xsl:attribute name="id">addr-line-parent</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjjnh-addr-line-parent</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11677,6 +11706,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="name()='named-content'">
                <xsl:attribute name="id">addr-line-child-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h1gbm-addr-line-child-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -11691,6 +11721,7 @@
       <xsl:if test="(name()='named-content') and not(@content-type='city')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(name()='named-content') and not(@content-type='city')">
             <xsl:attribute name="id">addr-line-child-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hoyaj-addr-line-child-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -13367,6 +13398,7 @@
       <xsl:if test="(@ref-type='aff') and ($target/local-name() != 'aff')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@ref-type='aff') and ($target/local-name() != 'aff')">
             <xsl:attribute name="id">aff-xref-target-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hkftz-aff-xref-target-test</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17563,6 +17595,7 @@
       <xsl:if test="some $x in preceding::aff/label satisfies (replace($x,'\p{P}','') = $label-2)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $x in preceding::aff/label satisfies (replace($x,'\p{P}','') = $label-2)">
             <xsl:attribute name="id">aff-label-conformance-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hw7yy-aff-label-conformance-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -20978,6 +21011,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (label) then @id = concat('aff',label[1]) else starts-with(@id,'aff')">
                <xsl:attribute name="id">aff-id-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h2lcw-aff-id-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36620,6 +36654,7 @@
       <xsl:if test="$text = 'United States of America'">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$text = 'United States of America'">
             <xsl:attribute name="id">united-states-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h54ah-united-states-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36633,6 +36668,7 @@
       <xsl:if test="$text = 'USA'">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$text = 'USA'">
             <xsl:attribute name="id">united-states-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hvgkz-united-states-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36646,6 +36682,7 @@
       <xsl:if test="$text = 'UK'">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$text = 'UK'">
             <xsl:attribute name="id">united-kingdom-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hko11-united-kingdom-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36661,6 +36698,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$text = document($countries)/countries/country">
                <xsl:attribute name="id">gen-country-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hulu7-gen-country-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36675,6 +36713,7 @@
       <xsl:if test="(. = 'Singapore') and ($city != 'Singapore')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(. = 'Singapore') and ($city != 'Singapore')">
             <xsl:attribute name="id">singapore-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hiz90-singapore-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36690,6 +36729,7 @@
       <xsl:if test="(. != 'Taiwan') and  (matches(lower-case($city),'ta[i]?pei|tai\p{Zs}?chung|kaohsiung|taoyuan|tainan|hsinchu|keelung|chiayi|changhua|jhongli|tao-yuan|hualien'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(. != 'Taiwan') and (matches(lower-case($city),'ta[i]?pei|tai\p{Zs}?chung|kaohsiung|taoyuan|tainan|hsinchu|keelung|chiayi|changhua|jhongli|tao-yuan|hualien'))">
             <xsl:attribute name="id">taiwan-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hyh7x-taiwan-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36705,6 +36745,7 @@
       <xsl:if test="(. != 'Republic of Korea') and  (matches(lower-case($city),'chuncheon|gyeongsan|daejeon|seoul|daegu|gwangju|ansan|goyang|suwon|gwanju|ochang|wonju|jeonnam|cheongju|ulsan|inharo|chonnam|miryang|pohang|deagu|gwangjin-gu|gyeonggi-do|incheon|gimhae|gyungnam|muan-gun|chungbuk|chungnam|ansung|cheongju-si'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(. != 'Republic of Korea') and (matches(lower-case($city),'chuncheon|gyeongsan|daejeon|seoul|daegu|gwangju|ansan|goyang|suwon|gwanju|ochang|wonju|jeonnam|cheongju|ulsan|inharo|chonnam|miryang|pohang|deagu|gwangjin-gu|gyeonggi-do|incheon|gimhae|gyungnam|muan-gun|chungbuk|chungnam|ansung|cheongju-si'))">
             <xsl:attribute name="id">s-korea-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h44n1-s-korea-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36720,6 +36761,7 @@
       <xsl:if test="replace(.,'\p{P}','') = 'Democratic Peoples Republic of Korea'">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="replace(.,'\p{P}','') = 'Democratic Peoples Republic of Korea'">
             <xsl:attribute name="id">n-korea-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h2i0t-n-korea-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36744,6 +36786,7 @@
       <xsl:if test="matches($lc,$states-regex)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,$states-regex)">
             <xsl:attribute name="id">pre-US-states-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hh80v-pre-us-states-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36757,6 +36800,7 @@
       <xsl:if test="(. = 'Singapore') and (ancestor::aff/country/text() != 'Singapore')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(. = 'Singapore') and (ancestor::aff/country/text() != 'Singapore')">
             <xsl:attribute name="id">singapore-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h4yk9-singapore-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36772,6 +36816,7 @@
       <xsl:if test="(lower-case(.) = 'washington') and (ancestor::aff/country/text() = 'United States')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(lower-case(.) = 'washington') and (ancestor::aff/country/text() = 'United States')">
             <xsl:attribute name="id">wash-dc-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h54dm-wash-dc-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36785,6 +36830,7 @@
       <xsl:if test="matches(.,'�')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'�')">
             <xsl:attribute name="id">city-replacement-character-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hxtjh-city-replacement-character-presence</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36798,6 +36844,7 @@
       <xsl:if test="matches(.,'\d')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\d')">
             <xsl:attribute name="id">city-number-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hbjgo-city-number-presence</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36811,6 +36858,7 @@
       <xsl:if test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')">
             <xsl:attribute name="id">city-street-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hra66-city-street-presence</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36834,6 +36882,7 @@
       <xsl:if test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia$')">
             <xsl:attribute name="id">UC-no-test1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hfc9g-uc-no-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36849,6 +36898,7 @@
       <xsl:if test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city !='') and not(contains(.,$city))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city !='') and not(contains(.,$city))">
             <xsl:attribute name="id">UC-no-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hgke7-uc-no-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36868,6 +36918,7 @@
       <xsl:if test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city='La Jolla')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city='La Jolla')">
             <xsl:attribute name="id">UC-no-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hw55n-uc-no-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36885,6 +36936,7 @@
       <xsl:if test="matches(.,'�')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'�')">
             <xsl:attribute name="id">institution-replacement-character-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hc48u-institution-replacement-character-presence</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36898,6 +36950,7 @@
       <xsl:if test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')">
             <xsl:attribute name="id">institution-street-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h69nr-institution-street-presence</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36911,6 +36964,7 @@
       <xsl:if test="matches(replace(lower-case(.),'(texas a\s*&amp;\s*m|hygiene &amp; tropical|r\s*&amp;\s*d)',''),'&amp;')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(replace(lower-case(.),'(texas a\s*&amp;\s*m|hygiene &amp; tropical|r\s*&amp;\s*d)',''),'&amp;')">
             <xsl:attribute name="id">institution-ampersand-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hs0dc-institution-ampersand-presence</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -36934,6 +36988,7 @@
       <xsl:if test="contains(.,'�')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'�')">
             <xsl:attribute name="id">dept-replacement-character-presence</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hd64t-dept-replacement-character-presence</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>

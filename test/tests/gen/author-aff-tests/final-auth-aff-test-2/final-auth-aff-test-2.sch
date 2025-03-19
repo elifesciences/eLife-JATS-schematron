@@ -1393,7 +1393,7 @@
   <pattern id="article-metadata">
     <rule context="article-meta/contrib-group[not(@*)]//aff" id="author-aff-tests">
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
-      <assert test="addr-line[named-content[@content-type='city']]" role="error" id="final-auth-aff-test-2">Author affiliations must have a city. This one does not - <value-of select="$display"/>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hzqn1-final-auth-aff-test-2" test="addr-line[named-content[@content-type='city']]" role="error" id="final-auth-aff-test-2">Author affiliations must have a city. This one does not - <value-of select="$display"/>
       </assert>
     </rule>
   </pattern>

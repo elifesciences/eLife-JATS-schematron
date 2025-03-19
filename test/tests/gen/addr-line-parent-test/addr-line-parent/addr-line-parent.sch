@@ -1392,7 +1392,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="addr-line" id="addr-line-parent-test">
-      <assert test="parent::aff" role="error" id="addr-line-parent">
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjjnh-addr-line-parent" test="parent::aff" role="error" id="addr-line-parent">
         <value-of select="name()"/> is not allowed as a child of &lt;<value-of select="parent::*[1]/local-name()"/>&gt;.</assert>
     </rule>
   </pattern>

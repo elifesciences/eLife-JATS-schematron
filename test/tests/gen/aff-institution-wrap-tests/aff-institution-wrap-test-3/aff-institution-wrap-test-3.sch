@@ -1393,7 +1393,7 @@
   <pattern id="article-metadata">
     <rule context="aff//institution-wrap" id="aff-institution-wrap-tests">
       <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
-      <report test="text()" role="error" id="aff-institution-wrap-test-3">institution-wrap cannot contain text. It can only contain elements.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h07qo-aff-institution-wrap-test-3" test="text()" role="error" id="aff-institution-wrap-test-3">institution-wrap cannot contain text. It can only contain elements.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

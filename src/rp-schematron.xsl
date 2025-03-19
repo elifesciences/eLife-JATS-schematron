@@ -3888,7 +3888,7 @@
                <xsl:value-of select="name(.)"/>
                <xsl:text/>
                <xsl:text/>
-               <xsl:value-of select="if (@pub-id-type) then concat('with a pub-id-type ',@pub-id-type) else 'with no pub-id-type'"/>
+               <xsl:value-of select="if (@pub-id-type) then concat(' with a pub-id-type ',@pub-id-type) else 'with no pub-id-type'"/>
                <xsl:text/> (<xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>). This must be incorrect. Either the publication-type for the reference needs changing, or the pub-id should be changed to another element.</svrl:text>
