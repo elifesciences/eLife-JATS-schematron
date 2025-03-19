@@ -1820,11 +1820,11 @@
       <assert test="empty($auth-and-member)" role="warning" id="auth-and-member-test">[auth-and-member-test] Top level author(s) <value-of select="if (count($auth-and-member) gt 1) then concat(string-join($auth-and-member[position() != last()],', '),' and ',$auth-and-member[last()]) else $auth-and-member"/> are also a member of a group author. Is this correct?</assert>
     </rule></pattern><pattern id="author-xref-tests-pattern"><rule context="article-meta//contrib[@contrib-type='author']/xref" id="author-xref-tests">
       
-      <report test="(@ref-type='aff') and preceding-sibling::xref[not(@ref-type='aff')]" role="error" id="author-xref-test-1">[author-xref-test-1] Affiliation footnote links (xrefs) from authors must be the first type of link to be listed. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their affiliation link - <value-of select="."/> - appears after another non-affiliation link, when it should appear before it.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hzwb3-author-xref-test-1" test="(@ref-type='aff') and preceding-sibling::xref[not(@ref-type='aff')]" role="error" id="author-xref-test-1">[author-xref-test-1] Affiliation footnote links (xrefs) from authors must be the first type of link to be listed. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their affiliation link - <value-of select="."/> - appears after another non-affiliation link, when it should appear before it.</report>
       
       <report test="(@ref-type='fn') and contains(@rid,'equal') and preceding-sibling::xref[not(@ref-type='aff')]" role="error" id="author-xref-test-2">[author-xref-test-2] Equal contribution links from authors must appear after affiliation footnote links. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their equal contribution link (to <value-of select="idref(@rid)"/>) appears after another non-affiliation link, when it should appear before it.</report>
       
-      <report test="(@ref-type='fn') and contains(@rid,'pa') and following-sibling::xref[@ref-type='aff' or contains(@rid,'equal')]" role="error" id="author-xref-test-3">[author-xref-test-3] Present address type footnote links from authors must appear after affiliation and equal contribution links (if there is one). For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their present address link (to <value-of select="idref(@rid)"/>) appears before an affiliation link or equal contribution link.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hzwb3-author-xref-test-3" test="(@ref-type='fn') and contains(@rid,'pa') and following-sibling::xref[@ref-type='aff' or contains(@rid,'equal')]" role="error" id="author-xref-test-3">[author-xref-test-3] Present address type footnote links from authors must appear after affiliation and equal contribution links (if there is one). For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their present address link (to <value-of select="idref(@rid)"/>) appears before an affiliation link or equal contribution link.</report>
       
       <report test="contains(@rid,'dataset')" role="error" id="author-xref-test-4">[author-xref-test-4] Author footnote links to datasets are not needed. Please remove this - &lt;xref <value-of select="string-join(for $x in self::*/@* return concat($x/name(),'=&quot;',$x,'&quot;'),' ')"/>/&gt;</report>
     </rule></pattern><pattern id="name-tests-pattern"><rule context="contrib-group//name" id="name-tests">
@@ -1915,13 +1915,13 @@
 	  <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
 		
 		<!-- Subject to change depending of the affiliation markup of group authors and editors. Currently fires for individual group contributors and editors who do not have either a child aff or a child xref pointing to an aff.  -->
-    	<report test="if ($subj-type = $notice-display-types) then ()        else if (collab) then ()        else if (ancestor::collab) then ()        else if ($type != 'author') then ()        else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">[contrib-test-1] Authors should have at least 1 link to an affiliation. <value-of select="$name"/> does not.</report>
+    	<report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjuk3-contrib-test-1" test="if ($subj-type = $notice-display-types) then ()        else if (collab) then ()        else if (ancestor::collab) then ()        else if ($type != 'author') then ()        else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">[contrib-test-1] Authors should have at least 1 link to an affiliation. <value-of select="$name"/> does not.</report>
 	  
 	  <report test="if ($subj-type = $notice-display-types) then ()            else if ($type != 'author') then ()            else if (collab) then ()            else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)            else ()" role="warning" id="contrib-test-5">[contrib-test-5] Group author members should likely have an affiliation. <value-of select="$name"/> does not. Is this OK?</report>
 	  
-	  <report test="($type = 'senior_editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="warning" id="contrib-test-2">[contrib-test-2] The <value-of select="role[1]"/> doesn't have an affiliation - <value-of select="$name"/> - is this correct? Exeter: If it is not present in the eJP output, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</report>
+	  <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjuk3-contrib-test-2" test="($type = 'senior_editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="warning" id="contrib-test-2">[contrib-test-2] The <value-of select="role[1]"/> doesn't have an affiliation - <value-of select="$name"/> - is this correct? Exeter: If it is not present in the eJP output, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</report>
 	  
-	  <report test="($type = 'editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="error" id="contrib-test-4">[contrib-test-4] The <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP output, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</report>
+	  <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjuk3-contrib-test-4" test="($type = 'editor') and (count(xref[@ref-type='aff']) + count(aff) = 0)" role="error" id="contrib-test-4">[contrib-test-4] The <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP output, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</report>
 	  
 	     <report test="name and collab" role="error" id="contrib-test-3">[contrib-test-3] author contains both a child name and a child collab. This is not correct.</report>
 	  
@@ -2320,60 +2320,60 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#final-abstract-word-count-restriction" test="($count gt 300)" role="warning" id="final-abstract-word-count-restriction">[final-abstract-word-count-restriction] The abstract contains <value-of select="$count"/> words, when the usual upper limit is 300. Abstracts with more than 280 words should be checked with the eLife Editorial team.</report>
 	   </rule></pattern><pattern id="aff-tests-pattern"><rule context="article-meta/contrib-group/aff" id="aff-tests">
       
-    <assert test="parent::contrib-group//contrib//xref/@rid = @id" role="error" id="aff-test-1">[aff-test-1] aff elements that are direct children of contrib-group must have an xref in that contrib-group pointing to them.</assert>
+    <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h5tdf-aff-test-1" test="parent::contrib-group//contrib//xref/@rid = @id" role="error" id="aff-test-1">[aff-test-1] aff elements that are direct children of contrib-group must have an xref in that contrib-group pointing to them.</assert>
     </rule></pattern><pattern id="author-aff-tests-pattern"><rule context="article-meta/contrib-group[not(@*)]//aff" id="author-aff-tests">
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
       
       
       
-      <assert test="country" role="error" id="final-auth-aff-test-1">[final-auth-aff-test-1] Author affiliations must have a country. This one does not - <value-of select="$display"/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hdxya-final-auth-aff-test-1" test="country" role="error" id="final-auth-aff-test-1">[final-auth-aff-test-1] Author affiliations must have a country. This one does not - <value-of select="$display"/>.</assert>
       
       
       
-      <assert test="addr-line[named-content[@content-type='city']]" role="error" id="final-auth-aff-test-2">[final-auth-aff-test-2] Author affiliations must have a city. This one does not - <value-of select="$display"/></assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hzqn1-final-auth-aff-test-2" test="addr-line[named-content[@content-type='city']]" role="error" id="final-auth-aff-test-2">[final-auth-aff-test-2] Author affiliations must have a city. This one does not - <value-of select="$display"/></assert>
       
       
       
-      <assert test="institution[not(@*)] or institution-wrap[institution[not(@*)]]" role="error" id="final-auth-aff-test-3">[final-auth-aff-test-3] Author affiliations (&lt;aff&gt;) must include an &gt;institution&gt; tag. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/></assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h60a2-final-auth-aff-test-3" test="institution[not(@*)] or institution-wrap[institution[not(@*)]]" role="error" id="final-auth-aff-test-3">[final-auth-aff-test-3] Author affiliations (&lt;aff&gt;) must include an &gt;institution&gt; tag. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/></assert>
     </rule></pattern><pattern id="aff-institution-wrap-tests-pattern"><rule context="aff//institution-wrap" id="aff-institution-wrap-tests">
       <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
       
-      <assert test="institution-id and institution[not(@*)]" role="error" id="aff-institution-wrap-test-1">[aff-institution-wrap-test-1] If an affiliation has an institution wrap, then it must have both an institution-id and an institution. If there is no ROR for this institution, then it should be captured as a single institution element without institution-wrap. This institution-wrap does not have both elements - <value-of select="$display"/></assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hx5tv-aff-institution-wrap-test-1" test="institution-id and institution[not(@*)]" role="error" id="aff-institution-wrap-test-1">[aff-institution-wrap-test-1] If an affiliation has an institution wrap, then it must have both an institution-id and an institution. If there is no ROR for this institution, then it should be captured as a single institution element without institution-wrap. This institution-wrap does not have both elements - <value-of select="$display"/></assert>
       
-      <assert test="parent::aff" role="error" id="aff-institution-wrap-test-2">[aff-institution-wrap-test-2] institution-wrap must be a child of aff. This one has <value-of select="parent::*/name()"/> as its parent.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h07qo-aff-institution-wrap-test-2" test="parent::aff" role="error" id="aff-institution-wrap-test-2">[aff-institution-wrap-test-2] institution-wrap must be a child of aff. This one has <value-of select="parent::*/name()"/> as its parent.</assert>
       
-      <report test="text()" role="error" id="aff-institution-wrap-test-3">[aff-institution-wrap-test-3] institution-wrap cannot contain text. It can only contain elements.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h07qo-aff-institution-wrap-test-3" test="text()" role="error" id="aff-institution-wrap-test-3">[aff-institution-wrap-test-3] institution-wrap cannot contain text. It can only contain elements.</report>
       
-      <assert test="count(institution-id) = 1" role="error" id="aff-institution-wrap-test-4">[aff-institution-wrap-test-4] institution-wrap must contain 1 and only 1 institution-id elements. This one has <value-of select="count(institution-id)"/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjf05-aff-institution-wrap-test-4" test="count(institution-id) = 1" role="error" id="aff-institution-wrap-test-4">[aff-institution-wrap-test-4] institution-wrap must contain 1 and only 1 institution-id elements. This one has <value-of select="count(institution-id)"/>.</assert>
       
-      <assert test="count(institution[not(@*)]) = 1" role="error" id="aff-institution-wrap-test-5">[aff-institution-wrap-test-5] institution-wrap must contain 1 and only 1 institution elements. This one has <value-of select="count(institution[not(@*)])"/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hfnxv-aff-institution-wrap-test-5" test="count(institution[not(@*)]) = 1" role="error" id="aff-institution-wrap-test-5">[aff-institution-wrap-test-5] institution-wrap must contain 1 and only 1 institution elements. This one has <value-of select="count(institution[not(@*)])"/>.</assert>
       
     </rule></pattern><pattern id="aff-institution-id-tests-pattern"><rule context="aff//institution-id" id="aff-institution-id-tests">
       
-      <assert test="@institution-id-type='ror'" role="error" id="aff-institution-id-test-1">[aff-institution-id-test-1] institution-id in aff must have the attribute institution-id-type="ror".</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h9fxi-aff-institution-id-test-1" test="@institution-id-type='ror'" role="error" id="aff-institution-id-test-1">[aff-institution-id-test-1] institution-id in aff must have the attribute institution-id-type="ror".</assert>
       
-      <assert test="matches(.,'https?://ror\.org/[a-z0-9]{9}')" role="error" id="aff-institution-id-test-2">[aff-institution-id-test-2] institution-id in aff must a value which is a valid ROR id. '<value-of select="."/>' is not a valid ROR id.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hqr61-aff-institution-id-test-2" test="matches(.,'https?://ror\.org/[a-z0-9]{9}')" role="error" id="aff-institution-id-test-2">[aff-institution-id-test-2] institution-id in aff must a value which is a valid ROR id. '<value-of select="."/>' is not a valid ROR id.</assert>
       
-      <report test="*" role="error" id="aff-institution-id-test-3">[aff-institution-id-test-3] institution-id in aff cannot contain elements, only text (which is a valid ROR id). This one contains the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h6qq5-aff-institution-id-test-3" test="*" role="error" id="aff-institution-id-test-3">[aff-institution-id-test-3] institution-id in aff cannot contain elements, only text (which is a valid ROR id). This one contains the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
       
     </rule></pattern><pattern id="gen-aff-tests-pattern"><rule context="aff" id="gen-aff-tests">
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
       
-      <report test="count(institution[not(@*)]) + count(institution-wrap/institution[not(@*)]) gt 1" role="error" id="gen-aff-test-1">[gen-aff-test-1] Affiliations cannot have more than 1 top level institutions. <value-of select="$display"/> has <value-of select="count(institution[not(@*)]) + count(institution-wrap/institution[not(@*)])"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hxnmu-gen-aff-test-1" test="count(institution[not(@*)]) + count(institution-wrap/institution[not(@*)]) gt 1" role="error" id="gen-aff-test-1">[gen-aff-test-1] Affiliations cannot have more than 1 top level institutions. <value-of select="$display"/> has <value-of select="count(institution[not(@*)]) + count(institution-wrap/institution[not(@*)])"/>.</report>
     
-      <report test="count(institution[@content-type='dept']) + count(institution-wrap/institution[@content-type='dept']) ge 1" role="warning" id="gen-aff-test-2">[gen-aff-test-2] Affiliation has <value-of select="count(institution[@content-type='dept']) + count(institution-wrap/institution[@content-type='dept'])"/> department field(s) - <value-of select="$display"/>. Is this correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hg0km-gen-aff-test-2" test="count(institution[@content-type='dept']) + count(institution-wrap/institution[@content-type='dept']) ge 1" role="warning" id="gen-aff-test-2">[gen-aff-test-2] Affiliation has <value-of select="count(institution[@content-type='dept']) + count(institution-wrap/institution[@content-type='dept'])"/> department field(s) - <value-of select="$display"/>. Is this correct?</report>
       
-      <report test="count(label) gt 1" role="error" id="gen-aff-test-3">[gen-aff-test-3] Affiliations cannot have more than 1 label. <value-of select="$display"/> has <value-of select="count(label)"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hnan2-gen-aff-test-3" test="count(label) gt 1" role="error" id="gen-aff-test-3">[gen-aff-test-3] Affiliations cannot have more than 1 label. <value-of select="$display"/> has <value-of select="count(label)"/>.</report>
       
-      <report test="count(addr-line) gt 1" role="error" id="gen-aff-test-4">[gen-aff-test-4] Affiliations cannot have more than 1 addr-line elements. <value-of select="$display"/> has <value-of select="count(addr-line)"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h2vgk-gen-aff-test-4" test="count(addr-line) gt 1" role="error" id="gen-aff-test-4">[gen-aff-test-4] Affiliations cannot have more than 1 addr-line elements. <value-of select="$display"/> has <value-of select="count(addr-line)"/>.</report>
       
-      <report test="count(country) gt 1" role="error" id="gen-aff-test-5">[gen-aff-test-5] Affiliations cannot have more than 1 country elements. <value-of select="$display"/> has <value-of select="count(country)"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hvgj9-gen-aff-test-5" test="count(country) gt 1" role="error" id="gen-aff-test-5">[gen-aff-test-5] Affiliations cannot have more than 1 country elements. <value-of select="$display"/> has <value-of select="count(country)"/>.</report>
       
-      <report test="text()" role="error" id="gen-aff-test-6">[gen-aff-test-6] aff elements cannot contain text. They can only contain elements (label, institution, addr-line, country). This one (<value-of select="@id"/>) contains the text '<value-of select="string-join(text(),'')"/>'</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hf1l4-gen-aff-test-6" test="text()" role="error" id="gen-aff-test-6">[gen-aff-test-6] aff elements cannot contain text. They can only contain elements (label, institution, addr-line, country). This one (<value-of select="@id"/>) contains the text '<value-of select="string-join(text(),'')"/>'</report>
     </rule></pattern><pattern id="aff-child-tests-pattern"><rule context="aff/*" id="aff-child-tests">
       <let name="allowed-elems" value="('label','institution','institution-wrap','addr-line','country')"/>
       
-      <assert test="name()=$allowed-elems" role="error" id="aff-child-conformity">[aff-child-conformity] <value-of select="name()"/> is not allowed as a child of &lt;aff&gt;.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hrsm6-aff-child-conformity" test="name()=$allowed-elems" role="error" id="aff-child-conformity">[aff-child-conformity] <value-of select="name()"/> is not allowed as a child of &lt;aff&gt;.</assert>
       
     </rule></pattern><pattern id="aff-ror-tests-pattern"><rule context="aff[institution-wrap/institution-id[@institution-id-type='ror']]" id="aff-ror-tests">
       <let name="rors" value="'rors.xml'"/>
@@ -2381,22 +2381,22 @@
       <let name="matching-ror" value="document($rors)//*:ror[*:id=$ror]"/>
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
       
-      <assert test="exists($matching-ror)" role="warning" id="aff-ror">[aff-ror] Affiliation (<value-of select="$display"/>) has a ROR id - <value-of select="$ror"/> - but it does not look like a correct one.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hentg-aff-ror" test="exists($matching-ror)" role="warning" id="aff-ror">[aff-ror] Affiliation (<value-of select="$display"/>) has a ROR id - <value-of select="$ror"/> - but it does not look like a correct one.</assert>
       
-      <report test="exists($matching-ror) and not(contains(institution-wrap[1]/institution[1],$matching-ror/*:name))" role="warning" id="aff-ror-name">[aff-ror-name] Affiliation has a ROR id, but it does not contain the name of the institution as captured in the ROR data within its institution. Is that OK? ROR has '<value-of select="$matching-ror/*:name"/>', but the institution is <value-of select="institution-wrap[1]/institution[1]"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#htfjl-aff-ror-name" test="exists($matching-ror) and not(contains(institution-wrap[1]/institution[1],$matching-ror/*:name))" role="warning" id="aff-ror-name">[aff-ror-name] Affiliation has a ROR id, but it does not contain the name of the institution as captured in the ROR data within its institution. Is that OK? ROR has '<value-of select="$matching-ror/*:name"/>', but the institution is <value-of select="institution-wrap[1]/institution[1]"/>.</report>
       
-      <report test="(addr-line/named-content[@content-type='city'] or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(addr-line[1]/named-content[@content-type='city'][1],$matching-ror/*:city))" role="warning" id="aff-ror-city">[aff-ror-city] Affiliation has a ROR id, but its city is not the same one as in the ROR data. Is that OK? ROR has '<value-of select="$matching-ror/*:city"/>', but the affiliation city is <value-of select="addr-line[1]/named-content[@content-type='city'][1]"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hm6cn-aff-ror-city" test="(addr-line/named-content[@content-type='city'] or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(addr-line[1]/named-content[@content-type='city'][1],$matching-ror/*:city))" role="warning" id="aff-ror-city">[aff-ror-city] Affiliation has a ROR id, but its city is not the same one as in the ROR data. Is that OK? ROR has '<value-of select="$matching-ror/*:city"/>', but the affiliation city is <value-of select="addr-line[1]/named-content[@content-type='city'][1]"/>.</report>
       
-      <report test="(country or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(country[1],$matching-ror/*:country))" role="warning" id="aff-ror-country">[aff-ror-country] Affiliation has a ROR id, but its country is not the same one as in the ROR data. Is that OK? ROR has '<value-of select="$matching-ror/*:country"/>', but the affiliation country is <value-of select="country[1]"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hux4f-aff-ror-country" test="(country or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(country[1],$matching-ror/*:country))" role="warning" id="aff-ror-country">[aff-ror-country] Affiliation has a ROR id, but its country is not the same one as in the ROR data. Is that OK? ROR has '<value-of select="$matching-ror/*:country"/>', but the affiliation country is <value-of select="country[1]"/>.</report>
       
     </rule></pattern><pattern id="addr-line-parent-test-pattern"><rule context="addr-line" id="addr-line-parent-test">
       
-      <assert test="parent::aff" role="error" id="addr-line-parent">[addr-line-parent] <value-of select="name()"/> is not allowed as a child of &lt;<value-of select="parent::*[1]/local-name()"/>&gt;.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjjnh-addr-line-parent" test="parent::aff" role="error" id="addr-line-parent">[addr-line-parent] <value-of select="name()"/> is not allowed as a child of &lt;<value-of select="parent::*[1]/local-name()"/>&gt;.</assert>
     </rule></pattern><pattern id="addr-line-child-tests-pattern"><rule context="addr-line/*" id="addr-line-child-tests">
       
-      <assert test="name()='named-content'" role="error" id="addr-line-child-1">[addr-line-child-1] <value-of select="name()"/> is not allowed as a child of &lt;addr-line&gt;.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h1gbm-addr-line-child-1" test="name()='named-content'" role="error" id="addr-line-child-1">[addr-line-child-1] <value-of select="name()"/> is not allowed as a child of &lt;addr-line&gt;.</assert>
       
-      <report test="(name()='named-content') and not(@content-type='city')" role="error" id="addr-line-child-2">[addr-line-child-2] <value-of select="name()"/> in &lt;addr-line&gt; must have the attribute content-type="city". <value-of select="."/> does not.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hoyaj-addr-line-child-2" test="(name()='named-content') and not(@content-type='city')" role="error" id="addr-line-child-2">[addr-line-child-2] <value-of select="name()"/> in &lt;addr-line&gt; must have the attribute content-type="city". <value-of select="."/> does not.</report>
     </rule></pattern><pattern id="funding-group-tests-pattern"><rule context="article-meta/funding-group" id="funding-group-tests">
 		
 		<assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#funding-group-test-1" test="count(funding-statement) = 1" role="error" id="funding-group-test-1">[funding-group-test-1] One funding-statement should be present in funding-group.</assert>
@@ -2698,7 +2698,7 @@
       <let name="rid" value="tokenize(@rid,' ')[1]"/>
       <let name="target" value="self::*/ancestor::article//*[@id = $rid]"/>
       
-      <report test="(@ref-type='aff') and ($target/local-name() != 'aff')" role="error" id="aff-xref-target-test">[aff-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hkftz-aff-xref-target-test" test="(@ref-type='aff') and ($target/local-name() != 'aff')" role="error" id="aff-xref-target-test">[aff-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
       <report test="(@ref-type='fn') and ($target/local-name() != 'fn')" role="error" id="fn-xref-target-test">[fn-xref-target-test] xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
@@ -3390,7 +3390,7 @@
     </rule></pattern><pattern id="aff-label-tests-pattern"><rule context="aff/label" id="aff-label-tests">
       <let name="label-2" value="replace(.,'\p{P}','')"/>
       
-      <report test="some $x in preceding::aff/label satisfies (replace($x,'\p{P}','') = $label-2)" role="error" id="aff-label-conformance-1">[aff-label-conformance-1] Duplicated affiliation labels - <value-of select="."/> is present more than once.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hw7yy-aff-label-conformance-1" test="some $x in preceding::aff/label satisfies (replace($x,'\p{P}','') = $label-2)" role="error" id="aff-label-conformance-1">[aff-label-conformance-1] Duplicated affiliation labels - <value-of select="."/> is present more than once.</report>
     </rule></pattern><pattern id="disp-quote-tests-pattern"><rule context="disp-quote" id="disp-quote-tests">
       <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
@@ -3996,7 +3996,7 @@
       <assert test="matches(@id,'^ra\d$')" role="error" id="related-articles-test-7">[related-articles-test-7] related-article element must contain a @id, the value of which should be in the form ra0.</assert>
     </rule></pattern><pattern id="aff-ids-pattern"><rule context="aff[not(parent::contrib)]" id="aff-ids">
       
-      <assert test="if (label) then @id = concat('aff',label[1])         else starts-with(@id,'aff')" role="error" id="aff-id-test">[aff-id-test] aff @id must be a concatenation of 'aff' and the child label value. In this instance it should be <value-of select="concat('aff',label[1])"/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h2lcw-aff-id-test" test="if (label) then @id = concat('aff',label[1])         else starts-with(@id,'aff')" role="error" id="aff-id-test">[aff-id-test] aff @id must be a concatenation of 'aff' and the child label value. In this instance it should be <value-of select="concat('aff',label[1])"/>.</assert>
     </rule></pattern><pattern id="fn-ids-pattern"><rule context="fn" id="fn-ids">
       <let name="type" value="@fn-type"/>
       <let name="parent" value="self::*/parent::*/local-name()"/>
@@ -6634,60 +6634,60 @@
       <let name="city" value="parent::aff/descendant::named-content[@content-type='city'][1]"/>
       <!--<let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>-->
       
-      <report test="$text = 'United States of America'" role="error" id="united-states-test-1">[united-states-test-1] <value-of select="."/> is not allowed. This should be 'United States'.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h54ah-united-states-test-1" test="$text = 'United States of America'" role="error" id="united-states-test-1">[united-states-test-1] <value-of select="."/> is not allowed. This should be 'United States'.</report>
       
-      <report test="$text = 'USA'" role="error" id="united-states-test-2">[united-states-test-2] <value-of select="."/> is not allowed. This should be 'United States'</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hvgkz-united-states-test-2" test="$text = 'USA'" role="error" id="united-states-test-2">[united-states-test-2] <value-of select="."/> is not allowed. This should be 'United States'</report>
       
-      <report test="$text = 'UK'" role="error" id="united-kingdom-test-2">[united-kingdom-test-2] <value-of select="."/> is not allowed. This should be 'United Kingdom'</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hko11-united-kingdom-test-2" test="$text = 'UK'" role="error" id="united-kingdom-test-2">[united-kingdom-test-2] <value-of select="."/> is not allowed. This should be 'United Kingdom'</report>
       
-      <assert test="$text = document($countries)/countries/country" role="error" id="gen-country-test">[gen-country-test] affiliation contains a country which is not in the allowed list - <value-of select="."/>. For a list of allowed countries, refer to https://github.com/elifesciences/eLife-JATS-schematron/blob/master/src/countries.xml.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hulu7-gen-country-test" test="$text = document($countries)/countries/country" role="error" id="gen-country-test">[gen-country-test] affiliation contains a country which is not in the allowed list - <value-of select="."/>. For a list of allowed countries, refer to https://github.com/elifesciences/eLife-JATS-schematron/blob/master/src/countries.xml.</assert>
       <!-- Commented out until this is implemented
       <report test="($text = document($countries)/countries/country) and not(@country = $valid-country/@country)" 
         role="warning" 
         id="gen-country-iso-3166-test">country does not have a 2 letter ISO 3166-1 @country value. It should be @country='<value-of select="$valid-country/@country"/>'.</report>-->
       
-      <report test="(. = 'Singapore') and ($city != 'Singapore')" role="error" id="singapore-test-1">[singapore-test-1] <value-of select="ancestor::aff/@id"/> has 'Singapore' as its country but '<value-of select="$city"/>' as its city, which must be incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hiz90-singapore-test-1" test="(. = 'Singapore') and ($city != 'Singapore')" role="error" id="singapore-test-1">[singapore-test-1] <value-of select="ancestor::aff/@id"/> has 'Singapore' as its country but '<value-of select="$city"/>' as its city, which must be incorrect.</report>
       
-      <report test="(. != 'Taiwan') and  (matches(lower-case($city),'ta[i]?pei|tai\p{Zs}?chung|kaohsiung|taoyuan|tainan|hsinchu|keelung|chiayi|changhua|jhongli|tao-yuan|hualien'))" role="warning" id="taiwan-test">[taiwan-test] Affiliation has a Taiwanese city - <value-of select="$city"/> - but its country is '<value-of select="."/>'. Please check the original manuscript. If it has 'Taiwan' as the country in the original manuscript then ensure it is changed to 'Taiwan'.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hyh7x-taiwan-test" test="(. != 'Taiwan') and  (matches(lower-case($city),'ta[i]?pei|tai\p{Zs}?chung|kaohsiung|taoyuan|tainan|hsinchu|keelung|chiayi|changhua|jhongli|tao-yuan|hualien'))" role="warning" id="taiwan-test">[taiwan-test] Affiliation has a Taiwanese city - <value-of select="$city"/> - but its country is '<value-of select="."/>'. Please check the original manuscript. If it has 'Taiwan' as the country in the original manuscript then ensure it is changed to 'Taiwan'.</report>
       
-      <report test="(. != 'Republic of Korea') and  (matches(lower-case($city),'chuncheon|gyeongsan|daejeon|seoul|daegu|gwangju|ansan|goyang|suwon|gwanju|ochang|wonju|jeonnam|cheongju|ulsan|inharo|chonnam|miryang|pohang|deagu|gwangjin-gu|gyeonggi-do|incheon|gimhae|gyungnam|muan-gun|chungbuk|chungnam|ansung|cheongju-si'))" role="warning" id="s-korea-test">[s-korea-test] Affiliation has a South Korean city - <value-of select="$city"/> - but its country is '<value-of select="."/>', instead of 'Republic of Korea'.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h44n1-s-korea-test" test="(. != 'Republic of Korea') and  (matches(lower-case($city),'chuncheon|gyeongsan|daejeon|seoul|daegu|gwangju|ansan|goyang|suwon|gwanju|ochang|wonju|jeonnam|cheongju|ulsan|inharo|chonnam|miryang|pohang|deagu|gwangjin-gu|gyeonggi-do|incheon|gimhae|gyungnam|muan-gun|chungbuk|chungnam|ansung|cheongju-si'))" role="warning" id="s-korea-test">[s-korea-test] Affiliation has a South Korean city - <value-of select="$city"/> - but its country is '<value-of select="."/>', instead of 'Republic of Korea'.</report>
       
-      <report test="replace(.,'\p{P}','') = 'Democratic Peoples Republic of Korea'" role="warning" id="n-korea-test">[n-korea-test] Affiliation has '<value-of select="."/>' as its country which is very likely to be incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h2i0t-n-korea-test" test="replace(.,'\p{P}','') = 'Democratic Peoples Republic of Korea'" role="warning" id="n-korea-test">[n-korea-test] Affiliation has '<value-of select="."/>' as its country which is very likely to be incorrect.</report>
     </rule></pattern><pattern id="city-tests-pattern"><rule context="front//aff//named-content[@content-type='city']" id="city-tests">
       <let name="lc" value="normalize-space(lower-case(.))"/>
       <let name="states-regex" value="'^alabama$|^al$|^alaska$|^ak$|^arizona$|^az$|^arkansas$|^ar$|^california$|^ca$|^colorado$|^co$|^connecticut$|^ct$|^delaware$|^de$|^florida$|^fl$|^georgia$|^ga$|^hawaii$|^hi$|^idaho$|^id$|^illinois$|^il$|^indiana$|^in$|^iowa$|^ia$|^kansas$|^ks$|^kentucky$|^ky$|^louisiana$|^la$|^maine$|^me$|^maryland$|^md$|^massachusetts$|^ma$|^michigan$|^mi$|^minnesota$|^mn$|^mississippi$|^ms$|^missouri$|^mo$|^montana$|^mt$|^nebraska$|^ne$|^nevada$|^nv$|^new hampshire$|^nh$|^new jersey$|^nj$|^new mexico$|^nm$|^ny$|^north carolina$|^nc$|^north dakota$|^nd$|^ohio$|^oh$|^oklahoma$|^ok$|^oregon$|^or$|^pennsylvania$|^pa$|^rhode island$|^ri$|^south carolina$|^sc$|^south dakota$|^sd$|^tennessee$|^tn$|^texas$|^tx$|^utah$|^ut$|^vermont$|^vt$|^virginia$|^va$|^wa$|^west virginia$|^wv$|^wisconsin$|^wi$|^wyoming$|^wy$'"/>
       
       
       
-      <report test="matches($lc,$states-regex)" role="error" id="final-US-states-test">[final-US-states-test] city contains a US state (or an abbreviation for it) - <value-of select="."/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#ho7od-final-us-states-test" test="matches($lc,$states-regex)" role="error" id="final-US-states-test">[final-US-states-test] city contains a US state (or an abbreviation for it) - <value-of select="."/>.</report>
       
-      <report test="(. = 'Singapore') and (ancestor::aff/country/text() != 'Singapore')" role="error" id="singapore-test-2">[singapore-test-2] <value-of select="ancestor::aff/@id"/> has 'Singapore' as its city but '<value-of select="ancestor::aff/country/text()"/>' as its country, which must be incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h4yk9-singapore-test-2" test="(. = 'Singapore') and (ancestor::aff/country/text() != 'Singapore')" role="error" id="singapore-test-2">[singapore-test-2] <value-of select="ancestor::aff/@id"/> has 'Singapore' as its city but '<value-of select="ancestor::aff/country/text()"/>' as its country, which must be incorrect.</report>
       
-      <report test="(lower-case(.) = 'washington') and (ancestor::aff/country/text() = 'United States')" role="error" id="wash-dc-test-1">[wash-dc-test-1] <value-of select="ancestor::aff/@id"/> has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the correct city.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h54dm-wash-dc-test-1" test="(lower-case(.) = 'washington') and (ancestor::aff/country/text() = 'United States')" role="error" id="wash-dc-test-1">[wash-dc-test-1] <value-of select="ancestor::aff/@id"/> has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the correct city.</report>
       
-      <report test="matches(.,'�')" role="error" id="city-replacement-character-presence">[city-replacement-character-presence] <name/> element contains the replacement character '�' which is unallowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hxtjh-city-replacement-character-presence" test="matches(.,'�')" role="error" id="city-replacement-character-presence">[city-replacement-character-presence] <name/> element contains the replacement character '�' which is unallowed.</report>
       
-      <report test="matches(.,'\d')" role="warning" id="city-number-presence">[city-number-presence] city contains a number, which is almost certainly incorrect - <value-of select="."/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hbjgo-city-number-presence" test="matches(.,'\d')" role="warning" id="city-number-presence">[city-number-presence] city contains a number, which is almost certainly incorrect - <value-of select="."/>.</report>
       
-      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')" role="warning" id="city-street-presence">[city-street-presence] city likely contains a street or building name, which is almost certainly incorrect - <value-of select="."/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hra66-city-street-presence" test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')" role="warning" id="city-street-presence">[city-street-presence] city likely contains a street or building name, which is almost certainly incorrect - <value-of select="."/>.</report>
     </rule></pattern><pattern id="institution-tests-pattern"><rule context="aff/institution[not(@*)]" id="institution-tests">
       <let name="city" value="parent::*/addr-line[1]/named-content[@content-type='city'][1]"/>
       
-      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia$')" role="error" id="UC-no-test1">[UC-no-test1] <value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California, ',$city)"/> (provided there is a city tagged).</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hfc9g-uc-no-test-1" test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia$')" role="error" id="UC-no-test1">[UC-no-test1] <value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California, ',$city)"/> (provided there is a city tagged).</report>
       
-      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city !='') and not(contains(.,$city))" role="warning" id="UC-no-test-2">[UC-no-test-2] <value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Which is correct? Should it end with '<value-of select="concat('University of California, ',following-sibling::addr-line[1]/named-content[@content-type='city'][1])"/>' instead?</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hgke7-uc-no-test-2" test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city !='') and not(contains(.,$city))" role="warning" id="UC-no-test-2">[UC-no-test-2] <value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Which is correct? Should it end with '<value-of select="concat('University of California, ',following-sibling::addr-line[1]/named-content[@content-type='city'][1])"/>' instead?</report>
       
-      <report test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city='La Jolla')" role="warning" id="UC-no-test-3">[UC-no-test-3] <value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Should the institution end with 'University of California, San Diego' instead?</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hw55n-uc-no-test-3" test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia.') and not(contains(.,'San Diego')) and ($city='La Jolla')" role="warning" id="UC-no-test-3">[UC-no-test-3] <value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Should the institution end with 'University of California, San Diego' instead?</report>
       
-      <report test="matches(.,'�')" role="error" id="institution-replacement-character-presence">[institution-replacement-character-presence] <name/> element contains the replacement character '�' which is unallowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hc48u-institution-replacement-character-presence" test="matches(.,'�')" role="error" id="institution-replacement-character-presence">[institution-replacement-character-presence] <name/> element contains the replacement character '�' which is unallowed.</report>
       
-      <report test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')" role="warning" id="institution-street-presence">[institution-street-presence] institution likely contains a street or building name, which is likely to be incorrect - <value-of select="."/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h69nr-institution-street-presence" test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')" role="warning" id="institution-street-presence">[institution-street-presence] institution likely contains a street or building name, which is likely to be incorrect - <value-of select="."/>.</report>
       
       <!-- contains an ampersand and is not a known exception -->
-      <report test="matches(replace(lower-case(.),'(texas a\s*&amp;\s*m|hygiene &amp; tropical|r\s*&amp;\s*d)',''),'&amp;')" role="warning" id="institution-ampersand-presence">[institution-ampersand-presence] institution contains an ampersand - <value-of select="."/>. It's eLife style to use 'and' instead of an ampersand except in cases where the ampersand is explicitly part of the institution name (e.g. Texas A&amp;M University). Should it be changed here?</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hs0dc-institution-ampersand-presence" test="matches(replace(lower-case(.),'(texas a\s*&amp;\s*m|hygiene &amp; tropical|r\s*&amp;\s*d)',''),'&amp;')" role="warning" id="institution-ampersand-presence">[institution-ampersand-presence] institution contains an ampersand - <value-of select="."/>. It's eLife style to use 'and' instead of an ampersand except in cases where the ampersand is explicitly part of the institution name (e.g. Texas A&amp;M University). Should it be changed here?</report>
     </rule></pattern><pattern id="department-tests-pattern"><rule context="aff/institution[@content-type='dept']" id="department-tests">
       
-      <report test="contains(.,'�')" role="error" id="dept-replacement-character-presence">[dept-replacement-character-presence] <name/> element contains the replacement character '�' which is unallowed.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hd64t-dept-replacement-character-presence" test="contains(.,'�')" role="error" id="dept-replacement-character-presence">[dept-replacement-character-presence] <name/> element contains the replacement character '�' which is unallowed.</report>
       
     </rule></pattern><pattern id="journal-title-tests-pattern"><rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
       <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi'][1]"/>

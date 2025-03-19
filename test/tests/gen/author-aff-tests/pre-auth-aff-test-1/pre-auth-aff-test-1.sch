@@ -1393,7 +1393,7 @@
   <pattern id="article-metadata">
     <rule context="article-meta/contrib-group[not(@*)]//aff" id="author-aff-tests">
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
-      <assert test="country" role="warning" id="pre-auth-aff-test-1">Author affiliations must have a country. This one does not - <value-of select="$display"/>. Please query with the authors.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hdxya-pre-auth-aff-test-1" test="country" role="warning" id="pre-auth-aff-test-1">Author affiliations must have a country. This one does not - <value-of select="$display"/>. Please query with the authors.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

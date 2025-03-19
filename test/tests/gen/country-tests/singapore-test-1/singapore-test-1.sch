@@ -1395,7 +1395,7 @@
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'../../../../../src/countries.xml'"/>
       <let name="city" value="parent::aff/descendant::named-content[@content-type='city'][1]"/>
-      <report test="(. = 'Singapore') and ($city != 'Singapore')" role="error" id="singapore-test-1">
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hiz90-singapore-test-1" test="(. = 'Singapore') and ($city != 'Singapore')" role="error" id="singapore-test-1">
         <value-of select="ancestor::aff/@id"/> has 'Singapore' as its country but '<value-of select="$city"/>' as its city, which must be incorrect.</report>
     </rule>
   </pattern>

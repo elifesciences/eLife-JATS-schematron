@@ -1392,7 +1392,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta//contrib[@contrib-type='author']/xref" id="author-xref-tests">
-      <report test="(@ref-type='fn') and contains(@rid,'pa') and following-sibling::xref[@ref-type='aff' or contains(@rid,'equal')]" role="error" id="author-xref-test-3">Present address type footnote links from authors must appear after affiliation and equal contribution links (if there is one). For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their present address link (to <value-of select="idref(@rid)"/>) appears before an affiliation link or equal contribution link.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hzwb3-author-xref-test-3" test="(@ref-type='fn') and contains(@rid,'pa') and following-sibling::xref[@ref-type='aff' or contains(@rid,'equal')]" role="error" id="author-xref-test-3">Present address type footnote links from authors must appear after affiliation and equal contribution links (if there is one). For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their present address link (to <value-of select="idref(@rid)"/>) appears before an affiliation link or equal contribution link.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

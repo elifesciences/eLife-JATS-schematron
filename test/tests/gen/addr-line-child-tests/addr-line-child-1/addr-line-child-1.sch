@@ -1392,7 +1392,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="addr-line/*" id="addr-line-child-tests">
-      <assert test="name()='named-content'" role="error" id="addr-line-child-1">
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h1gbm-addr-line-child-1" test="name()='named-content'" role="error" id="addr-line-child-1">
         <value-of select="name()"/> is not allowed as a child of &lt;addr-line&gt;.</assert>
     </rule>
   </pattern>

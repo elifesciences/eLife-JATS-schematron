@@ -1411,7 +1411,7 @@
       <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
       <let name="fn" value="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
       <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
-      <report test="if ($subj-type = $notice-display-types) then ()        else if (collab) then ()        else if (ancestor::collab) then ()        else if ($type != 'author') then ()        else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">Authors should have at least 1 link to an affiliation. <value-of select="$name"/> does not.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjuk3-contrib-test-1" test="if ($subj-type = $notice-display-types) then ()        else if (collab) then ()        else if (ancestor::collab) then ()        else if ($type != 'author') then ()        else count(xref[@ref-type='aff']) = 0" role="error" id="contrib-test-1">Authors should have at least 1 link to an affiliation. <value-of select="$name"/> does not.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

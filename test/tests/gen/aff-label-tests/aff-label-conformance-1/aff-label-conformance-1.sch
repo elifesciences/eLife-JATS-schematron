@@ -1393,7 +1393,7 @@
   <pattern id="content-containers">
     <rule context="aff/label" id="aff-label-tests">
       <let name="label-2" value="replace(.,'\p{P}','')"/>
-      <report test="some $x in preceding::aff/label satisfies (replace($x,'\p{P}','') = $label-2)" role="error" id="aff-label-conformance-1">Duplicated affiliation labels - <value-of select="."/> is present more than once.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hw7yy-aff-label-conformance-1" test="some $x in preceding::aff/label satisfies (replace($x,'\p{P}','') = $label-2)" role="error" id="aff-label-conformance-1">Duplicated affiliation labels - <value-of select="."/> is present more than once.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

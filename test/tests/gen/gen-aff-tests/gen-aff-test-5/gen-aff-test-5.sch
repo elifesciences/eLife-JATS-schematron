@@ -1393,7 +1393,7 @@
   <pattern id="article-metadata">
     <rule context="aff" id="gen-aff-tests">
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
-      <report test="count(country) gt 1" role="error" id="gen-aff-test-5">Affiliations cannot have more than 1 country elements. <value-of select="$display"/> has <value-of select="count(country)"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hvgj9-gen-aff-test-5" test="count(country) gt 1" role="error" id="gen-aff-test-5">Affiliations cannot have more than 1 country elements. <value-of select="$display"/> has <value-of select="count(country)"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

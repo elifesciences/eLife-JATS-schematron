@@ -1394,7 +1394,7 @@
     <rule context="front//aff//named-content[@content-type='city']" id="city-tests">
       <let name="lc" value="normalize-space(lower-case(.))"/>
       <let name="states-regex" value="'^alabama$|^al$|^alaska$|^ak$|^arizona$|^az$|^arkansas$|^ar$|^california$|^ca$|^colorado$|^co$|^connecticut$|^ct$|^delaware$|^de$|^florida$|^fl$|^georgia$|^ga$|^hawaii$|^hi$|^idaho$|^id$|^illinois$|^il$|^indiana$|^in$|^iowa$|^ia$|^kansas$|^ks$|^kentucky$|^ky$|^louisiana$|^la$|^maine$|^me$|^maryland$|^md$|^massachusetts$|^ma$|^michigan$|^mi$|^minnesota$|^mn$|^mississippi$|^ms$|^missouri$|^mo$|^montana$|^mt$|^nebraska$|^ne$|^nevada$|^nv$|^new hampshire$|^nh$|^new jersey$|^nj$|^new mexico$|^nm$|^ny$|^north carolina$|^nc$|^north dakota$|^nd$|^ohio$|^oh$|^oklahoma$|^ok$|^oregon$|^or$|^pennsylvania$|^pa$|^rhode island$|^ri$|^south carolina$|^sc$|^south dakota$|^sd$|^tennessee$|^tn$|^texas$|^tx$|^utah$|^ut$|^vermont$|^vt$|^virginia$|^va$|^wa$|^west virginia$|^wv$|^wisconsin$|^wi$|^wyoming$|^wy$'"/>
-      <report test="(lower-case(.) = 'washington') and (ancestor::aff/country/text() = 'United States')" role="error" id="wash-dc-test-1">
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h54dm-wash-dc-test-1" test="(lower-case(.) = 'washington') and (ancestor::aff/country/text() = 'United States')" role="error" id="wash-dc-test-1">
         <value-of select="ancestor::aff/@id"/> has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the correct city.</report>
     </rule>
   </pattern>

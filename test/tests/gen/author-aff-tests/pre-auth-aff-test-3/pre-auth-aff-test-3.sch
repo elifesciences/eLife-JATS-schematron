@@ -1393,7 +1393,7 @@
   <pattern id="article-metadata">
     <rule context="article-meta/contrib-group[not(@*)]//aff" id="author-aff-tests">
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
-      <assert test="institution[not(@*)] or institution-wrap[institution[not(@*)]]" role="warning" id="pre-auth-aff-test-3">Author affiliations (&lt;aff&gt;) must include an &gt;institution&gt; tag. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/>. Please query the authors.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h2v3t-pre-auth-aff-test-3" test="institution[not(@*)] or institution-wrap[institution[not(@*)]]" role="warning" id="pre-auth-aff-test-3">Author affiliations (&lt;aff&gt;) must include an &gt;institution&gt; tag. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/>. Please query the authors.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

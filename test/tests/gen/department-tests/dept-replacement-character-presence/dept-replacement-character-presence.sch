@@ -1392,7 +1392,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="aff/institution[@content-type='dept']" id="department-tests">
-      <report test="contains(.,'�')" role="error" id="dept-replacement-character-presence">
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hd64t-dept-replacement-character-presence" test="contains(.,'�')" role="error" id="dept-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed.</report>
     </rule>
   </pattern>

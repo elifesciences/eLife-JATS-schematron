@@ -1393,7 +1393,7 @@
   <pattern id="article-metadata">
     <rule context="aff" id="gen-aff-tests">
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
-      <report test="count(label) gt 1" role="error" id="gen-aff-test-3">Affiliations cannot have more than 1 label. <value-of select="$display"/> has <value-of select="count(label)"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hnan2-gen-aff-test-3" test="count(label) gt 1" role="error" id="gen-aff-test-3">Affiliations cannot have more than 1 label. <value-of select="$display"/> has <value-of select="count(label)"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

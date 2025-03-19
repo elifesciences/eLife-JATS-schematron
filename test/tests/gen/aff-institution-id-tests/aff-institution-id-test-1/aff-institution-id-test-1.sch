@@ -1392,7 +1392,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="aff//institution-id" id="aff-institution-id-tests">
-      <assert test="@institution-id-type='ror'" role="error" id="aff-institution-id-test-1">institution-id in aff must have the attribute institution-id-type="ror".</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h9fxi-aff-institution-id-test-1" test="@institution-id-type='ror'" role="error" id="aff-institution-id-test-1">institution-id in aff must have the attribute institution-id-type="ror".</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

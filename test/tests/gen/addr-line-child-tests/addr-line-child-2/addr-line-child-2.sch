@@ -1392,7 +1392,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="addr-line/*" id="addr-line-child-tests">
-      <report test="(name()='named-content') and not(@content-type='city')" role="error" id="addr-line-child-2">
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hoyaj-addr-line-child-2" test="(name()='named-content') and not(@content-type='city')" role="error" id="addr-line-child-2">
         <value-of select="name()"/> in &lt;addr-line&gt; must have the attribute content-type="city". <value-of select="."/> does not.</report>
     </rule>
   </pattern>

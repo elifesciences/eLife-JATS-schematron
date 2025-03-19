@@ -1395,7 +1395,7 @@
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'../../../../../src/countries.xml'"/>
       <let name="city" value="parent::aff/descendant::named-content[@content-type='city'][1]"/>
-      <assert test="$text = document($countries)/countries/country" role="error" id="gen-country-test">affiliation contains a country which is not in the allowed list - <value-of select="."/>. For a list of allowed countries, refer to https://github.com/elifesciences/eLife-JATS-schematron/blob/master/src/countries.xml.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hulu7-gen-country-test" test="$text = document($countries)/countries/country" role="error" id="gen-country-test">affiliation contains a country which is not in the allowed list - <value-of select="."/>. For a list of allowed countries, refer to https://github.com/elifesciences/eLife-JATS-schematron/blob/master/src/countries.xml.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

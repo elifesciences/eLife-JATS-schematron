@@ -1393,7 +1393,7 @@
   <pattern id="article-metadata">
     <rule context="aff" id="gen-aff-tests">
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
-      <report test="text()" role="error" id="gen-aff-test-6">aff elements cannot contain text. They can only contain elements (label, institution, addr-line, country). This one (<value-of select="@id"/>) contains the text '<value-of select="string-join(text(),'')"/>'</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hf1l4-gen-aff-test-6" test="text()" role="error" id="gen-aff-test-6">aff elements cannot contain text. They can only contain elements (label, institution, addr-line, country). This one (<value-of select="@id"/>) contains the text '<value-of select="string-join(text(),'')"/>'</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

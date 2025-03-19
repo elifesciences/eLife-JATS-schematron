@@ -1393,7 +1393,7 @@
   <pattern id="house-style">
     <rule context="aff/institution[not(@*)]" id="institution-tests">
       <let name="city" value="parent::*/addr-line[1]/named-content[@content-type='city'][1]"/>
-      <report test="matches(.,'�')" role="error" id="institution-replacement-character-presence">
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hc48u-institution-replacement-character-presence" test="matches(.,'�')" role="error" id="institution-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed.</report>
     </rule>
   </pattern>

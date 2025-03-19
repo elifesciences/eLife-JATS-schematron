@@ -1393,7 +1393,7 @@
   <pattern id="house-style">
     <rule context="aff/institution[not(@*)]" id="institution-tests">
       <let name="city" value="parent::*/addr-line[1]/named-content[@content-type='city'][1]"/>
-      <report test="matches(replace(lower-case(.),'(texas a\s*&amp;\s*m|hygiene &amp; tropical|r\s*&amp;\s*d)',''),'&amp;')" role="warning" id="institution-ampersand-presence">institution contains an ampersand - <value-of select="."/>. It's eLife style to use 'and' instead of an ampersand except in cases where the ampersand is explicitly part of the institution name (e.g. Texas A&amp;M University). Should it be changed here?</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hs0dc-institution-ampersand-presence" test="matches(replace(lower-case(.),'(texas a\s*&amp;\s*m|hygiene &amp; tropical|r\s*&amp;\s*d)',''),'&amp;')" role="warning" id="institution-ampersand-presence">institution contains an ampersand - <value-of select="."/>. It's eLife style to use 'and' instead of an ampersand except in cases where the ampersand is explicitly part of the institution name (e.g. Texas A&amp;M University). Should it be changed here?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
