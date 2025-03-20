@@ -1034,13 +1034,15 @@
                         </xsl:copy>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:apply-templates select="."/>
+                        <xsl:copy>
+                            <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                        </xsl:copy>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
             <!-- Two ISSNs in one element -->
             <xsl:when test="matches(upper-case(.),'^(\d{7}[\dX]|\d{4}-\d{3}[\dX]),? (\d{7}[\dX]|\d{4}-\d{3}[\dX])$')">
-                <xsl:variable name="issn-1-string" select="substring-before(replace(.,',$',''),' ')"/>
+                <xsl:variable name="issn-1-string" select="replace(substring-before(.,' '),',$','')"/>
                 <xsl:variable name="issn-1" select="if (matches($issn-1-string,'^\d{7}[\dX]$')) then concat(substring($issn-1-string,1,4),'-',substring($issn-1-string,5)) 
                                                     else $issn-1-string"/>
                 <xsl:variable name="issn-2-string" select="substring-after(.,' ')"/>
@@ -1057,13 +1059,17 @@
                         </xsl:element>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:apply-templates select="."/>
+                        <xsl:copy>
+                            <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                        </xsl:copy>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
             <!-- Could be wrong or right, if wrong schematron will flag it -->
             <xsl:otherwise>
-                <xsl:apply-templates select="."/>
+                <xsl:copy>
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                </xsl:copy>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
