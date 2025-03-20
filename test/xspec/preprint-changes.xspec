@@ -88,6 +88,10 @@
       <x:context href="../tests/preprint-changes/ref-doi-fix/input.xml"/>
       <x:expect label="Testing the template: ref-doi-fix" href="../tests/preprint-changes/ref-doi-fix/output.xml"/>
     </x:scenario>
+    <x:scenario label="ref-issn-fix">
+      <x:context href="../tests/preprint-changes/ref-issn-fix/input.xml"/>
+      <x:expect label="Testing the template: ref-issn-fix" href="../tests/preprint-changes/ref-issn-fix/output.xml"/>
+    </x:scenario>
     <x:scenario label="uri-to-ext-link">
       <x:context href="../tests/preprint-changes/uri-to-ext-link/input.xml"/>
       <x:expect label="Testing the template: uri-to-ext-link" href="../tests/preprint-changes/uri-to-ext-link/output.xml"/>
