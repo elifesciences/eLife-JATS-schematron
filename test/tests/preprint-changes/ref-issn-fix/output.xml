@@ -1,0 +1,7 @@
+<!--Testing template with id: ref-issn-fix-->
+<ref-list>
+    <ref id="c1"><issn>2050-084X</issn></ref>
+    <ref id="c2"><issn>2050-084X</issn></ref>
+    <ref id="c3"><issn>1476-4687</issn>, <issn>0028-0836</issn></ref>
+    <ref id="c4"><issn>0000-0000</issn></ref>
+</ref-list>

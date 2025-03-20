@@ -81,6 +81,28 @@
         <xsl:value-of select="string-join($processed-words,' ')"/>
     </xsl:function>
     
+    <xsl:function name="e:is-valid-issn" as="xs:boolean">
+      <xsl:param name="s" as="xs:string"/>
+      <xsl:choose>
+        <xsl:when test="not(matches($s,'^\d{4}\-\d{3}[\dX]$'))">
+          <xsl:value-of select="false()"/>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:variable name="d1" select="number(substring($s,1,1)) * 8"/>
+            <xsl:variable name="d2" select="number(substring($s,2,1)) * 7"/>
+            <xsl:variable name="d3" select="number(substring($s,3,1)) * 6"/>
+            <xsl:variable name="d4" select="number(substring($s,4,1)) * 5"/>
+            <xsl:variable name="d5" select="number(substring($s,6,1)) * 4"/>
+            <xsl:variable name="d6" select="number(substring($s,7,1)) * 3"/>
+            <xsl:variable name="d7" select="number(substring($s,8,1)) * 2"/>
+            <xsl:variable name="remainder" select="number($d1 + $d2 + $d3 + $d4 + $d5 + $d6 + $d7) mod 11"/>
+            <xsl:variable name="calc" select="if ($remainder=0) then 0 else (11 - $remainder)"/>
+            <xsl:variable name="check" select="if (substring($s,9,1)='X') then 10 else number(substring($s,9,1))"/>
+            <xsl:value-of select="$calc = $check"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:function>
+    
     <xsl:variable name="panel-regex" select="'^,?\s?(left|right|top|bottom|inset|lower|upper|middle)(\s(and\s)?(left|right|top|bottom|inset|lower|upper|middle))?(\s?panels?)?[;\),]?[\s\.]?$|^(\s?([,&amp;–\-]|and))*\s?[\p{L}](,?\s?[\p{L}]|\-\s?[\p{L}])?[;\),]?[\s\.]?$'"/>
 
      <xsl:template match="*|@*|text()|comment()|processing-instruction()">
@@ -996,6 +1018,54 @@
             <xsl:attribute name="pub-id-type">doi</xsl:attribute>
             <xsl:value-of select="substring(@xlink:href, (string-length(@xlink:href) - string-length(substring-after(lower-case(@xlink:href),'doi.org/')) + 1))"/>
         </xsl:element>
+    </xsl:template>
+    
+     <!-- Fix ISSNs -->
+    <xsl:template xml:id="ref-issn-fix" match="ref//issn | ref//pub-id[@pub-id-type='issn']">
+        <xsl:choose>
+            <!-- Missing hyphen -->
+            <xsl:when test="matches(upper-case(.),'^\d{7}[\dX]$')">
+                <xsl:variable name="with-hyphen" select="concat(substring(.,1,4),'-',substring(.,5))"/>
+                <xsl:choose>
+                    <xsl:when test="e:is-valid-issn($with-hyphen)">
+                        <xsl:copy>
+                            <xsl:apply-templates select="@*"/>
+                            <xsl:value-of select="$with-hyphen"/>
+                        </xsl:copy>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:apply-templates select="."/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <!-- Two ISSNs in one element -->
+            <xsl:when test="matches(upper-case(.),'^(\d{7}[\dX]|\d{4}-\d{3}[\dX]),? (\d{7}[\dX]|\d{4}-\d{3}[\dX])$')">
+                <xsl:variable name="issn-1-string" select="substring-before(replace(.,',$',''),' ')"/>
+                <xsl:variable name="issn-1" select="if (matches($issn-1-string,'^\d{7}[\dX]$')) then concat(substring($issn-1-string,1,4),'-',substring($issn-1-string,5)) 
+                                                    else $issn-1-string"/>
+                <xsl:variable name="issn-2-string" select="substring-after(.,' ')"/>
+                <xsl:variable name="issn-2" select="if (matches($issn-2-string,'^\d{7}[\dX]$')) then concat(substring($issn-2-string,1,4),'-',substring($issn-2-string,5)) 
+                                                    else $issn-2-string"/>
+                <xsl:choose>
+                    <xsl:when test="e:is-valid-issn($issn-1) and e:is-valid-issn($issn-2)">
+                        <xsl:element name="issn">
+                            <xsl:value-of select="$issn-1"/>
+                        </xsl:element>
+                        <xsl:text>, </xsl:text>
+                        <xsl:element name="issn">
+                            <xsl:value-of select="$issn-2"/>
+                        </xsl:element>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:apply-templates select="."/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <!-- Could be wrong or right, if wrong schematron will flag it -->
+            <xsl:otherwise>
+                <xsl:apply-templates select="."/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <!-- Convert uri elements to ext-link -->
