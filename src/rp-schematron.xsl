@@ -4803,8 +4803,8 @@
       <xsl:variable name="label" select="if (ancestor::fig/label) then ancestor::fig[1]/label[1] else 'unlabelled figure'"/>
       <xsl:variable name="is-revised-rp" select="if (ancestor::article//article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
       <!--REPORT warning-->
-      <xsl:if test="not($is-revised-rp) and matches(lower-case(.),'biorend[eo]r') and not(matches(lower-case(.),'biorender.com/[a-zA-Z0-9]+'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($is-revised-rp) and matches(lower-case(.),'biorend[eo]r') and not(matches(lower-case(.),'biorender.com/[a-zA-Z0-9]+'))">
+      <xsl:if test="not($is-revised-rp) and matches(lower-case(.),'biorend[eo]r') and not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($is-revised-rp) and matches(lower-case(.),'biorend[eo]r') and not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')])">
             <xsl:attribute name="id">fig-biorender-check-v1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -4816,8 +4816,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="$is-revised-rp and matches(lower-case(.),'biorend[eo]r') and not(matches(lower-case(.),'biorender.com/[a-zA-Z0-9]+'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$is-revised-rp and matches(lower-case(.),'biorend[eo]r') and not(matches(lower-case(.),'biorender.com/[a-zA-Z0-9]+'))">
+      <xsl:if test="$is-revised-rp and matches(lower-case(.),'biorend[eo]r') and not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$is-revised-rp and matches(lower-case(.),'biorend[eo]r') and not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')])">
             <xsl:attribute name="id">fig-biorender-check-revised</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">

@@ -869,9 +869,9 @@
         <let name="label" value="if (ancestor::fig/label) then ancestor::fig[1]/label[1] else 'unlabelled figure'"/>
         <let name="is-revised-rp" value="if (ancestor::article//article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
         
-        <report test="not($is-revised-rp) and matches(lower-case(.),'biorend[eo]r') and not(matches(lower-case(.),'biorender.com/[a-zA-Z0-9]+'))" role="warning" id="fig-biorender-check-v1">Caption for <value-of select="$label"/> mentions bioRender, but it does not contain a BioRender figure link in the format "BioRender.com/{figure-code}".</report>
+        <report test="not($is-revised-rp) and matches(lower-case(.),'biorend[eo]r') and not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')])" role="warning" id="fig-biorender-check-v1">Caption for <value-of select="$label"/> mentions bioRender, but it does not contain a BioRender figure link in the format "BioRender.com/{figure-code}".</report>
         
-        <report test="$is-revised-rp and matches(lower-case(.),'biorend[eo]r') and not(matches(lower-case(.),'biorender.com/[a-zA-Z0-9]+'))" role="warning" id="fig-biorender-check-revised">Caption for <value-of select="$label"/> mentions bioRender, but it does not contain a BioRender figure link in the format "BioRender.com/{figure-code}". Since this is a revised RP, check to see if the first (or a previous) version had bioRender links.</report>
+        <report test="$is-revised-rp and matches(lower-case(.),'biorend[eo]r') and not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')])" role="warning" id="fig-biorender-check-revised">Caption for <value-of select="$label"/> mentions bioRender, but it does not contain a BioRender figure link in the format "BioRender.com/{figure-code}". Since this is a revised RP, check to see if the first (or a previous) version had bioRender links.</report>
         
         <report test="not(title) and (count(p) gt 1)" role="warning" id="fig-caption-1">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
      </rule>
