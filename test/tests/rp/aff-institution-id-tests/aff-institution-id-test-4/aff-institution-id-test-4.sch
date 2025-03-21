@@ -204,7 +204,7 @@
   </xsl:function>
   <pattern id="aff-institution-id-tests-pattern">
     <rule context="aff//institution-id" id="aff-institution-id-tests">
-      <assert test="matches(.,'^https?://ror\.org/[a-z0-9]{9}$')" role="error" id="aff-institution-id-test-2">[aff-institution-id-test-2] institution-id in aff must a value which is a valid ROR id. '<value-of select="."/>' is not a valid ROR id.</assert>
+      <report test="matches(.,'^http://')" role="error" id="aff-institution-id-test-4">[aff-institution-id-test-4] institution-id in aff must use the https protocol. This one uses http - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
