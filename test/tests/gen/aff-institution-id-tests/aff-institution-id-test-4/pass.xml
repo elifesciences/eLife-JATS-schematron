@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="aff-institution-id-test-4.sch"?>
+<!--Context: aff//institution-id
+Test: report    matches(.,'^http://')
+Message: institution-id in aff must use the https protocol. This one uses http - ''. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <aff>
+            <institution-id institution-id-type="ror">https://ror.org/04rjz5883</institution-id>
+        </aff>
+    </article>
+</root>

@@ -438,9 +438,11 @@
       
       <assert test="@institution-id-type='ror'" role="error" id="aff-institution-id-test-1">institution-id in aff must have the attribute institution-id-type="ror".</assert>
       
-      <assert test="matches(.,'https?://ror\.org/[a-z0-9]{9}')" role="error" id="aff-institution-id-test-2">institution-id in aff must a value which is a valid ROR id. '<value-of select="."/>' is not a valid ROR id.</assert>
+      <assert test="matches(.,'^https?://ror\.org/[a-z0-9]{9}$')" role="error" id="aff-institution-id-test-2">institution-id in aff must a value which is a valid ROR id. '<value-of select="."/>' is not a valid ROR id.</assert>
       
       <report test="*" role="error" id="aff-institution-id-test-3">institution-id in aff cannot contain elements, only text (which is a valid ROR id). This one contains the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
+        
+      <report test="matches(.,'^http://')" role="error" id="aff-institution-id-test-4">institution-id in aff must use the https protocol. This one uses http - '<value-of select="."/>'.</report>    
       
     </rule>
   </pattern>
@@ -977,7 +979,9 @@
         <report test="@mime-subtype='png' and $file!='png'" role="error" id="graphic-test-5">
         <name/> has png mime-subtype but filename does not end with '.png'. This cannot be correct.</report>
         
-        <report test="preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link" role="error" id="graphic-test-6">Image file for <value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/> (<value-of select="@xlink:href"/>) is the same as the one used for another graphic or inline-graphic.</report>
+        <report test="not(ancestor::sub-article) and preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link" role="error" id="graphic-test-6">Image file for <value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/> (<value-of select="@xlink:href"/>) is the same as the one used for another graphic or inline-graphic.</report>
+        
+        <report test="ancestor::sub-article and preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link" role="warning" id="graphic-test-9">Image file in sub-article for <value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/> (<value-of select="@xlink:href"/>) is the same as the one used for another graphic or inline-graphic. Is that correct?</report>
         
         <report test="@mime-subtype='gif' and $file!='gif'" role="error" id="graphic-test-7">
         <name/> has gif mime-subtype but filename does not end with '.gif'. This cannot be correct.</report>

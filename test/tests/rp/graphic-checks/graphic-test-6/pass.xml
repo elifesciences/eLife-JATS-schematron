@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="graphic-test-6.sch"?>
 <!--Context: graphic|inline-graphic
-Test: report    preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link
+Test: report    not(ancestor::sub-article) and preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link
 Message: Image file for  () is the same as the one used for another graphic or inline-graphic. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>

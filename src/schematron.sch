@@ -3361,7 +3361,7 @@
         id="aff-institution-id-test-1">institution-id in aff must have the attribute institution-id-type="ror".</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hqr61-aff-institution-id-test-2" 
-        test="matches(.,'https?://ror\.org/[a-z0-9]{9}')" 
+        test="matches(.,'^https?://ror\.org/[a-z0-9]{9}$')" 
         role="error" 
         id="aff-institution-id-test-2">institution-id in aff must a value which is a valid ROR id. '<value-of select="."/>' is not a valid ROR id.</assert>
       
@@ -3369,6 +3369,11 @@
         test="*" 
         role="error" 
         id="aff-institution-id-test-3">institution-id in aff cannot contain elements, only text (which is a valid ROR id). This one contains the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hqr61-aff-institution-id-test-2" 
+        test="matches(.,'^http://')" 
+        role="error" 
+        id="aff-institution-id-test-4">institution-id in aff must use the https protocol. This one uses http - '<value-of select="."/>'.</report>
       
     </rule>
     

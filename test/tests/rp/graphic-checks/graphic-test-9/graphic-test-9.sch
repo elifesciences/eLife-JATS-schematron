@@ -202,14 +202,17 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
-  <pattern id="aff-institution-id-tests-pattern">
-    <rule context="aff//institution-id" id="aff-institution-id-tests">
-      <assert test="matches(.,'^https?://ror\.org/[a-z0-9]{9}$')" role="error" id="aff-institution-id-test-2">[aff-institution-id-test-2] institution-id in aff must a value which is a valid ROR id. '<value-of select="."/>' is not a valid ROR id.</assert>
+  <pattern id="graphic-checks-pattern">
+    <rule context="graphic|inline-graphic" id="graphic-checks">
+      <let name="link" value="lower-case(@xlink:href)"/>
+      <let name="file" value="tokenize($link,'\.')[last()]"/>
+      <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
+      <report test="ancestor::sub-article and preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link" role="warning" id="graphic-test-9">[graphic-test-9] Image file in sub-article for <value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/> (<value-of select="@xlink:href"/>) is the same as the one used for another graphic or inline-graphic. Is that correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::aff//institution-id" role="error" id="aff-institution-id-tests-xspec-assert">aff//institution-id must be present.</assert>
+      <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-checks-xspec-assert">graphic|inline-graphic must be present.</assert>
     </rule>
   </pattern>
 </schema>

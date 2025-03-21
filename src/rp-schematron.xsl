@@ -2758,9 +2758,9 @@
       </xsl:choose>
       <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(.,'https?://ror\.org/[a-z0-9]{9}')"/>
+         <xsl:when test="matches(.,'^https?://ror\.org/[a-z0-9]{9}$')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'https?://ror\.org/[a-z0-9]{9}')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^https?://ror\.org/[a-z0-9]{9}$')">
                <xsl:attribute name="id">aff-institution-id-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
@@ -2783,6 +2783,19 @@
             <svrl:text>[aff-institution-id-test-3] institution-id in aff cannot contain elements, only text (which is a valid ROR id). This one contains the following element(s): <xsl:text/>
                <xsl:value-of select="string-join(*/name(),'; ')"/>
                <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="matches(.,'^http://')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^http://')">
+            <xsl:attribute name="id">aff-institution-id-test-4</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[aff-institution-id-test-4] institution-id in aff must use the https protocol. This one uses http - '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M35"/>
@@ -5259,8 +5272,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link">
+      <xsl:if test="not(ancestor::sub-article) and preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(ancestor::sub-article) and preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link">
             <xsl:attribute name="id">graphic-test-6</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -5271,6 +5284,21 @@
                <xsl:text/> (<xsl:text/>
                <xsl:value-of select="@xlink:href"/>
                <xsl:text/>) is the same as the one used for another graphic or inline-graphic.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="ancestor::sub-article and preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::sub-article and preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link">
+            <xsl:attribute name="id">graphic-test-9</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[graphic-test-9] Image file in sub-article for <xsl:text/>
+               <xsl:value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/>
+               <xsl:text/> (<xsl:text/>
+               <xsl:value-of select="@xlink:href"/>
+               <xsl:text/>) is the same as the one used for another graphic or inline-graphic. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
