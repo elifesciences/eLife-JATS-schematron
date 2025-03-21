@@ -5272,8 +5272,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link">
+      <xsl:if test="not(ancestor::sub-article) and preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(ancestor::sub-article) and preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link">
             <xsl:attribute name="id">graphic-test-6</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -5284,6 +5284,21 @@
                <xsl:text/> (<xsl:text/>
                <xsl:value-of select="@xlink:href"/>
                <xsl:text/>) is the same as the one used for another graphic or inline-graphic.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="ancestor::sub-article and preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::sub-article and preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link">
+            <xsl:attribute name="id">graphic-test-9</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[graphic-test-9] Image file in sub-article for <xsl:text/>
+               <xsl:value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/>
+               <xsl:text/> (<xsl:text/>
+               <xsl:value-of select="@xlink:href"/>
+               <xsl:text/>) is the same as the one used for another graphic or inline-graphic. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
