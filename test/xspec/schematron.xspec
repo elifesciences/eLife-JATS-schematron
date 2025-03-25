@@ -5663,12 +5663,12 @@
       </x:scenario>
       <x:scenario label="disp-formula-test-4-pass">
         <x:context href="../tests/gen/disp-formula-tests/disp-formula-test-4/pass.xml"/>
-        <x:expect-not-report id="disp-formula-test-4" role="error"/>
+        <x:expect-not-report id="disp-formula-test-4" role="warning"/>
         <x:expect-not-assert id="disp-formula-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="disp-formula-test-4-fail">
         <x:context href="../tests/gen/disp-formula-tests/disp-formula-test-4/fail.xml"/>
-        <x:expect-report id="disp-formula-test-4" role="error"/>
+        <x:expect-report id="disp-formula-test-4" role="warning"/>
         <x:expect-not-assert id="disp-formula-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
