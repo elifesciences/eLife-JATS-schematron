@@ -1392,7 +1392,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="disp-formula" id="disp-formula-tests">
-      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-4" test="parent::p[not(parent::boxed-text[label]) and not(preceding-sibling::*[1]/name()='list')] and not(preceding-sibling::*) and (not(preceding-sibling::text()) or normalize-space(preceding-sibling::text()[1])='') and not(ancestor::list)" role="error" id="disp-formula-test-4">disp-formula cannot be placed as the first child of a p element with no content before it (ie. &lt;p&gt;&lt;disp-formula ...). Either capture it at the end of the previous paragraph or capture it as a child of <value-of select="parent::p/parent::*/local-name()"/>
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-4" test="parent::p[not(parent::boxed-text[label]) and not(preceding-sibling::*[1]/name()='list')] and not(preceding-sibling::*) and (not(preceding-sibling::text()) or normalize-space(preceding-sibling::text()[1])='') and not(ancestor::list)" role="warning" id="disp-formula-test-4">disp-formula should very rarely be placed as the first child of a p element with no content before it (ie. &lt;p&gt;&lt;disp-formula ...). Either capture it at the end of the previous paragraph or capture it as a child of <value-of select="parent::p/parent::*/local-name()"/>
       </report>
     </rule>
   </pattern>

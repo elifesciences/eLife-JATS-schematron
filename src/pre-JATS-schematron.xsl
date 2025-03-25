@@ -15563,16 +15563,16 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <!--REPORT error-->
+      <!--REPORT warning-->
       <xsl:if test="parent::p[not(parent::boxed-text[label]) and not(preceding-sibling::*[1]/name()='list')] and not(preceding-sibling::*) and (not(preceding-sibling::text()) or normalize-space(preceding-sibling::text()[1])='') and not(ancestor::list)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="parent::p[not(parent::boxed-text[label]) and not(preceding-sibling::*[1]/name()='list')] and not(preceding-sibling::*) and (not(preceding-sibling::text()) or normalize-space(preceding-sibling::text()[1])='') and not(ancestor::list)">
             <xsl:attribute name="id">disp-formula-test-4</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-4</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[disp-formula-test-4] disp-formula cannot be placed as the first child of a p element with no content before it (ie. &lt;p&gt;&lt;disp-formula ...). Either capture it at the end of the previous paragraph or capture it as a child of <xsl:text/>
+            <svrl:text>[disp-formula-test-4] disp-formula should very rarely be placed as the first child of a p element with no content before it (ie. &lt;p&gt;&lt;disp-formula ...). Either capture it at the end of the previous paragraph or capture it as a child of <xsl:text/>
                <xsl:value-of select="parent::p/parent::*/local-name()"/>
                <xsl:text/>
             </svrl:text>
