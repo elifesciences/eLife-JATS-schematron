@@ -1027,7 +1027,7 @@
                     <xsl:value-of select="replace(substring-after(@xlink:href,'gov/'),'[^\d]','')"/>
                 </xsl:element>
             </xsl:when>
-            <xsl:when test="matches(lower-case(@xlink:href),'^https?://pmc\.ncbi\.nlm\.nih\.gov/articles/PMC[0-9]{6,15}/?$')">
+            <xsl:when test="matches(lower-case(@xlink:href),'^https?://pmc\.ncbi\.nlm\.nih\.gov/articles/pmc[0-9]{6,15}/?$')">
                 <xsl:element name="pub-id">
                     <xsl:attribute name="pub-id-type">pmcid</xsl:attribute>
                     <xsl:value-of select="replace(substring-after(upper-case(@xlink:href),'ARTICLES/'),'[^\dPMC]','')"/>
