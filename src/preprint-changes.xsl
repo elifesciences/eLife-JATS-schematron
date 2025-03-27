@@ -1012,12 +1012,33 @@
         </xsl:for-each>
     </xsl:template>
 
-    <!-- Convert ext-link elements that contain dois in refs to correct semantic capture: pub-id -->
-    <xsl:template xml:id="ref-doi-fix" match="ref//ext-link[@ext-link-type='uri'][matches(lower-case(@xlink:href),'^https?://(dx\.)?doi\.org/')]">
-        <xsl:element name="pub-id">
-            <xsl:attribute name="pub-id-type">doi</xsl:attribute>
-            <xsl:value-of select="substring(@xlink:href, (string-length(@xlink:href) - string-length(substring-after(lower-case(@xlink:href),'doi.org/')) + 1))"/>
-        </xsl:element>
+    <!-- Convert ext-link elements that contain known ids in refs to correct semantic capture: pub-id -->
+    <xsl:template xml:id="ref-ext-link-fix" match="ref//ext-link[@ext-link-type='uri']">
+        <xsl:choose>
+            <xsl:when test="matches(lower-case(@xlink:href),'^https?://(dx\.)?doi\.org/')">
+                <xsl:element name="pub-id">
+                    <xsl:attribute name="pub-id-type">doi</xsl:attribute>
+                    <xsl:value-of select="substring(@xlink:href, (string-length(@xlink:href) - string-length(substring-after(lower-case(@xlink:href),'doi.org/')) + 1))"/>
+                </xsl:element>
+            </xsl:when>
+            <xsl:when test="matches(lower-case(@xlink:href),'^https?://pubmed\.ncbi\.nlm\.nih\.gov/\d{3,10}/?$')">
+                <xsl:element name="pub-id">
+                    <xsl:attribute name="pub-id-type">pmid</xsl:attribute>
+                    <xsl:value-of select="replace(substring-after(@xlink:href,'gov/'),'[^\d]','')"/>
+                </xsl:element>
+            </xsl:when>
+            <xsl:when test="matches(lower-case(@xlink:href),'^https?://pmc\.ncbi\.nlm\.nih\.gov/articles/pmc[0-9]{6,15}/?$')">
+                <xsl:element name="pub-id">
+                    <xsl:attribute name="pub-id-type">pmcid</xsl:attribute>
+                    <xsl:value-of select="replace(substring-after(upper-case(@xlink:href),'ARTICLES/'),'[^\dPMC]','')"/>
+                </xsl:element>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy>
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
      <!-- Fix ISSNs -->
@@ -1081,6 +1102,18 @@
                 <xsl:element name="pub-id">
                     <xsl:attribute name="pub-id-type">doi</xsl:attribute>
                     <xsl:value-of select="substring(., (string-length(.) - string-length(substring-after(lower-case(.),'doi.org/')) + 1))"/>
+                </xsl:element>
+            </xsl:when>
+            <xsl:when test="ancestor::mixed-citation and matches(lower-case(.),'^https?://pubmed\.ncbi\.nlm\.nih\.gov/\d{3,10}/?$')">
+                <xsl:element name="pub-id">
+                    <xsl:attribute name="pub-id-type">pmid</xsl:attribute>
+                    <xsl:value-of select="replace(substring-after(.,'gov/'),'[^\d]','')"/>
+                </xsl:element>
+            </xsl:when>
+            <xsl:when test="ancestor::mixed-citation and matches(.,'^https?://pmc\.ncbi\.nlm\.nih\.gov/articles/PMC[0-9]{6,15}/?$')">
+                <xsl:element name="pub-id">
+                    <xsl:attribute name="pub-id-type">pmcid</xsl:attribute>
+                    <xsl:value-of select="replace(substring-after(upper-case(.),'ARTICLES/'),'[^\dPMC]','')"/>
                 </xsl:element>
             </xsl:when>
             <xsl:when test="./@xlink:href">

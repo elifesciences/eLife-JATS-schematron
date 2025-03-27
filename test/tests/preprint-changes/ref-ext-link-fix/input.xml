@@ -1,0 +1,4 @@
+<!--Testing template with id: ref-ext-link-fix-->
+<ref id="r1" xmlns:xlink="http://www.w3.org/1999/xlink">
+<mixed-citation publication-type="journal"><year>2024</year><ext-link ext-link-type="uri" xlink:href="https://doi.org/10.7554/eLife.09560">https://doi.org/10.7554/eLife.09560</ext-link> <ext-link ext-link-type="uri" xlink:href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4559886/">https://pmc.ncbi.nlm.nih.gov/articles/PMC4559886/</ext-link> <ext-link ext-link-type="uri" xlink:href="https://pubmed.ncbi.nlm.nih.gov/26354291/">https://pubmed.ncbi.nlm.nih.gov/26354291/</ext-link></mixed-citation>
+</ref>
