@@ -12120,7 +12120,7 @@
    <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" priority="1000" mode="M156">
       <xsl:variable name="award-id" select="award-id"/>
       <xsl:variable name="funder-id" select="funding-source/institution-wrap/institution-id"/>
-      <xsl:variable name="funder-entry" select="document($rors)//*:ror[*:id=$funder-id]"/>
+      <xsl:variable name="funder-entry" select="document($rors)//*:ror[*:id[@type='fundref']=$funder-id]"/>
       <xsl:variable name="mints-grant-dois" select="$funder-entry/@grant-dois='yes'"/>
       <xsl:variable name="grant-matches" select="if (not($mints-grant-dois)) then ()         else $funder-entry//*:grant[@award=$award-id]"/>
       <!--REPORT warning-->
@@ -12169,7 +12169,7 @@
    <!--RULE general-funding-no-award-id-tests-->
    <xsl:template match="funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id]" priority="1000" mode="M157">
       <xsl:variable name="funder-id" select="funding-source/institution-wrap/institution-id"/>
-      <xsl:variable name="funder-entry" select="document($rors)//*:ror[*:id=$funder-id]"/>
+      <xsl:variable name="funder-entry" select="document($rors)//*:ror[*:id[@type='fundref']=$funder-id]"/>
       <xsl:variable name="grant-doi-count" select="count($funder-entry//*:grant)"/>
       <!--REPORT warning-->
       <xsl:if test="$grant-doi-count gt 29">
@@ -12197,7 +12197,7 @@
    <!--PATTERN wellcome-grant-doi-tests-pattern-->
    <!--RULE wellcome-grant-doi-tests-->
    <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" priority="1000" mode="M158">
-      <xsl:variable name="grants" select="document($rors)//*:ror[*:id=$wellcome-fundref-ids]/*:grant"/>
+      <xsl:variable name="grants" select="document($rors)//*:ror[*:id[@type='fundref']=$wellcome-fundref-ids]/*:grant"/>
       <xsl:variable name="award-id-elem" select="award-id"/>
       <xsl:variable name="award-id" select="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','')          else if (contains(lower-case($award-id-elem),'_z')) then replace(substring-before(lower-case($award-id-elem),'_z'),'[^\d]','')         else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>
       <xsl:variable name="grant-matches" select="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
@@ -12250,7 +12250,7 @@
    <!--RULE known-grant-funder-grant-doi-tests-->
    <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-fundref-ids]" priority="1000" mode="M159">
       <xsl:variable name="fundref-id" select="funding-source/institution-wrap/institution-id"/>
-      <xsl:variable name="grants" select="document($rors)//*:ror[*:id=$fundref-id]/*:grant"/>
+      <xsl:variable name="grants" select="document($rors)//*:ror[*:id[@type='fundref']=$fundref-id]/*:grant"/>
       <xsl:variable name="award-id-elem" select="award-id"/>
       <xsl:variable name="award-id" select="e:alter-award-id($award-id-elem,$fundref-id)"/>
       <xsl:variable name="grant-matches" select="if ($award-id='') then ()         else $grants[@award=$award-id]"/>

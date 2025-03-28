@@ -3551,7 +3551,7 @@
     <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" id="general-grant-doi-tests">
       <let name="award-id" value="award-id"/>
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
-      <let name="funder-entry" value="document($rors)//*:ror[*:id=$funder-id]"/>
+      <let name="funder-entry" value="document($rors)//*:ror[*:id[@type='fundref']=$funder-id]"/>
       <let name="mints-grant-dois" value="$funder-entry/@grant-dois='yes'"/>
       <!-- Consider alternatives to exact match as this is no better than simply using Crossref's API -->
       <let name="grant-matches" value="if (not($mints-grant-dois)) then ()
@@ -3570,7 +3570,7 @@
 
     <rule context="funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id]" id="general-funding-no-award-id-tests">
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
-      <let name="funder-entry" value="document($rors)//*:ror[*:id=$funder-id]"/>
+      <let name="funder-entry" value="document($rors)//*:ror[*:id[@type='fundref']=$funder-id]"/>
       <let name="grant-doi-count" value="count($funder-entry//*:grant)"/>
       
       <report test="$grant-doi-count gt 29"
@@ -3579,7 +3579,7 @@
     </rule>
     
     <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" id="wellcome-grant-doi-tests">
-      <let name="grants" value="document($rors)//*:ror[*:id=$wellcome-fundref-ids]/*:grant"/>
+      <let name="grants" value="document($rors)//*:ror[*:id[@type='fundref']=$wellcome-fundref-ids]/*:grant"/>
       <let name="award-id-elem" value="award-id"/>
       <let name="award-id" value="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','') 
         else if (contains(lower-case($award-id-elem),'_z')) then replace(substring-before(lower-case($award-id-elem),'_z'),'[^\d]','')
@@ -3599,7 +3599,7 @@
 
     <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-fundref-ids]" id="known-grant-funder-grant-doi-tests">
       <let name="fundref-id" value="funding-source/institution-wrap/institution-id"/>
-      <let name="grants" value="document($rors)//*:ror[*:id=$fundref-id]/*:grant"/>
+      <let name="grants" value="document($rors)//*:ror[*:id[@type='fundref']=$fundref-id]/*:grant"/>
       <let name="award-id-elem" value="award-id"/>
       <!-- Make use of custom function to try and account for variations within funder conventions -->
       <let name="award-id" value="e:alter-award-id($award-id-elem,$fundref-id)"/>
