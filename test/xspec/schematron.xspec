@@ -21856,18 +21856,6 @@
         <x:expect-not-assert id="link-ref-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
-    <x:scenario label="fundref-rule">
-      <x:scenario label="fundref-test-1-pass">
-        <x:context href="../tests/gen/fundref-rule/fundref-test-1/pass.xml"/>
-        <x:expect-not-report id="fundref-test-1" role="warning"/>
-        <x:expect-not-assert id="fundref-rule-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="fundref-test-1-fail">
-        <x:context href="../tests/gen/fundref-rule/fundref-test-1/fail.xml"/>
-        <x:expect-report id="fundref-test-1" role="warning"/>
-        <x:expect-not-assert id="fundref-rule-xspec-assert" role="error"/>
-      </x:scenario>
-    </x:scenario>
     <x:scenario label="unicode-tests">
       <x:scenario label="unicode-test-1-pass">
         <x:context href="../tests/gen/unicode-tests/unicode-test-1/pass.xml"/>
