@@ -17,7 +17,7 @@ let $new-rors :=
   copy $copy := $rors
   modify (
     for $ror in $copy//*:ror[@grant-dois="yes"]
-    let $dois := for $fundref in $ror/*:fundref return substring-after($fundref,'doi.org/')
+    let $dois := for $fundref in $ror/*:id[@type="fundref"] return substring-after($fundref,'doi.org/')
     let $funder-grants := $grants//*:grant[@funder=$dois]
     return replace node $ror with <ror grant-dois="{$ror/@grant-dois}">
             {($ror/*,$funder-grants)}

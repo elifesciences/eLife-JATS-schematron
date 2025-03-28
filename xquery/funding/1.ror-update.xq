@@ -9,12 +9,12 @@ let $grant-doi-registering-funder-dois := for $obj in $response//*:facets/*:fund
 let $list := 
 <rors>{
   for $x in $json/*:json/*:_
-  let $id := $x/*:id
+  let $id := <id type="ror">{$x/*:id/data()}</id>
   let $pref-fundref := $x/*:external__ids/*[*:type='fundref']/*:preferred
   let $fundrefs := for $y in $x/*:external__ids/*[*:type='fundref']/*:all/*/text()
-                   return if ($pref-fundref[@type="null"]) then <fundref>{'http://dx.doi.org/10.13039/'||$y}</fundref>
-                   else if ($y=$pref-fundref) then <fundref preferred="yes">{'http://dx.doi.org/10.13039/'||$y}</fundref>
-                   else <fundref preferred="no">{'http://dx.doi.org/10.13039/'||$y}</fundref>
+                   return if ($pref-fundref[@type="null"]) then <id type="fundref">{'http://dx.doi.org/10.13039/'||$y}</id>
+                   else if ($y=$pref-fundref) then <id type="fundref" preferred="yes">{'http://dx.doi.org/10.13039/'||$y}</id>
+                   else <id type="fundref" preferred="no">{'http://dx.doi.org/10.13039/'||$y}</id>
   let $registers-grant-dois := if (some $link in $fundrefs satisfies $link=$grant-doi-registering-funder-dois) then 'yes' else 'no'
   let $name := <name>{$x/*:names/*[*:types[*='ror_display']]/*:value/data()}</name>
   let $cities := for $y in $x/*:locations/*/*:geonames__details/*:name
