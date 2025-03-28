@@ -9,6 +9,11 @@ let $list :=
 <rors>{
   for $x in $json/*:json/*:_
   let $id := $x/*:id
+  let $pref-fundref := $x/*:external__ids/*[*:type='fundref']/*:preferred
+  let $fundrefs := for $y in $x/*:external__ids/*[*:type='fundref']/*:all/*/text()
+                   return if ($pref-fundref[@type="null"]) then <fundref>{$y}</fundref>
+                   else if ($y=$pref-fundref) then <fundref preferred="yes">{$y}</fundref>
+                   else <fundref preferred="no">{$y}</fundref>
   let $name := <name>{$x/*:names/*[*:types[*='ror_display']]/*:value/data()}</name>
   let $cities := for $y in $x/*:locations/*/*:geonames__details/*:name
                  return <city>{data($y)}</city>
@@ -30,7 +35,7 @@ let $list :=
                         case 'Palestinian Territory' return 'State of Palestine'
                         default return $country-name
   let $country := <country country="{$country-code }">{$country-val}</country>
-  return <ror>{($id,$name,$cities,$country)}</ror>
+  return <ror>{($id,$fundrefs,$name,$cities,$country)}</ror>
 }</rors>
 
 return file:write(($src||'rors.xml'),$list, map{"indent":"yes"})
