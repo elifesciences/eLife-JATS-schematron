@@ -1393,7 +1393,7 @@
   <pattern id="article-metadata">
     <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-fundref-ids]" id="known-grant-funder-grant-doi-tests">
       <let name="fundref-id" value="funding-source/institution-wrap/institution-id"/>
-      <let name="grants" value="document($rors)//*:ror[*:fundref=$fundref-id]/*:grant"/>
+      <let name="grants" value="document($rors)//*:ror[*:id=$fundref-id]/*:grant"/>
       <let name="award-id-elem" value="award-id"/>
       <let name="award-id" value="e:alter-award-id($award-id-elem,$fundref-id)"/>
       <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
