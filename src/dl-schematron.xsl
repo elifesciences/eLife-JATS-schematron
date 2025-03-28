@@ -1941,7 +1941,7 @@
    <xsl:param name="allowed-article-types" select="('research-article','review-article',$features-article-types, $notice-article-types)"/>
    <xsl:param name="allowed-disp-subj" select="($research-subj, $features-subj,$notice-display-types)"/>
    <xsl:param name="MSAs" select="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
-   <xsl:param name="funders" select="'funders.xml'"/>
+   <xsl:param name="rors" select="'rors.xml'"/>
    <xsl:param name="wellcome-fundref-ids" select="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
    <xsl:param name="known-grant-funder-fundref-ids" select="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968')"/>
    <xsl:param name="grant-doi-exception-funder-ids" select="($wellcome-fundref-ids,$known-grant-funder-fundref-ids)"/>

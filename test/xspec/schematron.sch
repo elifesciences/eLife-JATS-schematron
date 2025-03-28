@@ -31,7 +31,7 @@
   
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   
-  <let name="funders" value="'funders.xml'"/>
+  <let name="rors" value="'rors.xml'"/>
   <!-- Grant DOI enabling -->
   <let name="wellcome-fundref-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
   <let name="known-grant-funder-fundref-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968')"/>
@@ -2738,9 +2738,8 @@
   </pattern>
   <pattern id="aff-ror-tests-pattern">
     <rule context="aff[institution-wrap/institution-id[@institution-id-type='ror']]" id="aff-ror-tests">
-      <let name="rors" value="'rors.xml'"/>
       <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
-      <let name="matching-ror" value="document($rors)//*:ror[*:id=$ror]"/>
+      <let name="matching-ror" value="document($rors)//*:ror[*:id[@type='ror']=$ror]"/>
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hentg-aff-ror" test="exists($matching-ror)" role="warning" id="aff-ror">Affiliation (<value-of select="$display"/>) has a ROR id - <value-of select="$ror"/> - but it does not look like a correct one.</assert>
@@ -2823,7 +2822,7 @@
     <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" id="general-grant-doi-tests">
       <let name="award-id" value="award-id"/>
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
-      <let name="funder-entry" value="document($funders)//funder[@fundref=$funder-id]"/>
+      <let name="funder-entry" value="document($rors)//*:ror[*:id[@type='fundref']=$funder-id]"/>
       <let name="mints-grant-dois" value="$funder-entry/@grant-dois='yes'"/>
       <!-- Consider alternatives to exact match as this is no better than simply using Crossref's API -->
       <let name="grant-matches" value="if (not($mints-grant-dois)) then ()         else $funder-entry//*:grant[@award=$award-id]"/>
@@ -2838,7 +2837,7 @@
   <pattern id="general-funding-no-award-id-tests-pattern">
     <rule context="funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id]" id="general-funding-no-award-id-tests">
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
-      <let name="funder-entry" value="document($funders)//funder[@fundref=$funder-id]"/>
+      <let name="funder-entry" value="document($rors)//*:ror[*:id[@type='fundref']=$funder-id]"/>
       <let name="grant-doi-count" value="count($funder-entry//*:grant)"/>
       
       <report test="$grant-doi-count gt 29" role="warning" id="grant-doi-test-3">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has no award-id, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Is there a missing grant DOI or award ID for this funding?</report>
@@ -2846,7 +2845,7 @@
   </pattern>
   <pattern id="wellcome-grant-doi-tests-pattern">
     <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" id="wellcome-grant-doi-tests">
-      <let name="grants" value="document($funders)//funder[@fundref=$wellcome-fundref-ids]/grant"/>
+      <let name="grants" value="document($rors)//*:ror[*:id[@type='fundref']=$wellcome-fundref-ids]/*:grant"/>
       <let name="award-id-elem" value="award-id"/>
       <let name="award-id" value="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','')          else if (contains(lower-case($award-id-elem),'_z')) then replace(substring-before(lower-case($award-id-elem),'_z'),'[^\d]','')         else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/> 
       <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
@@ -2859,7 +2858,7 @@
   <pattern id="known-grant-funder-grant-doi-tests-pattern">
     <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-fundref-ids]" id="known-grant-funder-grant-doi-tests">
       <let name="fundref-id" value="funding-source/institution-wrap/institution-id"/>
-      <let name="grants" value="document($funders)//funder[@fundref=$fundref-id]/grant"/>
+      <let name="grants" value="document($rors)//*:ror[*:id[@type='fundref']=$fundref-id]/*:grant"/>
       <let name="award-id-elem" value="award-id"/>
       <!-- Make use of custom function to try and account for variations within funder conventions -->
       <let name="award-id" value="e:alter-award-id($award-id-elem,$fundref-id)"/>
@@ -4806,6 +4805,8 @@
       <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hddcf-ack-title-test" test="title = 'Acknowledgements'" role="error" id="ack-title-test">ack must have a title that contains 'Acknowledgements'. Currently it is '<value-of select="title"/>'.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hslfn-ack-content-test" test="p[* or not(normalize-space(.)='')]" role="error" id="ack-content-test">An Acknowledgements section must contain content. Either add in the missing content or delete the Acknowledgements.</assert>
+      
+      <report test="p[* or not(normalize-space(.)='')]" role="warning" id="ack-funding">Please check the acknowledgements section to ensure that all funding information is captured in the funding section.</report>
       
     </rule>
   </pattern>
@@ -9607,15 +9608,6 @@
     </rule>
   </pattern>
   
-  <pattern id="fundref-rule-pattern">
-    <rule context="article[not(@article-type='article-commentary')]//ack" id="fundref-rule">
-      <let name="ack" value="."/>   
-      <let name="funding-group" value="distinct-values(ancestor::article//funding-group//institution-id)"/>
-      
-      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#h10qd-fundref-test-1" test="some $funder in document($funders)//funder satisfies ((contains($ack,concat(' ',$funder/*:name,' ')) or contains($ack,concat(' ',$funder/*:name,'.'))) and not($funder/@fundref = $funding-group))" role="warning" id="fundref-test-1">Acknowledgements contains funder(s) in the open funder registry, but their doi is not listed in the funding section. Please check - <value-of select="string-join(for $x in document($funders)//funder[((contains($ack,concat(' ',*:name[1],' ')) or contains($ack,concat(' ',*:name[1],'.'))) and not(@fundref = $funding-group))] return concat($x,' - ',$x/@fundref),'; ')"/>.</report>
-    </rule>
-  </pattern>
-  
   <pattern id="unicode-tests-pattern">
     <rule context="sub-article//p[matches(.,'[âÂÅÃËÆ]')]|sub-article//td[matches(.,'[âÂÅÃËÆ]')]|sub-article//th[matches(.,'[âÂÅÃËÆ]')]" id="unicode-tests">
       
@@ -10468,7 +10460,6 @@
       <assert test="descendant::element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" role="error" id="doi-conf-ref-checks-xspec-assert">element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name] must be present.</assert>
       <assert test="descendant::element-citation[(lower-case(source[1])='zenodo') or contains(ext-link[1],'10.5281/zenodo') or contains(pub-id[@pub-id-type='doi'][1],'10.5281/zenodo')]" role="error" id="zenodo-tests-xspec-assert">element-citation[(lower-case(source[1])='zenodo') or contains(ext-link[1],'10.5281/zenodo') or contains(pub-id[@pub-id-type='doi'][1],'10.5281/zenodo')] must be present.</assert>
       <assert test="descendant::element-citation/source  or descendant:: element-citation/article-title  or descendant:: element-citation/chapter-title  or descendant:: element-citation/data-title" role="error" id="link-ref-tests-xspec-assert">element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title must be present.</assert>
-      <assert test="descendant::article[not(@article-type='article-commentary')]//ack" role="error" id="fundref-rule-xspec-assert">article[not(@article-type='article-commentary')]//ack must be present.</assert>
       <assert test="descendant::sub-article//p[matches(.,'[âÂÅÃËÆ]')] or descendant::sub-article//td[matches(.,'[âÂÅÃËÆ]')] or descendant::sub-article//th[matches(.,'[âÂÅÃËÆ]')]" role="error" id="unicode-tests-xspec-assert">sub-article//p[matches(.,'[âÂÅÃËÆ]')]|sub-article//td[matches(.,'[âÂÅÃËÆ]')]|sub-article//th[matches(.,'[âÂÅÃËÆ]')] must be present.</assert>
       <assert test="descendant::p[not(descendant::p or descendant::td or descendant::th)] or descendant::td[not(descendant::p)] or descendant::th[not(descendant::p)]" role="error" id="private-char-tests-xspec-assert">p[not(descendant::p or descendant::td or descendant::th)]|td[not(descendant::p)]|th[not(descendant::p)] must be present.</assert>
       <assert test="descendant::article//*[not(ancestor::mml:math)]" role="error" id="element-allowlist-xspec-assert">article//*[not(ancestor::mml:math)] must be present.</assert>

@@ -19,7 +19,7 @@
   <let name="allowed-article-types" value="('research-article','review-article',$features-article-types, $notice-article-types)"/>
   <let name="allowed-disp-subj" value="($research-subj, $features-subj,$notice-display-types)"/>
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
-  <let name="funders" value="'../../../../../src/funders.xml'"/>
+  <let name="rors" value="'../../../../../src/rors.xml'"/>
   <let name="wellcome-fundref-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
   <let name="known-grant-funder-fundref-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968')"/>
   <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$known-grant-funder-fundref-ids)"/>
@@ -1392,9 +1392,8 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="aff[institution-wrap/institution-id[@institution-id-type='ror']]" id="aff-ror-tests">
-      <let name="rors" value="'../../../../../src/rors.xml'"/>
       <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
-      <let name="matching-ror" value="document($rors)//*:ror[*:id=$ror]"/>
+      <let name="matching-ror" value="document($rors)//*:ror[*:id[@type='ror']=$ror]"/>
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hm6cn-aff-ror-city" test="(addr-line/named-content[@content-type='city'] or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(addr-line[1]/named-content[@content-type='city'][1],$matching-ror/*:city))" role="warning" id="aff-ror-city">Affiliation has a ROR id, but its city is not the same one as in the ROR data. Is that OK? ROR has '<value-of select="$matching-ror/*:city"/>', but the affiliation city is <value-of select="addr-line[1]/named-content[@content-type='city'][1]"/>.</report>
     </rule>

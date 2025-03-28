@@ -1,5 +1,5 @@
-declare variable $funders := doc('../../src/funders.xml');
-declare variable $src := substring-before($funders/base-uri(),'funders.xml');
+declare variable $rors := doc('../../src/rors.xml');
+declare variable $src := substring-before($rors/base-uri(),'rors.xml');
 declare variable $grant-folder := substring-before($src,'src/')||'grant-dois/';
 
 let $grant-data := for $file in file:list($grant-folder)[ends-with(.,'.json')]
@@ -13,19 +13,19 @@ let $grants := <grants>{for $item in $grant-data
                order by $funder-doi
                return <grant doi="{$doi}" award="{$award}" funder="{$funder-doi}"/>}</grants>
 
-let $new-funders := 
-  copy $copy := $funders
+let $new-rors := 
+  copy $copy := $rors
   modify (
-    for $funder in $copy//*:funder[@grant-dois="yes"]
-    let $doi := substring-after($funder/@fundref,'doi.org/')
-    let $funder-grants := $grants//*:grant[@funder=$doi]
-    return replace node $funder with <funder grant-dois="{$funder/@grant-dois}" fundref="{$funder/@fundref}">
-            {($funder/*:name,$funder-grants)}
-           </funder>
+    for $ror in $copy//*:ror[@grant-dois="yes"]
+    let $dois := for $fundref in $ror/*:id[@type="fundref"] return substring-after($fundref,'doi.org/')
+    let $funder-grants := $grants//*:grant[@funder=$dois]
+    return replace node $ror with <ror grant-dois="{$ror/@grant-dois}">
+            {($ror/*,$funder-grants)}
+           </ror>
   )
   return $copy
  
 return (
-  file:write($src||'funders.xml',$new-funders,map{"indent":"yes"}),
+  file:write($src||'rors.xml',$new-rors,map{"indent":"yes"}),
   file:delete($grant-folder,true())
 )

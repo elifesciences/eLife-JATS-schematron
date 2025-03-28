@@ -19,7 +19,7 @@
   <let name="allowed-article-types" value="('research-article','review-article',$features-article-types, $notice-article-types)"/>
   <let name="allowed-disp-subj" value="($research-subj, $features-subj,$notice-display-types)"/>
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
-  <let name="funders" value="'../../../../../src/funders.xml'"/>
+  <let name="rors" value="'../../../../../src/rors.xml'"/>
   <let name="wellcome-fundref-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
   <let name="known-grant-funder-fundref-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968')"/>
   <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$known-grant-funder-fundref-ids)"/>
@@ -1393,7 +1393,7 @@
   <pattern id="article-metadata">
     <rule context="funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id]" id="general-funding-no-award-id-tests">
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
-      <let name="funder-entry" value="document($funders)//funder[@fundref=$funder-id]"/>
+      <let name="funder-entry" value="document($rors)//*:ror[*:id[@type='fundref']=$funder-id]"/>
       <let name="grant-doi-count" value="count($funder-entry//*:grant)"/>
       <report test="$grant-doi-count gt 29" role="warning" id="grant-doi-test-3">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has no award-id, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Is there a missing grant DOI or award ID for this funding?</report>
     </rule>

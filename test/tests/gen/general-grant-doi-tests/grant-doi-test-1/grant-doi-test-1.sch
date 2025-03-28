@@ -19,7 +19,7 @@
   <let name="allowed-article-types" value="('research-article','review-article',$features-article-types, $notice-article-types)"/>
   <let name="allowed-disp-subj" value="($research-subj, $features-subj,$notice-display-types)"/>
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
-  <let name="funders" value="'../../../../../src/funders.xml'"/>
+  <let name="rors" value="'../../../../../src/rors.xml'"/>
   <let name="wellcome-fundref-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
   <let name="known-grant-funder-fundref-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968')"/>
   <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$known-grant-funder-fundref-ids)"/>
@@ -1394,7 +1394,7 @@
     <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" id="general-grant-doi-tests">
       <let name="award-id" value="award-id"/>
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
-      <let name="funder-entry" value="document($funders)//funder[@fundref=$funder-id]"/>
+      <let name="funder-entry" value="document($rors)//*:ror[*:id[@type='fundref']=$funder-id]"/>
       <let name="mints-grant-dois" value="$funder-entry/@grant-dois='yes'"/>
       <let name="grant-matches" value="if (not($mints-grant-dois)) then ()         else $funder-entry//*:grant[@award=$award-id]"/>
       <report test="$grant-matches" role="warning" id="grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
