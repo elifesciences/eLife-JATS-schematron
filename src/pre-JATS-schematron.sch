@@ -3811,6 +3811,8 @@
       
       <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hslfn-ack-content-test" test="p[* or not(normalize-space(.)='')]" role="error" id="ack-content-test">[ack-content-test] An Acknowledgements section must contain content. Either add in the missing content or delete the Acknowledgements.</assert>
       
+      <report test="p[* or not(normalize-space(.)='')]" role="warning" id="ack-funding">[ack-funding] Please check the acknowledgements section to ensure that all funding information is captured in the funding section.</report>
+      
     </rule></pattern><pattern id="ack-content-tests-pattern"><rule context="ack//p" id="ack-content-tests">
       <let name="hit" value="string-join(for $x in tokenize(.,' ') return         if (matches($x,'^[A-Z]{1}\.$')) then $x         else (),', ')"/>
       <let name="hit-count" value="count(for $x in tokenize(.,' ') return         if (matches($x,'^[A-Z]{1}\.$')) then $x         else ())"/>

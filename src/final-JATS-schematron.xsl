@@ -20296,6 +20296,17 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <!--REPORT warning-->
+      <xsl:if test="p[* or not(normalize-space(.)='')]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="p[* or not(normalize-space(.)='')]">
+            <xsl:attribute name="id">ack-funding</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ack-funding] Please check the acknowledgements section to ensure that all funding information is captured in the funding section.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M297"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M297"/>

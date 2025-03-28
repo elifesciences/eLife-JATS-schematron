@@ -6618,6 +6618,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="ack-content-test">An Acknowledgements section must contain content. Either add in the missing content or delete the Acknowledgements.</assert>
       
+      <report test="p[* or not(normalize-space(.)='')]" 
+        role="warning" 
+        id="ack-funding">Please check the acknowledgements section to ensure that all funding information is captured in the funding section.</report>
+      
     </rule>
     
     <rule context="ack//p" id="ack-content-tests">

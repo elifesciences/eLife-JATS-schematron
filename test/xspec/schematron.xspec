@@ -8395,6 +8395,16 @@
         <x:expect-assert id="ack-content-test" role="error"/>
         <x:expect-not-assert id="ack-title-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ack-funding-pass">
+        <x:context href="../tests/gen/ack-title-tests/ack-funding/pass.xml"/>
+        <x:expect-not-report id="ack-funding" role="warning"/>
+        <x:expect-not-assert id="ack-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ack-funding-fail">
+        <x:context href="../tests/gen/ack-title-tests/ack-funding/fail.xml"/>
+        <x:expect-report id="ack-funding" role="warning"/>
+        <x:expect-not-assert id="ack-title-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ack-content-tests">
       <x:scenario label="ack-full-stop-intial-test-pass">
