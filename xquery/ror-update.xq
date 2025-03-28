@@ -9,11 +9,12 @@ let $list :=
 <rors>{
   for $x in $json/*:json/*:_
   let $id := $x/*:id
-  let $name := $x/*:name 
-  let $cities := for $y in $x/*:addresses/*:_/*:city
-                 return $y
+  let $name := <name>{$x/*:names/*[*:types[*='ror_display']]/*:value/data()}</name>
+  let $cities := for $y in $x/*:locations/*/*:geonames__details/*:name
+                 return <city>{data($y)}</city>
   (: standardise coutry names according to our style in countries.xml :)
-  let $country-name := $x/country/*:country__name/text()
+  let $country-name := $x/*:locations/*[1]/*:geonames__details/*:country__name/text()
+  let $country-code := $x/*:locations/*[1]/*:geonames__details/*:country__code/text()
   let $country-val := switch($country-name)
                         case 'South Korea' return 'Republic of Korea'
                         case 'North Korea' return "Democratic People's Republic of Korea"
@@ -28,8 +29,8 @@ let $list :=
                         case 'Palestine' return 'State of Palestine'
                         case 'Palestinian Territory' return 'State of Palestine'
                         default return $country-name
-  let $country := <country country="{$x/country/*:country__code}">{$country-val}</country>
-  return <ror>{($id,$name,$cities,$country)}</ror> 
+  let $country := <country country="{$country-code }">{$country-val}</country>
+  return <ror>{($id,$name,$cities,$country)}</ror>
 }</rors>
 
 return file:write(($src||'rors.xml'),$list, map{"indent":"yes"})
