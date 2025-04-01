@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="ref-article-title-4.sch"?>
+<!--Context: ref//article-title
+Test: report    matches(.,'\p{Ps}') and not(matches(.,'\p{Pe}'))
+Message:  in ref contains an opening bracket -  - but it does not contain a closing bracket. Is that correct? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref>
+            <article-title>Something (else)</article-title>
+        </ref>
+        <ref>
+            <article-title>Something [else]</article-title>
+        </ref>
+    </article>
+</root>
