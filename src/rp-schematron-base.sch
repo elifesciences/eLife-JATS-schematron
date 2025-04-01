@@ -968,6 +968,14 @@
         <report test="matches(.,'\?[^\s\p{P}]')" 
           role="warning" 
           id="ref-article-title-3"><name/> in ref contains a question mark which may potentially be the result of a processing error - <value-of select="."/>. Should it be repalced with other characters?</report>
+        
+        <report test="matches(.,'\p{Ps}') and not(matches(.,'\p{Pe}'))" 
+          role="warning" 
+          id="ref-article-title-4"><name/> in ref contains an opening bracket - <value-of select="replace(.,'[^\p{Ps}]','')"/> - but it does not contain a closing bracket. Is that correct?</report>
+        
+        <report test="matches(.,'\p{Pe}') and not(matches(.,'\p{Ps}'))" 
+          role="warning" 
+          id="ref-article-title-5"><name/> in ref contains a closing bracket - <value-of select="replace(.,'[^\p{Pe}]','')"/> - but it does not contain an opening bracket. Is that correct?</report>
       </rule>
   </pattern>
   
@@ -980,6 +988,14 @@
         <report test="matches(.,'\?[^\s\p{P}]')" 
           role="warning" 
           id="ref-chapter-title-2"><name/> in ref contains a question mark which may potentially be the result of a processing error - <value-of select="."/>. Should it be repalced with other characters?</report>
+        
+        <report test="matches(.,'\p{Ps}') and not(matches(.,'\p{Pe}'))" 
+          role="warning" 
+          id="ref-chapter-title-3"><name/> in ref contains an opening bracket - <value-of select="replace(.,'[^\p{Ps}]','')"/> - but it does not contain a closing bracket. Is that correct?</report>
+        
+        <report test="matches(.,'\p{Pe}') and not(matches(.,'\p{Ps}'))" 
+          role="warning" 
+          id="ref-chapter-title-4"><name/> in ref contains a closing bracket - <value-of select="replace(.,'[^\p{Pe}]','')"/> - but it does not contain an opening bracket. Is that correct?</report>
       </rule>
   </pattern>
   
@@ -988,6 +1004,14 @@
         <report test="matches(.,'\?[^\s\p{P}]')" 
           role="warning" 
           id="ref-source-1"><name/> in ref contains a question mark which may potentially be the result of a processing error - <value-of select="."/>. Should it be repalced with other characters?</report>
+        
+        <report test="matches(.,'\p{Ps}') and not(matches(.,'\p{Pe}'))" 
+          role="warning" 
+          id="ref-source-2"><name/> in ref contains an opening bracket - <value-of select="replace(.,'[^\p{Ps}]','')"/> - but it does not contain a closing bracket. Is that correct?</report>
+        
+        <report test="matches(.,'\p{Pe}') and not(matches(.,'\p{Ps}'))" 
+          role="warning" 
+          id="ref-source-3"><name/> in ref contains a closing bracket - <value-of select="replace(.,'[^\p{Pe}]','')"/> - but it does not contain an opening bracket. Is that correct?</report>
       </rule>
   </pattern>
   

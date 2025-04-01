@@ -4150,6 +4150,36 @@
                <xsl:text/>. Should it be repalced with other characters?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(.,'\p{Ps}') and not(matches(.,'\p{Pe}'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Ps}') and not(matches(.,'\p{Pe}'))">
+            <xsl:attribute name="id">ref-article-title-4</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-article-title-4] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in ref contains an opening bracket - <xsl:text/>
+               <xsl:value-of select="replace(.,'[^\p{Ps}]','')"/>
+               <xsl:text/> - but it does not contain a closing bracket. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(.,'\p{Pe}') and not(matches(.,'\p{Ps}'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Pe}') and not(matches(.,'\p{Ps}'))">
+            <xsl:attribute name="id">ref-article-title-5</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-article-title-5] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in ref contains a closing bracket - <xsl:text/>
+               <xsl:value-of select="replace(.,'[^\p{Pe}]','')"/>
+               <xsl:text/> - but it does not contain an opening bracket. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M59"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M59"/>
@@ -4190,6 +4220,36 @@
                <xsl:text/>. Should it be repalced with other characters?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(.,'\p{Ps}') and not(matches(.,'\p{Pe}'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Ps}') and not(matches(.,'\p{Pe}'))">
+            <xsl:attribute name="id">ref-chapter-title-3</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-chapter-title-3] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in ref contains an opening bracket - <xsl:text/>
+               <xsl:value-of select="replace(.,'[^\p{Ps}]','')"/>
+               <xsl:text/> - but it does not contain a closing bracket. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(.,'\p{Pe}') and not(matches(.,'\p{Ps}'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Pe}') and not(matches(.,'\p{Ps}'))">
+            <xsl:attribute name="id">ref-chapter-title-4</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-chapter-title-4] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in ref contains a closing bracket - <xsl:text/>
+               <xsl:value-of select="replace(.,'[^\p{Pe}]','')"/>
+               <xsl:text/> - but it does not contain an opening bracket. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M60"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M60"/>
@@ -4213,6 +4273,36 @@
                <xsl:text/> in ref contains a question mark which may potentially be the result of a processing error - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>. Should it be repalced with other characters?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(.,'\p{Ps}') and not(matches(.,'\p{Pe}'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Ps}') and not(matches(.,'\p{Pe}'))">
+            <xsl:attribute name="id">ref-source-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-source-2] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in ref contains an opening bracket - <xsl:text/>
+               <xsl:value-of select="replace(.,'[^\p{Ps}]','')"/>
+               <xsl:text/> - but it does not contain a closing bracket. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(.,'\p{Pe}') and not(matches(.,'\p{Ps}'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Pe}') and not(matches(.,'\p{Ps}'))">
+            <xsl:attribute name="id">ref-source-3</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-source-3] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> in ref contains a closing bracket - <xsl:text/>
+               <xsl:value-of select="replace(.,'[^\p{Pe}]','')"/>
+               <xsl:text/> - but it does not contain an opening bracket. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M61"/>
