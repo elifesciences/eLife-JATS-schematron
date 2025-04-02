@@ -10531,7 +10531,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="text" value="string-join(for $x in self::*/(*|text())
         return if ($x/local-name()='xref') then ()
         else string($x),'')"/>
-      <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?, [1][7-9][0-9][0-9]|[A-Z][A-Za-z]+ et al\.?, [2][0-2][0-9][0-9]|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?|[A-Z][A-Za-z]+ et al\.? [\(]?[1][7-9][0-9][0-9][\)]?'"/>
+      <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?\p{P}?\s*\p{Ps}?([1][7-9][0-9][0-9]|[2][0-2][0-9][0-9])'"/>
       <let name="missing-file-regex" value="' figures? (supplements?\s?)?\d| source (data|code)s? \d| (audio|supplementary) files? \d| tables? \d'"/>
       
       <report test="matches($text,$missing-ref-regex)" 

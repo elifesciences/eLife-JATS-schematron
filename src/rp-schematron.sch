@@ -836,6 +836,11 @@
     <pattern id="p-bold-checks-pattern"><rule context="p[not(ancestor::sub-article) and (count(*)=1) and (child::bold or child::italic)]" id="p-bold-checks">
         <let name="free-text" value="replace(normalize-space(string-join(for $x in self::*/text() return $x,'')),' ','')"/>
         <report test="$free-text=''" role="warning" id="p-all-bold">[p-all-bold] Content of p element is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
+      </rule></pattern><pattern id="p-ref-checks-pattern"><rule context="p[not(ancestor::sub-article)]" id="p-ref-checks">
+        <let name="text" value="string-join(for $x in self::*/(*|text())                                             return if ($x/local-name()='xref') then ()                                                    else string($x),'')"/>
+        <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?\p{P}?\s*\p{Ps}?([1][7-9][0-9][0-9]|[2][0-2][0-9][0-9])'"/>
+        
+        <report test="matches($text,$missing-ref-regex)" role="warning" id="missing-ref-in-text-test">[missing-ref-in-text-test] <name/> element contains possible citation which is unlinked or a missing reference - search - <value-of select="concat(tokenize(substring-before($text,' et al'),' ')[last()],' et al ',tokenize(substring-after($text,' et al'),' ')[2])"/></report>
       </rule></pattern>
 
     <pattern id="general-article-meta-checks-pattern"><rule context="article/front/article-meta" id="general-article-meta-checks">
