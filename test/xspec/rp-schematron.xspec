@@ -2510,6 +2510,18 @@
         <x:expect-not-assert id="p-bold-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="p-ref-checks">
+      <x:scenario label="missing-ref-in-text-test-pass">
+        <x:context href="../tests/rp/p-ref-checks/missing-ref-in-text-test/pass.xml"/>
+        <x:expect-not-report id="missing-ref-in-text-test" role="warning"/>
+        <x:expect-not-assert id="p-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="missing-ref-in-text-test-fail">
+        <x:context href="../tests/rp/p-ref-checks/missing-ref-in-text-test/fail.xml"/>
+        <x:expect-report id="missing-ref-in-text-test" role="warning"/>
+        <x:expect-not-assert id="p-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="general-article-meta-checks">
       <x:scenario label="article-id-pass">
         <x:context href="../tests/rp/general-article-meta-checks/article-id/pass.xml"/>

@@ -1485,6 +1485,17 @@
         role="warning" 
         id="p-all-bold">Content of p element is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
       </rule>
+      
+      <rule context="p[not(ancestor::sub-article)]" id="p-ref-checks">
+        <let name="text" value="string-join(for $x in self::*/(*|text())
+                                            return if ($x/local-name()='xref') then ()
+                                                   else string($x),'')"/>
+        <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?\p{P}?\s*\p{Ps}?([1][7-9][0-9][0-9]|[2][0-2][0-9][0-9])'"/>
+        
+        <report test="matches($text,$missing-ref-regex)" 
+        role="warning" 
+        id="missing-ref-in-text-test"><name/> element contains possible citation which is unlinked or a missing reference - search - <value-of select="concat(tokenize(substring-before($text,' et al'),' ')[last()],' et al ',tokenize(substring-after($text,' et al'),' ')[2])"/></report>
+      </rule>
     </pattern>
 
     <pattern id="article-metadata">

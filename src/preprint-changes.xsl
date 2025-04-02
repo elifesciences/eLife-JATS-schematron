@@ -1546,7 +1546,7 @@
     </xsl:template>
     
      <!-- Add sec-type="ethics-statement" -->
-    <xsl:template xml:id="sec-ethics" match="sec[(not(@sec-type)) and matches(lower-case(title[1]),'ethics') and not(matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')) and not(ancestor::sec[matches(lower-case(title[1]),'ethics')])]">
+    <xsl:template xml:id="sec-ethics" match="sec[(not(@sec-type)) and matches(lower-case(title[1]),'ethic(s|al)') and not(matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')) and not(ancestor::sec[matches(lower-case(title[1]),'ethic(s|al)')])]">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:attribute name="sec-type">ethics-statement</xsl:attribute>
