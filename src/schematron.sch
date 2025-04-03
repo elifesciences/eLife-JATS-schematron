@@ -3437,12 +3437,12 @@
         id="aff-ror-name">Affiliation has a ROR id, but it does not contain the name of the institution as captured in the ROR data within its institution. Is that OK? ROR has '<value-of select="$matching-ror/*:name"/>', but the institution is <value-of select="institution-wrap[1]/institution[1]"/>.</report>
       
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hm6cn-aff-ror-city"
-        test="(addr-line/named-content[@content-type='city'] or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(addr-line[1]/named-content[@content-type='city'][1],$matching-ror/*:city))"
+        test="(addr-line/named-content[@content-type='city'] or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(addr-line[1]/named-content[@content-type='city'][1],$matching-ror/*:city[1]))"
         role="warning" 
         id="aff-ror-city">Affiliation has a ROR id, but its city is not the same one as in the ROR data. Is that OK? ROR has '<value-of select="$matching-ror/*:city"/>', but the affiliation city is <value-of select="addr-line[1]/named-content[@content-type='city'][1]"/>.</report>
       
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hux4f-aff-ror-country"
-        test="(country or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(country[1],$matching-ror/*:country))"
+        test="(country or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(country[1],$matching-ror/*:country[1]))"
         role="warning" 
         id="aff-ror-country">Affiliation has a ROR id, but its country is not the same one as in the ROR data. Is that OK? ROR has '<value-of select="$matching-ror/*:country"/>', but the affiliation country is <value-of select="country[1]"/>.</report>
       

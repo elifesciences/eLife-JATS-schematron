@@ -1395,7 +1395,7 @@
       <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
       <let name="matching-ror" value="document($rors)//*:ror[*:id[@type='ror']=$ror]"/>
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
-      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hm6cn-aff-ror-city" test="(addr-line/named-content[@content-type='city'] or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(addr-line[1]/named-content[@content-type='city'][1],$matching-ror/*:city))" role="warning" id="aff-ror-city">Affiliation has a ROR id, but its city is not the same one as in the ROR data. Is that OK? ROR has '<value-of select="$matching-ror/*:city"/>', but the affiliation city is <value-of select="addr-line[1]/named-content[@content-type='city'][1]"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hm6cn-aff-ror-city" test="(addr-line/named-content[@content-type='city'] or ancestor::contrib[@contrib-type='author' and not(ancestor::sub-article)]) and exists($matching-ror) and not(contains(addr-line[1]/named-content[@content-type='city'][1],$matching-ror/*:city[1]))" role="warning" id="aff-ror-city">Affiliation has a ROR id, but its city is not the same one as in the ROR data. Is that OK? ROR has '<value-of select="$matching-ror/*:city"/>', but the affiliation city is <value-of select="addr-line[1]/named-content[@content-type='city'][1]"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
