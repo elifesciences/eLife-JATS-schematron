@@ -10070,6 +10070,10 @@ else self::*/local-name() = $allowed-p-blocks"
         test="@related-article-type='commentary-article'" 
         role="error" 
         id="insight-related-article-test-1">Insight related article links must have the related-article-type 'commentary-article'. The link for <value-of select="$doi"/> has '<value-of select="@related-article-type"/>'.</assert>
+     
+     <report test="@related-article-type='commentary-article' and not(ancestor::article//ref-list/ref//pub-id[@pub-id-type]=$doi)" 
+        role="error" 
+        id="insight-related-article-test-2">This Insight is related to <value-of select="$doi"/>, but there is no reference in the ref-list with that doi.</report>
    </rule>
    
    <rule context="article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//p|

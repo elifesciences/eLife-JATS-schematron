@@ -29361,6 +29361,19 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <!--REPORT error-->
+      <xsl:if test="@related-article-type='commentary-article' and not(ancestor::article//ref-list/ref//pub-id[@pub-id-type]=$doi)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@related-article-type='commentary-article' and not(ancestor::article//ref-list/ref//pub-id[@pub-id-type]=$doi)">
+            <xsl:attribute name="id">insight-related-article-test-2</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[insight-related-article-test-2] This Insight is related to <xsl:text/>
+               <xsl:value-of select="$doi"/>
+               <xsl:text/>, but there is no reference in the ref-list with that doi.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M491"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M491"/>

@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="insight-related-article-test-2.sch"?>
+<!--Context: article[@article-type='article-commentary']//article-meta/related-article
+Test: report    @related-article-type='commentary-article' and not(ancestor::article//ref-list/ref//pub-id[@pub-id-type]=$doi)
+Message: This Insight is related to , but there is no reference in the ref-list with that doi. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article article-type="article-commentary">
+        <article-meta>
+            <related-article related-article-type="commentary-article" ext-link-type="doi" xlink:href="10.7554/eLife.000001" id="ra1"/>
+        </article-meta>
+        <ref-list>
+            <ref>
+                <pub-id pub-id-type="doi">10.7554/eLife.000001</pub-id>
+            </ref>
+        </ref-list>
+    </article>
+</root>
