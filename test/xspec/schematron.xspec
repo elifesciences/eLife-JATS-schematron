@@ -13607,6 +13607,16 @@
         <x:expect-assert id="insight-related-article-test-1" role="error"/>
         <x:expect-not-assert id="insight-related-article-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="insight-related-article-test-2-pass">
+        <x:context href="../tests/gen/insight-related-article-tests/insight-related-article-test-2/pass.xml"/>
+        <x:expect-not-report id="insight-related-article-test-2" role="error"/>
+        <x:expect-not-assert id="insight-related-article-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="insight-related-article-test-2-fail">
+        <x:context href="../tests/gen/insight-related-article-tests/insight-related-article-test-2/fail.xml"/>
+        <x:expect-report id="insight-related-article-test-2" role="error"/>
+        <x:expect-not-assert id="insight-related-article-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="feature-comment-tests">
       <x:scenario label="final-feat-ok-test-pass">

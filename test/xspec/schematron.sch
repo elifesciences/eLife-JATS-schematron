@@ -6998,6 +6998,8 @@
      <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#insight-box-test-1" test="contains($text,$citation)" role="warning" id="insight-box-test-1">A citation for related article <value-of select="$doi"/> is not included in the related-article box text in the body of the article. '<value-of select="$citation"/>' is not present (or is different to the relevant passage) in '<value-of select="$text"/>'. The following word(s) are in the boxed text but not in the citation: <value-of select="string-join(e:insight-box($text,$citation)//*:item[@type='cite'],'; ')"/>. The following word(s) are in the citation but not in the boxed text: <value-of select="string-join(e:insight-box($text,$citation)//*:item[@type='box'],'; ')"/>.</assert>
      
      <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#insight-related-article-test-1" test="@related-article-type='commentary-article'" role="error" id="insight-related-article-test-1">Insight related article links must have the related-article-type 'commentary-article'. The link for <value-of select="$doi"/> has '<value-of select="@related-article-type"/>'.</assert>
+     
+     <report test="@related-article-type='commentary-article' and not(ancestor::article//ref-list/ref//pub-id[@pub-id-type]=$doi)" role="error" id="insight-related-article-test-2">This Insight is related to <value-of select="$doi"/>, but there is no reference in the ref-list with that doi.</report>
    </rule>
   </pattern>
   <pattern id="feature-comment-tests-pattern">
