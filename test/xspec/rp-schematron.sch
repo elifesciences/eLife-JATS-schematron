@@ -643,7 +643,7 @@
         
         <report test="(@pub-id-type='pmid') and not(matches(.,'^\d{3,10}$'))" role="error" id="ref-pmid-conformance">pub-id is tagged as a pmid, but it is not a number made up of between 3 and 10 digits - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
         
-        <report test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{6,15}$'))" role="error" id="ref-pmcid-conformance">pub-id is tagged as a pmcid, but it is not a valid PMCID ('PMC' followed by 6+ digits) - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
+        <report test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{5,15}$'))" role="error" id="ref-pmcid-conformance">pub-id is tagged as a pmcid, but it is not a valid PMCID ('PMC' followed by 5+ digits) - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
         
         <report test="(@pub-id-type='arxiv') and not(matches(.,'^(\d{2}(0[1-9]|1[0-2])\.\d{5}|\d{2}(0[1-9]|1[0-2])\d{3})$'))" role="error" id="ref-arxiv-conformance">pub-id is tagged as an arxiv id, but it is not a valid arxiv id (a number in the format yymm.nnnnn or yymmnnn) - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
       
