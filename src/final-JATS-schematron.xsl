@@ -813,18 +813,6 @@
          <xsl:when test="matches($s,'trypanosoma\p{Zs}?brucei')">
             <xsl:value-of select="'Trypanosoma brucei'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'caulobacter\p{Zs}?crescentus')">
-            <xsl:value-of select="'Caulobacter crescentus'"/>
-         </xsl:when>
-         <xsl:when test="matches($s,'c\.\p{Zs}?crescentus')">
-            <xsl:value-of select="'C. crescentus'"/>
-         </xsl:when>
-         <xsl:when test="matches($s,'agrobacterium\p{Zs}?tumefaciens')">
-            <xsl:value-of select="'Agrobacterium tumefaciens'"/>
-         </xsl:when>
-         <xsl:when test="matches($s,'a\.\p{Zs}?tumefaciens')">
-            <xsl:value-of select="'A. tumefaciens'"/>
-         </xsl:when>
          <xsl:when test="matches($s,'t\.\p{Zs}?gondii')">
             <xsl:value-of select="'T. gondii'"/>
          </xsl:when>
@@ -837,113 +825,113 @@
          <xsl:when test="matches($s,'danio\p{Zs}?rerio')">
             <xsl:value-of select="'Danio rerio'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'drosophila')">
-            <xsl:value-of select="'Drosophila'"/>
-         </xsl:when>
          <xsl:when test="matches($s,'yimenosaurus')">
             <xsl:value-of select="'Yimenosaurus'"/>
          </xsl:when>
          <xsl:when test="matches($s,'lesothosaurus\p{Zs}?diagnosticus')">
             <xsl:value-of select="'Lesothosaurus diagnosticus'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'l.\p{Zs}?diagnosticus')">
+         <xsl:when test="matches($s,'l\.\p{Zs}?diagnosticus')">
             <xsl:value-of select="'L. diagnosticus'"/>
          </xsl:when>
          <xsl:when test="matches($s,'scelidosaurus\p{Zs}?harrisonii')">
             <xsl:value-of select="'Scelidosaurus harrisonii'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'s.\p{Zs}?harrisonii')">
+         <xsl:when test="matches($s,'s\.\p{Zs}?harrisonii')">
             <xsl:value-of select="'S. harrisonii'"/>
          </xsl:when>
          <xsl:when test="matches($s,'haya\p{Zs}?griva')">
             <xsl:value-of select="'Haya griva'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'h.\p{Zs}?griva')">
+         <xsl:when test="matches($s,'h\.\p{Zs}?griva')">
             <xsl:value-of select="'H. griva'"/>
          </xsl:when>
          <xsl:when test="matches($s,'polacanthus\p{Zs}?foxii')">
             <xsl:value-of select="'Polacanthus foxii'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'p.\p{Zs}?foxii')">
+         <xsl:when test="matches($s,'p\.\p{Zs}?foxii')">
             <xsl:value-of select="'P. foxii'"/>
          </xsl:when>
          <xsl:when test="matches($s,'scutellosaurus\p{Zs}?lawleri')">
             <xsl:value-of select="'Scutellosaurus lawleri'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'s.\p{Zs}?lawleri')">
+         <xsl:when test="matches($s,'s\.\p{Zs}?lawleri')">
             <xsl:value-of select="'S. lawleri'"/>
          </xsl:when>
          <xsl:when test="matches($s,'saichania\p{Zs}?chulsanensis')">
             <xsl:value-of select="'Saichania chulsanensis'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'s.\p{Zs}?chulsanensis')">
+         <xsl:when test="matches($s,'s\.\p{Zs}?chulsanensis')">
             <xsl:value-of select="'S. chulsanensis'"/>
          </xsl:when>
          <xsl:when test="matches($s,'gargoyleosaurus\p{Zs}?parkpinorum')">
             <xsl:value-of select="'Gargoyleosaurus parkpinorum'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'g.\p{Zs}?parkpinorum')">
+         <xsl:when test="matches($s,'g\.\p{Zs}?parkpinorum')">
             <xsl:value-of select="'G. parkpinorum'"/>
          </xsl:when>
          <xsl:when test="matches($s,'europelta\p{Zs}?carbonensis')">
             <xsl:value-of select="'Europelta carbonensis'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'e.\p{Zs}?carbonensis')">
+         <xsl:when test="matches($s,'e\.\p{Zs}?carbonensis')">
             <xsl:value-of select="'E. carbonensis'"/>
          </xsl:when>
          <xsl:when test="matches($s,'stegosaurus\p{Zs}?stenops')">
             <xsl:value-of select="'Stegosaurus stenops'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'s.\p{Zs}?stenops')">
+         <xsl:when test="matches($s,'s\.\p{Zs}?stenops')">
             <xsl:value-of select="'S. stenops'"/>
          </xsl:when>
          <xsl:when test="matches($s,'pinacosaurus\p{Zs}?grangeri')">
             <xsl:value-of select="'Pinacosaurus grangeri'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'p.\p{Zs}?grangeri')">
+         <xsl:when test="matches($s,'p\.\p{Zs}?grangeri')">
             <xsl:value-of select="'P. grangeri'"/>
          </xsl:when>
          <xsl:when test="matches($s,'tatisaurus\p{Zs}?oehleri')">
             <xsl:value-of select="'Tatisaurus oehleri'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'t.\p{Zs}?oehleri')">
+         <xsl:when test="matches($s,'t\.\p{Zs}?oehleri')">
             <xsl:value-of select="'T. oehleri'"/>
          </xsl:when>
          <xsl:when test="matches($s,'hungarosaurus\p{Zs}?tormai')">
             <xsl:value-of select="'Hungarosaurus tormai'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'h.\p{Zs}?tormai')">
+         <xsl:when test="matches($s,'h\.\p{Zs}?tormai')">
             <xsl:value-of select="'H. tormai'"/>
-         </xsl:when>
-         <xsl:when test="matches($s,'lesothosaurus\p{Zs}?diagnosticus')">
-            <xsl:value-of select="'Lesothosaurus diagnosticus'"/>
-         </xsl:when>
-         <xsl:when test="matches($s,'l.\p{Zs}?diagnosticus')">
-            <xsl:value-of select="'L. diagnosticus'"/>
          </xsl:when>
          <xsl:when test="matches($s,'bienosaurus\p{Zs}?lufengensis')">
             <xsl:value-of select="'Bienosaurus lufengensis'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'b.\p{Zs}?lufengensis')">
+         <xsl:when test="matches($s,'b\.\p{Zs}?lufengensis')">
             <xsl:value-of select="'B. lufengensis'"/>
          </xsl:when>
          <xsl:when test="matches($s,'fabrosaurus\p{Zs}?australis')">
             <xsl:value-of select="'Fabrosaurus australis'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'f.\p{Zs}?australis')">
+         <xsl:when test="matches($s,'f\.\p{Zs}?australis')">
             <xsl:value-of select="'F. australis'"/>
          </xsl:when>
          <xsl:when test="matches($s,'chinshakiangosaurus\p{Zs}?chunghoensis')">
             <xsl:value-of select="'Chinshakiangosaurus chunghoensis'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'c.\p{Zs}?chunghoensis')">
+         <xsl:when test="matches($s,'c\.\p{Zs}?chunghoensis')">
             <xsl:value-of select="'C. chunghoensis'"/>
          </xsl:when>
          <xsl:when test="matches($s,'euoplocephalus\p{Zs}?tutus')">
             <xsl:value-of select="'Euoplocephalus tutus'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'e.\p{Zs}?tutus')">
+         <xsl:when test="matches($s,'e\.\p{Zs}?tutus')">
             <xsl:value-of select="'E. tutus'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'drosophila')">
+            <xsl:value-of select="'Drosophila'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'xenopus')">
+            <xsl:value-of select="'Xenopus'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'salmonella')">
+            <xsl:value-of select="'Salmonella'"/>
          </xsl:when>
          <xsl:when test="matches($s,'g\.\p{Zs}?beringei')">
             <xsl:value-of select="'G. beringei'"/>
@@ -1029,11 +1017,77 @@
          <xsl:when test="matches($s,'mycobacterium\p{Zs}?bovis')">
             <xsl:value-of select="'Mycobacterium bovis'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'xenopus')">
-            <xsl:value-of select="'Xenopus'"/>
+         <xsl:when test="matches($s,'a\.\p{Zs}?candida')">
+            <xsl:value-of select="'A. candida'"/>
          </xsl:when>
-         <xsl:when test="matches($s,'salmonella')">
-            <xsl:value-of select="'Salmonella'"/>
+         <xsl:when test="matches($s,'albugo\p{Zs}?candida')">
+            <xsl:value-of select="'Albugo candida'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'b\.\p{Zs}?macrocarpa')">
+            <xsl:value-of select="'B. macrocarpa'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'beta\p{Zs}?macrocarpa')">
+            <xsl:value-of select="'Beta macrocarpa'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'b\.\p{Zs}?patula')">
+            <xsl:value-of select="'B. patula'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'beta\p{Zs}?patula')">
+            <xsl:value-of select="'Beta patula'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'b\.\p{Zs}?vulgaris')">
+            <xsl:value-of select="'B. vulgaris'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'beta\p{Zs}?vulgaris')">
+            <xsl:value-of select="'Beta vulgaris'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'c\.\p{Zs}?beticola')">
+            <xsl:value-of select="'C. beticola'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'cercospora\p{Zs}?beticola')">
+            <xsl:value-of select="'Cercospora beticola'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'h\.\p{Zs}?vastatrix')">
+            <xsl:value-of select="'H. vastatrix'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'hemileia\p{Zs}?vastatrix')">
+            <xsl:value-of select="'Hemileia vastatrix'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'m\.\p{Zs}?lini')">
+            <xsl:value-of select="'M. lini'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'melampsora\p{Zs}?lini')">
+            <xsl:value-of select="'Melampsora lini'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'n\.\p{Zs}?discreta')">
+            <xsl:value-of select="'N. discreta'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'neurospora\p{Zs}?discreta')">
+            <xsl:value-of select="'Neurospora discreta'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'p\.\p{Zs}?pachyrhizi')">
+            <xsl:value-of select="'P. pachyrhizi'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'phakopsora\p{Zs}?pachyrhizi')">
+            <xsl:value-of select="'Phakopsora pachyrhizi'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'p\.\p{Zs}?infestans')">
+            <xsl:value-of select="'P. infestans'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'phytophthora\p{Zs}?infestans')">
+            <xsl:value-of select="'Phytophthora infestans'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'p\.\p{Zs}?striiformis')">
+            <xsl:value-of select="'P. striiformis'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'puccinia\p{Zs}?striiformis')">
+            <xsl:value-of select="'Puccinia striiformis'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'u\.\p{Zs}?fabae')">
+            <xsl:value-of select="'U. fabae'"/>
+         </xsl:when>
+         <xsl:when test="matches($s,'uromyces\p{Zs}?fabae')">
+            <xsl:value-of select="'Uromyces fabae'"/>
          </xsl:when>
          <xsl:otherwise>
             <xsl:value-of select="'undefined'"/>
@@ -6283,7 +6337,7 @@
    <xsl:param name="wellcome-fundref-ids" select="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
    <xsl:param name="known-grant-funder-fundref-ids" select="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968')"/>
    <xsl:param name="grant-doi-exception-funder-ids" select="($wellcome-fundref-ids,$known-grant-funder-fundref-ids)"/>
-   <xsl:param name="org-regex" select="'b\.\p{Zs}?subtilis|bacillus\p{Zs}?subtilis|d\.\p{Zs}?melanogaster|drosophila\p{Zs}?melanogaster|e\.\p{Zs}?coli|escherichia\p{Zs}?coli|s\.\p{Zs}?pombe|schizosaccharomyces\p{Zs}?pombe|s\.\p{Zs}?cerevisiae|saccharomyces\p{Zs}?cerevisiae|c\.\p{Zs}?elegans|caenorhabditis\p{Zs}?elegans|a\.\p{Zs}?thaliana|arabidopsis\p{Zs}?thaliana|m\.\p{Zs}?thermophila|myceliophthora\p{Zs}?thermophila|dictyostelium|p\.\p{Zs}?falciparum|plasmodium\p{Zs}?falciparum|s\.\p{Zs}?enterica|salmonella\p{Zs}?enterica|s\.\p{Zs}?pyogenes|streptococcus\p{Zs}?pyogenes|p\.\p{Zs}?dumerilii|platynereis\p{Zs}?dumerilii|p\.\p{Zs}?cynocephalus|papio\p{Zs}?cynocephalus|o\.\p{Zs}?fasciatus|oncopeltus\p{Zs}?fasciatus|n\.\p{Zs}?crassa|neurospora\p{Zs}?crassa|c\.\p{Zs}?intestinalis|ciona\p{Zs}?intestinalis|e\.\p{Zs}?cuniculi|encephalitozoon\p{Zs}?cuniculi|h\.\p{Zs}?salinarum|halobacterium\p{Zs}?salinarum|s\.\p{Zs}?solfataricus|sulfolobus\p{Zs}?solfataricus|s\.\p{Zs}?mediterranea|schmidtea\p{Zs}?mediterranea|s\.\p{Zs}?rosetta|salpingoeca\p{Zs}?rosetta|n\.\p{Zs}?vectensis|nematostella\p{Zs}?vectensis|s\.\p{Zs}?aureus|staphylococcus\p{Zs}?aureus|v\.\p{Zs}?cholerae|vibrio\p{Zs}?cholerae|t\.\p{Zs}?thermophila|tetrahymena\p{Zs}?thermophila|c\.\p{Zs}?reinhardtii|chlamydomonas\p{Zs}?reinhardtii|n\.\p{Zs}?attenuata|nicotiana\p{Zs}?attenuata|e\.\p{Zs}?carotovora|erwinia\p{Zs}?carotovora|e\.\p{Zs}?faecalis|h\.\p{Zs}?sapiens|homo\p{Zs}?sapiens|c\.\p{Zs}?trachomatis|chlamydia\p{Zs}?trachomatis|enterococcus\p{Zs}?faecalis|x\.\p{Zs}?laevis|xenopus\p{Zs}?laevis|x\.\p{Zs}?tropicalis|xenopus\p{Zs}?tropicalis|m\.\p{Zs}?musculus|mus\p{Zs}?musculus|d\.\p{Zs}?immigrans|drosophila\p{Zs}?immigrans|d\.\p{Zs}?subobscura|drosophila\p{Zs}?subobscura|d\.\p{Zs}?affinis|drosophila\p{Zs}?affinis|d\.\p{Zs}?obscura|drosophila\p{Zs}?obscura|f\.\p{Zs}?tularensis|francisella\p{Zs}?tularensis|p\.\p{Zs}?plantaginis|podosphaera\p{Zs}?plantaginis|p\.\p{Zs}?lanceolata|plantago\p{Zs}?lanceolata|m\.\p{Zs}?trossulus|mytilus\p{Zs}?trossulus|m\.\p{Zs}?edulis|mytilus\p{Zs}?edulis|m\.\p{Zs}?chilensis|mytilus\p{Zs}?chilensis|u\.\p{Zs}?maydis|ustilago\p{Zs}?maydis|p\.\p{Zs}?knowlesi|plasmodium\p{Zs}?knowlesi|p\.\p{Zs}?aeruginosa|pseudomonas\p{Zs}?aeruginosa|t\.\p{Zs}?brucei|trypanosoma\p{Zs}?brucei|t\.\p{Zs}?gondii|toxoplasma\p{Zs}?gondii|d\.\p{Zs}?rerio|danio\p{Zs}?rerio|yimenosaurus|lesothosaurus\p{Zs}?diagnosticus|l\.\p{Zs}?diagnosticus|scelidosaurus\p{Zs}?harrisonii|s\.\p{Zs}?harrisonii|haya\p{Zs}?griva|h\.\p{Zs}?griva|polacanthus\p{Zs}?foxii|p\.\p{Zs}?foxii|scutellosaurus\p{Zs}?lawleri|s\.\p{Zs}?lawleri|saichania\p{Zs}?chulsanensis|s\.\p{Zs}?chulsanensis|gargoyleosaurus\p{Zs}?parkpinorum|g\.\p{Zs}?parkpinorum|europelta\p{Zs}?carbonensis|e\.\p{Zs}?carbonensis|stegosaurus\p{Zs}?stenops|s\.\p{Zs}?stenops|pinacosaurus\p{Zs}?grangeri|p\.\p{Zs}?grangeri|tatisaurus\p{Zs}?oehleri|t\.\p{Zs}?oehleri|hungarosaurus\p{Zs}?tormai|h\.\p{Zs}?tormai|bienosaurus\p{Zs}?lufengensis|b\.\p{Zs}?lufengensis|fabrosaurus\p{Zs}?australis|f\.\p{Zs}?australis|chinshakiangosaurus\p{Zs}?chunghoensis|c\.\p{Zs}?chunghoensis|euoplocephalus\p{Zs}?tutus|e\.\p{Zs}?tutus|drosophila|xenopus|salmonella|g\.\p{Zs}?beringei|gorilla\p{Zs}?beringei|m\.\p{Zs}?assamensis|macaca\p{Zs}?assamensis|m\.\p{Zs}?fuscata|macaca\p{Zs}?fuscata|m\.\p{Zs}?mulatta|macaca\p{Zs}?mulatta|m\.\p{Zs}?nemestrina|macaca\p{Zs}?nemestrina|m\.\p{Zs}?sphinx|mandrillus\p{Zs}?sphinx|p\.\p{Zs}?anubis|papio\p{Zs}?anubis|p\.\p{Zs}?hamadryas|papio\p{Zs}?hamadryas|p\.\p{Zs}?paniscus|pan\p{Zs}?paniscus|p\.\p{Zs}?troglodytes|pan\p{Zs}?troglodytes|m\.\p{Zs}?fortuitum|mycobacterium\p{Zs}?fortuitum|m\.\p{Zs}?smegmatis|mycobacterium\p{Zs}?smegmatis|m\.\p{Zs}?tuberculosis|mycobacterium\p{Zs}?tuberculosis|m\.\p{Zs}?bovis|mycobacterium\p{Zs}?bovis'"/>
+   <xsl:param name="org-regex" select="'b\.\p{Zs}?subtilis|bacillus\p{Zs}?subtilis|d\.\p{Zs}?melanogaster|drosophila\p{Zs}?melanogaster|e\.\p{Zs}?coli|escherichia\p{Zs}?coli|s\.\p{Zs}?pombe|schizosaccharomyces\p{Zs}?pombe|s\.\p{Zs}?cerevisiae|saccharomyces\p{Zs}?cerevisiae|c\.\p{Zs}?elegans|caenorhabditis\p{Zs}?elegans|a\.\p{Zs}?thaliana|arabidopsis\p{Zs}?thaliana|m\.\p{Zs}?thermophila|myceliophthora\p{Zs}?thermophila|dictyostelium|p\.\p{Zs}?falciparum|plasmodium\p{Zs}?falciparum|s\.\p{Zs}?enterica|salmonella\p{Zs}?enterica|s\.\p{Zs}?pyogenes|streptococcus\p{Zs}?pyogenes|p\.\p{Zs}?dumerilii|platynereis\p{Zs}?dumerilii|p\.\p{Zs}?cynocephalus|papio\p{Zs}?cynocephalus|o\.\p{Zs}?fasciatus|oncopeltus\p{Zs}?fasciatus|n\.\p{Zs}?crassa|neurospora\p{Zs}?crassa|c\.\p{Zs}?intestinalis|ciona\p{Zs}?intestinalis|e\.\p{Zs}?cuniculi|encephalitozoon\p{Zs}?cuniculi|h\.\p{Zs}?salinarum|halobacterium\p{Zs}?salinarum|s\.\p{Zs}?solfataricus|sulfolobus\p{Zs}?solfataricus|s\.\p{Zs}?mediterranea|schmidtea\p{Zs}?mediterranea|s\.\p{Zs}?rosetta|salpingoeca\p{Zs}?rosetta|n\.\p{Zs}?vectensis|nematostella\p{Zs}?vectensis|s\.\p{Zs}?aureus|staphylococcus\p{Zs}?aureus|v\.\p{Zs}?cholerae|vibrio\p{Zs}?cholerae|t\.\p{Zs}?thermophila|tetrahymena\p{Zs}?thermophila|c\.\p{Zs}?reinhardtii|chlamydomonas\p{Zs}?reinhardtii|n\.\p{Zs}?attenuata|nicotiana\p{Zs}?attenuata|e\.\p{Zs}?carotovora|erwinia\p{Zs}?carotovora|e\.\p{Zs}?faecalis|h\.\p{Zs}?sapiens|homo\p{Zs}?sapiens|c\.\p{Zs}?trachomatis|chlamydia\p{Zs}?trachomatis|enterococcus\p{Zs}?faecalis|x\.\p{Zs}?laevis|xenopus\p{Zs}?laevis|x\.\p{Zs}?tropicalis|xenopus\p{Zs}?tropicalis|m\.\p{Zs}?musculus|mus\p{Zs}?musculus|d\.\p{Zs}?immigrans|drosophila\p{Zs}?immigrans|d\.\p{Zs}?subobscura|drosophila\p{Zs}?subobscura|d\.\p{Zs}?affinis|drosophila\p{Zs}?affinis|d\.\p{Zs}?obscura|drosophila\p{Zs}?obscura|f\.\p{Zs}?tularensis|francisella\p{Zs}?tularensis|p\.\p{Zs}?plantaginis|podosphaera\p{Zs}?plantaginis|p\.\p{Zs}?lanceolata|plantago\p{Zs}?lanceolata|m\.\p{Zs}?trossulus|mytilus\p{Zs}?trossulus|m\.\p{Zs}?edulis|mytilus\p{Zs}?edulis|m\.\p{Zs}?chilensis|mytilus\p{Zs}?chilensis|u\.\p{Zs}?maydis|ustilago\p{Zs}?maydis|p\.\p{Zs}?knowlesi|plasmodium\p{Zs}?knowlesi|p\.\p{Zs}?aeruginosa|pseudomonas\p{Zs}?aeruginosa|t\.\p{Zs}?brucei|trypanosoma\p{Zs}?brucei|t\.\p{Zs}?gondii|toxoplasma\p{Zs}?gondii|d\.\p{Zs}?rerio|danio\p{Zs}?rerio|yimenosaurus|lesothosaurus\p{Zs}?diagnosticus|l\.\p{Zs}?diagnosticus|scelidosaurus\p{Zs}?harrisonii|s\.\p{Zs}?harrisonii|haya\p{Zs}?griva|h\.\p{Zs}?griva|polacanthus\p{Zs}?foxii|p\.\p{Zs}?foxii|scutellosaurus\p{Zs}?lawleri|s\.\p{Zs}?lawleri|saichania\p{Zs}?chulsanensis|s\.\p{Zs}?chulsanensis|gargoyleosaurus\p{Zs}?parkpinorum|g\.\p{Zs}?parkpinorum|europelta\p{Zs}?carbonensis|e\.\p{Zs}?carbonensis|stegosaurus\p{Zs}?stenops|s\.\p{Zs}?stenops|pinacosaurus\p{Zs}?grangeri|p\.\p{Zs}?grangeri|tatisaurus\p{Zs}?oehleri|t\.\p{Zs}?oehleri|hungarosaurus\p{Zs}?tormai|h\.\p{Zs}?tormai|bienosaurus\p{Zs}?lufengensis|b\.\p{Zs}?lufengensis|fabrosaurus\p{Zs}?australis|f\.\p{Zs}?australis|chinshakiangosaurus\p{Zs}?chunghoensis|c\.\p{Zs}?chunghoensis|euoplocephalus\p{Zs}?tutus|e\.\p{Zs}?tutus|drosophila|xenopus|salmonella|g\.\p{Zs}?beringei|gorilla\p{Zs}?beringei|m\.\p{Zs}?assamensis|macaca\p{Zs}?assamensis|m\.\p{Zs}?fuscata|macaca\p{Zs}?fuscata|m\.\p{Zs}?mulatta|macaca\p{Zs}?mulatta|m\.\p{Zs}?nemestrina|macaca\p{Zs}?nemestrina|m\.\p{Zs}?sphinx|mandrillus\p{Zs}?sphinx|p\.\p{Zs}?anubis|papio\p{Zs}?anubis|p\.\p{Zs}?hamadryas|papio\p{Zs}?hamadryas|p\.\p{Zs}?paniscus|pan\p{Zs}?paniscus|p\.\p{Zs}?troglodytes|pan\p{Zs}?troglodytes|m\.\p{Zs}?fortuitum|mycobacterium\p{Zs}?fortuitum|m\.\p{Zs}?smegmatis|mycobacterium\p{Zs}?smegmatis|m\.\p{Zs}?tuberculosis|mycobacterium\p{Zs}?tuberculosis|m\.\p{Zs}?bovis|mycobacterium\p{Zs}?bovis|a\.\p{Zs}?candida|albugo\p{Zs}?candida|b\.\p{Zs}?macrocarpa|beta\p{Zs}?macrocarpa|b\.\p{Zs}?patula|beta\p{Zs}?patula|b\.\p{Zs}?vulgaris|beta\p{Zs}?vulgaris|c\.\p{Zs}?beticola|cercospora\p{Zs}?beticola|h\.\p{Zs}?vastatrix|hemileia\p{Zs}?vastatrix|m\.\p{Zs}?lini|melampsora\p{Zs}?lini|n\.\p{Zs}?discreta|neurospora\p{Zs}?discreta|p\.\p{Zs}?pachyrhizi|phakopsora\p{Zs}?pachyrhizi|p\.\p{Zs}?infestans|phytophthora\p{Zs}?infestans|p\.\p{Zs}?striiformis|puccinia\p{Zs}?striiformis|u\.\p{Zs}?fabae|uromyces\p{Zs}?fabae'"/>
    <xsl:param name="sec-title-regex" select="string-join(     for $x in tokenize($org-regex,'\|')     return concat('^',$x,'$')     ,'|')"/>
    <xsl:param name="latin-regex" select="'in\p{Zs}+vitro|ex\p{Zs}+vitro|in\p{Zs}+vivo|ex\p{Zs}+vivo|a\p{Zs}+priori|a\p{Zs}+posteriori|de\p{Zs}+novo|in\p{Zs}+utero|in\p{Zs}+natura|in\p{Zs}+situ|in\p{Zs}+planta|in\p{Zs}+cellulo|rete\p{Zs}+mirabile|nomen\p{Zs}+novum| sensu |ad\p{Zs}+libitum|in\p{Zs}+ovo'"/>
    <!--PATTERN covid-prologue-pattern-->
@@ -34085,6 +34139,318 @@
                <xsl:text/> references an organism - 'Mycobacterium bovis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'a\.\p{Zs}?candida') and not(italic[contains(.,'A. candida')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'a\.\p{Zs}?candida') and not(italic[contains(.,'A. candida')])">
+            <xsl:attribute name="id">acandida-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[acandida-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'A. candida' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'albugo\p{Zs}?candida') and not(italic[contains(.,'Albugo candida')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'albugo\p{Zs}?candida') and not(italic[contains(.,'Albugo candida')])">
+            <xsl:attribute name="id">albugocandida-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[albugocandida-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'Albugo candida' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'b\.\p{Zs}?macrocarpa') and not(italic[contains(.,'B. macrocarpa')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'b\.\p{Zs}?macrocarpa') and not(italic[contains(.,'B. macrocarpa')])">
+            <xsl:attribute name="id">bmacrocarpa-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[bmacrocarpa-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'B. macrocarpa' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'beta\p{Zs}?macrocarpa') and not(italic[contains(.,'Beta macrocarpa')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'beta\p{Zs}?macrocarpa') and not(italic[contains(.,'Beta macrocarpa')])">
+            <xsl:attribute name="id">betamacrocarpa-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[betamacrocarpa-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'Beta macrocarpa' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'b\.\p{Zs}?patula') and not(italic[contains(.,'B. patula')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'b\.\p{Zs}?patula') and not(italic[contains(.,'B. patula')])">
+            <xsl:attribute name="id">bpatula-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[bpatula-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'B. patula' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'beta\p{Zs}?patula') and not(italic[contains(.,'Beta patula')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'beta\p{Zs}?patula') and not(italic[contains(.,'Beta patula')])">
+            <xsl:attribute name="id">betapatula-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[betapatula-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'Beta patula' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'b\.\p{Zs}?vulgaris') and not(italic[contains(.,'B. vulgaris')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'b\.\p{Zs}?vulgaris') and not(italic[contains(.,'B. vulgaris')])">
+            <xsl:attribute name="id">bvulgaris-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[bvulgaris-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'B. vulgaris' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'beta\p{Zs}?vulgaris') and not(italic[contains(.,'Beta vulgaris')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'beta\p{Zs}?vulgaris') and not(italic[contains(.,'Beta vulgaris')])">
+            <xsl:attribute name="id">betavulgaris-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[betavulgaris-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'Beta vulgaris' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'c\.\p{Zs}?beticola') and not(italic[contains(.,'C. beticola')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'c\.\p{Zs}?beticola') and not(italic[contains(.,'C. beticola')])">
+            <xsl:attribute name="id">cbeticola-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[cbeticola-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'C. beticola' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'cercospora\p{Zs}?beticola') and not(italic[contains(.,'Cercospora beticola')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'cercospora\p{Zs}?beticola') and not(italic[contains(.,'Cercospora beticola')])">
+            <xsl:attribute name="id">cercosporabeticola-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[cercosporabeticola-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'Cercospora beticola' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'h\.\p{Zs}?vastatrix') and not(italic[contains(.,'H. vastatrix')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'h\.\p{Zs}?vastatrix') and not(italic[contains(.,'H. vastatrix')])">
+            <xsl:attribute name="id">hvastatrix-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[hvastatrix-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'H. vastatrix' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'hemileia\p{Zs}?vastatrix') and not(italic[contains(.,'Hemileia vastatrix')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'hemileia\p{Zs}?vastatrix') and not(italic[contains(.,'Hemileia vastatrix')])">
+            <xsl:attribute name="id">hemileiavastatrix-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[hemileiavastatrix-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'Hemileia vastatrix' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'m\.\p{Zs}?lini') and not(italic[contains(.,'M. lini')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?lini') and not(italic[contains(.,'M. lini')])">
+            <xsl:attribute name="id">mlini-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mlini-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'M. lini' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'melampsora\p{Zs}?lini') and not(italic[contains(.,'Melampsora lini')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'melampsora\p{Zs}?lini') and not(italic[contains(.,'Melampsora lini')])">
+            <xsl:attribute name="id">melampsoralini-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[melampsoralini-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'Melampsora lini' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'n\.\p{Zs}?discreta') and not(italic[contains(.,'N. discreta')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'n\.\p{Zs}?discreta') and not(italic[contains(.,'N. discreta')])">
+            <xsl:attribute name="id">ndiscreta-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ndiscreta-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'N. discreta' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'neurospora\p{Zs}?discreta') and not(italic[contains(.,'Neurospora discreta')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'neurospora\p{Zs}?discreta') and not(italic[contains(.,'Neurospora discreta')])">
+            <xsl:attribute name="id">neurosporadiscreta-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[neurosporadiscreta-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'Neurospora discreta' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'p\.\p{Zs}?pachyrhizi') and not(italic[contains(.,'P. pachyrhizi')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{Zs}?pachyrhizi') and not(italic[contains(.,'P. pachyrhizi')])">
+            <xsl:attribute name="id">ppachyrhizi-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ppachyrhizi-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'P. pachyrhizi' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'phakopsora\p{Zs}?pachyrhizi') and not(italic[contains(.,'Phakopsora pachyrhizi')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'phakopsora\p{Zs}?pachyrhizi') and not(italic[contains(.,'Phakopsora pachyrhizi')])">
+            <xsl:attribute name="id">phakopsorapachyrhizi-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[phakopsorapachyrhizi-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'Phakopsora pachyrhizi' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'p\.\p{Zs}?infestans') and not(italic[contains(.,'P. infestans')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{Zs}?infestans') and not(italic[contains(.,'P. infestans')])">
+            <xsl:attribute name="id">pinfestans-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pinfestans-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'P. infestans' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'phytophthora\p{Zs}?infestans') and not(italic[contains(.,'Phytophthora infestans')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'phytophthora\p{Zs}?infestans') and not(italic[contains(.,'Phytophthora infestans')])">
+            <xsl:attribute name="id">phytophthorainfestans-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[phytophthorainfestans-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'Phytophthora infestans' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'p\.\p{Zs}?striiformis') and not(italic[contains(.,'P. striiformis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{Zs}?striiformis') and not(italic[contains(.,'P. striiformis')])">
+            <xsl:attribute name="id">pstriiformis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pstriiformis-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'P. striiformis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'puccinia\p{Zs}?striiformis') and not(italic[contains(.,'Puccinia striiformis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'puccinia\p{Zs}?striiformis') and not(italic[contains(.,'Puccinia striiformis')])">
+            <xsl:attribute name="id">pucciniastriiformis-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pucciniastriiformis-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'Puccinia striiformis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'u\.\p{Zs}?fabae') and not(italic[contains(.,'U. fabae')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'u\.\p{Zs}?fabae') and not(italic[contains(.,'U. fabae')])">
+            <xsl:attribute name="id">ufabae-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ufabae-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'U. fabae' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'uromyces\p{Zs}?fabae') and not(italic[contains(.,'Uromyces fabae')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'uromyces\p{Zs}?fabae') and not(italic[contains(.,'Uromyces fabae')])">
+            <xsl:attribute name="id">uromycesfabae-ref-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[uromycesfabae-ref-article-title-check] ref <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/> references an organism - 'Uromyces fabae' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M511"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M511"/>
@@ -36374,6 +36740,318 @@
             <svrl:text>[salmonella-article-title-check] <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> contains an organism - 'Salmonella' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'a\.\p{Zs}?candida') and not(italic[contains(.,'A. candida')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'a\.\p{Zs}?candida') and not(italic[contains(.,'A. candida')])">
+            <xsl:attribute name="id">acandida-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[acandida-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'A. candida' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'albugo\p{Zs}?candida') and not(italic[contains(.,'Albugo candida')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'albugo\p{Zs}?candida') and not(italic[contains(.,'Albugo candida')])">
+            <xsl:attribute name="id">albugocandida-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[albugocandida-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'Albugo candida' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'b\.\p{Zs}?macrocarpa') and not(italic[contains(.,'B. macrocarpa')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'b\.\p{Zs}?macrocarpa') and not(italic[contains(.,'B. macrocarpa')])">
+            <xsl:attribute name="id">bmacrocarpa-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[bmacrocarpa-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'B. macrocarpa' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'beta\p{Zs}?macrocarpa') and not(italic[contains(.,'Beta macrocarpa')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'beta\p{Zs}?macrocarpa') and not(italic[contains(.,'Beta macrocarpa')])">
+            <xsl:attribute name="id">betamacrocarpa-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[betamacrocarpa-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'Beta macrocarpa' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'b\.\p{Zs}?patula') and not(italic[contains(.,'B. patula')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'b\.\p{Zs}?patula') and not(italic[contains(.,'B. patula')])">
+            <xsl:attribute name="id">bpatula-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[bpatula-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'B. patula' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'beta\p{Zs}?patula') and not(italic[contains(.,'Beta patula')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'beta\p{Zs}?patula') and not(italic[contains(.,'Beta patula')])">
+            <xsl:attribute name="id">betapatula-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[betapatula-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'Beta patula' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'b\.\p{Zs}?vulgaris') and not(italic[contains(.,'B. vulgaris')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'b\.\p{Zs}?vulgaris') and not(italic[contains(.,'B. vulgaris')])">
+            <xsl:attribute name="id">bvulgaris-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[bvulgaris-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'B. vulgaris' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'beta\p{Zs}?vulgaris') and not(italic[contains(.,'Beta vulgaris')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'beta\p{Zs}?vulgaris') and not(italic[contains(.,'Beta vulgaris')])">
+            <xsl:attribute name="id">betavulgaris-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[betavulgaris-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'Beta vulgaris' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'c\.\p{Zs}?beticola') and not(italic[contains(.,'C. beticola')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'c\.\p{Zs}?beticola') and not(italic[contains(.,'C. beticola')])">
+            <xsl:attribute name="id">cbeticola-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[cbeticola-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'C. beticola' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'cercospora\p{Zs}?beticola') and not(italic[contains(.,'Cercospora beticola')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'cercospora\p{Zs}?beticola') and not(italic[contains(.,'Cercospora beticola')])">
+            <xsl:attribute name="id">cercosporabeticola-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[cercosporabeticola-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'Cercospora beticola' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'h\.\p{Zs}?vastatrix') and not(italic[contains(.,'H. vastatrix')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'h\.\p{Zs}?vastatrix') and not(italic[contains(.,'H. vastatrix')])">
+            <xsl:attribute name="id">hvastatrix-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[hvastatrix-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'H. vastatrix' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'hemileia\p{Zs}?vastatrix') and not(italic[contains(.,'Hemileia vastatrix')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'hemileia\p{Zs}?vastatrix') and not(italic[contains(.,'Hemileia vastatrix')])">
+            <xsl:attribute name="id">hemileiavastatrix-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[hemileiavastatrix-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'Hemileia vastatrix' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'m\.\p{Zs}?lini') and not(italic[contains(.,'M. lini')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'m\.\p{Zs}?lini') and not(italic[contains(.,'M. lini')])">
+            <xsl:attribute name="id">mlini-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[mlini-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'M. lini' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'melampsora\p{Zs}?lini') and not(italic[contains(.,'Melampsora lini')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'melampsora\p{Zs}?lini') and not(italic[contains(.,'Melampsora lini')])">
+            <xsl:attribute name="id">melampsoralini-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[melampsoralini-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'Melampsora lini' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'n\.\p{Zs}?discreta') and not(italic[contains(.,'N. discreta')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'n\.\p{Zs}?discreta') and not(italic[contains(.,'N. discreta')])">
+            <xsl:attribute name="id">ndiscreta-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ndiscreta-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'N. discreta' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'neurospora\p{Zs}?discreta') and not(italic[contains(.,'Neurospora discreta')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'neurospora\p{Zs}?discreta') and not(italic[contains(.,'Neurospora discreta')])">
+            <xsl:attribute name="id">neurosporadiscreta-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[neurosporadiscreta-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'Neurospora discreta' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'p\.\p{Zs}?pachyrhizi') and not(italic[contains(.,'P. pachyrhizi')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{Zs}?pachyrhizi') and not(italic[contains(.,'P. pachyrhizi')])">
+            <xsl:attribute name="id">ppachyrhizi-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ppachyrhizi-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'P. pachyrhizi' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'phakopsora\p{Zs}?pachyrhizi') and not(italic[contains(.,'Phakopsora pachyrhizi')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'phakopsora\p{Zs}?pachyrhizi') and not(italic[contains(.,'Phakopsora pachyrhizi')])">
+            <xsl:attribute name="id">phakopsorapachyrhizi-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[phakopsorapachyrhizi-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'Phakopsora pachyrhizi' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'p\.\p{Zs}?infestans') and not(italic[contains(.,'P. infestans')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{Zs}?infestans') and not(italic[contains(.,'P. infestans')])">
+            <xsl:attribute name="id">pinfestans-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pinfestans-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'P. infestans' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'phytophthora\p{Zs}?infestans') and not(italic[contains(.,'Phytophthora infestans')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'phytophthora\p{Zs}?infestans') and not(italic[contains(.,'Phytophthora infestans')])">
+            <xsl:attribute name="id">phytophthorainfestans-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[phytophthorainfestans-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'Phytophthora infestans' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'p\.\p{Zs}?striiformis') and not(italic[contains(.,'P. striiformis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'p\.\p{Zs}?striiformis') and not(italic[contains(.,'P. striiformis')])">
+            <xsl:attribute name="id">pstriiformis-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pstriiformis-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'P. striiformis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'puccinia\p{Zs}?striiformis') and not(italic[contains(.,'Puccinia striiformis')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'puccinia\p{Zs}?striiformis') and not(italic[contains(.,'Puccinia striiformis')])">
+            <xsl:attribute name="id">pucciniastriiformis-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[pucciniastriiformis-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'Puccinia striiformis' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'u\.\p{Zs}?fabae') and not(italic[contains(.,'U. fabae')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'u\.\p{Zs}?fabae') and not(italic[contains(.,'U. fabae')])">
+            <xsl:attribute name="id">ufabae-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ufabae-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'U. fabae' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT info-->
+      <xsl:if test="matches($lc,'uromyces\p{Zs}?fabae') and not(italic[contains(.,'Uromyces fabae')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'uromyces\p{Zs}?fabae') and not(italic[contains(.,'Uromyces fabae')])">
+            <xsl:attribute name="id">uromycesfabae-article-title-check</xsl:attribute>
+            <xsl:attribute name="role">info</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[uromycesfabae-article-title-check] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an organism - 'Uromyces fabae' - but there is no italic element with that correct capitalisation or spacing.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M512"/>

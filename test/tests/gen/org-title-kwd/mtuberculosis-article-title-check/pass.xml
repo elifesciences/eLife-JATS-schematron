@@ -1,5 +1,3 @@
-<?oxygen SCHSchema="mtuberculosis-article-title-check.sch"?>
-<!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
+<?oxygen SCHSchema="mtuberculosis-article-title-check.sch"?><!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
 Test: report    matches($lc,'m\.\p{Zs}?tuberculosis') and not(italic[contains(.,'M. tuberculosis')])
-Message:  contains an organism - 'M. tuberculosis' - but there is no italic element with that correct capitalisation or spacing. -->
-<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article><body><sec><title><italic>M. tuberculosis</italic></title></sec></body></article></root>
+Message:  contains an organism - 'M. tuberculosis' - but there is no italic element with that correct capitalisation or spacing. --><root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article><body><sec><title><italic>M. tuberculosis</italic></title></sec></body><body><sec><title><italic>M. tuberculosis</italic></title></sec></body></article></root>
