@@ -1890,10 +1890,11 @@
   </pattern>
   <pattern id="duplicated-cont-tests-pattern">
     <rule context="article[e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]]" id="duplicated-cont-tests">
+      <let name="credit-regex" value="'^(conceptuali[sz]ation|data\s\p{Pd}?\s?curation|formal\sanalysis|funding\sacquisition|investigation|methodology|project\sadministration|resources|software|supervision|validation|visuali[sz]ation|writing\s\p{Pd}?\s?(original\sdraft|review\s(&amp;|and)\sediting))$'"/>
       <let name="cont-rid" value="xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]/@rid"/>
       <let name="cont-fn" value="ancestor::article//back//fn[@id=$cont-rid]/p"/>
       <let name="con-vals" value="for $x in tokenize(string-join($cont-fn,', '),', ') return replace(lower-case($x),'\p{Zs}$|^\p{Zs}','')"/>
-      <let name="indistinct-conts" value="for $val in distinct-values($con-vals) return $val[count($con-vals[. = $val]) gt 1]"/>
+      <let name="indistinct-conts" value="for $val in distinct-values($con-vals)[matches(.,$credit-regex)] return $val[count($con-vals[. = $val]) gt 1]"/>
       
       <assert test="empty($indistinct-conts)" role="error" flag="version-1" id="dupe-cont-test-1">Author <value-of select="if (name) then e:get-name(name[1]) else if (collab) then (e:get-collab(collab[1])) else ('with no name')"/> has duplicated contributions which is incorrect. The indistinct contributions are: <value-of select="string-join($indistinct-conts,'; ')"/>.</assert>
     </rule>

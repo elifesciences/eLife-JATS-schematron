@@ -8097,10 +8097,11 @@
    <!--PATTERN duplicated-cont-tests-pattern-->
    <!--RULE duplicated-cont-tests-->
    <xsl:template match="article[e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]]" priority="1000" mode="M89">
+      <xsl:variable name="credit-regex" select="'^(conceptuali[sz]ation|data\s\p{Pd}?\s?curation|formal\sanalysis|funding\sacquisition|investigation|methodology|project\sadministration|resources|software|supervision|validation|visuali[sz]ation|writing\s\p{Pd}?\s?(original\sdraft|review\s(&amp;|and)\sediting))$'"/>
       <xsl:variable name="cont-rid" select="xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]/@rid"/>
       <xsl:variable name="cont-fn" select="ancestor::article//back//fn[@id=$cont-rid]/p"/>
       <xsl:variable name="con-vals" select="for $x in tokenize(string-join($cont-fn,', '),', ') return replace(lower-case($x),'\p{Zs}$|^\p{Zs}','')"/>
-      <xsl:variable name="indistinct-conts" select="for $val in distinct-values($con-vals) return $val[count($con-vals[. = $val]) gt 1]"/>
+      <xsl:variable name="indistinct-conts" select="for $val in distinct-values($con-vals)[matches(.,$credit-regex)] return $val[count($con-vals[. = $val]) gt 1]"/>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="empty($indistinct-conts)"/>
