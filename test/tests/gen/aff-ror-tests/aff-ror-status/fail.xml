@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="aff-ror-status.sch"?>
+<!--Context: aff[institution-wrap/institution-id[@institution-id-type='ror']]
+Test: report    $matching-ror[@status='withdrawn']
+Message: Affiliation has a ROR id, but the ROR id's status is withdrawn. Withdrawn RORs should not be used. Should one of the following be used instead?: . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <aff>
+            <institution-wrap>
+                <institution-id institution-id-type="ror">https://ror.org/03pnmqc26</institution-id>
+            </institution-wrap>
+        </aff>
+    </article>
+</root>

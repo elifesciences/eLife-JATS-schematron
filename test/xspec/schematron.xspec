@@ -3331,6 +3331,16 @@
         <x:expect-report id="aff-ror-country" role="warning"/>
         <x:expect-not-assert id="aff-ror-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="aff-ror-status-pass">
+        <x:context href="../tests/gen/aff-ror-tests/aff-ror-status/pass.xml"/>
+        <x:expect-not-report id="aff-ror-status" role="error"/>
+        <x:expect-not-assert id="aff-ror-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-ror-status-fail">
+        <x:context href="../tests/gen/aff-ror-tests/aff-ror-status/fail.xml"/>
+        <x:expect-report id="aff-ror-status" role="error"/>
+        <x:expect-not-assert id="aff-ror-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="addr-line-parent-test">
       <x:scenario label="addr-line-parent-pass">
