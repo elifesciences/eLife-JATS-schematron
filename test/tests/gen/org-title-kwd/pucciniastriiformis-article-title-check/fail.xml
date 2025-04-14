@@ -1,0 +1,3 @@
+<?oxygen SCHSchema="pucciniastriiformis-article-title-check.sch"?><!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
+Test: report    matches($lc,'puccinia\p{Zs}?striiformis') and not(italic[contains(.,'Puccinia striiformis')])
+Message:  contains an organism - 'Puccinia striiformis' - but there is no italic element with that correct capitalisation or spacing. --><root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article><body><sec><title>Puccinia striiformis</title></sec></body></article></root>
