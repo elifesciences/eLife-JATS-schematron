@@ -1,5 +1,5 @@
 declare variable $sch := doc('../../src/schematron.sch');
-(: Get latest zip from https://doi.org/10.5281/zenodo.7926988 :)
+(: Get latest zip from https://doi.org/10.5281/zenodo.6347574 :)
 let $json := json:parse(file:read-text('/Users/fredatherden/Desktop/ror.json'))
 let $src := substring-before($sch/base-uri(),'schematron.sch')
 let $api-query := 'https://api.crossref.org/works?filter=type-name:Grant&amp;facet=funder-doi:*'
@@ -37,7 +37,14 @@ let $list :=
                         case 'Palestinian Territory' return 'State of Palestine'
                         default return $country-name
   let $country := <country country="{$country-code }">{$country-val}</country>
-  return <ror grant-dois="{$registers-grant-dois}">{($id,$fundrefs,$name,$cities,$country)}</ror>
+  let $status := $x/*:status/data()
+  let $relationships := if ($status!='withdrawn') then ''
+                    else <relationships>{for $y in $x/*:relationships/*
+                                         let $type := $y/*:type
+                                         where $type=('parent','successor')
+                                         return element {$type} {$y/*:label,$y/*:id}
+                        }</relationships>
+  return <ror status="{$status}" grant-dois="{$registers-grant-dois}">{($id,$fundrefs,$name,$cities,$country,$relationships)}</ror>
 }</rors>
 
 return file:write(($src||'rors.xml'),$list, map{"indent":"yes"})
