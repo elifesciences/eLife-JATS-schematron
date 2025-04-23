@@ -1,0 +1,31 @@
+<tortured-phrases>
+<phrase regex="profound neural organization">deep neural network</phrase>
+<phrase regex="(fake|counterfeit) neural organization">artificial neural network</phrase>
+<phrase regex="versatile organization">mobile network</phrase>
+<phrase regex="organization (ambush|assault)">network attack</phrase>
+<phrase regex="organization association"/>network connection
+<phrase regex="(enormous|huge|immense|colossal) information">big data</phrase>
+<phrase regex="information (stockroom|distribution center)">data warehouse</phrase>
+<phrase regex="(counterfeit|human-made) consciousness">artificial intelligence (AI)</phrase>
+<phrase regex="elite figuring">high performance computing</phrase>
+<phrase regex="haze figuring">fog/mist/cloud computing</phrase>
+<phrase regex="designs preparing unit">graphics processing unit (GPU)</phrase>
+<phrase regex="focal preparing unit">central processing unit (CPU)</phrase>
+<phrase regex="work process motor">workflow engine</phrase>
+<phrase regex="facial acknowledgement">face recognition</phrase>
+<phrase regex="discourse acknowledgement">voice recognition</phrase>
+<phrase regex="mean square (mistake|blunder)">mean square error</phrase>
+<phrase regex="mean (outright|supreme) (mistake|blunder)">mean absolute error</phrase>
+<phrase regex="(motion|flag|indicator|sign|signal) to (clamor|commotion|noise)">signal to noise</phrase>
+<phrase regex="worldwide parameters">global parameters</phrase>
+<phrase regex="(arbitrary|irregular) get right of passage to">random access</phrase>
+<phrase regex="(arbitrary|irregular) (backwoods|timberland|lush territory)">random forest</phrase>
+<phrase regex="(arbitrary|irregular) esteem">random value</phrase>
+<phrase regex="subterranean insect (state|province|area|region|settlement)">ant colony</phrase>
+<phrase regex="underground creepy crawly (state|province|area|region|settlement)">ant colony</phrase>
+<phrase regex="leftover vitality">remaining energy</phrase>
+<phrase regex="territorial normal">vitality local average energy</phrase>
+<phrase regex="motor vitality">kinetic energy</phrase>
+<phrase regex="(credulous|innocent|gullible) Bayes">naïve Bayes</phrase>
+<phrase regex="individual computerized collaborator">personal digital assistant (PDA)</phrase>
+</tortured-phrases>
