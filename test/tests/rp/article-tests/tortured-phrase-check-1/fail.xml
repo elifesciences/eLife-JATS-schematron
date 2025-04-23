@@ -11,9 +11,13 @@ Message: Article contains  potentially tortured phrase(s):  -->
         </front>
         <body>
             <p>designs preparing unit</p>
-            <p>designs preparing unit</p>
             <p>worldwide parameters</p>
             <p>irregular esteem</p>
         </body>
+        <sub-article>
+            <body>
+                <p>designs preparing unit</p>
+            </body>
+        </sub-article>
     </article>
 </root>
