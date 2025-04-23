@@ -7,7 +7,8 @@
 <phrase regex="organization association"></phrase>network connection
 <phrase regex="(enormous|huge|immense|colossal) information">big data</phrase>
 <phrase regex="information (stockroom|distribution center)">data warehouse</phrase>
-<phrase regex="(counterfeit|human-made) consciousness">artificial intelligence (AI)</phrase>
+<phrase regex="preparation (data|information)">training data</phrase>
+<phrase regex="(computerized|simulated|counterfeit|(human|man)-made) (reasoning|consciousness|intelligence)">artificial intelligence (AI)</phrase>
 <phrase regex="elite figuring">high performance computing</phrase>
 <phrase regex="haze figuring">fog/mist/cloud computing</phrase>
 <phrase regex="designs preparing unit">graphics processing unit (GPU)</phrase>
@@ -27,6 +28,26 @@
 <phrase regex="leftover vitality">remaining energy</phrase>
 <phrase regex="territorial normal">vitality local average energy</phrase>
 <phrase regex="motor vitality">kinetic energy</phrase>
-<phrase regex="(credulous|innocent|gullible) Bayes">naïve Bayes</phrase>
+<phrase regex="(credulous|innocent|gullible) bayes">naïve bayes</phrase>
 <phrase regex="individual computerized collaborator">personal digital assistant (PDA)</phrase>
+<phrase regex="fourier change">fourier transform</phrase>
+<phrase regex="adversely charged">negatively charged</phrase>
+<phrase regex="creepy crawlies">insect</phrase>
+<phrase regex="customary strategies">conventional methods</phrase>
+<phrase regex="electrostatic fascination">electrostatic attraction</phrase>
+<phrase regex="electrostatic repugnance">electrostatic repulsion</phrase>
+<phrase regex="emphatically charged">positively charged</phrase>
+<phrase regex="methacrylic corrosive">methacrylic acid</phrase>
+<phrase regex="overwhelming metals">heavy metals</phrase>
+<phrase regex="particle trade">ion exchange</phrase>
+<phrase regex="squander water">waste water</phrase>
+<phrase regex="(\d+|one|two|three|four|five|six|seven|eight|nine|ten|twenty|thirty|fourty|fifty|sixty|seventy|eighty|ninety|hundred) a long time">X years</phrase>
+<phrase regex="the taking after">the following</phrase>
+<phrase regex="utilitarian bunches">functional groups</phrase>
+<phrase regex="vitality utilization">energy use</phrase>
+<phrase regex="watery arrangement">aqueous solution</phrase>
+<phrase regex="discourse amalgamation">speech synthesis</phrase>
+<phrase regex="foundation commotion">background noise</phrase>
+<phrase regex="acknowledgment framework">recognition system</phrase>
+<phrase regex="worldwide diary">international journal</phrase>
 </tortured-phrases>
