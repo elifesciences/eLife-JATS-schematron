@@ -202,16 +202,16 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
-  <let name="tortured-phrases" value="document('tortured-phrases.xml')//*:phrase"/>
   <xsl:function name="e:get-tortured-phrases" as="node()">
-    <xsl:param name="input" as="xs:string?"/>
+    <xsl:param name="input-check" as="xs:string?"/>
+    <xsl:param name="tortured-phrases" as="node()*"/>
     <xsl:element name="result">
         <xsl:choose>
-            <xsl:when test="$input!='' and not(empty($input))">
+            <xsl:when test="$input-check!='' and not(empty($input-check))">
                <xsl:for-each select="$tortured-phrases">
                    <xsl:variable name="regex" select="./@regex"/>
                    <xsl:variable name="real-phrase" select="./text()"/>
-                   <xsl:analyze-string select="lower-case($input)" regex="{$regex}">
+                   <xsl:analyze-string select="lower-case($input-check)" regex="{$regex}">
                    <xsl:matching-substring>
                        <xsl:element name="match">
                            <xsl:attribute name="real-phrase">

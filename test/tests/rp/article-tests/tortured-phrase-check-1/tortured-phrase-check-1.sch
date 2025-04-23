@@ -202,16 +202,16 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
-  <let name="tortured-phrases" value="document('tortured-phrases.xml')//*:phrase"/>
   <xsl:function name="e:get-tortured-phrases" as="node()">
-    <xsl:param name="input" as="xs:string?"/>
+    <xsl:param name="input-check" as="xs:string?"/>
+    <xsl:param name="tortured-phrases" as="node()*"/>
     <xsl:element name="result">
         <xsl:choose>
-            <xsl:when test="$input!='' and not(empty($input))">
+            <xsl:when test="$input-check!='' and not(empty($input-check))">
                <xsl:for-each select="$tortured-phrases">
                    <xsl:variable name="regex" select="./@regex"/>
                    <xsl:variable name="real-phrase" select="./text()"/>
-                   <xsl:analyze-string select="lower-case($input)" regex="{$regex}">
+                   <xsl:analyze-string select="lower-case($input-check)" regex="{$regex}">
                    <xsl:matching-substring>
                        <xsl:element name="match">
                            <xsl:attribute name="real-phrase">
@@ -229,11 +229,13 @@
   <pattern id="article-tests-pattern">
     <rule context="article[front/journal-meta/lower-case(journal-id[1])='elife']" id="article-tests">
       <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
+      <let name="tortured-phrases" value="'../../../../../src/tortured-phrases.xml'"/>
+      <let name="phrases" value="document($tortured-phrases)//*:phrase"/>
       <let name="tortured-check" value="string-join(for $x in self::*/*[local-name()=('body','back','sub-article')]//*           return           if ($x/ancestor::ref-list) then ()           else $x/text(),'')"/>
-      <let name="tortured-phrase-result" value="e:get-tortured-phrases($tortured-check)"/>
+      <let name="tortured-phrase-result" value="e:get-tortured-phrases($tortured-check,$phrases)"/>
       <let name="is-revised-rp" value="if (descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
       <let name="rp-version" value="replace(descendant::article-meta[1]/article-id[@specific-use='version'][1],'^.*\.','')"/>
-      <report test="$tortured-phrase-result//*:match" role="warning" id="tortured-phrase-check-1">[tortured-phrase-check-1] Article contains <value-of select="count($tortured-phrase-result//*:match)"/> potentially tortured phrase(s): <value-of select="string-join(for $m in distinct-values($tortured-phrase-result//*:match) return concat($m,' [',$tortured-phrase-result/descendant::*:match[.=$m][1]/@*:real-phrase,' (',count($tortured-phrase-result//*:match[.=$m]),' instances)]'),'; ')"/>
+      <report test="$tortured-phrase-result//*:match" role="warning" id="tortured-phrase-check-1">[tortured-phrase-check-1] Article contains <value-of select="count($tortured-phrase-result//*:match)"/> potentially tortured phrase(s): <value-of select="string-join(for $m in distinct-values($tortured-phrase-result//*:match) return concat($m,' [',$tortured-phrase-result/descendant::*:match[.=$m][1]/@*:real-phrase,' (',count($tortured-phrase-result//*:match[.=$m]),' instance(s))]'),'; ')"/>
       </report>
     </rule>
   </pattern>
