@@ -202,6 +202,30 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
+  <let name="tortured-phrases" value="document('tortured-phrases.xml')//*:phrase"/>
+  <xsl:function name="e:get-tortured-phrases" as="node()">
+    <xsl:param name="input" as="xs:string?"/>
+    <xsl:element name="result">
+        <xsl:choose>
+            <xsl:when test="$input!='' and not(empty($input))">
+               <xsl:for-each select="$tortured-phrases">
+                   <xsl:variable name="regex" select="./@regex"/>
+                   <xsl:variable name="real-phrase" select="./text()"/>
+                   <xsl:analyze-string select="lower-case($input)" regex="{$regex}">
+                   <xsl:matching-substring>
+                       <xsl:element name="match">
+                           <xsl:attribute name="real-phrase">
+                    <xsl:value-of select="$real-phrase"/>
+                  </xsl:attribute>
+                           <xsl:value-of select="."/>
+                       </xsl:element>
+                    </xsl:matching-substring>
+                </xsl:analyze-string>
+               </xsl:for-each>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:element>
+  </xsl:function>
   <pattern id="event-desc-tests-pattern">
     <rule context="event-desc" id="event-desc-tests">
       <report test="parent::event/self-uri[1][@content-type='reviewed-preprint'] and .!=concat('Reviewed preprint v',replace(parent::event[1]/self-uri[1][@content-type='reviewed-preprint']/@xlink:href,'^.*\.',''))" role="error" id="event-desc-content-2">[event-desc-content-2] <name/> that's a child of a Reviewed preprint event must contain the text 'Reviewed preprint v' followwd by the verison number for that Reviewed preprint version. This one does not (<value-of select="."/> != <value-of select="concat('Reviewed preprint v',replace(parent::event[1]/self-uri[1][@content-type='reviewed-preprint']/@xlink:href,'^.*\.',''))"/>).</report>

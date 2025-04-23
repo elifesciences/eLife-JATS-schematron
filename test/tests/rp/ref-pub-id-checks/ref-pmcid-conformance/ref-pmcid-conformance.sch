@@ -202,6 +202,30 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
+  <let name="tortured-phrases" value="document('tortured-phrases.xml')//*:phrase"/>
+  <xsl:function name="e:get-tortured-phrases" as="node()">
+    <xsl:param name="input" as="xs:string?"/>
+    <xsl:element name="result">
+        <xsl:choose>
+            <xsl:when test="$input!='' and not(empty($input))">
+               <xsl:for-each select="$tortured-phrases">
+                   <xsl:variable name="regex" select="./@regex"/>
+                   <xsl:variable name="real-phrase" select="./text()"/>
+                   <xsl:analyze-string select="lower-case($input)" regex="{$regex}">
+                   <xsl:matching-substring>
+                       <xsl:element name="match">
+                           <xsl:attribute name="real-phrase">
+                    <xsl:value-of select="$real-phrase"/>
+                  </xsl:attribute>
+                           <xsl:value-of select="."/>
+                       </xsl:element>
+                    </xsl:matching-substring>
+                </xsl:analyze-string>
+               </xsl:for-each>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:element>
+  </xsl:function>
   <pattern id="ref-pub-id-checks-pattern">
     <rule context="ref//pub-id" id="ref-pub-id-checks">
       <report test="(@pub-id-type='pmcid') and not(matches(.,'^PMC[0-9]{5,15}$'))" role="error" id="ref-pmcid-conformance">[ref-pmcid-conformance] pub-id is tagged as a pmcid, but it is not a valid PMCID ('PMC' followed by 5+ digits) - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>

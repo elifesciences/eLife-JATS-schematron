@@ -202,6 +202,30 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
+  <let name="tortured-phrases" value="document('tortured-phrases.xml')//*:phrase"/>
+  <xsl:function name="e:get-tortured-phrases" as="node()">
+    <xsl:param name="input" as="xs:string?"/>
+    <xsl:element name="result">
+        <xsl:choose>
+            <xsl:when test="$input!='' and not(empty($input))">
+               <xsl:for-each select="$tortured-phrases">
+                   <xsl:variable name="regex" select="./@regex"/>
+                   <xsl:variable name="real-phrase" select="./text()"/>
+                   <xsl:analyze-string select="lower-case($input)" regex="{$regex}">
+                   <xsl:matching-substring>
+                       <xsl:element name="match">
+                           <xsl:attribute name="real-phrase">
+                    <xsl:value-of select="$real-phrase"/>
+                  </xsl:attribute>
+                           <xsl:value-of select="."/>
+                       </xsl:element>
+                    </xsl:matching-substring>
+                </xsl:analyze-string>
+               </xsl:for-each>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:element>
+  </xsl:function>
   <pattern id="pr-table-labels-pattern">
     <rule context="sub-article[@article-type='referee-report']//table-wrap/label" id="pr-table-labels">
       <assert test="matches(.,'^Review table \d\d?\.$')" role="error" id="pr-table-label-1">[pr-table-label-1] Label for tables in public reviews must be in the format 'Review table 0.' This one is not: '<value-of select="."/>'</assert>

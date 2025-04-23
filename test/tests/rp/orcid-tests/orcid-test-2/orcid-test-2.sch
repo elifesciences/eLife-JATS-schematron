@@ -202,6 +202,30 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
+  <let name="tortured-phrases" value="document('tortured-phrases.xml')//*:phrase"/>
+  <xsl:function name="e:get-tortured-phrases" as="node()">
+    <xsl:param name="input" as="xs:string?"/>
+    <xsl:element name="result">
+        <xsl:choose>
+            <xsl:when test="$input!='' and not(empty($input))">
+               <xsl:for-each select="$tortured-phrases">
+                   <xsl:variable name="regex" select="./@regex"/>
+                   <xsl:variable name="real-phrase" select="./text()"/>
+                   <xsl:analyze-string select="lower-case($input)" regex="{$regex}">
+                   <xsl:matching-substring>
+                       <xsl:element name="match">
+                           <xsl:attribute name="real-phrase">
+                    <xsl:value-of select="$real-phrase"/>
+                  </xsl:attribute>
+                           <xsl:value-of select="."/>
+                       </xsl:element>
+                    </xsl:matching-substring>
+                </xsl:analyze-string>
+               </xsl:for-each>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:element>
+  </xsl:function>
   <pattern id="orcid-tests-pattern">
     <rule context="contrib-id[@contrib-id-type='orcid']" id="orcid-tests">
       <assert test="matches(.,'^http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]$')" role="error" id="orcid-test-2">[orcid-test-2] contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'</assert>

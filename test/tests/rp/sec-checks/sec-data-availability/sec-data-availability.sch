@@ -202,6 +202,30 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
+  <let name="tortured-phrases" value="document('tortured-phrases.xml')//*:phrase"/>
+  <xsl:function name="e:get-tortured-phrases" as="node()">
+    <xsl:param name="input" as="xs:string?"/>
+    <xsl:element name="result">
+        <xsl:choose>
+            <xsl:when test="$input!='' and not(empty($input))">
+               <xsl:for-each select="$tortured-phrases">
+                   <xsl:variable name="regex" select="./@regex"/>
+                   <xsl:variable name="real-phrase" select="./text()"/>
+                   <xsl:analyze-string select="lower-case($input)" regex="{$regex}">
+                   <xsl:matching-substring>
+                       <xsl:element name="match">
+                           <xsl:attribute name="real-phrase">
+                    <xsl:value-of select="$real-phrase"/>
+                  </xsl:attribute>
+                           <xsl:value-of select="."/>
+                       </xsl:element>
+                    </xsl:matching-substring>
+                </xsl:analyze-string>
+               </xsl:for-each>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:element>
+  </xsl:function>
   <pattern id="sec-checks-pattern">
     <rule context="sec" id="sec-checks">
       <report test="@sec-type='data-availability' and (preceding::sec[@sec-type='data-availability'] or ancestor::sec[@sec-type='data-availability'])" role="warning" id="sec-data-availability">[sec-data-availability] sec has the sec-type 'data-availability', but there is one or more other secs with this same sec-type. Are they duplicates?</report>

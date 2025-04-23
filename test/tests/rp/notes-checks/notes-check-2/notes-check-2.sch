@@ -202,6 +202,30 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
+  <let name="tortured-phrases" value="document('tortured-phrases.xml')//*:phrase"/>
+  <xsl:function name="e:get-tortured-phrases" as="node()">
+    <xsl:param name="input" as="xs:string?"/>
+    <xsl:element name="result">
+        <xsl:choose>
+            <xsl:when test="$input!='' and not(empty($input))">
+               <xsl:for-each select="$tortured-phrases">
+                   <xsl:variable name="regex" select="./@regex"/>
+                   <xsl:variable name="real-phrase" select="./text()"/>
+                   <xsl:analyze-string select="lower-case($input)" regex="{$regex}">
+                   <xsl:matching-substring>
+                       <xsl:element name="match">
+                           <xsl:attribute name="real-phrase">
+                    <xsl:value-of select="$real-phrase"/>
+                  </xsl:attribute>
+                           <xsl:value-of select="."/>
+                       </xsl:element>
+                    </xsl:matching-substring>
+                </xsl:analyze-string>
+               </xsl:for-each>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:element>
+  </xsl:function>
   <pattern id="notes-checks-pattern">
     <rule context="front/notes" id="notes-checks">
       <report test="*[not(name()=('fn-group','notes'))]" role="error" id="notes-check-2">[notes-check-2] When present, the notes element should only be used to contain an author revision summary (an fn-group with the content-type 'summary-of-updates'). This notes element contains the following element(s): <value-of select="string-join(distinct-values(*[not(name()=('fn-group','notes'))]/name()),'; ')"/>). Are these redundant? Or should the content be moved elsewhere? (coi statements should be in author-notes; clinical trial numbers should be included as a related-object in a structured abstract (if it already exists) or as related-object in article-meta; data/code/ethics/funding statements can be included in additional information in new or existing section(s), as appropriate; anstract shpould be captured as abstracts with the appropriate type)</report>

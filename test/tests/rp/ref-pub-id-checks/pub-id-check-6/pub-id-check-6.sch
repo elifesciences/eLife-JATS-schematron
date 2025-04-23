@@ -202,6 +202,30 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
+  <let name="tortured-phrases" value="document('tortured-phrases.xml')//*:phrase"/>
+  <xsl:function name="e:get-tortured-phrases" as="node()">
+    <xsl:param name="input" as="xs:string?"/>
+    <xsl:element name="result">
+        <xsl:choose>
+            <xsl:when test="$input!='' and not(empty($input))">
+               <xsl:for-each select="$tortured-phrases">
+                   <xsl:variable name="regex" select="./@regex"/>
+                   <xsl:variable name="real-phrase" select="./text()"/>
+                   <xsl:analyze-string select="lower-case($input)" regex="{$regex}">
+                   <xsl:matching-substring>
+                       <xsl:element name="match">
+                           <xsl:attribute name="real-phrase">
+                    <xsl:value-of select="$real-phrase"/>
+                  </xsl:attribute>
+                           <xsl:value-of select="."/>
+                       </xsl:element>
+                    </xsl:matching-substring>
+                </xsl:analyze-string>
+               </xsl:for-each>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:element>
+  </xsl:function>
   <pattern id="ref-pub-id-checks-pattern">
     <rule context="ref//pub-id" id="ref-pub-id-checks">
       <report test="@pub-id-type='doi' and ancestor::mixed-citation[@publication-type=('journal','book','preprint')] and matches(following-sibling::text()[1],'^[\.\s]?[\.\s]?[/&lt;&gt;:\d\+\-]')" role="warning" id="pub-id-check-6">[pub-id-check-6] doi in <value-of select="ancestor::mixed-citation/@publication-type"/> ref is followd by text - '<value-of select="following-sibling::text()[1]"/>'. Should that text be part of the DOI or tagged in some other way?</report>

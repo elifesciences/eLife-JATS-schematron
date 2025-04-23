@@ -202,9 +202,35 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
+  <let name="tortured-phrases" value="document('tortured-phrases.xml')//*:phrase"/>
+  <xsl:function name="e:get-tortured-phrases" as="node()">
+    <xsl:param name="input" as="xs:string?"/>
+    <xsl:element name="result">
+        <xsl:choose>
+            <xsl:when test="$input!='' and not(empty($input))">
+               <xsl:for-each select="$tortured-phrases">
+                   <xsl:variable name="regex" select="./@regex"/>
+                   <xsl:variable name="real-phrase" select="./text()"/>
+                   <xsl:analyze-string select="lower-case($input)" regex="{$regex}">
+                   <xsl:matching-substring>
+                       <xsl:element name="match">
+                           <xsl:attribute name="real-phrase">
+                    <xsl:value-of select="$real-phrase"/>
+                  </xsl:attribute>
+                           <xsl:value-of select="."/>
+                       </xsl:element>
+                    </xsl:matching-substring>
+                </xsl:analyze-string>
+               </xsl:for-each>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:element>
+  </xsl:function>
   <pattern id="article-tests-pattern">
     <rule context="article[front/journal-meta/lower-case(journal-id[1])='elife']" id="article-tests">
       <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
+      <let name="tortured-check" value="string-join(for $x in self::*/*[local-name()=('body','back','sub-article')]//*           return           if ($x/ancestor::ref-list) then ()           else $x/text(),'')"/>
+      <let name="tortured-phrase-result" value="e:get-tortured-phrases($tortured-check)"/>
       <let name="is-revised-rp" value="if (descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
       <let name="rp-version" value="replace(descendant::article-meta[1]/article-id[@specific-use='version'][1],'^.*\.','')"/>
       <report test="not($is-revised-rp) and matches(lower-case($article-text),'biorend[eo]r')" role="warning" id="biorender-check-v1">[biorender-check-v1] Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</report>

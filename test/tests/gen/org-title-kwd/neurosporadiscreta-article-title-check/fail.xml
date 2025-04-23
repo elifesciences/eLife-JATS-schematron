@@ -1,3 +1,5 @@
-<?oxygen SCHSchema="neurosporadiscreta-article-title-check.sch"?><!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
+<?oxygen SCHSchema="neurosporadiscreta-article-title-check.sch"?>
+<!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
 Test: report    matches($lc,'neurospora\p{Zs}?discreta') and not(italic[contains(.,'Neurospora discreta')])
-Message:  contains an organism - 'Neurospora discreta' - but there is no italic element with that correct capitalisation or spacing. --><root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article><body><sec><title>Neurospora discreta</title></sec></body></article></root>
+Message:  contains an organism - 'Neurospora discreta' - but there is no italic element with that correct capitalisation or spacing. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article><body><sec><title>Neurospora discreta</title></sec></body></article></root>

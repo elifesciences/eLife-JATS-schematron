@@ -202,6 +202,30 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
+  <let name="tortured-phrases" value="document('tortured-phrases.xml')//*:phrase"/>
+  <xsl:function name="e:get-tortured-phrases" as="node()">
+    <xsl:param name="input" as="xs:string?"/>
+    <xsl:element name="result">
+        <xsl:choose>
+            <xsl:when test="$input!='' and not(empty($input))">
+               <xsl:for-each select="$tortured-phrases">
+                   <xsl:variable name="regex" select="./@regex"/>
+                   <xsl:variable name="real-phrase" select="./text()"/>
+                   <xsl:analyze-string select="lower-case($input)" regex="{$regex}">
+                   <xsl:matching-substring>
+                       <xsl:element name="match">
+                           <xsl:attribute name="real-phrase">
+                    <xsl:value-of select="$real-phrase"/>
+                  </xsl:attribute>
+                           <xsl:value-of select="."/>
+                       </xsl:element>
+                    </xsl:matching-substring>
+                </xsl:analyze-string>
+               </xsl:for-each>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:element>
+  </xsl:function>
   <pattern id="sec-checks-pattern">
     <rule context="sec" id="sec-checks">
       <report test="@sec-type='supplementary-material' and not(supplementary-material)" role="error" id="sec-supplementary-material-2">[sec-supplementary-material-2] &lt;sec sec-type="supplementary-material"&gt; must contain at least one &lt;supplementary-material&gt; element, but this one does not. If this section contains captions, then these should be added to the appropriate &lt;supplementary-material&gt;. If the files are not present in the article at all, the captions should be removed (or the files added as new &lt;supplementary-material&gt;).</report>
