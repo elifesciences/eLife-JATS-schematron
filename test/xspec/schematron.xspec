@@ -22264,6 +22264,18 @@
         <x:expect-not-assert id="data-request-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="tortured-phrase-checks">
+      <x:scenario label="tortured-phrase-check-1-pass">
+        <x:context href="../tests/gen/tortured-phrase-checks/tortured-phrase-check-1/pass.xml"/>
+        <x:expect-not-report id="tortured-phrase-check-1" role="warning"/>
+        <x:expect-not-assert id="tortured-phrase-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="tortured-phrase-check-1-fail">
+        <x:context href="../tests/gen/tortured-phrase-checks/tortured-phrase-check-1/fail.xml"/>
+        <x:expect-report id="tortured-phrase-check-1" role="warning"/>
+        <x:expect-not-assert id="tortured-phrase-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="doi-journal-ref-checks">
       <x:scenario label="journal-doi-test-1-pass">
         <x:context href="../tests/gen/doi-journal-ref-checks/journal-doi-test-1/pass.xml"/>

@@ -1374,6 +1374,30 @@
     <xsl:param name="list" as="element()"/>
     <xsl:value-of select="string-join(       for $term in $list//*:match[@count != '0']        return if (number($term/@count) gt 1) then concat($term/@count,' instances of ',$term)       else concat($term/@count,' instance of ',$term)       ,', ')"/>
   </xsl:function>
+  <xsl:function name="e:get-tortured-phrases" as="node()">
+    <xsl:param name="input-check" as="xs:string?"/>
+    <xsl:param name="tortured-phrases" as="node()*"/>
+    <xsl:element name="result">
+        <xsl:choose>
+            <xsl:when test="$input-check!='' and not(empty($input-check))">
+               <xsl:for-each select="$tortured-phrases">
+                   <xsl:variable name="regex" select="./@regex"/>
+                   <xsl:variable name="real-phrase" select="./text()"/>
+                   <xsl:analyze-string select="lower-case($input-check)" regex="{$regex}">
+                   <xsl:matching-substring>
+                       <xsl:element name="match">
+                           <xsl:attribute name="real-phrase">
+                    <xsl:value-of select="$real-phrase"/>
+                  </xsl:attribute>
+                           <xsl:value-of select="."/>
+                       </xsl:element>
+                    </xsl:matching-substring>
+                </xsl:analyze-string>
+               </xsl:for-each>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:element>
+  </xsl:function>
   <xsl:function name="e:list-panels">
     <xsl:param name="caption" as="xs:string"/>
     <xsl:element name="list">

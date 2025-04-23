@@ -1429,6 +1429,29 @@
     <xsl:value-of select="string-join(       for $term in $list//*:match[@count != '0']        return if (number($term/@count) gt 1) then concat($term/@count,' instances of ',$term)       else concat($term/@count,' instance of ',$term)       ,', ')"/>
   </xsl:function>
   
+  <xsl:function name="e:get-tortured-phrases" as="node()">
+    <xsl:param name="input-check" as="xs:string?"/>
+    <xsl:param name="tortured-phrases" as="node()*"/>
+    <xsl:element name="result">
+        <xsl:choose>
+            <xsl:when test="$input-check!='' and not(empty($input-check))">
+               <xsl:for-each select="$tortured-phrases">
+                   <xsl:variable name="regex" select="./@regex"/>
+                   <xsl:variable name="real-phrase" select="./text()"/>
+                   <xsl:analyze-string select="lower-case($input-check)" regex="{$regex}">
+                   <xsl:matching-substring>
+                       <xsl:element name="match">
+                           <xsl:attribute name="real-phrase"><xsl:value-of select="$real-phrase"/></xsl:attribute>
+                           <xsl:value-of select="."/>
+                       </xsl:element>
+                    </xsl:matching-substring>
+                </xsl:analyze-string>
+               </xsl:for-each>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:element>
+  </xsl:function>
+  
   <xsl:function name="e:list-panels">
     <xsl:param name="caption" as="xs:string"/>
     <xsl:element name="list">
@@ -7563,6 +7586,14 @@
       <report test="matches(lower-case(.),'(^|\s)(data|datasets)(\s|\?|\.|!)') and matches(lower-case(.),'(^|\s)request(\s|\?|\.|!|$)')" role="warning" id="data-request-check">[data-request-check] <name/> element contains text that has the words data (or dataset(s)) as well as request. Is this a statement that data is available on request? If so, has this been approved by the editors?</report>
 
       <report test="matches(lower-case(.),'^mmethods[\s\.]|\smmethods[\s\.]')" role="error" id="mmethods-typo-check">[mmethods-typo-check] <name/> element contains a typo ('mmethods') - <value-of select="."/>.</report>
+      
+    </rule></pattern><pattern id="tortured-phrase-checks-pattern"><rule context="article" id="tortured-phrase-checks">
+      <let name="tortured-phrases" value="'tortured-phrases.xml'"/>
+      <let name="phrases" value="document($tortured-phrases)//*:phrase"/>
+      <let name="tortured-check" value="string-join(for $x in self::*/*[local-name()=('body','back','sub-article')]//*           return           if ($x/ancestor::ref-list) then ()           else $x/text(),'')"/>
+      <let name="tortured-phrase-result" value="e:get-tortured-phrases($tortured-check,$phrases)"/>
+      
+      <report test="$tortured-phrase-result//*:match" role="warning" id="tortured-phrase-check-1">[tortured-phrase-check-1] Article contains <value-of select="count($tortured-phrase-result//*:match)"/> potentially tortured phrase(s): <value-of select="string-join(for $m in distinct-values($tortured-phrase-result//*:match) return concat($m,' [',$tortured-phrase-result/descendant::*:match[.=$m][1]/@*:real-phrase,' (',count($tortured-phrase-result//*:match[.=$m]),' instance(s))]'),'; ')"/></report>
       
     </rule></pattern>
   

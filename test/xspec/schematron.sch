@@ -1429,6 +1429,31 @@
     <xsl:value-of select="string-join(       for $term in $list//*:match[@count != '0']        return if (number($term/@count) gt 1) then concat($term/@count,' instances of ',$term)       else concat($term/@count,' instance of ',$term)       ,', ')"/>
   </xsl:function>
   
+  <xsl:function name="e:get-tortured-phrases" as="node()">
+    <xsl:param name="input-check" as="xs:string?"/>
+    <xsl:param name="tortured-phrases" as="node()*"/>
+    <xsl:element name="result">
+        <xsl:choose>
+            <xsl:when test="$input-check!='' and not(empty($input-check))">
+               <xsl:for-each select="$tortured-phrases">
+                   <xsl:variable name="regex" select="./@regex"/>
+                   <xsl:variable name="real-phrase" select="./text()"/>
+                   <xsl:analyze-string select="lower-case($input-check)" regex="{$regex}">
+                   <xsl:matching-substring>
+                       <xsl:element name="match">
+                           <xsl:attribute name="real-phrase">
+                    <xsl:value-of select="$real-phrase"/>
+                  </xsl:attribute>
+                           <xsl:value-of select="."/>
+                       </xsl:element>
+                    </xsl:matching-substring>
+                </xsl:analyze-string>
+               </xsl:for-each>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:element>
+  </xsl:function>
+  
   <xsl:function name="e:list-panels">
     <xsl:param name="caption" as="xs:string"/>
     <xsl:element name="list">
@@ -9710,6 +9735,18 @@
       
     </rule>
   </pattern>
+  <pattern id="tortured-phrase-checks-pattern">
+    <rule context="article" id="tortured-phrase-checks">
+      <let name="tortured-phrases" value="'tortured-phrases.xml'"/>
+      <let name="phrases" value="document($tortured-phrases)//*:phrase"/>
+      <let name="tortured-check" value="string-join(for $x in self::*/*[local-name()=('body','back','sub-article')]//*           return           if ($x/ancestor::ref-list) then ()           else $x/text(),'')"/>
+      <let name="tortured-phrase-result" value="e:get-tortured-phrases($tortured-check,$phrases)"/>
+      
+      <report test="$tortured-phrase-result//*:match" role="warning" id="tortured-phrase-check-1">Article contains <value-of select="count($tortured-phrase-result//*:match)"/> potentially tortured phrase(s): <value-of select="string-join(for $m in distinct-values($tortured-phrase-result//*:match) return concat($m,' [',$tortured-phrase-result/descendant::*:match[.=$m][1]/@*:real-phrase,' (',count($tortured-phrase-result//*:match[.=$m]),' instance(s))]'),'; ')"/>
+      </report>
+      
+    </rule>
+  </pattern>
   
   <pattern id="doi-journal-ref-checks-pattern">
     <rule context="element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" id="doi-journal-ref-checks">
@@ -10633,6 +10670,7 @@
       <assert test="descendant::ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'github.com') and not(contains(@xlink:href,'archive.softwareheritage.org'))]" role="error" id="flag-github-xspec-assert">ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'github.com') and not(contains(@xlink:href,'archive.softwareheritage.org'))] must be present.</assert>
       <assert test="descendant::ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'gitlab.com') and not(contains(@xlink:href,'archive.softwareheritage.org'))]" role="error" id="flag-gitlab-xspec-assert">ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'gitlab.com') and not(contains(@xlink:href,'archive.softwareheritage.org'))] must be present.</assert>
       <assert test="descendant::p or descendant::td or descendant::th or descendant::title" role="error" id="data-request-checks-xspec-assert">p|td|th|title must be present.</assert>
+      <assert test="descendant::article" role="error" id="tortured-phrase-checks-xspec-assert">article must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" role="error" id="doi-journal-ref-checks-xspec-assert">element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source] must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name]" role="error" id="doi-book-ref-checks-xspec-assert">element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name] must be present.</assert>
       <assert test="descendant::element-citation[(@publication-type='software') and year and source]" role="error" id="doi-software-ref-checks-xspec-assert">element-citation[(@publication-type='software') and year and source] must be present.</assert>
