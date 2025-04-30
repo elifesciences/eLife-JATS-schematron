@@ -91,7 +91,7 @@
                             <xsl:text>reviewed preprint</xsl:text>
                         </xsl:element>
                         <xsl:text>&#xa;</xsl:text>
-                        <xsl:for-each select="./article-version-alternatives/article-version">
+                        <xsl:for-each select="./article-version-alternatives/article-version[not(@article-version-type='publication-state')]">
                             <xsl:copy>
                                 <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
                             </xsl:copy>
@@ -332,20 +332,6 @@
                 <xsl:value-of select="generate-id(.)"/>
             </xsl:attribute>
             <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
-        </xsl:copy>
-    </xsl:template>
-    
-    <!-- Add sec-type="data-availability" -->
-    <xsl:template xml:id="sec-data-availability" match="sec[(not(@sec-type) or @sec-type='data-availability') and matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')]">
-        <xsl:copy>
-            <xsl:apply-templates select="@*"/>
-            <xsl:attribute name="sec-type">data-availability</xsl:attribute>
-            <xsl:if test="not(@id)">
-                <xsl:attribute name="id">
-                    <xsl:value-of select="generate-id(.)"/>
-                </xsl:attribute>
-            </xsl:if>
-            <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
     </xsl:template>
     
