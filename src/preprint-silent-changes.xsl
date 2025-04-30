@@ -316,7 +316,7 @@
     </xsl:template>
     
     <!-- Introduce id for top-level sections (with titles) that don't have them, so they appear in the TOC on EPP -->
-    <xsl:template match="(body|back)/sec[title and not(@id) and not(matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing'))]">
+    <xsl:template match="(body|back)/sec[title and not(@id)]">
         <xsl:copy>
             <xsl:attribute name="id">
                 <xsl:value-of select="generate-id(.)"/>
