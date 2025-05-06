@@ -76,7 +76,7 @@
     <!-- Changes to article-meta: 
             - Introduce flag to distinguish between reviewed-preprint and VOR XML
             - Ensure correct ordering of elements -->
-    <xsl:template xml:id="article-meta-changes" mode="article-meta-round-1" match="article-meta">
+    <xsl:template xml:id="article-meta-changes" match="article-meta">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:text>&#xa;</xsl:text>
