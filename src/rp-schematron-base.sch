@@ -2053,8 +2053,8 @@
                                           else if (not(ancestor::article-meta/pub-history[event[date[@date-type='reviewed-preprint']]])) then true()
                                           else false()"/>
       <!-- dirty - needs doing based on first date rather than just position? -->
-      <let name="authoritative-year" value="if (not($is-first-version)) then ancestor::article-meta/pub-history/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]
-        else if (ancestor::article-meta/pub-date[@date-type='publication' and @publication-format='electronic']) then ancestor::article-meta/pub-date[@date-type='publication' and @publication-format='electronic']/year
+      <let name="authoritative-year" value="if (ancestor::article-meta/pub-date[@date-type='original-publication']) then ancestor::article-meta/pub-date[@date-type='original-publication'][1]/year[1]
+        else if (not($is-first-version)) then ancestor::article-meta/pub-history/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]
         else string(year-from-date(current-date()))"/>
       
       <assert see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-1" 

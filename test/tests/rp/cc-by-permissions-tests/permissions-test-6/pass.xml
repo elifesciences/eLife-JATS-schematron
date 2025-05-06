@@ -6,7 +6,7 @@ Message: copyright-year must match the year of first reviewed preprint publicati
   <article>
     <front><journal-meta><journal-id>eLife</journal-id></journal-meta>
       <article-meta>
-        <pub-date date-type="publication" publication-format="electronic">
+        <pub-date date-type="original-publication" publication-format="electronic">
           <year>2019</year>
           <month>09</month>
           <day>01</day>

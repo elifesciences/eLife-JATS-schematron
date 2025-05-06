@@ -7706,7 +7706,7 @@
       <xsl:variable name="copyright-holder" select="e:get-copyright-holder($author-contrib-group)"/>
       <xsl:variable name="license-type" select="license/@xlink:href"/>
       <xsl:variable name="is-first-version" select="if (ancestor::article-meta/article-id[@specific-use='version' and ends-with(.,'.1')]) then true()                                           else if (not(ancestor::article-meta/pub-history[event[date[@date-type='reviewed-preprint']]])) then true()                                           else false()"/>
-      <xsl:variable name="authoritative-year" select="if (not($is-first-version)) then ancestor::article-meta/pub-history/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]         else if (ancestor::article-meta/pub-date[@date-type='publication' and @publication-format='electronic']) then ancestor::article-meta/pub-date[@date-type='publication' and @publication-format='electronic']/year         else string(year-from-date(current-date()))"/>
+      <xsl:variable name="authoritative-year" select="if (ancestor::article-meta/pub-date[@date-type='original-publication']) then ancestor::article-meta/pub-date[@date-type='original-publication'][1]/year[1]         else if (not($is-first-version)) then ancestor::article-meta/pub-history/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]         else string(year-from-date(current-date()))"/>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="copyright-statement"/>
