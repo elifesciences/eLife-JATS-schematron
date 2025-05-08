@@ -705,7 +705,7 @@
         
         <report test="not(title) and (count(p) gt 1)" role="warning" id="fig-caption-1">[fig-caption-1] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
         
-        <report test="not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1) and not(matches(lower-case(p[1]),'^\p{Z}*\p{P}?[ai]\p{P}'))" role="warning" id="fig-caption-2">[fig-caption-2] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</report>
+        <report test="not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1) and not(matches(lower-case(p[1]),'^\p{Z}*\p{P}?(a|a[–—\-][b-z]|i)\p{P}'))" role="warning" id="fig-caption-2">[fig-caption-2] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</report>
      </rule></pattern>
 
     <pattern id="table-wrap-checks-pattern"><rule context="table-wrap" id="table-wrap-checks">
@@ -718,6 +718,12 @@
         <report test="normalize-space(.)=''" role="error" id="table-wrap-empty">[table-wrap-empty] Label for table is empty. Either remove the elment or add the missing content.</report>
         
         <report test="matches(lower-case(.),'^\s*fig')" role="warning" id="table-wrap-label-fig">[table-wrap-label-fig] Label for table ('<value-of select="."/>') starts with text that suggests its a figure. Should this content be captured as a figure instead of a table?</report>
+     </rule></pattern><pattern id="table-wrap-caption-checks-pattern"><rule context="table-wrap/caption" id="table-wrap-caption-checks">
+        <let name="label" value="if (ancestor::table-wrap/label) then ancestor::table-wrap[1]/label[1] else 'inline table'"/>
+        
+        <report test="not(title) and (count(p) gt 1)" role="warning" id="table-wrap-caption-1">[table-wrap-caption-1] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
+        
+        <report test="not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1)" role="warning" id="table-wrap-caption-2">[table-wrap-caption-2] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</report>
      </rule></pattern>
   
     <pattern id="supplementary-material-checks-pattern"><rule context="supplementary-material" id="supplementary-material-checks">

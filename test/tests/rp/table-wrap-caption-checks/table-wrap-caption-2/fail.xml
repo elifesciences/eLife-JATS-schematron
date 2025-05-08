@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="table-wrap-caption-2.sch"?>
+<!--Context: table-wrap/caption
+Test: report    not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1)
+Message: Caption for  doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <table-wrap>
+            <caption>
+                <p>Some title. Some caption.</p>
+            </caption>
+        </table-wrap>
+    </article>
+</root>

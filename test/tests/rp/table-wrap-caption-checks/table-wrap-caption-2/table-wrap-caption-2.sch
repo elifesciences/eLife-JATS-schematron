@@ -202,16 +202,15 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
-  <pattern id="fig-caption-checks-pattern">
-    <rule context="fig/caption" id="fig-caption-checks">
-      <let name="label" value="if (ancestor::fig/label) then ancestor::fig[1]/label[1] else 'unlabelled figure'"/>
-      <let name="is-revised-rp" value="if (ancestor::article//article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
-      <report test="not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1) and not(matches(lower-case(p[1]),'^\p{Z}*\p{P}?(a|a[–—\-][b-z]|i)\p{P}'))" role="warning" id="fig-caption-2">[fig-caption-2] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</report>
+  <pattern id="table-wrap-caption-checks-pattern">
+    <rule context="table-wrap/caption" id="table-wrap-caption-checks">
+      <let name="label" value="if (ancestor::table-wrap/label) then ancestor::table-wrap[1]/label[1] else 'inline table'"/>
+      <report test="not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1)" role="warning" id="table-wrap-caption-2">[table-wrap-caption-2] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/caption" role="error" id="fig-caption-checks-xspec-assert">fig/caption must be present.</assert>
+      <assert test="descendant::table-wrap/caption" role="error" id="table-wrap-caption-checks-xspec-assert">table-wrap/caption must be present.</assert>
     </rule>
   </pattern>
 </schema>

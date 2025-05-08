@@ -2056,6 +2056,28 @@
         <x:expect-not-assert id="table-wrap-label-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="table-wrap-caption-checks">
+      <x:scenario label="table-wrap-caption-1-pass">
+        <x:context href="../tests/rp/table-wrap-caption-checks/table-wrap-caption-1/pass.xml"/>
+        <x:expect-not-report id="table-wrap-caption-1" role="warning"/>
+        <x:expect-not-assert id="table-wrap-caption-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-wrap-caption-1-fail">
+        <x:context href="../tests/rp/table-wrap-caption-checks/table-wrap-caption-1/fail.xml"/>
+        <x:expect-report id="table-wrap-caption-1" role="warning"/>
+        <x:expect-not-assert id="table-wrap-caption-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-wrap-caption-2-pass">
+        <x:context href="../tests/rp/table-wrap-caption-checks/table-wrap-caption-2/pass.xml"/>
+        <x:expect-not-report id="table-wrap-caption-2" role="warning"/>
+        <x:expect-not-assert id="table-wrap-caption-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-wrap-caption-2-fail">
+        <x:context href="../tests/rp/table-wrap-caption-checks/table-wrap-caption-2/fail.xml"/>
+        <x:expect-report id="table-wrap-caption-2" role="warning"/>
+        <x:expect-not-assert id="table-wrap-caption-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="supplementary-material-checks">
       <x:scenario label="supplementary-material-temp-test-pass">
         <x:context href="../tests/rp/supplementary-material-checks/supplementary-material-temp-test/pass.xml"/>
