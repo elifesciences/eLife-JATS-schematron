@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="award-id-test-6.sch"?>
 <!--Context: funding-group/award-group/award-id
 Test: report    . = preceding::award-id[parent::award-group/descendant::institution-id[1] = $funder-id]
-Message: Funding entry has an award id -  - which is also used in another funding entry with the same funder ID. This must be incorrect. Either the funder ID or the award ID is wrong, or it is a duplicate that should be removed. -->
+Message: Funding entry has an award id -  - which is also used in another funding entry with the same institution ID. This must be incorrect. Either the funder ID or the award ID is wrong, or it is a duplicate that should be removed. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <funding-group>

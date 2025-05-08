@@ -1,7 +1,7 @@
 let $root := '/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/'
 let $rp-sch := doc($root||'src/rp-schematron-base.sch')
 
-for $t in $rp-sch//*:rule[@id="fig-permissions-check"]//*[name()=('report','assert')]
+for $t in $rp-sch//*:rule[@id="fig-xref-conformance"]//*[name()=('report','assert')]
 let $gen-f := $root||'/test/tests/gen/'||$t/parent::*:rule/@id||'/'||$t/@id||'/'
 let $folder := $root||'/test/tests/rp/'||$t/parent::*:rule/@id||'/'||$t/@id||'/'
 let $f := doc($folder||'fail.xml')
