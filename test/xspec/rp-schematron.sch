@@ -1712,6 +1712,33 @@
         <report test="(.='3' and (sup or ancestor::sup)) and preceding::text()[1][matches(.,'(^|\s)(As|Bi|NI|O|P|Sb)$')]" role="warning" id="ref-cite-superscript-3">This reference citation contains superscript number(s), but is preceed by text that suggests it's part of atomic notation. Should the xref be removed and the superscript numbers be retained?</report>
      </rule>
   </pattern>
+  <pattern id="fig-xref-conformance-pattern">
+    <rule context="xref[@ref-type='fig' and @rid]" id="fig-xref-conformance">
+        <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
+        <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
+        
+        <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-3" test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="fig-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
+        
+        <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-8" test="matches($pre-text,'their $')" role="warning" id="fig-xref-test-8">Figure citation is preceded by 'their'. Does this refer to a figure in other content (and as such should be captured as plain text)? - '<value-of select="concat($pre-text,.)"/>'.</report>
+        
+        <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-9" test="matches($post-text,'^ of [\p{Lu}][\p{Ll}]+[\-]?[\p{Ll}]? et al[\.]?')" role="warning" id="fig-xref-test-9">Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-10" test="matches($post-text,'^[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?[Ff]igure supplement')" role="error" id="fig-xref-test-10">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a Figure supplement - <value-of select="concat(.,$post-text)"/>'.</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-11" test="matches($post-text,'^[\p{Zs}]?[\p{Zs}—\-][\p{Zs}]?[Vv]ideo')" role="warning" id="fig-xref-test-11">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a video supplement - <value-of select="concat(.,$post-text)"/>'.</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-12" test="matches($post-text,'^[\p{Zs}]?[\p{Zs}—\-][\p{Zs}]?[Ss]ource')" role="warning" id="fig-xref-test-12">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-13" test="matches($post-text,'^[\p{Zs}]?[Ss]upplement|^[\p{Zs}]?[Ff]igure [Ss]upplement|^[\p{Zs}]?[Ss]ource|^[\p{Zs}]?[Vv]ideo')" role="warning" id="fig-xref-test-13">Figure citation is followed by text which suggests it could be an incomplete citation - <value-of select="concat(.,$post-text)"/>'. Is this OK?</report>
+        
+        <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-16" test="matches($pre-text,'[Ss]uppl?[\.]?\p{Zs}?$|[Ss]upp?l[ea]mental\p{Zs}?$|[Ss]upp?l[ea]mentary\p{Zs}?$|[Ss]upp?l[ea]ment\p{Zs}?$')" role="warning" id="fig-xref-test-16">Figure citation - '<value-of select="."/>' - is preceded by the text '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>' - should it be a figure supplement citation instead?</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-17" test="matches(.,'[A-Z]$') and matches($post-text,'^\p{Zs}?and [A-Z] |^\p{Zs}?and [A-Z]\.')" role="warning" id="fig-xref-test-17">Figure citation - '<value-of select="."/>' - is followed by the text '<value-of select="substring($post-text,1,7)"/>' - should this text be included in the link text too (i.e. '<value-of select="concat(.,substring($post-text,1,6))"/>')?</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-18" test="matches($post-text,'^\-[A-Za-z0-9]')" role="warning" id="fig-xref-test-18">Figure citation - '<value-of select="."/>' - is followed by the text '<value-of select="substring($post-text,1,10)"/>' - should some or all of that text be included in the citation text?</report>
+        
+      </rule>
+  </pattern>
 
     <pattern id="ext-link-tests-pattern">
     <rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests">
@@ -2140,6 +2167,7 @@
       <assert test="descendant::title" role="error" id="digest-title-checks-xspec-assert">title must be present.</assert>
       <assert test="descendant::xref" role="error" id="xref-checks-xspec-assert">xref must be present.</assert>
       <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-citation-checks-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
+      <assert test="descendant::xref[@ref-type='fig' and @rid]" role="error" id="fig-xref-conformance-xspec-assert">xref[@ref-type='fig' and @rid] must be present.</assert>
       <assert test="descendant::ext-link[@ext-link-type='uri']" role="error" id="ext-link-tests-xspec-assert">ext-link[@ext-link-type='uri'] must be present.</assert>
       <assert test="descendant::ext-link" role="error" id="ext-link-tests-2-xspec-assert">ext-link must be present.</assert>
       <assert test="descendant::fn-group[fn]" role="error" id="footnote-checks-xspec-assert">fn-group[fn] must be present.</assert>
