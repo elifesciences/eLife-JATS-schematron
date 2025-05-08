@@ -1999,6 +1999,16 @@
         <x:expect-report id="fig-caption-1" role="warning"/>
         <x:expect-not-assert id="fig-caption-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="fig-caption-2-pass">
+        <x:context href="../tests/rp/fig-caption-checks/fig-caption-2/pass.xml"/>
+        <x:expect-not-report id="fig-caption-2" role="warning"/>
+        <x:expect-not-assert id="fig-caption-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-caption-2-fail">
+        <x:context href="../tests/rp/fig-caption-checks/fig-caption-2/fail.xml"/>
+        <x:expect-report id="fig-caption-2" role="warning"/>
+        <x:expect-not-assert id="fig-caption-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="table-wrap-checks">
       <x:scenario label="table-wrap-content-conformance-pass">

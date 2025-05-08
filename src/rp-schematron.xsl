@@ -4966,6 +4966,19 @@
                <xsl:text/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1) and not(matches(lower-case(p[1]),'^\p{Z}*\p{P}?[ai]\p{P}'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1) and not(matches(lower-case(p[1]),'^\p{Z}*\p{P}?[ai]\p{P}'))">
+            <xsl:attribute name="id">fig-caption-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[fig-caption-2] Caption for <xsl:text/>
+               <xsl:value-of select="$label"/>
+               <xsl:text/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M75"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M75"/>

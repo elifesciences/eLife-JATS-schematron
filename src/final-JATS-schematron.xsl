@@ -12454,7 +12454,7 @@
             </xsl:attribute>
             <svrl:text>[award-id-test-6] Funding entry has an award id - <xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/> - which is also used in another funding entry with the same funder ID. This must be incorrect. Either the funder ID or the award ID is wrong, or it is a duplicate that should be removed.</svrl:text>
+               <xsl:text/> - which is also used in another funding entry with the same institution ID. This must be incorrect. Either the funder ID or the award ID is wrong, or it is a duplicate that should be removed.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->

@@ -2553,7 +2553,7 @@
       
       <report test="matches(.,'http[s]?://d?x?\.?doi.org/')" role="error" id="award-id-test-5">Award id contains a DOI link - <value-of select="."/>. If the award ID is for a grant DOI it should contain the DOI without the https://... protocol (e.g. 10.37717/220020477).</report>
       
-      <report test=". = preceding::award-id[parent::award-group/descendant::institution-id[1] = $funder-id]" role="error" id="award-id-test-6">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with the same funder ID. This must be incorrect. Either the funder ID or the award ID is wrong, or it is a duplicate that should be removed.</report>
+      <report test=". = preceding::award-id[parent::award-group/descendant::institution-id[1] = $funder-id]" role="error" id="award-id-test-6">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with the same institution ID. This must be incorrect. Either the funder ID or the award ID is wrong, or it is a duplicate that should be removed.</report>
       
       <report test=". = preceding::award-id[parent::award-group/descendant::institution[1] = $funder-name]" role="error" id="award-id-test-7">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with the same funder name. This must be incorrect. Either the funder name or the award ID is wrong, or it is a duplicate that should be removed.</report>
       

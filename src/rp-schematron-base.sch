@@ -1211,6 +1211,10 @@
         <report test="not(title) and (count(p) gt 1)" 
           role="warning" 
           id="fig-caption-1">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
+        
+        <report test="not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1) and not(matches(lower-case(p[1]),'^\p{Z}*\p{P}?(a|a[–—\-][b-z]|i)\p{P}'))" 
+          role="warning" 
+          id="fig-caption-2">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</report>
      </rule>
     </pattern>
 

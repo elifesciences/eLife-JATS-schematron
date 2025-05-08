@@ -704,6 +704,8 @@
         <report test="$is-revised-rp and matches(lower-case(.),'biorend[eo]r') and not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')])" role="warning" id="fig-biorender-check-revised">[fig-biorender-check-revised] Caption for <value-of select="$label"/> mentions bioRender, but it does not contain a BioRender figure link in the format "BioRender.com/{figure-code}". Since this is a revised RP, check to see if the first (or a previous) version had bioRender links.</report>
         
         <report test="not(title) and (count(p) gt 1)" role="warning" id="fig-caption-1">[fig-caption-1] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
+        
+        <report test="not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1) and not(matches(lower-case(p[1]),'^\p{Z}*\p{P}?[ai]\p{P}'))" role="warning" id="fig-caption-2">[fig-caption-2] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</report>
      </rule></pattern>
 
     <pattern id="table-wrap-checks-pattern"><rule context="table-wrap" id="table-wrap-checks">

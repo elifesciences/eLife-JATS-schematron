@@ -3706,7 +3706,7 @@
       
       <report test=". = preceding::award-id[parent::award-group/descendant::institution-id[1] = $funder-id]" 
         role="error" 
-        id="award-id-test-6">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with the same funder ID. This must be incorrect. Either the funder ID or the award ID is wrong, or it is a duplicate that should be removed.</report>
+        id="award-id-test-6">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with the same institution ID. This must be incorrect. Either the funder ID or the award ID is wrong, or it is a duplicate that should be removed.</report>
       
       <report test=". = preceding::award-id[parent::award-group/descendant::institution[1] = $funder-name]" 
         role="error" 
