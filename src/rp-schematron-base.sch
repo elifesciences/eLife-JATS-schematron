@@ -2612,6 +2612,7 @@
       <let name="allowed-vals" value="($str-kwds,$sig-kwds)"/>
       <let name="normalized-kwd" value="replace(lower-case(.),'ly$','')"/>
       <let name="title-case-kwd" value="concat(upper-case(substring($normalized-kwd,1,1)),lower-case(substring($normalized-kwd,2)))"/>
+      <let name="preceding-text" value="string-join(preceding-sibling::node(),'')"/>
       
       <assert test="lower-case(.)=$allowed-vals"
         role="error" 
@@ -2624,6 +2625,10 @@
       <report test="preceding-sibling::bold[replace(lower-case(.),'ly$','') = $normalized-kwd]"
         role="warning" 
         id="ed-report-bold-terms-3">There is more than one of the same <value-of select="if (replace(lower-case(.),'ly$','')=$str-kwds) then 'strength' else 'significance'"/> keywords in the assessment - <value-of select="$normalized-kwd"/>. This is very likely to be incorrect.</report>
+      
+      <report test="(lower-case(.)=$allowed-vals) and matches($preceding-text,'\smore\s*$')"
+        role="warning" 
+        id="ed-report-bold-terms-4">Assessment keyword (<value-of select="."/>) is preceded by 'more'. Has the keyword been deployed correctly?</report>
     </rule>
 
     </pattern>

@@ -4695,6 +4695,16 @@
         <x:expect-report id="ed-report-bold-terms-3" role="warning"/>
         <x:expect-not-assert id="ed-report-bold-terms-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ed-report-bold-terms-4-pass">
+        <x:context href="../tests/rp/ed-report-bold-terms/ed-report-bold-terms-4/pass.xml"/>
+        <x:expect-not-report id="ed-report-bold-terms-4" role="warning"/>
+        <x:expect-not-assert id="ed-report-bold-terms-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-bold-terms-4-fail">
+        <x:context href="../tests/rp/ed-report-bold-terms/ed-report-bold-terms-4/fail.xml"/>
+        <x:expect-report id="ed-report-bold-terms-4" role="warning"/>
+        <x:expect-not-assert id="ed-report-bold-terms-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ar-image-labels">
       <x:scenario label="ar-image-label-1-pass">
