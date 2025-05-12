@@ -23311,6 +23311,7 @@
       <xsl:variable name="allowed-vals" select="($str-kwds,$sig-kwds)"/>
       <xsl:variable name="normalized-kwd" select="replace(lower-case(.),'ly$','')"/>
       <xsl:variable name="title-case-kwd" select="concat(upper-case(substring($normalized-kwd,1,1)),lower-case(substring($normalized-kwd,2)))"/>
+      <xsl:variable name="preceding-text" select="string-join(preceding-sibling::node(),'')"/>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="lower-case(.)=$allowed-vals"/>
@@ -23356,6 +23357,32 @@
                <xsl:text/> keywords in the assessment - <xsl:text/>
                <xsl:value-of select="$normalized-kwd"/>
                <xsl:text/>. This is very likely to be incorrect.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="(lower-case(.)=$allowed-vals) and matches($preceding-text,'\smore\s*$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(lower-case(.)=$allowed-vals) and matches($preceding-text,'\smore\s*$')">
+            <xsl:attribute name="id">ed-report-bold-terms-4</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ed-report-bold-terms-4] Assessment keyword (<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>) is preceded by 'more'. Has the keyword been deployed correctly?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="(lower-case(.)=$str-kwds) and matches($preceding-text,'\spotentially\s*$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(lower-case(.)=$str-kwds) and matches($preceding-text,'\spotentially\s*$')">
+            <xsl:attribute name="id">ed-report-bold-terms-5</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ed-report-bold-terms-5] Assessment strength keyword (<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>) is preceded by 'potentially'. Has the keyword been deployed correctly?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M371"/>

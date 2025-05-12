@@ -4324,12 +4324,17 @@
       <let name="allowed-vals" value="($str-kwds,$sig-kwds)"/>
       <let name="normalized-kwd" value="replace(lower-case(.),'ly$','')"/>
       <let name="title-case-kwd" value="concat(upper-case(substring($normalized-kwd,1,1)),lower-case(substring($normalized-kwd,2)))"/>
+      <let name="preceding-text" value="string-join(preceding-sibling::node(),'')"/>
       
       <assert test="lower-case(.)=$allowed-vals" role="error" id="ed-report-bold-terms-1">[ed-report-bold-terms-1] Bold phrase in eLife Assessment - <value-of select="."/> - is not one of the permitted terms from the vocabulary. Should the bold formatting be removed? These are currently bolded terms <value-of select="string-join($allowed-vals,', ')"/></assert>
 
       <report test="lower-case(.)=$allowed-vals and not($title-case-kwd=ancestor::sub-article/front-stub/kwd-group/kwd)" role="error" id="ed-report-bold-terms-2">[ed-report-bold-terms-2] Bold phrase in eLife Assessment - <value-of select="."/> - is one of the permitted vocabulary terms, but there's no corresponding keyword in the metadata (in a kwd-group in the front-stub).</report>
 
       <report test="preceding-sibling::bold[replace(lower-case(.),'ly$','') = $normalized-kwd]" role="warning" id="ed-report-bold-terms-3">[ed-report-bold-terms-3] There is more than one of the same <value-of select="if (replace(lower-case(.),'ly$','')=$str-kwds) then 'strength' else 'significance'"/> keywords in the assessment - <value-of select="$normalized-kwd"/>. This is very likely to be incorrect.</report>
+      
+      <report test="(lower-case(.)=$allowed-vals) and matches($preceding-text,'\smore\s*$')" role="warning" id="ed-report-bold-terms-4">[ed-report-bold-terms-4] Assessment keyword (<value-of select="."/>) is preceded by 'more'. Has the keyword been deployed correctly?</report>
+      
+      <report test="(lower-case(.)=$str-kwds) and matches($preceding-text,'\spotentially\s*$')" role="warning" id="ed-report-bold-terms-5">[ed-report-bold-terms-5] Assessment strength keyword (<value-of select="."/>) is preceded by 'potentially'. Has the keyword been deployed correctly?</report>
     </rule></pattern><pattern id="dec-letter-front-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
       <let name="count" value="count(contrib-group)"/>
       

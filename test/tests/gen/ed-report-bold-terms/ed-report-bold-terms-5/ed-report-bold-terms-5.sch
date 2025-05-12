@@ -1452,8 +1452,7 @@
       <let name="normalized-kwd" value="replace(lower-case(.),'ly$','')"/>
       <let name="title-case-kwd" value="concat(upper-case(substring($normalized-kwd,1,1)),lower-case(substring($normalized-kwd,2)))"/>
       <let name="preceding-text" value="string-join(preceding-sibling::node(),'')"/>
-      <assert test="lower-case(.)=$allowed-vals" role="error" id="ed-report-bold-terms-1">Bold phrase in eLife Assessment - <value-of select="."/> - is not one of the permitted terms from the vocabulary. Should the bold formatting be removed? These are currently bolded terms <value-of select="string-join($allowed-vals,', ')"/>
-      </assert>
+      <report test="(lower-case(.)=$str-kwds) and matches($preceding-text,'\spotentially\s*$')" role="warning" id="ed-report-bold-terms-5">Assessment strength keyword (<value-of select="."/>) is preceded by 'potentially'. Has the keyword been deployed correctly?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

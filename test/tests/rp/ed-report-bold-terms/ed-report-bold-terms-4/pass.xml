@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="ed-report-bold-terms-4.sch"?>
+<!--Context: sub-article[@article-type='editor-report']/body/p[1]//bold
+Test: report    (lower-case(.)=$allowed-vals) and matches($preceding-text,'\smore\s*$')
+Message: Assessment keyword () is preceded by 'more'. Has the keyword been deployed correctly? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article article-type="editor-report">
+            <body>
+                <p>This could be more solid, it's <bold>incomplete</bold>.</p>
+            </body>
+        </sub-article>
+    </article>
+</root>

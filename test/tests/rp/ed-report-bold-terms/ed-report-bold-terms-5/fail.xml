@@ -1,0 +1,23 @@
+<?oxygen SCHSchema="ed-report-bold-terms-5.sch"?>
+<!--Context: sub-article[@article-type='editor-report']/body/p[1]//bold
+Test: report    (lower-case(.)=$str-kwds) and matches($preceding-text,'\spotentially\s*$')
+Message: Assessment strength keyword () is preceded by 'potentially'. Has the keyword been deployed correctly? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <front>
+            <article-meta>
+                <custom-meta-group>
+                <custom-meta specific-use="meta-only">
+                    <meta-name>publishing-route</meta-name>
+                    <meta-value>prc</meta-value>
+                </custom-meta>
+            </custom-meta-group>
+            </article-meta>
+        </front>
+        <sub-article article-type="editor-report">
+            <body>
+                <p>... It's potentially <bold>solid</bold>... but currently <bold>incomplete</bold></p>
+            </body>
+        </sub-article>
+    </article>
+</root>
