@@ -23372,6 +23372,19 @@
                <xsl:text/>) is preceded by 'more'. Has the keyword been deployed correctly?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="(lower-case(.)=$str-kwds) and matches($preceding-text,'\spotentially\s*$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(lower-case(.)=$str-kwds) and matches($preceding-text,'\spotentially\s*$')">
+            <xsl:attribute name="id">ed-report-bold-terms-5</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ed-report-bold-terms-5] Assessment strength keyword (<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>) is preceded by 'potentially'. Has the keyword been deployed correctly?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M371"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M371"/>

@@ -2629,6 +2629,10 @@
       <report test="(lower-case(.)=$allowed-vals) and matches($preceding-text,'\smore\s*$')"
         role="warning" 
         id="ed-report-bold-terms-4">Assessment keyword (<value-of select="."/>) is preceded by 'more'. Has the keyword been deployed correctly?</report>
+      
+      <report test="(lower-case(.)=$str-kwds) and matches($preceding-text,'\spotentially\s*$')"
+        role="warning" 
+        id="ed-report-bold-terms-5">Assessment strength keyword (<value-of select="."/>) is preceded by 'potentially'. Has the keyword been deployed correctly?</report>
     </rule>
 
     </pattern>
