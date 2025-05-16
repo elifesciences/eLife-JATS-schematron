@@ -300,7 +300,7 @@
 	    
 	    <report test="matches(.,'[\(\)\[\]]')" role="warning" id="surname-test-9">surname contains brackets - '<value-of select="."/>'. Should the bracketed text be placed in the given-names field instead?</report>
 
-      <report test="matches(.,'\s') and not(matches(lower-case(.),'^de[lrn]? |^v[ao]n |^el |^te[rn] |^l[ae] |^zur |^d[ia] '))" role="warning" id="surname-test-10">surname contains space(s) - '<value-of select="."/>'. Has it been captured correctly? Should any namee be moved to given-names?</report>
+      <report test="matches(.,'\s') and not(matches(lower-case(.),'^de[lrn]? |^v[ao]n |^el |^te[rn] |^l[ae] |^zur |^d[ia] '))" role="warning" id="surname-test-10">surname contains space(s) - '<value-of select="."/>'. Has it been captured correctly? Should any name be moved to given-names?</report>
 	  </rule>
   </pattern>
   <pattern id="given-names-tests-pattern">
