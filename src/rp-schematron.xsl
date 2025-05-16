@@ -2110,7 +2110,7 @@
             </xsl:attribute>
             <svrl:text>[surname-test-10] surname contains space(s) - '<xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/>'. Has it been captured correctly? Should any namee be moved to given-names?</svrl:text>
+               <xsl:text/>'. Has it been captured correctly? Should any name be moved to given-names?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M27"/>

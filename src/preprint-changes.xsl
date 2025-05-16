@@ -1208,7 +1208,10 @@
         <xsl:variable name="mixed-citation-round-3">
             <xsl:apply-templates select="$mixed-citation-round-2" mode="mixed-citation-round-3"/>
          </xsl:variable>
-        <xsl:apply-templates select="$mixed-citation-round-3" mode="mixed-citation-round-4"/>
+        <xsl:variable name="mixed-citation-round-4">
+            <xsl:apply-templates select="$mixed-citation-round-3" mode="mixed-citation-round-4"/>
+         </xsl:variable>
+        <xsl:apply-templates select="$mixed-citation-round-4" mode="mixed-citation-round-5"/>
     </xsl:template>
 
     <!-- Introduces author person-groups into refs when they are missing-->
@@ -1382,6 +1385,37 @@
                 <xsl:when test="@publication-type!='preprint' and matches(lower-case(source[1]),$preprint-regex)">
                     <xsl:attribute name="publication-type">preprint</xsl:attribute>
                     <xsl:apply-templates select="@*[name()!='publication-type']|*|text()|comment()|processing-instruction()"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                </xsl:otherwise>
+            </xsl:choose>
+         </xsl:copy>
+     </xsl:template>
+    
+    <!-- Adds eLife DOIs when missing -->
+     <xsl:template xml:id="add-elife-dois" mode="mixed-citation-round-5" match="mixed-citation">
+         <xsl:copy>
+            <xsl:choose>
+                <xsl:when test="./source[1][matches(lower-case(.),'^\s*elife\s*$')] and not(pub-id[@pub-id-type='doi']) and (./fpage[1][matches(lower-case(.),'^(rp|e)\d{5,6}$')] or ./elocation-id[1][matches(lower-case(.),'^(rp|e)\d{5,6}$')])">
+                    <xsl:variable name="elife-id">
+                        <xsl:choose>
+                            <xsl:when test="./fpage[1][matches(lower-case(.),'^(rp|e)\d{5,6}$')]">
+                                <xsl:value-of select="replace(./fpage[1],'[^\d]','')"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="replace(./elocation-id[1],'[^\d]','')"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <xsl:variable name="elife-doi" select="concat('10.7554/eLife.',$elife-id)"/>
+                    <xsl:attribute name="publication-type">journal</xsl:attribute>
+                    <xsl:apply-templates select="@*[name()!='publication-type']|*|text()|comment()|processing-instruction()"/>
+                    <xsl:text> </xsl:text>
+                    <xsl:element name="pub-id">
+                        <xsl:attribute name="pub-id-type">doi</xsl:attribute>
+                        <xsl:value-of select="$elife-doi"/>
+                    </xsl:element>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>

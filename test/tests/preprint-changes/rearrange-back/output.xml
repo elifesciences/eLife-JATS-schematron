@@ -16,7 +16,7 @@
 <title>Something else</title>
 <p>...</p>
 </ack>
-<sec id="d578e19" sec-type="additional-information">
+<sec id="d626e19" sec-type="additional-information">
 <title>Additional information</title>
 <sec id="s5">
 <title>Funding</title>
@@ -41,9 +41,9 @@
 <p>All code and software needed to generate the results is available as part of public resources: LD score regression (<ext-link ext-link-type="uri" xlink:href="https://github.com/bulik/ldsc">https://github.com/bulik/ldsc</ext-link>), FUMA (<ext-link ext-link-type="uri" xlink:href="https://fuma.ctglab.nl/">https://fuma.ctglab.nl/</ext-link>), MiXeR (<ext-link ext-link-type="uri" xlink:href="https://github.com/precimed/mixer">https://github.com/precimed/mixer</ext-link>), BM location (simulation, training, and model) <italic>[made public upon acceptance]</italic>.</p>
 </sec>
 </sec>
-<sec id="suppd578e19" sec-type="supplementary-material">
+<sec id="suppd626e19" sec-type="supplementary-material">
 <title>Additional files</title>
-<supplementary-material id="d578e10">
+<supplementary-material id="d626e10">
 <label>Supplementary materials</label>
 <media xlink:href="supplements/278950_file02.docx"/>
 </supplementary-material>

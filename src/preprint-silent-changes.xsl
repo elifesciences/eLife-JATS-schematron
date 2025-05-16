@@ -155,7 +155,6 @@
             <xsl:apply-templates select="support-group|support-group/following-sibling::text()[1]"/>
             <xsl:apply-templates select="conference|conference/following-sibling::text()[1]"/>
             <xsl:apply-templates select="custom-meta-group|custom-meta-group/following-sibling::text()[1]"/>
-            <xsl:text>&#xa;</xsl:text>
         </xsl:copy>
     </xsl:template>
     
