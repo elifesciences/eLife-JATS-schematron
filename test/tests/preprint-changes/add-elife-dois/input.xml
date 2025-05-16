@@ -1,0 +1,5 @@
+<!--Testing template with id: add-elife-dois-->
+<ref-list>
+<ref id="c6"><label>6.</label><mixed-citation publication-type="journal"><string-name><surname>Aso</surname>, <given-names>Y.</given-names></string-name>, <etal>...</etal> <string-name><surname>Rubin</surname>, <given-names>G. M</given-names></string-name>. (<year>2014</year>). <article-title>The neuronal architecture of the mushroom body provides a logic for associative learning</article-title>. <source>ELife</source>, <volume>3</volume>, <fpage>e04577</fpage>.</mixed-citation></ref>
+<ref id="c7"><label>7.</label><mixed-citation publication-type="preprint"><string-name><surname>Berger</surname>, <given-names>L.R.</given-names></string-name>, <etal>...</etal> <string-name><surname>Hawks</surname>, <given-names>J.</given-names></string-name> (<year>2016</year>). <article-title>Evidence for deliberate burial of the dead by Homo naledi</article-title>. <source>ELife</source>, <volume>5</volume>. <elocation-id>RP89106</elocation-id></mixed-citation></ref>
+</ref-list>
