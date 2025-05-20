@@ -2478,6 +2478,10 @@
         test="contains(@xlink:href,'datadryad.org/review?')" 
         role="warning" 
         id="ext-link-child-test-5">ext-link looks like it points to a review dryad dataset - <value-of select="."/>. Should it be updated?</report>
+      
+      <report test="not(contains(@xlink:href,'datadryad.org/review?')) and not(matches(@*:href,'^https?://doi.org/')) and contains(@*:href,'datadryad.org')" 
+        role="error" 
+        id="ext-link-child-test-6">ext-link points to a dryad dataset, but it is not a DOI - <value-of select="@xlink:href"/>. Replace this with the Dryad DOI.</report>
 
     <report test="contains(@xlink:href,'paperpile.com')"
         role="error"

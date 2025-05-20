@@ -13903,6 +13903,19 @@
                <xsl:text/>. Should it be updated?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="not(contains(@xlink:href,'datadryad.org/review?')) and not(matches(@*:href,'^https?://doi.org/')) and contains(@*:href,'datadryad.org')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(contains(@xlink:href,'datadryad.org/review?')) and not(matches(@*:href,'^https?://doi.org/')) and contains(@*:href,'datadryad.org')">
+            <xsl:attribute name="id">ext-link-child-test-6</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ext-link-child-test-6] ext-link points to a dryad dataset, but it is not a DOI - <xsl:text/>
+               <xsl:value-of select="@xlink:href"/>
+               <xsl:text/>. Replace this with the Dryad DOI.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <!--REPORT warning-->
       <xsl:if test="(.!=@xlink:href) and matches(.,'https?:|ftp:|www\.')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(.!=@xlink:href) and matches(.,'https?:|ftp:|www\.')">
