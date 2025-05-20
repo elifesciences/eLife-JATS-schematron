@@ -1759,6 +1759,8 @@
     <report test="not(ancestor::fig/permissions[contains(.,'phylopic')]) and matches(@xlink:href,'phylopic\.org')" role="warning" id="phylopic-link-check">This link is to phylopic.org, which is a site where silhouettes/images are typically reproduced from. Please check whether any figures contain reproduced images from this site, and if so whether permissions have been obtained and/or copyright statements are correctly included.</report>
 
     <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#ext-link-child-test-5" test="contains(@xlink:href,'datadryad.org/review?')" role="warning" id="ext-link-child-test-5">ext-link looks like it points to a review dryad dataset - <value-of select="."/>. Should it be updated?</report>
+      
+      <report test="not(contains(@xlink:href,'datadryad.org/review?')) and not(matches(@*:href,'^https?://doi.org/')) and contains(@*:href,'datadryad.org')" role="error" id="ext-link-child-test-6">ext-link points to a dryad dataset, but it is not a DOI - <value-of select="@xlink:href"/>. Replace this with the Dryad DOI.</report>
 
     <report test="contains(@xlink:href,'paperpile.com')" role="error" id="paper-pile-test">This paperpile hyperlink should be removed: '<value-of select="@xlink:href"/>' embedded in the text '<value-of select="."/>'.</report>
     </rule>

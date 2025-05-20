@@ -4643,6 +4643,16 @@
         <x:expect-report id="ext-link-child-test-5" role="warning"/>
         <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ext-link-child-test-6-pass">
+        <x:context href="../tests/gen/ext-link-tests/ext-link-child-test-6/pass.xml"/>
+        <x:expect-not-report id="ext-link-child-test-6" role="error"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ext-link-child-test-6-fail">
+        <x:context href="../tests/gen/ext-link-tests/ext-link-child-test-6/fail.xml"/>
+        <x:expect-report id="ext-link-child-test-6" role="error"/>
+        <x:expect-not-assert id="ext-link-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="ext-link-text-pass">
         <x:context href="../tests/gen/ext-link-tests/ext-link-text/pass.xml"/>
         <x:expect-not-report id="ext-link-text" role="warning"/>
