@@ -22,6 +22,7 @@ let $list :=
   (: standardise coutry names according to our style in countries.xml :)
   let $country-name := $x/*:locations/*[1]/*:geonames__details/*:country__name/text()
   let $country-code := $x/*:locations/*[1]/*:geonames__details/*:country__code/text()
+  (: translate what ROR uses (geonames: https://www.geonames.org/countries/) to eLife's list of countries :)
   let $country-val := switch($country-name)
                         case 'South Korea' return 'Republic of Korea'
                         case 'North Korea' return "Democratic People's Republic of Korea"
@@ -31,10 +32,12 @@ let $list :=
                         case 'Ivory Coast' return "Côte d'Ivoire"
                         case 'Syria' return 'Syrian Arab Republic'
                         case 'Vietnam' return 'Viet Nam'
+                        case 'Türkiye' return 'Turkiye'
                         case 'Tanzania' return 'United Republic of Tanzania'
                         case 'Laos' return "Lao People's Democratic Republic"
                         case 'Palestine' return 'State of Palestine'
                         case 'Palestinian Territory' return 'State of Palestine'
+                        case 'The Netherlands' return 'Netherlands'
                         default return $country-name
   let $country := <country country="{$country-code }">{$country-val}</country>
   let $status := $x/*:status/data()

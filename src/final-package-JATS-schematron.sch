@@ -3123,7 +3123,7 @@
       
     </rule></pattern><pattern id="disp-formula-tests-pattern"><rule context="disp-formula" id="disp-formula-tests">
       
-      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-2" test="mml:math" role="error" id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-2" test="mml:math or alternatives/mml:math" role="error" id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-3" test="parent::p" role="warning" id="disp-formula-test-3">In the vast majority of cases disp-formula should be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/>. Is that correct?</assert>
       
@@ -3132,7 +3132,7 @@
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-1" test="mml:math" role="error" id="inline-formula-test-1">inline-formula must contain an mml:math element.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-1" test="mml:math or alternatives/mml:math" role="error" id="inline-formula-test-1">inline-formula must contain an mml:math element.</assert>
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-2" test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')" role="warning" id="inline-formula-test-2">There is no space between inline-formula and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
@@ -3223,12 +3223,28 @@
 
       <assert test="mml:mprescripts" role="error" id="math-multiscripts-check-3"><name/> element must have a child mml:mprescripts element. If the expressions are all correct, then a more conventional math element (e.g. mml:msub) should be used to capture this content.</assert>
 
+    </rule></pattern><pattern id="tex-math-tests-pattern"><rule context="tex-math" id="tex-math-tests">
+      
+      <assert test="parent::alternatives" role="error" id="tex-math-test-1"><name/> element is not allowed as a child of <value-of select="parent::*/name()"/>. It can only be captured as a child of alternatives.</assert>
+      
+      <assert test="matches(.,'^\\begin\{document\}')" role="error" id="tex-math-test-2">Content of <name/> element must start with '\begin{document}'. This one doesn't - <value-of select="."/></assert>
+      
+      <assert test="matches(.,'\\end\{document\}$')" role="error" id="tex-math-test-3">Content of <name/> element must end with '\end{document}'. This one doesn't - <value-of select="."/></assert>
     </rule></pattern><pattern id="disp-formula-child-tests-pattern"><rule context="disp-formula/*" id="disp-formula-child-tests">
       
-      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1" test="not(local-name()=('label','math'))" role="error" id="disp-formula-child-test-1"><name/> element is not allowed as a child of disp-formula.</report>
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1" test="not(local-name()=('label','math','alternatives'))" role="error" id="disp-formula-child-test-1"><name/> element is not allowed as a child of disp-formula.</report>
     </rule></pattern><pattern id="inline-formula-child-tests-pattern"><rule context="inline-formula/*" id="inline-formula-child-tests">
       
-      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-child-test-1" test="local-name()!='math'" role="error" id="inline-formula-child-test-1"><name/> element is not allowed as a child of inline-formula.</report>
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-child-test-1" test="not(local-name()=('math','alternatives'))" role="error" id="inline-formula-child-test-1"><name/> element is not allowed as a child of inline-formula.</report>
+    </rule></pattern><pattern id="alternatives-tests-pattern"><rule context="alternatives" id="alternatives-tests">
+      
+      <assert test="parent::inline-formula or parent::disp-formula" role="error" id="alternatives-test-1"><name/> element is not allowed as a child of <value-of select="parent::*/name()"/>.</assert>
+    </rule></pattern><pattern id="math-alternatives-tests-pattern"><rule context="alternatives[parent::inline-formula or parent::disp-formula]" id="math-alternatives-tests">
+      
+      <assert test="mml:math and tex-math" role="error" id="math-alternatives-test-1"><name/> element should ony be used in a formula if there is both a MathML representation and a LaTeX representation of the content. There is not both a child mml:math and tex-math element.</assert>
+    </rule></pattern><pattern id="alternatives-child-tests-pattern"><rule context="alternatives/*" id="alternatives-child-tests">
+      
+      <report test="not(local-name()=('math','tex-math'))" role="error" id="alternatives-child-test-1"><name/> element is not allowed as a child of alternatives.</report>
     </rule></pattern><pattern id="table-wrap-tests-pattern"><rule context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
       <let name="lab" value="label[1]"/>

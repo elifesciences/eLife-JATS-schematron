@@ -1448,7 +1448,7 @@
     <rule context="inline-formula" id="inline-formula-tests">
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
-      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-1" test="mml:math" role="error" id="inline-formula-test-1">inline-formula must contain an mml:math element.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-1" test="mml:math or alternatives/mml:math" role="error" id="inline-formula-test-1">inline-formula must contain an mml:math element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

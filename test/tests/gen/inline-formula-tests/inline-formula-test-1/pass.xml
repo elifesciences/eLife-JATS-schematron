@@ -1,11 +1,17 @@
 <?oxygen SCHSchema="inline-formula-test-1.sch"?>
 <!--Context: inline-formula
-Test: assert    mml:math
+Test: assert    mml:math or alternatives/mml:math
 Message: inline-formula must contain an mml:math element. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <inline-formula>
       <mml:math/>
+    </inline-formula>
+    <inline-formula>
+      <alternatives>
+        <mml:math/>
+        <tex-math/>
+      </alternatives>
     </inline-formula>
   </article>
 </root>

@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="tex-math-test-1.sch"?>
+<!--Context: tex-math
+Test: assert    parent::alternatives
+Message:  element is not allowed as a child of . It can only be captured as a child of alternatives. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <p>
+            <tex-math id="inft1">\begin{document}PPV=\frac{TP}{TP+FP}\end{document}</tex-math>
+        </p>
+        <inline-formula>
+            <tex-math id="inft2">\begin{document}PPV=\frac{TP}{TP+FP}\end{document}</tex-math>
+        </inline-formula>
+    </article>
+</root>

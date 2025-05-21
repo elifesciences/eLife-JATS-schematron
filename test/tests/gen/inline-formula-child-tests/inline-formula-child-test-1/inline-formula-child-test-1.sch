@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="inline-formula/*" id="inline-formula-child-tests">
-      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-child-test-1" test="local-name()!='math'" role="error" id="inline-formula-child-test-1">
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-child-test-1" test="not(local-name()=('math','alternatives'))" role="error" id="inline-formula-child-test-1">
         <name/> element is not allowed as a child of inline-formula.</report>
     </rule>
   </pattern>

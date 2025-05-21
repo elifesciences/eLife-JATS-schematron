@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="disp-formula-child-test-1.sch"?>
 <!--Context: disp-formula/*
-Test: report    not(local-name()=('label','math'))
+Test: report    not(local-name()=('label','math','alternatives'))
 Message:  element is not allowed as a child of disp-formula. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
@@ -9,7 +9,15 @@ Message:  element is not allowed as a child of disp-formula. -->
       <mml:math/>
     </disp-formula>
     <inline-formula>
+      <label/>
       <mml:math/>
+    </inline-formula>
+    <inline-formula>
+      <label/>
+      <alternatives>
+        <mml:math/>
+        <tex-math/>
+      </alternatives>
     </inline-formula>
   </article>
 </root>

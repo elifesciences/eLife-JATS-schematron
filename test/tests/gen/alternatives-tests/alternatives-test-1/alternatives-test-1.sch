@@ -1445,14 +1445,14 @@
     
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="disp-formula/*" id="disp-formula-child-tests">
-      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1" test="not(local-name()=('label','math','alternatives'))" role="error" id="disp-formula-child-test-1">
-        <name/> element is not allowed as a child of disp-formula.</report>
+    <rule context="alternatives" id="alternatives-tests">
+      <assert test="parent::inline-formula or parent::disp-formula" role="error" id="alternatives-test-1">
+        <name/> element is not allowed as a child of <value-of select="parent::*/name()"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::disp-formula/*" role="error" id="disp-formula-child-tests-xspec-assert">disp-formula/* must be present.</assert>
+      <assert test="descendant::alternatives" role="error" id="alternatives-tests-xspec-assert">alternatives must be present.</assert>
     </rule>
   </pattern>
 </schema>

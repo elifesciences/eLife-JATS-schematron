@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="tex-math-test-2.sch"?>
+<!--Context: tex-math
+Test: assert    matches(.,'^\\begin\{document\}')
+Message: Content of  element must start with '\begin{document}'. This one doesn't -  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <alternatives>
+            <tex-math id="inft1">PPV=\frac{TP}{TP+FP}]]</tex-math>
+        </alternatives>
+    </article>
+</root>

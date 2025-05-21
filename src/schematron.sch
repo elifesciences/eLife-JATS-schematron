@@ -4936,7 +4936,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="disp-formula" id="disp-formula-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-2"
-        test="mml:math" 
+        test="mml:math or alternatives/mml:math" 
         role="error" 
         id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
       
@@ -4956,7 +4956,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="post-text" value="following-sibling::text()[1]"/>
       
       <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-1"
-        test="mml:math" 
+        test="mml:math or alternatives/mml:math" 
         role="error" 
         id="inline-formula-test-1">inline-formula must contain an mml:math element.</assert>
       
@@ -5166,11 +5166,26 @@ else self::*/local-name() = $allowed-p-blocks"
         id="math-multiscripts-check-3"><name/> element must have a child mml:mprescripts element. If the expressions are all correct, then a more conventional math element (e.g. mml:msub) should be used to capture this content.</assert>
 
     </rule>
+    
+    <rule context="tex-math" id="tex-math-tests">
+      
+      <assert test="parent::alternatives" 
+        role="error" 
+        id="tex-math-test-1"><name/> element is not allowed as a child of <value-of select="parent::*/name()"/>. It can only be captured as a child of alternatives.</assert>
+      
+      <assert test="matches(.,'^\\begin\{document\}')" 
+        role="error" 
+        id="tex-math-test-2">Content of <name/> element must start with '\begin{document}'. This one doesn't - <value-of select="."/></assert>
+      
+      <assert test="matches(.,'\\end\{document\}$')" 
+        role="error" 
+        id="tex-math-test-3">Content of <name/> element must end with '\end{document}'. This one doesn't - <value-of select="."/></assert>
+    </rule>
 
     <rule context="disp-formula/*" id="disp-formula-child-tests">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1"
-        test="not(local-name()=('label','math'))" 
+        test="not(local-name()=('label','math','alternatives'))" 
         role="error" 
         id="disp-formula-child-test-1"><name/> element is not allowed as a child of disp-formula.</report>
     </rule>
@@ -5178,9 +5193,30 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="inline-formula/*" id="inline-formula-child-tests">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-child-test-1"
-        test="local-name()!='math'" 
+        test="not(local-name()=('math','alternatives'))" 
         role="error" 
         id="inline-formula-child-test-1"><name/> element is not allowed as a child of inline-formula.</report>
+    </rule>
+    
+    <rule context="alternatives" id="alternatives-tests">
+      
+      <assert test="parent::inline-formula or parent::disp-formula" 
+        role="error" 
+        id="alternatives-test-1"><name/> element is not allowed as a child of <value-of select="parent::*/name()"/>.</assert>
+    </rule>
+    
+    <rule context="alternatives[parent::inline-formula or parent::disp-formula]" id="math-alternatives-tests">
+      
+      <assert test="mml:math and tex-math" 
+        role="error" 
+        id="math-alternatives-test-1"><name/> element should ony be used in a formula if there is both a MathML representation and a LaTeX representation of the content. There is not both a child mml:math and tex-math element.</assert>
+    </rule>
+    
+    <rule context="alternatives/*" id="alternatives-child-tests">
+      
+      <report test="not(local-name()=('math','tex-math'))" 
+        role="error" 
+        id="alternatives-child-test-1"><name/> element is not allowed as a child of alternatives.</report>
     </rule>
     
     <rule context="table-wrap" id="table-wrap-tests">

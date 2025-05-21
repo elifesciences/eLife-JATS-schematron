@@ -1445,14 +1445,14 @@
     
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="disp-formula/*" id="disp-formula-child-tests">
-      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1" test="not(local-name()=('label','math','alternatives'))" role="error" id="disp-formula-child-test-1">
-        <name/> element is not allowed as a child of disp-formula.</report>
+    <rule context="tex-math" id="tex-math-tests">
+      <assert test="matches(.,'\\end\{document\}$')" role="error" id="tex-math-test-3">Content of <name/> element must end with '\end{document}'. This one doesn't - <value-of select="."/>
+      </assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::disp-formula/*" role="error" id="disp-formula-child-tests-xspec-assert">disp-formula/* must be present.</assert>
+      <assert test="descendant::tex-math" role="error" id="tex-math-tests-xspec-assert">tex-math must be present.</assert>
     </rule>
   </pattern>
 </schema>
