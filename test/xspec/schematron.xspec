@@ -6114,6 +6114,18 @@
         <x:expect-not-assert id="alternatives-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="math-alternatives-tests">
+      <x:scenario label="math-alternatives-test-1-pass">
+        <x:context href="../tests/gen/math-alternatives-tests/math-alternatives-test-1/pass.xml"/>
+        <x:expect-not-assert id="math-alternatives-test-1" role="error"/>
+        <x:expect-not-assert id="math-alternatives-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-alternatives-test-1-fail">
+        <x:context href="../tests/gen/math-alternatives-tests/math-alternatives-test-1/fail.xml"/>
+        <x:expect-assert id="math-alternatives-test-1" role="error"/>
+        <x:expect-not-assert id="math-alternatives-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="alternatives-child-tests">
       <x:scenario label="alternatives-child-test-1-pass">
         <x:context href="../tests/gen/alternatives-child-tests/alternatives-child-test-1/pass.xml"/>

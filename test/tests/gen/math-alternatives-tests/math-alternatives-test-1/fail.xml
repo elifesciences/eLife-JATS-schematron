@@ -1,0 +1,31 @@
+<?oxygen SCHSchema="math-alternatives-test-1.sch"?>
+<!--Context: alternatives[parent::inline-formula or parent::disp-formula]
+Test: assert    mml:math and tex-math
+Message:  element should ony be used in a formula if there is both a MathML representation and a LaTeX representation of the content. There is not both a child mml:math and tex-math element. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <disp-formula>
+            <alternatives>
+                <tex-math/>
+            </alternatives>
+        </disp-formula>
+        <disp-formula>
+            <alternatives>
+                <graphic/>
+                <tex-math/>
+            </alternatives>
+        </disp-formula>
+        <inline-formula>
+            <alternatives>
+                <mml:math/>
+                <textual-form/>
+            </alternatives>
+        </inline-formula>
+        <fig>
+            <alternatives>
+                <graphic/>
+                <textual-form/>
+            </alternatives>
+        </fig>
+    </article>
+</root>

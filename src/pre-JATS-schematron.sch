@@ -3171,6 +3171,9 @@
     </rule></pattern><pattern id="alternatives-tests-pattern"><rule context="alternatives" id="alternatives-tests">
       
       <assert test="parent::inline-formula or parent::disp-formula" role="error" id="alternatives-test-1">[alternatives-test-1] <name/> element is not allowed as a child of <value-of select="parent::*/name()"/>.</assert>
+    </rule></pattern><pattern id="math-alternatives-tests-pattern"><rule context="alternatives[parent::inline-formula or parent::disp-formula]" id="math-alternatives-tests">
+      
+      <assert test="mml:math and tex-math" role="error" id="math-alternatives-test-1">[math-alternatives-test-1] <name/> element should ony be used in a formula if there is both a MathML representation and a LaTeX representation of the content. There is not both a child mml:math and tex-math element.</assert>
     </rule></pattern><pattern id="alternatives-child-tests-pattern"><rule context="alternatives/*" id="alternatives-child-tests">
       
       <report test="not(local-name()=('math','tex-math'))" role="error" id="alternatives-child-test-1">[alternatives-child-test-1] <name/> element is not allowed as a child of alternatives.</report>

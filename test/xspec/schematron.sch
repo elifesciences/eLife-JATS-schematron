@@ -3861,6 +3861,13 @@
         <name/> element is not allowed as a child of <value-of select="parent::*/name()"/>.</assert>
     </rule>
   </pattern>
+  <pattern id="math-alternatives-tests-pattern">
+    <rule context="alternatives[parent::inline-formula or parent::disp-formula]" id="math-alternatives-tests">
+      
+      <assert test="mml:math and tex-math" role="error" id="math-alternatives-test-1">
+        <name/> element should ony be used in a formula if there is both a MathML representation and a LaTeX representation of the content. There is not both a child mml:math and tex-math element.</assert>
+    </rule>
+  </pattern>
   <pattern id="alternatives-child-tests-pattern">
     <rule context="alternatives/*" id="alternatives-child-tests">
       
@@ -10295,6 +10302,7 @@
       <assert test="descendant::disp-formula/*" role="error" id="disp-formula-child-tests-xspec-assert">disp-formula/* must be present.</assert>
       <assert test="descendant::inline-formula/*" role="error" id="inline-formula-child-tests-xspec-assert">inline-formula/* must be present.</assert>
       <assert test="descendant::alternatives" role="error" id="alternatives-tests-xspec-assert">alternatives must be present.</assert>
+      <assert test="descendant::alternatives[parent::inline-formula or parent::disp-formula]" role="error" id="math-alternatives-tests-xspec-assert">alternatives[parent::inline-formula or parent::disp-formula] must be present.</assert>
       <assert test="descendant::alternatives/*" role="error" id="alternatives-child-tests-xspec-assert">alternatives/* must be present.</assert>
       <assert test="descendant::table-wrap" role="error" id="table-wrap-tests-xspec-assert">table-wrap must be present.</assert>
       <assert test="descendant::table-wrap[not(ancestor::sub-article) and not(contains(@id,'keyresource')) and label]" role="error" id="table-title-tests-xspec-assert">table-wrap[not(ancestor::sub-article) and not(contains(@id,'keyresource')) and label] must be present.</assert>
