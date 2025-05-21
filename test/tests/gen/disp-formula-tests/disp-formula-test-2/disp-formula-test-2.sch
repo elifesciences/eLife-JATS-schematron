@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="disp-formula" id="disp-formula-tests">
-      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-2" test="mml:math" role="error" id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-2" test="mml:math or alternatives/mml:math" role="error" id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

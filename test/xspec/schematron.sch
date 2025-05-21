@@ -3700,7 +3700,7 @@
   <pattern id="disp-formula-tests-pattern">
     <rule context="disp-formula" id="disp-formula-tests">
       
-      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-2" test="mml:math" role="error" id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-2" test="mml:math or alternatives/mml:math" role="error" id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-3" test="parent::p" role="warning" id="disp-formula-test-3">In the vast majority of cases disp-formula should be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/>. Is that correct?</assert>
       
@@ -3713,7 +3713,7 @@
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
-      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-1" test="mml:math" role="error" id="inline-formula-test-1">inline-formula must contain an mml:math element.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-1" test="mml:math or alternatives/mml:math" role="error" id="inline-formula-test-1">inline-formula must contain an mml:math element.</assert>
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-2" test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')" role="warning" id="inline-formula-test-2">There is no space between inline-formula and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
@@ -3843,15 +3843,29 @@
   <pattern id="disp-formula-child-tests-pattern">
     <rule context="disp-formula/*" id="disp-formula-child-tests">
       
-      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1" test="not(local-name()=('label','math'))" role="error" id="disp-formula-child-test-1">
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1" test="not(local-name()=('label','math','alternatives'))" role="error" id="disp-formula-child-test-1">
         <name/> element is not allowed as a child of disp-formula.</report>
     </rule>
   </pattern>
   <pattern id="inline-formula-child-tests-pattern">
     <rule context="inline-formula/*" id="inline-formula-child-tests">
       
-      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-child-test-1" test="local-name()!='math'" role="error" id="inline-formula-child-test-1">
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-child-test-1" test="not(local-name()=('math','alternatives'))" role="error" id="inline-formula-child-test-1">
         <name/> element is not allowed as a child of inline-formula.</report>
+    </rule>
+  </pattern>
+  <pattern id="alternatives-tests-pattern">
+    <rule context="alternatives" id="alternatives-tests">
+      
+      <assert test="parent::inline-formula or parent::disp-formula" role="error" id="alternatives-test-1">
+        <name/> element is not allowed as a child of <value-of select="parent::*/name()"/>.</assert>
+    </rule>
+  </pattern>
+  <pattern id="alternatives-child-tests-pattern">
+    <rule context="alternatives/*" id="alternatives-child-tests">
+      
+      <report test="not(local-name()=('math','tex-math'))" role="error" id="alternatives-child-test-1">
+        <name/> element is not allowed as a child of alternatives.</report>
     </rule>
   </pattern>
   <pattern id="table-wrap-tests-pattern">
@@ -10280,6 +10294,8 @@
       <assert test="descendant::mml:mmultiscripts" role="error" id="math-multiscripts-tests-xspec-assert">mml:mmultiscripts must be present.</assert>
       <assert test="descendant::disp-formula/*" role="error" id="disp-formula-child-tests-xspec-assert">disp-formula/* must be present.</assert>
       <assert test="descendant::inline-formula/*" role="error" id="inline-formula-child-tests-xspec-assert">inline-formula/* must be present.</assert>
+      <assert test="descendant::alternatives" role="error" id="alternatives-tests-xspec-assert">alternatives must be present.</assert>
+      <assert test="descendant::alternatives/*" role="error" id="alternatives-child-tests-xspec-assert">alternatives/* must be present.</assert>
       <assert test="descendant::table-wrap" role="error" id="table-wrap-tests-xspec-assert">table-wrap must be present.</assert>
       <assert test="descendant::table-wrap[not(ancestor::sub-article) and not(contains(@id,'keyresource')) and label]" role="error" id="table-title-tests-xspec-assert">table-wrap[not(ancestor::sub-article) and not(contains(@id,'keyresource')) and label] must be present.</assert>
       <assert test="descendant::table-wrap/caption/title" role="error" id="table-title-tests-2-xspec-assert">table-wrap/caption/title must be present.</assert>

@@ -4936,7 +4936,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="disp-formula" id="disp-formula-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-2"
-        test="mml:math" 
+        test="mml:math or alternatives/mml:math" 
         role="error" 
         id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
       
@@ -4956,7 +4956,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="post-text" value="following-sibling::text()[1]"/>
       
       <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-1"
-        test="mml:math" 
+        test="mml:math or alternatives/mml:math" 
         role="error" 
         id="inline-formula-test-1">inline-formula must contain an mml:math element.</assert>
       
@@ -5170,7 +5170,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="disp-formula/*" id="disp-formula-child-tests">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1"
-        test="not(local-name()=('label','math'))" 
+        test="not(local-name()=('label','math','alternatives'))" 
         role="error" 
         id="disp-formula-child-test-1"><name/> element is not allowed as a child of disp-formula.</report>
     </rule>
@@ -5178,9 +5178,23 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="inline-formula/*" id="inline-formula-child-tests">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-child-test-1"
-        test="local-name()!='math'" 
+        test="not(local-name()=('math','alternatives'))" 
         role="error" 
         id="inline-formula-child-test-1"><name/> element is not allowed as a child of inline-formula.</report>
+    </rule>
+    
+    <rule context="alternatives" id="alternatives-tests">
+      
+      <assert test="parent::inline-formula or parent::disp-formula" 
+        role="error" 
+        id="alternatives-test-1"><name/> element is not allowed as a child of <value-of select="parent::*/name()"/>.</assert>
+    </rule>
+    
+    <rule context="alternatives/*" id="alternatives-child-tests">
+      
+      <report test="not(local-name()=('math','tex-math'))" 
+        role="error" 
+        id="alternatives-child-test-1"><name/> element is not allowed as a child of alternatives.</report>
     </rule>
     
     <rule context="table-wrap" id="table-wrap-tests">
