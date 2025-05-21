@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="tex-math-test-4.sch"?>
+<!--Context: tex-math
+Test: report    ancestor::disp-formula and (not(starts-with($document-stripped-text,'$${')) or not(ends-with($document-stripped-text,'}$$')))
+Message: If  element is a descendant of disp-formula then the expression must be wrapped in two dollar signs, i.e. $${insert-formula-here}$$. This one isn't -  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <disp-formula>
+            <tex-math id="inft1">\begin{document}PPV=\frac{TP}{TP+FP}\end{document}</tex-math>
+        </disp-formula>
+    </article>
+</root>

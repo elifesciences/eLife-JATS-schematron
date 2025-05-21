@@ -1448,8 +1448,8 @@
     <rule context="tex-math" id="tex-math-tests">
       <let name="document-stripped-text" value="replace(.,'^\\begin\{document.|\\end\{document.$','')"/>
       <let name="formula-text" value="replace($document-stripped-text,'^\$\$\{|\}\$\$$','')"/>
-      <assert test="starts-with(.,'\begin{document}')" role="error" id="tex-math-test-2">Content of <name/> element must start with '\begin{document}'. This one doesn't - <value-of select="."/>
-      </assert>
+      <report test="ancestor::disp-formula and (not(starts-with($document-stripped-text,'$${')) or not(ends-with($document-stripped-text,'}$$')))" role="error" id="tex-math-test-4">If <name/> element is a descendant of disp-formula then the expression must be wrapped in two dollar signs, i.e. $${insert-formula-here}$$. This one isn't - <value-of select="."/>
+      </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
