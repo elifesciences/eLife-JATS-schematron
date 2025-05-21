@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="tex-math" id="tex-math-tests">
-      <let name="document-stripped-text" value="replace(.,'^\\begin\{document\}|\\end\{document\}$','')"/>
+      <let name="document-stripped-text" value="replace(.,'^\\begin\{document.|\\end\{document.$','')"/>
       <let name="formula-text" value="replace($document-stripped-text,'^\$\$\{|\}\$\$$','')"/>
       <assert test="parent::alternatives" role="error" id="tex-math-test-1">
         <name/> element is not allowed as a child of <value-of select="parent::*/name()"/>. It can only be captured as a child of alternatives.</assert>

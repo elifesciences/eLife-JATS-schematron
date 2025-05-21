@@ -3225,7 +3225,7 @@
 
     </rule></pattern><pattern id="tex-math-tests-pattern"><rule context="tex-math" id="tex-math-tests">
       <!-- String the document commands from the start and end -->
-      <let name="document-stripped-text" value="replace(.,'^\\begin\{document\}|\\end\{document\}$','')"/>
+      <let name="document-stripped-text" value="replace(.,'^\\begin\{document.|\\end\{document.$','')"/>
       <!-- Remove the formula commands to find the actual expression -->
       <let name="formula-text" value="replace($document-stripped-text,'^\$\$\{|\}\$\$$','')"/>
       
@@ -3235,9 +3235,9 @@
       
       <assert test="ends-with(.,'\end{document}')" role="error" id="tex-math-test-3">Content of <name/> element must end with '\end{document}'. This one doesn't - <value-of select="."/></assert>
       
-      <report test="ancestor::disp-formula and (not(matches($document-stripped-text,'^\$\$\{')) or not(matches($document-stripped-text,'\}\$\$$')))" role="error" id="tex-math-test-4">If <name/> element is a descendant of disp-formula then the expression must be wrapped in two dollar signs, i.e. $${insert-formula-here}$$. This one isn't - <value-of select="."/></report>
+      <report test="ancestor::disp-formula and (not(starts-with($document-stripped-text,'$${')) or not(ends-with($document-stripped-text,'}$$')))" role="error" id="tex-math-test-4">If <name/> element is a descendant of disp-formula then the expression must be wrapped in two dollar signs, i.e. $${insert-formula-here}$$. This one isn't - <value-of select="."/></report>
       
-      <report test="ancestor::inline-formula and (not(matches($document-stripped-text,'^\$\{')) or not(matches($document-stripped-text,'\}\$$')))" role="error" id="tex-math-test-5">If <name/> element is a descendant of inline-formula then the expression must be wrapped in single dollar signs, i.e. ${insert-formula-here}$. This one isn't - <value-of select="."/></report>
+      <report test="ancestor::inline-formula and (not(starts-with($document-stripped-text,'${')) or not(ends-with($document-stripped-text,'}$')))" role="error" id="tex-math-test-5">If <name/> element is a descendant of inline-formula then the expression must be wrapped in single dollar signs, i.e. ${insert-formula-here}$. This one isn't - <value-of select="."/></report>
     </rule></pattern><pattern id="disp-formula-child-tests-pattern"><rule context="disp-formula/*" id="disp-formula-child-tests">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1" test="not(local-name()=('label','math','alternatives'))" role="error" id="disp-formula-child-test-1"><name/> element is not allowed as a child of disp-formula.</report>

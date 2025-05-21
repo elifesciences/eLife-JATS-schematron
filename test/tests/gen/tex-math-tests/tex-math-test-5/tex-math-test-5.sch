@@ -1446,9 +1446,9 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="tex-math" id="tex-math-tests">
-      <let name="document-stripped-text" value="replace(.,'^\\begin\{document\}|\\end\{document\}$','')"/>
+      <let name="document-stripped-text" value="replace(.,'^\\begin\{document.|\\end\{document.$','')"/>
       <let name="formula-text" value="replace($document-stripped-text,'^\$\$\{|\}\$\$$','')"/>
-      <report test="ancestor::inline-formula and (not(matches($document-stripped-text,'^\$\{')) or not(matches($document-stripped-text,'\}\$$')))" role="error" id="tex-math-test-5">If <name/> element is a descendant of inline-formula then the expression must be wrapped in single dollar signs, i.e. ${insert-formula-here}$. This one isn't - <value-of select="."/>
+      <report test="ancestor::inline-formula and (not(starts-with($document-stripped-text,'${')) or not(ends-with($document-stripped-text,'}$')))" role="error" id="tex-math-test-5">If <name/> element is a descendant of inline-formula then the expression must be wrapped in single dollar signs, i.e. ${insert-formula-here}$. This one isn't - <value-of select="."/>
       </report>
     </rule>
   </pattern>

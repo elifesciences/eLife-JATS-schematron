@@ -16285,7 +16285,7 @@
    <!--PATTERN tex-math-tests-pattern-->
    <!--RULE tex-math-tests-->
    <xsl:template match="tex-math" priority="1000" mode="M216">
-      <xsl:variable name="document-stripped-text" select="replace(.,'^\\begin\{document\}|\\end\{document\}$','')"/>
+      <xsl:variable name="document-stripped-text" select="replace(.,'^\\begin\{document.|\\end\{document.$','')"/>
       <xsl:variable name="formula-text" select="replace($document-stripped-text,'^\$\$\{|\}\$\$$','')"/>
       <!--ASSERT error-->
       <xsl:choose>
@@ -16344,8 +16344,8 @@
          </xsl:otherwise>
       </xsl:choose>
       <!--REPORT error-->
-      <xsl:if test="ancestor::disp-formula and (not(matches($document-stripped-text,'^\$\$\{')) or not(matches($document-stripped-text,'\}\$\$$')))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::disp-formula and (not(matches($document-stripped-text,'^\$\$\{')) or not(matches($document-stripped-text,'\}\$\$$')))">
+      <xsl:if test="ancestor::disp-formula and (not(starts-with($document-stripped-text,'$${')) or not(ends-with($document-stripped-text,'}$$')))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::disp-formula and (not(starts-with($document-stripped-text,'$${')) or not(ends-with($document-stripped-text,'}$$')))">
             <xsl:attribute name="id">tex-math-test-4</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -16360,8 +16360,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="ancestor::inline-formula and (not(matches($document-stripped-text,'^\$\{')) or not(matches($document-stripped-text,'\}\$$')))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::inline-formula and (not(matches($document-stripped-text,'^\$\{')) or not(matches($document-stripped-text,'\}\$$')))">
+      <xsl:if test="ancestor::inline-formula and (not(starts-with($document-stripped-text,'${')) or not(ends-with($document-stripped-text,'}$')))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::inline-formula and (not(starts-with($document-stripped-text,'${')) or not(ends-with($document-stripped-text,'}$')))">
             <xsl:attribute name="id">tex-math-test-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
