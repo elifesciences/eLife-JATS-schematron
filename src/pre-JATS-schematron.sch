@@ -3162,6 +3162,13 @@
 
       <assert test="mml:mprescripts" role="error" id="math-multiscripts-check-3">[math-multiscripts-check-3] <name/> element must have a child mml:mprescripts element. If the expressions are all correct, then a more conventional math element (e.g. mml:msub) should be used to capture this content.</assert>
 
+    </rule></pattern><pattern id="tex-math-tests-pattern"><rule context="tex-math" id="tex-math-tests">
+      
+      <assert test="parent::alternatives" role="error" id="tex-math-test-1">[tex-math-test-1] <name/> element is not allowed as a child of <value-of select="parent::*/name()"/>. It can only be captured as a child of alternatives.</assert>
+      
+      <assert test="matches(.,'^\\begin\{document\}')" role="error" id="tex-math-test-2">[tex-math-test-2] Content of <name/> element must start with '\begin{document}'. This one doesn't - <value-of select="."/></assert>
+      
+      <assert test="matches(.,'\\end\{document\}$')" role="error" id="tex-math-test-3">[tex-math-test-3] Content of <name/> element must end with '\end{document}'. This one doesn't - <value-of select="."/></assert>
     </rule></pattern><pattern id="disp-formula-child-tests-pattern"><rule context="disp-formula/*" id="disp-formula-child-tests">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1" test="not(local-name()=('label','math','alternatives'))" role="error" id="disp-formula-child-test-1">[disp-formula-child-test-1] <name/> element is not allowed as a child of disp-formula.</report>

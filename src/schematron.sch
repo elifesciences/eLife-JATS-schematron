@@ -5166,6 +5166,21 @@ else self::*/local-name() = $allowed-p-blocks"
         id="math-multiscripts-check-3"><name/> element must have a child mml:mprescripts element. If the expressions are all correct, then a more conventional math element (e.g. mml:msub) should be used to capture this content.</assert>
 
     </rule>
+    
+    <rule context="tex-math" id="tex-math-tests">
+      
+      <assert test="parent::alternatives" 
+        role="error" 
+        id="tex-math-test-1"><name/> element is not allowed as a child of <value-of select="parent::*/name()"/>. It can only be captured as a child of alternatives.</assert>
+      
+      <assert test="matches(.,'^\\begin\{document\}')" 
+        role="error" 
+        id="tex-math-test-2">Content of <name/> element must start with '\begin{document}'. This one doesn't - <value-of select="."/></assert>
+      
+      <assert test="matches(.,'\\end\{document\}$')" 
+        role="error" 
+        id="tex-math-test-3">Content of <name/> element must end with '\end{document}'. This one doesn't - <value-of select="."/></assert>
+    </rule>
 
     <rule context="disp-formula/*" id="disp-formula-child-tests">
       

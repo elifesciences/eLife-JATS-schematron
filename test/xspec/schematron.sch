@@ -3840,6 +3840,19 @@
 
     </rule>
   </pattern>
+  <pattern id="tex-math-tests-pattern">
+    <rule context="tex-math" id="tex-math-tests">
+      
+      <assert test="parent::alternatives" role="error" id="tex-math-test-1">
+        <name/> element is not allowed as a child of <value-of select="parent::*/name()"/>. It can only be captured as a child of alternatives.</assert>
+      
+      <assert test="matches(.,'^\\begin\{document\}')" role="error" id="tex-math-test-2">Content of <name/> element must start with '\begin{document}'. This one doesn't - <value-of select="."/>
+      </assert>
+      
+      <assert test="matches(.,'\\end\{document\}$')" role="error" id="tex-math-test-3">Content of <name/> element must end with '\end{document}'. This one doesn't - <value-of select="."/>
+      </assert>
+    </rule>
+  </pattern>
   <pattern id="disp-formula-child-tests-pattern">
     <rule context="disp-formula/*" id="disp-formula-child-tests">
       
@@ -10299,6 +10312,7 @@
       <assert test="descendant::mml:mi" role="error" id="math-mi-tests-xspec-assert">mml:mi must be present.</assert>
       <assert test="descendant::mml:msub or descendant::mml:msup or descendant::mml:msubsup or descendant::mml:munder or descendant::mml:mover or descendant::mml:munderover" role="error" id="math-empty-child-tests-xspec-assert">mml:msub|mml:msup|mml:msubsup|mml:munder|mml:mover|mml:munderover must be present.</assert>
       <assert test="descendant::mml:mmultiscripts" role="error" id="math-multiscripts-tests-xspec-assert">mml:mmultiscripts must be present.</assert>
+      <assert test="descendant::tex-math" role="error" id="tex-math-tests-xspec-assert">tex-math must be present.</assert>
       <assert test="descendant::disp-formula/*" role="error" id="disp-formula-child-tests-xspec-assert">disp-formula/* must be present.</assert>
       <assert test="descendant::inline-formula/*" role="error" id="inline-formula-child-tests-xspec-assert">inline-formula/* must be present.</assert>
       <assert test="descendant::alternatives" role="error" id="alternatives-tests-xspec-assert">alternatives must be present.</assert>
