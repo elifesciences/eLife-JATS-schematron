@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="tex-math-test-3.sch"?>
 <!--Context: tex-math
-Test: assert    matches(.,'\\end\{document\}$')
+Test: assert    ends-with(.,'\end{document}')
 Message: Content of  element must end with '\end{document}'. This one doesn't -  -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>

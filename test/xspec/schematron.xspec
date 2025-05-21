@@ -6109,6 +6109,26 @@
         <x:expect-assert id="tex-math-test-3" role="error"/>
         <x:expect-not-assert id="tex-math-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="tex-math-test-4-pass">
+        <x:context href="../tests/gen/tex-math-tests/tex-math-test-4/pass.xml"/>
+        <x:expect-not-report id="tex-math-test-4" role="error"/>
+        <x:expect-not-assert id="tex-math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="tex-math-test-4-fail">
+        <x:context href="../tests/gen/tex-math-tests/tex-math-test-4/fail.xml"/>
+        <x:expect-report id="tex-math-test-4" role="error"/>
+        <x:expect-not-assert id="tex-math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="tex-math-test-5-pass">
+        <x:context href="../tests/gen/tex-math-tests/tex-math-test-5/pass.xml"/>
+        <x:expect-not-report id="tex-math-test-5" role="error"/>
+        <x:expect-not-assert id="tex-math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="tex-math-test-5-fail">
+        <x:context href="../tests/gen/tex-math-tests/tex-math-test-5/fail.xml"/>
+        <x:expect-report id="tex-math-test-5" role="error"/>
+        <x:expect-not-assert id="tex-math-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="disp-formula-child-tests">
       <x:scenario label="disp-formula-child-test-1-pass">
