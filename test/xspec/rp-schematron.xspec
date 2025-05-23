@@ -2391,6 +2391,36 @@
         <x:expect-report id="sec-supplementary-material-3" role="warning"/>
         <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="sec-supplementary-material-4-pass">
+        <x:context href="../tests/rp/sec-checks/sec-supplementary-material-4/pass.xml"/>
+        <x:expect-not-report id="sec-supplementary-material-4" role="warning"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-supplementary-material-4-fail">
+        <x:context href="../tests/rp/sec-checks/sec-supplementary-material-4/fail.xml"/>
+        <x:expect-report id="sec-supplementary-material-4" role="warning"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-supplementary-material-5-pass">
+        <x:context href="../tests/rp/sec-checks/sec-supplementary-material-5/pass.xml"/>
+        <x:expect-not-report id="sec-supplementary-material-5" role="error"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-supplementary-material-5-fail">
+        <x:context href="../tests/rp/sec-checks/sec-supplementary-material-5/fail.xml"/>
+        <x:expect-report id="sec-supplementary-material-5" role="error"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-supplementary-material-6-pass">
+        <x:context href="../tests/rp/sec-checks/sec-supplementary-material-6/pass.xml"/>
+        <x:expect-not-report id="sec-supplementary-material-6" role="error"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-supplementary-material-6-fail">
+        <x:context href="../tests/rp/sec-checks/sec-supplementary-material-6/fail.xml"/>
+        <x:expect-report id="sec-supplementary-material-6" role="error"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="sec-empty-pass">
         <x:context href="../tests/rp/sec-checks/sec-empty/pass.xml"/>
         <x:expect-not-assert id="sec-empty" role="error"/>

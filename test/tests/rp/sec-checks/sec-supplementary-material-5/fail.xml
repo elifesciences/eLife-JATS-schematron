@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="sec-supplementary-material-5.sch"?>
+<!--Context: sec
+Test: report    @sec-type='supplementary-material' and not(title) and parent::back
+Message: <sec sec-type='supplementary-material'> does not have a title element. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <back>
+            <sec sec-type="supplementary-material"/>
+        </back>
+    </article>
+</root>

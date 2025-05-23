@@ -806,6 +806,12 @@
         <report test="@sec-type='supplementary-material' and not(supplementary-material)" role="error" id="sec-supplementary-material-2">[sec-supplementary-material-2] &lt;sec sec-type="supplementary-material"&gt; must contain at least one &lt;supplementary-material&gt; element, but this one does not. If this section contains captions, then these should be added to the appropriate &lt;supplementary-material&gt;. If the files are not present in the article at all, the captions should be removed (or the files added as new &lt;supplementary-material&gt;).</report>
         
         <report test="not(@sec-type=('additional-information','supplementary-material')) and not(descendant::supplementary-material or descendant::fig or descendant::table-wrap) and title[1][matches(lower-case(.),'(supporting|supplementary|supplemental|ancillary|additional) (information|files|material)')]" role="warning" id="sec-supplementary-material-3">[sec-supplementary-material-3] sec has a title suggesting its content might relate to additional files, but it doesn't contain a supplementary-material element. If this section contains captions for supplementary files, then these should be added to the appropriate &lt;supplementary-material&gt;. If the files are not present in the article at all, the captions should be removed (or the files added as new &lt;supplementary-material&gt;).</report>
+        
+        <report test="@sec-type='supplementary-material' and not(title) and not(parent::back)" role="warning" id="sec-supplementary-material-4">[sec-supplementary-material-4] &lt;sec sec-type='supplementary-material'&gt; does not have a title element. Is that correct?</report>
+        
+        <report test="@sec-type='supplementary-material' and not(title) and parent::back" role="error" id="sec-supplementary-material-5">[sec-supplementary-material-5] &lt;sec sec-type='supplementary-material'&gt; does not have a title element.</report>
+        
+        <report test="@sec-type='supplementary-material' and title and title!='Additional files' and parent::back" role="error" id="sec-supplementary-material-6">[sec-supplementary-material-6] &lt;sec sec-type='supplementary-material'&gt; has a title element, but it is not 'Additional files'.</report>
 
         <assert test="*[not(name()=('label','title','sec-meta'))]" role="error" id="sec-empty">[sec-empty] sec element is not populated with any content. Either there's a mistake or the section should be removed.</assert>
         

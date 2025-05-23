@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="sec-supplementary-material-6.sch"?>
+<!--Context: sec
+Test: report    @sec-type='supplementary-material' and title and title!='Additional files' and parent::back
+Message: <sec sec-type='supplementary-material'> has a title element, but it is not 'Additional files'. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <back>
+            <sec sec-type="supplementary-material">
+                <title>Additional files</title>
+            </sec>
+        </back>
+    </article>
+</root>
