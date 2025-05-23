@@ -3232,6 +3232,10 @@
       <report test="ancestor::disp-formula and (not(starts-with($document-stripped-text,'$${')) or not(ends-with($document-stripped-text,'}$$')))" role="error" id="tex-math-test-4">[tex-math-test-4] If <name/> element is a descendant of disp-formula then the expression must be wrapped in two dollar signs, i.e. $${insert-formula-here}$$. This one isn't - <value-of select="."/></report>
       
       <report test="ancestor::inline-formula and (not(starts-with($document-stripped-text,'${')) or not(ends-with($document-stripped-text,'}$')))" role="error" id="tex-math-test-5">[tex-math-test-5] If <name/> element is a descendant of inline-formula then the expression must be wrapped in single dollar signs, i.e. ${insert-formula-here}$. This one isn't - <value-of select="."/></report>
+      
+      <report test="ancestor::disp-formula and not(contains($formula-text,'\displaystyle'))" role="warning" id="tex-math-test-6">[tex-math-test-6] <name/> element in a disp-formula should contain the \displaystyle command. This one doesn't - <value-of select="."/></report>
+      
+      <report test="ancestor::inline-formula and contains($formula-text,'\displaystyle')" role="warning" id="tex-math-test-7">[tex-math-test-7] <name/> element is in an inline-formula, and yet it contains the \displaystyle command. Is that correct? - <value-of select="."/></report>
     </rule></pattern><pattern id="disp-formula-child-tests-pattern"><rule context="disp-formula/*" id="disp-formula-child-tests">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1" test="not(local-name()=('label','math','alternatives'))" role="error" id="disp-formula-child-test-1">[disp-formula-child-test-1] <name/> element is not allowed as a child of disp-formula.</report>
