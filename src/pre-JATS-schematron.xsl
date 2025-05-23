@@ -19645,7 +19645,7 @@
             </xsl:attribute>
             <svrl:text>[pre-fig-biorender-test-1] Caption or attrib for <xsl:text/>
                <xsl:value-of select="$label"/>
-               <xsl:text/> contains a BioRender link, but it does not look like a BioRender 'unique figure citation URL'. If one has not been provided by the authors please add the relevant query asking for one.</svrl:text>
+               <xsl:text/> contains a BioRender link, but it does not look like a BioRender 'unique figure citation URL'. Exeter: If one has not been provided already, please query this with the eLife team.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M287"/>

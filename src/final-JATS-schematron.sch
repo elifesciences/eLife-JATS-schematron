@@ -3218,7 +3218,7 @@
       <assert test="mml:mprescripts" role="error" id="math-multiscripts-check-3">[math-multiscripts-check-3] <name/> element must have a child mml:mprescripts element. If the expressions are all correct, then a more conventional math element (e.g. mml:msub) should be used to capture this content.</assert>
 
     </rule></pattern><pattern id="tex-math-tests-pattern"><rule context="tex-math" id="tex-math-tests">
-      <!-- String the document commands from the start and end -->
+      <!-- Strip the document commands from the start and end -->
       <let name="document-stripped-text" value="replace(.,'^\\begin\{document.|\\end\{document.$','')"/>
       <!-- Remove the formula commands to find the actual expression -->
       <let name="formula-text" value="replace($document-stripped-text,'^\$\$\{|\}\$\$$','')"/>
