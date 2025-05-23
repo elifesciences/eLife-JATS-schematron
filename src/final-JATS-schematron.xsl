@@ -16558,7 +16558,23 @@
             </xsl:attribute>
             <svrl:text>[tex-math-test-6] <xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/> element in a disp-formula should contain the \displaystyle commans. This one doesn't - <xsl:text/>
+               <xsl:text/> element in a disp-formula should contain the \displaystyle command. This one doesn't - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="ancestor::inline-formula and contains($formula-text,'\displaystyle')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::inline-formula and contains($formula-text,'\displaystyle')">
+            <xsl:attribute name="id">tex-math-test-7</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[tex-math-test-7] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element is in an inline-formula, and yet it contains the \displaystyle command. Is that correct? - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>
             </svrl:text>

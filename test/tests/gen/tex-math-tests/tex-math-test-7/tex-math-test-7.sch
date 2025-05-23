@@ -1448,8 +1448,8 @@
     <rule context="tex-math" id="tex-math-tests">
       <let name="document-stripped-text" value="replace(.,'^\\begin\{document.|\\end\{document.$','')"/>
       <let name="formula-text" value="replace($document-stripped-text,'^\$\$\{|\}\$\$$','')"/>
-      <report test="ancestor::disp-formula and not(contains($formula-text,'\displaystyle'))" role="warning" id="tex-math-test-6">
-        <name/> element in a disp-formula should contain the \displaystyle command. This one doesn't - <value-of select="."/>
+      <report test="ancestor::inline-formula and contains($formula-text,'\displaystyle')" role="warning" id="tex-math-test-7">
+        <name/> element is in an inline-formula, and yet it contains the \displaystyle command. Is that correct? - <value-of select="."/>
       </report>
     </rule>
   </pattern>

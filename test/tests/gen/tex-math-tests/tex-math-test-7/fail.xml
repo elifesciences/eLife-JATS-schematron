@@ -1,11 +1,11 @@
-<?oxygen SCHSchema="tex-math-test-6.sch"?>
+<?oxygen SCHSchema="tex-math-test-7.sch"?>
 <!--Context: tex-math
-Test: report    ancestor::disp-formula and not(contains($formula-text,'\displaystyle'))
-Message:  element in a disp-formula should contain the \displaystyle command. This one doesn't -  -->
+Test: report    ancestor::inline-formula and contains($formula-text,'\displaystyle')
+Message:  element is in an inline-formula, and yet it contains the \displaystyle command. Is that correct? -  -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
-        <disp-formula>
+        <inline-formula>
             <tex-math id="inft1">\begin{document}$${\displaystyle PPV=\frac{TP}{TP+FP}}$$\end{document}</tex-math>
-        </disp-formula>
+        </inline-formula>
     </article>
 </root>

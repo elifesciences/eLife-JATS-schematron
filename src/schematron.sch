@@ -5195,7 +5195,11 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="ancestor::disp-formula and not(contains($formula-text,'\displaystyle'))" 
         role="warning" 
-        id="tex-math-test-6"><name/> element in a disp-formula should contain the \displaystyle commans. This one doesn't - <value-of select="."/></report>
+        id="tex-math-test-6"><name/> element in a disp-formula should contain the \displaystyle command. This one doesn't - <value-of select="."/></report>
+      
+      <report test="ancestor::inline-formula and contains($formula-text,'\displaystyle')" 
+        role="warning" 
+        id="tex-math-test-7"><name/> element is in an inline-formula, and yet it contains the \displaystyle command. Is that correct? - <value-of select="."/></report>
     </rule>
 
     <rule context="disp-formula/*" id="disp-formula-child-tests">
