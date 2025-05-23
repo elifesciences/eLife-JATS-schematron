@@ -16548,6 +16548,22 @@
             </svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="ancestor::disp-formula and not(contains($formula-text,'\displaystyle'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::disp-formula and not(contains($formula-text,'\displaystyle'))">
+            <xsl:attribute name="id">tex-math-test-6</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[tex-math-test-6] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element in a disp-formula should contain the \displaystyle commans. This one doesn't - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M218"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M218"/>
