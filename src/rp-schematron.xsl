@@ -5679,6 +5679,39 @@
             <svrl:text>[sec-supplementary-material-3] sec has a title suggesting its content might relate to additional files, but it doesn't contain a supplementary-material element. If this section contains captions for supplementary files, then these should be added to the appropriate &lt;supplementary-material&gt;. If the files are not present in the article at all, the captions should be removed (or the files added as new &lt;supplementary-material&gt;).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="@sec-type='supplementary-material' and not(title) and not(parent::back)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@sec-type='supplementary-material' and not(title) and not(parent::back)">
+            <xsl:attribute name="id">sec-supplementary-material-4</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[sec-supplementary-material-4] &lt;sec sec-type='supplementary-material'&gt; does not have a title element. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="@sec-type='supplementary-material' and not(title) and parent::back">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@sec-type='supplementary-material' and not(title) and parent::back">
+            <xsl:attribute name="id">sec-supplementary-material-5</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[sec-supplementary-material-5] &lt;sec sec-type='supplementary-material'&gt; does not have a title element.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="@sec-type='supplementary-material' and title and title!='Additional files' and parent::back">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@sec-type='supplementary-material' and title and title!='Additional files' and parent::back">
+            <xsl:attribute name="id">sec-supplementary-material-6</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[sec-supplementary-material-6] &lt;sec sec-type='supplementary-material'&gt; has a title element, but it is not 'Additional files'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="*[not(name()=('label','title','sec-meta'))]"/>
