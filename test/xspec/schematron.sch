@@ -3842,7 +3842,7 @@
   </pattern>
   <pattern id="tex-math-tests-pattern">
     <rule context="tex-math" id="tex-math-tests">
-      <!-- String the document commands from the start and end -->
+      <!-- Strip the document commands from the start and end -->
       <let name="document-stripped-text" value="replace(.,'^\\begin\{document.|\\end\{document.$','')"/>
       <!-- Remove the formula commands to find the actual expression -->
       <let name="formula-text" value="replace($document-stripped-text,'^\$\$\{|\}\$\$$','')"/>
@@ -4736,7 +4736,7 @@
 
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#hm6gy-pre-fig-caption-test-4" test="$is-cc0 and matches(lower-case(.),'biorend[eo]r') and not(ancestor::fig/permissions[matches(lower-case(.),'biorend[eo]r')])" role="error" id="fig-caption-test-4">Caption or attrib for <value-of select="$label"/> contains what looks like a mention of BioRender. Since the overall license for the article is CC0, and BioRender can (only) be licensed CC BY, a permissions statement needs to be added (e.g. © <value-of select="year-from-date(current-date())"/>, {authors}. Parts of this image created with BioRender are made available under a Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.).</report>
 
-      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty?shr=rqdavyty#hjmtk-pre-fig-biorender-test-1" test="not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')]) and (descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com')] or matches(lower-case(.),'biorender.com'))" role="warning" id="pre-fig-biorender-test-1">Caption or attrib for <value-of select="$label"/> contains a BioRender link, but it does not look like a BioRender 'unique figure citation URL'. If one has not been provided by the authors please add the relevant query asking for one.</report>
+      <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty?shr=rqdavyty#hjmtk-pre-fig-biorender-test-1" test="not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')]) and (descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com')] or matches(lower-case(.),'biorender.com'))" role="warning" id="pre-fig-biorender-test-1">Caption or attrib for <value-of select="$label"/> contains a BioRender link, but it does not look like a BioRender 'unique figure citation URL'. Exeter: If one has not been provided already, please query this with the eLife team.</report>
 
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty?shr=rqdavyty#hquuu-final-fig-biorender-test-1" test="not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')]) and (descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com')] or matches(lower-case(.),'biorender.com'))" role="error" id="final-fig-biorender-test-1">Caption or attrib for <value-of select="$label"/> contains a BioRender link, but it does not look like a BioRender 'unique figure citation URL'.</report>
 
