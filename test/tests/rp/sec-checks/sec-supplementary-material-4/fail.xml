@@ -6,7 +6,7 @@ Message: <sec sec-type='supplementary-material'> does not have a title element. 
     <article>
         <back>
             <sec>
-                <sec sec-type="supplementary-material"></sec>
+                <sec sec-type="supplementary-material"/>
             </sec>
         </back>
     </article>

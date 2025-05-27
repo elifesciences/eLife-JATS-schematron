@@ -10165,15 +10165,15 @@
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(.,'^10\.31234/osf\.io/[\da-z]+$')"/>
+         <xsl:when test="matches(.,'^10\.31234/osf\.io/[\da-z]+(_v\d+)?$')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^10\.31234/osf\.io/[\da-z]+$')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^10\.31234/osf\.io/[\da-z]+(_v\d+)?$')">
                <xsl:attribute name="id">psyarxiv-doi-conformance</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[psyarxiv-doi-conformance] PsyArXiv preprints must have a &lt;article-id pub-id-type="doi"&gt; element with a value that matches the regex '^10\.31234/osf\.io/[\da-z]+$'. In other words, the current DOI listed is not a valid PsyArXiv DOI: '<xsl:text/>
+               <svrl:text>[psyarxiv-doi-conformance] PsyArXiv preprints must have a &lt;article-id pub-id-type="doi"&gt; element with a value that matches the regex '^10\.31234/osf\.io/[\da-z]+(_v\d+)?$'. In other words, the current DOI listed is not a valid PsyArXiv DOI: '<xsl:text/>
                   <xsl:value-of select="."/>
                   <xsl:text/>'.</svrl:text>
             </svrl:failed-assert>
@@ -10257,15 +10257,15 @@
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="matches(.,'^10\.31219/osf\.io/[\da-z]+$')"/>
+         <xsl:when test="matches(.,'^10\.31219/osf\.io/[\da-z]+(_v\d+)?$')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^10\.31219/osf\.io/[\da-z]+$')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^10\.31219/osf\.io/[\da-z]+(_v\d+)?$')">
                <xsl:attribute name="id">osf-doi-conformance</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[osf-doi-conformance] Preprints on OSF must have a &lt;article-id pub-id-type="doi"&gt; element with a value that matches the regex '^10/.31219/osf\.io/[\da-z]+$'. In other words, the current DOI listed is not a valid OSF Preprints DOI: '<xsl:text/>
+               <svrl:text>[osf-doi-conformance] Preprints on OSF must have a &lt;article-id pub-id-type="doi"&gt; element with a value that matches the regex '^10/.31219/osf\.io/[\da-z]+(_v\d+)?$'. In other words, the current DOI listed is not a valid OSF Preprints DOI: '<xsl:text/>
                   <xsl:value-of select="."/>
                   <xsl:text/>'.</svrl:text>
             </svrl:failed-assert>

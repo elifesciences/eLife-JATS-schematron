@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="psyarxiv-doi-conformance.sch"?>
 <!--Context: article/front[journal-meta[lower-case(journal-id[1])='psyarxiv']]/article-meta/article-id[@pub-id-type='doi']
-Test: assert    matches(.,'^10\.31234/osf\.io/[\da-z]+$')
-Message: PsyArXiv preprints must have a <article-id pub-id-type="doi"> element with a value that matches the regex '^10\.31234/osf\.io/[\da-z]+$'. In other words, the current DOI listed is not a valid PsyArXiv DOI: ''. -->
+Test: assert    matches(.,'^10\.31234/osf\.io/[\da-z]+(_v\d+)?$')
+Message: PsyArXiv preprints must have a <article-id pub-id-type="doi"> element with a value that matches the regex '^10\.31234/osf\.io/[\da-z]+(_v\d+)?$'. In other words, the current DOI listed is not a valid PsyArXiv DOI: ''. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <front>
@@ -17,6 +17,7 @@ Message: PsyArXiv preprints must have a <article-id pub-id-type="doi"> element w
             </journal-meta>
             <article-meta>
                 <article-id pub-id-type="doi">10.31234/osf.io/AAAAAAAA</article-id>
+                <article-id pub-id-type="doi">10.31234/osf.io/tb26v_vA</article-id>
             </article-meta>
         </front>
     </article>
