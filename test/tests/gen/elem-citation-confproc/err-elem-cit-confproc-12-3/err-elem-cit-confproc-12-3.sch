@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="element-citation-confproc-tests">
     <rule context="element-citation[@publication-type='confproc']" id="elem-citation-confproc">
-      <report test="(lpage and fpage) and (number(replace(fpage[1],'[^\d]','')) ge number(replace(lpage[1],'[^\d]','')))" role="error" id="err-elem-cit-confproc-12-3">[err-elem-cit-confproc-12-3]
+      <report see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hjoa6-err-elem-cit-confproc-12-3" test="(lpage and fpage) and (number(replace(fpage[1],'[^\d]','')) ge number(replace(lpage[1],'[^\d]','')))" role="error" id="err-elem-cit-confproc-12-3">[err-elem-cit-confproc-12-3]
         If both &lt;lpage&gt; and &lt;fpage&gt; are present, the value of &lt;fpage&gt; must be less than the value of &lt;lpage&gt;. 
         Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; <value-of select="lpage"/>, which is 
         less than or equal to &lt;fpage&gt; <value-of select="fpage"/>.</report>

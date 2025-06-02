@@ -6642,56 +6642,56 @@
   <pattern id="elem-citation-confproc-pattern">
     <rule context="element-citation[@publication-type='confproc']" id="elem-citation-confproc"> 
       
-      <assert test="count(person-group)=1" role="error" id="err-elem-cit-confproc-2-1">[err-elem-cit-confproc-2-1]
+      <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hxnwn-err-elem-cit-confproc-2-1" test="count(person-group)=1" role="error" id="err-elem-cit-confproc-2-1">[err-elem-cit-confproc-2-1]
         One and only one person-group element is allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
-      <assert test="count(article-title)=1" role="error" id="err-elem-cit-confproc-8-1">[err-elem-cit-confproc-8-1]
+      <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#h2qee-err-elem-cit-confproc-8-1" test="count(article-title)=1" role="error" id="err-elem-cit-confproc-8-1">[err-elem-cit-confproc-8-1]
         Each  &lt;element-citation&gt; of type 'confproc' must contain one and
         only one &lt;article-title&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
       
-      <assert test="count(conf-name)=1" role="error" id="err-elem-cit-confproc-10-1">[err-elem-cit-confproc-10-1]
+      <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hlxi8-err-elem-cit-confproc-10-1" test="count(conf-name)=1" role="error" id="err-elem-cit-confproc-10-1">[err-elem-cit-confproc-10-1]
         &lt;conf-name&gt; is required.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(conf-name)"/>
         &lt;conf-name&gt; elements.</assert>
       
-      <report test="(fpage and elocation-id) or (lpage and elocation-id)" role="error" id="err-elem-cit-confproc-12-1">[err-elem-cit-confproc-12-1]
+      <report see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hgdyn-err-elem-cit-confproc-12-1" test="(fpage and elocation-id) or (lpage and elocation-id)" role="error" id="err-elem-cit-confproc-12-1">[err-elem-cit-confproc-12-1]
         The citation may contain &lt;fpage&gt; and &lt;lpage&gt;, only &lt;fpage&gt;, or only &lt;elocation-id&gt; elements, but not a mixture.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(fpage)"/>
         &lt;fpage&gt; elements,  <value-of select="count(lpage)"/> &lt;lpage&gt; elements, and 
         <value-of select="count(elocation-id)"/> &lt;elocation-id&gt; elements.</report>
       
-      <report test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1" role="error" id="err-elem-cit-confproc-12-2">[err-elem-cit-confproc-12-2]
+      <report see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#h5jtw-err-elem-cit-confproc-12-2" test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1" role="error" id="err-elem-cit-confproc-12-2">[err-elem-cit-confproc-12-2]
         The citation may contain no more than one of any of &lt;fpage&gt;, &lt;lpage&gt;, and &lt;elocation-id&gt; elements.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(fpage)"/>
         &lt;fpage&gt; elements,  <value-of select="count(lpage)"/> &lt;lpage&gt; elements, and 
         <value-of select="count(elocation-id)"/> &lt;elocation-id&gt; elements.</report>
       
-      <report test="(lpage and fpage) and (number(replace(fpage[1],'[^\d]','')) ge number(replace(lpage[1],'[^\d]','')))" role="error" id="err-elem-cit-confproc-12-3">[err-elem-cit-confproc-12-3]
+      <report see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hjoa6-err-elem-cit-confproc-12-3" test="(lpage and fpage) and (number(replace(fpage[1],'[^\d]','')) ge number(replace(lpage[1],'[^\d]','')))" role="error" id="err-elem-cit-confproc-12-3">[err-elem-cit-confproc-12-3]
         If both &lt;lpage&gt; and &lt;fpage&gt; are present, the value of &lt;fpage&gt; must be less than the value of &lt;lpage&gt;. 
         Reference '<value-of select="ancestor::ref/@id"/>' has &lt;lpage&gt; <value-of select="lpage"/>, which is 
         less than or equal to &lt;fpage&gt; <value-of select="fpage"/>.</report>
       
-      <assert test="count(fpage/*)=0 and count(lpage/*)=0" role="error" id="err-elem-cit-confproc-12-4">[err-elem-cit-confproc-12-4]
+      <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hyk2a-err-elem-cit-confproc-12-4" test="count(fpage/*)=0 and count(lpage/*)=0" role="error" id="err-elem-cit-confproc-12-4">[err-elem-cit-confproc-12-4]
         The content of the &lt;fpage&gt; and &lt;lpage&gt; elements can contain any alpha numeric value but no child elements are allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(fpage/*)"/> child elements in
         &lt;fpage&gt; and  <value-of select="count(lpage/*)"/> child elements in &lt;lpage&gt;.</assert>     
       
-      <assert test="count(pub-id) le 1" role="error" id="err-elem-cit-confproc-16-1">[err-elem-cit-confproc-16-1]
+      <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hm9rv-err-elem-cit-confproc-16-1" test="count(pub-id) le 1" role="error" id="err-elem-cit-confproc-16-1">[err-elem-cit-confproc-16-1]
         A maximum of one &lt;pub-id&gt; element is allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/>
         &lt;pub-id&gt; elements.</assert>
       
-      <assert test="count(*) = count(person-group | article-title | year | conf-loc | conf-name | lpage |         fpage | elocation-id | ext-link | pub-id)" role="error" id="err-elem-cit-confproc-17">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="confproc" are: &lt;person-group&gt;, &lt;year&gt;, &lt;article-title&gt;, &lt;conf-loc&gt;, &lt;conf-name&gt;, &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, &lt;ext-link&gt;, and &lt;pub-id&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#h08e2-err-elem-cit-confproc-17" test="count(*) = count(person-group | article-title | year | conf-loc | conf-name | lpage |         fpage | elocation-id | ext-link | pub-id)" role="error" id="err-elem-cit-confproc-17">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="confproc" are: &lt;person-group&gt;, &lt;year&gt;, &lt;article-title&gt;, &lt;conf-loc&gt;, &lt;conf-name&gt;, &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, &lt;ext-link&gt;, and &lt;pub-id&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
       
     </rule>
   </pattern>
   <pattern id="elem-citation-confproc-preson-group-pattern">
     <rule context="element-citation[@publication-type='confproc']/person-group" id="elem-citation-confproc-preson-group">
-      <assert test="@person-group-type='author'" role="error" id="err-elem-cit-confproc-2-2">[err-elem-cit-confproc-2-2]
+      <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hslvg-err-elem-cit-confproc-2-2" test="@person-group-type='author'" role="error" id="err-elem-cit-confproc-2-2">[err-elem-cit-confproc-2-2]
         Each &lt;person-group&gt; must have a @person-group-type attribute of type 'author'.
         Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; 
         element with @person-group-type attribute '<value-of select="@person-group-type"/>'.</assert>
@@ -6700,7 +6700,7 @@
   <pattern id="elem-citation-confproc-article-title-pattern">
     <rule context="element-citation[@publication-type='confproc']/article-title" id="elem-citation-confproc-article-title">
       
-      <assert test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-confproc-8-2">[err-elem-cit-confproc-8-2]
+      <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hubhw-err-elem-cit-confproc-8-2" test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-confproc-8-2">[err-elem-cit-confproc-8-2]
         An &lt;article-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
         No other elements are allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
@@ -6710,7 +6710,7 @@
   <pattern id="elem-citation-confproc-conf-name-pattern">
     <rule context="element-citation[@publication-type='confproc']/conf-name" id="elem-citation-confproc-conf-name">
       
-      <assert test="count(*)=0" role="error" id="err-elem-cit-confproc-10-2">[err-elem-cit-confproc-10-2]
+      <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hwknk-err-elem-cit-confproc-10-2" test="count(*)=0" role="error" id="err-elem-cit-confproc-10-2">[err-elem-cit-confproc-10-2]
         No elements are allowed inside &lt;conf-name&gt;.
         Reference '<value-of select="ancestor::ref/@id"/>' has child elements within the
         &lt;conf-name&gt; element.</assert>
@@ -6720,7 +6720,7 @@
   <pattern id="elem-citation-confproc-conf-loc-pattern">
     <rule context="element-citation[@publication-type='confproc']/conf-loc" id="elem-citation-confproc-conf-loc">
       
-      <assert test="count(*)=0" role="error" id="err-elem-cit-confproc-11-2">[err-elem-cit-confproc-11-2]
+      <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hiuzp-err-elem-cit-confproc-11-2" test="count(*)=0" role="error" id="err-elem-cit-confproc-11-2">[err-elem-cit-confproc-11-2]
         No elements are allowed inside &lt;conf-loc&gt;.
         Reference '<value-of select="ancestor::ref/@id"/>' has child elements within the
         &lt;conf-loc&gt; element.</assert>
@@ -9811,7 +9811,7 @@
     <rule context="element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" id="doi-conf-ref-checks">
       <let name="name" value="lower-case(conf-name[1])"/>
       
-      <report test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">
+      <report see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#h5t13-conf-doi-test-1" test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">
         <value-of select="e:citation-format1(.)"/> is a conference ref without a doi, but it's a conference which is known to possibly have dois - (<value-of select="conf-name[1]"/>). Should it have one?</report>
       
     </rule>

@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="element-citation-confproc-tests">
     <rule context="element-citation[@publication-type='confproc']" id="elem-citation-confproc">
-      <assert test="count(pub-id) le 1" role="error" id="err-elem-cit-confproc-16-1">[err-elem-cit-confproc-16-1]
+      <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hm9rv-err-elem-cit-confproc-16-1" test="count(pub-id) le 1" role="error" id="err-elem-cit-confproc-16-1">[err-elem-cit-confproc-16-1]
         A maximum of one &lt;pub-id&gt; element is allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/>
         &lt;pub-id&gt; elements.</assert>

@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="element-citation-confproc-tests">
     <rule context="element-citation[@publication-type='confproc']/person-group" id="elem-citation-confproc-preson-group">
-      <assert test="@person-group-type='author'" role="error" id="err-elem-cit-confproc-2-2">[err-elem-cit-confproc-2-2]
+      <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hslvg-err-elem-cit-confproc-2-2" test="@person-group-type='author'" role="error" id="err-elem-cit-confproc-2-2">[err-elem-cit-confproc-2-2]
         Each &lt;person-group&gt; must have a @person-group-type attribute of type 'author'.
         Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; 
         element with @person-group-type attribute '<value-of select="@person-group-type"/>'.</assert>

@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="element-citation-confproc-tests">
     <rule context="element-citation[@publication-type='confproc']/conf-loc" id="elem-citation-confproc-conf-loc">
-      <assert test="count(*)=0" role="error" id="err-elem-cit-confproc-11-2">[err-elem-cit-confproc-11-2]
+      <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hiuzp-err-elem-cit-confproc-11-2" test="count(*)=0" role="error" id="err-elem-cit-confproc-11-2">[err-elem-cit-confproc-11-2]
         No elements are allowed inside &lt;conf-loc&gt;.
         Reference '<value-of select="ancestor::ref/@id"/>' has child elements within the
         &lt;conf-loc&gt; element.</assert>

@@ -28099,6 +28099,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(person-group)=1">
                <xsl:attribute name="id">err-elem-cit-confproc-2-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hxnwn-err-elem-cit-confproc-2-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28120,6 +28121,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(article-title)=1">
                <xsl:attribute name="id">err-elem-cit-confproc-8-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#h2qee-err-elem-cit-confproc-8-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28142,6 +28144,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(conf-name)=1">
                <xsl:attribute name="id">err-elem-cit-confproc-10-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hlxi8-err-elem-cit-confproc-10-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28161,6 +28164,7 @@
       <xsl:if test="(fpage and elocation-id) or (lpage and elocation-id)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(fpage and elocation-id) or (lpage and elocation-id)">
             <xsl:attribute name="id">err-elem-cit-confproc-12-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hgdyn-err-elem-cit-confproc-12-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28184,6 +28188,7 @@
       <xsl:if test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1">
             <xsl:attribute name="id">err-elem-cit-confproc-12-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#h5jtw-err-elem-cit-confproc-12-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28207,6 +28212,7 @@
       <xsl:if test="(lpage and fpage) and (number(replace(fpage[1],'[^\d]','')) ge number(replace(lpage[1],'[^\d]','')))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(lpage and fpage) and (number(replace(fpage[1],'[^\d]','')) ge number(replace(lpage[1],'[^\d]','')))">
             <xsl:attribute name="id">err-elem-cit-confproc-12-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hjoa6-err-elem-cit-confproc-12-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28229,6 +28235,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(fpage/*)=0 and count(lpage/*)=0">
                <xsl:attribute name="id">err-elem-cit-confproc-12-4</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hyk2a-err-elem-cit-confproc-12-4</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28252,6 +28259,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(pub-id) le 1">
                <xsl:attribute name="id">err-elem-cit-confproc-16-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hm9rv-err-elem-cit-confproc-16-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28273,6 +28281,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(*) = count(person-group | article-title | year | conf-loc | conf-name | lpage | fpage | elocation-id | ext-link | pub-id)">
                <xsl:attribute name="id">err-elem-cit-confproc-17</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#h08e2-err-elem-cit-confproc-17</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28299,6 +28308,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@person-group-type='author'">
                <xsl:attribute name="id">err-elem-cit-confproc-2-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hslvg-err-elem-cit-confproc-2-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28330,6 +28340,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(*) = count(sub|sup|italic)">
                <xsl:attribute name="id">err-elem-cit-confproc-8-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hubhw-err-elem-cit-confproc-8-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28359,6 +28370,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(*)=0">
                <xsl:attribute name="id">err-elem-cit-confproc-10-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hwknk-err-elem-cit-confproc-10-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28388,6 +28400,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(*)=0">
                <xsl:attribute name="id">err-elem-cit-confproc-11-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hiuzp-err-elem-cit-confproc-11-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -42903,6 +42916,7 @@
       <xsl:if test="contains($name,'ieee')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains($name,'ieee')">
             <xsl:attribute name="id">conf-doi-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#h5t13-conf-doi-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
