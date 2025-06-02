@@ -3506,6 +3506,92 @@
         <x:expect-not-assert id="event-self-uri-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="funding-group-presence-tests">
+      <x:scenario label="funding-group-presence-pass">
+        <x:context href="../tests/rp/funding-group-presence-tests/funding-group-presence/pass.xml"/>
+        <x:expect-not-report id="funding-group-presence" role="warning"/>
+        <x:expect-not-assert id="funding-group-presence-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="funding-group-presence-fail">
+        <x:context href="../tests/rp/funding-group-presence-tests/funding-group-presence/fail.xml"/>
+        <x:expect-report id="funding-group-presence" role="warning"/>
+        <x:expect-not-assert id="funding-group-presence-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="funding-group-tests">
+      <x:scenario label="multiple-funding-group-presence-pass">
+        <x:context href="../tests/rp/funding-group-tests/multiple-funding-group-presence/pass.xml"/>
+        <x:expect-not-report id="multiple-funding-group-presence" role="error"/>
+        <x:expect-not-assert id="funding-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="multiple-funding-group-presence-fail">
+        <x:context href="../tests/rp/funding-group-tests/multiple-funding-group-presence/fail.xml"/>
+        <x:expect-report id="multiple-funding-group-presence" role="error"/>
+        <x:expect-not-assert id="funding-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="funding-group-empty-pass">
+        <x:context href="../tests/rp/funding-group-tests/funding-group-empty/pass.xml"/>
+        <x:expect-not-assert id="funding-group-empty" role="error"/>
+        <x:expect-not-assert id="funding-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="funding-group-empty-fail">
+        <x:context href="../tests/rp/funding-group-tests/funding-group-empty/fail.xml"/>
+        <x:expect-assert id="funding-group-empty" role="error"/>
+        <x:expect-not-assert id="funding-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="award-group-tests">
+      <x:scenario label="award-group-test-2-pass">
+        <x:context href="../tests/rp/award-group-tests/award-group-test-2/pass.xml"/>
+        <x:expect-not-assert id="award-group-test-2" role="error"/>
+        <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="award-group-test-2-fail">
+        <x:context href="../tests/rp/award-group-tests/award-group-test-2/fail.xml"/>
+        <x:expect-assert id="award-group-test-2" role="error"/>
+        <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="award-group-test-4-pass">
+        <x:context href="../tests/rp/award-group-tests/award-group-test-4/pass.xml"/>
+        <x:expect-not-report id="award-group-test-4" role="error"/>
+        <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="award-group-test-4-fail">
+        <x:context href="../tests/rp/award-group-tests/award-group-test-4/fail.xml"/>
+        <x:expect-report id="award-group-test-4" role="error"/>
+        <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="award-group-test-5-pass">
+        <x:context href="../tests/rp/award-group-tests/award-group-test-5/pass.xml"/>
+        <x:expect-not-assert id="award-group-test-5" role="error"/>
+        <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="award-group-test-5-fail">
+        <x:context href="../tests/rp/award-group-tests/award-group-test-5/fail.xml"/>
+        <x:expect-assert id="award-group-test-5" role="error"/>
+        <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="award-group-test-6-pass">
+        <x:context href="../tests/rp/award-group-tests/award-group-test-6/pass.xml"/>
+        <x:expect-not-report id="award-group-test-6" role="error"/>
+        <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="award-group-test-6-fail">
+        <x:context href="../tests/rp/award-group-tests/award-group-test-6/fail.xml"/>
+        <x:expect-report id="award-group-test-6" role="error"/>
+        <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="award-group-test-8-pass">
+        <x:context href="../tests/rp/award-group-tests/award-group-test-8/pass.xml"/>
+        <x:expect-not-report id="award-group-test-8" role="error"/>
+        <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="award-group-test-8-fail">
+        <x:context href="../tests/rp/award-group-tests/award-group-test-8/fail.xml"/>
+        <x:expect-report id="award-group-test-8" role="error"/>
+        <x:expect-not-assert id="award-group-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="abstract-checks">
       <x:scenario label="abstract-test-1-pass">
         <x:context href="../tests/rp/abstract-checks/abstract-test-1/pass.xml"/>

@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="award-group-test-5.sch"?>
+<!--Context: funding-group/award-group
+Test: assert    funding-source/institution-wrap
+Message: funding-source must contain an institution-wrap. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <funding-group>
+                <award-group>
+                    <funding-source>eLife</funding-source>
+                    <award-id>Ben Barres Award</award-id>
+                </award-group>
+            </funding-group>
+        </article-meta>
+    </article>
+</root>

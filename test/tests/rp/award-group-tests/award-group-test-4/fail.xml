@@ -1,0 +1,22 @@
+<?oxygen SCHSchema="award-group-test-4.sch"?>
+<!--Context: funding-group/award-group
+Test: report    count(award-id) gt 1
+Message: award-group may contain one and only one award-id. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <funding-group>
+                <award-group>
+                    <funding-source>
+                        <institution-wrap>
+                            <institution-id institution-id-type="ror">https://ror.org/04rjz5883</institution-id>
+                            <institution>eLife</institution>
+                        </institution-wrap>
+                    </funding-source>
+                    <award-id>Ben Barres Award</award-id>
+                    <award-id>Some other Award</award-id>
+                </award-group>
+            </funding-group>
+        </article-meta>
+    </article>
+</root>
