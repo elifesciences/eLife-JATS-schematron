@@ -1447,7 +1447,7 @@
   <pattern id="doi-ref-checks">
     <rule context="element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" id="doi-conf-ref-checks">
       <let name="name" value="lower-case(conf-name[1])"/>
-      <report test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">
+      <report see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#h5t13-conf-doi-test-1" test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">
         <value-of select="e:citation-format1(.)"/> is a conference ref without a doi, but it's a conference which is known to possibly have dois - (<value-of select="conf-name[1]"/>). Should it have one?</report>
     </rule>
   </pattern>
