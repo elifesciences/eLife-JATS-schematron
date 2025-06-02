@@ -1970,6 +1970,50 @@
         role="error" 
         id="event-self-uri-href-7"><name/> in event has the attribute content-type="<value-of select="@content-type"/>", but the xlink:href attribute does not contain an eLife peer review DOI - <value-of select="@xlink:href"/>.</report>
     </rule>
+      
+       <rule context="funding-group" id="funding-group-presence-tests">
+        <report test="." 
+          role="warning" 
+          id="funding-group-presence">This Reviewed preprint contains a funding-group. Please check the details carefully and correct, as necessary.</report>
+       </rule>
+      
+      <rule context="funding-group" id="funding-group-tests">
+        
+        <report test="preceding-sibling::funding-group" 
+          role="error" 
+          id="multiple-funding-group-presence">There cannot be more than one funding-group element in article-meta.</report>
+        
+        <assert test="award-group or funding-statement" 
+          role="error" 
+          id="funding-group-empty">funding-group must contain at least either am award-group or a funding-statement element. This one has neither</assert>
+      </rule>
+      
+      <rule context="funding-group/award-group" id="award-group-tests">
+        <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-2" 
+          test="funding-source" 
+          role="error" 
+          id="award-group-test-2">award-group must contain a funding-source.</assert>
+        
+        <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-4" 
+          test="count(award-id) gt 1" 
+          role="error" 
+          id="award-group-test-4">award-group may contain one and only one award-id.</report>
+        
+        <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-5" 
+          test="funding-source/institution-wrap" 
+          role="error" 
+          id="award-group-test-5">funding-source must contain an institution-wrap.</assert>
+        
+        <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-6" 
+          test="count(funding-source/institution-wrap/institution) = 0" 
+          role="error" 
+          id="award-group-test-6">Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one.</report>
+        
+        <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-8" 
+          test="count(funding-source/institution-wrap/institution) gt 1" 
+          role="error" 
+          id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>.</report>
+      </rule>
     </pattern>
 
     <pattern id="abstracts">

@@ -1440,6 +1440,32 @@
         <name/> in event has the attribute content-type="<value-of select="@content-type"/>", but the xlink:href attribute does not contain an eLife peer review DOI - <value-of select="@xlink:href"/>.</report>
     </rule>
   </pattern>
+  <pattern id="funding-group-presence-tests-pattern">
+    <rule context="funding-group" id="funding-group-presence-tests">
+        <report test="." role="warning" id="funding-group-presence">This Reviewed preprint contains a funding-group. Please check the details carefully and correct, as necessary.</report>
+       </rule>
+  </pattern>
+  <pattern id="funding-group-tests-pattern">
+    <rule context="funding-group" id="funding-group-tests">
+        
+        <report test="preceding-sibling::funding-group" role="error" id="multiple-funding-group-presence">There cannot be more than one funding-group element in article-meta.</report>
+        
+        <assert test="award-group or funding-statement" role="error" id="funding-group-empty">funding-group must contain at least either am award-group or a funding-statement element. This one has neither</assert>
+      </rule>
+  </pattern>
+  <pattern id="award-group-tests-pattern">
+    <rule context="funding-group/award-group" id="award-group-tests">
+        <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-2" test="funding-source" role="error" id="award-group-test-2">award-group must contain a funding-source.</assert>
+        
+        <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-4" test="count(award-id) gt 1" role="error" id="award-group-test-4">award-group may contain one and only one award-id.</report>
+        
+        <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-5" test="funding-source/institution-wrap" role="error" id="award-group-test-5">funding-source must contain an institution-wrap.</assert>
+        
+        <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-6" test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one.</report>
+        
+        <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-8" test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>.</report>
+      </rule>
+  </pattern>
 
     <pattern id="abstract-checks-pattern">
     <rule context="abstract[parent::article-meta]" id="abstract-checks">
@@ -2164,6 +2190,8 @@
       <assert test="descendant::event-desc" role="error" id="event-desc-tests-xspec-assert">event-desc must be present.</assert>
       <assert test="descendant::event/date" role="error" id="event-date-tests-xspec-assert">event/date must be present.</assert>
       <assert test="descendant::event/self-uri" role="error" id="event-self-uri-tests-xspec-assert">event/self-uri must be present.</assert>
+      <assert test="descendant::funding-group" role="error" id="funding-group-tests-xspec-assert">funding-group must be present.</assert>
+      <assert test="descendant::funding-group/award-group" role="error" id="award-group-tests-xspec-assert">funding-group/award-group must be present.</assert>
       <assert test="descendant::abstract[parent::article-meta]" role="error" id="abstract-checks-xspec-assert">abstract[parent::article-meta] must be present.</assert>
       <assert test="descendant::abstract[parent::article-meta]/*" role="error" id="abstract-child-checks-xspec-assert">abstract[parent::article-meta]/* must be present.</assert>
       <assert test="descendant::abstract[@xml:lang]" role="error" id="abstract-lang-checks-xspec-assert">abstract[@xml:lang] must be present.</assert>
