@@ -251,18 +251,17 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="wellcome-grant-doi-tests-pattern">
-    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id=$wellcome-ror-ids]" id="wellcome-grant-doi-tests">
-      <let name="grants" value="document($rors)//*:ror[*:id[@type='ror']=$wellcome-ror-ids]/*:grant"/>
-      <let name="award-id-elem" value="award-id"/>
-      <let name="award-id" value="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','')          else if (contains(lower-case($award-id-elem),'_z')) then replace(substring-before(lower-case($award-id-elem),'_z'),'[^\d]','')         else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>
-      <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
-      <report test="$grant-matches" role="warning" id="wellcome-grant-doi-test-1">[wellcome-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
+  <pattern id="award-id-tests-pattern">
+    <rule context="funding-group/award-group/award-id" id="award-id-tests">
+      <let name="id" value="parent::award-group/@id"/>
+      <let name="funder-id" value="parent::award-group/descendant::institution-id[1]"/>
+      <let name="funder-name" value="parent::award-group/descendant::institution[1]"/>
+      <report test="normalize-space(.)=''" role="error" id="award-id-test-9">[award-id-test-9] award-id cannot be empty. Either add the missing content or remove it.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id=$wellcome-ror-ids]" role="error" id="wellcome-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id=$wellcome-ror-ids] must be present.</assert>
+      <assert test="descendant::funding-group/award-group/award-id" role="error" id="award-id-tests-xspec-assert">funding-group/award-group/award-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

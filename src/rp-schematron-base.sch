@@ -2095,7 +2095,7 @@
           id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>.</report>
       </rule>
       
-      <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" id="general-grant-doi-tests">
+      <rule context="funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" id="general-grant-doi-tests">
         <let name="award-id" value="award-id"/>
         <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
         <let name="funder-entry" value="document($rors)//*:ror[*:id[@type='ror']=$funder-id]"/>
@@ -2125,7 +2125,7 @@
 	         id="grant-doi-test-3">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has no award-id, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Is there a missing grant DOI or award ID for this funding?</report>
       </rule>
       
-      <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-ror-ids]" id="wellcome-grant-doi-tests">
+      <rule context="funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id=$wellcome-ror-ids]" id="wellcome-grant-doi-tests">
       <let name="grants" value="document($rors)//*:ror[*:id[@type='ror']=$wellcome-ror-ids]/*:grant"/>
       <let name="award-id-elem" value="award-id"/>
       <let name="award-id" value="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','') 
@@ -2144,7 +2144,7 @@
         id="wellcome-grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
     </rule>
 
-    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-ror-ids]" id="known-grant-funder-grant-doi-tests">
+    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id=$known-grant-funder-ror-ids]" id="known-grant-funder-grant-doi-tests">
       <let name="ror-id" value="funding-source/institution-wrap/institution-id"/>
       <let name="grants" value="document($rors)//*:ror[*:id[@type='ror']=$ror-id]/*:grant"/>
       <let name="award-id-elem" value="award-id"/>
@@ -2203,6 +2203,10 @@
       <report test=". = preceding::award-id[parent::award-group[not(descendant::institution[1] = $funder-name) and not(descendant::institution-id[1] = $funder-id)]]" 
         role="warning" 
         id="award-id-test-8">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with a different funder. Has there been a mistake with the award id? If the grant was awarded jointly by two funders, then this capture is correct and should be retained.</report>
+      
+      <report test="normalize-space(.)=''" 
+        role="error" 
+        id="award-id-test-9">award-id cannot be empty. Either add the missing content or remove it.</report>
       
     </rule>
     </pattern>
