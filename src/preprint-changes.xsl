@@ -1197,6 +1197,86 @@
         </xsl:copy>
     </xsl:template>
     
+    <!-- Fixes award-group tagging -->
+    <xsl:template xml:id="fix-award-group" match="funding-group/award-group">
+         <xsl:copy>
+             <xsl:apply-templates select="@*"/>
+             <xsl:text>&#xa;</xsl:text>
+             <xsl:apply-templates select="funding-source"/>
+             <xsl:if test="award-id">
+                 <xsl:text>&#xa;</xsl:text>
+                <xsl:apply-templates select="award-id[1]"/>
+             </xsl:if>
+             <xsl:if test="principal-award-recipient">
+                 <xsl:text>&#xa;</xsl:text>
+                 <xsl:apply-templates select="principal-award-recipient"/>
+             </xsl:if>
+             <xsl:text>&#xa;</xsl:text>
+         </xsl:copy>
+        <xsl:if test="count(award-id) gt 1">
+            <xsl:for-each select="award-id[position() gt 1]">
+                <xsl:variable name="pos" select="position()"/>
+                <xsl:text>&#xa;</xsl:text>
+                <xsl:element name="award-group">
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="concat(parent::award-group/@id,
+                            codepoints-to-string(xs:integer(96 + number($pos)))
+                            )"/>
+                    </xsl:attribute>
+                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:apply-templates select="parent::award-group/funding-source"/>
+                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:copy>
+                        <xsl:value-of select="."/>
+                    </xsl:copy>
+                    <xsl:if test="parent::award-group/principal-award-recipient">
+                        <xsl:text>&#xa;</xsl:text>
+                        <xsl:apply-templates select="parent::award-group/principal-award-recipient"/>
+                    </xsl:if>
+                    <xsl:text>&#xa;</xsl:text>
+                </xsl:element>
+            </xsl:for-each>
+        </xsl:if>
+    </xsl:template>
+    
+    <!-- Fixes funding-source tagging -->
+    <xsl:template xml:id="fix-funding-source" match="award-group/funding-source">
+        <xsl:copy>
+            <xsl:choose>
+                <xsl:when test="not(institution-wrap)">
+                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:element name="institution-wrap">
+                        <xsl:if test="named-content[@content-type='funder-id']">
+                            <xsl:text>&#xa;</xsl:text>
+                            <xsl:element name="institution-id">
+                                <xsl:attribute name="institution-id-type">ror</xsl:attribute>
+                                <xsl:value-of select="named-content[@content-type='funder-id']"/>
+                            </xsl:element>
+                        </xsl:if>
+                        <xsl:choose>
+                            <xsl:when test="institution">
+                                <xsl:text>&#xa;</xsl:text>
+                                <xsl:apply-templates select="institution"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:variable name="institution-text" select="normalize-space(./text()[matches(.,'\S')][1])"/>
+                                <xsl:text>&#xa;</xsl:text>
+                                <xsl:element name="institution">
+                                    <xsl:value-of select="$institution-text"/>
+                                </xsl:element>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:text>&#xa;</xsl:text>
+                    </xsl:element>
+                    <xsl:text>&#xa;</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="*|text()|comment()"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:copy>
+    </xsl:template>
+    
     <!-- wrapper for mixed-citation templates run in sequence -->
     <xsl:template match="mixed-citation">
          <xsl:variable name="mixed-citation-round-1">

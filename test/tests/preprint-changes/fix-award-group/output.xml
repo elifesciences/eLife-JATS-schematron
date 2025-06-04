@@ -1,0 +1,42 @@
+<!--Testing template with id: fix-award-group-->
+<funding-group>
+<award-group id="funding-1">
+<funding-source>
+<institution-wrap>
+<institution-id institution-id-type="ror">https://ror.org/018mejw64</institution-id>
+<institution>Deutsche Forschungsgemeinschaft</institution>
+</institution-wrap>
+</funding-source>
+<award-id>Derek-1</award-id>
+<principal-award-recipient>Mugatu</principal-award-recipient>
+</award-group>
+<award-group id="funding-1a">
+<funding-source>
+<institution-wrap>
+<institution-id institution-id-type="ror">https://ror.org/018mejw64</institution-id>
+<institution>Deutsche Forschungsgemeinschaft</institution>
+</institution-wrap>
+</funding-source>
+<award-id>Zoolander-2</award-id>
+<principal-award-recipient>Mugatu</principal-award-recipient>
+</award-group>
+<award-group id="funding-1b">
+<funding-source>
+<institution-wrap>
+<institution-id institution-id-type="ror">https://ror.org/018mejw64</institution-id>
+<institution>Deutsche Forschungsgemeinschaft</institution>
+</institution-wrap>
+</funding-source>
+<award-id>Hansel-99</award-id>
+<principal-award-recipient>Mugatu</principal-award-recipient>
+</award-group>
+<award-group id="funding-2">
+<funding-source>
+<institution-wrap>
+<institution-id institution-id-type="ror">https://ror.org/01cwqze88</institution-id>
+<institution>National Institutes of Health</institution>
+</institution-wrap>
+</funding-source>
+<award-id>R01 ...</award-id>
+</award-group>
+</funding-group>
