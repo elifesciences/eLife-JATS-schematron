@@ -203,45 +203,45 @@
     </xsl:if>
   </xsl:function>
   <let name="rors" value="'../../../../../src/rors.xml'"/>
-  <let name="wellcome-fundref-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
-  <let name="known-grant-funder-fundref-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968')"/>
-  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$known-grant-funder-fundref-ids)"/>
+  <let name="wellcome-ror-ids" value="('https://ror.org/029chgv08')"/>
+  <let name="known-grant-funder-ror-ids" value="('https://ror.org/006wxqw41','https://ror.org/00097mb19','https://ror.org/03dy4aq19','https://ror.org/013tf3c58','https://ror.org/013kjyp64')"/>
+  <let name="grant-doi-exception-funder-ids" value="($wellcome-ror-ids,$known-grant-funder-ror-ids)"/>
   <xsl:function name="e:alter-award-id">
     <xsl:param name="award-id-elem" as="xs:string"/>
-    <xsl:param name="fundref-id" as="xs:string"/>
+    <xsl:param name="ror-id" as="xs:string"/>
     <xsl:choose>
       
-      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000936'">
+      <xsl:when test="$ror-id='https://ror.org/006wxqw41'">
         
         <xsl:value-of select="if (matches($award-id-elem,'^\d+(\.\d+)?$')) then concat('GBMF',$award-id-elem)          else if (not(matches(upper-case($award-id-elem),'^GBMF'))) then concat('GBMF',replace($award-id-elem,'[^\d\.]',''))          else upper-case($award-id-elem)"/>
       </xsl:when>
       
-      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/501100002241'">
+      <xsl:when test="$ror-id='https://ror.org/00097mb19'">
         
         <xsl:value-of select="if (matches(upper-case($award-id-elem),'JPMJ[A-Z0-9]+\s*$') and not(matches(upper-case($award-id-elem),'^JPMJ[A-Z0-9]+$'))) then concat('JPMJ',upper-case(replace(substring-after($award-id-elem,'JPMJ'),'\s+$','')))         else upper-case($award-id-elem)"/>
       </xsl:when>
       
-      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000913'">
+      <xsl:when test="$ror-id='https://ror.org/03dy4aq19'">
         
         <xsl:value-of select="if (matches(upper-case($award-id-elem),'JSMF2\d+$')) then substring-after($award-id-elem,'JSMF')         else replace($award-id-elem,'[^\d\-]','')"/>
       </xsl:when>
       
-      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/501100002428'">
+      <xsl:when test="$ror-id='https://ror.org/013tf3c58'">
         
         <xsl:value-of select="if (matches($award-id-elem,'\d\-')) then replace(substring-before($award-id-elem,'-'),'[^A-Z\d]','')         else replace($award-id-elem,'[^A-Z\d]','')"/>
       </xsl:when>
       
-      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000968'">
+      <xsl:when test="$ror-id='https://ror.org/013kjyp64'">
         
         <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\([A-Z\d]+\)')) then substring-before(substring-after($award-id-elem,'('),')')         else $award-id-elem"/>
       </xsl:when>
       
-      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000968'">
+      <xsl:when test="$ror-id='https://ror.org/013kjyp64'">
         
         <xsl:value-of select="if (contains(upper-case($award-id-elem),'2020')) then concat('2020',replace(substring-after($award-id-elem,'2020'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2021')) then concat('2021',replace(substring-after($award-id-elem,'2021'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2022')) then concat('2022',replace(substring-after($award-id-elem,'2022'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2023')) then concat('2023',replace(substring-after($award-id-elem,'2023'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2024')) then concat('2024',replace(substring-after($award-id-elem,'2024'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'CEEC')) then concat('CEEC',replace(substring-after(upper-case($award-id-elem),'CEEC'),'[^A-Z0-9/]',''))         else if (contains(upper-case($award-id-elem),'PTDC/')) then concat('PTDC/',replace(substring-after(upper-case($award-id-elem),'PTDC/'),'[^A-Z0-9/\-]',''))         else if (contains(upper-case($award-id-elem),'DL 57/')) then concat('DL 57/',replace(substring-after(upper-case($award-id-elem),'DL 57/'),'[^A-Z0-9/\-]',''))         else $award-id-elem"/>
       </xsl:when>
       
-      <xsl:when test="$fundref-id=('http://dx.doi.org/10.13039/100010663','http://dx.doi.org/10.13039/100010665','http://dx.doi.org/10.13039/100010669','http://dx.doi.org/10.13039/100010675','http://dx.doi.org/10.13039/100010677','http://dx.doi.org/10.13039/100010679','http://dx.doi.org/10.13039/100010680','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100019180')">
+      <xsl:when test="$ror-id=('https://ror.org/0472cxd90','https://ror.org/00k4n6c32')">
         
         <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\(\d+\)')) then substring-before(substring-after($award-id-elem,'('),')')         else if (matches($award-id-elem,'\d{6,9}')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>
       </xsl:when>
@@ -252,18 +252,18 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="known-grant-funder-grant-doi-tests-pattern">
-    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-fundref-ids]" id="known-grant-funder-grant-doi-tests">
-      <let name="fundref-id" value="funding-source/institution-wrap/institution-id"/>
-      <let name="grants" value="document($rors)//*:ror[*:id[@type='fundref']=$fundref-id]/*:grant"/>
+    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-ror-ids]" id="known-grant-funder-grant-doi-tests">
+      <let name="ror-id" value="funding-source/institution-wrap/institution-id"/>
+      <let name="grants" value="document($rors)//*:ror[*:id[@type='ror']=$ror-id]/*:grant"/>
       <let name="award-id-elem" value="award-id"/>
-      <let name="award-id" value="e:alter-award-id($award-id-elem,$fundref-id)"/>
+      <let name="award-id" value="e:alter-award-id($award-id-elem,$ror-id)"/>
       <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
       <assert test="$grant-matches" role="warning" id="known-grant-funder-grant-doi-test-2">[known-grant-funder-grant-doi-test-2] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-fundref-ids]" role="error" id="known-grant-funder-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-fundref-ids] must be present.</assert>
+      <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-ror-ids]" role="error" id="known-grant-funder-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-ror-ids] must be present.</assert>
     </rule>
   </pattern>
 </schema>

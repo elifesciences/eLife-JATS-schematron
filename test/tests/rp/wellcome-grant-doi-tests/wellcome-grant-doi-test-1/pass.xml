@@ -1,6 +1,8 @@
-<?oxygen SCHSchema="wellcome-grant-doi-test-1.sch"?><!--Context: funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]
+<?oxygen SCHSchema="wellcome-grant-doi-test-1.sch"?>
+<!--Context: funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-ror-ids]
 Test: report    $grant-matches
-Message: Funding entry from  has an award-id () which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: . --><root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+Message: Funding entry from  has an award-id () which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article><front><journal-meta><journal-id>eLife</journal-id></journal-meta></front>
     <funding-group>
       <award-group id="fund1">

@@ -1,6 +1,8 @@
-<?oxygen SCHSchema="award-id-test-5.sch"?><!--Context: funding-group/award-group/award-id
+<?oxygen SCHSchema="award-id-test-5.sch"?>
+<!--Context: funding-group/award-group/award-id
 Test: report    matches(.,'http[s]?://d?x?\.?doi.org/')
-Message: Award id contains a DOI link - . If the award ID is for a grant DOI it should contain the DOI without the https://... protocol (e.g. 10.37717/220020477). --><root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+Message: Award id contains a DOI link - . If the award ID is for a grant DOI it should contain the DOI without the https://... protocol (e.g. 10.37717/220020477). -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article><front><journal-meta><journal-id>eLife</journal-id></journal-meta></front>
     <funding-group>
       <award-group id="fund1">

@@ -1,6 +1,8 @@
-<?oxygen SCHSchema="award-id-test-2.sch"?><!--Context: funding-group/award-group/award-id
+<?oxygen SCHSchema="award-id-test-2.sch"?>
+<!--Context: funding-group/award-group/award-id
 Test: report    matches(.,'^\p{Zs}?[Nn][/]?[\.]?[Aa][.]?\p{Zs}?$')
-Message: Award id contains -  - This entry should be empty. --><root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+Message: Award id contains -  - This entry should be empty. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <front><journal-meta><journal-id>eLife</journal-id></journal-meta>
       <article-meta>
