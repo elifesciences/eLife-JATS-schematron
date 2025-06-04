@@ -8,7 +8,7 @@ Message: Funding entry from  has an award-id () which could potentially be repla
       <award-group id="fund1">
         <funding-source>
           <institution-wrap>
-            <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100000015</institution-id>
+            <institution-id institution-id-type="ror">https://ror.org/01bj3aw27</institution-id>
             <institution>US Department of Energy</institution>
           </institution-wrap>
         </funding-source>

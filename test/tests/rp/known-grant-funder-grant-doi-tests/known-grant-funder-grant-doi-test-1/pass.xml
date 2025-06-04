@@ -8,7 +8,7 @@ Message: Funding entry from  has an award-id () which could potentially be repla
       <award-group id="fund1">
         <funding-source>
           <institution-wrap>
-            <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/501100002241</institution-id>
+            <institution-id institution-id-type="ror">https://ror.org/00097mb19</institution-id>
             <institution>Japan Science and Technology Agency</institution>
           </institution-wrap>
         </funding-source>
@@ -23,7 +23,7 @@ Message: Funding entry from  has an award-id () which could potentially be repla
         <award-group id="fund2">
         <funding-source>
           <institution-wrap>
-            <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100000913</institution-id>
+            <institution-id institution-id-type="ror">https://ror.org/03dy4aq19</institution-id>
             <institution>James S McDonnell Foundation</institution>
           </institution-wrap>
         </funding-source>
@@ -38,7 +38,7 @@ Message: Funding entry from  has an award-id () which could potentially be repla
       <award-group id="fund3">
         <funding-source>
           <institution-wrap>
-            <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/501100002428</institution-id>
+            <institution-id institution-id-type="ror">https://ror.org/013tf3c58</institution-id>
             <institution>Austrian Science Fund</institution>
           </institution-wrap>
         </funding-source>
@@ -53,7 +53,7 @@ Message: Funding entry from  has an award-id () which could potentially be repla
         <award-group id="fund4">
         <funding-source>
           <institution-wrap>
-            <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100000936</institution-id>
+            <institution-id institution-id-type="ror">https://ror.org/006wxqw41</institution-id>
             <institution>Gordon and Betty Moore Foundation</institution>
           </institution-wrap>
         </funding-source>
