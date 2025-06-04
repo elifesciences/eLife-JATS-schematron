@@ -1,7 +1,10 @@
 let $root := '/Users/fredatherden/Documents/GitHub/eLife-JATS-schematron/'
 let $rp-sch := doc($root||'src/rp-schematron-base.sch')
 
-for $t in $rp-sch//*:rule[@id="fig-xref-conformance"]//*[name()=('report','assert')]
+let $rules := ("general-grant-doi-tests","general-funding-no-award-id-tests","wellcome-grant-doi-tests",
+               "known-grant-funder-grant-doi-tests","award-id-tests")
+
+for $t in $rp-sch//*:rule[@id=$rules]//*[name()=('report','assert')]
 let $gen-f := $root||'/test/tests/gen/'||$t/parent::*:rule/@id||'/'||$t/@id||'/'
 let $folder := $root||'/test/tests/rp/'||$t/parent::*:rule/@id||'/'||$t/@id||'/'
 let $f := doc($folder||'fail.xml')

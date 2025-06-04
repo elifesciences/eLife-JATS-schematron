@@ -1,0 +1,21 @@
+<?oxygen SCHSchema="award-id-test-1.sch"?><!--Context: funding-group/award-group/award-id
+Test: report    matches(.,',|;')
+Message: Funding entry with id  has a comma or semi-colon in the award id. Should this be separated out into several funding entries? - . --><root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <front><journal-meta><journal-id>eLife</journal-id></journal-meta>
+      <article-meta>
+        <funding-group>
+          <award-group>
+            <award-id>number1, number 2</award-id>
+          </award-group>
+          <award-group>
+            <award-id>number1; number 2</award-id>
+          </award-group>
+          <award-group>
+            <award-id>number1 | number 2</award-id>
+          </award-group>
+        </funding-group>
+      </article-meta>
+    </front>
+  </article>
+</root>

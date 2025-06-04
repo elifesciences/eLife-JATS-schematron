@@ -202,6 +202,55 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
+  <let name="rors" value="'../../../../../src/rors.xml'"/>
+  <let name="wellcome-fundref-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
+  <let name="known-grant-funder-fundref-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968')"/>
+  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$known-grant-funder-fundref-ids)"/>
+  <xsl:function name="e:alter-award-id">
+    <xsl:param name="award-id-elem" as="xs:string"/>
+    <xsl:param name="fundref-id" as="xs:string"/>
+    <xsl:choose>
+      
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000936'">
+        
+        <xsl:value-of select="if (matches($award-id-elem,'^\d+(\.\d+)?$')) then concat('GBMF',$award-id-elem)          else if (not(matches(upper-case($award-id-elem),'^GBMF'))) then concat('GBMF',replace($award-id-elem,'[^\d\.]',''))          else upper-case($award-id-elem)"/>
+      </xsl:when>
+      
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/501100002241'">
+        
+        <xsl:value-of select="if (matches(upper-case($award-id-elem),'JPMJ[A-Z0-9]+\s*$') and not(matches(upper-case($award-id-elem),'^JPMJ[A-Z0-9]+$'))) then concat('JPMJ',upper-case(replace(substring-after($award-id-elem,'JPMJ'),'\s+$','')))         else upper-case($award-id-elem)"/>
+      </xsl:when>
+      
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000913'">
+        
+        <xsl:value-of select="if (matches(upper-case($award-id-elem),'JSMF2\d+$')) then substring-after($award-id-elem,'JSMF')         else replace($award-id-elem,'[^\d\-]','')"/>
+      </xsl:when>
+      
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/501100002428'">
+        
+        <xsl:value-of select="if (matches($award-id-elem,'\d\-')) then replace(substring-before($award-id-elem,'-'),'[^A-Z\d]','')         else replace($award-id-elem,'[^A-Z\d]','')"/>
+      </xsl:when>
+      
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000968'">
+        
+        <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\([A-Z\d]+\)')) then substring-before(substring-after($award-id-elem,'('),')')         else $award-id-elem"/>
+      </xsl:when>
+      
+      <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000968'">
+        
+        <xsl:value-of select="if (contains(upper-case($award-id-elem),'2020')) then concat('2020',replace(substring-after($award-id-elem,'2020'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2021')) then concat('2021',replace(substring-after($award-id-elem,'2021'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2022')) then concat('2022',replace(substring-after($award-id-elem,'2022'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2023')) then concat('2023',replace(substring-after($award-id-elem,'2023'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2024')) then concat('2024',replace(substring-after($award-id-elem,'2024'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'CEEC')) then concat('CEEC',replace(substring-after(upper-case($award-id-elem),'CEEC'),'[^A-Z0-9/]',''))         else if (contains(upper-case($award-id-elem),'PTDC/')) then concat('PTDC/',replace(substring-after(upper-case($award-id-elem),'PTDC/'),'[^A-Z0-9/\-]',''))         else if (contains(upper-case($award-id-elem),'DL 57/')) then concat('DL 57/',replace(substring-after(upper-case($award-id-elem),'DL 57/'),'[^A-Z0-9/\-]',''))         else $award-id-elem"/>
+      </xsl:when>
+      
+      <xsl:when test="$fundref-id=('http://dx.doi.org/10.13039/100010663','http://dx.doi.org/10.13039/100010665','http://dx.doi.org/10.13039/100010669','http://dx.doi.org/10.13039/100010675','http://dx.doi.org/10.13039/100010677','http://dx.doi.org/10.13039/100010679','http://dx.doi.org/10.13039/100010680','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100019180')">
+        
+        <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\(\d+\)')) then substring-before(substring-after($award-id-elem,'('),')')         else if (matches($award-id-elem,'\d{6,9}')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>
+      </xsl:when>
+      
+      <xsl:otherwise>
+        <xsl:value-of select="$award-id-elem"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
   <pattern id="underline-checks-pattern">
     <rule context="underline" id="underline-checks">
       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')" role="warning" id="underline-check-3">[underline-check-3] Content of underline element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
