@@ -1,0 +1,85 @@
+<?oxygen SCHSchema="known-grant-funder-grant-doi-test-2.sch"?>
+<!--Context: funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-ror-ids]
+Test: assert    $grant-matches
+Message: Funding entry from  has an award-id (). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format  for ID ). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number] -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article><front><journal-meta><journal-id>eLife</journal-id></journal-meta></front>
+    <funding-group>
+      <award-group id="fund1">
+        <funding-source>
+          <institution-wrap>
+            <institution-id institution-id-type="ror">https://ror.org/00097mb19</institution-id>
+            <institution>Japan Science and Technology Agency</institution>
+          </institution-wrap>
+        </funding-source>
+        <award-id>Some text, JPMJTR172D</award-id>
+        <principal-award-recipient>
+          <name>
+            <surname>Claus</surname>
+            <given-names>Santa</given-names>
+          </name>
+        </principal-award-recipient>
+      </award-group>
+      <award-group id="fund2">
+        <funding-source>
+          <institution-wrap>
+            <institution-id institution-id-type="ror">https://ror.org/03dy4aq19</institution-id>
+            <institution>James S McDonnell Foundation</institution>
+          </institution-wrap>
+        </funding-source>
+        <award-id>JSMF220020447</award-id>
+        <principal-award-recipient>
+          <name>
+            <surname>Claus</surname>
+            <given-names>Santa</given-names>
+          </name>
+        </principal-award-recipient>
+      </award-group>
+      <award-group id="fund3">
+        <funding-source>
+          <institution-wrap>
+            <institution-id institution-id-type="ror">https://ror.org/013tf3c58</institution-id>
+            <institution>Austrian Science Fund</institution>
+          </institution-wrap>
+        </funding-source>
+        <award-id>P18531-B12</award-id>
+        <principal-award-recipient>
+          <name>
+            <surname>Claus</surname>
+            <given-names>Santa</given-names>
+          </name>
+        </principal-award-recipient>
+      </award-group>
+        <award-group id="fund4">
+        <funding-source>
+          <institution-wrap>
+            <institution-id institution-id-type="ror">https://ror.org/006wxqw41</institution-id>
+            <institution>Gordon and Betty Moore Foundation</institution>
+          </institution-wrap>
+        </funding-source>
+        <award-id>9336.01</award-id>
+        <principal-award-recipient>
+          <name>
+            <surname>Claus</surname>
+            <given-names>Santa</given-names>
+          </name>
+        </principal-award-recipient>
+      </award-group>
+        <award-group id="fund5">
+        <funding-source>
+          <institution-wrap>
+            <institution-id institution-id-type="ror">https://ror.org/013kjyp64</institution-id>
+            <institution>American Heart Association</institution>
+          </institution-wrap>
+        </funding-source>
+        <award-id>award (24CDA1264317)</award-id>
+        <principal-award-recipient>
+          <name>
+            <surname>Claus</surname>
+            <given-names>Santa</given-names>
+          </name>
+        </principal-award-recipient>
+      </award-group>
+    </funding-group>
+  </article>
+</root>

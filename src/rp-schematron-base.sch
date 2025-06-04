@@ -223,6 +223,86 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
+  
+  <let name="rors" value="'rors.xml'"/>
+  <!-- Grant DOI enabling -->
+  <let name="wellcome-ror-ids" value="('https://ror.org/029chgv08')"/>
+  <let name="known-grant-funder-ror-ids" value="('https://ror.org/006wxqw41','https://ror.org/00097mb19','https://ror.org/03dy4aq19','https://ror.org/013tf3c58','https://ror.org/013kjyp64')"/>
+  <let name="grant-doi-exception-funder-ids" value="($wellcome-ror-ids,$known-grant-funder-ror-ids)"/>  
+  
+  <!-- Funders may have internal grant DOIs or indistinct conventions for award IDs
+            this function is an attempt to account for this to better match award ids with grant DOIs -->
+   <xsl:function name="e:alter-award-id">
+    <xsl:param name="award-id-elem" as="xs:string"/>
+    <xsl:param name="ror-id" as="xs:string"/>
+    <xsl:choose>
+      <!-- GBMF -->
+      <xsl:when test="$ror-id='https://ror.org/006wxqw41'">
+        <!-- GBMF grant DOIs are registered like so: GBMF0000 -->
+        <xsl:value-of select="if (matches($award-id-elem,'^\d+(\.\d+)?$')) then concat('GBMF',$award-id-elem)
+         else if (not(matches(upper-case($award-id-elem),'^GBMF'))) then concat('GBMF',replace($award-id-elem,'[^\d\.]',''))
+         else upper-case($award-id-elem)"/>
+      </xsl:when>
+      <!-- Japan Science and Technology Agency -->
+      <xsl:when test="$ror-id='https://ror.org/00097mb19'">
+        <!-- JSTA grant DOIs are registered like so: GBMF0000 -->
+        <xsl:value-of select="if (matches(upper-case($award-id-elem),'JPMJ[A-Z0-9]+\s*$') and not(matches(upper-case($award-id-elem),'^JPMJ[A-Z0-9]+$'))) then concat('JPMJ',upper-case(replace(substring-after($award-id-elem,'JPMJ'),'\s+$','')))
+        else upper-case($award-id-elem)"/>
+      </xsl:when>
+      <!-- James S McDonnell Foundation -->
+      <xsl:when test="$ror-id='https://ror.org/03dy4aq19'">
+        <!-- JSMF grant DOIs are registered like so: 220020527, 2020-1543, 99-55, 91-8 -->
+        <xsl:value-of select="if (matches(upper-case($award-id-elem),'JSMF2\d+$')) then substring-after($award-id-elem,'JSMF')
+        else replace($award-id-elem,'[^\d\-]','')"/>
+      </xsl:when>
+      <!-- Austrian Science Fund -->
+      <xsl:when test="$ror-id='https://ror.org/013tf3c58'">
+        <!-- ASF grant DOIs are registered in many ways: PAT8306623, EFP45, J1974, Z54 -->
+        <xsl:value-of select="if (matches($award-id-elem,'\d\-')) then replace(substring-before($award-id-elem,'-'),'[^A-Z\d]','')
+        else replace($award-id-elem,'[^A-Z\d]','')"/>
+      </xsl:when>
+      <!-- American Heart Association -->
+      <xsl:when test="$ror-id='https://ror.org/013kjyp64'">
+        <!-- ASF grant DOIs are registered in many ways: 24CDA1264317, 23SCEFIA1157994, 24POST1187422 -->
+        <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\([A-Z\d]+\)')) then substring-before(substring-after($award-id-elem,'('),')')
+        else $award-id-elem"/>
+      </xsl:when>
+      <!-- Fundação para a Ciência e a Tecnologia -->
+      <xsl:when test="$ror-id='https://ror.org/013kjyp64'">
+        <!-- FCT grant DOIs are registered in many ways: CEECINST/00152/2018/CP1570/CT0004, DL 57/2016/CP1381/CT0002, 2022.03592.PTDC, PTDC/MED-PAT/0959/2021 -->
+        <xsl:value-of select="if (contains(upper-case($award-id-elem),'2020')) then concat('2020',replace(substring-after($award-id-elem,'2020'),'[^A-Z0-9\.]',''))
+        else if (contains(upper-case($award-id-elem),'2021')) then concat('2021',replace(substring-after($award-id-elem,'2021'),'[^A-Z0-9\.]',''))
+        else if (contains(upper-case($award-id-elem),'2022')) then concat('2022',replace(substring-after($award-id-elem,'2022'),'[^A-Z0-9\.]',''))
+        else if (contains(upper-case($award-id-elem),'2023')) then concat('2023',replace(substring-after($award-id-elem,'2023'),'[^A-Z0-9\.]',''))
+        else if (contains(upper-case($award-id-elem),'2024')) then concat('2024',replace(substring-after($award-id-elem,'2024'),'[^A-Z0-9\.]',''))
+        else if (contains(upper-case($award-id-elem),'CEEC')) then concat('CEEC',replace(substring-after(upper-case($award-id-elem),'CEEC'),'[^A-Z0-9/]',''))
+        else if (contains(upper-case($award-id-elem),'PTDC/')) then concat('PTDC/',replace(substring-after(upper-case($award-id-elem),'PTDC/'),'[^A-Z0-9/\-]',''))
+        else if (contains(upper-case($award-id-elem),'DL 57/')) then concat('DL 57/',replace(substring-after(upper-case($award-id-elem),'DL 57/'),'[^A-Z0-9/\-]',''))
+        else $award-id-elem"/>
+      </xsl:when>
+      <!-- 
+          H2020 European Research Council
+          H2020 Marie Skłodowska-Curie Actions
+          H2020 LEIT Information and Communication Technologies
+          H2020 Innovation In SMEs
+          H2020 Health
+          H2020 energy
+          H2020 Transport
+          HORIZON EUROPE Marie Sklodowska-Curie Actions
+          HORIZON EUROPE European Research Council
+       -->
+      <xsl:when test="$ror-id=('https://ror.org/0472cxd90','https://ror.org/00k4n6c32')">
+        <!-- ERC grant DOIs are registered as numbers: 694640, 101002163 -->
+        <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\(\d+\)')) then substring-before(substring-after($award-id-elem,'('),')')
+        else if (matches($award-id-elem,'\d{6,9}')) then replace($award-id-elem,'[^\d]','')
+        else $award-id-elem"/>
+      </xsl:when>
+      <!-- H2020 European Research Council -->
+      <xsl:otherwise>
+        <xsl:value-of select="$award-id-elem"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
 
   <xsl:function name="java:file-exists" xmlns:file="java.io.File" as="xs:boolean">
     <xsl:param name="file" as="xs:string"/>
@@ -2014,6 +2094,117 @@
           role="error" 
           id="award-group-test-8">Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>.</report>
       </rule>
+      
+      <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" id="general-grant-doi-tests">
+        <let name="award-id" value="award-id"/>
+        <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
+        <let name="funder-entry" value="document($rors)//*:ror[*:id[@type='ror']=$funder-id]"/>
+        <let name="mints-grant-dois" value="$funder-entry/@grant-dois='yes'"/>
+        <!-- Consider alternatives to exact match as this is no better than simply using Crossref's API -->
+        <let name="grant-matches" value="if (not($mints-grant-dois)) then ()
+          else $funder-entry//*:grant[@award=$award-id]"/>
+	  
+        <report test="$grant-matches"
+	         role="warning" 
+	         id="grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
+
+        <!-- If the funder has minted 30+ grant DOIs but there isn't an exact match throw a warning -->
+        <report test="$mints-grant-dois and (count($funder-entry//*:grant) gt 29) and not($grant-matches)"
+	         role="warning" 
+	         id="grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</report>
+      
+	   </rule>
+      
+      <rule context="funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id]" id="general-funding-no-award-id-tests">
+        <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
+        <let name="funder-entry" value="document($rors)//*:ror[*:id[@type='ror']=$funder-id]"/>
+        <let name="grant-doi-count" value="count($funder-entry//*:grant)"/>
+      
+        <report test="$grant-doi-count gt 29"
+	         role="warning" 
+	         id="grant-doi-test-3">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has no award-id, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Is there a missing grant DOI or award ID for this funding?</report>
+      </rule>
+      
+      <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-ror-ids]" id="wellcome-grant-doi-tests">
+      <let name="grants" value="document($rors)//*:ror[*:id[@type='ror']=$wellcome-ror-ids]/*:grant"/>
+      <let name="award-id-elem" value="award-id"/>
+      <let name="award-id" value="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','') 
+        else if (contains(lower-case($award-id-elem),'_z')) then replace(substring-before(lower-case($award-id-elem),'_z'),'[^\d]','')
+        else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')
+        else $award-id-elem"/> 
+      <let name="grant-matches" value="if ($award-id='') then ()
+        else $grants[@award=$award-id]"/>
+      
+      <report test="$grant-matches"
+        role="warning" 
+        id="wellcome-grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
+
+      <assert test="$grant-matches"
+        role="warning" 
+        id="wellcome-grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
+    </rule>
+
+    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-ror-ids]" id="known-grant-funder-grant-doi-tests">
+      <let name="ror-id" value="funding-source/institution-wrap/institution-id"/>
+      <let name="grants" value="document($rors)//*:ror[*:id[@type='ror']=$ror-id]/*:grant"/>
+      <let name="award-id-elem" value="award-id"/>
+      <!-- Make use of custom function to try and account for variations within funder conventions -->
+      <let name="award-id" value="e:alter-award-id($award-id-elem,$ror-id)"/>
+      <let name="grant-matches" value="if ($award-id='') then ()
+        else $grants[@award=$award-id]"/>
+    
+      <report test="$grant-matches"
+        role="warning"
+        id="known-grant-funder-grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
+
+      <assert test="$grant-matches"
+        role="warning" 
+        id="known-grant-funder-grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
+
+    </rule>
+    
+    <rule context="funding-group/award-group/award-id" id="award-id-tests">
+      <let name="id" value="parent::award-group/@id"/>
+      <let name="funder-id" value="parent::award-group/descendant::institution-id[1]"/>
+      <let name="funder-name" value="parent::award-group/descendant::institution[1]"/>
+      
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-1" 
+        test="matches(.,',|;')" 
+        role="warning" 
+        id="award-id-test-1">Funding entry with id <value-of select="$id"/> has a comma or semi-colon in the award id. Should this be separated out into several funding entries? - <value-of select="."/>.</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-2" 
+        test="matches(.,'^\p{Zs}?[Nn][/]?[\.]?[Aa][.]?\p{Zs}?$')" 
+        role="error" 
+        id="award-id-test-2">Award id contains - <value-of select="."/> - This entry should be empty.</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-3" 
+        test="matches(.,'^\p{Zs}?[Nn]one[\.]?\p{Zs}?$')" 
+        role="error" 
+        id="award-id-test-3">Award id contains - <value-of select="."/> - This entry should be empty.</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-4" 
+        test="matches(.,'&amp;#x\d')" 
+        role="warning" 
+        id="award-id-test-4">Award id contains what looks like a broken unicode - <value-of select="."/>.</report>
+      
+      <report test="matches(.,'http[s]?://d?x?\.?doi.org/')" 
+        role="error" 
+        id="award-id-test-5">Award id contains a DOI link - <value-of select="."/>. If the award ID is for a grant DOI it should contain the DOI without the https://... protocol (e.g. 10.37717/220020477).</report>
+      
+      <report test=". = preceding::award-id[parent::award-group/descendant::institution-id[1] = $funder-id]" 
+        role="error" 
+        id="award-id-test-6">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with the same institution ID. This must be incorrect. Either the funder ID or the award ID is wrong, or it is a duplicate that should be removed.</report>
+      
+      <report test=". = preceding::award-id[parent::award-group/descendant::institution[1] = $funder-name]" 
+        role="error" 
+        id="award-id-test-7">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with the same funder name. This must be incorrect. Either the funder name or the award ID is wrong, or it is a duplicate that should be removed.</report>
+      
+      <report test=". = preceding::award-id[parent::award-group[not(descendant::institution[1] = $funder-name) and not(descendant::institution-id[1] = $funder-id)]]" 
+        role="warning" 
+        id="award-id-test-8">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with a different funder. Has there been a mistake with the award id? If the grant was awarded jointly by two funders, then this capture is correct and should be retained.</report>
+      
+    </rule>
     </pattern>
 
     <pattern id="abstracts">

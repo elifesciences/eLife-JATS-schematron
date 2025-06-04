@@ -1,0 +1,26 @@
+<?oxygen SCHSchema="award-id-test-8.sch"?>
+<!--Context: funding-group/award-group/award-id
+Test: report    . = preceding::award-id[parent::award-group[not(descendant::institution[1] = $funder-name) and not(descendant::institution-id[1] = $funder-id)]]
+Message: Funding entry has an award id -  - which is also used in another funding entry with a different funder. Has there been a mistake with the award id? If the grant was awarded jointly by two funders, then this capture is correct and should be retained. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article><front><journal-meta><journal-id>eLife</journal-id></journal-meta></front>
+        <funding-group>
+            <award-group id="fund1">
+                <funding-source>
+                    <institution-wrap>
+                        <institution>National Institutes of Health</institution>
+                    </institution-wrap>
+                </funding-source>
+                <award-id>dummy</award-id>
+            </award-group>
+            <award-group id="fund2">
+                <funding-source>
+                    <institution-wrap>
+                        <institution>Deutsche Forschungsgemeinschaft</institution>
+                    </institution-wrap>
+                </funding-source>
+                <award-id>dummy</award-id>
+                </award-group>
+        </funding-group>
+    </article>
+</root>
