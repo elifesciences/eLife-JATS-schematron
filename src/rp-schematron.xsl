@@ -7763,7 +7763,7 @@
    </xsl:template>
    <!--PATTERN general-grant-doi-tests-pattern-->
    <!--RULE general-grant-doi-tests-->
-   <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" priority="1000" mode="M127">
+   <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" priority="1000" mode="M127">
       <xsl:variable name="award-id" select="award-id"/>
       <xsl:variable name="funder-id" select="funding-source/institution-wrap/institution-id"/>
       <xsl:variable name="funder-entry" select="document($rors)//*:ror[*:id[@type='ror']=$funder-id]"/>
@@ -7842,7 +7842,7 @@
    </xsl:template>
    <!--PATTERN wellcome-grant-doi-tests-pattern-->
    <!--RULE wellcome-grant-doi-tests-->
-   <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-ror-ids]" priority="1000" mode="M129">
+   <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id=$wellcome-ror-ids]" priority="1000" mode="M129">
       <xsl:variable name="grants" select="document($rors)//*:ror[*:id[@type='ror']=$wellcome-ror-ids]/*:grant"/>
       <xsl:variable name="award-id-elem" select="award-id"/>
       <xsl:variable name="award-id" select="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','')          else if (contains(lower-case($award-id-elem),'_z')) then replace(substring-before(lower-case($award-id-elem),'_z'),'[^\d]','')         else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>
@@ -7894,7 +7894,7 @@
    </xsl:template>
    <!--PATTERN known-grant-funder-grant-doi-tests-pattern-->
    <!--RULE known-grant-funder-grant-doi-tests-->
-   <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-ror-ids]" priority="1000" mode="M130">
+   <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id=$known-grant-funder-ror-ids]" priority="1000" mode="M130">
       <xsl:variable name="ror-id" select="funding-source/institution-wrap/institution-id"/>
       <xsl:variable name="grants" select="document($rors)//*:ror[*:id[@type='ror']=$ror-id]/*:grant"/>
       <xsl:variable name="award-id-elem" select="award-id"/>
@@ -8059,6 +8059,17 @@
             <svrl:text>[award-id-test-8] Funding entry has an award id - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/> - which is also used in another funding entry with a different funder. Has there been a mistake with the award id? If the grant was awarded jointly by two funders, then this capture is correct and should be retained.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="normalize-space(.)=''">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=''">
+            <xsl:attribute name="id">award-id-test-9</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[award-id-test-9] award-id cannot be empty. Either add the missing content or remove it.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M131"/>

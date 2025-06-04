@@ -3751,6 +3751,16 @@
         <x:expect-report id="award-id-test-8" role="warning"/>
         <x:expect-not-assert id="award-id-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="award-id-test-9-pass">
+        <x:context href="../tests/rp/award-id-tests/award-id-test-9/pass.xml"/>
+        <x:expect-not-report id="award-id-test-9" role="error"/>
+        <x:expect-not-assert id="award-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="award-id-test-9-fail">
+        <x:context href="../tests/rp/award-id-tests/award-id-test-9/fail.xml"/>
+        <x:expect-report id="award-id-test-9" role="error"/>
+        <x:expect-not-assert id="award-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="abstract-checks">
       <x:scenario label="abstract-test-1-pass">

@@ -16517,8 +16517,8 @@
          </xsl:otherwise>
       </xsl:choose>
       <!--REPORT error-->
-      <xsl:if test="ancestor::disp-formula and (not(starts-with($document-stripped-text,'$${')) or not(ends-with($document-stripped-text,'}$$')))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::disp-formula and (not(starts-with($document-stripped-text,'$${')) or not(ends-with($document-stripped-text,'}$$')))">
+      <xsl:if test="ancestor::disp-formula and (not(starts-with($document-stripped-text,'$$')) or not(ends-with($document-stripped-text,'$$')))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::disp-formula and (not(starts-with($document-stripped-text,'$$')) or not(ends-with($document-stripped-text,'$$')))">
             <xsl:attribute name="id">tex-math-test-4</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -16526,15 +16526,15 @@
             </xsl:attribute>
             <svrl:text>[tex-math-test-4] If <xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/> element is a descendant of disp-formula then the expression must be wrapped in two dollar signs, i.e. $${insert-formula-here}$$. This one isn't - <xsl:text/>
+               <xsl:text/> element is a descendant of disp-formula then the expression must be wrapped in two dollar signs, i.e. $$insert-formula-here$$. This one isn't - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>
             </svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="ancestor::inline-formula and (not(starts-with($document-stripped-text,'${')) or not(ends-with($document-stripped-text,'}$')))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::inline-formula and (not(starts-with($document-stripped-text,'${')) or not(ends-with($document-stripped-text,'}$')))">
+      <xsl:if test="ancestor::inline-formula and (not(starts-with($document-stripped-text,'$')) or not(ends-with($document-stripped-text,'$'))) or starts-with($document-stripped-text,'$$') or ends-with($document-stripped-text,'$$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::inline-formula and (not(starts-with($document-stripped-text,'$')) or not(ends-with($document-stripped-text,'$'))) or starts-with($document-stripped-text,'$$') or ends-with($document-stripped-text,'$$')">
             <xsl:attribute name="id">tex-math-test-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -16542,7 +16542,7 @@
             </xsl:attribute>
             <svrl:text>[tex-math-test-5] If <xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/> element is a descendant of inline-formula then the expression must be wrapped in single dollar signs, i.e. ${insert-formula-here}$. This one isn't - <xsl:text/>
+               <xsl:text/> element is a descendant of inline-formula then the expression must be wrapped in single dollar signs, i.e. $insert-formula-here$. This one isn't - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>
             </svrl:text>
