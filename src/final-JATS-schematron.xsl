@@ -16533,8 +16533,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="ancestor::inline-formula and (not(starts-with($document-stripped-text,'$')) or not(ends-with($document-stripped-text,'$'))) or starts-with($document-stripped-text,'$$') or ends-with($document-stripped-text,'$$')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::inline-formula and (not(starts-with($document-stripped-text,'$')) or not(ends-with($document-stripped-text,'$'))) or starts-with($document-stripped-text,'$$') or ends-with($document-stripped-text,'$$')">
+      <xsl:if test="ancestor::inline-formula and ((not(starts-with($document-stripped-text,'$')) or not(ends-with($document-stripped-text,'$'))) or starts-with($document-stripped-text,'$$') or ends-with($document-stripped-text,'$$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::inline-formula and ((not(starts-with($document-stripped-text,'$')) or not(ends-with($document-stripped-text,'$'))) or starts-with($document-stripped-text,'$$') or ends-with($document-stripped-text,'$$'))">
             <xsl:attribute name="id">tex-math-test-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">

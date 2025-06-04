@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="tex-math-test-5.sch"?>
 <!--Context: tex-math
-Test: report    ancestor::inline-formula and (not(starts-with($document-stripped-text,'$')) or not(ends-with($document-stripped-text,'$'))) or starts-with($document-stripped-text,'$$') or ends-with($document-stripped-text,'$$')
+Test: report    ancestor::inline-formula and ((not(starts-with($document-stripped-text,'$')) or not(ends-with($document-stripped-text,'$'))) or starts-with($document-stripped-text,'$$') or ends-with($document-stripped-text,'$$'))
 Message: If  element is a descendant of inline-formula then the expression must be wrapped in single dollar signs, i.e. $insert-formula-here$. This one isn't -  -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
