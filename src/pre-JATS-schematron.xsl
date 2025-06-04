@@ -28243,6 +28243,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1))">
                <xsl:attribute name="id">err-elem-cit-confproc-12-5</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hxcbf-err-elem-cit-confproc-12-5</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -28277,6 +28278,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@pub-id-type='doi' or @pub-id-type='pmid'">
                <xsl:attribute name="id">err-elem-cit-confproc-16-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hzrg2-err-elem-cit-confproc-16-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>

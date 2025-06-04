@@ -5242,7 +5242,7 @@
       
     </rule></pattern><pattern id="elem-citation-confproc-fpage-pattern"><rule context="element-citation[@publication-type='confproc']/fpage" id="elem-citation-confproc-fpage">
       
-      <assert test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1))" role="error" id="err-elem-cit-confproc-12-5">[err-elem-cit-confproc-12-5]
+      <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hxcbf-err-elem-cit-confproc-12-5" test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1))" role="error" id="err-elem-cit-confproc-12-5">[err-elem-cit-confproc-12-5]
         If the content of &lt;fpage&gt; begins with a letter, then the content of &lt;lpage&gt; must begin with 
         the same letter. 
         Reference '<value-of select="ancestor::ref/@id"/>' has &lt;fpage&gt;='<value-of select="."/>'
@@ -5250,7 +5250,7 @@
       
     </rule></pattern><pattern id="elem-citation-confproc-pub-id-pattern"><rule context="element-citation[@publication-type='confproc']/pub-id" id="elem-citation-confproc-pub-id">
       
-      <assert test="@pub-id-type='doi' or @pub-id-type='pmid'" role="error" id="err-elem-cit-confproc-16-2">[err-elem-cit-confproc-16-2]
+      <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hzrg2-err-elem-cit-confproc-16-2" test="@pub-id-type='doi' or @pub-id-type='pmid'" role="error" id="err-elem-cit-confproc-16-2">[err-elem-cit-confproc-16-2]
         The only allowed pub-id types are 'doi' or 'pmid'.
         Reference '<value-of select="ancestor::ref/@id"/>' has a pub-id type of 
         '<value-of select="@pub-id-type"/>'.</assert>
