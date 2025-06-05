@@ -251,14 +251,14 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <pattern id="ed-report-kwds-pattern">
-    <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" id="ed-report-kwds">
-      <report test="preceding-sibling::kwd = ." role="error" id="ed-report-kwd-1">[ed-report-kwd-1] Keyword contains <value-of select="."/>, there is another kwd with that value within the same kwd-group, so this one is either incorrect or superfluous and should be deleted.</report>
+  <pattern id="funding-institution-id-tests-pattern">
+    <rule context="funding-source//institution-id" id="funding-institution-id-tests">
+      <report test="*" role="error" id="funding-institution-id-test-3">[funding-institution-id-test-3] institution-id in funding cannot contain elements, only text (which is a valid ROR id). This one contains the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" role="error" id="ed-report-kwds-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd must be present.</assert>
+      <assert test="descendant::funding-source//institution-id" role="error" id="funding-institution-id-tests-xspec-assert">funding-source//institution-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

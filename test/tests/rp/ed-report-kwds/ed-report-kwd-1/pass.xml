@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ed-report-kwd-1.sch"?>
 <!--Context: sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd
 Test: report    preceding-sibling::kwd = .
-Message: Keyword contains , there is another kwd with that value witin the same kwd-group, so this one is either incorrect or superfluous and should be deleted. -->
+Message: Keyword contains , there is another kwd with that value within the same kwd-group, so this one is either incorrect or superfluous and should be deleted. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sub-article id="sa0" article-type="editor-report">

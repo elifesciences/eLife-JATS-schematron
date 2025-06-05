@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="funding-institution-id-test-3.sch"?>
+<!--Context: funding-source//institution-id
+Test: report    *
+Message: institution-id in funding cannot contain elements, only text (which is a valid ROR id). This one contains the following element(s): . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <award-group id="funding-1a">
+            <funding-source>
+                <institution-wrap>
+                    <institution-id institution-id-type="ror">https://ror.org/01cwqze88</institution-id>
+                    <institution>National Institutes of Health</institution>
+                </institution-wrap>
+            </funding-source>
+            <award-id>R01 ...</award-id>
+        </award-group>
+    </article>
+</root>

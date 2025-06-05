@@ -3762,6 +3762,38 @@
         <x:expect-not-assert id="award-id-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="funding-institution-id-tests">
+      <x:scenario label="funding-institution-id-test-1-pass">
+        <x:context href="../tests/rp/funding-institution-id-tests/funding-institution-id-test-1/pass.xml"/>
+        <x:expect-not-assert id="funding-institution-id-test-1" role="error"/>
+        <x:expect-not-assert id="funding-institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="funding-institution-id-test-1-fail">
+        <x:context href="../tests/rp/funding-institution-id-tests/funding-institution-id-test-1/fail.xml"/>
+        <x:expect-assert id="funding-institution-id-test-1" role="error"/>
+        <x:expect-not-assert id="funding-institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="funding-institution-id-test-2-pass">
+        <x:context href="../tests/rp/funding-institution-id-tests/funding-institution-id-test-2/pass.xml"/>
+        <x:expect-not-assert id="funding-institution-id-test-2" role="error"/>
+        <x:expect-not-assert id="funding-institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="funding-institution-id-test-2-fail">
+        <x:context href="../tests/rp/funding-institution-id-tests/funding-institution-id-test-2/fail.xml"/>
+        <x:expect-assert id="funding-institution-id-test-2" role="error"/>
+        <x:expect-not-assert id="funding-institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="funding-institution-id-test-3-pass">
+        <x:context href="../tests/rp/funding-institution-id-tests/funding-institution-id-test-3/pass.xml"/>
+        <x:expect-not-report id="funding-institution-id-test-3" role="error"/>
+        <x:expect-not-assert id="funding-institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="funding-institution-id-test-3-fail">
+        <x:context href="../tests/rp/funding-institution-id-tests/funding-institution-id-test-3/fail.xml"/>
+        <x:expect-report id="funding-institution-id-test-3" role="error"/>
+        <x:expect-not-assert id="funding-institution-id-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="abstract-checks">
       <x:scenario label="abstract-test-1-pass">
         <x:context href="../tests/rp/abstract-checks/abstract-test-1/pass.xml"/>

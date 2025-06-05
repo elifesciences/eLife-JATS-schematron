@@ -1246,7 +1246,7 @@
                 <xsl:when test="not(institution-wrap)">
                     <xsl:text>&#xa;</xsl:text>
                     <xsl:element name="institution-wrap">
-                        <xsl:if test="named-content[@content-type='funder-id']">
+                        <xsl:if test="named-content[@content-type='funder-id' and normalize-space(.)!='']">
                             <xsl:text>&#xa;</xsl:text>
                             <xsl:element name="institution-id">
                                 <xsl:attribute name="institution-id-type">ror</xsl:attribute>
