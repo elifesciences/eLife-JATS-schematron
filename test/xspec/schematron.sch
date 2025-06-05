@@ -4103,7 +4103,7 @@
   <pattern id="table-fn-tests-pattern">
     <rule context="table-wrap-foot//fn" id="table-fn-tests"> 
       
-      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-test-1" test="label and not(@id)" role="error" id="table-fn-test-1">Table footnote with a label must have an id. This one has the label '<value-of select="label"/>' but no id.</report>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-test-1" test="label and not(@id)" role="warning" id="table-fn-test-1">Table footnote with a label should have an id. This one has the label '<value-of select="label"/>' but no id.</report>
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-test-2" test="@id and not(label)" role="error" id="table-fn-test-2">Table footnotes with an id must have a label (or the id should be removed). This one has the id '<value-of select="@id"/>' but no label. If a lable should not be present, then please remove the id.</report>
     </rule>
@@ -5885,7 +5885,7 @@
   <pattern id="prc-pub-review-tests-pattern">
     <rule context="article[e:is-prc(.)]" id="prc-pub-review-tests">
       
-      <report test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')]          or         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')]         )" role="warning" id="prc-pub-review-test-1">This article has individual public reviews, and also either a consensus or a joint public review, which is highgly unusual. Is this correct?</report>
+      <report test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')]          or         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')]         )" role="warning" id="prc-pub-review-test-1">This article has individual public reviews, and also either a consensus or a joint public review, which is highly unusual. Is this correct?</report>
     </rule>
   </pattern>
   

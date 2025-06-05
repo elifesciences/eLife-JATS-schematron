@@ -6729,12 +6729,12 @@
     <x:scenario label="table-fn-tests">
       <x:scenario label="table-fn-test-1-pass">
         <x:context href="../tests/gen/table-fn-tests/table-fn-test-1/pass.xml"/>
-        <x:expect-not-report id="table-fn-test-1" role="error"/>
+        <x:expect-not-report id="table-fn-test-1" role="warning"/>
         <x:expect-not-assert id="table-fn-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="table-fn-test-1-fail">
         <x:context href="../tests/gen/table-fn-tests/table-fn-test-1/fail.xml"/>
-        <x:expect-report id="table-fn-test-1" role="error"/>
+        <x:expect-report id="table-fn-test-1" role="warning"/>
         <x:expect-not-assert id="table-fn-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="table-fn-test-2-pass">
