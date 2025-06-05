@@ -252,7 +252,7 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="known-grant-funder-grant-doi-tests-pattern">
-    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id=$known-grant-funder-ror-ids]" id="known-grant-funder-grant-doi-tests">
+    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap[count(institution-id)=1]/institution-id=$known-grant-funder-ror-ids]" id="known-grant-funder-grant-doi-tests">
       <let name="ror-id" value="funding-source/institution-wrap/institution-id"/>
       <let name="grants" value="document($rors)//*:ror[*:id[@type='ror']=$ror-id]/*:grant"/>
       <let name="award-id-elem" value="award-id"/>
@@ -263,7 +263,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id=$known-grant-funder-ror-ids]" role="error" id="known-grant-funder-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id=$known-grant-funder-ror-ids] must be present.</assert>
+      <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap[count(institution-id)=1]/institution-id=$known-grant-funder-ror-ids]" role="error" id="known-grant-funder-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap[count(institution-id)=1]/institution-id=$known-grant-funder-ror-ids] must be present.</assert>
     </rule>
   </pattern>
 </schema>

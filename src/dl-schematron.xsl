@@ -3172,7 +3172,7 @@
                </xsl:attribute>
                <svrl:text>Keyword contains <xsl:text/>
                   <xsl:value-of select="."/>
-                  <xsl:text/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <xsl:text/>
+                  <xsl:text/>, but it is in an 'evidence-strength' keyword group, meaning it should have one of the following values: <xsl:text/>
                   <xsl:value-of select="string-join($allowed-vals,', ')"/>
                   <xsl:text/>
                </svrl:text>
