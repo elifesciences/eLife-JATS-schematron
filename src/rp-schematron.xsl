@@ -10022,7 +10022,7 @@
             </xsl:attribute>
             <svrl:text>[ed-report-kwd-1] Keyword contains <xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/>, there is another kwd with that value witin the same kwd-group, so this one is either incorrect or superfluous and should be deleted.</svrl:text>
+               <xsl:text/>, there is another kwd with that value within the same kwd-group, so this one is either incorrect or superfluous and should be deleted.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--ASSERT error-->
