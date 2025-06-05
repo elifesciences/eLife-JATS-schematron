@@ -1608,6 +1608,17 @@
       
     </rule>
   </pattern>
+  <pattern id="funding-institution-id-tests-pattern">
+    <rule context="funding-source//institution-id" id="funding-institution-id-tests">
+      
+      <assert test="@institution-id-type=('ror','FundRef')" role="error" id="funding-institution-id-test-1">institution-id in funding must have the attribute institution-id-type with a value of either "ror" or "FundRef".</assert>
+      
+      <assert test="matches(.,'^(https?://ror\.org/[a-z0-9]{9}|http[s]?://d?x?\.?doi.org/10.13039/\d*)$')" role="error" id="funding-institution-id-test-2">institution-id in funding must a value which is either a valid ROR id or open funder registry DOI. This one has '<value-of select="."/>'.</assert>
+      
+      <report test="*" role="error" id="funding-institution-id-test-3">institution-id in funding cannot contain elements, only text (which is a valid ROR id). This one contains the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>    
+      
+    </rule>
+  </pattern>
 
     <pattern id="abstract-checks-pattern">
     <rule context="abstract[parent::article-meta]" id="abstract-checks">
@@ -2339,6 +2350,7 @@
       <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id=$wellcome-ror-ids]" role="error" id="wellcome-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id=$wellcome-ror-ids] must be present.</assert>
       <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id=$known-grant-funder-ror-ids]" role="error" id="known-grant-funder-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id=$known-grant-funder-ror-ids] must be present.</assert>
       <assert test="descendant::funding-group/award-group/award-id" role="error" id="award-id-tests-xspec-assert">funding-group/award-group/award-id must be present.</assert>
+      <assert test="descendant::funding-source//institution-id" role="error" id="funding-institution-id-tests-xspec-assert">funding-source//institution-id must be present.</assert>
       <assert test="descendant::abstract[parent::article-meta]" role="error" id="abstract-checks-xspec-assert">abstract[parent::article-meta] must be present.</assert>
       <assert test="descendant::abstract[parent::article-meta]/*" role="error" id="abstract-child-checks-xspec-assert">abstract[parent::article-meta]/* must be present.</assert>
       <assert test="descendant::abstract[@xml:lang]" role="error" id="abstract-lang-checks-xspec-assert">abstract[@xml:lang] must be present.</assert>
