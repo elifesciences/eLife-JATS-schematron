@@ -3330,7 +3330,7 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-label-test-1" test="not(matches(.,'^\p{Zs}?[*†‡§¶]')) and matches(.,'^\p{Zs}?[\p{Ps}]?[\da-z][\p{Pe}]?\p{Zs}+[\p{Lu}\d]')" role="warning" id="table-fn-label-test-1">[table-fn-label-test-1] Footnote starts with what might be a label which is not in line with house style - <value-of select="."/>. If it is a label, then it should changed to one of the allowed symbols, so that the order of labels in the footnotes follows this sequence *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc.</report>
     </rule></pattern><pattern id="table-fn-tests-pattern"><rule context="table-wrap-foot//fn" id="table-fn-tests"> 
       
-      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-test-1" test="label and not(@id)" role="error" id="table-fn-test-1">[table-fn-test-1] Table footnote with a label must have an id. This one has the label '<value-of select="label"/>' but no id.</report>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-test-1" test="label and not(@id)" role="warning" id="table-fn-test-1">[table-fn-test-1] Table footnote with a label should have an id. This one has the label '<value-of select="label"/>' but no id.</report>
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-test-2" test="@id and not(label)" role="error" id="table-fn-test-2">[table-fn-test-2] Table footnotes with an id must have a label (or the id should be removed). This one has the id '<value-of select="@id"/>' but no label. If a lable should not be present, then please remove the id.</report>
     </rule></pattern><pattern id="fn-tests-pattern"><rule context="fn[@id][not(@fn-type='other') and not(ancestor::table-wrap)]" id="fn-tests">
@@ -4534,7 +4534,7 @@
       <assert test="anonymous" role="error" id="prc-reviewer-test-2">[prc-reviewer-test-2] A reviewer contrib in a PRC article must have a child anonymous element. This one does not - <value-of select="."/>.</assert>
     </rule></pattern><pattern id="prc-pub-review-tests-pattern"><rule context="article[e:is-prc(.)]" id="prc-pub-review-tests">
       
-      <report test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')]          or         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')]         )" role="warning" id="prc-pub-review-test-1">[prc-pub-review-test-1] This article has individual public reviews, and also either a consensus or a joint public review, which is highgly unusual. Is this correct?</report>
+      <report test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')]          or         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')]         )" role="warning" id="prc-pub-review-test-1">[prc-pub-review-test-1] This article has individual public reviews, and also either a consensus or a joint public review, which is highly unusual. Is this correct?</report>
     </rule></pattern>
   
   <pattern id="sub-article-doi-checks-pattern"><rule context="sub-article/front-stub/article-id[@pub-id-type='doi']" id="sub-article-doi-checks">
