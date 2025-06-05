@@ -5136,8 +5136,8 @@ else self::*/local-name() = $allowed-p-blocks"
                                      else 'second'"/>
       
       <report test="*[1][matches(.,'^\p{Z}*$')]"
-        role="error"
-        id="math-empty-base-check"><name/> element must not have a missing or empty base expression.</report>
+        role="warning"
+        id="math-empty-base-check"><name/> element should not have a missing or empty base expression.</report>
 
       <report test="*[2][matches(.,'^\p{Z}*$')]"
         role="error"

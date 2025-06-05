@@ -16168,17 +16168,17 @@
    <!--RULE math-empty-child-tests-->
    <xsl:template match="mml:msub|mml:msup|mml:msubsup|mml:munder|mml:mover|mml:munderover" priority="1000" mode="M214">
       <xsl:variable name="script-name" select="if (./local-name() = 'msub') then 'subscript'                                      else if (./local-name() = 'msup') then 'superscript'                                      else if (./local-name() = 'msubsup') then 'subscript'                                      else if (./local-name() = 'munder') then 'underscript'                                      else if (./local-name() = 'mover') then 'overscript'                                      else if (./local-name() = 'munderover') then 'underscript'                                      else 'second'"/>
-      <!--REPORT error-->
+      <!--REPORT warning-->
       <xsl:if test="*[1][matches(.,'^\p{Z}*$')]">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*[1][matches(.,'^\p{Z}*$')]">
             <xsl:attribute name="id">math-empty-base-check</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[math-empty-base-check] <xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/> element must not have a missing or empty base expression.</svrl:text>
+               <xsl:text/> element should not have a missing or empty base expression.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->

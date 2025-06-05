@@ -6017,12 +6017,12 @@
     <x:scenario label="math-empty-child-tests">
       <x:scenario label="math-empty-base-check-pass">
         <x:context href="../tests/gen/math-empty-child-tests/math-empty-base-check/pass.xml"/>
-        <x:expect-not-report id="math-empty-base-check" role="error"/>
+        <x:expect-not-report id="math-empty-base-check" role="warning"/>
         <x:expect-not-assert id="math-empty-child-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="math-empty-base-check-fail">
         <x:context href="../tests/gen/math-empty-child-tests/math-empty-base-check/fail.xml"/>
-        <x:expect-report id="math-empty-base-check" role="error"/>
+        <x:expect-report id="math-empty-base-check" role="warning"/>
         <x:expect-not-assert id="math-empty-child-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="math-empty-script-check-pass">
