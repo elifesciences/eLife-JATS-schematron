@@ -3146,7 +3146,7 @@
     </rule></pattern><pattern id="math-empty-child-tests-pattern"><rule context="mml:msub|mml:msup|mml:msubsup|mml:munder|mml:mover|mml:munderover" id="math-empty-child-tests">
       <let name="script-name" value="if (./local-name() = 'msub') then 'subscript'                                      else if (./local-name() = 'msup') then 'superscript'                                      else if (./local-name() = 'msubsup') then 'subscript'                                      else if (./local-name() = 'munder') then 'underscript'                                      else if (./local-name() = 'mover') then 'overscript'                                      else if (./local-name() = 'munderover') then 'underscript'                                      else 'second'"/>
       
-      <report test="*[1][matches(.,'^\p{Z}*$')]" role="error" id="math-empty-base-check">[math-empty-base-check] <name/> element must not have a missing or empty base expression.</report>
+      <report test="*[1][matches(.,'^\p{Z}*$')]" role="warning" id="math-empty-base-check">[math-empty-base-check] <name/> element should not have a missing or empty base expression.</report>
 
       <report test="*[2][matches(.,'^\p{Z}*$')]" role="error" id="math-empty-script-check">[math-empty-script-check] <name/> element must not have a missing or empty <value-of select="$script-name"/> expression.</report>
 
