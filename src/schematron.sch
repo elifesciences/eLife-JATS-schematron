@@ -7741,7 +7741,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert test=".=$allowed-vals"
         role="error" 
         flag="dl-ar"
-        id="ed-report-evidence-kwd-1">Keyword contains <value-of select="."/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/></assert>
+        id="ed-report-evidence-kwd-1">Keyword contains <value-of select="."/>, but it is in an 'evidence-strength' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/></assert>
       
       <report test=".=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]"
         role="warning" 

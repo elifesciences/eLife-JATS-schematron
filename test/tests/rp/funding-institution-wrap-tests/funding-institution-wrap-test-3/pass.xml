@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="funding-institution-wrap-test-3.sch"?>
+<!--Context: funding-source//institution-wrap
+Test: report    count(institution-id)=1 and (normalize-space(string-join(text(),''))!='' or comment())
+Message: institution-wrap cannot contain text content or comments. It can only contain elements and whitespace. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <funding-group>
+            <award-group id="funding-2">
+                <funding-source>
+                    <institution-wrap>
+                        <institution-id institution-id-type="ror">https://ror.org/02qenvm24</institution-id>
+                        <institution>Chan Zuckerberg Initiative (United States)</institution></institution-wrap>
+                </funding-source>
+                <award-id>Essential Open Software</award-id>
+            </award-group>
+        </funding-group>
+    </article>
+</root>

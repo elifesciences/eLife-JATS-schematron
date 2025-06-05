@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="grant-doi-test-3.sch"?>
-<!--Context: funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id]
+<!--Context: funding-group/award-group[not(award-id) and funding-source/institution-wrap[count(institution-id)=1]/institution-id]
 Test: report    $grant-doi-count gt 29
 Message: Funding entry from  has no award-id, but the funder is known to mint grant DOIs (for example in the format  for ID ). Is there a missing grant DOI or award ID for this funding? -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">

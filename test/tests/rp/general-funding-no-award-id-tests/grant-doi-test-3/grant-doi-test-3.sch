@@ -252,7 +252,7 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="general-funding-no-award-id-tests-pattern">
-    <rule context="funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id]" id="general-funding-no-award-id-tests">
+    <rule context="funding-group/award-group[not(award-id) and funding-source/institution-wrap[count(institution-id)=1]/institution-id]" id="general-funding-no-award-id-tests">
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
       <let name="funder-entry" value="document($rors)//*:ror[*:id[@type='ror']=$funder-id]"/>
       <let name="grant-doi-count" value="count($funder-entry//*:grant)"/>
@@ -261,7 +261,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id]" role="error" id="general-funding-no-award-id-tests-xspec-assert">funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id] must be present.</assert>
+      <assert test="descendant::funding-group/award-group[not(award-id) and funding-source/institution-wrap[count(institution-id)=1]/institution-id]" role="error" id="general-funding-no-award-id-tests-xspec-assert">funding-group/award-group[not(award-id) and funding-source/institution-wrap[count(institution-id)=1]/institution-id] must be present.</assert>
     </rule>
   </pattern>
 </schema>

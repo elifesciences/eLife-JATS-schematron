@@ -252,7 +252,7 @@
     </xsl:choose>
   </xsl:function>
   <pattern id="wellcome-grant-doi-tests-pattern">
-    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id=$wellcome-ror-ids]" id="wellcome-grant-doi-tests">
+    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap[count(institution-id)=1]/institution-id=$wellcome-ror-ids]" id="wellcome-grant-doi-tests">
       <let name="grants" value="document($rors)//*:ror[*:id[@type='ror']=$wellcome-ror-ids]/*:grant"/>
       <let name="award-id-elem" value="award-id"/>
       <let name="award-id" value="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','')          else if (contains(lower-case($award-id-elem),'_z')) then replace(substring-before(lower-case($award-id-elem),'_z'),'[^\d]','')         else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>
@@ -262,7 +262,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id=$wellcome-ror-ids]" role="error" id="wellcome-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap/institution-id=$wellcome-ror-ids] must be present.</assert>
+      <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap[count(institution-id)=1]/institution-id=$wellcome-ror-ids]" role="error" id="wellcome-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap[count(institution-id)=1]/institution-id=$wellcome-ror-ids] must be present.</assert>
     </rule>
   </pattern>
 </schema>
