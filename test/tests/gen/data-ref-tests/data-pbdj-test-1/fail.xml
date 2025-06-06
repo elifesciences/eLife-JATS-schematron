@@ -1,7 +1,7 @@
-<?oxygen SCHSchema="data-rcsbpbd-test-3.sch"?>
+<?oxygen SCHSchema="data-pbdj-test-1.sch"?>
 <!--Context: element-citation[@publication-type='data']
-Test: report    contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[@pub-id-type='accession']
-Message: Data reference with the title '' links to RCSB Protein Data Bank () with the accesion number (). PDB datasets must (only) link to wwPDB using a DOI (not to RCSB Protein Data Bank or other Protein Data Banks). Is the correct DOI to use instead:  -->
+Test: report    contains(pub-id[1]/@xlink:href,'pdbj.org') and not(pub-id[@pub-id-type='accession'])
+Message: Data reference with the title '' links to Protein Data Bank Japan (). PDB datasets must (only) link to wwPDB using a DOI (e.g. https://doi.org/10.2210/pdb8QHN/pdb), not to Protein Data Bank Japan or other Protein Data Banks. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <element-citation id="dataset4" publication-type="data" specific-use="isSupplementedBy">
@@ -17,8 +17,8 @@ Message: Data reference with the title '' links to RCSB Protein Data Bank () wit
       </person-group>
       <year iso-8601-date="2019">2019</year>
       <data-title>Single particle cryo-EM structure of Ca2+-free (closed) hsSlo1</data-title>
-      <source>RCSB Protein Data Bank</source>
-      <pub-id assigning-authority="PBD" pub-id-type="accession" xlink:href="https://www.rcsb.org/structure/6V3G">PDB 6V3G</pub-id>
+      <source>Worldwide Protein Data Bank</source>
+      <pub-id assigning-authority="PBD" pub-id-type="archive" xlink:href="https://pdbj.org/mine/summary/8y9m">8y9m</pub-id>
     </element-citation>
   </article>
 </root>

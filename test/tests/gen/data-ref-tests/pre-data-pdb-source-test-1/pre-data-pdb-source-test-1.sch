@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-rcsbpbd-test-1" test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and not(pub-id[@pub-id-type='accession'])" role="error" id="data-rcsbpbd-test-1">Data reference with the title '<value-of select="data-title[1]"/>' links to RCSB Protein Data Bank (<value-of select="pub-id[1]/@xlink:href"/>). PDB datasets must (only) link to wwPDB using a DOI (e.g. https://doi.org/10.2210/pdb8QHN/pdb), not to RCSB Protein Data Bank or other Protein Data Banks.</report>
+      <report test="not(pub-id) and source[1][matches(normalize-space(lower-case(.)),'protein data bank|^(r[cs][cs]b\s)?pdb[je]?$') and lower-case(.)!='worldwide protein data bank']" role="warning" id="pre-data-pdb-source-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a source that suggests it is a Protein data bank dataset - <value-of select="."/>. PDB datasets should have a DOI in the format https://doi.org/10.2210/pdb{accession-number}/pdb which links to the entry in the Worldwide Protein Data Bank. If this information isn't present, please query the author: Please provide the Worldwide Protein Data Bank DOI for this dataset.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1,7 +1,7 @@
-<?oxygen SCHSchema="data-rcsbpbd-test-3.sch"?>
+<?oxygen SCHSchema="pre-data-pdb-source-test-1.sch"?>
 <!--Context: element-citation[@publication-type='data']
-Test: report    contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[@pub-id-type='accession']
-Message: Data reference with the title '' links to RCSB Protein Data Bank () with the accesion number (). PDB datasets must (only) link to wwPDB using a DOI (not to RCSB Protein Data Bank or other Protein Data Banks). Is the correct DOI to use instead:  -->
+Test: report    not(pub-id) and source[1][matches(normalize-space(lower-case(.)),'protein data bank|^(r[cs][cs]b\s)?pdb[je]?$') and lower-case(.)!='worldwide protein data bank']
+Message: Data reference with the title '' has a source that suggests it is a Protein data bank dataset - . PDB datasets should have a DOI in the format https://doi.org/10.2210/pdb{accession-number}/pdb which links to the entry in the Worldwide Protein Data Bank. If this information isn't present, please query the author: Please provide the Worldwide Protein Data Bank DOI for this dataset. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <element-citation id="dataset4" publication-type="data" specific-use="isSupplementedBy">
@@ -21,4 +21,4 @@ Message: Data reference with the title '' links to RCSB Protein Data Bank () wit
       <pub-id assigning-authority="PBD" pub-id-type="doi" xlink:href="https://doi.org/10.2210/pdb8y9m/pdb">10.2210/pdb8y9m/pdb</pub-id>
     </element-citation>
   </article>
-</root>
+</root> 

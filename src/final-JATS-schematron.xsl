@@ -39717,34 +39717,158 @@
                <xsl:text/>, but no doi starting with '10.5061/dryad' or '10.7272', which is incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <!--REPORT warning-->
-      <xsl:if test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and not(source[1]='RCSB Protein Data Bank')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and not(source[1]='RCSB Protein Data Bank')">
+      <!--REPORT error-->
+      <xsl:if test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and not(pub-id[@pub-id-type='accession'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and not(pub-id[@pub-id-type='accession'])">
             <xsl:attribute name="id">data-rcsbpbd-test-1</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-rcsbpbd-test-1</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[data-rcsbpbd-test-1] Data reference with the title '<xsl:text/>
                <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a 'http://www.rcsb.org' type link, but the database name is not 'RCSB Protein Data Bank' - <xsl:text/>
-               <xsl:value-of select="source[1]"/>
-               <xsl:text/>. Is that correct?</svrl:text>
+               <xsl:text/>' links to RCSB Protein Data Bank (<xsl:text/>
+               <xsl:value-of select="pub-id[1]/@xlink:href"/>
+               <xsl:text/>). PDB datasets must (only) link to wwPDB using a DOI (e.g. https://doi.org/10.2210/pdb8QHN/pdb), not to RCSB Protein Data Bank or other Protein Data Banks.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <!--REPORT warning-->
-      <xsl:if test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]">
+      <!--REPORT error-->
+      <xsl:if test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[@pub-id-type='accession']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[@pub-id-type='accession']">
             <xsl:attribute name="id">data-rcsbpbd-test-3</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-rcsbpbd-test-3</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[data-rcsbpbd-test-3] Data reference with the title '<xsl:text/>
                <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a PDB 'http://www.rcsb.org' type link, but is not marked as an accession type link.</svrl:text>
+               <xsl:text/>' links to RCSB Protein Data Bank (<xsl:text/>
+               <xsl:value-of select="pub-id[1]/@xlink:href"/>
+               <xsl:text/>) with the accesion number (<xsl:text/>
+               <xsl:value-of select="pub-id[@pub-id-type='accession'][1]"/>
+               <xsl:text/>). PDB datasets must (only) link to wwPDB using a DOI (not to RCSB Protein Data Bank or other Protein Data Banks). Is the correct DOI to use instead: <xsl:text/>
+               <xsl:value-of select="concat('https://doi.org/10.2210/pdb',replace(normalize-space(pub-id[@pub-id-type='accession'][1]),'^pdb_0000',''),'/pdb')"/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="contains(pub-id[1]/@xlink:href,'ebi.ac.uk/pdbe/entry/pdb/') and not(pub-id[@pub-id-type='accession'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'ebi.ac.uk/pdbe/entry/pdb/') and not(pub-id[@pub-id-type='accession'])">
+            <xsl:attribute name="id">data-pbde-test-1</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[data-pbde-test-1] Data reference with the title '<xsl:text/>
+               <xsl:value-of select="data-title[1]"/>
+               <xsl:text/>' links to Protein Data Bank in Europe (<xsl:text/>
+               <xsl:value-of select="pub-id[1]/@xlink:href"/>
+               <xsl:text/>). PDB datasets must (only) link to wwPDB using a DOI (e.g. https://doi.org/10.2210/pdb8QHN/pdb), not to Protein Data Bank in Europe or other Protein Data Banks.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="contains(pub-id[1]/@xlink:href,'ebi.ac.uk/pdbe/entry/pdb/') and pub-id[@pub-id-type='accession']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'ebi.ac.uk/pdbe/entry/pdb/') and pub-id[@pub-id-type='accession']">
+            <xsl:attribute name="id">data-pbde-test-2</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[data-pbde-test-2] Data reference with the title '<xsl:text/>
+               <xsl:value-of select="data-title[1]"/>
+               <xsl:text/>' links to Protein Data Bank in Europe (<xsl:text/>
+               <xsl:value-of select="pub-id[1]/@xlink:href"/>
+               <xsl:text/>) with the accesion number (<xsl:text/>
+               <xsl:value-of select="pub-id[@pub-id-type='accession'][1]"/>
+               <xsl:text/>). PDB datasets must (only) link to wwPDB using a DOI (not to Protein Data Bank in Europe or other Protein Data Banks). Is the correct DOI to use instead: <xsl:text/>
+               <xsl:value-of select="concat('https://doi.org/10.2210/pdb',replace(normalize-space(pub-id[@pub-id-type='accession'][1]),'^pdb_0000',''),'/pdb')"/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="contains(pub-id[1]/@xlink:href,'pdbj.org') and not(pub-id[@pub-id-type='accession'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'pdbj.org') and not(pub-id[@pub-id-type='accession'])">
+            <xsl:attribute name="id">data-pbdj-test-1</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[data-pbdj-test-1] Data reference with the title '<xsl:text/>
+               <xsl:value-of select="data-title[1]"/>
+               <xsl:text/>' links to Protein Data Bank Japan (<xsl:text/>
+               <xsl:value-of select="pub-id[1]/@xlink:href"/>
+               <xsl:text/>). PDB datasets must (only) link to wwPDB using a DOI (e.g. https://doi.org/10.2210/pdb8QHN/pdb), not to Protein Data Bank Japan or other Protein Data Banks.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="contains(pub-id[1]/@xlink:href,'pdbj.org') and pub-id[@pub-id-type='accession']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'pdbj.org') and pub-id[@pub-id-type='accession']">
+            <xsl:attribute name="id">data-pbdj-test-2</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[data-pbdj-test-2] Data reference with the title '<xsl:text/>
+               <xsl:value-of select="data-title[1]"/>
+               <xsl:text/>' links to Protein Data Bank Japan (<xsl:text/>
+               <xsl:value-of select="pub-id[1]/@xlink:href"/>
+               <xsl:text/>) with the accesion number (<xsl:text/>
+               <xsl:value-of select="pub-id[@pub-id-type='accession'][1]"/>
+               <xsl:text/>). PDB datasets must (only) link to wwPDB using a DOI (not to Protein Data Bank Japan or other Protein Data Banks). Is the correct DOI to use instead: <xsl:text/>
+               <xsl:value-of select="concat('https://doi.org/10.2210/pdb',replace(normalize-space(pub-id[@pub-id-type='accession'][1]),'^pdb_0000',''),'/pdb')"/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.2210') and (source[1]!='Worldwide Protein Data Bank')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.2210') and (source[1]!='Worldwide Protein Data Bank')">
+            <xsl:attribute name="id">data-wwpdb-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-wwpdb-test-1</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[data-wwpdb-test-1] Data reference with the title '<xsl:text/>
+               <xsl:value-of select="data-title[1]"/>
+               <xsl:text/>' has a doi starting with '10.2210' but the database name is not 'Worldwide Protein Data Bank' - <xsl:text/>
+               <xsl:value-of select="source[1]"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.2210')) and (source[1]='Worldwide Protein Data Bank')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.2210')) and (source[1]='Worldwide Protein Data Bank')">
+            <xsl:attribute name="id">data-wwpdb-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-wwpdb-test-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[data-wwpdb-test-2] Data reference with the title '<xsl:text/>
+               <xsl:value-of select="data-title[1]"/>
+               <xsl:text/>' has the database name <xsl:text/>
+               <xsl:value-of select="source[1]"/>
+               <xsl:text/>, but no doi starting with '10.2210', which is incorrect.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="not(pub-id) and source[1][matches(normalize-space(lower-case(.)),'protein data bank|^(r[cs][cs]b\s)?pdb[je]?$') and lower-case(.)!='worldwide protein data bank']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(pub-id) and source[1][matches(normalize-space(lower-case(.)),'protein data bank|^(r[cs][cs]b\s)?pdb[je]?$') and lower-case(.)!='worldwide protein data bank']">
+            <xsl:attribute name="id">final-data-pdb-source-test-1</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[final-data-pdb-source-test-1] Data reference with the title '<xsl:text/>
+               <xsl:value-of select="data-title[1]"/>
+               <xsl:text/>' has a source that suggests it is a Protein data bank dataset - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. PDB datasets should have a DOI in the format https://doi.org/10.2210/pdb{accession-number}/pdb which links to the entry in the Worldwide Protein Data Bank. If this information isn't present, please query the author.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
@@ -40305,38 +40429,6 @@
             <svrl:text>[data-neurovault-test-3] Data reference with the title '<xsl:text/>
                <xsl:value-of select="data-title[1]"/>
                <xsl:text/>' has a NeuroVault 'neurovault.org/collections' type link, but is not marked as an accession type link.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-      <!--REPORT warning-->
-      <xsl:if test="starts-with(pub-id[1][@pub-id-type='doi'],'10.2210') and (source[1]!='Worldwide Protein Data Bank')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.2210') and (source[1]!='Worldwide Protein Data Bank')">
-            <xsl:attribute name="id">data-wwpdb-test-1</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-wwpdb-test-1</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-wwpdb-test-1] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has a doi starting with '10.2210' but the database name is not 'Worldwide Protein Data Bank' - <xsl:text/>
-               <xsl:value-of select="source[1]"/>
-               <xsl:text/>.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-      <!--REPORT warning-->
-      <xsl:if test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.2210')) and (source[1]='Worldwide Protein Data Bank')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(pub-id or ext-link) and not(starts-with(pub-id[1][@pub-id-type='doi'],'10.2210')) and (source[1]='Worldwide Protein Data Bank')">
-            <xsl:attribute name="id">data-wwpdb-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-wwpdb-test-2</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[data-wwpdb-test-2] Data reference with the title '<xsl:text/>
-               <xsl:value-of select="data-title[1]"/>
-               <xsl:text/>' has the database name <xsl:text/>
-               <xsl:value-of select="source[1]"/>
-               <xsl:text/>, but no doi starting with '10.2210', which is incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
