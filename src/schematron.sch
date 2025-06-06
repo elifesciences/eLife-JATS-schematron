@@ -13675,14 +13675,30 @@ else self::*/local-name() = $allowed-p-blocks"
         id="data-dryad-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name  <value-of select="source[1]"/>, but no doi starting with '10.5061/dryad' or '10.7272', which is incorrect.</report>
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-rcsbpbd-test-1" 
-        test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and not(source[1]='RCSB Protein Data Bank')" 
-        role="warning" 
-        id="data-rcsbpbd-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.rcsb.org' type link, but the database name is not 'RCSB Protein Data Bank' - <value-of select="source[1]"/>. Is that correct?</report>
+        test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and not(pub-id[@pub-id-type='accession'])" 
+        role="error" 
+        id="data-rcsbpbd-test-1">Data reference with the title '<value-of select="data-title[1]"/>' links to RCSB Protein Data Bank (<value-of select="pub-id[1]/@xlink:href"/>). PDB datasets must (only) link to wwPDB using a DOI (e.g. https://doi.org/10.2210/pdb8QHN/pdb), not to RCSB Protein Data Bank or other Protein Data Banks.</report>
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-rcsbpbd-test-3" 
-        test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[1][@pub-id-type!='accession' or not(@pub-id-type)]" 
-        role="warning" 
-        id="data-rcsbpbd-test-3">Data reference with the title '<value-of select="data-title[1]"/>' has a PDB 'http://www.rcsb.org' type link, but is not marked as an accession type link.</report>
+        test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[@pub-id-type='accession']" 
+        role="error" 
+        id="data-rcsbpbd-test-3">Data reference with the title '<value-of select="data-title[1]"/>' links to RCSB Protein Data Bank (<value-of select="pub-id[1]/@xlink:href"/>) with the accesion number (<value-of select="pub-id[@pub-id-type='accession'][1]"/>). PDB datasets must (only) link to wwPDB using a DOI (not to RCSB Protein Data Bank or other Protein Data Banks). Is the correct DOI to use instead: <value-of select="concat('https://doi.org/10.2210/pdb',replace(normalize-space(pub-id[@pub-id-type='accession'][1]),'^pdb_0000',''),'/pdb')"/></report>
+      
+      <report test="contains(pub-id[1]/@xlink:href,'ebi.ac.uk/pdbe/entry/pdb/') and not(pub-id[@pub-id-type='accession'])" 
+        role="error" 
+        id="data-pbde-test-1">Data reference with the title '<value-of select="data-title[1]"/>' links to Protein Data Bank in Europe (<value-of select="pub-id[1]/@xlink:href"/>). PDB datasets must (only) link to wwPDB using a DOI (e.g. https://doi.org/10.2210/pdb8QHN/pdb), not to Protein Data Bank in Europe or other Protein Data Banks.</report>
+      
+      <report test="contains(pub-id[1]/@xlink:href,'ebi.ac.uk/pdbe/entry/pdb/') and pub-id[@pub-id-type='accession']" 
+        role="error" 
+        id="data-pbde-test-2">Data reference with the title '<value-of select="data-title[1]"/>' links to Protein Data Bank in Europe (<value-of select="pub-id[1]/@xlink:href"/>) with the accesion number (<value-of select="pub-id[@pub-id-type='accession'][1]"/>). PDB datasets must (only) link to wwPDB using a DOI (not to Protein Data Bank in Europe or other Protein Data Banks). Is the correct DOI to use instead: <value-of select="concat('https://doi.org/10.2210/pdb',replace(normalize-space(pub-id[@pub-id-type='accession'][1]),'^pdb_0000',''),'/pdb')"/></report>
+      
+      <report test="contains(pub-id[1]/@xlink:href,'pdbj.org') and not(pub-id[@pub-id-type='accession'])" 
+        role="error" 
+        id="data-pbdj-test-1">Data reference with the title '<value-of select="data-title[1]"/>' links to Protein Data Bank Japan (<value-of select="pub-id[1]/@xlink:href"/>). PDB datasets must (only) link to wwPDB using a DOI (e.g. https://doi.org/10.2210/pdb8QHN/pdb), not to Protein Data Bank Japan or other Protein Data Banks.</report>
+      
+      <report test="contains(pub-id[1]/@xlink:href,'pdbj.org') and pub-id[@pub-id-type='accession']" 
+        role="error" 
+        id="data-pbdj-test-2">Data reference with the title '<value-of select="data-title[1]"/>' links to Protein Data Bank Japan (<value-of select="pub-id[1]/@xlink:href"/>) with the accesion number (<value-of select="pub-id[@pub-id-type='accession'][1]"/>). PDB datasets must (only) link to wwPDB using a DOI (not to Protein Data Bank Japan or other Protein Data Banks). Is the correct DOI to use instead: <value-of select="concat('https://doi.org/10.2210/pdb',replace(normalize-space(pub-id[@pub-id-type='accession'][1]),'^pdb_0000',''),'/pdb')"/></report>
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-emdb-test-1" 
         test="not(contains(pub-id[1]/@xlink:href,'empiar')) and matches(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb|www.ebi.ac.uk/pdbe/entry/emdb') and not(source[1]='Electron Microscopy Data Bank')" 
