@@ -41860,8 +41860,8 @@
    <xsl:template match="inline-formula[not(descendant::mml:mtable) and following-sibling::text()]" priority="1000" mode="M561">
 
 		<!--REPORT warning-->
-      <xsl:if test="string-length(.) gt 89">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="string-length(.) gt 89">
+      <xsl:if test="string-length(descendant::mml:math[1]) gt 89">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="string-length(descendant::mml:math[1]) gt 89">
             <xsl:attribute name="id">inline-formula-length-test-1</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-length-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -41869,7 +41869,7 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[inline-formula-length-test-1] Inline formula containing '<xsl:text/>
-               <xsl:value-of select="."/>
+               <xsl:value-of select="descendant::mml:math[1]"/>
                <xsl:text/>' is particularly long. Consider either splitting this up into multiple equations or capturing this as a display equation, as the display on Continuum will likely be strange.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
