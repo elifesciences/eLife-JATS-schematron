@@ -3166,7 +3166,7 @@
       <!-- Strip the document commands from the start and end -->
       <let name="document-stripped-text" value="replace(.,'^\\begin\{document.|\\end\{document.$','')"/>
       <!-- Remove the formula commands to find the actual expression -->
-      <let name="formula-text" value="replace($document-stripped-text,'^\$\$\{|\}\$\$$','')"/>
+      <let name="formula-text" value="replace($document-stripped-text,'^\$\$|\$\$$','')"/>
       
       <assert test="parent::alternatives" role="error" id="tex-math-test-1">[tex-math-test-1] <name/> element is not allowed as a child of <value-of select="parent::*/name()"/>. It can only be captured as a child of alternatives.</assert>
       
@@ -3178,7 +3178,7 @@
       
       <report test="ancestor::inline-formula and ((not(starts-with($document-stripped-text,'$')) or not(ends-with($document-stripped-text,'$'))) or starts-with($document-stripped-text,'$$') or ends-with($document-stripped-text,'$$'))" role="error" id="tex-math-test-5">[tex-math-test-5] If <name/> element is a descendant of inline-formula then the expression must be wrapped in single dollar signs, i.e. $insert-formula-here$. This one isn't - <value-of select="."/></report>
       
-      <report test="ancestor::disp-formula and not(contains($formula-text,'\displaystyle'))" role="warning" id="tex-math-test-6">[tex-math-test-6] <name/> element in a disp-formula should contain the \displaystyle command. This one doesn't - <value-of select="."/></report>
+      <report test="ancestor::disp-formula and not(starts-with($formula-text,'\displaystyle'))" role="warning" id="tex-math-test-6">[tex-math-test-6] <value-of select="$document-stripped-text"/><name/> element in a disp-formula should start with the \displaystyle command. This one doesn't - <value-of select="$formula-text"/></report>
       
       <report test="ancestor::inline-formula and contains($formula-text,'\displaystyle')" role="warning" id="tex-math-test-7">[tex-math-test-7] <name/> element is in an inline-formula, and yet it contains the \displaystyle command. Is that correct? - <value-of select="."/></report>
     </rule></pattern><pattern id="disp-formula-child-tests-pattern"><rule context="disp-formula/*" id="disp-formula-child-tests">

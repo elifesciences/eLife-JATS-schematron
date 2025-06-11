@@ -1447,7 +1447,7 @@
   <pattern id="content-containers">
     <rule context="tex-math" id="tex-math-tests">
       <let name="document-stripped-text" value="replace(.,'^\\begin\{document.|\\end\{document.$','')"/>
-      <let name="formula-text" value="replace($document-stripped-text,'^\$\$\{|\}\$\$$','')"/>
+      <let name="formula-text" value="replace($document-stripped-text,'^\$\$|\$\$$','')"/>
       <assert test="ends-with(.,'\end{document}')" role="error" id="tex-math-test-3">Content of <name/> element must end with '\end{document}'. This one doesn't - <value-of select="."/>
       </assert>
     </rule>

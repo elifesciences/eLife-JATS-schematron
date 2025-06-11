@@ -1447,7 +1447,7 @@
   <pattern id="content-containers">
     <rule context="tex-math" id="tex-math-tests">
       <let name="document-stripped-text" value="replace(.,'^\\begin\{document.|\\end\{document.$','')"/>
-      <let name="formula-text" value="replace($document-stripped-text,'^\$\$\{|\}\$\$$','')"/>
+      <let name="formula-text" value="replace($document-stripped-text,'^\$\$|\$\$$','')"/>
       <report test="ancestor::inline-formula and contains($formula-text,'\displaystyle')" role="warning" id="tex-math-test-7">
         <name/> element is in an inline-formula, and yet it contains the \displaystyle command. Is that correct? - <value-of select="."/>
       </report>

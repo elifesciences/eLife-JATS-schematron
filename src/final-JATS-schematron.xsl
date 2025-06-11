@@ -16459,7 +16459,7 @@
    <!--RULE tex-math-tests-->
    <xsl:template match="tex-math" priority="1000" mode="M218">
       <xsl:variable name="document-stripped-text" select="replace(.,'^\\begin\{document.|\\end\{document.$','')"/>
-      <xsl:variable name="formula-text" select="replace($document-stripped-text,'^\$\$\{|\}\$\$$','')"/>
+      <xsl:variable name="formula-text" select="replace($document-stripped-text,'^\$\$|\$\$$','')"/>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="parent::alternatives"/>
@@ -16549,17 +16549,20 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="ancestor::disp-formula and not(contains($formula-text,'\displaystyle'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::disp-formula and not(contains($formula-text,'\displaystyle'))">
+      <xsl:if test="ancestor::disp-formula and not(starts-with($formula-text,'\displaystyle'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::disp-formula and not(starts-with($formula-text,'\displaystyle'))">
             <xsl:attribute name="id">tex-math-test-6</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[tex-math-test-6] <xsl:text/>
+               <xsl:value-of select="$document-stripped-text"/>
+               <xsl:text/>
+               <xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/> element in a disp-formula should contain the \displaystyle command. This one doesn't - <xsl:text/>
-               <xsl:value-of select="."/>
+               <xsl:text/> element in a disp-formula should start with the \displaystyle command. This one doesn't - <xsl:text/>
+               <xsl:value-of select="$formula-text"/>
                <xsl:text/>
             </svrl:text>
          </svrl:successful-report>
