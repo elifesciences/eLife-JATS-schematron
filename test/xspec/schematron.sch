@@ -9473,7 +9473,7 @@
   <pattern id="inline-formula-length-tests-pattern">
     <rule context="inline-formula[not(descendant::mml:mtable) and following-sibling::text()]" id="inline-formula-length-tests">
       
-      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-length-test-1" test="string-length(.) gt 89" role="warning" id="inline-formula-length-test-1">Inline formula containing '<value-of select="."/>' is particularly long. Consider either splitting this up into multiple equations or capturing this as a display equation, as the display on Continuum will likely be strange.</report>
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-length-test-1" test="string-length(descendant::mml:math[1]) gt 89" role="warning" id="inline-formula-length-test-1">Inline formula containing '<value-of select="descendant::mml:math[1]"/>' is particularly long. Consider either splitting this up into multiple equations or capturing this as a display equation, as the display on Continuum will likely be strange.</report>
       
     </rule>
   </pattern>

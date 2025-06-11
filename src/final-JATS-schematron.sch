@@ -7401,7 +7401,7 @@
       
     </rule></pattern><pattern id="inline-formula-length-tests-pattern"><rule context="inline-formula[not(descendant::mml:mtable) and following-sibling::text()]" id="inline-formula-length-tests">
       
-      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-length-test-1" test="string-length(.) gt 89" role="warning" id="inline-formula-length-test-1">[inline-formula-length-test-1] Inline formula containing '<value-of select="."/>' is particularly long. Consider either splitting this up into multiple equations or capturing this as a display equation, as the display on Continuum will likely be strange.</report>
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-length-test-1" test="string-length(descendant::mml:math[1]) gt 89" role="warning" id="inline-formula-length-test-1">[inline-formula-length-test-1] Inline formula containing '<value-of select="descendant::mml:math[1]"/>' is particularly long. Consider either splitting this up into multiple equations or capturing this as a display equation, as the display on Continuum will likely be strange.</report>
       
     </rule></pattern><pattern id="p-punctuation-pattern"><rule context="article[not(@article-type=($notice-article-types,'article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]" id="p-punctuation">
       <let name="para" value="replace(.,' ',' ')"/>
