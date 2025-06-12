@@ -17562,16 +17562,16 @@
    <!--RULE table-fn-tests-->
    <xsl:template match="table-wrap-foot//fn" priority="1000" mode="M242">
 
-		<!--REPORT warning-->
+		<!--REPORT error-->
       <xsl:if test="label and not(@id)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="label and not(@id)">
             <xsl:attribute name="id">table-fn-test-1</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-test-1</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>[table-fn-test-1] Table footnote with a label should have an id. This one has the label '<xsl:text/>
+            <svrl:text>[table-fn-test-1] Table footnote with a label must have an id. This one has the label '<xsl:text/>
                <xsl:value-of select="label"/>
                <xsl:text/>' but no id.</svrl:text>
          </svrl:successful-report>

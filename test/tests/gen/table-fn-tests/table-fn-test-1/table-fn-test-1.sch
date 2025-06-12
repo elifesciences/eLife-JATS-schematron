@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="table-wrap-foot//fn" id="table-fn-tests">
-      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-test-1" test="label and not(@id)" role="warning" id="table-fn-test-1">Table footnote with a label should have an id. This one has the label '<value-of select="label"/>' but no id.</report>
+      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-test-1" test="label and not(@id)" role="error" id="table-fn-test-1">Table footnote with a label must have an id. This one has the label '<value-of select="label"/>' but no id.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
