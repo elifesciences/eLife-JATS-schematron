@@ -1682,6 +1682,16 @@
         role="warning"
         flag="dl-ar"
         id="test-r-article-a-reply">Author response should usually be present for research articles, but this one does not have one. Is that correct?</report>
+	  
+	  <report test="count(sub-article[@article-type=('reply','author-comment')]) gt 1" 
+        role="error"
+        flag="dl-ar"
+        id="test-r-article-a-reply-2">There cannot be more than one author response. This article has <value-of select="count(sub-article[@article-type=('reply','author-comment')])"/>.</report>
+	  
+	  <report test="count(sub-article[@article-type='editor-report']) gt 1" 
+        role="error" 
+        flag="dl-ar"
+        id="editor-report-2">There cannot be more than one eLife Assessment or Editor's evaluation. This one has <value-of select="count(sub-article[@article-type='editor-report'])"/>.</report>
 	
 	</rule>
    
