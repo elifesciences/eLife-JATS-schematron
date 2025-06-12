@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="test-r-article-a-reply-2.sch"?>
+<!--Context: article[@article-type='research-article']
+Test: report    count(sub-article[@article-type=('reply','author-comment')]) gt 1
+Message: There cannot be more than one author response. This article has . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">]
+    <article article-type="research-article">
+        <sub-article article-type="author-comment"/>
+    </article>
+</root>

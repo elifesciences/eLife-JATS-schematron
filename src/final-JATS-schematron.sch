@@ -1553,6 +1553,10 @@
 	  <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#final-test-r-article-d-letter-feat" test="$disp-channel = 'Feature Article' and not(sub-article[@article-type='decision-letter'])" role="warning" flag="dl-ar" id="final-test-r-article-d-letter-feat">[final-test-r-article-d-letter-feat] A decision letter should be present for research articles. Feature template 5s almost always have a decision letter, but this one does not. Is that correct?</report>
 		
 	  <report test="$disp-channel != 'Scientific Correspondence' and not(sub-article[@article-type=('reply','author-comment')])" role="warning" flag="dl-ar" id="test-r-article-a-reply">[test-r-article-a-reply] Author response should usually be present for research articles, but this one does not have one. Is that correct?</report>
+	  
+	  <report test="count(sub-article[@article-type=('reply','author-comment')]) gt 1" role="error" flag="dl-ar" id="test-r-article-a-reply-2">[test-r-article-a-reply-2] There cannot be more than one author response. This article has <value-of select="count(sub-article[@article-type=('reply','author-comment')])"/>.</report>
+	  
+	  <report test="count(sub-article[@article-type='editor-report']) gt 1" role="error" flag="dl-ar" id="editor-report-2">[editor-report-2] There cannot be more than one eLife Assessment or Editor's evaluation. This one has <value-of select="count(sub-article[@article-type='editor-report'])"/>.</report>
 	
 	</rule></pattern><pattern id="research-article-sub-article-pattern"><rule context="article[@article-type='research-article' and sub-article]" id="research-article-sub-article">
      <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/> 

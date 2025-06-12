@@ -125,6 +125,26 @@
         <x:expect-report id="test-r-article-a-reply" role="warning"/>
         <x:expect-not-assert id="research-article-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="test-r-article-a-reply-2-pass">
+        <x:context href="../tests/gen/research-article/test-r-article-a-reply-2/pass.xml"/>
+        <x:expect-not-report id="test-r-article-a-reply-2" role="error"/>
+        <x:expect-not-assert id="research-article-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="test-r-article-a-reply-2-fail">
+        <x:context href="../tests/gen/research-article/test-r-article-a-reply-2/fail.xml"/>
+        <x:expect-report id="test-r-article-a-reply-2" role="error"/>
+        <x:expect-not-assert id="research-article-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-report-2-pass">
+        <x:context href="../tests/gen/research-article/editor-report-2/pass.xml"/>
+        <x:expect-not-report id="editor-report-2" role="error"/>
+        <x:expect-not-assert id="research-article-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-report-2-fail">
+        <x:context href="../tests/gen/research-article/editor-report-2/fail.xml"/>
+        <x:expect-report id="editor-report-2" role="error"/>
+        <x:expect-not-assert id="research-article-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="research-article-sub-article">
       <x:scenario label="r-article-sub-articles-pass">

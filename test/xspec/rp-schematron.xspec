@@ -61,6 +61,26 @@
         <x:expect-report id="no-author-response-2" role="warning"/>
         <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="author-response-2-pass">
+        <x:context href="../tests/rp/article-tests/author-response-2/pass.xml"/>
+        <x:expect-not-report id="author-response-2" role="error"/>
+        <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-response-2-fail">
+        <x:context href="../tests/rp/article-tests/author-response-2/fail.xml"/>
+        <x:expect-report id="author-response-2" role="error"/>
+        <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="assessment-2-pass">
+        <x:context href="../tests/rp/article-tests/assessment-2/pass.xml"/>
+        <x:expect-not-report id="assessment-2" role="error"/>
+        <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="assessment-2-fail">
+        <x:context href="../tests/rp/article-tests/assessment-2/fail.xml"/>
+        <x:expect-report id="assessment-2" role="error"/>
+        <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="article-title-checks">
       <x:scenario label="article-title-all-caps-pass">

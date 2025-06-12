@@ -6500,6 +6500,34 @@
             <svrl:text>[test-r-article-a-reply] Author response should usually be present for research articles, but this one does not have one. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="count(sub-article[@article-type=('reply','author-comment')]) gt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(sub-article[@article-type=('reply','author-comment')]) gt 1">
+            <xsl:attribute name="id">test-r-article-a-reply-2</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[test-r-article-a-reply-2] There cannot be more than one author response. This article has <xsl:text/>
+               <xsl:value-of select="count(sub-article[@article-type=('reply','author-comment')])"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="count(sub-article[@article-type='editor-report']) gt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(sub-article[@article-type='editor-report']) gt 1">
+            <xsl:attribute name="id">editor-report-2</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[editor-report-2] There cannot be more than one eLife Assessment or Editor's evaluation. This one has <xsl:text/>
+               <xsl:value-of select="count(sub-article[@article-type='editor-report'])"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M64"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M64"/>

@@ -1902,6 +1902,32 @@
                <xsl:text/>) does not have an author response, which is unusual. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="count(sub-article[@article-type='author-comment']) gt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(sub-article[@article-type='author-comment']) gt 1">
+            <xsl:attribute name="id">author-response-2</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[author-response-2] A Reviewed Preprint cannot have more than one author response. This one has <xsl:text/>
+               <xsl:value-of select="count(sub-article[@article-type='author-comment'])"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="count(sub-article[@article-type='editor-report']) gt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(sub-article[@article-type='editor-report']) gt 1">
+            <xsl:attribute name="id">assessment-2</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[assessment-2] A Reviewed Preprint cannot have more than one eLife Assessment. This one has <xsl:text/>
+               <xsl:value-of select="count(sub-article[@article-type='author-comment'])"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M26"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M26"/>
