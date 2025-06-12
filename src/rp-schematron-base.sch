@@ -937,6 +937,10 @@
         <report test="matches(.,'^[\p{Z}\p{N}\p{P}]*$')" 
         role="warning" 
         id="collab-check-4">collab element consists only of spaces, punctuation and/or numbers (or is empty) - '<value-of select="."/>'. Is it really a collab?</report>
+        
+        <report test="contains(.,',') and contains(.,'.') or count(tokenize(.,',')) gt 2" 
+        role="warning" 
+        id="collab-check-5">collab element contains '<value-of select="."/>'. Is it really a collab?</report>
      </rule>
     </pattern>
 

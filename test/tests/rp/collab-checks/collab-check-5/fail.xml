@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="collab-check-5.sch"?>
+<!--Context: collab
+Test: report    contains(.,',') and contains(.,'.') or count(tokenize(.,',')) gt 2
+Message: collab element contains ''. Is it really a collab? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mixed-citation>
+            <collab>van der Lee, R., Buljan, M., Lang, B., Weatheritt, R.J., Daughdrill, G.W., Dunker, A.K., Fuxreiter, M., Gough, J., Gsponer, J., Jones, D.T.,</collab>
+            ...
+        </mixed-citation>
+    </article>
+</root>

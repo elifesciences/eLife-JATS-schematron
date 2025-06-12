@@ -3915,6 +3915,19 @@
                <xsl:text/>'. Is it really a collab?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="contains(.,',') and contains(.,'.') or count(tokenize(.,',')) gt 2">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,',') and contains(.,'.') or count(tokenize(.,',')) gt 2">
+            <xsl:attribute name="id">collab-check-5</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[collab-check-5] collab element contains '<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>'. Is it really a collab?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M56"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M56"/>
