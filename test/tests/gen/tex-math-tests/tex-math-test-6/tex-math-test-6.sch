@@ -1447,9 +1447,10 @@
   <pattern id="content-containers">
     <rule context="tex-math" id="tex-math-tests">
       <let name="document-stripped-text" value="replace(.,'^\\begin\{document.|\\end\{document.$','')"/>
-      <let name="formula-text" value="replace($document-stripped-text,'^\$\$\{|\}\$\$$','')"/>
-      <report test="ancestor::disp-formula and not(contains($formula-text,'\displaystyle'))" role="warning" id="tex-math-test-6">
-        <name/> element in a disp-formula should contain the \displaystyle command. This one doesn't - <value-of select="."/>
+      <let name="formula-text" value="replace($document-stripped-text,'^\$\$|\$\$$','')"/>
+      <report test="ancestor::disp-formula and not(starts-with($formula-text,'\displaystyle'))" role="warning" id="tex-math-test-6">
+        <value-of select="$document-stripped-text"/>
+        <name/> element in a disp-formula should start with the \displaystyle command. This one doesn't - <value-of select="$formula-text"/>
       </report>
     </rule>
   </pattern>

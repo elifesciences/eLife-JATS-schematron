@@ -5171,7 +5171,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <!-- Strip the document commands from the start and end -->
       <let name="document-stripped-text" value="replace(.,'^\\begin\{document.|\\end\{document.$','')"/>
       <!-- Remove the formula commands to find the actual expression -->
-      <let name="formula-text" value="replace($document-stripped-text,'^\$\$\{|\}\$\$$','')"/>
+      <let name="formula-text" value="replace($document-stripped-text,'^\$\$|\$\$$','')"/>
       
       <assert test="parent::alternatives" 
         role="error" 
@@ -5193,9 +5193,9 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="tex-math-test-5">If <name/> element is a descendant of inline-formula then the expression must be wrapped in single dollar signs, i.e. $insert-formula-here$. This one isn't - <value-of select="."/></report>
       
-      <report test="ancestor::disp-formula and not(contains($formula-text,'\displaystyle'))" 
+      <report test="ancestor::disp-formula and not(starts-with($formula-text,'\displaystyle'))" 
         role="warning" 
-        id="tex-math-test-6"><name/> element in a disp-formula should contain the \displaystyle command. This one doesn't - <value-of select="."/></report>
+        id="tex-math-test-6"><value-of select="$document-stripped-text"/><name/> element in a disp-formula should start with the \displaystyle command. This one doesn't - <value-of select="$formula-text"/></report>
       
       <report test="ancestor::inline-formula and contains($formula-text,'\displaystyle')" 
         role="warning" 
@@ -5562,8 +5562,8 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-test-1" 
         test="label and not(@id)" 
-        role="warning" 
-        id="table-fn-test-1">Table footnote with a label should have an id. This one has the label '<value-of select="label"/>' but no id.</report>
+        role="error" 
+        id="table-fn-test-1">Table footnote with a label must have an id. This one has the label '<value-of select="label"/>' but no id.</report>
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-test-2" 
         test="@id and not(label)" 
