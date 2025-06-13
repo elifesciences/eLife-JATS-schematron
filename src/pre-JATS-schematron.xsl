@@ -16412,9 +16412,6 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[tex-math-test-6] <xsl:text/>
-               <xsl:value-of select="$document-stripped-text"/>
-               <xsl:text/>
-               <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> element in a disp-formula should start with the \displaystyle command. This one doesn't - <xsl:text/>
                <xsl:value-of select="$formula-text"/>

@@ -5205,7 +5205,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report test="ancestor::disp-formula and not(starts-with($formula-text,'\displaystyle'))" 
         role="warning" 
-        id="tex-math-test-6"><value-of select="$document-stripped-text"/><name/> element in a disp-formula should start with the \displaystyle command. This one doesn't - <value-of select="$formula-text"/></report>
+        id="tex-math-test-6"><name/> element in a disp-formula should start with the \displaystyle command. This one doesn't - <value-of select="$formula-text"/></report>
       
       <report test="ancestor::inline-formula and contains($formula-text,'\displaystyle')" 
         role="warning" 
