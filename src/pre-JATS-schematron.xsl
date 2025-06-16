@@ -15749,7 +15749,7 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[inline-formula-test-2] There is no space between inline-formula and the preceding text - <xsl:text/>
-               <xsl:value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>
+               <xsl:value-of select="concat(substring($pre-text,string-length($pre-text)-15),descendant::mml:math[1])"/>
                <xsl:text/> - Is this correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
@@ -15763,7 +15763,7 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[inline-formula-test-3] There is no space between inline-formula and the following text - <xsl:text/>
-               <xsl:value-of select="concat(.,substring($post-text,1,15))"/>
+               <xsl:value-of select="concat(descendant::mml:math[1],substring($post-text,1,15))"/>
                <xsl:text/> - Is this correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
@@ -18101,8 +18101,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="matches(.,'[\(\[]\p{Zs}+')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'[\(\[]\p{Zs}+')">
+      <xsl:if test="matches(replace(.,'\\begin.document.*?\\end.document.',''),'[\(\[]\p{Zs}+')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(replace(.,'\\begin.document.*?\\end.document.',''),'[\(\[]\p{Zs}+')">
             <xsl:attribute name="id">bracket-test-5</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -18117,8 +18117,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="matches(.,'\p{Zs}+[\)\]]')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Zs}+[\)\]]')">
+      <xsl:if test="matches(replace(.,'\\begin.document.*?\\end.document.',''),'\p{Zs}+[\)\]]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(replace(.,'\\begin.document.*?\\end.document.',''),'\p{Zs}+[\)\]]')">
             <xsl:attribute name="id">bracket-test-6</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -18126,7 +18126,7 @@
             </xsl:attribute>
             <svrl:text>[bracket-test-6] <xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/> element contains a closeing bracket immediately preceded by a space (e.g. ' )' or ' ]'). Should the space be removed? <xsl:text/>
+               <xsl:text/> element contains a closing bracket immediately preceded by a space (e.g. ' )' or ' ]'). Should the space be removed? <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>
             </svrl:text>

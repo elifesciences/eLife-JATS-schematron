@@ -1450,8 +1450,8 @@
       <let name="close-curly" value="string-length(replace(.,'[^\)]',''))"/>
       <let name="open-square" value="string-length(replace(.,'[^\[]',''))"/>
       <let name="close-square" value="string-length(replace(.,'[^\]]',''))"/>
-      <report test="matches(.,'\p{Zs}+[\)\]]')" role="warning" id="bracket-test-6">
-        <name/> element contains a closeing bracket immediately preceded by a space (e.g. ' )' or ' ]'). Should the space be removed? <value-of select="."/>
+      <report test="matches(replace(.,'\\begin.document.*?\\end.document.',''),'\p{Zs}+[\)\]]')" role="warning" id="bracket-test-6">
+        <name/> element contains a closing bracket immediately preceded by a space (e.g. ' )' or ' ]'). Should the space be removed? <value-of select="."/>
       </report>
     </rule>
   </pattern>
