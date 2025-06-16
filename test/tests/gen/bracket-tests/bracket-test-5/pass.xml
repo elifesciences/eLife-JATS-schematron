@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="bracket-test-5.sch"?>
 <!--Context: p[matches(.,'[\(\)\[\]]')]|th[matches(.,'[\(\)\[\]]')]|td[matches(.,'[\(\)\[\]]')]|title[matches(.,'[\(\)\[\]]')]
-Test: report    matches(.,'[\(\[]\p{Zs}+')
+Test: report    matches(replace(.,'\\begin.document.*?\\end.document.',''),'[\(\[]\p{Zs}+')
 Message:  element contains an opening bracket immediately followed by a space (e.g. '( ' or '[ '). Should the space be removed?  -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
 <article>

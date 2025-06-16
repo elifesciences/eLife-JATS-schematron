@@ -1450,7 +1450,7 @@
       <let name="close-curly" value="string-length(replace(.,'[^\)]',''))"/>
       <let name="open-square" value="string-length(replace(.,'[^\[]',''))"/>
       <let name="close-square" value="string-length(replace(.,'[^\]]',''))"/>
-      <report test="matches(.,'[\(\[]\p{Zs}+')" role="warning" id="bracket-test-5">
+      <report test="matches(replace(.,'\\begin.document.*?\\end.document.',''),'[\(\[]\p{Zs}+')" role="warning" id="bracket-test-5">
         <name/> element contains an opening bracket immediately followed by a space (e.g. '( ' or '[ '). Should the space be removed? <value-of select="."/>
       </report>
     </rule>

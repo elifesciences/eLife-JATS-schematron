@@ -3138,9 +3138,9 @@
       
       <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-1" test="mml:math or alternatives/mml:math" role="error" id="inline-formula-test-1">inline-formula must contain an mml:math element.</assert>
       
-      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-2" test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')" role="warning" id="inline-formula-test-2">There is no space between inline-formula and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-2" test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')" role="warning" id="inline-formula-test-2">There is no space between inline-formula and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),descendant::mml:math[1])"/> - Is this correct?</report>
       
-      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-3" test="not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and matches($post-text,'^[\p{L}\p{N}\p{M}]')" role="warning" id="inline-formula-test-3">There is no space between inline-formula and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-3" test="not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and matches($post-text,'^[\p{L}\p{N}\p{M}]')" role="warning" id="inline-formula-test-3">There is no space between inline-formula and the following text - <value-of select="concat(descendant::mml:math[1],substring($post-text,1,15))"/> - Is this correct?</report>
       
       <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-4" test="parent::p or parent::td or parent::th or parent::title" role="error" id="inline-formula-test-4"><name/> must be a child of p, td, th or title. The formula containing <value-of select="."/> is a child of <value-of select="parent::*/local-name()"/></assert>
     </rule></pattern><pattern id="math-tests-pattern"><rule context="mml:math" id="math-tests">
@@ -3509,9 +3509,9 @@
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-4" test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\]')) and ($open-square lt $close-square)" role="warning" id="bracket-test-4"><name/> element contains more right ']' than left '[' square brackets (<value-of select="$close-square"/> and <value-of select="$open-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) lt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/></report>
 
-      <report test="matches(.,'[\(\[]\p{Zs}+')" role="warning" id="bracket-test-5"><name/> element contains an opening bracket immediately followed by a space (e.g. '( ' or '[ '). Should the space be removed? <value-of select="."/></report>
+      <report test="matches(replace(.,'\\begin.document.*?\\end.document.',''),'[\(\[]\p{Zs}+')" role="warning" id="bracket-test-5"><name/> element contains an opening bracket immediately followed by a space (e.g. '( ' or '[ '). Should the space be removed? <value-of select="."/></report>
 
-      <report test="matches(.,'\p{Zs}+[\)\]]')" role="warning" id="bracket-test-6"><name/> element contains a closeing bracket immediately preceded by a space (e.g. ' )' or ' ]'). Should the space be removed? <value-of select="."/></report>
+      <report test="matches(replace(.,'\\begin.document.*?\\end.document.',''),'\p{Zs}+[\)\]]')" role="warning" id="bracket-test-6"><name/> element contains a closing bracket immediately preceded by a space (e.g. ' )' or ' ]'). Should the space be removed? <value-of select="."/></report>
     </rule></pattern><pattern id="body-box-tests-pattern"><rule context="article/body//boxed-text[not(parent::body) or preceding-sibling::*]" id="body-box-tests">
       
       <assert test="matches(label[1],'^Box \d{1,2}\.$')" role="error" id="body-box-label-test"><name/> element must have a label in the format "Box 0.".</assert>
