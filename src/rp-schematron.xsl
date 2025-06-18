@@ -3128,6 +3128,45 @@
                <xsl:text/>) has an editor person-group. This info isn;t typically included in journal refs. Is it really a journal ref? Does it really contain editors?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="(fpage or lpage) and elocation-id">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(fpage or lpage) and elocation-id">
+            <xsl:attribute name="id">journal-ref-page-elocation-id</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[journal-ref-page-elocation-id] This journal reference (<xsl:text/>
+               <xsl:value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>
+               <xsl:text/>) has both an elocation-id (<xsl:text/>
+               <xsl:value-of select="elocation-id[1]"/>
+               <xsl:text/>), and an fpage or lpage (<xsl:text/>
+               <xsl:value-of select="string-join(*[name()=('fpage','lpage')],'; ')"/>
+               <xsl:text/>), which cannot be correct.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1 or count(comment) gt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1 or count(comment) gt 1">
+            <xsl:attribute name="id">err-elem-cit-journal-6-7</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-6-7</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[err-elem-cit-journal-6-7] The following elements may not occur more than once in a &lt;mixed-citation&gt;: &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, and &lt;comment&gt;In press&lt;/comment&gt;. Reference '<xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>' has <xsl:text/>
+               <xsl:value-of select="count(fpage)"/>
+               <xsl:text/> &lt;fpage&gt;, <xsl:text/>
+               <xsl:value-of select="count(lpage)"/>
+               <xsl:text/> &lt;lpage&gt;, <xsl:text/>
+               <xsl:value-of select="count(elocation-id)"/>
+               <xsl:text/> &lt;elocation-id&gt;, and <xsl:text/>
+               <xsl:value-of select="count(comment)"/>
+               <xsl:text/> &lt;comment&gt; elements.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M42"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M42"/>
@@ -3298,6 +3337,45 @@
                <xsl:text/>) has an lpage element - <xsl:text/>
                <xsl:value-of select="lpage"/>
                <xsl:text/>. That information is either tagged incorrectly, or the publication-type is wrong.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1 or count(comment) gt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1 or count(comment) gt 1">
+            <xsl:attribute name="id">err-elem-cit-preprint-6-7</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-6-7</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[err-elem-cit-preprint-6-7] The following elements may not occur more than once in a &lt;mixed-citation&gt;: &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, and &lt;comment&gt;. Reference '<xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>' has <xsl:text/>
+               <xsl:value-of select="count(fpage)"/>
+               <xsl:text/> &lt;fpage&gt;, <xsl:text/>
+               <xsl:value-of select="count(lpage)"/>
+               <xsl:text/> &lt;lpage&gt;, <xsl:text/>
+               <xsl:value-of select="count(elocation-id)"/>
+               <xsl:text/> &lt;elocation-id&gt;, and <xsl:text/>
+               <xsl:value-of select="count(comment)"/>
+               <xsl:text/> &lt;comment&gt; elements.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="elocation-id and fpage">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="elocation-id and fpage">
+            <xsl:attribute name="id">preprint-ref-fpage-elocation-id</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[preprint-ref-fpage-elocation-id] This preprint reference (<xsl:text/>
+               <xsl:value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>
+               <xsl:text/>) has both fpage (<xsl:text/>
+               <xsl:value-of select="fpage"/>
+               <xsl:text/>) and elocation-id (<xsl:text/>
+               <xsl:value-of select="elocation-id"/>
+               <xsl:text/>) elements which must be wrong.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M44"/>

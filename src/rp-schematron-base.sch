@@ -715,6 +715,14 @@
        <report test="person-group[@person-group-type='editor']" 
         role="warning" 
         id="journal-ref-editor">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has an editor person-group. This info isn;t typically included in journal refs. Is it really a journal ref? Does it really contain editors?</report>
+       
+       <report test="(fpage or lpage) and elocation-id" 
+        role="error" 
+        id="journal-ref-page-elocation-id">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has both an elocation-id (<value-of select="elocation-id[1]"/>), and an fpage or lpage (<value-of select="string-join(*[name()=('fpage','lpage')],'; ')"/>), which cannot be correct.</report>
+       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-6-7" 
+        test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1 or count(comment) gt 1" 
+        role="error" 
+        id="err-elem-cit-journal-6-7">The following elements may not occur more than once in a &lt;mixed-citation&gt;: &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, and &lt;comment&gt;In press&lt;/comment&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(fpage)"/> &lt;fpage&gt;, <value-of select="count(lpage)"/> &lt;lpage&gt;, <value-of select="count(elocation-id)"/> &lt;elocation-id&gt;, and <value-of select="count(comment)"/> &lt;comment&gt; elements.</report>
      </rule>
 
      <rule context="mixed-citation[@publication-type='journal']/source" id="journal-source-checks">
@@ -764,6 +772,15 @@
        <report test="lpage" 
         role="error" 
         id="preprint-ref-lpage">This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has an lpage element - <value-of select="lpage"/>. That information is either tagged incorrectly, or the publication-type is wrong.</report>
+       
+       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-6-7" 
+        test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1 or count(comment) gt 1" 
+        role="error" 
+        id="err-elem-cit-preprint-6-7">The following elements may not occur more than once in a &lt;mixed-citation&gt;: &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, and &lt;comment&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(fpage)"/> &lt;fpage&gt;, <value-of select="count(lpage)"/> &lt;lpage&gt;, <value-of select="count(elocation-id)"/> &lt;elocation-id&gt;, and <value-of select="count(comment)"/> &lt;comment&gt; elements.</report>
+       
+       <report test="elocation-id and fpage" 
+        role="error" 
+        id="preprint-ref-fpage-elocation-id">This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has both fpage (<value-of select="fpage"/>) and elocation-id (<value-of select="elocation-id"/>) elements which must be wrong.</report>
      </rule>
       
       <rule context="mixed-citation[@publication-type='preprint']/source" id="preprint-source-checks">
