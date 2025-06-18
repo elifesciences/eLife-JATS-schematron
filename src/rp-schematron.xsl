@@ -3509,6 +3509,38 @@
                <xsl:text/>) has a descendant article-title. This cannot be correct. It should either be a source or chapter-title (or something else entirely).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="lpage and not (fpage)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="lpage and not (fpage)">
+            <xsl:attribute name="id">err-elem-cit-book-36-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hbbs8-err-elem-cit-book-36-2</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[err-elem-cit-book-36-2] If &lt;lpage&gt; is present, &lt;fpage&gt; must also be present. Reference '<xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>' has &lt;lpage&gt; but not &lt;fpage&gt;.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="count(lpage) &gt; 1 or count(fpage) &gt; 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(lpage) &gt; 1 or count(fpage) &gt; 1">
+            <xsl:attribute name="id">err-elem-cit-book-36-6</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hgboy-err-elem-cit-book-36-6</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[err-elem-cit-book-36-6] At most one &lt;lpage&gt; and one &lt;fpage&gt; are allowed. Reference '<xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>' has <xsl:text/>
+               <xsl:value-of select="count(lpage)"/>
+               <xsl:text/> &lt;lpage&gt; elements and <xsl:text/>
+               <xsl:value-of select="count(fpage)"/>
+               <xsl:text/> &lt;fpage&gt; elements.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M46"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M46"/>
