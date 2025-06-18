@@ -843,6 +843,26 @@
         <x:expect-report id="journal-ref-editor" role="warning"/>
         <x:expect-not-assert id="journal-ref-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="journal-ref-page-elocation-id-pass">
+        <x:context href="../tests/rp/journal-ref-checks/journal-ref-page-elocation-id/pass.xml"/>
+        <x:expect-not-report id="journal-ref-page-elocation-id" role="error"/>
+        <x:expect-not-assert id="journal-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="journal-ref-page-elocation-id-fail">
+        <x:context href="../tests/rp/journal-ref-checks/journal-ref-page-elocation-id/fail.xml"/>
+        <x:expect-report id="journal-ref-page-elocation-id" role="error"/>
+        <x:expect-not-assert id="journal-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-elem-cit-journal-6-7-pass">
+        <x:context href="../tests/rp/journal-ref-checks/err-elem-cit-journal-6-7/pass.xml"/>
+        <x:expect-not-report id="err-elem-cit-journal-6-7" role="error"/>
+        <x:expect-not-assert id="journal-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-elem-cit-journal-6-7-fail">
+        <x:context href="../tests/rp/journal-ref-checks/err-elem-cit-journal-6-7/fail.xml"/>
+        <x:expect-report id="err-elem-cit-journal-6-7" role="error"/>
+        <x:expect-not-assert id="journal-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="journal-source-checks">
       <x:scenario label="journal-source-1-pass">
@@ -947,6 +967,26 @@
         <x:expect-report id="preprint-ref-lpage" role="error"/>
         <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="err-elem-cit-preprint-6-7-pass">
+        <x:context href="../tests/rp/preprint-ref-checks/err-elem-cit-preprint-6-7/pass.xml"/>
+        <x:expect-not-report id="err-elem-cit-preprint-6-7" role="error"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-elem-cit-preprint-6-7-fail">
+        <x:context href="../tests/rp/preprint-ref-checks/err-elem-cit-preprint-6-7/fail.xml"/>
+        <x:expect-report id="err-elem-cit-preprint-6-7" role="error"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-ref-fpage-elocation-id-pass">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-fpage-elocation-id/pass.xml"/>
+        <x:expect-not-report id="preprint-ref-fpage-elocation-id" role="error"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-ref-fpage-elocation-id-fail">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-fpage-elocation-id/fail.xml"/>
+        <x:expect-report id="preprint-ref-fpage-elocation-id" role="error"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="preprint-source-checks">
       <x:scenario label="preprint-source-pass">
@@ -1029,6 +1069,26 @@
       <x:scenario label="book-ref-article-title-fail">
         <x:context href="../tests/rp/book-ref-checks/book-ref-article-title/fail.xml"/>
         <x:expect-report id="book-ref-article-title" role="error"/>
+        <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-elem-cit-book-36-2-pass">
+        <x:context href="../tests/rp/book-ref-checks/err-elem-cit-book-36-2/pass.xml"/>
+        <x:expect-not-report id="err-elem-cit-book-36-2" role="error"/>
+        <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-elem-cit-book-36-2-fail">
+        <x:context href="../tests/rp/book-ref-checks/err-elem-cit-book-36-2/fail.xml"/>
+        <x:expect-report id="err-elem-cit-book-36-2" role="error"/>
+        <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-elem-cit-book-36-6-pass">
+        <x:context href="../tests/rp/book-ref-checks/err-elem-cit-book-36-6/pass.xml"/>
+        <x:expect-not-report id="err-elem-cit-book-36-6" role="error"/>
+        <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="err-elem-cit-book-36-6-fail">
+        <x:context href="../tests/rp/book-ref-checks/err-elem-cit-book-36-6/fail.xml"/>
+        <x:expect-report id="err-elem-cit-book-36-6" role="error"/>
         <x:expect-not-assert id="book-ref-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

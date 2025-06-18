@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="journal-ref-page-elocation-id.sch"?>
+<!--Context: mixed-citation[@publication-type='journal']
+Test: report    (fpage or lpage) and elocation-id
+Message: This journal reference () has both an elocation-id (), and an fpage or lpage (), which cannot be correct. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref id="bib1"><mixed-citation publication-type="journal"><person-group person-group-type="author"><name><surname>Arnold</surname> <given-names>JS</given-names></name><name><surname>Werling</surname> <given-names>U</given-names></name><name><surname>Braunstein</surname> <given-names>EM</given-names></name><name><surname>Liao</surname> <given-names>J</given-names></name><name><surname>Nowotschin</surname> <given-names>S</given-names></name><name><surname>Edelmann</surname> <given-names>W</given-names></name><name><surname>Hebert</surname> <given-names>JM</given-names></name><name><surname>Morrow</surname> <given-names>BE</given-names></name></person-group><year iso-8601-date="2006">2006</year><article-title>Inactivation of Tbx1 in the pharyngeal endoderm results in 22q11ds malformations</article-title><source>Development</source><volume>133</volume><fpage>977</fpage><lpage>987</lpage><pub-id pub-id-type="doi">10.1242/dev.02264</pub-id><pub-id pub-id-type="pmid">16452092</pub-id></mixed-citation></ref>
+    </article>
+</root>

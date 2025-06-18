@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="err-elem-cit-preprint-6-7.sch"?>
+<!--Context: mixed-citation[@publication-type='preprint']
+Test: report    count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1 or count(comment) gt 1
+Message: The following elements may not occur more than once in a <mixed-citation>: <fpage>, <lpage>, <elocation-id>, and <comment>. Reference '' has  <fpage>,  <lpage>,  <elocation-id>, and  <comment> elements. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref id="bib1"><mixed-citation publication-type="preprint"><person-group person-group-type="author"><name><surname>Arnold</surname> <given-names>JS</given-names></name><name><surname>Werling</surname> <given-names>U</given-names></name><name><surname>Braunstein</surname> <given-names>EM</given-names></name><name><surname>Liao</surname> <given-names>J</given-names></name><name><surname>Nowotschin</surname> <given-names>S</given-names></name><name><surname>Edelmann</surname> <given-names>W</given-names></name><name><surname>Hebert</surname> <given-names>JM</given-names></name><name><surname>Morrow</surname> <given-names>BE</given-names></name></person-group><year iso-8601-date="2006">2006</year><article-title>Inactivation of Tbx1 in the pharyngeal endoderm results in 22q11ds malformations</article-title><source>Development</source><volume>133</volume><fpage>977</fpage><lpage>987</lpage><pub-id pub-id-type="doi">10.1242/dev.02264</pub-id><pub-id pub-id-type="pmid">16452092</pub-id></mixed-citation></ref>
+    </article>
+</root>
