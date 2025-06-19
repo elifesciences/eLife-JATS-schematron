@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="tex-math-test-6.sch"?>
 <!--Context: tex-math
-Test: report    ancestor::disp-formula and not(starts-with($formula-text,'\displaystyle'))
-Message:  element in a disp-formula should start with the \displaystyle command. This one doesn't -  -->
+Test: report    ancestor::disp-formula and not(contains($formula-text,'\displaystyle'))
+Message:  element in a disp-formula does not contain the \displaystyle command. Is that correct?  -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <disp-formula>
