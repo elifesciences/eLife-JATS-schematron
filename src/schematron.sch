@@ -6843,7 +6843,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/title-group" id="ed-eval-title-tests">
       
-      <assert test="article-title = (&quot;Editor&apos;s evaluation&quot;,'eLife assessment','eLife Assessment')" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-title-test"
+        test="article-title = (&quot;Editor&apos;s evaluation&quot;,'eLife assessment','eLife Assessment')" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-title-test">A sub-article[@article-type='editor-report'] must have the title "eLife Assessment" or "Editor's evaluation". Currently it is <value-of select="article-title"/>.</assert>
@@ -7616,27 +7617,32 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-eval-front-tests">
       
-      <assert test="count(article-id[@pub-id-type='doi']) = 1" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-1"
+        test="count(article-id[@pub-id-type='doi']) = 1" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
       
-      <assert test="count(contrib-group) = 1" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-2"
+        test="count(contrib-group) = 1" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-front-test-2">editor report front-stub must contain 1 (and only 1) contrib-group element. This one has <value-of select="count(contrib-group)"/>.</assert>
       
-      <report test="count(related-object) gt 1" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-3"
+        test="count(related-object) gt 1" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-front-test-3">editor report front-stub must contain 1 or 0 related-object elements. This one has <value-of select="count(related-object)"/>.</report>
 
-      <report test="e:is-prc(.) and not(kwd-group[@kwd-group-type='evidence-strength'])" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-4"
+        test="e:is-prc(.) and not(kwd-group[@kwd-group-type='evidence-strength'])" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-front-test-4">eLife Assessment front-stub does not contain a strength term keyword group, which must be incorrect.</report>
 
-      <report test="e:is-prc(.) and not(kwd-group[@kwd-group-type='claim-importance'])" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-5"
+        test="e:is-prc(.) and not(kwd-group[@kwd-group-type='claim-importance'])" 
         role="warning" 
         flag="dl-ar"
         id="ed-eval-front-test-5">eLife Assessment front-stub does not contain a significance term keyword group, which is very unusual. Is that correct?</report>
@@ -7644,7 +7650,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/*" id="ed-eval-front-child-tests">
       
-      <assert test="name()=('article-id','title-group','contrib-group','kwd-group','related-object')" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-child-test-1"
+        test="name()=('article-id','title-group','contrib-group','kwd-group','related-object')" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-front-child-test-1"><name/> element is not allowed in the front-stub for an editor report. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</assert>
@@ -7652,7 +7659,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/contrib-group" id="ed-eval-contrib-group-tests">
       
-      <assert test="count(contrib[@contrib-type='author']) = 1" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-contrib-group-test-1"
+        test="count(contrib[@contrib-type='author']) = 1" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-contrib-group-test-1">editor report contrib-group must contain 1 contrib[@contrib-type='author'].</assert>
@@ -7662,7 +7670,8 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="rev-ed-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section'][1]/contrib[@contrib-type='editor'][1]/name[1])"/>
       <let name="name" value="e:get-name(name[1])"/>
       
-      <assert test="$name = $rev-ed-name" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-author-test-1"
+        test="$name = $rev-ed-name" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-author-test-1">The author of the editor report must be the same as the Reviewing editor for the article. The Reviewing editor is <value-of select="$rev-ed-name"/>, but the editor evaluation author is <value-of select="$name"/>.</assert>
@@ -7672,32 +7681,38 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="event-preprint-doi" value="for $x in ancestor::article//article-meta/pub-history/event[1]/self-uri[@content-type='preprint'][1]/@xlink:href
                                         return substring-after($x,'.org/')"/>
       
-      <assert test="matches(@id,'^sa0ro\d$')" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-1"
+        test="matches(@id,'^sa0ro\d$')" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-rel-obj-test-1">related-object in editor's evaluation must have an id in the format sa0ro1. <value-of select="@id"/> does not meet this convention.</assert>
       
-      <assert test="@object-id-type='id'" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-2"
+        test="@object-id-type='id'" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-rel-obj-test-2">related-object in editor's evaluation must have an object-id-type="id" attribute.</assert>
       
-      <assert test="@link-type='continued-by'" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-3"
+        test="@link-type='continued-by'" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-rel-obj-test-3">related-object in editor's evaluation must have a link-type="continued-by" attribute.</assert>
       
-      <assert test="matches(@object-id,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')"
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-4"
+        test="matches(@object-id,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')"
         role="error" 
         flag="dl-ar"
         id="ed-eval-rel-obj-test-4">related-object in editor's evaluation must have an object-id attribute which is a doi. '<value-of select="@object-id"/>' is not a valid doi.</assert>
       
-      <assert test="@object-id = $event-preprint-doi"
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-5"
+        test="@object-id = $event-preprint-doi"
         role="error" 
         flag="dl-ar"
         id="ed-eval-rel-obj-test-5">related-object in editor's evaluation must have an object-id attribute whose value is the same as the preprint doi in the article's pub-history. object-id '<value-of select="@object-id"/>' is not the same as the preprint doi in the event history, '<value-of select="$event-preprint-doi"/>'.</assert>
       
-      <assert test="@xlink:href = (
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-6"
+        test="@xlink:href = (
         concat('https://sciety.org/articles/activity/',@object-id),
         concat('https://sciety.org/articles/',@object-id)
         )" 
@@ -7705,7 +7720,8 @@ else self::*/local-name() = $allowed-p-blocks"
         flag="dl-ar"
         id="ed-eval-rel-obj-test-6">related-object in editor's evaluation must have an xlink:href attribute whose value is 'https://sciety.org/articles/activity/' followed by the object-id attribute value (which must be a doi). '<value-of select="@xlink:href"/>' is not equal to <value-of select="concat('https://sciety.org/articles/activity/',@object-id)"/>. Which is correct?</assert>
       
-      <assert test="@xlink:href = (
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-7"
+        test="@xlink:href = (
         concat('https://sciety.org/articles/activity/',$event-preprint-doi),
         concat('https://sciety.org/articles/',$event-preprint-doi)
         )" 
@@ -7717,22 +7733,26 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group" id="ed-report-kwd-group">
       
-      <assert test="@kwd-group-type=('claim-importance','evidence-strength')" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-group-1"
+        test="@kwd-group-type=('claim-importance','evidence-strength')" 
         role="error" 
         flag="dl-ar"
         id="ed-report-kwd-group-1">kwd-group in <value-of select="parent::*/title-group/article-title"/> must have the attribute kwd-group-type with the value 'claim-importance' or 'evidence-strength'. This one does not.</assert>
 
-      <report test="@kwd-group-type='claim-importance' and count(kwd) gt 1" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-group-3"
+        test="@kwd-group-type='claim-importance' and count(kwd) gt 1" 
         role="error" 
         flag="dl-ar"
         id="ed-report-kwd-group-3"><value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. This is not permitted, please check which single importance keyword should be used.</report>
       
-      <report test="@kwd-group-type='evidence-strength' and count(kwd) = 2" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-group-2"
+        test="@kwd-group-type='evidence-strength' and count(kwd) = 2" 
         role="warning" 
         flag="dl-ar"
         id="ed-report-kwd-group-2"><value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. Please check this is correct.</report>
       
-      <report test="@kwd-group-type='evidence-strength' and count(kwd) gt 2" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-group-4"
+        test="@kwd-group-type='evidence-strength' and count(kwd) gt 2" 
         role="error"
         flag="dl-ar"
         id="ed-report-kwd-group-4"><value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. This is incorrect.</report>
@@ -7742,7 +7762,8 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" id="ed-report-claim-kwds">
       <let name="allowed-vals" value="('Landmark', 'Fundamental', 'Important', 'Valuable', 'Useful')"/>
       
-      <assert test=".=$allowed-vals"
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-claim-kwd-1"
+        test=".=$allowed-vals"
         role="error" 
         flag="dl-ar"
         id="ed-report-claim-kwd-1">Keyword contains <value-of select="."/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/></assert>
@@ -7754,12 +7775,14 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="wos-no-go-vals" value="('Incomplete', 'Inadequate')"/>
       <let name="allowed-vals" value="($wos-go-vals,$wos-no-go-vals)"/>
       
-      <assert test=".=$allowed-vals"
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-evidence-kwd-1"
+        test=".=$allowed-vals"
         role="error" 
         flag="dl-ar"
         id="ed-report-evidence-kwd-1">Keyword contains <value-of select="."/>, but it is in an 'evidence-strength' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/></assert>
       
-      <report test=".=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]"
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-evidence-kwd-2"
+        test=".=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]"
         role="warning" 
         flag="dl-ar"
         id="ed-report-evidence-kwd-2">There is both an <value-of select="."/> and <value-of select="string-join(parent::*/kwd[.=$wos-go-vals],'; ')"/> kwd in the kwd-group for strength of evidence. Should <value-of select="."/> be unbolded or changed to a different word in the Assessment and removed as a keyword?</report>
@@ -7767,17 +7790,20 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" id="ed-report-kwds">
       
-      <report test="preceding-sibling::kwd = ."
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-1"
+        test="preceding-sibling::kwd = ."
         role="error" 
         flag="dl-ar"
         id="ed-report-kwd-1">Keyword contains <value-of select="."/>, there is another kwd with that value witin the same kwd-group, so this one is either incorrect or superfluous and should be deleted.</report>
       
-      <assert test="some $x in ancestor::sub-article[1]/body/p//bold satisfies contains(lower-case($x),lower-case(.))"
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-2"
+        test="some $x in ancestor::sub-article[1]/body/p//bold satisfies contains(lower-case($x),lower-case(.))"
         role="error" 
         flag="dl-ar"
         id="ed-report-kwd-2">Keyword contains <value-of select="."/>, but this term is not bolded in the text of the <value-of select="ancestor::front-stub/title-group/article-title"/>.</assert>
       
-      <report test="*"
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-3"
+        test="*"
         role="error" 
         flag="dl-ar"
         id="ed-report-kwd-3">Keywords in <value-of select="ancestor::front-stub/title-group/article-title"/> cannot contain elements, only text. This one has: <value-of select="string-join(distinct-values(*/name()),'; ')"/>.</report>
@@ -7792,23 +7818,28 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="title-case-kwd" value="concat(upper-case(substring($normalized-kwd,1,1)),lower-case(substring($normalized-kwd,2)))"/>
       <let name="preceding-text" value="string-join(preceding-sibling::node(),'')"/>
       
-      <assert test="lower-case(.)=$allowed-vals"
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-bold-terms-1"
+        test="lower-case(.)=$allowed-vals"
         role="error" 
         id="ed-report-bold-terms-1">Bold phrase in eLife Assessment - <value-of select="."/> - is not one of the permitted terms from the vocabulary. Should the bold formatting be removed? These are currently bolded terms <value-of select="string-join($allowed-vals,', ')"/></assert>
 
-      <report test="lower-case(.)=$allowed-vals and not($title-case-kwd=ancestor::sub-article/front-stub/kwd-group/kwd)"
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-bold-terms-2"
+        test="lower-case(.)=$allowed-vals and not($title-case-kwd=ancestor::sub-article/front-stub/kwd-group/kwd)"
         role="error" 
         id="ed-report-bold-terms-2">Bold phrase in eLife Assessment - <value-of select="."/> - is one of the permitted vocabulary terms, but there's no corresponding keyword in the metadata (in a kwd-group in the front-stub).</report>
 
-      <report test="preceding-sibling::bold[replace(lower-case(.),'ly$','') = $normalized-kwd]"
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-bold-terms-3"
+        test="preceding-sibling::bold[replace(lower-case(.),'ly$','') = $normalized-kwd]"
         role="warning" 
         id="ed-report-bold-terms-3">There is more than one of the same <value-of select="if (replace(lower-case(.),'ly$','')=$str-kwds) then 'strength' else 'significance'"/> keywords in the assessment - <value-of select="$normalized-kwd"/>. This is very likely to be incorrect.</report>
       
-      <report test="(lower-case(.)=$allowed-vals) and matches($preceding-text,'\smore\s*$')"
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-bold-terms-4"
+        test="(lower-case(.)=$allowed-vals) and matches($preceding-text,'\smore\s*$')"
         role="warning" 
         id="ed-report-bold-terms-4">Assessment keyword (<value-of select="."/>) is preceded by 'more'. Has the keyword been deployed correctly?</report>
       
-      <report test="(lower-case(.)=$str-kwds) and matches($preceding-text,'\spotentially\s*$')"
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-bold-terms-5"
+        test="(lower-case(.)=$str-kwds) and matches($preceding-text,'\spotentially\s*$')"
         role="warning" 
         id="ed-report-bold-terms-5">Assessment strength keyword (<value-of select="."/>) is preceded by 'potentially'. Has the keyword been deployed correctly?</report>
     </rule>
@@ -8238,11 +8269,13 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']]" 
       id="prc-reviewer-tests">
       
-      <report test="name or collab"
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#prc-reviewer-test-1"
+        test="name or collab"
         role="error" 
         id="prc-reviewer-test-1">A reviewer contrib in a PRC article cannot have a child <value-of select="*[name()=('name','collab')]/name()"/> element, since all reviewers are captured as anonymous. They must have an anonymous element instead.</report>
       
-      <assert test="anonymous"
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#prc-reviewer-test-2"
+        test="anonymous"
         role="error" 
         id="prc-reviewer-test-2">A reviewer contrib in a PRC article must have a child anonymous element. This one does not - <value-of select="."/>.</assert>
     </rule>
@@ -8250,7 +8283,8 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="article[e:is-prc(.)]" 
       id="prc-pub-review-tests">
       
-      <report test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#prc-reviewer-test-1"
+        test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (
         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')] 
         or
         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')]
@@ -8272,11 +8306,13 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="expected-doi" value="if ($is-prc) then concat($vor-version-doi,'.',$id)
         else concat($umbrella-doi,'.',$id)"/>
       
-      <assert test=".=$expected-doi" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#sub-article-doi-check-1"
+        test=".=$expected-doi" 
         role="error" 
         id="sub-article-doi-check-1">Based on whether this article is PRC (or not), the umbrella and/or version DOI and the order of the sub-articles, the DOI for peer review piece '<value-of select="ancestor::sub-article/front-stub//article-title"/>' should be '<value-of select="$expected-doi"/>', but it is currently '<value-of select="."/>'.</assert>
       
-      <assert test="contains(.,concat('.',$msid,'.'))" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#sub-article-doi-check-2"
+        test="contains(.,concat('.',$msid,'.'))" 
         role="error" 
         id="sub-article-doi-check-2">The DOI for peer review piece '<value-of select="ancestor::sub-article/front-stub//article-title"/>' must contain the overall 5-6 digit manuscript tracking number (<value-of select="$msid"/>), but it does not (<value-of select="."/>).</assert>
       

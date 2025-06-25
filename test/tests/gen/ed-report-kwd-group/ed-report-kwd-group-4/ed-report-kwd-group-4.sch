@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="dec-letter-auth-response">
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group" id="ed-report-kwd-group">
-      <report test="@kwd-group-type='evidence-strength' and count(kwd) gt 2" role="error" flag="dl-ar" id="ed-report-kwd-group-4">
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-group-4" test="@kwd-group-type='evidence-strength' and count(kwd) gt 2" role="error" flag="dl-ar" id="ed-report-kwd-group-4">
         <value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. This is incorrect.</report>
     </rule>
   </pattern>
