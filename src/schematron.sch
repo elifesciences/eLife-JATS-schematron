@@ -3303,19 +3303,23 @@
         role="warning" 
         id="clintrial-related-object-11"><name/> @source-id value should almost always be one of the subtitles of the Crossref clinical trial registries. "<value-of select="@source-id"/>" is not one of the following <value-of select="string-join(for $x in document($registries)/registries/registry return concat('&quot;',$x/subtitle/string(),'&quot; (',$x/doi/string(),')'),', ')"/>. Is that correct?</assert>
       
-      <report test="@source-id='ClinicalTrials.gov' and not(@xlink:href=(concat('https://clinicaltrials.gov/study/',@document-id),concat('https://clinicaltrials.gov/show/',@document-id)))" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-12"
+        test="@source-id='ClinicalTrials.gov' and not(@xlink:href=(concat('https://clinicaltrials.gov/study/',@document-id),concat('https://clinicaltrials.gov/show/',@document-id)))" 
         role="error" 
         id="clintrial-related-object-12">ClinicalTrials.gov trial links are in the format https://clinicaltrials.gov/show/{number}. This <name/> has the link '<value-of select="@xlink:href"/>', which based on the clinical trial registry (<value-of select="@source-id"/>) and @document-id (<value-of select="@document-id"/>) is not right. Either the xlink:href is wrong (should it be <value-of select="concat('https://clinicaltrials.gov/study/',@document-id)"/> instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these).</report>
 
-      <report test="ends-with(@xlink:href,'.')" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-14"
+        test="ends-with(@xlink:href,'.')" 
         role="error" 
         id="clintrial-related-object-14"><name/> has a @xlink:href attribute value which ends with a full stop, which is not correct - '<value-of select="@xlink:href"/>'.</report>
 
-      <report test="ends-with(@document-id,'.')" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-15"
+        test="ends-with(@document-id,'.')" 
         role="error" 
         id="clintrial-related-object-15"><name/> has an @document-id attribute value which ends with a full stop, which is not correct - '<value-of select="@document-id"/>'.</report>
 
-      <report test="ends-with(.,'.')" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-16"
+        test="ends-with(.,'.')" 
         role="error" 
         id="clintrial-related-object-16">Content within <name/> element ends with a full stop, which is not correct - '<value-of select="."/>'.</report>
       
@@ -5808,7 +5812,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="bracket-test-3"><name/> element contains more left '[' than right ']' square brackets (<value-of select="$open-square"/> and <value-of select="$close-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) gt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/></report>
       
-      <report  see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-4" 
         test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\]')) and ($open-square lt $close-square)" 
         role="warning" 
         id="bracket-test-4"><name/> element contains more right ']' than left '[' square brackets (<value-of select="$close-square"/> and <value-of select="$open-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) lt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/></report>
@@ -8961,7 +8965,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="final-err-elem-cit-data-13-1">There must be one (and only one) pub-id or one (and only one) ext-link. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id> elements and <value-of select="count(ext-link)"/> &lt;ext-link> elements.</assert>
       
-      <report  see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#elem-cit-data-pub-id-ext-link"
+      <report see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#elem-cit-data-pub-id-ext-link"
         test="pub-id and ext-link" 
         role="error" 
         id="elem-cit-data-pub-id-ext-link">Dataset reference '<value-of select="ancestor::ref/@id"/>' has both &lt;pub-id> &lt;ext-link> elements. There can only be one or the other, not both.</report>
@@ -9008,7 +9012,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="err-elem-cit-data-13-2">Each pub-id element must have a pub-id-type which is either accession or doi. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with the type '<value-of select="@pub-id-type"/>'.</assert>
       
-      <report    see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#err-elem-cit-data-14-1"
+      <report see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#err-elem-cit-data-14-1"
         test="if (@pub-id-type != 'doi') then not(@xlink:href) else ()" 
         role="error" 
         id="err-elem-cit-data-14-1">If the pub-id is of any pub-id-type except doi, it must have an @xlink:href. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with type '<value-of select="@pub-id-type"/>' but no @xlink-href.</report>
@@ -10031,7 +10035,7 @@ else self::*/local-name() = $allowed-p-blocks"
      <let name="token1" value="substring-before(.,' ')"/>
      <let name="token2" value="substring-after(.,$token1)"/>
 		
-     <report  see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-subj-test-2"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-subj-test-2"
        test=". != e:titleCase(.)" 
         role="error" 
         id="feature-subj-test-2">The content of the sub-display-channel should be in title case - <value-of select="e:titleCase(.)"/></report>

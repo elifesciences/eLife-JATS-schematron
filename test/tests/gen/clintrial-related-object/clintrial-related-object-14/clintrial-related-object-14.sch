@@ -1447,7 +1447,7 @@
   <pattern id="article-metadata">
     <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
       <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
-      <report test="ends-with(@xlink:href,'.')" role="error" id="clintrial-related-object-14">
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-14" test="ends-with(@xlink:href,'.')" role="error" id="clintrial-related-object-14">
         <name/> has a @xlink:href attribute value which ends with a full stop, which is not correct - '<value-of select="@xlink:href"/>'.</report>
     </rule>
   </pattern>
