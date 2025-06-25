@@ -20955,7 +20955,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="article-title = 'Decision letter'">
                <xsl:attribute name="id">dec-letter-title-test</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-title-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-title-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -20983,7 +20983,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="article-title = 'Author response'">
                <xsl:attribute name="id">reply-title-test</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-title-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-title-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -22883,7 +22883,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@article-type=$sub-article-types">
                <xsl:attribute name="id">dec-letter-reply-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -22901,7 +22901,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@id = $id-convention">
                <xsl:attribute name="id">dec-letter-reply-test-2</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -22921,7 +22921,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(front-stub) = 1">
                <xsl:attribute name="id">dec-letter-reply-test-3</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-3</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-3</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -22937,7 +22937,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(body) = 1">
                <xsl:attribute name="id">dec-letter-reply-test-4</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-4</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-4</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23017,7 +23017,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'&lt;[/]?[Aa]uthor response')">
             <xsl:attribute name="id">dec-letter-reply-test-5</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23034,7 +23034,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'&lt;\p{Zs}?/?\p{Zs}?[a-z]*\p{Zs}?/?\p{Zs}?&gt;')">
             <xsl:attribute name="id">dec-letter-reply-test-6</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-6</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-6</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23061,7 +23061,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,$regex)">
             <xsl:attribute name="id">dec-letter-reply-test-7</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-7</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-7</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23693,7 +23693,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(article-id[@pub-id-type='doi']) = 1">
                <xsl:attribute name="id">dec-letter-front-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23709,7 +23709,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$count gt 0">
                <xsl:attribute name="id">dec-letter-front-test-2</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23723,7 +23723,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$count gt 2">
             <xsl:attribute name="id">dec-letter-front-test-3</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23736,7 +23736,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'(All|The) reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/|doi.org/10.24072/pci.evolbiol')])">
             <xsl:attribute name="id">dec-letter-front-test-4</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23761,7 +23761,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(contrib[@contrib-type='editor']) = 1">
                <xsl:attribute name="id">dec-letter-editor-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-editor-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-editor-test-1</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23775,7 +23775,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contrib[not(@contrib-type) or @contrib-type!='editor']">
             <xsl:attribute name="id">dec-letter-editor-test-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-editor-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-editor-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23801,7 +23801,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$role=('Reviewing Editor','Senior and Reviewing Editor')">
                <xsl:attribute name="id">dec-letter-editor-test-3</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-editor-test-3</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-editor-test-3</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23831,7 +23831,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(contrib[@contrib-type='reviewer']) gt 0">
                <xsl:attribute name="id">dec-letter-reviewer-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reviewer-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23845,7 +23845,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contrib[not(@contrib-type) or @contrib-type!='reviewer']">
             <xsl:attribute name="id">dec-letter-reviewer-test-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reviewer-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23858,7 +23858,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(contrib[@contrib-type='reviewer']) gt 5">
             <xsl:attribute name="id">dec-letter-reviewer-test-6</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reviewer-test-6</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-6</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23883,7 +23883,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="role='Reviewer'">
                <xsl:attribute name="id">dec-letter-reviewer-test-3</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reviewer-test-3</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-3</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23913,7 +23913,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="child::*[1]/local-name() = 'boxed-text'">
                <xsl:attribute name="id">dec-letter-body-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-body-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-body-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23937,7 +23937,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(lower-case(.),'this paper was reviewed by review commons') and not(child::ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/') and (lower-case(.)='review commons')])">
             <xsl:attribute name="id">dec-letter-body-test-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-body-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-body-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23979,7 +23979,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,concat($permitted-text-1,'|',$permitted-text-2,'|',$permitted-text-3))">
                <xsl:attribute name="id">dec-letter-box-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-box-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-box-test-1</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -23995,7 +23995,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,concat($permitted-text-1,'|',$permitted-text-2)) and not(descendant::ext-link[contains(@xlink:href,'sciety.org/') and .='public reviews'])">
             <xsl:attribute name="id">dec-letter-box-test-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-box-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-box-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24008,7 +24008,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,concat($permitted-text-1,'|',$permitted-text-2)) and not(descendant::ext-link[.='the preprint'])">
             <xsl:attribute name="id">dec-letter-box-test-3</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-box-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-box-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24031,7 +24031,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'letter table') and not(descendant::table-wrap[label])">
             <xsl:attribute name="id">decision-missing-table-test</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#decision-missing-table-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#decision-missing-table-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24056,7 +24056,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(article-id[@pub-id-type='doi']) = 1">
                <xsl:attribute name="id">reply-front-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-front-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-front-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24080,7 +24080,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(disp-quote[@content-type='editor-comment']) = 0">
             <xsl:attribute name="id">reply-body-test-1</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-body-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-body-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24093,7 +24093,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(p) = 0">
             <xsl:attribute name="id">reply-body-test-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-body-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-body-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24118,7 +24118,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@content-type='editor-comment'">
                <xsl:attribute name="id">reply-disp-quote-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-disp-quote-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-disp-quote-test-1</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24142,7 +24142,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count(*)=1) and (child::italic) and ($free-text='')">
             <xsl:attribute name="id">reply-missing-disp-quote-test-1</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-disp-quote-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-disp-quote-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24165,7 +24165,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="string-length(.) ge 50">
             <xsl:attribute name="id">reply-missing-disp-quote-test-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-disp-quote-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-disp-quote-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24192,7 +24192,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'response table') and not(descendant::table-wrap[label])">
             <xsl:attribute name="id">reply-missing-table-test</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-table-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-table-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24215,7 +24215,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(@xlink:href,'paperpile.com')">
             <xsl:attribute name="id">paper-pile-test</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#paper-pile-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#paper-pile-test</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43163,7 +43163,7 @@
       <xsl:if test="contains(.,'â‚¬')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'â‚¬')">
             <xsl:attribute name="id">unicode-test-1</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43179,7 +43179,7 @@
       <xsl:if test="contains(.,'Ã€')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã€')">
             <xsl:attribute name="id">unicode-test-2</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43195,7 +43195,7 @@
       <xsl:if test="contains(.,'Ã')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã')">
             <xsl:attribute name="id">unicode-test-3</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43211,7 +43211,7 @@
       <xsl:if test="contains(.,'â€š')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'â€š')">
             <xsl:attribute name="id">unicode-test-4</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43227,7 +43227,7 @@
       <xsl:if test="contains(.,'Ã‚')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã‚')">
             <xsl:attribute name="id">unicode-test-5</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-5</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43243,7 +43243,7 @@
       <xsl:if test="contains(.,'Æ’')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Æ’')">
             <xsl:attribute name="id">unicode-test-6</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-6</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-6</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43259,7 +43259,7 @@
       <xsl:if test="contains(.,'Ãƒ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ãƒ')">
             <xsl:attribute name="id">unicode-test-7</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-7</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-7</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43275,7 +43275,7 @@
       <xsl:if test="contains(.,'â€ž')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'â€ž')">
             <xsl:attribute name="id">unicode-test-8</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-8</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-8</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43291,7 +43291,7 @@
       <xsl:if test="contains(.,'Ã„')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã„')">
             <xsl:attribute name="id">unicode-test-9</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-9</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-9</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43307,7 +43307,7 @@
       <xsl:if test="contains(.,'â€¦')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'â€¦')">
             <xsl:attribute name="id">unicode-test-10</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-10</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-10</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43323,7 +43323,7 @@
       <xsl:if test="contains(.,'Ã…')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã…')">
             <xsl:attribute name="id">unicode-test-11</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-11</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-11</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43339,7 +43339,7 @@
       <xsl:if test="contains(.,'Ã†')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã†')">
             <xsl:attribute name="id">unicode-test-13</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-13</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-13</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43355,7 +43355,7 @@
       <xsl:if test="contains(.,'â€¡')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'â€¡')">
             <xsl:attribute name="id">unicode-test-14</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-14</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-14</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43371,7 +43371,7 @@
       <xsl:if test="contains(.,'Ã‡')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã‡')">
             <xsl:attribute name="id">unicode-test-15</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-15</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-15</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43387,7 +43387,7 @@
       <xsl:if test="contains(.,'Ë†')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ë†')">
             <xsl:attribute name="id">unicode-test-16</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-16</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-16</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43403,7 +43403,7 @@
       <xsl:if test="contains(.,'Ãˆ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ãˆ')">
             <xsl:attribute name="id">unicode-test-17</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-17</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-17</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43419,7 +43419,7 @@
       <xsl:if test="contains(.,'â€°')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'â€°')">
             <xsl:attribute name="id">unicode-test-18</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-18</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-18</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43435,7 +43435,7 @@
       <xsl:if test="contains(.,'Ã‰')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã‰')">
             <xsl:attribute name="id">unicode-test-19</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-19</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-19</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43451,7 +43451,7 @@
       <xsl:if test="contains(.,'ÃŠ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'ÃŠ')">
             <xsl:attribute name="id">unicode-test-21</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-21</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-21</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43467,7 +43467,7 @@
       <xsl:if test="contains(.,'â€¹')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'â€¹')">
             <xsl:attribute name="id">unicode-test-22</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-22</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-22</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43483,7 +43483,7 @@
       <xsl:if test="contains(.,'Ã‹')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã‹')">
             <xsl:attribute name="id">unicode-test-23</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-23</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-23</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43499,7 +43499,7 @@
       <xsl:if test="contains(.,'Å’')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Å’')">
             <xsl:attribute name="id">unicode-test-24</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-24</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-24</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43515,7 +43515,7 @@
       <xsl:if test="contains(.,'ÃŒ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'ÃŒ')">
             <xsl:attribute name="id">unicode-test-25</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-25</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-25</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43531,7 +43531,7 @@
       <xsl:if test="contains(.,'Ã')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã')">
             <xsl:attribute name="id">unicode-test-26</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-26</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-26</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43547,7 +43547,7 @@
       <xsl:if test="contains(.,'Å½')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Å½')">
             <xsl:attribute name="id">unicode-test-27</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-27</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-27</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43563,7 +43563,7 @@
       <xsl:if test="contains(.,'ÃŽ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'ÃŽ')">
             <xsl:attribute name="id">unicode-test-28</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-28</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-28</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43579,7 +43579,7 @@
       <xsl:if test="contains(.,'Ã')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã')">
             <xsl:attribute name="id">unicode-test-29</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-29</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-29</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43595,7 +43595,7 @@
       <xsl:if test="contains(.,'Ã')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã')">
             <xsl:attribute name="id">unicode-test-30</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-30</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-30</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43611,7 +43611,7 @@
       <xsl:if test="contains(.,'â€˜')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'â€˜')">
             <xsl:attribute name="id">unicode-test-31</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-31</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-31</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43627,7 +43627,7 @@
       <xsl:if test="contains(.,'Ã‘')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã‘')">
             <xsl:attribute name="id">unicode-test-32</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-32</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-32</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43643,7 +43643,7 @@
       <xsl:if test="contains(.,'â€™')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'â€™')">
             <xsl:attribute name="id">unicode-test-33</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-33</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-33</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43659,7 +43659,7 @@
       <xsl:if test="contains(.,'Ã’')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã’')">
             <xsl:attribute name="id">unicode-test-34</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-34</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-34</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43675,7 +43675,7 @@
       <xsl:if test="contains(.,'â€œ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'â€œ')">
             <xsl:attribute name="id">unicode-test-35</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-35</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-35</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43691,7 +43691,7 @@
       <xsl:if test="contains(.,'Ã“')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã“')">
             <xsl:attribute name="id">unicode-test-36</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-36</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-36</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43707,7 +43707,7 @@
       <xsl:if test="contains(.,'â€')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'â€')">
             <xsl:attribute name="id">unicode-test-37</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-37</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-37</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43723,7 +43723,7 @@
       <xsl:if test="contains(.,'Ã”')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã”')">
             <xsl:attribute name="id">unicode-test-38</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-38</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-38</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43739,7 +43739,7 @@
       <xsl:if test="contains(.,'Ã•')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã•')">
             <xsl:attribute name="id">unicode-test-39</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-39</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-39</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43755,7 +43755,7 @@
       <xsl:if test="contains(.,'â€“')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'â€“')">
             <xsl:attribute name="id">unicode-test-40</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-40</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-40</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43771,7 +43771,7 @@
       <xsl:if test="contains(.,'Ã–')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã–')">
             <xsl:attribute name="id">unicode-test-41</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-41</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-41</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43787,7 +43787,7 @@
       <xsl:if test="contains(.,'â€”')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'â€”')">
             <xsl:attribute name="id">unicode-test-42</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-42</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-42</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43803,7 +43803,7 @@
       <xsl:if test="contains(.,'Ã—')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã—')">
             <xsl:attribute name="id">unicode-test-43</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-43</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-43</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43819,7 +43819,7 @@
       <xsl:if test="contains(.,'Ëœ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ëœ')">
             <xsl:attribute name="id">unicode-test-44</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-44</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-44</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43835,7 +43835,7 @@
       <xsl:if test="contains(.,'Ã˜')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã˜')">
             <xsl:attribute name="id">unicode-test-45</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-45</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-45</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43851,7 +43851,7 @@
       <xsl:if test="contains(.,'Ã™')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã™')">
             <xsl:attribute name="id">unicode-test-46</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-46</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-46</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43867,7 +43867,7 @@
       <xsl:if test="contains(.,'Å¡')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Å¡')">
             <xsl:attribute name="id">unicode-test-47</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-47</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-47</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43883,7 +43883,7 @@
       <xsl:if test="contains(.,'Ãš')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ãš')">
             <xsl:attribute name="id">unicode-test-48</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-48</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-48</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43899,7 +43899,7 @@
       <xsl:if test="contains(.,'â€º')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'â€º')">
             <xsl:attribute name="id">unicode-test-49</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-49</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-49</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43915,7 +43915,7 @@
       <xsl:if test="contains(.,'Ã›')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã›')">
             <xsl:attribute name="id">unicode-test-50</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-50</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-50</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43931,7 +43931,7 @@
       <xsl:if test="contains(.,'Å“')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Å“')">
             <xsl:attribute name="id">unicode-test-51</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-51</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-51</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43947,7 +43947,7 @@
       <xsl:if test="contains(.,'Ãœ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ãœ')">
             <xsl:attribute name="id">unicode-test-52</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-52</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-52</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43963,7 +43963,7 @@
       <xsl:if test="contains(.,'Ã')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã')">
             <xsl:attribute name="id">unicode-test-53</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-53</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-53</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43979,7 +43979,7 @@
       <xsl:if test="contains(.,'Å¾')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Å¾')">
             <xsl:attribute name="id">unicode-test-54</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-54</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-54</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -43995,7 +43995,7 @@
       <xsl:if test="contains(.,'Ãž')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ãž')">
             <xsl:attribute name="id">unicode-test-55</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-55</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-55</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44011,7 +44011,7 @@
       <xsl:if test="contains(.,'Å¸')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Å¸')">
             <xsl:attribute name="id">unicode-test-56</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-56</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-56</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44027,7 +44027,7 @@
       <xsl:if test="contains(.,'ÃŸ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'ÃŸ')">
             <xsl:attribute name="id">unicode-test-57</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-57</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-57</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44043,7 +44043,7 @@
       <xsl:if test="contains(.,'Â¡')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Â¡')">
             <xsl:attribute name="id">unicode-test-58</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-58</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-58</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44059,7 +44059,7 @@
       <xsl:if test="contains(.,'Ã¡')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã¡')">
             <xsl:attribute name="id">unicode-test-59</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-59</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-59</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44075,7 +44075,7 @@
       <xsl:if test="contains(.,'Â¢')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Â¢')">
             <xsl:attribute name="id">unicode-test-60</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-60</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-60</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44091,7 +44091,7 @@
       <xsl:if test="contains(.,'Ã¢')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã¢')">
             <xsl:attribute name="id">unicode-test-61</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-61</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-61</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44107,7 +44107,7 @@
       <xsl:if test="contains(.,'Â£')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Â£')">
             <xsl:attribute name="id">unicode-test-62</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-62</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-62</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44123,7 +44123,7 @@
       <xsl:if test="contains(.,'Ã£')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã£')">
             <xsl:attribute name="id">unicode-test-63</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-63</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-63</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44139,7 +44139,7 @@
       <xsl:if test="contains(.,'Â¤')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Â¤')">
             <xsl:attribute name="id">unicode-test-64</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-64</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-64</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44155,7 +44155,7 @@
       <xsl:if test="contains(.,'Ã¤')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã¤')">
             <xsl:attribute name="id">unicode-test-65</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-65</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-65</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44171,7 +44171,7 @@
       <xsl:if test="contains(.,'Ã¥')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã¥')">
             <xsl:attribute name="id">unicode-test-66</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-66</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-66</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44187,7 +44187,7 @@
       <xsl:if test="contains(.,'Â¨')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Â¨')">
             <xsl:attribute name="id">unicode-test-67</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-67</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-67</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44203,7 +44203,7 @@
       <xsl:if test="contains(.,'Ã¨')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã¨')">
             <xsl:attribute name="id">unicode-test-68</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-68</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-68</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44219,7 +44219,7 @@
       <xsl:if test="contains(.,'Âª')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Âª')">
             <xsl:attribute name="id">unicode-test-69</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-69</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-69</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44235,7 +44235,7 @@
       <xsl:if test="contains(.,'Ãª')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ãª')">
             <xsl:attribute name="id">unicode-test-70</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-70</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-70</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44251,7 +44251,7 @@
       <xsl:if test="contains(.,'Â­')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Â­')">
             <xsl:attribute name="id">unicode-test-71</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-71</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-71</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44267,7 +44267,7 @@
       <xsl:if test="contains(.,'Ã­')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã­')">
             <xsl:attribute name="id">unicode-test-72</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-72</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-72</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44283,7 +44283,7 @@
       <xsl:if test="contains(.,'Â¯')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Â¯')">
             <xsl:attribute name="id">unicode-test-73</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-73</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-73</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44299,7 +44299,7 @@
       <xsl:if test="contains(.,'Ã¯')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã¯')">
             <xsl:attribute name="id">unicode-test-74</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-74</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-74</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44315,7 +44315,7 @@
       <xsl:if test="contains(.,'Â°')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Â°')">
             <xsl:attribute name="id">unicode-test-75</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-75</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-75</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44331,7 +44331,7 @@
       <xsl:if test="contains(.,'Ã°')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã°')">
             <xsl:attribute name="id">unicode-test-76</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-76</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-76</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44347,7 +44347,7 @@
       <xsl:if test="contains(.,'Â±')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Â±')">
             <xsl:attribute name="id">unicode-test-77</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-77</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-77</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44363,7 +44363,7 @@
       <xsl:if test="contains(.,'Ã±')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã±')">
             <xsl:attribute name="id">unicode-test-78</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-78</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-78</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44379,7 +44379,7 @@
       <xsl:if test="contains(.,'Â´')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Â´')">
             <xsl:attribute name="id">unicode-test-79</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-79</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-79</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44395,7 +44395,7 @@
       <xsl:if test="contains(.,'Ã´')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã´')">
             <xsl:attribute name="id">unicode-test-80</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-80</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-80</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44411,7 +44411,7 @@
       <xsl:if test="contains(.,'Âµ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Âµ')">
             <xsl:attribute name="id">unicode-test-81</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-81</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-81</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44427,7 +44427,7 @@
       <xsl:if test="contains(.,'Ãµ')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ãµ')">
             <xsl:attribute name="id">unicode-test-82</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-82</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-82</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44443,7 +44443,7 @@
       <xsl:if test="contains(.,'Â¶')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Â¶')">
             <xsl:attribute name="id">unicode-test-83</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-83</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-83</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44459,7 +44459,7 @@
       <xsl:if test="contains(.,'Ã¶')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã¶')">
             <xsl:attribute name="id">unicode-test-84</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-84</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-84</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44475,7 +44475,7 @@
       <xsl:if test="contains(.,'Â·')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Â·')">
             <xsl:attribute name="id">unicode-test-85</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-85</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-85</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44491,7 +44491,7 @@
       <xsl:if test="contains(.,'Ã·')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã·')">
             <xsl:attribute name="id">unicode-test-86</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-86</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-86</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44507,7 +44507,7 @@
       <xsl:if test="contains(.,'Â¸')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Â¸')">
             <xsl:attribute name="id">unicode-test-87</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-87</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-87</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44523,7 +44523,7 @@
       <xsl:if test="contains(.,'Ã¸')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã¸')">
             <xsl:attribute name="id">unicode-test-88</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-88</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-88</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44539,7 +44539,7 @@
       <xsl:if test="contains(.,'Ã¹')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã¹')">
             <xsl:attribute name="id">unicode-test-89</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-89</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-89</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44555,7 +44555,7 @@
       <xsl:if test="contains(.,'Âº')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Âº')">
             <xsl:attribute name="id">unicode-test-90</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-90</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-90</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44571,7 +44571,7 @@
       <xsl:if test="contains(.,'Ãº')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ãº')">
             <xsl:attribute name="id">unicode-test-91</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-91</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-91</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44587,7 +44587,7 @@
       <xsl:if test="contains(.,'Â¿')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Â¿')">
             <xsl:attribute name="id">unicode-test-92</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-92</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-92</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -44603,7 +44603,7 @@
       <xsl:if test="contains(.,'Ã¿')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'Ã¿')">
             <xsl:attribute name="id">unicode-test-93</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-93</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-93</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
