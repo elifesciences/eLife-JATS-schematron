@@ -1447,7 +1447,7 @@
   <pattern id="dec-letter-auth-response">
     <rule context="sub-article[@article-type='editor-report']/front-stub/*" id="ed-eval-front-child-tests">
       <assert test="name()=('article-id','title-group','contrib-group','kwd-group','related-object')" role="error" flag="dl-ar" id="ed-eval-front-child-test-1">
-        <name/> element is not allowed in the front-stub for an Editor's evaluation. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</assert>
+        <name/> element is not allowed in the front-stub for an editor report. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

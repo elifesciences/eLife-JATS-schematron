@@ -7641,7 +7641,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert test="name()=('article-id','title-group','contrib-group','kwd-group','related-object')" 
         role="error" 
         flag="dl-ar"
-        id="ed-eval-front-child-test-1"><name/> element is not allowed in the front-stub for an Editor's evaluation. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</assert>
+        id="ed-eval-front-child-test-1"><name/> element is not allowed in the front-stub for an editor report. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</assert>
     </rule>
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/contrib-group" id="ed-eval-contrib-group-tests">
@@ -7649,7 +7649,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert test="count(contrib[@contrib-type='author']) = 1" 
         role="error" 
         flag="dl-ar"
-        id="ed-eval-contrib-group-test-1">editor evaluation contrib-group must contain 1 contrib[@contrib-type='author'].</assert>
+        id="ed-eval-contrib-group-test-1">editor report contrib-group must contain 1 contrib[@contrib-type='author'].</assert>
     </rule>
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/contrib-group/contrib[@contrib-type='author' and name]" id="ed-eval-author-tests">
@@ -7659,7 +7659,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <assert test="$name = $rev-ed-name" 
         role="error" 
         flag="dl-ar"
-        id="ed-eval-author-test-1">The author of the editor evaluation must be the same as the Reviewing editor for the article. The Reviewing editor is <value-of select="$rev-ed-name"/>, but the editor evaluation author is <value-of select="$name"/>.</assert>
+        id="ed-eval-author-test-1">The author of the editor report must be the same as the Reviewing editor for the article. The Reviewing editor is <value-of select="$rev-ed-name"/>, but the editor evaluation author is <value-of select="$name"/>.</assert>
     </rule>
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/related-object" id="ed-eval-rel-obj-tests">

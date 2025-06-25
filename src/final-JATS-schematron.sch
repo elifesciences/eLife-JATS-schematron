@@ -4350,15 +4350,15 @@
       <report test="e:is-prc(.) and not(kwd-group[@kwd-group-type='claim-importance'])" role="warning" flag="dl-ar" id="ed-eval-front-test-5">[ed-eval-front-test-5] eLife Assessment front-stub does not contain a significance term keyword group, which is very unusual. Is that correct?</report>
     </rule></pattern><pattern id="ed-eval-front-child-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/*" id="ed-eval-front-child-tests">
       
-      <assert test="name()=('article-id','title-group','contrib-group','kwd-group','related-object')" role="error" flag="dl-ar" id="ed-eval-front-child-test-1">[ed-eval-front-child-test-1] <name/> element is not allowed in the front-stub for an Editor's evaluation. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</assert>
+      <assert test="name()=('article-id','title-group','contrib-group','kwd-group','related-object')" role="error" flag="dl-ar" id="ed-eval-front-child-test-1">[ed-eval-front-child-test-1] <name/> element is not allowed in the front-stub for an editor report. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</assert>
     </rule></pattern><pattern id="ed-eval-contrib-group-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/contrib-group" id="ed-eval-contrib-group-tests">
       
-      <assert test="count(contrib[@contrib-type='author']) = 1" role="error" flag="dl-ar" id="ed-eval-contrib-group-test-1">[ed-eval-contrib-group-test-1] editor evaluation contrib-group must contain 1 contrib[@contrib-type='author'].</assert>
+      <assert test="count(contrib[@contrib-type='author']) = 1" role="error" flag="dl-ar" id="ed-eval-contrib-group-test-1">[ed-eval-contrib-group-test-1] editor report contrib-group must contain 1 contrib[@contrib-type='author'].</assert>
     </rule></pattern><pattern id="ed-eval-author-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/contrib-group/contrib[@contrib-type='author' and name]" id="ed-eval-author-tests">
       <let name="rev-ed-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section'][1]/contrib[@contrib-type='editor'][1]/name[1])"/>
       <let name="name" value="e:get-name(name[1])"/>
       
-      <assert test="$name = $rev-ed-name" role="error" flag="dl-ar" id="ed-eval-author-test-1">[ed-eval-author-test-1] The author of the editor evaluation must be the same as the Reviewing editor for the article. The Reviewing editor is <value-of select="$rev-ed-name"/>, but the editor evaluation author is <value-of select="$name"/>.</assert>
+      <assert test="$name = $rev-ed-name" role="error" flag="dl-ar" id="ed-eval-author-test-1">[ed-eval-author-test-1] The author of the editor report must be the same as the Reviewing editor for the article. The Reviewing editor is <value-of select="$rev-ed-name"/>, but the editor evaluation author is <value-of select="$name"/>.</assert>
     </rule></pattern><pattern id="ed-eval-rel-obj-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/related-object" id="ed-eval-rel-obj-tests">
       <let name="event-preprint-doi" value="for $x in ancestor::article//article-meta/pub-history/event[1]/self-uri[@content-type='preprint'][1]/@xlink:href                                         return substring-after($x,'.org/')"/>
       

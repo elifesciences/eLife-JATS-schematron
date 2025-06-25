@@ -23001,7 +23001,7 @@
                </xsl:attribute>
                <svrl:text>[ed-eval-front-child-test-1] <xsl:text/>
                   <xsl:value-of select="name(.)"/>
-                  <xsl:text/> element is not allowed in the front-stub for an Editor's evaluation. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</svrl:text>
+                  <xsl:text/> element is not allowed in the front-stub for an editor report. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -23026,7 +23026,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[ed-eval-contrib-group-test-1] editor evaluation contrib-group must contain 1 contrib[@contrib-type='author'].</svrl:text>
+               <svrl:text>[ed-eval-contrib-group-test-1] editor report contrib-group must contain 1 contrib[@contrib-type='author'].</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -23052,7 +23052,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[ed-eval-author-test-1] The author of the editor evaluation must be the same as the Reviewing editor for the article. The Reviewing editor is <xsl:text/>
+               <svrl:text>[ed-eval-author-test-1] The author of the editor report must be the same as the Reviewing editor for the article. The Reviewing editor is <xsl:text/>
                   <xsl:value-of select="$rev-ed-name"/>
                   <xsl:text/>, but the editor evaluation author is <xsl:text/>
                   <xsl:value-of select="$name"/>
