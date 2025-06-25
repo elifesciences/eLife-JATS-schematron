@@ -1447,7 +1447,7 @@
   <pattern id="article-metadata">
     <rule context="abstract[not(@abstract-type)]/sec" id="abstract-sec-titles">
       <let name="pos" value="count(ancestor::abstract/sec) - count(following-sibling::sec)"/>
-      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-5" test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])" role="error" id="final-clintrial-conformance-9">A section with the title <value-of select="title"/> in the abstract must have at least one related-object element that contains all the information related to the clinical trial. This one does not.</report>
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#final-clintrial-conformance-9" test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])" role="error" id="final-clintrial-conformance-9">A section with the title <value-of select="title"/> in the abstract must have at least one related-object element that contains all the information related to the clinical trial. This one does not.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

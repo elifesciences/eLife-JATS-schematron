@@ -10745,6 +10745,7 @@
       <xsl:if test="matches(.,'_{5}')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'_{5}')">
             <xsl:attribute name="id">abstract-test-9</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#abstract-test-9</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -10966,7 +10967,7 @@
       <xsl:if test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])">
             <xsl:attribute name="id">pre-clintrial-conformance-9</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-clintrial-conformance-9</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -10990,6 +10991,7 @@
       <xsl:if test="*">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*">
             <xsl:attribute name="id">struct-abs-title-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#struct-abs-title-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>

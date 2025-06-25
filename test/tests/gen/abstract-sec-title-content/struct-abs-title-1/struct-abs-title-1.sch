@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="abstract[not(@abstract-type)]/sec/title" id="abstract-sec-title-content">
-      <report test="*" role="error" id="struct-abs-title-1">A title in a structured abstract cannot contain a child element. It should only contain text. This title with the content '<value-of select="."/>' has the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#struct-abs-title-1" test="*" role="error" id="struct-abs-title-1">A title in a structured abstract cannot contain a child element. It should only contain text. This title with the content '<value-of select="."/>' has the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

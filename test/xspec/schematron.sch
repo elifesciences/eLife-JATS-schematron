@@ -2588,7 +2588,7 @@
 	  <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#abstract-test-7" test="some $x in child::p satisfies (starts-with($x,'Background:') or starts-with($x,'Methods:') or starts-with($x,'Results:') or starts-with($x,'Conclusion:') or starts-with($x,'Trial registration:') or starts-with($x,'Clinical trial number:'))" role="warning" id="abstract-test-7">Abstract looks like it should instead be captured as a structured abstract (using sections) - <value-of select="."/>
       </report>
 	  
-	  <report test="matches(.,'_{5}')" role="error" id="abstract-test-9">Abstract contains a series of underscores directly next to each other. These are replacement characters input by the bot when the export from eJP contains an unknown or unsupported unicode character. Check the original abstract where these underscores are and ensure that they are replaced with whatever character should be present, or that the underscores are simply removed - <value-of select="."/>.</report>
+	  <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#abstract-test-9" test="matches(.,'_{5}')" role="error" id="abstract-test-9">Abstract contains a series of underscores directly next to each other. These are replacement characters input by the bot when the export from eJP contains an unknown or unsupported unicode character. Check the original abstract where these underscores are and ensure that they are replaced with whatever character should be present, or that the underscores are simply removed - <value-of select="."/>.</report>
 		
     </rule>
   </pattern>
@@ -2636,15 +2636,15 @@
         <name/> must have an @id in the format 'abs1'. <value-of select="@id"/> does not conform to this convention.</assert>
       
       <!-- temporarily doing pre and final versions -->
-      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-5" test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])" role="warning" id="pre-clintrial-conformance-9">A section with the title <value-of select="title"/> in the abstract must have at least one related-object element that contains all the information related to the clinical trial. This one does not.</report>
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-clintrial-conformance-9" test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])" role="warning" id="pre-clintrial-conformance-9">A section with the title <value-of select="title"/> in the abstract must have at least one related-object element that contains all the information related to the clinical trial. This one does not.</report>
 
-      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-5" test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])" role="error" id="final-clintrial-conformance-9">A section with the title <value-of select="title"/> in the abstract must have at least one related-object element that contains all the information related to the clinical trial. This one does not.</report>
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#final-clintrial-conformance-9" test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])" role="error" id="final-clintrial-conformance-9">A section with the title <value-of select="title"/> in the abstract must have at least one related-object element that contains all the information related to the clinical trial. This one does not.</report>
     </rule>
   </pattern>
   <pattern id="abstract-sec-title-content-pattern">
     <rule context="abstract[not(@abstract-type)]/sec/title" id="abstract-sec-title-content">
       
-      <report test="*" role="error" id="struct-abs-title-1">A title in a structured abstract cannot contain a child element. It should only contain text. This title with the content '<value-of select="."/>' has the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#struct-abs-title-1" test="*" role="error" id="struct-abs-title-1">A title in a structured abstract cannot contain a child element. It should only contain text. This title with the content '<value-of select="."/>' has the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
       
     </rule>
   </pattern>
