@@ -12111,6 +12111,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'for the purpose of open access, the authors have applied a cc by public copyright license to any author accepted manuscript version arising from this submission\.')">
                <xsl:attribute name="id">wellcome-fund-statement</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-fund-statement</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -12138,6 +12139,7 @@
       <xsl:if test="some $aff in ($nested-affs,$group-affs) satisfies matches(lower-case($aff),'^max[\p{Zs}-]+plan[ck]+|\p{Zs}max[\p{Zs}-]+plan[ck]+')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $aff in ($nested-affs,$group-affs) satisfies matches(lower-case($aff),'^max[\p{Zs}-]+plan[ck]+|\p{Zs}max[\p{Zs}-]+plan[ck]+')">
             <xsl:attribute name="id">max-planck-fund-statement</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#max-planck-fund-statement</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -12265,6 +12267,7 @@
       <xsl:if test="$grant-matches">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$grant-matches">
             <xsl:attribute name="id">grant-doi-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -12282,6 +12285,7 @@
       <xsl:if test="$mints-grant-dois and (count($funder-entry//*:grant) gt 29) and not($grant-matches)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$mints-grant-dois and (count($funder-entry//*:grant) gt 29) and not($grant-matches)">
             <xsl:attribute name="id">grant-doi-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -12313,6 +12317,7 @@
       <xsl:if test="$grant-doi-count gt 29">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$grant-doi-count gt 29">
             <xsl:attribute name="id">grant-doi-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -12343,6 +12348,7 @@
       <xsl:if test="$grant-matches">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$grant-matches">
             <xsl:attribute name="id">wellcome-grant-doi-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-grant-doi-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -12362,6 +12368,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$grant-matches">
                <xsl:attribute name="id">wellcome-grant-doi-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-grant-doi-test-2</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -12396,6 +12403,7 @@
       <xsl:if test="$grant-matches">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$grant-matches">
             <xsl:attribute name="id">known-grant-funder-grant-doi-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#known-grant-funder-grant-doi-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -12415,6 +12423,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$grant-matches">
                <xsl:attribute name="id">known-grant-funder-grant-doi-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#known-grant-funder-grant-doi-test-2</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -12505,6 +12514,7 @@
       <xsl:if test="matches(.,'http[s]?://d?x?\.?doi.org/')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'http[s]?://d?x?\.?doi.org/')">
             <xsl:attribute name="id">award-id-test-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -12518,6 +12528,7 @@
       <xsl:if test=". = preceding::award-id[parent::award-group/descendant::institution-id[1] = $funder-id]">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=". = preceding::award-id[parent::award-group/descendant::institution-id[1] = $funder-id]">
             <xsl:attribute name="id">award-id-test-6</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-6</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -12531,6 +12542,7 @@
       <xsl:if test=". = preceding::award-id[parent::award-group/descendant::institution[1] = $funder-name]">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=". = preceding::award-id[parent::award-group/descendant::institution[1] = $funder-name]">
             <xsl:attribute name="id">award-id-test-7</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-7</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -12544,6 +12556,7 @@
       <xsl:if test=". = preceding::award-id[parent::award-group[not(descendant::institution[1] = $funder-name) and not(descendant::institution-id[1] = $funder-id)]]">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=". = preceding::award-id[parent::award-group[not(descendant::institution[1] = $funder-name) and not(descendant::institution-id[1] = $funder-id)]]">
             <xsl:attribute name="id">award-id-test-8</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-8</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -20659,6 +20672,7 @@
       <xsl:if test="p[* or not(normalize-space(.)='')]">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="p[* or not(normalize-space(.)='')]">
             <xsl:attribute name="id">ack-funding</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#ack-funding</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21039,6 +21053,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(substring-after(@id,'fund'),'^[0-9]{1,2}$')">
                <xsl:attribute name="id">award-group-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>

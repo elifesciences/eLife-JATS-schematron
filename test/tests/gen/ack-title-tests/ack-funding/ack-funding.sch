@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="title-conformance">
     <rule context="ack" id="ack-title-tests">
-      <report test="p[* or not(normalize-space(.)='')]" role="warning" id="ack-funding">Please check the acknowledgements section to ensure that all funding information is captured in the funding section.</report>
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#ack-funding" test="p[* or not(normalize-space(.)='')]" role="warning" id="ack-funding">Please check the acknowledgements section to ensure that all funding information is captured in the funding section.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

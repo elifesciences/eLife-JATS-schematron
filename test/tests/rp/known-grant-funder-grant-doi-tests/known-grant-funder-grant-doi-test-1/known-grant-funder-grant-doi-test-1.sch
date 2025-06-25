@@ -258,7 +258,7 @@
       <let name="award-id-elem" value="award-id"/>
       <let name="award-id" value="e:alter-award-id($award-id-elem,$ror-id)"/>
       <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
-      <report test="$grant-matches" role="warning" id="known-grant-funder-grant-doi-test-1">[known-grant-funder-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#known-grant-funder-grant-doi-test-1" test="$grant-matches" role="warning" id="known-grant-funder-grant-doi-test-1">[known-grant-funder-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
