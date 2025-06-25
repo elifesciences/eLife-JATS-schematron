@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="ed-eval-contrib-group-test-1.sch"?>
 <!--Context: sub-article[@article-type='editor-report']/front-stub/contrib-group
 Test: assert    count(contrib[@contrib-type='author']) = 1
-Message: editor evaluation contrib-group must contain 1 contrib[@contrib-type='author']. -->
+Message: editor report contrib-group must contain 1 contrib[@contrib-type='author']. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

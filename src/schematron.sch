@@ -3150,7 +3150,8 @@
         role="warning" 
         id="abstract-test-7">Abstract looks like it should instead be captured as a structured abstract (using sections) - <value-of select="."/></report>
 	  
-	  <report test="matches(.,'_{5}')" 
+	  <report  see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#abstract-test-9"
+      test="matches(.,'_{5}')" 
 	    role="error" 
 	    id="abstract-test-9">Abstract contains a series of underscores directly next to each other. These are replacement characters input by the bot when the export from eJP contains an unknown or unsupported unicode character. Check the original abstract where these underscores are and ensure that they are replaced with whatever character should be present, or that the underscores are simply removed - <value-of select="."/>.</report>
 		
@@ -3226,12 +3227,12 @@
         id="clintrial-conformance-8"><name/> must have an @id in the format 'abs1'. <value-of select="@id"/> does not conform to this convention.</assert>
       
       <!-- temporarily doing pre and final versions -->
-      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-5"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-clintrial-conformance-9"
         test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])" 
         role="warning" 
         id="pre-clintrial-conformance-9">A section with the title <value-of select="title"/> in the abstract must have at least one related-object element that contains all the information related to the clinical trial. This one does not.</report>
 
-      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-5"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#final-clintrial-conformance-9"
         test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])" 
         role="error" 
         id="final-clintrial-conformance-9">A section with the title <value-of select="title"/> in the abstract must have at least one related-object element that contains all the information related to the clinical trial. This one does not.</report>
@@ -3239,7 +3240,8 @@
     
     <rule context="abstract[not(@abstract-type)]/sec/title" id="abstract-sec-title-content">
       
-      <report test="*"
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#struct-abs-title-1" 
+        test="*"
         role="error" 
         id="struct-abs-title-1">A title in a structured abstract cannot contain a child element. It should only contain text. This title with the content '<value-of select="."/>' has the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
       
@@ -3303,19 +3305,23 @@
         role="warning" 
         id="clintrial-related-object-11"><name/> @source-id value should almost always be one of the subtitles of the Crossref clinical trial registries. "<value-of select="@source-id"/>" is not one of the following <value-of select="string-join(for $x in document($registries)/registries/registry return concat('&quot;',$x/subtitle/string(),'&quot; (',$x/doi/string(),')'),', ')"/>. Is that correct?</assert>
       
-      <report test="@source-id='ClinicalTrials.gov' and not(@xlink:href=(concat('https://clinicaltrials.gov/study/',@document-id),concat('https://clinicaltrials.gov/show/',@document-id)))" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-12"
+        test="@source-id='ClinicalTrials.gov' and not(@xlink:href=(concat('https://clinicaltrials.gov/study/',@document-id),concat('https://clinicaltrials.gov/show/',@document-id)))" 
         role="error" 
         id="clintrial-related-object-12">ClinicalTrials.gov trial links are in the format https://clinicaltrials.gov/show/{number}. This <name/> has the link '<value-of select="@xlink:href"/>', which based on the clinical trial registry (<value-of select="@source-id"/>) and @document-id (<value-of select="@document-id"/>) is not right. Either the xlink:href is wrong (should it be <value-of select="concat('https://clinicaltrials.gov/study/',@document-id)"/> instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these).</report>
 
-      <report test="ends-with(@xlink:href,'.')" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-14"
+        test="ends-with(@xlink:href,'.')" 
         role="error" 
         id="clintrial-related-object-14"><name/> has a @xlink:href attribute value which ends with a full stop, which is not correct - '<value-of select="@xlink:href"/>'.</report>
 
-      <report test="ends-with(@document-id,'.')" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-15"
+        test="ends-with(@document-id,'.')" 
         role="error" 
         id="clintrial-related-object-15"><name/> has an @document-id attribute value which ends with a full stop, which is not correct - '<value-of select="@document-id"/>'.</report>
 
-      <report test="ends-with(.,'.')" 
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-16"
+        test="ends-with(.,'.')" 
         role="error" 
         id="clintrial-related-object-16">Content within <name/> element ends with a full stop, which is not correct - '<value-of select="."/>'.</report>
       
@@ -3563,7 +3569,8 @@
     
     <rule context="article-meta/funding-group[descendant::institution[matches(lower-case(.),'wellcome') and not(matches(lower-case(.),'burroughs'))]]/funding-statement" id="wellcome-fund-statement-tests">
       
-      <assert test="matches(lower-case(.),'for the purpose of open access, the authors have applied a cc by public copyright license to any author accepted manuscript version arising from this submission\.')" 
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-fund-statement"
+        test="matches(lower-case(.),'for the purpose of open access, the authors have applied a cc by public copyright license to any author accepted manuscript version arising from this submission\.')" 
         role="warning" 
         id="wellcome-fund-statement">This article has Wellcome funding declared, but the funding statement does not end with "For the purpose of Open Access, the authors have applied a CC BY public copyright license to any Author Accepted Manuscript version arising from this submission." is that correct? The funding statement is currently <value-of select="."/>.</assert>
       
@@ -3575,7 +3582,8 @@
       <let name="corresp-author-rids" value="$corresp-authors/xref[@ref-type='aff']/@rid"/>
       <let name="group-affs" value="ancestor::article-meta/contrib-group[1]/aff[@id=$corresp-author-rids]//institution"/>
       
-      <report test="some $aff in ($nested-affs,$group-affs) satisfies matches(lower-case($aff),'^max[\p{Zs}-]+plan[ck]+|\p{Zs}max[\p{Zs}-]+plan[ck]+')"
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#max-planck-fund-statement"
+        test="some $aff in ($nested-affs,$group-affs) satisfies matches(lower-case($aff),'^max[\p{Zs}-]+plan[ck]+|\p{Zs}max[\p{Zs}-]+plan[ck]+')"
         role="warning" 
         id="max-planck-fund-statement">This article has a corresponding author that is affiliated with a Max Planck Institute, but the funding statement does not contain the text 'Open access funding provided by Max Planck Society.' Should it? The funding statement currently reads: <value-of select="."/>.</report>
       
@@ -3626,12 +3634,14 @@
       <let name="grant-matches" value="if (not($mints-grant-dois)) then ()
         else $funder-entry//*:grant[@award=$award-id]"/>
 	  
-      <report test="$grant-matches"
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-1"
+        test="$grant-matches"
 	    role="warning" 
 	    id="grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
 
       <!-- If the funder has minted 30+ grant DOIs but there isn't an exact match throw a warning -->
-      <report test="$mints-grant-dois and (count($funder-entry//*:grant) gt 29) and not($grant-matches)"
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-2"
+        test="$mints-grant-dois and (count($funder-entry//*:grant) gt 29) and not($grant-matches)"
 	    role="warning" 
 	    id="grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</report>
       
@@ -3642,7 +3652,8 @@
       <let name="funder-entry" value="document($rors)//*:ror[*:id[@type='fundref']=$funder-id]"/>
       <let name="grant-doi-count" value="count($funder-entry//*:grant)"/>
       
-      <report test="$grant-doi-count gt 29"
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-3"
+        test="$grant-doi-count gt 29"
 	       role="warning" 
 	       id="grant-doi-test-3">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has no award-id, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Is there a missing grant DOI or award ID for this funding?</report>
     </rule>
@@ -3657,11 +3668,13 @@
       <let name="grant-matches" value="if ($award-id='') then ()
         else $grants[@award=$award-id]"/>
       
-      <report test="$grant-matches"
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-grant-doi-test-1"
+        test="$grant-matches"
         role="warning" 
         id="wellcome-grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
 
-      <assert test="$grant-matches"
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-grant-doi-test-2"
+        test="$grant-matches"
         role="warning" 
         id="wellcome-grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
     </rule>
@@ -3675,11 +3688,13 @@
       <let name="grant-matches" value="if ($award-id='') then ()
         else $grants[@award=$award-id]"/>
     
-      <report test="$grant-matches"
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#known-grant-funder-grant-doi-test-1"
+        test="$grant-matches"
         role="warning"
         id="known-grant-funder-grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
 
-      <assert test="$grant-matches"
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#known-grant-funder-grant-doi-test-2"
+        test="$grant-matches"
         role="warning" 
         id="known-grant-funder-grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
 
@@ -3710,19 +3725,23 @@
         role="warning" 
         id="award-id-test-4">Award id contains what looks like a broken unicode - <value-of select="."/>.</report>
       
-      <report test="matches(.,'http[s]?://d?x?\.?doi.org/')" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-5"
+        test="matches(.,'http[s]?://d?x?\.?doi.org/')" 
         role="error" 
         id="award-id-test-5">Award id contains a DOI link - <value-of select="."/>. If the award ID is for a grant DOI it should contain the DOI without the https://... protocol (e.g. 10.37717/220020477).</report>
       
-      <report test=". = preceding::award-id[parent::award-group/descendant::institution-id[1] = $funder-id]" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-6"
+        test=". = preceding::award-id[parent::award-group/descendant::institution-id[1] = $funder-id]" 
         role="error" 
         id="award-id-test-6">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with the same institution ID. This must be incorrect. Either the funder ID or the award ID is wrong, or it is a duplicate that should be removed.</report>
       
-      <report test=". = preceding::award-id[parent::award-group/descendant::institution[1] = $funder-name]" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-7"
+        test=". = preceding::award-id[parent::award-group/descendant::institution[1] = $funder-name]" 
         role="error" 
         id="award-id-test-7">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with the same funder name. This must be incorrect. Either the funder name or the award ID is wrong, or it is a duplicate that should be removed.</report>
       
-      <report test=". = preceding::award-id[parent::award-group[not(descendant::institution[1] = $funder-name) and not(descendant::institution-id[1] = $funder-id)]]" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-8"
+        test=". = preceding::award-id[parent::award-group[not(descendant::institution[1] = $funder-name) and not(descendant::institution-id[1] = $funder-id)]]" 
         role="warning" 
         id="award-id-test-8">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with a different funder. Has there been a mistake with the award id? If the grant was awarded jointly by two funders, then this capture is correct and should be retained.</report>
       
@@ -5808,7 +5827,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="bracket-test-3"><name/> element contains more left '[' than right ']' square brackets (<value-of select="$open-square"/> and <value-of select="$close-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) gt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/></report>
       
-      <report  see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h29wm-bracket-test-4" 
         test="not(matches(.,'^\p{Zs}?(\d+|[A-Za-z]|[Ii]?[Xx]|[Ii]?[Vv]|[Vv]?[Ii]{1,3})\]')) and ($open-square lt $close-square)" 
         role="warning" 
         id="bracket-test-4"><name/> element contains more right ']' than left '[' square brackets (<value-of select="$close-square"/> and <value-of select="$open-square"/> respectively). Is that correct? Possibly troublesome section(s) are <value-of select="string-join(for $sentence in tokenize(.,'\. ') return if (string-length(replace($sentence,'[^\[]','')) lt string-length(replace($sentence,'[^\]]',''))) then $sentence else (),' ---- ')"/></report>
@@ -6747,7 +6766,8 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="ack-content-test">An Acknowledgements section must contain content. Either add in the missing content or delete the Acknowledgements.</assert>
       
-      <report test="p[* or not(normalize-space(.)='')]" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#ack-funding"
+        test="p[* or not(normalize-space(.)='')]" 
         role="warning" 
         id="ack-funding">Please check the acknowledgements section to ensure that all funding information is captured in the funding section.</report>
       
@@ -6837,7 +6857,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/title-group" id="ed-eval-title-tests">
       
-      <assert test="article-title = (&quot;Editor&apos;s evaluation&quot;,'eLife assessment','eLife Assessment')" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-title-test"
+        test="article-title = (&quot;Editor&apos;s evaluation&quot;,'eLife assessment','eLife Assessment')" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-title-test">A sub-article[@article-type='editor-report'] must have the title "eLife Assessment" or "Editor's evaluation". Currently it is <value-of select="article-title"/>.</assert>
@@ -6845,7 +6866,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='decision-letter']/front-stub/title-group" id="dec-letter-title-tests">
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-title-test" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-title-test" 
         test="article-title = 'Decision letter'" 
         role="error" 
         flag="dl-ar"
@@ -6853,7 +6874,7 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="sub-article[@article-type=('reply','author-comment')]/front-stub/title-group" id="reply-title-tests">
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-title-test" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-title-test" 
         test="article-title = 'Author response'" 
         role="error" 
         flag="dl-ar"
@@ -6875,7 +6896,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="funding-group/award-group" id="award-group-ids">
       
-      <assert test="matches(substring-after(@id,'fund'),'^[0-9]{1,2}$')" 
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-1"
+        test="matches(substring-after(@id,'fund'),'^[0-9]{1,2}$')" 
         role="error" 
         id="award-group-test-1">award-group must have an @id, the value of which conforms to the convention 'fund', followed by a digit. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
@@ -7535,25 +7557,25 @@ else self::*/local-name() = $allowed-p-blocks"
         else if (@article-type='author-comment') then concat('sa',$sub-article-count - 1)
         else concat('sa',count(preceding-sibling::sub-article))"></let>
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-1" 
         test="@article-type=$sub-article-types" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-reply-test-1">sub-article must must have an article-type which is equal to one of the following values: <value-of select="string-join($sub-article-types,'; ')"/>.</assert>
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-2" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-2" 
         test="@id = $id-convention" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-reply-test-2">sub-article id is <value-of select="@id"/> when based on it's article-type and position it should be <value-of select="$id-convention"/>.</assert>
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-3" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-3" 
         test="count(front-stub) = 1" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-reply-test-3">sub-article must contain one and only one front-stub.</assert>
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-4" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-4" 
         test="count(body) = 1" 
         role="error" 
         flag="dl-ar"
@@ -7584,13 +7606,13 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="article/sub-article//p" id="dec-letter-reply-content-tests">
       
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-5" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-5" 
         test="matches(.,'&lt;[/]?[Aa]uthor response')" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-reply-test-5"><value-of select="ancestor::sub-article/@article-type"/> paragraph contains what looks like pseudo-code - <value-of select="."/>.</report>
       
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-6" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-6" 
         test="matches(.,'&lt;\p{Zs}?/?\p{Zs}?[a-z]*\p{Zs}?/?\p{Zs}?&gt;')" 
         role="warning" 
         flag="dl-ar"
@@ -7601,7 +7623,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="regex" value="'\p{Zs}([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict\p{Zs}[Oo]f\p{Zs}[Ii]nterest|([Aa]re|[Aa]m)\p{Zs}[Ss]hocked|[Ss]trongly\p{Zs}[Dd]isagree)[^\p{L}]'"/>
       
       <!-- Need to improve messaging -->
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-7" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-7" 
         test="matches(.,$regex)"
         role="warning" 
         flag="dl-ar"
@@ -7610,27 +7632,32 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-eval-front-tests">
       
-      <assert test="count(article-id[@pub-id-type='doi']) = 1" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-1"
+        test="count(article-id[@pub-id-type='doi']) = 1" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
       
-      <assert test="count(contrib-group) = 1" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-2"
+        test="count(contrib-group) = 1" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-front-test-2">editor report front-stub must contain 1 (and only 1) contrib-group element. This one has <value-of select="count(contrib-group)"/>.</assert>
       
-      <report test="count(related-object) gt 1" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-3"
+        test="count(related-object) gt 1" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-front-test-3">editor report front-stub must contain 1 or 0 related-object elements. This one has <value-of select="count(related-object)"/>.</report>
 
-      <report test="e:is-prc(.) and not(kwd-group[@kwd-group-type='evidence-strength'])" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-4"
+        test="e:is-prc(.) and not(kwd-group[@kwd-group-type='evidence-strength'])" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-front-test-4">eLife Assessment front-stub does not contain a strength term keyword group, which must be incorrect.</report>
 
-      <report test="e:is-prc(.) and not(kwd-group[@kwd-group-type='claim-importance'])" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-5"
+        test="e:is-prc(.) and not(kwd-group[@kwd-group-type='claim-importance'])" 
         role="warning" 
         flag="dl-ar"
         id="ed-eval-front-test-5">eLife Assessment front-stub does not contain a significance term keyword group, which is very unusual. Is that correct?</report>
@@ -7638,60 +7665,69 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/*" id="ed-eval-front-child-tests">
       
-      <assert test="name()=('article-id','title-group','contrib-group','kwd-group','related-object')" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-child-test-1"
+        test="name()=('article-id','title-group','contrib-group','kwd-group','related-object')" 
         role="error" 
         flag="dl-ar"
-        id="ed-eval-front-child-test-1"><name/> element is not allowed in the front-stub for an Editor's evaluation. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</assert>
+        id="ed-eval-front-child-test-1"><name/> element is not allowed in the front-stub for an editor report. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</assert>
     </rule>
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/contrib-group" id="ed-eval-contrib-group-tests">
       
-      <assert test="count(contrib[@contrib-type='author']) = 1" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-contrib-group-test-1"
+        test="count(contrib[@contrib-type='author']) = 1" 
         role="error" 
         flag="dl-ar"
-        id="ed-eval-contrib-group-test-1">editor evaluation contrib-group must contain 1 contrib[@contrib-type='author'].</assert>
+        id="ed-eval-contrib-group-test-1">editor report contrib-group must contain 1 contrib[@contrib-type='author'].</assert>
     </rule>
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/contrib-group/contrib[@contrib-type='author' and name]" id="ed-eval-author-tests">
       <let name="rev-ed-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section'][1]/contrib[@contrib-type='editor'][1]/name[1])"/>
       <let name="name" value="e:get-name(name[1])"/>
       
-      <assert test="$name = $rev-ed-name" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-author-test-1"
+        test="$name = $rev-ed-name" 
         role="error" 
         flag="dl-ar"
-        id="ed-eval-author-test-1">The author of the editor evaluation must be the same as the Reviewing editor for the article. The Reviewing editor is <value-of select="$rev-ed-name"/>, but the editor evaluation author is <value-of select="$name"/>.</assert>
+        id="ed-eval-author-test-1">The author of the editor report must be the same as the Reviewing editor for the article. The Reviewing editor is <value-of select="$rev-ed-name"/>, but the editor evaluation author is <value-of select="$name"/>.</assert>
     </rule>
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/related-object" id="ed-eval-rel-obj-tests">
       <let name="event-preprint-doi" value="for $x in ancestor::article//article-meta/pub-history/event[1]/self-uri[@content-type='preprint'][1]/@xlink:href
                                         return substring-after($x,'.org/')"/>
       
-      <assert test="matches(@id,'^sa0ro\d$')" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-1"
+        test="matches(@id,'^sa0ro\d$')" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-rel-obj-test-1">related-object in editor's evaluation must have an id in the format sa0ro1. <value-of select="@id"/> does not meet this convention.</assert>
       
-      <assert test="@object-id-type='id'" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-2"
+        test="@object-id-type='id'" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-rel-obj-test-2">related-object in editor's evaluation must have an object-id-type="id" attribute.</assert>
       
-      <assert test="@link-type='continued-by'" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-3"
+        test="@link-type='continued-by'" 
         role="error" 
         flag="dl-ar"
         id="ed-eval-rel-obj-test-3">related-object in editor's evaluation must have a link-type="continued-by" attribute.</assert>
       
-      <assert test="matches(@object-id,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')"
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-4"
+        test="matches(@object-id,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')"
         role="error" 
         flag="dl-ar"
         id="ed-eval-rel-obj-test-4">related-object in editor's evaluation must have an object-id attribute which is a doi. '<value-of select="@object-id"/>' is not a valid doi.</assert>
       
-      <assert test="@object-id = $event-preprint-doi"
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-5"
+        test="@object-id = $event-preprint-doi"
         role="error" 
         flag="dl-ar"
         id="ed-eval-rel-obj-test-5">related-object in editor's evaluation must have an object-id attribute whose value is the same as the preprint doi in the article's pub-history. object-id '<value-of select="@object-id"/>' is not the same as the preprint doi in the event history, '<value-of select="$event-preprint-doi"/>'.</assert>
       
-      <assert test="@xlink:href = (
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-6"
+        test="@xlink:href = (
         concat('https://sciety.org/articles/activity/',@object-id),
         concat('https://sciety.org/articles/',@object-id)
         )" 
@@ -7699,7 +7735,8 @@ else self::*/local-name() = $allowed-p-blocks"
         flag="dl-ar"
         id="ed-eval-rel-obj-test-6">related-object in editor's evaluation must have an xlink:href attribute whose value is 'https://sciety.org/articles/activity/' followed by the object-id attribute value (which must be a doi). '<value-of select="@xlink:href"/>' is not equal to <value-of select="concat('https://sciety.org/articles/activity/',@object-id)"/>. Which is correct?</assert>
       
-      <assert test="@xlink:href = (
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-7"
+        test="@xlink:href = (
         concat('https://sciety.org/articles/activity/',$event-preprint-doi),
         concat('https://sciety.org/articles/',$event-preprint-doi)
         )" 
@@ -7711,22 +7748,26 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group" id="ed-report-kwd-group">
       
-      <assert test="@kwd-group-type=('claim-importance','evidence-strength')" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-group-1"
+        test="@kwd-group-type=('claim-importance','evidence-strength')" 
         role="error" 
         flag="dl-ar"
         id="ed-report-kwd-group-1">kwd-group in <value-of select="parent::*/title-group/article-title"/> must have the attribute kwd-group-type with the value 'claim-importance' or 'evidence-strength'. This one does not.</assert>
 
-      <report test="@kwd-group-type='claim-importance' and count(kwd) gt 1" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-group-3"
+        test="@kwd-group-type='claim-importance' and count(kwd) gt 1" 
         role="error" 
         flag="dl-ar"
         id="ed-report-kwd-group-3"><value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. This is not permitted, please check which single importance keyword should be used.</report>
       
-      <report test="@kwd-group-type='evidence-strength' and count(kwd) = 2" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-group-2"
+        test="@kwd-group-type='evidence-strength' and count(kwd) = 2" 
         role="warning" 
         flag="dl-ar"
         id="ed-report-kwd-group-2"><value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. Please check this is correct.</report>
       
-      <report test="@kwd-group-type='evidence-strength' and count(kwd) gt 2" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-group-4"
+        test="@kwd-group-type='evidence-strength' and count(kwd) gt 2" 
         role="error"
         flag="dl-ar"
         id="ed-report-kwd-group-4"><value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. This is incorrect.</report>
@@ -7736,7 +7777,8 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" id="ed-report-claim-kwds">
       <let name="allowed-vals" value="('Landmark', 'Fundamental', 'Important', 'Valuable', 'Useful')"/>
       
-      <assert test=".=$allowed-vals"
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-claim-kwd-1"
+        test=".=$allowed-vals"
         role="error" 
         flag="dl-ar"
         id="ed-report-claim-kwd-1">Keyword contains <value-of select="."/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/></assert>
@@ -7748,12 +7790,14 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="wos-no-go-vals" value="('Incomplete', 'Inadequate')"/>
       <let name="allowed-vals" value="($wos-go-vals,$wos-no-go-vals)"/>
       
-      <assert test=".=$allowed-vals"
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-evidence-kwd-1"
+        test=".=$allowed-vals"
         role="error" 
         flag="dl-ar"
         id="ed-report-evidence-kwd-1">Keyword contains <value-of select="."/>, but it is in an 'evidence-strength' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/></assert>
       
-      <report test=".=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]"
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-evidence-kwd-2"
+        test=".=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]"
         role="warning" 
         flag="dl-ar"
         id="ed-report-evidence-kwd-2">There is both an <value-of select="."/> and <value-of select="string-join(parent::*/kwd[.=$wos-go-vals],'; ')"/> kwd in the kwd-group for strength of evidence. Should <value-of select="."/> be unbolded or changed to a different word in the Assessment and removed as a keyword?</report>
@@ -7761,17 +7805,20 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" id="ed-report-kwds">
       
-      <report test="preceding-sibling::kwd = ."
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-1"
+        test="preceding-sibling::kwd = ."
         role="error" 
         flag="dl-ar"
         id="ed-report-kwd-1">Keyword contains <value-of select="."/>, there is another kwd with that value witin the same kwd-group, so this one is either incorrect or superfluous and should be deleted.</report>
       
-      <assert test="some $x in ancestor::sub-article[1]/body/p//bold satisfies contains(lower-case($x),lower-case(.))"
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-2"
+        test="some $x in ancestor::sub-article[1]/body/p//bold satisfies contains(lower-case($x),lower-case(.))"
         role="error" 
         flag="dl-ar"
         id="ed-report-kwd-2">Keyword contains <value-of select="."/>, but this term is not bolded in the text of the <value-of select="ancestor::front-stub/title-group/article-title"/>.</assert>
       
-      <report test="*"
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-3"
+        test="*"
         role="error" 
         flag="dl-ar"
         id="ed-report-kwd-3">Keywords in <value-of select="ancestor::front-stub/title-group/article-title"/> cannot contain elements, only text. This one has: <value-of select="string-join(distinct-values(*/name()),'; ')"/>.</report>
@@ -7786,23 +7833,28 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="title-case-kwd" value="concat(upper-case(substring($normalized-kwd,1,1)),lower-case(substring($normalized-kwd,2)))"/>
       <let name="preceding-text" value="string-join(preceding-sibling::node(),'')"/>
       
-      <assert test="lower-case(.)=$allowed-vals"
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-bold-terms-1"
+        test="lower-case(.)=$allowed-vals"
         role="error" 
         id="ed-report-bold-terms-1">Bold phrase in eLife Assessment - <value-of select="."/> - is not one of the permitted terms from the vocabulary. Should the bold formatting be removed? These are currently bolded terms <value-of select="string-join($allowed-vals,', ')"/></assert>
 
-      <report test="lower-case(.)=$allowed-vals and not($title-case-kwd=ancestor::sub-article/front-stub/kwd-group/kwd)"
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-bold-terms-2"
+        test="lower-case(.)=$allowed-vals and not($title-case-kwd=ancestor::sub-article/front-stub/kwd-group/kwd)"
         role="error" 
         id="ed-report-bold-terms-2">Bold phrase in eLife Assessment - <value-of select="."/> - is one of the permitted vocabulary terms, but there's no corresponding keyword in the metadata (in a kwd-group in the front-stub).</report>
 
-      <report test="preceding-sibling::bold[replace(lower-case(.),'ly$','') = $normalized-kwd]"
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-bold-terms-3"
+        test="preceding-sibling::bold[replace(lower-case(.),'ly$','') = $normalized-kwd]"
         role="warning" 
         id="ed-report-bold-terms-3">There is more than one of the same <value-of select="if (replace(lower-case(.),'ly$','')=$str-kwds) then 'strength' else 'significance'"/> keywords in the assessment - <value-of select="$normalized-kwd"/>. This is very likely to be incorrect.</report>
       
-      <report test="(lower-case(.)=$allowed-vals) and matches($preceding-text,'\smore\s*$')"
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-bold-terms-4"
+        test="(lower-case(.)=$allowed-vals) and matches($preceding-text,'\smore\s*$')"
         role="warning" 
         id="ed-report-bold-terms-4">Assessment keyword (<value-of select="."/>) is preceded by 'more'. Has the keyword been deployed correctly?</report>
       
-      <report test="(lower-case(.)=$str-kwds) and matches($preceding-text,'\spotentially\s*$')"
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-bold-terms-5"
+        test="(lower-case(.)=$str-kwds) and matches($preceding-text,'\spotentially\s*$')"
         role="warning" 
         id="ed-report-bold-terms-5">Assessment strength keyword (<value-of select="."/>) is preceded by 'potentially'. Has the keyword been deployed correctly?</report>
     </rule>
@@ -7810,25 +7862,25 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
       <let name="count" value="count(contrib-group)"/>
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-1" 
         test="count(article-id[@pub-id-type='doi']) = 1" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-2" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-2" 
         test="$count gt 0" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-front-test-2">decision letter front-stub must contain at least 1 contrib-group element.</assert>
       
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-3" 
         test="$count gt 2" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-front-test-3">decision letter front-stub contains more than 2 contrib-group elements.</report>
       
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-4" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-4" 
         test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'(All|The) reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/|doi.org/10.24072/pci.evolbiol')])" 
         role="warning" 
         flag="dl-ar"
@@ -7837,13 +7889,13 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" id="dec-letter-editor-tests">
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-editor-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-editor-test-1" 
         test="count(contrib[@contrib-type='editor']) = 1" 
         role="warning" 
         flag="dl-ar"
         id="dec-letter-editor-test-1">First contrib-group in decision letter must contain 1 and only 1 editor (contrib[@contrib-type='editor']).</assert>
       
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-editor-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-editor-test-2" 
         test="contrib[not(@contrib-type) or @contrib-type!='editor']" 
         role="warning" 
         flag="dl-ar"
@@ -7856,7 +7908,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <!--<let name="top-role" value="ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[e:get-name(name[1])=$name]/role"/>-->
       <!--<let name="top-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[role=$role]/name[1])"/>-->
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-editor-test-3" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-editor-test-3" 
         test="$role=('Reviewing Editor','Senior and Reviewing Editor')" 
         role="error" 
         flag="dl-ar"
@@ -7869,19 +7921,19 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" id="dec-letter-reviewer-tests">
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reviewer-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-1" 
         test="count(contrib[@contrib-type='reviewer']) gt 0" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-reviewer-test-1">Second contrib-group in decision letter must contain a reviewer (contrib[@contrib-type='reviewer']).</assert>
       
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reviewer-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-2" 
         test="contrib[not(@contrib-type) or @contrib-type!='reviewer']" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-reviewer-test-2">Second contrib-group in decision letter contains a contrib which is not marked up as a reviewer (contrib[@contrib-type='reviewer']).</report>
       
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reviewer-test-6" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-6" 
         test="count(contrib[@contrib-type='reviewer']) gt 5" 
         role="warning" 
         flag="dl-ar"
@@ -7891,7 +7943,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]/contrib[@contrib-type='reviewer']" id="dec-letter-reviewer-tests-2">
       <let name="name" value="e:get-name(name[1])"/>
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reviewer-test-3" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-3" 
         test="role='Reviewer'" 
         role="error" 
         flag="dl-ar"
@@ -7900,7 +7952,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type='decision-letter']/body" id="dec-letter-body-tests">
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-body-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-body-test-1" 
         test="child::*[1]/local-name() = 'boxed-text'" 
         role="error" 
         flag="dl-ar"
@@ -7908,7 +7960,7 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
       
     <rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//p" id="dec-letter-body-p-tests">  
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-body-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-body-test-2" 
         test="contains(lower-case(.),'this paper was reviewed by review commons') and not(child::ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/') and (lower-case(.)='review commons')])" 
         role="error" 
         flag="dl-ar"
@@ -7926,19 +7978,19 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="permitted-text-2" value="'^Our editorial process produces two outputs: \(?i\) public reviews designed to be posted alongside the preprint for the benefit of readers; \(?ii\) feedback on the manuscript for the authors, including requests for revisions, shown below. We also include an acceptance summary that explains what the editors found interesting or important about the work.$'"/>
       <let name="permitted-text-3" value="'^In the interests of transparency, eLife publishes the most substantive revision requests and the accompanying author responses.$'"/>
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-box-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-box-test-1" 
         test="matches(.,concat($permitted-text-1,'|',$permitted-text-2,'|',$permitted-text-3))" 
         role="warning" 
         flag="dl-ar"
         id="dec-letter-box-test-1">The text at the top of the decision letter is not correct - '<value-of select="."/>'. It has to be one of the three paragraphs which are permitted (see the GitBook page for these paragraphs).</assert>
       
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-box-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-box-test-2" 
         test="matches(.,concat($permitted-text-1,'|',$permitted-text-2)) and not(descendant::ext-link[contains(@xlink:href,'sciety.org/') and .='public reviews'])" 
         role="error" 
         flag="dl-ar"
         id="dec-letter-box-test-2">At the top of the decision letter, the text 'public reviews' must contain an embedded link to Sciety where the public review for this article's preprint is located.</report>
       
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-box-test-3" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-box-test-3" 
         test="matches(.,concat($permitted-text-1,'|',$permitted-text-2)) and not(descendant::ext-link[.='the preprint'])" 
         role="error" 
         flag="dl-ar"
@@ -7948,7 +8000,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sub-article[@article-type='decision-letter']" 
       id="decision-missing-table-tests">
       
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#decision-missing-table-test" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#decision-missing-table-test" 
         test="contains(.,'letter table') and not(descendant::table-wrap[label])"
         role="warning" 
         flag="dl-ar"
@@ -7957,7 +8009,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type=('reply','author-comment')]/front-stub" id="reply-front-tests">
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-front-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-front-test-1" 
         test="count(article-id[@pub-id-type='doi']) = 1" 
         role="error" 
         flag="dl-ar"
@@ -7966,13 +8018,13 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type=('reply','author-comment')]/body" id="reply-body-tests">
       
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-body-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-body-test-1" 
         test="count(disp-quote[@content-type='editor-comment']) = 0" 
         role="warning" 
         flag="dl-ar"
         id="reply-body-test-1">author response doesn't contain a disp-quote. This is very likely to be incorrect. Please check the original file.</report>
       
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-body-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-body-test-2" 
         test="count(p) = 0" 
         role="error" 
         flag="dl-ar"
@@ -7981,7 +8033,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type=('reply','author-comment')]/body//disp-quote" id="reply-disp-quote-tests">
       
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-disp-quote-test-1" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-disp-quote-test-1" 
         test="@content-type='editor-comment'" 
         role="warning" 
         flag="dl-ar"
@@ -7993,7 +8045,7 @@ else self::*/local-name() = $allowed-p-blocks"
         normalize-space(string-join(for $x in self::*/text() return $x,''))
         ,' ','')"/>
       
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-disp-quote-test-1" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-disp-quote-test-1" 
         test="(count(*)=1) and (child::italic) and ($free-text='')" 
         role="warning" 
         flag="dl-ar"
@@ -8002,7 +8054,7 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article[@article-type=('reply','author-comment')]//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
       
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-disp-quote-test-2" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-disp-quote-test-2" 
         test="string-length(.) ge 50" 
         role="warning" 
         flag="dl-ar"
@@ -8012,7 +8064,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sub-article[@article-type=('reply','author-comment')]" 
       id="reply-missing-table-tests">
       
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-table-test" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-table-test" 
         test="contains(.,'response table') and not(descendant::table-wrap[label])"
         role="warning" 
         flag="dl-ar"
@@ -8022,7 +8074,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sub-article//ext-link" 
       id="sub-article-ext-link-tests">
       
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#paper-pile-test" 
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#paper-pile-test" 
         test="contains(@xlink:href,'paperpile.com')"
         role="error" 
         flag="dl-ar"
@@ -8232,11 +8284,13 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']]" 
       id="prc-reviewer-tests">
       
-      <report test="name or collab"
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#prc-reviewer-test-1"
+        test="name or collab"
         role="error" 
         id="prc-reviewer-test-1">A reviewer contrib in a PRC article cannot have a child <value-of select="*[name()=('name','collab')]/name()"/> element, since all reviewers are captured as anonymous. They must have an anonymous element instead.</report>
       
-      <assert test="anonymous"
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#prc-reviewer-test-2"
+        test="anonymous"
         role="error" 
         id="prc-reviewer-test-2">A reviewer contrib in a PRC article must have a child anonymous element. This one does not - <value-of select="."/>.</assert>
     </rule>
@@ -8244,7 +8298,8 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="article[e:is-prc(.)]" 
       id="prc-pub-review-tests">
       
-      <report test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#prc-reviewer-test-1"
+        test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (
         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')] 
         or
         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')]
@@ -8266,11 +8321,13 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="expected-doi" value="if ($is-prc) then concat($vor-version-doi,'.',$id)
         else concat($umbrella-doi,'.',$id)"/>
       
-      <assert test=".=$expected-doi" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#sub-article-doi-check-1"
+        test=".=$expected-doi" 
         role="error" 
         id="sub-article-doi-check-1">Based on whether this article is PRC (or not), the umbrella and/or version DOI and the order of the sub-articles, the DOI for peer review piece '<value-of select="ancestor::sub-article/front-stub//article-title"/>' should be '<value-of select="$expected-doi"/>', but it is currently '<value-of select="."/>'.</assert>
       
-      <assert test="contains(.,concat('.',$msid,'.'))" 
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#sub-article-doi-check-2"
+        test="contains(.,concat('.',$msid,'.'))" 
         role="error" 
         id="sub-article-doi-check-2">The DOI for peer review piece '<value-of select="ancestor::sub-article/front-stub//article-title"/>' must contain the overall 5-6 digit manuscript tracking number (<value-of select="$msid"/>), but it does not (<value-of select="."/>).</assert>
       
@@ -8961,7 +9018,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="final-err-elem-cit-data-13-1">There must be one (and only one) pub-id or one (and only one) ext-link. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id> elements and <value-of select="count(ext-link)"/> &lt;ext-link> elements.</assert>
       
-      <report  see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#elem-cit-data-pub-id-ext-link"
+      <report see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#elem-cit-data-pub-id-ext-link"
         test="pub-id and ext-link" 
         role="error" 
         id="elem-cit-data-pub-id-ext-link">Dataset reference '<value-of select="ancestor::ref/@id"/>' has both &lt;pub-id> &lt;ext-link> elements. There can only be one or the other, not both.</report>
@@ -9008,7 +9065,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="err-elem-cit-data-13-2">Each pub-id element must have a pub-id-type which is either accession or doi. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with the type '<value-of select="@pub-id-type"/>'.</assert>
       
-      <report    see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#err-elem-cit-data-14-1"
+      <report see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#err-elem-cit-data-14-1"
         test="if (@pub-id-type != 'doi') then not(@xlink:href) else ()" 
         role="error" 
         id="err-elem-cit-data-14-1">If the pub-id is of any pub-id-type except doi, it must have an @xlink:href. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with type '<value-of select="@pub-id-type"/>' but no @xlink-href.</report>
@@ -10031,7 +10088,7 @@ else self::*/local-name() = $allowed-p-blocks"
      <let name="token1" value="substring-before(.,' ')"/>
      <let name="token2" value="substring-after(.,$token1)"/>
 		
-     <report  see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-subj-test-2"
+     <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-subj-test-2"
        test=". != e:titleCase(.)" 
         role="error" 
         id="feature-subj-test-2">The content of the sub-display-channel should be in title case - <value-of select="e:titleCase(.)"/></report>
@@ -15010,457 +15067,457 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="sub-article//p[matches(.,'[âÂÅÃËÆ]')]|sub-article//td[matches(.,'[âÂÅÃËÆ]')]|sub-article//th[matches(.,'[âÂÅÃËÆ]')]" id="unicode-tests">
       
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-1" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-1" 
         test="contains(.,'â‚¬')" 
         role="warning" 
         id="unicode-test-1"><name/> element contains 'â‚¬' - this should instead be the character '€'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-2" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-2" 
         test="contains(.,'Ã€')" 
         role="warning" 
         id="unicode-test-2"><name/> element contains 'Ã€' - this should instead be the character 'À'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-3" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-3" 
         test="contains(.,'Ã')" 
         role="warning" 
         id="unicode-test-3"><name/> element contains 'Ã' - this should instead be the character 'Á'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-4" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-4" 
         test="contains(.,'â€š')" 
         role="warning" 
         id="unicode-test-4"><name/> element contains 'â€š' - this should instead be the character '‚'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-5" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-5" 
         test="contains(.,'Ã‚')" 
         role="warning" 
         id="unicode-test-5"><name/> element contains 'Ã‚' - this should instead be the character 'Â'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-6" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-6" 
         test="contains(.,'Æ’')" 
         role="warning" 
         id="unicode-test-6"><name/> element contains 'Æ’' - this should instead be the character 'ƒ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-7" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-7" 
         test="contains(.,'Ãƒ')" 
         role="warning" 
         id="unicode-test-7"><name/> element contains 'Ãƒ' - this should instead be the character 'Ã'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-8" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-8" 
         test="contains(.,'â€ž')" 
         role="warning" 
         id="unicode-test-8"><name/> element contains 'â€ž' - this should instead be the character '„'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-9" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-9" 
         test="contains(.,'Ã„')" 
         role="warning" 
         id="unicode-test-9"><name/> element contains 'Ã„' - this should instead be the character 'Ä'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-10" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-10" 
         test="contains(.,'â€¦')" 
         role="warning" 
         id="unicode-test-10"><name/> element contains 'â€¦' - this should instead be the character '…'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-11" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-11" 
         test="contains(.,'Ã…')" 
         role="warning" 
         id="unicode-test-11"><name/> element contains 'Ã…' - this should instead be the character 'Å'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-13" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-13" 
         test="contains(.,'Ã†')" 
         role="warning" 
         id="unicode-test-13"><name/> element contains 'Ã†' - this should instead be the character 'Æ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-14" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-14" 
         test="contains(.,'â€¡')" 
         role="warning" 
         id="unicode-test-14"><name/> element contains 'â€¡' - this should instead be the character '‡'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-15" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-15" 
         test="contains(.,'Ã‡')" 
         role="warning" 
         id="unicode-test-15"><name/> element contains 'Ã‡' - this should instead be the character 'Ç'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-16" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-16" 
         test="contains(.,'Ë†')" 
         role="warning" 
         id="unicode-test-16"><name/> element contains 'Ë†' - this should instead be the character 'ˆ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-17" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-17" 
         test="contains(.,'Ãˆ')" 
         role="warning" 
         id="unicode-test-17"><name/> element contains 'Ãˆ' - this should instead be the character 'È'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-18" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-18" 
         test="contains(.,'â€°')" 
         role="warning" 
         id="unicode-test-18"><name/> element contains 'â€°' - this should instead be the character '‰'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-19" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-19" 
         test="contains(.,'Ã‰')" 
         role="warning" 
         id="unicode-test-19"><name/> element contains 'Ã‰' - this should instead be the character 'É'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-21" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-21" 
         test="contains(.,'ÃŠ')" 
         role="warning" 
         id="unicode-test-21"><name/> element contains 'ÃŠ' - this should instead be the character 'Ê'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-22" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-22" 
         test="contains(.,'â€¹')" 
         role="warning" 
         id="unicode-test-22"><name/> element contains 'â€¹' - this should instead be the character '‹'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-23" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-23" 
         test="contains(.,'Ã‹')" 
         role="warning" 
         id="unicode-test-23"><name/> element contains 'Ã‹' - this should instead be the character 'Ë'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-24" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-24" 
         test="contains(.,'Å’')" 
         role="warning" 
         id="unicode-test-24"><name/> element contains 'Å’' - should this instead be the character 'Œ'? - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-25" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-25" 
         test="contains(.,'ÃŒ')" 
         role="warning" 
         id="unicode-test-25"><name/> element contains 'ÃŒ' - this should instead be the character 'Ì'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-26" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-26" 
         test="contains(.,'Ã')" 
         role="warning" 
         id="unicode-test-26"><name/> element contains 'Ã' - this should instead be the character 'Í'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-27" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-27" 
         test="contains(.,'Å½')" 
         role="warning" 
         id="unicode-test-27"><name/> element contains 'Å½' - this should instead be the character 'Ž'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-28" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-28" 
         test="contains(.,'ÃŽ')" 
         role="warning" 
         id="unicode-test-28"><name/> element contains 'ÃŽ' - this should instead be the character 'Î'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-29" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-29" 
         test="contains(.,'Ã')" 
         role="warning" 
         id="unicode-test-29"><name/> element contains 'Ã' - this should instead be the character 'Ï'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-30" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-30" 
         test="contains(.,'Ã')" 
         role="warning" 
         id="unicode-test-30"><name/> element contains 'Ã' - this should instead be the character 'Ð'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-31" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-31" 
         test="contains(.,'â€˜')" 
         role="warning" 
         id="unicode-test-31"><name/> element contains 'â€˜' - this should instead be the character '‘'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-32" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-32" 
         test="contains(.,'Ã‘')" 
         role="warning" 
         id="unicode-test-32"><name/> element contains 'Ã‘' - this should instead be the character 'Ñ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-33" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-33" 
         test="contains(.,'â€™')" 
         role="warning" 
         id="unicode-test-33"><name/> element contains 'â€™' - this should instead be the character '’'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-34" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-34" 
         test="contains(.,'Ã’')" 
         role="warning" 
         id="unicode-test-34"><name/> element contains 'Ã’' - this should instead be the character 'Ò'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-35" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-35" 
         test="contains(.,'â€œ')" 
         role="warning" 
         id="unicode-test-35"><name/> element contains 'â€œ' - this should instead be the character '“'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-36" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-36" 
         test="contains(.,'Ã“')" 
         role="warning" 
         id="unicode-test-36"><name/> element contains 'Ã“' - this should instead be the character 'Ó'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-37" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-37" 
         test="contains(.,'â€')" 
         role="warning" 
         id="unicode-test-37"><name/> element contains 'â€' - this should instead be the character '”'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-38" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-38" 
         test="contains(.,'Ã”')" 
         role="warning" 
         id="unicode-test-38"><name/> element contains 'Ã”' - this should instead be the character 'Ô'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-39" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-39" 
         test="contains(.,'Ã•')" 
         role="warning" 
         id="unicode-test-39"><name/> element contains 'Ã•' - this should instead be the character 'Õ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-40" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-40" 
         test="contains(.,'â€“')" 
         role="warning" 
         id="unicode-test-40"><name/> element contains 'â€“' - this should instead be the character '–'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-41" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-41" 
         test="contains(.,'Ã–')" 
         role="warning" 
         id="unicode-test-41"><name/> element contains 'Ã–' - this should instead be the character 'Ö'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-42" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-42" 
         test="contains(.,'â€”')" 
         role="warning" 
         id="unicode-test-42"><name/> element contains 'â€”' - this should instead be the character '—'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-43" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-43" 
         test="contains(.,'Ã—')" 
         role="warning" 
         id="unicode-test-43"><name/> element contains 'Ã—' - this should instead be the character '×'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-44" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-44" 
         test="contains(.,'Ëœ')" 
         role="warning" 
         id="unicode-test-44"><name/> element contains 'Ëœ' - this should instead be the character '˜'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-45" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-45" 
         test="contains(.,'Ã˜')" 
         role="warning" 
         id="unicode-test-45"><name/> element contains 'Ã˜' - this should instead be the character 'Ø'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-46" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-46" 
         test="contains(.,'Ã™')" 
         role="warning" 
         id="unicode-test-46"><name/> element contains 'Ã™' - this should instead be the character 'Ù'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-47" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-47" 
         test="contains(.,'Å¡')" 
         role="warning" 
         id="unicode-test-47"><name/> element contains 'Å¡' - this should instead be the character 'š'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-48" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-48" 
         test="contains(.,'Ãš')" 
         role="warning" 
         id="unicode-test-48"><name/> element contains 'Ãš' - this should instead be the character 'Ú'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-49" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-49" 
         test="contains(.,'â€º')" 
         role="warning" 
         id="unicode-test-49"><name/> element contains 'â€º' - this should instead be the character '›'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-50" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-50" 
         test="contains(.,'Ã›')" 
         role="warning" 
         id="unicode-test-50"><name/> element contains 'Ã›' - this should instead be the character 'Û'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-51" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-51" 
         test="contains(.,'Å“')" 
         role="warning" 
         id="unicode-test-51"><name/> element contains 'Å“' - this should instead be the character 'œ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-52" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-52" 
         test="contains(.,'Ãœ')" 
         role="warning" 
         id="unicode-test-52"><name/> element contains 'Ãœ' - this should instead be the character 'Ü'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-53" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-53" 
         test="contains(.,'Ã')" 
         role="warning" 
         id="unicode-test-53"><name/> element contains 'Ã' - this should instead be the character 'Ý'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-54" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-54" 
         test="contains(.,'Å¾')" 
         role="warning" 
         id="unicode-test-54"><name/> element contains 'Å¾' - this should instead be the character 'ž'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-55" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-55" 
         test="contains(.,'Ãž')" 
         role="warning" 
         id="unicode-test-55"><name/> element contains 'Ãž' - this should instead be the character 'Þ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-56" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-56" 
         test="contains(.,'Å¸')" 
         role="warning" 
         id="unicode-test-56"><name/> element contains 'Å¸' - this should instead be the character 'Ÿ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-57" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-57" 
         test="contains(.,'ÃŸ')" 
         role="warning" 
         id="unicode-test-57"><name/> element contains 'ÃŸ' - this should instead be the character 'ß'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-58" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-58" 
         test="contains(.,'Â¡')" 
         role="warning" 
         id="unicode-test-58"><name/> element contains 'Â¡' - this should instead be the character '¡'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-59" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-59" 
         test="contains(.,'Ã¡')" 
         role="warning" 
         id="unicode-test-59"><name/> element contains 'Ã¡' - this should instead be the character 'á'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-60" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-60" 
         test="contains(.,'Â¢')" 
         role="warning" 
         id="unicode-test-60"><name/> element contains 'Â¢' - this should instead be the character '¢'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-61" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-61" 
         test="contains(.,'Ã¢')" 
         role="warning" 
         id="unicode-test-61"><name/> element contains 'Ã¢' - this should instead be the character 'â'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-62" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-62" 
         test="contains(.,'Â£')" 
         role="warning" 
         id="unicode-test-62"><name/> element contains 'Â£' - this should instead be the character '£'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-63" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-63" 
         test="contains(.,'Ã£')" 
         role="warning" 
         id="unicode-test-63"><name/> element contains 'Ã£' - this should instead be the character 'ã'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-64" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-64" 
         test="contains(.,'Â¤')" 
         role="warning" 
         id="unicode-test-64"><name/> element contains 'Â¤' - this should instead be the character '¤'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-65" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-65" 
         test="contains(.,'Ã¤')" 
         role="warning" 
         id="unicode-test-65"><name/> element contains 'Ã¤' - this should instead be the character 'ä'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-66" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-66" 
         test="contains(.,'Ã¥')" 
         role="warning" 
         id="unicode-test-66"><name/> element contains 'Ã¥' - this should instead be the character 'å'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-67" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-67" 
         test="contains(.,'Â¨')" 
         role="warning" 
         id="unicode-test-67"><name/> element contains 'Â¨' - this should instead be the character '¨'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-68" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-68" 
         test="contains(.,'Ã¨')" 
         role="warning" 
         id="unicode-test-68"><name/> element contains 'Ã¨' - this should instead be the character 'è'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-69" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-69" 
         test="contains(.,'Âª')" 
         role="warning" 
         id="unicode-test-69"><name/> element contains 'Âª' - this should instead be the character 'ª'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-70" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-70" 
         test="contains(.,'Ãª')" 
         role="warning" 
         id="unicode-test-70"><name/> element contains 'Ãª' - this should instead be the character 'ê'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-71" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-71" 
         test="contains(.,'Â­')" 
         role="warning" 
         id="unicode-test-71"><name/> element contains 'Â­' - this should instead be the character '­'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-72" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-72" 
         test="contains(.,'Ã­')" 
         role="warning" 
         id="unicode-test-72"><name/> element contains 'Ã­' - this should instead be the character 'í'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-73" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-73" 
         test="contains(.,'Â¯')" 
         role="warning" 
         id="unicode-test-73"><name/> element contains 'Â¯' - this should instead be the character '¯'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-74" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-74" 
         test="contains(.,'Ã¯')" 
         role="warning" 
         id="unicode-test-74"><name/> element contains 'Ã¯' - this should instead be the character 'ï'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-75" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-75" 
         test="contains(.,'Â°')" 
         role="warning" 
         id="unicode-test-75"><name/> element contains 'Â°' - this should instead be the character '°'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-76" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-76" 
         test="contains(.,'Ã°')" 
         role="warning" 
         id="unicode-test-76"><name/> element contains 'Ã°' - this should instead be the character 'ð'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-77" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-77" 
         test="contains(.,'Â±')" 
         role="warning" 
         id="unicode-test-77"><name/> element contains 'Â±' - this should instead be the character '±'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-78" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-78" 
         test="contains(.,'Ã±')" 
         role="warning" 
         id="unicode-test-78"><name/> element contains 'Ã±' - this should instead be the character 'ñ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-79" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-79" 
         test="contains(.,'Â´')" 
         role="warning" 
         id="unicode-test-79"><name/> element contains 'Â´' - this should instead be the character '´'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-80" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-80" 
         test="contains(.,'Ã´')" 
         role="warning" 
         id="unicode-test-80"><name/> element contains 'Ã´' - this should instead be the character 'ô'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-81" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-81" 
         test="contains(.,'Âµ')" 
         role="warning" 
         id="unicode-test-81"><name/> element contains 'Âµ' - this should instead be the character 'µ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-82" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-82" 
         test="contains(.,'Ãµ')" 
         role="warning" 
         id="unicode-test-82"><name/> element contains 'Ãµ' - this should instead be the character 'õ'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-83" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-83" 
         test="contains(.,'Â¶')" 
         role="warning" 
         id="unicode-test-83"><name/> element contains 'Â¶' - this should instead be the character '¶'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-84" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-84" 
         test="contains(.,'Ã¶')" 
         role="warning" 
         id="unicode-test-84"><name/> element contains 'Ã¶' - this should instead be the character 'ö'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-85" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-85" 
         test="contains(.,'Â·')" 
         role="warning" 
         id="unicode-test-85"><name/> element contains 'Â·' - this should instead be the character '·'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-86" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-86" 
         test="contains(.,'Ã·')" 
         role="warning" 
         id="unicode-test-86"><name/> element contains 'Ã·' - this should instead be the character '÷'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-87" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-87" 
         test="contains(.,'Â¸')" 
         role="warning" 
         id="unicode-test-87"><name/> element contains 'Â¸' - this should instead be the character '¸'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-88" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-88" 
         test="contains(.,'Ã¸')" 
         role="warning" 
         id="unicode-test-88"><name/> element contains 'Ã¸' - this should instead be the character 'ø'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-89" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-89" 
         test="contains(.,'Ã¹')" 
         role="warning" 
         id="unicode-test-89"><name/> element contains 'Ã¹' - this should instead be the character 'ù'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-90" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-90" 
         test="contains(.,'Âº')" 
         role="warning" 
         id="unicode-test-90"><name/> element contains 'Âº' - this should instead be the character 'º'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-91" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-91" 
         test="contains(.,'Ãº')" 
         role="warning" 
         id="unicode-test-91"><name/> element contains 'Ãº' - this should instead be the character 'ú'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-92" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-92" 
         test="contains(.,'Â¿')" 
         role="warning" 
         id="unicode-test-92"><name/> element contains 'Â¿' - this should instead be the character '¿'. - <value-of select="."/>.</report>
 
-        <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-93" 
+        <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-93" 
         test="contains(.,'Ã¿')" 
         role="warning" 
         id="unicode-test-93"><name/> element contains 'Ã¿' - this should instead be the character 'ÿ'. - <value-of select="."/>.</report>

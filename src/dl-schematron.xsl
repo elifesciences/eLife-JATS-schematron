@@ -2354,6 +2354,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="article-title = (&quot;Editor's evaluation&quot;,'eLife assessment','eLife Assessment')">
                <xsl:attribute name="id">ed-eval-title-test</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-title-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2381,7 +2382,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="article-title = 'Decision letter'">
                <xsl:attribute name="id">dec-letter-title-test</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-title-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-title-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2409,7 +2410,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="article-title = 'Author response'">
                <xsl:attribute name="id">reply-title-test</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-title-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-title-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2572,7 +2573,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@article-type=$sub-article-types">
                <xsl:attribute name="id">dec-letter-reply-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2590,7 +2591,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@id = $id-convention">
                <xsl:attribute name="id">dec-letter-reply-test-2</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2610,7 +2611,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(front-stub) = 1">
                <xsl:attribute name="id">dec-letter-reply-test-3</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-3</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-3</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2626,7 +2627,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(body) = 1">
                <xsl:attribute name="id">dec-letter-reply-test-4</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-4</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-4</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2706,7 +2707,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'&lt;[/]?[Aa]uthor response')">
             <xsl:attribute name="id">dec-letter-reply-test-5</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2724,7 +2725,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'&lt;\p{Zs}?/?\p{Zs}?[a-z]*\p{Zs}?/?\p{Zs}?&gt;')">
             <xsl:attribute name="id">dec-letter-reply-test-6</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-6</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-6</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2752,7 +2753,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,$regex)">
             <xsl:attribute name="id">dec-letter-reply-test-7</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reply-test-7</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-7</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2784,6 +2785,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(article-id[@pub-id-type='doi']) = 1">
                <xsl:attribute name="id">ed-eval-front-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2799,6 +2801,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(contrib-group) = 1">
                <xsl:attribute name="id">ed-eval-front-test-2</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2814,6 +2817,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(related-object) gt 1">
             <xsl:attribute name="id">ed-eval-front-test-3</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2828,6 +2832,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-prc(.) and not(kwd-group[@kwd-group-type='evidence-strength'])">
             <xsl:attribute name="id">ed-eval-front-test-4</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-4</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2840,6 +2845,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-prc(.) and not(kwd-group[@kwd-group-type='claim-importance'])">
             <xsl:attribute name="id">ed-eval-front-test-5</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-5</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2864,6 +2870,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="name()=('article-id','title-group','contrib-group','kwd-group','related-object')">
                <xsl:attribute name="id">ed-eval-front-child-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-child-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2871,7 +2878,7 @@
                <svrl:text>
                   <xsl:text/>
                   <xsl:value-of select="name(.)"/>
-                  <xsl:text/> element is not allowed in the front-stub for an Editor's evaluation. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</svrl:text>
+                  <xsl:text/> element is not allowed in the front-stub for an editor report. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -2892,11 +2899,12 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(contrib[@contrib-type='author']) = 1">
                <xsl:attribute name="id">ed-eval-contrib-group-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-contrib-group-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>editor evaluation contrib-group must contain 1 contrib[@contrib-type='author'].</svrl:text>
+               <svrl:text>editor report contrib-group must contain 1 contrib[@contrib-type='author'].</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -2918,11 +2926,12 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$name = $rev-ed-name">
                <xsl:attribute name="id">ed-eval-author-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-author-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>The author of the editor evaluation must be the same as the Reviewing editor for the article. The Reviewing editor is <xsl:text/>
+               <svrl:text>The author of the editor report must be the same as the Reviewing editor for the article. The Reviewing editor is <xsl:text/>
                   <xsl:value-of select="$rev-ed-name"/>
                   <xsl:text/>, but the editor evaluation author is <xsl:text/>
                   <xsl:value-of select="$name"/>
@@ -2947,6 +2956,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@id,'^sa0ro\d$')">
                <xsl:attribute name="id">ed-eval-rel-obj-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2964,6 +2974,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@object-id-type='id'">
                <xsl:attribute name="id">ed-eval-rel-obj-test-2</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2979,6 +2990,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@link-type='continued-by'">
                <xsl:attribute name="id">ed-eval-rel-obj-test-3</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-3</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -2994,6 +3006,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@object-id,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')">
                <xsl:attribute name="id">ed-eval-rel-obj-test-4</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-4</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3011,6 +3024,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@object-id = $event-preprint-doi">
                <xsl:attribute name="id">ed-eval-rel-obj-test-5</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-5</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3030,6 +3044,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@xlink:href = ( concat('https://sciety.org/articles/activity/',@object-id), concat('https://sciety.org/articles/',@object-id) )">
                <xsl:attribute name="id">ed-eval-rel-obj-test-6</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-6</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3049,6 +3064,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@xlink:href = ( concat('https://sciety.org/articles/activity/',$event-preprint-doi), concat('https://sciety.org/articles/',$event-preprint-doi) )">
                <xsl:attribute name="id">ed-eval-rel-obj-test-7</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-7</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3078,6 +3094,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@kwd-group-type=('claim-importance','evidence-strength')">
                <xsl:attribute name="id">ed-report-kwd-group-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-group-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3093,6 +3110,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@kwd-group-type='claim-importance' and count(kwd) gt 1">
             <xsl:attribute name="id">ed-report-kwd-group-3</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-group-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3112,6 +3130,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@kwd-group-type='evidence-strength' and count(kwd) = 2">
             <xsl:attribute name="id">ed-report-kwd-group-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-group-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3131,6 +3150,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@kwd-group-type='evidence-strength' and count(kwd) gt 2">
             <xsl:attribute name="id">ed-report-kwd-group-4</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-group-4</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3162,6 +3182,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".=$allowed-vals">
                <xsl:attribute name="id">ed-report-claim-kwd-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-claim-kwd-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3194,6 +3215,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".=$allowed-vals">
                <xsl:attribute name="id">ed-report-evidence-kwd-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-evidence-kwd-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3212,6 +3234,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]">
             <xsl:attribute name="id">ed-report-evidence-kwd-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-evidence-kwd-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3240,6 +3263,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="preceding-sibling::kwd = .">
             <xsl:attribute name="id">ed-report-kwd-1</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3256,6 +3280,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $x in ancestor::sub-article[1]/body/p//bold satisfies contains(lower-case($x),lower-case(.))">
                <xsl:attribute name="id">ed-report-kwd-2</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3273,6 +3298,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="*">
             <xsl:attribute name="id">ed-report-kwd-3</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3301,7 +3327,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(article-id[@pub-id-type='doi']) = 1">
                <xsl:attribute name="id">dec-letter-front-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3317,7 +3343,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$count gt 0">
                <xsl:attribute name="id">dec-letter-front-test-2</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3331,7 +3357,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$count gt 2">
             <xsl:attribute name="id">dec-letter-front-test-3</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3344,7 +3370,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'(All|The) reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/|doi.org/10.24072/pci.evolbiol')])">
             <xsl:attribute name="id">dec-letter-front-test-4</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-4</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3369,7 +3395,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(contrib[@contrib-type='editor']) = 1">
                <xsl:attribute name="id">dec-letter-editor-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-editor-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-editor-test-1</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3383,7 +3409,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contrib[not(@contrib-type) or @contrib-type!='editor']">
             <xsl:attribute name="id">dec-letter-editor-test-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-editor-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-editor-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3409,7 +3435,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$role=('Reviewing Editor','Senior and Reviewing Editor')">
                <xsl:attribute name="id">dec-letter-editor-test-3</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-editor-test-3</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-editor-test-3</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3439,7 +3465,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(contrib[@contrib-type='reviewer']) gt 0">
                <xsl:attribute name="id">dec-letter-reviewer-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reviewer-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3453,7 +3479,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contrib[not(@contrib-type) or @contrib-type!='reviewer']">
             <xsl:attribute name="id">dec-letter-reviewer-test-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reviewer-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3466,7 +3492,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(contrib[@contrib-type='reviewer']) gt 5">
             <xsl:attribute name="id">dec-letter-reviewer-test-6</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reviewer-test-6</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-6</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3491,7 +3517,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="role='Reviewer'">
                <xsl:attribute name="id">dec-letter-reviewer-test-3</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-reviewer-test-3</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-3</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3521,7 +3547,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="child::*[1]/local-name() = 'boxed-text'">
                <xsl:attribute name="id">dec-letter-body-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-body-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-body-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3545,7 +3571,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(lower-case(.),'this paper was reviewed by review commons') and not(child::ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/') and (lower-case(.)='review commons')])">
             <xsl:attribute name="id">dec-letter-body-test-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-body-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-body-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3587,7 +3613,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,concat($permitted-text-1,'|',$permitted-text-2,'|',$permitted-text-3))">
                <xsl:attribute name="id">dec-letter-box-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-box-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-box-test-1</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3603,7 +3629,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,concat($permitted-text-1,'|',$permitted-text-2)) and not(descendant::ext-link[contains(@xlink:href,'sciety.org/') and .='public reviews'])">
             <xsl:attribute name="id">dec-letter-box-test-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-box-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-box-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3616,7 +3642,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,concat($permitted-text-1,'|',$permitted-text-2)) and not(descendant::ext-link[.='the preprint'])">
             <xsl:attribute name="id">dec-letter-box-test-3</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-box-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-box-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3639,7 +3665,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'letter table') and not(descendant::table-wrap[label])">
             <xsl:attribute name="id">decision-missing-table-test</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#decision-missing-table-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#decision-missing-table-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3664,7 +3690,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(article-id[@pub-id-type='doi']) = 1">
                <xsl:attribute name="id">reply-front-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-front-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-front-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3688,7 +3714,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(disp-quote[@content-type='editor-comment']) = 0">
             <xsl:attribute name="id">reply-body-test-1</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-body-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-body-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3701,7 +3727,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(p) = 0">
             <xsl:attribute name="id">reply-body-test-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-body-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-body-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3726,7 +3752,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@content-type='editor-comment'">
                <xsl:attribute name="id">reply-disp-quote-test-1</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
-               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-disp-quote-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-disp-quote-test-1</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3750,7 +3776,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count(*)=1) and (child::italic) and ($free-text='')">
             <xsl:attribute name="id">reply-missing-disp-quote-test-1</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-disp-quote-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-disp-quote-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3773,7 +3799,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="string-length(.) ge 50">
             <xsl:attribute name="id">reply-missing-disp-quote-test-2</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-disp-quote-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-disp-quote-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3800,7 +3826,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'response table') and not(descendant::table-wrap[label])">
             <xsl:attribute name="id">reply-missing-table-test</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#reply-missing-table-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-table-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -3823,7 +3849,7 @@
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(@xlink:href,'paperpile.com')">
             <xsl:attribute name="id">paper-pile-test</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#paper-pile-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#paper-pile-test</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>

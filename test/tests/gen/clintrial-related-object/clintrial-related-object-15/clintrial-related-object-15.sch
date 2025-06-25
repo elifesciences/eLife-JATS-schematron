@@ -1447,7 +1447,7 @@
   <pattern id="article-metadata">
     <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
       <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
-      <report test="ends-with(@document-id,'.')" role="error" id="clintrial-related-object-15">
+      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-15" test="ends-with(@document-id,'.')" role="error" id="clintrial-related-object-15">
         <name/> has an @document-id attribute value which ends with a full stop, which is not correct - '<value-of select="@document-id"/>'.</report>
     </rule>
   </pattern>

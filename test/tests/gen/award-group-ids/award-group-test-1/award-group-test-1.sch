@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="funding-group/award-group" id="award-group-ids">
-      <assert test="matches(substring-after(@id,'fund'),'^[0-9]{1,2}$')" role="error" id="award-group-test-1">award-group must have an @id, the value of which conforms to the convention 'fund', followed by a digit. <value-of select="@id"/> does not conform to this.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-1" test="matches(substring-after(@id,'fund'),'^[0-9]{1,2}$')" role="error" id="award-group-test-1">award-group must have an @id, the value of which conforms to the convention 'fund', followed by a digit. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

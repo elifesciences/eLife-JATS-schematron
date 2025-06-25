@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="dec-letter-auth-response">
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" id="ed-report-kwds">
-      <report test="preceding-sibling::kwd = ." role="error" flag="dl-ar" id="ed-report-kwd-1">Keyword contains <value-of select="."/>, there is another kwd with that value witin the same kwd-group, so this one is either incorrect or superfluous and should be deleted.</report>
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-1" test="preceding-sibling::kwd = ." role="error" flag="dl-ar" id="ed-report-kwd-1">Keyword contains <value-of select="."/>, there is another kwd with that value witin the same kwd-group, so this one is either incorrect or superfluous and should be deleted.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="dec-letter-auth-response">
     <rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-eval-front-tests">
-      <assert test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="ed-eval-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="ed-eval-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

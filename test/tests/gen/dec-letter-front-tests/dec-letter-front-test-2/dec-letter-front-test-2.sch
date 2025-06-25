@@ -1447,7 +1447,7 @@
   <pattern id="dec-letter-auth-response">
     <rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
       <let name="count" value="count(contrib-group)"/>
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-2" test="$count gt 0" role="error" flag="dl-ar" id="dec-letter-front-test-2">decision letter front-stub must contain at least 1 contrib-group element.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-2" test="$count gt 0" role="error" flag="dl-ar" id="dec-letter-front-test-2">decision letter front-stub must contain at least 1 contrib-group element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

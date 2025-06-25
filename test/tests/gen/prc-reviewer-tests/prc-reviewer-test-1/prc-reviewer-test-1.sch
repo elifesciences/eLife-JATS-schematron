@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="sub-article-version-2">
     <rule context="sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']]" id="prc-reviewer-tests">
-      <report test="name or collab" role="error" id="prc-reviewer-test-1">A reviewer contrib in a PRC article cannot have a child <value-of select="*[name()=('name','collab')]/name()"/> element, since all reviewers are captured as anonymous. They must have an anonymous element instead.</report>
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#prc-reviewer-test-1" test="name or collab" role="error" id="prc-reviewer-test-1">A reviewer contrib in a PRC article cannot have a child <value-of select="*[name()=('name','collab')]/name()"/> element, since all reviewers are captured as anonymous. They must have an anonymous element instead.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

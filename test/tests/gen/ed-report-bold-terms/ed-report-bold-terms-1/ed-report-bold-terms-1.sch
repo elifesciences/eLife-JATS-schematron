@@ -1452,7 +1452,7 @@
       <let name="normalized-kwd" value="replace(lower-case(.),'ly$','')"/>
       <let name="title-case-kwd" value="concat(upper-case(substring($normalized-kwd,1,1)),lower-case(substring($normalized-kwd,2)))"/>
       <let name="preceding-text" value="string-join(preceding-sibling::node(),'')"/>
-      <assert test="lower-case(.)=$allowed-vals" role="error" id="ed-report-bold-terms-1">Bold phrase in eLife Assessment - <value-of select="."/> - is not one of the permitted terms from the vocabulary. Should the bold formatting be removed? These are currently bolded terms <value-of select="string-join($allowed-vals,', ')"/>
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-bold-terms-1" test="lower-case(.)=$allowed-vals" role="error" id="ed-report-bold-terms-1">Bold phrase in eLife Assessment - <value-of select="."/> - is not one of the permitted terms from the vocabulary. Should the bold formatting be removed? These are currently bolded terms <value-of select="string-join($allowed-vals,', ')"/>
       </assert>
     </rule>
   </pattern>

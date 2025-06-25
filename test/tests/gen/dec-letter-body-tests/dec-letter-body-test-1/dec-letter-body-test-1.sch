@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="dec-letter-auth-response">
     <rule context="sub-article[@article-type='decision-letter']/body" id="dec-letter-body-tests">
-      <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-body-test-1" test="child::*[1]/local-name() = 'boxed-text'" role="error" flag="dl-ar" id="dec-letter-body-test-1">First child element in decision letter is not boxed-text. This is certainly incorrect.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-body-test-1" test="child::*[1]/local-name() = 'boxed-text'" role="error" flag="dl-ar" id="dec-letter-body-test-1">First child element in decision letter is not boxed-text. This is certainly incorrect.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="unicode-checks">
     <rule context="sub-article//p[matches(.,'[âÂÅÃËÆ]')]|sub-article//td[matches(.,'[âÂÅÃËÆ]')]|sub-article//th[matches(.,'[âÂÅÃËÆ]')]" id="unicode-tests">
-      <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#unicode-test-17" test="contains(.,'Ãˆ')" role="warning" id="unicode-test-17">
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-17" test="contains(.,'Ãˆ')" role="warning" id="unicode-test-17">
         <name/> element contains 'Ãˆ' - this should instead be the character 'È'. - <value-of select="."/>.</report>
     </rule>
   </pattern>

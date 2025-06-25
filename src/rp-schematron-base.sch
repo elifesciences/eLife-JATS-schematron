@@ -2147,12 +2147,14 @@
         <let name="grant-matches" value="if (not($mints-grant-dois)) then ()
           else $funder-entry//*:grant[@award=$award-id]"/>
 	  
-        <report test="$grant-matches"
+        <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-1" 
+          test="$grant-matches"
 	         role="warning" 
 	         id="grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
 
         <!-- If the funder has minted 30+ grant DOIs but there isn't an exact match throw a warning -->
-        <report test="$mints-grant-dois and (count($funder-entry//*:grant) gt 29) and not($grant-matches)"
+        <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-2" 
+          test="$mints-grant-dois and (count($funder-entry//*:grant) gt 29) and not($grant-matches)"
 	         role="warning" 
 	         id="grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</report>
       
@@ -2163,7 +2165,8 @@
         <let name="funder-entry" value="document($rors)//*:ror[*:id[@type='ror']=$funder-id]"/>
         <let name="grant-doi-count" value="count($funder-entry//*:grant)"/>
       
-        <report test="$grant-doi-count gt 29"
+        <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-3" 
+          test="$grant-doi-count gt 29"
 	         role="warning" 
 	         id="grant-doi-test-3">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has no award-id, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Is there a missing grant DOI or award ID for this funding?</report>
       </rule>
@@ -2178,11 +2181,13 @@
       <let name="grant-matches" value="if ($award-id='') then ()
         else $grants[@award=$award-id]"/>
       
-      <report test="$grant-matches"
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-grant-doi-test-1" 
+          test="$grant-matches"
         role="warning" 
         id="wellcome-grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
 
-      <assert test="$grant-matches"
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-grant-doi-test-2" 
+          test="$grant-matches"
         role="warning" 
         id="wellcome-grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
     </rule>
@@ -2196,11 +2201,13 @@
       <let name="grant-matches" value="if ($award-id='') then ()
         else $grants[@award=$award-id]"/>
     
-      <report test="$grant-matches"
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#known-grant-funder-grant-doi-test-1" 
+          test="$grant-matches"
         role="warning"
         id="known-grant-funder-grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
 
-      <assert test="$grant-matches"
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#known-grant-funder-grant-doi-test-2" 
+          test="$grant-matches"
         role="warning" 
         id="known-grant-funder-grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
 
@@ -2231,19 +2238,23 @@
         role="warning" 
         id="award-id-test-4">Award id contains what looks like a broken unicode - <value-of select="."/>.</report>
       
-      <report test="matches(.,'http[s]?://d?x?\.?doi.org/')" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-5" 
+          test="matches(.,'http[s]?://d?x?\.?doi.org/')" 
         role="error" 
         id="award-id-test-5">Award id contains a DOI link - <value-of select="."/>. If the award ID is for a grant DOI it should contain the DOI without the https://... protocol (e.g. 10.37717/220020477).</report>
       
-      <report test=". = preceding::award-id[parent::award-group/descendant::institution-id[1] = $funder-id]" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-6" 
+          test=". = preceding::award-id[parent::award-group/descendant::institution-id[1] = $funder-id]" 
         role="error" 
         id="award-id-test-6">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with the same institution ID. This must be incorrect. Either the funder ID or the award ID is wrong, or it is a duplicate that should be removed.</report>
       
-      <report test=". = preceding::award-id[parent::award-group/descendant::institution[1] = $funder-name]" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-7" 
+          test=". = preceding::award-id[parent::award-group/descendant::institution[1] = $funder-name]" 
         role="error" 
         id="award-id-test-7">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with the same funder name. This must be incorrect. Either the funder name or the award ID is wrong, or it is a duplicate that should be removed.</report>
       
-      <report test=". = preceding::award-id[parent::award-group[not(descendant::institution[1] = $funder-name) and not(descendant::institution-id[1] = $funder-id)]]" 
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-8" 
+          test=". = preceding::award-id[parent::award-group[not(descendant::institution[1] = $funder-name) and not(descendant::institution-id[1] = $funder-id)]]" 
         role="warning" 
         id="award-id-test-8">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with a different funder. Has there been a mistake with the award id? If the grant was awarded jointly by two funders, then this capture is correct and should be retained.</report>
       

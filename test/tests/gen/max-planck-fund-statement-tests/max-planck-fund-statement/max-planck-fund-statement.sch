@@ -1450,7 +1450,7 @@
       <let name="nested-affs" value="$corresp-authors//aff//institution"/>
       <let name="corresp-author-rids" value="$corresp-authors/xref[@ref-type='aff']/@rid"/>
       <let name="group-affs" value="ancestor::article-meta/contrib-group[1]/aff[@id=$corresp-author-rids]//institution"/>
-      <report test="some $aff in ($nested-affs,$group-affs) satisfies matches(lower-case($aff),'^max[\p{Zs}-]+plan[ck]+|\p{Zs}max[\p{Zs}-]+plan[ck]+')" role="warning" id="max-planck-fund-statement">This article has a corresponding author that is affiliated with a Max Planck Institute, but the funding statement does not contain the text 'Open access funding provided by Max Planck Society.' Should it? The funding statement currently reads: <value-of select="."/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#max-planck-fund-statement" test="some $aff in ($nested-affs,$group-affs) satisfies matches(lower-case($aff),'^max[\p{Zs}-]+plan[ck]+|\p{Zs}max[\p{Zs}-]+plan[ck]+')" role="warning" id="max-planck-fund-statement">This article has a corresponding author that is affiliated with a Max Planck Institute, but the funding statement does not contain the text 'Open access funding provided by Max Planck Society.' Should it? The funding statement currently reads: <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
