@@ -266,9 +266,48 @@
       <xsl:apply-templates select="*|text()|comment()|processing-instruction()" mode="customCopy"/>
     </xsl:copy>
   </xsl:template>
+  <sqf:fixes>
+    <sqf:fix id="delete-elem">
+      <sqf:description>
+        <sqf:title>Delete element</sqf:title>
+      </sqf:description>
+      <sqf:delete match="."/>
+    </sqf:fix>
+    
+    <sqf:fix id="strip-tags">
+      <sqf:description>
+        <sqf:title>Strip the tags</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:apply-templates mode="customCopy" select="node()"/>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-fig-xref">
+      <sqf:description>
+        <sqf:title>Change to figure xref</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xref xmlns="" ref-type="fig" rid="dummy">
+          <xsl:apply-templates mode="customCopy" select="node()"/>
+        </xref>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-supp-xref">
+      <sqf:description>
+        <sqf:title>Change to supp xref</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xref xmlns="" ref-type="supplementary-material" rid="dummy">
+          <xsl:apply-templates mode="customCopy" select="node()"/>
+        </xref>
+      </sqf:replace>
+    </sqf:fix>
+  </sqf:fixes>
   <pattern id="underline-checks-pattern">
     <rule context="underline" id="underline-checks">
-      <report test="replace(.,'[\s\.]','')='&lt;'" role="warning" id="underline-lt-warning">[underline-lt-warning] underline element contains a less than symbol (<value-of select="."/>). Should this a less than or equal to symbol instead (≤)?</report>
+      <report test="replace(.,'[\s\.]','')='&lt;'" role="warning" sqf:fix="strip-tags add-le-symbol" id="underline-lt-warning">[underline-lt-warning] underline element contains a less than symbol (<value-of select="."/>). Should this a less than or equal to symbol instead (≤)?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

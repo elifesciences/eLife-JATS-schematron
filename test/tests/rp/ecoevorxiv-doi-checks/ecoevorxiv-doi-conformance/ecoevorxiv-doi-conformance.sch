@@ -266,6 +266,45 @@
       <xsl:apply-templates select="*|text()|comment()|processing-instruction()" mode="customCopy"/>
     </xsl:copy>
   </xsl:template>
+  <sqf:fixes>
+    <sqf:fix id="delete-elem">
+      <sqf:description>
+        <sqf:title>Delete element</sqf:title>
+      </sqf:description>
+      <sqf:delete match="."/>
+    </sqf:fix>
+    
+    <sqf:fix id="strip-tags">
+      <sqf:description>
+        <sqf:title>Strip the tags</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:apply-templates mode="customCopy" select="node()"/>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-fig-xref">
+      <sqf:description>
+        <sqf:title>Change to figure xref</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xref xmlns="" ref-type="fig" rid="dummy">
+          <xsl:apply-templates mode="customCopy" select="node()"/>
+        </xref>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-supp-xref">
+      <sqf:description>
+        <sqf:title>Change to supp xref</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xref xmlns="" ref-type="supplementary-material" rid="dummy">
+          <xsl:apply-templates mode="customCopy" select="node()"/>
+        </xref>
+      </sqf:replace>
+    </sqf:fix>
+  </sqf:fixes>
   <pattern id="ecoevorxiv-doi-checks-pattern">
     <rule context="article/front[journal-meta[lower-case(journal-id[1])='ecoevorxiv']]/article-meta/article-id[@pub-id-type='doi']" id="ecoevorxiv-doi-checks">
       <assert test="matches(.,'^10.32942/[A-Z\d]+$')" role="error" id="ecoevorxiv-doi-conformance">[ecoevorxiv-doi-conformance] EcoEvoRxiv preprints must have a &lt;article-id pub-id-type="doi"&gt; element with a value that matches the regex '^10.32942/[A-Z\d]+$'. In other words, the current DOI listed is not a valid EcoEvoRxiv DOI: '<value-of select="."/>'.</assert>

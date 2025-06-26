@@ -266,6 +266,45 @@
       <xsl:apply-templates select="*|text()|comment()|processing-instruction()" mode="customCopy"/>
     </xsl:copy>
   </xsl:template>
+  <sqf:fixes>
+    <sqf:fix id="delete-elem">
+      <sqf:description>
+        <sqf:title>Delete element</sqf:title>
+      </sqf:description>
+      <sqf:delete match="."/>
+    </sqf:fix>
+    
+    <sqf:fix id="strip-tags">
+      <sqf:description>
+        <sqf:title>Strip the tags</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:apply-templates mode="customCopy" select="node()"/>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-fig-xref">
+      <sqf:description>
+        <sqf:title>Change to figure xref</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xref xmlns="" ref-type="fig" rid="dummy">
+          <xsl:apply-templates mode="customCopy" select="node()"/>
+        </xref>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-supp-xref">
+      <sqf:description>
+        <sqf:title>Change to supp xref</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xref xmlns="" ref-type="supplementary-material" rid="dummy">
+          <xsl:apply-templates mode="customCopy" select="node()"/>
+        </xref>
+      </sqf:replace>
+    </sqf:fix>
+  </sqf:fixes>
   <pattern id="ed-report-kwds-pattern">
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" id="ed-report-kwds">
       <report test="*" role="error" id="ed-report-kwd-3">[ed-report-kwd-3] Keywords in <value-of select="ancestor::front-stub/title-group/article-title"/> cannot contain elements, only text. This one has: <value-of select="string-join(distinct-values(*/name()),'; ')"/>.</report>

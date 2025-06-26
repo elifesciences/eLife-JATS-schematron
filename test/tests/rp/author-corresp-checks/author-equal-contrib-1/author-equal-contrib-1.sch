@@ -266,6 +266,45 @@
       <xsl:apply-templates select="*|text()|comment()|processing-instruction()" mode="customCopy"/>
     </xsl:copy>
   </xsl:template>
+  <sqf:fixes>
+    <sqf:fix id="delete-elem">
+      <sqf:description>
+        <sqf:title>Delete element</sqf:title>
+      </sqf:description>
+      <sqf:delete match="."/>
+    </sqf:fix>
+    
+    <sqf:fix id="strip-tags">
+      <sqf:description>
+        <sqf:title>Strip the tags</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:apply-templates mode="customCopy" select="node()"/>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-fig-xref">
+      <sqf:description>
+        <sqf:title>Change to figure xref</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xref xmlns="" ref-type="fig" rid="dummy">
+          <xsl:apply-templates mode="customCopy" select="node()"/>
+        </xref>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-supp-xref">
+      <sqf:description>
+        <sqf:title>Change to supp xref</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xref xmlns="" ref-type="supplementary-material" rid="dummy">
+          <xsl:apply-templates mode="customCopy" select="node()"/>
+        </xref>
+      </sqf:replace>
+    </sqf:fix>
+  </sqf:fixes>
   <pattern id="author-corresp-checks-pattern">
     <rule context="contrib[@contrib-type='author']" id="author-corresp-checks">
       <report test="(xref/@rid = ancestor::article-meta/author-notes/fn[@fn-type='equal']/@id) and not(@equal-contrib='yes')" role="error" id="author-equal-contrib-1">[author-equal-contrib-1] Author <value-of select="e:get-name(name[1])"/> does not have the attribute equal-contrib="yes", but they have a child xref element that points to a footnote with the fn-type 'equal'.</report>

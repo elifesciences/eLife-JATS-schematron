@@ -266,6 +266,45 @@
       <xsl:apply-templates select="*|text()|comment()|processing-instruction()" mode="customCopy"/>
     </xsl:copy>
   </xsl:template>
+  <sqf:fixes>
+    <sqf:fix id="delete-elem">
+      <sqf:description>
+        <sqf:title>Delete element</sqf:title>
+      </sqf:description>
+      <sqf:delete match="."/>
+    </sqf:fix>
+    
+    <sqf:fix id="strip-tags">
+      <sqf:description>
+        <sqf:title>Strip the tags</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:apply-templates mode="customCopy" select="node()"/>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-fig-xref">
+      <sqf:description>
+        <sqf:title>Change to figure xref</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xref xmlns="" ref-type="fig" rid="dummy">
+          <xsl:apply-templates mode="customCopy" select="node()"/>
+        </xref>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-supp-xref">
+      <sqf:description>
+        <sqf:title>Change to supp xref</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xref xmlns="" ref-type="supplementary-material" rid="dummy">
+          <xsl:apply-templates mode="customCopy" select="node()"/>
+        </xref>
+      </sqf:replace>
+    </sqf:fix>
+  </sqf:fixes>
   <pattern id="ext-link-tests-pattern">
     <rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests">
       <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)\[\]+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^tel:.|^mailto:.')" role="warning" id="url-conformance-test">[url-conformance-test] @xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>

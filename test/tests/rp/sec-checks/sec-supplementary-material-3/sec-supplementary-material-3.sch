@@ -266,6 +266,45 @@
       <xsl:apply-templates select="*|text()|comment()|processing-instruction()" mode="customCopy"/>
     </xsl:copy>
   </xsl:template>
+  <sqf:fixes>
+    <sqf:fix id="delete-elem">
+      <sqf:description>
+        <sqf:title>Delete element</sqf:title>
+      </sqf:description>
+      <sqf:delete match="."/>
+    </sqf:fix>
+    
+    <sqf:fix id="strip-tags">
+      <sqf:description>
+        <sqf:title>Strip the tags</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:apply-templates mode="customCopy" select="node()"/>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-fig-xref">
+      <sqf:description>
+        <sqf:title>Change to figure xref</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xref xmlns="" ref-type="fig" rid="dummy">
+          <xsl:apply-templates mode="customCopy" select="node()"/>
+        </xref>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-supp-xref">
+      <sqf:description>
+        <sqf:title>Change to supp xref</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xref xmlns="" ref-type="supplementary-material" rid="dummy">
+          <xsl:apply-templates mode="customCopy" select="node()"/>
+        </xref>
+      </sqf:replace>
+    </sqf:fix>
+  </sqf:fixes>
   <pattern id="sec-checks-pattern">
     <rule context="sec" id="sec-checks">
       <report test="not(@sec-type=('additional-information','supplementary-material')) and not(descendant::supplementary-material or descendant::fig or descendant::table-wrap) and title[1][matches(lower-case(.),'(supporting|supplementary|supplemental|ancillary|additional) (information|files|material)')]" role="warning" id="sec-supplementary-material-3">[sec-supplementary-material-3] sec has a title suggesting its content might relate to additional files, but it doesn't contain a supplementary-material element. If this section contains captions for supplementary files, then these should be added to the appropriate &lt;supplementary-material&gt;. If the files are not present in the article at all, the captions should be removed (or the files added as new &lt;supplementary-material&gt;).</report>
