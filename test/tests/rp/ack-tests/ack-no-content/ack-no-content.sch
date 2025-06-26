@@ -268,7 +268,7 @@
   </xsl:template>
   <pattern id="ack-tests-pattern">
     <rule context="ack" id="ack-tests">
-      <assert test="*[not(name()=('label','title'))]" role="error" id="ack-no-content">[ack-no-content] Acknowledgements doesn't contain any content. Should it be removed?</assert>
+      <assert test="*[not(name()=('label','title'))]" role="error" sqf:fix="delete-elem" id="ack-no-content">[ack-no-content] Acknowledgements doesn't contain any content. Should it be removed?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

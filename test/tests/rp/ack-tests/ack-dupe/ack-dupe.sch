@@ -268,7 +268,7 @@
   </xsl:template>
   <pattern id="ack-tests-pattern">
     <rule context="ack" id="ack-tests">
-      <report test="preceding::ack" role="warning" id="ack-dupe">[ack-dupe] This ack element follows another one. Should there really be more than one Acknowledgements?</report>
+      <report test="preceding::ack" role="warning" sqf:fix="delete-elem" id="ack-dupe">[ack-dupe] This ack element follows another one. Should there really be more than one Acknowledgements?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

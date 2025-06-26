@@ -2018,6 +2018,12 @@
                <xsl:text/> element is empty.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="delete-elem">
+         <sqf:description>
+            <sqf:title>Delete element</sqf:title>
+         </sqf:description>
+         <sqf:delete match="."/>
+      </sqf:fix>
       <xsl:apply-templates select="*" mode="M29"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M29"/>
@@ -4911,6 +4917,12 @@
             <svrl:text>[ack-dupe] This ack element follows another one. Should there really be more than one Acknowledgements?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="delete-elem">
+         <sqf:description>
+            <sqf:title>Delete element</sqf:title>
+         </sqf:description>
+         <sqf:delete match="."/>
+      </sqf:fix>
       <xsl:apply-templates select="*" mode="M72"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M72"/>

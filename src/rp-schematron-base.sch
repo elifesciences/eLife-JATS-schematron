@@ -380,7 +380,7 @@
     <pattern id="article-title">
      <rule context="article-meta/title-group/article-title" id="article-title-checks">
         <report test=". = upper-case(.)" 
-        role="error" 
+        role="error"
         id="article-title-all-caps">Article title is in all caps - <value-of select="."/>. Please change to sentence case.</report>
        
        <report test="matches(.,'[*¶†‡§¥⁑╀◊♯࿎ł#]$')" 
@@ -392,12 +392,21 @@
         <let name="permitted-children" value="('italic','sup','sub')"/>
        
         <assert test="name()=$permitted-children" 
-          role="error" 
+          role="error"
+          sqf:fix="delete-elem"
           id="article-title-children-check-1"><name/> is not supported as a child of article title. Please remove this element (and any child content, as appropriate).</assert>
         
         <report test="normalize-space(.)=''" 
-          role="error" 
+          role="error"
+          sqf:fix="delete-elem"
           id="article-title-children-check-2">Child elements of article-title must contain text content. This <name/> element is empty.</report>
+        
+        <sqf:fix id="delete-elem">
+         <sqf:description>
+           <sqf:title>Delete element</sqf:title>
+         </sqf:description>
+         <sqf:delete match="."/>
+       </sqf:fix>
      </rule>
     </pattern>
 
@@ -1226,12 +1235,21 @@
   <pattern id="ack">
       <rule context="ack" id="ack-tests">
        <assert test="*[not(name()=('label','title'))]" 
-        role="error" 
+        role="error"
+        sqf:fix="delete-elem"
         id="ack-no-content">Acknowledgements doesn't contain any content. Should it be removed?</assert>
         
         <report test="preceding::ack" 
-        role="warning" 
+        role="warning"
+        sqf:fix="delete-elem"
         id="ack-dupe">This ack element follows another one. Should there really be more than one Acknowledgements?</report>
+        
+        <sqf:fix id="delete-elem">
+         <sqf:description>
+           <sqf:title>Delete element</sqf:title>
+         </sqf:description>
+         <sqf:delete match="."/>
+       </sqf:fix>
       </rule>
     </pattern>
 

@@ -329,9 +329,16 @@
      </rule></pattern><pattern id="article-title-children-checks-pattern"><rule context="article-meta/title-group/article-title/*" id="article-title-children-checks">
         <let name="permitted-children" value="('italic','sup','sub')"/>
        
-        <assert test="name()=$permitted-children" role="error" id="article-title-children-check-1">[article-title-children-check-1] <name/> is not supported as a child of article title. Please remove this element (and any child content, as appropriate).</assert>
+        <assert test="name()=$permitted-children" role="error" sqf:fix="delete-elem" id="article-title-children-check-1">[article-title-children-check-1] <name/> is not supported as a child of article title. Please remove this element (and any child content, as appropriate).</assert>
         
-        <report test="normalize-space(.)=''" role="error" id="article-title-children-check-2">[article-title-children-check-2] Child elements of article-title must contain text content. This <name/> element is empty.</report>
+        <report test="normalize-space(.)=''" role="error" sqf:fix="delete-elem" id="article-title-children-check-2">[article-title-children-check-2] Child elements of article-title must contain text content. This <name/> element is empty.</report>
+        
+        <sqf:fix id="delete-elem">
+         <sqf:description>
+           <sqf:title>Delete element</sqf:title>
+         </sqf:description>
+         <sqf:delete match="."/>
+       </sqf:fix>
      </rule></pattern>
 
     <pattern id="author-contrib-checks-pattern"><rule context="article-meta/contrib-group/contrib[@contrib-type='author' and not(collab)]" id="author-contrib-checks">
@@ -743,9 +750,16 @@
       </rule></pattern>
   
   <pattern id="ack-tests-pattern"><rule context="ack" id="ack-tests">
-       <assert test="*[not(name()=('label','title'))]" role="error" id="ack-no-content">[ack-no-content] Acknowledgements doesn't contain any content. Should it be removed?</assert>
+       <assert test="*[not(name()=('label','title'))]" role="error" sqf:fix="delete-elem" id="ack-no-content">[ack-no-content] Acknowledgements doesn't contain any content. Should it be removed?</assert>
         
-        <report test="preceding::ack" role="warning" id="ack-dupe">[ack-dupe] This ack element follows another one. Should there really be more than one Acknowledgements?</report>
+        <report test="preceding::ack" role="warning" sqf:fix="delete-elem" id="ack-dupe">[ack-dupe] This ack element follows another one. Should there really be more than one Acknowledgements?</report>
+        
+        <sqf:fix id="delete-elem">
+         <sqf:description>
+           <sqf:title>Delete element</sqf:title>
+         </sqf:description>
+         <sqf:delete match="."/>
+       </sqf:fix>
       </rule></pattern>
 
     <pattern id="strike-checks-pattern"><rule context="strike" id="strike-checks">
