@@ -1,4 +1,4 @@
-<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:meca="http://manuscriptexchange.org" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:file="java.io.File" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink" queryBinding="xslt2">
+<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns:meca="http://manuscriptexchange.org" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:file="java.io.File" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink" queryBinding="xslt2">
     
     <title>eLife reviewed preprint schematron</title>
 
@@ -278,6 +278,24 @@
     </xsl:choose>
   </xsl:function>
 
+  
+  
+  <!-- Custom template to facilitate SQF fixes -->
+  <xsl:template match="." mode="customCopy">
+    <!-- Excludes namespaces -->
+    <xsl:copy copy-namespaces="no">
+      <!-- Excludes default JATS attributes -->
+      <xsl:for-each select="@*">
+        <xsl:variable name="default-attributes" select="('toggle')"/>
+        <xsl:if test="not(name()=$default-attributes)">
+          <xsl:attribute name="{name()}">
+            <xsl:value-of select="."/>
+          </xsl:attribute>
+        </xsl:if>
+      </xsl:for-each>
+      <xsl:apply-templates select="*|text()|comment()|processing-instruction()" mode="customCopy"/>
+    </xsl:copy>
+  </xsl:template>
   
 
      <pattern id="article-tests-pattern"><rule context="article[front/journal-meta/lower-case(journal-id[1])='elife']" id="article-tests">
@@ -752,11 +770,38 @@
      </rule></pattern>
   
   <pattern id="bold-checks-pattern"><rule context="bold" id="bold-checks">
-        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" id="bold-check-1">[bold-check-1] Content of bold element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" sqf:fix="remove-bold add-fig-xref add-supp-xref" id="bold-check-1">[bold-check-1] Content of bold element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
-       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')" role="warning" id="bold-check-2">[bold-check-2] Content of bold element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')" role="warning" sqf:fix="remove-bold add-fig-xref add-supp-xref" id="bold-check-2">[bold-check-2] Content of bold element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
-       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')" role="warning" id="bold-check-3">[bold-check-3] Content of bold element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')" role="warning" sqf:fix="remove-bold add-fig-xref add-supp-xref" id="bold-check-3">[bold-check-3] Content of bold element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+       
+       <sqf:fix id="remove-bold">
+         <sqf:description>
+           <sqf:title>Strip the bold tags</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+           <xsl:apply-templates mode="customCopy" select="node()"/>
+         </sqf:replace>
+       </sqf:fix>
+       
+       <sqf:fix id="add-fig-xref">
+         <sqf:description>
+           <sqf:title>Change to figure xref</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+           <xref xmlns="" ref-type="fig" rid="dummy"><xsl:apply-templates mode="customCopy" select="node()"/></xref>
+         </sqf:replace>
+       </sqf:fix>
+       
+       <sqf:fix id="add-supp-xref">
+         <sqf:description>
+           <sqf:title>Change to supp xref</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+           <xref xmlns="" ref-type="supplementary-material" rid="dummy"><xsl:apply-templates mode="customCopy" select="node()"/></xref>
+         </sqf:replace>
+       </sqf:fix>
       </rule></pattern>
   
   <pattern id="sc-checks-pattern"><rule context="sc" id="sc-checks">
