@@ -268,7 +268,7 @@
   </xsl:template>
   <pattern id="underline-checks-pattern">
     <rule context="underline" id="underline-checks">
-      <report test="string-length(.) gt 20" role="warning" id="underline-warning">[underline-warning] underline element contains more than 20 characters. Is this tracked change formatting that's been erroneously retained?</report>
+      <report test="string-length(.) gt 20" role="warning" sqf:fix="remove-elem" id="underline-warning">[underline-warning] underline element contains more than 20 characters. Is this tracked change formatting that's been erroneously retained?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

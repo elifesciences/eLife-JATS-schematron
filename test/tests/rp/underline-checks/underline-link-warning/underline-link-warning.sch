@@ -268,7 +268,7 @@
   </xsl:template>
   <pattern id="underline-checks-pattern">
     <rule context="underline" id="underline-checks">
-      <report test="matches(lower-case(.),'www\.|(f|ht)tp|^link\s|\slink\s')" role="warning" id="underline-link-warning">[underline-link-warning] Should this underline element be a link (ext-link) instead? <value-of select="."/>
+      <report test="matches(lower-case(.),'www\.|(f|ht)tp|^link\s|\slink\s')" role="warning" sqf:fix="remove-elem add-ext-link" id="underline-link-warning">[underline-link-warning] Should this underline element be a link (ext-link) instead? <value-of select="."/>
       </report>
     </rule>
   </pattern>

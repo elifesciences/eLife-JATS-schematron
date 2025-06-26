@@ -4932,6 +4932,14 @@
             <svrl:text>[strike-warning] strike element is present. Is this tracked change formatting that's been erroneously retained? Should this text be deleted?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="remove-elem">
+         <sqf:description>
+            <sqf:title>Strip the tags</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+            <xsl:apply-templates mode="customCopy" select="node()"/>
+         </sqf:replace>
+      </sqf:fix>
       <xsl:apply-templates select="*" mode="M73"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M73"/>
@@ -5032,6 +5040,63 @@
                <xsl:text/>. Either replace it with an xref or remove the bold formatting, as appropriate.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="remove-elem">
+         <sqf:description>
+            <sqf:title>Strip the tags</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+            <xsl:apply-templates mode="customCopy" select="node()"/>
+         </sqf:replace>
+      </sqf:fix>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="add-ext-link">
+         <sqf:description>
+            <sqf:title>Change to ext-link</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+            <ext-link xmlns="" ext-link-type="uri">
+               <xsl:attribute name="xlink:href">
+                  <xsl:value-of select="."/>
+               </xsl:attribute>
+               <xsl:apply-templates mode="customCopy" select="node()"/>
+            </ext-link>
+         </sqf:replace>
+      </sqf:fix>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="add-ge-symbol">
+         <sqf:description>
+            <sqf:title>Change to ≥</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+            <xsl:text>≥</xsl:text>
+         </sqf:replace>
+      </sqf:fix>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="add-le-symbol">
+         <sqf:description>
+            <sqf:title>Change to ≤</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+            <xsl:text>≤</xsl:text>
+         </sqf:replace>
+      </sqf:fix>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="add-fig-xref">
+         <sqf:description>
+            <sqf:title>Change to figure xref</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+            <xref xmlns="" ref-type="fig" rid="dummy">
+               <xsl:apply-templates mode="customCopy" select="node()"/>
+            </xref>
+         </sqf:replace>
+      </sqf:fix>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="add-supp-xref">
+         <sqf:description>
+            <sqf:title>Change to supp xref</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+            <xref xmlns="" ref-type="supplementary-material" rid="dummy">
+               <xsl:apply-templates mode="customCopy" select="node()"/>
+            </xref>
+         </sqf:replace>
+      </sqf:fix>
       <xsl:apply-templates select="*" mode="M74"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M74"/>
@@ -5081,9 +5146,9 @@
                <xsl:text/>. Either replace it with an xref or remove the bold formatting, as appropriate.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="remove-bold">
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="remove-elem">
          <sqf:description>
-            <sqf:title>Strip the bold tags</sqf:title>
+            <sqf:title>Strip the tags</sqf:title>
          </sqf:description>
          <sqf:replace match=".">
             <xsl:apply-templates mode="customCopy" select="node()"/>

@@ -268,7 +268,7 @@
   </xsl:template>
   <pattern id="underline-checks-pattern">
     <rule context="underline" id="underline-checks">
-      <report test="replace(.,'[\s\.]','')='&gt;'" role="warning" id="underline-gt-warning">[underline-gt-warning] underline element contains a greater than symbol (<value-of select="."/>). Should this a greater than or equal to symbol instead (≥)?</report>
+      <report test="replace(.,'[\s\.]','')='&gt;'" role="warning" sqf:fix="remove-elem add-ge-symbol" id="underline-gt-warning">[underline-gt-warning] underline element contains a greater than symbol (<value-of select="."/>). Should this a greater than or equal to symbol instead (≥)?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

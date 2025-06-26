@@ -268,7 +268,7 @@
   </xsl:template>
   <pattern id="underline-checks-pattern">
     <rule context="underline" id="underline-checks">
-      <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" id="underline-check-1">[underline-check-1] Content of underline element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+      <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" sqf:fix="remove-elem add-fig-xref add-supp-xref" id="underline-check-1">[underline-check-1] Content of underline element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

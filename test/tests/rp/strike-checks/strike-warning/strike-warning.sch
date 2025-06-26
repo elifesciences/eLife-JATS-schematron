@@ -268,7 +268,7 @@
   </xsl:template>
   <pattern id="strike-checks-pattern">
     <rule context="strike" id="strike-checks">
-      <report test="." role="warning" id="strike-warning">[strike-warning] strike element is present. Is this tracked change formatting that's been erroneously retained? Should this text be deleted?</report>
+      <report test="." role="warning" sqf:fix="remove-elem" id="strike-warning">[strike-warning] strike element is present. Is this tracked change formatting that's been erroneously retained? Should this text be deleted?</report>
     </rule>
   </pattern>
 </schema>
