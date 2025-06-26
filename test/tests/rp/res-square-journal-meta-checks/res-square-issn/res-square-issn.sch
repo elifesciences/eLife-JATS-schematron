@@ -1,4 +1,4 @@
-<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:meca="http://manuscriptexchange.org" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:file="java.io.File" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink" queryBinding="xslt2">
+<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns:meca="http://manuscriptexchange.org" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:file="java.io.File" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink" queryBinding="xslt2">
   <title>eLife reviewed preprint schematron</title>
   <ns uri="http://www.niso.org/schemas/ali/1.0/" prefix="ali"/>
   <ns uri="http://www.w3.org/XML/1998/namespace" prefix="xml"/>
@@ -251,6 +251,21 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:template match="." mode="customCopy">
+    
+    <xsl:copy copy-namespaces="no">
+      
+      <xsl:for-each select="@*">
+        <xsl:variable name="default-attributes" select="('toggle')"/>
+        <xsl:if test="not(name()=$default-attributes)">
+          <xsl:attribute name="{name()}">
+            <xsl:value-of select="."/>
+          </xsl:attribute>
+        </xsl:if>
+      </xsl:for-each>
+      <xsl:apply-templates select="*|text()|comment()|processing-instruction()" mode="customCopy"/>
+    </xsl:copy>
+  </xsl:template>
   <pattern id="res-square-journal-meta-checks-pattern">
     <rule context="article/front/journal-meta[lower-case(journal-id[1])='rs']" id="res-square-journal-meta-checks">
       <assert test="issn[@pub-type='epub']='2693-5015'" role="error" id="res-square-issn">[res-square-issn] Research Square preprints must have a &lt;issn pub-type="epub"&gt; element with the value '2693-5015'.</assert>

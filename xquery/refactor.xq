@@ -8,6 +8,7 @@ import module namespace elife = 'elife' at 'elife.xqm';
 declare namespace xsl="http://www.w3.org/1999/XSL/Transform";
 declare namespace sch = "http://purl.oclc.org/dsdl/schematron";
 declare namespace svrl = "http://purl.oclc.org/dsdl/svrl";
+declare namespace sqf = "http://www.schematron-quickfix.com/validator/process";
 
 (: base schematron file :)
 declare variable $sch := doc('../src/schematron.sch');
