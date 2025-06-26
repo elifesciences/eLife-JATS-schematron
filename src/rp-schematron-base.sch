@@ -330,6 +330,42 @@
     </xsl:copy>
   </xsl:template>
   
+  <sqf:fixes>
+    <sqf:fix id="delete-elem">
+      <sqf:description>
+        <sqf:title>Delete element</sqf:title>
+      </sqf:description>
+      <sqf:delete match="."/>
+    </sqf:fix>
+    
+    <sqf:fix id="strip-tags">
+      <sqf:description>
+        <sqf:title>Strip the tags</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:apply-templates mode="customCopy" select="node()"/>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-fig-xref">
+      <sqf:description>
+        <sqf:title>Change to figure xref</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xref xmlns="" ref-type="fig" rid="dummy"><xsl:apply-templates mode="customCopy" select="node()"/></xref>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-supp-xref">
+      <sqf:description>
+        <sqf:title>Change to supp xref</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xref xmlns="" ref-type="supplementary-material" rid="dummy"><xsl:apply-templates mode="customCopy" select="node()"/></xref>
+      </sqf:replace>
+    </sqf:fix>
+  </sqf:fixes>
+  
 
      <pattern id="article">
       <rule context="article[front/journal-meta/lower-case(journal-id[1])='elife']" id="article-tests">
@@ -400,13 +436,6 @@
           role="error"
           sqf:fix="delete-elem"
           id="article-title-children-check-2">Child elements of article-title must contain text content. This <name/> element is empty.</report>
-        
-        <sqf:fix id="delete-elem">
-         <sqf:description>
-           <sqf:title>Delete element</sqf:title>
-         </sqf:description>
-         <sqf:delete match="."/>
-       </sqf:fix>
      </rule>
     </pattern>
 
@@ -1243,13 +1272,6 @@
         role="warning"
         sqf:fix="delete-elem"
         id="ack-dupe">This ack element follows another one. Should there really be more than one Acknowledgements?</report>
-        
-        <sqf:fix id="delete-elem">
-         <sqf:description>
-           <sqf:title>Delete element</sqf:title>
-         </sqf:description>
-         <sqf:delete match="."/>
-       </sqf:fix>
       </rule>
     </pattern>
 
@@ -1259,15 +1281,6 @@
         role="warning" 
         sqf:fix="strip-tags"
         id="strike-warning">strike element is present. Is this tracked change formatting that's been erroneously retained? Should this text be deleted?</report>
-       
-       <sqf:fix id="strip-tags">
-         <sqf:description>
-           <sqf:title>Strip the tags</sqf:title>
-         </sqf:description>
-         <sqf:replace match=".">
-           <xsl:apply-templates mode="customCopy" select="node()"/>
-         </sqf:replace>
-       </sqf:fix>
      </rule>
     </pattern>
 
@@ -1295,27 +1308,18 @@
        
         <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')"
           role="warning" 
-          sqf:fix="strip-tags add-fig-xref add-supp-xref"
+          sqf:fix="strip-tags replace-fig-xref replace-supp-xref"
           id="underline-check-1">Content of underline element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')"
           role="warning" 
-          sqf:fix="strip-tags add-fig-xref add-supp-xref"
+          sqf:fix="strip-tags replace-fig-xref replace-supp-xref"
           id="underline-check-2">Content of underline element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')"
           role="warning"
-          sqf:fix="strip-tags add-fig-xref add-supp-xref"
+          sqf:fix="strip-tags replace-fig-xref replace-supp-xref"
           id="underline-check-3">Content of underline element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
-       
-       <sqf:fix id="strip-tags">
-         <sqf:description>
-           <sqf:title>Strip the tags</sqf:title>
-         </sqf:description>
-         <sqf:replace match=".">
-           <xsl:apply-templates mode="customCopy" select="node()"/>
-         </sqf:replace>
-       </sqf:fix>
        
        <sqf:fix id="add-ext-link">
          <sqf:description>
@@ -1348,24 +1352,6 @@
            <xsl:text>&#x2264;</xsl:text>
          </sqf:replace>
        </sqf:fix>
-       
-       <sqf:fix id="add-fig-xref">
-         <sqf:description>
-           <sqf:title>Change to figure xref</sqf:title>
-         </sqf:description>
-         <sqf:replace match=".">
-           <xref xmlns="" ref-type="fig" rid="dummy"><xsl:apply-templates mode="customCopy" select="node()"/></xref>
-         </sqf:replace>
-       </sqf:fix>
-       
-       <sqf:fix id="add-supp-xref">
-         <sqf:description>
-           <sqf:title>Change to supp xref</sqf:title>
-         </sqf:description>
-         <sqf:replace match=".">
-           <xref xmlns="" ref-type="supplementary-material" rid="dummy"><xsl:apply-templates mode="customCopy" select="node()"/></xref>
-         </sqf:replace>
-       </sqf:fix>
      </rule>
     </pattern>
   
@@ -1373,45 +1359,18 @@
      <rule context="bold" id="bold-checks">
         <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')"
           role="warning" 
-          sqf:fix="strip-tags add-fig-xref add-supp-xref"
+          sqf:fix="strip-tags replace-fig-xref replace-supp-xref"
           id="bold-check-1">Content of bold element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')"
           role="warning"
-          sqf:fix="strip-tags add-fig-xref add-supp-xref"
+          sqf:fix="strip-tags replace-fig-xref replace-supp-xref"
           id="bold-check-2">Content of bold element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')"
           role="warning"
-          sqf:fix="strip-tags add-fig-xref add-supp-xref"
+          sqf:fix="strip-tags replace-fig-xref replace-supp-xref"
           id="bold-check-3">Content of bold element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
-       
-       <sqf:fix id="strip-tags">
-         <sqf:description>
-           <sqf:title>Strip the tags</sqf:title>
-         </sqf:description>
-         <sqf:replace match=".">
-           <xsl:apply-templates mode="customCopy" select="node()"/>
-         </sqf:replace>
-       </sqf:fix>
-       
-       <sqf:fix id="add-fig-xref">
-         <sqf:description>
-           <sqf:title>Change to figure xref</sqf:title>
-         </sqf:description>
-         <sqf:replace match=".">
-           <xref xmlns="" ref-type="fig" rid="dummy"><xsl:apply-templates mode="customCopy" select="node()"/></xref>
-         </sqf:replace>
-       </sqf:fix>
-       
-       <sqf:fix id="add-supp-xref">
-         <sqf:description>
-           <sqf:title>Change to supp xref</sqf:title>
-         </sqf:description>
-         <sqf:replace match=".">
-           <xref xmlns="" ref-type="supplementary-material" rid="dummy"><xsl:apply-templates mode="customCopy" select="node()"/></xref>
-         </sqf:replace>
-       </sqf:fix>
       </rule>
    </pattern>
   
@@ -1421,15 +1380,6 @@
           role="warning"
           sqf:fix="strip-tags strip-tags-all-caps"
           id="sc-check-1">Content is in small caps - <value-of select="."/> - This formatting is not supported on EPP. Consider removing it or replacing the content with other formatting or (if necessary) different glyphs/characters in order to retain the original meaning.</report>
-       
-       <sqf:fix id="strip-tags">
-         <sqf:description>
-           <sqf:title>Strip the tags</sqf:title>
-         </sqf:description>
-         <sqf:replace match=".">
-           <xsl:apply-templates mode="customCopy" select="node()"/>
-         </sqf:replace>
-       </sqf:fix>
        
        <sqf:fix id="strip-tags-all-caps">
          <sqf:description>
@@ -1452,13 +1402,15 @@
      <rule context="fig/*" id="fig-child-checks">
         <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
         <assert test="name()=$supported-fig-children" 
-        role="error" 
+        role="error"
+        sqf:fix="delete-elem"
         id="fig-child-conformance"><name/> is not supported as a child of &lt;fig>.</assert>
      </rule>
       
       <rule context="fig/label" id="fig-label-checks">
         <report test="normalize-space(.)=''" 
-          role="error" 
+          role="error"
+          sqf:fix="delete-elem"
           id="fig-wrap-empty">Label for fig is empty. Either remove the elment or add the missing content.</report>
         
         <report test="matches(lower-case(.),'^\s*(video|movie)')" 
