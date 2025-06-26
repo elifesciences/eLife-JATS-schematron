@@ -4932,7 +4932,7 @@
             <svrl:text>[strike-warning] strike element is present. Is this tracked change formatting that's been erroneously retained? Should this text be deleted?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="remove-elem">
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="strip-tags">
          <sqf:description>
             <sqf:title>Strip the tags</sqf:title>
          </sqf:description>
@@ -5040,7 +5040,7 @@
                <xsl:text/>. Either replace it with an xref or remove the bold formatting, as appropriate.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="remove-elem">
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="strip-tags">
          <sqf:description>
             <sqf:title>Strip the tags</sqf:title>
          </sqf:description>
@@ -5146,7 +5146,7 @@
                <xsl:text/>. Either replace it with an xref or remove the bold formatting, as appropriate.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="remove-elem">
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="strip-tags">
          <sqf:description>
             <sqf:title>Strip the tags</sqf:title>
          </sqf:description>
@@ -5197,6 +5197,22 @@
                <xsl:text/> - This formatting is not supported on EPP. Consider removing it or replacing the content with other formatting or (if necessary) different glyphs/characters in order to retain the original meaning.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="strip-tags">
+         <sqf:description>
+            <sqf:title>Strip the tags</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+            <xsl:apply-templates mode="customCopy" select="node()"/>
+         </sqf:replace>
+      </sqf:fix>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="strip-tags-all-caps">
+         <sqf:description>
+            <sqf:title>Strip the tags and GO ALL CAPS</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+            <xsl:value-of select="upper-case(.)"/>
+         </sqf:replace>
+      </sqf:fix>
       <xsl:apply-templates select="*" mode="M76"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M76"/>

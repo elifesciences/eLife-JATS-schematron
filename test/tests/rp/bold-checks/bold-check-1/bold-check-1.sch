@@ -268,7 +268,7 @@
   </xsl:template>
   <pattern id="bold-checks-pattern">
     <rule context="bold" id="bold-checks">
-      <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" sqf:fix="remove-elem add-fig-xref add-supp-xref" id="bold-check-1">[bold-check-1] Content of bold element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+      <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" sqf:fix="strip-tags add-fig-xref add-supp-xref" id="bold-check-1">[bold-check-1] Content of bold element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

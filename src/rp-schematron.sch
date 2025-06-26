@@ -749,9 +749,9 @@
       </rule></pattern>
 
     <pattern id="strike-checks-pattern"><rule context="strike" id="strike-checks">
-        <report test="." role="warning" sqf:fix="remove-elem" id="strike-warning">[strike-warning] strike element is present. Is this tracked change formatting that's been erroneously retained? Should this text be deleted?</report>
+        <report test="." role="warning" sqf:fix="strip-tags" id="strike-warning">[strike-warning] strike element is present. Is this tracked change formatting that's been erroneously retained? Should this text be deleted?</report>
        
-       <sqf:fix id="remove-elem">
+       <sqf:fix id="strip-tags">
          <sqf:description>
            <sqf:title>Strip the tags</sqf:title>
          </sqf:description>
@@ -762,21 +762,21 @@
      </rule></pattern>
 
     <pattern id="underline-checks-pattern"><rule context="underline" id="underline-checks">
-        <report test="string-length(.) gt 20" role="warning" sqf:fix="remove-elem" id="underline-warning">[underline-warning] underline element contains more than 20 characters. Is this tracked change formatting that's been erroneously retained?</report>
+        <report test="string-length(.) gt 20" role="warning" sqf:fix="strip-tags" id="underline-warning">[underline-warning] underline element contains more than 20 characters. Is this tracked change formatting that's been erroneously retained?</report>
       
-        <report test="matches(lower-case(.),'www\.|(f|ht)tp|^link\s|\slink\s')" role="warning" sqf:fix="remove-elem add-ext-link" id="underline-link-warning">[underline-link-warning] Should this underline element be a link (ext-link) instead? <value-of select="."/></report>
+        <report test="matches(lower-case(.),'www\.|(f|ht)tp|^link\s|\slink\s')" role="warning" sqf:fix="strip-tags add-ext-link" id="underline-link-warning">[underline-link-warning] Should this underline element be a link (ext-link) instead? <value-of select="."/></report>
 
-        <report test="replace(.,'[\s\.]','')='&gt;'" role="warning" sqf:fix="remove-elem add-ge-symbol" id="underline-gt-warning">[underline-gt-warning] underline element contains a greater than symbol (<value-of select="."/>). Should this a greater than or equal to symbol instead (≥)?</report>
+        <report test="replace(.,'[\s\.]','')='&gt;'" role="warning" sqf:fix="strip-tags add-ge-symbol" id="underline-gt-warning">[underline-gt-warning] underline element contains a greater than symbol (<value-of select="."/>). Should this a greater than or equal to symbol instead (≥)?</report>
 
-        <report test="replace(.,'[\s\.]','')='&lt;'" role="warning" sqf:fix="remove-elem add-le-symbol" id="underline-lt-warning">[underline-lt-warning] underline element contains a less than symbol (<value-of select="."/>). Should this a less than or equal to symbol instead (≤)?</report>
+        <report test="replace(.,'[\s\.]','')='&lt;'" role="warning" sqf:fix="strip-tags add-le-symbol" id="underline-lt-warning">[underline-lt-warning] underline element contains a less than symbol (<value-of select="."/>). Should this a less than or equal to symbol instead (≤)?</report>
        
-        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" sqf:fix="remove-elem add-fig-xref add-supp-xref" id="underline-check-1">[underline-check-1] Content of underline element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" sqf:fix="strip-tags add-fig-xref add-supp-xref" id="underline-check-1">[underline-check-1] Content of underline element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
-       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')" role="warning" sqf:fix="remove-elem add-fig-xref add-supp-xref" id="underline-check-2">[underline-check-2] Content of underline element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')" role="warning" sqf:fix="strip-tags add-fig-xref add-supp-xref" id="underline-check-2">[underline-check-2] Content of underline element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
-       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')" role="warning" sqf:fix="remove-elem add-fig-xref add-supp-xref" id="underline-check-3">[underline-check-3] Content of underline element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')" role="warning" sqf:fix="strip-tags add-fig-xref add-supp-xref" id="underline-check-3">[underline-check-3] Content of underline element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
-       <sqf:fix id="remove-elem">
+       <sqf:fix id="strip-tags">
          <sqf:description>
            <sqf:title>Strip the tags</sqf:title>
          </sqf:description>
@@ -837,13 +837,13 @@
      </rule></pattern>
   
   <pattern id="bold-checks-pattern"><rule context="bold" id="bold-checks">
-        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" sqf:fix="remove-elem add-fig-xref add-supp-xref" id="bold-check-1">[bold-check-1] Content of bold element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" sqf:fix="strip-tags add-fig-xref add-supp-xref" id="bold-check-1">[bold-check-1] Content of bold element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
-       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')" role="warning" sqf:fix="remove-elem add-fig-xref add-supp-xref" id="bold-check-2">[bold-check-2] Content of bold element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')" role="warning" sqf:fix="strip-tags add-fig-xref add-supp-xref" id="bold-check-2">[bold-check-2] Content of bold element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
-       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')" role="warning" sqf:fix="remove-elem add-fig-xref add-supp-xref" id="bold-check-3">[bold-check-3] Content of bold element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')" role="warning" sqf:fix="strip-tags add-fig-xref add-supp-xref" id="bold-check-3">[bold-check-3] Content of bold element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
-       <sqf:fix id="remove-elem">
+       <sqf:fix id="strip-tags">
          <sqf:description>
            <sqf:title>Strip the tags</sqf:title>
          </sqf:description>
@@ -872,7 +872,25 @@
       </rule></pattern>
   
   <pattern id="sc-checks-pattern"><rule context="sc" id="sc-checks">
-        <report test="." role="warning" id="sc-check-1">[sc-check-1] Content is in small caps - <value-of select="."/> - This formatting is not supported on EPP. Consider removing it or replacing the content with other formatting or (if necessary) different glyphs/characters in order to retain the original meaning.</report>
+        <report test="." role="warning" sqf:fix="strip-tags strip-tags-all-caps" id="sc-check-1">[sc-check-1] Content is in small caps - <value-of select="."/> - This formatting is not supported on EPP. Consider removing it or replacing the content with other formatting or (if necessary) different glyphs/characters in order to retain the original meaning.</report>
+       
+       <sqf:fix id="strip-tags">
+         <sqf:description>
+           <sqf:title>Strip the tags</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+           <xsl:apply-templates mode="customCopy" select="node()"/>
+         </sqf:replace>
+       </sqf:fix>
+       
+       <sqf:fix id="strip-tags-all-caps">
+         <sqf:description>
+           <sqf:title>Strip the tags and GO ALL CAPS</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+           <xsl:value-of select="upper-case(.)"/>
+         </sqf:replace>
+       </sqf:fix>
       </rule></pattern>
 
     <pattern id="fig-checks-pattern"><rule context="fig" id="fig-checks">

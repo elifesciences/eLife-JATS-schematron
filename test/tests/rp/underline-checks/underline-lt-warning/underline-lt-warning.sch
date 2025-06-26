@@ -268,7 +268,7 @@
   </xsl:template>
   <pattern id="underline-checks-pattern">
     <rule context="underline" id="underline-checks">
-      <report test="replace(.,'[\s\.]','')='&lt;'" role="warning" sqf:fix="remove-elem add-le-symbol" id="underline-lt-warning">[underline-lt-warning] underline element contains a less than symbol (<value-of select="."/>). Should this a less than or equal to symbol instead (≤)?</report>
+      <report test="replace(.,'[\s\.]','')='&lt;'" role="warning" sqf:fix="strip-tags add-le-symbol" id="underline-lt-warning">[underline-lt-warning] underline element contains a less than symbol (<value-of select="."/>). Should this a less than or equal to symbol instead (≤)?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
