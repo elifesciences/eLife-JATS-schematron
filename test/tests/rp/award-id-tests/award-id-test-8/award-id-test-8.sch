@@ -266,6 +266,69 @@
       <xsl:apply-templates select="*|text()|comment()|processing-instruction()" mode="customCopy"/>
     </xsl:copy>
   </xsl:template>
+  <xsl:template name="tag-author-list">
+      <xsl:param name="author-string"/>
+      <xsl:variable name="cleaned-author-list" select="normalize-space(replace(replace($author-string,'[\.,]$',''),'\.\s+','.'))"/>
+      <xsl:variable name="author-list">
+        <xsl:choose>
+            <xsl:when test="matches(concat($cleaned-author-list,','),'^([\p{L}\p{P}\s’]+,\s[\p{Lu}\.]+,)$')">
+                <xsl:variable name="all-comma-separated-parts" select="tokenize(normalize-space($author-string), ',')"/>
+                <xsl:for-each select="$all-comma-separated-parts[position() mod 2 = 1]">
+                  <xsl:variable name="original-index-of-current-odd-part" select="(position() * 2) - 1"/>
+                  <xsl:variable name="original-index-of-next-even-part" select="position() * 2"/>
+                  <xsl:variable name="part-before-comma" select="normalize-space($all-comma-separated-parts[$original-index-of-current-odd-part])"/>
+                  <xsl:variable name="part-after-comma" select="normalize-space($all-comma-separated-parts[$original-index-of-next-even-part])"/>
+                  <xsl:value-of select="concat($part-before-comma, ' ', $part-after-comma)"/>
+                  <xsl:if test="position() != (count($all-comma-separated-parts) div 2)">
+                    <xsl:text>, </xsl:text>
+                  </xsl:if>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$cleaned-author-list"/>
+            </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:for-each select="tokenize($author-list,', ')">
+        <xsl:variable name="author-name" select="normalize-space(.)"/>
+        <xsl:if test="string-length($author-name) &gt; 0">
+            <xsl:choose>
+                <xsl:when test="matches($author-name,'^[\p{Lu}\.]+\s[\p{L}\p{P}\s’]+$')">
+                    <string-name xmlns="">
+                        <given-names>
+                <xsl:value-of select="substring-before($author-name,' ')"/>
+              </given-names>
+                        <xsl:text> </xsl:text>
+                        <surname>
+                <xsl:value-of select="substring-after($author-name,' ')"/>
+              </surname>
+                    </string-name>
+                </xsl:when>
+                <xsl:when test="matches($author-name,'^[\p{L}\p{P}\s’]+\s[\p{Lu}\.]+$')">
+                    <string-name xmlns="">
+                        <surname>
+                <xsl:value-of select="string-join(tokenize($author-name,' ')[position() != last()],' ')"/>
+              </surname>
+                        <xsl:text> </xsl:text>
+                        <given-names>
+                <xsl:value-of select="tokenize($author-name,' ')[last()]"/>
+              </given-names>
+                    </string-name>
+                </xsl:when>
+                <xsl:otherwise>
+                    <string-name xmlns="">
+                        <surname>
+                <xsl:value-of select="$author-name"/>
+              </surname>
+                    </string-name>
+                  </xsl:otherwise>
+            </xsl:choose>
+            <xsl:if test="position() != last()">
+            <xsl:text>, </xsl:text>
+          </xsl:if>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:template>
   <sqf:fixes>
     <sqf:fix id="delete-elem">
       <sqf:description>
@@ -304,13 +367,27 @@
         </xref>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="replace-to-ext-link">
+      <sqf:description>
+        <sqf:title>Change to ext-link</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <ext-link xmlns="" ext-link-type="uri">
+          <xsl:attribute name="xlink:href">
+            <xsl:value-of select="."/>
+          </xsl:attribute>
+          <xsl:apply-templates mode="customCopy" select="node()"/>
+        </ext-link>
+      </sqf:replace>
+    </sqf:fix>
   </sqf:fixes>
   <pattern id="award-id-tests-pattern">
     <rule context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>
       <let name="funder-id" value="parent::award-group/descendant::institution-id[1]"/>
       <let name="funder-name" value="parent::award-group/descendant::institution[1]"/>
-      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-8" test=". = preceding::award-id[parent::award-group[not(descendant::institution[1] = $funder-name) and not(descendant::institution-id[1] = $funder-id)]]" role="warning" id="award-id-test-8">[award-id-test-8] Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with a different funder. Has there been a mistake with the award id? If the grant was awarded jointly by two funders, then this capture is correct and should be retained.</report>
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-8" test=".!='' and . = preceding::award-id[parent::award-group[not(descendant::institution[1] = $funder-name) and not(descendant::institution-id[1] = $funder-id)]]" role="warning" id="award-id-test-8">[award-id-test-8] Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with a different funder. Has there been a mistake with the award id? If the grant was awarded jointly by two funders, then this capture is correct and should be retained.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

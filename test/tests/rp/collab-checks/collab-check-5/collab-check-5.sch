@@ -266,6 +266,69 @@
       <xsl:apply-templates select="*|text()|comment()|processing-instruction()" mode="customCopy"/>
     </xsl:copy>
   </xsl:template>
+  <xsl:template name="tag-author-list">
+      <xsl:param name="author-string"/>
+      <xsl:variable name="cleaned-author-list" select="normalize-space(replace(replace($author-string,'[\.,]$',''),'\.\s+','.'))"/>
+      <xsl:variable name="author-list">
+        <xsl:choose>
+            <xsl:when test="matches(concat($cleaned-author-list,','),'^([\p{L}\p{P}\s’]+,\s[\p{Lu}\.]+,)$')">
+                <xsl:variable name="all-comma-separated-parts" select="tokenize(normalize-space($author-string), ',')"/>
+                <xsl:for-each select="$all-comma-separated-parts[position() mod 2 = 1]">
+                  <xsl:variable name="original-index-of-current-odd-part" select="(position() * 2) - 1"/>
+                  <xsl:variable name="original-index-of-next-even-part" select="position() * 2"/>
+                  <xsl:variable name="part-before-comma" select="normalize-space($all-comma-separated-parts[$original-index-of-current-odd-part])"/>
+                  <xsl:variable name="part-after-comma" select="normalize-space($all-comma-separated-parts[$original-index-of-next-even-part])"/>
+                  <xsl:value-of select="concat($part-before-comma, ' ', $part-after-comma)"/>
+                  <xsl:if test="position() != (count($all-comma-separated-parts) div 2)">
+                    <xsl:text>, </xsl:text>
+                  </xsl:if>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$cleaned-author-list"/>
+            </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:for-each select="tokenize($author-list,', ')">
+        <xsl:variable name="author-name" select="normalize-space(.)"/>
+        <xsl:if test="string-length($author-name) &gt; 0">
+            <xsl:choose>
+                <xsl:when test="matches($author-name,'^[\p{Lu}\.]+\s[\p{L}\p{P}\s’]+$')">
+                    <string-name xmlns="">
+                        <given-names>
+                <xsl:value-of select="substring-before($author-name,' ')"/>
+              </given-names>
+                        <xsl:text> </xsl:text>
+                        <surname>
+                <xsl:value-of select="substring-after($author-name,' ')"/>
+              </surname>
+                    </string-name>
+                </xsl:when>
+                <xsl:when test="matches($author-name,'^[\p{L}\p{P}\s’]+\s[\p{Lu}\.]+$')">
+                    <string-name xmlns="">
+                        <surname>
+                <xsl:value-of select="string-join(tokenize($author-name,' ')[position() != last()],' ')"/>
+              </surname>
+                        <xsl:text> </xsl:text>
+                        <given-names>
+                <xsl:value-of select="tokenize($author-name,' ')[last()]"/>
+              </given-names>
+                    </string-name>
+                </xsl:when>
+                <xsl:otherwise>
+                    <string-name xmlns="">
+                        <surname>
+                <xsl:value-of select="$author-name"/>
+              </surname>
+                    </string-name>
+                  </xsl:otherwise>
+            </xsl:choose>
+            <xsl:if test="position() != last()">
+            <xsl:text>, </xsl:text>
+          </xsl:if>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:template>
   <sqf:fixes>
     <sqf:fix id="delete-elem">
       <sqf:description>
@@ -304,10 +367,24 @@
         </xref>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="replace-to-ext-link">
+      <sqf:description>
+        <sqf:title>Change to ext-link</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <ext-link xmlns="" ext-link-type="uri">
+          <xsl:attribute name="xlink:href">
+            <xsl:value-of select="."/>
+          </xsl:attribute>
+          <xsl:apply-templates mode="customCopy" select="node()"/>
+        </ext-link>
+      </sqf:replace>
+    </sqf:fix>
   </sqf:fixes>
   <pattern id="collab-checks-pattern">
     <rule context="collab" id="collab-checks">
-      <report test="contains(.,',') and contains(.,'.') or count(tokenize(.,',')) gt 2" role="warning" id="collab-check-5">[collab-check-5] collab element contains '<value-of select="."/>'. Is it really a collab?</report>
+      <report test="contains(.,',') and contains(.,'.') or count(tokenize(.,',')) gt 2" role="warning" sqf:fix="replace-collab-to-string-name" id="collab-check-5">[collab-check-5] collab element contains '<value-of select="."/>'. Is it really a collab?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

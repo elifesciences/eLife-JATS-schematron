@@ -280,7 +280,7 @@
 
   
   
-  <!-- Custom template to facilitate SQF fixes -->
+  <!-- Custom template for SQF fixes -->
   <xsl:template match="." mode="customCopy">
     <!-- Excludes namespaces -->
     <xsl:copy copy-namespaces="no">
@@ -296,6 +296,73 @@
       <xsl:apply-templates select="*|text()|comment()|processing-instruction()" mode="customCopy"/>
     </xsl:copy>
   </xsl:template>
+  
+  <!-- Template for SQFs
+    This is a complete mess but it works ¯\_(ツ)_/¯
+  -->
+  <xsl:template name="tag-author-list">
+      <xsl:param name="author-string"/>
+      <xsl:variable name="cleaned-author-list" select="normalize-space(replace(replace($author-string,'[\.,]$',''),'\.\s+','.'))"/>
+      <xsl:variable name="author-list">
+        <xsl:choose>
+            <xsl:when test="matches(concat($cleaned-author-list,','),'^([\p{L}\p{P}\s’]+,\s[\p{Lu}\.]+,)$')">
+                <xsl:variable name="all-comma-separated-parts" select="tokenize(normalize-space($author-string), ',')"/>
+                <xsl:for-each select="$all-comma-separated-parts[position() mod 2 = 1]">
+                  <xsl:variable name="original-index-of-current-odd-part" select="(position() * 2) - 1"/>
+                  <xsl:variable name="original-index-of-next-even-part" select="position() * 2"/>
+                  <xsl:variable name="part-before-comma" select="normalize-space($all-comma-separated-parts[$original-index-of-current-odd-part])"/>
+                  <xsl:variable name="part-after-comma" select="normalize-space($all-comma-separated-parts[$original-index-of-next-even-part])"/>
+                  <xsl:value-of select="concat($part-before-comma, ' ', $part-after-comma)"/>
+                  <xsl:if test="position() != (count($all-comma-separated-parts) div 2)">
+                    <xsl:text>, </xsl:text>
+                  </xsl:if>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$cleaned-author-list"/>
+            </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:for-each select="tokenize($author-list,', ')">
+        <xsl:variable name="author-name" select="normalize-space(.)"/>
+        <xsl:if test="string-length($author-name) &gt; 0">
+            <xsl:choose>
+                <xsl:when test="matches($author-name,'^[\p{Lu}\.]+\s[\p{L}\p{P}\s’]+$')">
+                    <string-name xmlns="">
+                        <given-names>
+                <xsl:value-of select="substring-before($author-name,' ')"/>
+              </given-names>
+                        <xsl:text> </xsl:text>
+                        <surname>
+                <xsl:value-of select="substring-after($author-name,' ')"/>
+              </surname>
+                    </string-name>
+                </xsl:when>
+                <xsl:when test="matches($author-name,'^[\p{L}\p{P}\s’]+\s[\p{Lu}\.]+$')">
+                    <string-name xmlns="">
+                        <surname>
+                <xsl:value-of select="string-join(tokenize($author-name,' ')[position() != last()],' ')"/>
+              </surname>
+                        <xsl:text> </xsl:text>
+                        <given-names>
+                <xsl:value-of select="tokenize($author-name,' ')[last()]"/>
+              </given-names>
+                    </string-name>
+                </xsl:when>
+                <xsl:otherwise>
+                    <string-name xmlns="">
+                        <surname>
+                <xsl:value-of select="$author-name"/>
+              </surname>
+                    </string-name>
+                  </xsl:otherwise>
+            </xsl:choose>
+            <xsl:if test="position() != last()">
+            <xsl:text>, </xsl:text>
+          </xsl:if>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:template>
   
   <sqf:fixes>
     <sqf:fix id="delete-elem">
@@ -333,6 +400,20 @@
         <xref xmlns="" ref-type="supplementary-material" rid="dummy">
           <xsl:apply-templates mode="customCopy" select="node()"/>
         </xref>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-to-ext-link">
+      <sqf:description>
+        <sqf:title>Change to ext-link</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <ext-link xmlns="" ext-link-type="uri">
+          <xsl:attribute name="xlink:href">
+            <xsl:value-of select="."/>
+          </xsl:attribute>
+          <xsl:apply-templates mode="customCopy" select="node()"/>
+        </ext-link>
       </sqf:replace>
     </sqf:fix>
   </sqf:fixes>
@@ -761,7 +842,18 @@
         
         <report test="matches(.,'^[\p{Z}\p{N}\p{P}]*$')" role="warning" id="collab-check-4">collab element consists only of spaces, punctuation and/or numbers (or is empty) - '<value-of select="."/>'. Is it really a collab?</report>
         
-        <report test="contains(.,',') and contains(.,'.') or count(tokenize(.,',')) gt 2" role="warning" id="collab-check-5">collab element contains '<value-of select="."/>'. Is it really a collab?</report>
+        <report test="contains(.,',') and contains(.,'.') or count(tokenize(.,',')) gt 2" role="warning" sqf:fix="replace-collab-to-string-name" id="collab-check-5">collab element contains '<value-of select="."/>'. Is it really a collab?</report>
+        
+        <sqf:fix id="replace-collab-to-string-name">
+          <sqf:description>
+            <sqf:title>Change to string name</sqf:title>
+          </sqf:description>
+          <sqf:replace match=".">
+            <xsl:call-template name="tag-author-list">
+              <xsl:with-param name="author-string" select="."/>
+            </xsl:call-template>
+          </sqf:replace>
+        </sqf:fix>
      </rule>
   </pattern>
 
@@ -965,7 +1057,7 @@
     <rule context="underline" id="underline-checks">
         <report test="string-length(.) gt 20" role="warning" sqf:fix="strip-tags" id="underline-warning">underline element contains more than 20 characters. Is this tracked change formatting that's been erroneously retained?</report>
       
-        <report test="matches(lower-case(.),'www\.|(f|ht)tp|^link\s|\slink\s')" role="warning" sqf:fix="strip-tags add-ext-link" id="underline-link-warning">Should this underline element be a link (ext-link) instead? <value-of select="."/>
+        <report test="matches(lower-case(.),'www\.|(f|ht)tp|^link\s|\slink\s')" role="warning" sqf:fix="strip-tags replace-to-ext-link" id="underline-link-warning">Should this underline element be a link (ext-link) instead? <value-of select="."/>
       </report>
 
         <report test="replace(.,'[\s\.]','')='&gt;'" role="warning" sqf:fix="strip-tags add-ge-symbol" id="underline-gt-warning">underline element contains a greater than symbol (<value-of select="."/>). Should this a greater than or equal to symbol instead (≥)?</report>
@@ -977,20 +1069,6 @@
        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')" role="warning" sqf:fix="strip-tags replace-fig-xref replace-supp-xref" id="underline-check-2">Content of underline element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')" role="warning" sqf:fix="strip-tags replace-fig-xref replace-supp-xref" id="underline-check-3">Content of underline element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
-       
-       <sqf:fix id="add-ext-link">
-         <sqf:description>
-           <sqf:title>Change to ext-link</sqf:title>
-         </sqf:description>
-         <sqf:replace match=".">
-           <ext-link xmlns="" ext-link-type="uri">
-             <xsl:attribute name="xlink:href">
-               <xsl:value-of select="."/>
-             </xsl:attribute>
-             <xsl:apply-templates mode="customCopy" select="node()"/>
-           </ext-link>
-         </sqf:replace>
-       </sqf:fix>
        
        <sqf:fix id="add-ge-symbol">
          <sqf:description>
@@ -1090,13 +1168,13 @@
   <pattern id="table-wrap-child-checks-pattern">
     <rule context="table-wrap/*" id="table-wrap-child-checks">
         <let name="supported-table-wrap-children" value="('label','caption','graphic','alternatives','table','permissions','table-wrap-foot')"/>
-        <assert test="name()=$supported-table-wrap-children" role="error" id="table-wrap-child-conformance">
+        <assert test="name()=$supported-table-wrap-children" role="error" sqf:fix="delete-elem" id="table-wrap-child-conformance">
         <value-of select="name()"/> is not supported as a child of &lt;table-wrap&gt;.</assert>
      </rule>
   </pattern>
   <pattern id="table-wrap-label-checks-pattern">
     <rule context="table-wrap/label" id="table-wrap-label-checks">
-        <report test="normalize-space(.)=''" role="error" id="table-wrap-empty">Label for table is empty. Either remove the elment or add the missing content.</report>
+        <report test="normalize-space(.)=''" role="error" sqf:fix="delete-elem" id="table-wrap-empty">Label for table is empty. Either remove the elment or add the missing content.</report>
         
         <report test="matches(lower-case(.),'^\s*fig')" role="warning" id="table-wrap-label-fig">Label for table ('<value-of select="."/>') starts with text that suggests its a figure. Should this content be captured as a figure instead of a table?</report>
      </rule>
@@ -1115,7 +1193,7 @@
     <rule context="supplementary-material" id="supplementary-material-checks">
         <assert test="ancestor::sec[@sec-type='supplementary-material']" role="warning" id="supplementary-material-temp-test">supplementary-material element is not placed within a &lt;sec sec-type="supplementary-material"&gt;. Is that correct?.</assert>
         
-        <assert test="media" role="error" id="supplementary-material-test-1">supplementary-material does not have a child media. It must either have a file or be deleted.</assert>
+        <assert test="media" role="error" sqf:fix="delete-elem" id="supplementary-material-test-1">supplementary-material does not have a child media. It must either have a file or be deleted.</assert>
         
         <report test="count(media) gt 1" role="error" id="supplementary-material-test-2">supplementary-material has <value-of select="count(media)"/> child media elements. Each file must be wrapped in its own supplementary-material.</report>
       </rule>
@@ -1124,7 +1202,7 @@
     <rule context="supplementary-material/*" id="supplementary-material-child-checks">
         <let name="permitted-children" value="('label','caption','media')"/>
         
-        <assert test="name()=$permitted-children" role="error" id="supplementary-material-child-test-1">
+        <assert test="name()=$permitted-children" role="error" sqf:fix="delete-elem" id="supplementary-material-child-test-1">
         <name/> is not supported as a child of supplementary-material. The only permitted children are: <value-of select="string-join($permitted-children,'; ')"/>.</assert>
       </rule>
   </pattern>
@@ -1274,7 +1352,7 @@
     <rule context="sec/label" id="sec-label-checks">
         <report test="matches(.,'[2-4]D')" role="warning" id="sec-label-1">Label for section contains 2D or similar - '<value-of select="."/>'. Is it really a label? Or just part of the title?</report>
         
-        <report test="normalize-space(.)=''" role="error" id="sec-label-2">Section label is empty. This is not permitted.</report>
+        <report test="normalize-space(.)=''" role="error" sqf:fix="delete-elem" id="sec-label-2">Section label is empty. This is not permitted.</report>
       </rule>
   </pattern>
 
@@ -1720,7 +1798,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-7" test=". = preceding::award-id[parent::award-group/descendant::institution[1] = $funder-name]" role="error" id="award-id-test-7">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with the same funder name. This must be incorrect. Either the funder name or the award ID is wrong, or it is a duplicate that should be removed.</report>
       
-      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-8" test=". = preceding::award-id[parent::award-group[not(descendant::institution[1] = $funder-name) and not(descendant::institution-id[1] = $funder-id)]]" role="warning" id="award-id-test-8">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with a different funder. Has there been a mistake with the award id? If the grant was awarded jointly by two funders, then this capture is correct and should be retained.</report>
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-8" test=".!='' and . = preceding::award-id[parent::award-group[not(descendant::institution[1] = $funder-name) and not(descendant::institution-id[1] = $funder-id)]]" role="warning" id="award-id-test-8">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with a different funder. Has there been a mistake with the award id? If the grant was awarded jointly by two funders, then this capture is correct and should be retained.</report>
       
       <report test="normalize-space(.)=''" role="error" id="award-id-test-9">award-id cannot be empty. Either add the missing content or remove it.</report>
       
@@ -1971,7 +2049,6 @@
       
       <report test="ancestor::abstract[sec] and not(parent::p/parent::sec/title[matches(lower-case(.),'clinical trial')])" role="warning" id="clintrial-related-object-parent-3">
         <name/> is a descendant of (a sturctured) abstract, but it's not within a section that has a title indicating it's a clinical trial number. Is that right?</report>
-      
     </rule>
   </pattern>
   
@@ -2004,7 +2081,7 @@
 
     <pattern id="uri-checks-pattern">
     <rule context="uri" id="uri-checks">
-        <report test="." role="error" id="uri-flag">The uri element is not permitted. Instead use ext-link with the attribute link-type="uri".</report>
+        <report test="." role="error" sqf:fix="replace-to-ext-link" id="uri-flag">The uri element is not permitted. Instead use ext-link with the attribute link-type="uri".</report>
      </rule>
   </pattern>
 
@@ -2084,7 +2161,7 @@
       
       <report test="not(contains(@xlink:href,'datadryad.org/review?')) and not(matches(@*:href,'^https?://doi.org/')) and contains(@*:href,'datadryad.org')" role="error" id="ext-link-child-test-6">ext-link points to a dryad dataset, but it is not a DOI - <value-of select="@xlink:href"/>. Replace this with the Dryad DOI.</report>
 
-    <report test="contains(@xlink:href,'paperpile.com')" role="error" id="paper-pile-test">This paperpile hyperlink should be removed: '<value-of select="@xlink:href"/>' embedded in the text '<value-of select="."/>'.</report>
+    <report test="contains(@xlink:href,'paperpile.com')" role="error" sqf:fix="delete-elem" id="paper-pile-test">This paperpile hyperlink should be removed: '<value-of select="@xlink:href"/>' embedded in the text '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="ext-link-tests-2-pattern">
