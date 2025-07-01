@@ -329,24 +329,32 @@
             <xsl:choose>
                 <xsl:when test="matches($author-name,'^[\p{Lu}\.]+\s[\p{L}\p{P}\s’]+$')">
                     <string-name xmlns="">
-                        <given-names>
-                <xsl:value-of select="substring-before($author-name,' ')"/>
-              </given-names>
-                        <xsl:text> </xsl:text>
-                        <surname>
-                <xsl:value-of select="substring-after($author-name,' ')"/>
-              </surname>
+                        <xsl:analyze-string select="$author-name" regex="{'^([\p{Lu}\s\.]+)\s+([\p{L}\p{P}\s’]+)$'}">
+                            <xsl:matching-substring>
+                                <given-names>
+                    <xsl:value-of select="regex-group(1)"/>
+                  </given-names>
+                                <xsl:text> </xsl:text>
+                                <surname>
+                    <xsl:value-of select="regex-group(2)"/>
+                  </surname>
+                            </xsl:matching-substring>
+                        </xsl:analyze-string>
                     </string-name>
                 </xsl:when>
                 <xsl:when test="matches($author-name,'^[\p{L}\p{P}\s’]+\s[\p{Lu}\.]+$')">
                     <string-name xmlns="">
-                        <surname>
-                <xsl:value-of select="string-join(tokenize($author-name,' ')[position() != last()],' ')"/>
-              </surname>
-                        <xsl:text> </xsl:text>
-                        <given-names>
-                <xsl:value-of select="tokenize($author-name,' ')[last()]"/>
-              </given-names>
+                        <xsl:analyze-string select="$author-name" regex="{'^([\p{L}\p{P}\s’]+)\s+([\p{Lu}\s\.]+)$'}">
+                            <xsl:matching-substring>
+                                <surname>
+                    <xsl:value-of select="regex-group(1)"/>
+                  </surname>
+                                <xsl:text> </xsl:text>
+                                <given-names>
+                    <xsl:value-of select="regex-group(2)"/>
+                  </given-names>
+                            </xsl:matching-substring>
+                        </xsl:analyze-string>
                     </string-name>
                 </xsl:when>
                 <xsl:otherwise>
