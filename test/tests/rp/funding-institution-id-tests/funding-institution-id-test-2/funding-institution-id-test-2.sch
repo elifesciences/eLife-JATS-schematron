@@ -409,7 +409,7 @@
   </sqf:fixes>
   <pattern id="funding-institution-id-tests-pattern">
     <rule context="funding-source//institution-id" id="funding-institution-id-tests">
-      <assert test="matches(.,'^(https?://ror\.org/[a-z0-9]{9}|http[s]?://d?x?\.?doi.org/10.13039/\d*)$')" role="error" id="funding-institution-id-test-2">[funding-institution-id-test-2] institution-id in funding must a value which is either a valid ROR id or open funder registry DOI. This one has '<value-of select="."/>'.</assert>
+      <assert test="matches(.,'^(https?://ror\.org/[a-z0-9]{9}|http[s]?://d?x?\.?doi.org/10.13039/\d*)$')" role="error" sqf:fix="delete-elem" id="funding-institution-id-test-2">[funding-institution-id-test-2] institution-id in funding must a value which is either a valid ROR id or open funder registry DOI. This one has '<value-of select="."/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
