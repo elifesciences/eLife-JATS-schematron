@@ -329,24 +329,32 @@
             <xsl:choose>
                 <xsl:when test="matches($author-name,'^[\p{Lu}\.]+\s[\p{L}\p{P}\s’]+$')">
                     <string-name xmlns="">
-                        <given-names>
-                <xsl:value-of select="substring-before($author-name,' ')"/>
-              </given-names>
-                        <xsl:text> </xsl:text>
-                        <surname>
-                <xsl:value-of select="substring-after($author-name,' ')"/>
-              </surname>
+                        <xsl:analyze-string select="$author-name" regex="{'^([\p{Lu}\s\.]+)\s+([\p{L}\p{P}\s’]+)$'}">
+                            <xsl:matching-substring>
+                                <given-names>
+                    <xsl:value-of select="regex-group(1)"/>
+                  </given-names>
+                                <xsl:text> </xsl:text>
+                                <surname>
+                    <xsl:value-of select="regex-group(2)"/>
+                  </surname>
+                            </xsl:matching-substring>
+                        </xsl:analyze-string>
                     </string-name>
                 </xsl:when>
                 <xsl:when test="matches($author-name,'^[\p{L}\p{P}\s’]+\s[\p{Lu}\.]+$')">
                     <string-name xmlns="">
-                        <surname>
-                <xsl:value-of select="string-join(tokenize($author-name,' ')[position() != last()],' ')"/>
-              </surname>
-                        <xsl:text> </xsl:text>
-                        <given-names>
-                <xsl:value-of select="tokenize($author-name,' ')[last()]"/>
-              </given-names>
+                        <xsl:analyze-string select="$author-name" regex="{'^([\p{L}\p{P}\s’]+)\s+([\p{Lu}\s\.]+)$'}">
+                            <xsl:matching-substring>
+                                <surname>
+                    <xsl:value-of select="regex-group(1)"/>
+                  </surname>
+                                <xsl:text> </xsl:text>
+                                <given-names>
+                    <xsl:value-of select="regex-group(2)"/>
+                  </given-names>
+                            </xsl:matching-substring>
+                        </xsl:analyze-string>
                     </string-name>
                 </xsl:when>
                 <xsl:otherwise>
@@ -414,6 +422,23 @@
           </xsl:attribute>
           <xsl:apply-templates mode="customCopy" select="node()"/>
         </ext-link>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-p-to-title">
+      <sqf:description>
+        <sqf:title>Change the p to title</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <xsl:element name="title">
+            <xsl:apply-templates select="p[1]/text()|p[1]/*|p[1]/comment()|p[1]/processing-instruction()" mode="customCopy"/>
+          </xsl:element>
+          <xsl:text>
+</xsl:text>
+          <xsl:apply-templates select="p[position() gt 1]|text()[position() gt 1]|comment()|processing-instruction()" mode="customCopy"/>
+        </xsl:copy>
       </sqf:replace>
     </sqf:fix>
   </sqf:fixes>
@@ -1152,7 +1177,7 @@
         
         <report test="$is-revised-rp and matches(lower-case(.),'biorend[eo]r') and not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')])" role="warning" id="fig-biorender-check-revised">Caption for <value-of select="$label"/> mentions bioRender, but it does not contain a BioRender figure link in the format "BioRender.com/{figure-code}". Since this is a revised RP, check to see if the first (or a previous) version had bioRender links.</report>
         
-        <report test="not(title) and (count(p) gt 1)" role="warning" id="fig-caption-1">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
+        <report test="not(title) and (count(p) gt 1)" role="warning" sqf:fix="replace-p-to-title" id="fig-caption-1">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
         
         <report test="not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1) and not(matches(lower-case(p[1]),'^\p{Z}*\p{P}?(a|a[–—\-][b-z]|i)\p{P}'))" role="warning" id="fig-caption-2">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</report>
      </rule>
@@ -1183,10 +1208,10 @@
     <rule context="table-wrap/caption" id="table-wrap-caption-checks">
         <let name="label" value="if (ancestor::table-wrap/label) then ancestor::table-wrap[1]/label[1] else 'inline table'"/>
         
-        <report test="not(title) and (count(p) gt 1)" role="warning" id="table-wrap-caption-1">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
+        <report test="not(title) and (count(p) gt 1)" role="warning" sqf:fix="replace-p-to-title" id="table-wrap-caption-1">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
         
         <report test="not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1)" role="warning" id="table-wrap-caption-2">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</report>
-     </rule>
+      </rule>
   </pattern>
   
     <pattern id="supplementary-material-checks-pattern">
@@ -2091,7 +2116,7 @@
 
         <report test="@*[not(name()=$allowed-attributes)]" role="warning" id="xref-attributes">This xref element has the following attribute(s) which are not supported: <value-of select="string-join(@*[not(name()=$allowed-attributes)]/name(),'; ')"/>.</report>
 
-        <report test="parent::xref" role="error" id="xref-parent">This xref element containing '<value-of select="."/>' is a child of another xref. Nested xrefs are not supported - it must be either stripped or moved so that it is a child of another element.</report>
+        <report test="parent::xref" role="error" sqf:fix="strip-tags" id="xref-parent">This xref element containing '<value-of select="."/>' is a child of another xref. Nested xrefs are not supported - it must be either stripped or moved so that it is a child of another element.</report>
      </rule>
   </pattern>
   <pattern id="ref-citation-checks-pattern">
@@ -2100,15 +2125,15 @@
         
         <assert test="ancestor::article//*[@id=$rid]/name()='ref'" role="error" id="ref-cite-target">This reference citation points to a <value-of select="ancestor::article//*[@id=$rid]/name()"/> element. This cannot be right. Either the rid value is wrong or the ref-type is incorrect.</assert>
         
-        <report test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and (preceding::text()[1][matches(lower-case(.),'([×x⋅]\s?[0-9]|10)$')] or ancestor::sup/preceding::text()[1][matches(lower-case(.),'([×x⋅]\s?[0-9]|10)$')])" role="warning" id="ref-cite-superscript-0">This reference citation contains superscript number(s), but is preceed by a formula. Should the xref be removed and the superscript numbers be retained (as an exponent)?</report>
+        <report test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and (preceding::text()[1][matches(lower-case(.),'([×x⋅]\s?[0-9]|10)$')] or ancestor::sup/preceding::text()[1][matches(lower-case(.),'([×x⋅]\s?[0-9]|10)$')])" role="warning" sqf:fix="strip-tags" id="ref-cite-superscript-0">This reference citation contains superscript number(s), but is preceed by a formula. Should the xref be removed and the superscript numbers be retained (as an exponent)?</report>
         
         <!-- match text that ends with an SI unit commonly followed by a superscript number-->
-        <report test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'\d\s*([YZEPTGMkhdacm]?m|mm|cm|km|[µμ]m|nm|pm|fm|am|zm|ym)$')]" role="warning" id="ref-cite-superscript-1">This reference citation contains superscript number(s), but is preceed by an SI unit abbreviation. Should the xref be removed and the superscript numbers be retained?</report>
+        <report test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'\d\s*([YZEPTGMkhdacm]?m|mm|cm|km|[µμ]m|nm|pm|fm|am|zm|ym)$')]" role="warning" sqf:fix="strip-tags" id="ref-cite-superscript-1">This reference citation contains superscript number(s), but is preceed by an SI unit abbreviation. Should the xref be removed and the superscript numbers be retained?</report>
         
         <!-- incorrect citations for atomic notation -->
-        <report test="(.='2' and (sup or ancestor::sup)) and preceding::text()[1][matches(.,'(^|\s)(B[ar]|C[alou]?|Fe?|H[eg]?|I|M[gn]|N[ai]?|O|Pb?|S|Zn)$')]" role="warning" id="ref-cite-superscript-2">This reference citation contains superscript number(s), but is preceed by text that suggests it's part of atomic notation. Should the xref be removed and the superscript numbers be retained?</report>
+        <report test="(.='2' and (sup or ancestor::sup)) and preceding::text()[1][matches(.,'(^|\s)(B[ar]|C[alou]?|Fe?|H[eg]?|I|M[gn]|N[ai]?|O|Pb?|S|Zn)$')]" role="warning" sqf:fix="strip-tags" id="ref-cite-superscript-2">This reference citation contains superscript number(s), but is preceed by text that suggests it's part of atomic notation. Should the xref be removed and the superscript numbers be retained?</report>
         
-        <report test="(.='3' and (sup or ancestor::sup)) and preceding::text()[1][matches(.,'(^|\s)(As|Bi|NI|O|P|Sb)$')]" role="warning" id="ref-cite-superscript-3">This reference citation contains superscript number(s), but is preceed by text that suggests it's part of atomic notation. Should the xref be removed and the superscript numbers be retained?</report>
+        <report test="(.='3' and (sup or ancestor::sup)) and preceding::text()[1][matches(.,'(^|\s)(As|Bi|NI|O|P|Sb)$')]" role="warning" sqf:fix="strip-tags" id="ref-cite-superscript-3">This reference citation contains superscript number(s), but is preceed by text that suggests it's part of atomic notation. Should the xref be removed and the superscript numbers be retained?</report>
      </rule>
   </pattern>
   <pattern id="fig-xref-conformance-pattern">
@@ -2118,9 +2143,9 @@
         
         <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-3" test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="fig-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
         
-        <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-8" test="matches($pre-text,'their $')" role="warning" id="fig-xref-test-8">Figure citation is preceded by 'their'. Does this refer to a figure in other content (and as such should be captured as plain text)? - '<value-of select="concat($pre-text,.)"/>'.</report>
+        <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-8" test="matches($pre-text,'their $')" role="warning" sqf:fix="strip-tags" id="fig-xref-test-8">Figure citation is preceded by 'their'. Does this refer to a figure in other content (and as such should be captured as plain text)? - '<value-of select="concat($pre-text,.)"/>'.</report>
         
-        <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-9" test="matches($post-text,'^ of [\p{Lu}][\p{Ll}]+[\-]?[\p{Ll}]? et al[\.]?')" role="warning" id="fig-xref-test-9">Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
+        <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-9" test="matches($post-text,'^ of [\p{Lu}][\p{Ll}]+[\-]?[\p{Ll}]? et al[\.]?')" role="warning" sqf:fix="strip-tags" id="fig-xref-test-9">Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-10" test="matches($post-text,'^[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?[Ff]igure supplement')" role="error" id="fig-xref-test-10">Incomplete citation. Figure citation is followed by text which suggests it should instead be a link to a Figure supplement - <value-of select="concat(.,$post-text)"/>'.</report>
       

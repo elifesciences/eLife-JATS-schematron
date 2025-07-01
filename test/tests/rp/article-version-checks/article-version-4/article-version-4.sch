@@ -295,24 +295,32 @@
             <xsl:choose>
                 <xsl:when test="matches($author-name,'^[\p{Lu}\.]+\s[\p{L}\p{P}\s’]+$')">
                     <string-name xmlns="">
-                        <given-names>
-                <xsl:value-of select="substring-before($author-name,' ')"/>
-              </given-names>
-                        <xsl:text> </xsl:text>
-                        <surname>
-                <xsl:value-of select="substring-after($author-name,' ')"/>
-              </surname>
+                        <xsl:analyze-string select="$author-name" regex="{'^([\p{Lu}\s\.]+)\s+([\p{L}\p{P}\s’]+)$'}">
+                            <xsl:matching-substring>
+                                <given-names>
+                    <xsl:value-of select="regex-group(1)"/>
+                  </given-names>
+                                <xsl:text> </xsl:text>
+                                <surname>
+                    <xsl:value-of select="regex-group(2)"/>
+                  </surname>
+                            </xsl:matching-substring>
+                        </xsl:analyze-string>
                     </string-name>
                 </xsl:when>
                 <xsl:when test="matches($author-name,'^[\p{L}\p{P}\s’]+\s[\p{Lu}\.]+$')">
                     <string-name xmlns="">
-                        <surname>
-                <xsl:value-of select="string-join(tokenize($author-name,' ')[position() != last()],' ')"/>
-              </surname>
-                        <xsl:text> </xsl:text>
-                        <given-names>
-                <xsl:value-of select="tokenize($author-name,' ')[last()]"/>
-              </given-names>
+                        <xsl:analyze-string select="$author-name" regex="{'^([\p{L}\p{P}\s’]+)\s+([\p{Lu}\s\.]+)$'}">
+                            <xsl:matching-substring>
+                                <surname>
+                    <xsl:value-of select="regex-group(1)"/>
+                  </surname>
+                                <xsl:text> </xsl:text>
+                                <given-names>
+                    <xsl:value-of select="regex-group(2)"/>
+                  </given-names>
+                            </xsl:matching-substring>
+                        </xsl:analyze-string>
                     </string-name>
                 </xsl:when>
                 <xsl:otherwise>
@@ -379,6 +387,23 @@
           </xsl:attribute>
           <xsl:apply-templates mode="customCopy" select="node()"/>
         </ext-link>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-p-to-title">
+      <sqf:description>
+        <sqf:title>Change the p to title</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <xsl:element name="title">
+            <xsl:apply-templates select="p[1]/text()|p[1]/*|p[1]/comment()|p[1]/processing-instruction()" mode="customCopy"/>
+          </xsl:element>
+          <xsl:text>
+</xsl:text>
+          <xsl:apply-templates select="p[position() gt 1]|text()[position() gt 1]|comment()|processing-instruction()" mode="customCopy"/>
+        </xsl:copy>
       </sqf:replace>
     </sqf:fix>
   </sqf:fixes>
