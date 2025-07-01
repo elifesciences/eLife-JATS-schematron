@@ -389,6 +389,23 @@
         </ext-link>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="replace-p-to-title">
+      <sqf:description>
+        <sqf:title>Change the p to title</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <xsl:element name="title">
+            <xsl:apply-templates select="p[1]/text()|p[1]/*|p[1]/comment()|p[1]/processing-instruction()" mode="customCopy"/>
+          </xsl:element>
+          <xsl:text>
+</xsl:text>
+          <xsl:apply-templates select="p[position() gt 1]|text()[position() gt 1]|comment()|processing-instruction()" mode="customCopy"/>
+        </xsl:copy>
+      </sqf:replace>
+    </sqf:fix>
   </sqf:fixes>
   <pattern id="general-article-meta-checks-pattern">
     <rule context="article/front/article-meta" id="general-article-meta-checks">

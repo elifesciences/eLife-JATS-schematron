@@ -389,12 +389,29 @@
         </ext-link>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="replace-p-to-title">
+      <sqf:description>
+        <sqf:title>Change the p to title</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <xsl:element name="title">
+            <xsl:apply-templates select="p[1]/text()|p[1]/*|p[1]/comment()|p[1]/processing-instruction()" mode="customCopy"/>
+          </xsl:element>
+          <xsl:text>
+</xsl:text>
+          <xsl:apply-templates select="p[position() gt 1]|text()[position() gt 1]|comment()|processing-instruction()" mode="customCopy"/>
+        </xsl:copy>
+      </sqf:replace>
+    </sqf:fix>
   </sqf:fixes>
   <pattern id="fig-xref-conformance-pattern">
     <rule context="xref[@ref-type='fig' and @rid]" id="fig-xref-conformance">
       <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
       <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
-      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-9" test="matches($post-text,'^ of [\p{Lu}][\p{Ll}]+[\-]?[\p{Ll}]? et al[\.]?')" role="warning" id="fig-xref-test-9">[fig-xref-test-9] Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-9" test="matches($post-text,'^ of [\p{Lu}][\p{Ll}]+[\-]?[\p{Ll}]? et al[\.]?')" role="warning" sqf:fix="strip-tags" id="fig-xref-test-9">[fig-xref-test-9] Is this figure citation a reference to a figure from other content (and as such should be captured instead as plain text)? - <value-of select="concat(.,$post-text)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

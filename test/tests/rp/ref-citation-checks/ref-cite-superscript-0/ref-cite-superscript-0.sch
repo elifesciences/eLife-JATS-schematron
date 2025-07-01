@@ -389,11 +389,28 @@
         </ext-link>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="replace-p-to-title">
+      <sqf:description>
+        <sqf:title>Change the p to title</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <xsl:element name="title">
+            <xsl:apply-templates select="p[1]/text()|p[1]/*|p[1]/comment()|p[1]/processing-instruction()" mode="customCopy"/>
+          </xsl:element>
+          <xsl:text>
+</xsl:text>
+          <xsl:apply-templates select="p[position() gt 1]|text()[position() gt 1]|comment()|processing-instruction()" mode="customCopy"/>
+        </xsl:copy>
+      </sqf:replace>
+    </sqf:fix>
   </sqf:fixes>
   <pattern id="ref-citation-checks-pattern">
     <rule context="xref[@ref-type='bibr']" id="ref-citation-checks">
       <let name="rid" value="@rid"/>
-      <report test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and (preceding::text()[1][matches(lower-case(.),'([×x⋅]\s?[0-9]|10)$')] or ancestor::sup/preceding::text()[1][matches(lower-case(.),'([×x⋅]\s?[0-9]|10)$')])" role="warning" id="ref-cite-superscript-0">[ref-cite-superscript-0] This reference citation contains superscript number(s), but is preceed by a formula. Should the xref be removed and the superscript numbers be retained (as an exponent)?</report>
+      <report test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and (preceding::text()[1][matches(lower-case(.),'([×x⋅]\s?[0-9]|10)$')] or ancestor::sup/preceding::text()[1][matches(lower-case(.),'([×x⋅]\s?[0-9]|10)$')])" role="warning" sqf:fix="strip-tags" id="ref-cite-superscript-0">[ref-cite-superscript-0] This reference citation contains superscript number(s), but is preceed by a formula. Should the xref be removed and the superscript numbers be retained (as an exponent)?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

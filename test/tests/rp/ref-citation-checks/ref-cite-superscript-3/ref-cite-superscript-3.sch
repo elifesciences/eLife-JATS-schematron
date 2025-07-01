@@ -389,11 +389,28 @@
         </ext-link>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="replace-p-to-title">
+      <sqf:description>
+        <sqf:title>Change the p to title</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <xsl:element name="title">
+            <xsl:apply-templates select="p[1]/text()|p[1]/*|p[1]/comment()|p[1]/processing-instruction()" mode="customCopy"/>
+          </xsl:element>
+          <xsl:text>
+</xsl:text>
+          <xsl:apply-templates select="p[position() gt 1]|text()[position() gt 1]|comment()|processing-instruction()" mode="customCopy"/>
+        </xsl:copy>
+      </sqf:replace>
+    </sqf:fix>
   </sqf:fixes>
   <pattern id="ref-citation-checks-pattern">
     <rule context="xref[@ref-type='bibr']" id="ref-citation-checks">
       <let name="rid" value="@rid"/>
-      <report test="(.='3' and (sup or ancestor::sup)) and preceding::text()[1][matches(.,'(^|\s)(As|Bi|NI|O|P|Sb)$')]" role="warning" id="ref-cite-superscript-3">[ref-cite-superscript-3] This reference citation contains superscript number(s), but is preceed by text that suggests it's part of atomic notation. Should the xref be removed and the superscript numbers be retained?</report>
+      <report test="(.='3' and (sup or ancestor::sup)) and preceding::text()[1][matches(.,'(^|\s)(As|Bi|NI|O|P|Sb)$')]" role="warning" sqf:fix="strip-tags" id="ref-cite-superscript-3">[ref-cite-superscript-3] This reference citation contains superscript number(s), but is preceed by text that suggests it's part of atomic notation. Should the xref be removed and the superscript numbers be retained?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

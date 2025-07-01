@@ -389,11 +389,28 @@
         </ext-link>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="replace-p-to-title">
+      <sqf:description>
+        <sqf:title>Change the p to title</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <xsl:element name="title">
+            <xsl:apply-templates select="p[1]/text()|p[1]/*|p[1]/comment()|p[1]/processing-instruction()" mode="customCopy"/>
+          </xsl:element>
+          <xsl:text>
+</xsl:text>
+          <xsl:apply-templates select="p[position() gt 1]|text()[position() gt 1]|comment()|processing-instruction()" mode="customCopy"/>
+        </xsl:copy>
+      </sqf:replace>
+    </sqf:fix>
   </sqf:fixes>
   <pattern id="table-wrap-caption-checks-pattern">
     <rule context="table-wrap/caption" id="table-wrap-caption-checks">
       <let name="label" value="if (ancestor::table-wrap/label) then ancestor::table-wrap[1]/label[1] else 'inline table'"/>
-      <report test="not(title) and (count(p) gt 1)" role="warning" id="table-wrap-caption-1">[table-wrap-caption-1] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
+      <report test="not(title) and (count(p) gt 1)" role="warning" sqf:fix="replace-p-to-title" id="table-wrap-caption-1">[table-wrap-caption-1] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
