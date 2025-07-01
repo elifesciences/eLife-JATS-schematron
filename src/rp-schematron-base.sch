@@ -2485,6 +2485,7 @@
       
       <assert test="matches(.,'^(https?://ror\.org/[a-z0-9]{9}|http[s]?://d?x?\.?doi.org/10.13039/\d*)$')"
         role="error" 
+        sqf:fix="delete-elem"
         id="funding-institution-id-test-2">institution-id in funding must a value which is either a valid ROR id or open funder registry DOI. This one has '<value-of select="."/>'.</assert>
       
       <report test="*" 
@@ -2861,11 +2862,13 @@
   <pattern id="notes">
     <rule context="front/notes" id="notes-checks">
       <report test="fn-group[not(@content-type='summary-of-updates')] or notes[not(@notes-type='disclosures')]" 
-        role="warning" 
+        role="warning"
+        sqf:fix="delete-elem"
         id="notes-check-1">When present, the notes element should only be used to contain an author revision summary (an fn-group with the content-type 'summary-of-updates'). This notes element contains other content. Is it redundant? Or should the content be moved elsewhere? (coi statements should be in author-notes; clinical trial numbers should be included as a related-object in a structured abstract (if it already exists) or as related-object in article-meta; data/code/ethics/funding statements can be included in additional information in new or existing section(s), as appropriate)</report>
       
       <report test="*[not(name()=('fn-group','notes'))]" 
-        role="error" 
+        role="error"
+        sqf:fix="delete-elem"
         id="notes-check-2">When present, the notes element should only be used to contain an author revision summary (an fn-group with the content-type 'summary-of-updates'). This notes element contains the following element(s): <value-of select="string-join(distinct-values(*[not(name()=('fn-group','notes'))]/name()),'; ')"/>). Are these redundant? Or should the content be moved elsewhere? (coi statements should be in author-notes; clinical trial numbers should be included as a related-object in a structured abstract (if it already exists) or as related-object in article-meta; data/code/ethics/funding statements can be included in additional information in new or existing section(s), as appropriate; anstract shpould be captured as abstracts with the appropriate type)</report>
     </rule>
   </pattern>
