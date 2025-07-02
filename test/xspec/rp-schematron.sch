@@ -713,7 +713,7 @@
       <report test="$country-count gt 1" role="error" id="aff-multiple-country">Affiliation contains more than one country element: <value-of select="string-join(descendant::country,'; ')"/> in <value-of select="."/>
       </report>
       
-      <report test="$city-count lt 1" role="warning" id="aff-no-city">Affiliation does not contain a city element: <value-of select="."/>
+      <report test="(count(descendant::institution-id) le 1) and $city-count lt 1" role="warning" id="aff-no-city">Affiliation does not contain a city element: <value-of select="."/>
       </report>
 
       <report test="$city-count gt 1" role="error" id="aff-city-country">Affiliation contains more than one city element: <value-of select="string-join(descendant::country,'; ')"/> in <value-of select="."/>
@@ -722,7 +722,7 @@
       <report test="count(descendant::institution) gt 1" role="warning" id="aff-multiple-institution">Affiliation contains more than one institution element: <value-of select="string-join(descendant::institution,'; ')"/> in <value-of select="."/>
       </report>
       
-      <report test="count(descendant::institution-id) gt 1" role="error" id="aff-multiple-ids">Affiliation contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/>
+      <report test="count(descendant::institution-id) gt 1" role="error" sqf:fix="pick-ror-1 pick-ror-2 pick-ror-3" id="aff-multiple-ids">Affiliation contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/>
       </report>
       
       <report test="ancestor::article//journal-meta/lower-case(journal-id[1])='elife' and count(institution-wrap) = 0" role="warning" id="aff-no-wrap">Affiliation doesn't have an institution-wrap element (the container for institution name and id). Is that correct?</report>
@@ -737,6 +737,27 @@
       <assert test="ancestor::contrib-group" role="error" id="aff-ancestor">aff elements must be a descendant of contrib-group. This one is not.</assert>
       
       <assert test="parent::contrib-group or parent::contrib" role="error" id="aff-parent">aff elements must be a child of either contrib-group or contrib. This one is a child of <value-of select="parent::*/name()"/>.</assert>
+      
+      <sqf:fix id="pick-ror-1">
+        <sqf:description>
+          <sqf:title>Pick ROR option 1</sqf:title>
+        </sqf:description>
+        <sqf:delete match="institution-wrap/comment()|           institution-wrap/institution-id[position() != 1]|           institution-wrap/text()[following-sibling::institution and position()!=2]"/>
+      </sqf:fix>
+      
+      <sqf:fix id="pick-ror-2">
+        <sqf:description>
+          <sqf:title>Pick ROR option 2</sqf:title>
+        </sqf:description>
+        <sqf:delete match="institution-wrap/comment()|           institution-wrap/institution-id[position() != 2]|           institution-wrap/text()[following-sibling::institution and position()!=3]"/>
+      </sqf:fix>
+      
+      <sqf:fix id="pick-ror-3">
+        <sqf:description>
+          <sqf:title>Pick ROR option 3</sqf:title>
+        </sqf:description>
+        <sqf:delete match="institution-wrap/comment()|           institution-wrap/institution-id[position() != 3]|           institution-wrap/text()[following-sibling::institution and position()!=4]"/>
+      </sqf:fix>
     </rule>
   </pattern>
   <pattern id="country-tests-pattern">
