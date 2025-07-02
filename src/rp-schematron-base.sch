@@ -315,15 +315,19 @@
   
   <xsl:function name="e:toLowerCase" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
+    <xsl:variable name="exceptions">
+      <list>
+        <case lower="elife">eLife</case>
+        <case lower="cryo-em">cryo-EM</case>
+      </list>
+    </xsl:variable>
     <xsl:choose>
-      <xsl:when test="lower-case($s)='elife'">
-        <xsl:value-of select="'eLife'"/>
-      </xsl:when>
-      <xsl:when test="matches(lower-case($s),'^rna$|^dna$|^mri$|^hiv$|^tor$|^aids$|^covid-19$|^covid$')">
+      <xsl:when test="matches(normalize-space(lower-case($s)),'^([1-4]d|rna|dna|mri|hiv|tor|aids|covid-19|covid)$')">
         <xsl:value-of select="upper-case($s)"/>
       </xsl:when>
-      <xsl:when test="matches(lower-case($s),'[1-4]d')">
-        <xsl:value-of select="upper-case($s)"/>
+      <xsl:when test="normalize-space(lower-case($s))=$exceptions//*:case/@*:lower">
+        <xsl:variable name="new-s" select="$exceptions//*:case[@*:lower=normalize-space(lower-case($s))][1]/text()"/>
+        <xsl:value-of select="replace($s,normalize-space($s),$new-s)"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="lower-case($s)"/>
@@ -333,37 +337,25 @@
   
   <xsl:function name="e:toSentenceCase" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
+    <xsl:variable name="exceptions">
+      <list>
+        <case lower="elife">eLife</case>
+        <case lower="cryo-em">Cryo-EM</case>
+      </list>
+    </xsl:variable>
     <xsl:choose>
-      <xsl:when test="contains($s,' ')">
-        <xsl:variable name="token1" select="substring-before($s,' ')"/>
-        <xsl:variable name="token2" select="substring-after($s,$token1)"/>
-        <xsl:choose>
-          <xsl:when test="lower-case($token1)='elife'">
-            <xsl:value-of select="concat('eLife',
+      <xsl:when test="contains(normalize-space($s),' ')">
+        <xsl:variable name="token1" select="substring-before(normalize-space($s),' ')"/>
+        <xsl:variable name="token2" select="substring-after(normalize-space($s),$token1)"/>
+          <xsl:value-of select="concat(
+              e:toSentenceCase($token1),
               ' ',
               string-join(for $x in tokenize(substring-after($token2,' '),'\p{Zs}') return e:toLowerCase($x),' ')
               )"/>
-          </xsl:when>
-          <xsl:when test="matches(lower-case($token1),'^rna$|^dna$|^mri$|^hiv$|^tor$|^aids$|^covid-19$|^covid$')">
-            <xsl:value-of select="concat(upper-case($token1),
-              ' ',
-              string-join(for $x in tokenize(substring-after($token2,' '),'\p{Zs}') return e:toLowerCase($x),' ')
-              )"/>
-          </xsl:when>
-          <xsl:when test="matches(lower-case($token1),'[1-4]d')">
-            <xsl:value-of select="concat(upper-case($token1),
-              ' ',
-              string-join(for $x in tokenize(substring-after($token2,' '),'\p{Zs}') return e:toLowerCase($x),' ')
-              )"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="concat(
-              concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),
-              ' ',
-              string-join(for $x in tokenize(substring-after($token2,' '),'\p{Zs}') return e:toLowerCase($x),' ')
-              )"/>
-          </xsl:otherwise>
-        </xsl:choose>
+      </xsl:when>
+      <xsl:when test="normalize-space(lower-case($s))=$exceptions//*:case/@*:lower">
+        <xsl:variable name="new-s" select="$exceptions//*:case[@*:lower=normalize-space(lower-case($s))][1]/text()"/>
+        <xsl:value-of select="replace($s,normalize-space($s),$new-s)"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="concat(upper-case(substring($s, 1, 1)), lower-case(substring($s, 2)))"/>
@@ -435,7 +427,7 @@
             <xsl:apply-templates mode="customCopy" select="."/>
           </xsl:when>
           <xsl:when test="self::text()">
-            <xsl:value-of select="lower-case(.)"/>
+            <xsl:value-of select="e:toLowerCase(.)"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:apply-templates select="." mode="lowerCase"/>
@@ -445,9 +437,7 @@
     </xsl:copy>
   </xsl:template>
   
-  <!-- Template for SQFs
-    This is a complete mess but it works ¯\_(ツ)_/¯
-  -->
+  <!-- This is a complete mess but it works ¯\_(ツ)_/¯ -->
   <xsl:template name="tag-author-list">
       <xsl:param name="author-string"/>
       <xsl:variable name="cleaned-author-list" select="normalize-space(replace(replace($author-string,'[\.,]$',''),'\.\s+','.'))"/>
