@@ -663,7 +663,7 @@
 
       <report test="$country-count gt 1" role="error" id="aff-multiple-country">[aff-multiple-country] Affiliation contains more than one country element: <value-of select="string-join(descendant::country,'; ')"/> in <value-of select="."/></report>
       
-      <report test="(count(descendant::institution-id) le 1) and $city-count lt 1" role="warning" id="aff-no-city">[aff-no-city] Affiliation does not contain a city element: <value-of select="."/></report>
+      <report test="(count(descendant::institution-id) le 1) and $city-count lt 1" role="warning" sqf:fix="add-ror-city" id="aff-no-city">[aff-no-city] Affiliation does not contain a city element: <value-of select="."/></report>
 
       <report test="$city-count gt 1" role="error" id="aff-city-country">[aff-city-country] Affiliation contains more than one city element: <value-of select="string-join(descendant::country,'; ')"/> in <value-of select="."/></report>
 
@@ -702,6 +702,19 @@
           <sqf:title>Pick ROR option 3</sqf:title>
         </sqf:description>
         <sqf:delete match="institution-wrap/comment()|           institution-wrap/institution-id[position() != 3]|           institution-wrap/text()[following-sibling::institution and position()!=4]"/>
+      </sqf:fix>
+      
+      <sqf:fix id="add-ror-city">
+        <sqf:description>
+          <sqf:title>Add city from ROR record</sqf:title>
+        </sqf:description>
+        <sqf:replace match="institution-wrap/following-sibling::text()[1]">
+          <xsl:variable name="ror" select="ancestor::aff/institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
+          <xsl:variable name="ror-record-city" select="document('rors.xml')//*:ror[*:id=$ror]/*:city/data()"/>
+          <xsl:text>, </xsl:text>
+          <city xmlns=""><xsl:value-of select="$ror-record-city"/></city>
+          <xsl:text>, </xsl:text>
+        </sqf:replace>
       </sqf:fix>
     </rule></pattern><pattern id="country-tests-pattern"><rule context="front[journal-meta/lower-case(journal-id[1])='elife']//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>

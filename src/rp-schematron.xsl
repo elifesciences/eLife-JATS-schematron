@@ -3020,6 +3020,20 @@
          </sqf:description>
          <sqf:delete match="institution-wrap/comment()|           institution-wrap/institution-id[position() != 3]|           institution-wrap/text()[following-sibling::institution and position()!=4]"/>
       </sqf:fix>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="add-ror-city">
+         <sqf:description>
+            <sqf:title>Add city from ROR record</sqf:title>
+         </sqf:description>
+         <sqf:replace match="institution-wrap/following-sibling::text()[1]">
+            <xsl:variable name="ror" select="ancestor::aff/institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
+            <xsl:variable name="ror-record-city" select="document('rors.xml')//*:ror[*:id=$ror]/*:city/data()"/>
+            <xsl:text>, </xsl:text>
+            <city xmlns="">
+               <xsl:value-of select="$ror-record-city"/>
+            </city>
+            <xsl:text>, </xsl:text>
+         </sqf:replace>
+      </sqf:fix>
       <xsl:apply-templates select="*" mode="M45"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M45"/>
