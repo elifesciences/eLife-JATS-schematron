@@ -2862,8 +2862,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="$city-count lt 1">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$city-count lt 1">
+      <xsl:if test="(count(descendant::institution-id) le 1) and $city-count lt 1">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(count(descendant::institution-id) le 1) and $city-count lt 1">
             <xsl:attribute name="id">aff-no-city</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -3002,6 +3002,38 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="pick-ror-1">
+         <sqf:description>
+            <sqf:title>Pick ROR option 1</sqf:title>
+         </sqf:description>
+         <sqf:delete match="institution-wrap/comment()|           institution-wrap/institution-id[position() != 1]|           institution-wrap/text()[following-sibling::institution and position()!=2]"/>
+      </sqf:fix>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="pick-ror-2">
+         <sqf:description>
+            <sqf:title>Pick ROR option 2</sqf:title>
+         </sqf:description>
+         <sqf:delete match="institution-wrap/comment()|           institution-wrap/institution-id[position() != 2]|           institution-wrap/text()[following-sibling::institution and position()!=3]"/>
+      </sqf:fix>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="pick-ror-3">
+         <sqf:description>
+            <sqf:title>Pick ROR option 3</sqf:title>
+         </sqf:description>
+         <sqf:delete match="institution-wrap/comment()|           institution-wrap/institution-id[position() != 3]|           institution-wrap/text()[following-sibling::institution and position()!=4]"/>
+      </sqf:fix>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="add-ror-city">
+         <sqf:description>
+            <sqf:title>Add city from ROR record</sqf:title>
+         </sqf:description>
+         <sqf:replace match="institution-wrap/following-sibling::text()[1]">
+            <xsl:variable name="ror" select="ancestor::aff/institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
+            <xsl:variable name="ror-record-city" select="document('rors.xml')//*:ror[*:id=$ror]/*:city/data()"/>
+            <xsl:text>, </xsl:text>
+            <city xmlns="">
+               <xsl:value-of select="$ror-record-city"/>
+            </city>
+            <xsl:text>, </xsl:text>
+         </sqf:replace>
+      </sqf:fix>
       <xsl:apply-templates select="*" mode="M45"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M45"/>
