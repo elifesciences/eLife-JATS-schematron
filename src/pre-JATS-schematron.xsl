@@ -19653,6 +19653,7 @@
       <xsl:if test="$panel-list//*:item">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$panel-list//*:item">
             <xsl:attribute name="id">fig-caption-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#h7hrp-fig-caption-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>

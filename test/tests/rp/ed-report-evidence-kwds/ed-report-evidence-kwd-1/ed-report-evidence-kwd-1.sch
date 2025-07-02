@@ -251,19 +251,113 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:toLowerCase" as="xs:string">
+    <xsl:param name="s" as="xs:string"/>
+    <xsl:choose>
+      <xsl:when test="lower-case($s)='elife'">
+        <xsl:value-of select="'eLife'"/>
+      </xsl:when>
+      <xsl:when test="matches(lower-case($s),'^rna$|^dna$|^mri$|^hiv$|^tor$|^aids$|^covid-19$|^covid$')">
+        <xsl:value-of select="upper-case($s)"/>
+      </xsl:when>
+      <xsl:when test="matches(lower-case($s),'[1-4]d')">
+        <xsl:value-of select="upper-case($s)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="lower-case($s)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  <xsl:function name="e:toSentenceCase" as="xs:string">
+    <xsl:param name="s" as="xs:string"/>
+    <xsl:choose>
+      <xsl:when test="contains($s,' ')">
+        <xsl:variable name="token1" select="substring-before($s,' ')"/>
+        <xsl:variable name="token2" select="substring-after($s,$token1)"/>
+        <xsl:choose>
+          <xsl:when test="lower-case($token1)='elife'">
+            <xsl:value-of select="concat('eLife',               ' ',               string-join(for $x in tokenize(substring-after($token2,' '),'\p{Zs}') return e:toLowerCase($x),' ')               )"/>
+          </xsl:when>
+          <xsl:when test="matches(lower-case($token1),'^rna$|^dna$|^mri$|^hiv$|^tor$|^aids$|^covid-19$|^covid$')">
+            <xsl:value-of select="concat(upper-case($token1),               ' ',               string-join(for $x in tokenize(substring-after($token2,' '),'\p{Zs}') return e:toLowerCase($x),' ')               )"/>
+          </xsl:when>
+          <xsl:when test="matches(lower-case($token1),'[1-4]d')">
+            <xsl:value-of select="concat(upper-case($token1),               ' ',               string-join(for $x in tokenize(substring-after($token2,' '),'\p{Zs}') return e:toLowerCase($x),' ')               )"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="concat(               concat(upper-case(substring($token1, 1, 1)), lower-case(substring($token1, 2))),               ' ',               string-join(for $x in tokenize(substring-after($token2,' '),'\p{Zs}') return e:toLowerCase($x),' ')               )"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="concat(upper-case(substring($s, 1, 1)), lower-case(substring($s, 2)))"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
   <xsl:template match="." mode="customCopy">
-    
     <xsl:copy copy-namespaces="no">
-      
-      <xsl:for-each select="@*">
-        <xsl:variable name="default-attributes" select="('toggle')"/>
-        <xsl:if test="not(name()=$default-attributes)">
-          <xsl:attribute name="{name()}">
+      <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()" mode="customCopy"/>
+    </xsl:copy>
+  </xsl:template>
+  <xsl:template name="copy-non-default-attribute" match="@*" mode="customCopy">
+    <xsl:variable name="default-attributes">
+      <mapping>
+        <attribute name="toggle" default="yes"/>
+        <attribute name="orientation" default="portrait"/>
+        <attribute name="position" default="float"/>
+      </mapping>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="name()=$default-attributes//*:mapping/*:attribute/@*:name">
+        <xsl:variable name="name" select="name()"/>
+        <xsl:variable name="default" select="$default-attributes//*:mapping/*:attribute[@*:name=$name]/@*:default"/>
+        <xsl:if test=".!=$default">
+          <xsl:attribute name="{$name}">
             <xsl:value-of select="."/>
           </xsl:attribute>
         </xsl:if>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:attribute name="{name()}">
+            <xsl:value-of select="."/>
+        </xsl:attribute>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  <xsl:template match="." mode="sentenceCase">
+    <xsl:copy copy-namespaces="no">
+      <xsl:apply-templates select="@*" mode="customCopy"/>
+      <xsl:for-each select="node()|comment()|processing-instruction()">
+        <xsl:choose>
+          <xsl:when test="self::comment() or self::processing-instruction()">
+            <xsl:apply-templates mode="customCopy" select="."/>
+          </xsl:when>
+          <xsl:when test="self::text()">
+            <xsl:value-of select="e:toSentenceCase(.)"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="." mode="lowerCase"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:for-each>
-      <xsl:apply-templates select="*|text()|comment()|processing-instruction()" mode="customCopy"/>
+    </xsl:copy>
+  </xsl:template>
+  <xsl:template match="." mode="lowerCase">
+    <xsl:copy copy-namespaces="no">
+      <xsl:apply-templates select="@*" mode="customCopy"/>
+      <xsl:for-each select="node()|comment()|processing-instruction()">
+        <xsl:choose>
+          <xsl:when test="self::comment() or self::processing-instruction()">
+            <xsl:apply-templates mode="customCopy" select="."/>
+          </xsl:when>
+          <xsl:when test="self::text()">
+            <xsl:value-of select="lower-case(.)"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="." mode="lowerCase"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
     </xsl:copy>
   </xsl:template>
   <xsl:template name="tag-author-list">
@@ -404,6 +498,15 @@
 </xsl:text>
           <xsl:apply-templates select="p[position() gt 1]|text()[position() gt 1]|comment()|processing-instruction()" mode="customCopy"/>
         </xsl:copy>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-sentence-case">
+      <sqf:description>
+        <sqf:title>Change to sentence case</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:apply-templates mode="sentenceCase" select="."/>
       </sqf:replace>
     </sqf:fix>
   </sqf:fixes>

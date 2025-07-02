@@ -1450,7 +1450,7 @@
       <let name="no-panels" value="replace(.,'\([a-zA-Z]\)|\([a-zA-Z]\-[a-zA-Z]\)','')"/>
       <let name="text-tokens" value="for $x in tokenize($no-panels,'\. ') return         if (string-length($x) lt 3) then ()         else if (matches($x,'^\p{Zs}{1,3}?[a-z]')) then $x         else ()"/>
       <let name="panel-list" value="e:list-panels(.)"/>
-      <report test="$panel-list//*:item" role="warning" id="fig-caption-test-3">Panel indicators at the start of sentences in captions should be surrounded by parentheses. The caption for <value-of select="$label"/> may have some panels without parentheses. Check <value-of select="string-join(for $x in $panel-list//*:item return concat('&quot;',$x/@token,'&quot;',' in ','&quot;',$x,'&quot;'),';')"/>
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#h7hrp-fig-caption-test-3" test="$panel-list//*:item" role="warning" id="fig-caption-test-3">Panel indicators at the start of sentences in captions should be surrounded by parentheses. The caption for <value-of select="$label"/> may have some panels without parentheses. Check <value-of select="string-join(for $x in $panel-list//*:item return concat('&quot;',$x/@token,'&quot;',' in ','&quot;',$x,'&quot;'),';')"/>
       </report>
     </rule>
   </pattern>
