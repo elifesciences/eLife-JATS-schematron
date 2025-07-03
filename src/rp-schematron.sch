@@ -669,7 +669,7 @@
 
       <report test="count(descendant::institution) gt 1" role="warning" id="aff-multiple-institution">[aff-multiple-institution] Affiliation contains more than one institution element: <value-of select="string-join(descendant::institution,'; ')"/> in <value-of select="."/></report>
       
-      <report test="count(descendant::institution-id) gt 1" role="error" sqf:fix="pick-ror-1 pick-ror-2 pick-ror-3" id="aff-multiple-ids">[aff-multiple-ids] Affiliation contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/></report>
+      <report test="count(descendant::institution-id) gt 1" role="error" sqf:fix="pick-aff-ror-1 pick-aff-ror-2 pick-aff-ror-3" id="aff-multiple-ids">[aff-multiple-ids] Affiliation contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/></report>
       
       <report test="ancestor::article//journal-meta/lower-case(journal-id[1])='elife' and count(institution-wrap) = 0" role="warning" id="aff-no-wrap">[aff-no-wrap] Affiliation doesn't have an institution-wrap element (the container for institution name and id). Is that correct?</report>
       
@@ -683,21 +683,21 @@
       
       <assert test="parent::contrib-group or parent::contrib" role="error" id="aff-parent">[aff-parent] aff elements must be a child of either contrib-group or contrib. This one is a child of <value-of select="parent::*/name()"/>.</assert>
       
-      <sqf:fix id="pick-ror-1">
+      <sqf:fix id="pick-aff-ror-1">
         <sqf:description>
           <sqf:title>Pick ROR option 1</sqf:title>
         </sqf:description>
         <sqf:delete match="institution-wrap/comment()|           institution-wrap/institution-id[position() != 1]|           institution-wrap/text()[following-sibling::institution and position()!=2]"/>
       </sqf:fix>
       
-      <sqf:fix id="pick-ror-2">
+      <sqf:fix id="pick-aff-ror-2">
         <sqf:description>
           <sqf:title>Pick ROR option 2</sqf:title>
         </sqf:description>
         <sqf:delete match="institution-wrap/comment()|           institution-wrap/institution-id[position() != 2]|           institution-wrap/text()[following-sibling::institution and position()!=3]"/>
       </sqf:fix>
       
-      <sqf:fix id="pick-ror-3">
+      <sqf:fix id="pick-aff-ror-3">
         <sqf:description>
           <sqf:title>Pick ROR option 3</sqf:title>
         </sqf:description>
@@ -1506,7 +1506,28 @@
         
         <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-8" test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">[award-group-test-8] Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>.</report>
         
-        <report test="count(funding-source/institution-wrap/institution-id) gt 1" role="error" id="award-group-multiple-ids">[award-group-multiple-ids] Funding contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/></report>
+        <report test="count(funding-source/institution-wrap/institution-id) gt 1" role="error" sqf:fix="pick-funding-ror-1 pick-funding-ror-2 pick-funding-ror-3" id="award-group-multiple-ids">[award-group-multiple-ids] Funding contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/></report>
+        
+        <sqf:fix id="pick-funding-ror-1">
+        <sqf:description>
+          <sqf:title>Pick ROR option 1</sqf:title>
+        </sqf:description>
+        <sqf:delete match="descendant::institution-wrap/comment()|           descendant::institution-wrap/institution-id[position() != 1]|           descendant::institution-wrap/text()[not(position()=(1,last()))]"/>
+      </sqf:fix>
+      
+      <sqf:fix id="pick-funding-ror-2">
+        <sqf:description>
+          <sqf:title>Pick ROR option 2</sqf:title>
+        </sqf:description>
+        <sqf:delete match="descendant::institution-wrap/comment()|           descendant::institution-wrap/institution-id[position() != 2]|           descendant::institution-wrap/text()[not(position()=(1,last()))]"/>
+      </sqf:fix>
+      
+      <sqf:fix id="pick-funding-ror-3">
+        <sqf:description>
+          <sqf:title>Pick ROR option 3</sqf:title>
+        </sqf:description>
+        <sqf:delete match="descendant::institution-wrap/comment()|           descendant::institution-wrap/institution-id[position() != 3]|           descendant::institution-wrap/text()[not(position()=(1,last()))]"/>
+      </sqf:fix>
       </rule></pattern><pattern id="general-grant-doi-tests-pattern"><rule context="funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap[count(institution-id)=1]/institution-id[not(.=$grant-doi-exception-funder-ids)]]" id="general-grant-doi-tests">
         <let name="award-id" value="award-id"/>
         <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
