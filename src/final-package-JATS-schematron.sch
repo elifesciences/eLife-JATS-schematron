@@ -3481,7 +3481,7 @@
       <let name="label-2" value="replace(.,'\p{P}','')"/>
       <let name="app-id" value="ancestor::app/@id"/>
       
-      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#equation-label-conformance-1" test="(ancestor::app) and (some $x in preceding::disp-formula/label[ancestor::app[@id=$app-id]] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-1">Duplicated display formula labels - <value-of select="."/> is present more than once in the same appendix.</report>
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#equation-label-conformance-1" test="(ancestor::app) and (some $x in preceding::disp-formula/label[ancestor::app[@id=$app-id]] satisfies (replace($x,'\p{P}','') = $label-2))" role="warning" id="equation-label-conformance-1">Duplicated display formula labels - <value-of select="."/> is present more than once in the same appendix. Is that correct?</report>
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#equation-label-conformance-2" test="(ancestor::body[parent::article]) and (some $x in preceding::disp-formula/label[ancestor::body[parent::article] and not(ancestor::fig)] satisfies (replace($x,'\p{P}','') = $label-2))" role="error" id="equation-label-conformance-2">Duplicated display formula labels - <value-of select="."/> is present more than once in the main body of the text.</report>
       
