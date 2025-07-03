@@ -513,7 +513,7 @@
   </sqf:fixes>
   <pattern id="award-group-tests-pattern">
     <rule context="funding-group/award-group" id="award-group-tests">
-      <report test="count(funding-source/institution-wrap/institution-id) gt 1" role="error" id="award-group-multiple-ids">[award-group-multiple-ids] Funding contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/>
+      <report test="count(funding-source/institution-wrap/institution-id) gt 1" role="error" sqf:fix="pick-funding-ror-1 pick-funding-ror-2 pick-funding-ror-3" id="award-group-multiple-ids">[award-group-multiple-ids] Funding contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/>
       </report>
     </rule>
   </pattern>

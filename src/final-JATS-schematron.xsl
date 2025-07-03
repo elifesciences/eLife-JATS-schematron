@@ -18102,18 +18102,18 @@
    <xsl:template match="article[not(@article-type) or @article-type!='correction']//disp-formula/label" priority="1000" mode="M251">
       <xsl:variable name="label-2" select="replace(.,'\p{P}','')"/>
       <xsl:variable name="app-id" select="ancestor::app/@id"/>
-      <!--REPORT error-->
+      <!--REPORT warning-->
       <xsl:if test="(ancestor::app) and (some $x in preceding::disp-formula/label[ancestor::app[@id=$app-id]] satisfies (replace($x,'\p{P}','') = $label-2))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(ancestor::app) and (some $x in preceding::disp-formula/label[ancestor::app[@id=$app-id]] satisfies (replace($x,'\p{P}','') = $label-2))">
             <xsl:attribute name="id">equation-label-conformance-1</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/maths-0gfptlyl#equation-label-conformance-1</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[equation-label-conformance-1] Duplicated display formula labels - <xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/> is present more than once in the same appendix.</svrl:text>
+               <xsl:text/> is present more than once in the same appendix. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
