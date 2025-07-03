@@ -886,7 +886,7 @@
           institution-wrap/text()[following-sibling::institution and position()!=3]"/>
       </sqf:fix>
       
-      <sqf:fix id="pick-aff-ror-3">
+      <sqf:fix id="pick-aff-ror-3" use-when="count(descendant::institution-id) gt 2">
         <sqf:description>
           <sqf:title>Pick ROR option 3</sqf:title>
         </sqf:description>
@@ -952,19 +952,27 @@
         id="aff-institution-wrap-test-2">institution-wrap must be a child of aff. This one has <value-of select="parent::*/name()"/> as its parent.</assert>
       
       <report test="count(institution-id)=1 and text()" 
-        role="error" 
+        role="error"
+        sqf:fix="delete-comments-and-whitespace"
         id="aff-institution-wrap-test-3">institution-wrap cannot contain text. It can only contain elements.</report>
       
       <assert test="count(institution[not(@*)]) = 1" 
         role="error" 
         id="aff-institution-wrap-test-5">institution-wrap must contain 1 and only 1 institution elements. This one has <value-of select="count(institution[not(@*)])"/>.</assert>
       
+      <sqf:fix id="delete-comments-and-whitespace" use-when="comment() or text()">
+        <sqf:description>
+          <sqf:title>Delete comments and/or whitespace</sqf:title>
+        </sqf:description>
+        <sqf:delete match=".//comment()|./text()[normalize-space(.)='']"/>
+      </sqf:fix>
     </rule>
       
       <rule context="aff//institution-id" id="aff-institution-id-tests">
       
       <assert test="@institution-id-type='ror'" 
         role="error" 
+        sqf:fix="add-ror-institution-id-type"
         id="aff-institution-id-test-1">institution-id in aff must have the attribute institution-id-type="ror".</assert>
       
       <assert test="matches(.,'^https?://ror\.org/[a-z0-9]{9}$')" 
@@ -977,9 +985,15 @@
         
       <report test="matches(.,'^http://')" 
         role="error" 
-        id="aff-institution-id-test-4">institution-id in aff must use the https protocol. This one uses http - '<value-of select="."/>'.</report>    
-      
-    </rule>
+        id="aff-institution-id-test-4">institution-id in aff must use the https protocol. This one uses http - '<value-of select="."/>'.</report>
+        
+        <sqf:fix id="add-ror-institution-id-type">
+          <sqf:description>
+            <sqf:title>Add ror institution-id-type attribute</sqf:title>
+          </sqf:description>
+          <sqf:add target="institution-id-type" node-type="attribute">ror</sqf:add>
+        </sqf:fix>
+      </rule>
       
       <rule context="aff[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" id="aff-ror-tests">
       <let name="rors" value="'rors.xml'"/>
@@ -1018,7 +1032,7 @@
 
         <report test="text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+((jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\p{Z}?\d?\d?|doi|pmid|epub|vol|and|pp?|in|is[sb]n)[:\.]?'))]" 
         role="warning" 
-        id="journal-ref-text-content">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+((jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\p{Z}?\d?\d?|doi|pmid|epub|vol|and|pp?|in|is[sb]n)[:\.]?'))],'; ')"/>. Is it tagged correctly?</report>
+        id="journal-ref-text-content">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+((jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\p{Z}?\d?\d?|doi|pmid|epub|vol|issue|and|pp?|in|is[sb]n)[:\.]?'))],'; ')"/>. Is it tagged correctly?</report>
        
        <report test="person-group[@person-group-type='editor']" 
         role="warning" 
@@ -2527,7 +2541,7 @@
           descendant::institution-wrap/text()[not(position()=(1,last()))]"/>
       </sqf:fix>
       
-      <sqf:fix id="pick-funding-ror-3">
+      <sqf:fix id="pick-funding-ror-3" use-when="count(descendant::institution-id) gt 2">
         <sqf:description>
           <sqf:title>Pick ROR option 3</sqf:title>
         </sqf:description>

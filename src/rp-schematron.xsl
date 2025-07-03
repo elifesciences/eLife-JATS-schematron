@@ -3014,7 +3014,7 @@
          </sqf:description>
          <sqf:delete match="institution-wrap/comment()|           institution-wrap/institution-id[position() != 2]|           institution-wrap/text()[following-sibling::institution and position()!=3]"/>
       </sqf:fix>
-      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="pick-aff-ror-3">
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="pick-aff-ror-3" use-when="count(descendant::institution-id) gt 2">
          <sqf:description>
             <sqf:title>Pick ROR option 3</sqf:title>
          </sqf:description>
@@ -3204,6 +3204,12 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="delete-comments-and-whitespace" use-when="comment() or text()">
+         <sqf:description>
+            <sqf:title>Delete comments and/or whitespace</sqf:title>
+         </sqf:description>
+         <sqf:delete match=".//comment()|./text()[normalize-space(.)='']"/>
+      </sqf:fix>
       <xsl:apply-templates select="*" mode="M47"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M47"/>
@@ -3270,6 +3276,12 @@
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="add-ror-institution-id-type">
+         <sqf:description>
+            <sqf:title>Add ror institution-id-type attribute</sqf:title>
+         </sqf:description>
+         <sqf:add target="institution-id-type" node-type="attribute">ror</sqf:add>
+      </sqf:fix>
       <xsl:apply-templates select="*" mode="M48"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M48"/>
@@ -3397,7 +3409,7 @@
             <svrl:text>[journal-ref-text-content] This journal reference (<xsl:text/>
                <xsl:value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>
                <xsl:text/>) has untagged textual content - <xsl:text/>
-               <xsl:value-of select="string-join(text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+((jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\p{Z}?\d?\d?|doi|pmid|epub|vol|and|pp?|in|is[sb]n)[:\.]?'))],'; ')"/>
+               <xsl:value-of select="string-join(text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+((jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\p{Z}?\d?\d?|doi|pmid|epub|vol|issue|and|pp?|in|is[sb]n)[:\.]?'))],'; ')"/>
                <xsl:text/>. Is it tagged correctly?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
@@ -8279,7 +8291,7 @@
          </sqf:description>
          <sqf:delete match="descendant::institution-wrap/comment()|           descendant::institution-wrap/institution-id[position() != 2]|           descendant::institution-wrap/text()[not(position()=(1,last()))]"/>
       </sqf:fix>
-      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="pick-funding-ror-3">
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="pick-funding-ror-3" use-when="count(descendant::institution-id) gt 2">
          <sqf:description>
             <sqf:title>Pick ROR option 3</sqf:title>
          </sqf:description>
