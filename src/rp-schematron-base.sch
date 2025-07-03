@@ -972,6 +972,7 @@
       
       <assert test="@institution-id-type='ror'" 
         role="error" 
+        sqf:fix="add-ror-institution-id-type"
         id="aff-institution-id-test-1">institution-id in aff must have the attribute institution-id-type="ror".</assert>
       
       <assert test="matches(.,'^https?://ror\.org/[a-z0-9]{9}$')" 
@@ -984,7 +985,14 @@
         
       <report test="matches(.,'^http://')" 
         role="error" 
-        id="aff-institution-id-test-4">institution-id in aff must use the https protocol. This one uses http - '<value-of select="."/>'.</report>    
+        id="aff-institution-id-test-4">institution-id in aff must use the https protocol. This one uses http - '<value-of select="."/>'.</report>
+        
+        <sqf:fix id="add-ror-institution-id-type">
+          <sqf:description>
+            <sqf:title>Add ror institution-id-type attribute</sqf:title>
+          </sqf:description>
+          <sqf:add target="institution-id-type" node-type="attribute">ror</sqf:add>
+        </sqf:fix>
       </rule>
       
       <rule context="aff[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" id="aff-ror-tests">

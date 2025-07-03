@@ -513,7 +513,7 @@
   </sqf:fixes>
   <pattern id="aff-institution-id-tests-pattern">
     <rule context="aff//institution-id" id="aff-institution-id-tests">
-      <assert test="@institution-id-type='ror'" role="error" id="aff-institution-id-test-1">[aff-institution-id-test-1] institution-id in aff must have the attribute institution-id-type="ror".</assert>
+      <assert test="@institution-id-type='ror'" role="error" sqf:fix="add-ror-institution-id-type" id="aff-institution-id-test-1">[aff-institution-id-test-1] institution-id in aff must have the attribute institution-id-type="ror".</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

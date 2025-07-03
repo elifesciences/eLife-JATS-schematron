@@ -3276,6 +3276,12 @@
                <xsl:text/>'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="add-ror-institution-id-type">
+         <sqf:description>
+            <sqf:title>Add ror institution-id-type attribute</sqf:title>
+         </sqf:description>
+         <sqf:add target="institution-id-type" node-type="attribute">ror</sqf:add>
+      </sqf:fix>
       <xsl:apply-templates select="*" mode="M48"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M48"/>
