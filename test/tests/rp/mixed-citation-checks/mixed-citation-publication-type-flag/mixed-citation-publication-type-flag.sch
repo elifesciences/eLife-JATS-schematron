@@ -694,7 +694,7 @@
     <rule context="mixed-citation" id="mixed-citation-checks">
       <let name="publication-type-values" value="('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')"/>
       <let name="name-elems" value="('name','string-name','collab','on-behalf-of','etal')"/>
-      <report test="normalize-space(@publication-type)!='' and not(@publication-type=$publication-type-values)" role="warning" id="mixed-citation-publication-type-flag">[mixed-citation-publication-type-flag] <name/> has publication-type="<value-of select="@publication-type"/>" which is not one of the known/supported types: <value-of select="string-join($publication-type-values,'; ')"/>.</report>
+      <report test="normalize-space(@publication-type)!='' and not(@publication-type=$publication-type-values)" role="warning" sqf:fix="replace-to-preprint-ref" id="mixed-citation-publication-type-flag">[mixed-citation-publication-type-flag] <name/> has publication-type="<value-of select="@publication-type"/>" which is not one of the known/supported types: <value-of select="string-join($publication-type-values,'; ')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

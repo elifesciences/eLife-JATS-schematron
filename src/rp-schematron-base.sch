@@ -1256,6 +1256,7 @@
      <rule context="mixed-citation[@publication-type='preprint']" id="preprint-ref-checks">
         <assert test="source" 
         role="error" 
+        sqf:fix="replace-to-preprint-ref"
         id="preprint-ref-source">This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no source element.</assert>
 
         <assert test="article-title" 
@@ -1670,11 +1671,13 @@
           id="mixed-citation-empty-2"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) only contains <value-of select="string-length(normalize-space(.))"/> characters.</report>
         
         <assert test="normalize-space(@publication-type)!=''" 
-          role="error" 
+          role="error"
+          sqf:fix="replace-to-preprint-ref"
           id="mixed-citation-publication-type-presence"><name/> must have a publication-type attribute with a non-empty value.</assert>
         
         <report test="normalize-space(@publication-type)!='' and not(@publication-type=$publication-type-values)" 
-          role="warning" 
+          role="warning"
+          sqf:fix="replace-to-preprint-ref"
           id="mixed-citation-publication-type-flag"><name/> has publication-type="<value-of select="@publication-type"/>" which is not one of the known/supported types: <value-of select="string-join($publication-type-values,'; ')"/>.</report>
         
         <report test="@publication-type='other'" 

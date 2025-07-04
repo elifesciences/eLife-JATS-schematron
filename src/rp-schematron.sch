@@ -988,7 +988,7 @@
      </rule></pattern>
 
     <pattern id="preprint-ref-checks-pattern"><rule context="mixed-citation[@publication-type='preprint']" id="preprint-ref-checks">
-        <assert test="source" role="error" id="preprint-ref-source">[preprint-ref-source] This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no source element.</assert>
+        <assert test="source" role="error" sqf:fix="replace-to-preprint-ref" id="preprint-ref-source">[preprint-ref-source] This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no source element.</assert>
 
         <assert test="article-title" role="error" id="preprint-ref-article-title">[preprint-ref-article-title] This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no article-title element.</assert>
 
@@ -1197,9 +1197,9 @@
         
         <report test="not(normalize-space(.)=('','.')) and (string-length(normalize-space(.)) lt 6)" role="warning" id="mixed-citation-empty-2">[mixed-citation-empty-2] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) only contains <value-of select="string-length(normalize-space(.))"/> characters.</report>
         
-        <assert test="normalize-space(@publication-type)!=''" role="error" id="mixed-citation-publication-type-presence">[mixed-citation-publication-type-presence] <name/> must have a publication-type attribute with a non-empty value.</assert>
+        <assert test="normalize-space(@publication-type)!=''" role="error" sqf:fix="replace-to-preprint-ref" id="mixed-citation-publication-type-presence">[mixed-citation-publication-type-presence] <name/> must have a publication-type attribute with a non-empty value.</assert>
         
-        <report test="normalize-space(@publication-type)!='' and not(@publication-type=$publication-type-values)" role="warning" id="mixed-citation-publication-type-flag">[mixed-citation-publication-type-flag] <name/> has publication-type="<value-of select="@publication-type"/>" which is not one of the known/supported types: <value-of select="string-join($publication-type-values,'; ')"/>.</report>
+        <report test="normalize-space(@publication-type)!='' and not(@publication-type=$publication-type-values)" role="warning" sqf:fix="replace-to-preprint-ref" id="mixed-citation-publication-type-flag">[mixed-citation-publication-type-flag] <name/> has publication-type="<value-of select="@publication-type"/>" which is not one of the known/supported types: <value-of select="string-join($publication-type-values,'; ')"/>.</report>
         
         <report test="@publication-type='other'" role="warning" sqf:fix="replace-to-preprint-ref" id="mixed-citation-other-publication-flag">[mixed-citation-other-publication-flag] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) has a publication-type='other'. Is that correct?</report>
 
