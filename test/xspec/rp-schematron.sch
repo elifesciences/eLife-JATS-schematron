@@ -474,6 +474,176 @@
       </xsl:for-each>
     </xsl:template>
   
+  <xsl:template name="get-first-sentence">
+    <xsl:param name="nodes"/>
+    <xsl:param name="sentence-found" select="false()"/>
+    <xsl:param name="buffer" select="()"/>
+    <xsl:choose>
+      <xsl:when test="not($nodes)">
+        <xsl:sequence select="$buffer"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="current-node" select="$nodes[1]"/>
+        <xsl:variable name="remaining-nodes" select="$nodes[position() &gt; 1]"/>
+        <xsl:choose>
+          <xsl:when test="$current-node instance of text()">
+            <xsl:variable name="text-content" select="$current-node"/>
+            <xsl:choose>
+              <xsl:when test="matches($text-content, '.*[.!?]\s+') and not($sentence-found)">
+                <xsl:variable name="first-part" select="replace(replace($text-content, '(.*[.!?]\s+)(.*)', '$1'),'\s+$','')"/>
+                <xsl:sequence select="$buffer, $first-part"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:call-template name="get-first-sentence">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="sentence-found" select="$sentence-found"/>
+                  <xsl:with-param name="buffer" select="$buffer, $current-node"/>
+                </xsl:call-template>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:when test="$current-node instance of element()">
+            <xsl:variable name="temp-buffer">
+              <xsl:copy-of select="$buffer"/>
+              <xsl:element name="{$current-node/name()}" namespace="">
+                <xsl:apply-templates select="$current-node/@*" mode="customCopy"/>
+                <xsl:call-template name="get-first-sentence">
+                  <xsl:with-param name="nodes" select="$current-node/node()"/>
+                  <xsl:with-param name="sentence-found" select="$sentence-found"/>
+                  <xsl:with-param name="buffer" select="()"/> 
+                </xsl:call-template>
+              </xsl:element>
+            </xsl:variable>
+            <xsl:call-template name="get-first-sentence">
+              <xsl:with-param name="nodes" select="$remaining-nodes"/>
+              <xsl:with-param name="sentence-found" select="$sentence-found"/>
+              <xsl:with-param name="buffer" select="$temp-buffer/* | $temp-buffer/text()"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="get-first-sentence">
+              <xsl:with-param name="nodes" select="$remaining-nodes"/>
+              <xsl:with-param name="sentence-found" select="$sentence-found"/>
+              <xsl:with-param name="buffer" select="$buffer, $current-node"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="get-remaining-sentences">
+    <xsl:param name="nodes"/>
+    <xsl:param name="first-sentence-completed" select="false()"/>
+    <xsl:param name="buffer" select="()"/>
+    <xsl:choose>
+      <xsl:when test="not($nodes) and $first-sentence-completed">
+        <xsl:sequence select="$buffer"/>
+      </xsl:when>
+      <xsl:when test="not($nodes)">
+        <xsl:sequence select="()"/> 
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="current-node" select="$nodes[1]"/>
+        <xsl:variable name="remaining-nodes" select="$nodes[position() &gt; 1]"/>
+        <xsl:choose>
+          <xsl:when test="$current-node instance of text()">
+            <xsl:variable name="text-content" select="$current-node"/>
+            <xsl:choose>
+              <xsl:when test="matches($text-content, '.*[.!?]\s+') and not($first-sentence-completed)">
+                <xsl:variable name="remaining-part" select="replace($text-content, '.*[.!?]\s+(.*)', '$1')"/>
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="true()"/>
+                  <xsl:with-param name="buffer" select="$buffer, $remaining-part"/>
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:when test="$first-sentence-completed">
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="true()"/>
+                  <xsl:with-param name="buffer" select="$buffer, $current-node"/>
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="$first-sentence-completed"/>
+                  <xsl:with-param name="buffer" select="$buffer"/>
+                </xsl:call-template>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:when test="$current-node instance of element()">
+            <xsl:choose>
+              <xsl:when test="$first-sentence-completed">
+                <xsl:variable name="temp-buffer">
+                  <xsl:apply-templates select="$buffer" mode="customCopy"/>
+                  <xsl:apply-templates select="$current-node" mode="customCopy"/>
+                </xsl:variable>
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="true()"/>
+                  <xsl:with-param name="buffer" select="$temp-buffer/* | $temp-buffer/text()"/>
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:variable name="element-result">
+                  <xsl:call-template name="get-remaining-sentences">
+                    <xsl:with-param name="nodes" select="$current-node/node()"/>
+                    <xsl:with-param name="first-sentence-completed" select="$first-sentence-completed"/>
+                    <xsl:with-param name="buffer" select="()"/>
+                  </xsl:call-template>
+                </xsl:variable>
+                <xsl:choose>
+                  <xsl:when test="string-length($element-result) &gt; 0">
+                    <xsl:variable name="temp-buffer">
+                      <xsl:copy-of select="$buffer" copy-namespaces="no"/>
+                      <xsl:element name="{$current-node/name()}" namespace="">
+                        <xsl:apply-templates select="$current-node/@*" mode="customCopy"/>
+                        <xsl:sequence select="$element-result"/>
+                      </xsl:element>
+                    </xsl:variable>
+                    <xsl:call-template name="get-remaining-sentences">
+                      <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                      <xsl:with-param name="first-sentence-completed" select="true()"/> <xsl:with-param name="buffer" select="$temp-buffer/* | $temp-buffer/text()"/>
+                    </xsl:call-template>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:call-template name="get-remaining-sentences">
+                      <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                      <xsl:with-param name="first-sentence-completed" select="$first-sentence-completed"/>
+                      <xsl:with-param name="buffer" select="$buffer"/>
+                    </xsl:call-template>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:choose>
+              <xsl:when test="$first-sentence-completed">
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="true()"/>
+                  <xsl:with-param name="buffer" select="$buffer, $current-node"/>
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="$first-sentence-completed"/>
+                  <xsl:with-param name="buffer" select="$buffer"/>
+                </xsl:call-template>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  
   <sqf:fixes>
     <sqf:fix id="delete-elem">
       <sqf:description>
@@ -540,6 +710,34 @@
           <xsl:text>
 </xsl:text>
           <xsl:apply-templates select="p[position() gt 1]|text()[position() gt 1]|comment()|processing-instruction()" mode="customCopy"/>
+        </xsl:copy>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-move-sentence-to-title">
+      <sqf:description>
+        <sqf:title>Make first sentence the title</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <title xmlns="">
+            <xsl:call-template name="get-first-sentence">
+              <xsl:with-param name="nodes" select="p/node()"/>
+            </xsl:call-template>
+          </title>
+          <xsl:text>
+</xsl:text>
+          <xsl:variable name="remaining-content">
+            <xsl:call-template name="get-remaining-sentences">
+              <xsl:with-param name="nodes" select="p/node()"/>
+            </xsl:call-template>
+          </xsl:variable>
+          <xsl:if test="$remaining-content">
+            <p xmlns="">
+              <xsl:sequence select="$remaining-content"/>
+            </p>
+          </xsl:if>
         </xsl:copy>
       </sqf:replace>
     </sqf:fix>
@@ -1531,7 +1729,7 @@
         
         <report test="not(title) and (count(p) gt 1)" role="warning" sqf:fix="replace-p-to-title" id="fig-caption-1">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
         
-        <report test="not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1) and not(matches(lower-case(p[1]),'^\p{Z}*\p{P}?(a|a[–—\-][b-z]|i)\p{P}'))" role="warning" id="fig-caption-2">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</report>
+        <report test="not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1) and not(matches(lower-case(p[1]),'^\p{Z}*\p{P}?(a|a[–—\-][b-z]|i)\p{P}'))" role="warning" sqf:fix="replace-move-sentence-to-title" id="fig-caption-2">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</report>
      </rule>
   </pattern>
 
