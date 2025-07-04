@@ -306,6 +306,7 @@
         <attribute name="toggle" default="yes"/>
         <attribute name="orientation" default="portrait"/>
         <attribute name="position" default="float"/>
+        <attribute name="name-style" default="western"/>
       </mapping>
     </xsl:variable>
     <xsl:choose>
@@ -432,6 +433,173 @@
         </xsl:if>
       </xsl:for-each>
     </xsl:template>
+  <xsl:template name="get-first-sentence">
+    <xsl:param name="nodes"/>
+    <xsl:param name="sentence-found" select="false()"/>
+    <xsl:param name="buffer" select="()"/>
+    <xsl:choose>
+      <xsl:when test="not($nodes)">
+        <xsl:sequence select="$buffer"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="current-node" select="$nodes[1]"/>
+        <xsl:variable name="remaining-nodes" select="$nodes[position() &gt; 1]"/>
+        <xsl:choose>
+          <xsl:when test="$current-node instance of text()">
+            <xsl:variable name="text-content" select="$current-node"/>
+            <xsl:choose>
+              <xsl:when test="matches($text-content, '.*[.!?]\s+') and not($sentence-found)">
+                <xsl:variable name="first-part" select="replace(replace($text-content, '(.*[.!?]\s+)(.*)', '$1'),'\s+$','')"/>
+                <xsl:sequence select="$buffer, $first-part"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:call-template name="get-first-sentence">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="sentence-found" select="$sentence-found"/>
+                  <xsl:with-param name="buffer" select="$buffer, $current-node"/>
+                </xsl:call-template>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:when test="$current-node instance of element()">
+            <xsl:variable name="temp-buffer">
+              <xsl:copy-of select="$buffer"/>
+              <xsl:element name="{$current-node/name()}" namespace="">
+                <xsl:apply-templates select="$current-node/@*" mode="customCopy"/>
+                <xsl:call-template name="get-first-sentence">
+                  <xsl:with-param name="nodes" select="$current-node/node()"/>
+                  <xsl:with-param name="sentence-found" select="$sentence-found"/>
+                  <xsl:with-param name="buffer" select="()"/> 
+                </xsl:call-template>
+              </xsl:element>
+            </xsl:variable>
+            <xsl:call-template name="get-first-sentence">
+              <xsl:with-param name="nodes" select="$remaining-nodes"/>
+              <xsl:with-param name="sentence-found" select="$sentence-found"/>
+              <xsl:with-param name="buffer" select="$temp-buffer/* | $temp-buffer/text()"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="get-first-sentence">
+              <xsl:with-param name="nodes" select="$remaining-nodes"/>
+              <xsl:with-param name="sentence-found" select="$sentence-found"/>
+              <xsl:with-param name="buffer" select="$buffer, $current-node"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  <xsl:template name="get-remaining-sentences">
+    <xsl:param name="nodes"/>
+    <xsl:param name="first-sentence-completed" select="false()"/>
+    <xsl:param name="buffer" select="()"/>
+    <xsl:choose>
+      <xsl:when test="not($nodes) and $first-sentence-completed">
+        <xsl:sequence select="$buffer"/>
+      </xsl:when>
+      <xsl:when test="not($nodes)">
+        <xsl:sequence select="()"/> 
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="current-node" select="$nodes[1]"/>
+        <xsl:variable name="remaining-nodes" select="$nodes[position() &gt; 1]"/>
+        <xsl:choose>
+          <xsl:when test="$current-node instance of text()">
+            <xsl:variable name="text-content" select="$current-node"/>
+            <xsl:choose>
+              <xsl:when test="matches($text-content, '.*[.!?]\s+') and not($first-sentence-completed)">
+                <xsl:variable name="remaining-part" select="replace($text-content, '.*[.!?]\s+(.*)', '$1')"/>
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="true()"/>
+                  <xsl:with-param name="buffer" select="$buffer, $remaining-part"/>
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:when test="$first-sentence-completed">
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="true()"/>
+                  <xsl:with-param name="buffer" select="$buffer, $current-node"/>
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="$first-sentence-completed"/>
+                  <xsl:with-param name="buffer" select="$buffer"/>
+                </xsl:call-template>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:when test="$current-node instance of element()">
+            <xsl:choose>
+              <xsl:when test="$first-sentence-completed">
+                <xsl:variable name="temp-buffer">
+                  <xsl:apply-templates select="$buffer" mode="customCopy"/>
+                  <xsl:apply-templates select="$current-node" mode="customCopy"/>
+                </xsl:variable>
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="true()"/>
+                  <xsl:with-param name="buffer" select="$temp-buffer/* | $temp-buffer/text()"/>
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:variable name="element-result">
+                  <xsl:call-template name="get-remaining-sentences">
+                    <xsl:with-param name="nodes" select="$current-node/node()"/>
+                    <xsl:with-param name="first-sentence-completed" select="$first-sentence-completed"/>
+                    <xsl:with-param name="buffer" select="()"/>
+                  </xsl:call-template>
+                </xsl:variable>
+                <xsl:choose>
+                  <xsl:when test="string-length($element-result) &gt; 0">
+                    <xsl:variable name="temp-buffer">
+                      <xsl:copy-of select="$buffer" copy-namespaces="no"/>
+                      <xsl:element name="{$current-node/name()}" namespace="">
+                        <xsl:apply-templates select="$current-node/@*" mode="customCopy"/>
+                        <xsl:sequence select="$element-result"/>
+                      </xsl:element>
+                    </xsl:variable>
+                    <xsl:call-template name="get-remaining-sentences">
+                      <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                      <xsl:with-param name="first-sentence-completed" select="true()"/> <xsl:with-param name="buffer" select="$temp-buffer/* | $temp-buffer/text()"/>
+                    </xsl:call-template>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:call-template name="get-remaining-sentences">
+                      <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                      <xsl:with-param name="first-sentence-completed" select="$first-sentence-completed"/>
+                      <xsl:with-param name="buffer" select="$buffer"/>
+                    </xsl:call-template>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:choose>
+              <xsl:when test="$first-sentence-completed">
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="true()"/>
+                  <xsl:with-param name="buffer" select="$buffer, $current-node"/>
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="$first-sentence-completed"/>
+                  <xsl:with-param name="buffer" select="$buffer"/>
+                </xsl:call-template>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
   <sqf:fixes>
     <sqf:fix id="delete-elem">
       <sqf:description>
@@ -502,6 +670,46 @@
       </sqf:replace>
     </sqf:fix>
     
+    <sqf:fix id="replace-move-sentence-to-title">
+      <sqf:description>
+        <sqf:title>Make first sentence the title</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <title xmlns="">
+            <xsl:call-template name="get-first-sentence">
+              <xsl:with-param name="nodes" select="p/node()"/>
+            </xsl:call-template>
+          </title>
+          <xsl:text>
+</xsl:text>
+          <xsl:variable name="remaining-content">
+            <xsl:call-template name="get-remaining-sentences">
+              <xsl:with-param name="nodes" select="p/node()"/>
+            </xsl:call-template>
+          </xsl:variable>
+          <xsl:if test="$remaining-content">
+            <p xmlns="">
+              <xsl:sequence select="$remaining-content"/>
+            </p>
+          </xsl:if>
+        </xsl:copy>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-normalize-space">
+      <sqf:description>
+        <sqf:title>Normalize spacing</sqf:title>
+      </sqf:description>
+      <sqf:replace match="." use-when="not(*)">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <xsl:value-of select="normalize-space(.)"/>
+        </xsl:copy>
+      </sqf:replace>
+    </sqf:fix>
+    
     <sqf:fix id="replace-sentence-case">
       <sqf:description>
         <sqf:title>Change to sentence case</sqf:title>
@@ -510,6 +718,184 @@
         <xsl:apply-templates mode="sentenceCase" select="."/>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="replace-to-preprint-ref" use-when="matches(lower-case(./source[1]),'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra') or matches(pub-id[@pub-id-type='doi'][1],'^10\.(1101|48550|31234|31219|21203|26434|32942|2139|22541)/')">
+          <sqf:description>
+            <sqf:title>Change to preprint ref</sqf:title>
+          </sqf:description>
+          <sqf:replace match=".">
+            <xsl:copy copy-namespaces="no">
+              <xsl:apply-templates select="@*[name()!='publication-type']" mode="customCopy"/>
+              <xsl:attribute name="publication-type">preprint</xsl:attribute>
+              <xsl:choose>
+                <xsl:when test="not(./source) and ./article-title and ./pub-id[@pub-id-type='doi' and normalize-space(.)!='']">
+                  <xsl:variable name="doi" select="pub-id[@pub-id-type='doi'][1]"/>
+                  <xsl:for-each select="node()">
+                    <xsl:choose>
+                      <xsl:when test="./name()='article-title'">
+                        <article-title xmlns="">
+                          <xsl:value-of select="."/>
+                        </article-title>
+                        <xsl:text>, </xsl:text>
+                        <source xmlns="">
+                          <xsl:choose>
+                            <xsl:when test="matches($doi,'^10\.1101/')">
+                              <xsl:text>bioRxiv/medRxiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.48550/')">
+                              <xsl:text>arXiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.31234/')">
+                              <xsl:text>PsyArXiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.31219/')">
+                              <xsl:text>OSF Preprints</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.21203/')">
+                              <xsl:text>Research Square</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.26434/')">
+                              <xsl:text>ChemRxiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.32942/')">
+                              <xsl:text>EcoEvoRxiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.2139/')">
+                              <xsl:text>SSRN</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.22541/')">
+                              <xsl:text>Authorea</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise/>
+                          </xsl:choose>
+                        </source>
+                      </xsl:when>
+                    </xsl:choose>
+                  </xsl:for-each>
+                </xsl:when>
+                <xsl:when test="./source[not(matches(.,'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra'))] and not(article-title) and not(count(source) gt 1) and ./pub-id[@pub-id-type='doi' and matches(.,'^10\.(1101|48550|31234|31219|21203|26434|32942|2139|22541)/')]">
+                  <xsl:variable name="doi" select="pub-id[@pub-id-type='doi'][1]"/>
+                  <xsl:for-each select="node()">
+                    <xsl:choose>
+                      <xsl:when test="./name()='source'">
+                        <article-title xmlns="">
+                          <xsl:value-of select="."/>
+                        </article-title>
+                        <xsl:text>, </xsl:text>
+                        <source xmlns="">
+                          <xsl:choose>
+                            <xsl:when test="matches($doi,'^10\.1101/')">
+                              <xsl:text>bioRxiv/medRxiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.48550/')">
+                              <xsl:text>arXiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.31234/')">
+                              <xsl:text>PsyArXiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.31219/')">
+                              <xsl:text>OSF Preprints</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.21203/')">
+                              <xsl:text>Research Square</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.26434/')">
+                              <xsl:text>ChemRxiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.32942/')">
+                              <xsl:text>EcoEvoRxiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.2139/')">
+                              <xsl:text>SSRN</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.22541/')">
+                              <xsl:text>Authorea</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise/>
+                          </xsl:choose>
+                        </source>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:apply-templates select="." mode="customCopy"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:for-each select="node()">
+                    <xsl:choose>
+                      <xsl:when test="./name()='source'">
+                        <xsl:variable name="lc" select="lower-case(.)"/>
+                        <xsl:copy copy-namespaces="no">
+                          <xsl:apply-templates select="@*" mode="customCopy"/>
+                          <xsl:choose>
+                            <xsl:when test="matches($lc,'biorxiv')">
+                              <xsl:value-of select="'bioRxiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'africarxiv')">
+                              <xsl:value-of select="'AfricArXiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'arxiv')">
+                              <xsl:value-of select="'arXiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'cell\s+sneak\s+peak')">
+                              <xsl:value-of select="'Cell Sneak Peak'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'chemrxiv')">
+                              <xsl:value-of select="'ChemRxiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'chinaxiv')">
+                              <xsl:value-of select="'ChinaXiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'eartharxiv')">
+                              <xsl:value-of select="'EarthArXiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'medrxiv')">
+                              <xsl:value-of select="'medRxiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'osf\s+preprints')">
+                              <xsl:value-of select="'OSF preprints'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'paleorxiv')">
+                              <xsl:value-of select="'PaleorXiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'peerj\s+preprints')">
+                              <xsl:value-of select="'PeerJ Preprints'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'preprints\.org')">
+                              <xsl:value-of select="'preprints.org'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'psyarxiv')">
+                              <xsl:value-of select="'PsyArXiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'research\s+square')">
+                              <xsl:value-of select="'Research Square'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'scielo\s+preprints')">
+                              <xsl:value-of select="'SciELO Preprints'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'ssrn')">
+                              <xsl:value-of select="'SSRN'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'vixra')">
+                              <xsl:value-of select="'viXra'"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                              <xsl:apply-templates select="." mode="customCopy"/>
+                            </xsl:otherwise>
+                          </xsl:choose>
+                        </xsl:copy>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:apply-templates select="." mode="customCopy"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:for-each>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:copy>
+          </sqf:replace>
+        </sqf:fix>
   </sqf:fixes>
   <pattern id="volume-test-pattern">
     <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/volume" id="volume-test">

@@ -1009,6 +1009,16 @@
         <x:expect-report id="preprint-source-2" role="warning"/>
         <x:expect-not-assert id="preprint-source-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="preprint-source-3-pass">
+        <x:context href="../tests/rp/preprint-source-checks/preprint-source-3/pass.xml"/>
+        <x:expect-not-report id="preprint-source-3" role="error"/>
+        <x:expect-not-assert id="preprint-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-source-3-fail">
+        <x:context href="../tests/rp/preprint-source-checks/preprint-source-3/fail.xml"/>
+        <x:expect-report id="preprint-source-3" role="error"/>
+        <x:expect-not-assert id="preprint-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="book-ref-checks">
       <x:scenario label="book-ref-source-pass">

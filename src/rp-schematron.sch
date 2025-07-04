@@ -342,6 +342,7 @@
         <attribute name="toggle" default="yes"/>
         <attribute name="orientation" default="portrait"/>
         <attribute name="position" default="float"/>
+        <attribute name="name-style" default="western"/>
       </mapping>
     </xsl:variable>
     <xsl:choose>
@@ -463,6 +464,176 @@
       </xsl:for-each>
     </xsl:template>
   
+  <xsl:template name="get-first-sentence">
+    <xsl:param name="nodes"/>
+    <xsl:param name="sentence-found" select="false()"/>
+    <xsl:param name="buffer" select="()"/>
+    <xsl:choose>
+      <xsl:when test="not($nodes)">
+        <xsl:sequence select="$buffer"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="current-node" select="$nodes[1]"/>
+        <xsl:variable name="remaining-nodes" select="$nodes[position() &gt; 1]"/>
+        <xsl:choose>
+          <xsl:when test="$current-node instance of text()">
+            <xsl:variable name="text-content" select="$current-node"/>
+            <xsl:choose>
+              <xsl:when test="matches($text-content, '.*[.!?]\s+') and not($sentence-found)">
+                <xsl:variable name="first-part" select="replace(replace($text-content, '(.*[.!?]\s+)(.*)', '$1'),'\s+$','')"/>
+                <xsl:sequence select="$buffer, $first-part"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:call-template name="get-first-sentence">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="sentence-found" select="$sentence-found"/>
+                  <xsl:with-param name="buffer" select="$buffer, $current-node"/>
+                </xsl:call-template>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:when test="$current-node instance of element()">
+            <xsl:variable name="temp-buffer">
+              <xsl:copy-of select="$buffer"/>
+              <xsl:element name="{$current-node/name()}" namespace="">
+                <xsl:apply-templates select="$current-node/@*" mode="customCopy"/>
+                <xsl:call-template name="get-first-sentence">
+                  <xsl:with-param name="nodes" select="$current-node/node()"/>
+                  <xsl:with-param name="sentence-found" select="$sentence-found"/>
+                  <xsl:with-param name="buffer" select="()"/> 
+                </xsl:call-template>
+              </xsl:element>
+            </xsl:variable>
+            <xsl:call-template name="get-first-sentence">
+              <xsl:with-param name="nodes" select="$remaining-nodes"/>
+              <xsl:with-param name="sentence-found" select="$sentence-found"/>
+              <xsl:with-param name="buffer" select="$temp-buffer/* | $temp-buffer/text()"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="get-first-sentence">
+              <xsl:with-param name="nodes" select="$remaining-nodes"/>
+              <xsl:with-param name="sentence-found" select="$sentence-found"/>
+              <xsl:with-param name="buffer" select="$buffer, $current-node"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="get-remaining-sentences">
+    <xsl:param name="nodes"/>
+    <xsl:param name="first-sentence-completed" select="false()"/>
+    <xsl:param name="buffer" select="()"/>
+    <xsl:choose>
+      <xsl:when test="not($nodes) and $first-sentence-completed">
+        <xsl:sequence select="$buffer"/>
+      </xsl:when>
+      <xsl:when test="not($nodes)">
+        <xsl:sequence select="()"/> 
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="current-node" select="$nodes[1]"/>
+        <xsl:variable name="remaining-nodes" select="$nodes[position() &gt; 1]"/>
+        <xsl:choose>
+          <xsl:when test="$current-node instance of text()">
+            <xsl:variable name="text-content" select="$current-node"/>
+            <xsl:choose>
+              <xsl:when test="matches($text-content, '.*[.!?]\s+') and not($first-sentence-completed)">
+                <xsl:variable name="remaining-part" select="replace($text-content, '.*[.!?]\s+(.*)', '$1')"/>
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="true()"/>
+                  <xsl:with-param name="buffer" select="$buffer, $remaining-part"/>
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:when test="$first-sentence-completed">
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="true()"/>
+                  <xsl:with-param name="buffer" select="$buffer, $current-node"/>
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="$first-sentence-completed"/>
+                  <xsl:with-param name="buffer" select="$buffer"/>
+                </xsl:call-template>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:when test="$current-node instance of element()">
+            <xsl:choose>
+              <xsl:when test="$first-sentence-completed">
+                <xsl:variable name="temp-buffer">
+                  <xsl:apply-templates select="$buffer" mode="customCopy"/>
+                  <xsl:apply-templates select="$current-node" mode="customCopy"/>
+                </xsl:variable>
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="true()"/>
+                  <xsl:with-param name="buffer" select="$temp-buffer/* | $temp-buffer/text()"/>
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:variable name="element-result">
+                  <xsl:call-template name="get-remaining-sentences">
+                    <xsl:with-param name="nodes" select="$current-node/node()"/>
+                    <xsl:with-param name="first-sentence-completed" select="$first-sentence-completed"/>
+                    <xsl:with-param name="buffer" select="()"/>
+                  </xsl:call-template>
+                </xsl:variable>
+                <xsl:choose>
+                  <xsl:when test="string-length($element-result) &gt; 0">
+                    <xsl:variable name="temp-buffer">
+                      <xsl:copy-of select="$buffer" copy-namespaces="no"/>
+                      <xsl:element name="{$current-node/name()}" namespace="">
+                        <xsl:apply-templates select="$current-node/@*" mode="customCopy"/>
+                        <xsl:sequence select="$element-result"/>
+                      </xsl:element>
+                    </xsl:variable>
+                    <xsl:call-template name="get-remaining-sentences">
+                      <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                      <xsl:with-param name="first-sentence-completed" select="true()"/> <xsl:with-param name="buffer" select="$temp-buffer/* | $temp-buffer/text()"/>
+                    </xsl:call-template>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:call-template name="get-remaining-sentences">
+                      <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                      <xsl:with-param name="first-sentence-completed" select="$first-sentence-completed"/>
+                      <xsl:with-param name="buffer" select="$buffer"/>
+                    </xsl:call-template>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:choose>
+              <xsl:when test="$first-sentence-completed">
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="true()"/>
+                  <xsl:with-param name="buffer" select="$buffer, $current-node"/>
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="first-sentence-completed" select="$first-sentence-completed"/>
+                  <xsl:with-param name="buffer" select="$buffer"/>
+                </xsl:call-template>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  
   <sqf:fixes>
     <sqf:fix id="delete-elem">
       <sqf:description>
@@ -529,6 +700,46 @@
       </sqf:replace>
     </sqf:fix>
     
+    <sqf:fix id="replace-move-sentence-to-title">
+      <sqf:description>
+        <sqf:title>Make first sentence the title</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <title xmlns="">
+            <xsl:call-template name="get-first-sentence">
+              <xsl:with-param name="nodes" select="p/node()"/>
+            </xsl:call-template>
+          </title>
+          <xsl:text>
+</xsl:text>
+          <xsl:variable name="remaining-content">
+            <xsl:call-template name="get-remaining-sentences">
+              <xsl:with-param name="nodes" select="p/node()"/>
+            </xsl:call-template>
+          </xsl:variable>
+          <xsl:if test="$remaining-content">
+            <p xmlns="">
+              <xsl:sequence select="$remaining-content"/>
+            </p>
+          </xsl:if>
+        </xsl:copy>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="replace-normalize-space">
+      <sqf:description>
+        <sqf:title>Normalize spacing</sqf:title>
+      </sqf:description>
+      <sqf:replace match="." use-when="not(*)">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <xsl:value-of select="normalize-space(.)"/>
+        </xsl:copy>
+      </sqf:replace>
+    </sqf:fix>
+    
     <sqf:fix id="replace-sentence-case">
       <sqf:description>
         <sqf:title>Change to sentence case</sqf:title>
@@ -537,6 +748,184 @@
         <xsl:apply-templates mode="sentenceCase" select="."/>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="replace-to-preprint-ref" use-when="matches(lower-case(./source[1]),'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra') or matches(pub-id[@pub-id-type='doi'][1],'^10\.(1101|48550|31234|31219|21203|26434|32942|2139|22541)/')">
+          <sqf:description>
+            <sqf:title>Change to preprint ref</sqf:title>
+          </sqf:description>
+          <sqf:replace match=".">
+            <xsl:copy copy-namespaces="no">
+              <xsl:apply-templates select="@*[name()!='publication-type']" mode="customCopy"/>
+              <xsl:attribute name="publication-type">preprint</xsl:attribute>
+              <xsl:choose>
+                <xsl:when test="not(./source) and ./article-title and ./pub-id[@pub-id-type='doi' and normalize-space(.)!='']">
+                  <xsl:variable name="doi" select="pub-id[@pub-id-type='doi'][1]"/>
+                  <xsl:for-each select="node()">
+                    <xsl:choose>
+                      <xsl:when test="./name()='article-title'">
+                        <article-title xmlns="">
+                          <xsl:value-of select="."/>
+                        </article-title>
+                        <xsl:text>, </xsl:text>
+                        <source xmlns="">
+                          <xsl:choose>
+                            <xsl:when test="matches($doi,'^10\.1101/')">
+                              <xsl:text>bioRxiv/medRxiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.48550/')">
+                              <xsl:text>arXiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.31234/')">
+                              <xsl:text>PsyArXiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.31219/')">
+                              <xsl:text>OSF Preprints</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.21203/')">
+                              <xsl:text>Research Square</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.26434/')">
+                              <xsl:text>ChemRxiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.32942/')">
+                              <xsl:text>EcoEvoRxiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.2139/')">
+                              <xsl:text>SSRN</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.22541/')">
+                              <xsl:text>Authorea</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise/>
+                          </xsl:choose>
+                        </source>
+                      </xsl:when>
+                    </xsl:choose>
+                  </xsl:for-each>
+                </xsl:when>
+                <xsl:when test="./source[not(matches(.,'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra'))] and not(article-title) and not(count(source) gt 1) and ./pub-id[@pub-id-type='doi' and matches(.,'^10\.(1101|48550|31234|31219|21203|26434|32942|2139|22541)/')]">
+                  <xsl:variable name="doi" select="pub-id[@pub-id-type='doi'][1]"/>
+                  <xsl:for-each select="node()">
+                    <xsl:choose>
+                      <xsl:when test="./name()='source'">
+                        <article-title xmlns="">
+                          <xsl:value-of select="."/>
+                        </article-title>
+                        <xsl:text>, </xsl:text>
+                        <source xmlns="">
+                          <xsl:choose>
+                            <xsl:when test="matches($doi,'^10\.1101/')">
+                              <xsl:text>bioRxiv/medRxiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.48550/')">
+                              <xsl:text>arXiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.31234/')">
+                              <xsl:text>PsyArXiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.31219/')">
+                              <xsl:text>OSF Preprints</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.21203/')">
+                              <xsl:text>Research Square</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.26434/')">
+                              <xsl:text>ChemRxiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.32942/')">
+                              <xsl:text>EcoEvoRxiv</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.2139/')">
+                              <xsl:text>SSRN</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches($doi,'^10\.22541/')">
+                              <xsl:text>Authorea</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise/>
+                          </xsl:choose>
+                        </source>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:apply-templates select="." mode="customCopy"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:for-each select="node()">
+                    <xsl:choose>
+                      <xsl:when test="./name()='source'">
+                        <xsl:variable name="lc" select="lower-case(.)"/>
+                        <xsl:copy copy-namespaces="no">
+                          <xsl:apply-templates select="@*" mode="customCopy"/>
+                          <xsl:choose>
+                            <xsl:when test="matches($lc,'biorxiv')">
+                              <xsl:value-of select="'bioRxiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'africarxiv')">
+                              <xsl:value-of select="'AfricArXiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'arxiv')">
+                              <xsl:value-of select="'arXiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'cell\s+sneak\s+peak')">
+                              <xsl:value-of select="'Cell Sneak Peak'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'chemrxiv')">
+                              <xsl:value-of select="'ChemRxiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'chinaxiv')">
+                              <xsl:value-of select="'ChinaXiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'eartharxiv')">
+                              <xsl:value-of select="'EarthArXiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'medrxiv')">
+                              <xsl:value-of select="'medRxiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'osf\s+preprints')">
+                              <xsl:value-of select="'OSF preprints'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'paleorxiv')">
+                              <xsl:value-of select="'PaleorXiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'peerj\s+preprints')">
+                              <xsl:value-of select="'PeerJ Preprints'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'preprints\.org')">
+                              <xsl:value-of select="'preprints.org'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'psyarxiv')">
+                              <xsl:value-of select="'PsyArXiv'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'research\s+square')">
+                              <xsl:value-of select="'Research Square'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'scielo\s+preprints')">
+                              <xsl:value-of select="'SciELO Preprints'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'ssrn')">
+                              <xsl:value-of select="'SSRN'"/>
+                            </xsl:when>
+                            <xsl:when test="matches($lc,'vixra')">
+                              <xsl:value-of select="'viXra'"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                              <xsl:apply-templates select="." mode="customCopy"/>
+                            </xsl:otherwise>
+                          </xsl:choose>
+                        </xsl:copy>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:apply-templates select="." mode="customCopy"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:for-each>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:copy>
+          </sqf:replace>
+        </sqf:fix>
   </sqf:fixes>
   
 
@@ -602,9 +991,9 @@
 		
 	  <report test="matches(.,'^\p{Ll}') and not(matches(.,'^de[lrn]? |^van |^von |^el |^te[rn] |^d[ai] '))" role="warning" id="surname-test-5">[surname-test-5] surname doesn't begin with a capital letter - <value-of select="."/>. Is this correct?</report>
 	  
-	  <report test="matches(.,'^\p{Zs}')" role="error" id="surname-test-6">[surname-test-6] surname starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
+	  <report test="matches(.,'^\p{Zs}')" role="error" sqf:fix="replace-normalize-space" id="surname-test-6">[surname-test-6] surname starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
-	  <report test="matches(.,'\p{Zs}$')" role="error" id="surname-test-7">[surname-test-7] surname ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
+	  <report test="matches(.,'\p{Zs}$')" role="error" sqf:fix="replace-normalize-space" id="surname-test-7">[surname-test-7] surname ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	    
 	    <report test="matches(.,'^[A-Z]{1,2}\.?\p{Zs}') and (string-length(.) gt 3)" role="warning" id="surname-test-8">[surname-test-8] surname looks to start with initial - '<value-of select="."/>'. Should '<value-of select="substring-before(.,' ')"/>' be placed in the given-names field?</report>
 	    
@@ -620,9 +1009,9 @@
 		
 	  <assert test="matches(.,'^\p{Lu}')" role="warning" id="given-names-test-6">[given-names-test-6] given-names doesn't begin with a capital letter - '<value-of select="."/>'. Is this correct?</assert>
 	  
-    <report test="matches(.,'^\p{Zs}')" role="error" id="given-names-test-8">[given-names-test-8] given-names starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
+    <report test="matches(.,'^\p{Zs}')" role="error" sqf:fix="replace-normalize-space" id="given-names-test-8">[given-names-test-8] given-names starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
-    <report test="matches(.,'\p{Zs}$')" role="error" id="given-names-test-9">[given-names-test-9] given-names ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
+    <report test="matches(.,'\p{Zs}$')" role="error" sqf:fix="replace-normalize-space" id="given-names-test-9">[given-names-test-9] given-names ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
 	  <report test="matches(.,'[A-Za-z]\.? [Dd]e[rn]?$')" role="warning" id="given-names-test-10">[given-names-test-10] given-names ends with de, der, or den - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 		
@@ -809,7 +1198,7 @@
      </rule></pattern>
 
     <pattern id="preprint-ref-checks-pattern"><rule context="mixed-citation[@publication-type='preprint']" id="preprint-ref-checks">
-        <assert test="source" role="error" id="preprint-ref-source">[preprint-ref-source] This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no source element.</assert>
+        <assert test="source" role="error" sqf:fix="replace-to-preprint-ref" id="preprint-ref-source">[preprint-ref-source] This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no source element.</assert>
 
         <assert test="article-title" role="error" id="preprint-ref-article-title">[preprint-ref-article-title] This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no article-title element.</assert>
 
@@ -823,9 +1212,12 @@
        
        <report test="elocation-id and fpage" role="error" id="preprint-ref-fpage-elocation-id">[preprint-ref-fpage-elocation-id] This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has both fpage (<value-of select="fpage"/>) and elocation-id (<value-of select="elocation-id"/>) elements which must be wrong.</report>
      </rule></pattern><pattern id="preprint-source-checks-pattern"><rule context="mixed-citation[@publication-type='preprint']/source" id="preprint-source-checks">
-        <report test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')" role="warning" id="preprint-source">[preprint-source] Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
+        <let name="lc" value="lower-case(.)"/>
+        <report test="matches($lc,'^(\.\s*)?in[^a-z]')" role="warning" id="preprint-source">[preprint-source] Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
         
         <report test="matches(.,'[“”&quot;]')" role="warning" id="preprint-source-2">[preprint-source-2] Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
+        
+        <report test="matches($lc,'biorxiv') and matches($lc,'medrxiv')" role="error" id="preprint-source-3">[preprint-source-3] Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains both bioRxiv and medRxiv, which must be wrong.</report>
       </rule></pattern>
 
     <pattern id="book-ref-checks-pattern"><rule context="mixed-citation[@publication-type='book']" id="book-ref-checks">
@@ -894,19 +1286,19 @@
         
         <report test="name()='string-name' and text()[not(matches(.,'^[\s\p{P}]*$'))]" role="error" id="ref-string-name-text">[ref-string-name-text] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) has child text containing content. This content should either be tagged or moved into a different appropriate tag, as appropriate.</report>
      </rule></pattern><pattern id="ref-name-space-checks-pattern"><rule context="mixed-citation//given-names | mixed-citation//surname" id="ref-name-space-checks">
-        <report test="matches(.,'^\p{Z}+')" role="error" id="ref-name-space-start">[ref-name-space-start] <name/> element cannot start with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
+        <report test="matches(.,'^\p{Z}+')" role="error" sqf:fix="replace-normalize-space" id="ref-name-space-start">[ref-name-space-start] <name/> element cannot start with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
 
-        <report test="matches(.,'\p{Z}+$')" role="error" id="ref-name-space-end">[ref-name-space-end] <name/> element cannot end with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
+        <report test="matches(.,'\p{Z}+$')" role="error" sqf:fix="replace-normalize-space" id="ref-name-space-end">[ref-name-space-end] <name/> element cannot end with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
         
         <report test="not(*) and (normalize-space(.)='')" role="error" id="ref-name-empty">[ref-name-empty] <name/> element must not be empty.</report>
      </rule></pattern>
 
     <pattern id="collab-checks-pattern"><rule context="collab" id="collab-checks">
-        <report test="matches(.,'^\p{Z}+')" role="error" id="collab-check-1">[collab-check-1] collab element cannot start with space(s). This one does: <value-of select="."/></report>
+        <report test="matches(.,'^\p{Z}+')" role="error" sqf:fix="replace-normalize-space" id="collab-check-1">[collab-check-1] collab element cannot start with space(s). This one does: <value-of select="."/></report>
 
-        <report test="matches(.,'\p{Z}+$')" role="error" id="collab-check-2">[collab-check-2] collab element cannot end with space(s). This one does: <value-of select="."/></report>
+        <report test="matches(.,'\p{Z}+$')" role="error" sqf:fix="replace-normalize-space" id="collab-check-2">[collab-check-2] collab element cannot end with space(s). This one does: <value-of select="."/></report>
 
-        <assert test="normalize-space(.)=." role="warning" id="collab-check-3">[collab-check-3] collab element seems to contain odd spacing. Is it correct? '<value-of select="."/>'</assert>
+        <assert test="normalize-space(.)=." role="warning" sqf:fix="replace-normalize-space" id="collab-check-3">[collab-check-3] collab element seems to contain odd spacing. Is it correct? '<value-of select="."/>'</assert>
         
         <report test="matches(.,'^[\p{Z}\p{N}\p{P}]*$')" role="warning" id="collab-check-4">[collab-check-4] collab element consists only of spaces, punctuation and/or numbers (or is empty) - '<value-of select="."/>'. Is it really a collab?</report>
         
@@ -1015,18 +1407,18 @@
         
         <report test="not(normalize-space(.)=('','.')) and (string-length(normalize-space(.)) lt 6)" role="warning" id="mixed-citation-empty-2">[mixed-citation-empty-2] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) only contains <value-of select="string-length(normalize-space(.))"/> characters.</report>
         
-        <assert test="normalize-space(@publication-type)!=''" role="error" id="mixed-citation-publication-type-presence">[mixed-citation-publication-type-presence] <name/> must have a publication-type attribute with a non-empty value.</assert>
+        <assert test="normalize-space(@publication-type)!=''" role="error" sqf:fix="replace-to-preprint-ref" id="mixed-citation-publication-type-presence">[mixed-citation-publication-type-presence] <name/> must have a publication-type attribute with a non-empty value.</assert>
         
-        <report test="normalize-space(@publication-type)!='' and not(@publication-type=$publication-type-values)" role="warning" id="mixed-citation-publication-type-flag">[mixed-citation-publication-type-flag] <name/> has publication-type="<value-of select="@publication-type"/>" which is not one of the known/supported types: <value-of select="string-join($publication-type-values,'; ')"/>.</report>
+        <report test="normalize-space(@publication-type)!='' and not(@publication-type=$publication-type-values)" role="warning" sqf:fix="replace-to-preprint-ref" id="mixed-citation-publication-type-flag">[mixed-citation-publication-type-flag] <name/> has publication-type="<value-of select="@publication-type"/>" which is not one of the known/supported types: <value-of select="string-join($publication-type-values,'; ')"/>.</report>
         
-        <report test="@publication-type='other'" role="warning" id="mixed-citation-other-publication-flag">[mixed-citation-other-publication-flag] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) has a publication-type='other'. Is that correct?</report>
+        <report test="@publication-type='other'" role="warning" sqf:fix="replace-to-preprint-ref" id="mixed-citation-other-publication-flag">[mixed-citation-other-publication-flag] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) has a publication-type='other'. Is that correct?</report>
 
         <report test="*[name()=$name-elems]" role="error" id="mixed-citation-person-group-flag-1">[mixed-citation-person-group-flag-1] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) has child name elements (<value-of select="string-join(distinct-values(*[name()=$name-elems]/name()),'; ')"/>). These all need to be placed in a person-group element with the appropriate person-group-type attribute.</report>
 
         <assert test="person-group[@person-group-type='author']" role="warning" id="mixed-citation-person-group-flag-2">[mixed-citation-person-group-flag-2] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) does not have an author person-group. Is that correct?</assert>
         
         <report test="parent::ref/label[.!=''] and starts-with(.,parent::ref[1]/label[1])" role="error" id="mixed-citation-label">[mixed-citation-label] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) starts with the reference label.</report>
-     </rule></pattern><pattern id="mixed-citation-child-checks-pattern"><rule context="mixed-citation/*" id="mixed-citation-child-checks">
+      </rule></pattern><pattern id="mixed-citation-child-checks-pattern"><rule context="mixed-citation/*" id="mixed-citation-child-checks">
         <report test="not(*) and (normalize-space(.)='')" role="error" id="mixed-citation-child-1">[mixed-citation-child-1] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) is empty, which cannot be correct.</report>
       </rule></pattern>
   
@@ -1129,7 +1521,7 @@
         
         <report test="not(title) and (count(p) gt 1)" role="warning" sqf:fix="replace-p-to-title" id="fig-caption-1">[fig-caption-1] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
         
-        <report test="not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1) and not(matches(lower-case(p[1]),'^\p{Z}*\p{P}?(a|a[–—\-][b-z]|i)\p{P}'))" role="warning" id="fig-caption-2">[fig-caption-2] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</report>
+        <report test="not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1) and not(matches(lower-case(p[1]),'^\p{Z}*\p{P}?(a|a[–—\-][b-z]|i)\p{P}'))" role="warning" sqf:fix="replace-move-sentence-to-title" id="fig-caption-2">[fig-caption-2] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</report>
      </rule></pattern>
 
     <pattern id="table-wrap-checks-pattern"><rule context="table-wrap" id="table-wrap-checks">
