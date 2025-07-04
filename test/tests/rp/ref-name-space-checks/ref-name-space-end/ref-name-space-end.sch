@@ -503,6 +503,18 @@
       </sqf:replace>
     </sqf:fix>
     
+    <sqf:fix id="replace-normalize-space">
+      <sqf:description>
+        <sqf:title>Normalize spacing</sqf:title>
+      </sqf:description>
+      <sqf:replace match="." use-when="not(*)">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <xsl:value-of select="normalize-space(.)"/>
+        </xsl:copy>
+      </sqf:replace>
+    </sqf:fix>
+    
     <sqf:fix id="replace-sentence-case">
       <sqf:description>
         <sqf:title>Change to sentence case</sqf:title>
@@ -692,7 +704,7 @@
   </sqf:fixes>
   <pattern id="ref-name-space-checks-pattern">
     <rule context="mixed-citation//given-names | mixed-citation//surname" id="ref-name-space-checks">
-      <report test="matches(.,'\p{Z}+$')" role="error" id="ref-name-space-end">[ref-name-space-end] <name/> element cannot end with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
+      <report test="matches(.,'\p{Z}+$')" role="error" sqf:fix="replace-normalize-space" id="ref-name-space-end">[ref-name-space-end] <name/> element cannot end with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

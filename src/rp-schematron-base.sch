@@ -566,6 +566,18 @@
       </sqf:replace>
     </sqf:fix>
     
+    <sqf:fix id="replace-normalize-space">
+      <sqf:description>
+        <sqf:title>Normalize spacing</sqf:title>
+      </sqf:description>
+      <sqf:replace match="." use-when="not(*)">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <xsl:value-of select="normalize-space(.)"/>
+        </xsl:copy>
+      </sqf:replace>
+    </sqf:fix>
+    
     <sqf:fix id="replace-sentence-case">
       <sqf:description>
         <sqf:title>Change to sentence case</sqf:title>
@@ -886,10 +898,12 @@
 	  
 	  <report test="matches(.,'^\p{Zs}')" 
         role="error" 
+        sqf:fix="replace-normalize-space"
         id="surname-test-6">surname starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
 	  <report test="matches(.,'\p{Zs}$')" 
         role="error" 
+        sqf:fix="replace-normalize-space"
         id="surname-test-7">surname ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	    
 	    <report test="matches(.,'^[A-Z]{1,2}\.?\p{Zs}') and (string-length(.) gt 3)" 
@@ -924,10 +938,12 @@
 	  
     <report test="matches(.,'^\p{Zs}')" 
         role="error" 
+        sqf:fix="replace-normalize-space"
         id="given-names-test-8">given-names starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
     <report test="matches(.,'\p{Zs}$')" 
         role="error" 
+        sqf:fix="replace-normalize-space"
         id="given-names-test-9">given-names ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
 	  <report test="matches(.,'[A-Za-z]\.? [Dd]e[rn]?$')" 
@@ -1441,11 +1457,13 @@
 
       <rule context="mixed-citation//given-names | mixed-citation//surname" id="ref-name-space-checks">
         <report test="matches(.,'^\p{Z}+')" 
-          role="error" 
+          role="error"
+          sqf:fix="replace-normalize-space"
           id="ref-name-space-start"><name/> element cannot start with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
 
         <report test="matches(.,'\p{Z}+$')" 
-          role="error" 
+          role="error"
+          sqf:fix="replace-normalize-space"
           id="ref-name-space-end"><name/> element cannot end with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
         
         <report test="not(*) and (normalize-space(.)='')" 
@@ -1458,14 +1476,17 @@
       <rule context="collab" id="collab-checks">
         <report test="matches(.,'^\p{Z}+')" 
         role="error" 
+        sqf:fix="replace-normalize-space"
         id="collab-check-1">collab element cannot start with space(s). This one does: <value-of select="."/></report>
 
         <report test="matches(.,'\p{Z}+$')" 
         role="error" 
+        sqf:fix="replace-normalize-space"
         id="collab-check-2">collab element cannot end with space(s). This one does: <value-of select="."/></report>
 
         <assert test="normalize-space(.)=." 
         role="warning" 
+        sqf:fix="replace-normalize-space"
         id="collab-check-3">collab element seems to contain odd spacing. Is it correct? '<value-of select="."/>'</assert>
         
         <report test="matches(.,'^[\p{Z}\p{N}\p{P}]*$')" 

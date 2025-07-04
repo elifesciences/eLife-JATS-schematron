@@ -503,6 +503,18 @@
       </sqf:replace>
     </sqf:fix>
     
+    <sqf:fix id="replace-normalize-space">
+      <sqf:description>
+        <sqf:title>Normalize spacing</sqf:title>
+      </sqf:description>
+      <sqf:replace match="." use-when="not(*)">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <xsl:value-of select="normalize-space(.)"/>
+        </xsl:copy>
+      </sqf:replace>
+    </sqf:fix>
+    
     <sqf:fix id="replace-sentence-case">
       <sqf:description>
         <sqf:title>Change to sentence case</sqf:title>
@@ -692,7 +704,7 @@
   </sqf:fixes>
   <pattern id="collab-checks-pattern">
     <rule context="collab" id="collab-checks">
-      <assert test="normalize-space(.)=." role="warning" id="collab-check-3">[collab-check-3] collab element seems to contain odd spacing. Is it correct? '<value-of select="."/>'</assert>
+      <assert test="normalize-space(.)=." role="warning" sqf:fix="replace-normalize-space" id="collab-check-3">[collab-check-3] collab element seems to contain odd spacing. Is it correct? '<value-of select="."/>'</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -503,6 +503,18 @@
       </sqf:replace>
     </sqf:fix>
     
+    <sqf:fix id="replace-normalize-space">
+      <sqf:description>
+        <sqf:title>Normalize spacing</sqf:title>
+      </sqf:description>
+      <sqf:replace match="." use-when="not(*)">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <xsl:value-of select="normalize-space(.)"/>
+        </xsl:copy>
+      </sqf:replace>
+    </sqf:fix>
+    
     <sqf:fix id="replace-sentence-case">
       <sqf:description>
         <sqf:title>Change to sentence case</sqf:title>
@@ -692,7 +704,7 @@
   </sqf:fixes>
   <pattern id="given-names-tests-pattern">
     <rule context="name/given-names" id="given-names-tests">
-      <report test="matches(.,'^\p{Zs}')" role="error" id="given-names-test-8">[given-names-test-8] given-names starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
+      <report test="matches(.,'^\p{Zs}')" role="error" sqf:fix="replace-normalize-space" id="given-names-test-8">[given-names-test-8] given-names starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
