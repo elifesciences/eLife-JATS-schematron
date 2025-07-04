@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="preprint-source-3.sch"?>
+<!--Context: mixed-citation[@publication-type='preprint']/source
+Test: report    matches($lc,'biorxiv') and matches($lc,'medrxiv')
+Message: Preprint reference () has a source that contains both bioRxiv and medRxiv, which must be wrong. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref id="c55"><label>55.</label><mixed-citation publication-type="preprint"><person-group person-group-type="author"><string-name><surname>Wang</surname>, <given-names>Y.</given-names></string-name>, <etal>et al.</etal></person-group> <article-title>Multiplexed in situ protein imaging using DNA-barcoded antibodies with extended hybridization chain reactions</article-title>, <source>bioRxiv/medRxiv</source>. <fpage>274456</fpage> (<year>2020</year>) doi:<pub-id pub-id-type="doi">10.1101/274456</pub-id>.</mixed-citation></ref>
+    </article>
+</root>

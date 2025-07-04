@@ -3863,10 +3863,10 @@
    <!--PATTERN preprint-source-checks-pattern-->
    <!--RULE preprint-source-checks-->
    <xsl:template match="mixed-citation[@publication-type='preprint']/source" priority="1000" mode="M53">
-
-		<!--REPORT warning-->
-      <xsl:if test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')">
+      <xsl:variable name="lc" select="lower-case(.)"/>
+      <!--REPORT warning-->
+      <xsl:if test="matches($lc,'^(\.\s*)?in[^a-z]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'^(\.\s*)?in[^a-z]')">
             <xsl:attribute name="id">preprint-source</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -3892,6 +3892,19 @@
                <xsl:text/>) has a source that contains speech quotes - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="matches($lc,'biorxiv') and matches($lc,'medrxiv')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($lc,'biorxiv') and matches($lc,'medrxiv')">
+            <xsl:attribute name="id">preprint-source-3</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[preprint-source-3] Preprint reference (<xsl:text/>
+               <xsl:value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>
+               <xsl:text/>) has a source that contains both bioRxiv and medRxiv, which must be wrong.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M53"/>

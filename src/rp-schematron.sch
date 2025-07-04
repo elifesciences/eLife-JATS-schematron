@@ -1002,9 +1002,12 @@
        
        <report test="elocation-id and fpage" role="error" id="preprint-ref-fpage-elocation-id">[preprint-ref-fpage-elocation-id] This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has both fpage (<value-of select="fpage"/>) and elocation-id (<value-of select="elocation-id"/>) elements which must be wrong.</report>
      </rule></pattern><pattern id="preprint-source-checks-pattern"><rule context="mixed-citation[@publication-type='preprint']/source" id="preprint-source-checks">
-        <report test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')" role="warning" id="preprint-source">[preprint-source] Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
+        <let name="lc" value="lower-case(.)"/>
+        <report test="matches($lc,'^(\.\s*)?in[^a-z]')" role="warning" id="preprint-source">[preprint-source] Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
         
         <report test="matches(.,'[“”&quot;]')" role="warning" id="preprint-source-2">[preprint-source-2] Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
+        
+        <report test="matches($lc,'biorxiv') and matches($lc,'medrxiv')" role="error" id="preprint-source-3">[preprint-source-3] Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains both bioRxiv and medRxiv, which must be wrong.</report>
       </rule></pattern>
 
     <pattern id="book-ref-checks-pattern"><rule context="mixed-citation[@publication-type='book']" id="book-ref-checks">
