@@ -4,6 +4,6 @@ Test: report    tokenize($formula-text,'\\?\\?\\(begin|end).array.')[(position()
 Message:  contains an array without horizontal or vertical spacing -  -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
-        <tex-math id="t3"><![CDATA[\begin{document}$$\displaystyle  \begin{array}{c}\tau \frac{d\kappa _{dv}}{dt}=- \kappa _{dv}+E_{inp_{1}\rightarrow dv}\kappa _{inp_{1}}+E_{inp_{2}\rightarrow dv}\kappa _{inp_{2}}+E_{dv\rightarrow dv}\kappa _{dv}\\\end{array}$$\end{document}]]></tex-math>
+        <tex-math id="t3">\begin{document}$$\displaystyle  \begin{array}{c}\tau \frac{d\kappa _{dv}}{dt}=- \kappa _{dv}+E_{inp_{1}\rightarrow dv}\kappa _{inp_{1}}+E_{inp_{2}\rightarrow dv}\kappa _{inp_{2}}+E_{dv\rightarrow dv}\kappa _{dv}\\\end{array}$$\end{document}</tex-math>
     </article>
 </root>

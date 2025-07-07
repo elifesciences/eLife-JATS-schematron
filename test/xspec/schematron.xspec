@@ -20389,22 +20389,22 @@
       </x:scenario>
       <x:scenario label="data-rcsbpbd-test-1-pass">
         <x:context href="../tests/gen/data-ref-tests/data-rcsbpbd-test-1/pass.xml"/>
-        <x:expect-not-report id="data-rcsbpbd-test-1" role="error"/>
+        <x:expect-not-report id="data-rcsbpbd-test-1" role="warning"/>
         <x:expect-not-assert id="data-ref-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="data-rcsbpbd-test-1-fail">
         <x:context href="../tests/gen/data-ref-tests/data-rcsbpbd-test-1/fail.xml"/>
-        <x:expect-report id="data-rcsbpbd-test-1" role="error"/>
+        <x:expect-report id="data-rcsbpbd-test-1" role="warning"/>
         <x:expect-not-assert id="data-ref-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="data-rcsbpbd-test-3-pass">
         <x:context href="../tests/gen/data-ref-tests/data-rcsbpbd-test-3/pass.xml"/>
-        <x:expect-not-report id="data-rcsbpbd-test-3" role="error"/>
+        <x:expect-not-report id="data-rcsbpbd-test-3" role="warning"/>
         <x:expect-not-assert id="data-ref-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="data-rcsbpbd-test-3-fail">
         <x:context href="../tests/gen/data-ref-tests/data-rcsbpbd-test-3/fail.xml"/>
-        <x:expect-report id="data-rcsbpbd-test-3" role="error"/>
+        <x:expect-report id="data-rcsbpbd-test-3" role="warning"/>
         <x:expect-not-assert id="data-ref-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="data-pbde-test-1-pass">

@@ -39819,12 +39819,12 @@
                <xsl:text/>, but no doi starting with '10.5061/dryad' or '10.7272', which is incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <!--REPORT error-->
+      <!--REPORT warning-->
       <xsl:if test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and not(pub-id[@pub-id-type='accession'])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and not(pub-id[@pub-id-type='accession'])">
             <xsl:attribute name="id">data-rcsbpbd-test-1</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-rcsbpbd-test-1</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
@@ -39835,12 +39835,12 @@
                <xsl:text/>). PDB datasets must (only) link to wwPDB using a DOI (e.g. https://doi.org/10.2210/pdb8QHN/pdb), not to RCSB Protein Data Bank or other Protein Data Banks.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <!--REPORT error-->
+      <!--REPORT warning-->
       <xsl:if test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[@pub-id-type='accession']">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[@pub-id-type='accession']">
             <xsl:attribute name="id">data-rcsbpbd-test-3</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-rcsbpbd-test-3</xsl:attribute>
-            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
