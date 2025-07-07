@@ -503,7 +503,6 @@
   
   <xsl:template name="get-first-sentence">
     <xsl:param name="nodes"/>
-    <xsl:param name="sentence-found" select="false()"/>
     <xsl:param name="buffer" select="()"/>
     <xsl:choose>
       <xsl:when test="not($nodes)">
@@ -516,14 +515,13 @@
           <xsl:when test="$current-node instance of text()">
             <xsl:variable name="text-content" select="$current-node"/>
             <xsl:choose>
-              <xsl:when test="matches($text-content, '.*[.!?]\s+') and not($sentence-found)">
-                <xsl:variable name="first-part" select="replace(replace($text-content, '(.*[.!?]\s+)(.*)', '$1'),'\s+$','')"/>
+              <xsl:when test="matches($text-content, '.*[\.!?]\s+')">
+                <xsl:variable name="first-part" select="replace(replace($text-content, '(.*?[\.!?]\s+)(.*)', '$1'),'\s+$','')"/>
                 <xsl:sequence select="$buffer, $first-part"/>
               </xsl:when>
               <xsl:otherwise>
                 <xsl:call-template name="get-first-sentence">
                   <xsl:with-param name="nodes" select="$remaining-nodes"/>
-                  <xsl:with-param name="sentence-found" select="$sentence-found"/>
                   <xsl:with-param name="buffer" select="$buffer, $current-node"/>
                 </xsl:call-template>
               </xsl:otherwise>
@@ -536,21 +534,18 @@
                 <xsl:apply-templates select="$current-node/@*" mode="customCopy"/>
                 <xsl:call-template name="get-first-sentence">
                   <xsl:with-param name="nodes" select="$current-node/node()"/>
-                  <xsl:with-param name="sentence-found" select="$sentence-found"/>
                   <xsl:with-param name="buffer" select="()"/> 
                 </xsl:call-template>
               </xsl:element>
             </xsl:variable>
             <xsl:call-template name="get-first-sentence">
               <xsl:with-param name="nodes" select="$remaining-nodes"/>
-              <xsl:with-param name="sentence-found" select="$sentence-found"/>
               <xsl:with-param name="buffer" select="$temp-buffer/* | $temp-buffer/text()"/>
             </xsl:call-template>
           </xsl:when>
           <xsl:otherwise>
             <xsl:call-template name="get-first-sentence">
               <xsl:with-param name="nodes" select="$remaining-nodes"/>
-              <xsl:with-param name="sentence-found" select="$sentence-found"/>
               <xsl:with-param name="buffer" select="$buffer, $current-node"/>
             </xsl:call-template>
           </xsl:otherwise>
@@ -578,7 +573,7 @@
             <xsl:variable name="text-content" select="$current-node"/>
             <xsl:choose>
               <xsl:when test="matches($text-content, '.*[.!?]\s+') and not($first-sentence-completed)">
-                <xsl:variable name="remaining-part" select="replace($text-content, '.*[.!?]\s+(.*)', '$1')"/>
+                <xsl:variable name="remaining-part" select="replace($text-content, '.*?[\.!?]\s+(.*)', '$1')"/>
                 <xsl:call-template name="get-remaining-sentences">
                   <xsl:with-param name="nodes" select="$remaining-nodes"/>
                   <xsl:with-param name="first-sentence-completed" select="true()"/>
@@ -2157,7 +2152,8 @@
           id="table-wrap-caption-1">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
         
         <report test="not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1)" 
-          role="warning" 
+          role="warning"
+          sqf:fix="replace-move-sentence-to-title"
           id="table-wrap-caption-2">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</report>
       </rule>
     </pattern>
