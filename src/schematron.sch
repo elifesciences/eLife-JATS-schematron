@@ -5229,6 +5229,10 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="ancestor::inline-formula and contains($formula-text,'\displaystyle')" 
         role="warning" 
         id="tex-math-test-7"><name/> element is in an inline-formula, and yet it contains the \displaystyle command. Is that correct? - <value-of select="."/></report>
+      
+      <report test="tokenize($formula-text,'\\?\\?\\(begin|end).array.')[(position() mod 2 = 0) and not(contains(.,'\\') or contains(.,'&amp;'))]" 
+        role="warning" 
+        id="tex-math-test-8"><name/> contains an array without horizontal or vertical spacing - <value-of select="string-join(tokenize($formula-text,'\\?\\?\\(begin|end).array.')[(position() mod 2 = 0) and not(contains(.,'\\') or contains(.,'&amp;'))],' ---- ')"/></report>
     </rule>
 
     <rule context="disp-formula/*" id="disp-formula-child-tests">
@@ -13744,12 +13748,12 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-rcsbpbd-test-1" 
         test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and not(pub-id[@pub-id-type='accession'])" 
-        role="error" 
+        role="warning" 
         id="data-rcsbpbd-test-1">Data reference with the title '<value-of select="data-title[1]"/>' links to RCSB Protein Data Bank (<value-of select="pub-id[1]/@xlink:href"/>). PDB datasets must (only) link to wwPDB using a DOI (e.g. https://doi.org/10.2210/pdb8QHN/pdb), not to RCSB Protein Data Bank or other Protein Data Banks.</report>
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-rcsbpbd-test-3" 
         test="contains(pub-id[1]/@xlink:href,'www.rcsb.org') and pub-id[@pub-id-type='accession']" 
-        role="error" 
+        role="warning" 
         id="data-rcsbpbd-test-3">Data reference with the title '<value-of select="data-title[1]"/>' links to RCSB Protein Data Bank (<value-of select="pub-id[1]/@xlink:href"/>) with the accesion number (<value-of select="pub-id[@pub-id-type='accession'][1]"/>). PDB datasets must (only) link to wwPDB using a DOI (not to RCSB Protein Data Bank or other Protein Data Banks). Is the correct DOI to use instead: <value-of select="concat('https://doi.org/10.2210/pdb',replace(normalize-space(pub-id[@pub-id-type='accession'][1]),'^pdb_0000',''),'/pdb')"/></report>
       
       <report test="contains(pub-id[1]/@xlink:href,'ebi.ac.uk/pdbe/entry/pdb/') and not(pub-id[@pub-id-type='accession'])" 
