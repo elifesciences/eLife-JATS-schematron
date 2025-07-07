@@ -16627,6 +16627,22 @@
             </svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="tokenize($formula-text,'\\?\\?\\(begin|end).array.')[(position() mod 2 = 0) and not(contains(.,'\\') or contains(.,'&amp;'))]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="tokenize($formula-text,'\\?\\?\\(begin|end).array.')[(position() mod 2 = 0) and not(contains(.,'\\') or contains(.,'&amp;'))]">
+            <xsl:attribute name="id">tex-math-test-8</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[tex-math-test-8] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> contains an array without horizontal or vertical spacing - <xsl:text/>
+               <xsl:value-of select="string-join(tokenize($formula-text,'\\?\\?\\(begin|end).array.')[(position() mod 2 = 0) and not(contains(.,'\\') or contains(.,'&amp;'))],' ---- ')"/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M218"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M218"/>

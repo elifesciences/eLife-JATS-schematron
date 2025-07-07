@@ -3185,6 +3185,8 @@
       <report test="ancestor::disp-formula and not(contains($formula-text,'\displaystyle'))" role="warning" id="tex-math-test-6">[tex-math-test-6] <name/> element in a disp-formula does not contain the \displaystyle command. Is that correct? <value-of select="$formula-text"/></report>
       
       <report test="ancestor::inline-formula and contains($formula-text,'\displaystyle')" role="warning" id="tex-math-test-7">[tex-math-test-7] <name/> element is in an inline-formula, and yet it contains the \displaystyle command. Is that correct? - <value-of select="."/></report>
+      
+      <report test="tokenize($formula-text,'\\?\\?\\(begin|end).array.')[(position() mod 2 = 0) and not(contains(.,'\\') or contains(.,'&amp;'))]" role="warning" id="tex-math-test-8">[tex-math-test-8] <name/> contains an array without horizontal or vertical spacing - <value-of select="string-join(tokenize($formula-text,'\\?\\?\\(begin|end).array.')[(position() mod 2 = 0) and not(contains(.,'\\') or contains(.,'&amp;'))],' ---- ')"/></report>
     </rule></pattern><pattern id="disp-formula-child-tests-pattern"><rule context="disp-formula/*" id="disp-formula-child-tests">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1" test="not(local-name()=('label','math','alternatives'))" role="error" id="disp-formula-child-test-1">[disp-formula-child-test-1] <name/> element is not allowed as a child of disp-formula.</report>

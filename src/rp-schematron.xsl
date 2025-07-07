@@ -2007,7 +2007,7 @@
       <xsl:param name="buffer" select="()"/>
       <xsl:choose>
          <xsl:when test="not($nodes)">
-            <xsl:sequence select="$buffer"/>
+            <xsl:apply-templates select="$buffer" mode="customCopy"/>
          </xsl:when>
          <xsl:otherwise>
             <xsl:variable name="current-node" select="$nodes[1]"/>
@@ -2018,7 +2018,7 @@
                   <xsl:choose>
                      <xsl:when test="matches($text-content, '.*[\.!?]\s+')">
                         <xsl:variable name="first-part" select="replace(replace($text-content, '(.*?[\.!?]\s+)(.*)', '$1'),'\s+$','')"/>
-                        <xsl:sequence select="$buffer, $first-part"/>
+                        <xsl:apply-templates select="$buffer, $first-part" mode="customCopy"/>
                      </xsl:when>
                      <xsl:otherwise>
                         <xsl:call-template name="get-first-sentence">
@@ -2060,7 +2060,7 @@
       <xsl:param name="buffer" select="()"/>
       <xsl:choose>
          <xsl:when test="not($nodes) and $first-sentence-completed">
-            <xsl:sequence select="$buffer"/>
+            <xsl:apply-templates select="$buffer" mode="customCopy"/>
          </xsl:when>
          <xsl:when test="not($nodes)">
             <xsl:sequence select="()"/>
