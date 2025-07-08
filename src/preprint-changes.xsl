@@ -1781,7 +1781,7 @@
                                 <xsl:otherwise>
                                     <xsl:choose>
                                         <!-- if the text node is just space -->
-                                        <xsl:when test="self::text() and matches(.,'^\p{Z}+$')">
+                                        <xsl:when test="self::text() and matches(.,'^\p{Z}+(and\p{Z}+)?$')">
                                             <xsl:apply-templates select="."/>
                                         </xsl:when>
                                         <!-- reintroduce styling for unknown content -->
