@@ -2021,17 +2021,17 @@
   
   <pattern id="bold">
      <rule context="bold" id="bold-checks">
-        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')"
+        <report test="not(ancestor::sub-article) and matches(.,'(^|[\s\(\[])[Ff]ig(\.|ure)?')"
           role="warning" 
           sqf:fix="strip-tags replace-fig-xref replace-supp-xref"
           id="bold-check-1">Content of bold element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
-       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')"
+       <report test="not(ancestor::sub-article) and matches(.,'(^|[\s\(\[])([Tt]able|[Tt]bl)[\.\s]')"
           role="warning"
           sqf:fix="strip-tags replace-fig-xref replace-supp-xref"
           id="bold-check-2">Content of bold element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
-       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')"
+       <report test="not(ancestor::sub-article) and matches(.,'(^|[\s\(\[])([Vv]ideo|[Mm]ovie)')"
           role="warning"
           sqf:fix="strip-tags replace-fig-xref replace-supp-xref"
           id="bold-check-3">Content of bold element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
