@@ -27019,15 +27019,15 @@
       </xsl:choose>
       <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="some $x in document($countries)/countries/country satisfies ($x=@country)"/>
+         <xsl:when test="some $x in document($countries)/countries/country/@country satisfies ($x=@country)"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $x in document($countries)/countries/country satisfies ($x=@country)">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $x in document($countries)/countries/country/@country satisfies ($x=@country)">
                <xsl:attribute name="id">err-elem-cit-patent-10-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[err-elem-cit-patent-10-2] The &lt;patent&gt; element must have a country attribute, the value of which must be an allowed value. Reference '<xsl:text/>
+               <svrl:text>[err-elem-cit-patent-10-2] The &lt;patent&gt; element must have a country attribute, the value of which must be a 2 letter ISO 3166-1 country code. Reference '<xsl:text/>
                   <xsl:value-of select="ancestor::ref/@id"/>
                   <xsl:text/>' has a patent/@country attribute with the value '<xsl:text/>
                   <xsl:value-of select="@country"/>

@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="err-elem-cit-patent-10-2.sch"?>
 <!--Context: element-citation[@publication-type='patent']/patent
-Test: assert    some $x in document($countries)/countries/country satisfies ($x=@country)
-Message: The <patent> element must have a country attribute, the value of which must be an allowed value. Reference '' has a patent/@country attribute with the value '', which is not in the list. -->
+Test: assert    some $x in document($countries)/countries/country/@country satisfies ($x=@country)
+Message: The <patent> element must have a country attribute, the value of which must be a 2 letter ISO 3166-1 country code. Reference '' has a patent/@country attribute with the value '', which is not in the list. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <ref-list>
@@ -20,6 +20,7 @@ Message: The <patent> element must have a country attribute, the value of which 
           <year iso-8601-date="2011">2011</year>
           <article-title>IRE-1alpha inhibitors</article-title>
           <source>United States patent</source>
+          <patent country="United States">US20100941530</patent>
           <patent>US20100941530</patent>
           <ext-link ext-link-type="uri" xlink:href="http://europepmc.org/patents/PAT/US2011065162">http://europepmc.org/patents/PAT/US2011065162</ext-link>
         </element-citation>

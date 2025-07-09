@@ -4934,7 +4934,7 @@
       
       <assert test="count(*)=0" role="error" id="err-elem-cit-patent-10-1-2">[err-elem-cit-patent-10-1-2] The &lt;patent&gt; element may not have child elements. Reference '<value-of select="ancestor::ref/@id"/>' has child elements.</assert>
       
-      <assert test="some $x in document($countries)/countries/country satisfies ($x=@country)" role="error" id="err-elem-cit-patent-10-2">[err-elem-cit-patent-10-2] The &lt;patent&gt; element must have a country attribute, the value of which must be an allowed value. Reference '<value-of select="ancestor::ref/@id"/>' has a patent/@country attribute with the value '<value-of select="@country"/>', which is not in the list.</assert>
+      <assert test="some $x in document($countries)/countries/country/@country satisfies ($x=@country)" role="error" id="err-elem-cit-patent-10-2">[err-elem-cit-patent-10-2] The &lt;patent&gt; element must have a country attribute, the value of which must be a 2 letter ISO 3166-1 country code. Reference '<value-of select="ancestor::ref/@id"/>' has a patent/@country attribute with the value '<value-of select="@country"/>', which is not in the list.</assert>
       
     </rule></pattern>
   
