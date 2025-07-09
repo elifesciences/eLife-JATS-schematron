@@ -491,20 +491,30 @@
             </xsl:choose>
           </xsl:when>
           <xsl:when test="$current-node instance of element()">
-            <xsl:variable name="temp-buffer">
-              <xsl:copy-of select="$buffer"/>
-              <xsl:element name="{$current-node/name()}" namespace="">
+            <xsl:variable name="inner-result">
+              <xsl:call-template name="get-first-sentence">
+                <xsl:with-param name="nodes" select="$current-node/node()"/>
+                <xsl:with-param name="buffer" select="()"/>
+              </xsl:call-template>
+            </xsl:variable>
+            <xsl:variable name="found-in-element" select="count($inner-result/*| $inner-result/text()) &gt; 0 and matches(string($inner-result), '.*[\.!?]')"/>
+            <xsl:variable name="temp-element">
+              <xsl:element name="{$current-node/name()}" namespace="{$current-node/namespace-uri()}">
                 <xsl:apply-templates select="$current-node/@*" mode="customCopy"/>
-                <xsl:call-template name="get-first-sentence">
-                  <xsl:with-param name="nodes" select="$current-node/node()"/>
-                  <xsl:with-param name="buffer" select="()"/> 
-                </xsl:call-template>
+                <xsl:copy-of select="$inner-result/node()"/>
               </xsl:element>
             </xsl:variable>
-            <xsl:call-template name="get-first-sentence">
-              <xsl:with-param name="nodes" select="$remaining-nodes"/>
-              <xsl:with-param name="buffer" select="$temp-buffer/* | $temp-buffer/text()"/>
-            </xsl:call-template>
+            <xsl:choose>
+              <xsl:when test="$found-in-element">
+                <xsl:apply-templates select="$buffer, $temp-element" mode="customCopy"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:call-template name="get-first-sentence">
+                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                  <xsl:with-param name="buffer" select="$buffer, $temp-element"/>
+                </xsl:call-template>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:when>
           <xsl:otherwise>
             <xsl:call-template name="get-first-sentence">
@@ -584,7 +594,7 @@
                   <xsl:when test="string-length($element-result) &gt; 0">
                     <xsl:variable name="temp-buffer">
                       <xsl:copy-of select="$buffer" copy-namespaces="no"/>
-                      <xsl:element name="{$current-node/name()}" namespace="">
+                      <xsl:element name="{$current-node/name()}" namespace="{$current-node/namespace-uri()}">
                         <xsl:apply-templates select="$current-node/@*" mode="customCopy"/>
                         <xsl:sequence select="$element-result"/>
                       </xsl:element>
