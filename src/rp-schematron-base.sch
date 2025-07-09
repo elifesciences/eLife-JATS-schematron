@@ -1416,6 +1416,49 @@
       
     </rule>
     </pattern>
+  
+  <pattern id="editor-checks">
+    <rule context="article/front/article-meta/contrib-group[@content-type='section']" id="test-editor-contrib-group">
+      
+      <assert test="count(contrib[@contrib-type='senior_editor']) = 1" 
+        role="error" 
+        id="editor-conformance-1">contrib-group[@content-type='section'] must contain one (and only 1) Senior Editor (contrib[@contrib-type='senior_editor']).</assert>
+      
+      <assert test="count(contrib[@contrib-type='editor']) = 1" 
+        role="warning" 
+        id="editor-conformance-2">contrib-group[@content-type='section'] should contain one (and only 1) Reviewing Editor (contrib[@contrib-type='editor']). This one doesn't which is almost definitely incorrect and needs correcting.</assert>
+      
+    </rule>
+    
+    <rule context="article/front/article-meta/contrib-group[@content-type='section']/contrib" id="test-editors-contrib">
+      <let name="name" value="if (name) then e:get-name(name[1]) else ''"/>
+      <let name="role" value="role[1]"/>
+      <let name="author-contribs" value="ancestor::article-meta/contrib-group[1]/contrib[@contrib-type='author']"/>
+      <let name="matching-author-names" value="for $contrib in $author-contribs return if (e:get-name($contrib/name[1])=$name) then e:get-name($contrib) else ()"/>
+      
+      <report test="(@contrib-type='senior_editor') and ($role!='Senior Editor')" 
+        role="error" 
+        id="editor-conformance-3"><value-of select="$name"/> has a @contrib-type='senior_editor' but their role is not 'Senior Editor' (<value-of select="$role"/>), which is incorrect.</report>
+      
+      <report test="(@contrib-type='editor') and ($role!='Reviewing Editor')" 
+        role="error" 
+        id="editor-conformance-4"><value-of select="$name"/> has a @contrib-type='editor' but their role is not 'Reviewing Editor' (<value-of select="$role"/>), which is incorrect.</report>
+
+      <assert test="count($matching-author-names)=0" 
+        role="error" 
+        id="editor-conformance-5"><value-of select="$name"/> is listed both as an author and as a <value-of select="$role"/>, which must be incorrect.</assert>
+      
+      <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjuk3-contrib-test-2" 
+    	  test="(count(xref[@ref-type='aff']) + count(aff) = 0)" 
+        role="warning" 
+        id="contrib-test-2">The <value-of select="if (role) then role[1] else 'editor contrib'"/> doesn't have an affiliation - <value-of select="$name"/> - is this correct? Please check eJP or ask Editorial for the correct affiliation to be added in eJP.</report>
+      
+      <report test="$name=''" 
+        role="error" 
+        id="editor-check-1">The <value-of select="if (role) then role[1] else 'editor contrib'"/> doesn't have a name element, which must be incorrect. Please check eJP or ask Editorial for the correct affiliation to be added in eJP.</report>
+      
+    </rule>
+  </pattern>
 
     <pattern id="journal-ref">
      <rule context="mixed-citation[@publication-type='journal']" id="journal-ref-checks">
