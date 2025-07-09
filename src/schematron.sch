@@ -13756,19 +13756,23 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="data-rcsbpbd-test-3">Data reference with the title '<value-of select="data-title[1]"/>' links to RCSB Protein Data Bank (<value-of select="pub-id[1]/@xlink:href"/>) with the accesion number (<value-of select="pub-id[@pub-id-type='accession'][1]"/>). PDB datasets must (only) link to wwPDB using a DOI (not to RCSB Protein Data Bank or other Protein Data Banks). Is the correct DOI to use instead: <value-of select="concat('https://doi.org/10.2210/pdb',replace(normalize-space(pub-id[@pub-id-type='accession'][1]),'^pdb_0000',''),'/pdb')"/></report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'ebi.ac.uk/pdbe/entry/pdb/') and not(pub-id[@pub-id-type='accession'])" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-pbde-test-1"
+        test="contains(pub-id[1]/@xlink:href,'ebi.ac.uk/pdbe/entry/pdb/') and not(pub-id[@pub-id-type='accession'])" 
         role="error" 
         id="data-pbde-test-1">Data reference with the title '<value-of select="data-title[1]"/>' links to Protein Data Bank in Europe (<value-of select="pub-id[1]/@xlink:href"/>). PDB datasets must (only) link to wwPDB using a DOI (e.g. https://doi.org/10.2210/pdb8QHN/pdb), not to Protein Data Bank in Europe or other Protein Data Banks.</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'ebi.ac.uk/pdbe/entry/pdb/') and pub-id[@pub-id-type='accession']" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-pbde-test-2"
+        test="contains(pub-id[1]/@xlink:href,'ebi.ac.uk/pdbe/entry/pdb/') and pub-id[@pub-id-type='accession']" 
         role="error" 
         id="data-pbde-test-2">Data reference with the title '<value-of select="data-title[1]"/>' links to Protein Data Bank in Europe (<value-of select="pub-id[1]/@xlink:href"/>) with the accesion number (<value-of select="pub-id[@pub-id-type='accession'][1]"/>). PDB datasets must (only) link to wwPDB using a DOI (not to Protein Data Bank in Europe or other Protein Data Banks). Is the correct DOI to use instead: <value-of select="concat('https://doi.org/10.2210/pdb',replace(normalize-space(pub-id[@pub-id-type='accession'][1]),'^pdb_0000',''),'/pdb')"/></report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'pdbj.org') and not(pub-id[@pub-id-type='accession'])" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-pbdj-test-1"
+        test="contains(pub-id[1]/@xlink:href,'pdbj.org') and not(pub-id[@pub-id-type='accession'])" 
         role="error" 
         id="data-pbdj-test-1">Data reference with the title '<value-of select="data-title[1]"/>' links to Protein Data Bank Japan (<value-of select="pub-id[1]/@xlink:href"/>). PDB datasets must (only) link to wwPDB using a DOI (e.g. https://doi.org/10.2210/pdb8QHN/pdb), not to Protein Data Bank Japan or other Protein Data Banks.</report>
       
-      <report test="contains(pub-id[1]/@xlink:href,'pdbj.org') and pub-id[@pub-id-type='accession']" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-pbdj-test-2"
+        test="contains(pub-id[1]/@xlink:href,'pdbj.org') and pub-id[@pub-id-type='accession']" 
         role="error" 
         id="data-pbdj-test-2">Data reference with the title '<value-of select="data-title[1]"/>' links to Protein Data Bank Japan (<value-of select="pub-id[1]/@xlink:href"/>) with the accesion number (<value-of select="pub-id[@pub-id-type='accession'][1]"/>). PDB datasets must (only) link to wwPDB using a DOI (not to Protein Data Bank Japan or other Protein Data Banks). Is the correct DOI to use instead: <value-of select="concat('https://doi.org/10.2210/pdb',replace(normalize-space(pub-id[@pub-id-type='accession'][1]),'^pdb_0000',''),'/pdb')"/></report>
       
@@ -13782,11 +13786,13 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="data-wwpdb-test-2">Data reference with the title '<value-of select="data-title[1]"/>' has the database name <value-of select="source[1]"/>, but no doi starting with '10.2210', which is incorrect.</report>
       
-      <report test="not(pub-id) and source[1][matches(normalize-space(lower-case(.)),'protein data bank|^(r[cs][cs]b\s)?pdb[je]?$') and lower-case(.)!='worldwide protein data bank']" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-data-pdb-source-test-1"
+        test="not(pub-id) and source[1][matches(normalize-space(lower-case(.)),'protein data bank|^(r[cs][cs]b\s)?pdb[je]?$') and lower-case(.)!='worldwide protein data bank']" 
         role="warning" 
         id="pre-data-pdb-source-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a source that suggests it is a Protein data bank dataset - <value-of select="."/>. PDB datasets should have a DOI in the format https://doi.org/10.2210/pdb{accession-number}/pdb which links to the entry in the Worldwide Protein Data Bank. If this information isn't present, please query the author: Please provide the Worldwide Protein Data Bank DOI for this dataset.</report>
       
-      <report test="not(pub-id) and source[1][matches(normalize-space(lower-case(.)),'protein data bank|^(r[cs][cs]b\s)?pdb[je]?$') and lower-case(.)!='worldwide protein data bank']" 
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-data-pdb-source-test-1"
+        test="not(pub-id) and source[1][matches(normalize-space(lower-case(.)),'protein data bank|^(r[cs][cs]b\s)?pdb[je]?$') and lower-case(.)!='worldwide protein data bank']" 
         role="error" 
         id="final-data-pdb-source-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a source that suggests it is a Protein data bank dataset - <value-of select="."/>. PDB datasets should have a DOI in the format https://doi.org/10.2210/pdb{accession-number}/pdb which links to the entry in the Worldwide Protein Data Bank. If this information isn't present, please query the author.</report>
       

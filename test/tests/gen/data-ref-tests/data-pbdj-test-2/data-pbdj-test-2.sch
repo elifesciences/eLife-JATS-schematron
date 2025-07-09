@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report test="contains(pub-id[1]/@xlink:href,'pdbj.org') and pub-id[@pub-id-type='accession']" role="error" id="data-pbdj-test-2">Data reference with the title '<value-of select="data-title[1]"/>' links to Protein Data Bank Japan (<value-of select="pub-id[1]/@xlink:href"/>) with the accesion number (<value-of select="pub-id[@pub-id-type='accession'][1]"/>). PDB datasets must (only) link to wwPDB using a DOI (not to Protein Data Bank Japan or other Protein Data Banks). Is the correct DOI to use instead: <value-of select="concat('https://doi.org/10.2210/pdb',replace(normalize-space(pub-id[@pub-id-type='accession'][1]),'^pdb_0000',''),'/pdb')"/>
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-pbdj-test-2" test="contains(pub-id[1]/@xlink:href,'pdbj.org') and pub-id[@pub-id-type='accession']" role="error" id="data-pbdj-test-2">Data reference with the title '<value-of select="data-title[1]"/>' links to Protein Data Bank Japan (<value-of select="pub-id[1]/@xlink:href"/>) with the accesion number (<value-of select="pub-id[@pub-id-type='accession'][1]"/>). PDB datasets must (only) link to wwPDB using a DOI (not to Protein Data Bank Japan or other Protein Data Banks). Is the correct DOI to use instead: <value-of select="concat('https://doi.org/10.2210/pdb',replace(normalize-space(pub-id[@pub-id-type='accession'][1]),'^pdb_0000',''),'/pdb')"/>
       </report>
     </rule>
   </pattern>
