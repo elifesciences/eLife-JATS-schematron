@@ -1446,7 +1446,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
-      <report test="contains(pub-id[1]/@xlink:href,'pdbj.org') and not(pub-id[@pub-id-type='accession'])" role="error" id="data-pbdj-test-1">Data reference with the title '<value-of select="data-title[1]"/>' links to Protein Data Bank Japan (<value-of select="pub-id[1]/@xlink:href"/>). PDB datasets must (only) link to wwPDB using a DOI (e.g. https://doi.org/10.2210/pdb8QHN/pdb), not to Protein Data Bank Japan or other Protein Data Banks.</report>
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-pbdj-test-1" test="contains(pub-id[1]/@xlink:href,'pdbj.org') and not(pub-id[@pub-id-type='accession'])" role="error" id="data-pbdj-test-1">Data reference with the title '<value-of select="data-title[1]"/>' links to Protein Data Bank Japan (<value-of select="pub-id[1]/@xlink:href"/>). PDB datasets must (only) link to wwPDB using a DOI (e.g. https://doi.org/10.2210/pdb8QHN/pdb), not to Protein Data Bank Japan or other Protein Data Banks.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

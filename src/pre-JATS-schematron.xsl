@@ -39585,6 +39585,7 @@
       <xsl:if test="contains(pub-id[1]/@xlink:href,'ebi.ac.uk/pdbe/entry/pdb/') and not(pub-id[@pub-id-type='accession'])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'ebi.ac.uk/pdbe/entry/pdb/') and not(pub-id[@pub-id-type='accession'])">
             <xsl:attribute name="id">data-pbde-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-pbde-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -39600,6 +39601,7 @@
       <xsl:if test="contains(pub-id[1]/@xlink:href,'ebi.ac.uk/pdbe/entry/pdb/') and pub-id[@pub-id-type='accession']">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'ebi.ac.uk/pdbe/entry/pdb/') and pub-id[@pub-id-type='accession']">
             <xsl:attribute name="id">data-pbde-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-pbde-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -39620,6 +39622,7 @@
       <xsl:if test="contains(pub-id[1]/@xlink:href,'pdbj.org') and not(pub-id[@pub-id-type='accession'])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'pdbj.org') and not(pub-id[@pub-id-type='accession'])">
             <xsl:attribute name="id">data-pbdj-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-pbdj-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -39635,6 +39638,7 @@
       <xsl:if test="contains(pub-id[1]/@xlink:href,'pdbj.org') and pub-id[@pub-id-type='accession']">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(pub-id[1]/@xlink:href,'pdbj.org') and pub-id[@pub-id-type='accession']">
             <xsl:attribute name="id">data-pbdj-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-pbdj-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -39687,6 +39691,7 @@
       <xsl:if test="not(pub-id) and source[1][matches(normalize-space(lower-case(.)),'protein data bank|^(r[cs][cs]b\s)?pdb[je]?$') and lower-case(.)!='worldwide protein data bank']">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(pub-id) and source[1][matches(normalize-space(lower-case(.)),'protein data bank|^(r[cs][cs]b\s)?pdb[je]?$') and lower-case(.)!='worldwide protein data bank']">
             <xsl:attribute name="id">pre-data-pdb-source-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-data-pdb-source-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
