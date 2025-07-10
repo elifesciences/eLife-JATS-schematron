@@ -901,10 +901,39 @@
             </xsl:copy>
           </sqf:replace>
         </sqf:fix>
+    
+    <sqf:fix id="convert-to-confproc">
+      <sqf:description>
+        <sqf:title>Convert to conference proceedings</sqf:title>
+      </sqf:description>
+      <sqf:replace match="parent::mixed-citation">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*[name()!='publication-type']" mode="customCopy"/>
+          <xsl:attribute name="publication-type">confproc</xsl:attribute>
+          <xsl:for-each select="node()|comment()|processing-instruction()">
+            <xsl:choose>
+              <xsl:when test=". instance of element() and name()='chapter-title'">
+                <article-title xmlns="">
+                  <xsl:apply-templates select="node()" mode="customCopy"/>
+                </article-title>
+              </xsl:when>
+              <xsl:when test=". instance of element() and name()='source'">
+                <conf-name xmlns="">
+                  <xsl:apply-templates select="node()" mode="customCopy"/>
+                </conf-name>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:apply-templates select="." mode="customCopy"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:for-each>
+        </xsl:copy>
+      </sqf:replace>
+    </sqf:fix>
   </sqf:fixes>
   <pattern id="book-ref-source-checks-pattern">
     <rule context="mixed-citation[@publication-type='book']/source" id="book-ref-source-checks">
-      <report test="matches(lower-case(.),'^(symposium|conference|proc\.?|proceeding|meeting|workshop)|\s?(symposium|conference|proc\.?|proceeding|meeting|workshop)\s?|(symposium|conference|proc\.?|proceeding|meeting|workshop)$')" role="warning" id="book-source-3">[book-source-3] Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
+      <report test="matches(lower-case(.),'^(symposium|conference|proc\.?|proceeding|meeting|workshop)|\s?(symposium|conference|proc\.?|proceeding|meeting|workshop)\s?|(symposium|conference|proc\.?|proceeding|meeting|workshop)$')" role="warning" sqf:fix="convert-to-confproc" id="book-source-3">[book-source-3] Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
