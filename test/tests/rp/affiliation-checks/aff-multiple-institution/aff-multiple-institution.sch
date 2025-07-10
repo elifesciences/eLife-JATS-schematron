@@ -908,6 +908,38 @@
       <let name="city-count" value="count(descendant::city)"/>
       <report test="count(descendant::institution) gt 1" role="warning" id="aff-multiple-institution">[aff-multiple-institution] Affiliation contains more than one institution element: <value-of select="string-join(descendant::institution,'; ')"/> in <value-of select="."/>
       </report>
+      <sqf:fix id="pick-aff-ror-1">
+        <sqf:description>
+          <sqf:title>Pick ROR option 1</sqf:title>
+        </sqf:description>
+        <sqf:delete match="institution-wrap/comment()|           institution-wrap/institution-id[position() != 1]|           institution-wrap/text()[following-sibling::institution and position()!=2]"/>
+      </sqf:fix>
+      <sqf:fix id="pick-aff-ror-2">
+        <sqf:description>
+          <sqf:title>Pick ROR option 2</sqf:title>
+        </sqf:description>
+        <sqf:delete match="institution-wrap/comment()|           institution-wrap/institution-id[position() != 2]|           institution-wrap/text()[following-sibling::institution and position()!=3]"/>
+      </sqf:fix>
+      <sqf:fix id="pick-aff-ror-3" use-when="count(descendant::institution-id) gt 2">
+        <sqf:description>
+          <sqf:title>Pick ROR option 3</sqf:title>
+        </sqf:description>
+        <sqf:delete match="institution-wrap/comment()|           institution-wrap/institution-id[position() != 3]|           institution-wrap/text()[following-sibling::institution and position()!=4]"/>
+      </sqf:fix>
+      <sqf:fix id="add-ror-city">
+        <sqf:description>
+          <sqf:title>Add city from ROR record</sqf:title>
+        </sqf:description>
+        <sqf:replace match="institution-wrap/following-sibling::text()[1]">
+          <xsl:variable name="ror" select="ancestor::aff/institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
+          <xsl:variable name="ror-record-city" select="document('rors.xml')//*:ror[*:id=$ror]/*:city/data()"/>
+          <xsl:text>, </xsl:text>
+          <city xmlns="">
+            <xsl:value-of select="$ror-record-city"/>
+          </city>
+          <xsl:text>, </xsl:text>
+        </sqf:replace>
+      </sqf:fix>
     </rule>
   </pattern>
   <pattern id="root-pattern">

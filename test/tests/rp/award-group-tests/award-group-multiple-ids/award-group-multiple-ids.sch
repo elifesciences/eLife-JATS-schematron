@@ -906,6 +906,24 @@
     <rule context="funding-group/award-group" id="award-group-tests">
       <report test="count(funding-source/institution-wrap/institution-id) gt 1" role="error" sqf:fix="pick-funding-ror-1 pick-funding-ror-2 pick-funding-ror-3" id="award-group-multiple-ids">[award-group-multiple-ids] Funding contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/>
       </report>
+      <sqf:fix id="pick-funding-ror-1">
+        <sqf:description>
+          <sqf:title>Pick ROR option 1</sqf:title>
+        </sqf:description>
+        <sqf:delete match="descendant::institution-wrap/comment()|           descendant::institution-wrap/institution-id[position() != 1]|           descendant::institution-wrap/text()[not(position()=(1,last()))]"/>
+      </sqf:fix>
+      <sqf:fix id="pick-funding-ror-2">
+        <sqf:description>
+          <sqf:title>Pick ROR option 2</sqf:title>
+        </sqf:description>
+        <sqf:delete match="descendant::institution-wrap/comment()|           descendant::institution-wrap/institution-id[position() != 2]|           descendant::institution-wrap/text()[not(position()=(1,last()))]"/>
+      </sqf:fix>
+      <sqf:fix id="pick-funding-ror-3" use-when="count(descendant::institution-id) gt 2">
+        <sqf:description>
+          <sqf:title>Pick ROR option 3</sqf:title>
+        </sqf:description>
+        <sqf:delete match="descendant::institution-wrap/comment()|           descendant::institution-wrap/institution-id[position() != 3]|           descendant::institution-wrap/text()[not(position()=(1,last()))]"/>
+      </sqf:fix>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -905,6 +905,14 @@
   <pattern id="sc-checks-pattern">
     <rule context="sc" id="sc-checks">
       <report test="." role="warning" sqf:fix="strip-tags strip-tags-all-caps" id="sc-check-1">[sc-check-1] Content is in small caps - <value-of select="."/> - This formatting is not supported on EPP. Consider removing it or replacing the content with other formatting or (if necessary) different glyphs/characters in order to retain the original meaning.</report>
+      <sqf:fix id="strip-tags-all-caps">
+         <sqf:description>
+           <sqf:title>Strip the tags and GO ALL CAPS</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+           <xsl:value-of select="upper-case(.)"/>
+         </sqf:replace>
+       </sqf:fix>
     </rule>
   </pattern>
 </schema>

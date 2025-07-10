@@ -1210,6 +1210,7 @@
        <report test="person-group[@person-group-type='editor']" role="warning" id="journal-ref-editor">[journal-ref-editor] This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has an editor person-group. This info isn;t typically included in journal refs. Is it really a journal ref? Does it really contain editors?</report>
        
        <report test="(fpage or lpage) and elocation-id" role="error" id="journal-ref-page-elocation-id">[journal-ref-page-elocation-id] This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has both an elocation-id (<value-of select="elocation-id[1]"/>), and an fpage or lpage (<value-of select="string-join(*[name()=('fpage','lpage')],'; ')"/>), which cannot be correct.</report>
+       
        <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-6-7" test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1 or count(comment) gt 1" role="error" id="err-elem-cit-journal-6-7">[err-elem-cit-journal-6-7] The following elements may not occur more than once in a &lt;mixed-citation&gt;: &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, and &lt;comment&gt;In press&lt;/comment&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(fpage)"/> &lt;fpage&gt;, <value-of select="count(lpage)"/> &lt;lpage&gt;, <value-of select="count(elocation-id)"/> &lt;elocation-id&gt;, and <value-of select="count(comment)"/> &lt;comment&gt; elements.</report>
      </rule></pattern><pattern id="journal-source-checks-pattern"><rule context="mixed-citation[@publication-type='journal']/source" id="journal-source-checks">
       <let name="preprint-regex" value="'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra'"/>
@@ -1217,14 +1218,121 @@
        <report test="matches(lower-case(.),$preprint-regex)" role="warning" id="journal-source-1">[journal-source-1] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source which suggests it might be a preprint - <value-of select="."/>. Is it tagged correctly?</report>
        
 
-       <report test="matches(lower-case(.),'^i{1,3}\.\s') and parent::*/article-title" role="warning" id="journal-source-2">[journal-source-2] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with a roman numeral. Is part of the article-title captured in source? Source = <value-of select="."/>.</report>
+       <report test="matches(lower-case(.),'^i{1,3}\.\s') and parent::*/article-title" role="warning" sqf:fix="fix-source-article-title-3" id="journal-source-2">[journal-source-2] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with a roman numeral. Is part of the article-title captured in source? Source = <value-of select="."/>.</report>
 
        <report test="matches(lower-case(.),'^(symposium|conference|meeting|workshop)\s|\s?(symposium|conference|meeting|workshop)\s?|\s(symposium|conference|meeting|workshop)$')" role="warning" id="journal-source-3">[journal-source-3] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
        
        <report test="matches(lower-case(.),'^in[^a-z]')" role="warning" id="journal-source-4">[journal-source-4] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
        
        <report test="matches(.,'[“”&quot;]')" role="warning" id="journal-source-5">[journal-source-5] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
-     </rule></pattern>
+       
+       <report test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s'))" role="warning" sqf:fix="fix-source-article-title" id="journal-source-6">[journal-source-6] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains more than one sentence - <value-of select="."/>. Should some of the content be moved into the article-title?</report>
+       
+       <report test="count(tokenize(.,'\.\s')) gt 1 and not(parent::mixed-citation/article-title) and not(matches(lower-case(.),'^i{1,3}\.\s'))" role="warning" sqf:fix="fix-source-article-title-2" id="journal-source-7">[journal-source-7] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains more than one sentence - <value-of select="."/>. Should some of the content be moved into a new article-title?</report>
+       
+       <sqf:fix id="fix-source-article-title">
+         <sqf:description>
+           <sqf:title>Move first sentence to article title</sqf:title>
+         </sqf:description>
+         <sqf:replace match="parent::mixed-citation/article-title">
+           <xsl:copy copy-namespaces="no">
+             <xsl:apply-templates select="@*|node()" mode="customCopy"/>
+             <xsl:if test="not(matches(.,'\.\s*$'))">
+               <xsl:text>. </xsl:text>
+             </xsl:if>
+             <xsl:variable name="first-sentence">
+               <xsl:call-template name="get-first-sentence">
+                 <xsl:with-param name="nodes" select="parent::mixed-citation/source/node()"/>
+               </xsl:call-template>
+             </xsl:variable>
+             <xsl:for-each select="$first-sentence">
+               <xsl:choose>
+                 <xsl:when test=". instance of text() and matches(.,'\.s*$')">
+                   <xsl:value-of select="replace(.,'\.s*$','')"/>
+                 </xsl:when>
+                 <xsl:otherwise>
+                   <xsl:sequence select="."/>
+                 </xsl:otherwise>
+               </xsl:choose>
+             </xsl:for-each>
+           </xsl:copy>
+         </sqf:replace>
+         <sqf:replace match=".">
+           <xsl:copy copy-namespaces="no">
+             <xsl:apply-templates select="@*" mode="customCopy"/>
+             <xsl:call-template name="get-remaining-sentences">
+               <xsl:with-param name="nodes" select="node()"/>
+             </xsl:call-template>
+           </xsl:copy>
+         </sqf:replace>
+       </sqf:fix>
+       
+       <sqf:fix id="fix-source-article-title-2">
+         <sqf:description>
+           <sqf:title>Move first sentence to article title</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+           <article-title xmlns="">
+             <xsl:variable name="first-sentence">
+               <xsl:call-template name="get-first-sentence">
+                 <xsl:with-param name="nodes" select="node()"/>
+               </xsl:call-template>
+             </xsl:variable>
+             <xsl:for-each select="$first-sentence">
+               <xsl:choose>
+                 <xsl:when test=". instance of text() and matches(.,'\.s*$')">
+                   <xsl:value-of select="replace(.,'\.s*$','')"/>
+                 </xsl:when>
+                 <xsl:otherwise>
+                   <xsl:sequence select="."/>
+                 </xsl:otherwise>
+               </xsl:choose>
+             </xsl:for-each>
+           </article-title>
+           <xsl:text>. </xsl:text>
+           <xsl:copy copy-namespaces="no">
+             <xsl:apply-templates select="@*" mode="customCopy"/>
+             <xsl:call-template name="get-remaining-sentences">
+               <xsl:with-param name="nodes" select="node()"/>
+             </xsl:call-template>
+           </xsl:copy>
+         </sqf:replace>
+       </sqf:fix>
+       
+       <sqf:fix id="fix-source-article-title-3">
+         <sqf:description>
+           <sqf:title>Move content to article title</sqf:title>
+         </sqf:description>
+         <sqf:replace match="parent::mixed-citation/article-title">
+           <xsl:copy copy-namespaces="no">
+             <xsl:apply-templates select="@*|node()" mode="customCopy"/>
+             <xsl:if test="not(matches(.,'\.\s*$'))">
+               <xsl:text>. </xsl:text>
+             </xsl:if>
+             <xsl:value-of select="string-join(tokenize(parent::mixed-citation/source,'\.\s?')[position() le 2],'. ')"/>
+           </xsl:copy>
+         </sqf:replace>
+         <sqf:replace match=".">
+           <xsl:copy copy-namespaces="no">
+             <xsl:apply-templates select="@*" mode="customCopy"/>
+             <xsl:value-of select="string-join(tokenize(.,'\.\s?')[position() ge 3],'. ')"/>
+           </xsl:copy>
+         </sqf:replace>
+       </sqf:fix>
+     </rule></pattern><pattern id="journal-fpage-checks-pattern"><rule context="mixed-citation[@publication-type='journal']/fpage" id="journal-fpage-checks">
+        <report test="parent::mixed-citation[not(issue)] and preceding-sibling::*[1]/name()='volume' and preceding-sibling::node()[1][. instance of text() and matches(.,'^\s*[\.,]?\(\s*$')] and following-sibling::node()[1][. instance of text() and matches(.,'^\s*[\.,]?\)')]" role="warning" sqf:fix="replace-fpage-to-issue" id="journal-fpage-1">[journal-fpage-1] fpage in journal reference (with <value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) is surrounded by brackets and follows the volume. Is it the issue number instead?</report>
+        
+        <sqf:fix id="replace-fpage-to-issue">
+          <sqf:description>
+            <sqf:title>Change to issue</sqf:title>
+          </sqf:description>
+          <sqf:replace match=".">
+            <issue xmlns="">
+              <xsl:apply-templates select="node()|comment()|processing-instruction()" mode="customCopy"/>
+            </issue>
+          </sqf:replace>
+        </sqf:fix>
+      </rule></pattern>
 
     <pattern id="preprint-ref-checks-pattern"><rule context="mixed-citation[@publication-type='preprint']" id="preprint-ref-checks">
         <assert test="source" role="error" sqf:fix="replace-to-preprint-ref" id="preprint-ref-source">[preprint-ref-source] This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no source element.</assert>

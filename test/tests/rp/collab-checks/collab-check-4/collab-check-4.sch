@@ -905,6 +905,16 @@
   <pattern id="collab-checks-pattern">
     <rule context="collab" id="collab-checks">
       <report test="matches(.,'^[\p{Z}\p{N}\p{P}]*$')" role="warning" id="collab-check-4">[collab-check-4] collab element consists only of spaces, punctuation and/or numbers (or is empty) - '<value-of select="."/>'. Is it really a collab?</report>
+      <sqf:fix id="replace-collab-to-string-name">
+          <sqf:description>
+            <sqf:title>Change to string name</sqf:title>
+          </sqf:description>
+          <sqf:replace match=".">
+            <xsl:call-template name="tag-author-list">
+              <xsl:with-param name="author-string" select="."/>
+            </xsl:call-template>
+          </sqf:replace>
+        </sqf:fix>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -905,6 +905,22 @@
   <pattern id="underline-checks-pattern">
     <rule context="underline" id="underline-checks">
       <report test="replace(.,'[\s\.]','')='&gt;'" role="warning" sqf:fix="strip-tags add-ge-symbol" id="underline-gt-warning">[underline-gt-warning] underline element contains a greater than symbol (<value-of select="."/>). Should this a greater than or equal to symbol instead (≥)?</report>
+      <sqf:fix id="add-ge-symbol">
+         <sqf:description>
+           <sqf:title>Change to ≥</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+           <xsl:text>≥</xsl:text>
+         </sqf:replace>
+       </sqf:fix>
+      <sqf:fix id="add-le-symbol">
+         <sqf:description>
+           <sqf:title>Change to ≤</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+           <xsl:text>≤</xsl:text>
+         </sqf:replace>
+       </sqf:fix>
     </rule>
   </pattern>
   <pattern id="root-pattern">
