@@ -392,7 +392,7 @@ declare function elife:copy-edit2xspec($xspec-sch){
 </x:description>};
 
 
-(:~ Generate schemalet files for unit testing purposes from the copy-edit-schematron
+(:~ Generate schemalet files for unit testing purposes for RP schematron
  :)
 declare function elife:rp-schema-let($assert-or-report){
   let $id := $assert-or-report/@id
@@ -431,7 +431,7 @@ return delete node $x,
     for $x in $copy2//*:pattern[*:rule]/*:rule/*
     return 
      if ($x/@id = $id) then ()
-     else if ($x/local-name() = 'let') then ()
+     else if ($x/local-name() = ('let','fix','fixes')) then ()
      else delete node $x,
      
     for $x in $copy2//*:schema

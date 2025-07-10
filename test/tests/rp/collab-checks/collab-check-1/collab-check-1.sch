@@ -906,6 +906,16 @@
     <rule context="collab" id="collab-checks">
       <report test="matches(.,'^\p{Z}+')" role="error" sqf:fix="replace-normalize-space" id="collab-check-1">[collab-check-1] collab element cannot start with space(s). This one does: <value-of select="."/>
       </report>
+      <sqf:fix id="replace-collab-to-string-name">
+          <sqf:description>
+            <sqf:title>Change to string name</sqf:title>
+          </sqf:description>
+          <sqf:replace match=".">
+            <xsl:call-template name="tag-author-list">
+              <xsl:with-param name="author-string" select="."/>
+            </xsl:call-template>
+          </sqf:replace>
+        </sqf:fix>
     </rule>
   </pattern>
   <pattern id="root-pattern">

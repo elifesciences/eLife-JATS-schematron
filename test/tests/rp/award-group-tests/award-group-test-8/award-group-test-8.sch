@@ -905,6 +905,24 @@
   <pattern id="award-group-tests-pattern">
     <rule context="funding-group/award-group" id="award-group-tests">
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-8" test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">[award-group-test-8] Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>.</report>
+      <sqf:fix id="pick-funding-ror-1">
+        <sqf:description>
+          <sqf:title>Pick ROR option 1</sqf:title>
+        </sqf:description>
+        <sqf:delete match="descendant::institution-wrap/comment()|           descendant::institution-wrap/institution-id[position() != 1]|           descendant::institution-wrap/text()[not(position()=(1,last()))]"/>
+      </sqf:fix>
+      <sqf:fix id="pick-funding-ror-2">
+        <sqf:description>
+          <sqf:title>Pick ROR option 2</sqf:title>
+        </sqf:description>
+        <sqf:delete match="descendant::institution-wrap/comment()|           descendant::institution-wrap/institution-id[position() != 2]|           descendant::institution-wrap/text()[not(position()=(1,last()))]"/>
+      </sqf:fix>
+      <sqf:fix id="pick-funding-ror-3" use-when="count(descendant::institution-id) gt 2">
+        <sqf:description>
+          <sqf:title>Pick ROR option 3</sqf:title>
+        </sqf:description>
+        <sqf:delete match="descendant::institution-wrap/comment()|           descendant::institution-wrap/institution-id[position() != 3]|           descendant::institution-wrap/text()[not(position()=(1,last()))]"/>
+      </sqf:fix>
     </rule>
   </pattern>
   <pattern id="root-pattern">

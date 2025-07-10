@@ -905,6 +905,12 @@
   <pattern id="aff-institution-id-tests-pattern">
     <rule context="aff//institution-id" id="aff-institution-id-tests">
       <assert test="matches(.,'^https?://ror\.org/[a-z0-9]{9}$')" role="error" id="aff-institution-id-test-2">[aff-institution-id-test-2] institution-id in aff must a value which is a valid ROR id. '<value-of select="."/>' is not a valid ROR id.</assert>
+      <sqf:fix id="add-ror-institution-id-type">
+          <sqf:description>
+            <sqf:title>Add ror institution-id-type attribute</sqf:title>
+          </sqf:description>
+          <sqf:add target="institution-id-type" node-type="attribute">ror</sqf:add>
+        </sqf:fix>
     </rule>
   </pattern>
   <pattern id="root-pattern">

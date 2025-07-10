@@ -906,6 +906,12 @@
     <rule context="aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap" id="aff-institution-wrap-tests">
       <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content','city'))],', ')"/>
       <report test="count(institution-id)=1 and text()" role="error" sqf:fix="delete-comments-and-whitespace" id="aff-institution-wrap-test-3">[aff-institution-wrap-test-3] institution-wrap cannot contain text. It can only contain elements.</report>
+      <sqf:fix id="delete-comments-and-whitespace" use-when="comment() or text()">
+        <sqf:description>
+          <sqf:title>Delete comments and/or whitespace</sqf:title>
+        </sqf:description>
+        <sqf:delete match=".//comment()|./text()[normalize-space(.)='']"/>
+      </sqf:fix>
     </rule>
   </pattern>
   <pattern id="root-pattern">

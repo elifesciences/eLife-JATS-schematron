@@ -906,6 +906,12 @@
     <rule context="aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap" id="aff-institution-wrap-tests">
       <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content','city'))],', ')"/>
       <assert test="count(institution[not(@*)]) = 1" role="error" id="aff-institution-wrap-test-5">[aff-institution-wrap-test-5] institution-wrap must contain 1 and only 1 institution elements. This one has <value-of select="count(institution[not(@*)])"/>.</assert>
+      <sqf:fix id="delete-comments-and-whitespace" use-when="comment() or text()">
+        <sqf:description>
+          <sqf:title>Delete comments and/or whitespace</sqf:title>
+        </sqf:description>
+        <sqf:delete match=".//comment()|./text()[normalize-space(.)='']"/>
+      </sqf:fix>
     </rule>
   </pattern>
   <pattern id="root-pattern">

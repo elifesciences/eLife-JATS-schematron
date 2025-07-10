@@ -906,6 +906,93 @@
     <rule context="mixed-citation[@publication-type='journal']/source" id="journal-source-checks">
       <let name="preprint-regex" value="'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra'"/>
       <report test="matches(lower-case(.),'^in[^a-z]')" role="warning" id="journal-source-4">[journal-source-4] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
+      <sqf:fix id="fix-source-article-title">
+         <sqf:description>
+           <sqf:title>Move first sentence to article title</sqf:title>
+         </sqf:description>
+         <sqf:replace match="parent::mixed-citation/article-title">
+           <xsl:copy copy-namespaces="no">
+             <xsl:apply-templates select="@*|node()" mode="customCopy"/>
+             <xsl:if test="not(matches(.,'\.\s*$'))">
+               <xsl:text>. </xsl:text>
+             </xsl:if>
+             <xsl:variable name="first-sentence">
+               <xsl:call-template name="get-first-sentence">
+                 <xsl:with-param name="nodes" select="parent::mixed-citation/source/node()"/>
+               </xsl:call-template>
+             </xsl:variable>
+             <xsl:for-each select="$first-sentence">
+               <xsl:choose>
+                 <xsl:when test=". instance of text() and matches(.,'\.s*$')">
+                   <xsl:value-of select="replace(.,'\.s*$','')"/>
+                 </xsl:when>
+                 <xsl:otherwise>
+                   <xsl:sequence select="."/>
+                 </xsl:otherwise>
+               </xsl:choose>
+             </xsl:for-each>
+           </xsl:copy>
+         </sqf:replace>
+         <sqf:replace match=".">
+           <xsl:copy copy-namespaces="no">
+             <xsl:apply-templates select="@*" mode="customCopy"/>
+             <xsl:call-template name="get-remaining-sentences">
+               <xsl:with-param name="nodes" select="node()"/>
+             </xsl:call-template>
+           </xsl:copy>
+         </sqf:replace>
+       </sqf:fix>
+      <sqf:fix id="fix-source-article-title-2">
+         <sqf:description>
+           <sqf:title>Move first sentence to article title</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+           <article-title xmlns="">
+             <xsl:variable name="first-sentence">
+               <xsl:call-template name="get-first-sentence">
+                 <xsl:with-param name="nodes" select="node()"/>
+               </xsl:call-template>
+             </xsl:variable>
+             <xsl:for-each select="$first-sentence">
+               <xsl:choose>
+                 <xsl:when test=". instance of text() and matches(.,'\.s*$')">
+                   <xsl:value-of select="replace(.,'\.s*$','')"/>
+                 </xsl:when>
+                 <xsl:otherwise>
+                   <xsl:sequence select="."/>
+                 </xsl:otherwise>
+               </xsl:choose>
+             </xsl:for-each>
+           </article-title>
+           <xsl:text>. </xsl:text>
+           <xsl:copy copy-namespaces="no">
+             <xsl:apply-templates select="@*" mode="customCopy"/>
+             <xsl:call-template name="get-remaining-sentences">
+               <xsl:with-param name="nodes" select="node()"/>
+             </xsl:call-template>
+           </xsl:copy>
+         </sqf:replace>
+       </sqf:fix>
+      <sqf:fix id="fix-source-article-title-3">
+         <sqf:description>
+           <sqf:title>Move content to article title</sqf:title>
+         </sqf:description>
+         <sqf:replace match="parent::mixed-citation/article-title">
+           <xsl:copy copy-namespaces="no">
+             <xsl:apply-templates select="@*|node()" mode="customCopy"/>
+             <xsl:if test="not(matches(.,'\.\s*$'))">
+               <xsl:text>. </xsl:text>
+             </xsl:if>
+             <xsl:value-of select="string-join(tokenize(parent::mixed-citation/source,'\.\s?')[position() le 2],'. ')"/>
+           </xsl:copy>
+         </sqf:replace>
+         <sqf:replace match=".">
+           <xsl:copy copy-namespaces="no">
+             <xsl:apply-templates select="@*" mode="customCopy"/>
+             <xsl:value-of select="string-join(tokenize(.,'\.\s?')[position() ge 3],'. ')"/>
+           </xsl:copy>
+         </sqf:replace>
+       </sqf:fix>
     </rule>
   </pattern>
   <pattern id="root-pattern">

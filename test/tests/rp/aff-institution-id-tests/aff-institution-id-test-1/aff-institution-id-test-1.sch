@@ -905,6 +905,12 @@
   <pattern id="aff-institution-id-tests-pattern">
     <rule context="aff//institution-id" id="aff-institution-id-tests">
       <assert test="@institution-id-type='ror'" role="error" sqf:fix="add-ror-institution-id-type" id="aff-institution-id-test-1">[aff-institution-id-test-1] institution-id in aff must have the attribute institution-id-type="ror".</assert>
+      <sqf:fix id="add-ror-institution-id-type">
+          <sqf:description>
+            <sqf:title>Add ror institution-id-type attribute</sqf:title>
+          </sqf:description>
+          <sqf:add target="institution-id-type" node-type="attribute">ror</sqf:add>
+        </sqf:fix>
     </rule>
   </pattern>
   <pattern id="root-pattern">

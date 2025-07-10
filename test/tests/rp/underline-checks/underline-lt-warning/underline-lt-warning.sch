@@ -905,6 +905,22 @@
   <pattern id="underline-checks-pattern">
     <rule context="underline" id="underline-checks">
       <report test="replace(.,'[\s\.]','')='&lt;'" role="warning" sqf:fix="strip-tags add-le-symbol" id="underline-lt-warning">[underline-lt-warning] underline element contains a less than symbol (<value-of select="."/>). Should this a less than or equal to symbol instead (≤)?</report>
+      <sqf:fix id="add-ge-symbol">
+         <sqf:description>
+           <sqf:title>Change to ≥</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+           <xsl:text>≥</xsl:text>
+         </sqf:replace>
+       </sqf:fix>
+      <sqf:fix id="add-le-symbol">
+         <sqf:description>
+           <sqf:title>Change to ≤</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+           <xsl:text>≤</xsl:text>
+         </sqf:replace>
+       </sqf:fix>
     </rule>
   </pattern>
   <pattern id="root-pattern">

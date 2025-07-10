@@ -989,6 +989,26 @@
         <x:expect-report id="journal-source-5" role="warning"/>
         <x:expect-not-assert id="journal-source-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="journal-source-6-pass">
+        <x:context href="../tests/rp/journal-source-checks/journal-source-6/pass.xml"/>
+        <x:expect-not-report id="journal-source-6" role="warning"/>
+        <x:expect-not-assert id="journal-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="journal-source-6-fail">
+        <x:context href="../tests/rp/journal-source-checks/journal-source-6/fail.xml"/>
+        <x:expect-report id="journal-source-6" role="warning"/>
+        <x:expect-not-assert id="journal-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="journal-source-7-pass">
+        <x:context href="../tests/rp/journal-source-checks/journal-source-7/pass.xml"/>
+        <x:expect-not-report id="journal-source-7" role="warning"/>
+        <x:expect-not-assert id="journal-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="journal-source-7-fail">
+        <x:context href="../tests/rp/journal-source-checks/journal-source-7/fail.xml"/>
+        <x:expect-report id="journal-source-7" role="warning"/>
+        <x:expect-not-assert id="journal-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="journal-fpage-checks">
       <x:scenario label="journal-fpage-1-pass">

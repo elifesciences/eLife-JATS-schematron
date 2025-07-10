@@ -4094,6 +4094,123 @@
                <xsl:text/>. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s'))">
+            <xsl:attribute name="id">journal-source-6</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[journal-source-6] Journal reference (<xsl:text/>
+               <xsl:value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>
+               <xsl:text/>) has a source that contains more than one sentence - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. Should some of the content be moved into the article-title?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="count(tokenize(.,'\.\s')) gt 1 and not(parent::mixed-citation/article-title) and not(matches(lower-case(.),'^i{1,3}\.\s'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(tokenize(.,'\.\s')) gt 1 and not(parent::mixed-citation/article-title) and not(matches(lower-case(.),'^i{1,3}\.\s'))">
+            <xsl:attribute name="id">journal-source-7</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[journal-source-7] Journal reference (<xsl:text/>
+               <xsl:value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>
+               <xsl:text/>) has a source that contains more than one sentence - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. Should some of the content be moved into a new article-title?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="fix-source-article-title">
+         <sqf:description>
+            <sqf:title>Move first sentence to article title</sqf:title>
+         </sqf:description>
+         <sqf:replace match="parent::mixed-citation/article-title">
+            <xsl:copy copy-namespaces="no">
+               <xsl:apply-templates select="@*|node()" mode="customCopy"/>
+               <xsl:if test="not(matches(.,'\.\s*$'))">
+                  <xsl:text>. </xsl:text>
+               </xsl:if>
+               <xsl:variable name="first-sentence">
+                  <xsl:call-template name="get-first-sentence">
+                     <xsl:with-param name="nodes" select="parent::mixed-citation/source/node()"/>
+                  </xsl:call-template>
+               </xsl:variable>
+               <xsl:for-each select="$first-sentence">
+                  <xsl:choose>
+                     <xsl:when test=". instance of text() and matches(.,'\.s*$')">
+                        <xsl:value-of select="replace(.,'\.s*$','')"/>
+                     </xsl:when>
+                     <xsl:otherwise>
+                        <xsl:sequence select="."/>
+                     </xsl:otherwise>
+                  </xsl:choose>
+               </xsl:for-each>
+            </xsl:copy>
+         </sqf:replace>
+         <sqf:replace match=".">
+            <xsl:copy copy-namespaces="no">
+               <xsl:apply-templates select="@*" mode="customCopy"/>
+               <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="node()"/>
+               </xsl:call-template>
+            </xsl:copy>
+         </sqf:replace>
+      </sqf:fix>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="fix-source-article-title-2">
+         <sqf:description>
+            <sqf:title>Move first sentence to article title</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+            <article-title xmlns="">
+               <xsl:variable name="first-sentence">
+                  <xsl:call-template name="get-first-sentence">
+                     <xsl:with-param name="nodes" select="node()"/>
+                  </xsl:call-template>
+               </xsl:variable>
+               <xsl:for-each select="$first-sentence">
+                  <xsl:choose>
+                     <xsl:when test=". instance of text() and matches(.,'\.s*$')">
+                        <xsl:value-of select="replace(.,'\.s*$','')"/>
+                     </xsl:when>
+                     <xsl:otherwise>
+                        <xsl:sequence select="."/>
+                     </xsl:otherwise>
+                  </xsl:choose>
+               </xsl:for-each>
+            </article-title>
+            <xsl:text>. </xsl:text>
+            <xsl:copy copy-namespaces="no">
+               <xsl:apply-templates select="@*" mode="customCopy"/>
+               <xsl:call-template name="get-remaining-sentences">
+                  <xsl:with-param name="nodes" select="node()"/>
+               </xsl:call-template>
+            </xsl:copy>
+         </sqf:replace>
+      </sqf:fix>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="fix-source-article-title-3">
+         <sqf:description>
+            <sqf:title>Move content to article title</sqf:title>
+         </sqf:description>
+         <sqf:replace match="parent::mixed-citation/article-title">
+            <xsl:copy copy-namespaces="no">
+               <xsl:apply-templates select="@*|node()" mode="customCopy"/>
+               <xsl:if test="not(matches(.,'\.\s*$'))">
+                  <xsl:text>. </xsl:text>
+               </xsl:if>
+               <xsl:value-of select="string-join(tokenize(parent::mixed-citation/source,'\.\s?')[position() le 2],'. ')"/>
+            </xsl:copy>
+         </sqf:replace>
+         <sqf:replace match=".">
+            <xsl:copy copy-namespaces="no">
+               <xsl:apply-templates select="@*" mode="customCopy"/>
+               <xsl:value-of select="string-join(tokenize(.,'\.\s?')[position() ge 3],'. ')"/>
+            </xsl:copy>
+         </sqf:replace>
+      </sqf:fix>
       <xsl:apply-templates select="*" mode="M55"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M55"/>
