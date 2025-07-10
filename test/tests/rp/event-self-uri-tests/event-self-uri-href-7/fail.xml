@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="event-self-uri-href-7.sch"?>
 <!--Context: event/self-uri
-Test: report    @content-type=('editor-report','referee-report','author-comment') and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]\.sa\d+$'))
+Test: report    @content-type=('editor-report','referee-report','author-comment') and not(matches(@*:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]\.sa\d+$'))
 Message:  in event has the attribute content-type="", but the xlink:href attribute does not contain an eLife peer review DOI - . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

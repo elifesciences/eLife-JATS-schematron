@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="permissions-test-1.sch"?>
-<!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@xlink:href,'creativecommons.org/licenses/by/')]
+<!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@*:href,'creativecommons.org/licenses/by/')]
 Test: assert    copyright-statement
 Message: permissions must contain copyright-statement in CC BY licensed articles. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

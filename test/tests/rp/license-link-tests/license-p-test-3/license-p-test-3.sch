@@ -1,10 +1,7 @@
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns:meca="http://manuscriptexchange.org" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:file="java.io.File" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink" queryBinding="xslt2">
   <title>eLife reviewed preprint schematron</title>
-  <ns uri="http://www.niso.org/schemas/ali/1.0/" prefix="ali"/>
   <ns uri="http://www.w3.org/XML/1998/namespace" prefix="xml"/>
-  <ns uri="http://www.w3.org/1999/xlink" prefix="xlink"/>
   <ns uri="http://www.w3.org/2001/XInclude" prefix="xi"/>
-  <ns uri="http://www.w3.org/1998/Math/MathML" prefix="mml"/>
   <ns uri="http://saxon.sf.net/" prefix="saxon"/>
   <ns uri="http://purl.org/dc/terms/" prefix="dc"/>
   <ns uri="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
@@ -650,7 +647,7 @@
       </sqf:description>
       <sqf:replace match=".">
         <ext-link xmlns="" ext-link-type="uri">
-          <xsl:attribute name="xlink:href">
+          <xsl:attribute name="href" namespace="http://www.w3.org/1999/xlink">
             <xsl:value-of select="."/>
           </xsl:attribute>
           <xsl:apply-templates mode="customCopy" select="node()"/>
@@ -664,6 +661,7 @@
       </sqf:description>
       <sqf:replace match=".">
         <xsl:copy copy-namespaces="no">
+          <xsl:copy-of select="namespace-node()"/>
           <xsl:apply-templates select="@*" mode="customCopy"/>
           <xsl:element name="title">
             <xsl:apply-templates select="p[1]/text()|p[1]/*|p[1]/comment()|p[1]/processing-instruction()" mode="customCopy"/>
@@ -681,6 +679,7 @@
       </sqf:description>
       <sqf:replace match=".">
         <xsl:copy copy-namespaces="no">
+          <xsl:copy-of select="namespace-node()"/>
           <xsl:apply-templates select="@*" mode="customCopy"/>
           <title xmlns="">
             <xsl:call-template name="get-first-sentence">
@@ -709,6 +708,7 @@
       </sqf:description>
       <sqf:replace match="." use-when="not(*)">
         <xsl:copy copy-namespaces="no">
+          <xsl:copy-of select="namespace-node()"/>
           <xsl:apply-templates select="@*" mode="customCopy"/>
           <xsl:value-of select="normalize-space(.)"/>
         </xsl:copy>
@@ -730,6 +730,7 @@
           </sqf:description>
           <sqf:replace match=".">
             <xsl:copy copy-namespaces="no">
+              <xsl:copy-of select="namespace-node()"/>
               <xsl:apply-templates select="@*[name()!='publication-type']" mode="customCopy"/>
               <xsl:attribute name="publication-type">preprint</xsl:attribute>
               <xsl:choose>
@@ -908,6 +909,7 @@
       </sqf:description>
       <sqf:replace match="parent::mixed-citation">
         <xsl:copy copy-namespaces="no">
+          <xsl:copy-of select="namespace-node()"/>
           <xsl:apply-templates select="@*[name()!='publication-type']" mode="customCopy"/>
           <xsl:attribute name="publication-type">confproc</xsl:attribute>
           <xsl:for-each select="node()|comment()|processing-instruction()">
@@ -932,14 +934,14 @@
     </sqf:fix>
   </sqf:fixes>
   <pattern id="license-link-tests-pattern">
-    <rule context="permissions/license[@xlink:href]/license-p" id="license-link-tests">
-      <let name="license-link" value="parent::license/@xlink:href"/>
-      <assert test="some $x in ext-link satisfies $x/@xlink:href = $license-link" role="error" id="license-p-test-3">[license-p-test-3] If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: <value-of select="$license-link"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
+    <rule context="permissions/license[@*:href]/license-p" id="license-link-tests">
+      <let name="license-link" value="parent::license/@*:href"/>
+      <assert test="some $x in ext-link satisfies $x/@*:href = $license-link" role="error" id="license-p-test-3">[license-p-test-3] If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: <value-of select="$license-link"/>. Links in the license-p: <value-of select="string-join(ext-link/@*:href,'; ')"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::permissions/license[@xlink:href]/license-p" role="error" id="license-link-tests-xspec-assert">permissions/license[@xlink:href]/license-p must be present.</assert>
+      <assert test="descendant::permissions/license[@*:href]/license-p" role="error" id="license-link-tests-xspec-assert">permissions/license[@*:href]/license-p must be present.</assert>
     </rule>
   </pattern>
 </schema>

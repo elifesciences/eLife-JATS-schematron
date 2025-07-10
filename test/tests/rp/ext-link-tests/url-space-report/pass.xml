@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="url-space-report.sch"?>
 <!--Context: ext-link[@ext-link-type='uri']
-Test: report    matches(@xlink:href,'[\p{Zs}]')
+Test: report    matches(@*:href,'[\p{Zs}]')
 Message: '' - Link contains a space which is incorrect. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>

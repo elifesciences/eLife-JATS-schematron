@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="clintrial-related-object-14.sch"?>
 <!--Context: related-object[@content-type or @document-id]
-Test: report    ends-with(@xlink:href,'.')
+Test: report    ends-with(@*:href,'.')
 Message:  has a @xlink:href attribute value which ends with a full stop, which is not correct - ''. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>

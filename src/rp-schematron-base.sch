@@ -12,11 +12,8 @@
     
     <title>eLife reviewed preprint schematron</title>
 
-    <ns uri="http://www.niso.org/schemas/ali/1.0/" prefix="ali"/>
     <ns uri="http://www.w3.org/XML/1998/namespace" prefix="xml"/>
-    <ns uri="http://www.w3.org/1999/xlink" prefix="xlink"/>
     <ns uri="http://www.w3.org/2001/XInclude" prefix="xi"/>
-    <ns uri="http://www.w3.org/1998/Math/MathML" prefix="mml"/>
     <ns uri="http://saxon.sf.net/" prefix="saxon"/>
     <ns uri="http://purl.org/dc/terms/" prefix="dc"/>
     <ns uri="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
@@ -717,7 +714,7 @@
       </sqf:description>
       <sqf:replace match=".">
         <ext-link xmlns="" ext-link-type="uri">
-          <xsl:attribute name="xlink:href">
+          <xsl:attribute name="href" namespace="http://www.w3.org/1999/xlink">
             <xsl:value-of select="."/>
           </xsl:attribute>
           <xsl:apply-templates mode="customCopy" select="node()"/>
@@ -731,6 +728,7 @@
       </sqf:description>
       <sqf:replace match=".">
         <xsl:copy copy-namespaces="no">
+          <xsl:copy-of select="namespace-node()"/>
           <xsl:apply-templates select="@*" mode="customCopy"/>
           <xsl:element name="title">
             <xsl:apply-templates select="p[1]/text()|p[1]/*|p[1]/comment()|p[1]/processing-instruction()" mode="customCopy"/>
@@ -747,6 +745,7 @@
       </sqf:description>
       <sqf:replace match=".">
         <xsl:copy copy-namespaces="no">
+          <xsl:copy-of select="namespace-node()"/>
           <xsl:apply-templates select="@*" mode="customCopy"/>
           <title xmlns="">
             <xsl:call-template name="get-first-sentence">
@@ -774,6 +773,7 @@
       </sqf:description>
       <sqf:replace match="." use-when="not(*)">
         <xsl:copy copy-namespaces="no">
+          <xsl:copy-of select="namespace-node()"/>
           <xsl:apply-templates select="@*" mode="customCopy"/>
           <xsl:value-of select="normalize-space(.)"/>
         </xsl:copy>
@@ -795,6 +795,7 @@
           </sqf:description>
           <sqf:replace match=".">
             <xsl:copy copy-namespaces="no">
+              <xsl:copy-of select="namespace-node()"/>
               <xsl:apply-templates select="@*[name()!='publication-type']" mode="customCopy"/>
               <xsl:attribute name="publication-type">preprint</xsl:attribute>
               <xsl:choose>
@@ -973,6 +974,7 @@
       </sqf:description>
       <sqf:replace match="parent::mixed-citation">
         <xsl:copy copy-namespaces="no">
+          <xsl:copy-of select="namespace-node()"/>
           <xsl:apply-templates select="@*[name()!='publication-type']" mode="customCopy"/>
           <xsl:attribute name="publication-type">confproc</xsl:attribute>
           <xsl:for-each select="node()|comment()|processing-instruction()">
@@ -2300,11 +2302,11 @@
         <let name="label" value="if (ancestor::fig/label) then ancestor::fig[1]/label[1] else 'unlabelled figure'"/>
         <let name="is-revised-rp" value="if (ancestor::article//article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
         
-        <report test="not($is-revised-rp) and matches(lower-case(.),'biorend[eo]r') and not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')])" 
+        <report test="not($is-revised-rp) and matches(lower-case(.),'biorend[eo]r') and not(descendant::ext-link[matches(lower-case(@*:href),'biorender.com/[a-z\d]')])" 
         role="warning" 
         id="fig-biorender-check-v1">Caption for <value-of select="$label"/> mentions bioRender, but it does not contain a BioRender figure link in the format "BioRender.com/{figure-code}".</report>
         
-        <report test="$is-revised-rp and matches(lower-case(.),'biorend[eo]r') and not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')])" 
+        <report test="$is-revised-rp and matches(lower-case(.),'biorend[eo]r') and not(descendant::ext-link[matches(lower-case(@*:href),'biorender.com/[a-z\d]')])" 
         role="warning" 
         id="fig-biorender-check-revised">Caption for <value-of select="$label"/> mentions bioRender, but it does not contain a BioRender figure link in the format "BioRender.com/{figure-code}". Since this is a revised RP, check to see if the first (or a previous) version had bioRender links.</report>
         
@@ -2404,13 +2406,13 @@
       </rule>
       
         <rule context="alternatives[parent::disp-formula]" id="disp-equation-alternatives-checks">
-          <assert test="graphic and mml:math" 
+          <assert test="graphic and *:math" 
           role="error" 
           id="disp-equation-alternatives-conformance">alternatives element within <value-of select="parent::*/name()"/> must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
       </rule>
       
         <rule context="alternatives[parent::inline-formula]" id="inline-equation-alternatives-checks">
-          <assert test="inline-graphic and mml:math" 
+          <assert test="inline-graphic and *:math" 
           role="error" 
           id="inline-equation-alternatives-conformance">alternatives element within <value-of select="parent::*/name()"/> must have both an inline-graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
       </rule>
@@ -2427,17 +2429,17 @@
   
      <pattern id="graphic">
       <rule context="graphic|inline-graphic" id="graphic-checks">
-        <let name="link" value="lower-case(@xlink:href)"/>
+        <let name="link" value="lower-case(@*:href)"/>
         <let name="file" value="tokenize($link,'\.')[last()]"/>
         <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
         
-        <assert test="normalize-space(@xlink:href)!=''" 
+        <assert test="normalize-space(@*:href)!=''" 
           role="error" 
           id="graphic-check-1"><name/> must have an xlink:href attribute. This one does not.</assert>
         
         <assert test="$file=$image-file-types" 
           role="error" 
-          id="graphic-check-2"><name/> must have an xlink:href attribute that ends with an image file type extension. <value-of select="if ($file!='') then $file else @xlink:href"/> is not one of <value-of select="string-join($image-file-types,', ')"/>.</assert>
+          id="graphic-check-2"><name/> must have an xlink:href attribute that ends with an image file type extension. <value-of select="if ($file!='') then $file else @*:href"/> is not one of <value-of select="string-join($image-file-types,', ')"/>.</assert>
         
         <report test="contains(@mime-subtype,'tiff') and not($file=('tif','tiff'))" 
           role="error" 
@@ -2459,13 +2461,13 @@
          role="error" 
          id="graphic-test-5"><name/> has png mime-subtype but filename does not end with '.png'. This cannot be correct.</report>
         
-        <report test="not(ancestor::sub-article) and preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link" 
+        <report test="not(ancestor::sub-article) and preceding::graphic/@*:href/lower-case(.) = $link or preceding::inline-graphic/@*:href/lower-case(.) = $link" 
           role="error" 
-          id="graphic-test-6">Image file for <value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/> (<value-of select="@xlink:href"/>) is the same as the one used for another graphic or inline-graphic.</report>
+          id="graphic-test-6">Image file for <value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/> (<value-of select="@*:href"/>) is the same as the one used for another graphic or inline-graphic.</report>
         
-        <report test="ancestor::sub-article and preceding::graphic/@xlink:href/lower-case(.) = $link or preceding::inline-graphic/@xlink:href/lower-case(.) = $link" 
+        <report test="ancestor::sub-article and preceding::graphic/@*:href/lower-case(.) = $link or preceding::inline-graphic/@*:href/lower-case(.) = $link" 
           role="warning" 
-          id="graphic-test-9">Image file in sub-article for <value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/> (<value-of select="@xlink:href"/>) is the same as the one used for another graphic or inline-graphic. Is that correct?</report>
+          id="graphic-test-9">Image file in sub-article for <value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/> (<value-of select="@*:href"/>) is the same as the one used for another graphic or inline-graphic. Is that correct?</report>
         
         <report test="@mime-subtype='gif' and $file!='gif'" 
          role="error" 
@@ -2488,15 +2490,15 @@
   
       <pattern id="media">
       <rule context="media" id="media-checks">
-        <let name="link" value="@xlink:href"/>
+        <let name="link" value="@*:href"/>
       
-      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,15}$')" 
+      <assert test="matches(@*:href,'\.[\p{L}\p{N}]{1,15}$')" 
         role="error" 
         id="media-test-3">media must have an @xlink:href which contains a file reference.</assert>
         
-      <report test="preceding::media/@xlink:href = $link" 
+      <report test="preceding::media/@*:href = $link" 
         role="error" 
-        id="media-test-10">Media file for <value-of select="if (parent::*/label) then parent::*/label else 'media'"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/parent::*/label) then preceding::media[@xlink:href=$link][1]/parent::*/label
+        id="media-test-10">Media file for <value-of select="if (parent::*/label) then parent::*/label else 'media'"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@*:href=$link][1]/parent::*/label) then preceding::media[@*:href=$link][1]/parent::*/label
         else 'another file'"/>.</report>
         
       <report test="text()" 
@@ -2720,7 +2722,7 @@
       
       <rule context="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']" id="article-dois">
       <let name="article-id" value="parent::article-meta[1]/article-id[@pub-id-type='publisher-id'][1]"/>
-      <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint']/@xlink:href"/>
+      <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint']/@*:href"/>
       <let name="latest-rp-doi-version" value="if ($latest-rp-doi) then replace($latest-rp-doi,'^.*\.','')
                                                else '0'"/>
       
@@ -2973,12 +2975,12 @@
     </rule>
       
       <rule context="event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" id="rp-event-tests">
-      <let name="rp-link" value="self-uri[@content-type='reviewed-preprint']/@xlink:href"/>
+      <let name="rp-link" value="self-uri[@content-type='reviewed-preprint']/@*:href"/>
       <let name="rp-version" value="replace($rp-link,'^.*\.','')"/>
       <let name="rp-pub-date" value="date[@date-type='reviewed-preprint']/@iso-8601-date"/>
       <let name="sent-for-review-date" value="ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date"/>
       <let name="preprint-pub-date" value="parent::pub-history/event/date[@date-type='preprint']/@iso-8601-date"/>
-      <let name="later-rp-events" value="parent::pub-history/event[date[@date-type='reviewed-preprint'] and replace(self-uri[@content-type='reviewed-preprint'][1]/@xlink:href,'^.*\.','') gt $rp-version]"/>
+      <let name="later-rp-events" value="parent::pub-history/event[date[@date-type='reviewed-preprint'] and replace(self-uri[@content-type='reviewed-preprint'][1]/@*:href,'^.*\.','') gt $rp-version]"/>
       
       <report test="($preprint-pub-date and $preprint-pub-date != '') and
         $preprint-pub-date ge $rp-pub-date"
@@ -2992,7 +2994,7 @@
       
       <report test="$later-rp-events/date/@iso-8601-date = $rp-pub-date"
         role="error" 
-        id="rp-event-test-3">Reviewed preprint publication date (<value-of select="$rp-pub-date"/>) in the publication history (for RP version <value-of select="$rp-version"/>) is the same or an earlier date than publication date for a later reviewed preprint version date (<value-of select="$later-rp-events/date/@iso-8601-date[. = $rp-pub-date]"/> for version(s) <value-of select="$later-rp-events/self-uri[@content-type='reviewed-preprint'][1]/@xlink:href/replace(.,'^.*\.','')"/>). This must be incorrect.</report>
+        id="rp-event-test-3">Reviewed preprint publication date (<value-of select="$rp-pub-date"/>) in the publication history (for RP version <value-of select="$rp-version"/>) is the same or an earlier date than publication date for a later reviewed preprint version date (<value-of select="$later-rp-events/date/@iso-8601-date[. = $rp-pub-date]"/> for version(s) <value-of select="$later-rp-events/self-uri[@content-type='reviewed-preprint'][1]/@*:href/replace(.,'^.*\.','')"/>). This must be incorrect.</report>
         
       <assert test="self-uri[@content-type='editor-report']"
         role="error" 
@@ -3009,9 +3011,9 @@
         role="error" 
         id="event-desc-content"><name/> that's a child of a preprint event must contain the text 'Preprint posted'. This one does not (<value-of select="."/>).</report>
       
-      <report test="parent::event/self-uri[1][@content-type='reviewed-preprint'] and .!=concat('Reviewed preprint v',replace(parent::event[1]/self-uri[1][@content-type='reviewed-preprint']/@xlink:href,'^.*\.',''))" 
+      <report test="parent::event/self-uri[1][@content-type='reviewed-preprint'] and .!=concat('Reviewed preprint v',replace(parent::event[1]/self-uri[1][@content-type='reviewed-preprint']/@*:href,'^.*\.',''))" 
         role="error" 
-        id="event-desc-content-2"><name/> that's a child of a Reviewed preprint event must contain the text 'Reviewed preprint v' followwd by the verison number for that Reviewed preprint version. This one does not (<value-of select="."/> != <value-of select="concat('Reviewed preprint v',replace(parent::event[1]/self-uri[1][@content-type='reviewed-preprint']/@xlink:href,'^.*\.',''))"/>).</report>
+        id="event-desc-content-2"><name/> that's a child of a Reviewed preprint event must contain the text 'Reviewed preprint v' followwd by the verison number for that Reviewed preprint version. This one does not (<value-of select="."/> != <value-of select="concat('Reviewed preprint v',replace(parent::event[1]/self-uri[1][@content-type='reviewed-preprint']/@*:href,'^.*\.',''))"/>).</report>
       
       <report test="*" 
         role="error" 
@@ -3053,33 +3055,33 @@
         role="error" 
         id="event-self-uri-content-4"><name/> with the content-type <value-of select="@content-type"/> must not have any child elements, and contain the title of the text 'Author response'. This one does not.</report>
       
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$')" 
+      <assert test="matches(@*:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$')" 
         role="error" 
-        id="event-self-uri-href-1"><name/> in event must have an xlink:href attribute containing a link to the preprint. This one does not have a valid URI - <value-of select="@xlink:href"/>.</assert>
+        id="event-self-uri-href-1"><name/> in event must have an xlink:href attribute containing a link to the preprint. This one does not have a valid URI - <value-of select="@*:href"/>.</assert>
       
-      <report test="matches(lower-case(@xlink:href),'(bio|med)rxiv')" 
+      <report test="matches(lower-case(@*:href),'(bio|med)rxiv')" 
         role="error" 
-        id="event-self-uri-href-2"><name/> in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. bioRxiv and medRxiv preprint have dois, and this one points to one of those, but it is not a doi - <value-of select="@xlink:href"/>.</report>
+        id="event-self-uri-href-2"><name/> in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. bioRxiv and medRxiv preprint have dois, and this one points to one of those, but it is not a doi - <value-of select="@*:href"/>.</report>
       
-      <assert test="matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')" 
+      <assert test="matches(@*:href,'https?://(dx.doi.org|doi.org)/')" 
         role="warning" 
-        id="event-self-uri-href-3"><name/> in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. This one is not a doi - <value-of select="@xlink:href"/>. Please check whether there is a doi that can be used instead.</assert>
+        id="event-self-uri-href-3"><name/> in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. This one is not a doi - <value-of select="@*:href"/>. Please check whether there is a doi that can be used instead.</assert>
       
-      <report test="@content-type='reviewed-preprint' and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]$'))" 
+      <report test="@content-type='reviewed-preprint' and not(matches(@*:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]$'))" 
         role="error" 
-        id="event-self-uri-href-4"><name/> in event has the attribute content-type="reviewed-preprint", but the xlink:href attribute does not contain an eLife version specific DOI - <value-of select="@xlink:href"/>.</report>
+        id="event-self-uri-href-4"><name/> in event has the attribute content-type="reviewed-preprint", but the xlink:href attribute does not contain an eLife version specific DOI - <value-of select="@*:href"/>.</report>
       
-      <report test="(@content-type!='reviewed-preprint' or not(@content-type)) and matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.\d$')" 
+      <report test="(@content-type!='reviewed-preprint' or not(@content-type)) and matches(@*:href,'^https://doi.org/10.7554/eLife.\d+\.\d$')" 
         role="error" 
-        id="event-self-uri-href-5"><name/> in event does not have the attribute content-type="reviewed-preprint", but the xlink:href attribute contains an eLife version specific DOI - <value-of select="@xlink:href"/>. If it's a preprint event, the link should be to a preprint. If it's an event for reviewed preprint publication, then it should have the attribute content-type!='reviewed-preprint'.</report>
+        id="event-self-uri-href-5"><name/> in event does not have the attribute content-type="reviewed-preprint", but the xlink:href attribute contains an eLife version specific DOI - <value-of select="@*:href"/>. If it's a preprint event, the link should be to a preprint. If it's an event for reviewed preprint publication, then it should have the attribute content-type!='reviewed-preprint'.</report>
       
-      <report test="@content-type='reviewed-preprint' and not(contains(@xlink:href,$article-id))" 
+      <report test="@content-type='reviewed-preprint' and not(contains(@*:href,$article-id))" 
         role="error" 
-        id="event-self-uri-href-6"><name/> in event the attribute content-type="reviewed-preprint", but the xlink:href attribute value (<value-of select="@xlink:href"/>) does not contain the article id (<value-of select="$article-id"/>) which must be incorrect, since this should be the version DOI for the reviewed preprint version.</report>
+        id="event-self-uri-href-6"><name/> in event the attribute content-type="reviewed-preprint", but the xlink:href attribute value (<value-of select="@*:href"/>) does not contain the article id (<value-of select="$article-id"/>) which must be incorrect, since this should be the version DOI for the reviewed preprint version.</report>
         
-      <report test="@content-type=('editor-report','referee-report','author-comment') and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]\.sa\d+$'))" 
+      <report test="@content-type=('editor-report','referee-report','author-comment') and not(matches(@*:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]\.sa\d+$'))" 
         role="error" 
-        id="event-self-uri-href-7"><name/> in event has the attribute content-type="<value-of select="@content-type"/>", but the xlink:href attribute does not contain an eLife peer review DOI - <value-of select="@xlink:href"/>.</report>
+        id="event-self-uri-href-7"><name/> in event has the attribute content-type="<value-of select="@content-type"/>", but the xlink:href attribute does not contain an eLife peer review DOI - <value-of select="@*:href"/>.</report>
     </rule>
       
        <rule context="funding-group" id="funding-group-presence-tests">
@@ -3398,10 +3400,10 @@
 	<rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions" id="front-permissions-tests">
 	  <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
 	  <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
-	  <let name="license-type" value="license/@xlink:href"/>
+	  <let name="license-type" value="license/@*:href"/>
 	
 	  <assert see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-4" 
-	      test="ali:free_to_read" 
+	      test="*:free_to_read" 
         role="error" 
         id="permissions-test-4">permissions must contain an ali:free_to_read element.</assert>
 	
@@ -3426,10 +3428,10 @@
 	</rule>
     
     <!-- CC BY licenses -->
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@xlink:href,'creativecommons.org/licenses/by/')]" id="cc-by-permissions-tests">
+    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@*:href,'creativecommons.org/licenses/by/')]" id="cc-by-permissions-tests">
       <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
       <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
-      <let name="license-type" value="license/@xlink:href"/>
+      <let name="license-type" value="license/@*:href"/>
       <let name="is-first-version" value="if (ancestor::article-meta/article-id[@specific-use='version' and ends-with(.,'.1')]) then true()
                                           else if (not(ancestor::article-meta/pub-history[event[date[@date-type='reviewed-preprint']]])) then true()
                                           else false()"/>
@@ -3481,8 +3483,8 @@
     </rule>
     
     <!-- CC0 licenses -->
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@xlink:href,'creativecommons.org/publicdomain/zero')]" id="cc-0-permissions-tests">
-      <let name="license-type" value="license/@xlink:href"/>
+    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@*:href,'creativecommons.org/publicdomain/zero')]" id="cc-0-permissions-tests">
+      <let name="license-type" value="license/@*:href"/>
       
       <report see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#cc-0-test-1" 
         test="copyright-statement" 
@@ -3504,7 +3506,7 @@
 	<rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license" id="license-tests">
 	
 	  <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#license-test-1" 
-	      test="ali:license_ref" 
+	      test="*:license_ref" 
         role="error" 
         id="license-test-1">license must contain ali:license_ref.</assert>
 	
@@ -3516,7 +3518,7 @@
 	</rule>
     
     <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license/license-p" id="license-p-tests">
-      <let name="license-link" value="parent::license/@xlink:href"/>
+      <let name="license-link" value="parent::license/@*:href"/>
       <let name="license-type" value="if (contains($license-link,'//creativecommons.org/publicdomain/zero/1.0/')) then 'cc0' else if (contains($license-link,'//creativecommons.org/licenses/by/4.0/')) then 'ccby' else ('unknown')"/>
       
       <let name="cc0-text" value="'This is an open-access article, free of all copyright, and may be freely reproduced, distributed, transmitted, modified, built upon, or otherwise used by anyone for any lawful purpose. The work is made available under the Creative Commons CC0 public domain dedication.'"/>
@@ -3532,20 +3534,20 @@
       
     </rule>
     
-    <rule context="permissions/license[@xlink:href]/license-p" id="license-link-tests">
-      <let name="license-link" value="parent::license/@xlink:href"/>
+    <rule context="permissions/license[@*:href]/license-p" id="license-link-tests">
+      <let name="license-link" value="parent::license/@*:href"/>
       
-      <assert test="some $x in ext-link satisfies $x/@xlink:href = $license-link" 
+      <assert test="some $x in ext-link satisfies $x/@*:href = $license-link" 
         role="error" 
-        id="license-p-test-3">If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: <value-of select="$license-link"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
+        id="license-p-test-3">If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: <value-of select="$license-link"/>. Links in the license-p: <value-of select="string-join(ext-link/@*:href,'; ')"/>.</assert>
     </rule>
     
-    <rule context="permissions/license[ali:license_ref]/license-p" id="license-ali-ref-link-tests">
-      <let name="ali-ref" value="parent::license/ali:license_ref"/>
+    <rule context="permissions/license[*:license_ref]/license-p" id="license-ali-ref-link-tests">
+      <let name="ali-ref" value="parent::license/*:license_ref"/>
       
-      <assert test="some $x in ext-link satisfies $x/@xlink:href = $ali-ref" 
+      <assert test="some $x in ext-link satisfies $x/@*:href = $ali-ref" 
         role="error" 
-        id="license-p-test-4">If a license contains an ali:license_ref element, there must be a link in license-p that matches the link in the ali:license_ref element. ali:license_ref link: <value-of select="$ali-ref"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
+        id="license-p-test-4">If a license contains an ali:license_ref element, there must be a link in license-p that matches the link in the ali:license_ref element. ali:license_ref link: <value-of select="$ali-ref"/>. Links in the license-p: <value-of select="string-join(ext-link/@*:href,'; ')"/>.</assert>
     </rule>
       
       <rule context="fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]" id="fig-permissions-check">
@@ -3616,7 +3618,7 @@
         role="error" 
         id="clintrial-related-object-6"><name/> must have an @document-id with a value that does not contain a space character.</assert>
       
-      <assert test="@xlink:href[not(matches(.,'\p{Zs}'))]" 
+      <assert test="@*:href[not(matches(.,'\p{Zs}'))]" 
         role="error" 
         id="clintrial-related-object-7"><name/> must have an @xlink:href with a value that does not contain a space character.</assert>
       
@@ -3628,15 +3630,15 @@
         role="warning" 
         id="clintrial-related-object-11"><name/> @source-id value should almost always be one of the subtitles of the Crossref clinical trial registries. "<value-of select="@source-id"/>" is not one of the following <value-of select="string-join(for $x in document($registries)/registries/registry return concat('&quot;',$x/subtitle/string(),'&quot; (',$x/doi/string(),')'),', ')"/>. Is that correct?</assert>
       
-      <report test="@source-id='ClinicalTrials.gov' and not(@xlink:href=(concat('https://clinicaltrials.gov/study/',@document-id),concat('https://clinicaltrials.gov/show/',@document-id)))" 
+      <report test="@source-id='ClinicalTrials.gov' and not(@*:href=(concat('https://clinicaltrials.gov/study/',@document-id),concat('https://clinicaltrials.gov/show/',@document-id)))" 
         role="error"
-        id="clintrial-related-object-12">ClinicalTrials.gov trial links are in the format https://clinicaltrials.gov/show/{number}. This <name/> has the link '<value-of select="@xlink:href"/>', which based on the clinical trial registry (<value-of select="@source-id"/>) and @document-id (<value-of select="@document-id"/>) is not right. Either the xlink:href is wrong (should it be <value-of select="concat('https://clinicaltrials.gov/study/',@document-id)"/> instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these).</report>
+        id="clintrial-related-object-12">ClinicalTrials.gov trial links are in the format https://clinicaltrials.gov/show/{number}. This <name/> has the link '<value-of select="@*:href"/>', which based on the clinical trial registry (<value-of select="@source-id"/>) and @document-id (<value-of select="@document-id"/>) is not right. Either the xlink:href is wrong (should it be <value-of select="concat('https://clinicaltrials.gov/study/',@document-id)"/> instead?) or the @document-id value is wrong, or the @source-id value is incorrect (or all/some combination of these).</report>
 
-      <report test="ends-with(@xlink:href,'.')" 
+      <report test="ends-with(@*:href,'.')" 
         role="error" 
-        id="clintrial-related-object-14"><name/> has a @xlink:href attribute value which ends with a full stop, which is not correct - '<value-of select="@xlink:href"/>'.</report>
+        id="clintrial-related-object-14"><name/> has a @xlink:href attribute value which ends with a full stop, which is not correct - '<value-of select="@*:href"/>'.</report>
       
-      <assert test="@xlink:href!=''"
+      <assert test="@*:href!=''"
         role="error" 
         id="clintrial-related-object-17"><name/> must have an @xlink:href attribute with a non-empty value. This one does not.</assert>
 
@@ -3820,47 +3822,47 @@
     <rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests">
       
       <!-- Needs further testing. Presume that we want to ensure a url follows certain URI schemes. -->
-      <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)\[\]+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^tel:.|^mailto:.')" 
+      <assert test="matches(@*:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{1,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)\[\]+.~#?!&amp;&lt;&gt;//=]*)$|^ftp://.|^tel:.|^mailto:.')" 
         role="warning" 
-        id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
+        id="url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@*:href"/>'. Is this correct?</assert>
       
-      <report test="matches(@xlink:href,'^(ftp|sftp)://\S+:\S+@')" 
+      <report test="matches(@*:href,'^(ftp|sftp)://\S+:\S+@')" 
         role="warning" 
-        id="ftp-credentials-flag">@xlink:href contains what looks like a link to an FTP site which contains credentials (username and password) - '<value-of select="@xlink:href"/>'. If the link without credentials works (<value-of select="concat(substring-before(@xlink:href,'://'),'://',substring-after(@xlink:href,'@'))"/>), then please replace it with that.</report>
+        id="ftp-credentials-flag">@xlink:href contains what looks like a link to an FTP site which contains credentials (username and password) - '<value-of select="@*:href"/>'. If the link without credentials works (<value-of select="concat(substring-before(@*:href,'://'),'://',substring-after(@*:href,'@'))"/>), then please replace it with that.</report>
       
-      <report test="matches(@xlink:href,'\.$')" 
+      <report test="matches(@*:href,'\.$')" 
         role="error"
-        id="url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a full stop which is incorrect.</report>
+        id="url-fullstop-report">'<value-of select="@*:href"/>' - Link ends in a full stop which is incorrect.</report>
       
-      <report test="matches(@xlink:href,'[\p{Zs}]')" 
+      <report test="matches(@*:href,'[\p{Zs}]')" 
         role="error" 
-        id="url-space-report">'<value-of select="@xlink:href"/>' - Link contains a space which is incorrect.</report>
+        id="url-space-report">'<value-of select="@*:href"/>' - Link contains a space which is incorrect.</report>
       
-      <report test="(.!=@xlink:href) and matches(.,'https?:|ftp:')" 
+      <report test="(.!=@*:href) and matches(.,'https?:|ftp:')" 
         role="warning" 
-        id="ext-link-text">The text for a URL is '<value-of select="."/>' (which looks like a URL), but it is not the same as the actual embedded link, which is '<value-of select="@xlink:href"/>'.</report>
+        id="ext-link-text">The text for a URL is '<value-of select="."/>' (which looks like a URL), but it is not the same as the actual embedded link, which is '<value-of select="@*:href"/>'.</report>
 
-      <report test="matches(@xlink:href,'^https?://(dx\.)?doi\.org/[^1][^0]?')" 
+      <report test="matches(@*:href,'^https?://(dx\.)?doi\.org/[^1][^0]?')" 
         role="error" 
-        id="ext-link-doi-check">Embedded URL within text starts with the DOI prefix, but it is not a valid doi - <value-of select="@xlink:href"/>.</report>
+        id="ext-link-doi-check">Embedded URL within text starts with the DOI prefix, but it is not a valid doi - <value-of select="@*:href"/>.</report>
 
-    <report test="not(ancestor::fig/permissions[contains(.,'phylopic')]) and matches(@xlink:href,'phylopic\.org')" 
+    <report test="not(ancestor::fig/permissions[contains(.,'phylopic')]) and matches(@*:href,'phylopic\.org')" 
         role="warning" 
         id="phylopic-link-check">This link is to phylopic.org, which is a site where silhouettes/images are typically reproduced from. Please check whether any figures contain reproduced images from this site, and if so whether permissions have been obtained and/or copyright statements are correctly included.</report>
 
     <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#ext-link-child-test-5" 
-        test="contains(@xlink:href,'datadryad.org/review?')" 
+        test="contains(@*:href,'datadryad.org/review?')" 
         role="warning" 
         id="ext-link-child-test-5">ext-link looks like it points to a review dryad dataset - <value-of select="."/>. Should it be updated?</report>
       
-      <report test="not(contains(@xlink:href,'datadryad.org/review?')) and not(matches(@*:href,'^https?://doi.org/')) and contains(@*:href,'datadryad.org')" 
+      <report test="not(contains(@*:href,'datadryad.org/review?')) and not(matches(@*:href,'^https?://doi.org/')) and contains(@*:href,'datadryad.org')" 
         role="error" 
-        id="ext-link-child-test-6">ext-link points to a dryad dataset, but it is not a DOI - <value-of select="@xlink:href"/>. Replace this with the Dryad DOI.</report>
+        id="ext-link-child-test-6">ext-link points to a dryad dataset, but it is not a DOI - <value-of select="@*:href"/>. Replace this with the Dryad DOI.</report>
 
-    <report test="contains(@xlink:href,'paperpile.com')"
+    <report test="contains(@*:href,'paperpile.com')"
         role="error"
         sqf:fix="delete-elem"
-        id="paper-pile-test">This paperpile hyperlink should be removed: '<value-of select="@xlink:href"/>' embedded in the text '<value-of select="."/>'.</report>
+        id="paper-pile-test">This paperpile hyperlink should be removed: '<value-of select="@*:href"/>' embedded in the text '<value-of select="."/>'.</report>
     </rule>
 
     <rule context="ext-link" id="ext-link-tests-2">
@@ -4089,9 +4091,9 @@
       </rule>
       
       <rule context="sub-article/body//ext-link" id="sub-article-ext-links">
-        <report test="not(inline-graphic) and matches(lower-case(@xlink:href),'imgur\.com')" 
+        <report test="not(inline-graphic) and matches(lower-case(@*:href),'imgur\.com')" 
           role="warning" 
-          id="ext-link-imgur">ext-link in sub-article directs to imgur.com - <value-of select="@xlink:href"/>. Is this a figure or table (e.g. Author response image X) that should be captured semantically appropriately in the XML?</report>
+          id="ext-link-imgur">ext-link in sub-article directs to imgur.com - <value-of select="@*:href"/>. Is this a figure or table (e.g. Author response image X) that should be captured semantically appropriately in the XML?</report>
         
         <report test="inline-graphic" 
           role="error" 

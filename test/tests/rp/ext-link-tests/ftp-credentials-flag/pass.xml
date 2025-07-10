@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="ftp-credentials-flag.sch"?>
 <!--Context: ext-link[@ext-link-type='uri']
-Test: report    matches(@xlink:href,'^(ftp|sftp)://\S+:\S+@')
+Test: report    matches(@*:href,'^(ftp|sftp)://\S+:\S+@')
 Message: @xlink:href contains what looks like a link to an FTP site which contains credentials (username and password) - ''. If the link without credentials works (), then please replace it with that. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>

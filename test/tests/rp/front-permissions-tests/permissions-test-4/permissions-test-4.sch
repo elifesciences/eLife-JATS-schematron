@@ -1,10 +1,7 @@
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns:meca="http://manuscriptexchange.org" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:file="java.io.File" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink" queryBinding="xslt2">
   <title>eLife reviewed preprint schematron</title>
-  <ns uri="http://www.niso.org/schemas/ali/1.0/" prefix="ali"/>
   <ns uri="http://www.w3.org/XML/1998/namespace" prefix="xml"/>
-  <ns uri="http://www.w3.org/1999/xlink" prefix="xlink"/>
   <ns uri="http://www.w3.org/2001/XInclude" prefix="xi"/>
-  <ns uri="http://www.w3.org/1998/Math/MathML" prefix="mml"/>
   <ns uri="http://saxon.sf.net/" prefix="saxon"/>
   <ns uri="http://purl.org/dc/terms/" prefix="dc"/>
   <ns uri="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
@@ -650,7 +647,7 @@
       </sqf:description>
       <sqf:replace match=".">
         <ext-link xmlns="" ext-link-type="uri">
-          <xsl:attribute name="xlink:href">
+          <xsl:attribute name="href" namespace="http://www.w3.org/1999/xlink">
             <xsl:value-of select="."/>
           </xsl:attribute>
           <xsl:apply-templates mode="customCopy" select="node()"/>
@@ -664,6 +661,7 @@
       </sqf:description>
       <sqf:replace match=".">
         <xsl:copy copy-namespaces="no">
+          <xsl:copy-of select="namespace-node()"/>
           <xsl:apply-templates select="@*" mode="customCopy"/>
           <xsl:element name="title">
             <xsl:apply-templates select="p[1]/text()|p[1]/*|p[1]/comment()|p[1]/processing-instruction()" mode="customCopy"/>
@@ -681,6 +679,7 @@
       </sqf:description>
       <sqf:replace match=".">
         <xsl:copy copy-namespaces="no">
+          <xsl:copy-of select="namespace-node()"/>
           <xsl:apply-templates select="@*" mode="customCopy"/>
           <title xmlns="">
             <xsl:call-template name="get-first-sentence">
@@ -709,6 +708,7 @@
       </sqf:description>
       <sqf:replace match="." use-when="not(*)">
         <xsl:copy copy-namespaces="no">
+          <xsl:copy-of select="namespace-node()"/>
           <xsl:apply-templates select="@*" mode="customCopy"/>
           <xsl:value-of select="normalize-space(.)"/>
         </xsl:copy>
@@ -730,6 +730,7 @@
           </sqf:description>
           <sqf:replace match=".">
             <xsl:copy copy-namespaces="no">
+              <xsl:copy-of select="namespace-node()"/>
               <xsl:apply-templates select="@*[name()!='publication-type']" mode="customCopy"/>
               <xsl:attribute name="publication-type">preprint</xsl:attribute>
               <xsl:choose>
@@ -908,6 +909,7 @@
       </sqf:description>
       <sqf:replace match="parent::mixed-citation">
         <xsl:copy copy-namespaces="no">
+          <xsl:copy-of select="namespace-node()"/>
           <xsl:apply-templates select="@*[name()!='publication-type']" mode="customCopy"/>
           <xsl:attribute name="publication-type">confproc</xsl:attribute>
           <xsl:for-each select="node()|comment()|processing-instruction()">
@@ -935,8 +937,8 @@
     <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions" id="front-permissions-tests">
       <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
       <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
-      <let name="license-type" value="license/@xlink:href"/>
-      <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-4" test="ali:free_to_read" role="error" id="permissions-test-4">[permissions-test-4] permissions must contain an ali:free_to_read element.</assert>
+      <let name="license-type" value="license/@*:href"/>
+      <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-4" test="*:free_to_read" role="error" id="permissions-test-4">[permissions-test-4] permissions must contain an ali:free_to_read element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
