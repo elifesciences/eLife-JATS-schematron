@@ -1481,6 +1481,7 @@
        <report test="(fpage or lpage) and elocation-id" 
         role="error" 
         id="journal-ref-page-elocation-id">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has both an elocation-id (<value-of select="elocation-id[1]"/>), and an fpage or lpage (<value-of select="string-join(*[name()=('fpage','lpage')],'; ')"/>), which cannot be correct.</report>
+       
        <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-6-7" 
         test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1 or count(comment) gt 1" 
         role="error" 
@@ -1511,6 +1512,12 @@
         role="warning" 
         id="journal-source-5">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
      </rule>
+      
+      <rule context="mixed-citation[@publication-type='journal']/fpage" id="journal-fpage-checks">
+        <report test="parent::mixed-citation[not(issue)] and preceding-sibling::*[1]/name()='volume' and preceding-sibling::node()[1][. instance of text() and matches(.,'^\s*[\.,]?\(\s*$')] and following-sibling::node()[1][. instance of text() and matches(.,'^\s*[\.,]?\)')]" 
+        role="warning" 
+        id="journal-fpage-1">fpage in journal reference (with <value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) is surrounded by brackets and follows the volume. Is it the issue number instead?</report>
+      </rule>
     </pattern>
 
     <pattern id="preprint-ref">

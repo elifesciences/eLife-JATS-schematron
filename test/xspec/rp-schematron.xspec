@@ -990,6 +990,18 @@
         <x:expect-not-assert id="journal-source-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="journal-fpage-checks">
+      <x:scenario label="journal-fpage-1-pass">
+        <x:context href="../tests/rp/journal-fpage-checks/journal-fpage-1/pass.xml"/>
+        <x:expect-not-report id="journal-fpage-1" role="warning"/>
+        <x:expect-not-assert id="journal-fpage-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="journal-fpage-1-fail">
+        <x:context href="../tests/rp/journal-fpage-checks/journal-fpage-1/fail.xml"/>
+        <x:expect-report id="journal-fpage-1" role="warning"/>
+        <x:expect-not-assert id="journal-fpage-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="preprint-ref-checks">
       <x:scenario label="preprint-ref-source-pass">
         <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-source/pass.xml"/>

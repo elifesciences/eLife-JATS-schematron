@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="journal-fpage-1.sch"?>
+<!--Context: mixed-citation[@publication-type='journal']/fpage
+Test: report    parent::mixed-citation[not(issue)] and preceding-sibling::*[1]/name()='volume' and preceding-sibling::node()[1][. instance of text() and matches(.,'^\s*[\.,]?\(\s*$')] and following-sibling::node()[1][. instance of text() and matches(.,'^\s*[\.,]?\)')]
+Message: fpage in journal reference (with ) is surrounded by brackets and follows the volume. Is it the issue number instead? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mixed-citation publication-type="journal"><person-group person-group-type="author">...</person-group>. (<year>2019</year>). <source>Nature</source>, <volume>3</volume>(<fpage>7</fpage>), Article 7.</mixed-citation>
+    </article>
+</root>
