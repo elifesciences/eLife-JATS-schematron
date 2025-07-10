@@ -901,6 +901,35 @@
             </xsl:copy>
           </sqf:replace>
         </sqf:fix>
+    
+    <sqf:fix id="convert-to-confproc">
+      <sqf:description>
+        <sqf:title>Convert to conference proceedings</sqf:title>
+      </sqf:description>
+      <sqf:replace match="parent::mixed-citation">
+        <xsl:copy copy-namespaces="no">
+          <xsl:apply-templates select="@*[name()!='publication-type']" mode="customCopy"/>
+          <xsl:attribute name="publication-type">confproc</xsl:attribute>
+          <xsl:for-each select="node()|comment()|processing-instruction()">
+            <xsl:choose>
+              <xsl:when test=". instance of element() and name()='chapter-title'">
+                <article-title xmlns="">
+                  <xsl:apply-templates select="node()" mode="customCopy"/>
+                </article-title>
+              </xsl:when>
+              <xsl:when test=". instance of element() and name()='source'">
+                <conf-name xmlns="">
+                  <xsl:apply-templates select="node()" mode="customCopy"/>
+                </conf-name>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:apply-templates select="." mode="customCopy"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:for-each>
+        </xsl:copy>
+      </sqf:replace>
+    </sqf:fix>
   </sqf:fixes>
   <pattern id="author-notes-fn-checks-pattern">
     <rule context="article/front/article-meta/author-notes/fn" id="author-notes-fn-checks">
