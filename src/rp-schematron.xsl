@@ -4117,6 +4117,16 @@
                <xsl:text/>) is surrounded by brackets and follows the volume. Is it the issue number instead?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="replace-fpage-to-issue">
+         <sqf:description>
+            <sqf:title>Change to issue</sqf:title>
+         </sqf:description>
+         <sqf:replace match=".">
+            <issue xmlns="">
+               <xsl:apply-templates select="node()|comment()|processing-instruction()" mode="customCopy"/>
+            </issue>
+         </sqf:replace>
+      </sqf:fix>
       <xsl:apply-templates select="*" mode="M56"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M56"/>

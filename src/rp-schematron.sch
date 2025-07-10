@@ -1226,7 +1226,18 @@
        
        <report test="matches(.,'[“”&quot;]')" role="warning" id="journal-source-5">[journal-source-5] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
      </rule></pattern><pattern id="journal-fpage-checks-pattern"><rule context="mixed-citation[@publication-type='journal']/fpage" id="journal-fpage-checks">
-        <report test="parent::mixed-citation[not(issue)] and preceding-sibling::*[1]/name()='volume' and preceding-sibling::node()[1][. instance of text() and matches(.,'^\s*[\.,]?\(\s*$')] and following-sibling::node()[1][. instance of text() and matches(.,'^\s*[\.,]?\)')]" role="warning" id="journal-fpage-1">[journal-fpage-1] fpage in journal reference (with <value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) is surrounded by brackets and follows the volume. Is it the issue number instead?</report>
+        <report test="parent::mixed-citation[not(issue)] and preceding-sibling::*[1]/name()='volume' and preceding-sibling::node()[1][. instance of text() and matches(.,'^\s*[\.,]?\(\s*$')] and following-sibling::node()[1][. instance of text() and matches(.,'^\s*[\.,]?\)')]" role="warning" sqf:fix="replace-fpage-to-issue" id="journal-fpage-1">[journal-fpage-1] fpage in journal reference (with <value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) is surrounded by brackets and follows the volume. Is it the issue number instead?</report>
+        
+        <sqf:fix id="replace-fpage-to-issue">
+          <sqf:description>
+            <sqf:title>Change to issue</sqf:title>
+          </sqf:description>
+          <sqf:replace match=".">
+            <issue xmlns="">
+              <xsl:apply-templates select="node()|comment()|processing-instruction()" mode="customCopy"/>
+            </issue>
+          </sqf:replace>
+        </sqf:fix>
       </rule></pattern>
 
     <pattern id="preprint-ref-checks-pattern"><rule context="mixed-citation[@publication-type='preprint']" id="preprint-ref-checks">
