@@ -905,7 +905,7 @@
   <pattern id="journal-source-checks-pattern">
     <rule context="mixed-citation[@publication-type='journal']/source" id="journal-source-checks">
       <let name="preprint-regex" value="'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra'"/>
-      <report test="matches(lower-case(.),'^(symposium|conference|meeting|workshop)\s|\s?(symposium|conference|meeting|workshop)\s?|\s(symposium|conference|meeting|workshop)$')" role="warning" id="journal-source-3">[journal-source-3] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
+      <report test="matches(lower-case(.),'^(symposium|conference|meeting|workshop)\s|\s?(symposium|conference|meeting|workshop)\s?|\s(symposium|conference|meeting|workshop)$')" role="warning" sqf:fix="convert-to-confproc" id="journal-source-3">[journal-source-3] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
       <sqf:fix id="fix-source-article-title">
          <sqf:description>
            <sqf:title>Move first sentence to article title</sqf:title>
@@ -990,6 +990,29 @@
            <xsl:copy copy-namespaces="no">
              <xsl:apply-templates select="@*" mode="customCopy"/>
              <xsl:value-of select="string-join(tokenize(.,'\.\s?')[position() ge 3],'. ')"/>
+           </xsl:copy>
+         </sqf:replace>
+       </sqf:fix>
+      <sqf:fix id="convert-to-confproc">
+         <sqf:description>
+           <sqf:title>Convert to conference proceedings</sqf:title>
+         </sqf:description>
+         <sqf:replace match="parent::mixed-citation">
+           <xsl:copy copy-namespaces="no">
+             <xsl:apply-templates select="@*[name()!='publication-type']" mode="customCopy"/>
+             <xsl:attribute name="publication-type">confproc</xsl:attribute>
+             <xsl:for-each select="node()|comment()|processing-instruction()">
+               <xsl:choose>
+                 <xsl:when test=". instance of element() and name()='source'">
+                   <conf-name xmlns="">
+                     <xsl:apply-templates select="node()" mode="customCopy"/>
+                   </conf-name>
+                 </xsl:when>
+                 <xsl:otherwise>
+                   <xsl:apply-templates select="." mode="customCopy"/>
+                 </xsl:otherwise>
+               </xsl:choose>
+             </xsl:for-each>
            </xsl:copy>
          </sqf:replace>
        </sqf:fix>

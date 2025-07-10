@@ -1220,7 +1220,7 @@
 
        <report test="matches(lower-case(.),'^i{1,3}\.\s') and parent::*/article-title" role="warning" sqf:fix="fix-source-article-title-3" id="journal-source-2">[journal-source-2] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with a roman numeral. Is part of the article-title captured in source? Source = <value-of select="."/>.</report>
 
-       <report test="matches(lower-case(.),'^(symposium|conference|meeting|workshop)\s|\s?(symposium|conference|meeting|workshop)\s?|\s(symposium|conference|meeting|workshop)$')" role="warning" id="journal-source-3">[journal-source-3] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
+       <report test="matches(lower-case(.),'^(symposium|conference|meeting|workshop)\s|\s?(symposium|conference|meeting|workshop)\s?|\s(symposium|conference|meeting|workshop)$')" role="warning" sqf:fix="convert-to-confproc" id="journal-source-3">[journal-source-3] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
        
        <report test="matches(lower-case(.),'^in[^a-z]')" role="warning" id="journal-source-4">[journal-source-4] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
        
@@ -1316,6 +1316,30 @@
            <xsl:copy copy-namespaces="no">
              <xsl:apply-templates select="@*" mode="customCopy"/>
              <xsl:value-of select="string-join(tokenize(.,'\.\s?')[position() ge 3],'. ')"/>
+           </xsl:copy>
+         </sqf:replace>
+       </sqf:fix>
+       
+       <sqf:fix id="convert-to-confproc">
+         <sqf:description>
+           <sqf:title>Convert to conference proceedings</sqf:title>
+         </sqf:description>
+         <sqf:replace match="parent::mixed-citation">
+           <xsl:copy copy-namespaces="no">
+             <xsl:apply-templates select="@*[name()!='publication-type']" mode="customCopy"/>
+             <xsl:attribute name="publication-type">confproc</xsl:attribute>
+             <xsl:for-each select="node()|comment()|processing-instruction()">
+               <xsl:choose>
+                 <xsl:when test=". instance of element() and name()='source'">
+                   <conf-name xmlns="">
+                     <xsl:apply-templates select="node()" mode="customCopy"/>
+                   </conf-name>
+                 </xsl:when>
+                 <xsl:otherwise>
+                   <xsl:apply-templates select="." mode="customCopy"/>
+                 </xsl:otherwise>
+               </xsl:choose>
+             </xsl:for-each>
            </xsl:copy>
          </sqf:replace>
        </sqf:fix>

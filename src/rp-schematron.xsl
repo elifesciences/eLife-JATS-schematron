@@ -4211,6 +4211,29 @@
             </xsl:copy>
          </sqf:replace>
       </sqf:fix>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" id="convert-to-confproc">
+         <sqf:description>
+            <sqf:title>Convert to conference proceedings</sqf:title>
+         </sqf:description>
+         <sqf:replace match="parent::mixed-citation">
+            <xsl:copy copy-namespaces="no">
+               <xsl:apply-templates select="@*[name()!='publication-type']" mode="customCopy"/>
+               <xsl:attribute name="publication-type">confproc</xsl:attribute>
+               <xsl:for-each select="node()|comment()|processing-instruction()">
+                  <xsl:choose>
+                     <xsl:when test=". instance of element() and name()='source'">
+                        <conf-name xmlns="">
+                           <xsl:apply-templates select="node()" mode="customCopy"/>
+                        </conf-name>
+                     </xsl:when>
+                     <xsl:otherwise>
+                        <xsl:apply-templates select="." mode="customCopy"/>
+                     </xsl:otherwise>
+                  </xsl:choose>
+               </xsl:for-each>
+            </xsl:copy>
+         </sqf:replace>
+      </sqf:fix>
       <xsl:apply-templates select="*" mode="M55"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M55"/>
