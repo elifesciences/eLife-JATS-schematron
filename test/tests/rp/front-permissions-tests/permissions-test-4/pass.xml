@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="permissions-test-4.sch"?>
 <!--Context: front[journal-meta/lower-case(journal-id[1])='elife']//permissions
-Test: assert    ali:free_to_read
+Test: assert    *:free_to_read
 Message: permissions must contain an ali:free_to_read element. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

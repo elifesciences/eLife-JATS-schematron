@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="clintrial-related-object-17.sch"?>
 <!--Context: related-object[@content-type or @document-id]
-Test: assert    @xlink:href!=''
+Test: assert    @*:href!=''
 Message:  must have an @xlink:href attribute with a non-empty value. This one does not. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>

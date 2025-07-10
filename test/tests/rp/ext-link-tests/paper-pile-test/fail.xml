@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="paper-pile-test.sch"?>
 <!--Context: ext-link[@ext-link-type='uri']
-Test: report    contains(@xlink:href,'paperpile.com')
+Test: report    contains(@*:href,'paperpile.com')
 Message: This paperpile hyperlink should be removed: '' embedded in the text ''. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>

@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="ext-link-imgur.sch"?>
 <!--Context: sub-article/body//ext-link
-Test: report    not(inline-graphic) and matches(lower-case(@xlink:href),'imgur\.com')
+Test: report    not(inline-graphic) and matches(lower-case(@*:href),'imgur\.com')
 Message: ext-link in sub-article directs to imgur.com - . Is this a figure or table (e.g. Author response image X) that should be captured semantically appropriately in the XML? -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>

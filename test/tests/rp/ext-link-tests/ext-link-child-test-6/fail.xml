@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="ext-link-child-test-6.sch"?>
 <!--Context: ext-link[@ext-link-type='uri']
-Test: report    not(contains(@xlink:href,'datadryad.org/review?')) and not(matches(@*:href,'^https?://doi.org/')) and contains(@*:href,'datadryad.org')
+Test: report    not(contains(@*:href,'datadryad.org/review?')) and not(matches(@*:href,'^https?://doi.org/')) and contains(@*:href,'datadryad.org')
 Message: ext-link points to a dryad dataset, but it is not a DOI - . Replace this with the Dryad DOI. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
