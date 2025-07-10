@@ -802,6 +802,80 @@
         <x:expect-not-assert id="aff-ror-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="test-editor-contrib-group">
+      <x:scenario label="editor-conformance-1-pass">
+        <x:context href="../tests/rp/test-editor-contrib-group/editor-conformance-1/pass.xml"/>
+        <x:expect-not-assert id="editor-conformance-1" role="error"/>
+        <x:expect-not-assert id="test-editor-contrib-group-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-conformance-1-fail">
+        <x:context href="../tests/rp/test-editor-contrib-group/editor-conformance-1/fail.xml"/>
+        <x:expect-assert id="editor-conformance-1" role="error"/>
+        <x:expect-not-assert id="test-editor-contrib-group-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-conformance-2-pass">
+        <x:context href="../tests/rp/test-editor-contrib-group/editor-conformance-2/pass.xml"/>
+        <x:expect-not-assert id="editor-conformance-2" role="warning"/>
+        <x:expect-not-assert id="test-editor-contrib-group-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-conformance-2-fail">
+        <x:context href="../tests/rp/test-editor-contrib-group/editor-conformance-2/fail.xml"/>
+        <x:expect-assert id="editor-conformance-2" role="warning"/>
+        <x:expect-not-assert id="test-editor-contrib-group-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="test-editors-contrib">
+      <x:scenario label="editor-conformance-3-pass">
+        <x:context href="../tests/rp/test-editors-contrib/editor-conformance-3/pass.xml"/>
+        <x:expect-not-report id="editor-conformance-3" role="error"/>
+        <x:expect-not-assert id="test-editors-contrib-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-conformance-3-fail">
+        <x:context href="../tests/rp/test-editors-contrib/editor-conformance-3/fail.xml"/>
+        <x:expect-report id="editor-conformance-3" role="error"/>
+        <x:expect-not-assert id="test-editors-contrib-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-conformance-4-pass">
+        <x:context href="../tests/rp/test-editors-contrib/editor-conformance-4/pass.xml"/>
+        <x:expect-not-report id="editor-conformance-4" role="error"/>
+        <x:expect-not-assert id="test-editors-contrib-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-conformance-4-fail">
+        <x:context href="../tests/rp/test-editors-contrib/editor-conformance-4/fail.xml"/>
+        <x:expect-report id="editor-conformance-4" role="error"/>
+        <x:expect-not-assert id="test-editors-contrib-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-conformance-5-pass">
+        <x:context href="../tests/rp/test-editors-contrib/editor-conformance-5/pass.xml"/>
+        <x:expect-not-assert id="editor-conformance-5" role="error"/>
+        <x:expect-not-assert id="test-editors-contrib-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-conformance-5-fail">
+        <x:context href="../tests/rp/test-editors-contrib/editor-conformance-5/fail.xml"/>
+        <x:expect-assert id="editor-conformance-5" role="error"/>
+        <x:expect-not-assert id="test-editors-contrib-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="contrib-test-2-pass">
+        <x:context href="../tests/rp/test-editors-contrib/contrib-test-2/pass.xml"/>
+        <x:expect-not-report id="contrib-test-2" role="warning"/>
+        <x:expect-not-assert id="test-editors-contrib-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="contrib-test-2-fail">
+        <x:context href="../tests/rp/test-editors-contrib/contrib-test-2/fail.xml"/>
+        <x:expect-report id="contrib-test-2" role="warning"/>
+        <x:expect-not-assert id="test-editors-contrib-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-check-1-pass">
+        <x:context href="../tests/rp/test-editors-contrib/editor-check-1/pass.xml"/>
+        <x:expect-not-report id="editor-check-1" role="error"/>
+        <x:expect-not-assert id="test-editors-contrib-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-check-1-fail">
+        <x:context href="../tests/rp/test-editors-contrib/editor-check-1/fail.xml"/>
+        <x:expect-report id="editor-check-1" role="error"/>
+        <x:expect-not-assert id="test-editors-contrib-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="journal-ref-checks">
       <x:scenario label="journal-ref-source-pass">
         <x:context href="../tests/rp/journal-ref-checks/journal-ref-source/pass.xml"/>
