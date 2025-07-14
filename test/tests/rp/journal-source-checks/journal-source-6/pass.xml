@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="journal-source-6.sch"?>
 <!--Context: mixed-citation[@publication-type='journal']/source
-Test: report    count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s'))
+Test: report    count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^(j|nat|proc|sci|annu|physiol|front|theor)\.\s'))
 Message: Journal reference () has a source that contains more than one sentence - . Should some of the content be moved into the article-title? -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
