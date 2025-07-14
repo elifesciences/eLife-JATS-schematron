@@ -936,6 +936,21 @@
   <pattern id="sec-label-checks-pattern">
     <rule context="sec/label" id="sec-label-checks">
       <report test="normalize-space(.)=''" role="error" sqf:fix="delete-elem" id="sec-label-2">[sec-label-2] Section label is empty. This is not permitted.</report>
+      <sqf:fix id="move-to-title" use-when="parent::sec/title">
+          <sqf:description>
+            <sqf:title>Move to title</sqf:title>
+          </sqf:description>
+          <sqf:replace match="parent::sec/title">
+            <xsl:copy copy-namespaces="no">
+              <xsl:copy-of select="namespace-node()"/>
+              <xsl:apply-templates select="@*" mode="customCopy"/>
+              <xsl:apply-templates select="parent::sec/label/node()" mode="customCopy"/>
+              <xsl:text> </xsl:text>
+              <xsl:apply-templates select="node()|comment()|processing-instruction()" mode="customCopy"/>
+            </xsl:copy>
+          </sqf:replace>
+          <sqf:delete match="."/>
+        </sqf:fix>
     </rule>
   </pattern>
   <pattern id="root-pattern">
