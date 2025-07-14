@@ -4125,8 +4125,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s'))">
+      <xsl:if test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^(j|nat|proc|sci)\.\s'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^(j|nat|proc|sci)\.\s'))">
             <xsl:attribute name="id">journal-source-6</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">

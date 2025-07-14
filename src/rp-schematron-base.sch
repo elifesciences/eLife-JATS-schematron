@@ -1545,7 +1545,7 @@
         role="warning" 
         id="journal-source-5">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
        
-       <report test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s'))" 
+       <report test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^(j|nat|proc|sci)\.\s'))" 
         role="warning"
         sqf:fix="fix-source-article-title"
         id="journal-source-6">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains more than one sentence - <value-of select="."/>. Should some of the content be moved into the article-title?</report>
