@@ -7248,7 +7248,7 @@
         <name/> element contains an equal sign with content directly next to one side, but a space on the other, is this correct? - <value-of select="$unequal-equal-text"/>
       </report>
       
-      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7eko-equal-spacing-test" test="matches(.,'\+cell[s]?|±cell[s]?') and not(descendant::p[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::td[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::th[matches(.,'\+cell[s]?|±cell[s]?')])" role="warning" id="equal-spacing-test">
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#equal-spacing-test" test="matches(.,'\+cell[s]?|±cell[s]?') and not(descendant::p[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::td[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::th[matches(.,'\+cell[s]?|±cell[s]?')])" role="warning" id="equal-spacing-test">
         <name/> element contains the text '+cells' or '±cells' which is very likely to be incorrect spacing - <value-of select="."/>
       </report>
       

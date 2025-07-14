@@ -10482,7 +10482,7 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="cell-spacing-test"><name/> element contains an equal sign with content directly next to one side, but a space on the other, is this correct? - <value-of select="$unequal-equal-text"/></report>
       
-      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7eko-equal-spacing-test" 
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#equal-spacing-test" 
         test="matches(.,'\+cell[s]?|±cell[s]?') and not(descendant::p[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::td[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::th[matches(.,'\+cell[s]?|±cell[s]?')])" 
         role="warning" 
         id="equal-spacing-test"><name/> element contains the text '+cells' or '±cells' which is very likely to be incorrect spacing - <value-of select="."/></report>
@@ -10753,7 +10753,8 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?\p{P}?\s*\p{Ps}?([1][7-9][0-9][0-9]|[2][0-2][0-9][0-9])'"/>
       <let name="missing-file-regex" value="' figures? (supplements?\s?)?\d| source (data|code)s? \d| (audio|supplementary) files? \d| tables? \d'"/>
       
-      <report test="matches($text,$missing-ref-regex)" 
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#missing-ref-in-text-test"
+        test="matches($text,$missing-ref-regex)" 
         role="warning" 
         id="missing-ref-in-text-test"><name/> element contains possible citation which is unlinked or a missing reference - search - <value-of select="concat(tokenize(substring-before($text,' et al'),' ')[last()],' et al ',tokenize(substring-after($text,' et al'),' ')[2])"/></report>
       

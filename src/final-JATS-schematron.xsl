@@ -30570,7 +30570,7 @@
       <xsl:if test="matches(.,'\+cell[s]?|±cell[s]?') and not(descendant::p[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::td[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::th[matches(.,'\+cell[s]?|±cell[s]?')])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\+cell[s]?|±cell[s]?') and not(descendant::p[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::td[matches(.,'\+cell[s]?|±cell[s]?')]) and not(descendant::th[matches(.,'\+cell[s]?|±cell[s]?')])">
             <xsl:attribute name="id">equal-spacing-test</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7eko-equal-spacing-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#equal-spacing-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -31206,6 +31206,7 @@
       <xsl:if test="matches($text,$missing-ref-regex)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($text,$missing-ref-regex)">
             <xsl:attribute name="id">missing-ref-in-text-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/references-ghxfa7uy#missing-ref-in-text-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
