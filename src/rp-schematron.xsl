@@ -3470,8 +3470,8 @@
          <sqf:description>
             <sqf:title>Add city from ROR record</sqf:title>
          </sqf:description>
-         <sqf:replace match="institution-wrap/following-sibling::text()[1]">
-            <xsl:variable name="ror" select="ancestor::aff/institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
+         <sqf:replace match="institution-wrap/following-sibling::text()[1]" use-when="institution-wrap[1]/institution-id[@institution-id-type='ror']">
+            <xsl:variable name="ror" select="ancestor::aff/institution-wrap[1]/institution-id[@institution-id-type='ror']"/>
             <xsl:variable name="ror-record-city" select="document('rors.xml')//*:ror[*:id=$ror]/*:city/data()"/>
             <xsl:text>, </xsl:text>
             <city xmlns="">
@@ -3479,6 +3479,24 @@
             </city>
             <xsl:text>, </xsl:text>
          </sqf:replace>
+      </sqf:fix>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" id="add-ror-country">
+         <sqf:description>
+            <sqf:title>Add country from ROR record</sqf:title>
+         </sqf:description>
+         <sqf:add match="." position="last-child" use-when="institution-wrap[1]/institution-id[@institution-id-type='ror']">
+            <xsl:variable name="ror" select="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
+            <xsl:variable name="ror-record-country" select="document('rors.xml')//*:ror[*:id=$ror]/*:country[1]"/>
+            <xsl:if test="not(ends-with(.,', '))">
+               <xsl:text>, </xsl:text>
+            </xsl:if>
+            <xsl:element name="country">
+               <xsl:attribute name="country">
+                  <xsl:value-of select="$ror-record-country/@country"/>
+               </xsl:attribute>
+               <xsl:value-of select="$ror-record-country"/>
+            </xsl:element>
+         </sqf:add>
       </sqf:fix>
       <xsl:apply-templates select="*" mode="M44"/>
    </xsl:template>

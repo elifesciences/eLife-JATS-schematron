@@ -937,7 +937,7 @@
     <rule context="aff" id="affiliation-checks">
       <let name="country-count" value="count(descendant::country)"/>
       <let name="city-count" value="count(descendant::city)"/>
-      <report test="$country-count lt 1" role="warning" id="aff-no-country">[aff-no-country] Affiliation does not contain a country element: <value-of select="."/>
+      <report test="$country-count lt 1" role="warning" sqf:fix="add-ror-country" id="aff-no-country">[aff-no-country] Affiliation does not contain a country element: <value-of select="."/>
       </report>
       <sqf:fix id="pick-aff-ror-1">
         <sqf:description>
@@ -961,8 +961,8 @@
         <sqf:description>
           <sqf:title>Add city from ROR record</sqf:title>
         </sqf:description>
-        <sqf:replace match="institution-wrap/following-sibling::text()[1]">
-          <xsl:variable name="ror" select="ancestor::aff/institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
+        <sqf:replace match="institution-wrap/following-sibling::text()[1]" use-when="institution-wrap[1]/institution-id[@institution-id-type='ror']">
+          <xsl:variable name="ror" select="ancestor::aff/institution-wrap[1]/institution-id[@institution-id-type='ror']"/>
           <xsl:variable name="ror-record-city" select="document('rors.xml')//*:ror[*:id=$ror]/*:city/data()"/>
           <xsl:text>, </xsl:text>
           <city xmlns="">
@@ -970,6 +970,24 @@
           </city>
           <xsl:text>, </xsl:text>
         </sqf:replace>
+      </sqf:fix>
+      <sqf:fix id="add-ror-country">
+        <sqf:description>
+          <sqf:title>Add country from ROR record</sqf:title>
+        </sqf:description>
+        <sqf:add match="." position="last-child" use-when="institution-wrap[1]/institution-id[@institution-id-type='ror']">
+          <xsl:variable name="ror" select="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
+          <xsl:variable name="ror-record-country" select="document('rors.xml')//*:ror[*:id=$ror]/*:country[1]"/>
+          <xsl:if test="not(ends-with(.,', '))">
+            <xsl:text>, </xsl:text>
+          </xsl:if>
+          <xsl:element name="country">
+            <xsl:attribute name="country">
+              <xsl:value-of select="$ror-record-country/@country"/>
+            </xsl:attribute>
+            <xsl:value-of select="$ror-record-country"/>
+          </xsl:element>
+        </sqf:add>
       </sqf:fix>
     </rule>
   </pattern>
