@@ -7218,6 +7218,21 @@
             <svrl:text>[sec-label-2] Section label is empty. This is not permitted.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" id="move-to-title" use-when="parent::sec/title">
+         <sqf:description>
+            <sqf:title>Move to title</sqf:title>
+         </sqf:description>
+         <sqf:replace match="parent::sec/title">
+            <xsl:copy copy-namespaces="no">
+               <xsl:copy-of select="namespace-node()"/>
+               <xsl:apply-templates select="@*" mode="customCopy"/>
+               <xsl:apply-templates select="parent::sec/label/node()" mode="customCopy"/>
+               <xsl:text> </xsl:text>
+               <xsl:apply-templates select="node()|comment()|processing-instruction()" mode="customCopy"/>
+            </xsl:copy>
+         </sqf:replace>
+         <sqf:delete match="."/>
+      </sqf:fix>
       <xsl:apply-templates select="*" mode="M108"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M108"/>
@@ -7311,7 +7326,7 @@
    <!--PATTERN p-ref-checks-pattern-->
    <!--RULE p-ref-checks-->
    <xsl:template match="p[not(ancestor::sub-article)]" priority="1000" mode="M112">
-      <xsl:variable name="text" select="string-join(for $x in self::*/(*|text())                                             return if ($x/local-name()='xref') then ()                                                    else string($x),'')"/>
+      <xsl:variable name="text" select="string-join(for $x in self::*/(*|text())                                             return if ($x/local-name()='xref') then ()                                                    else if ($x//*:p) then ($x/text())                                                    else string($x),'')"/>
       <xsl:variable name="missing-ref-regex" select="'[A-Z][A-Za-z]+ et al\.?\p{P}?\s*\p{Ps}?([1][7-9][0-9][0-9]|[2][0-2][0-9][0-9])'"/>
       <!--REPORT warning-->
       <xsl:if test="matches($text,$missing-ref-regex)">

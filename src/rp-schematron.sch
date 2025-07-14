@@ -1820,9 +1820,25 @@
         
         <report test="matches(label[1],'\d+\.\s?\d')" role="warning" id="top-sec-2">[top-sec-2] Section that is placed as a child of <value-of select="parent::*/name()"/> has a label which suggests it should be a subsection: <value-of select="label[1]"/>.</report>
       </rule></pattern><pattern id="sec-label-checks-pattern"><rule context="sec/label" id="sec-label-checks">
-        <report test="matches(.,'[2-4]D')" role="warning" id="sec-label-1">[sec-label-1] Label for section contains 2D or similar - '<value-of select="."/>'. Is it really a label? Or just part of the title?</report>
+        <report test="matches(.,'[2-4]D')" role="warning" sqf:fix="move-to-title delete-elem" id="sec-label-1">[sec-label-1] Label for section contains 2D or similar - '<value-of select="."/>'. Is it really a label? Or just part of the title?</report>
         
         <report test="normalize-space(.)=''" role="error" sqf:fix="delete-elem" id="sec-label-2">[sec-label-2] Section label is empty. This is not permitted.</report>
+        
+        <sqf:fix id="move-to-title" use-when="parent::sec/title">
+          <sqf:description>
+            <sqf:title>Move to title</sqf:title>
+          </sqf:description>
+          <sqf:replace match="parent::sec/title">
+            <xsl:copy copy-namespaces="no">
+              <xsl:copy-of select="namespace-node()"/>
+              <xsl:apply-templates select="@*" mode="customCopy"/>
+              <xsl:apply-templates select="parent::sec/label/node()" mode="customCopy"/>
+              <xsl:text> </xsl:text>
+              <xsl:apply-templates select="node()|comment()|processing-instruction()" mode="customCopy"/>
+            </xsl:copy>
+          </sqf:replace>
+          <sqf:delete match="."/>
+        </sqf:fix>
       </rule></pattern>
 
     <pattern id="title-checks-pattern"><rule context="title" id="title-checks">
@@ -1837,7 +1853,7 @@
         <let name="free-text" value="replace(normalize-space(string-join(for $x in self::*/text() return $x,'')),' ','')"/>
         <report test="$free-text=''" role="warning" id="p-all-bold">[p-all-bold] Content of p element is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
       </rule></pattern><pattern id="p-ref-checks-pattern"><rule context="p[not(ancestor::sub-article)]" id="p-ref-checks">
-        <let name="text" value="string-join(for $x in self::*/(*|text())                                             return if ($x/local-name()='xref') then ()                                                    else string($x),'')"/>
+        <let name="text" value="string-join(for $x in self::*/(*|text())                                             return if ($x/local-name()='xref') then ()                                                    else if ($x//*:p) then ($x/text())                                                    else string($x),'')"/>
         <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?\p{P}?\s*\p{Ps}?([1][7-9][0-9][0-9]|[2][0-2][0-9][0-9])'"/>
         
         <report test="matches($text,$missing-ref-regex)" role="warning" id="missing-ref-in-text-test">[missing-ref-in-text-test] <name/> element contains possible citation which is unlinked or a missing reference - search - <value-of select="concat(tokenize(substring-before($text,' et al'),' ')[last()],' et al ',tokenize(substring-after($text,' et al'),' ')[2])"/></report>

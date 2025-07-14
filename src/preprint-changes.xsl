@@ -160,6 +160,9 @@
             <xsl:if test="empty(namespace::xlink)">
                 <xsl:namespace name="xlink">http://www.w3.org/1999/xlink</xsl:namespace>
             </xsl:if>
+            <xsl:if test="empty(namespace::xsi)">
+                <xsl:namespace name="xsi">http://www.w3.org/2001/XMLSchema-instance</xsl:namespace>
+            </xsl:if>
             <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
     </xsl:template>

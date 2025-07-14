@@ -935,7 +935,22 @@
   </sqf:fixes>
   <pattern id="sec-label-checks-pattern">
     <rule context="sec/label" id="sec-label-checks">
-      <report test="matches(.,'[2-4]D')" role="warning" id="sec-label-1">[sec-label-1] Label for section contains 2D or similar - '<value-of select="."/>'. Is it really a label? Or just part of the title?</report>
+      <report test="matches(.,'[2-4]D')" role="warning" sqf:fix="move-to-title delete-elem" id="sec-label-1">[sec-label-1] Label for section contains 2D or similar - '<value-of select="."/>'. Is it really a label? Or just part of the title?</report>
+      <sqf:fix id="move-to-title" use-when="parent::sec/title">
+          <sqf:description>
+            <sqf:title>Move to title</sqf:title>
+          </sqf:description>
+          <sqf:replace match="parent::sec/title">
+            <xsl:copy copy-namespaces="no">
+              <xsl:copy-of select="namespace-node()"/>
+              <xsl:apply-templates select="@*" mode="customCopy"/>
+              <xsl:apply-templates select="parent::sec/label/node()" mode="customCopy"/>
+              <xsl:text> </xsl:text>
+              <xsl:apply-templates select="node()|comment()|processing-instruction()" mode="customCopy"/>
+            </xsl:copy>
+          </sqf:replace>
+          <sqf:delete match="."/>
+        </sqf:fix>
     </rule>
   </pattern>
   <pattern id="root-pattern">
