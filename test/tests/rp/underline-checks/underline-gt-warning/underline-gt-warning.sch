@@ -935,7 +935,7 @@
   </sqf:fixes>
   <pattern id="underline-checks-pattern">
     <rule context="underline" id="underline-checks">
-      <report test="replace(.,'[\s\.]','')='&gt;'" role="warning" sqf:fix="strip-tags add-ge-symbol" id="underline-gt-warning">[underline-gt-warning] underline element contains a greater than symbol (<value-of select="."/>). Should this a greater than or equal to symbol instead (≥)?</report>
+      <report test="replace(.,'[\s\.]','')='&gt;'" role="warning" sqf:fix="add-ge-symbol strip-tags" id="underline-gt-warning">[underline-gt-warning] underline element contains a greater than symbol (<value-of select="."/>). Should this a greater than or equal to symbol instead (≥)?</report>
       <sqf:fix id="add-ge-symbol">
          <sqf:description>
            <sqf:title>Change to ≥</sqf:title>
