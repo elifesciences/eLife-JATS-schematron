@@ -1830,18 +1830,18 @@
     <rule context="underline" id="underline-checks">
         <report test="string-length(.) gt 20" role="warning" sqf:fix="strip-tags" id="underline-warning">underline element contains more than 20 characters. Is this tracked change formatting that's been erroneously retained?</report>
       
-        <report test="matches(lower-case(.),'www\.|(f|ht)tp|^link\s|\slink\s')" role="warning" sqf:fix="strip-tags replace-to-ext-link" id="underline-link-warning">Should this underline element be a link (ext-link) instead? <value-of select="."/>
+        <report test="matches(lower-case(.),'www\.|(f|ht)tp|^link\s|\slink\s')" role="warning" sqf:fix="replace-to-ext-link strip-tags" id="underline-link-warning">Should this underline element be a link (ext-link) instead? <value-of select="."/>
       </report>
 
-        <report test="replace(.,'[\s\.]','')='&gt;'" role="warning" sqf:fix="strip-tags add-ge-symbol" id="underline-gt-warning">underline element contains a greater than symbol (<value-of select="."/>). Should this a greater than or equal to symbol instead (≥)?</report>
+        <report test="replace(.,'[\s\.]','')='&gt;'" role="warning" sqf:fix="add-ge-symbol strip-tags" id="underline-gt-warning">underline element contains a greater than symbol (<value-of select="."/>). Should this a greater than or equal to symbol instead (≥)?</report>
 
-        <report test="replace(.,'[\s\.]','')='&lt;'" role="warning" sqf:fix="strip-tags add-le-symbol" id="underline-lt-warning">underline element contains a less than symbol (<value-of select="."/>). Should this a less than or equal to symbol instead (≤)?</report>
+        <report test="replace(.,'[\s\.]','')='&lt;'" role="warning" sqf:fix="add-le-symbol strip-tags" id="underline-lt-warning">underline element contains a less than symbol (<value-of select="."/>). Should this a less than or equal to symbol instead (≤)?</report>
        
-        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" sqf:fix="strip-tags replace-fig-xref replace-supp-xref" id="underline-check-1">Content of underline element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" sqf:fix="replace-fig-xref replace-supp-xref strip-tags" id="underline-check-1">Content of underline element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
-       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')" role="warning" sqf:fix="strip-tags replace-fig-xref replace-supp-xref" id="underline-check-2">Content of underline element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')" role="warning" sqf:fix="replace-fig-xref replace-supp-xref strip-tags" id="underline-check-2">Content of underline element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
-       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')" role="warning" sqf:fix="strip-tags replace-fig-xref replace-supp-xref" id="underline-check-3">Content of underline element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')" role="warning" sqf:fix="replace-fig-xref replace-supp-xref strip-tags" id="underline-check-3">Content of underline element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
        
        <sqf:fix id="add-ge-symbol">
          <sqf:description>
