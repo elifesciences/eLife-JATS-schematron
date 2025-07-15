@@ -521,12 +521,35 @@
    </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:org-conform" as="xs:string">
       <xsl:param name="s" as="xs:string"/>
-      <xsl:for-each select="doc($res-org-doc)//*:organism">
-         <xsl:if test="matches(lower-case($s),./@regex)">
-            <xsl:value-of select="."/>
-         </xsl:if>
-      </xsl:for-each>
-      <xsl:value-of select="'undefined'"/>
+      <xsl:variable name="species-check-result">
+         <xsl:for-each select="doc($research-organisms)//*:organism[@type='species']">
+            <xsl:if test="matches(lower-case($s),./@regex)">
+               <xsl:value-of select="."/>
+            </xsl:if>
+         </xsl:for-each>
+      </xsl:variable>
+      <xsl:choose>
+         <xsl:when test="$species-check-result">
+            <xsl:value-of select="$species-check-result"/>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:variable name="genus-check-result">
+               <xsl:for-each select="doc($research-organisms)//*:organism[@type='genus']">
+                  <xsl:if test="matches(lower-case($s),./@regex)">
+                     <xsl:value-of select="."/>
+                  </xsl:if>
+               </xsl:for-each>
+            </xsl:variable>
+            <xsl:choose>
+               <xsl:when test="$genus-check-result">
+                  <xsl:value-of select="$genus-check-result"/>
+               </xsl:when>
+               <xsl:otherwise>
+                  <xsl:value-of select="'undefined'"/>
+               </xsl:otherwise>
+            </xsl:choose>
+         </xsl:otherwise>
+      </xsl:choose>
    </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:code-check">
       <xsl:param name="s" as="xs:string"/>
@@ -5807,8 +5830,8 @@
    <xsl:param name="wellcome-fundref-ids" select="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
    <xsl:param name="known-grant-funder-fundref-ids" select="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968')"/>
    <xsl:param name="grant-doi-exception-funder-ids" select="($wellcome-fundref-ids,$known-grant-funder-fundref-ids)"/>
-   <xsl:param name="res-org-doc" select="'research-organisms.xml'"/>
-   <xsl:param name="org-regex" select="string-join(doc($res-org-doc)//*:organism/@regex,'|')"/>
+   <xsl:param name="research-organisms" select="'research-organisms.xml'"/>
+   <xsl:param name="org-regex" select="string-join(doc($research-organisms)//*:organism/@regex,'|')"/>
    <xsl:param name="sec-title-regex" select="string-join(     for $x in tokenize($org-regex,'\|')     return concat('^',$x,'$')     ,'|')"/>
    <xsl:param name="latin-regex" select="'in\p{Zs}+vitro|ex\p{Zs}+vitro|in\p{Zs}+vivo|ex\p{Zs}+vivo|a\p{Zs}+priori|a\p{Zs}+posteriori|de\p{Zs}+novo|in\p{Zs}+utero|in\p{Zs}+natura|in\p{Zs}+situ|in\p{Zs}+planta|in\p{Zs}+cellulo|rete\p{Zs}+mirabile|nomen\p{Zs}+novum| sensu |ad\p{Zs}+libitum|in\p{Zs}+ovo'"/>
    <!--PATTERN covid-prologue-pattern-->

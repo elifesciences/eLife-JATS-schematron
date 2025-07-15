@@ -575,18 +575,41 @@
   </xsl:function>
   
   <!-- Global variable included here for convenience -->
-  <let name="res-org-doc" value="'research-organisms.xml'"/>
-  <let name="org-regex" value="string-join(doc($res-org-doc)//*:organism/@regex,'|')"/>
+  <let name="research-organisms" value="'research-organisms.xml'"/>
+  <let name="org-regex" value="string-join(doc($research-organisms)//*:organism/@regex,'|')"/>
   <let name="sec-title-regex" value="string-join(     for $x in tokenize($org-regex,'\|')     return concat('^',$x,'$')     ,'|')"/>
   
   <xsl:function name="e:org-conform" as="xs:string">
     <xsl:param name="s" as="xs:string"/>
-    <xsl:for-each select="doc($res-org-doc)//*:organism">
-      <xsl:if test="matches(lower-case($s),./@regex)">
-        <xsl:value-of select="."/>
-      </xsl:if>
-    </xsl:for-each>
-    <xsl:value-of select="'undefined'"/>
+    <xsl:variable name="species-check-result">
+      <xsl:for-each select="doc($research-organisms)//*:organism[@type='species']">
+        <xsl:if test="matches(lower-case($s),./@regex)">
+          <xsl:value-of select="."/>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$species-check-result">
+        <xsl:value-of select="$species-check-result"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="genus-check-result">
+          <xsl:for-each select="doc($research-organisms)//*:organism[@type='genus']">
+            <xsl:if test="matches(lower-case($s),./@regex)">
+              <xsl:value-of select="."/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$genus-check-result">
+            <xsl:value-of select="$genus-check-result"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="'undefined'"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:function>
   
   <xsl:function name="e:code-check">
