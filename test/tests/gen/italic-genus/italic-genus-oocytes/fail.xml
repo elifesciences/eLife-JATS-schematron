@@ -1,0 +1,10 @@
+<?oxygen SCHSchema="italic-genus-oocytes.sch"?>
+<!--Context: italic[matches(lower-case(.),$genus-regex)]
+Test: report    matches(lower-case(.),concat($regex-prefix,'\p{Zs}*oocytes'))
+Message:  contains a genus name followed by 'oocytes'. 'oocytes' should not be in italics. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <p><italic>Drosophila oocytes</italic></p>
+        <p><italic>Xenopus oocytes</italic></p>
+    </article>
+</root>

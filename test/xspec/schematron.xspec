@@ -15182,6 +15182,18 @@
         <x:expect-not-assert id="org-title-kwd-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="italic-genus">
+      <x:scenario label="italic-genus-oocytes-pass">
+        <x:context href="../tests/gen/italic-genus/italic-genus-oocytes/pass.xml"/>
+        <x:expect-not-report id="italic-genus-oocytes" role="error"/>
+        <x:expect-not-assert id="italic-genus-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="italic-genus-oocytes-fail">
+        <x:context href="../tests/gen/italic-genus/italic-genus-oocytes/fail.xml"/>
+        <x:expect-report id="italic-genus-oocytes" role="error"/>
+        <x:expect-not-assert id="italic-genus-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="unallowed-symbol-tests">
       <x:scenario label="copyright-symbol-pass">
         <x:context href="../tests/gen/unallowed-symbol-tests/copyright-symbol/pass.xml"/>

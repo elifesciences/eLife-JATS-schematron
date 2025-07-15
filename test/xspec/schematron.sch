@@ -576,7 +576,9 @@
   
   <!-- Global variable included here for convenience -->
   <let name="research-organisms" value="'research-organisms.xml'"/>
-  <let name="org-regex" value="string-join(doc($research-organisms)//*:organism/@regex,'|')"/>
+  <let name="species-regex" value="string-join(doc($research-organisms)//*:organism[@type='species']/@regex,'|')"/>
+  <let name="genus-regex" value="string-join(doc($research-organisms)//*:organism[@type='genus']/@regex,'|')"/>
+  <let name="org-regex" value="string-join(($species-regex,$genus-regex),'|')"/>
   <let name="sec-title-regex" value="string-join(     for $x in tokenize($org-regex,'\|')     return concat('^',$x,'$')     ,'|')"/>
   
   <xsl:function name="e:org-conform" as="xs:string">
@@ -6897,8 +6899,8 @@
       <let name="type" value="e:fig-id-type($rid)"/>
       <let name="no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
-      <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
-      <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
+      <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]+','-')"/>
+      <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]+','-')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-conformity-1" test="matches(.,'\p{N}')" role="error" id="fig-xref-conformity-1">
         <value-of select="."/> - figure citation does not contain any numbers which must be incorrect.</assert>
@@ -7074,6 +7076,15 @@
       
       <report test="$organism!='' and not(italic[contains(.,$organism)])" role="info" id="article-title-organism-check">
         <name/> contains an organism - <value-of select="$organism"/> - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+    </rule>
+  </pattern>
+  <pattern id="italic-genus-pattern">
+    <rule context="italic[matches(lower-case(.),$genus-regex)]" id="italic-genus">
+      <let name="regex-prefix" value="concat('(',$genus-regex,')')"/>
+      
+      <report test="matches(lower-case(.),concat($regex-prefix,'\p{Zs}*oocytes'))" role="error" id="italic-genus-oocytes">
+        <name/> contains a genus name followed by 'oocytes'. 'oocytes' should not be in italics.</report>
       
     </rule>
   </pattern>
@@ -9126,6 +9137,7 @@
       <assert test="descendant::xref[@ref-type='disp-formula']" role="error" id="equation-xref-conformance-xspec-assert">xref[@ref-type='disp-formula'] must be present.</assert>
       <assert test="descendant::element-citation/article-title or descendant::       element-citation/chapter-title or descendant::       element-citation/source or descendant::       element-citation/data-title" role="error" id="org-ref-article-book-title-xspec-assert">element-citation/article-title|       element-citation/chapter-title|       element-citation/source|       element-citation/data-title must be present.</assert>
       <assert test="descendant::article//article-meta/title-group/article-title  or descendant:: article/body//sec/title  or descendant:: article//article-meta//kwd" role="error" id="org-title-kwd-xspec-assert">article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</assert>
+      <assert test="descendant::italic[matches(lower-case(.),$genus-regex)]" role="error" id="italic-genus-xspec-assert">italic[matches(lower-case(.),$genus-regex)] must be present.</assert>
       <assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link" role="error" id="unallowed-symbol-tests-xspec-assert">p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</assert>
       <assert test="descendant::sup" role="error" id="unallowed-symbol-tests-sup-xspec-assert">sup must be present.</assert>
       <assert test="descendant::underline" role="error" id="underline-tests-xspec-assert">underline must be present.</assert>

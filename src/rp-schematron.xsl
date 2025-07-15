@@ -10784,8 +10784,8 @@
    <!--PATTERN fig-xref-conformance-pattern-->
    <!--RULE fig-xref-conformance-->
    <xsl:template match="xref[@ref-type='fig' and @rid]" priority="1000" mode="M164">
-      <xsl:variable name="pre-text" select="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
-      <xsl:variable name="post-text" select="replace(following-sibling::text()[1],'[—–‒]','-')"/>
+      <xsl:variable name="pre-text" select="replace(preceding-sibling::text()[1],'[—–‒]+','-')"/>
+      <xsl:variable name="post-text" select="replace(following-sibling::text()[1],'[—–‒]+','-')"/>
       <!--REPORT warning-->
       <xsl:if test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')">

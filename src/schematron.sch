@@ -625,7 +625,9 @@
   
   <!-- Global variable included here for convenience -->
   <let name="research-organisms" value="'research-organisms.xml'"/>
-  <let name="org-regex" value="string-join(doc($research-organisms)//*:organism/@regex,'|')"/>
+  <let name="species-regex" value="string-join(doc($research-organisms)//*:organism[@type='species']/@regex,'|')"/>
+  <let name="genus-regex" value="string-join(doc($research-organisms)//*:organism[@type='genus']/@regex,'|')"/>
+  <let name="org-regex" value="string-join(($species-regex,$genus-regex),'|')"/>
   <let name="sec-title-regex" value="string-join(
     for $x in tokenize($org-regex,'\|')
     return concat('^',$x,'$')
@@ -10327,8 +10329,8 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="type" value="e:fig-id-type($rid)"/>
       <let name="no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
-      <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
-      <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
+      <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]+','-')"/>
+      <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]+','-')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-conformity-1"
         test="matches(.,'\p{N}')" 
@@ -10647,6 +10649,15 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="$organism!='' and not(italic[contains(.,$organism)])" 
         role="info" 
         id="article-title-organism-check"><name/> contains an organism - <value-of select="$organism"/> - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+    </rule>
+    
+    <rule context="italic[matches(lower-case(.),$genus-regex)]" id="italic-genus">
+      <let name="regex-prefix" value="concat('(',$genus-regex,')')"/>
+      
+      <report test="matches(lower-case(.),concat($regex-prefix,'\p{Zs}*oocytes'))" 
+        role="error" 
+        id="italic-genus-oocytes"><name/> contains a genus name followed by 'oocytes'. 'oocytes' should not be in italics.</report>
       
     </rule>
     

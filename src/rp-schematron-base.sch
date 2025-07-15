@@ -3798,8 +3798,8 @@
      </rule>
       
       <rule context="xref[@ref-type='fig' and @rid]" id="fig-xref-conformance">
-        <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
-        <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
+        <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]+','-')"/>
+        <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]+','-')"/>
         
         <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-3"
         test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" 
