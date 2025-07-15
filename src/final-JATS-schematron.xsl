@@ -30918,8 +30918,8 @@
       <xsl:variable name="type" select="e:fig-id-type($rid)"/>
       <xsl:variable name="no" select="normalize-space(replace(.,'[^0-9]+',''))"/>
       <xsl:variable name="target-no" select="replace($rid,'[^0-9]+','')"/>
-      <xsl:variable name="pre-text" select="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
-      <xsl:variable name="post-text" select="replace(following-sibling::text()[1],'[—–‒]','-')"/>
+      <xsl:variable name="pre-text" select="replace(preceding-sibling::text()[1],'[—–‒]+','-')"/>
+      <xsl:variable name="post-text" select="replace(following-sibling::text()[1],'[—–‒]+','-')"/>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="matches(.,'\p{N}')"/>

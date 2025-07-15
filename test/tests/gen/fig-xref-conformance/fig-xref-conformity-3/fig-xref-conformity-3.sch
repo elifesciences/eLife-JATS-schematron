@@ -906,8 +906,8 @@
       <let name="type" value="e:fig-id-type($rid)"/>
       <let name="no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
-      <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
-      <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
+      <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]+','-')"/>
+      <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]+','-')"/>
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-conformity-3" test="($type = ('Figure','Chemical structure','Scheme')) and ($no != $target-no)" role="warning" id="fig-xref-conformity-3">
         <value-of select="."/> - figure citation does not appear to link to the same place as the content of the citation suggests it should.</report>
     </rule>

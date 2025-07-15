@@ -906,8 +906,8 @@
       <let name="type" value="e:fig-id-type($rid)"/>
       <let name="no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
-      <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
-      <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
+      <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]+','-')"/>
+      <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]+','-')"/>
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-conformity-4" test="($type = 'Figure') and matches(.,'[Ss]upplement')" role="error" id="fig-xref-conformity-4">
         <value-of select="."/> - figure citation links to a figure, but it contains the string 'supplement'. It cannot be correct.</report>
     </rule>

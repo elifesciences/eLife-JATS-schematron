@@ -2923,8 +2923,8 @@
   </pattern>
   <pattern id="fig-xref-conformance-pattern">
     <rule context="xref[@ref-type='fig' and @rid]" id="fig-xref-conformance">
-        <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
-        <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
+        <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]+','-')"/>
+        <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]+','-')"/>
         
         <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-3" test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="fig-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
         

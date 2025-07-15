@@ -906,8 +906,8 @@
       <let name="type" value="e:fig-id-type($rid)"/>
       <let name="no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
       <let name="target-no" value="replace($rid,'[^0-9]+','')"/>
-      <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
-      <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
+      <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]+','-')"/>
+      <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]+','-')"/>
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-5" test="($type = 'Figure') and (matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="fig-xref-test-5">
         <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Figure citation refers to a figure from a different paper, and therefore must be unlinked.</report>
     </rule>

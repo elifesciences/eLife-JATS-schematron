@@ -1,6 +1,8 @@
-<?oxygen SCHSchema="ref-article-title-organism-check.sch"?><!--Context: element-citation/article-title|       element-citation/chapter-title|       element-citation/source|       element-citation/data-title
+<?oxygen SCHSchema="ref-article-title-organism-check.sch"?>
+<!--Context: element-citation/article-title|       element-citation/chapter-title|       element-citation/source|       element-citation/data-title
 Test: report    $organism!='' and not(italic[contains(.,$organism)])
-Message: ref  has a  element containing an organism -  - but there is no italic element with that correct capitalisation or spacing. --><root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article><element-citation><article-title><italic>B. subtilis</italic></article-title></element-citation>
+Message: ref  has a  element containing an organism -  - but there is no italic element with that correct capitalisation or spacing. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article><element-citation><article-title><italic>B. subtilis</italic></article-title></element-citation>
 <element-citation><article-title><italic>Bacillus subtilis</italic></article-title></element-citation>
 <element-citation><article-title><italic>D. melanogaster</italic></article-title></element-citation>
 <element-citation><article-title><italic>Drosophila melanogaster</italic></article-title></element-citation>

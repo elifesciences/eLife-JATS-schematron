@@ -935,8 +935,8 @@
   </sqf:fixes>
   <pattern id="fig-xref-conformance-pattern">
     <rule context="xref[@ref-type='fig' and @rid]" id="fig-xref-conformance">
-      <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]','-')"/>
-      <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]','-')"/>
+      <let name="pre-text" value="replace(preceding-sibling::text()[1],'[—–‒]+','-')"/>
+      <let name="post-text" value="replace(following-sibling::text()[1],'[—–‒]+','-')"/>
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-8" test="matches($pre-text,'their $')" role="warning" sqf:fix="strip-tags" id="fig-xref-test-8">[fig-xref-test-8] Figure citation is preceded by 'their'. Does this refer to a figure in other content (and as such should be captured as plain text)? - '<value-of select="concat($pre-text,.)"/>'.</report>
     </rule>
   </pattern>
