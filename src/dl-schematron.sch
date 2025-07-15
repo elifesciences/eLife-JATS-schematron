@@ -589,7 +589,7 @@
       </xsl:for-each>
     </xsl:variable>
     <xsl:choose>
-      <xsl:when test="$species-check-result">
+      <xsl:when test="$species-check-result!=''">
         <xsl:value-of select="$species-check-result"/>
       </xsl:when>
       <xsl:otherwise>
@@ -601,7 +601,7 @@
           </xsl:for-each>
         </xsl:variable>
         <xsl:choose>
-          <xsl:when test="$genus-check-result">
+          <xsl:when test="$genus-check-result!=''">
             <xsl:value-of select="$genus-check-result"/>
           </xsl:when>
           <xsl:otherwise>

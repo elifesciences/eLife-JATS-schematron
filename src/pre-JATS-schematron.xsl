@@ -529,7 +529,7 @@
          </xsl:for-each>
       </xsl:variable>
       <xsl:choose>
-         <xsl:when test="$species-check-result">
+         <xsl:when test="$species-check-result!=''">
             <xsl:value-of select="$species-check-result"/>
          </xsl:when>
          <xsl:otherwise>
@@ -541,7 +541,7 @@
                </xsl:for-each>
             </xsl:variable>
             <xsl:choose>
-               <xsl:when test="$genus-check-result">
+               <xsl:when test="$genus-check-result!=''">
                   <xsl:value-of select="$genus-check-result"/>
                </xsl:when>
                <xsl:otherwise>
@@ -29699,6 +29699,7 @@
       <xsl:variable name="unequal-equal-text" select="string-join(for $x in tokenize(replace(.,'[&gt;&lt;]',''),' | ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
       <xsl:variable name="link-strip-text" select="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
       <xsl:variable name="url-text" select="string-join(for $x in tokenize($link-strip-text,' ')         return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\p{Zs}]?|\.com[\p{Zs}]?|\.co.uk[\p{Zs}]?|\.us[\p{Zs}]?|\.net[\p{Zs}]?|\.edu[\p{Zs}]?|\.gov[\p{Zs}]?|\.io[\p{Zs}]?')) then $x         else (),'; ')"/>
+      <xsl:variable name="organism" select="if (matches($t,$org-regex)) then e:org-conform($t) else ''"/>
       <!--REPORT warning-->
       <xsl:if test="($text-count gt $count)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($text-count gt $count)">
@@ -29718,8 +29719,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="matches($t,$org-regex) and not(descendant::italic[contains(.,e:org-conform($t))]) and not(descendant::element-citation)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($t,$org-regex) and not(descendant::italic[contains(.,e:org-conform($t))]) and not(descendant::element-citation)">
+      <xsl:if test="$organism!='' and not(descendant::italic[contains(.,$organism)]) and not(descendant::element-citation)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$organism!='' and not(descendant::italic[contains(.,$organism)]) and not(descendant::element-citation)">
             <xsl:attribute name="id">org-test</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#h6d61-org-test</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -29729,7 +29730,7 @@
             <svrl:text>[org-test] <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> element contains an organism - <xsl:text/>
-               <xsl:value-of select="e:org-conform($t)"/>
+               <xsl:value-of select="$organism"/>
                <xsl:text/> - but there is no italic element with that correct capitalisation or spacing. Is this correct? <xsl:text/>
                <xsl:value-of select="name(.)"/>
                <xsl:text/> element begins with <xsl:text/>

@@ -545,7 +545,7 @@
       </xsl:for-each>
     </xsl:variable>
     <xsl:choose>
-      <xsl:when test="$species-check-result">
+      <xsl:when test="$species-check-result!=''">
         <xsl:value-of select="$species-check-result"/>
       </xsl:when>
       <xsl:otherwise>
@@ -557,7 +557,7 @@
           </xsl:for-each>
         </xsl:variable>
         <xsl:choose>
-          <xsl:when test="$genus-check-result">
+          <xsl:when test="$genus-check-result!=''">
             <xsl:value-of select="$genus-check-result"/>
           </xsl:when>
           <xsl:otherwise>
@@ -910,8 +910,9 @@
       <let name="unequal-equal-text" value="string-join(for $x in tokenize(replace(.,'[&gt;&lt;]',''),' | ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
       <let name="link-strip-text" value="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
       <let name="url-text" value="string-join(for $x in tokenize($link-strip-text,' ')         return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\p{Zs}]?|\.com[\p{Zs}]?|\.co.uk[\p{Zs}]?|\.us[\p{Zs}]?|\.net[\p{Zs}]?|\.edu[\p{Zs}]?|\.gov[\p{Zs}]?|\.io[\p{Zs}]?')) then $x         else (),'; ')"/>
-      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h6d61-org-test" test="matches($t,$org-regex) and not(descendant::italic[contains(.,e:org-conform($t))]) and not(descendant::element-citation)" role="warning" id="org-test">
-        <name/> element contains an organism - <value-of select="e:org-conform($t)"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
+      <let name="organism" value="if (matches($t,$org-regex)) then e:org-conform($t) else ''"/>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h6d61-org-test" test="$organism!='' and not(descendant::italic[contains(.,$organism)]) and not(descendant::element-citation)" role="warning" id="org-test">
+        <name/> element contains an organism - <value-of select="$organism"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
