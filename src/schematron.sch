@@ -625,7 +625,9 @@
   
   <!-- Global variable included here for convenience -->
   <let name="research-organisms" value="'research-organisms.xml'"/>
-  <let name="org-regex" value="string-join(doc($research-organisms)//*:organism/@regex,'|')"/>
+  <let name="species-regex" value="string-join(doc($research-organisms)//*:organism[@type='species']/@regex,'|')"/>
+  <let name="genus-regex" value="string-join(doc($research-organisms)//*:organism[@type='genus']/@regex,'|')"/>
+  <let name="org-regex" value="string-join(($species-regex,$genus-regex),'|')"/>
   <let name="sec-title-regex" value="string-join(
     for $x in tokenize($org-regex,'\|')
     return concat('^',$x,'$')
@@ -10647,6 +10649,15 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="$organism!='' and not(italic[contains(.,$organism)])" 
         role="info" 
         id="article-title-organism-check"><name/> contains an organism - <value-of select="$organism"/> - but there is no italic element with that correct capitalisation or spacing.</report>
+      
+    </rule>
+    
+    <rule context="italic[matches(lower-case(.),$genus-regex)]" id="italic-genus">
+      <let name="regex-prefix" value="concat('(',$genus-regex,')')"/>
+      
+      <report test="matches(lower-case(.),concat($regex-prefix,'\p{Zs}*oocytes'))" 
+        role="error" 
+        id="italic-genus-oocytes"><name/> contains a genus name followed by 'oocytes'. 'oocytes' should not be in italics.</report>
       
     </rule>
     
