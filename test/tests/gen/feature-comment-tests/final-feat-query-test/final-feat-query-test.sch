@@ -542,8 +542,8 @@
         <xsl:value-of select="."/>
       </xsl:if>
     </xsl:for-each>
-  <xsl:value-of select="'undefined'"/>
-</xsl:function>
+    <xsl:value-of select="'undefined'"/>
+  </xsl:function>
   <xsl:function name="e:code-check">
     <xsl:param name="s" as="xs:string"/>
     <xsl:element name="code">
@@ -875,9 +875,7 @@
   </xsl:function>
   <xsl:function name="e:line-count" as="xs:integer">
     <xsl:param name="arg" as="xs:string?"/>
-    
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
-    
   </xsl:function>
   <pattern id="features">
     <rule context="article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//p|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//td|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//th" id="feature-comment-tests">

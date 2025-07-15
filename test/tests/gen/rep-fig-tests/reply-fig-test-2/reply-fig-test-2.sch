@@ -542,8 +542,8 @@
         <xsl:value-of select="."/>
       </xsl:if>
     </xsl:for-each>
-  <xsl:value-of select="'undefined'"/>
-</xsl:function>
+    <xsl:value-of select="'undefined'"/>
+  </xsl:function>
   <xsl:function name="e:code-check">
     <xsl:param name="s" as="xs:string"/>
     <xsl:element name="code">
@@ -875,9 +875,7 @@
   </xsl:function>
   <xsl:function name="e:line-count" as="xs:integer">
     <xsl:param name="arg" as="xs:string?"/>
-    
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
-    
   </xsl:function>
   <pattern id="further-fig-tests">
     <rule context="sub-article[@article-type=('reply','author-comment')]//fig" id="rep-fig-tests">

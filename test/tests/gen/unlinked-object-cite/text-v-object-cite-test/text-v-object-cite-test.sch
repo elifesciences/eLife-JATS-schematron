@@ -542,8 +542,8 @@
         <xsl:value-of select="."/>
       </xsl:if>
     </xsl:for-each>
-  <xsl:value-of select="'undefined'"/>
-</xsl:function>
+    <xsl:value-of select="'undefined'"/>
+  </xsl:function>
   <xsl:function name="e:code-check">
     <xsl:param name="s" as="xs:string"/>
     <xsl:element name="code">
@@ -875,9 +875,7 @@
   </xsl:function>
   <xsl:function name="e:line-count" as="xs:integer">
     <xsl:param name="arg" as="xs:string?"/>
-    
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
-    
   </xsl:function>
   <pattern id="unlinked-object-cite-pattern">
     <rule context="fig[not(ancestor::sub-article) and label]|       table-wrap[not(ancestor::sub-article) and label[not(contains(.,'ey resources table'))]]|       media[not(ancestor::sub-article) and label]|       supplementary-material[not(ancestor::sub-article) and label]" id="unlinked-object-cite">

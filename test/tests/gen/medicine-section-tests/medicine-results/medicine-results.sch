@@ -542,8 +542,8 @@
         <xsl:value-of select="."/>
       </xsl:if>
     </xsl:for-each>
-  <xsl:value-of select="'undefined'"/>
-</xsl:function>
+    <xsl:value-of select="'undefined'"/>
+  </xsl:function>
   <xsl:function name="e:code-check">
     <xsl:param name="s" as="xs:string"/>
     <xsl:element name="code">
@@ -875,9 +875,7 @@
   </xsl:function>
   <xsl:function name="e:line-count" as="xs:integer">
     <xsl:param name="arg" as="xs:string?"/>
-    
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
-    
   </xsl:function>
   <pattern id="body">
     <rule context="article[@article-type='research-article' and descendant::article-meta[not(//subj-group[@subj-group-type='display-channel']/subject[lower-case(.)='feature article']) and //subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" id="medicine-section-tests">

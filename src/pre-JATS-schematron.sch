@@ -586,8 +586,8 @@
         <xsl:value-of select="."/>
       </xsl:if>
     </xsl:for-each>
-  <xsl:value-of select="'undefined'"/>
-</xsl:function>
+    <xsl:value-of select="'undefined'"/>
+  </xsl:function>
   
   <xsl:function name="e:code-check">
     <xsl:param name="s" as="xs:string"/>
@@ -891,9 +891,7 @@
   <!-- Modification of http://www.xsltfunctions.com/xsl/functx_line-count.html -->
   <xsl:function name="e:line-count" as="xs:integer">
     <xsl:param name="arg" as="xs:string?"/>
-    
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
-    
   </xsl:function>
  
   <!-- Taken from here https://stackoverflow.com/questions/2917655/how-do-i-check-for-the-existence-of-an-external-file-with-xsl -->
