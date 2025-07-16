@@ -9933,7 +9933,7 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="url-text" value="string-join(for $x in tokenize($link-strip-text,' ')
         return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\p{Zs}]?|\.com[\p{Zs}]?|\.co.uk[\p{Zs}]?|\.us[\p{Zs}]?|\.net[\p{Zs}]?|\.edu[\p{Zs}]?|\.gov[\p{Zs}]?|\.io[\p{Zs}]?')) then $x
         else (),'; ')"/>
-      <let name="organisms" value="e:org-conform(.)"/>
+      <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ('')"/>
       
       <report see="https://elifeproduction.slab.com/posts/rri-ds-5k19v560#rrid-test" 
         test="($text-count gt $count)" 
@@ -10648,7 +10648,7 @@ else self::*/local-name() = $allowed-p-blocks"
       element-citation/source|
       element-citation/data-title" id="org-ref-article-book-title">
       
-      <let name="organisms" value="e:org-conform(.)"/>
+      <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ('')"/>
       
       <report test="$organisms//*:organism" 
         role="info" 
@@ -10659,7 +10659,7 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd" 
         id="org-title-kwd">
       
-      <let name="organisms" value="e:org-conform(.)"/>
+      <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ('')"/>
       
       <report test="$organisms//*:organism" 
         role="info" 
