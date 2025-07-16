@@ -1204,7 +1204,7 @@
 
     <rule context="contrib-group//name/surname" id="surname-tests">
 		
-	  <report test="not(*) and (normalize-space(.)='')" 
+	  <report test="normalize-space(.)=''" 
         role="error" 
         id="surname-test-2">surname must not be empty.</report>
 		
@@ -1244,7 +1244,7 @@
 	  </rule>
 
     <rule context="name/given-names" id="given-names-tests">
-	   <report test="not(*) and (normalize-space(.)='')" 
+	   <report test="normalize-space(.)=''" 
         role="error" 
         id="given-names-test-3">given-names must not be empty.</report>
 		
@@ -1978,7 +1978,7 @@
           sqf:fix="replace-normalize-space"
           id="ref-name-space-end"><name/> element cannot end with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
         
-        <report test="not(*) and (normalize-space(.)='')" 
+        <report test="normalize-space(.)=''" 
           role="error" 
           id="ref-name-empty"><name/> element must not be empty.</report>
      </rule>
@@ -2233,7 +2233,7 @@
       </rule>
       
       <rule context="mixed-citation/*" id="mixed-citation-child-checks">
-        <report test="not(*) and (normalize-space(.)='')" 
+        <report test="normalize-space(.)=''" 
           role="error" 
           id="mixed-citation-child-1"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) is empty, which cannot be correct.</report>
       </rule>

@@ -1026,7 +1026,7 @@
   </sqf:fixes>
   <pattern id="ref-name-space-checks-pattern">
     <rule context="mixed-citation//given-names | mixed-citation//surname" id="ref-name-space-checks">
-      <report test="not(*) and (normalize-space(.)='')" role="error" id="ref-name-empty">[ref-name-empty] <name/> element must not be empty.</report>
+      <report test="normalize-space(.)=''" role="error" id="ref-name-empty">[ref-name-empty] <name/> element must not be empty.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

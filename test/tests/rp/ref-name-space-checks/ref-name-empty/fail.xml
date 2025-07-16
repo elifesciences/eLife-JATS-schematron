@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="ref-name-empty.sch"?>
 <!--Context: mixed-citation//given-names | mixed-citation//surname
-Test: report    not(*) and (normalize-space(.)='')
+Test: report    normalize-space(.)=''
 Message:  element must not be empty. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>

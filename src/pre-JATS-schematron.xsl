@@ -7966,8 +7966,8 @@
    <xsl:template match="contrib-group//name/surname" priority="1000" mode="M100">
 
 		<!--REPORT error-->
-      <xsl:if test="not(*) and (normalize-space(.)='')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(*) and (normalize-space(.)='')">
+      <xsl:if test="normalize-space(.)=''">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=''">
             <xsl:attribute name="id">surname-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -8094,8 +8094,8 @@
    <xsl:template match="name/given-names" priority="1000" mode="M101">
 
 		<!--REPORT error-->
-      <xsl:if test="not(*) and (normalize-space(.)='')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(*) and (normalize-space(.)='')">
+      <xsl:if test="normalize-space(.)=''">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=''">
             <xsl:attribute name="id">given-names-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -25152,8 +25152,8 @@
    <xsl:template match="element-citation//*" priority="1000" mode="M429">
 
 		<!--REPORT warning-->
-      <xsl:if test="not(*) and (normalize-space(.)='')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(*) and (normalize-space(.)='')">
+      <xsl:if test="normalize-space(.)=''">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=''">
             <xsl:attribute name="id">pre-empty-elem-cit-des</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-empty-elem-cit-des</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -35429,8 +35429,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="not(*) and (normalize-space(.)='')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(*) and (normalize-space(.)='')">
+      <xsl:if test="normalize-space(.)=''">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=''">
             <xsl:attribute name="id">sec-title-content-mandate</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-content-mandate</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>

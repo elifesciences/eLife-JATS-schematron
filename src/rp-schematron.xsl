@@ -2944,8 +2944,8 @@
    <xsl:template match="contrib-group//name/surname" priority="1000" mode="M40">
 
 		<!--REPORT error-->
-      <xsl:if test="not(*) and (normalize-space(.)='')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(*) and (normalize-space(.)='')">
+      <xsl:if test="normalize-space(.)=''">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=''">
             <xsl:attribute name="id">surname-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -3072,8 +3072,8 @@
    <xsl:template match="name/given-names" priority="1000" mode="M41">
 
 		<!--REPORT error-->
-      <xsl:if test="not(*) and (normalize-space(.)='')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(*) and (normalize-space(.)='')">
+      <xsl:if test="normalize-space(.)=''">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=''">
             <xsl:attribute name="id">given-names-test-3</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -5088,8 +5088,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="not(*) and (normalize-space(.)='')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(*) and (normalize-space(.)='')">
+      <xsl:if test="normalize-space(.)=''">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=''">
             <xsl:attribute name="id">ref-name-empty</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -5931,8 +5931,8 @@
    <xsl:template match="mixed-citation/*" priority="1000" mode="M79">
 
 		<!--REPORT error-->
-      <xsl:if test="not(*) and (normalize-space(.)='')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(*) and (normalize-space(.)='')">
+      <xsl:if test="normalize-space(.)=''">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=''">
             <xsl:attribute name="id">mixed-citation-child-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
