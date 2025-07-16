@@ -1,11 +1,11 @@
 <?oxygen SCHSchema="mixed-citation-child-1.sch"?>
 <!--Context: mixed-citation/*
-Test: report    not(*) and (normalize-space(.)='')
+Test: report    normalize-space(.)=''
 Message:  in reference (id=) is empty, which cannot be correct. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <mixed-citation>
-            <person-group/>
+            <person-group><collab/></person-group>
             <article-title/>
             <source/>
             <pub-id/>

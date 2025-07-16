@@ -1370,7 +1370,7 @@
 	  
 	</rule></pattern><pattern id="surname-tests-pattern"><rule context="contrib-group//name/surname" id="surname-tests">
 		
-	  <report test="not(*) and (normalize-space(.)='')" role="error" id="surname-test-2">[surname-test-2] surname must not be empty.</report>
+	  <report test="normalize-space(.)=''" role="error" id="surname-test-2">[surname-test-2] surname must not be empty.</report>
 		
     <report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" role="error" id="surname-test-3">[surname-test-3] surname must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript).</report>
 		
@@ -1390,7 +1390,7 @@
 		
 	  </rule></pattern><pattern id="given-names-tests-pattern"><rule context="name/given-names" id="given-names-tests">
 		
-	  <report test="not(*) and (normalize-space(.)='')" role="error" id="given-names-test-3">[given-names-test-3] given-names must not be empty.</report>
+	  <report test="normalize-space(.)=''" role="error" id="given-names-test-3">[given-names-test-3] given-names must not be empty.</report>
 		
     	<report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" role="error" id="given-names-test-4">[given-names-test-4] given-names must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript) - '<value-of select="."/>'.</report>
 		
@@ -4242,7 +4242,7 @@
       
       
       
-      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-empty-elem-cit-des" test="not(*) and (normalize-space(.)='')" role="error" id="final-empty-elem-cit-des">[final-empty-elem-cit-des] <name/> element is empty - this is not allowed. It must contain content.</report>
+      <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-empty-elem-cit-des" test="normalize-space(.)=''" role="error" id="final-empty-elem-cit-des">[final-empty-elem-cit-des] <name/> element is empty - this is not allowed. It must contain content.</report>
       
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#tagging-elem-cit-des" test="matches(.,'&lt;/?[a-z]*/?&gt;')" role="error" id="tagging-elem-cit-des">[tagging-elem-cit-des] <name/> element contains tagging, which should be removed - '<value-of select="."/>'.</report>
     
@@ -5988,7 +5988,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hp09b-sec-title-abbr-check" test="matches(.,'^[Aa]bbreviation[s]?')" role="warning" id="sec-title-abbr-check">[sec-title-abbr-check] Section title contains the word abbreviation - '<value-of select="."/>'. Is it an abbreviation section? eLife house style is to define abbreviations in the text when they are first mentioned.</report>
       
-      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-content-mandate" test="not(*) and (normalize-space(.)='')" role="error" id="sec-title-content-mandate">[sec-title-content-mandate] Section title must not be empty.</report>
+      <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-content-mandate" test="normalize-space(.)=''" role="error" id="sec-title-content-mandate">[sec-title-content-mandate] Section title must not be empty.</report>
       
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-full-stop" test="matches(replace(.,' ',' '),'\.[\p{Zs}]*$')" role="warning" id="sec-title-full-stop">[sec-title-full-stop] Section title ends with full stop, which is very likely to be incorrect - <value-of select="."/></report>
       

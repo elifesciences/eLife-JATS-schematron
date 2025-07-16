@@ -924,7 +924,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="contrib-group//name/surname" id="surname-tests">
-      <report test="not(*) and (normalize-space(.)='')" role="error" id="surname-test-2">surname must not be empty.</report>
+      <report test="normalize-space(.)=''" role="error" id="surname-test-2">surname must not be empty.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -1830,7 +1830,7 @@
 	  
 	  <rule context="contrib-group//name/surname" id="surname-tests">
 		
-	  <report test="not(*) and (normalize-space(.)='')" 
+	  <report test="normalize-space(.)=''" 
         role="error" 
         id="surname-test-2">surname must not be empty.</report>
 		
@@ -1870,7 +1870,7 @@
     
     <rule context="name/given-names" id="given-names-tests">
 		
-	  <report test="not(*) and (normalize-space(.)='')" 
+	  <report test="normalize-space(.)=''" 
         role="error" 
         id="given-names-test-3">given-names must not be empty.</report>
 		
@@ -8141,12 +8141,12 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="element-citation//*" id="element-citation-descendants">
       
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-empty-elem-cit-des"
-        test="not(*) and (normalize-space(.)='')" 
+        test="normalize-space(.)=''" 
         role="warning" 
         id="pre-empty-elem-cit-des"><name/> element is empty - this is not allowed. It must contain content. If the details are missing and cannot be determined, please query the authors.</report>
       
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-empty-elem-cit-des"
-        test="not(*) and (normalize-space(.)='')" 
+        test="normalize-space(.)=''" 
         role="error" 
         id="final-empty-elem-cit-des"><name/> element is empty - this is not allowed. It must contain content.</report>
       
@@ -11971,7 +11971,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="sec-title-abbr-check">Section title contains the word abbreviation - '<value-of select="."/>'. Is it an abbreviation section? eLife house style is to define abbreviations in the text when they are first mentioned.</report>
       
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-content-mandate"
-        test="not(*) and (normalize-space(.)='')" 
+        test="normalize-space(.)=''" 
         role="error" 
         id="sec-title-content-mandate">Section title must not be empty.</report>
       

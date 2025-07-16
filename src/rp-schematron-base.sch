@@ -672,6 +672,57 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template name="deep-replace">
+    <xsl:param name="regex" as="xs:string"/>
+    <xsl:param name="nodes"/>
+    <xsl:param name="buffer" select="()"/>
+    <xsl:choose>
+      <xsl:when test="not($nodes)">
+        <xsl:apply-templates select="$buffer" mode="customCopy"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="current-node" select="$nodes[1]"/>
+        <xsl:variable name="remaining-nodes" select="$nodes[position() > 1]"/>
+        <xsl:choose>
+          <xsl:when test="$current-node instance of text()">
+            <xsl:variable name="fixed-text" select="replace($current-node, $regex, '')"/>
+            <xsl:call-template name="deep-replace">
+              <xsl:with-param name="regex" select="$regex"/>
+              <xsl:with-param name="nodes" select="$remaining-nodes"/>
+              <xsl:with-param name="buffer" select="$buffer, $fixed-text"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="$current-node instance of element()">
+            <xsl:variable name="recurse-result">
+              <xsl:call-template name="deep-replace">
+                <xsl:with-param name="regex" select="$regex"/>
+                <xsl:with-param name="nodes" select="$current-node/node()"/>
+              </xsl:call-template>
+            </xsl:variable>
+            <xsl:variable name="temp-buffer">
+              <xsl:copy-of select="$buffer" copy-namespaces="no"/>
+              <xsl:element name="{$current-node/name()}" namespace="{$current-node/namespace-uri()}">
+                <xsl:apply-templates select="$current-node/@*" mode="customCopy"/>
+                <xsl:sequence select="$recurse-result"/>
+              </xsl:element>
+            </xsl:variable>
+            <xsl:call-template name="deep-replace">
+              <xsl:with-param name="regex" select="$regex"/>
+              <xsl:with-param name="nodes" select="$remaining-nodes"/> 
+              <xsl:with-param name="buffer" select="$temp-buffer/* | $temp-buffer/text()"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="deep-replace">
+              <xsl:with-param name="regex" select="$regex"/>
+              <xsl:with-param name="nodes" select="$remaining-nodes"/>
+             <xsl:with-param name="buffer" select="$buffer, $current-node"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
   
   <sqf:fixes>
     <sqf:fix id="delete-elem">
@@ -997,6 +1048,46 @@
         </xsl:copy>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="move-quote-characters">
+      <sqf:description>
+        <sqf:title>Move the quotes</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:text>“</xsl:text>
+        <xsl:copy copy-namespaces="no">
+          <xsl:copy-of select="namespace-node()"/>
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <xsl:call-template name="deep-replace">
+            <xsl:with-param name="regex" select="'[“”&quot;]|\.[“”&quot;]?$'"/>
+            <xsl:with-param name="nodes" select="node()"/>
+          </xsl:call-template>
+        </xsl:copy>
+        <xsl:if test="matches(.,'\.[“”&quot;]?$')">
+          <xsl:text>.</xsl:text>
+        </xsl:if>
+        <xsl:text>”</xsl:text>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="delete-quote-characters">
+      <sqf:description>
+        <sqf:title>Delete the quotes</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:copy copy-namespaces="no">
+          <xsl:copy-of select="namespace-node()"/>
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <xsl:call-template name="deep-replace">
+            <xsl:with-param name="regex" select="'[“”&quot;]|\.[“”&quot;]?$'"/>
+            <xsl:with-param name="nodes" select="node()"/>
+          </xsl:call-template>
+        </xsl:copy>
+        <xsl:if test="matches(.,'\.[“”&quot;]?$')">
+          <xsl:text>.</xsl:text>
+        </xsl:if>
+      </sqf:replace>
+    </sqf:fix>
   </sqf:fixes>
   
 
@@ -1113,7 +1204,7 @@
 
     <rule context="contrib-group//name/surname" id="surname-tests">
 		
-	  <report test="not(*) and (normalize-space(.)='')" 
+	  <report test="normalize-space(.)=''" 
         role="error" 
         id="surname-test-2">surname must not be empty.</report>
 		
@@ -1153,7 +1244,7 @@
 	  </rule>
 
     <rule context="name/given-names" id="given-names-tests">
-	   <report test="not(*) and (normalize-space(.)='')" 
+	   <report test="normalize-space(.)=''" 
         role="error" 
         id="given-names-test-3">given-names must not be empty.</report>
 		
@@ -1563,9 +1654,10 @@
        
        <report test="matches(.,'[“”&quot;]')" 
         role="warning" 
+        sqf:fix="delete-quote-characters"
         id="journal-source-5">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
        
-       <report test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^(j|nat|proc|sci|annu|physiol|front|theor)\.\s'))" 
+       <report test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^((world )?j|nat|proc|sci|annu|physiol|front|theor|infect|trop|microbiol|vet|comp|crit|emerg|arch|eur|transbound)\.\s'))" 
         role="warning"
         sqf:fix="fix-source-article-title"
         id="journal-source-6">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains more than one sentence - <value-of select="."/>. Should some of the content be moved into the article-title?</report>
@@ -1726,6 +1818,7 @@
         
         <report test="matches(.,'[“”&quot;]')" 
         role="warning" 
+        sqf:fix="delete-quote-characters"
         id="preprint-source-2">Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
         
         <report test="matches($lc,'biorxiv') and matches($lc,'medrxiv')" 
@@ -1788,6 +1881,7 @@
         
         <report test="matches(.,'[“”&quot;]')" 
         role="warning" 
+        sqf:fix="delete-quote-characters"
         id="book-source-4">Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
       </rule>
     </pattern>
@@ -1884,7 +1978,7 @@
           sqf:fix="replace-normalize-space"
           id="ref-name-space-end"><name/> element cannot end with space(s). This one (in ref with id=<value-of select="ancestor::ref/@id"/>) does: '<value-of select="."/>'.</report>
         
-        <report test="not(*) and (normalize-space(.)='')" 
+        <report test="normalize-space(.)=''" 
           role="error" 
           id="ref-name-empty"><name/> element must not be empty.</report>
      </rule>
@@ -2040,6 +2134,7 @@
       <rule context="ref//article-title" id="ref-article-title-checks">
         <report test="matches(.,'^\s*[“”&quot;]|[“”&quot;]\.*$')" 
           role="warning" 
+          sqf:fix="move-quote-characters delete-quote-characters"
           id="ref-article-title-1"><name/> in ref starts or ends with speech quotes - <value-of select="."/>. Is that correct?.</report>
         
         <report test="upper-case(.)=." 
@@ -2064,6 +2159,7 @@
       <rule context="ref//chapter-title" id="ref-chapter-title-checks">
         <report test="matches(.,'^\s*[“”&quot;]|[“”&quot;]\.*$')" 
           role="warning" 
+          sqf:fix="move-quote-characters delete-quote-characters"
           id="ref-chapter-title-1"><name/> in ref starts or ends with speech quotes - <value-of select="."/>. Is that correct?.</report>
         
         <report test="matches(.,'\?[^\s\p{P}]')" 
@@ -2092,8 +2188,7 @@
         
         <report test="matches(.,'\p{Pe}') and not(matches(.,'\p{Ps}'))" 
           role="warning" 
-          id="ref-source-3"><name/> in ref contains a closing bracket - <value-of select="replace(.,'[^\p{Pe}]','')"/> - but it does not contain an opening bracket. Is that correct?</report>
-      </rule>
+          id="ref-source-3"><name/> in ref contains a closing bracket - <value-of select="replace(.,'[^\p{Pe}]','')"/> - but it does not contain an opening bracket. Is that correct?</report>      </rule>
   </pattern>
   
     <pattern id="mixed-citation">
@@ -2138,7 +2233,7 @@
       </rule>
       
       <rule context="mixed-citation/*" id="mixed-citation-child-checks">
-        <report test="not(*) and (normalize-space(.)='')" 
+        <report test="normalize-space(.)=''" 
           role="error" 
           id="mixed-citation-child-1"><name/> in reference (id=<value-of select="ancestor::ref/@id"/>) is empty, which cannot be correct.</report>
       </rule>

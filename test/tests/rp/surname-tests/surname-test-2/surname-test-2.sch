@@ -602,6 +602,57 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+  <xsl:template name="deep-replace">
+    <xsl:param name="regex" as="xs:string"/>
+    <xsl:param name="nodes"/>
+    <xsl:param name="buffer" select="()"/>
+    <xsl:choose>
+      <xsl:when test="not($nodes)">
+        <xsl:apply-templates select="$buffer" mode="customCopy"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="current-node" select="$nodes[1]"/>
+        <xsl:variable name="remaining-nodes" select="$nodes[position() &gt; 1]"/>
+        <xsl:choose>
+          <xsl:when test="$current-node instance of text()">
+            <xsl:variable name="fixed-text" select="replace($current-node, $regex, '')"/>
+            <xsl:call-template name="deep-replace">
+              <xsl:with-param name="regex" select="$regex"/>
+              <xsl:with-param name="nodes" select="$remaining-nodes"/>
+              <xsl:with-param name="buffer" select="$buffer, $fixed-text"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="$current-node instance of element()">
+            <xsl:variable name="recurse-result">
+              <xsl:call-template name="deep-replace">
+                <xsl:with-param name="regex" select="$regex"/>
+                <xsl:with-param name="nodes" select="$current-node/node()"/>
+              </xsl:call-template>
+            </xsl:variable>
+            <xsl:variable name="temp-buffer">
+              <xsl:copy-of select="$buffer" copy-namespaces="no"/>
+              <xsl:element name="{$current-node/name()}" namespace="{$current-node/namespace-uri()}">
+                <xsl:apply-templates select="$current-node/@*" mode="customCopy"/>
+                <xsl:sequence select="$recurse-result"/>
+              </xsl:element>
+            </xsl:variable>
+            <xsl:call-template name="deep-replace">
+              <xsl:with-param name="regex" select="$regex"/>
+              <xsl:with-param name="nodes" select="$remaining-nodes"/> 
+              <xsl:with-param name="buffer" select="$temp-buffer/* | $temp-buffer/text()"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="deep-replace">
+              <xsl:with-param name="regex" select="$regex"/>
+              <xsl:with-param name="nodes" select="$remaining-nodes"/>
+             <xsl:with-param name="buffer" select="$buffer, $current-node"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
   <sqf:fixes>
     <sqf:fix id="delete-elem">
       <sqf:description>
@@ -932,10 +983,50 @@
         </xsl:copy>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="move-quote-characters">
+      <sqf:description>
+        <sqf:title>Move the quotes</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:text>“</xsl:text>
+        <xsl:copy copy-namespaces="no">
+          <xsl:copy-of select="namespace-node()"/>
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <xsl:call-template name="deep-replace">
+            <xsl:with-param name="regex" select="'[“”&quot;]|\.[“”&quot;]?$'"/>
+            <xsl:with-param name="nodes" select="node()"/>
+          </xsl:call-template>
+        </xsl:copy>
+        <xsl:if test="matches(.,'\.[“”&quot;]?$')">
+          <xsl:text>.</xsl:text>
+        </xsl:if>
+        <xsl:text>”</xsl:text>
+      </sqf:replace>
+    </sqf:fix>
+    
+    <sqf:fix id="delete-quote-characters">
+      <sqf:description>
+        <sqf:title>Delete the quotes</sqf:title>
+      </sqf:description>
+      <sqf:replace match=".">
+        <xsl:copy copy-namespaces="no">
+          <xsl:copy-of select="namespace-node()"/>
+          <xsl:apply-templates select="@*" mode="customCopy"/>
+          <xsl:call-template name="deep-replace">
+            <xsl:with-param name="regex" select="'[“”&quot;]|\.[“”&quot;]?$'"/>
+            <xsl:with-param name="nodes" select="node()"/>
+          </xsl:call-template>
+        </xsl:copy>
+        <xsl:if test="matches(.,'\.[“”&quot;]?$')">
+          <xsl:text>.</xsl:text>
+        </xsl:if>
+      </sqf:replace>
+    </sqf:fix>
   </sqf:fixes>
   <pattern id="surname-tests-pattern">
     <rule context="contrib-group//name/surname" id="surname-tests">
-      <report test="not(*) and (normalize-space(.)='')" role="error" id="surname-test-2">[surname-test-2] surname must not be empty.</report>
+      <report test="normalize-space(.)=''" role="error" id="surname-test-2">[surname-test-2] surname must not be empty.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
