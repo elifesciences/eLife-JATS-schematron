@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="article-title-organism-check.sch"?>
 <!--Context: article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd
-Test: report    $organism!='' and not(italic[contains(.,$organism)])
+Test: report    $organisms//*:organism
 Message:  contains an organism -  - but there is no italic element with that correct capitalisation or spacing. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article><body><sec><title><italic>B. subtilis</italic></title></sec>
 <sec><title><italic>Bacillus subtilis</italic></title></sec>
