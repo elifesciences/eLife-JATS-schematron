@@ -1038,10 +1038,13 @@
           <xsl:copy-of select="namespace-node()"/>
           <xsl:apply-templates select="@*" mode="customCopy"/>
           <xsl:call-template name="deep-replace">
-            <xsl:with-param name="regex" select="'[“”&quot;]'"/>
+            <xsl:with-param name="regex" select="'[“”&quot;]|\.[“”&quot;]?$'"/>
             <xsl:with-param name="nodes" select="node()"/>
           </xsl:call-template>
         </xsl:copy>
+        <xsl:if test="matches(.,'\.[“”&quot;]?$')">
+          <xsl:text>.</xsl:text>
+        </xsl:if>
         <xsl:text>”</xsl:text>
       </sqf:replace>
     </sqf:fix>
@@ -1055,10 +1058,13 @@
           <xsl:copy-of select="namespace-node()"/>
           <xsl:apply-templates select="@*" mode="customCopy"/>
           <xsl:call-template name="deep-replace">
-            <xsl:with-param name="regex" select="'[“”&quot;]'"/>
+            <xsl:with-param name="regex" select="'[“”&quot;]|\.[“”&quot;]?$'"/>
             <xsl:with-param name="nodes" select="node()"/>
           </xsl:call-template>
         </xsl:copy>
+        <xsl:if test="matches(.,'\.[“”&quot;]?$')">
+          <xsl:text>.</xsl:text>
+        </xsl:if>
       </sqf:replace>
     </sqf:fix>
   </sqf:fixes>
