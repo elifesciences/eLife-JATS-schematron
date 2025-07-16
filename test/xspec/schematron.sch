@@ -581,37 +581,58 @@
   <let name="org-regex" value="string-join(($species-regex,$genus-regex),'|')"/>
   <let name="sec-title-regex" value="string-join(     for $x in tokenize($org-regex,'\|')     return concat('^',$x,'$')     ,'|')"/>
   
-  <xsl:function name="e:org-conform" as="xs:string">
-    <xsl:param name="s" as="xs:string"/>
-    <xsl:variable name="species-check-result">
-      <xsl:for-each select="doc($research-organisms)//*:organism[@type='species']">
-        <xsl:if test="matches(lower-case($s),./@regex)">
-          <xsl:value-of select="."/>
-        </xsl:if>
-      </xsl:for-each>
-    </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$species-check-result!=''">
-        <xsl:value-of select="$species-check-result"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:variable name="genus-check-result">
-          <xsl:for-each select="doc($research-organisms)//*:organism[@type='genus']">
-            <xsl:if test="matches(lower-case($s),./@regex)">
+  <xsl:function name="e:org-conform" as="element()">
+    <xsl:param name="node" as="node()"/>
+    <result>
+      <xsl:variable name="species-check-result" select="e:org-conform-helper($node,'species')"/>
+      <xsl:choose>
+        <xsl:when test="exists($species-check-result)">
+          <xsl:sequence select="$species-check-result"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="genus-check-result" select="e:org-conform-helper($node,'genus')"/>
+          <xsl:choose>
+            <xsl:when test="exists($genus-check-result)">
+              <xsl:sequence select="$species-check-result"/>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:otherwise>
+      </xsl:choose>
+    </result>
+  </xsl:function>
+  
+  <xsl:function name="e:org-conform-helper" as="element()*">
+    <xsl:param name="node" as="node()"/>
+    <xsl:param name="organism-type" as="xs:string"/>
+    <xsl:variable name="s" select="replace(lower-case(string($node)),'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>
+    <xsl:for-each select="doc($research-organisms)//*:organism[@type=$organism-type]">
+      <xsl:variable name="name" select="."/>
+      <xsl:variable name="text-matches">
+        <xsl:analyze-string select="$s" regex="{./@regex}">
+          <xsl:matching-substring>
+            <match>
               <xsl:value-of select="."/>
-            </xsl:if>
-          </xsl:for-each>
-        </xsl:variable>
+            </match>
+          </xsl:matching-substring>
+        </xsl:analyze-string>
+      </xsl:variable>
+      <xsl:variable name="text-count" select="count($text-matches//*:match)"/>
+      <xsl:variable name="italic-count" as="xs:integer">
         <xsl:choose>
-          <xsl:when test="$genus-check-result!=''">
-            <xsl:value-of select="$genus-check-result"/>
+          <xsl:when test="$node instance of text()">
+            <xsl:value-of select="0"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:value-of select="'undefined'"/>
+            <xsl:value-of select="count($node//*:italic[contains(.,$name)])"/>
           </xsl:otherwise>
         </xsl:choose>
-      </xsl:otherwise>
-    </xsl:choose>
+      </xsl:variable>
+      <xsl:if test="$text-count gt $italic-count">
+        <organism text-count="{$text-count}" italic-count="{$italic-count}">
+          <xsl:value-of select="$name"/>
+        </organism>
+      </xsl:if>
+    </xsl:for-each>
   </xsl:function>
   
   <xsl:function name="e:code-check">
@@ -6692,12 +6713,12 @@
       <let name="unequal-equal-text" value="string-join(for $x in tokenize(replace(.,'[&gt;&lt;]',''),' | ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
       <let name="link-strip-text" value="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
       <let name="url-text" value="string-join(for $x in tokenize($link-strip-text,' ')         return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\p{Zs}]?|\.com[\p{Zs}]?|\.co.uk[\p{Zs}]?|\.us[\p{Zs}]?|\.net[\p{Zs}]?|\.edu[\p{Zs}]?|\.gov[\p{Zs}]?|\.io[\p{Zs}]?')) then $x         else (),'; ')"/>
-      <let name="organism" value="if (matches($t,$org-regex)) then e:org-conform($t) else ''"/>
+      <let name="organisms" value="e:org-conform(.)"/>
       
       <report see="https://elifeproduction.slab.com/posts/rri-ds-5k19v560#rrid-test" test="($text-count gt $count)" role="warning" id="rrid-test">'<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://identifiers.org/RRID:'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
       
-      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h6d61-org-test" test="$organism!='' and not(descendant::italic[contains(.,$organism)]) and not(descendant::element-citation)" role="warning" id="org-test">
-        <name/> element contains an organism - <value-of select="$organism"/> - but there is no italic element with that correct capitalisation or spacing. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h6d61-org-test" test="not(descendant::element-citation) and $organisms//*:organism" role="warning" id="org-test">
+        <name/> element contains organism name(s) that are not in an italic element with that correct capitalisation or spacing - <value-of select="string-join($organisms//*:organism,'; ')"/>. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
       
       <report see="https://elifeproduction.slab.com/posts/code-blocks-947pcamv#code-test" test="not(descendant::monospace) and not(descendant::code) and ($code-text != '')" role="warning" id="code-test">
         <name/> element contains what looks like unformatted code - '<value-of select="$code-text"/>' - does this need tagging with &lt;monospace/&gt; or &lt;code/&gt;?</report>
@@ -7063,19 +7084,19 @@
   <pattern id="org-ref-article-book-title-pattern">
     <rule context="element-citation/article-title|       element-citation/chapter-title|       element-citation/source|       element-citation/data-title" id="org-ref-article-book-title">
       
-      <let name="organism" value="if (matches(lower-case(.),$org-regex)) then e:org-conform(.) else ''"/>
+      <let name="organisms" value="e:org-conform(.)"/>
       
-      <report test="$organism!='' and not(italic[contains(.,$organism)])" role="info" id="ref-article-title-organism-check">ref <value-of select="ancestor::ref/@id"/> has a <name/> element containing an organism - <value-of select="$organism"/> - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="$organisms//*:organism" role="info" id="ref-article-title-organism-check">ref <value-of select="ancestor::ref/@id"/> has a <name/> element containing an organism - <value-of select="string-join($organisms//*:organism,'; ')"/> - but there is no italic element with that correct capitalisation or spacing.</report>
     
     </rule>
   </pattern>
   <pattern id="org-title-kwd-pattern">
     <rule context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd" id="org-title-kwd">
       
-      <let name="organism" value="if (matches(lower-case(.),$org-regex)) then e:org-conform(.) else ''"/>
+      <let name="organisms" value="e:org-conform(.)"/>
       
-      <report test="$organism!='' and not(italic[contains(.,$organism)])" role="info" id="article-title-organism-check">
-        <name/> contains an organism - <value-of select="$organism"/> - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report test="$organisms//*:organism" role="info" id="article-title-organism-check">
+        <name/> contains an organism - <value-of select="string-join($organisms//*:organism,'; ')"/> - but there is no italic element with that correct capitalisation or spacing.</report>
       
     </rule>
   </pattern>
