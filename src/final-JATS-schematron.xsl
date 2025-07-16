@@ -29982,7 +29982,7 @@
       <xsl:variable name="unequal-equal-text" select="string-join(for $x in tokenize(replace(.,'[&gt;&lt;]',''),' | ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
       <xsl:variable name="link-strip-text" select="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
       <xsl:variable name="url-text" select="string-join(for $x in tokenize($link-strip-text,' ')         return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\p{Zs}]?|\.com[\p{Zs}]?|\.co.uk[\p{Zs}]?|\.us[\p{Zs}]?|\.net[\p{Zs}]?|\.edu[\p{Zs}]?|\.gov[\p{Zs}]?|\.io[\p{Zs}]?')) then $x         else (),'; ')"/>
-      <xsl:variable name="organisms" select="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ('')"/>
+      <xsl:variable name="organisms" select="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ()"/>
       <!--REPORT warning-->
       <xsl:if test="($text-count gt $count)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($text-count gt $count)">
@@ -31742,7 +31742,7 @@
    <!--PATTERN org-ref-article-book-title-pattern-->
    <!--RULE org-ref-article-book-title-->
    <xsl:template match="element-citation/article-title|       element-citation/chapter-title|       element-citation/source|       element-citation/data-title" priority="1000" mode="M519">
-      <xsl:variable name="organisms" select="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ('')"/>
+      <xsl:variable name="organisms" select="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ()"/>
       <!--REPORT info-->
       <xsl:if test="$organisms//*:organism">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$organisms//*:organism">
@@ -31769,7 +31769,7 @@
    <!--PATTERN org-title-kwd-pattern-->
    <!--RULE org-title-kwd-->
    <xsl:template match="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd" priority="1000" mode="M520">
-      <xsl:variable name="organisms" select="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ('')"/>
+      <xsl:variable name="organisms" select="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ()"/>
       <!--REPORT info-->
       <xsl:if test="$organisms//*:organism">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$organisms//*:organism">

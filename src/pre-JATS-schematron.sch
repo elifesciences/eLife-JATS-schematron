@@ -5040,7 +5040,7 @@
       <let name="unequal-equal-text" value="string-join(for $x in tokenize(replace(.,'[&gt;&lt;]',''),' | ') return if (matches($x,'=$|^=') and not(matches($x,'^=$'))) then $x else (),'; ')"/>
       <let name="link-strip-text" value="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
       <let name="url-text" value="string-join(for $x in tokenize($link-strip-text,' ')         return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\p{Zs}]?|\.com[\p{Zs}]?|\.co.uk[\p{Zs}]?|\.us[\p{Zs}]?|\.net[\p{Zs}]?|\.edu[\p{Zs}]?|\.gov[\p{Zs}]?|\.io[\p{Zs}]?')) then $x         else (),'; ')"/>
-      <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ('')"/>
+      <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ()"/>
       
       <report see="https://elifeproduction.slab.com/posts/rri-ds-5k19v560#rrid-test" test="($text-count gt $count)" role="warning" id="rrid-test">[rrid-test] '<name/>' element contains what looks like <value-of select="$text-count - $count"/> unlinked RRID(s). These should always be linked using 'https://identifiers.org/RRID:'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
       
@@ -5360,13 +5360,13 @@
   
   <pattern id="org-ref-article-book-title-pattern"><rule context="element-citation/article-title|       element-citation/chapter-title|       element-citation/source|       element-citation/data-title" id="org-ref-article-book-title">
       
-      <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ('')"/>
+      <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ()"/>
       
       <report test="$organisms//*:organism" role="info" id="ref-article-title-organism-check">[ref-article-title-organism-check] ref <value-of select="ancestor::ref/@id"/> has a <name/> element containing an organism - <value-of select="string-join($organisms//*:organism,'; ')"/> - but there is no italic element with that correct capitalisation or spacing.</report>
     
     </rule></pattern><pattern id="org-title-kwd-pattern"><rule context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd" id="org-title-kwd">
       
-      <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ('')"/>
+      <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ()"/>
       
       <report test="$organisms//*:organism" role="info" id="article-title-organism-check">[article-title-organism-check] <name/> contains an organism - <value-of select="string-join($organisms//*:organism,'; ')"/> - but there is no italic element with that correct capitalisation or spacing.</report>
       

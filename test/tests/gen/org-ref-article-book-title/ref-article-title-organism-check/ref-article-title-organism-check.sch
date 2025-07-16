@@ -924,7 +924,7 @@
   </xsl:function>
   <pattern id="org-pattern">
     <rule context="element-citation/article-title|       element-citation/chapter-title|       element-citation/source|       element-citation/data-title" id="org-ref-article-book-title">
-      <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ('')"/>
+      <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ()"/>
       <report test="$organisms//*:organism" role="info" id="ref-article-title-organism-check">ref <value-of select="ancestor::ref/@id"/> has a <name/> element containing an organism - <value-of select="string-join($organisms//*:organism,'; ')"/> - but there is no italic element with that correct capitalisation or spacing.</report>
     </rule>
   </pattern>
