@@ -1648,6 +1648,7 @@
        
        <report test="matches(.,'[“”&quot;]')" 
         role="warning" 
+        sqf:fix="delete-quote-characters"
         id="journal-source-5">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
        
        <report test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^(j|nat|proc|sci|annu|physiol|front|theor)\.\s'))" 
@@ -1811,6 +1812,7 @@
         
         <report test="matches(.,'[“”&quot;]')" 
         role="warning" 
+        sqf:fix="delete-quote-characters"
         id="preprint-source-2">Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
         
         <report test="matches($lc,'biorxiv') and matches($lc,'medrxiv')" 
@@ -1873,6 +1875,7 @@
         
         <report test="matches(.,'[“”&quot;]')" 
         role="warning" 
+        sqf:fix="delete-quote-characters"
         id="book-source-4">Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
       </rule>
     </pattern>
@@ -2150,6 +2153,7 @@
       <rule context="ref//chapter-title" id="ref-chapter-title-checks">
         <report test="matches(.,'^\s*[“”&quot;]|[“”&quot;]\.*$')" 
           role="warning" 
+          sqf:fix="move-quote-characters delete-quote-characters"
           id="ref-chapter-title-1"><name/> in ref starts or ends with speech quotes - <value-of select="."/>. Is that correct?.</report>
         
         <report test="matches(.,'\?[^\s\p{P}]')" 

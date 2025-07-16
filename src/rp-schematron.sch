@@ -1359,7 +1359,7 @@
        
        <report test="matches(lower-case(.),'^in[^a-z]')" role="warning" id="journal-source-4">[journal-source-4] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
        
-       <report test="matches(.,'[“”&quot;]')" role="warning" id="journal-source-5">[journal-source-5] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
+       <report test="matches(.,'[“”&quot;]')" role="warning" sqf:fix="delete-quote-characters" id="journal-source-5">[journal-source-5] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
        
        <report test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^(j|nat|proc|sci|annu|physiol|front|theor)\.\s'))" role="warning" sqf:fix="fix-source-article-title" id="journal-source-6">[journal-source-6] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains more than one sentence - <value-of select="."/>. Should some of the content be moved into the article-title?</report>
        
@@ -1487,7 +1487,7 @@
         <let name="lc" value="lower-case(.)"/>
         <report test="matches($lc,'^(\.\s*)?in[^a-z]')" role="warning" id="preprint-source">[preprint-source] Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
         
-        <report test="matches(.,'[“”&quot;]')" role="warning" id="preprint-source-2">[preprint-source-2] Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
+        <report test="matches(.,'[“”&quot;]')" role="warning" sqf:fix="delete-quote-characters" id="preprint-source-2">[preprint-source-2] Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
         
         <report test="matches($lc,'biorxiv') and matches($lc,'medrxiv')" role="error" id="preprint-source-3">[preprint-source-3] Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains both bioRxiv and medRxiv, which must be wrong.</report>
       </rule></pattern>
@@ -1516,7 +1516,7 @@
 
         <report test="matches(lower-case(.),'^(symposium|conference|proc\.?|proceeding|meeting|workshop)|\s?(symposium|conference|proc\.?|proceeding|meeting|workshop)\s?|(symposium|conference|proc\.?|proceeding|meeting|workshop)$')" role="warning" sqf:fix="convert-to-confproc" id="book-source-3">[book-source-3] Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
         
-        <report test="matches(.,'[“”&quot;]')" role="warning" id="book-source-4">[book-source-4] Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
+        <report test="matches(.,'[“”&quot;]')" role="warning" sqf:fix="delete-quote-characters" id="book-source-4">[book-source-4] Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
       </rule></pattern>
   
   <pattern id="confproc-ref-checks-pattern"><rule context="mixed-citation[@publication-type='confproc']" id="confproc-ref-checks">
@@ -1654,7 +1654,7 @@
       </rule></pattern>
   
   <pattern id="ref-chapter-title-checks-pattern"><rule context="ref//chapter-title" id="ref-chapter-title-checks">
-        <report test="matches(.,'^\s*[“”&quot;]|[“”&quot;]\.*$')" role="warning" id="ref-chapter-title-1">[ref-chapter-title-1] <name/> in ref starts or ends with speech quotes - <value-of select="."/>. Is that correct?.</report>
+        <report test="matches(.,'^\s*[“”&quot;]|[“”&quot;]\.*$')" role="warning" sqf:fix="move-quote-characters delete-quote-characters" id="ref-chapter-title-1">[ref-chapter-title-1] <name/> in ref starts or ends with speech quotes - <value-of select="."/>. Is that correct?.</report>
         
         <report test="matches(.,'\?[^\s\p{P}]')" role="warning" id="ref-chapter-title-2">[ref-chapter-title-2] <name/> in ref contains a question mark which may potentially be the result of a processing error - <value-of select="."/>. Should it be repalced with other characters?</report>
         

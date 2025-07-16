@@ -1020,7 +1020,7 @@
   </sqf:fixes>
   <pattern id="ref-chapter-title-checks-pattern">
     <rule context="ref//chapter-title" id="ref-chapter-title-checks">
-      <report test="matches(.,'^\s*[“”&quot;]|[“”&quot;]\.*$')" role="warning" id="ref-chapter-title-1">[ref-chapter-title-1] <name/> in ref starts or ends with speech quotes - <value-of select="."/>. Is that correct?.</report>
+      <report test="matches(.,'^\s*[“”&quot;]|[“”&quot;]\.*$')" role="warning" sqf:fix="move-quote-characters delete-quote-characters" id="ref-chapter-title-1">[ref-chapter-title-1] <name/> in ref starts or ends with speech quotes - <value-of select="."/>. Is that correct?.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

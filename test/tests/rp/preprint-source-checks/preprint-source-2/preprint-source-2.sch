@@ -1021,7 +1021,7 @@
   <pattern id="preprint-source-checks-pattern">
     <rule context="mixed-citation[@publication-type='preprint']/source" id="preprint-source-checks">
       <let name="lc" value="lower-case(.)"/>
-      <report test="matches(.,'[“”&quot;]')" role="warning" id="preprint-source-2">[preprint-source-2] Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
+      <report test="matches(.,'[“”&quot;]')" role="warning" sqf:fix="delete-quote-characters" id="preprint-source-2">[preprint-source-2] Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

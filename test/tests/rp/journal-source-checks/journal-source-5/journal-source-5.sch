@@ -1021,7 +1021,7 @@
   <pattern id="journal-source-checks-pattern">
     <rule context="mixed-citation[@publication-type='journal']/source" id="journal-source-checks">
       <let name="preprint-regex" value="'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra'"/>
-      <report test="matches(.,'[“”&quot;]')" role="warning" id="journal-source-5">[journal-source-5] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
+      <report test="matches(.,'[“”&quot;]')" role="warning" sqf:fix="delete-quote-characters" id="journal-source-5">[journal-source-5] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
       <sqf:fix id="fix-source-article-title">
          <sqf:description>
            <sqf:title>Move first sentence to article title</sqf:title>
