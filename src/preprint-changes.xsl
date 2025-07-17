@@ -9,7 +9,65 @@
     exclude-result-prefixes="xs xsi e"
     version="3.0">
 
-    <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="yes"/>
+    <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="yes" use-character-maps="char-map"/>
+    
+    <!-- Force hexadecimal entities for HTML named entities (required by Python XML parser) -->
+    <xsl:character-map name="char-map">
+        <xsl:output-character character="&#160;" string="&amp;#xA0;"/>
+        <xsl:output-character character="&lt;" string="&amp;#x3c;"/>
+        <xsl:output-character character="&gt;" string="&amp;#x3e;"/>
+        <xsl:output-character character="≥" string="&amp;#x2265;"/>
+        <xsl:output-character character="≤" string="&amp;#x2264;"/>
+        <xsl:output-character character="α" string="&amp;#x3b1;"/>
+        <xsl:output-character character="β" string="&amp;#x3b2;"/>
+        <xsl:output-character character="γ" string="&amp;#x3b3;"/>
+        <xsl:output-character character="δ" string="&amp;#x3b4;"/>
+        <xsl:output-character character="ε" string="&amp;#x3b5;"/>
+        <xsl:output-character character="ζ" string="&amp;#x3b6;"/>
+        <xsl:output-character character="η" string="&amp;#x3b7;"/>
+        <xsl:output-character character="θ" string="&amp;#x3b8;"/>
+        <xsl:output-character character="ι" string="&amp;#x3b9;"/>
+        <xsl:output-character character="κ" string="&amp;#x3ba;"/>
+        <xsl:output-character character="λ" string="&amp;#x3bb;"/>
+        <xsl:output-character character="μ" string="&amp;#x3bc;"/>
+        <xsl:output-character character="ν" string="&amp;#x3bd;"/>
+        <xsl:output-character character="ξ" string="&amp;#x3bE;"/>
+        <xsl:output-character character="ο" string="&amp;#x3bf;"/>
+        <xsl:output-character character="π" string="&amp;#x3c0;"/>
+        <xsl:output-character character="ρ" string="&amp;#x3c1;"/>
+        <xsl:output-character character="ς" string="&amp;#x3c2;"/>
+        <xsl:output-character character="σ" string="&amp;#x3c3;"/>
+        <xsl:output-character character="τ" string="&amp;#x3c4;"/>
+        <xsl:output-character character="υ" string="&amp;#x3c5;"/>
+        <xsl:output-character character="φ" string="&amp;#x3c6;"/>
+        <xsl:output-character character="χ" string="&amp;#x3c7;"/>
+        <xsl:output-character character="ψ" string="&amp;#x3c8;"/>
+        <xsl:output-character character="ω" string="&amp;#x3c9;"/>
+        <xsl:output-character character="Α" string="&amp;#x391;"/>
+        <xsl:output-character character="Β" string="&amp;#x392;"/>
+        <xsl:output-character character="Γ" string="&amp;#x393;"/>
+        <xsl:output-character character="Δ" string="&amp;#x394;"/>
+        <xsl:output-character character="Ε" string="&amp;#x395;"/>
+        <xsl:output-character character="Ζ" string="&amp;#x396;"/>
+        <xsl:output-character character="Η" string="&amp;#x397;"/>
+        <xsl:output-character character="Θ" string="&amp;#x398;"/>
+        <xsl:output-character character="Ι" string="&amp;#x399;"/>
+        <xsl:output-character character="Κ" string="&amp;#x39a;"/>
+        <xsl:output-character character="Λ" string="&amp;#x39b;"/>
+        <xsl:output-character character="Μ" string="&amp;#x39c;"/>
+        <xsl:output-character character="Ν" string="&amp;#x39d;"/>
+        <xsl:output-character character="Ξ" string="&amp;#x39E;"/>
+        <xsl:output-character character="Ο" string="&amp;#x39f;"/>
+        <xsl:output-character character="Π" string="&amp;#x3a0;"/>
+        <xsl:output-character character="Ρ" string="&amp;#x3a1;"/>
+        <xsl:output-character character="Σ" string="&amp;#x3a3;"/>
+        <xsl:output-character character="Τ" string="&amp;#x3a4;"/>
+        <xsl:output-character character="Υ" string="&amp;#x3a5;"/>
+        <xsl:output-character character="Φ" string="&amp;#x3a6;"/>
+        <xsl:output-character character="Χ" string="&amp;#x3a7;"/>
+        <xsl:output-character character="Ψ" string="&amp;#x3a8;"/>
+        <xsl:output-character character="Ω" string="&amp;#x3a9;"/>  
+    </xsl:character-map>
 
     <xsl:variable name="name-elems" select="('string-name','collab','on-behalf-of','etal')"/>
 
