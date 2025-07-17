@@ -11,7 +11,7 @@
 
     <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="yes" use-character-maps="char-map"/>
     
-    <!-- Map HTML entities (which cannot be parsed by the python xml parsing library) to UTF-8 equivalents -->
+    <!-- Force hexadecimal entities for HTML named entities (required by Python XML parser) -->
     <xsl:character-map name="char-map">
         <xsl:output-character character="&#160;" string="&amp;#xA0;"/>
         <xsl:output-character character="&lt;" string="&amp;#x3c;"/>
