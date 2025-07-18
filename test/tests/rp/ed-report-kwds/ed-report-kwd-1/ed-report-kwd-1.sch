@@ -698,7 +698,7 @@
       </sqf:description>
       <sqf:replace match=".">
         <ext-link xmlns="" ext-link-type="uri">
-          <xsl:attribute name="href" namespace="http://www.w3.org/1999/xlink">
+          <xsl:attribute name="xlink:href" namespace="http://www.w3.org/1999/xlink">
             <xsl:value-of select="."/>
           </xsl:attribute>
           <xsl:apply-templates mode="customCopy" select="node()"/>

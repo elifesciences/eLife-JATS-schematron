@@ -698,7 +698,7 @@
       </sqf:description>
       <sqf:replace match=".">
         <ext-link xmlns="" ext-link-type="uri">
-          <xsl:attribute name="href" namespace="http://www.w3.org/1999/xlink">
+          <xsl:attribute name="xlink:href" namespace="http://www.w3.org/1999/xlink">
             <xsl:value-of select="."/>
           </xsl:attribute>
           <xsl:apply-templates mode="customCopy" select="node()"/>
@@ -1027,7 +1027,7 @@
   <pattern id="journal-source-checks-pattern">
     <rule context="mixed-citation[@publication-type='journal']/source" id="journal-source-checks">
       <let name="preprint-regex" value="'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra'"/>
-      <report test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^((world )?j|nat|phys|proc|sci|annu|physiol|front|theor|infect|trop|(micro)?biol|vet|comp|crit|emerg|arch|br|eur|transbound|dev|am|curr|(bmc )?med|(methods )?mol|(brain )?behav|(brain )?res)\.\s'))" role="warning" sqf:fix="fix-source-article-title" id="journal-source-6">[journal-source-6] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains more than one sentence - <value-of select="."/>. Should some of the content be moved into the article-title?</report>
+      <report test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^((world )?j|nat|phys|proc|sci|annu|physiol|front|theor|infect|trop|(micro)?biol|vet|comp|crit|emerg|arch|br|eur|transbound|dev|am|curr|psychon|(bmc|sleep)?\s?med|(methods )?mol|(brain )?behav|(brain )?res)\.\s'))" role="warning" sqf:fix="fix-source-article-title" id="journal-source-6">[journal-source-6] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains more than one sentence - <value-of select="."/>. Should some of the content be moved into the article-title?</report>
       <sqf:fix id="fix-source-article-title">
          <sqf:description>
            <sqf:title>Move first sentence to article title</sqf:title>
