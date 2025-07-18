@@ -1534,7 +1534,7 @@
              <xsl:if test="not(matches(.,'\.\s*$'))">
                <xsl:text>. </xsl:text>
              </xsl:if>
-             <xsl:value-of select="string-join(tokenize(parent::mixed-citation/source,'\.\s?')[position() le 2],'. ')"/>
+             <xsl:value-of select="string-join(tokenize(parent::mixed-citation/source[1],'\.\s?')[position() le 2],'. ')"/>
            </xsl:copy>
          </sqf:replace>
          <sqf:replace match=".">
