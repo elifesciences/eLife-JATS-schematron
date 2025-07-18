@@ -1027,7 +1027,7 @@
   <pattern id="journal-source-checks-pattern">
     <rule context="mixed-citation[@publication-type='journal']/source" id="journal-source-checks">
       <let name="preprint-regex" value="'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra'"/>
-      <report test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^((world )?j|nat|proc|sci|annu|physiol|front|theor|infect|trop|microbiol|vet|comp|crit|emerg|arch|eur|transbound|dev|am|curr|(bmc )?med|(methods )?mol)\.\s'))" role="warning" sqf:fix="fix-source-article-title" id="journal-source-6">[journal-source-6] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains more than one sentence - <value-of select="."/>. Should some of the content be moved into the article-title?</report>
+      <report test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^((world )?j|nat|phys|proc|sci|annu|physiol|front|theor|infect|trop|(micro)?biol|vet|comp|crit|emerg|arch|br|eur|transbound|dev|am|curr|(bmc )?med|(methods )?mol|(brain )?behav|(brain )?res)\.\s'))" role="warning" sqf:fix="fix-source-article-title" id="journal-source-6">[journal-source-6] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains more than one sentence - <value-of select="."/>. Should some of the content be moved into the article-title?</report>
       <sqf:fix id="fix-source-article-title">
          <sqf:description>
            <sqf:title>Move first sentence to article title</sqf:title>
@@ -1105,7 +1105,7 @@
              <xsl:if test="not(matches(.,'\.\s*$'))">
                <xsl:text>. </xsl:text>
              </xsl:if>
-             <xsl:value-of select="string-join(tokenize(parent::mixed-citation/source,'\.\s?')[position() le 2],'. ')"/>
+             <xsl:value-of select="string-join(tokenize(parent::mixed-citation/source[1],'\.\s?')[position() le 2],'. ')"/>
            </xsl:copy>
          </sqf:replace>
          <sqf:replace match=".">
