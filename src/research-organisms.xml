@@ -57,11 +57,41 @@
     <organism type="species" regex="e\.\p{Zs}?carotovora">E. carotovora</organism>
     <organism type="species" regex="erwinia\p{Zs}?carotovora">Erwinia carotovora</organism>
     <organism type="species" regex="e\.\p{Zs}?faecalis">E. faecalis</organism>
+    <organism type="species" regex="enterococcus\p{Zs}?faecalis">Enterococcus faecalis</organism>
+    <organism type="species" regex="h\.\p{Zs}?antecessor">H. antecessor</organism>
+    <organism type="species" regex="homo\p{Zs}?antecessor">Homo antecessor</organism>
+    <organism type="species" regex="h\.\p{Zs}?cepranensis">H. cepranensis</organism>
+    <organism type="species" regex="homo\p{Zs}?cepranensis">Homo cepranensis</organism>
+    <organism type="species" regex="h\.\p{Zs}?erectus">H. erectus</organism>
+    <organism type="species" regex="homo\p{Zs}?erectus">Homo erectus</organism>
+    <organism type="species" regex="h\.\p{Zs}?ergaster">H. ergaster</organism>
+    <organism type="species" regex="homo\p{Zs}?ergaster">Homo ergaster</organism>
+    <organism type="species" regex="h\.\p{Zs}?floresiensis">H. floresiensis</organism>
+    <organism type="species" regex="homo\p{Zs}?floresiensis">Homo floresiensis</organism>
+    <organism type="species" regex="h\.\p{Zs}?georgicus">H. georgicus</organism>
+    <organism type="species" regex="homo\p{Zs}?georgicus">Homo georgicus</organism>
+    <organism type="species" regex="h\.\p{Zs}?habilis">H. habilis</organism>
+    <organism type="species" regex="homo\p{Zs}?habilis">Homo habilis</organism>
+    <organism type="species" regex="h\.\p{Zs}?heidelbergensis">H. heidelbergensis</organism>
+    <organism type="species" regex="homo\p{Zs}?heidelbergensis">Homo heidelbergensis</organism>
+    <organism type="species" regex="h\.\p{Zs}?juluensis">H. juluensis</organism>
+    <organism type="species" regex="homo\p{Zs}?juluensis">Homo juluensis</organism>
+    <organism type="species" regex="h\.\p{Zs}?longi">H. longi</organism>
+    <organism type="species" regex="homo\p{Zs}?longi">Homo longi</organism>
+    <organism type="species" regex="h\.\p{Zs}?luzonensis">H. luzonensis</organism>
+    <organism type="species" regex="homo\p{Zs}?luzonensis">Homo luzonensis</organism>
+    <organism type="species" regex="h\.\p{Zs}?naledi">H. naledi</organism>
+    <organism type="species" regex="homo\p{Zs}?naledi">Homo naledi</organism>
+    <organism type="species" regex="h\.\p{Zs}?neanderthalensis">H. neanderthalensis</organism>
+    <organism type="species" regex="homo\p{Zs}?neanderthalensis">Homo neanderthalensis</organism>
+    <organism type="species" regex="h\.\p{Zs}?rhodesiensis">H. rhodesiensis</organism>
+    <organism type="species" regex="homo\p{Zs}?rhodesiensis">Homo rhodesiensis</organism>
+    <organism type="species" regex="h\.\p{Zs}?rudolfensis">H. rudolfensis</organism>
+    <organism type="species" regex="homo\p{Zs}?rudolfensis">Homo rudolfensis</organism>
     <organism type="species" regex="h\.\p{Zs}?sapiens">H. sapiens</organism>
     <organism type="species" regex="homo\p{Zs}?sapiens">Homo sapiens</organism>
     <organism type="species" regex="c\.\p{Zs}?trachomatis">C. trachomatis</organism>
     <organism type="species" regex="chlamydia\p{Zs}?trachomatis">Chlamydia trachomatis</organism>
-    <organism type="species" regex="enterococcus\p{Zs}?faecalis">Enterococcus faecalis</organism>
     <organism type="species" regex="x\.\p{Zs}?laevis">X. laevis</organism>
     <organism type="species" regex="xenopus\p{Zs}?laevis">Xenopus laevis</organism>
     <organism type="species" regex="x\.\p{Zs}?tropicalis">X. tropicalis</organism>
@@ -185,6 +215,10 @@
     <organism type="species" regex="puccinia\p{Zs}?striiformis">Puccinia striiformis</organism>
     <organism type="species" regex="u\.\p{Zs}?fabae">U. fabae</organism>
     <organism type="species" regex="uromyces\p{Zs}?fabae">Uromyces fabae</organism>
+    <organism type="species" regex="r\.\p{Zs}?rattus">R. rattus</organism>
+    <organism type="species" regex="rattus\p{Zs}?rattus">Rattus rattus</organism>
+    <organism type="species" regex="r\.\p{Zs}?norvegicus">R. norvegicus</organism>
+    <organism type="species" regex="rattus\p{Zs}?norvegicus">Rattus norvegicus</organism>
     <organism type="genus" regex="drosophila">Drosophila</organism>
     <organism type="genus" regex="salmonella">Salmonella</organism>
     <organism type="genus" regex="xenopus">Xenopus</organism>
