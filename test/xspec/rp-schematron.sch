@@ -1617,7 +1617,7 @@
         
         <report test="matches(lower-case(.),'^(\.\s*)?in[^a-z]|\.\s+in:\s+')" role="warning" id="book-source-2">The source in book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) contains 'In: ' - <value-of select="."/>. Are the details captured correctly?</report>
 
-        <report test="matches(lower-case(.),'^(symposium|conference|proc\.?|proceeding|meeting|workshop)|\s?(symposium|conference|proc\.?|proceeding|meeting|workshop)\s?|(symposium|conference|proc\.?|proceeding|meeting|workshop)$')" role="warning" sqf:fix="convert-to-confproc" id="book-source-3">Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
+        <report test="matches(lower-case(.),'^(symposium|conference|proc\.|proceeding|meeting|workshop)|\s(symposium|conference|proc\.|proceeding|meeting|workshop)\s|(symposium|conference|proc\.|proceeding|meeting|workshop)$')" role="warning" sqf:fix="convert-to-confproc" id="book-source-3">Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
         
         <report test="matches(.,'[“”&quot;]')" role="warning" sqf:fix="delete-quote-characters" id="book-source-4">Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
       </rule>
