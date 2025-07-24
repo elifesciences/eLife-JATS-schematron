@@ -11912,16 +11912,16 @@
 
 		<!--ASSERT warning-->
       <xsl:choose>
-         <xsl:when test="institution-id[@institution-id-type='FundRef']"/>
+         <xsl:when test="institution-id[@institution-id-type=('FundRef','ror')]"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="institution-id[@institution-id-type='FundRef']">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="institution-id[@institution-id-type=('FundRef','ror')]">
                <xsl:attribute name="id">institution-id-test</xsl:attribute>
                <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[institution-id-test] Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap).</svrl:text>
+               <svrl:text>[institution-id-test] Whenever possible, a funder should have an insitution id (either a ROR or doi from the open funder registry). (institution-id with an allowed institution-id-type is not present in institution-wrap).</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -11937,9 +11937,9 @@
 
 		<!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="@institution-id-type=('doi','FundRef')"/>
+         <xsl:when test="@institution-id-type=('ror','FundRef')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@institution-id-type=('doi','FundRef')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@institution-id-type=('ror','FundRef')">
                <xsl:attribute name="id">institution-id-test-2</xsl:attribute>
                <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
@@ -11948,7 +11948,7 @@
                </xsl:attribute>
                <svrl:text>[institution-id-test-2] <xsl:text/>
                   <xsl:value-of select="name(.)"/>
-                  <xsl:text/> element must have the attribute institution-id-type with a value of "doi" (or for older content "FundRef").</svrl:text>
+                  <xsl:text/> element must have the attribute institution-id-type with a value of "ror" (or for older content "FundRef").</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>

@@ -924,7 +924,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
-      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test" test="institution-id[@institution-id-type='FundRef']" role="warning" id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap).</assert>
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test" test="institution-id[@institution-id-type=('FundRef','ror')]" role="warning" id="institution-id-test">Whenever possible, a funder should have an insitution id (either a ROR or doi from the open funder registry). (institution-id with an allowed institution-id-type is not present in institution-wrap).</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
