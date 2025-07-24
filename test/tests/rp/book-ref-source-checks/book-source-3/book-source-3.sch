@@ -1026,7 +1026,7 @@
   </sqf:fixes>
   <pattern id="book-ref-source-checks-pattern">
     <rule context="mixed-citation[@publication-type='book']/source" id="book-ref-source-checks">
-      <report test="matches(lower-case(.),'^(symposium|conference|proc\.?|proceeding|meeting|workshop)|\s?(symposium|conference|proc\.?|proceeding|meeting|workshop)\s?|(symposium|conference|proc\.?|proceeding|meeting|workshop)$')" role="warning" sqf:fix="convert-to-confproc" id="book-source-3">[book-source-3] Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
+      <report test="matches(lower-case(.),'^(symposium|conference|proc\.|proceeding|meeting|workshop)|\s(symposium|conference|proc\.|proceeding|meeting|workshop)\s|(symposium|conference|proc\.|proceeding|meeting|workshop)$')" role="warning" sqf:fix="convert-to-confproc" id="book-source-3">[book-source-3] Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
