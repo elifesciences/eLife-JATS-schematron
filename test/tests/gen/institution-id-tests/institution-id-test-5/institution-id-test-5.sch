@@ -924,8 +924,8 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article//award-group//institution-wrap/institution-id" id="institution-id-tests">
-      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-5" test="(normalize-space(.) != '') and not(matches(.,'^http[s]?://d?x?\.?doi.org/10.13039/\d*$'))" role="error" id="institution-id-test-5">
-        <name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> contains the following text - <value-of select="."/> - which is not a fundref doi.</report>
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-5" test="@institution-id-type='FundRef' and (normalize-space(.) != '') and not(matches(.,'^http[s]?://d?x?\.?doi.org/10.13039/\d*$'))" role="error" id="institution-id-test-5">
+        <name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> has the institution-id-type 'fundref' and contains the following text - <value-of select="."/> - which is not a fundref doi.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -11999,8 +11999,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="(normalize-space(.) != '') and not(matches(.,'^http[s]?://d?x?\.?doi.org/10.13039/\d*$'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(normalize-space(.) != '') and not(matches(.,'^http[s]?://d?x?\.?doi.org/10.13039/\d*$'))">
+      <xsl:if test="@institution-id-type='FundRef' and (normalize-space(.) != '') and not(matches(.,'^http[s]?://d?x?\.?doi.org/10.13039/\d*$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@institution-id-type='FundRef' and (normalize-space(.) != '') and not(matches(.,'^http[s]?://d?x?\.?doi.org/10.13039/\d*$'))">
             <xsl:attribute name="id">institution-id-test-5</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
@@ -12011,7 +12011,7 @@
                <xsl:value-of select="name(.)"/>
                <xsl:text/> element in funding entry for <xsl:text/>
                <xsl:value-of select="parent::institution-wrap/institution"/>
-               <xsl:text/> contains the following text - <xsl:text/>
+               <xsl:text/> has the institution-id-type 'fundref' and contains the following text - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/> - which is not a fundref doi.</svrl:text>
          </svrl:successful-report>
