@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="funding-ror-status.sch"?>
+<!--Context: funding-source[institution-wrap/institution-id[@institution-id-type='ror']]
+Test: report    $matching-ror[@status='withdrawn']
+Message: Funding has a ROR id, but the ROR id's status is withdrawn. Withdrawn RORs should not be used. Should one of the following be used instead?: . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <funding-source>
+            <institution-wrap>
+                <institution-id institution-id-type="ror">https://ror.org/03bdvdc06</institution-id>
+                <institution>Public Library of Science</institution>
+            </institution-wrap>
+        </funding-source>
+    </article>
+</root>

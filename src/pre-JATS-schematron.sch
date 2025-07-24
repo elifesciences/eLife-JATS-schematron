@@ -1978,11 +1978,11 @@
       
     </rule></pattern><pattern id="institution-wrap-tests-pattern"><rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
       
-      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test" test="institution-id[@institution-id-type='FundRef']" role="warning" id="institution-id-test">[institution-id-test] Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap).</assert>
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test" test="institution-id[@institution-id-type=('FundRef','ror')]" role="warning" id="institution-id-test">[institution-id-test] Whenever possible, a funder should have an insitution id (either a ROR or doi from the open funder registry). (institution-id with an allowed institution-id-type is not present in institution-wrap).</assert>
       
     </rule></pattern><pattern id="institution-id-tests-pattern"><rule context="article//award-group//institution-wrap/institution-id" id="institution-id-tests">
       
-      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-2" test="@institution-id-type=('doi','FundRef')" role="error" id="institution-id-test-2">[institution-id-test-2] <name/> element must have the attribute institution-id-type with a value of "doi" (or for older content "FundRef").</assert>
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-2" test="@institution-id-type=('ror','FundRef')" role="error" id="institution-id-test-2">[institution-id-test-2] <name/> element must have the attribute institution-id-type with a value of "ror" (or for older content "FundRef").</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-3" test="normalize-space(.) != ''" role="error" id="institution-id-test-3">[institution-id-test-3] The funding entry for <value-of select="parent::institution-wrap/institution"/> has an empty <name/> element, which is not allowed.</assert>
       
@@ -1999,6 +1999,15 @@
       <assert test="@vocab='open-funder-registry'" role="error" id="institution-id-test-6">[institution-id-test-6] <name/> in funding must have a vocab="open-funder-registry" attribute. This one does not.</assert>
       
       <assert test="@vocab-identifier='10.13039/open-funder-registry'" role="error" id="institution-id-test-7">[institution-id-test-7] <name/> in funding must have a vocab-identifier="10.13039/open-funder-registry" attribute. This one does not.</assert>
+      
+    </rule></pattern><pattern id="funding-ror-tests-pattern"><rule context="funding-source[institution-wrap/institution-id[@institution-id-type='ror']]" id="funding-ror-tests">
+      <let name="rors" value="'rors.xml'"/>
+      <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
+      <let name="matching-ror" value="document($rors)//*:ror[*:id=$ror]"/>
+      
+      <assert test="exists($matching-ror)" role="error" id="funding-ror">[funding-ror] Funding (<value-of select="institution-wrap[1]/institution[1]"/>) has a ROR id - <value-of select="$ror"/> - but it does not look like a correct one.</assert>
+        
+      <report test="$matching-ror[@status='withdrawn']" role="error" id="funding-ror-status">[funding-ror-status] Funding has a ROR id, but the ROR id's status is withdrawn. Withdrawn RORs should not be used. Should one of the following be used instead?: <value-of select="string-join(for $x in $matching-ror/*:relationships/* return concat('(',$x/name(),') ',$x/*:id,' ',$x/*:label),'; ')"/>.</report>
       
     </rule></pattern><pattern id="par-tests-pattern"><rule context="funding-group//principal-award-recipient" id="par-tests">
       <let name="authors" value="for $x in ancestor::article//article-meta/contrib-group[1]/contrib[@contrib-type='author']         return if ($x/name) then e:get-name($x/name[1])         else if ($x/collab) then e:get-collab($x/collab[1])         else ''"/>

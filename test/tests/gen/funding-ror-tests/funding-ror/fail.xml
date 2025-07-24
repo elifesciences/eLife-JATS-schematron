@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="funding-ror.sch"?>
+<!--Context: funding-source[institution-wrap/institution-id[@institution-id-type='ror']]
+Test: assert    exists($matching-ror)
+Message: Funding () has a ROR id -  - but it does not look like a correct one. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <funding-source>
+            <institution-wrap>
+                <institution-id institution-id-type="ror">https://ror.org/04rjz5883dsadsadsa</institution-id>
+                <institution>eLife Sciences Publications</institution>
+            </institution-wrap>
+        </funding-source>
+    </article>
+</root>

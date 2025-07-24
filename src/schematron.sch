@@ -3224,18 +3224,18 @@
     <rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test" 
-        test="institution-id[@institution-id-type='FundRef']" 
+        test="institution-id[@institution-id-type=('FundRef','ror')]" 
         role="warning" 
-        id="institution-id-test">Whenever possible, a funder should have a doi - please check whether there is an appropriate doi in the open funder registry. (institution-id[@institution-id-type="FundRef"] is not present in institution-wrap).</assert>
+        id="institution-id-test">Whenever possible, a funder should have an insitution id (either a ROR or doi from the open funder registry). (institution-id with an allowed institution-id-type is not present in institution-wrap).</assert>
       
     </rule>
     
     <rule context="article//award-group//institution-wrap/institution-id" id="institution-id-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-2" 
-        test="@institution-id-type=('doi','FundRef')" 
+        test="@institution-id-type=('ror','FundRef')" 
         role="error" 
-        id="institution-id-test-2"><name/> element must have the attribute institution-id-type with a value of "doi" (or for older content "FundRef").</assert>
+        id="institution-id-test-2"><name/> element must have the attribute institution-id-type with a value of "ror" (or for older content "FundRef").</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-3" 
         test="normalize-space(.) != ''" 
@@ -3271,6 +3271,21 @@
       <assert test="@vocab-identifier='10.13039/open-funder-registry'" 
         role="error" 
         id="institution-id-test-7"><name/> in funding must have a vocab-identifier="10.13039/open-funder-registry" attribute. This one does not.</assert>
+      
+    </rule>
+    
+    <rule context="funding-source[institution-wrap/institution-id[@institution-id-type='ror']]" id="funding-ror-tests">
+      <let name="rors" value="'rors.xml'"/>
+      <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
+      <let name="matching-ror" value="document($rors)//*:ror[*:id=$ror]"/>
+      
+      <assert test="exists($matching-ror)"
+        role="error" 
+        id="funding-ror">Funding (<value-of select="institution-wrap[1]/institution[1]"/>) has a ROR id - <value-of select="$ror"/> - but it does not look like a correct one.</assert>
+        
+      <report test="$matching-ror[@status='withdrawn']"
+        role="error" 
+        id="funding-ror-status">Funding has a ROR id, but the ROR id's status is withdrawn. Withdrawn RORs should not be used. Should one of the following be used instead?: <value-of select="string-join(for $x in $matching-ror/*:relationships/* return concat('(',$x/name(),') ',$x/*:id,' ',$x/*:label),'; ')"/>.</report>
       
     </rule>
     

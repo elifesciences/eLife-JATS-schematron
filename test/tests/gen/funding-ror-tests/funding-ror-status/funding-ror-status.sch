@@ -923,13 +923,16 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
-      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test" test="institution-id[@institution-id-type=('FundRef','ror')]" role="warning" id="institution-id-test">Whenever possible, a funder should have an insitution id (either a ROR or doi from the open funder registry). (institution-id with an allowed institution-id-type is not present in institution-wrap).</assert>
+    <rule context="funding-source[institution-wrap/institution-id[@institution-id-type='ror']]" id="funding-ror-tests">
+      <let name="rors" value="'../../../../../src/rors.xml'"/>
+      <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
+      <let name="matching-ror" value="document($rors)//*:ror[*:id=$ror]"/>
+      <report test="$matching-ror[@status='withdrawn']" role="error" id="funding-ror-status">Funding has a ROR id, but the ROR id's status is withdrawn. Withdrawn RORs should not be used. Should one of the following be used instead?: <value-of select="string-join(for $x in $matching-ror/*:relationships/* return concat('(',$x/name(),') ',$x/*:id,' ',$x/*:label),'; ')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta//award-group//institution-wrap" role="error" id="institution-wrap-tests-xspec-assert">article-meta//award-group//institution-wrap must be present.</assert>
+      <assert test="descendant::funding-source[institution-wrap/institution-id[@institution-id-type='ror']]" role="error" id="funding-ror-tests-xspec-assert">funding-source[institution-wrap/institution-id[@institution-id-type='ror']] must be present.</assert>
     </rule>
   </pattern>
 </schema>

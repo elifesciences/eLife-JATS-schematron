@@ -924,8 +924,8 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article//award-group//institution-wrap/institution-id" id="institution-id-tests">
-      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-2" test="@institution-id-type=('doi','FundRef')" role="error" id="institution-id-test-2">
-        <name/> element must have the attribute institution-id-type with a value of "doi" (or for older content "FundRef").</assert>
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-2" test="@institution-id-type=('ror','FundRef')" role="error" id="institution-id-test-2">
+        <name/> element must have the attribute institution-id-type with a value of "ror" (or for older content "FundRef").</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
