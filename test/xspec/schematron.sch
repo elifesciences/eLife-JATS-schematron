@@ -2471,6 +2471,18 @@
       
     </rule>
   </pattern>
+  <pattern id="funding-ror-tests-pattern">
+    <rule context="funding-source[institution-wrap/institution-id[@institution-id-type='ror']]" id="funding-ror-tests">
+      <let name="rors" value="'rors.xml'"/>
+      <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
+      <let name="matching-ror" value="document($rors)//*:ror[*:id=$ror]"/>
+      
+      <assert test="exists($matching-ror)" role="error" id="funding-ror">Funding (<value-of select="institution-wrap[1]/institution[1]"/>) has a ROR id - <value-of select="$ror"/> - but it does not look like a correct one.</assert>
+        
+      <report test="$matching-ror[@status='withdrawn']" role="error" id="funding-ror-status">Funding has a ROR id, but the ROR id's status is withdrawn. Withdrawn RORs should not be used. Should one of the following be used instead?: <value-of select="string-join(for $x in $matching-ror/*:relationships/* return concat('(',$x/name(),') ',$x/*:id,' ',$x/*:label),'; ')"/>.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="par-tests-pattern">
     <rule context="funding-group//principal-award-recipient" id="par-tests">
       <let name="authors" value="for $x in ancestor::article//article-meta/contrib-group[1]/contrib[@contrib-type='author']         return if ($x/name) then e:get-name($x/name[1])         else if ($x/collab) then e:get-collab($x/collab[1])         else ''"/>
@@ -8804,6 +8816,7 @@
       <assert test="descendant::article-meta//award-group//institution-wrap" role="error" id="institution-wrap-tests-xspec-assert">article-meta//award-group//institution-wrap must be present.</assert>
       <assert test="descendant::article//award-group//institution-wrap/institution-id" role="error" id="institution-id-tests-xspec-assert">article//award-group//institution-wrap/institution-id must be present.</assert>
       <assert test="descendant::article//award-group//institution-wrap/institution-id[@institution-id-type='doi']" role="error" id="institution-id-doi-tests-xspec-assert">article//award-group//institution-wrap/institution-id[@institution-id-type='doi'] must be present.</assert>
+      <assert test="descendant::funding-source[institution-wrap/institution-id[@institution-id-type='ror']]" role="error" id="funding-ror-tests-xspec-assert">funding-source[institution-wrap/institution-id[@institution-id-type='ror']] must be present.</assert>
       <assert test="descendant::funding-group//principal-award-recipient" role="error" id="par-tests-xspec-assert">funding-group//principal-award-recipient must be present.</assert>
       <assert test="descendant::funding-group//principal-award-recipient[count(name) gt 1]" role="error" id="multi-par-tests-xspec-assert">funding-group//principal-award-recipient[count(name) gt 1] must be present.</assert>
       <assert test="descendant::funding-group//principal-award-recipient/name" role="error" id="par-name-tests-xspec-assert">funding-group//principal-award-recipient/name must be present.</assert>
