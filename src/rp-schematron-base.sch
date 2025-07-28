@@ -1657,7 +1657,7 @@
         sqf:fix="delete-quote-characters"
         id="journal-source-5">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
        
-       <report test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^((world )?j(pn)?|nat|phys|proc|sci|annu|physiol|comput|exp|front|theor|infect|trop|(micro)?biol|(acs )?(bio)?ch[ei]m|vet|comp|crit|emerg|arch|br|eur|transbound|dev|am|curr|psychon|(bmc|sleep)?\s?med|(methods|cell )?mol|(brain )?behav|(brain )?res)\.\s'))" 
+       <report test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^((eur |world )?j(pn)?|nat|phys|proc|sci|annu|physiol|comput|exp|front|theor|infect|trop|(micro)?biol|(acs )?(bio)?ch[ei]m|vet|comp|cereb|crit|emerg|arch|br|eur|transbound|dev|am|curr|psychon|(bmc|sleep)?\s?med|(methods|cell )?mol|(brain )?behav|(brain )?res)\.\s'))" 
         role="warning"
         sqf:fix="fix-source-article-title"
         id="journal-source-6">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains more than one sentence - <value-of select="."/>. Should some of the content be moved into the article-title?</report>
@@ -2053,7 +2053,7 @@
         role="error" 
         id="ref-pmcid-conformance">pub-id is tagged as a pmcid, but it is not a valid PMCID ('PMC' followed by 5+ digits) - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
         
-        <report test="(@pub-id-type='arxiv') and not(matches(.,'^(\d{2}(0[1-9]|1[0-2])\.\d{5}|\d{2}(0[1-9]|1[0-2])\d{3})$'))" 
+        <report test="(@pub-id-type='arxiv') and not(matches(.,'^(\d{2}(0[1-9]|1[0-2])\.\d{4,5}|\d{2}(0[1-9]|1[0-2])\d{3})$'))" 
         role="error" 
         id="ref-arxiv-conformance">pub-id is tagged as an arxiv id, but it is not a valid arxiv id (a number in the format yymm.nnnnn or yymmnnn) - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
       
