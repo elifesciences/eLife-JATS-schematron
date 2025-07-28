@@ -4232,8 +4232,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^((world )?j(pn)?|nat|phys|proc|sci|annu|physiol|comput|exp|front|theor|infect|trop|(micro)?biol|(acs )?(bio)?ch[ei]m|vet|comp|crit|emerg|arch|br|eur|transbound|dev|am|curr|psychon|(bmc|sleep)?\s?med|(methods|cell )?mol|(brain )?behav|(brain )?res)\.\s'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^((world )?j(pn)?|nat|phys|proc|sci|annu|physiol|comput|exp|front|theor|infect|trop|(micro)?biol|(acs )?(bio)?ch[ei]m|vet|comp|crit|emerg|arch|br|eur|transbound|dev|am|curr|psychon|(bmc|sleep)?\s?med|(methods|cell )?mol|(brain )?behav|(brain )?res)\.\s'))">
+      <xsl:if test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^((eur |world )?j(pn)?|nat|phys|proc|sci|annu|physiol|comput|exp|front|theor|infect|trop|(micro)?biol|(acs )?(bio)?ch[ei]m|vet|comp|cereb|crit|emerg|arch|br|eur|transbound|dev|am|curr|psychon|(bmc|sleep)?\s?med|(methods|cell )?mol|(brain )?behav|(brain )?res)\.\s'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(.),'^((eur |world )?j(pn)?|nat|phys|proc|sci|annu|physiol|comput|exp|front|theor|infect|trop|(micro)?biol|(acs )?(bio)?ch[ei]m|vet|comp|cereb|crit|emerg|arch|br|eur|transbound|dev|am|curr|psychon|(bmc|sleep)?\s?med|(methods|cell )?mol|(brain )?behav|(brain )?res)\.\s'))">
             <xsl:attribute name="id">journal-source-6</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -5294,8 +5294,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="(@pub-id-type='arxiv') and not(matches(.,'^(\d{2}(0[1-9]|1[0-2])\.\d{5}|\d{2}(0[1-9]|1[0-2])\d{3})$'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type='arxiv') and not(matches(.,'^(\d{2}(0[1-9]|1[0-2])\.\d{5}|\d{2}(0[1-9]|1[0-2])\d{3})$'))">
+      <xsl:if test="(@pub-id-type='arxiv') and not(matches(.,'^(\d{2}(0[1-9]|1[0-2])\.\d{4,5}|\d{2}(0[1-9]|1[0-2])\d{3})$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type='arxiv') and not(matches(.,'^(\d{2}(0[1-9]|1[0-2])\.\d{4,5}|\d{2}(0[1-9]|1[0-2])\d{3})$'))">
             <xsl:attribute name="id">ref-arxiv-conformance</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
