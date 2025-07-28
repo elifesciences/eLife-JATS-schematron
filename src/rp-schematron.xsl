@@ -5294,8 +5294,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="(@pub-id-type='arxiv') and not(matches(.,'^(\d{2}(0[1-9]|1[0-2])\.\d{5}|\d{2}(0[1-9]|1[0-2])\d{3})$'))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type='arxiv') and not(matches(.,'^(\d{2}(0[1-9]|1[0-2])\.\d{5}|\d{2}(0[1-9]|1[0-2])\d{3})$'))">
+      <xsl:if test="(@pub-id-type='arxiv') and not(matches(.,'^(\d{2}(0[1-9]|1[0-2])\.\d{4,5}|\d{2}(0[1-9]|1[0-2])\d{3})$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(@pub-id-type='arxiv') and not(matches(.,'^(\d{2}(0[1-9]|1[0-2])\.\d{4,5}|\d{2}(0[1-9]|1[0-2])\d{3})$'))">
             <xsl:attribute name="id">ref-arxiv-conformance</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
