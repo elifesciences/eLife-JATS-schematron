@@ -251,6 +251,8 @@
     <organism type="species" regex="p\.\p{Zs}?femoralis">P. femoralis</organism>
     <organism type="species" regex="puccinia\p{Zs}?striiformis">Puccinia striiformis</organism>
     <organism type="species" regex="p\.\p{Zs}?striiformis">P. striiformis</organism>
+    <organism type="species" regex="pogonomyrmex\p{Zs}?rugosus">Pogonomyrmex rugosus</organism>
+    <organism type="species" regex="p\.\p{Zs}?rugosus">P. rugosus</organism>
     <organism type="species" regex="rana\p{Zs}?muscosa">Rana muscosa</organism>
     <organism type="species" regex="r\.\p{Zs}?muscosa">R. muscosa</organism>
     <organism type="species" regex="rana\p{Zs}?pipiens">Rana pipiens</organism>
