@@ -728,10 +728,10 @@
     <xsl:param name="article"/>
     <xsl:param name="object-id"/>
     <xsl:param name="object-type"/>
-    <xsl:variable name="object-no" select="replace($object-id,'[^0-9]','')"/>
+    <xsl:variable name="object-no" select="number(replace($object-id,'[^0-9]',''))"/>
     <xsl:element name="matches">
       <xsl:for-each select="$article//xref[(@ref-type=$object-type) and not(ancestor::caption)]">
-        <xsl:variable name="rid-no" select="replace(./@rid,'[^0-9]','')"/>
+        <xsl:variable name="rid-no" select="number(replace(./@rid,'[^0-9]',''))"/>
         <xsl:variable name="text-no" select="tokenize(normalize-space(replace(.,'[^0-9]',' ')),'\p{Zs}')[last()]"/>
         <xsl:choose>
           <xsl:when test="./@rid = $object-id">
@@ -751,7 +751,7 @@
               <xsl:value-of select="self::*"/>
             </xsl:element>
           </xsl:when>
-          <xsl:when test="($rid-no lt $object-no) and contains(.,$object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'&#x2013;'))">
+          <xsl:when test="($rid-no lt $object-no) and contains(.,string($object-no)) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'&#x2013;'))">
             <xsl:element name="match">
               <xsl:attribute name="sec-id">
                 <xsl:value-of select="./ancestor::sec[1]/@id"/>
@@ -759,7 +759,7 @@
               <xsl:value-of select="self::*"/>
             </xsl:element>
           </xsl:when>
-          <xsl:when test="($rid-no lt $object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'&#x2014;')) and ($text-no gt $object-no)">
+          <xsl:when test="($rid-no lt $object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'&#x2014;')) and ($text-no gt string($object-no))">
             <xsl:element name="match">
               <xsl:attribute name="sec-id">
                 <xsl:value-of select="./ancestor::sec[1]/@id"/>
