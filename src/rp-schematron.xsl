@@ -204,6 +204,9 @@
       <xsl:param name="award-id-elem" as="xs:string"/>
       <xsl:param name="ror-id" as="xs:string"/>
       <xsl:choose>
+         <xsl:when test="$ror-id='https://ror.org/029chgv08'">
+            <xsl:value-of select="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','')          else if (contains(lower-case($award-id-elem),'_z')) then replace(substring-before(lower-case($award-id-elem),'_z'),'[^\d]','')         else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>
+         </xsl:when>
          <xsl:when test="$ror-id='https://ror.org/006wxqw41'">
             <xsl:value-of select="if (matches($award-id-elem,'^\d+(\.\d+)?$')) then concat('GBMF',$award-id-elem)          else if (not(matches(upper-case($award-id-elem),'^GBMF'))) then concat('GBMF',replace($award-id-elem,'[^\d\.]',''))          else upper-case($award-id-elem)"/>
          </xsl:when>
@@ -2606,6 +2609,18 @@
             <xsl:if test="matches(.,'\.[“”&quot;]?$')">
                <xsl:text>.</xsl:text>
             </xsl:if>
+         </sqf:replace>
+      </sqf:fix>
+      <sqf:fix id="add-grant-doi">
+         <sqf:description>
+            <sqf:title>Replace with grant DOI</sqf:title>
+         </sqf:description>
+         <sqf:replace match="award-id[1]">
+            <xsl:variable name="ror-id" select="parent::award-group/funding-source/institution-wrap/institution-id"/>
+            <xsl:variable name="award-id" select="e:alter-award-id(.,$ror-id)"/>
+            <award-id xmlns="" award-id-type="doi">
+               <xsl:value-of select="document('rors.xml')//*:ror[*:id[@type='ror']=$ror-id]/*:grant[@award=$award-id][1]/@doi"/>
+            </award-id>
          </sqf:replace>
       </sqf:fix>
    </sqf:fixes>
@@ -9249,7 +9264,7 @@
    <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap[count(institution-id)=1]/institution-id=$wellcome-ror-ids]" priority="1000" mode="M140">
       <xsl:variable name="grants" select="document($rors)//*:ror[*:id[@type='ror']=$wellcome-ror-ids]/*:grant"/>
       <xsl:variable name="award-id-elem" select="award-id"/>
-      <xsl:variable name="award-id" select="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','')          else if (contains(lower-case($award-id-elem),'_z')) then replace(substring-before(lower-case($award-id-elem),'_z'),'[^\d]','')         else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>
+      <xsl:variable name="award-id" select="e:alter-award-id($award-id-elem,$wellcome-ror-ids)"/>
       <xsl:variable name="grant-matches" select="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
       <!--REPORT warning-->
       <xsl:if test="$grant-matches">
