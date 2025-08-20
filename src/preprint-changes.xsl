@@ -1605,6 +1605,53 @@
             </xsl:choose>
      </xsl:template>
     
+    <xsl:key name="database-prefix-lookup" match="name" use="@prefix"/>
+    <xsl:variable name="database-doi-prefixes">
+        <names>
+            <name prefix="10.5061">Dryad Digital Repository</name>
+            <name prefix="10.7272">Dryad Digital Repository</name>
+            <name prefix="10.2210">Worldwide Protein Data Bank</name>
+            <name prefix="10.25345">MassIVE Repository</name>
+            <name prefix="10.6084">figshare</name>
+            <name prefix="10.5281">Zenodo</name>
+            <name prefix="10.17632">Mendeley Data</name>
+            <name prefix="10.17605">Open Science Framework</name>
+            <name prefix="10.18112">OpenNeuro</name>
+            <name prefix="10.7303">Synapse</name>
+            <name prefix="10.7488">Edinburgh DataShare</name>
+            <name prefix="10.3929">ETH Library research collection</name>
+            <name prefix="10.6080">Collaborative Research in Computational Neuroscience</name>
+            <name prefix="10.17602">MorphoSource</name>
+            <name prefix="10.15785">SBGrid Data Bank</name>
+            <name prefix="10.7910">Harvard Dataverse</name>
+            <name prefix="10.21228">UCSD Metabolomics Workbench</name>
+        </names>
+    </xsl:variable>
+    <xsl:variable name="database-url-patterns">
+        <names>
+            <name url-part="ncbi.nlm.nih.gov/geo">NCBI Gene Expression Omnibus</name>
+            <name url-part="ncbi.nlm.nih.gov/nuccore">NCBI Nucleotide</name>
+            <name url-part="ncbi.nlm.nih.gov/bioproject">NCBI BioProject</name>
+            <name url-part="ncbi.nlm.nih.gov/gap">NCBI dbGaP</name>
+            <name url-part="ncbi.nlm.nih.gov/popset">NCBI PopSet</name>
+            <name url-part="ncbi.nlm.nih.gov/sra">NCBI Sequence Read Archive</name>
+            <name url-part="ncbi.nlm.nih.gov/biosample">NCBI BioSample</name>
+            <name url-part="ncbi.nlm.nih.gov/protein">NCBI Protein</name>
+            <name url-part="ncbi.nlm.nih.gov/assembly">NCBI Assembly</name>
+            <name url-part="ebi.ac.uk/pdbe/emdb">Electron Microscopy Data Bank</name>
+            <name url-part="ebi.ac.uk/pdbe/entry/emdb">Electron Microscopy Data Bank</name>
+            <name url-part="ebi.ac.uk/pdbe/emdb/empiar">Electron Microscopy Public Image Archive</name>
+            <name url-part="ebi.ac.uk/arrayexpress">ArrayExpress</name>
+            <name url-part="ebi.ac.uk/pride">PRIDE</name>
+            <name url-part="proteomecentral.proteomexchange.org/">ProteomeXchange</name>
+            <name url-part="openneuro.org/datasets">OpenNeuro</name>
+            <name url-part=".morphdbase.de">Morph D Base</name>
+            <name url-part="neurovault.org/collections">NeuroVault</name>
+            <name url-part=".encodeproject.org">ENCODE</name>
+            <name url-part=".emdataresource.org">EMDataResource</name>
+        </names>
+    </xsl:variable>
+    
     <!-- Handles the references pulled from submission system -->
     <xsl:template xml:id="element-citation-fixes" match="element-citation[starts-with(parent::ref[1]/@id,'dataref')]">
         <mixed-citation>
@@ -1620,11 +1667,43 @@
             <xsl:text>) </xsl:text>
             <xsl:copy-of select="./article-title"/>
             <xsl:text>. </xsl:text>
-            <!-- To do: add some logic to ignore accession numbers here (only surface database name) -->
-            <xsl:copy-of select="./source"/>
+            <xsl:choose>
+                <!-- Standardise database names for known DOI prefixes -->
+                <xsl:when test="./pub-id[@pub-id-type='doi']">
+                    <xsl:variable name="doi-prefix" select="substring-before(normalize-space(./pub-id[@pub-id-type='doi'][1]),'/')"/>
+                    <xsl:variable name="lookup-result" select="key('database-prefix-lookup', $doi-prefix, $database-doi-prefixes)" />
+                    <xsl:choose>
+                        <xsl:when test="string($lookup-result)!=''">
+                            <source><xsl:value-of select="$lookup-result"/></source>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:copy-of select="./source"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <!-- Standardise database names for known accession numbers/links -->
+                <xsl:when test="./ext-link[@xlink:href!='']">
+                    <xsl:variable name="full-url" select="./ext-link[1]/@xlink:href"/>
+                    <xsl:variable name="name-mapped" select="$database-url-patterns//*:name[contains($full-url,@url-part)]"/>
+                    <xsl:choose>
+                        <xsl:when test="$name-mapped">
+                            <!-- Since the original text field is freeform, include the original as a comment to catch any
+                         oddities introduced by the user -->
+                            <xsl:comment select="concat('ORIGINAL INPUT: ',./source)"/>
+                            <source><xsl:value-of select="$name-mapped"/></source>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:copy-of select="./source"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="./source"/>
+                </xsl:otherwise>
+            </xsl:choose>
             <xsl:text>. </xsl:text>
             <xsl:choose>
-                <xsl:when test="./pub-id">
+                <xsl:when test="./pub-id[@pub-id-type='doi']">
                     <xsl:copy-of select="./pub-id"/>
                 </xsl:when>
                 <xsl:otherwise>
