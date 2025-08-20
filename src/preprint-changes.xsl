@@ -1605,6 +1605,29 @@
             </xsl:choose>
      </xsl:template>
     
+    <xsl:key name="database-prefix-lookup" match="name" use="@prefix"/>
+    <xsl:variable name="database-doi-prefixes">
+        <names>
+            <name prefix="10.5061">Dryad Digital Repository</name>
+            <name prefix="10.7272">Dryad Digital Repository</name>
+            <name prefix="10.2210">Worldwide Protein Data Bank</name>
+            <name prefix="10.25345">MassIVE Repository</name>
+            <name prefix="10.6084">figshare</name>
+            <name prefix="10.5281">Zenodo</name>
+            <name prefix="10.17632">Mendeley Data</name>
+            <name prefix="10.17605">Open Science Framework</name>
+            <name prefix="10.18112">OpenNeuro</name>
+            <name prefix="10.7303">Synapse</name>
+            <name prefix="10.7488">Edinburgh DataShare</name>
+            <name prefix="10.3929">ETH Library research collection</name>
+            <name prefix="10.6080">Collaborative Research in Computational Neuroscience</name>
+            <name prefix="10.17602">MorphoSource</name>
+            <name prefix="10.15785">SBGrid Data Bank</name>
+            <name prefix="10.7910">Harvard Dataverse</name>
+            <name prefix="10.21228">UCSD Metabolomics Workbench</name>
+        </names>
+    </xsl:variable>
+    
     <!-- Handles the references pulled from submission system -->
     <xsl:template xml:id="element-citation-fixes" match="element-citation[starts-with(parent::ref[1]/@id,'dataref')]">
         <mixed-citation>
@@ -1623,55 +1646,11 @@
             <xsl:choose>
                 <!-- Standardise database names for known DOI prefixes -->
                 <xsl:when test="./pub-id[@pub-id-type='doi']">
-                    <xsl:variable name="doi" select="normalize-space(./pub-id[@pub-id-type='doi'][1])"/>
+                    <xsl:variable name="doi-prefix" select="substring-before(normalize-space(./pub-id[@pub-id-type='doi'][1]),'/')"/>
+                    <xsl:variable name="lookup-result" select="key('database-prefix-lookup', $doi-prefix, $database-doi-prefixes)" />
                     <xsl:choose>
-                        <xsl:when test="starts-with($doi,'10.5061/') or starts-with($doi,'10.7272/')">
-                            <source>Dryad Digital Repository</source>
-                        </xsl:when>
-                        <xsl:when test="starts-with($doi,'10.2210/')">
-                            <source>Worldwide Protein Data Bank</source>
-                        </xsl:when>
-                        <xsl:when test="starts-with($doi,'10.25345/')">
-                            <source>MassIVE Repository</source>
-                        </xsl:when>
-                        <xsl:when test="starts-with($doi,'10.6084/')">
-                            <source>figshare</source>
-                        </xsl:when>
-                        <xsl:when test="starts-with($doi,'10.5281/')">
-                            <source>Zenodo</source>
-                        </xsl:when>
-                        <xsl:when test="starts-with($doi,'10.17632/')">
-                            <source>Mendeley Data</source>
-                        </xsl:when>
-                        <xsl:when test="starts-with($doi,'10.17605/')">
-                            <source>Open Science Framework</source>
-                        </xsl:when>
-                        <xsl:when test="starts-with($doi,'10.18112/')">
-                            <source>OpenNeuro</source>
-                        </xsl:when>
-                        <xsl:when test="starts-with($doi,'10.7303/')">
-                            <source>Synapse</source>
-                        </xsl:when>
-                        <xsl:when test="starts-with($doi,'10.7488/')">
-                            <source>Edinburgh DataShare</source>
-                        </xsl:when>
-                        <xsl:when test="starts-with($doi,'10.3929/')">
-                            <source>ETH Library research collection</source>
-                        </xsl:when>
-                        <xsl:when test="starts-with($doi,'10.6080/')">
-                            <source>Collaborative Research in Computational Neuroscience</source>
-                        </xsl:when>
-                        <xsl:when test="starts-with($doi,'10.17602/')">
-                            <source>MorphoSource</source>
-                        </xsl:when>
-                        <xsl:when test="starts-with($doi,'10.15785/')">
-                            <source>SBGrid Data Bank</source>
-                        </xsl:when>
-                        <xsl:when test="starts-with($doi,'10.7910/')">
-                            <source>Harvard Dataverse</source>
-                        </xsl:when>
-                        <xsl:when test="starts-with($doi,'10.21228/')">
-                            <source>UCSD Metabolomics Workbench</source>
+                        <xsl:when test="string($lookup-result)!=''">
+                            <source><xsl:value-of select="$lookup-result"/></source>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:copy-of select="./source"/>
