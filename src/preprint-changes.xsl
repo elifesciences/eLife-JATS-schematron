@@ -1605,6 +1605,40 @@
             </xsl:choose>
      </xsl:template>
     
+    <!-- Handles the references pulled from submission system -->
+    <xsl:template xml:id="element-citation-fixes" match="element-citation[starts-with(parent::ref[1]/@id,'dataref')]">
+        <mixed-citation>
+            <xsl:attribute name="publication-type">data</xsl:attribute>
+            <xsl:copy-of select="./@specific-use"/>
+            <person-group person-group-type="author">
+                <xsl:call-template name="tag-author-list">
+                    <xsl:with-param name="author-string" select="./person-group[1]/collab[1]/data()"/>
+                </xsl:call-template>
+            </person-group>
+            <xsl:text> (</xsl:text>
+            <xsl:copy-of select="./year"/>
+            <xsl:text>) </xsl:text>
+            <xsl:copy-of select="./article-title"/>
+            <xsl:text>. </xsl:text>
+            <!-- To do: add some logic to ignore accession numbers here (only surface database name) -->
+            <xsl:copy-of select="./source"/>
+            <xsl:text>. </xsl:text>
+            <xsl:choose>
+                <xsl:when test="./pub-id">
+                    <xsl:copy-of select="./pub-id"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <pub-id pub-id-type="accession">
+                        <xsl:if test="./ext-link">
+                            <xsl:copy-of select="./ext-link/@xlink:href"/>
+                        </xsl:if>
+                        <!-- To do: add some logic to introduce accession number here -->
+                    </pub-id>
+                </xsl:otherwise>
+            </xsl:choose>
+        </mixed-citation>
+     </xsl:template>
+    
     
     <!-- Add a CC-BY biorender statement for CC0 RPs -->
     <xsl:template xml:id="biorender-permissions" match="article[front//permissions/license/@xlink:href[contains(lower-case(.),'creativecommons.org/publicdomain/zero/')]]//*[caption[contains(lower-case(.),'biorender')]]">
@@ -2067,6 +2101,70 @@
             </xsl:if>
             <xsl:text>&#xa;</xsl:text>
         </xsl:copy>
+    </xsl:template>
+    
+    <!-- Helper template to change collabs containing multiple names into string-names. 
+        This is a complete mess but it works ¯\_(ツ)_/¯ -->
+  <xsl:template name="tag-author-list">
+      <xsl:param name="author-string"/>
+      <xsl:variable name="cleaned-author-list" select="normalize-space(replace(replace($author-string,'[\.,]$',''),'\.\s+','.'))"/>
+      <xsl:variable name="author-list">
+        <xsl:choose>
+            <xsl:when test="matches(concat($cleaned-author-list,','),'^([\p{L}\p{P}\s’]+,\s[\p{Lu}\.]+,)$')">
+                <xsl:variable name="all-comma-separated-parts" select="tokenize(normalize-space($author-string), ',')"/>
+                <xsl:for-each select="$all-comma-separated-parts[position() mod 2 = 1]">
+                  <xsl:variable name="original-index-of-current-odd-part" select="(position() * 2) - 1"/>
+                  <xsl:variable name="original-index-of-next-even-part" select="position() * 2"/>
+                  <xsl:variable name="part-before-comma" select="normalize-space($all-comma-separated-parts[$original-index-of-current-odd-part])"/>
+                  <xsl:variable name="part-after-comma" select="normalize-space($all-comma-separated-parts[$original-index-of-next-even-part])"/>
+                  <xsl:value-of select="concat($part-before-comma, ' ', $part-after-comma)"/>
+                  <xsl:if test="position() != (count($all-comma-separated-parts) div 2)">
+                    <xsl:text>, </xsl:text>
+                  </xsl:if>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$cleaned-author-list"/>
+            </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:for-each select="tokenize($author-list,', ')">
+        <xsl:variable name="author-name" select="normalize-space(.)"/>
+        <xsl:if test="string-length($author-name) > 0">
+            <xsl:choose>
+                <xsl:when test="matches($author-name,'^[\p{Lu}\.]+\s[\p{L}\p{P}\s’]+$')">
+                    <string-name xmlns="">
+                        <xsl:analyze-string select="$author-name" regex="{'^([\p{Lu}\s\.]+)\s+([\p{L}\p{P}\s’]+)$'}">
+                            <xsl:matching-substring>
+                                <given-names xmlns=""><xsl:value-of select="regex-group(1)"/></given-names>
+                                <xsl:text> </xsl:text>
+                                <surname xmlns=""><xsl:value-of select="regex-group(2)"/></surname>
+                            </xsl:matching-substring>
+                        </xsl:analyze-string>
+                    </string-name>
+                </xsl:when>
+                <xsl:when test="matches($author-name,'^[\p{L}\p{P}\s’]+\s[\p{Lu}\.]+$')">
+                    <string-name xmlns="">
+                        <xsl:analyze-string select="$author-name" regex="{'^([\p{L}\p{P}\s’]+)\s+([\p{Lu}\s\.]+)$'}">
+                            <xsl:matching-substring>
+                                <surname xmlns=""><xsl:value-of select="regex-group(1)"/></surname>
+                                <xsl:text> </xsl:text>
+                                <given-names xmlns=""><xsl:value-of select="regex-group(2)"/></given-names>
+                            </xsl:matching-substring>
+                        </xsl:analyze-string>
+                    </string-name>
+                </xsl:when>
+                <xsl:otherwise>
+                    <string-name xmlns="">
+                        <surname xmlns=""><xsl:value-of select="$author-name"/></surname>
+                    </string-name>
+                  </xsl:otherwise>
+            </xsl:choose>
+            <xsl:if test="position() != last()">
+            <xsl:text>, </xsl:text>
+          </xsl:if>
+        </xsl:if>
+      </xsl:for-each>
     </xsl:template>
 
 </xsl:stylesheet>
