@@ -1620,11 +1620,71 @@
             <xsl:text>) </xsl:text>
             <xsl:copy-of select="./article-title"/>
             <xsl:text>. </xsl:text>
-            <!-- To do: add some logic to ignore accession numbers here (only surface database name) -->
-            <xsl:copy-of select="./source"/>
+            <xsl:choose>
+                <!-- Standardise database names for known DOI prefixes -->
+                <xsl:when test="./pub-id[@pub-id-type='doi']">
+                    <xsl:variable name="doi" select="normalize-space(./pub-id[@pub-id-type='doi'][1])"/>
+                    <xsl:choose>
+                        <xsl:when test="starts-with($doi,'10.5061/') or starts-with($doi,'10.7272/')">
+                            <source>Dryad Digital Repository</source>
+                        </xsl:when>
+                        <xsl:when test="starts-with($doi,'10.2210/')">
+                            <source>Worldwide Protein Data Bank</source>
+                        </xsl:when>
+                        <xsl:when test="starts-with($doi,'10.25345/')">
+                            <source>MassIVE Repository</source>
+                        </xsl:when>
+                        <xsl:when test="starts-with($doi,'10.6084/')">
+                            <source>figshare</source>
+                        </xsl:when>
+                        <xsl:when test="starts-with($doi,'10.5281/')">
+                            <source>Zenodo</source>
+                        </xsl:when>
+                        <xsl:when test="starts-with($doi,'10.17632/')">
+                            <source>Mendeley Data</source>
+                        </xsl:when>
+                        <xsl:when test="starts-with($doi,'10.17605/')">
+                            <source>Open Science Framework</source>
+                        </xsl:when>
+                        <xsl:when test="starts-with($doi,'10.18112/')">
+                            <source>OpenNeuro</source>
+                        </xsl:when>
+                        <xsl:when test="starts-with($doi,'10.7303/')">
+                            <source>Synapse</source>
+                        </xsl:when>
+                        <xsl:when test="starts-with($doi,'10.7488/')">
+                            <source>Edinburgh DataShare</source>
+                        </xsl:when>
+                        <xsl:when test="starts-with($doi,'10.3929/')">
+                            <source>ETH Library research collection</source>
+                        </xsl:when>
+                        <xsl:when test="starts-with($doi,'10.6080/')">
+                            <source>Collaborative Research in Computational Neuroscience</source>
+                        </xsl:when>
+                        <xsl:when test="starts-with($doi,'10.17602/')">
+                            <source>MorphoSource</source>
+                        </xsl:when>
+                        <xsl:when test="starts-with($doi,'10.15785/')">
+                            <source>SBGrid Data Bank</source>
+                        </xsl:when>
+                        <xsl:when test="starts-with($doi,'10.7910/')">
+                            <source>Harvard Dataverse</source>
+                        </xsl:when>
+                        <xsl:when test="starts-with($doi,'10.21228/')">
+                            <source>UCSD Metabolomics Workbench</source>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:copy-of select="./source"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="./source"/>
+                </xsl:otherwise>
+            </xsl:choose>
             <xsl:text>. </xsl:text>
             <xsl:choose>
-                <xsl:when test="./pub-id">
+                <xsl:when test="./pub-id[@pub-id-type='doi']">
                     <xsl:copy-of select="./pub-id"/>
                 </xsl:when>
                 <xsl:otherwise>
