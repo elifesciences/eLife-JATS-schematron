@@ -1,0 +1,38 @@
+<!--Testing template with id: element-citation-fixes-->
+<ref-list xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<ref id="dataref1">
+<element-citation publication-type="data" specific-use="generated">
+<person-group person-group-type="author">
+<collab>Touray AO, Rajesh R, Isebe I, Sternlieb T, Loock M, Kutova O, Cestari I</collab>
+</person-group>
+<article-title>Trypanosoma brucei brucei strain:Lister 427 DNA or RNA sequencing</article-title>
+<source>SRA Bioproject PRJNA934938</source>
+<year iso-8601-date="2023">2023</year>
+<ext-link ext-link-type="uri" xlink:href="https://dataview.ncbi.nlm.nih.gov/object/PRJNA934938">
+</ext-link>
+</element-citation>
+</ref>
+<ref id="dataref2">
+<element-citation publication-type="data" specific-use="analyzed">
+<person-group person-group-type="author">
+<collab>B. Akiyoshi, K. Gull</collab>
+</person-group>
+<article-title>Trypanosoma brucei KKT2 ChIP</article-title>
+<source>SRA, accession numbers SRR1023669 and SRX372731</source>
+<year iso-8601-date="2014">2014</year>
+<ext-link ext-link-type="uri" xlink:href="https://www.ncbi.nlm.nih.gov/sra/?term=SRP031518">
+</ext-link>
+</element-citation>
+</ref>
+<ref id="dataref2">
+<element-citation publication-type="data" specific-use="analyzed">
+<person-group person-group-type="author">
+<collab>K Kok, A Ay, L Li</collab>
+</person-group>
+<article-title>Genome-wide errant targeting by Hairy</article-title>
+<source>Dryad Digital Repository</source>
+<year iso-8601-date="2015">2015</year>
+<pub-id pub-id-type="doi">10.5061/dryad.cv323</pub-id>
+</element-citation>
+</ref>
+</ref-list>

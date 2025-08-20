@@ -136,6 +136,10 @@
       <x:context href="../tests/preprint-changes/ref-source-fixes/input.xml"/>
       <x:expect label="Testing the template: ref-source-fixes" href="../tests/preprint-changes/ref-source-fixes/output.xml"/>
     </x:scenario>
+    <x:scenario label="element-citation-fixes">
+      <x:context href="../tests/preprint-changes/element-citation-fixes/input.xml"/>
+      <x:expect label="Testing the template: element-citation-fixes" href="../tests/preprint-changes/element-citation-fixes/output.xml"/>
+    </x:scenario>
     <x:scenario label="biorender-permissions">
       <x:context href="../tests/preprint-changes/biorender-permissions/input.xml"/>
       <x:expect label="Testing the template: biorender-permissions" href="../tests/preprint-changes/biorender-permissions/output.xml"/>
