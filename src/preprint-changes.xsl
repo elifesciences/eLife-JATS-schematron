@@ -1627,6 +1627,30 @@
             <name prefix="10.21228">UCSD Metabolomics Workbench</name>
         </names>
     </xsl:variable>
+    <xsl:variable name="database-url-patterns">
+        <names>
+            <name url-part="ncbi.nlm.nih.gov/geo">NCBI Gene Expression Omnibus</name>
+            <name url-part="ncbi.nlm.nih.gov/nuccore">NCBI Nucleotide</name>
+            <name url-part="ncbi.nlm.nih.gov/bioproject">NCBI BioProject</name>
+            <name url-part="ncbi.nlm.nih.gov/gap">NCBI dbGaP</name>
+            <name url-part="ncbi.nlm.nih.gov/popset">NCBI PopSet</name>
+            <name url-part="ncbi.nlm.nih.gov/sra">NCBI Sequence Read Archive</name>
+            <name url-part="ncbi.nlm.nih.gov/biosample">NCBI BioSample</name>
+            <name url-part="ncbi.nlm.nih.gov/protein">NCBI Protein</name>
+            <name url-part="ncbi.nlm.nih.gov/assembly">NCBI Assembly</name>
+            <name url-part="ebi.ac.uk/pdbe/emdb">Electron Microscopy Data Bank</name>
+            <name url-part="ebi.ac.uk/pdbe/entry/emdb">Electron Microscopy Data Bank</name>
+            <name url-part="ebi.ac.uk/pdbe/emdb/empiar">Electron Microscopy Public Image Archive</name>
+            <name url-part="ebi.ac.uk/arrayexpress">ArrayExpress</name>
+            <name url-part="ebi.ac.uk/pride">PRIDE</name>
+            <name url-part="proteomecentral.proteomexchange.org/">ProteomeXchange</name>
+            <name url-part="openneuro.org/datasets">OpenNeuro</name>
+            <name url-part=".morphdbase.de">Morph D Base</name>
+            <name url-part="neurovault.org/collections">NeuroVault</name>
+            <name url-part=".encodeproject.org">ENCODE</name>
+            <name url-part=".emdataresource.org">EMDataResource</name>
+        </names>
+    </xsl:variable>
     
     <!-- Handles the references pulled from submission system -->
     <xsl:template xml:id="element-citation-fixes" match="element-citation[starts-with(parent::ref[1]/@id,'dataref')]">
@@ -1651,6 +1675,22 @@
                     <xsl:choose>
                         <xsl:when test="string($lookup-result)!=''">
                             <source><xsl:value-of select="$lookup-result"/></source>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:copy-of select="./source"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <!-- Standardise database names for known accession numbers/links -->
+                <xsl:when test="./ext-link[@xlink:href!='']">
+                    <xsl:variable name="full-url" select="./ext-link[1]/@xlink:href"/>
+                    <xsl:variable name="name-mapped" select="$database-url-patterns//*:name[contains($full-url,@url-part)]"/>
+                    <xsl:choose>
+                        <xsl:when test="$name-mapped">
+                            <!-- Since the original text field is freeform, include the original as a comment to catch any
+                         oddities introduced by the user -->
+                            <xsl:comment select="concat('ORIGINAL INPUT: ',./source)"/>
+                            <source><xsl:value-of select="$name-mapped"/></source>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:copy-of select="./source"/>
