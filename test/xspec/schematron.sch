@@ -3364,8 +3364,8 @@
         <name/> element is in an inline-formula, and yet it contains the \displaystyle command. Is that correct? - <value-of select="."/>
       </report>
       
-      <report test="tokenize($formula-text,'\\?\\?\\(begin|end).array.')[(position() mod 2 = 0) and not(contains(.,'\\') or contains(.,'&amp;'))]" role="warning" id="tex-math-test-8">
-        <name/> contains an array without horizontal or vertical spacing - <value-of select="string-join(tokenize($formula-text,'\\?\\?\\(begin|end).array.')[(position() mod 2 = 0) and not(contains(.,'\\') or contains(.,'&amp;'))],' ---- ')"/>
+      <report test="tokenize($formula-text,'\\?\\?\\(begin|end).array.')[.!='' and (position() mod 2 = 0) and not(contains(.,'\\') or contains(.,'&amp;'))]" role="warning" id="tex-math-test-8">
+        <name/> contains an array without horizontal or vertical spacing - <value-of select="string-join(tokenize($formula-text,'\\?\\?\\(begin|end).array.')[.!='' and (position() mod 2 = 0) and not(contains(.,'\\') or contains(.,'&amp;'))],' ---- ')"/>
       </report>
     </rule>
   </pattern>

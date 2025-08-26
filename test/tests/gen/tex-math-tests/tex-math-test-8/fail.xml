@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="tex-math-test-8.sch"?>
 <!--Context: tex-math
-Test: report    tokenize($formula-text,'\\?\\?\\(begin|end).array.')[(position() mod 2 = 0) and not(contains(.,'\\') or contains(.,'&'))]
+Test: report    tokenize($formula-text,'\\?\\?\\(begin|end).array.')[.!='' and (position() mod 2 = 0) and not(contains(.,'\\') or contains(.,'&'))]
 Message:  contains an array without horizontal or vertical spacing -  -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
