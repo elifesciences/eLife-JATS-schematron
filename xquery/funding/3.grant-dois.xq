@@ -45,6 +45,5 @@ let $new-rors :=
   return $copy
  
 return (
-  file:write($src||'rors.xml',$new-rors,map{"indent":"yes"}),
-  file:delete($grant-folder,true())
+  file:write($src||'rors.xml',$new-rors,map{"indent":"yes"})
 )
