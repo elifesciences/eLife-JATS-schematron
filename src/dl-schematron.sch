@@ -914,9 +914,9 @@
           HORIZON EUROPE Marie Sklodowska-Curie Actions
           HORIZON EUROPE European Research Council
        -->
-      <xsl:when test="$fundref-id=('http://dx.doi.org/10.13039/100010663','http://dx.doi.org/10.13039/100010665','http://dx.doi.org/10.13039/100010669','http://dx.doi.org/10.13039/100010675','http://dx.doi.org/10.13039/100010677','http://dx.doi.org/10.13039/100010679','http://dx.doi.org/10.13039/100010680','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100019180')">
+      <xsl:when test="$fundref-id=($eu-horizon-fundref-ids,'http://dx.doi.org/10.13039/100010663','http://dx.doi.org/10.13039/100010665','http://dx.doi.org/10.13039/100010669','http://dx.doi.org/10.13039/100010675','http://dx.doi.org/10.13039/100010677','http://dx.doi.org/10.13039/100010679','http://dx.doi.org/10.13039/100010680','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100019180')">
         <!-- ERC grant DOIs are registered as numbers: 694640, 101002163 -->
-        <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\(\d+\)')) then substring-before(substring-after($award-id-elem,'('),')')         else if (matches($award-id-elem,'\d{6,9}')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>
+        <xsl:value-of select="replace($award-id-elem,'\D','')"/>
       </xsl:when>
       <!-- H2020 European Research Council -->
       <xsl:otherwise>

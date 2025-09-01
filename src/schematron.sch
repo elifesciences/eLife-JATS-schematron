@@ -1049,11 +1049,9 @@
           HORIZON EUROPE Marie Sklodowska-Curie Actions
           HORIZON EUROPE European Research Council
        -->
-      <xsl:when test="$fundref-id=('http://dx.doi.org/10.13039/100010663','http://dx.doi.org/10.13039/100010665','http://dx.doi.org/10.13039/100010669','http://dx.doi.org/10.13039/100010675','http://dx.doi.org/10.13039/100010677','http://dx.doi.org/10.13039/100010679','http://dx.doi.org/10.13039/100010680','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100019180')">
+      <xsl:when test="$fundref-id=($eu-horizon-fundref-ids,'http://dx.doi.org/10.13039/100010663','http://dx.doi.org/10.13039/100010665','http://dx.doi.org/10.13039/100010669','http://dx.doi.org/10.13039/100010675','http://dx.doi.org/10.13039/100010677','http://dx.doi.org/10.13039/100010679','http://dx.doi.org/10.13039/100010680','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100019180')">
         <!-- ERC grant DOIs are registered as numbers: 694640, 101002163 -->
-        <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\(\d+\)')) then substring-before(substring-after($award-id-elem,'('),')')
-        else if (matches($award-id-elem,'\d{6,9}')) then replace($award-id-elem,'[^\d]','')
-        else $award-id-elem"/>
+        <xsl:value-of select="replace($award-id-elem,'\D','')"/>
       </xsl:when>
       <!-- H2020 European Research Council -->
       <xsl:otherwise>
@@ -3157,8 +3155,9 @@
     <!-- EU Horizon has numerous fundref DOIs, but no ROR, so these are mapped to the EU commission in the grant data -->
     <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$eu-horizon-fundref-ids]" id="eu-horizon-grant-doi-tests">
       <let name="eu-comission-ror-id" value="'https://ror.org/00k4n6c32'"/>
+      <let name="fundref-id" value="funding-source/institution-wrap/institution-id"/>
       <let name="grants" value="document($rors)//*:ror[*:id[@type='ror']=$eu-comission-ror-id]/*:grant"/>
-      <let name="award-id" value="replace(award-id,'\D','')"/> 
+      <let name="award-id" value="e:alter-award-id(award-id[1],$fundref-id)"/> 
       <let name="grant-matches" value="if ($award-id='') then ()
         else $grants[@award=$award-id]"/>
       

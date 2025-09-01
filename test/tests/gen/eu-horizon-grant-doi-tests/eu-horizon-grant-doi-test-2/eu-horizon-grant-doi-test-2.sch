@@ -905,9 +905,9 @@
         <xsl:value-of select="if (contains(upper-case($award-id-elem),'2020')) then concat('2020',replace(substring-after($award-id-elem,'2020'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2021')) then concat('2021',replace(substring-after($award-id-elem,'2021'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2022')) then concat('2022',replace(substring-after($award-id-elem,'2022'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2023')) then concat('2023',replace(substring-after($award-id-elem,'2023'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2024')) then concat('2024',replace(substring-after($award-id-elem,'2024'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'CEEC')) then concat('CEEC',replace(substring-after(upper-case($award-id-elem),'CEEC'),'[^A-Z0-9/]',''))         else if (contains(upper-case($award-id-elem),'PTDC/')) then concat('PTDC/',replace(substring-after(upper-case($award-id-elem),'PTDC/'),'[^A-Z0-9/\-]',''))         else if (contains(upper-case($award-id-elem),'DL 57/')) then concat('DL 57/',replace(substring-after(upper-case($award-id-elem),'DL 57/'),'[^A-Z0-9/\-]',''))         else $award-id-elem"/>
       </xsl:when>
       
-      <xsl:when test="$fundref-id=('http://dx.doi.org/10.13039/100010663','http://dx.doi.org/10.13039/100010665','http://dx.doi.org/10.13039/100010669','http://dx.doi.org/10.13039/100010675','http://dx.doi.org/10.13039/100010677','http://dx.doi.org/10.13039/100010679','http://dx.doi.org/10.13039/100010680','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100019180')">
+      <xsl:when test="$fundref-id=($eu-horizon-fundref-ids,'http://dx.doi.org/10.13039/100010663','http://dx.doi.org/10.13039/100010665','http://dx.doi.org/10.13039/100010669','http://dx.doi.org/10.13039/100010675','http://dx.doi.org/10.13039/100010677','http://dx.doi.org/10.13039/100010679','http://dx.doi.org/10.13039/100010680','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100019180')">
         
-        <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\(\d+\)')) then substring-before(substring-after($award-id-elem,'('),')')         else if (matches($award-id-elem,'\d{6,9}')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>
+        <xsl:value-of select="replace($award-id-elem,'\D','')"/>
       </xsl:when>
       
       <xsl:otherwise>
@@ -926,8 +926,9 @@
   <pattern id="article-metadata">
     <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$eu-horizon-fundref-ids]" id="eu-horizon-grant-doi-tests">
       <let name="eu-comission-ror-id" value="'https://ror.org/00k4n6c32'"/>
+      <let name="fundref-id" value="funding-source/institution-wrap/institution-id"/>
       <let name="grants" value="document($rors)//*:ror[*:id[@type='ror']=$eu-comission-ror-id]/*:grant"/>
-      <let name="award-id" value="replace(award-id,'\D','')"/>
+      <let name="award-id" value="e:alter-award-id(award-id[1],$fundref-id)"/>
       <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-grant-doi-test-2" test="$grant-matches" role="warning" id="eu-horizon-grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="award-id[1]"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
     </rule>
