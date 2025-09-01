@@ -35,7 +35,8 @@
   <!-- Grant DOI enabling -->
   <let name="wellcome-fundref-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
   <let name="known-grant-funder-fundref-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968')"/>
-  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$known-grant-funder-fundref-ids)"/>  
+  <let name="eu-horizon-fundref-ids" value="('http://dx.doi.org/10.13039/100018693','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100018695','http://dx.doi.org/10.13039/100018696','http://dx.doi.org/10.13039/100018697','http://dx.doi.org/10.13039/100018698','http://dx.doi.org/10.13039/100018699','http://dx.doi.org/10.13039/100018700','http://dx.doi.org/10.13039/100018701','http://dx.doi.org/10.13039/100018702','http://dx.doi.org/10.13039/100018703','http://dx.doi.org/10.13039/100018704','http://dx.doi.org/10.13039/100018705','http://dx.doi.org/10.13039/100018706','http://dx.doi.org/10.13039/100018707','http://dx.doi.org/10.13039/100019180','http://dx.doi.org/10.13039/100019185','http://dx.doi.org/10.13039/100019186','http://dx.doi.org/10.13039/100019187','http://dx.doi.org/10.13039/100019188')"/>
+  <let name="grant-doi-exception-funder-ids" value="($wellcome-fundref-ids,$known-grant-funder-fundref-ids,$eu-horizon-fundref-ids)"/>  
 
   <!--=== Custom functions ===-->
   <xsl:function name="e:is-prc" as="xs:boolean">
@@ -972,9 +973,9 @@
           HORIZON EUROPE Marie Sklodowska-Curie Actions
           HORIZON EUROPE European Research Council
        -->
-      <xsl:when test="$fundref-id=('http://dx.doi.org/10.13039/100010663','http://dx.doi.org/10.13039/100010665','http://dx.doi.org/10.13039/100010669','http://dx.doi.org/10.13039/100010675','http://dx.doi.org/10.13039/100010677','http://dx.doi.org/10.13039/100010679','http://dx.doi.org/10.13039/100010680','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100019180')">
+      <xsl:when test="$fundref-id=($eu-horizon-fundref-ids,'http://dx.doi.org/10.13039/100010663','http://dx.doi.org/10.13039/100010665','http://dx.doi.org/10.13039/100010669','http://dx.doi.org/10.13039/100010675','http://dx.doi.org/10.13039/100010677','http://dx.doi.org/10.13039/100010679','http://dx.doi.org/10.13039/100010680','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100019180')">
         <!-- ERC grant DOIs are registered as numbers: 694640, 101002163 -->
-        <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\(\d+\)')) then substring-before(substring-after($award-id-elem,'('),')')         else if (matches($award-id-elem,'\d{6,9}')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>
+        <xsl:value-of select="replace($award-id-elem,'\D','')"/>
       </xsl:when>
       <!-- H2020 European Research Council -->
       <xsl:otherwise>
@@ -2392,6 +2393,19 @@
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-grant-doi-test-1" test="$grant-matches" role="warning" id="wellcome-grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
 
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-grant-doi-test-2" test="$grant-matches" role="warning" id="wellcome-grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
+    </rule>
+  </pattern>
+  <pattern id="eu-horizon-grant-doi-tests-pattern">
+    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$eu-horizon-fundref-ids]" id="eu-horizon-grant-doi-tests">
+      <let name="eu-comission-ror-id" value="'https://ror.org/00k4n6c32'"/>
+      <let name="fundref-id" value="funding-source/institution-wrap/institution-id"/>
+      <let name="grants" value="document($rors)//*:ror[*:id[@type='ror']=$eu-comission-ror-id]/*:grant"/>
+      <let name="award-id" value="e:alter-award-id(award-id[1],$fundref-id)"/> 
+      <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
+      
+      <report test="$grant-matches" role="warning" id="eu-horizon-grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="award-id[1]"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
+
+      <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-grant-doi-test-2" test="$grant-matches" role="warning" id="eu-horizon-grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="award-id[1]"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
     </rule>
   </pattern>
   <pattern id="known-grant-funder-grant-doi-tests-pattern">
@@ -8811,6 +8825,7 @@
       <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" role="error" id="general-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]] must be present.</assert>
       <assert test="descendant::funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id]" role="error" id="general-funding-no-award-id-tests-xspec-assert">funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id] must be present.</assert>
       <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" role="error" id="wellcome-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-fundref-ids] must be present.</assert>
+      <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$eu-horizon-fundref-ids]" role="error" id="eu-horizon-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$eu-horizon-fundref-ids] must be present.</assert>
       <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-fundref-ids]" role="error" id="known-grant-funder-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-fundref-ids] must be present.</assert>
       <assert test="descendant::funding-group/award-group/award-id" role="error" id="award-id-tests-xspec-assert">funding-group/award-group/award-id must be present.</assert>
       <assert test="descendant::article-meta//award-group//institution-wrap" role="error" id="institution-wrap-tests-xspec-assert">article-meta//award-group//institution-wrap must be present.</assert>
