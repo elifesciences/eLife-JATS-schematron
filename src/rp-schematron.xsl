@@ -2032,6 +2032,7 @@
    <xsl:template xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns:xlink="http://www.w3.org/1999/xlink" name="get-first-sentence">
       <xsl:param name="nodes"/>
       <xsl:param name="buffer" select="()"/>
+      <xsl:variable name="org-regex" select="string-join(doc('research-organisms.xml')//*:organism/@regex,'|')"/>
       <xsl:choose>
          <xsl:when test="not($nodes)">
             <xsl:apply-templates select="$buffer" mode="customCopy"/>
@@ -2056,28 +2057,38 @@
                   </xsl:choose>
                </xsl:when>
                <xsl:when test="$current-node instance of element()">
-                  <xsl:variable name="inner-result">
-                     <xsl:call-template name="get-first-sentence">
-                        <xsl:with-param name="nodes" select="$current-node/node()"/>
-                        <xsl:with-param name="buffer" select="()"/>
-                     </xsl:call-template>
-                  </xsl:variable>
-                  <xsl:variable name="found-in-element" select="count($inner-result/*| $inner-result/text()) &gt; 0 and matches(string($inner-result), '.*[\.!?]')"/>
-                  <xsl:variable name="temp-element">
-                     <xsl:element name="{$current-node/name()}" namespace="{$current-node/namespace-uri()}">
-                        <xsl:apply-templates select="$current-node/@*" mode="customCopy"/>
-                        <xsl:copy-of select="$inner-result/node()"/>
-                     </xsl:element>
-                  </xsl:variable>
                   <xsl:choose>
-                     <xsl:when test="$found-in-element">
-                        <xsl:apply-templates select="$buffer, $temp-element" mode="customCopy"/>
-                     </xsl:when>
-                     <xsl:otherwise>
+                     <xsl:when test="matches(normalize-space(lower-case($current-node)),concat('^',$org-regex,'$'))">
                         <xsl:call-template name="get-first-sentence">
                            <xsl:with-param name="nodes" select="$remaining-nodes"/>
-                           <xsl:with-param name="buffer" select="$buffer, $temp-element"/>
+                           <xsl:with-param name="buffer" select="$buffer, $current-node"/>
                         </xsl:call-template>
+                     </xsl:when>
+                     <xsl:otherwise>
+                        <xsl:variable name="inner-result">
+                           <xsl:call-template name="get-first-sentence">
+                              <xsl:with-param name="nodes" select="$current-node/node()"/>
+                              <xsl:with-param name="buffer" select="()"/>
+                           </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:variable name="found-in-element" select="count($inner-result/*| $inner-result/text()) &gt; 0 and matches(string($inner-result), '.*[\.!?]')"/>
+                        <xsl:variable name="temp-element">
+                           <xsl:element name="{$current-node/name()}" namespace="{$current-node/namespace-uri()}">
+                              <xsl:apply-templates select="$current-node/@*" mode="customCopy"/>
+                              <xsl:copy-of select="$inner-result/node()"/>
+                           </xsl:element>
+                        </xsl:variable>
+                        <xsl:choose>
+                           <xsl:when test="$found-in-element">
+                              <xsl:apply-templates select="$buffer, $temp-element" mode="customCopy"/>
+                           </xsl:when>
+                           <xsl:otherwise>
+                              <xsl:call-template name="get-first-sentence">
+                                 <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                                 <xsl:with-param name="buffer" select="$buffer, $temp-element"/>
+                              </xsl:call-template>
+                           </xsl:otherwise>
+                        </xsl:choose>
                      </xsl:otherwise>
                   </xsl:choose>
                </xsl:when>
@@ -2095,6 +2106,7 @@
       <xsl:param name="nodes"/>
       <xsl:param name="first-sentence-completed" select="false()"/>
       <xsl:param name="buffer" select="()"/>
+      <xsl:variable name="org-regex" select="string-join(doc('research-organisms.xml')//*:organism/@regex,'|')"/>
       <xsl:choose>
          <xsl:when test="not($nodes) and $first-sentence-completed">
             <xsl:apply-templates select="$buffer" mode="customCopy"/>
@@ -2147,34 +2159,45 @@
                         </xsl:call-template>
                      </xsl:when>
                      <xsl:otherwise>
-                        <xsl:variable name="element-result">
-                           <xsl:call-template name="get-remaining-sentences">
-                              <xsl:with-param name="nodes" select="$current-node/node()"/>
-                              <xsl:with-param name="first-sentence-completed" select="$first-sentence-completed"/>
-                              <xsl:with-param name="buffer" select="()"/>
-                           </xsl:call-template>
-                        </xsl:variable>
                         <xsl:choose>
-                           <xsl:when test="string-length($element-result) &gt; 0">
-                              <xsl:variable name="temp-buffer">
-                                 <xsl:copy-of select="$buffer" copy-namespaces="no"/>
-                                 <xsl:element name="{$current-node/name()}" namespace="{$current-node/namespace-uri()}">
-                                    <xsl:apply-templates select="$current-node/@*" mode="customCopy"/>
-                                    <xsl:sequence select="$element-result"/>
-                                 </xsl:element>
-                              </xsl:variable>
-                              <xsl:call-template name="get-remaining-sentences">
-                                 <xsl:with-param name="nodes" select="$remaining-nodes"/>
-                                 <xsl:with-param name="first-sentence-completed" select="true()"/>
-                                 <xsl:with-param name="buffer" select="$temp-buffer/* | $temp-buffer/text()"/>
-                              </xsl:call-template>
-                           </xsl:when>
-                           <xsl:otherwise>
+                           <xsl:when test="matches(normalize-space(lower-case($current-node)),concat('^',$org-regex,'$'))">
                               <xsl:call-template name="get-remaining-sentences">
                                  <xsl:with-param name="nodes" select="$remaining-nodes"/>
                                  <xsl:with-param name="first-sentence-completed" select="$first-sentence-completed"/>
                                  <xsl:with-param name="buffer" select="$buffer"/>
                               </xsl:call-template>
+                           </xsl:when>
+                           <xsl:otherwise>
+                              <xsl:variable name="element-result">
+                                 <xsl:call-template name="get-remaining-sentences">
+                                    <xsl:with-param name="nodes" select="$current-node/node()"/>
+                                    <xsl:with-param name="first-sentence-completed" select="$first-sentence-completed"/>
+                                    <xsl:with-param name="buffer" select="()"/>
+                                 </xsl:call-template>
+                              </xsl:variable>
+                              <xsl:choose>
+                                 <xsl:when test="string-length($element-result) &gt; 0">
+                                    <xsl:variable name="temp-buffer">
+                                       <xsl:copy-of select="$buffer" copy-namespaces="no"/>
+                                       <xsl:element name="{$current-node/name()}" namespace="{$current-node/namespace-uri()}">
+                                          <xsl:apply-templates select="$current-node/@*" mode="customCopy"/>
+                                          <xsl:sequence select="$element-result"/>
+                                       </xsl:element>
+                                    </xsl:variable>
+                                    <xsl:call-template name="get-remaining-sentences">
+                                       <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                                       <xsl:with-param name="first-sentence-completed" select="true()"/>
+                                       <xsl:with-param name="buffer" select="$temp-buffer/* | $temp-buffer/text()"/>
+                                    </xsl:call-template>
+                                 </xsl:when>
+                                 <xsl:otherwise>
+                                    <xsl:call-template name="get-remaining-sentences">
+                                       <xsl:with-param name="nodes" select="$remaining-nodes"/>
+                                       <xsl:with-param name="first-sentence-completed" select="$first-sentence-completed"/>
+                                       <xsl:with-param name="buffer" select="$buffer"/>
+                                    </xsl:call-template>
+                                 </xsl:otherwise>
+                              </xsl:choose>
                            </xsl:otherwise>
                         </xsl:choose>
                      </xsl:otherwise>
