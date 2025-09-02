@@ -2321,7 +2321,10 @@
         sqf:fix="delete-elem"
         id="ack-dupe">This ack element follows another one. Should there really be more than one Acknowledgements?</report>
 
-        <report test="not(title[1][.='Acknowledgements'])" role="error" id="ack-misspelled">[ack-misspelled] The Acknowledgements section is misspelled, please correct.</report></rule>
+        <report test="not(title[1][.='Acknowledgements'])" 
+          role="error" 
+          id="ack-misspelled">[ack-misspelled] The Acknowledgements section is misspelled, please correct.</report>
+      </rule>
     </pattern>
 
     <pattern id="strike">

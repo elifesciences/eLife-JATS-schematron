@@ -3575,6 +3575,19 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <!--REPORT error-->
+      <xsl:if test="matches(lower-case(.),'(present|current) (address|institution)')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'(present|current) (address|institution)')">
+            <xsl:attribute name="id">present-address-aff</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[present-address-aff] There is a present address in this affiliation (<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>), it should be marked as a present address instead.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" id="pick-aff-ror-1">
          <sqf:description>
             <sqf:title>Pick ROR option 1</sqf:title>
@@ -6086,6 +6099,17 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[ack-dupe] This ack element follows another one. Should there really be more than one Acknowledgements?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="not(title[1][.='Acknowledgements'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(title[1][.='Acknowledgements'])">
+            <xsl:attribute name="id">ack-misspelled</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ack-misspelled] The Acknowledgements section is misspelled, please correct.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M82"/>
