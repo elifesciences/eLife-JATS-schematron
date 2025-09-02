@@ -1435,7 +1435,7 @@
 
       <report test="matches(lower-case(.),'(present|current) (address|institution)')" 
         role="error" 
-        id="present-address-aff">There is a present address in this affiliation (<value-of select="."/>), it should be marked as a present address instead.</report>
+        id="present-address-aff">There is a present address in this affiliation (<value-of select="."/>), it should be added as a present address in the author-notes section instead.</report>
       
       <sqf:fix id="pick-aff-ror-1">
         <sqf:description>

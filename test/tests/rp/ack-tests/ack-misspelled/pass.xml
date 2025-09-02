@@ -2,4 +2,12 @@
 <!--Context: ack
 Test: report    not(title[1][.='Acknowledgements'])
 Message: [ack-misspelled] The Acknowledgements section is misspelled, please correct. -->
-<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/>
+    <article>
+        <ack>
+            <label>7.</label>
+            <title>Acknowledgements</title>
+            <p>...</p>
+        </ack>
+    </article>
+</root>
