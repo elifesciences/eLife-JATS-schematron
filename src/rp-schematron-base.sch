@@ -1432,6 +1432,10 @@
       <assert test="parent::contrib-group or parent::contrib" 
         role="error" 
         id="aff-parent">aff elements must be a child of either contrib-group or contrib. This one is a child of <value-of select="parent::*/name()"/>.</assert>
+
+      <report test="matches(lower-case(.),'(present|current) (address|institution)')" 
+        role="error" 
+        id="present-address-aff">There is a present address in this affiliation (<value-of select="."/>), it should be marked as a present address instead.</report>
       
       <sqf:fix id="pick-aff-ror-1">
         <sqf:description>
@@ -2316,7 +2320,8 @@
         role="warning"
         sqf:fix="delete-elem"
         id="ack-dupe">This ack element follows another one. Should there really be more than one Acknowledgements?</report>
-      </rule>
+
+        <report test="not(title[1][.='Acknowledgements'])" role="error" id="ack-misspelled">[ack-misspelled] The Acknowledgements section is misspelled, please correct.</report></rule>
     </pattern>
 
     <pattern id="strike">
