@@ -296,6 +296,24 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:analyze-string" as="element()">
+    <xsl:param name="node"/>
+    <xsl:param name="regex" as="xs:string"/>
+    <analyze-string-result>
+      <xsl:analyze-string select="$node" regex="{$regex}">
+        <xsl:matching-substring>
+          <match>
+            <xsl:value-of select="."/>
+          </match>
+        </xsl:matching-substring>
+        <xsl:non-matching-substring>
+          <non-match>
+            <xsl:value-of select="."/>
+          </non-match>
+        </xsl:non-matching-substring>
+      </xsl:analyze-string>
+    </analyze-string-result>
+  </xsl:function>
   <xsl:template match="." mode="customCopy">
     <xsl:copy copy-namespaces="no">
       <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()" mode="customCopy"/>
@@ -1069,8 +1087,8 @@
   <pattern id="p-ref-checks-pattern">
     <rule context="p[not(ancestor::sub-article)]" id="p-ref-checks">
       <let name="text" value="string-join(for $x in self::*/(*|text())                                             return if ($x/local-name()='xref') then ()                                                    else if ($x//*:p) then ($x/text())                                                    else string($x),'')"/>
-      <let name="missing-ref-regex" value="'[A-Z][A-Za-z]+ et al\.?\p{P}?\s*\p{Ps}?([1][7-9][0-9][0-9]|[2][0-2][0-9][0-9])'"/>
-      <report test="matches($text,$missing-ref-regex)" role="warning" id="missing-ref-in-text-test">[missing-ref-in-text-test] <name/> element contains possible citation which is unlinked or a missing reference - search - <value-of select="concat(tokenize(substring-before($text,' et al'),' ')[last()],' et al ',tokenize(substring-after($text,' et al'),' ')[2])"/>
+      <let name="missing-ref-regex" value="'\p{Lu}\p{L}\p{L}+( et al\.?)?\p{P}?\s*\p{Ps}?([1][7-9][0-9][0-9]|[2][0-2][0-9][0-9])'"/>
+      <report test="matches($text,$missing-ref-regex)" role="warning" id="missing-ref-in-text-test">[missing-ref-in-text-test] <name/> element contains possible citation which is unlinked or a missing reference - search - <value-of select="string-join(e:analyze-string($text,$missing-ref-regex)//*:match,'; ')"/>
       </report>
     </rule>
   </pattern>

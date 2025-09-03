@@ -296,6 +296,24 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  <xsl:function name="e:analyze-string" as="element()">
+    <xsl:param name="node"/>
+    <xsl:param name="regex" as="xs:string"/>
+    <analyze-string-result>
+      <xsl:analyze-string select="$node" regex="{$regex}">
+        <xsl:matching-substring>
+          <match>
+            <xsl:value-of select="."/>
+          </match>
+        </xsl:matching-substring>
+        <xsl:non-matching-substring>
+          <non-match>
+            <xsl:value-of select="."/>
+          </non-match>
+        </xsl:non-matching-substring>
+      </xsl:analyze-string>
+    </analyze-string-result>
+  </xsl:function>
   <xsl:template match="." mode="customCopy">
     <xsl:copy copy-namespaces="no">
       <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()" mode="customCopy"/>

@@ -927,7 +927,7 @@
     <rule context="mml:math" id="math-tests">
       <let name="data" value="replace(normalize-space(.),'\p{Zs}','')"/>
       <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
-      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-19" test="descendant::mml:mi[(.='') and preceding-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')] and following-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')]]" role="warning" id="math-test-19">Maths containing '<value-of select="."/>' has what looks like words or terms which need separating with a space. With it's current markup the space will not be preserved on the eLife website. Please add in the space(s) using the latext '\;' in the appropriate place(s), so that the space is preserved in the HTML.</report>
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-19" test="descendant::mml:mi[(.='') and preceding-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')] and following-sibling::*[1][(local-name() = 'mi') and matches(.,'[A-Za-z]')]]" role="warning" id="math-test-19">Maths containing '<value-of select="."/>' has what looks like words or terms which need separating with a space. With it's current markup the space will not be preserved on the eLife website. Please add in the space(s) using the latex '\;' in the appropriate place(s), so that the space is preserved in the HTML.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

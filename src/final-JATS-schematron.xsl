@@ -15828,7 +15828,7 @@
             </xsl:attribute>
             <svrl:text>[math-test-19] Maths containing '<xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/>' has what looks like words or terms which need separating with a space. With it's current markup the space will not be preserved on the eLife website. Please add in the space(s) using the latext '\;' in the appropriate place(s), so that the space is preserved in the HTML.</svrl:text>
+               <xsl:text/>' has what looks like words or terms which need separating with a space. With it's current markup the space will not be preserved on the eLife website. Please add in the space(s) using the latex '\;' in the appropriate place(s), so that the space is preserved in the HTML.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
