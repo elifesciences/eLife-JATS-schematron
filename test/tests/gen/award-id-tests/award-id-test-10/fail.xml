@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="award-id-test-10.sch"?>
+<!--Context: funding-group/award-group/award-id
+Test: report    not(@award-id-type='doi') and matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9<>\[\]]+$')
+Message: award-id contains a DOI (), but it does not have the attribute award-id-type="doi". -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <funding-group>
+            <award-group>
+                <award-id award-type="doi">10.3030/101096017</award-id>
+            </award-group>
+        </funding-group>
+    </article>
+</root>

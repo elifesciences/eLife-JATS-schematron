@@ -2048,6 +2048,8 @@
       
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-8" test=". = preceding::award-id[parent::award-group[not(descendant::institution[1] = $funder-name) and not(descendant::institution-id[1] = $funder-id)]]" role="warning" id="award-id-test-8">Funding entry has an award id - <value-of select="."/> - which is also used in another funding entry with a different funder. Has there been a mistake with the award id? If the grant was awarded jointly by two funders, then this capture is correct and should be retained.</report>
       
+      <report test="not(@award-id-type='doi') and matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')" role="error" id="award-id-test-10">award-id contains a DOI (<value-of select="."/>), but it does not have the attribute award-id-type="doi".</report>
+      
     </rule></pattern><pattern id="institution-wrap-tests-pattern"><rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test" test="institution-id[@institution-id-type=('FundRef','ror')]" role="warning" id="institution-id-test">Whenever possible, a funder should have an insitution id (either a ROR or doi from the open funder registry). (institution-id with an allowed institution-id-type is not present in institution-wrap).</assert>
