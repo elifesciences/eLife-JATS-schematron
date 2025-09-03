@@ -10104,12 +10104,12 @@ else self::*/local-name() = $allowed-p-blocks"
         id="final-ref-xref-test-1"><value-of select="."/> - citation does not conform to house style. It should be '<value-of select="$cite1"/>' or '<value-of select="$cite2"/>'. Preceding text = '<value-of select="substring(preceding-sibling::text()[1],string-length(preceding-sibling::text()[1])-25)"/>'.</assert>
       
       <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-2" 
-        test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" 
+        test="not(parent::*[name()=('td','th')] and preceding-sibling::node()[1]/name()='break') and matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" 
         role="warning" 
         id="ref-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
       <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-3" 
-        test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" 
+        test="not(parent::*[name()=('td','th')] and following-sibling::node()[1]/name()='break') and matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" 
         role="warning" 
         id="ref-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       

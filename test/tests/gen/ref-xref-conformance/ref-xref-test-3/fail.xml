@@ -1,11 +1,12 @@
 <?oxygen SCHSchema="ref-xref-test-3.sch"?>
 <!--Context: xref[@ref-type='bibr']
-Test: report    matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')
+Test: report    not(parent::*[name()=('td','th')] and following-sibling::node()[1]/name()='break') and matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')
 Message: There is no space between citation and the following text -  - Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article> ... <body>
     <sec>
       <p>test text <xref ref-type="bibr" rid="bib1">Arnold et al., 2006</xref>, <xref ref-type="bibr" rid="bib1">Arnold et al. (2006)</xref>test text</p>
+      <td><xref ref-type="bibr" rid="bib1">Arnold et al., 2006</xref>test<break/></td>
     </sec>
   </body>
     <back>
