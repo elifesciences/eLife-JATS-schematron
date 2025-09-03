@@ -1,12 +1,11 @@
 <?oxygen SCHSchema="vid-xref-test-2.sch"?>
 <!--Context: xref[@ref-type='video']
-Test: report    matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')
+Test: report    not(parent::*[name()=('td','th')] and preceding-sibling::node()[1]/name()='break') and matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')
 Message: There is no space between citation and the preceding text -  - Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <p>See <xref ref-type="video" rid="video1">Video 1</xref>.</p>
-    
-    
+    <td>test<break/><xref ref-type="video" rid="video1">Video 1</xref></td>
     <media mimetype="video" id="video1">
       <label>Video 1.</label>
       <caption>

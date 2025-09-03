@@ -10318,12 +10318,12 @@ else self::*/local-name() = $allowed-p-blocks"
         id="vid-xref-conformity-2">video citation does not match the video that it links to. Target video label number(s) are <value-of select="$target-nos"/>, but <value-of select="if (count($rids) gt 1) then concat($target-nos[1],' and ',$target-nos[last()],' are') else concat($target-nos,' is')"/> not in the citation text - <value-of select="."/>.</report>
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-2"
-        test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" 
+        test="not(parent::*[name()=('td','th')] and preceding-sibling::node()[1]/name()='break') and matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" 
         role="warning" 
         id="vid-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-3"
-        test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" 
+        test="not(parent::*[name()=('td','th')] and following-sibling::node()[1]/name()='break') and matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" 
         role="warning" 
         id="vid-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
@@ -10411,12 +10411,12 @@ else self::*/local-name() = $allowed-p-blocks"
         id="fig-xref-conformity-6">figure citation contains the text <value-of select="."/> but links to a figure supplement with the id <value-of select="$rid"/> which cannot be correct.</report>
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-2"
-        test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" 
+        test="not(parent::*[name()=('td','th')] and preceding-sibling::node()[1]/name()='break') and matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" 
         role="warning" 
         id="fig-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-3"
-        test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" 
+        test="not(parent::*[name()=('td','th')] and following-sibling::node()[1]/name()='break') and matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" 
         role="warning" 
         id="fig-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       

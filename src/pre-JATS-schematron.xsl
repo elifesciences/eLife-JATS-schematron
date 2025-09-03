@@ -30636,8 +30636,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')">
+      <xsl:if test="not(parent::*[name()=('td','th')] and preceding-sibling::node()[1]/name()='break') and matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(parent::*[name()=('td','th')] and preceding-sibling::node()[1]/name()='break') and matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')">
             <xsl:attribute name="id">vid-xref-test-2</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -30650,8 +30650,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')">
+      <xsl:if test="not(parent::*[name()=('td','th')] and following-sibling::node()[1]/name()='break') and matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(parent::*[name()=('td','th')] and following-sibling::node()[1]/name()='break') and matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')">
             <xsl:attribute name="id">vid-xref-test-3</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -30882,8 +30882,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')">
+      <xsl:if test="not(parent::*[name()=('td','th')] and preceding-sibling::node()[1]/name()='break') and matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(parent::*[name()=('td','th')] and preceding-sibling::node()[1]/name()='break') and matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')">
             <xsl:attribute name="id">fig-xref-test-2</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -30896,8 +30896,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')">
+      <xsl:if test="not(parent::*[name()=('td','th')] and following-sibling::node()[1]/name()='break') and matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(parent::*[name()=('td','th')] and following-sibling::node()[1]/name()='break') and matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')">
             <xsl:attribute name="id">fig-xref-test-3</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
