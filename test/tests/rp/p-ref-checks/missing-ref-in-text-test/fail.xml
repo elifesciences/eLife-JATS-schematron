@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="missing-ref-in-text-test.sch"?>
-<!--Context: article[descendant::xref[@ref-type='bibr'][matches(.,'\p{L}')]]//p[not(ancestor::sub-article)]
+<!--Context: article[descendant::xref[@ref-type='bibr'][matches(.,'\p{L}')]]//p[not(ancestor::sub-article) and not(ancestor::ack)]
 Test: report    matches($text,$missing-ref-regex)
 Message:  element contains possible citation which is unlinked or a missing reference - search -  -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
