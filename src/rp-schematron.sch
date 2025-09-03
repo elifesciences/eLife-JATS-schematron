@@ -2348,6 +2348,8 @@
       
       <report test="normalize-space(.)=''" role="error" id="award-id-test-9">[award-id-test-9] award-id cannot be empty. Either add the missing content or remove it.</report>
       
+      <report test="not(@award-id-type='doi') and matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')" role="error" id="award-id-test-10">[award-id-test-10] award-id contains a DOI (<value-of select="."/>), but it does not have the attribute award-id-type="doi".</report>
+      
     </rule></pattern><pattern id="funding-institution-id-tests-pattern"><rule context="funding-source//institution-id" id="funding-institution-id-tests">
       
       <assert test="@institution-id-type=('ror','FundRef')" role="error" id="funding-institution-id-test-1">[funding-institution-id-test-1] institution-id in funding must have the attribute institution-id-type with a value of either "ror" or "FundRef".</assert>

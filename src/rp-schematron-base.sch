@@ -3483,6 +3483,10 @@
         role="error" 
         id="award-id-test-9">award-id cannot be empty. Either add the missing content or remove it.</report>
       
+      <report test="not(@award-id-type='doi') and matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')" 
+        role="error" 
+        id="award-id-test-10">award-id contains a DOI (<value-of select="."/>), but it does not have the attribute award-id-type="doi".</report>
+      
     </rule>
       
       <rule context="funding-source//institution-id" id="funding-institution-id-tests">
