@@ -2022,7 +2022,7 @@
     <pattern id="p-bold-checks-pattern"><rule context="p[not(ancestor::sub-article or ancestor::def) and (count(*)=1) and (child::bold or child::italic)]" id="p-bold-checks">
         <let name="free-text" value="replace(normalize-space(string-join(for $x in self::*/text() return $x,'')),' ','')"/>
         <report test="$free-text=''" role="warning" id="p-all-bold">[p-all-bold] Content of p element is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
-      </rule></pattern><pattern id="p-ref-checks-pattern"><rule context="p[not(ancestor::sub-article)]" id="p-ref-checks">
+      </rule></pattern><pattern id="p-ref-checks-pattern"><rule context="article[descendant::xref[@ref-type='bibr'][matches(.,'\p{L}')]]//p[not(ancestor::sub-article)]" id="p-ref-checks">
         <let name="text" value="string-join(for $x in self::*/(*|text())                                             return if ($x/local-name()='xref') then ()                                                    else if ($x//*:p) then ($x/text())                                                    else string($x),'')"/>
         <let name="missing-ref-regex" value="'\p{Lu}\p{L}\p{L}+( et al\.?)?\p{P}?\s*\p{Ps}?([1][7-9][0-9][0-9]|[2][0-2][0-9][0-9])'"/>
         
