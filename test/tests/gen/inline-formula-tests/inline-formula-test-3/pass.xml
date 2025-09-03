@@ -1,9 +1,10 @@
 <?oxygen SCHSchema="inline-formula-test-3.sch"?>
 <!--Context: inline-formula
-Test: report    not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and matches($post-text,'^[\p{L}\p{N}\p{M}]')
+Test: report    not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and not(parent::*[name()=('td','th')] and following-sibling::node()[1]/name()='break') and matches($post-text,'^[\p{L}\p{N}\p{M}]')
 Message: There is no space between inline-formula and the following text -  - Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <p>test <italic>test</italic> test <inline-formula><mml:math/></inline-formula> test <italic>test</italic> test </p>
+    <td><inline-formula><mml:math/></inline-formula><break/>test</td>
   </article>
 </root>

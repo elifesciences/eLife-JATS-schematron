@@ -3585,7 +3585,7 @@
             </xsl:attribute>
             <svrl:text>[present-address-aff] There is a present address in this affiliation (<xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/>), it should be marked as a present address instead.</svrl:text>
+               <xsl:text/>), it should be added as a present address in the author-notes section instead.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" id="pick-aff-ror-1">

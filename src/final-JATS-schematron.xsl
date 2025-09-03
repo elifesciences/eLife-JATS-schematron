@@ -15525,8 +15525,8 @@
          </xsl:otherwise>
       </xsl:choose>
       <!--REPORT warning-->
-      <xsl:if test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')">
+      <xsl:if test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and not(parent::*[name()=('td','th')] and preceding-sibling::node()[1]/name()='break') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and not(parent::*[name()=('td','th')] and preceding-sibling::node()[1]/name()='break') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')">
             <xsl:attribute name="id">inline-formula-test-2</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
@@ -15539,8 +15539,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and matches($post-text,'^[\p{L}\p{N}\p{M}]')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and matches($post-text,'^[\p{L}\p{N}\p{M}]')">
+      <xsl:if test="not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and not(parent::*[name()=('td','th')] and following-sibling::node()[1]/name()='break') and matches($post-text,'^[\p{L}\p{N}\p{M}]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and not(parent::*[name()=('td','th')] and following-sibling::node()[1]/name()='break') and matches($post-text,'^[\p{L}\p{N}\p{M}]')">
             <xsl:attribute name="id">inline-formula-test-3</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>

@@ -4497,12 +4497,12 @@ else self::*/local-name() = $allowed-p-blocks"
         id="inline-formula-test-1">inline-formula must contain an mml:math element.</assert>
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-2"
-        test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')" 
+        test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and not(parent::*[name()=('td','th')] and preceding-sibling::node()[1]/name()='break') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')" 
         role="warning" 
         id="inline-formula-test-2">There is no space between inline-formula and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),descendant::mml:math[1])"/> - Is this correct?</report>
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-3"
-        test="not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and matches($post-text,'^[\p{L}\p{N}\p{M}]')" 
+        test="not($post-text/preceding-sibling::*[1]/local-name()='disp-formula') and not(parent::*[name()=('td','th')] and following-sibling::node()[1]/name()='break') and matches($post-text,'^[\p{L}\p{N}\p{M}]')" 
         role="warning" 
         id="inline-formula-test-3">There is no space between inline-formula and the following text - <value-of select="concat(descendant::mml:math[1],substring($post-text,1,15))"/> - Is this correct?</report>
       
