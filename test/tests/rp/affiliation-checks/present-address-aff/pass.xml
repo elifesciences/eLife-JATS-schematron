@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="present-address-aff.sch"?>
+<!--Context: aff
+Test: report    matches(lower-case(.),'(present|current) (address|institution)')
+Message: There is a present address in this affiliation (), it should be marked as a present address instead. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/>
+    <article>
+        <aff><label>1</label> <institution>Derek Zoolander Center</institution> for <institution>Kids Who Can't Read Good</institution>, <city>Singapore</city> <country>United States</country></aff>
+    </article>
+</root>

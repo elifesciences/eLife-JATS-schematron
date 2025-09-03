@@ -613,6 +613,16 @@
         <x:expect-assert id="aff-parent" role="error"/>
         <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="present-address-aff-pass">
+        <x:context href="../tests/rp/affiliation-checks/present-address-aff/pass.xml"/>
+        <x:expect-not-report id="present-address-aff" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="present-address-aff-fail">
+        <x:context href="../tests/rp/affiliation-checks/present-address-aff/fail.xml"/>
+        <x:expect-report id="present-address-aff" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="country-tests">
       <x:scenario label="gen-country-test-pass">
@@ -1975,6 +1985,16 @@
       <x:scenario label="ack-dupe-fail">
         <x:context href="../tests/rp/ack-tests/ack-dupe/fail.xml"/>
         <x:expect-report id="ack-dupe" role="warning"/>
+        <x:expect-not-assert id="ack-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ack-misspelled-pass">
+        <x:context href="../tests/rp/ack-tests/ack-misspelled/pass.xml"/>
+        <x:expect-not-report id="ack-misspelled" role="error"/>
+        <x:expect-not-assert id="ack-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ack-misspelled-fail">
+        <x:context href="../tests/rp/ack-tests/ack-misspelled/fail.xml"/>
+        <x:expect-report id="ack-misspelled" role="error"/>
         <x:expect-not-assert id="ack-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
