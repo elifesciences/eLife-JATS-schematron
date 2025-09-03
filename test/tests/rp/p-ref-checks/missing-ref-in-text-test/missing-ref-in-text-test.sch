@@ -1085,7 +1085,7 @@
     </sqf:fix>
   </sqf:fixes>
   <pattern id="p-ref-checks-pattern">
-    <rule context="p[not(ancestor::sub-article)]" id="p-ref-checks">
+    <rule context="article[descendant::xref[@ref-type='bibr'][matches(.,'\p{L}')]]//p[not(ancestor::sub-article)]" id="p-ref-checks">
       <let name="text" value="string-join(for $x in self::*/(*|text())                                             return if ($x/local-name()='xref') then ()                                                    else if ($x//*:p) then ($x/text())                                                    else string($x),'')"/>
       <let name="missing-ref-regex" value="'\p{Lu}\p{L}\p{L}+( et al\.?)?\p{P}?\s*\p{Ps}?([1][7-9][0-9][0-9]|[2][0-2][0-9][0-9])'"/>
       <report test="matches($text,$missing-ref-regex)" role="warning" id="missing-ref-in-text-test">[missing-ref-in-text-test] <name/> element contains possible citation which is unlinked or a missing reference - search - <value-of select="string-join(e:analyze-string($text,$missing-ref-regex)//*:match,'; ')"/>
@@ -1094,7 +1094,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p[not(ancestor::sub-article)]" role="error" id="p-ref-checks-xspec-assert">p[not(ancestor::sub-article)] must be present.</assert>
+      <assert test="descendant::article[descendant::xref[@ref-type='bibr'][matches(.,'\p{L}')]]//p[not(ancestor::sub-article)]" role="error" id="p-ref-checks-xspec-assert">article[descendant::xref[@ref-type='bibr'][matches(.,'\p{L}')]]//p[not(ancestor::sub-article)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

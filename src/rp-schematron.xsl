@@ -7512,7 +7512,7 @@
    </xsl:template>
    <!--PATTERN p-ref-checks-pattern-->
    <!--RULE p-ref-checks-->
-   <xsl:template match="p[not(ancestor::sub-article)]" priority="1000" mode="M114">
+   <xsl:template match="article[descendant::xref[@ref-type='bibr'][matches(.,'\p{L}')]]//p[not(ancestor::sub-article)]" priority="1000" mode="M114">
       <xsl:variable name="text" select="string-join(for $x in self::*/(*|text())                                             return if ($x/local-name()='xref') then ()                                                    else if ($x//*:p) then ($x/text())                                                    else string($x),'')"/>
       <xsl:variable name="missing-ref-regex" select="'\p{Lu}\p{L}\p{L}+( et al\.?)?\p{P}?\s*\p{Ps}?([1][7-9][0-9][0-9]|[2][0-2][0-9][0-9])'"/>
       <!--REPORT warning-->

@@ -2831,7 +2831,7 @@
         id="p-all-bold">Content of p element is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
       </rule>
       
-      <rule context="p[not(ancestor::sub-article)]" id="p-ref-checks">
+      <rule context="article[descendant::xref[@ref-type='bibr'][matches(.,'\p{L}')]]//p[not(ancestor::sub-article)]" id="p-ref-checks">
         <let name="text" value="string-join(for $x in self::*/(*|text())
                                             return if ($x/local-name()='xref') then ()
                                                    else if ($x//*:p) then ($x/text())
