@@ -4,6 +4,9 @@ Test: report    matches($text,$missing-ref-regex)
 Message:  element contains possible citation which is unlinked or a missing reference - search -  -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
+        <xref ref-type="bibr">something</xref>
         <p>Smith et al. 2025</p>
+        <p>Smith and Smith 2025</p>
+        <p>Smith, 2025</p>
     </article>
 </root>
