@@ -2158,6 +2158,8 @@
         <assert test="e:is-valid-issn(.)" 
           role="error" 
           id="issn-conformity-test"><name/> element contains an invalid ISSN - '<value-of select="."/>'. Should it be captured as another type of id?</assert>
+
+        <report test="@pub-id-type='doi' and matches(lower-case(.),'supp|fig|table')" role="warning" id="doi-superfluous">[doi-superfluous] This DOI (<value-of select="."/>) looks like it relates to supplementary material instead of an overall article. Should this be changed to the article DOI instead?</report>
       </rule>
     </pattern>
 
@@ -2179,10 +2181,6 @@
         <report test="ancestor::mixed-citation[@publication-type=('journal','data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')] and not(normalize-space(@person-group-type)=('','author'))" 
           role="warning" 
           id="ref-person-group-type-other">This <name/> inside a <value-of select="ancestor::mixed-citation/@publication-type"/> reference has the person-group-type '<value-of select="@person-group-type"/>'. Is that correct?</report>
-
-        <report test="@pub-id-type='doi' and contains(lowercase(.),'supp|fig|data|table|data')" 
-        role="warning" 
-        id="doi-superfluous">This DOI (<value-of select="."/>) looks like it relates to supplementary material instead of an overall article. Should this be changed to the article DOI instead?</report>
      </rule>
     </pattern>
   
