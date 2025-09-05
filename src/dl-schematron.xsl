@@ -638,7 +638,7 @@
                      <xsl:value-of select="self::*"/>
                   </xsl:element>
                </xsl:when>
-               <xsl:when test="($rid-no lt $object-no) and contains(.,string($object-no)) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'–'))">
+               <xsl:when test="($rid-no lt $object-no) and contains(.,string($object-no)) and (matches(.,'[Vv]ideos') and contains(.,'–'))">
                   <xsl:element name="match">
                      <xsl:attribute name="sec-id">
                         <xsl:value-of select="./ancestor::sec[1]/@id"/>
@@ -646,7 +646,7 @@
                      <xsl:value-of select="self::*"/>
                   </xsl:element>
                </xsl:when>
-               <xsl:when test="($rid-no lt $object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'—')) and ($text-no gt string($object-no))">
+               <xsl:when test="($rid-no lt $object-no) and (matches(.,'[Vv]ideos') and contains(.,'—')) and ($text-no gt string($object-no))">
                   <xsl:element name="match">
                      <xsl:attribute name="sec-id">
                         <xsl:value-of select="./ancestor::sec[1]/@id"/>

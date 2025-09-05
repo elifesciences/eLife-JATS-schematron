@@ -638,7 +638,7 @@
                      <xsl:value-of select="self::*"/>
                   </xsl:element>
                </xsl:when>
-               <xsl:when test="($rid-no lt $object-no) and contains(.,string($object-no)) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'–'))">
+               <xsl:when test="($rid-no lt $object-no) and contains(.,string($object-no)) and (matches(.,'[Vv]ideos') and contains(.,'–'))">
                   <xsl:element name="match">
                      <xsl:attribute name="sec-id">
                         <xsl:value-of select="./ancestor::sec[1]/@id"/>
@@ -646,7 +646,7 @@
                      <xsl:value-of select="self::*"/>
                   </xsl:element>
                </xsl:when>
-               <xsl:when test="($rid-no lt $object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'—')) and ($text-no gt string($object-no))">
+               <xsl:when test="($rid-no lt $object-no) and (matches(.,'[Vv]ideos') and contains(.,'—')) and ($text-no gt string($object-no))">
                   <xsl:element name="match">
                      <xsl:attribute name="sec-id">
                         <xsl:value-of select="./ancestor::sec[1]/@id"/>
@@ -12139,6 +12139,19 @@
             <svrl:text>[award-id-test-10] award-id contains a DOI (<xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>), but it does not have the attribute award-id-type="doi".</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(lower-case(.),'\s+(and|&amp;)\s+')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'\s+(and|&amp;)\s+')">
+            <xsl:attribute name="id">award-id-test-11</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[award-id-test-11] award-id contains 'and' or an ampersand - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. Each separate award needs its own funding entry. If these are two separate grant numbers, please split them out.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M166"/>

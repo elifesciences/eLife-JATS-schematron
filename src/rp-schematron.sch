@@ -2352,6 +2352,7 @@
       
       <report test="not(@award-id-type='doi') and matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')" role="error" id="award-id-test-10">[award-id-test-10] award-id contains a DOI (<value-of select="."/>), but it does not have the attribute award-id-type="doi".</report>
       
+      <report test="matches(lower-case(.),'\s+(and|&amp;)\s+')" role="warning" id="award-id-test-11">[award-id-test-11] award-id contains 'and' or an ampersand - <value-of select="."/>. Each separate award needs its own funding entry. If these are two separate grant numbers, please split them out.</report>
     </rule></pattern><pattern id="funding-institution-id-tests-pattern"><rule context="funding-source//institution-id" id="funding-institution-id-tests">
       
       <assert test="@institution-id-type=('ror','FundRef')" role="error" id="funding-institution-id-test-1">[funding-institution-id-test-1] institution-id in funding must have the attribute institution-id-type with a value of either "ror" or "FundRef".</assert>

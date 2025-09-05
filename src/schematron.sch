@@ -752,7 +752,7 @@
               <xsl:value-of select="self::*"/>
             </xsl:element>
           </xsl:when>
-          <xsl:when test="($rid-no lt $object-no) and contains(.,string($object-no)) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'&#x2013;'))">
+          <xsl:when test="($rid-no lt $object-no) and contains(.,string($object-no)) and (matches(.,'[Vv]ideos') and contains(.,'&#x2013;'))">
             <xsl:element name="match">
               <xsl:attribute name="sec-id">
                 <xsl:value-of select="./ancestor::sec[1]/@id"/>
@@ -760,7 +760,7 @@
               <xsl:value-of select="self::*"/>
             </xsl:element>
           </xsl:when>
-          <xsl:when test="($rid-no lt $object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'&#x2014;')) and ($text-no gt string($object-no))">
+          <xsl:when test="($rid-no lt $object-no) and (matches(.,'[Vv]ideos') and contains(.,'&#x2014;')) and ($text-no gt string($object-no))">
             <xsl:element name="match">
               <xsl:attribute name="sec-id">
                 <xsl:value-of select="./ancestor::sec[1]/@id"/>
@@ -3240,6 +3240,10 @@
       <report test="not(@award-id-type='doi') and matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')" 
         role="error" 
         id="award-id-test-10">award-id contains a DOI (<value-of select="."/>), but it does not have the attribute award-id-type="doi".</report>
+      
+      <report test="matches(lower-case(.),'\s+(and|&amp;)\s+')" 
+        role="warning" 
+        id="award-id-test-11">award-id contains 'and' or an ampersand - <value-of select="."/>. Each separate award needs its own funding entry. If these are two separate grant numbers, please split them out.</report>
       
     </rule>
     

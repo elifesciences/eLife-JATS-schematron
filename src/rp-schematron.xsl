@@ -9590,6 +9590,19 @@
                <xsl:text/>), but it does not have the attribute award-id-type="doi".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(lower-case(.),'\s+(and|&amp;)\s+')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'\s+(and|&amp;)\s+')">
+            <xsl:attribute name="id">award-id-test-11</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[award-id-test-11] award-id contains 'and' or an ampersand - <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>. Each separate award needs its own funding entry. If these are two separate grant numbers, please split them out.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M143"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M143"/>
