@@ -730,10 +730,12 @@
     <xsl:param name="object-id"/>
     <xsl:param name="object-type"/>
     <xsl:variable name="object-no" select="number(replace($object-id,'[^0-9]',''))"/>
+    <xsl:variable name="object-regex" select="concat($object-no,',?\s','|',$object-no,'$')"/>
     <xsl:element name="matches">
       <xsl:for-each select="$article//xref[(@ref-type=$object-type) and not(ancestor::caption)]">
         <xsl:variable name="rid-no" select="number(replace(./@rid,'[^0-9]',''))"/>
-        <xsl:variable name="text-no" select="tokenize(normalize-space(replace(.,'[^0-9]',' ')),'\p{Zs}')[last()]"/>
+        <xsl:variable name="text-no-string" select="tokenize(normalize-space(replace(.,'[^0-9]',' ')),'\p{Z}|\p{Pd}')[last()]"/>
+        <xsl:variable name="text-no" select="if ($text-no-string='') then 0 else number($text-no-string)"/>
         <xsl:choose>
           <xsl:when test="./@rid = $object-id">
             <xsl:element name="match">
@@ -744,7 +746,7 @@
             </xsl:element>
           </xsl:when>
           <xsl:when test="contains(./@rid,'app')"/>
-          <xsl:when test="($rid-no lt $object-no) and (./following-sibling::text()[1] = '&#x2013;') and (./following-sibling::*[1]/name()='xref') and (number(replace(replace(./following-sibling::xref[1]/@rid,'\-','.'),'[a-z]','')) gt number($object-no))">
+          <xsl:when test="($rid-no lt $object-no) and (./following-sibling::text()[1] = '–') and (./following-sibling::*[1]/name()='xref') and (number(replace(replace(./following-sibling::xref[1]/@rid,'\-','.'),'[a-z]','')) gt number($object-no))">
             <xsl:element name="match">
               <xsl:attribute name="sec-id">
                 <xsl:value-of select="./ancestor::sec[1]/@id"/>
@@ -752,15 +754,7 @@
               <xsl:value-of select="self::*"/>
             </xsl:element>
           </xsl:when>
-          <xsl:when test="($rid-no lt $object-no) and contains(.,string($object-no)) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'&#x2013;'))">
-            <xsl:element name="match">
-              <xsl:attribute name="sec-id">
-                <xsl:value-of select="./ancestor::sec[1]/@id"/>
-              </xsl:attribute>
-              <xsl:value-of select="self::*"/>
-            </xsl:element>
-          </xsl:when>
-          <xsl:when test="($rid-no lt $object-no) and (contains(.,'Videos') or contains(.,'videos') and contains(.,'&#x2014;')) and ($text-no gt string($object-no))">
+          <xsl:when test="($rid-no lt $object-no) and contains(lower-case(.),'videos') and (matches(.,$object-regex) or ($text-no gt $object-no))">
             <xsl:element name="match">
               <xsl:attribute name="sec-id">
                 <xsl:value-of select="./ancestor::sec[1]/@id"/>
@@ -3240,6 +3234,10 @@
       <report test="not(@award-id-type='doi') and matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')" 
         role="error" 
         id="award-id-test-10">award-id contains a DOI (<value-of select="."/>), but it does not have the attribute award-id-type="doi".</report>
+      
+      <report test="matches(lower-case(.),'\s+(and|&amp;)\s+')" 
+        role="warning" 
+        id="award-id-test-11">award-id contains 'and' or an ampersand - <value-of select="."/>. Each separate award needs its own funding entry. If these are two separate grant numbers, please split them out.</report>
       
     </rule>
     
