@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="doi-superfluous.sch"?>
+<!--Context: ref//pub-id
+Test: report    @pub-id-type='doi' and matches(lower-case(.),'file|figure|table')
+Message: This DOI () looks like it relates to supplementary material instead of an overall article. Should this be changed to the article DOI instead? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/>
+    <article>
+        <ref>
+        ...
+            <pub-id pub-id-type="doi">10.1126/SCIENCE.1260419/SUPPL_FILE/1260419_UHLEN.SM.PDF</pub-id>
+        </ref>
+    </article>
+</root>

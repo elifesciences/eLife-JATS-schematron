@@ -5465,6 +5465,19 @@
                <xsl:text/>'. Should that text be part of the DOI or tagged in some other way?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="@pub-id-type='doi' and matches(lower-case(.),'file|figure|table')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@pub-id-type='doi' and matches(lower-case(.),'file|figure|table')">
+            <xsl:attribute name="id">doi-superfluous</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[doi-superfluous] This DOI (<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>) looks like it relates to supplementary material instead of an overall article. Should this be changed to the article DOI instead?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M71"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M71"/>

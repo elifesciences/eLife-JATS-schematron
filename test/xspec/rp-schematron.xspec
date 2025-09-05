@@ -1623,6 +1623,16 @@
         <x:expect-report id="pub-id-check-6" role="warning"/>
         <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="doi-superfluous-pass">
+        <x:context href="../tests/rp/ref-pub-id-checks/doi-superfluous/pass.xml"/>
+        <x:expect-not-report id="doi-superfluous" role="warning"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="doi-superfluous-fail">
+        <x:context href="../tests/rp/ref-pub-id-checks/doi-superfluous/fail.xml"/>
+        <x:expect-report id="doi-superfluous" role="warning"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="isbn-conformity">
       <x:scenario label="isbn-conformity-test-pass">
