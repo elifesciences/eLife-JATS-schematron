@@ -10,6 +10,9 @@ Message:  does not appear in the same section as where it is first cited (sec wi
       <media id="video1" mimetype="video">
         <label>Video 1.</label>
       </media>
+      <media id="video18" mimetype="video">
+        <label>Video 18.</label>
+      </media>
     </sec>
     <sec id="sec2">
       <title>Section 2</title>
@@ -29,6 +32,7 @@ Message:  does not appear in the same section as where it is first cited (sec wi
     </sec>
     <sec id="sec4">
       <title>Section 4</title>
+      <p><xref ref-type="video" rid="video18">Video 18</xref></p>
       <media id="video4" mimetype="video">
         <label>Video 4.</label>
       </media>

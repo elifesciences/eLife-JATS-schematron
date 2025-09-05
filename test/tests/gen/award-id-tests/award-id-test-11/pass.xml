@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="award-id-test-11.sch"?>
+<!--Context: funding-group/award-group/award-id
+Test: report    matches(lower-case(.),'\s+(and|&)\s+')
+Message: award-id contains 'and' or an ampersand - . Each separate award needs its own funding entry. If these are two separate grant numbers, please split them out. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <funding-group>
+            <award-group>
+                <award-id>something</award-id>
+            </award-group>
+        </funding-group>
+    </article>
+</root>
