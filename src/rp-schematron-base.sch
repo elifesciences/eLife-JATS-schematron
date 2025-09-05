@@ -2148,6 +2148,8 @@
         <report test="@pub-id-type='doi' and matches(lower-case(.),'file|figure|table')" 
           role="warning" 
           id="doi-superfluous">This DOI (<value-of select="."/>) looks like it relates to supplementary material instead of an overall article. Should this be changed to the article DOI instead?</report>
+
+          <report test="article|source and matches(lower-case(.),'[internet]')" role="warning" id="ref-internet-text">This title or source includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</report>
      </rule>
 
       <rule context="ref//pub-id[@pub-id-type='isbn']|isbn" id="isbn-conformity">
