@@ -2144,6 +2144,8 @@
         <report test="@pub-id-type='doi' and ancestor::mixed-citation[@publication-type=('journal','book','preprint')] and matches(following-sibling::text()[1],'^[\.\s]?[\.\s]?[/&lt;&gt;:\d\+\-]')" 
           role="warning" 
           id="pub-id-check-6">doi in <value-of select="ancestor::mixed-citation/@publication-type"/> ref is followd by text - '<value-of select="following-sibling::text()[1]"/>'. Should that text be part of the DOI or tagged in some other way?</report>
+
+        <report test="@pub-id-type='doi' and matches(lower-case(.),'file|figure|table')" role="warning" id="doi-superfluous">This DOI (<value-of select="."/>) looks like it relates to supplementary material instead of an overall article. Should this be changed to the article DOI instead?</report>
      </rule>
 
       <rule context="ref//pub-id[@pub-id-type='isbn']|isbn" id="isbn-conformity">
@@ -2158,8 +2160,6 @@
         <assert test="e:is-valid-issn(.)" 
           role="error" 
           id="issn-conformity-test"><name/> element contains an invalid ISSN - '<value-of select="."/>'. Should it be captured as another type of id?</assert>
-
-        <report test="@pub-id-type='doi' and matches(lower-case(.),'supp|fig|table')" role="warning" id="doi-superfluous">[doi-superfluous] This DOI (<value-of select="."/>) looks like it relates to supplementary material instead of an overall article. Should this be changed to the article DOI instead?</report>
       </rule>
     </pattern>
 
