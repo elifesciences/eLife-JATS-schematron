@@ -2100,7 +2100,19 @@
             <xsl:if test="sec[@sec-type='data-availability' or (matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing'))]">
                 <xsl:for-each select="sec[@sec-type='data-availability' or (matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing'))]">
                     <xsl:text>&#xa;</xsl:text>
-                    <xsl:apply-templates select="."/>
+                    <xsl:choose>
+                        <xsl:when test="not(title) and ./@id='das' and ./@sec-type='data-availability'">
+                            <xsl:element name="sec">
+                                <xsl:apply-templates select="@*"/>
+                                <xsl:text>&#xa;</xsl:text>
+                                <xsl:element name="title">Data availability</xsl:element>
+                                <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+                            </xsl:element>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:apply-templates select="."/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:for-each>
             </xsl:if>
             <!-- Copy the acknowledgements -->
@@ -2111,7 +2123,7 @@
                 </xsl:for-each>
             </xsl:if>
             <!-- Move (presumed) simple sections into an additional information section -->
-            <xsl:if test="sec[not(matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')) and (not(@sec-type='supplementary-material' or sec or descendant::fig or descendant::table-wrap or descendant::supplementary-material or descendant::disp-formula or descendant::inline-formula or descendant::statement or descendant::code or descendant::preformat or descendant::ref-list))]">
+            <xsl:if test="sec[not(@id='das') and not(matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')) and (not(@sec-type='supplementary-material' or sec or descendant::fig or descendant::table-wrap or descendant::supplementary-material or descendant::disp-formula or descendant::inline-formula or descendant::statement or descendant::code or descendant::preformat or descendant::ref-list))]">
                 <xsl:text>&#xa;</xsl:text>
                 <xsl:element name="sec">
                     <xsl:choose>
@@ -2120,14 +2132,14 @@
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="id">
-                                <xsl:value-of select="generate-id(.)"/>
+                                <xsl:value-of select="'additional-info'"/>
                             </xsl:attribute>
                         </xsl:otherwise>
                     </xsl:choose>
                     <xsl:attribute name="sec-type">additional-information</xsl:attribute>
                     <xsl:text>&#xa;</xsl:text>
                     <title>Additional information</title>
-                    <xsl:for-each select="sec[not(matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')) and (not(@sec-type='supplementary-material' or sec or descendant::fig or descendant::table-wrap or descendant::supplementary-material or descendant::disp-formula or descendant::inline-formula or descendant::statement or descendant::code or descendant::preformat or descendant::ref-list))]">
+                    <xsl:for-each select="sec[not(@id='das') and not(matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing')) and (not(@sec-type='supplementary-material' or sec or descendant::fig or descendant::table-wrap or descendant::supplementary-material or descendant::disp-formula or descendant::inline-formula or descendant::statement or descendant::code or descendant::preformat or descendant::ref-list))]">
                         <xsl:text>&#xa;</xsl:text>
                         <xsl:apply-templates select="."/>
                     </xsl:for-each>
@@ -2152,7 +2164,7 @@
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="id">
-                                <xsl:value-of select="concat('supp',generate-id(.))"/>
+                                <xsl:value-of select="'additional-files'"/>
                             </xsl:attribute>
                         </xsl:otherwise>
                     </xsl:choose>
