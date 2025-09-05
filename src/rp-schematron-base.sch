@@ -2179,6 +2179,10 @@
         <report test="ancestor::mixed-citation[@publication-type=('journal','data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')] and not(normalize-space(@person-group-type)=('','author'))" 
           role="warning" 
           id="ref-person-group-type-other">This <name/> inside a <value-of select="ancestor::mixed-citation/@publication-type"/> reference has the person-group-type '<value-of select="@person-group-type"/>'. Is that correct?</report>
+
+        <report test="@pub-id-type='doi' and contains(lowercase(.),'supp|fig|data|table|data')" 
+        role="warning" 
+        id="doi-superfluous">This DOI (<value-of select="."/>) looks like it relates to supplementary material instead of an overall article. Should this be changed to the article DOI instead?</report>
      </rule>
     </pattern>
   
@@ -4080,7 +4084,7 @@
         <assert test="ancestor::notes"
           role="error" 
           id="body-footnote">This preprint has footnotes appended to the content. EPP cannot render these, so they need adding to the text.</assert>
-      </rule>
+      </rule> 
     </pattern>
 
     <pattern id="symbol-checks">
