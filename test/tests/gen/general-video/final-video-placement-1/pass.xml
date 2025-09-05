@@ -31,7 +31,11 @@ Message:  does not appear in the same section as where it is first cited (sec wi
       </media>
     </sec>
     <sec id="sec4">
+      <p><xref ref-type="video" rid="video18">Video 18</xref></p>
       <title>Section 4</title>
+      <media id="video18" mimetype="video">
+        <label>Video 18.</label>
+      </media>
     </sec>
   </article>
 </root>

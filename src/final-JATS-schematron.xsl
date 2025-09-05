@@ -616,10 +616,12 @@
       <xsl:param name="object-id"/>
       <xsl:param name="object-type"/>
       <xsl:variable name="object-no" select="number(replace($object-id,'[^0-9]',''))"/>
+      <xsl:variable name="object-regex" select="concat($object-no,',?\s','|',$object-no,'$')"/>
       <xsl:element name="matches">
          <xsl:for-each select="$article//xref[(@ref-type=$object-type) and not(ancestor::caption)]">
             <xsl:variable name="rid-no" select="number(replace(./@rid,'[^0-9]',''))"/>
-            <xsl:variable name="text-no" select="tokenize(normalize-space(replace(.,'[^0-9]',' ')),'\p{Zs}')[last()]"/>
+            <xsl:variable name="text-no-string" select="tokenize(normalize-space(replace(.,'[^0-9]',' ')),'\p{Z}|\p{Pd}')[last()]"/>
+            <xsl:variable name="text-no" select="if ($text-no-string='') then 0 else number($text-no-string)"/>
             <xsl:choose>
                <xsl:when test="./@rid = $object-id">
                   <xsl:element name="match">
@@ -638,15 +640,7 @@
                      <xsl:value-of select="self::*"/>
                   </xsl:element>
                </xsl:when>
-               <xsl:when test="($rid-no lt $object-no) and contains(.,string($object-no)) and (matches(.,'[Vv]ideos') and contains(.,'–'))">
-                  <xsl:element name="match">
-                     <xsl:attribute name="sec-id">
-                        <xsl:value-of select="./ancestor::sec[1]/@id"/>
-                     </xsl:attribute>
-                     <xsl:value-of select="self::*"/>
-                  </xsl:element>
-               </xsl:when>
-               <xsl:when test="($rid-no lt $object-no) and (matches(.,'[Vv]ideos') and contains(.,'—')) and ($text-no gt string($object-no))">
+               <xsl:when test="($rid-no lt $object-no) and contains(lower-case(.),'videos') and (matches(.,$object-regex) or ($text-no gt $object-no))">
                   <xsl:element name="match">
                      <xsl:attribute name="sec-id">
                         <xsl:value-of select="./ancestor::sec[1]/@id"/>
