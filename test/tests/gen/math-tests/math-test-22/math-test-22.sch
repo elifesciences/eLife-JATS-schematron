@@ -921,8 +921,7 @@
     <rule context="mml:math" id="math-tests">
       <let name="data" value="replace(normalize-space(.),'\p{Zs}','')"/>
       <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
-      <report test="matches(.,'^\p{Zs}\p{Zs}\p{Zs}\p{Zs}+') and not(matches(.,'^\s\s\s\s+'))" role="error" id="math-test-21">
-        <value-of select="ancestor::*[name()=('inline-formula','disp-formula')][1]/name()"/> starts with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the right. Please ensure they are removed.</report>
+      <report test="descendant::mml:mstyle[@displaystyle='true'] and ancestor::inline-formula and not(ancestor::sub-article) and not(ancestor::table-wrap) and (descendant::*[name()=('mml:mfrac','mml:mroot','mml:msqrt','mml:munder','mml:mover','mml:munderover')] or descendant::mml:mo[matches(.,'[∑∫∏⋃⋂\(\)\{\}\[\]\|]')])" role="warning" id="math-test-22">Inline formula has display style. Is that correct? (inline-formula has a descendant mml:mstyle with the attribute displaystyle="true").</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

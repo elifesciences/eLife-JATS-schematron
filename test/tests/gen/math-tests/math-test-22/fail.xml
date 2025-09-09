@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="math-test-22.sch"?>
+<!--Context: mml:math
+Test: report    descendant::mml:mstyle[@displaystyle='true'] and ancestor::inline-formula and not(ancestor::sub-article) and not(ancestor::table-wrap) and (descendant::*[name()=('mml:mfrac','mml:mroot','mml:msqrt','mml:munder','mml:mover','mml:munderover')] or descendant::mml:mo[matches(.,'[∑∫∏⋃⋂\(\)\{\}\[\]\|]')])
+Message: Inline formula has display style. Is that correct? (inline-formula has a descendant mml:mstyle with the attribute displaystyle="true"). -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <inline-formula><alternatives><mml:math id="inf7"><mml:mstyle displaystyle="true" scriptlevel="0"><mml:mrow><mml:mrow><mml:mi mathvariant="normal">C</mml:mi><mml:mi mathvariant="normal">o</mml:mi><mml:mi mathvariant="normal">v</mml:mi></mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mi>w</mml:mi><mml:mo>,</mml:mo><mml:mi>p</mml:mi></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:mstyle></mml:math><tex-math id="inft7"><![CDATA[\begin{document}$\mathrm{Cov}\left (w,p\right)$\end{document}]]></tex-math></alternatives></inline-formula>
+    </article>
+</root>

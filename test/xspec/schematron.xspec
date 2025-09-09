@@ -6039,6 +6039,16 @@
         <x:expect-report id="math-broken-unicode-test" role="warning"/>
         <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="math-test-22-pass">
+        <x:context href="../tests/gen/math-tests/math-test-22/pass.xml"/>
+        <x:expect-not-report id="math-test-22" role="warning"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-test-22-fail">
+        <x:context href="../tests/gen/math-tests/math-test-22/fail.xml"/>
+        <x:expect-report id="math-test-22" role="warning"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="math-descendant-tests">
       <x:scenario label="math-descendant-test-1-pass">

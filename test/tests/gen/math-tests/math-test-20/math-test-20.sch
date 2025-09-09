@@ -922,7 +922,7 @@
       <let name="data" value="replace(normalize-space(.),'\p{Zs}','')"/>
       <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
       <report test="matches(.,'\p{Zs}\p{Zs}\p{Zs}\p{Zs}+$') and not(matches(.,'\s\s\s\s+$'))" role="error" id="math-test-20">
-        <value-of select="parent::*/name()"/> ends with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the left. Please ensure they are removed.</report>
+        <value-of select="ancestor::*[name()=('inline-formula','disp-formula')][1]/name()"/> ends with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the left. Please ensure they are removed.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
