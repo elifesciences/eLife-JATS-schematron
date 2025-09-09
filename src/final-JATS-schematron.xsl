@@ -15892,8 +15892,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="descendant::mml:mstyle[@displaystyle='true'] and ancestor::inline-formula and not(ancestor::sub-article) and not(ancestor::table-wrap) and (descendant::*[name()=('mml:mfrac','mml:mroot','mml:msqrt')] or descendant::mml:mo[matches(.,'[∑∫∏⋃⋂\(\)\{\}\[\]\|]')])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::mml:mstyle[@displaystyle='true'] and ancestor::inline-formula and not(ancestor::sub-article) and not(ancestor::table-wrap) and (descendant::*[name()=('mml:mfrac','mml:mroot','mml:msqrt')] or descendant::mml:mo[matches(.,'[∑∫∏⋃⋂\(\)\{\}\[\]\|]')])">
+      <xsl:if test="descendant::mml:mstyle[@displaystyle='true'] and ancestor::inline-formula and not(ancestor::sub-article) and not(ancestor::table-wrap) and (descendant::*[name()=('mml:mfrac','mml:mroot','mml:msqrt')] or descendant::mml:mo[matches(.,'[∑∫∏⋃⋂\(\){}\[\]\|]')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::mml:mstyle[@displaystyle='true'] and ancestor::inline-formula and not(ancestor::sub-article) and not(ancestor::table-wrap) and (descendant::*[name()=('mml:mfrac','mml:mroot','mml:msqrt')] or descendant::mml:mo[matches(.,'[∑∫∏⋃⋂\(\){}\[\]\|]')])">
             <xsl:attribute name="id">math-test-22</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
