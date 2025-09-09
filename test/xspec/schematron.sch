@@ -3281,7 +3281,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-broken-unicode-test" test="matches(.,'(&amp;|§|§amp;)(#x?\d)?|[^\p{L}\p{N}][gl]t;')" role="warning" id="math-broken-unicode-test">Equation likely contains a broken unicode - <value-of select="."/>.</report>
       
-      <report test="descendant::mml:mstyle[@displaystyle='true'] and ancestor::inline-formula and not(ancestor::sub-article) and not(ancestor::table-wrap) and (descendant::*[name()=('mml:mfrac','mml:mroot','mml:msqrt')] or descendant::mml:mo[matches(.,'[∑∫∏⋃⋂\(\)\{\}\[\]\|]')])" role="warning" id="math-test-22">Inline formula has display style. Is that correct? (inline-formula has a descendant mml:mstyle with the attribute displaystyle="true").</report>
+      <report test="descendant::mml:mstyle[@displaystyle='true'] and ancestor::inline-formula and not(ancestor::sub-article) and not(ancestor::table-wrap) and (descendant::*[name()=('mml:mfrac','mml:mroot','mml:msqrt')] or descendant::mml:mo[matches(.,'[∑∫∏⋃⋂\(\){}\[\]\|]')])" role="warning" id="math-test-22">Inline formula has display style. Is that correct? (inline-formula has a descendant mml:mstyle with the attribute displaystyle="true").</report>
     </rule>
   </pattern>
   <pattern id="math-descendant-tests-pattern">
