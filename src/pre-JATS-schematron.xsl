@@ -15699,7 +15699,7 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[math-test-20] <xsl:text/>
-               <xsl:value-of select="parent::*/name()"/>
+               <xsl:value-of select="ancestor::*[name()=('inline-formula','disp-formula')][1]/name()"/>
                <xsl:text/> ends with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the left. Please ensure they are removed.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
@@ -15712,7 +15712,7 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[math-test-21] <xsl:text/>
-               <xsl:value-of select="parent::*/name()"/>
+               <xsl:value-of select="ancestor::*[name()=('inline-formula','disp-formula')][1]/name()"/>
                <xsl:text/> starts with 4 or more spaces. These types of spaces may cause the equation to break over numerous lines in the HTML or shift the equation to the right. Please ensure they are removed.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
@@ -15728,6 +15728,17 @@
             <svrl:text>[math-broken-unicode-test] Equation likely contains a broken unicode - <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="descendant::mml:mstyle[@displaystyle='true'] and ancestor::inline-formula and not(ancestor::sub-article) and not(ancestor::table-wrap) and (descendant::*[name()=('mml:mfrac','mml:mroot','mml:msqrt')] or descendant::mml:mo[matches(.,'[∑∫∏⋃⋂\(\)\{\}\[\]\|]')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::mml:mstyle[@displaystyle='true'] and ancestor::inline-formula and not(ancestor::sub-article) and not(ancestor::table-wrap) and (descendant::*[name()=('mml:mfrac','mml:mroot','mml:msqrt')] or descendant::mml:mo[matches(.,'[∑∫∏⋃⋂\(\)\{\}\[\]\|]')])">
+            <xsl:attribute name="id">math-test-22</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[math-test-22] Inline formula has display style. Is that correct? (inline-formula has a descendant mml:mstyle with the attribute displaystyle="true").</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M216"/>
