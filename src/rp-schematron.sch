@@ -1607,7 +1607,7 @@
         <let name="pos" value="count(parent::ref-list/ref[label]) - count(following-sibling::ref[label])"/>
         <assert test="$numeric-label = $pos" role="warning" id="ref-label-1">[ref-label-1] ref with id <value-of select="@id"/> has the label <value-of select="$numeric-label"/>, but according to its position it should be labelled as number <value-of select="$pos"/>. Has there been a processing error?</assert>
      </rule></pattern><pattern id="ref-label-checks-pattern"><rule context="ref-list[ref/label]/ref" id="ref-label-checks">
-        <report test="not(label) and (preceding-sibling::ref[label] or following-sibling::ref[label])" role="warning" id="ref-label-2">[ref-label-2] ref with id <value-of select="@id"/> doesn't have a label, but other refs within the same ref-list do. Has there been a processing error?</report>
+        <report test="not(label) and not(contains(@id,'dataref')) and (preceding-sibling::ref[label] or following-sibling::ref[label])" role="warning" id="ref-label-2">[ref-label-2] ref with id <value-of select="@id"/> doesn't have a label, but other refs within the same ref-list do. Has there been a processing error?</report>
      </rule></pattern>
 
      <pattern id="ref-year-checks-pattern"><rule context="ref//year" id="ref-year-checks">

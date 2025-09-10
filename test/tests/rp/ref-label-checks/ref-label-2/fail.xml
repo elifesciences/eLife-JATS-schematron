@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="ref-label-2.sch"?>
 <!--Context: ref-list[ref/label]/ref
-Test: report    not(label) and (preceding-sibling::ref[label] or following-sibling::ref[label])
+Test: report    not(label) and not(contains(@id,'dataref')) and (preceding-sibling::ref[label] or following-sibling::ref[label])
 Message: ref with id  doesn't have a label, but other refs within the same ref-list do. Has there been a processing error? -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
