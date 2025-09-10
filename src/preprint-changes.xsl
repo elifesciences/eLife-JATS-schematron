@@ -173,15 +173,10 @@
     <xsl:template xml:id="ack-title" match="ack/title">
         <xsl:copy>
             <xsl:choose>
-                <!-- UK spelling -->
-                <xsl:when test="matches(lower-case(.),'^a(c?k|k?c)[nl]?ol?w?e?le?(d?g|g?d)ements?[\.:\s]?$')">
+                <!-- use UK spelling -->
+                <xsl:when test="matches(lower-case(.),'^a(c?k|k?c)[nl]?ol?w?e?le?(d?g|g?d)e?ments?[\.:\s]?$')">
                     <xsl:apply-templates select="@*"/>
                     <xsl:text>Acknowledgements</xsl:text>
-                </xsl:when>
-                <!-- US spelling -->
-                <xsl:when test="matches(lower-case(.),'^a(c?k|k?c)[nl]?ol?w?e?le?(d?g|g?d)ments?[\.:\s]?$')">
-                    <xsl:apply-templates select="@*"/>
-                    <xsl:text>Acknowledgments</xsl:text>
                 </xsl:when>
                 <!-- Something else?? -->
                 <xsl:otherwise>
@@ -1803,7 +1798,8 @@
     <xsl:template match="(body|back)/sec[title and not(@id) and not(matches(lower-case(title[1]),'data') and matches(lower-case(title[1]),'ava[il][il]ability|access|sharing'))]">
         <xsl:copy>
             <xsl:attribute name="id">
-                <xsl:value-of select="generate-id(.)"/>
+                <xsl:variable name="position" select="count(ancestor::article//sec) - count(following::sec)"/>
+                <xsl:value-of select="concat('sec',$position)"/>
             </xsl:attribute>
             <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
@@ -1813,7 +1809,8 @@
     <xsl:template match="supplementary-material[not(@id)]">
         <xsl:copy>
             <xsl:attribute name="id">
-                <xsl:value-of select="generate-id(.)"/>
+                <xsl:variable name="position" select="count(ancestor::article//supplementary-material) - count(following::supplementary-material)"/>
+                <xsl:value-of select="concat('supp',$position)"/>
             </xsl:attribute>
             <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
@@ -1826,7 +1823,8 @@
             <xsl:attribute name="sec-type">data-availability</xsl:attribute>
             <xsl:if test="not(@id)">
                 <xsl:attribute name="id">
-                    <xsl:value-of select="generate-id(.)"/>
+                    <xsl:variable name="position" select="count(ancestor::article//sec) - count(following::sec)"/>
+                    <xsl:value-of select="concat('das',$position)"/>
                 </xsl:attribute>
             </xsl:if>
             <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
@@ -1840,7 +1838,8 @@
             <xsl:attribute name="sec-type">ethics-statement</xsl:attribute>
             <xsl:if test="not(@id)">
                 <xsl:attribute name="id">
-                    <xsl:value-of select="generate-id(.)"/>
+                    <xsl:variable name="position" select="count(ancestor::article//sec) - count(following::sec)"/>
+                    <xsl:value-of select="concat('ethics',$position)"/>
                 </xsl:attribute>
             </xsl:if>
             <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
