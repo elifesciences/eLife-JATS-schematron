@@ -173,15 +173,10 @@
     <xsl:template xml:id="ack-title" match="ack/title">
         <xsl:copy>
             <xsl:choose>
-                <!-- UK spelling -->
-                <xsl:when test="matches(lower-case(.),'^a(c?k|k?c)[nl]?ol?w?e?le?(d?g|g?d)ements?[\.:\s]?$')">
+                <!-- use UK spelling -->
+                <xsl:when test="matches(lower-case(.),'^a(c?k|k?c)[nl]?ol?w?e?le?(d?g|g?d)e?ments?[\.:\s]?$')">
                     <xsl:apply-templates select="@*"/>
                     <xsl:text>Acknowledgements</xsl:text>
-                </xsl:when>
-                <!-- US spelling -->
-                <xsl:when test="matches(lower-case(.),'^a(c?k|k?c)[nl]?ol?w?e?le?(d?g|g?d)ments?[\.:\s]?$')">
-                    <xsl:apply-templates select="@*"/>
-                    <xsl:text>Acknowledgments</xsl:text>
                 </xsl:when>
                 <!-- Something else?? -->
                 <xsl:otherwise>
