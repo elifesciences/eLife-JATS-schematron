@@ -2677,6 +2677,16 @@
         <x:expect-report id="sec-data-availability" role="warning"/>
         <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="sec-data-availability-empty-pass">
+        <x:context href="../tests/rp/sec-checks/sec-data-availability-empty/pass.xml"/>
+        <x:expect-not-report id="sec-data-availability-empty" role="warning"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-data-availability-empty-fail">
+        <x:context href="../tests/rp/sec-checks/sec-data-availability-empty/fail.xml"/>
+        <x:expect-report id="sec-data-availability-empty" role="warning"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="sec-coi-pass">
         <x:context href="../tests/rp/sec-checks/sec-coi/pass.xml"/>
         <x:expect-not-report id="sec-coi" role="warning"/>

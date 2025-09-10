@@ -7289,6 +7289,17 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
+      <xsl:if test="@sec-type='data-availability' and (not(p) or p[normalize-space(.)='' or matches(normalize-space(lower-case(.)),'^(not (available|applicable)|n/a)\.?$')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@sec-type='data-availability' and (not(p) or p[normalize-space(.)='' or matches(normalize-space(lower-case(.)),'^(not (available|applicable)|n/a)\.?$')])">
+            <xsl:attribute name="id">sec-data-availability-empty</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[sec-data-availability-empty] Data availability section isn't populated with any meaningful content. Should it be removed?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
       <xsl:if test="title[1][matches(lower-case(.),'(compete?t?ing|conflicts?[\s-]of)[\s-]interest|disclosure|declaration|disclaimer')] and ancestor::article//article-meta/author-notes/fn[@fn-type='coi-statement']">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="title[1][matches(lower-case(.),'(compete?t?ing|conflicts?[\s-]of)[\s-]interest|disclosure|declaration|disclaimer')] and ancestor::article//article-meta/author-notes/fn[@fn-type='coi-statement']">
             <xsl:attribute name="id">sec-coi</xsl:attribute>
