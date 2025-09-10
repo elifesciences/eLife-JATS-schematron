@@ -1647,7 +1647,14 @@
         </names>
     </xsl:variable>
     
-    <!-- Handles the references pulled from submission system -->
+    <!-- Remove extra whitespace in the <ref>s pulled from submission system -->
+    <xsl:template xml:id="das-ref-whitespace" match="ref[starts-with(@id,'dataref')]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*|*|comment()|processing-instruction()"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- Handles the element-citations pulled from submission system -->
     <xsl:template xml:id="element-citation-fixes" match="element-citation[starts-with(parent::ref[1]/@id,'dataref')]">
         <mixed-citation>
             <xsl:attribute name="publication-type">data</xsl:attribute>
