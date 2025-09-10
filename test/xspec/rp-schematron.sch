@@ -1721,7 +1721,7 @@
   </pattern>
   <pattern id="ref-label-checks-pattern">
     <rule context="ref-list[ref/label]/ref" id="ref-label-checks">
-        <report test="not(label) and (preceding-sibling::ref[label] or following-sibling::ref[label])" role="warning" id="ref-label-2">ref with id <value-of select="@id"/> doesn't have a label, but other refs within the same ref-list do. Has there been a processing error?</report>
+        <report test="not(label) and not(contains(@id,'dataref')) and (preceding-sibling::ref[label] or following-sibling::ref[label])" role="warning" id="ref-label-2">ref with id <value-of select="@id"/> doesn't have a label, but other refs within the same ref-list do. Has there been a processing error?</report>
      </rule>
   </pattern>
 

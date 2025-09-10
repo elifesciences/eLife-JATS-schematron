@@ -5001,8 +5001,8 @@
    <xsl:template match="ref-list[ref/label]/ref" priority="1000" mode="M64">
 
 		<!--REPORT warning-->
-      <xsl:if test="not(label) and (preceding-sibling::ref[label] or following-sibling::ref[label])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(label) and (preceding-sibling::ref[label] or following-sibling::ref[label])">
+      <xsl:if test="not(label) and not(contains(@id,'dataref')) and (preceding-sibling::ref[label] or following-sibling::ref[label])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(label) and not(contains(@id,'dataref')) and (preceding-sibling::ref[label] or following-sibling::ref[label])">
             <xsl:attribute name="id">ref-label-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
