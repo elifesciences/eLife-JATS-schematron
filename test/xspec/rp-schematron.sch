@@ -2252,8 +2252,9 @@
         <report test="@sec-type='supplementary-material' and title and title!='Additional files' and parent::back" role="error" id="sec-supplementary-material-6">&lt;sec sec-type='supplementary-material'&gt; has a title element, but it is not 'Additional files'.</report>
 
         <assert test="*[not(name()=('label','title','sec-meta'))]" role="error" id="sec-empty">sec element is not populated with any content. Either there's a mistake or the section should be removed.</assert>
-        
         <report test="@sec-type='data-availability' and (preceding::sec[@sec-type='data-availability'] or ancestor::sec[@sec-type='data-availability'])" role="warning" id="sec-data-availability">sec has the sec-type 'data-availability', but there is one or more other secs with this same sec-type. Are they duplicates?</report>
+        
+        <report test="@sec-type='data-availability' and (not(p) or p[normalize-space(.)='' or matches(normalize-space(lower-case(.)),'^(not (available|applicable)|n/a)\.?$')])" role="warning" id="sec-data-availability-empty">Data availability section isn't populated with any meaningful content. Should it be removed?</report>
         
         <report test="title[1][matches(lower-case(.),'(compete?t?ing|conflicts?[\s-]of)[\s-]interest|disclosure|declaration|disclaimer')] and ancestor::article//article-meta/author-notes/fn[@fn-type='coi-statement']" role="warning" id="sec-coi">sec has a title suggesting it's a competing interest statement, but there is also a competing interest statement in author-notes. Are they duplicates? COI statements should be captured within author-notes, so this section should likely be deleted.</report>
         
