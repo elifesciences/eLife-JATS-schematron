@@ -872,11 +872,11 @@
                 </xsl:copy>
             </xsl:when>
             <!-- retain only the notes types and fn-groups we want here -->
-            <xsl:when test="fn-group or notes[not(@notes-type) or @notes-type='disclosures']">
+            <xsl:when test="fn-group[@content-type='summary-of-updates'] or notes[@notes-type='disclosures']">
                 <xsl:copy>
                     <xsl:apply-templates select="@*"/>
                     <xsl:text>&#xa;</xsl:text>
-                    <xsl:apply-templates select="./notes[not(@notes-type) or @notes-type='disclosures']|./notes[not(@notes-type) or @notes-type='disclosures']/following-sibling::text()[1]|fn-group|fn-group/following-sibling::text()[1]"/>
+                    <xsl:apply-templates select="./notes[@notes-type='disclosures']|./notes[@notes-type='disclosures']/following-sibling::text()[1]|fn-group[@content-type='summary-of-updates']|fn-group[@content-type='summary-of-updates']/following-sibling::text()[1]"/>
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise/>
