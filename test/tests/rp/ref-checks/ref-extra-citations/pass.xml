@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="ref-extra-citations.sch"?>
+<!--Context: ref
+Test: report    (count(mixed-citation) + count(element-citation)) gt 1
+Message:  cannot contain more that one citation element (mixed-citation or element-citation). This one (with id=) has . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref id="ref1">
+            <mixed-citation/>
+        </ref>
+        <ref id="ref2">
+            <element-citation/>
+        </ref>
+    </article>
+</root>

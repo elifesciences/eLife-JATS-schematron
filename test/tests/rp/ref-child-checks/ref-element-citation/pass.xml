@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="ref-element-citation.sch"?>
+<!--Context: ref/*
+Test: report    name()='element-citation'
+Message: mixed-citation is typically used for references in Reviewed preprints instead of . Please check this refeerence displays as corrceted. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref id="ref1">
+            <label/>
+            <mixed-citation/>
+        </ref>
+    </article>
+</root>

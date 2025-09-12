@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="ref-no-citations.sch"?>
+<!--Context: ref
+Test: assert    mixed-citation or element-citation
+Message:  must contain a child mixed-citation or element-citation. This one (with id=) does not. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref id="ref1">
+            <mixed-citation/>
+        </ref>
+        <ref id="ref2">
+            <element-citation/>
+        </ref>
+    </article>
+</root>

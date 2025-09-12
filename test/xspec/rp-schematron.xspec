@@ -1721,6 +1721,48 @@
         <x:expect-assert id="ref-id" role="error"/>
         <x:expect-not-assert id="ref-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ref-no-citations-pass">
+        <x:context href="../tests/rp/ref-checks/ref-no-citations/pass.xml"/>
+        <x:expect-not-assert id="ref-no-citations" role="error"/>
+        <x:expect-not-assert id="ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-no-citations-fail">
+        <x:context href="../tests/rp/ref-checks/ref-no-citations/fail.xml"/>
+        <x:expect-assert id="ref-no-citations" role="error"/>
+        <x:expect-not-assert id="ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-extra-citations-pass">
+        <x:context href="../tests/rp/ref-checks/ref-extra-citations/pass.xml"/>
+        <x:expect-not-report id="ref-extra-citations" role="error"/>
+        <x:expect-not-assert id="ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-extra-citations-fail">
+        <x:context href="../tests/rp/ref-checks/ref-extra-citations/fail.xml"/>
+        <x:expect-report id="ref-extra-citations" role="error"/>
+        <x:expect-not-assert id="ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="ref-child-checks">
+      <x:scenario label="ref-child-pass">
+        <x:context href="../tests/rp/ref-child-checks/ref-child/pass.xml"/>
+        <x:expect-not-assert id="ref-child" role="error"/>
+        <x:expect-not-assert id="ref-child-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-child-fail">
+        <x:context href="../tests/rp/ref-child-checks/ref-child/fail.xml"/>
+        <x:expect-assert id="ref-child" role="error"/>
+        <x:expect-not-assert id="ref-child-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-element-citation-pass">
+        <x:context href="../tests/rp/ref-child-checks/ref-element-citation/pass.xml"/>
+        <x:expect-not-report id="ref-element-citation" role="warning"/>
+        <x:expect-not-assert id="ref-child-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-element-citation-fail">
+        <x:context href="../tests/rp/ref-child-checks/ref-element-citation/fail.xml"/>
+        <x:expect-report id="ref-element-citation" role="warning"/>
+        <x:expect-not-assert id="ref-child-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-article-title-checks">
       <x:scenario label="ref-article-title-1-pass">

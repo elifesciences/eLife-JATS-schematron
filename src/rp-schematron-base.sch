@@ -2195,7 +2195,27 @@
         <assert test="normalize-space(@id)!=''" 
         role="error" 
         id="ref-id"><name/> must have an id attribute with a non-empty value.</assert>
+        
+        <assert test="mixed-citation or element-citation" 
+        role="error" 
+        id="ref-no-citations"><name/> must contain a child mixed-citation or element-citation. This one (with id=<value-of select="ancestor::ref/@id"/>) does not.</assert>
+        
+        <report test="(count(mixed-citation) + count(element-citation)) gt 1" 
+        role="error" 
+        id="ref-extra-citations"><name/> cannot contain more that one citation element (mixed-citation or element-citation). This one (with id=<value-of select="ancestor::ref/@id"/>) has <value-of select="count(mixed-citation) + count(element-citation)"/>.</report>
      </rule>
+      
+      <rule context="ref/*" id="ref-child-checks">
+        <let name="allowed-children" value="('label','mixed-citation','element-citation')"/>
+        
+        <assert test="name()=$allowed-children" 
+        role="error" 
+        id="ref-child"><name/> is not supported in ref. Only the following elements are permittted: <value-of select="string-join($allowed-children,'; ')"/>.</assert>
+        
+        <report test="name()='element-citation'" 
+        role="warning" 
+        id="ref-element-citation">mixed-citation is typically used for references in Reviewed preprints instead of <name/>. Please check this refeerence displays as corrceted.</report>
+      </rule>
     </pattern>
   
   <pattern id="ref-article-title">
