@@ -1087,6 +1087,27 @@
   <pattern id="ref-checks-pattern">
     <rule context="ref" id="ref-checks">
       <assert test="normalize-space(@id)!=''" role="error" id="ref-id">[ref-id] <name/> must have an id attribute with a non-empty value.</assert>
+      <sqf:fix id="replace-to-distinct-refs">
+          <sqf:description>
+            <sqf:title>Capture each mixed-citation in its own ref</sqf:title>
+          </sqf:description>
+          <sqf:replace match=".">
+            <xsl:variable name="ref-id" select="./@id"/>
+            <xsl:copy>
+              <xsl:apply-templates select="@*|label|*[name()=('mixed-citation','element-citation')][1]" mode="customCopy"/>
+            </xsl:copy>
+            <xsl:for-each select="./*[name()=('mixed-citation','element-citation')][position() gt 1]">
+              <xsl:text>
+</xsl:text> 
+              <ref xmlns="">
+                 <xsl:attribute name="id" select="concat($ref-id,'-',position())"/>
+                 <xsl:copy>
+                   <xsl:apply-templates select="@*[name()!='id']|*|text()|processing-instruction()|comment()"/>
+                 </xsl:copy>
+               </ref>
+            </xsl:for-each>
+          </sqf:replace>
+        </sqf:fix>
     </rule>
   </pattern>
   <pattern id="root-pattern">
