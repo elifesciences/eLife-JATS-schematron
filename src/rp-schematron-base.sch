@@ -2202,7 +2202,36 @@
         
         <report test="(count(mixed-citation) + count(element-citation)) gt 1" 
         role="error" 
+        sqf:fix="replace-to-distinct-refs"
         id="ref-extra-citations"><name/> cannot contain more that one citation element (mixed-citation or element-citation). This one (with id=<value-of select="ancestor::ref/@id"/>) has <value-of select="count(mixed-citation) + count(element-citation)"/>.</report>
+        
+        <sqf:fix id="replace-to-distinct-refs">
+          <sqf:description>
+            <sqf:title>Capture each mixed-citation in its own ref</sqf:title>
+          </sqf:description>
+          <sqf:replace match=".">
+            <xsl:variable name="ref-id" select="./@id"/>
+            <xsl:variable name="ref-label" select="normalize-space(./label[1])"/>
+            <xsl:copy>
+              <xsl:apply-templates select="@*|label|*[name()=('mixed-citation','element-citation')][1]" mode="customCopy"/>
+            </xsl:copy>
+            <xsl:for-each select="./*[name()=('mixed-citation','element-citation')][position() gt 1]">
+              <xsl:variable name="letter" select="codepoints-to-string(xs:integer(96 + number(position())))"/>
+              <xsl:text>&#xa;</xsl:text> 
+              <ref xmlns="">
+                <xsl:attribute name="id" select="concat($ref-id,$letter)"/>
+                <xsl:if test="matches($ref-label,'^\d+\.?$')">
+                  <label xmlns="">
+                    <xsl:value-of select="concat(replace($ref-label,'\D',''),$letter,'.')"/>
+                  </label>
+                </xsl:if>
+                 <xsl:copy copy-namespaces="no">
+                   <xsl:apply-templates select="@*[name()!='id']|*|text()|processing-instruction()|comment()" mode="customCopy"/>
+                 </xsl:copy>
+               </ref>
+            </xsl:for-each>
+          </sqf:replace>
+        </sqf:fix>
      </rule>
       
       <rule context="ref/*" id="ref-child-checks">
