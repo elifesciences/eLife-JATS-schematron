@@ -31643,6 +31643,7 @@
       <xsl:if test="$organisms//*:organism">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$organisms//*:organism">
             <xsl:attribute name="id">ref-article-title-organism-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbbhc-ref-article-title-organism-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -31670,6 +31671,7 @@
       <xsl:if test="$organisms//*:organism">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$organisms//*:organism">
             <xsl:attribute name="id">article-title-organism-check</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hrmnk-article-title-organism-check</xsl:attribute>
             <xsl:attribute name="role">info</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -31695,6 +31697,7 @@
       <xsl:if test="matches(lower-case(.),concat($regex-prefix,'\p{Zs}*oocytes'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),concat($regex-prefix,'\p{Zs}*oocytes'))">
             <xsl:attribute name="id">italic-genus-oocytes</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#hxrsi-italic-genus-oocytes</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>

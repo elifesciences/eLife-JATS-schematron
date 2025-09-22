@@ -10700,7 +10700,8 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ()"/>
       
-      <report test="$organisms//*:organism" 
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbbhc-ref-article-title-organism-check" 
+        test="$organisms//*:organism" 
         role="info" 
         id="ref-article-title-organism-check">ref <value-of select="ancestor::ref/@id"/> has a <name/> element containing an organism - <value-of select="string-join($organisms//*:organism,'; ')"/> - but there is no italic element with that correct capitalisation or spacing.</report>
     
@@ -10711,7 +10712,8 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ()"/>
       
-      <report test="$organisms//*:organism" 
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hrmnk-article-title-organism-check" 
+        test="$organisms//*:organism" 
         role="info" 
         id="article-title-organism-check"><name/> contains an organism - <value-of select="string-join($organisms//*:organism,'; ')"/> - but there is no italic element with that correct capitalisation or spacing.</report>
       
@@ -10720,7 +10722,8 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="italic[matches(lower-case(.),$genus-regex)]" id="italic-genus">
       <let name="regex-prefix" value="concat('(',$genus-regex,')')"/>
       
-      <report test="matches(lower-case(.),concat($regex-prefix,'\p{Zs}*oocytes'))" 
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hxrsi-italic-genus-oocytes"
+        test="matches(lower-case(.),concat($regex-prefix,'\p{Zs}*oocytes'))" 
         role="error" 
         id="italic-genus-oocytes"><name/> contains a genus name followed by 'oocytes'. 'oocytes' should not be in italics.</report>
       
