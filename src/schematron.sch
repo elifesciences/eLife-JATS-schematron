@@ -1124,14 +1124,14 @@
         role="info" 
         id="retraction-info">Ensure that the PDF for the article which is being retracted (<value-of select="string-join(descendant::article-meta/related-article[@related-article-type='retracted-article']/@xlink:href,'; ')"/>) is also updated with a header saying it's been retracted.</report>
       
-      <report test="@article-type!='research-article' and sub-article"
+      <report test="(not(@article-type='research-article') or (@article-type='review-article' and e:is-prc(.))) and sub-article"
         role="error"
         id="non-r-article-sub-article"><value-of select="@article-type"/> type articles cannot have sub-articles (peer review materials).</report>
  	</rule>
 	
 	<rule context="article[@article-type='research-article']" id="research-article">
 	  <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/> 
-	  <let name="is-prc" value="e:is-prc(.)"></let>
+	  <let name="is-prc" value="e:is-prc(.)"/>
 	  
 	  <report test="if ($is-prc) then ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='referee-report'])
 	    else ($disp-channel != 'Scientific Correspondence') and not(sub-article[@article-type='decision-letter'])" 

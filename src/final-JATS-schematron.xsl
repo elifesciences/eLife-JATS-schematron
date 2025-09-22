@@ -6016,8 +6016,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="@article-type!='research-article' and sub-article">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@article-type!='research-article' and sub-article">
+      <xsl:if test="(not(@article-type='research-article') or (@article-type='review-article' and e:is-prc(.))) and sub-article">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(not(@article-type='research-article') or (@article-type='review-article' and e:is-prc(.))) and sub-article">
             <xsl:attribute name="id">non-r-article-sub-article</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
