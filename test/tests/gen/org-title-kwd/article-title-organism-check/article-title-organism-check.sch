@@ -920,7 +920,7 @@
   <pattern id="org-pattern">
     <rule context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd" id="org-title-kwd">
       <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ()"/>
-      <report test="$organisms//*:organism" role="info" id="article-title-organism-check">
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hrmnk-article-title-organism-check" test="$organisms//*:organism" role="info" id="article-title-organism-check">
         <name/> contains an organism - <value-of select="string-join($organisms//*:organism,'; ')"/> - but there is no italic element with that correct capitalisation or spacing.</report>
     </rule>
   </pattern>

@@ -920,7 +920,7 @@
   <pattern id="org-pattern">
     <rule context="italic[matches(lower-case(.),$genus-regex)]" id="italic-genus">
       <let name="regex-prefix" value="concat('(',$genus-regex,')')"/>
-      <report test="matches(lower-case(.),concat($regex-prefix,'\p{Zs}*oocytes'))" role="error" id="italic-genus-oocytes">
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hxrsi-italic-genus-oocytes" test="matches(lower-case(.),concat($regex-prefix,'\p{Zs}*oocytes'))" role="error" id="italic-genus-oocytes">
         <name/> contains a genus name followed by 'oocytes'. 'oocytes' should not be in italics.</report>
     </rule>
   </pattern>

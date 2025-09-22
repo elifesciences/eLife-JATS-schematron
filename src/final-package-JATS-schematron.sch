@@ -5448,18 +5448,18 @@
       
       <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ()"/>
       
-      <report test="$organisms//*:organism" role="info" id="ref-article-title-organism-check">ref <value-of select="ancestor::ref/@id"/> has a <name/> element containing an organism - <value-of select="string-join($organisms//*:organism,'; ')"/> - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbbhc-ref-article-title-organism-check" test="$organisms//*:organism" role="info" id="ref-article-title-organism-check">ref <value-of select="ancestor::ref/@id"/> has a <name/> element containing an organism - <value-of select="string-join($organisms//*:organism,'; ')"/> - but there is no italic element with that correct capitalisation or spacing.</report>
     
     </rule></pattern><pattern id="org-title-kwd-pattern"><rule context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd" id="org-title-kwd">
       
       <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ()"/>
       
-      <report test="$organisms//*:organism" role="info" id="article-title-organism-check"><name/> contains an organism - <value-of select="string-join($organisms//*:organism,'; ')"/> - but there is no italic element with that correct capitalisation or spacing.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hrmnk-article-title-organism-check" test="$organisms//*:organism" role="info" id="article-title-organism-check"><name/> contains an organism - <value-of select="string-join($organisms//*:organism,'; ')"/> - but there is no italic element with that correct capitalisation or spacing.</report>
       
     </rule></pattern><pattern id="italic-genus-pattern"><rule context="italic[matches(lower-case(.),$genus-regex)]" id="italic-genus">
       <let name="regex-prefix" value="concat('(',$genus-regex,')')"/>
       
-      <report test="matches(lower-case(.),concat($regex-prefix,'\p{Zs}*oocytes'))" role="error" id="italic-genus-oocytes"><name/> contains a genus name followed by 'oocytes'. 'oocytes' should not be in italics.</report>
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hxrsi-italic-genus-oocytes" test="matches(lower-case(.),concat($regex-prefix,'\p{Zs}*oocytes'))" role="error" id="italic-genus-oocytes"><name/> contains a genus name followed by 'oocytes'. 'oocytes' should not be in italics.</report>
       
     </rule></pattern>
   
