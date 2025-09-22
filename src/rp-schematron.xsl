@@ -11606,35 +11606,51 @@
    <!--PATTERN ed-report-front-stub-pattern-->
    <!--RULE ed-report-front-stub-->
    <xsl:template match="sub-article[@article-type='editor-report']/front-stub" priority="1000" mode="M172">
-
-		<!--ASSERT warning-->
-      <xsl:choose>
-         <xsl:when test="kwd-group[@kwd-group-type='evidence-strength']"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="kwd-group[@kwd-group-type='evidence-strength']">
-               <xsl:attribute name="id">ed-report-str-kwd-presence</xsl:attribute>
-               <xsl:attribute name="role">warning</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[ed-report-str-kwd-presence] eLife Assessment does not have a strength keyword group. Is that correct?</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
-      <!--ASSERT warning-->
-      <xsl:choose>
-         <xsl:when test="kwd-group[@kwd-group-type='claim-importance']"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="kwd-group[@kwd-group-type='claim-importance']">
-               <xsl:attribute name="id">ed-report-sig-kwd-presence</xsl:attribute>
-               <xsl:attribute name="role">warning</xsl:attribute>
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>[ed-report-sig-kwd-presence] eLife Assessment does not have a significance keyword group. Is that correct?</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
+      <xsl:variable name="article-type" select="ancestor::article/@article-type"/>
+      <!--REPORT warning-->
+      <xsl:if test="not($article-type='review-article') and not(kwd-group[@kwd-group-type='evidence-strength'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($article-type='review-article') and not(kwd-group[@kwd-group-type='evidence-strength'])">
+            <xsl:attribute name="id">ed-report-str-kwd-presence</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ed-report-str-kwd-presence] eLife Assessment does not have a strength keyword group. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="$article-type='review-article' and kwd-group[@kwd-group-type='evidence-strength']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$article-type='review-article' and kwd-group[@kwd-group-type='evidence-strength']">
+            <xsl:attribute name="id">ed-report-str-kwd-review-presence</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ed-report-str-kwd-review-presence] eLife Assessment in a Review article cannot have a strength keyword group.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="not($article-type='review-article') and not(kwd-group[@kwd-group-type='claim-importance'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($article-type='review-article') and not(kwd-group[@kwd-group-type='claim-importance'])">
+            <xsl:attribute name="id">ed-report-sig-kwd-presence</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ed-report-sig-kwd-presence] eLife Assessment does not have a significance keyword group. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="$article-type='review-article' and kwd-group[@kwd-group-type='claim-importance']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$article-type='review-article' and kwd-group[@kwd-group-type='claim-importance']">
+            <xsl:attribute name="id">ed-report-sig-kwd-review-presence</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ed-report-sig-kwd-review-presence] eLife Assessment in a Review article cannot have a significance keyword group.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M172"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M172"/>

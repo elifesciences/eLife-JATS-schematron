@@ -2702,10 +2702,16 @@
     </rule></pattern>
 
     <pattern id="ed-report-front-stub-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-report-front-stub">
-      
-      <assert test="kwd-group[@kwd-group-type='evidence-strength']" role="warning" id="ed-report-str-kwd-presence">[ed-report-str-kwd-presence] eLife Assessment does not have a strength keyword group. Is that correct?</assert>
-
-      <assert test="kwd-group[@kwd-group-type='claim-importance']" role="warning" id="ed-report-sig-kwd-presence">[ed-report-sig-kwd-presence] eLife Assessment does not have a significance keyword group. Is that correct?</assert>
+        <let name="article-type" value="ancestor::article/@article-type"/>
+        
+        <report test="not($article-type='review-article') and not(kwd-group[@kwd-group-type='evidence-strength'])" role="warning" id="ed-report-str-kwd-presence">[ed-report-str-kwd-presence] eLife Assessment does not have a strength keyword group. Is that correct?</report>
+        
+        <report test="$article-type='review-article' and kwd-group[@kwd-group-type='evidence-strength']" role="error" id="ed-report-str-kwd-review-presence">[ed-report-str-kwd-review-presence] eLife Assessment in a Review article cannot have a strength keyword group.</report>
+        
+        <report test="not($article-type='review-article') and not(kwd-group[@kwd-group-type='claim-importance'])" role="warning" id="ed-report-sig-kwd-presence">[ed-report-sig-kwd-presence] eLife Assessment does not have a significance keyword group. Is that correct?</report>
+        
+        <report test="$article-type='review-article' and kwd-group[@kwd-group-type='claim-importance']" role="error" id="ed-report-sig-kwd-review-presence">[ed-report-sig-kwd-review-presence] eLife Assessment in a Review article cannot have a significance keyword group.</report>
+        
     </rule></pattern><pattern id="ed-report-kwd-group-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group" id="ed-report-kwd-group">
       
       <assert test="@kwd-group-type=('claim-importance','evidence-strength')" role="error" id="ed-report-kwd-group-1">[ed-report-kwd-group-1] kwd-group in <value-of select="parent::*/title-group/article-title"/> must have the attribute kwd-group-type with the value 'claim-importance' or 'evidence-strength'. This one does not.</assert>

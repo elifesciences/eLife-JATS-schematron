@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="ed-report-str-kwd-review-presence.sch"?>
+<!--Context: sub-article[@article-type='editor-report']/front-stub
+Test: report    $article-type='review-article' and kwd-group[@kwd-group-type='evidence-strength']
+Message: eLife Assessment in a Review article cannot have a strength keyword group. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article article-type="review-article">
+        <sub-article id="sa0" article-type="editor-report">
+        <front-stub/>
+        <body>
+            <p>This work is useful but the evidence incomplete.</p>
+        </body>
+    </sub-article>
+    </article>
+</root>

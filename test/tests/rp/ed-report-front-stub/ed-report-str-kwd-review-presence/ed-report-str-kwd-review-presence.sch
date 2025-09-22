@@ -1087,7 +1087,7 @@
   <pattern id="ed-report-front-stub-pattern">
     <rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-report-front-stub">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report test="not($article-type='review-article') and not(kwd-group[@kwd-group-type='evidence-strength'])" role="warning" id="ed-report-str-kwd-presence">[ed-report-str-kwd-presence] eLife Assessment does not have a strength keyword group. Is that correct?</report>
+      <report test="$article-type='review-article' and kwd-group[@kwd-group-type='evidence-strength']" role="error" id="ed-report-str-kwd-review-presence">[ed-report-str-kwd-review-presence] eLife Assessment in a Review article cannot have a strength keyword group.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
