@@ -1024,7 +1024,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#h3q4a-retraction-info" test="@article-type='retraction'" role="info" id="retraction-info">Ensure that the PDF for the article which is being retracted (<value-of select="string-join(descendant::article-meta/related-article[@related-article-type='retracted-article']/@xlink:href,'; ')"/>) is also updated with a header saying it's been retracted.</report>
       
-      <report test="@article-type!='research-article' and sub-article" role="error" id="non-r-article-sub-article">
+      <report test="(not(@article-type='research-article') or (@article-type='review-article' and e:is-prc(.))) and sub-article" role="error" id="non-r-article-sub-article">
         <value-of select="@article-type"/> type articles cannot have sub-articles (peer review materials).</report>
  	</rule>
   </pattern>

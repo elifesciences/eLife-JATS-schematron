@@ -920,7 +920,7 @@
   <pattern id="article">
     <rule context="article" id="article-tests">
       <let name="line-count" value="e:line-count(.)"/>
-      <report test="@article-type!='research-article' and sub-article" role="error" id="non-r-article-sub-article">
+      <report test="(not(@article-type='research-article') or (@article-type='review-article' and e:is-prc(.))) and sub-article" role="error" id="non-r-article-sub-article">
         <value-of select="@article-type"/> type articles cannot have sub-articles (peer review materials).</report>
     </rule>
   </pattern>
