@@ -3848,11 +3848,11 @@
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-3" test="count(related-object) gt 1" role="error" id="ed-eval-front-test-3">editor report front-stub must contain 1 or 0 related-object elements. This one has <value-of select="count(related-object)"/>.</report>
 
-      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-4" test="e:is-prc(.) and $article-type!='review-article' and not(kwd-group[@kwd-group-type='evidence-strength'])" role="error" id="ed-eval-front-test-4">eLife Assessment front-stub does not contain a strength term keyword group, which must be incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-4" test="e:is-prc(.) and not($article-type='review-article') and not(kwd-group[@kwd-group-type='evidence-strength'])" role="error" id="ed-eval-front-test-4">eLife Assessment front-stub does not contain a strength term keyword group, which must be incorrect.</report>
       
       <report test="e:is-prc(.) and $article-type='review-article' and kwd-group[@kwd-group-type='evidence-strength']" role="error" id="ed-eval-front-test-4b">eLife Assessment front-stub contains a strength term keyword group, but this is a PRC Review article (which don't use the terms), so this must be incorrect.</report>
 
-      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-5" test="e:is-prc(.) and $article-type!='review-article' and not(kwd-group[@kwd-group-type='claim-importance'])" role="warning" id="ed-eval-front-test-5">eLife Assessment front-stub does not contain a significance term keyword group, which is very unusual. Is that correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-5" test="e:is-prc(.) and not($article-type='review-article') and not(kwd-group[@kwd-group-type='claim-importance'])" role="warning" id="ed-eval-front-test-5">eLife Assessment front-stub does not contain a significance term keyword group, which is very unusual. Is that correct?</report>
       
       <report test="e:is-prc(.) and $article-type='review-article' and kwd-group[@kwd-group-type='claim-importance']" role="error" id="ed-eval-front-test-5b">eLife Assessment front-stub contains a significance term keyword group, but this is a PRC Review article (which don't use the terms), so this must be incorrect.</report>
     </rule></pattern><pattern id="ed-eval-front-child-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/*" id="ed-eval-front-child-tests">

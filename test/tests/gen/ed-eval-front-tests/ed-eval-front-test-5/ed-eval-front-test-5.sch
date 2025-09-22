@@ -920,7 +920,7 @@
   <pattern id="dec-letter-auth-response">
     <rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-eval-front-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-5" test="e:is-prc(.) and $article-type!='review-article' and not(kwd-group[@kwd-group-type='claim-importance'])" role="warning" flag="dl-ar" id="ed-eval-front-test-5">eLife Assessment front-stub does not contain a significance term keyword group, which is very unusual. Is that correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-5" test="e:is-prc(.) and not($article-type='review-article') and not(kwd-group[@kwd-group-type='claim-importance'])" role="warning" flag="dl-ar" id="ed-eval-front-test-5">eLife Assessment front-stub does not contain a significance term keyword group, which is very unusual. Is that correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

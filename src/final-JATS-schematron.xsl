@@ -22804,8 +22804,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="e:is-prc(.) and $article-type!='review-article' and not(kwd-group[@kwd-group-type='evidence-strength'])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-prc(.) and $article-type!='review-article' and not(kwd-group[@kwd-group-type='evidence-strength'])">
+      <xsl:if test="e:is-prc(.) and not($article-type='review-article') and not(kwd-group[@kwd-group-type='evidence-strength'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-prc(.) and not($article-type='review-article') and not(kwd-group[@kwd-group-type='evidence-strength'])">
             <xsl:attribute name="id">ed-eval-front-test-4</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-4</xsl:attribute>
@@ -22829,8 +22829,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="e:is-prc(.) and $article-type!='review-article' and not(kwd-group[@kwd-group-type='claim-importance'])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-prc(.) and $article-type!='review-article' and not(kwd-group[@kwd-group-type='claim-importance'])">
+      <xsl:if test="e:is-prc(.) and not($article-type='review-article') and not(kwd-group[@kwd-group-type='claim-importance'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-prc(.) and not($article-type='review-article') and not(kwd-group[@kwd-group-type='claim-importance'])">
             <xsl:attribute name="id">ed-eval-front-test-5</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-5</xsl:attribute>
