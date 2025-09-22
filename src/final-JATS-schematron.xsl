@@ -22753,8 +22753,8 @@
    <!--PATTERN ed-eval-front-tests-pattern-->
    <!--RULE ed-eval-front-tests-->
    <xsl:template match="sub-article[@article-type='editor-report']/front-stub" priority="1000" mode="M373">
-
-		<!--ASSERT error-->
+      <xsl:variable name="article-type" select="ancestor::article/@article-type"/>
+      <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="count(article-id[@pub-id-type='doi']) = 1"/>
          <xsl:otherwise>
@@ -22804,8 +22804,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="e:is-prc(.) and not(kwd-group[@kwd-group-type='evidence-strength'])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-prc(.) and not(kwd-group[@kwd-group-type='evidence-strength'])">
+      <xsl:if test="e:is-prc(.) and not($article-type='review-article') and not(kwd-group[@kwd-group-type='evidence-strength'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-prc(.) and not($article-type='review-article') and not(kwd-group[@kwd-group-type='evidence-strength'])">
             <xsl:attribute name="id">ed-eval-front-test-4</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-4</xsl:attribute>
@@ -22816,9 +22816,21 @@
             <svrl:text>[ed-eval-front-test-4] eLife Assessment front-stub does not contain a strength term keyword group, which must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="e:is-prc(.) and $article-type='review-article' and kwd-group[@kwd-group-type='evidence-strength']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-prc(.) and $article-type='review-article' and kwd-group[@kwd-group-type='evidence-strength']">
+            <xsl:attribute name="id">ed-eval-front-test-4b</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ed-eval-front-test-4b] eLife Assessment front-stub contains a strength term keyword group, but this is a PRC Review article (which don't use the terms), so this must be incorrect.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="e:is-prc(.) and not(kwd-group[@kwd-group-type='claim-importance'])">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-prc(.) and not(kwd-group[@kwd-group-type='claim-importance'])">
+      <xsl:if test="e:is-prc(.) and not($article-type='review-article') and not(kwd-group[@kwd-group-type='claim-importance'])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-prc(.) and not($article-type='review-article') and not(kwd-group[@kwd-group-type='claim-importance'])">
             <xsl:attribute name="id">ed-eval-front-test-5</xsl:attribute>
             <xsl:attribute name="flag">dl-ar</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-5</xsl:attribute>
@@ -22827,6 +22839,18 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[ed-eval-front-test-5] eLife Assessment front-stub does not contain a significance term keyword group, which is very unusual. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="e:is-prc(.) and $article-type='review-article' and kwd-group[@kwd-group-type='claim-importance']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-prc(.) and $article-type='review-article' and kwd-group[@kwd-group-type='claim-importance']">
+            <xsl:attribute name="id">ed-eval-front-test-5b</xsl:attribute>
+            <xsl:attribute name="flag">dl-ar</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ed-eval-front-test-5b] eLife Assessment front-stub contains a significance term keyword group, but this is a PRC Review article (which don't use the terms), so this must be incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M373"/>

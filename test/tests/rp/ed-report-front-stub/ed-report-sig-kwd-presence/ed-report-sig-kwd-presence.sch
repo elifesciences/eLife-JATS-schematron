@@ -1086,7 +1086,8 @@
   </sqf:fixes>
   <pattern id="ed-report-front-stub-pattern">
     <rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-report-front-stub">
-      <assert test="kwd-group[@kwd-group-type='claim-importance']" role="warning" id="ed-report-sig-kwd-presence">[ed-report-sig-kwd-presence] eLife Assessment does not have a significance keyword group. Is that correct?</assert>
+      <let name="article-type" value="ancestor::article/@article-type"/>
+      <report test="not($article-type='review-article') and not(kwd-group[@kwd-group-type='claim-importance'])" role="warning" id="ed-report-sig-kwd-presence">[ed-report-sig-kwd-presence] eLife Assessment does not have a significance keyword group. Is that correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

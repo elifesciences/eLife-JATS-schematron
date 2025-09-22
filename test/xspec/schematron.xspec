@@ -9987,6 +9987,16 @@
         <x:expect-report id="ed-eval-front-test-4" role="error"/>
         <x:expect-not-assert id="ed-eval-front-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ed-eval-front-test-4b-pass">
+        <x:context href="../tests/gen/ed-eval-front-tests/ed-eval-front-test-4b/pass.xml"/>
+        <x:expect-not-report id="ed-eval-front-test-4b" role="error"/>
+        <x:expect-not-assert id="ed-eval-front-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-eval-front-test-4b-fail">
+        <x:context href="../tests/gen/ed-eval-front-tests/ed-eval-front-test-4b/fail.xml"/>
+        <x:expect-report id="ed-eval-front-test-4b" role="error"/>
+        <x:expect-not-assert id="ed-eval-front-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="ed-eval-front-test-5-pass">
         <x:context href="../tests/gen/ed-eval-front-tests/ed-eval-front-test-5/pass.xml"/>
         <x:expect-not-report id="ed-eval-front-test-5" role="warning"/>
@@ -9995,6 +10005,16 @@
       <x:scenario label="ed-eval-front-test-5-fail">
         <x:context href="../tests/gen/ed-eval-front-tests/ed-eval-front-test-5/fail.xml"/>
         <x:expect-report id="ed-eval-front-test-5" role="warning"/>
+        <x:expect-not-assert id="ed-eval-front-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-eval-front-test-5b-pass">
+        <x:context href="../tests/gen/ed-eval-front-tests/ed-eval-front-test-5b/pass.xml"/>
+        <x:expect-not-report id="ed-eval-front-test-5b" role="error"/>
+        <x:expect-not-assert id="ed-eval-front-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-eval-front-test-5b-fail">
+        <x:context href="../tests/gen/ed-eval-front-tests/ed-eval-front-test-5b/fail.xml"/>
+        <x:expect-report id="ed-eval-front-test-5b" role="error"/>
         <x:expect-not-assert id="ed-eval-front-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

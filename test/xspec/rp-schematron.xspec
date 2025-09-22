@@ -5227,22 +5227,42 @@
     <x:scenario label="ed-report-front-stub">
       <x:scenario label="ed-report-str-kwd-presence-pass">
         <x:context href="../tests/rp/ed-report-front-stub/ed-report-str-kwd-presence/pass.xml"/>
-        <x:expect-not-assert id="ed-report-str-kwd-presence" role="warning"/>
+        <x:expect-not-report id="ed-report-str-kwd-presence" role="warning"/>
         <x:expect-not-assert id="ed-report-front-stub-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ed-report-str-kwd-presence-fail">
         <x:context href="../tests/rp/ed-report-front-stub/ed-report-str-kwd-presence/fail.xml"/>
-        <x:expect-assert id="ed-report-str-kwd-presence" role="warning"/>
+        <x:expect-report id="ed-report-str-kwd-presence" role="warning"/>
+        <x:expect-not-assert id="ed-report-front-stub-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-str-kwd-review-presence-pass">
+        <x:context href="../tests/rp/ed-report-front-stub/ed-report-str-kwd-review-presence/pass.xml"/>
+        <x:expect-not-report id="ed-report-str-kwd-review-presence" role="error"/>
+        <x:expect-not-assert id="ed-report-front-stub-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-str-kwd-review-presence-fail">
+        <x:context href="../tests/rp/ed-report-front-stub/ed-report-str-kwd-review-presence/fail.xml"/>
+        <x:expect-report id="ed-report-str-kwd-review-presence" role="error"/>
         <x:expect-not-assert id="ed-report-front-stub-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ed-report-sig-kwd-presence-pass">
         <x:context href="../tests/rp/ed-report-front-stub/ed-report-sig-kwd-presence/pass.xml"/>
-        <x:expect-not-assert id="ed-report-sig-kwd-presence" role="warning"/>
+        <x:expect-not-report id="ed-report-sig-kwd-presence" role="warning"/>
         <x:expect-not-assert id="ed-report-front-stub-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="ed-report-sig-kwd-presence-fail">
         <x:context href="../tests/rp/ed-report-front-stub/ed-report-sig-kwd-presence/fail.xml"/>
-        <x:expect-assert id="ed-report-sig-kwd-presence" role="warning"/>
+        <x:expect-report id="ed-report-sig-kwd-presence" role="warning"/>
+        <x:expect-not-assert id="ed-report-front-stub-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-sig-kwd-review-presence-pass">
+        <x:context href="../tests/rp/ed-report-front-stub/ed-report-sig-kwd-review-presence/pass.xml"/>
+        <x:expect-not-report id="ed-report-sig-kwd-review-presence" role="error"/>
+        <x:expect-not-assert id="ed-report-front-stub-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-sig-kwd-review-presence-fail">
+        <x:context href="../tests/rp/ed-report-front-stub/ed-report-sig-kwd-review-presence/fail.xml"/>
+        <x:expect-report id="ed-report-sig-kwd-review-presence" role="error"/>
         <x:expect-not-assert id="ed-report-front-stub-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

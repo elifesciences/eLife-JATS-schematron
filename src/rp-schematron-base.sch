@@ -4187,14 +4187,24 @@
     <pattern id="assessment-checks">
 
       <rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-report-front-stub">
-      
-      <assert test="kwd-group[@kwd-group-type='evidence-strength']" 
-        role="warning" 
-        id="ed-report-str-kwd-presence">eLife Assessment does not have a strength keyword group. Is that correct?</assert>
-
-      <assert test="kwd-group[@kwd-group-type='claim-importance']" 
-        role="warning" 
-        id="ed-report-sig-kwd-presence">eLife Assessment does not have a significance keyword group. Is that correct?</assert>
+        <let name="article-type" value="ancestor::article/@article-type"/>
+        
+        <report test="not($article-type='review-article') and not(kwd-group[@kwd-group-type='evidence-strength'])" 
+          role="warning" 
+          id="ed-report-str-kwd-presence">eLife Assessment does not have a strength keyword group. Is that correct?</report>
+        
+        <report test="$article-type='review-article' and kwd-group[@kwd-group-type='evidence-strength']" 
+          role="error" 
+          id="ed-report-str-kwd-review-presence">eLife Assessment in a Review article cannot have a strength keyword group.</report>
+        
+        <report test="not($article-type='review-article') and not(kwd-group[@kwd-group-type='claim-importance'])" 
+          role="warning" 
+          id="ed-report-sig-kwd-presence">eLife Assessment does not have a significance keyword group. Is that correct?</report>
+        
+        <report test="$article-type='review-article' and kwd-group[@kwd-group-type='claim-importance']" 
+          role="error" 
+          id="ed-report-sig-kwd-review-presence">eLife Assessment in a Review article cannot have a significance keyword group.</report>
+        
     </rule>
 
       <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group" id="ed-report-kwd-group">
