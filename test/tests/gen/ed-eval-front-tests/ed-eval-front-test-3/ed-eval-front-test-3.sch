@@ -919,6 +919,7 @@
   </xsl:function>
   <pattern id="dec-letter-auth-response">
     <rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-eval-front-tests">
+      <let name="article-type" value="ancestor::article/@article-type"/>
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-3" test="count(related-object) gt 1" role="error" flag="dl-ar" id="ed-eval-front-test-3">editor report front-stub must contain 1 or 0 related-object elements. This one has <value-of select="count(related-object)"/>.</report>
     </rule>
   </pattern>

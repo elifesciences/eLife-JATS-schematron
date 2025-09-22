@@ -1,0 +1,21 @@
+<?oxygen SCHSchema="ed-eval-front-test-4b.sch"?>
+<!--Context: sub-article[@article-type='editor-report']/front-stub
+Test: report    e:is-prc(.) and $article-type='review-article' and kwd-group[@kwd-group-type='evidence-strength']
+Message: eLife Assessment front-stub contains a strength term keyword group, but this is a PRC Review article (which don't use the terms), so this must be incorrect. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article article-type="review-article">
+        <front>
+            <article-meta>
+                <custom-meta-group>
+                    <custom-meta>
+                        <meta-name>publishing-route</meta-name>
+                        <meta-value>prc</meta-value>
+                    </custom-meta>
+                </custom-meta-group>
+            </article-meta>
+        </front>
+        <sub-article article-type="editor-report">
+            <front-stub/>
+        </sub-article>
+    </article>
+</root>

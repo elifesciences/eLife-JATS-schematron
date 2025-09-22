@@ -1101,6 +1101,7 @@
       <!-- Need to improve messaging -->
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-7" test="matches(.,$regex)" role="warning" flag="dl-ar" id="dec-letter-reply-test-7"><value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be inflammatory or offensive language. eLife: please check it to see if it is language that should be removed. This paragraph was flagged because of the phrase(s) <value-of select="string-join(tokenize(.,'\p{Zs}')[matches(.,concat('^',substring-before(substring-after($regex,'\p{Zs}'),'[^\p{L}]')))],'; ')"/> in <value-of select="."/>.</report>
     </rule></pattern><pattern id="ed-eval-front-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-eval-front-tests">
+      <let name="article-type" value="ancestor::article/@article-type"/>
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="ed-eval-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
       
@@ -1108,9 +1109,13 @@
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-3" test="count(related-object) gt 1" role="error" flag="dl-ar" id="ed-eval-front-test-3">editor report front-stub must contain 1 or 0 related-object elements. This one has <value-of select="count(related-object)"/>.</report>
 
-      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-4" test="e:is-prc(.) and not(kwd-group[@kwd-group-type='evidence-strength'])" role="error" flag="dl-ar" id="ed-eval-front-test-4">eLife Assessment front-stub does not contain a strength term keyword group, which must be incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-4" test="e:is-prc(.) and $article-type!='review-article' and not(kwd-group[@kwd-group-type='evidence-strength'])" role="error" flag="dl-ar" id="ed-eval-front-test-4">eLife Assessment front-stub does not contain a strength term keyword group, which must be incorrect.</report>
+      
+      <report test="e:is-prc(.) and $article-type='review-article' and kwd-group[@kwd-group-type='evidence-strength']" role="error" flag="dl-ar" id="ed-eval-front-test-4b">eLife Assessment front-stub contains a strength term keyword group, but this is a PRC Review article (which don't use the terms), so this must be incorrect.</report>
 
-      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-5" test="e:is-prc(.) and not(kwd-group[@kwd-group-type='claim-importance'])" role="warning" flag="dl-ar" id="ed-eval-front-test-5">eLife Assessment front-stub does not contain a significance term keyword group, which is very unusual. Is that correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-5" test="e:is-prc(.) and $article-type!='review-article' and not(kwd-group[@kwd-group-type='claim-importance'])" role="warning" flag="dl-ar" id="ed-eval-front-test-5">eLife Assessment front-stub does not contain a significance term keyword group, which is very unusual. Is that correct?</report>
+      
+      <report test="e:is-prc(.) and $article-type='review-article' and kwd-group[@kwd-group-type='claim-importance']" role="error" flag="dl-ar" id="ed-eval-front-test-5b">eLife Assessment front-stub contains a significance term keyword group, but this is a PRC Review article (which don't use the terms), so this must be incorrect.</report>
     </rule></pattern><pattern id="ed-eval-front-child-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/*" id="ed-eval-front-child-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-child-test-1" test="name()=('article-id','title-group','contrib-group','kwd-group','related-object')" role="error" flag="dl-ar" id="ed-eval-front-child-test-1"><name/> element is not allowed in the front-stub for an editor report. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</assert>

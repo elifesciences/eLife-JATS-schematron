@@ -1093,16 +1093,23 @@
           </sqf:description>
           <sqf:replace match=".">
             <xsl:variable name="ref-id" select="./@id"/>
+            <xsl:variable name="ref-label" select="normalize-space(./label[1])"/>
             <xsl:copy>
               <xsl:apply-templates select="@*|label|*[name()=('mixed-citation','element-citation')][1]" mode="customCopy"/>
             </xsl:copy>
             <xsl:for-each select="./*[name()=('mixed-citation','element-citation')][position() gt 1]">
+              <xsl:variable name="letter" select="codepoints-to-string(xs:integer(96 + number(position())))"/>
               <xsl:text>
 </xsl:text> 
               <ref xmlns="">
-                 <xsl:attribute name="id" select="concat($ref-id,'-',position())"/>
-                 <xsl:copy>
-                   <xsl:apply-templates select="@*[name()!='id']|*|text()|processing-instruction()|comment()"/>
+                <xsl:attribute name="id" select="concat($ref-id,$letter)"/>
+                <xsl:if test="matches($ref-label,'^\d+\.?$')">
+                  <label>
+                    <xsl:value-of select="concat(replace($ref-label,'\D',''),$letter,'.')"/>
+                  </label>
+                </xsl:if>
+                 <xsl:copy copy-namespaces="no">
+                   <xsl:apply-templates select="@*[name()!='id']|*|text()|processing-instruction()|comment()" mode="customCopy"/>
                  </xsl:copy>
                </ref>
             </xsl:for-each>

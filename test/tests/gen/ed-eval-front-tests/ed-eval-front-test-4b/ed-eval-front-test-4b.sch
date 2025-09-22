@@ -920,7 +920,7 @@
   <pattern id="dec-letter-auth-response">
     <rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-eval-front-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
-      <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-2" test="count(contrib-group) = 1" role="error" flag="dl-ar" id="ed-eval-front-test-2">editor report front-stub must contain 1 (and only 1) contrib-group element. This one has <value-of select="count(contrib-group)"/>.</assert>
+      <report test="e:is-prc(.) and $article-type='review-article' and kwd-group[@kwd-group-type='evidence-strength']" role="error" flag="dl-ar" id="ed-eval-front-test-4b">eLife Assessment front-stub contains a strength term keyword group, but this is a PRC Review article (which don't use the terms), so this must be incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
