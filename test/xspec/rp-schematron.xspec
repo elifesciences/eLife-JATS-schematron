@@ -5507,6 +5507,26 @@
         <x:expect-assert id="sub-article-front-stub-check-1" role="error"/>
         <x:expect-not-assert id="sub-article-front-stub-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="sub-article-front-stub-check-2-pass">
+        <x:context href="../tests/rp/sub-article-front-stub-checks/sub-article-front-stub-check-2/pass.xml"/>
+        <x:expect-not-assert id="sub-article-front-stub-check-2" role="error"/>
+        <x:expect-not-assert id="sub-article-front-stub-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-article-front-stub-check-2-fail">
+        <x:context href="../tests/rp/sub-article-front-stub-checks/sub-article-front-stub-check-2/fail.xml"/>
+        <x:expect-assert id="sub-article-front-stub-check-2" role="error"/>
+        <x:expect-not-assert id="sub-article-front-stub-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-article-front-stub-check-3-pass">
+        <x:context href="../tests/rp/sub-article-front-stub-checks/sub-article-front-stub-check-3/pass.xml"/>
+        <x:expect-not-assert id="sub-article-front-stub-check-3" role="error"/>
+        <x:expect-not-assert id="sub-article-front-stub-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-article-front-stub-check-3-fail">
+        <x:context href="../tests/rp/sub-article-front-stub-checks/sub-article-front-stub-check-3/fail.xml"/>
+        <x:expect-assert id="sub-article-front-stub-check-3" role="error"/>
+        <x:expect-not-assert id="sub-article-front-stub-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="sub-article-doi-checks">
       <x:scenario label="sub-article-doi-check-1-pass">
