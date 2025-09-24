@@ -936,7 +936,7 @@
     <xsl:template xml:id="assessment-author" match="article[//article-meta/contrib-group[@content-type='section']/contrib[@contrib-type='editor']]/sub-article[@article-type='editor-report']/front-stub">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
-            <xsl:apply-templates select="*[name()!='kwd-group' and following-sibling::kwd-group]|text()[following-sibling::kwd-group and not(preceding-sibling::kwd-group)]"/>
+            <xsl:apply-templates select="*[name()!='kwd-group']|text()[not(preceding-sibling::kwd-group)]"/>
             <xsl:variable name="editor" select="ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[@contrib-type='editor']"/>
             <xsl:element name="contrib-group">
                 <xsl:text>&#xa;</xsl:text>

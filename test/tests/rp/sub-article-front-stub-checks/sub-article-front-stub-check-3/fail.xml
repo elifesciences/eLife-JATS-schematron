@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="sub-article-front-stub-check-3.sch"?>
+<!--Context: sub-article/front-stub
+Test: assert    count(contrib-group) = 1
+Message: Sub-article must have one (and only one) <contrib-group> element. This one does not. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article>
+            <front-stub>
+                <article-id pub-id-type="doi"/>
+                <title-group/>
+            </front-stub>
+        </sub-article>
+    </article>
+</root>

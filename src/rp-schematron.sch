@@ -2779,6 +2779,10 @@
         <report test="$type='author-comment' and not(matches(.,'^Author [Rr]esponse:?$'))" role="error" id="sub-article-title-check-3">[sub-article-title-check-3] The title of a <value-of select="$type"/> type sub-article should be 'Author response'. This one is: <value-of select="."/></report>
       </rule></pattern><pattern id="sub-article-front-stub-checks-pattern"><rule context="sub-article/front-stub" id="sub-article-front-stub-checks">       
         <assert test="count(article-id[@pub-id-type='doi']) = 1" role="error" id="sub-article-front-stub-check-1">[sub-article-front-stub-check-1] Sub-article must have one (and only one) &lt;article-id pub-id-type="doi"&gt; element. This one does not.</assert>
+        
+        <assert test="title-group" role="error" id="sub-article-front-stub-check-2">[sub-article-front-stub-check-2] Sub-article must have one (and only one) &lt;title-group&gt; element. This one does not.</assert>
+        
+        <assert test="count(contrib-group) = 1" role="error" id="sub-article-front-stub-check-3">[sub-article-front-stub-check-3] Sub-article must have one (and only one) &lt;contrib-group&gt; element. This one does not.</assert>
       </rule></pattern><pattern id="sub-article-doi-checks-pattern"><rule context="sub-article/front-stub/article-id[@pub-id-type='doi']" id="sub-article-doi-checks">       
         <let name="article-version-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi' and @specific-use='version']"/>
         <assert test="matches(.,'^10\.7554/eLife\.\d{5,6}\.\d\.sa\d$')" role="error" id="sub-article-doi-check-1">[sub-article-doi-check-1] The DOI for this sub-article does not match the permitted format: <value-of select="."/>.</assert>
