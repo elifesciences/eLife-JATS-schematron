@@ -782,27 +782,30 @@
    </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" name="e:alter-award-id">
       <xsl:param name="award-id-elem" as="xs:string"/>
-      <xsl:param name="fundref-id" as="xs:string"/>
+      <xsl:param name="funder-id" as="xs:string"/>
       <xsl:choose>
-         <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000936'">
+         <xsl:when test="$funder-id=$wellcome-funder-ids">
+            <xsl:value-of select="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','')          else if (contains(lower-case($award-id-elem),'_z')) then replace(substring-before(lower-case($award-id-elem),'_z'),'[^\d]','')         else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>
+         </xsl:when>
+         <xsl:when test="$funder-id=('http://dx.doi.org/10.13039/100000936','https://ror.org/006wxqw41')">
             <xsl:value-of select="if (matches($award-id-elem,'^\d+(\.\d+)?$')) then concat('GBMF',$award-id-elem)          else if (not(matches(upper-case($award-id-elem),'^GBMF'))) then concat('GBMF',replace($award-id-elem,'[^\d\.]',''))          else upper-case($award-id-elem)"/>
          </xsl:when>
-         <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/501100002241'">
+         <xsl:when test="$funder-id=('http://dx.doi.org/10.13039/501100002241','https://ror.org/00097mb19')">
             <xsl:value-of select="if (matches(upper-case($award-id-elem),'JPMJ[A-Z0-9]+\s*$') and not(matches(upper-case($award-id-elem),'^JPMJ[A-Z0-9]+$'))) then concat('JPMJ',upper-case(replace(substring-after($award-id-elem,'JPMJ'),'\s+$','')))         else upper-case($award-id-elem)"/>
          </xsl:when>
-         <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000913'">
+         <xsl:when test="$funder-id=('http://dx.doi.org/10.13039/100000913','https://ror.org/03dy4aq19')">
             <xsl:value-of select="if (matches(upper-case($award-id-elem),'JSMF2\d+$')) then substring-after($award-id-elem,'JSMF')         else replace($award-id-elem,'[^\d\-]','')"/>
          </xsl:when>
-         <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/501100002428'">
+         <xsl:when test="$funder-id=('http://dx.doi.org/10.13039/501100002428','https://ror.org/013tf3c58')">
             <xsl:value-of select="if (matches($award-id-elem,'\d\-')) then replace(substring-before($award-id-elem,'-'),'[^A-Z\d]','')         else replace($award-id-elem,'[^A-Z\d]','')"/>
          </xsl:when>
-         <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000968'">
+         <xsl:when test="$funder-id=('http://dx.doi.org/10.13039/100000968','https://ror.org/013kjyp64')">
             <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\([A-Z\d]+\)')) then substring-before(substring-after($award-id-elem,'('),')')         else $award-id-elem"/>
          </xsl:when>
-         <xsl:when test="$fundref-id='http://dx.doi.org/10.13039/100000968'">
+         <xsl:when test="$funder-id=('http://dx.doi.org/10.13039/100000968','https://ror.org/013kjyp64')">
             <xsl:value-of select="if (contains(upper-case($award-id-elem),'2020')) then concat('2020',replace(substring-after($award-id-elem,'2020'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2021')) then concat('2021',replace(substring-after($award-id-elem,'2021'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2022')) then concat('2022',replace(substring-after($award-id-elem,'2022'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2023')) then concat('2023',replace(substring-after($award-id-elem,'2023'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2024')) then concat('2024',replace(substring-after($award-id-elem,'2024'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'CEEC')) then concat('CEEC',replace(substring-after(upper-case($award-id-elem),'CEEC'),'[^A-Z0-9/]',''))         else if (contains(upper-case($award-id-elem),'PTDC/')) then concat('PTDC/',replace(substring-after(upper-case($award-id-elem),'PTDC/'),'[^A-Z0-9/\-]',''))         else if (contains(upper-case($award-id-elem),'DL 57/')) then concat('DL 57/',replace(substring-after(upper-case($award-id-elem),'DL 57/'),'[^A-Z0-9/\-]',''))         else $award-id-elem"/>
          </xsl:when>
-         <xsl:when test="$fundref-id=($eu-horizon-fundref-ids,'http://dx.doi.org/10.13039/100010663','http://dx.doi.org/10.13039/100010665','http://dx.doi.org/10.13039/100010669','http://dx.doi.org/10.13039/100010675','http://dx.doi.org/10.13039/100010677','http://dx.doi.org/10.13039/100010679','http://dx.doi.org/10.13039/100010680','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100019180')">
+         <xsl:when test="$funder-id=('https://ror.org/0472cxd90','https://ror.org/00k4n6c32',$eu-horizon-fundref-ids,'http://dx.doi.org/10.13039/100010663','http://dx.doi.org/10.13039/100010665','http://dx.doi.org/10.13039/100010669','http://dx.doi.org/10.13039/100010675','http://dx.doi.org/10.13039/100010677','http://dx.doi.org/10.13039/100010679','http://dx.doi.org/10.13039/100010680','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100019180')">
             <xsl:value-of select="replace($award-id-elem,'\D','')"/>
          </xsl:when>
          <xsl:otherwise>
@@ -5805,10 +5808,10 @@
    <xsl:param name="allowed-disp-subj" select="($research-subj, $features-subj,$notice-display-types)"/>
    <xsl:param name="MSAs" select="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Medicine', 'Immunology and Inflammation', 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
    <xsl:param name="rors" select="'rors.xml'"/>
-   <xsl:param name="wellcome-fundref-ids" select="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440')"/>
-   <xsl:param name="known-grant-funder-fundref-ids" select="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968')"/>
+   <xsl:param name="wellcome-funder-ids" select="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440','https://ror.org/029chgv08')"/>
+   <xsl:param name="known-grant-funder-ids" select="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968','https://ror.org/006wxqw41','https://ror.org/00097mb19','https://ror.org/03dy4aq19','https://ror.org/013tf3c58','https://ror.org/013kjyp64')"/>
    <xsl:param name="eu-horizon-fundref-ids" select="('http://dx.doi.org/10.13039/100018693','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100018695','http://dx.doi.org/10.13039/100018696','http://dx.doi.org/10.13039/100018697','http://dx.doi.org/10.13039/100018698','http://dx.doi.org/10.13039/100018699','http://dx.doi.org/10.13039/100018700','http://dx.doi.org/10.13039/100018701','http://dx.doi.org/10.13039/100018702','http://dx.doi.org/10.13039/100018703','http://dx.doi.org/10.13039/100018704','http://dx.doi.org/10.13039/100018705','http://dx.doi.org/10.13039/100018706','http://dx.doi.org/10.13039/100018707','http://dx.doi.org/10.13039/100019180','http://dx.doi.org/10.13039/100019185','http://dx.doi.org/10.13039/100019186','http://dx.doi.org/10.13039/100019187','http://dx.doi.org/10.13039/100019188')"/>
-   <xsl:param name="grant-doi-exception-funder-ids" select="($wellcome-fundref-ids,$known-grant-funder-fundref-ids,$eu-horizon-fundref-ids)"/>
+   <xsl:param name="grant-doi-exception-funder-ids" select="($wellcome-funder-ids,$known-grant-funder-ids,$eu-horizon-fundref-ids)"/>
    <xsl:param name="research-organisms" select="'research-organisms.xml'"/>
    <xsl:param name="species-regex" select="string-join(doc($research-organisms)//*:organism[@type='species']/@regex,'|')"/>
    <xsl:param name="genus-regex" select="string-join(doc($research-organisms)//*:organism[@type='genus']/@regex,'|')"/>
@@ -11686,10 +11689,10 @@
    </xsl:template>
    <!--PATTERN wellcome-grant-doi-tests-pattern-->
    <!--RULE wellcome-grant-doi-tests-->
-   <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-fundref-ids]" priority="1000" mode="M161">
-      <xsl:variable name="grants" select="document($rors)//*:ror[*:id[@type='fundref']=$wellcome-fundref-ids]/*:grant"/>
+   <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-funder-ids]" priority="1000" mode="M161">
+      <xsl:variable name="grants" select="document($rors)//*:ror[*:id=$wellcome-funder-ids]/*:grant"/>
       <xsl:variable name="award-id-elem" select="award-id"/>
-      <xsl:variable name="award-id" select="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','')          else if (contains(lower-case($award-id-elem),'_z')) then replace(substring-before(lower-case($award-id-elem),'_z'),'[^\d]','')         else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>
+      <xsl:variable name="award-id" select="e:alter-award-id($award-id-elem,$wellcome-funder-ids[last()])"/>
       <xsl:variable name="grant-matches" select="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
       <!--REPORT warning-->
       <xsl:if test="$grant-matches">
@@ -11740,11 +11743,11 @@
    </xsl:template>
    <!--PATTERN eu-horizon-grant-doi-tests-pattern-->
    <!--RULE eu-horizon-grant-doi-tests-->
-   <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$eu-horizon-fundref-ids]" priority="1000" mode="M162">
+   <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=($eu-horizon-fundref-ids,'https://ror.org/00k4n6c32')]" priority="1000" mode="M162">
       <xsl:variable name="eu-comission-ror-id" select="'https://ror.org/00k4n6c32'"/>
-      <xsl:variable name="fundref-id" select="funding-source/institution-wrap/institution-id"/>
+      <xsl:variable name="funder-id" select="funding-source/institution-wrap/institution-id"/>
       <xsl:variable name="grants" select="document($rors)//*:ror[*:id[@type='ror']=$eu-comission-ror-id]/*:grant"/>
-      <xsl:variable name="award-id" select="e:alter-award-id(award-id[1],$fundref-id)"/>
+      <xsl:variable name="award-id" select="e:alter-award-id(award-id[1],$funder-id)"/>
       <xsl:variable name="grant-matches" select="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
       <!--REPORT warning-->
       <xsl:if test="$grant-matches">
@@ -11794,11 +11797,11 @@
    </xsl:template>
    <!--PATTERN known-grant-funder-grant-doi-tests-pattern-->
    <!--RULE known-grant-funder-grant-doi-tests-->
-   <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-fundref-ids]" priority="1000" mode="M163">
-      <xsl:variable name="fundref-id" select="funding-source/institution-wrap/institution-id"/>
-      <xsl:variable name="grants" select="document($rors)//*:ror[*:id[@type='fundref']=$fundref-id]/*:grant"/>
+   <xsl:template match="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-ids]" priority="1000" mode="M163">
+      <xsl:variable name="funder-id" select="funding-source/institution-wrap/institution-id"/>
+      <xsl:variable name="grants" select="document($rors)//*:ror[*:id[@type=('ror','fundref')]=$funder-id]/*:grant"/>
       <xsl:variable name="award-id-elem" select="award-id"/>
-      <xsl:variable name="award-id" select="e:alter-award-id($award-id-elem,$fundref-id)"/>
+      <xsl:variable name="award-id" select="e:alter-award-id($award-id-elem,$funder-id)"/>
       <xsl:variable name="grant-matches" select="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
       <!--REPORT warning-->
       <xsl:if test="$grant-matches">
