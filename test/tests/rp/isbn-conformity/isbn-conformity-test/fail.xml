@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="isbn-conformity-test.sch"?>
 <!--Context: ref//pub-id[@pub-id-type='isbn']|isbn
-Test: assert    e:is-valid-isbn(.)
+Test: assert    e:is-valid-isbn($t)
 Message:  element contains an invalid ISBN - ''. Should it be captured as another type of id? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
