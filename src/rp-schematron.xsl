@@ -5499,9 +5499,9 @@
       <xsl:variable name="t" select="translate(.,'-','')"/>
       <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="e:is-valid-isbn(.)"/>
+         <xsl:when test="e:is-valid-isbn($t)"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-valid-isbn(.)">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="e:is-valid-isbn($t)">
                <xsl:attribute name="id">isbn-conformity-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">

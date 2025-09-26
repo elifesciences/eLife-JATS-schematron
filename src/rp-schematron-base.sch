@@ -2153,7 +2153,7 @@
       <rule context="ref//pub-id[@pub-id-type='isbn']|isbn" id="isbn-conformity">
         <let name="t" value="translate(.,'-','')"/>
       
-        <assert test="e:is-valid-isbn(.)" 
+        <assert test="e:is-valid-isbn($t)" 
           role="error" 
           id="isbn-conformity-test"><name/> element contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of id?</assert>
       </rule>
