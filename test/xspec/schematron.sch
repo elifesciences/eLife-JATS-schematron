@@ -684,7 +684,7 @@
     <xsl:variable name="object-no" select="number(replace($object-id,'[^0-9]',''))"/>
     <xsl:variable name="object-regex" select="concat($object-no,',?\s','|',$object-no,'$')"/>
     <xsl:element name="matches">
-      <xsl:for-each select="$article//xref[(@ref-type=$object-type) and not(ancestor::caption)]">
+      <xsl:for-each select="$article//xref[(@ref-type=$object-type) and not(ancestor::caption) and not(ancestor::table-wrap)]">
         <xsl:variable name="rid-no" select="number(replace(./@rid,'[^0-9]',''))"/>
         <xsl:variable name="text-no-string" select="tokenize(normalize-space(replace(.,'[^0-9]',' ')),'\p{Z}|\p{Pd}')[last()]"/>
         <xsl:variable name="text-no" select="if ($text-no-string='') then 0 else number($text-no-string)"/>
