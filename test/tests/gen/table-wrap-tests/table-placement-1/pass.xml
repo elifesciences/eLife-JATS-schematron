@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="table-placement-1.sch"?>
+<!--Context: table-wrap
+Test: report    if (contains($id,'keyresource')) then () else if (contains($id,'inline')) then () else if ($article-type = ($features-article-types,$notice-article-types)) then () else if (ancestor::app or ancestor::sub-article) then () else (($xrefs//*:match) and ($sec-id != $sec1/@id))
+Message:  does not appear in the same section as where it is first cited (sec with title ''), which is incorrect. If tables are cited out of order, please ensure that this issue is raised with the authors. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <body>
+            <sec id="s1">
+                <xref ref-type="table" rid="tbl1"/>
+                <table-wrap id="tbl1"/>
+            </sec>
+            <sec id="s2">
+                <table-wrap id="keyresource"/>
+            </sec>
+        </body>
+    </article>
+</root>

@@ -6415,6 +6415,16 @@
         <x:expect-report id="kr-table-not-tagged-2" role="warning"/>
         <x:expect-not-assert id="table-wrap-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="table-placement-1-pass">
+        <x:context href="../tests/gen/table-wrap-tests/table-placement-1/pass.xml"/>
+        <x:expect-not-report id="table-placement-1" role="warning"/>
+        <x:expect-not-assert id="table-wrap-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-placement-1-fail">
+        <x:context href="../tests/gen/table-wrap-tests/table-placement-1/fail.xml"/>
+        <x:expect-report id="table-placement-1" role="warning"/>
+        <x:expect-not-assert id="table-wrap-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="table-title-tests">
       <x:scenario label="pre-table-title-test-1-pass">

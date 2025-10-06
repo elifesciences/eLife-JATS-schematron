@@ -931,7 +931,8 @@
       <let name="sec-id" value="ancestor::sec[1]/@id"/>
       <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::caption)][1]"/>
       <let name="xref-sib" value="$xref1/parent::*/following-sibling::*[1]/local-name()"/>
-      <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#final-table-wrap-cite-1" test="if (contains($id,'keyresource')) then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,$notice-article-types)) then ()         else if (ancestor::app or ancestor::sub-article) then ()         else not(ancestor::article//xref[tokenize(@rid,'\s') = $id])" role="warning" id="final-table-wrap-cite-1">There is no citation to <value-of select="$lab"/> Ensure this is added.</report>
+      <report test="if (contains($id,'keyresource')) then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,$notice-article-types)) then ()         else if (ancestor::app or ancestor::sub-article) then ()         else (($xrefs//*:match) and ($sec-id != $sec1/@id))" role="warning" id="table-placement-1">
+        <value-of select="$lab"/> does not appear in the same section as where it is first cited (sec with title '<value-of select="$sec1/title"/>'), which is incorrect. If tables are cited out of order, please ensure that this issue is raised with the authors.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
