@@ -924,8 +924,13 @@
   <pattern id="content-containers">
     <rule context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
-      <let name="lab" value="label[1]"/>
+      <let name="lab" value="replace(label[1],'\.$','')"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
+      <let name="xrefs" value="e:get-xrefs(ancestor::article,$id,'table')"/>
+      <let name="sec1" value="ancestor::article/descendant::sec[@id = $xrefs//*/@sec-id][1]"/>
+      <let name="sec-id" value="ancestor::sec[1]/@id"/>
+      <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::caption)][1]"/>
+      <let name="xref-sib" value="$xref1/parent::*/following-sibling::*[1]/local-name()"/>
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-not-tagged" test="not(matches($id,'keyresource|app[\d]{1,4}keyresource')) and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" role="warning" id="kr-table-not-tagged">
         <value-of select="$lab"/> has headings that are for a Key resources table, but it does not have an @id the format 'keyresource' or 'app0keyresource'.</report>
     </rule>

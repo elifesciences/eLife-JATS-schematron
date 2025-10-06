@@ -4791,8 +4791,13 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
-      <let name="lab" value="label[1]"/>
+      <let name="lab" value="replace(label[1],'\.$','')"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
+      <let name="xrefs" value="e:get-xrefs(ancestor::article,$id,'table')"/>
+      <let name="sec1" value="ancestor::article/descendant::sec[@id = $xrefs//*/@sec-id][1]"/>
+      <let name="sec-id" value="ancestor::sec[1]/@id"/>
+      <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::caption)][1]"/>
+      <let name="xref-sib" value="$xref1/parent::*/following-sibling::*[1]/local-name()"/>
       
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-wrap-test-1" 
         test="table" 
@@ -4852,6 +4857,14 @@ else self::*/local-name() = $allowed-p-blocks"
         test="matches(caption/title[1],'[Kk]ey [Rr]esource')" 
         role="warning" 
         id="kr-table-not-tagged-2"><value-of select="$lab"/> has the title <value-of select="caption/title[1]"/> but it is not tagged as a key resources table. Is this correct?</report>
+      
+      <report test="if (contains($id,'keyresource')) then ()
+        else if (contains($id,'inline')) then ()
+        else if ($article-type = ($features-article-types,$notice-article-types)) then ()
+        else if (ancestor::app or ancestor::sub-article) then ()
+        else (($xrefs//*:match) and ($sec-id != $sec1/@id))" 
+        role="warning" 
+        id="table-placement-1"><value-of select="$lab"/> does not appear in the same section as where it is first cited (sec with title '<value-of select="$sec1/title"/>'), which is incorrect. If tables are cited out of order, please ensure that this issue is raised with the authors.</report>
       
     </rule>
     

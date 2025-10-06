@@ -924,8 +924,13 @@
   <pattern id="content-containers">
     <rule context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
-      <let name="lab" value="label[1]"/>
+      <let name="lab" value="replace(label[1],'\.$','')"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
+      <let name="xrefs" value="e:get-xrefs(ancestor::article,$id,'table')"/>
+      <let name="sec1" value="ancestor::article/descendant::sec[@id = $xrefs//*/@sec-id][1]"/>
+      <let name="sec-id" value="ancestor::sec[1]/@id"/>
+      <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::caption)][1]"/>
+      <let name="xref-sib" value="$xref1/parent::*/following-sibling::*[1]/local-name()"/>
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-wrap-test-1" test="table" role="error" id="table-wrap-test-1">table-wrap must have one table.</assert>
     </rule>
   </pattern>

@@ -2702,8 +2702,13 @@
       <report test="not(local-name()=('math','tex-math'))" role="error" id="alternatives-child-test-1">[alternatives-child-test-1] <name/> element is not allowed as a child of alternatives.</report>
     </rule></pattern><pattern id="table-wrap-tests-pattern"><rule context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
-      <let name="lab" value="label[1]"/>
+      <let name="lab" value="replace(label[1],'\.$','')"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
+      <let name="xrefs" value="e:get-xrefs(ancestor::article,$id,'table')"/>
+      <let name="sec1" value="ancestor::article/descendant::sec[@id = $xrefs//*/@sec-id][1]"/>
+      <let name="sec-id" value="ancestor::sec[1]/@id"/>
+      <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::caption)][1]"/>
+      <let name="xref-sib" value="$xref1/parent::*/following-sibling::*[1]/local-name()"/>
       
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-wrap-test-1" test="table" role="error" id="table-wrap-test-1">[table-wrap-test-1] table-wrap must have one table.</assert>
       
@@ -2724,6 +2729,8 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-not-tagged" test="not(matches($id,'keyresource|app[\d]{1,4}keyresource')) and matches(normalize-space(descendant::thead[1]),'[Rr]eagent\s?type\s?\(species\)\s?or resource\s?[Dd]esignation\s?[Ss]ource\s?or\s?reference\s?[Ii]dentifiers\s?[Aa]dditional\s?information')" role="warning" id="kr-table-not-tagged">[kr-table-not-tagged] <value-of select="$lab"/> has headings that are for a Key resources table, but it does not have an @id the format 'keyresource' or 'app0keyresource'.</report>
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-not-tagged-2" test="matches(caption/title[1],'[Kk]ey [Rr]esource')" role="warning" id="kr-table-not-tagged-2">[kr-table-not-tagged-2] <value-of select="$lab"/> has the title <value-of select="caption/title[1]"/> but it is not tagged as a key resources table. Is this correct?</report>
+      
+      <report test="if (contains($id,'keyresource')) then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,$notice-article-types)) then ()         else if (ancestor::app or ancestor::sub-article) then ()         else (($xrefs//*:match) and ($sec-id != $sec1/@id))" role="warning" id="table-placement-1">[table-placement-1] <value-of select="$lab"/> does not appear in the same section as where it is first cited (sec with title '<value-of select="$sec1/title"/>'), which is incorrect. If tables are cited out of order, please ensure that this issue is raised with the authors.</report>
       
     </rule></pattern><pattern id="table-title-tests-pattern"><rule context="table-wrap[not(ancestor::sub-article) and not(contains(@id,'keyresource')) and label]" id="table-title-tests">
       

@@ -16417,8 +16417,13 @@
    <!--RULE table-wrap-tests-->
    <xsl:template match="table-wrap" priority="1000" mode="M231">
       <xsl:variable name="id" select="@id"/>
-      <xsl:variable name="lab" select="label[1]"/>
+      <xsl:variable name="lab" select="replace(label[1],'\.$','')"/>
       <xsl:variable name="article-type" select="ancestor::article/@article-type"/>
+      <xsl:variable name="xrefs" select="e:get-xrefs(ancestor::article,$id,'table')"/>
+      <xsl:variable name="sec1" select="ancestor::article/descendant::sec[@id = $xrefs//*/@sec-id][1]"/>
+      <xsl:variable name="sec-id" select="ancestor::sec[1]/@id"/>
+      <xsl:variable name="xref1" select="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::caption)][1]"/>
+      <xsl:variable name="xref-sib" select="$xref1/parent::*/following-sibling::*[1]/local-name()"/>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="table"/>
@@ -16546,6 +16551,21 @@
                <xsl:text/> has the title <xsl:text/>
                <xsl:value-of select="caption/title[1]"/>
                <xsl:text/> but it is not tagged as a key resources table. Is this correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="if (contains($id,'keyresource')) then ()         else if (contains($id,'inline')) then ()         else if ($article-type = ($features-article-types,$notice-article-types)) then ()         else if (ancestor::app or ancestor::sub-article) then ()         else (($xrefs//*:match) and ($sec-id != $sec1/@id))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (contains($id,'keyresource')) then () else if (contains($id,'inline')) then () else if ($article-type = ($features-article-types,$notice-article-types)) then () else if (ancestor::app or ancestor::sub-article) then () else (($xrefs//*:match) and ($sec-id != $sec1/@id))">
+            <xsl:attribute name="id">table-placement-1</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[table-placement-1] <xsl:text/>
+               <xsl:value-of select="$lab"/>
+               <xsl:text/> does not appear in the same section as where it is first cited (sec with title '<xsl:text/>
+               <xsl:value-of select="$sec1/title"/>
+               <xsl:text/>'), which is incorrect. If tables are cited out of order, please ensure that this issue is raised with the authors.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M231"/>
