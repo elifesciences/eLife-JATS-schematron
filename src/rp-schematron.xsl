@@ -9727,6 +9727,19 @@
                <xsl:text/>. Each separate award needs its own funding entry. If these are two separate grant numbers, please split them out.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="@award-id-type='doi' and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@award-id-type='doi' and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))">
+            <xsl:attribute name="id">award-id-test-12</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[award-id-test-12] award-id has the attribute award-id-type="doi" but it does not contain a valid DOI (<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M144"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M144"/>
