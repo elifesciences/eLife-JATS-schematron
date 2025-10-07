@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="award-id-test-12.sch"?>
+<!--Context: funding-group/award-group/award-id
+Test: report    @award-id-type='doi' and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9<>\[\]]+$'))
+Message: award-id has the attribute award-id-type="doi" but it does not contain a valid DOI (). -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <funding-group>
+            <award-group>
+                <award-id award-id-type="doi">test-60012545</award-id>
+            </award-group>
+            <award-group>
+                <award-id award-id-type="doi">10.46936/test/60012545</award-id>
+            </award-group>
+        </funding-group>
+    </article>
+</root>

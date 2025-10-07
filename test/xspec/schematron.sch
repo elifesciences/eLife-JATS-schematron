@@ -2447,6 +2447,8 @@
       
       <report test="matches(lower-case(.),'\s+(and|&amp;)\s+')" role="warning" id="award-id-test-11">award-id contains 'and' or an ampersand - <value-of select="."/>. Each separate award needs its own funding entry. If these are two separate grant numbers, please split them out.</report>
       
+      <report test="@award-id-type='doi' and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" role="error" id="award-id-test-12">award-id has the attribute award-id-type="doi" but it does not contain a valid DOI (<value-of select="."/>).</report>
+      
     </rule>
   </pattern>
   <pattern id="institution-wrap-tests-pattern">
