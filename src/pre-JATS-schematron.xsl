@@ -36030,7 +36030,7 @@
                   <xsl:value-of select="@style"/>
                   <xsl:text/>'. The only supported values are <xsl:text/>
                   <xsl:value-of select="string-join($allowed-values,', ')"/>
-                  <xsl:text/> for blue, green orange, yellow, purple, red, pink and grey respectively. If unsupported colours have been used, please query the Production team who will check with the authors.</svrl:text>
+                  <xsl:text/> for blue, green orange, yellow, purple, red, pink and grey respectively. Please ensure one of these is used. If unsupported colours have been used, please query the Production team who will check with the authors.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
