@@ -36028,9 +36028,9 @@
                   <xsl:value-of select="."/>
                   <xsl:text/>' has an @style with an unallowed value - '<xsl:text/>
                   <xsl:value-of select="@style"/>
-                  <xsl:text/>'. The only allowed values are <xsl:text/>
+                  <xsl:text/>'. The only supported values are <xsl:text/>
                   <xsl:value-of select="string-join($allowed-values,', ')"/>
-                  <xsl:text/> for blue, green orange, yellow, purple, red, pink and grey respectively. Please ensure one of these is used. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for table cells - blue, green orange, yellow, purple, red, pink and grey. Please confirm how you would like the colour(s) here captured given this information.'.</svrl:text>
+                  <xsl:text/> for blue, green orange, yellow, purple, red, pink and grey respectively. Please ensure one of these is used. If unsupported colours have been used, please query the Production team who will check with the authors.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
