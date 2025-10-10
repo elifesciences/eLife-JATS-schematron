@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="journal-ref-text-content.sch"?>
 <!--Context: mixed-citation[@publication-type='journal']
-Test: report    text()[matches(.,'\p{L}') and not(matches(lower-case(.),'^[\p{Z}\p{P}]+((jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\p{Z}?\d?\d?|doi|pmid|epub|vol|no|and|pp?|in|is[sb]n)[:\.]?'))]
+Test: report    text()[matches(.,'\p{L}') and not(matches(lower-case(.),$text-regex))]
 Message: This journal reference () has untagged textual content - . Is it tagged correctly? -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>

@@ -1086,6 +1086,7 @@
   </sqf:fixes>
   <pattern id="journal-ref-checks-pattern">
     <rule context="mixed-citation[@publication-type='journal']" id="journal-ref-checks">
+      <let name="text-regex" value="'^[\p{Z}\p{P}]+((jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\p{Z}?\d?\d?|doi|pmid|epub|vol|no|and|pp?|in|is[sb]n)[:\.]?'"/>
       <assert test="source" role="error" id="journal-ref-source">[journal-ref-source] This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no source element.</assert>
     </rule>
   </pattern>
