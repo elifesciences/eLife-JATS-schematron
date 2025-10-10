@@ -1036,10 +1036,20 @@
         <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
     </xsl:template>
 
-    <!-- Capture additional content within asbtract as additional, sibling abstract(s) with JATS4R compliant abstract-type -->
-    <xsl:template xml:id="abstract-types" match="article-meta/abstract[*:sec[preceding-sibling::p]]">
+    <!-- Abstract changes
+        - remove labels
+        - remove titles from common/garden abstracts
+        - capture additional content within asbtract as additional, sibling abstract(s) with JATS4R compliant abstract-type -->
+    <xsl:template xml:id="abstract-types" match="article-meta/abstract">
         <xsl:copy>
-        <xsl:apply-templates select="@*|title|p[not(preceding-sibling::sec)]|text()[not(preceding-sibling::sec)]"/>
+            <xsl:apply-templates select="@*"/>
+            <xsl:if test="title[1][not(matches(normalize-space(lower-case(.)),'^(\d\.? )?(ab[str][str][str]act(\s?/s?summary)?|summary(\s?/s?ab[str][str][str]act)?)$'))]">
+                <xsl:text>&#xa;</xsl:text>
+                <xsl:apply-templates select="title[1]"/>
+            </xsl:if>
+            <xsl:text>&#xa;</xsl:text>
+            <xsl:apply-templates select="p[not(preceding-sibling::sec)]"/>
+            <xsl:text>&#xa;</xsl:text>
         </xsl:copy>
         <xsl:for-each select="./sec[preceding-sibling::p]">
             <xsl:text>&#xa;</xsl:text>
