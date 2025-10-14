@@ -1036,36 +1036,55 @@
         <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
     </xsl:template>
 
-    <!-- Capture additional content within asbtract as additional, sibling abstract(s) with JATS4R compliant abstract-type -->
-    <xsl:template xml:id="abstract-types" match="article-meta/abstract[*:sec[preceding-sibling::p]]">
-        <xsl:copy>
-        <xsl:apply-templates select="@*|title|p[not(preceding-sibling::sec)]|text()[not(preceding-sibling::sec)]"/>
-        </xsl:copy>
-        <xsl:for-each select="./sec[preceding-sibling::p]">
-            <xsl:text>&#xa;</xsl:text>
-            <abstract>
-                <xsl:apply-templates select="@id"/>
-                <xsl:choose>
-                    <xsl:when test="count(./sec) gt 1">
+    <!-- Abstract changes
+        - remove labels
+        - remove titles from common/garden abstracts
+        - capture additional content within asbtract as additional, sibling abstract(s) with JATS4R compliant abstract-type -->
+    <xsl:template xml:id="abstract-types" match="article-meta/abstract[sec]">
+        <xsl:variable name="known-types-regex" select="'digest|statement|summary|teaser|highlight|importance|significance|graphic'"/>
+        <xsl:choose>
+            <xsl:when test="not(@abstract-type) and sec[title[1]/matches(lower-case(.),$known-types-regex) or descendant::*[name()=('fig','media')]]">
+                <xsl:copy>
+                    <xsl:apply-templates select="@*"/>
+                    <xsl:if test="count(./sec[not(title[1]/matches(lower-case(.),$known-types-regex)) and not(descendant::*[name()=('fig','media')])]) gt 1">
                         <xsl:attribute name="abstract-type">structured</xsl:attribute>
-                    </xsl:when>
-                    <xsl:when test="matches(./lower-case(title[1]),'lay summary|digest')">
-                        <xsl:attribute name="abstract-type">plain-language-summary</xsl:attribute>
-                    </xsl:when>
-                    <xsl:when test="not(./sec) and matches(./lower-case(title[1]),'statement|summary|teaser')">
-                        <xsl:attribute name="abstract-type">teaser</xsl:attribute>
-                    </xsl:when>
-                    <xsl:when test="not(./sec) and (matches(./lower-case(title[1]),'highlight|importance|significance') or ./list)">
-                        <xsl:attribute name="abstract-type">summary</xsl:attribute>
-                    </xsl:when>
-                    <xsl:when test="./fig or matches(./lower-case(title[1]),'graphic')">
-                        <xsl:attribute name="abstract-type">graphical</xsl:attribute>
-                    </xsl:when>
-                    <xsl:otherwise/>
-                </xsl:choose>
-                <xsl:apply-templates select="*|text()"/>
-            </abstract>
-        </xsl:for-each>
+                    </xsl:if>
+                    <xsl:if test="title[1][not(matches(normalize-space(lower-case(.)),'^(\d\.? )?(ab[str][str][str]act(\s?/s?summary)?|summary(\s?/s?ab[str][str][str]act)?)$'))]">
+                        <xsl:text>&#xa;</xsl:text>
+                        <xsl:apply-templates select="title[1]"/>
+                    </xsl:if>
+                    <xsl:apply-templates select="p[not(preceding-sibling::sec)]|p[not(preceding-sibling::sec)]/preceding-sibling::text()[1]|sec[not(title[1]/matches(lower-case(.),$known-types-regex)) and not(descendant::*[name()=('fig','media')])]|sec[not(title[1]/matches(lower-case(.),$known-types-regex)) and not(descendant::*[name()=('fig','media')])]/preceding-sibling::text()[1]"/>
+                    <xsl:text>&#xa;</xsl:text>
+                </xsl:copy>
+                <xsl:for-each select="./sec[title[1]/matches(lower-case(.),$known-types-regex) or descendant::*[name()=('fig','media')]]">
+                    <xsl:text>&#xa;</xsl:text>
+                    <abstract>
+                        <xsl:apply-templates select="@id"/>
+                        <xsl:choose>
+                            <xsl:when test="matches(./lower-case(title[1]),'lay summary|digest')">
+                                <xsl:attribute name="abstract-type">plain-language-summary</xsl:attribute>
+                            </xsl:when>
+                            <xsl:when test="not(./sec) and matches(./lower-case(title[1]),'statement|summary|teaser')">
+                                <xsl:attribute name="abstract-type">teaser</xsl:attribute>
+                            </xsl:when>
+                            <xsl:when test="not(./sec) and (matches(./lower-case(title[1]),'highlight|importance|significance') or ./list)">
+                                <xsl:attribute name="abstract-type">summary</xsl:attribute>
+                            </xsl:when>
+                            <xsl:when test="./fig or matches(./lower-case(title[1]),'graphic')">
+                                <xsl:attribute name="abstract-type">graphical</xsl:attribute>
+                            </xsl:when>
+                            <xsl:otherwise/>
+                        </xsl:choose>
+                        <xsl:apply-templates select="*|text()"/>
+                    </abstract>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy>
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <!-- Convert ext-link elements that contain known ids in refs to correct semantic capture: pub-id -->
