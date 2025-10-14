@@ -14,4 +14,32 @@
 <fig/>
 </sec>
 </abstract>
+<abstract>
+<title>Abstract</title>
+<sec>
+<title>Background</title>
+<p>Due to the limitations in specificity of current diagnostic methods for prostate cancer (PCa), more reliable biomarkers are needed to explore for improving early detection. Plasma proteins represent a promising source of biomarkers, therefore understanding the causal relationships between specific plasma proteins and PCa could be conductive to identify novel biomarkers and therapeutic targets for PCa prevention and treatment.</p>
+</sec>
+<sec>
+<title>Methods</title>
+<p>We performed a meta-analysis of two independent genome-wide association studies (GWASs) including 94,397 individuals with PCa and 192,372 controls. A mendelian randomization (MR) supplemented by colocalization analysis was conducted, using <italic>cis</italic>-acting variants on 4,907 plasma proteins from deCODE Genetics (N&#x003D;35,559) and 2,940 plasma proteins from UK Biobank Pharma Proteomics Project (UKB-PPP) (N&#x003D;54,219). Then, the biological pathway analysis and druggability evaluation of the risk proteins were further performed.</p>
+</sec>
+<sec>
+<title>Results</title>
+<p>Five possible susceptibility loci (JAZF1, PDILM5, WDPCP, EEFSEC, and TNS3) for PCa were identified through the meta-analysis of GWASs. Among 3,722 plasma proteins, 193 proteins were associated with PCa risk, of which 20 high-risk proteins, including KLK3, were validated in both the deCODE and UKB-PPP cohorts. Functional annotation of these genes encoding proteins confirmed enrichment of immune response, inflammatory response, cell-cell interaction and so on. Genetic colocalization and druggable genome analyses also identified several potential drug targets for PCa, such as HSPB1, RRM2B and PSCA.</p>
+</sec>
+<sec>
+<title>Conclusions</title>
+<p>We identified novel variants as well as several protein biomarkers linked to PCa risk and indicated pathways associated with PCa, which offered new insights into PCa etiology and contributed to development of novel biomarkers for early detection and potential therapeutic interventions.</p>
+</sec>
+<sec>
+<title>Funding</title>
+<p>This work was supported by grants from Beijing Municipal Natural Science Foundation (grant No. JQ24059, No. L234038) and National Natural Science Foundation of China (grant No. 82274015).</p>
+</sec>
+<sec>
+<title>Graphical abstract</title>
+<p>A comprehensive study design summarized as follows.</p>
+<fig/>
+</sec>
+</abstract>
 </article-meta>
