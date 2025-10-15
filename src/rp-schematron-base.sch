@@ -2272,7 +2272,7 @@
           role="warning" 
           id="ref-article-title-5"><name/> in ref contains a closing bracket - <value-of select="replace(.,'[^\p{Pe}]','')"/> - but it does not contain an opening bracket. Is that correct?</report>
 
-        <report test="matches(lower-case(.),'[internet]')" 
+        <report test="contains(lower-case(.),'[internet]')" 
           role="warning" 
           id="article-title-internet">This title includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</report>
       </rule>
@@ -2297,7 +2297,7 @@
           role="warning" 
           id="ref-chapter-title-4"><name/> in ref contains a closing bracket - <value-of select="replace(.,'[^\p{Pe}]','')"/> - but it does not contain an opening bracket. Is that correct?</report>
 
-        <report test="matches(lower-case(.),'[internet]')" 
+        <report test="contains(lower-case(.),'[internet]')" 
           role="warning" 
           id="chapter-title-internet">This title includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</report>
       </rule>
@@ -2317,7 +2317,7 @@
           role="warning" 
           id="ref-source-3"><name/> in ref contains a closing bracket - <value-of select="replace(.,'[^\p{Pe}]','')"/> - but it does not contain an opening bracket. Is that correct?</report>
 
-        <report test="matches(lower-case(.),'[internet]')" 
+        <report test="contains(lower-case(.),'[internet]')" 
           role="warning" 
           id="source-internet">This source includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</report> 
         </rule>
