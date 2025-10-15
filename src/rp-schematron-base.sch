@@ -2201,7 +2201,7 @@
         <assert test="mixed-citation or element-citation" 
         role="error" 
         id="ref-no-citations"><name/> must contain a child mixed-citation or element-citation. This one (with id=<value-of select="ancestor::ref/@id"/>) does not.</assert>
-        
+
         <report test="(count(mixed-citation) + count(element-citation)) gt 1" 
         role="error" 
         sqf:fix="replace-to-distinct-refs"
@@ -2271,6 +2271,10 @@
         <report test="matches(.,'\p{Pe}') and not(matches(.,'\p{Ps}'))" 
           role="warning" 
           id="ref-article-title-5"><name/> in ref contains a closing bracket - <value-of select="replace(.,'[^\p{Pe}]','')"/> - but it does not contain an opening bracket. Is that correct?</report>
+
+        <report test="contains(lower-case(.),'[internet]')" 
+          role="warning" 
+          id="article-title-internet">This title includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</report>
       </rule>
   </pattern>
   
@@ -2292,6 +2296,10 @@
         <report test="matches(.,'\p{Pe}') and not(matches(.,'\p{Ps}'))" 
           role="warning" 
           id="ref-chapter-title-4"><name/> in ref contains a closing bracket - <value-of select="replace(.,'[^\p{Pe}]','')"/> - but it does not contain an opening bracket. Is that correct?</report>
+
+        <report test="contains(lower-case(.),'[internet]')" 
+          role="warning" 
+          id="chapter-title-internet">This title includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</report>
       </rule>
   </pattern>
   
@@ -2307,7 +2315,12 @@
         
         <report test="matches(.,'\p{Pe}') and not(matches(.,'\p{Ps}'))" 
           role="warning" 
-          id="ref-source-3"><name/> in ref contains a closing bracket - <value-of select="replace(.,'[^\p{Pe}]','')"/> - but it does not contain an opening bracket. Is that correct?</report>      </rule>
+          id="ref-source-3"><name/> in ref contains a closing bracket - <value-of select="replace(.,'[^\p{Pe}]','')"/> - but it does not contain an opening bracket. Is that correct?</report>
+
+        <report test="contains(lower-case(.),'[internet]')" 
+          role="warning" 
+          id="source-internet">This source includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</report> 
+        </rule>
   </pattern>
   
     <pattern id="mixed-citation">
@@ -2431,17 +2444,17 @@
         <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')"
           role="warning" 
           sqf:fix="replace-fig-xref replace-supp-xref strip-tags"
-          id="underline-check-1">Content of underline element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+          id="underline-check-1">Content of underline element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the underline formatting, as appropriate.</report>
        
        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Tt]able|[Tt]bl)[\.\s]')"
           role="warning" 
           sqf:fix="replace-fig-xref replace-supp-xref strip-tags"
-          id="underline-check-2">Content of underline element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+          id="underline-check-2">Content of underline element suggests it's intended to be a table or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the underline formatting, as appropriate.</report>
        
        <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')"
           role="warning"
           sqf:fix="replace-fig-xref replace-supp-xref strip-tags"
-          id="underline-check-3">Content of underline element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+          id="underline-check-3">Content of underline element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the underline formatting, as appropriate.</report>
        
        <sqf:fix id="add-ge-symbol">
          <sqf:description>

@@ -1084,30 +1084,14 @@
       </sqf:replace>
     </sqf:fix>
   </sqf:fixes>
-  <pattern id="underline-checks-pattern">
-    <rule context="underline" id="underline-checks">
-      <report test="not(ancestor::sub-article) and matches(.,'(^|\s)([Vv]ideo|[Mm]ovie)')" role="warning" sqf:fix="replace-fig-xref replace-supp-xref strip-tags" id="underline-check-3">[underline-check-3] Content of underline element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the underline formatting, as appropriate.</report>
-      <sqf:fix id="add-ge-symbol">
-         <sqf:description>
-           <sqf:title>Change to ≥</sqf:title>
-         </sqf:description>
-         <sqf:replace match=".">
-           <xsl:text>≥</xsl:text>
-         </sqf:replace>
-       </sqf:fix>
-      <sqf:fix id="add-le-symbol">
-         <sqf:description>
-           <sqf:title>Change to ≤</sqf:title>
-         </sqf:description>
-         <sqf:replace match=".">
-           <xsl:text>≤</xsl:text>
-         </sqf:replace>
-       </sqf:fix>
+  <pattern id="ref-chapter-title-checks-pattern">
+    <rule context="ref//chapter-title" id="ref-chapter-title-checks">
+      <report test="contains(lower-case(.),'[internet]')" role="warning" id="chapter-title-internet">[chapter-title-internet] This title includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>
+      <assert test="descendant::ref//chapter-title" role="error" id="ref-chapter-title-checks-xspec-assert">ref//chapter-title must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1,0 +1,10 @@
+<?oxygen SCHSchema="source-internet.sch"?>
+<!--Context: ref//source
+Test: report    contains(lower-case(.),'[internet]')
+Message: This source includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article/>
+    <ref>
+        <mixed-citation><source>Genome Biol</source></mixed-citation>
+    </ref>
+</root>
