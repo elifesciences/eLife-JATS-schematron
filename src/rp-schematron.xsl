@@ -5849,6 +5849,17 @@
                <xsl:text/> - but it does not contain an opening bracket. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="contains(lower-case(.),'[internet]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(lower-case(.),'[internet]')">
+            <xsl:attribute name="id">article-title-internet</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[article-title-internet] This title includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M77"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M77"/>
@@ -5919,6 +5930,17 @@
                <xsl:text/> - but it does not contain an opening bracket. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="contains(lower-case(.),'[internet]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(lower-case(.),'[internet]')">
+            <xsl:attribute name="id">chapter-title-internet</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[chapter-title-internet] This title includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M78"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M78"/>
@@ -5972,6 +5994,17 @@
                <xsl:text/> in ref contains a closing bracket - <xsl:text/>
                <xsl:value-of select="replace(.,'[^\p{Pe}]','')"/>
                <xsl:text/> - but it does not contain an opening bracket. Is that correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="contains(lower-case(.),'[internet]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(lower-case(.),'[internet]')">
+            <xsl:attribute name="id">source-internet</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[source-internet] This source includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M79"/>
@@ -6348,7 +6381,7 @@
             </xsl:attribute>
             <svrl:text>[underline-check-1] Content of underline element suggests it's intended to be a figure citation: <xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/>. Either replace it with an xref or remove the bold formatting, as appropriate.</svrl:text>
+               <xsl:text/>. Either replace it with an xref or remove the underline formatting, as appropriate.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
@@ -6361,7 +6394,7 @@
             </xsl:attribute>
             <svrl:text>[underline-check-2] Content of underline element suggests it's intended to be a table or supplementary file citation: <xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/>. Either replace it with an xref or remove the bold formatting, as appropriate.</svrl:text>
+               <xsl:text/>. Either replace it with an xref or remove the underline formatting, as appropriate.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
@@ -6374,7 +6407,7 @@
             </xsl:attribute>
             <svrl:text>[underline-check-3] Content of underline element suggests it's intended to be a video or supplementary file citation: <xsl:text/>
                <xsl:value-of select="."/>
-               <xsl:text/>. Either replace it with an xref or remove the bold formatting, as appropriate.</svrl:text>
+               <xsl:text/>. Either replace it with an xref or remove the underline formatting, as appropriate.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" id="add-ge-symbol">

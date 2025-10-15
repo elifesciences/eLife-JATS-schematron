@@ -1815,6 +1815,16 @@
         <x:expect-report id="ref-article-title-5" role="warning"/>
         <x:expect-not-assert id="ref-article-title-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="article-title-internet-pass">
+        <x:context href="../tests/rp/ref-article-title-checks/article-title-internet/pass.xml"/>
+        <x:expect-not-report id="article-title-internet" role="warning"/>
+        <x:expect-not-assert id="ref-article-title-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="article-title-internet-fail">
+        <x:context href="../tests/rp/ref-article-title-checks/article-title-internet/fail.xml"/>
+        <x:expect-report id="article-title-internet" role="warning"/>
+        <x:expect-not-assert id="ref-article-title-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-chapter-title-checks">
       <x:scenario label="ref-chapter-title-1-pass">
@@ -1857,6 +1867,16 @@
         <x:expect-report id="ref-chapter-title-4" role="warning"/>
         <x:expect-not-assert id="ref-chapter-title-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="chapter-title-internet-pass">
+        <x:context href="../tests/rp/ref-chapter-title-checks/chapter-title-internet/pass.xml"/>
+        <x:expect-not-report id="chapter-title-internet" role="warning"/>
+        <x:expect-not-assert id="ref-chapter-title-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="chapter-title-internet-fail">
+        <x:context href="../tests/rp/ref-chapter-title-checks/chapter-title-internet/fail.xml"/>
+        <x:expect-report id="chapter-title-internet" role="warning"/>
+        <x:expect-not-assert id="ref-chapter-title-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-source-checks">
       <x:scenario label="ref-source-1-pass">
@@ -1887,6 +1907,16 @@
       <x:scenario label="ref-source-3-fail">
         <x:context href="../tests/rp/ref-source-checks/ref-source-3/fail.xml"/>
         <x:expect-report id="ref-source-3" role="warning"/>
+        <x:expect-not-assert id="ref-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="source-internet-pass">
+        <x:context href="../tests/rp/ref-source-checks/source-internet/pass.xml"/>
+        <x:expect-not-report id="source-internet" role="warning"/>
+        <x:expect-not-assert id="ref-source-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="source-internet-fail">
+        <x:context href="../tests/rp/ref-source-checks/source-internet/fail.xml"/>
+        <x:expect-report id="source-internet" role="warning"/>
         <x:expect-not-assert id="ref-source-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>

@@ -1086,7 +1086,7 @@
   </sqf:fixes>
   <pattern id="underline-checks-pattern">
     <rule context="underline" id="underline-checks">
-      <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" sqf:fix="replace-fig-xref replace-supp-xref strip-tags" id="underline-check-1">[underline-check-1] Content of underline element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
+      <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" sqf:fix="replace-fig-xref replace-supp-xref strip-tags" id="underline-check-1">[underline-check-1] Content of underline element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the underline formatting, as appropriate.</report>
       <sqf:fix id="add-ge-symbol">
          <sqf:description>
            <sqf:title>Change to ≥</sqf:title>
