@@ -2202,10 +2202,6 @@
         role="error" 
         id="ref-no-citations"><name/> must contain a child mixed-citation or element-citation. This one (with id=<value-of select="ancestor::ref/@id"/>) does not.</assert>
 
-        <report test="article|source and matches(lower-case(.),'[internet]')" 
-        role="warning" 
-        id="ref-internet-text">This title or source includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</report>        
-
         <report test="(count(mixed-citation) + count(element-citation)) gt 1" 
         role="error" 
         sqf:fix="replace-to-distinct-refs"
@@ -2275,6 +2271,10 @@
         <report test="matches(.,'\p{Pe}') and not(matches(.,'\p{Ps}'))" 
           role="warning" 
           id="ref-article-title-5"><name/> in ref contains a closing bracket - <value-of select="replace(.,'[^\p{Pe}]','')"/> - but it does not contain an opening bracket. Is that correct?</report>
+
+        <report test="matches(lower-case(.),'[internet]')" 
+          role="warning" 
+          id="article-title-internet">This title includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</report>
       </rule>
   </pattern>
   
@@ -2296,6 +2296,10 @@
         <report test="matches(.,'\p{Pe}') and not(matches(.,'\p{Ps}'))" 
           role="warning" 
           id="ref-chapter-title-4"><name/> in ref contains a closing bracket - <value-of select="replace(.,'[^\p{Pe}]','')"/> - but it does not contain an opening bracket. Is that correct?</report>
+
+        <report test="matches(lower-case(.),'[internet]')" 
+          role="warning" 
+          id="chapter-title-internet">This title includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</report>
       </rule>
   </pattern>
   
@@ -2311,7 +2315,12 @@
         
         <report test="matches(.,'\p{Pe}') and not(matches(.,'\p{Ps}'))" 
           role="warning" 
-          id="ref-source-3"><name/> in ref contains a closing bracket - <value-of select="replace(.,'[^\p{Pe}]','')"/> - but it does not contain an opening bracket. Is that correct?</report>      </rule>
+          id="ref-source-3"><name/> in ref contains a closing bracket - <value-of select="replace(.,'[^\p{Pe}]','')"/> - but it does not contain an opening bracket. Is that correct?</report>
+
+        <report test="matches(lower-case(.),'[internet]')" 
+          role="warning" 
+          id="source-internet">This source includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</report> 
+        </rule>
   </pattern>
   
     <pattern id="mixed-citation">
