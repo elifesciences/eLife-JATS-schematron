@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="table-wrap-title-1.sch"?>
+<!--Context: table-wrap/caption/title
+Test: report    $sentence-count gt 1
+Message: Title for  contains  sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <table-wrap>
+            <caption>
+                <title>This is the <italic>E. coli</italic> first sentence. This is the second sentence.</title>
+            </caption>
+        </table-wrap>
+    </article>
+</root>

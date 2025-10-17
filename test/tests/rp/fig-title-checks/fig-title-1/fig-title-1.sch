@@ -199,6 +199,10 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
+  <let name="research-organisms" value="'../../../../../src/research-organisms.xml'"/>
+  <let name="species-regex" value="string-join(doc($research-organisms)//*:organism[@type='species']/@regex,'|')"/>
+  <let name="genus-regex" value="string-join(doc($research-organisms)//*:organism[@type='genus']/@regex,'|')"/>
+  <let name="org-regex" value="string-join(($species-regex,$genus-regex),'|')"/>
   <let name="rors" value="'../../../../../src/rors.xml'"/>
   <let name="wellcome-ror-ids" value="('https://ror.org/029chgv08')"/>
   <let name="known-grant-funder-ror-ids" value="('https://ror.org/006wxqw41','https://ror.org/00097mb19','https://ror.org/03dy4aq19','https://ror.org/013tf3c58','https://ror.org/013kjyp64')"/>
@@ -1085,14 +1089,15 @@
     </sqf:fix>
   </sqf:fixes>
   <pattern id="fig-title-checks-pattern">
-    <rule context="fig/caption[p]/title" id="fig-title-checks">
-      <report test="matches(lower-case(.),'\.\p{Z}*\p{P}?a(\p{Z}*[\p{Pd},&amp;]\p{Z}*[b-z])?\p{P}?\p{Z}*$')" role="warning" id="fig-title-1">[fig-title-1] Title for figure ('<value-of select="ancestor::fig/label"/>') potentially ends with a panel label. Should it be moved to the start of the next paragraph? <value-of select="."/>
+    <rule context="fig/caption/title" id="fig-title-checks">
+      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
+      <report test="parent::caption/p and matches(lower-case(.),'\.\p{Z}*\p{P}?a(\p{Z}*[\p{Pd},&amp;]\p{Z}*[b-z])?\p{P}?\p{Z}*$')" role="warning" id="fig-title-1">[fig-title-1] Title for figure ('<value-of select="ancestor::fig/label"/>') potentially ends with a panel label. Should it be moved to the start of the next paragraph? <value-of select="."/>
       </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/caption[p]/title" role="error" id="fig-title-checks-xspec-assert">fig/caption[p]/title must be present.</assert>
+      <assert test="descendant::fig/caption/title" role="error" id="fig-title-checks-xspec-assert">fig/caption/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

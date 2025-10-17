@@ -2285,6 +2285,16 @@
         <x:expect-report id="fig-title-1" role="warning"/>
         <x:expect-not-assert id="fig-title-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="fig-title-2-pass">
+        <x:context href="../tests/rp/fig-title-checks/fig-title-2/pass.xml"/>
+        <x:expect-not-report id="fig-title-2" role="warning"/>
+        <x:expect-not-assert id="fig-title-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-title-2-fail">
+        <x:context href="../tests/rp/fig-title-checks/fig-title-2/fail.xml"/>
+        <x:expect-report id="fig-title-2" role="warning"/>
+        <x:expect-not-assert id="fig-title-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="fig-caption-checks">
       <x:scenario label="fig-biorender-check-v1-pass">
@@ -2404,6 +2414,18 @@
         <x:context href="../tests/rp/table-wrap-caption-checks/table-wrap-caption-3/fail.xml"/>
         <x:expect-report id="table-wrap-caption-3" role="warning"/>
         <x:expect-not-assert id="table-wrap-caption-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="table-wrap-title-checks">
+      <x:scenario label="table-wrap-title-1-pass">
+        <x:context href="../tests/rp/table-wrap-title-checks/table-wrap-title-1/pass.xml"/>
+        <x:expect-not-report id="table-wrap-title-1" role="warning"/>
+        <x:expect-not-assert id="table-wrap-title-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-wrap-title-1-fail">
+        <x:context href="../tests/rp/table-wrap-title-checks/table-wrap-title-1/fail.xml"/>
+        <x:expect-report id="table-wrap-title-1" role="warning"/>
+        <x:expect-not-assert id="table-wrap-title-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="supplementary-material-checks">
