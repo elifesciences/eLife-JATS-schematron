@@ -1702,6 +1702,8 @@
         <report test="ancestor::mixed-citation[@publication-type='book'] and not(normalize-space(@person-group-type)=('','author','editor'))" role="warning" id="ref-person-group-type-book">[ref-person-group-type-book] This <name/> inside a book reference has the person-group-type '<value-of select="@person-group-type"/>'. Is that correct?</report>
         
         <report test="ancestor::mixed-citation[@publication-type=('journal','data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')] and not(normalize-space(@person-group-type)=('','author'))" role="warning" id="ref-person-group-type-other">[ref-person-group-type-other] This <name/> inside a <value-of select="ancestor::mixed-citation/@publication-type"/> reference has the person-group-type '<value-of select="@person-group-type"/>'. Is that correct?</report>
+        
+        <assert test="collab or string-name or name" role="error" id="ref-person-group-type-content">[ref-person-group-type-content] <name/> must contain at least one collab, string-name or name element. This one (within reference id=<value-of select="ancestor::ref/@id"/>) does not.</assert>
      </rule></pattern>
   
     <pattern id="ref-checks-pattern"><rule context="ref" id="ref-checks">

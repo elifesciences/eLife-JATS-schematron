@@ -1699,6 +1699,16 @@
         <x:expect-report id="ref-person-group-type-other" role="warning"/>
         <x:expect-not-assert id="ref-person-group-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ref-person-group-type-content-pass">
+        <x:context href="../tests/rp/ref-person-group-checks/ref-person-group-type-content/pass.xml"/>
+        <x:expect-not-assert id="ref-person-group-type-content" role="error"/>
+        <x:expect-not-assert id="ref-person-group-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-person-group-type-content-fail">
+        <x:context href="../tests/rp/ref-person-group-checks/ref-person-group-type-content/fail.xml"/>
+        <x:expect-assert id="ref-person-group-type-content" role="error"/>
+        <x:expect-not-assert id="ref-person-group-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ref-checks">
       <x:scenario label="ref-empty-pass">
