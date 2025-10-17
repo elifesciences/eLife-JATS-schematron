@@ -222,6 +222,11 @@
     </xsl:if>
   </xsl:function>
   
+  <let name="research-organisms" value="'research-organisms.xml'"/>
+  <let name="species-regex" value="string-join(doc($research-organisms)//*:organism[@type='species']/@regex,'|')"/>
+  <let name="genus-regex" value="string-join(doc($research-organisms)//*:organism[@type='genus']/@regex,'|')"/>
+  <let name="org-regex" value="string-join(($species-regex,$genus-regex),'|')"/>
+  
   <let name="rors" value="'rors.xml'"/>
   <!-- Grant DOI enabling -->
   <let name="wellcome-ror-ids" value="('https://ror.org/029chgv08')"/>
@@ -1723,7 +1728,7 @@
         sqf:fix="delete-quote-characters"
         id="journal-source-5">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
        
-       <report test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(replace(.,'\.','')),'^((eur|world|scand|jove)?\s?j(pn)?|nat(ure reviews)?|(bio)?phys|proc|sci|annu?|physio(l|ther)|comput|commun|e(c|th)ol|exp|front|hum|phil|clin|theor|infect|trop|(matrix |micro)?biol|(trends |acs )?(bio)?ch[ei]m|vet|int|mult|math|quan?t|(micro)?circ|percept|(acs )?synth|endocr|artif|mem|spat|rheum|hepatol|(slas )?discov|sociol|arterioscler|invest|(cell )?rep|vis|philos|(trends )?(cogn|cardiovasc)|rev|bull|(ieee )?trans|(plos )?comp(ut)?|prog|adv|cereb|crit|nucl?|(nar )?genom|emerg|arch|br|eur|transbound|dev|am|curr|psych(o([ln]|som|ther)|iatr)?|(bmc|sleep)?\s?med|(methods|cell |embo )?mo(ti)?l|(brain )?(behav|stim)|(brain|genome|diabetes)?\s?res|(acta )?neuro(l|sci|biol|path|psychopharmacol)?|(diabetes )?metab|(methods|trends)\s??ecol|)(\s|$)'))" 
+       <report test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(replace(.,'\.','')),'^((eur|world|scand|jove)?\s?j(pn)?|nat(ure reviews)?|(bio)?phys|proc|sci|annu?|physio(l|ther)|comput|commun|e(c|th)ol|exp|front|hum|phil|clin|theor|infect|trop|(matrix |micro)?biol|(trends |acs )?(bio)?ch[ei]m|vet|int|mult|math|quan?t|(micro)?circ|percept|(acs )?synth|endocr|artif|mem|spat|rheum|hepatol|(cancer )?immunol|semin|oncol|(slas )?discov|sociol|arterioscler|invest|(cell )?rep|vis|philos|(trends )?(cogn|cardiovasc)|rev|bull|(ieee )?trans|(plos )?comp(ut)?|prog|adv|cereb|crit|nucl?|(nar )?genom|emerg|arch|br|eur|transbound|dev|am|curr|psych(o([ln]|som|ther)|iatr)?|(bmc|sleep)?\s?med|(methods|cell |embo )?mo(ti)?l|(brain )?(behav|stim)|(brain|genome|diabetes)?\s?res|(acta )?neuro(l|sci|biol|path|psychopharmacol)?|(diabetes )?metab|(methods|trends)\s??ecol|)(\s|$)'))" 
         role="warning"
         sqf:fix="fix-source-article-title"
         id="journal-source-6">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains more than one sentence - <value-of select="."/>. Should some of the content be moved into the article-title?</report>
@@ -2547,10 +2552,15 @@
           id="fig-label-table">Label for figure ('<value-of select="."/>') starts with table. Should this content be captured as a table instead of a figure?</report>
      </rule>
       
-      <rule context="fig/caption[p]/title" id="fig-title-checks">
-        <report test="matches(lower-case(.),'\.\p{Z}*\p{P}?a(\p{Z}*[\p{Pd},&amp;]\p{Z}*[b-z])?\p{P}?\p{Z}*$')" 
+      <rule context="fig/caption/title" id="fig-title-checks">
+        <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
+        <report test="parent::caption/p and matches(lower-case(.),'\.\p{Z}*\p{P}?a(\p{Z}*[\p{Pd},&amp;]\p{Z}*[b-z])?\p{P}?\p{Z}*$')" 
           role="warning" 
           id="fig-title-1">Title for figure ('<value-of select="ancestor::fig/label"/>') potentially ends with a panel label. Should it be moved to the start of the next paragraph? <value-of select="."/></report>
+        
+        <report test="$sentence-count gt 1" 
+          role="warning" 
+          id="fig-title-2">Title for <value-of select="replace(ancestor::fig[1]/label[1],'\.$','')"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption?</report>
      </rule>
       
       <rule context="fig/caption" id="fig-caption-checks">
@@ -2622,6 +2632,14 @@
           sqf:fix="replace-p-to-title"
           id="table-wrap-caption-3">Caption for <value-of select="$label"/> doesn't have a title, but it does have a paragraph. Is the paragraph actually the title?</report>
       </rule>
+      
+      <rule context="table-wrap/caption/title" id="table-wrap-title-checks">
+        <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
+        
+        <report test="$sentence-count gt 1" 
+          role="warning" 
+          id="table-wrap-title-1">Title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption?</report>
+     </rule>
     </pattern>
   
     <pattern id="supplementary-material">

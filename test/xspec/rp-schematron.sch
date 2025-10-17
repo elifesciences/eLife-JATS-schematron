@@ -211,6 +211,11 @@
     </xsl:if>
   </xsl:function>
   
+  <let name="research-organisms" value="'research-organisms.xml'"/>
+  <let name="species-regex" value="string-join(doc($research-organisms)//*:organism[@type='species']/@regex,'|')"/>
+  <let name="genus-regex" value="string-join(doc($research-organisms)//*:organism[@type='genus']/@regex,'|')"/>
+  <let name="org-regex" value="string-join(($species-regex,$genus-regex),'|')"/>
+  
   <let name="rors" value="'rors.xml'"/>
   <!-- Grant DOI enabling -->
   <let name="wellcome-ror-ids" value="('https://ror.org/029chgv08')"/>
@@ -1516,7 +1521,7 @@
        
        <report test="matches(.,'[“”&quot;]')" role="warning" sqf:fix="delete-quote-characters" id="journal-source-5">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
        
-       <report test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(replace(.,'\.','')),'^((eur|world|scand|jove)?\s?j(pn)?|nat(ure reviews)?|(bio)?phys|proc|sci|annu?|physio(l|ther)|comput|commun|e(c|th)ol|exp|front|hum|phil|clin|theor|infect|trop|(matrix |micro)?biol|(trends |acs )?(bio)?ch[ei]m|vet|int|mult|math|quan?t|(micro)?circ|percept|(acs )?synth|endocr|artif|mem|spat|rheum|hepatol|(slas )?discov|sociol|arterioscler|invest|(cell )?rep|vis|philos|(trends )?(cogn|cardiovasc)|rev|bull|(ieee )?trans|(plos )?comp(ut)?|prog|adv|cereb|crit|nucl?|(nar )?genom|emerg|arch|br|eur|transbound|dev|am|curr|psych(o([ln]|som|ther)|iatr)?|(bmc|sleep)?\s?med|(methods|cell |embo )?mo(ti)?l|(brain )?(behav|stim)|(brain|genome|diabetes)?\s?res|(acta )?neuro(l|sci|biol|path|psychopharmacol)?|(diabetes )?metab|(methods|trends)\s??ecol|)(\s|$)'))" role="warning" sqf:fix="fix-source-article-title" id="journal-source-6">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains more than one sentence - <value-of select="."/>. Should some of the content be moved into the article-title?</report>
+       <report test="count(tokenize(.,'\.\s')) gt 1 and parent::mixed-citation/article-title and not(matches(lower-case(.),'^i{1,3}\.\s')) and not(matches(lower-case(replace(.,'\.','')),'^((eur|world|scand|jove)?\s?j(pn)?|nat(ure reviews)?|(bio)?phys|proc|sci|annu?|physio(l|ther)|comput|commun|e(c|th)ol|exp|front|hum|phil|clin|theor|infect|trop|(matrix |micro)?biol|(trends |acs )?(bio)?ch[ei]m|vet|int|mult|math|quan?t|(micro)?circ|percept|(acs )?synth|endocr|artif|mem|spat|rheum|hepatol|(cancer )?immunol|semin|oncol|(slas )?discov|sociol|arterioscler|invest|(cell )?rep|vis|philos|(trends )?(cogn|cardiovasc)|rev|bull|(ieee )?trans|(plos )?comp(ut)?|prog|adv|cereb|crit|nucl?|(nar )?genom|emerg|arch|br|eur|transbound|dev|am|curr|psych(o([ln]|som|ther)|iatr)?|(bmc|sleep)?\s?med|(methods|cell |embo )?mo(ti)?l|(brain )?(behav|stim)|(brain|genome|diabetes)?\s?res|(acta )?neuro(l|sci|biol|path|psychopharmacol)?|(diabetes )?metab|(methods|trends)\s??ecol|)(\s|$)'))" role="warning" sqf:fix="fix-source-article-title" id="journal-source-6">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains more than one sentence - <value-of select="."/>. Should some of the content be moved into the article-title?</report>
        
        <report test="count(tokenize(.,'\.\s')) gt 1 and not(parent::mixed-citation/article-title) and not(matches(lower-case(.),'^i{1,3}\.\s'))" role="warning" sqf:fix="fix-source-article-title-2" id="journal-source-7">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains more than one sentence - <value-of select="."/>. Should some of the content be moved into a new article-title?</report>
        
@@ -2125,9 +2130,12 @@
      </rule>
   </pattern>
   <pattern id="fig-title-checks-pattern">
-    <rule context="fig/caption[p]/title" id="fig-title-checks">
-        <report test="matches(lower-case(.),'\.\p{Z}*\p{P}?a(\p{Z}*[\p{Pd},&amp;]\p{Z}*[b-z])?\p{P}?\p{Z}*$')" role="warning" id="fig-title-1">Title for figure ('<value-of select="ancestor::fig/label"/>') potentially ends with a panel label. Should it be moved to the start of the next paragraph? <value-of select="."/>
+    <rule context="fig/caption/title" id="fig-title-checks">
+        <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
+        <report test="parent::caption/p and matches(lower-case(.),'\.\p{Z}*\p{P}?a(\p{Z}*[\p{Pd},&amp;]\p{Z}*[b-z])?\p{P}?\p{Z}*$')" role="warning" id="fig-title-1">Title for figure ('<value-of select="ancestor::fig/label"/>') potentially ends with a panel label. Should it be moved to the start of the next paragraph? <value-of select="."/>
       </report>
+        
+        <report test="$sentence-count gt 1" role="warning" id="fig-title-2">Title for <value-of select="replace(ancestor::fig[1]/label[1],'\.$','')"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption?</report>
      </rule>
   </pattern>
   <pattern id="fig-caption-checks-pattern">
@@ -2176,6 +2184,13 @@
         
         <report test="not(title) and (count(p)=1) and not(count(tokenize(p[1],'\.\p{Z}')) gt 1)" role="warning" sqf:fix="replace-p-to-title" id="table-wrap-caption-3">Caption for <value-of select="$label"/> doesn't have a title, but it does have a paragraph. Is the paragraph actually the title?</report>
       </rule>
+  </pattern>
+  <pattern id="table-wrap-title-checks-pattern">
+    <rule context="table-wrap/caption/title" id="table-wrap-title-checks">
+        <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
+        
+        <report test="$sentence-count gt 1" role="warning" id="table-wrap-title-1">Title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption?</report>
+     </rule>
   </pattern>
   
     <pattern id="supplementary-material-checks-pattern">
@@ -3557,12 +3572,13 @@
       <assert test="descendant::fig" role="error" id="fig-checks-xspec-assert">fig must be present.</assert>
       <assert test="descendant::fig/*" role="error" id="fig-child-checks-xspec-assert">fig/* must be present.</assert>
       <assert test="descendant::fig/label" role="error" id="fig-label-checks-xspec-assert">fig/label must be present.</assert>
-      <assert test="descendant::fig/caption[p]/title" role="error" id="fig-title-checks-xspec-assert">fig/caption[p]/title must be present.</assert>
+      <assert test="descendant::fig/caption/title" role="error" id="fig-title-checks-xspec-assert">fig/caption/title must be present.</assert>
       <assert test="descendant::fig/caption" role="error" id="fig-caption-checks-xspec-assert">fig/caption must be present.</assert>
       <assert test="descendant::table-wrap" role="error" id="table-wrap-checks-xspec-assert">table-wrap must be present.</assert>
       <assert test="descendant::table-wrap/*" role="error" id="table-wrap-child-checks-xspec-assert">table-wrap/* must be present.</assert>
       <assert test="descendant::table-wrap/label" role="error" id="table-wrap-label-checks-xspec-assert">table-wrap/label must be present.</assert>
       <assert test="descendant::table-wrap/caption" role="error" id="table-wrap-caption-checks-xspec-assert">table-wrap/caption must be present.</assert>
+      <assert test="descendant::table-wrap/caption/title" role="error" id="table-wrap-title-checks-xspec-assert">table-wrap/caption/title must be present.</assert>
       <assert test="descendant::supplementary-material" role="error" id="supplementary-material-checks-xspec-assert">supplementary-material must be present.</assert>
       <assert test="descendant::supplementary-material/*" role="error" id="supplementary-material-child-checks-xspec-assert">supplementary-material/* must be present.</assert>
       <assert test="descendant::disp-formula" role="error" id="disp-formula-checks-xspec-assert">disp-formula must be present.</assert>

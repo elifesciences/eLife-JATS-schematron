@@ -199,6 +199,10 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
+  <let name="research-organisms" value="'../../../../../src/research-organisms.xml'"/>
+  <let name="species-regex" value="string-join(doc($research-organisms)//*:organism[@type='species']/@regex,'|')"/>
+  <let name="genus-regex" value="string-join(doc($research-organisms)//*:organism[@type='genus']/@regex,'|')"/>
+  <let name="org-regex" value="string-join(($species-regex,$genus-regex),'|')"/>
   <let name="rors" value="'../../../../../src/rors.xml'"/>
   <let name="wellcome-ror-ids" value="('https://ror.org/029chgv08')"/>
   <let name="known-grant-funder-ror-ids" value="('https://ror.org/006wxqw41','https://ror.org/00097mb19','https://ror.org/03dy4aq19','https://ror.org/013tf3c58','https://ror.org/013kjyp64')"/>
