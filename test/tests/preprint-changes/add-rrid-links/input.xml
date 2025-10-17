@@ -1,0 +1,5 @@
+<!--Testing template with id: add-rrid-links-->
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<p>Good Examples: RRID:SCR_002865, <bold>RRID:CVCL_0063</bold>, RRID:IMSR_CRL:022, <italic>RRID:BDSC_8754</italic>, RRID:IMSR_RJ:C57BL-6NRJ, RRID:Addgene_162279, <underline>RRID:IMSR_JAX:024103</underline>, RRID:AB_628381, RRID:SCR_014632</p>
+<p>Bad Examples: RRID:SRC_018414, <bold>RRID:WB-STRAIN:WBStrain00041969</bold>, RRID:RGD_13508588, <italic>RRID:AB10622025</italic>, RRID:CVCL0188, RRID:IMSR_RBRC04058, <underline>RRID:NA</underline>, RRID:Addgene, RRID:Addgene #17445</p>
+</article>
