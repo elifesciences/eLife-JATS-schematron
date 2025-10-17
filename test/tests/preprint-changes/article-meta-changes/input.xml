@@ -96,7 +96,8 @@
 </permissions>
 <self-uri xlink:href="xxxx.pdf" content-type="pdf" xlink:role="full-text"/>
 <abstract>
-<title>ABSTRACT</title><p>...</p>
+<title>ABSTRACT</title>
+<p>...</p>
 </abstract>
 <counts>
 <page-count count="40"/>
