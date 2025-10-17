@@ -1855,6 +1855,9 @@
         <report test="ancestor::mixed-citation[@publication-type='book'] and not(normalize-space(@person-group-type)=('','author','editor'))" role="warning" id="ref-person-group-type-book">This <name/> inside a book reference has the person-group-type '<value-of select="@person-group-type"/>'. Is that correct?</report>
         
         <report test="ancestor::mixed-citation[@publication-type=('journal','data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')] and not(normalize-space(@person-group-type)=('','author'))" role="warning" id="ref-person-group-type-other">This <name/> inside a <value-of select="ancestor::mixed-citation/@publication-type"/> reference has the person-group-type '<value-of select="@person-group-type"/>'. Is that correct?</report>
+        
+        <assert test="collab or string-name or name" role="error" id="ref-person-group-type-content">
+        <name/> must contain at least one collab, string-name or name element. This one (within reference id=<value-of select="ancestor::ref/@id"/>) does not.</assert>
      </rule>
   </pattern>
   
@@ -2170,6 +2173,8 @@
         <report test="not(title) and (count(p) gt 1)" role="warning" sqf:fix="replace-p-to-title" id="table-wrap-caption-1">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
         
         <report test="not(title) and (count(p)=1) and (count(tokenize(p[1],'\.\p{Z}')) gt 1)" role="warning" sqf:fix="replace-move-sentence-to-title" id="table-wrap-caption-2">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</report>
+        
+        <report test="not(title) and (count(p)=1) and not(count(tokenize(p[1],'\.\p{Z}')) gt 1)" role="warning" sqf:fix="replace-p-to-title" id="table-wrap-caption-3">Caption for <value-of select="$label"/> doesn't have a title, but it does have a paragraph. Is the paragraph actually the title?</report>
       </rule>
   </pattern>
   

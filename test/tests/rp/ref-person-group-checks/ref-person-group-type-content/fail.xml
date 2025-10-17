@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="ref-person-group-type-content.sch"?>
+<!--Context: ref//person-group
+Test: assert    collab or string-name or name
+Message:  must contain at least one collab, string-name or name element. This one (within reference id=) does not. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref>
+            <person-group person-group-type="author">Smith <etal>et al.</etal></person-group>
+        </ref>
+    </article>
+</root>

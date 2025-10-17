@@ -2115,7 +2115,7 @@
     </xsl:template>
     
     <!-- Introduce links for RRIDs -->
-    <xsl:template xml:id="add-rrid-links" match="text()[matches(.,'RRID\s?:')]">
+    <xsl:template xml:id="add-rrid-links" match="text()[matches(.,'RRID\s?:') and not(ancestor::ref)]">
         <xsl:analyze-string select="." regex="{'RRID\s?:\s?(MGI:|I[MS][MS]R_[A-Z]*:|(AB|Addgene|BCBC|BDSC|CVCL|ZFIN|DGRC|JAX|SCR)[:_])[A-Z\d-]+'}">
             <xsl:matching-substring>
                 <xsl:variable name="normalized" select="replace(.,'\s','')"/>

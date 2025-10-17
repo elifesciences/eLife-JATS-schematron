@@ -5618,6 +5618,24 @@
                <xsl:text/>'. Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="collab or string-name or name"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="collab or string-name or name">
+               <xsl:attribute name="id">ref-person-group-type-content</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[ref-person-group-type-content] <xsl:text/>
+                  <xsl:value-of select="name(.)"/>
+                  <xsl:text/> must contain at least one collab, string-name or name element. This one (within reference id=<xsl:text/>
+                  <xsl:value-of select="ancestor::ref/@id"/>
+                  <xsl:text/>) does not.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M74"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M74"/>
@@ -6814,6 +6832,19 @@
             <svrl:text>[table-wrap-caption-2] Caption for <xsl:text/>
                <xsl:value-of select="$label"/>
                <xsl:text/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="not(title) and (count(p)=1) and not(count(tokenize(p[1],'\.\p{Z}')) gt 1)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(title) and (count(p)=1) and not(count(tokenize(p[1],'\.\p{Z}')) gt 1)">
+            <xsl:attribute name="id">table-wrap-caption-3</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[table-wrap-caption-3] Caption for <xsl:text/>
+               <xsl:value-of select="$label"/>
+               <xsl:text/> doesn't have a title, but it does have a paragraph. Is the paragraph actually the title?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M97"/>
