@@ -2114,6 +2114,25 @@
         </xsl:copy>
     </xsl:template>
     
+    <!-- Introduce links for RRIDs -->
+    <xsl:template xml:id="add-rrid-links" match="text()[matches(.,'RRID\s?:')]">
+        <xsl:analyze-string select="." regex="{'RRID\s?:\s?(MGI:|I[MS][MS]R_[A-Z]*:|(AB|Addgene|BCBC|BDSC|CVCL|ZFIN|DGRC|JAX|SCR)[:_])[A-Z\d-]+'}">
+            <xsl:matching-substring>
+                <xsl:variable name="normalized" select="replace(.,'\s','')"/>
+                <xsl:element name="ext-link">
+                    <xsl:attribute name="ext-link-type">uri</xsl:attribute>
+                    <xsl:attribute name="xlink:href">
+                        <xsl:value-of select="concat('https://identifiers.org/RRID:',$normalized)"/>
+                    </xsl:attribute>
+                    <xsl:value-of select="$normalized"/>
+                </xsl:element>
+            </xsl:matching-substring>
+            <xsl:non-matching-substring>
+                <xsl:value-of select="."/>
+            </xsl:non-matching-substring>
+        </xsl:analyze-string>
+    </xsl:template>
+    
     <!-- collate multiple paragraphs in captions for PDF generation -->
     <xsl:template xml:id="collate-caption-ps" match="caption[(parent::fig or parent::table-wrap) and count(p) gt 1]">
         <xsl:copy>
