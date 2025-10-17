@@ -1040,7 +1040,7 @@
         - remove labels
         - remove titles from common/garden abstracts
         - capture additional content within asbtract as additional, sibling abstract(s) with JATS4R compliant abstract-type -->
-    <xsl:template xml:id="abstract-types" match="article-meta/abstract[sec]">
+    <xsl:template xml:id="abstract-types" match="article-meta/abstract">
         <xsl:variable name="known-types-regex" select="'digest|statement|summary|teaser|highlight|importance|significance|graphic'"/>
         <xsl:choose>
             <xsl:when test="not(@abstract-type) and sec[title[1]/matches(lower-case(.),$known-types-regex) or descendant::*[name()=('fig','media')]]">
@@ -1078,6 +1078,17 @@
                         <xsl:apply-templates select="*|text()"/>
                     </abstract>
                 </xsl:for-each>
+            </xsl:when>
+            <!-- Remove labels and titles from common/garden abstracts -->
+            <xsl:when test="not(@abstract-type)">
+                <xsl:copy>
+                    <xsl:apply-templates select="@*"/>
+                    <xsl:if test="title[1][not(matches(normalize-space(lower-case(.)),'^(\d\.? )?(ab[str][str][str]act(\s?/s?summary)?|summary(\s?/s?ab[str][str][str]act)?)$'))]">
+                        <xsl:text>&#xa;</xsl:text>
+                        <xsl:apply-templates select="title[1]"/>
+                    </xsl:if>
+                    <xsl:apply-templates select="*[not(name()=('title','label'))]|text()[not(following-sibling::*[1]/name()=('title','label'))]|comment()|processing-instruction()"/>
+                </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:copy>
