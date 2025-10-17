@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="table-wrap-caption-3.sch"?>
+<!--Context: table-wrap/caption
+Test: report    not(title) and (count(p)=1) and not(count(tokenize(p[1],'\.\p{Z}')) gt 1)
+Message: Caption for  doesn't have a title, but it does have a paragraph. Is the paragraph actually the title? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <table-wrap>
+            <caption>
+                <p>First sentence. Second sentence</p>
+            </caption>
+        </table-wrap>
+    </article>
+</root>

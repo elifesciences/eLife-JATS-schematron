@@ -6816,6 +6816,19 @@
                <xsl:text/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="not(title) and (count(p)=1) and not(count(tokenize(p[1],'\.\p{Z}')) gt 1)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(title) and (count(p)=1) and not(count(tokenize(p[1],'\.\p{Z}')) gt 1)">
+            <xsl:attribute name="id">table-wrap-caption-3</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[table-wrap-caption-3] Caption for <xsl:text/>
+               <xsl:value-of select="$label"/>
+               <xsl:text/> doesn't have a title, but it does have a paragraph. Is the paragraph actually the title?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M97"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M97"/>
