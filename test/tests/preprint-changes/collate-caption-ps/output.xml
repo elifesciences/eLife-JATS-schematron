@@ -1,0 +1,13 @@
+<!--Testing template with id: collate-caption-ps-->
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" article-type="research-article" dtd-version="1.3"><fig>
+<caption>
+<title>This is the figure title.</title>
+<p>First <italic>paragraph</italic>. Second <bold>paragraph</bold>.</p>
+</caption>
+</fig>
+<table-wrap>
+<caption>
+<p>This is the table title mistagged as a <italic>paragraph</italic>. First <bold>paragraph</bold>.</p>
+</caption>
+</table-wrap>
+</article>

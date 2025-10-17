@@ -188,6 +188,10 @@
       <x:context href="../tests/preprint-changes/fix-list-item-labels/input.xml"/>
       <x:expect label="Testing the template: fix-list-item-labels" href="../tests/preprint-changes/fix-list-item-labels/output.xml"/>
     </x:scenario>
+    <x:scenario label="collate-caption-ps">
+      <x:context href="../tests/preprint-changes/collate-caption-ps/input.xml"/>
+      <x:expect label="Testing the template: collate-caption-ps" href="../tests/preprint-changes/collate-caption-ps/output.xml"/>
+    </x:scenario>
     <x:scenario label="rearrange-back">
       <x:context href="../tests/preprint-changes/rearrange-back/input.xml"/>
       <x:expect label="Testing the template: rearrange-back" href="../tests/preprint-changes/rearrange-back/output.xml"/>

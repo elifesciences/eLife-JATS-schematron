@@ -2114,6 +2114,27 @@
         </xsl:copy>
     </xsl:template>
     
+    <!-- collate multiple paragraphs in captions for PDF generation -->
+    <xsl:template xml:id="collate-caption-ps" match="caption[(parent::fig or parent::table-wrap) and count(p) gt 1]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*|comment()|processing-instruction()"/>
+            <xsl:if test="./title">
+                <xsl:text>&#xa;</xsl:text>
+                <xsl:apply-templates select="title"/>
+            </xsl:if>
+            <xsl:text>&#xa;</xsl:text>
+            <p>
+                <xsl:for-each select="./p">
+                    <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+                    <xsl:if test="(position() != last()) and not(matches(.,'\p{Zs}$'))">
+                        <xsl:text> </xsl:text>
+                    </xsl:if>
+                </xsl:for-each>
+            </p>
+            <xsl:text>&#xa;</xsl:text>
+        </xsl:copy>
+    </xsl:template>
+    
     <!-- remove sec[@sec-type='supplementary-material'] from body - it is copied into back in the template below -->
     <xsl:template match="body">
         <xsl:copy>
