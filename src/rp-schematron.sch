@@ -347,6 +347,56 @@
     </analyze-string-result>
   </xsl:function>
   
+  <xsl:function name="e:org-conform" as="element()">
+    <xsl:param name="node" as="node()"/>
+    <result>
+      <xsl:variable name="species-check-result" select="e:org-conform-helper($node,'species')"/>
+      <xsl:choose>
+        <xsl:when test="exists($species-check-result)">
+          <xsl:sequence select="$species-check-result"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="genus-check-result" select="e:org-conform-helper($node,'genus')"/>
+          <xsl:choose>
+            <xsl:when test="exists($genus-check-result)">
+              <xsl:sequence select="$species-check-result"/>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:otherwise>
+      </xsl:choose>
+    </result>
+  </xsl:function>
+  
+  <xsl:function name="e:org-conform-helper" as="element()*">
+    <xsl:param name="node" as="node()"/>
+    <xsl:param name="organism-type" as="xs:string"/>
+    <xsl:variable name="s" select="replace(lower-case(string($node)),'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>
+    <xsl:for-each select="doc($research-organisms)//*:organism[@type=$organism-type]">
+      <xsl:variable name="name" select="."/>
+      <xsl:variable name="text-matches">
+        <xsl:analyze-string select="$s" regex="{./@regex}">
+          <xsl:matching-substring>
+            <match><xsl:value-of select="."/></match>
+          </xsl:matching-substring>
+        </xsl:analyze-string>
+      </xsl:variable>
+      <xsl:variable name="text-count" select="count($text-matches//*:match)"/>
+      <xsl:variable name="italic-count" as="xs:integer">
+        <xsl:choose>
+          <xsl:when test="$node instance of text()">
+            <xsl:value-of select="0"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="count($node//*:italic[contains(.,$name)])"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:if test="$text-count gt $italic-count">
+        <organism text-count="{$text-count}" italic-count="{$italic-count}"><xsl:value-of select="$name"/></organism>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:function>
+  
   <!-- ===== QUICK FIXES ===== -->
   
   <!-- Excludes namespace(s) -->
@@ -2095,6 +2145,24 @@
         
         <report test="matches($text,$missing-ref-regex)" role="warning" id="missing-ref-in-text-test">[missing-ref-in-text-test] <name/> element contains possible citation which is unlinked or a missing reference - search - <value-of select="string-join(e:analyze-string($text,$missing-ref-regex)//*:match,'; ')"/></report>
       </rule></pattern>
+  
+  <pattern id="p-td-th-checks-pattern"><rule context="p|td|th" id="p-td-th-checks">
+      <let name="rrid-link-count" value="count(descendant::ext-link[matches(@*:href,'identifiers\.org/RRID(:|/).*')])"/>
+      <let name="rrid-text-count" value="number(count(         for $x in tokenize(.,'RRID\p{Zs}?#?\p{Zs}?:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')         return $x)) -1"/>
+      <let name="link-strip-text" value="string-join(for $x in (*[not(matches(local-name(),'^ext-link$|^contrib-id$|^license_ref$|^institution-id$|^email$|^xref$|^monospace$'))]|text()) return $x,'')"/>
+      <let name="url-text" value="string-join(for $x in tokenize($link-strip-text,' ')         return   if (matches($x,'^https?:..(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)|^ftp://.|^git://.|^tel:.|^mailto:.|\.org[\p{Zs}]?|\.com[\p{Zs}]?|\.co.uk[\p{Zs}]?|\.us[\p{Zs}]?|\.net[\p{Zs}]?|\.edu[\p{Zs}]?|\.gov[\p{Zs}]?|\.io[\p{Zs}]?')) then $x         else (),'; ')"/>
+      <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ()"/>
+      
+      <report see="https://elifeproduction.slab.com/posts/rri-ds-5k19v560#rrid-test" test="($rrid-text-count gt $rrid-link-count)" role="warning" id="rrid-test">[rrid-test] '<name/>' element contains what looks like <value-of select="$rrid-text-count - $rrid-link-count"/> unlinked RRID(s). These should always be linked using 'https://identifiers.org/RRID:'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h6d61-org-test" test="not(descendant::element-citation) and $organisms//*:organism" role="warning" id="org-test">[org-test] <name/> element contains organism name(s) that are not in an italic element with that correct capitalisation or spacing - <value-of select="string-join($organisms//*:organism,'; ')"/>. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hrt08-ring-diacritic-symbol-test" test="matches(.,'˚') and not(descendant::p[matches(.,'˚')]) and not(descendant::td[matches(.,'˚')]) and not(descendant::th[matches(.,'˚')])" role="warning" id="ring-diacritic-symbol-test">[ring-diacritic-symbol-test] '<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hlvnh-unlinked-url" test="not(descendant::p or descendant::td or descendant::th or descendant::title) and not(ancestor::sub-article or child::element-citation) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')" role="warning" id="unlinked-url">[unlinked-url] '<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/></report>
+      
+      <report test="matches(.,'user-?name\s*:|password\s*:') or (matches(.,'\suser-?name\s') and matches(.,'\spassword\s'))" role="warning" id="user-name-password">[user-name-password] <name/> contains what may be a username and password - <value-of select="."/>. If these are access ceredentials for a dataset depositsed by the authors, it should be made publicly available (unless approved by editors) and the credentials removed/deleted.</report>
+    </rule></pattern>
 
     <pattern id="general-article-meta-checks-pattern"><rule context="article/front/article-meta" id="general-article-meta-checks">
         <let name="is-reviewed-preprint" value="parent::front/journal-meta/lower-case(journal-id[1])='elife'"/>

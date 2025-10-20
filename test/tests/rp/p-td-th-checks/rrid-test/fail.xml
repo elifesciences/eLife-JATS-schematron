@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="rrid-test.sch"?>
+<!--Context: p|td|th
+Test: report    ($rrid-text-count gt $rrid-link-count)
+Message: '' element contains what looks like  unlinked RRID(s). These should always be linked using 'https://identifiers.org/RRID:'. Element begins with . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article>
+    <p>RRID:AB_0001</p>
+    <p>RRID: AB_0001</p>
+    <p>RRID AB_0001</p>
+    <p>RRID CVCL_0001</p>
+    <p>RRID SCR_0001</p>
+    <p>RRID ISMR_JAX:_0001</p>
+  </article>
+</root>
