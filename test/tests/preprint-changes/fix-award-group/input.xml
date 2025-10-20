@@ -1,5 +1,5 @@
 <!--Testing template with id: fix-award-group-->
-<funding-group>
+<funding-group xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
 <award-group id="funding-1">
 <funding-source>Deutsche Forschungsgemeinschaft
 <named-content content-type="funder-id">https://ror.org/018mejw64</named-content>

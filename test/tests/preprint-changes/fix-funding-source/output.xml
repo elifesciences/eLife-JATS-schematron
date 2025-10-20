@@ -1,5 +1,5 @@
 <!--Testing template with id: fix-funding-source-->
-<funding-group>
+<funding-group xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
 <award-group id="funding-1">
 <funding-source>
 <institution-wrap>
@@ -8,7 +8,11 @@
 </institution-wrap>
 </funding-source>
 <award-id>Derek-1</award-id>
-<principal-award-recipient>Mugatu</principal-award-recipient>
+<principal-award-recipient>
+<name>
+<surname>Mugatu</surname>
+</name>
+</principal-award-recipient>
 </award-group>
 <award-group id="funding-2">
 <funding-source>
