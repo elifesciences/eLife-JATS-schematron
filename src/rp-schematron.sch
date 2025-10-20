@@ -1716,7 +1716,7 @@
         
         <assert test="normalize-space(@id)!=''" role="error" id="ref-id">[ref-id] <name/> must have an id attribute with a non-empty value.</assert>
         
-        <assert test="mixed-citation or element-citation" role="error" id="ref-no-citations">[ref-no-citations] <name/> must contain a child mixed-citation or element-citation. This one (with id=<value-of select="ancestor::ref/@id"/>) does not.</assert>
+        <assert test="mixed-citation or element-citation" role="error" id="ref-no-citations">[ref-no-citations] <name/> must contain a child mixed-citation or element-citation. This one (with id=<value-of select="@id"/>) does not.</assert>
 
         <report test="(count(mixed-citation) + count(element-citation)) gt 1" role="error" sqf:fix="replace-to-distinct-refs" id="ref-extra-citations">[ref-extra-citations] <name/> cannot contain more that one citation element (mixed-citation or element-citation). This one (with id=<value-of select="ancestor::ref/@id"/>) has <value-of select="count(mixed-citation) + count(element-citation)"/>.</report>
         
@@ -2707,7 +2707,7 @@
         <assert test="ancestor::notes" role="error" id="body-footnote">[body-footnote] This preprint has footnotes appended to the content. EPP cannot render these, so they need adding to the text.</assert>
       </rule></pattern>
 
-    <pattern id="unallowed-symbol-tests-pattern"><rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
+    <pattern id="unallowed-symbol-tests-pattern"><rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link|ref" id="unallowed-symbol-tests">
       
       <report test="contains(.,'�')" role="error" id="replacement-character-presence">[replacement-character-presence] <name/> element contains the replacement character '�' which is not allowed.</report>
       
@@ -2719,7 +2719,7 @@
       
       <report test="contains(.,'¿')" role="warning" id="inverterted-question-presence">[inverterted-question-presence] <name/> element contains an inverted question mark '¿' which should very likely be replaced/removed.</report>
       
-      <report test="some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]')" role="warning" id="empty-parentheses-presence">[empty-parentheses-presence] <name/> element contains empty parentheses ('[]', or '()'). Is there a missing citation within the parentheses? Or perhaps this is a piece of code that needs formatting?</report>
+      <report test="(name()!='ref') and (some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]'))" role="warning" id="empty-parentheses-presence">[empty-parentheses-presence] <name/> element contains empty parentheses ('[]', or '()'). Is there a missing citation within the parentheses? Or perhaps this is a piece of code that needs formatting?</report>
       
       <report test="matches(.,'&amp;#x\d')" role="warning" id="broken-unicode-presence">[broken-unicode-presence] <name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
       

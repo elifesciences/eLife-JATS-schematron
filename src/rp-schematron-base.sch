@@ -2209,7 +2209,7 @@
         
         <assert test="mixed-citation or element-citation" 
         role="error" 
-        id="ref-no-citations"><name/> must contain a child mixed-citation or element-citation. This one (with id=<value-of select="ancestor::ref/@id"/>) does not.</assert>
+        id="ref-no-citations"><name/> must contain a child mixed-citation or element-citation. This one (with id=<value-of select="@id"/>) does not.</assert>
 
         <report test="(count(mixed-citation) + count(element-citation)) gt 1" 
         role="error" 
@@ -4190,7 +4190,7 @@
     </pattern>
 
     <pattern id="symbol-checks">
-      <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
+      <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link|ref" id="unallowed-symbol-tests">
       
       <report test="contains(.,'�')" 
         role="error" 
@@ -4212,7 +4212,7 @@
         role="warning" 
         id="inverterted-question-presence"><name/> element contains an inverted question mark '¿' which should very likely be replaced/removed.</report>
       
-      <report test="some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]')" 
+      <report test="(name()!='ref') and (some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]'))" 
         role="warning" 
         id="empty-parentheses-presence"><name/> element contains empty parentheses ('[]', or '()'). Is there a missing citation within the parentheses? Or perhaps this is a piece of code that needs formatting?</report>
       

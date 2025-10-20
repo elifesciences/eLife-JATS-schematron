@@ -1090,7 +1090,7 @@
   </sqf:fixes>
   <pattern id="ref-checks-pattern">
     <rule context="ref" id="ref-checks">
-      <assert test="mixed-citation or element-citation" role="error" id="ref-no-citations">[ref-no-citations] <name/> must contain a child mixed-citation or element-citation. This one (with id=<value-of select="ancestor::ref/@id"/>) does not.</assert>
+      <assert test="mixed-citation or element-citation" role="error" id="ref-no-citations">[ref-no-citations] <name/> must contain a child mixed-citation or element-citation. This one (with id=<value-of select="@id"/>) does not.</assert>
       <sqf:fix id="replace-to-distinct-refs">
           <sqf:description>
             <sqf:title>Capture each mixed-citation in its own ref</sqf:title>

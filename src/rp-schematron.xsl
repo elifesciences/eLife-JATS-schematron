@@ -5704,7 +5704,7 @@
                <svrl:text>[ref-no-citations] <xsl:text/>
                   <xsl:value-of select="name(.)"/>
                   <xsl:text/> must contain a child mixed-citation or element-citation. This one (with id=<xsl:text/>
-                  <xsl:value-of select="ancestor::ref/@id"/>
+                  <xsl:value-of select="@id"/>
                   <xsl:text/>) does not.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
@@ -11603,7 +11603,7 @@
    </xsl:template>
    <!--PATTERN unallowed-symbol-tests-pattern-->
    <!--RULE unallowed-symbol-tests-->
-   <xsl:template match="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" priority="1000" mode="M176">
+   <xsl:template match="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link|ref" priority="1000" mode="M176">
 
 		<!--REPORT error-->
       <xsl:if test="contains(.,'�')">
@@ -11671,8 +11671,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]')">
+      <xsl:if test="(name()!='ref') and (some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(name()!='ref') and (some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]'))">
             <xsl:attribute name="id">empty-parentheses-presence</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">

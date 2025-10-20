@@ -1875,7 +1875,7 @@
         <name/> must have an id attribute with a non-empty value.</assert>
         
         <assert test="mixed-citation or element-citation" role="error" id="ref-no-citations">
-        <name/> must contain a child mixed-citation or element-citation. This one (with id=<value-of select="ancestor::ref/@id"/>) does not.</assert>
+        <name/> must contain a child mixed-citation or element-citation. This one (with id=<value-of select="@id"/>) does not.</assert>
 
         <report test="(count(mixed-citation) + count(element-citation)) gt 1" role="error" sqf:fix="replace-to-distinct-refs" id="ref-extra-citations">
         <name/> cannot contain more that one citation element (mixed-citation or element-citation). This one (with id=<value-of select="ancestor::ref/@id"/>) has <value-of select="count(mixed-citation) + count(element-citation)"/>.</report>
@@ -3224,7 +3224,7 @@
   </pattern>
 
     <pattern id="unallowed-symbol-tests-pattern">
-    <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
+    <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link|ref" id="unallowed-symbol-tests">
       
       <report test="contains(.,'�')" role="error" id="replacement-character-presence">
         <name/> element contains the replacement character '�' which is not allowed.</report>
@@ -3241,7 +3241,7 @@
       <report test="contains(.,'¿')" role="warning" id="inverterted-question-presence">
         <name/> element contains an inverted question mark '¿' which should very likely be replaced/removed.</report>
       
-      <report test="some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]')" role="warning" id="empty-parentheses-presence">
+      <report test="(name()!='ref') and (some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]'))" role="warning" id="empty-parentheses-presence">
         <name/> element contains empty parentheses ('[]', or '()'). Is there a missing citation within the parentheses? Or perhaps this is a piece of code that needs formatting?</report>
       
       <report test="matches(.,'&amp;#x\d')" role="warning" id="broken-unicode-presence">
@@ -3648,7 +3648,7 @@
       <assert test="descendant::ext-link[@ext-link-type='uri']" role="error" id="ext-link-tests-xspec-assert">ext-link[@ext-link-type='uri'] must be present.</assert>
       <assert test="descendant::ext-link" role="error" id="ext-link-tests-2-xspec-assert">ext-link must be present.</assert>
       <assert test="descendant::fn-group[fn]" role="error" id="footnote-checks-xspec-assert">fn-group[fn] must be present.</assert>
-      <assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link" role="error" id="unallowed-symbol-tests-xspec-assert">p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</assert>
+      <assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link or descendant::ref" role="error" id="unallowed-symbol-tests-xspec-assert">p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link|ref must be present.</assert>
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub" role="error" id="ed-report-front-stub-xspec-assert">sub-article[@article-type='editor-report']/front-stub must be present.</assert>
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group" role="error" id="ed-report-kwd-group-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group must be present.</assert>
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" role="error" id="ed-report-kwds-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd must be present.</assert>
