@@ -386,7 +386,17 @@
             <xsl:apply-templates select="abstract|abstract/following-sibling::text()[1]"/>
             <xsl:apply-templates select="trans-abstract|trans-abstract/following-sibling::text()[1]"/>
             <xsl:apply-templates select="kwd-group|kwd-group/following-sibling::text()[1]"/>
-            <xsl:apply-templates select="funding-group|funding-group/following-sibling::text()[1]"/>
+            <!-- When there's funding from eJP (with par-0 id convention) and preprint server,
+                    favour solely the former -->
+            <xsl:choose>
+                <xsl:when test="count(funding-group) gt 1 and funding-group[award-group[starts-with(@id,'par')]]">
+                    <xsl:apply-templates select="funding-group[award-group[starts-with(@id,'par')]]"/>
+                    <xsl:text>&#xa;</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="funding-group|funding-group/following-sibling::text()[1]"/>
+                </xsl:otherwise>
+            </xsl:choose>
             <xsl:apply-templates select="support-group|support-group/following-sibling::text()[1]"/>
             <xsl:apply-templates select="conference|conference/following-sibling::text()[1]"/>
             <xsl:apply-templates select="counts"/>
@@ -1332,13 +1342,17 @@
                 <xsl:when test="not(institution-wrap)">
                     <xsl:text>&#xa;</xsl:text>
                     <xsl:element name="institution-wrap">
-                        <xsl:if test="named-content[@content-type='funder-id' and normalize-space(.)!='']">
-                            <xsl:text>&#xa;</xsl:text>
-                            <xsl:element name="institution-id">
-                                <xsl:attribute name="institution-id-type">ror</xsl:attribute>
-                                <xsl:value-of select="named-content[@content-type='funder-id']"/>
-                            </xsl:element>
-                        </xsl:if>
+                        <xsl:choose>
+                            <!-- bioRxiv's (mis)tagging for ROR IDs -->
+                            <xsl:when test="named-content[@content-type='funder-id' and normalize-space(.)!='']">
+                                <xsl:text>&#xa;</xsl:text>
+                                <xsl:element name="institution-id">
+                                    <xsl:attribute name="institution-id-type">ror</xsl:attribute>
+                                    <xsl:value-of select="named-content[@content-type='funder-id']"/>
+                                </xsl:element>
+                            </xsl:when>
+                            <xsl:otherwise/>
+                        </xsl:choose>
                         <xsl:choose>
                             <xsl:when test="institution">
                                 <xsl:text>&#xa;</xsl:text>
@@ -1358,6 +1372,47 @@
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates select="*|text()|comment()"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- Add missing tagging in principal-award-recipient -->
+    <xsl:template xml:id="fix-principal-award-recipient" match="award-group/principal-award-recipient">
+        <xsl:copy>
+            <xsl:choose>
+                <xsl:when test="not(./institution) and not(./name) and not(./string-name)">
+                    <xsl:choose>
+                        <xsl:when test="matches(.,'\s')">
+                            <xsl:text>&#xa;</xsl:text>
+                            <name>
+                                <xsl:text>&#xa;</xsl:text>
+                                <surname>
+                                    <xsl:value-of select="replace(tokenize(.,'\s+')[last()],'\.','')"/>
+                                </surname>
+                                <xsl:text>&#xa;</xsl:text>
+                                <given-names>
+                                    <xsl:value-of select="replace(string-join(tokenize(.,'\s+')[position() != last()],' '),'\.','')"/>
+                                </given-names>
+                                <xsl:text>&#xa;</xsl:text>
+                            </name>
+                            <xsl:text>&#xa;</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:text>&#xa;</xsl:text>
+                             <name>
+                                 <xsl:text>&#xa;</xsl:text>
+                                 <surname>
+                                    <xsl:value-of select="replace(.,'\.','')"/>
+                                </surname>
+                                 <xsl:text>&#xa;</xsl:text>
+                             </name>
+                            <xsl:text>&#xa;</xsl:text>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:copy>
