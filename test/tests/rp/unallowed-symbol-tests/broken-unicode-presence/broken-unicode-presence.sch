@@ -318,6 +318,58 @@
       </xsl:analyze-string>
     </analyze-string-result>
   </xsl:function>
+  <xsl:function name="e:org-conform" as="element()">
+    <xsl:param name="node" as="node()"/>
+    <result>
+      <xsl:variable name="species-check-result" select="e:org-conform-helper($node,'species')"/>
+      <xsl:choose>
+        <xsl:when test="exists($species-check-result)">
+          <xsl:sequence select="$species-check-result"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="genus-check-result" select="e:org-conform-helper($node,'genus')"/>
+          <xsl:choose>
+            <xsl:when test="exists($genus-check-result)">
+              <xsl:sequence select="$species-check-result"/>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:otherwise>
+      </xsl:choose>
+    </result>
+  </xsl:function>
+  <xsl:function name="e:org-conform-helper" as="element()*">
+    <xsl:param name="node" as="node()"/>
+    <xsl:param name="organism-type" as="xs:string"/>
+    <xsl:variable name="s" select="replace(lower-case(string($node)),'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>
+    <xsl:for-each select="doc($research-organisms)//*:organism[@type=$organism-type]">
+      <xsl:variable name="name" select="."/>
+      <xsl:variable name="text-matches">
+        <xsl:analyze-string select="$s" regex="{./@regex}">
+          <xsl:matching-substring>
+            <match>
+              <xsl:value-of select="."/>
+            </match>
+          </xsl:matching-substring>
+        </xsl:analyze-string>
+      </xsl:variable>
+      <xsl:variable name="text-count" select="count($text-matches//*:match)"/>
+      <xsl:variable name="italic-count" as="xs:integer">
+        <xsl:choose>
+          <xsl:when test="$node instance of text()">
+            <xsl:value-of select="0"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="count($node//*:italic[contains(.,$name)])"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:if test="$text-count gt $italic-count">
+        <organism text-count="{$text-count}" italic-count="{$italic-count}">
+          <xsl:value-of select="$name"/>
+        </organism>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:function>
   <xsl:template match="." mode="customCopy">
     <xsl:copy copy-namespaces="no">
       <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()" mode="customCopy"/>
@@ -1089,13 +1141,13 @@
     </sqf:fix>
   </sqf:fixes>
   <pattern id="unallowed-symbol-tests-pattern">
-    <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
+    <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link|ref" id="unallowed-symbol-tests">
       <report test="matches(.,'&amp;#x\d')" role="warning" id="broken-unicode-presence">[broken-unicode-presence] <name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link" role="error" id="unallowed-symbol-tests-xspec-assert">p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link must be present.</assert>
+      <assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link or descendant::ref" role="error" id="unallowed-symbol-tests-xspec-assert">p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link|ref must be present.</assert>
     </rule>
   </pattern>
 </schema>

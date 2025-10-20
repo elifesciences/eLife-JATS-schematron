@@ -1,0 +1,10 @@
+<?oxygen SCHSchema="user-name-password.sch"?>
+<!--Context: p|td|th
+Test: report    matches(.,'user-?name\s*:|password\s*:') or (matches(.,'\suser-?name\s') and matches(.,'\spassword\s'))
+Message:  contains what may be a username and password - . If these are access ceredentials for a dataset depositsed by the authors, it should be made publicly available (unless approved by editors) and the credentials removed/deleted. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <p>Raw data are available in [defunct data repository] under accession number 1234 (username: junk-username; password: this-is-not-a-real-password).</p>
+    <p>Cooked data can be accessed in [defunct data repository] with the username 'junk-username' and password 'this-is-not-a-real-password'.</p>
+  </article>
+</root>

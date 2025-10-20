@@ -2954,6 +2954,58 @@
         <x:expect-not-assert id="p-ref-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="p-td-th-checks">
+      <x:scenario label="rrid-test-pass">
+        <x:context href="../tests/rp/p-td-th-checks/rrid-test/pass.xml"/>
+        <x:expect-not-report id="rrid-test" role="warning"/>
+        <x:expect-not-assert id="p-td-th-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="rrid-test-fail">
+        <x:context href="../tests/rp/p-td-th-checks/rrid-test/fail.xml"/>
+        <x:expect-report id="rrid-test" role="warning"/>
+        <x:expect-not-assert id="p-td-th-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="org-test-pass">
+        <x:context href="../tests/rp/p-td-th-checks/org-test/pass.xml"/>
+        <x:expect-not-report id="org-test" role="warning"/>
+        <x:expect-not-assert id="p-td-th-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="org-test-fail">
+        <x:context href="../tests/rp/p-td-th-checks/org-test/fail.xml"/>
+        <x:expect-report id="org-test" role="warning"/>
+        <x:expect-not-assert id="p-td-th-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ring-diacritic-symbol-test-pass">
+        <x:context href="../tests/rp/p-td-th-checks/ring-diacritic-symbol-test/pass.xml"/>
+        <x:expect-not-report id="ring-diacritic-symbol-test" role="warning"/>
+        <x:expect-not-assert id="p-td-th-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ring-diacritic-symbol-test-fail">
+        <x:context href="../tests/rp/p-td-th-checks/ring-diacritic-symbol-test/fail.xml"/>
+        <x:expect-report id="ring-diacritic-symbol-test" role="warning"/>
+        <x:expect-not-assert id="p-td-th-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unlinked-url-pass">
+        <x:context href="../tests/rp/p-td-th-checks/unlinked-url/pass.xml"/>
+        <x:expect-not-report id="unlinked-url" role="warning"/>
+        <x:expect-not-assert id="p-td-th-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="unlinked-url-fail">
+        <x:context href="../tests/rp/p-td-th-checks/unlinked-url/fail.xml"/>
+        <x:expect-report id="unlinked-url" role="warning"/>
+        <x:expect-not-assert id="p-td-th-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="user-name-password-pass">
+        <x:context href="../tests/rp/p-td-th-checks/user-name-password/pass.xml"/>
+        <x:expect-not-report id="user-name-password" role="warning"/>
+        <x:expect-not-assert id="p-td-th-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="user-name-password-fail">
+        <x:context href="../tests/rp/p-td-th-checks/user-name-password/fail.xml"/>
+        <x:expect-report id="user-name-password" role="warning"/>
+        <x:expect-not-assert id="p-td-th-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="general-article-meta-checks">
       <x:scenario label="article-id-pass">
         <x:context href="../tests/rp/general-article-meta-checks/article-id/pass.xml"/>

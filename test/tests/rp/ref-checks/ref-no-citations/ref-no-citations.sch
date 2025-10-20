@@ -318,6 +318,58 @@
       </xsl:analyze-string>
     </analyze-string-result>
   </xsl:function>
+  <xsl:function name="e:org-conform" as="element()">
+    <xsl:param name="node" as="node()"/>
+    <result>
+      <xsl:variable name="species-check-result" select="e:org-conform-helper($node,'species')"/>
+      <xsl:choose>
+        <xsl:when test="exists($species-check-result)">
+          <xsl:sequence select="$species-check-result"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="genus-check-result" select="e:org-conform-helper($node,'genus')"/>
+          <xsl:choose>
+            <xsl:when test="exists($genus-check-result)">
+              <xsl:sequence select="$species-check-result"/>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:otherwise>
+      </xsl:choose>
+    </result>
+  </xsl:function>
+  <xsl:function name="e:org-conform-helper" as="element()*">
+    <xsl:param name="node" as="node()"/>
+    <xsl:param name="organism-type" as="xs:string"/>
+    <xsl:variable name="s" select="replace(lower-case(string($node)),'drosophila genetic resource center|bloomington drosophila stock center|drosophila genomics resource center','')"/>
+    <xsl:for-each select="doc($research-organisms)//*:organism[@type=$organism-type]">
+      <xsl:variable name="name" select="."/>
+      <xsl:variable name="text-matches">
+        <xsl:analyze-string select="$s" regex="{./@regex}">
+          <xsl:matching-substring>
+            <match>
+              <xsl:value-of select="."/>
+            </match>
+          </xsl:matching-substring>
+        </xsl:analyze-string>
+      </xsl:variable>
+      <xsl:variable name="text-count" select="count($text-matches//*:match)"/>
+      <xsl:variable name="italic-count" as="xs:integer">
+        <xsl:choose>
+          <xsl:when test="$node instance of text()">
+            <xsl:value-of select="0"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="count($node//*:italic[contains(.,$name)])"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:if test="$text-count gt $italic-count">
+        <organism text-count="{$text-count}" italic-count="{$italic-count}">
+          <xsl:value-of select="$name"/>
+        </organism>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:function>
   <xsl:template match="." mode="customCopy">
     <xsl:copy copy-namespaces="no">
       <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()" mode="customCopy"/>
@@ -1090,7 +1142,7 @@
   </sqf:fixes>
   <pattern id="ref-checks-pattern">
     <rule context="ref" id="ref-checks">
-      <assert test="mixed-citation or element-citation" role="error" id="ref-no-citations">[ref-no-citations] <name/> must contain a child mixed-citation or element-citation. This one (with id=<value-of select="ancestor::ref/@id"/>) does not.</assert>
+      <assert test="mixed-citation or element-citation" role="error" id="ref-no-citations">[ref-no-citations] <name/> must contain a child mixed-citation or element-citation. This one (with id=<value-of select="@id"/>) does not.</assert>
       <sqf:fix id="replace-to-distinct-refs">
           <sqf:description>
             <sqf:title>Capture each mixed-citation in its own ref</sqf:title>
