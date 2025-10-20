@@ -112,6 +112,10 @@
       <x:context href="../tests/preprint-changes/fix-funding-source/input.xml"/>
       <x:expect label="Testing the template: fix-funding-source" href="../tests/preprint-changes/fix-funding-source/output.xml"/>
     </x:scenario>
+    <x:scenario label="fix-principal-award-recipient">
+      <x:context href="../tests/preprint-changes/fix-principal-award-recipient/input.xml"/>
+      <x:expect label="Testing the template: fix-principal-award-recipient" href="../tests/preprint-changes/fix-principal-award-recipient/output.xml"/>
+    </x:scenario>
     <x:scenario label="add-person-group">
       <x:context href="../tests/preprint-changes/add-person-group/input.xml"/>
       <x:expect label="Testing the template: add-person-group" href="../tests/preprint-changes/add-person-group/output.xml"/>

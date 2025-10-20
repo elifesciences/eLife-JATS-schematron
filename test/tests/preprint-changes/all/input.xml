@@ -85,6 +85,36 @@
 <fig/>
 </sec>
 </abstract>
+<funding-group>
+<award-group id="funding-1">
+<funding-source>National Natural Science Foundation of China<named-content content-type="funder-id">https://ror.org/01h0zpd94</named-content></funding-source>
+<award-id>32025022</award-id>
+<award-id>32230062</award-id>
+<award-id>32170042</award-id>
+</award-group>
+</funding-group>
+<funding-group>
+<award-group id="par-1">
+<funding-source>
+<institution-wrap>
+<institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100000050</institution-id>
+<institution>HHS | NIH | National Heart, Lung, and Blood Institute (NHLBI)</institution>
+</institution-wrap>
+</funding-source>
+<award-id>R01 ...</award-id>
+<principal-award-recipient>Santa P. Claus</principal-award-recipient>
+</award-group>
+<award-group id="par-2">
+<funding-source>
+<institution-wrap>
+<institution-id institution-id-type="ror">https://ror.org/012pb6c26</institution-id>
+<institution>National Heart, Lung, and Blood Institute (NHLBI)</institution>
+</institution-wrap>
+</funding-source>
+<award-id>R01 ...</award-id>
+<principal-award-recipient>Mugatu</principal-award-recipient>
+</award-group>
+</funding-group>
 ...
 </article-meta>
 <notes>
