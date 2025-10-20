@@ -2267,6 +2267,7 @@
         
         <report test="upper-case(.)=." 
           role="warning" 
+          sqf:fix="replace-sentence-case"
           id="ref-article-title-2"><name/> in ref is entirely in upper case - <value-of select="."/>. Is that correct?</report>
         
         <report test="matches(.,'\?[^\s\p{P}]')" 
