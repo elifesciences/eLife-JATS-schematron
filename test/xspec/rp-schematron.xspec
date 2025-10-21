@@ -4721,6 +4721,16 @@
         <x:expect-report id="reproduce-test-8" role="warning"/>
         <x:expect-not-assert id="fig-permissions-check-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="reproduce-test-9-pass">
+        <x:context href="../tests/rp/fig-permissions-check/reproduce-test-9/pass.xml"/>
+        <x:expect-not-report id="reproduce-test-9" role="warning"/>
+        <x:expect-not-assert id="fig-permissions-check-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="reproduce-test-9-fail">
+        <x:context href="../tests/rp/fig-permissions-check/reproduce-test-9/fail.xml"/>
+        <x:expect-report id="reproduce-test-9" role="warning"/>
+        <x:expect-not-assert id="fig-permissions-check-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="clintrial-related-object">
       <x:scenario label="clintrial-related-object-2-pass">

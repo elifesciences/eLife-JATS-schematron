@@ -12525,6 +12525,10 @@ else self::*/local-name() = $allowed-p-blocks"
         test="matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')" 
         role="warning" 
         id="reproduce-test-8">The caption for <value-of select="$label"/> contains the text 'used with permission', but has no permissions. Is this correct?</report>
+      
+      <report test="matches(caption[1],'[Cc]ourtesy|[Pp]roprietary')" 
+        role="warning" 
+        id="reproduce-test-9">The caption for <value-of select="$label"/> contains the text 'courtesy' or 'proprietary', but has no permissions. Is this correct?</report>
     </rule>
     
     <rule context="xref[not(@ref-type='bibr')]" id="xref-formatting">

@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="reproduce-test-9.sch"?>
+<!--Context: fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]
+Test: report    matches(caption[1],'[Cc]ourtesy|[Pp]roprietary')
+Message: The caption for  contains the text 'courtesy' or 'proprietary', but has no permissions. Is this correct? -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig>
+      <caption>Panel (<bold>B</bold>) courtesy some-person.</caption>
+    </fig>
+      <fig>
+      <caption>Panel (<bold>A</bold>) is proprietary.</caption>
+    </fig>
+  </article>
+</root>

@@ -6232,6 +6232,8 @@
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-7" test="matches(caption[1],'[Mm]odified [Ww]ith')" role="warning" id="reproduce-test-7">[reproduce-test-7] The caption for <value-of select="$label"/> contains the text 'modified with', but has no permissions. Is this correct?</report>
       
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-8" test="matches(caption[1],'[Uu]sed [Ww]ith [Pp]ermission')" role="warning" id="reproduce-test-8">[reproduce-test-8] The caption for <value-of select="$label"/> contains the text 'used with permission', but has no permissions. Is this correct?</report>
+      
+      <report test="matches(caption[1],'[Cc]ourtesy|[Pp]roprietary')" role="warning" id="reproduce-test-9">[reproduce-test-9] The caption for <value-of select="$label"/> contains the text 'courtesy' or 'proprietary', but has no permissions. Is this correct?</report>
     </rule></pattern><pattern id="xref-formatting-pattern"><rule context="xref[not(@ref-type='bibr')]" id="xref-formatting">
       <let name="parent" value="parent::*/local-name()"/>
       <let name="child" value="child::*/local-name()"/>
