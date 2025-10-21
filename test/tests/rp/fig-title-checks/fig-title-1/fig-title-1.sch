@@ -1142,7 +1142,7 @@
   </sqf:fixes>
   <pattern id="fig-title-checks-pattern">
     <rule context="fig/caption/title" id="fig-title-checks">
-      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
+      <let name="sentence-count" value="count(tokenize(replace(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),' vs.',''),'\. '))"/>
       <report test="parent::caption/p and matches(lower-case(.),'\.\p{Z}*\p{P}?a(\p{Z}*[\p{Pd},&amp;]\p{Z}*[b-z])?\p{P}?\p{Z}*$')" role="warning" id="fig-title-1">[fig-title-1] Title for figure ('<value-of select="ancestor::fig/label"/>') potentially ends with a panel label. Should it be moved to the start of the next paragraph? <value-of select="."/>
       </report>
     </rule>

@@ -1142,7 +1142,7 @@
   </sqf:fixes>
   <pattern id="fig-title-checks-pattern">
     <rule context="fig/caption/title" id="fig-title-checks">
-      <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
+      <let name="sentence-count" value="count(tokenize(replace(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),' vs.',''),'\. '))"/>
       <report test="$sentence-count gt 1" role="warning" id="fig-title-2">[fig-title-2] Title for <value-of select="replace(ancestor::fig[1]/label[1],'\.$','')"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption?</report>
     </rule>
   </pattern>

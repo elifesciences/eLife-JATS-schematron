@@ -1955,7 +1955,7 @@
         
         <report test="matches(lower-case(.),'^\s*table')" role="warning" id="fig-label-table">[fig-label-table] Label for figure ('<value-of select="."/>') starts with table. Should this content be captured as a table instead of a figure?</report>
      </rule></pattern><pattern id="fig-title-checks-pattern"><rule context="fig/caption/title" id="fig-title-checks">
-        <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
+        <let name="sentence-count" value="count(tokenize(replace(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),' vs.',''),'\. '))"/>
         <report test="parent::caption/p and matches(lower-case(.),'\.\p{Z}*\p{P}?a(\p{Z}*[\p{Pd},&amp;]\p{Z}*[b-z])?\p{P}?\p{Z}*$')" role="warning" id="fig-title-1">[fig-title-1] Title for figure ('<value-of select="ancestor::fig/label"/>') potentially ends with a panel label. Should it be moved to the start of the next paragraph? <value-of select="."/></report>
         
         <report test="$sentence-count gt 1" role="warning" id="fig-title-2">[fig-title-2] Title for <value-of select="replace(ancestor::fig[1]/label[1],'\.$','')"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption?</report>
@@ -2154,8 +2154,6 @@
       <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ()"/>
       
       <report see="https://elifeproduction.slab.com/posts/rri-ds-5k19v560#rrid-test" test="($rrid-text-count gt $rrid-link-count)" role="warning" id="rrid-test">[rrid-test] '<name/>' element contains what looks like <value-of select="$rrid-text-count - $rrid-link-count"/> unlinked RRID(s). These should always be linked using 'https://identifiers.org/RRID:'. Element begins with <value-of select="substring(.,1,15)"/>.</report>
-      
-      <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h6d61-org-test" test="not(descendant::element-citation) and $organisms//*:organism" role="warning" id="org-test">[org-test] <name/> element contains organism name(s) that are not in an italic element with that correct capitalisation or spacing - <value-of select="string-join($organisms//*:organism,'; ')"/>. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hrt08-ring-diacritic-symbol-test" test="matches(.,'˚') and not(descendant::p[matches(.,'˚')]) and not(descendant::td[matches(.,'˚')]) and not(descendant::th[matches(.,'˚')])" role="warning" id="ring-diacritic-symbol-test">[ring-diacritic-symbol-test] '<name/>' element contains the ring above symbol, '∘'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
       
