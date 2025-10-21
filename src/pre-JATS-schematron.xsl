@@ -36795,6 +36795,19 @@
                <xsl:text/> contains the text 'used with permission', but has no permissions. Is this correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(caption[1],'[Cc]ourtesy|[Pp]roprietary')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(caption[1],'[Cc]ourtesy|[Pp]roprietary')">
+            <xsl:attribute name="id">reproduce-test-9</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[reproduce-test-9] The caption for <xsl:text/>
+               <xsl:value-of select="$label"/>
+               <xsl:text/> contains the text 'courtesy' or 'proprietary', but has no permissions. Is this correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M574"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M574"/>
