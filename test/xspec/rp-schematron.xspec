@@ -2965,16 +2965,6 @@
         <x:expect-report id="rrid-test" role="warning"/>
         <x:expect-not-assert id="p-td-th-checks-xspec-assert" role="error"/>
       </x:scenario>
-      <x:scenario label="org-test-pass">
-        <x:context href="../tests/rp/p-td-th-checks/org-test/pass.xml"/>
-        <x:expect-not-report id="org-test" role="warning"/>
-        <x:expect-not-assert id="p-td-th-checks-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="org-test-fail">
-        <x:context href="../tests/rp/p-td-th-checks/org-test/fail.xml"/>
-        <x:expect-report id="org-test" role="warning"/>
-        <x:expect-not-assert id="p-td-th-checks-xspec-assert" role="error"/>
-      </x:scenario>
       <x:scenario label="ring-diacritic-symbol-test-pass">
         <x:context href="../tests/rp/p-td-th-checks/ring-diacritic-symbol-test/pass.xml"/>
         <x:expect-not-report id="ring-diacritic-symbol-test" role="warning"/>

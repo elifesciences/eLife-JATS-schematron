@@ -6706,7 +6706,7 @@
    <!--PATTERN fig-title-checks-pattern-->
    <!--RULE fig-title-checks-->
    <xsl:template match="fig/caption/title" priority="1000" mode="M98">
-      <xsl:variable name="sentence-count" select="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
+      <xsl:variable name="sentence-count" select="count(tokenize(replace(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),' vs.',''),'\. '))"/>
       <!--REPORT warning-->
       <xsl:if test="parent::caption/p and matches(lower-case(.),'\.\p{Z}*\p{P}?a(\p{Z}*[\p{Pd},&amp;]\p{Z}*[b-z])?\p{P}?\p{Z}*$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="parent::caption/p and matches(lower-case(.),'\.\p{Z}*\p{P}?a(\p{Z}*[\p{Pd},&amp;]\p{Z}*[b-z])?\p{P}?\p{Z}*$')">
@@ -7875,26 +7875,6 @@
                <xsl:value-of select="$rrid-text-count - $rrid-link-count"/>
                <xsl:text/> unlinked RRID(s). These should always be linked using 'https://identifiers.org/RRID:'. Element begins with <xsl:text/>
                <xsl:value-of select="substring(.,1,15)"/>
-               <xsl:text/>.</svrl:text>
-         </svrl:successful-report>
-      </xsl:if>
-      <!--REPORT warning-->
-      <xsl:if test="not(descendant::element-citation) and $organisms//*:organism">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(descendant::element-citation) and $organisms//*:organism">
-            <xsl:attribute name="id">org-test</xsl:attribute>
-            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/house-style-yi0641ob#h6d61-org-test</xsl:attribute>
-            <xsl:attribute name="role">warning</xsl:attribute>
-            <xsl:attribute name="location">
-               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-            </xsl:attribute>
-            <svrl:text>[org-test] <xsl:text/>
-               <xsl:value-of select="name(.)"/>
-               <xsl:text/> element contains organism name(s) that are not in an italic element with that correct capitalisation or spacing - <xsl:text/>
-               <xsl:value-of select="string-join($organisms//*:organism,'; ')"/>
-               <xsl:text/>. Is this correct? <xsl:text/>
-               <xsl:value-of select="name(.)"/>
-               <xsl:text/> element begins with <xsl:text/>
-               <xsl:value-of select="concat(.,substring(.,1,15))"/>
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
