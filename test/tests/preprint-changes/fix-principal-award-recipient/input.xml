@@ -29,4 +29,13 @@
 <award-id>...</award-id>
 <principal-award-recipient>Mugatu</principal-award-recipient>
 </award-group>
+<award-group id="par-4">
+<funding-source>
+<institution-wrap>
+<institution>EU Grant</institution>
+</institution-wrap>
+</funding-source>
+<award-id>...</award-id>
+<principal-award-recipient>Given Surname, Mugatu</principal-award-recipient>
+</award-group>
 </funding-group>

@@ -1379,10 +1379,37 @@
     
     <!-- Add missing tagging in principal-award-recipient -->
     <xsl:template xml:id="fix-principal-award-recipient" match="award-group/principal-award-recipient">
-        <xsl:copy>
-            <xsl:choose>
-                <xsl:when test="not(./institution) and not(./name) and not(./string-name)">
+        <xsl:choose>
+            <xsl:when test="not(./*) and normalize-space(.)=''"/>
+            <xsl:when test="normalize-space(.)!='' and not(./institution) and not(./name) and not(./string-name)">
+                <xsl:copy>
                     <xsl:choose>
+                        <xsl:when test="contains(.,', ')">
+                            <xsl:for-each select="tokenize(.,', ')">
+                                <xsl:text>&#xa;</xsl:text>
+                                <name>
+                                    <xsl:text>&#xa;</xsl:text>
+                                    <xsl:choose>
+                                        <xsl:when test="matches(.,'\s')">
+                                            <surname>
+                                                <xsl:value-of select="replace(tokenize(.,'\s+')[last()],'\.','')"/>
+                                            </surname>
+                                            <xsl:text>&#xa;</xsl:text>
+                                            <given-names>
+                                                <xsl:value-of select="replace(string-join(tokenize(.,'\s+')[position() != last()],' '),'\.','')"/>
+                                            </given-names>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <surname>
+                                                <xsl:value-of select="replace(.,'\.','')"/>
+                                            </surname>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                    <xsl:text>&#xa;</xsl:text>
+                                </name>
+                            </xsl:for-each>
+                            <xsl:text>&#xa;</xsl:text>
+                        </xsl:when>
                         <xsl:when test="matches(.,'\s')">
                             <xsl:text>&#xa;</xsl:text>
                             <name>
@@ -1410,12 +1437,14 @@
                             <xsl:text>&#xa;</xsl:text>
                         </xsl:otherwise>
                     </xsl:choose>
+                    </xsl:copy>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                    <xsl:copy>
+                        <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                    </xsl:copy>
                 </xsl:otherwise>
             </xsl:choose>
-        </xsl:copy>
     </xsl:template>
     
     <!-- wrapper for mixed-citation templates run in sequence -->
