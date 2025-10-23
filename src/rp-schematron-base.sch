@@ -2635,6 +2635,11 @@
           role="warning" 
           sqf:fix="replace-move-sentence-to-title"
           id="fig-caption-2">Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple sentences in the legend. Is the first sentence actually the title?</report>
+        
+        <report test="not(title) and (count(p)=1) and not(count(tokenize(p[1],'\.\p{Z}')) gt 1)" 
+          role="warning"
+          sqf:fix="replace-p-to-title"
+          id="fig-caption-3">Caption for <value-of select="$label"/> doesn't have a title, but it does have a paragraph. Is the paragraph actually the title?</report>
      </rule>
     </pattern>
 

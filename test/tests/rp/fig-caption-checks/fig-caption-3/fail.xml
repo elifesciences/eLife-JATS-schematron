@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="fig-caption-3.sch"?>
+<!--Context: fig/caption
+Test: report    not(title) and (count(p)=1) and not(count(tokenize(p[1],'\.\p{Z}')) gt 1)
+Message: Caption for  doesn't have a title, but it does have a paragraph. Is the paragraph actually the title? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <fig>
+            <caption><p>This is the title</p></caption>
+        </fig>
+    </article>
+</root>
