@@ -1,0 +1,4 @@
+<!--Testing template with id: add-das-links-->
+<sec xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" id="das">
+<p>Code is available at <ext-link ext-link-type="uri" xlink:href="https://github.com/elifesciences/eLife-JATS-schematron/">https://github.com/elifesciences/eLife-JATS-schematron/</ext-link>. (<ext-link ext-link-type="uri" xlink:href="sftp://USERNAME@IP-ADDR[:PORT-NUM]/FILENAME">sftp://USERNAME@IP-ADDR[:PORT-NUM]/FILENAME</ext-link>)</p>
+</sec>
