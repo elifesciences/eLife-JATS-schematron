@@ -196,6 +196,10 @@
       <x:context href="../tests/preprint-changes/add-rrid-links/input.xml"/>
       <x:expect label="Testing the template: add-rrid-links" href="../tests/preprint-changes/add-rrid-links/output.xml"/>
     </x:scenario>
+    <x:scenario label="add-das-links">
+      <x:context href="../tests/preprint-changes/add-das-links/input.xml"/>
+      <x:expect label="Testing the template: add-das-links" href="../tests/preprint-changes/add-das-links/output.xml"/>
+    </x:scenario>
     <x:scenario label="collate-caption-ps">
       <x:context href="../tests/preprint-changes/collate-caption-ps/input.xml"/>
       <x:expect label="Testing the template: collate-caption-ps" href="../tests/preprint-changes/collate-caption-ps/output.xml"/>

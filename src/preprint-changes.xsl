@@ -2217,6 +2217,25 @@
         </xsl:analyze-string>
     </xsl:template>
     
+    <!-- Introduce links in eJP DAS -->
+    <xsl:variable name="url-regex" select="'(https?|s?ftp)://(www\.)?[\p{L}\p{S}\p{N}\p{M}\p{P}/]+[\p{L}\p{S}\p{N}\p{M}\p{Ps}\p{Pd}\p{Pi}/_]'"/>
+    <xsl:template xml:id="add-das-links" match="sec[@id='das']/p/text()">
+        <xsl:analyze-string select="." regex="{$url-regex}">
+            <xsl:matching-substring>
+                <xsl:element name="ext-link">
+                    <xsl:attribute name="ext-link-type">uri</xsl:attribute>
+                    <xsl:attribute name="xlink:href">
+                        <xsl:value-of select="."/>
+                    </xsl:attribute>
+                    <xsl:value-of select="."/>
+                </xsl:element>
+            </xsl:matching-substring>
+            <xsl:non-matching-substring>
+                <xsl:value-of select="."/>
+            </xsl:non-matching-substring>
+        </xsl:analyze-string>
+    </xsl:template>
+    
     <!-- collate multiple paragraphs in captions for PDF generation -->
     <xsl:template xml:id="collate-caption-ps" match="caption[(parent::fig or parent::table-wrap) and count(p) gt 1]">
         <xsl:copy>
