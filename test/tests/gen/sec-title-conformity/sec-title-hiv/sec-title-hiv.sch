@@ -354,7 +354,7 @@
     <xsl:param name="ref-list" as="node()"/>
     <xsl:element name="list">
       <xsl:for-each select="$ref-list/ref[element-citation[year]]">
-        <xsl:variable name="cite" select="e:citation-format1(./element-citation[1])"/>
+        <xsl:variable name="cite" select="replace(e:citation-format1(./element-citation[1]),'\p{Pd}','-')"/>
         <xsl:element name="item">
           <xsl:attribute name="id">
             <xsl:value-of select="./@id"/>
