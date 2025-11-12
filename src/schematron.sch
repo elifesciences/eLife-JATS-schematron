@@ -624,6 +624,21 @@
     </xsl:if>
   </xsl:function>
   
+  <xsl:function name="e:analyze-string" as="element()">
+    <xsl:param name="node"/>
+    <xsl:param name="regex" as="xs:string"/>
+    <analyze-string-result>
+      <xsl:analyze-string select="$node" regex="{$regex}">
+        <xsl:matching-substring>
+          <match><xsl:value-of select="."/></match>
+        </xsl:matching-substring>
+        <xsl:non-matching-substring>
+          <non-match><xsl:value-of select="."/></non-match>
+        </xsl:non-matching-substring>
+      </xsl:analyze-string>
+    </analyze-string-result>
+  </xsl:function>
+  
   <!-- Global variable included here for convenience -->
   <let name="research-organisms" value="'research-organisms.xml'"/>
   <let name="species-regex" value="string-join(doc($research-organisms)//*:organism[@type='species']/@regex,'|')"/>
@@ -10868,6 +10883,10 @@ else self::*/local-name() = $allowed-p-blocks"
       <report test="matches(lower-case(.),&quot;(^|\s)((i am|i&apos;m) an? ai (language)? model|as an ai (language)? model,? i(&apos;m|\s)|(here is|here&apos;s) an? (possible|potential)? introduction (to|for) your topic|(here is|here&apos;s) an? (abstract|introduction|results|discussion|methods)( section)? for you|certainly(,|!)? (here is|here&apos;s)|i&apos;m sorry,?( but)? i (don&apos;t|can&apos;t)|knowledge (extend|cutoff)|as of my last update|regenerate response)&quot;)" 
         role="warning" 
         id="ai-response-presence-1"><name/> element contains what looks like a response from an AI chatbot after it being provided a prompt. Is that correct? Should the content be adjusted?</report>
+      
+      <report test="matches(., '[&#xFB00;-&#xFB06;]')" 
+        role="error" 
+        id="ligature-presence-1"><name/> element contains the following latin ligature character(s) that need replacing with the regular latin character(s): <value-of select="string-join(distinct-values(e:analyze-string(.,'[&#xFB00;-&#xFB06;]')//*:match),'; ')"/>.</report>
     </rule>
     
     <rule context="sup" id="unallowed-symbol-tests-sup">		

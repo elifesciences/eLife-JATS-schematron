@@ -533,6 +533,24 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
+  <xsl:function name="e:analyze-string" as="element()">
+    <xsl:param name="node"/>
+    <xsl:param name="regex" as="xs:string"/>
+    <analyze-string-result>
+      <xsl:analyze-string select="$node" regex="{$regex}">
+        <xsl:matching-substring>
+          <match>
+            <xsl:value-of select="."/>
+          </match>
+        </xsl:matching-substring>
+        <xsl:non-matching-substring>
+          <non-match>
+            <xsl:value-of select="."/>
+          </non-match>
+        </xsl:non-matching-substring>
+      </xsl:analyze-string>
+    </analyze-string-result>
+  </xsl:function>
   <let name="research-organisms" value="'../../../../../src/research-organisms.xml'"/>
   <let name="species-regex" value="string-join(doc($research-organisms)//*:organism[@type='species']/@regex,'|')"/>
   <let name="genus-regex" value="string-join(doc($research-organisms)//*:organism[@type='genus']/@regex,'|')"/>

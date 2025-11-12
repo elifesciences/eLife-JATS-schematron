@@ -575,6 +575,21 @@
     </xsl:if>
   </xsl:function>
   
+  <xsl:function name="e:analyze-string" as="element()">
+    <xsl:param name="node"/>
+    <xsl:param name="regex" as="xs:string"/>
+    <analyze-string-result>
+      <xsl:analyze-string select="$node" regex="{$regex}">
+        <xsl:matching-substring>
+          <match><xsl:value-of select="."/></match>
+        </xsl:matching-substring>
+        <xsl:non-matching-substring>
+          <non-match><xsl:value-of select="."/></non-match>
+        </xsl:non-matching-substring>
+      </xsl:analyze-string>
+    </analyze-string-result>
+  </xsl:function>
+  
   <!-- Global variable included here for convenience -->
   <let name="research-organisms" value="'research-organisms.xml'"/>
   <let name="species-regex" value="string-join(doc($research-organisms)//*:organism[@type='species']/@regex,'|')"/>
@@ -5466,6 +5481,8 @@
       <report test="contains(.,'&#x9D;')" role="error" id="operating-system-command-presence">[operating-system-command-presence] <name/> element contains an operating system command character '&#x9D;' (unicode string: &amp;#x9D;) which should very likely be replaced/removed. - <value-of select="."/></report>
 
       <report test="matches(lower-case(.),&quot;(^|\s)((i am|i'm) an? ai (language)? model|as an ai (language)? model,? i('m|\s)|(here is|here's) an? (possible|potential)? introduction (to|for) your topic|(here is|here's) an? (abstract|introduction|results|discussion|methods)( section)? for you|certainly(,|!)? (here is|here's)|i'm sorry,?( but)? i (don't|can't)|knowledge (extend|cutoff)|as of my last update|regenerate response)&quot;)" role="warning" id="ai-response-presence-1">[ai-response-presence-1] <name/> element contains what looks like a response from an AI chatbot after it being provided a prompt. Is that correct? Should the content be adjusted?</report>
+      
+      <report test="matches(., '[ﬀ-ﬆ]')" role="error" id="ligature-presence-1">[ligature-presence-1] <name/> element contains the following latin ligature character(s) that need replacing with the regular latin character(s): <value-of select="string-join(distinct-values(e:analyze-string(.,'[ﬀ-ﬆ]')//*:match),'; ')"/>.</report>
     </rule></pattern><pattern id="unallowed-symbol-tests-sup-pattern"><rule context="sup" id="unallowed-symbol-tests-sup">		
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-copyright-symbol-sup" test="contains(.,'©')" role="error" id="copyright-symbol-sup">[copyright-symbol-sup] '<name/>' element contains the copyright symbol, '©', which is not allowed.</report>
