@@ -4325,6 +4325,10 @@
       <report test="matches(., '[&#xFB00;-&#xFB06;]')" 
         role="error" 
         id="ligature-presence-1"><name/> element contains the following latin ligature character(s) that need replacing with the regular latin character(s): <value-of select="string-join(distinct-values(e:analyze-string(.,'[&#xFB00;-&#xFB06;]')//*:match),'; ')"/>.</report>
+        
+      <report test="matches(., '[&#x0530;-&#x06FF;&#x0700;-&#x097F;&#x0E00;-&#x0FFF;]')" 
+        role="warning" 
+        id="non-roman-script-presence-1"><name/> element contains the following non-roman script character(s): <value-of select="string-join(distinct-values(e:analyze-string(.,'[&#x0530;-&#x06FF;&#x0700;-&#x097F;&#x0E00;-&#x0FFF;]')//*:match),'; ')"/>. It is unusual for these characters to be present in eLife content. Are they correct?</report>
     </rule>
     
     </pattern>

@@ -5377,6 +5377,16 @@
         <x:expect-report id="ligature-presence-1" role="error"/>
         <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="non-roman-script-presence-1-pass">
+        <x:context href="../tests/rp/unallowed-symbol-tests/non-roman-script-presence-1/pass.xml"/>
+        <x:expect-not-report id="non-roman-script-presence-1" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="non-roman-script-presence-1-fail">
+        <x:context href="../tests/rp/unallowed-symbol-tests/non-roman-script-presence-1/fail.xml"/>
+        <x:expect-report id="non-roman-script-presence-1" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="ed-report-front-stub">
       <x:scenario label="ed-report-str-kwd-presence-pass">

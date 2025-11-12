@@ -7258,6 +7258,9 @@
       
       <report test="matches(., '[ﬀ-ﬆ]')" role="error" id="ligature-presence-1">
         <name/> element contains the following latin ligature character(s) that need replacing with the regular latin character(s): <value-of select="string-join(distinct-values(e:analyze-string(.,'[ﬀ-ﬆ]')//*:match),'; ')"/>.</report>
+      
+      <report test="matches(., '[԰-ۿ܀-ॿ฀-࿿]')" role="warning" id="non-roman-script-presence-1">
+        <name/> element contains the following non-roman script character(s): <value-of select="string-join(distinct-values(e:analyze-string(.,'[԰-ۿ܀-ॿ฀-࿿]')//*:match),'; ')"/>. It is unusual for these characters to be present in eLife content. Are they correct?</report>
     </rule>
   </pattern>
   <pattern id="unallowed-symbol-tests-sup-pattern">

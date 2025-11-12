@@ -5544,6 +5544,8 @@
       <report test="matches(lower-case(.),&quot;(^|\s)((i am|i'm) an? ai (language)? model|as an ai (language)? model,? i('m|\s)|(here is|here's) an? (possible|potential)? introduction (to|for) your topic|(here is|here's) an? (abstract|introduction|results|discussion|methods)( section)? for you|certainly(,|!)? (here is|here's)|i'm sorry,?( but)? i (don't|can't)|knowledge (extend|cutoff)|as of my last update|regenerate response)&quot;)" role="warning" id="ai-response-presence-1"><name/> element contains what looks like a response from an AI chatbot after it being provided a prompt. Is that correct? Should the content be adjusted?</report>
       
       <report test="matches(., '[ﬀ-ﬆ]')" role="error" id="ligature-presence-1"><name/> element contains the following latin ligature character(s) that need replacing with the regular latin character(s): <value-of select="string-join(distinct-values(e:analyze-string(.,'[ﬀ-ﬆ]')//*:match),'; ')"/>.</report>
+      
+      <report test="matches(., '[԰-ۿ܀-ॿ฀-࿿]')" role="warning" id="non-roman-script-presence-1"><name/> element contains the following non-roman script character(s): <value-of select="string-join(distinct-values(e:analyze-string(.,'[԰-ۿ܀-ॿ฀-࿿]')//*:match),'; ')"/>. It is unusual for these characters to be present in eLife content. Are they correct?</report>
     </rule></pattern><pattern id="unallowed-symbol-tests-sup-pattern"><rule context="sup" id="unallowed-symbol-tests-sup">		
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-copyright-symbol-sup" test="contains(.,'©')" role="error" id="copyright-symbol-sup">'<name/>' element contains the copyright symbol, '©', which is not allowed.</report>
