@@ -11892,6 +11892,36 @@
                <xsl:text/> element contains what looks like a response from an AI chatbot after it being provided a prompt. Is that correct? Should the content be adjusted?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="matches(., '[ﬀ-ﬆ]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(., '[ﬀ-ﬆ]')">
+            <xsl:attribute name="id">ligature-presence-1</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ligature-presence-1] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element contains the following latin ligature character(s) that need replacing with the regular latin character(s): <xsl:text/>
+               <xsl:value-of select="string-join(distinct-values(e:analyze-string(.,'[ﬀ-ﬆ]')//*:match),'; ')"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(., '[԰-ۿ܀-ॿ฀-࿿]')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(., '[԰-ۿ܀-ॿ฀-࿿]')">
+            <xsl:attribute name="id">non-roman-script-presence-1</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[non-roman-script-presence-1] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element contains the following non-roman script character(s): <xsl:text/>
+               <xsl:value-of select="string-join(distinct-values(e:analyze-string(.,'[԰-ۿ܀-ॿ฀-࿿]')//*:match),'; ')"/>
+               <xsl:text/>. It is unusual for these characters to be present in eLife content. Are they correct?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M179"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M179"/>

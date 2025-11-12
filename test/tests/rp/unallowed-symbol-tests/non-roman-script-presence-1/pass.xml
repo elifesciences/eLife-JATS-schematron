@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="non-roman-script-presence-1.sch"?>
+<!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link|ref
+Test: report    matches(., '[԰-ۿ܀-ॿ฀-࿿]')
+Message:  element contains the following non-roman script character(s): . It is unusual for these characters to be present in eLife content. Are they correct? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <p>Some roman charcters ...</p>
+    </article>
+</root>
