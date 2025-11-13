@@ -252,26 +252,6 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <xsl:function name="e:ref-list-string2" as="xs:string">
-    <xsl:param name="ref"/>
-    <xsl:choose>
-      <xsl:when test="$ref/element-citation[1]/year and count($ref/element-citation[1]/person-group[1]/*) = 2">
-        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' ',           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[2]),           ' ',           $ref/element-citation[1]/year[1])"/>
-      </xsl:when>
-      <xsl:when test="$ref/element-citation/person-group[1]/* and $ref/element-citation[1]/year">
-        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' ',           $ref/element-citation[1]/year[1])"/>
-      </xsl:when>
-      <xsl:when test="$ref/element-citation/person-group[1]/*">
-        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' 9999 ')"/>
-      </xsl:when>
-      <xsl:when test="$ref/element-citation/year">
-        <xsl:value-of select="concat(' ',$ref/element-citation[1]/year[1])"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="'zzzzz 9999'"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:function>
   <xsl:function name="e:get-collab-or-surname" as="xs:string?">
     <xsl:param name="collab-or-name"/>
     <xsl:choose>
@@ -279,7 +259,7 @@
         <xsl:value-of select="e:stripDiacritics(replace(lower-case($collab-or-name),'\.',''))"/>
       </xsl:when>
       <xsl:when test="$collab-or-name/surname">
-        <xsl:value-of select="e:stripDiacritics(lower-case($collab-or-name/surname[1]))"/>
+        <xsl:value-of select="e:stripDiacritics(replace(lower-case($collab-or-name/surname[1]),'[-‐‑–—]','-'))"/>
       </xsl:when>
       <xsl:otherwise/>
     </xsl:choose>

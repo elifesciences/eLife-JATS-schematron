@@ -252,26 +252,6 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <xsl:function name="e:ref-list-string2" as="xs:string">
-    <xsl:param name="ref"/>
-    <xsl:choose>
-      <xsl:when test="$ref/element-citation[1]/year and count($ref/element-citation[1]/person-group[1]/*) = 2">
-        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' ',           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[2]),           ' ',           $ref/element-citation[1]/year[1])"/>
-      </xsl:when>
-      <xsl:when test="$ref/element-citation/person-group[1]/* and $ref/element-citation[1]/year">
-        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' ',           $ref/element-citation[1]/year[1])"/>
-      </xsl:when>
-      <xsl:when test="$ref/element-citation/person-group[1]/*">
-        <xsl:value-of select="concat(           e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),           ' 9999 ')"/>
-      </xsl:when>
-      <xsl:when test="$ref/element-citation/year">
-        <xsl:value-of select="concat(' ',$ref/element-citation[1]/year[1])"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="'zzzzz 9999'"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:function>
   <xsl:function name="e:get-collab-or-surname" as="xs:string?">
     <xsl:param name="collab-or-name"/>
     <xsl:choose>
@@ -279,7 +259,7 @@
         <xsl:value-of select="e:stripDiacritics(replace(lower-case($collab-or-name),'\.',''))"/>
       </xsl:when>
       <xsl:when test="$collab-or-name/surname">
-        <xsl:value-of select="e:stripDiacritics(lower-case($collab-or-name/surname[1]))"/>
+        <xsl:value-of select="e:stripDiacritics(replace(lower-case($collab-or-name/surname[1]),'[-‐‑–—]','-'))"/>
       </xsl:when>
       <xsl:otherwise/>
     </xsl:choose>
@@ -944,7 +924,7 @@
       <let name="YYYY" value="substring(normalize-space(.), 1, 4)"/>
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="citation" value="e:citation-format1(parent::element-citation)"/>
-      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-date-1-6" test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and         (some $y in //element-citation/descendant::year         satisfies (normalize-space($y) = concat($YYYY,'b'))         and (ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname         or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1]         )))" role="error" id="err-elem-cit-gen-date-1-6">If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with the same first author surname (or collab) with a letter "b" after the year. Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-date-1-6" test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and         (some $y in //element-citation/descendant::year         satisfies (normalize-space($y) = concat($YYYY,'b'))         and (ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[-‐–—]','-') = $y/ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[-‐–—]','-')         or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1]         )))" role="error" id="err-elem-cit-gen-date-1-6">If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with the same first author surname (or collab) with a letter "b" after the year. Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
