@@ -10793,8 +10793,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="matches(caption[1],'[Aa]dapted from|[Aa]dapted with')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(caption[1],'[Aa]dapted from|[Aa]dapted with')">
+      <xsl:if test="matches(caption[1],'[Aa]d[ao]pted (from|with)')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(caption[1],'[Aa]d[ao]pted (from|with)')">
             <xsl:attribute name="id">reproduce-test-3</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
