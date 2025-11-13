@@ -8088,7 +8088,7 @@ else self::*/local-name() = $allowed-p-blocks"
         test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and
         (some $y in //element-citation/descendant::year
         satisfies (normalize-space($y) = concat($YYYY,'b'))
-        and (ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname
+        and (ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[&#x002D;&#x2010;&#x2013;&#x2014;]','-') = $y/ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[&#x002D;&#x2010;&#x2013;&#x2014;]','-')
         or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1]
         )))" 
         role="error" 
@@ -8099,7 +8099,7 @@ else self::*/local-name() = $allowed-p-blocks"
         (some $y in //element-citation/descendant::year
         satisfies (normalize-space($y) = concat($YYYY,translate(substring(normalize-space(.),5,1),'bcdefghijklmnopqrstuvwxyz',
         'abcdefghijklmnopqrstuvwxy')))
-        and (ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname
+        and (ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[&#x002D;&#x2010;&#x2013;&#x2014;]','-') = $y/ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[&#x002D;&#x2010;&#x2013;&#x2014;]','-')
         or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1]
         ))" 
         role="error" 

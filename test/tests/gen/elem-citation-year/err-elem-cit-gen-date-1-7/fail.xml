@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="err-elem-cit-gen-date-1-7.sch"?>
 <!--Context: ref/element-citation/year
-Test: assert    not(starts-with(.,$YYYY) and matches(normalize-space(.),('\d{4}[b-z]'))) or (some $y in //element-citation/descendant::year satisfies (normalize-space($y) = concat($YYYY,translate(substring(normalize-space(.),5,1),'bcdefghijklmnopqrstuvwxyz', 'abcdefghijklmnopqrstuvwxy'))) and (ancestor::element-citation/person-group[1]/name[1]/surname = $y/ancestor::element-citation/person-group[1]/name[1]/surname or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1] ))
+Test: assert    not(starts-with(.,$YYYY) and matches(normalize-space(.),('\d{4}[b-z]'))) or (some $y in //element-citation/descendant::year satisfies (normalize-space($y) = concat($YYYY,translate(substring(normalize-space(.),5,1),'bcdefghijklmnopqrstuvwxyz', 'abcdefghijklmnopqrstuvwxy'))) and (ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[-‐]','-') = $y/ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[-‐]','-') or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1] ))
 Message: [err-elem-cit-gen-date-1-7]
         If the <year> element contains any letter other than 'a' after the digits, there must be another 
         reference with the same first author surname (or collab) with the preceding letter after the year. 
