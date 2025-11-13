@@ -12520,7 +12520,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="reproduce-test-2">The caption for <value-of select="$label"/> contains the text 'reproduced with permission', but has no permissions. Is this correct?</report>
       
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-3" 
-        test="matches(caption[1],'[Aa]dapted from|[Aa]dapted with')" 
+        test="matches(caption[1],'[Aa]d[ao]pted (from|with)')" 
         role="warning" 
         id="reproduce-test-3">The caption for <value-of select="$label"/> contains the text 'adapted from ...', but has no permissions. Is this correct?</report>
       
