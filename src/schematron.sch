@@ -316,38 +316,6 @@
     </xsl:choose>
   </xsl:function>
   
-  <!-- included for legacy reasons. This can be removed after migrating to new vendor platform -->
-  <xsl:function name="e:ref-list-string2" as="xs:string">
-    <xsl:param name="ref"/>
-    <xsl:choose>
-      <xsl:when test="$ref/element-citation[1]/year and count($ref/element-citation[1]/person-group[1]/*) = 2">
-        <xsl:value-of select="concat(
-          e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),
-          ' ',
-          e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[2]),
-          ' ',
-          $ref/element-citation[1]/year[1])"/>
-      </xsl:when>
-      <xsl:when test="$ref/element-citation/person-group[1]/* and $ref/element-citation[1]/year">
-        <xsl:value-of select="concat(
-          e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),
-          ' ',
-          $ref/element-citation[1]/year[1])"/>
-      </xsl:when>
-      <xsl:when test="$ref/element-citation/person-group[1]/*">
-        <xsl:value-of select="concat(
-          e:get-collab-or-surname($ref/element-citation[1]/person-group[1]/*[1]),
-          ' 9999 ')"/>
-      </xsl:when>
-      <xsl:when test="$ref/element-citation/year">
-        <xsl:value-of select="concat(' ',$ref/element-citation[1]/year[1])"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="'zzzzz 9999'"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:function>
-  
   <!-- invoked in e:ref-list-string -->
   <xsl:function name="e:get-collab-or-surname" as="xs:string?">
     <xsl:param name="collab-or-name"/>
@@ -356,7 +324,7 @@
         <xsl:value-of select="e:stripDiacritics(replace(lower-case($collab-or-name),'\.',''))"/>
       </xsl:when>
       <xsl:when test="$collab-or-name/surname">
-        <xsl:value-of select="e:stripDiacritics(lower-case($collab-or-name/surname[1]))"/>
+        <xsl:value-of select="e:stripDiacritics(replace(lower-case($collab-or-name/surname[1]),'[&#x002D;&#x2010;&#x2011;&#x2013;&#x2014;]','-'))"/>
       </xsl:when>
       <xsl:otherwise/>
     </xsl:choose>
@@ -8148,12 +8116,9 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="ref[preceding-sibling::ref]" id="ref-list-ordering">
       <let name="order-value" value="e:ref-list-string(self::*)"/>
       <let name="preceding-ref-order-value" value="e:ref-list-string(preceding-sibling::ref[1])"/>
-      <!-- Included for legacy reasons. can be removed  -->
-      <let name="kriya1-order-value" value="e:ref-list-string2(self::*)"/>
-      <let name="preceding-ref-kriya1-order-value" value="e:ref-list-string2(preceding-sibling::ref[1])"/>
       
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-high-2-2"
-        test="($order-value gt $preceding-ref-order-value) or ($kriya1-order-value gt $preceding-ref-kriya1-order-value)" 
+        test="($order-value gt $preceding-ref-order-value)" 
         role="error" 
         id="err-elem-cit-high-2-2">The order of &lt;element-citation&gt;s in the reference list should be name and date, arranged alphabetically by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of two authors, the sequence should be arranged by both authors' surnames, then date. For three or more authors, the sequence should be the first author's surname, then date. Reference '<value-of select="@id"/>' appears to be in a different order.</assert>
     </rule>
