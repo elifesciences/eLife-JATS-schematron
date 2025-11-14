@@ -164,6 +164,10 @@
       <x:context href="../tests/preprint-changes/sec-ethics/input.xml"/>
       <x:expect label="Testing the template: sec-ethics" href="../tests/preprint-changes/sec-ethics/output.xml"/>
     </x:scenario>
+    <x:scenario label="sec-supplementary">
+      <x:context href="../tests/preprint-changes/sec-supplementary/input.xml"/>
+      <x:expect label="Testing the template: sec-supplementary" href="../tests/preprint-changes/sec-supplementary/output.xml"/>
+    </x:scenario>
     <x:scenario label="strip-bold-italic-around-xref">
       <x:context href="../tests/preprint-changes/strip-bold-italic-around-xref/input.xml"/>
       <x:expect label="Testing the template: strip-bold-italic-around-xref" href="../tests/preprint-changes/strip-bold-italic-around-xref/output.xml"/>
