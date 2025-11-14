@@ -1966,6 +1966,21 @@
             <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
     </xsl:template>
+    
+    <!-- Add sec-type="supplementary" -->
+    <xsl:template xml:id="sec-supplementary" match="sec[(not(@sec-type)) and not(sec) and not(p[*[not(name()=('fig','table-wrap'))]]) and (descendant::fig or descendant::table-wrap) and (not(title) or title[1][matches(lower-case(.),'^supplement| supplement')])]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:attribute name="sec-type">supplementary</xsl:attribute>
+            <xsl:if test="not(@id)">
+                <xsl:attribute name="id">
+                    <xsl:variable name="position" select="count(ancestor::article//sec) - count(following::sec)"/>
+                    <xsl:value-of select="concat('supplementary',$position)"/>
+                </xsl:attribute>
+            </xsl:if>
+            <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+        </xsl:copy>
+    </xsl:template>
 
     <!-- Strip unnecessary bolding and italicisation from inside citations -->
     <xsl:template xml:id="strip-bold-italic-around-xref" match="xref/bold[italic[not(xref)]]
@@ -2254,6 +2269,20 @@
                 </xsl:for-each>
             </p>
             <xsl:text>&#xa;</xsl:text>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- Add IDs for equations without them -->
+    <xsl:template xml:id="add-equation-ids" match="inline-formula[not(@id)] | disp-formula[not(@id)]">
+        <xsl:variable name="elem-name" select="name()"/>
+        <xsl:variable name="position" select="count(ancestor::article/descendant::*[name()=$elem-name]) - count(following::*[name()=$elem-name])"/>
+        <xsl:variable name="id-prefix" select="if ($elem-name='inline-formula') then 'inline-eqn-'
+            else 'disp-eqn-'"/>
+        <xsl:copy>
+            <xsl:attribute name="id">
+                <xsl:value-of select="concat($id-prefix,$position)"/>
+            </xsl:attribute>
+            <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
     </xsl:template>
     

@@ -1,0 +1,7 @@
+<!--Testing template with id: add-equation-ids-->
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" article-type="research-article" dtd-version="1.3">
+<p>some text <inline-formula id="inline-eqn-1"/> some text <inline-formula id="inline-eqn-2"/></p>
+<disp-formula id="disp-eqn-1"/>
+<p>some text <inline-formula id="inline-eqn-3"/> some text <inline-formula id="inline-eqn-4"/></p>
+<p>some text <disp-formula id="disp-eqn-2"/></p>
+</article>

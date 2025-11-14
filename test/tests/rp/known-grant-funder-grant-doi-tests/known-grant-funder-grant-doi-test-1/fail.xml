@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="known-grant-funder-grant-doi-test-1.sch"?>
-<!--Context: funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap[count(institution-id)=1]/institution-id=$known-grant-funder-ror-ids]
+<!--Context: funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-ids]
 Test: report    $grant-matches
 Message: Funding entry from  has an award-id () which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

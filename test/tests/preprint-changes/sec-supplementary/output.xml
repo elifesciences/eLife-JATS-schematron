@@ -1,0 +1,28 @@
+<!--Testing template with id: sec-supplementary-->
+<sec xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<sec id="s1" sec-type="supplementary">
+<title>Supplemental figs</title>
+<fig/>
+<fig/>
+</sec>
+<sec sec-type="supplementary" id="supplementary-3">
+<p>
+<table-wrap/>
+<table-wrap/>
+</p>
+</sec>
+<sec id="s2">
+<title>Supplementary material</title>
+<fig/>
+<p> some text. <inline-formula id="inline-eqn-0"/></p>
+<table-wrap/>
+</sec>
+<sec id="s3">
+<title>Some random section</title>
+<fig/>
+<sec id="s3a">
+<title>A child section</title>
+<p/>
+</sec>
+</sec>
+</sec>
