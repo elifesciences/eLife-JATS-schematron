@@ -4070,6 +4070,28 @@
         <x:expect-not-assert id="wellcome-grant-doi-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="eu-horizon-grant-doi-tests">
+      <x:scenario label="eu-horizon-grant-doi-test-1-pass">
+        <x:context href="../tests/rp/eu-horizon-grant-doi-tests/eu-horizon-grant-doi-test-1/pass.xml"/>
+        <x:expect-not-report id="eu-horizon-grant-doi-test-1" role="warning"/>
+        <x:expect-not-assert id="eu-horizon-grant-doi-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="eu-horizon-grant-doi-test-1-fail">
+        <x:context href="../tests/rp/eu-horizon-grant-doi-tests/eu-horizon-grant-doi-test-1/fail.xml"/>
+        <x:expect-report id="eu-horizon-grant-doi-test-1" role="warning"/>
+        <x:expect-not-assert id="eu-horizon-grant-doi-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="eu-horizon-grant-doi-test-2-pass">
+        <x:context href="../tests/rp/eu-horizon-grant-doi-tests/eu-horizon-grant-doi-test-2/pass.xml"/>
+        <x:expect-not-assert id="eu-horizon-grant-doi-test-2" role="warning"/>
+        <x:expect-not-assert id="eu-horizon-grant-doi-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="eu-horizon-grant-doi-test-2-fail">
+        <x:context href="../tests/rp/eu-horizon-grant-doi-tests/eu-horizon-grant-doi-test-2/fail.xml"/>
+        <x:expect-assert id="eu-horizon-grant-doi-test-2" role="warning"/>
+        <x:expect-not-assert id="eu-horizon-grant-doi-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="known-grant-funder-grant-doi-tests">
       <x:scenario label="known-grant-funder-grant-doi-test-1-pass">
         <x:context href="../tests/rp/known-grant-funder-grant-doi-tests/known-grant-funder-grant-doi-test-1/pass.xml"/>
