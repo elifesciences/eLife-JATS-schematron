@@ -2257,6 +2257,20 @@
         </xsl:copy>
     </xsl:template>
     
+    <!-- Add IDs for equations without them -->
+    <xsl:template xml:id="add-equation-ids" match="inline-formula[not(@id)] | disp-formula[not(@id)]">
+        <xsl:variable name="elem-name" select="name()"/>
+        <xsl:variable name="position" select="count(ancestor::article/descendant::*[name()=$elem-name]) - count(following::*[name()=$elem-name])"/>
+        <xsl:variable name="id-prefix" select="if ($elem-name='inline-formula') then 'inline-eqn-'
+            else 'disp-eqn-'"/>
+        <xsl:copy>
+            <xsl:attribute name="id">
+                <xsl:value-of select="concat($id-prefix,$position)"/>
+            </xsl:attribute>
+            <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>
+        </xsl:copy>
+    </xsl:template>
+    
     <!-- remove sec[@sec-type='supplementary-material'] from body - it is copied into back in the template below -->
     <xsl:template match="body">
         <xsl:copy>

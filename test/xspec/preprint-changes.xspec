@@ -204,6 +204,10 @@
       <x:context href="../tests/preprint-changes/collate-caption-ps/input.xml"/>
       <x:expect label="Testing the template: collate-caption-ps" href="../tests/preprint-changes/collate-caption-ps/output.xml"/>
     </x:scenario>
+    <x:scenario label="add-equation-ids">
+      <x:context href="../tests/preprint-changes/add-equation-ids/input.xml"/>
+      <x:expect label="Testing the template: add-equation-ids" href="../tests/preprint-changes/add-equation-ids/output.xml"/>
+    </x:scenario>
     <x:scenario label="rearrange-back">
       <x:context href="../tests/preprint-changes/rearrange-back/input.xml"/>
       <x:expect label="Testing the template: rearrange-back" href="../tests/preprint-changes/rearrange-back/output.xml"/>
