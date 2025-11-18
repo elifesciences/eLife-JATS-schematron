@@ -2500,7 +2500,7 @@
             <xsl:apply-templates mode="sentenceCase" select="."/>
          </sqf:replace>
       </sqf:fix>
-      <sqf:fix id="replace-to-preprint-ref" use-when="matches(lower-case(./source[1]),'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra') or matches(pub-id[@pub-id-type='doi'][1],'^10\.(1101|48550|31234|31219|21203|26434|32942|2139|22541)/')">
+      <sqf:fix id="replace-to-preprint-ref" use-when="matches(lower-case(./source[1]),'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra') or matches(pub-id[@pub-id-type='doi'][1],'^10\.(1101|64898|48550|31234|31219|21203|26434|32942|2139|22541)/')">
          <sqf:description>
             <sqf:title>Change to preprint ref</sqf:title>
          </sqf:description>
@@ -2521,7 +2521,7 @@
                               <xsl:text>, </xsl:text>
                               <source xmlns="">
                                  <xsl:choose>
-                                    <xsl:when test="matches($doi,'^10\.1101/')">
+                                    <xsl:when test="matches($doi,'^10\.(1101|64898)/')">
                                        <xsl:text>bioRxiv/medRxiv</xsl:text>
                                     </xsl:when>
                                     <xsl:when test="matches($doi,'^10\.48550/')">
@@ -2555,7 +2555,7 @@
                         </xsl:choose>
                      </xsl:for-each>
                   </xsl:when>
-                  <xsl:when test="./source[not(matches(.,'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra'))] and not(article-title) and not(count(source) gt 1) and ./pub-id[@pub-id-type='doi' and matches(.,'^10\.(1101|48550|31234|31219|21203|26434|32942|2139|22541)/')]">
+                  <xsl:when test="./source[not(matches(.,'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra'))] and not(article-title) and not(count(source) gt 1) and ./pub-id[@pub-id-type='doi' and matches(.,'^10\.(1101|64898|48550|31234|31219|21203|26434|32942|2139|22541)/')]">
                      <xsl:variable name="doi" select="pub-id[@pub-id-type='doi'][1]"/>
                      <xsl:for-each select="node()">
                         <xsl:choose>
@@ -2566,7 +2566,7 @@
                               <xsl:text>, </xsl:text>
                               <source xmlns="">
                                  <xsl:choose>
-                                    <xsl:when test="matches($doi,'^10\.1101/')">
+                                    <xsl:when test="matches($doi,'^10\.(1101|64898)/')">
                                        <xsl:text>bioRxiv/medRxiv</xsl:text>
                                     </xsl:when>
                                     <xsl:when test="matches($doi,'^10\.48550/')">
