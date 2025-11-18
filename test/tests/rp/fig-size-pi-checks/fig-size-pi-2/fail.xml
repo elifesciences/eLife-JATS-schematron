@@ -1,0 +1,15 @@
+<?oxygen SCHSchema="fig-size-pi-2.sch"?>
+<!--Context: processing-instruction('fig-size')
+Test: assert    normalize-space(.)=$supported-values
+Message: 'fig-size' processing-instructions must contain one of the following values: . '' is not supported. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <p/>
+        <?fig-size fullest?>
+        <fig/>
+        <?fig-size smaller?>
+        <fig/>
+        <?fig-size bigger!!!?>
+        <fig/>
+    </article>
+</root>

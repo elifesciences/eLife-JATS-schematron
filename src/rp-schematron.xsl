@@ -1989,6 +1989,15 @@
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M208"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="id">fig-size-pi-checks-pattern</xsl:attribute>
+            <xsl:attribute name="name">fig-size-pi-checks-pattern</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M209"/>
       </svrl:schematron-output>
    </xsl:template>
    <!--SCHEMATRON PATTERNS-->
@@ -13228,5 +13237,50 @@
    <xsl:template match="text()" priority="-1" mode="M208"/>
    <xsl:template match="@*|node()" priority="-2" mode="M208">
       <xsl:apply-templates select="*" mode="M208"/>
+   </xsl:template>
+   <!--PATTERN fig-size-pi-checks-pattern-->
+   <!--RULE fig-size-pi-checks-->
+   <xsl:template match="processing-instruction('fig-size')" priority="1000" mode="M209">
+      <xsl:variable name="supported-values" select="('full', 'half', 'quarter')"/>
+      <xsl:variable name="next-node-name" select="following-sibling::node()[not(self::text())][1]/name()"/>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="$next-node-name='fig'"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$next-node-name='fig'">
+               <xsl:attribute name="id">fig-size-pi-1</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[fig-size-pi-1] 'fig-size' processing-instructions must be placed directly before a fig element. This is placed before a <xsl:text/>
+                  <xsl:value-of select="$next-node-name"/>
+                  <xsl:text/> element.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="normalize-space(.)=$supported-values"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=$supported-values">
+               <xsl:attribute name="id">fig-size-pi-2</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[fig-size-pi-2] 'fig-size' processing-instructions must contain one of the following values: <xsl:text/>
+                  <xsl:value-of select="string-join($supported-values,'; ')"/>
+                  <xsl:text/>. '<xsl:text/>
+                  <xsl:value-of select="."/>
+                  <xsl:text/>' is not supported.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M209"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M209"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M209">
+      <xsl:apply-templates select="*" mode="M209"/>
    </xsl:template>
 </xsl:stylesheet>

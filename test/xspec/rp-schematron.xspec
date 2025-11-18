@@ -6124,5 +6124,27 @@
         <x:expect-not-assert id="authorea-doi-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="fig-size-pi-checks">
+      <x:scenario label="fig-size-pi-1-pass">
+        <x:context href="../tests/rp/fig-size-pi-checks/fig-size-pi-1/pass.xml"/>
+        <x:expect-not-assert id="fig-size-pi-1" role="error"/>
+        <x:expect-not-assert id="fig-size-pi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-size-pi-1-fail">
+        <x:context href="../tests/rp/fig-size-pi-checks/fig-size-pi-1/fail.xml"/>
+        <x:expect-assert id="fig-size-pi-1" role="error"/>
+        <x:expect-not-assert id="fig-size-pi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-size-pi-2-pass">
+        <x:context href="../tests/rp/fig-size-pi-checks/fig-size-pi-2/pass.xml"/>
+        <x:expect-not-assert id="fig-size-pi-2" role="error"/>
+        <x:expect-not-assert id="fig-size-pi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-size-pi-2-fail">
+        <x:context href="../tests/rp/fig-size-pi-checks/fig-size-pi-2/fail.xml"/>
+        <x:expect-assert id="fig-size-pi-2" role="error"/>
+        <x:expect-not-assert id="fig-size-pi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
   </x:scenario>
 </x:description>
