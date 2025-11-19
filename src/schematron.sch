@@ -11269,9 +11269,9 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="biorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'bioRxiv'.</report>
       
-      <report test="matches($lc,'biorxiv') and not(starts-with(parent::element-citation/pub-id[@pub-id-type='doi'][1],'10.1101/'))" 
+      <report test="matches($lc,'biorxiv') and not(matches(parent::element-citation/pub-id[@pub-id-type='doi'][1],'^10\.(1101|64898)/'))" 
         role="warning" 
-        id="biorxiv-test-2">ref '<value-of select="ancestor::ref/@id"/>' is captured as a <value-of select="."/> preprint, but it does not have a doi starting with the bioRxiv prefix, '10.1101/'. <value-of select="if (parent::element-citation/pub-id[@pub-id-type='doi']) then concat('The doi does not point to bioRxiv - https://doi.org/',parent::element-citation/pub-id[@pub-id-type='doi'][1]) else 'The doi is missing'"/>. Please check with eLife.</report>
+        id="biorxiv-test-2">ref '<value-of select="ancestor::ref/@id"/>' is captured as a <value-of select="."/> preprint, but it does not have a doi starting with the bioRxiv prefix, '10.1101/' or '10.64898/'. <value-of select="if (parent::element-citation/pub-id[@pub-id-type='doi']) then concat('The doi does not point to bioRxiv - https://doi.org/',parent::element-citation/pub-id[@pub-id-type='doi'][1]) else 'The doi is missing'"/>. Please check with eLife.</report>
       
       <report see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#arxiv-test" 
         test="matches($lc,'^arxiv$') and not(. = 'arXiv')" 

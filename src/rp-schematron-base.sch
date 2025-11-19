@@ -941,7 +941,7 @@
       </sqf:replace>
     </sqf:fix>
     
-    <sqf:fix id="replace-to-preprint-ref" use-when="matches(lower-case(./source[1]),'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra') or matches(pub-id[@pub-id-type='doi'][1],'^10\.(1101|48550|31234|31219|21203|26434|32942|2139|22541)/')">
+    <sqf:fix id="replace-to-preprint-ref" use-when="matches(lower-case(./source[1]),'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra') or matches(pub-id[@pub-id-type='doi'][1],'^10\.(1101|64898|48550|31234|31219|21203|26434|32942|2139|22541)/')">
           <sqf:description>
             <sqf:title>Change to preprint ref</sqf:title>
           </sqf:description>
@@ -962,7 +962,7 @@
                         <xsl:text>, </xsl:text>
                         <source xmlns="">
                           <xsl:choose>
-                            <xsl:when test="matches($doi,'^10\.1101/')">
+                            <xsl:when test="matches($doi,'^10\.(1101|64898)/')">
                               <xsl:text>bioRxiv/medRxiv</xsl:text>
                             </xsl:when>
                             <xsl:when test="matches($doi,'^10\.48550/')">
@@ -996,7 +996,7 @@
                     </xsl:choose>
                   </xsl:for-each>
                 </xsl:when>
-                <xsl:when test="./source[not(matches(.,'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra'))] and not(article-title) and not(count(source) gt 1) and ./pub-id[@pub-id-type='doi' and matches(.,'^10\.(1101|48550|31234|31219|21203|26434|32942|2139|22541)/')]">
+                <xsl:when test="./source[not(matches(.,'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra'))] and not(article-title) and not(count(source) gt 1) and ./pub-id[@pub-id-type='doi' and matches(.,'^10\.(1101|64898|48550|31234|31219|21203|26434|32942|2139|22541)/')]">
                   <xsl:variable name="doi" select="pub-id[@pub-id-type='doi'][1]"/>
                   <xsl:for-each select="node()">
                     <xsl:choose>
@@ -1007,7 +1007,7 @@
                         <xsl:text>, </xsl:text>
                         <source xmlns="">
                           <xsl:choose>
-                            <xsl:when test="matches($doi,'^10\.1101/')">
+                            <xsl:when test="matches($doi,'^10\.(1101|64898)/')">
                               <xsl:text>bioRxiv/medRxiv</xsl:text>
                             </xsl:when>
                             <xsl:when test="matches($doi,'^10\.48550/')">
@@ -4712,6 +4712,55 @@
          id="authorea-doi-conformance">Authorea preprints must have a &lt;article-id pub-id-type="doi"> element with a value that matches the regex '^10\.22541/au\.\d+\.\d+/v\d$'. In other words, the current DOI listed is not a valid Authorea DOI: '<value-of select="."/>'.</assert>
       </rule>
     </pattern>
+  
+  <pattern id="processing-instructions">
+    <rule context="processing-instruction('fig-size')" id="fig-size-pi-checks">
+      <let name="supported-values" value="('full', 'half', 'quarter')"/>
+      <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
+      
+      <assert test="$next-node-name='fig'" 
+         role="error" 
+         id="fig-size-pi-1">'fig-size' processing-instructions must be placed directly before a fig element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
+      
+      <assert test="normalize-space(.)=$supported-values" 
+         role="error" 
+         id="fig-size-pi-2">'fig-size' processing-instructions must contain one of the following values: <value-of select="string-join($supported-values,'; ')"/>. '<value-of select="."/>' is not supported.</assert>
+    </rule>
+    
+    <rule context="processing-instruction('math-size')" id="math-size-pi-checks">
+      <let name="supported-values" value="('0.5', '1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5', '5.5', '6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12')"/>
+      <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
+      
+      <assert test="$next-node-name=('disp-formula','inline-formula')" 
+         role="error" 
+         id="math-size-pi-1">'math-size' processing-instructions must be placed directly before a disp-formula or inline-formula element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
+      
+      <assert test="normalize-space(.)=$supported-values" 
+         role="error" 
+         id="math-size-pi-2">'math-size' processing-instructions must contain one of the following values: <value-of select="string-join($supported-values,'; ')"/>. '<value-of select="."/>' is not supported.</assert>
+    </rule>
+    
+    <rule context="processing-instruction('page-break')" id="page-break-pi-checks">
+      <let name="allowed-parents" value="('article','body','back','sec','app','ack','boxed-text','statement','def-list','list','glossary','disp-quote')"/>
+      
+      <assert test="parent::*/name()=$allowed-parents" 
+         role="error" 
+         id="page-break-pi-1">'page-break' cannot be placed inside a <value-of select="parent::*/name()"/> element. It should be placed in one of the following: <value-of select="string-join($allowed-parents,'; ')"/></assert>
+      
+      <assert test="normalize-space(.)=''" 
+         role="error" 
+         id="page-break-pi-2">'page-break' processing-instructions must be empty. This one has the value <value-of select="."/>.</assert>
+    </rule>
+    
+    <rule context="processing-instruction()" id="all-pi-checks">
+      <let name="allowed-names" value="('fig-size','math-size','page-break')"/>
+      
+      <!-- To do: remove 'oxygen', which is only included here to circumvent test suite errors -->
+      <assert test="name()=($allowed-names,'oxygen')" 
+         role="error" 
+         id="all-pi-1">'<value-of select="name()"/>' is not an allowed processing-instruction. The only ones that can be used are: <value-of select="string-join($allowed-names,'; ')"/></assert>
+    </rule>
+  </pattern>
 
     <!-- Checks for the manifest file in the meca package.
           For validation in oXygen this assumes the manifest file is in a parent folder of the xml file being validated and named as manifest.xml

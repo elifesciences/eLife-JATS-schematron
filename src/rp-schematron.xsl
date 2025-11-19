@@ -1989,6 +1989,42 @@
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M208"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="id">fig-size-pi-checks-pattern</xsl:attribute>
+            <xsl:attribute name="name">fig-size-pi-checks-pattern</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M209"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="id">math-size-pi-checks-pattern</xsl:attribute>
+            <xsl:attribute name="name">math-size-pi-checks-pattern</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M210"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="id">page-break-pi-checks-pattern</xsl:attribute>
+            <xsl:attribute name="name">page-break-pi-checks-pattern</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M211"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="id">all-pi-checks-pattern</xsl:attribute>
+            <xsl:attribute name="name">all-pi-checks-pattern</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M212"/>
       </svrl:schematron-output>
    </xsl:template>
    <!--SCHEMATRON PATTERNS-->
@@ -2500,7 +2536,7 @@
             <xsl:apply-templates mode="sentenceCase" select="."/>
          </sqf:replace>
       </sqf:fix>
-      <sqf:fix id="replace-to-preprint-ref" use-when="matches(lower-case(./source[1]),'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra') or matches(pub-id[@pub-id-type='doi'][1],'^10\.(1101|48550|31234|31219|21203|26434|32942|2139|22541)/')">
+      <sqf:fix id="replace-to-preprint-ref" use-when="matches(lower-case(./source[1]),'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra') or matches(pub-id[@pub-id-type='doi'][1],'^10\.(1101|64898|48550|31234|31219|21203|26434|32942|2139|22541)/')">
          <sqf:description>
             <sqf:title>Change to preprint ref</sqf:title>
          </sqf:description>
@@ -2521,7 +2557,7 @@
                               <xsl:text>, </xsl:text>
                               <source xmlns="">
                                  <xsl:choose>
-                                    <xsl:when test="matches($doi,'^10\.1101/')">
+                                    <xsl:when test="matches($doi,'^10\.(1101|64898)/')">
                                        <xsl:text>bioRxiv/medRxiv</xsl:text>
                                     </xsl:when>
                                     <xsl:when test="matches($doi,'^10\.48550/')">
@@ -2555,7 +2591,7 @@
                         </xsl:choose>
                      </xsl:for-each>
                   </xsl:when>
-                  <xsl:when test="./source[not(matches(.,'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra'))] and not(article-title) and not(count(source) gt 1) and ./pub-id[@pub-id-type='doi' and matches(.,'^10\.(1101|48550|31234|31219|21203|26434|32942|2139|22541)/')]">
+                  <xsl:when test="./source[not(matches(.,'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra'))] and not(article-title) and not(count(source) gt 1) and ./pub-id[@pub-id-type='doi' and matches(.,'^10\.(1101|64898|48550|31234|31219|21203|26434|32942|2139|22541)/')]">
                      <xsl:variable name="doi" select="pub-id[@pub-id-type='doi'][1]"/>
                      <xsl:for-each select="node()">
                         <xsl:choose>
@@ -2566,7 +2602,7 @@
                               <xsl:text>, </xsl:text>
                               <source xmlns="">
                                  <xsl:choose>
-                                    <xsl:when test="matches($doi,'^10\.1101/')">
+                                    <xsl:when test="matches($doi,'^10\.(1101|64898)/')">
                                        <xsl:text>bioRxiv/medRxiv</xsl:text>
                                     </xsl:when>
                                     <xsl:when test="matches($doi,'^10\.48550/')">
@@ -13228,5 +13264,169 @@
    <xsl:template match="text()" priority="-1" mode="M208"/>
    <xsl:template match="@*|node()" priority="-2" mode="M208">
       <xsl:apply-templates select="*" mode="M208"/>
+   </xsl:template>
+   <!--PATTERN fig-size-pi-checks-pattern-->
+   <!--RULE fig-size-pi-checks-->
+   <xsl:template match="processing-instruction('fig-size')" priority="1000" mode="M209">
+      <xsl:variable name="supported-values" select="('full', 'half', 'quarter')"/>
+      <xsl:variable name="next-node-name" select="following-sibling::node()[not(self::text())][1]/name()"/>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="$next-node-name='fig'"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$next-node-name='fig'">
+               <xsl:attribute name="id">fig-size-pi-1</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[fig-size-pi-1] 'fig-size' processing-instructions must be placed directly before a fig element. This is placed before a <xsl:text/>
+                  <xsl:value-of select="$next-node-name"/>
+                  <xsl:text/> element.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="normalize-space(.)=$supported-values"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=$supported-values">
+               <xsl:attribute name="id">fig-size-pi-2</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[fig-size-pi-2] 'fig-size' processing-instructions must contain one of the following values: <xsl:text/>
+                  <xsl:value-of select="string-join($supported-values,'; ')"/>
+                  <xsl:text/>. '<xsl:text/>
+                  <xsl:value-of select="."/>
+                  <xsl:text/>' is not supported.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M209"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M209"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M209">
+      <xsl:apply-templates select="*" mode="M209"/>
+   </xsl:template>
+   <!--PATTERN math-size-pi-checks-pattern-->
+   <!--RULE math-size-pi-checks-->
+   <xsl:template match="processing-instruction('math-size')" priority="1000" mode="M210">
+      <xsl:variable name="supported-values" select="('0.5', '1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5', '5.5', '6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12')"/>
+      <xsl:variable name="next-node-name" select="following-sibling::node()[not(self::text())][1]/name()"/>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="$next-node-name=('disp-formula','inline-formula')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$next-node-name=('disp-formula','inline-formula')">
+               <xsl:attribute name="id">math-size-pi-1</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[math-size-pi-1] 'math-size' processing-instructions must be placed directly before a disp-formula or inline-formula element. This is placed before a <xsl:text/>
+                  <xsl:value-of select="$next-node-name"/>
+                  <xsl:text/> element.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="normalize-space(.)=$supported-values"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=$supported-values">
+               <xsl:attribute name="id">math-size-pi-2</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[math-size-pi-2] 'math-size' processing-instructions must contain one of the following values: <xsl:text/>
+                  <xsl:value-of select="string-join($supported-values,'; ')"/>
+                  <xsl:text/>. '<xsl:text/>
+                  <xsl:value-of select="."/>
+                  <xsl:text/>' is not supported.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M210"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M210"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M210">
+      <xsl:apply-templates select="*" mode="M210"/>
+   </xsl:template>
+   <!--PATTERN page-break-pi-checks-pattern-->
+   <!--RULE page-break-pi-checks-->
+   <xsl:template match="processing-instruction('page-break')" priority="1000" mode="M211">
+      <xsl:variable name="allowed-parents" select="('article','body','back','sec','app','ack','boxed-text','statement','def-list','list','glossary','disp-quote')"/>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="parent::*/name()=$allowed-parents"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="parent::*/name()=$allowed-parents">
+               <xsl:attribute name="id">page-break-pi-1</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[page-break-pi-1] 'page-break' cannot be placed inside a <xsl:text/>
+                  <xsl:value-of select="parent::*/name()"/>
+                  <xsl:text/> element. It should be placed in one of the following: <xsl:text/>
+                  <xsl:value-of select="string-join($allowed-parents,'; ')"/>
+                  <xsl:text/>
+               </svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="normalize-space(.)=''"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=''">
+               <xsl:attribute name="id">page-break-pi-2</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[page-break-pi-2] 'page-break' processing-instructions must be empty. This one has the value <xsl:text/>
+                  <xsl:value-of select="."/>
+                  <xsl:text/>.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M211"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M211"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M211">
+      <xsl:apply-templates select="*" mode="M211"/>
+   </xsl:template>
+   <!--PATTERN all-pi-checks-pattern-->
+   <!--RULE all-pi-checks-->
+   <xsl:template match="processing-instruction()" priority="1000" mode="M212">
+      <xsl:variable name="allowed-names" select="('fig-size','math-size','page-break')"/>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="name()=($allowed-names,'oxygen')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="name()=($allowed-names,'oxygen')">
+               <xsl:attribute name="id">all-pi-1</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[all-pi-1] '<xsl:text/>
+                  <xsl:value-of select="name()"/>
+                  <xsl:text/>' is not an allowed processing-instruction. The only ones that can be used are: <xsl:text/>
+                  <xsl:value-of select="string-join($allowed-names,'; ')"/>
+                  <xsl:text/>
+               </svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M212"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M212"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M212">
+      <xsl:apply-templates select="*" mode="M212"/>
    </xsl:template>
 </xsl:stylesheet>

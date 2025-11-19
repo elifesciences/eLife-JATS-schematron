@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="math-size-pi-1.sch"?>
+<!--Context: processing-instruction('math-size')
+Test: assert    $next-node-name=('disp-formula','inline-formula')
+Message: 'math-size' processing-instructions must be placed directly before a disp-formula or inline-formula element. This is placed before a  element. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sec>
+            <p>some text <?math-size 2?><inline-formula/></p>
+            <p>some text <?math-size 2?><disp-formula/></p>
+        </sec>
+    </article>
+</root>
