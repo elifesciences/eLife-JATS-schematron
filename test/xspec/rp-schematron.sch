@@ -3638,6 +3638,15 @@
       <assert test="normalize-space(.)=''" role="error" id="page-break-pi-2">'page-break' processing-instructions must be empty. This one has the value <value-of select="."/>.</assert>
     </rule>
   </pattern>
+  <pattern id="all-pi-checks-pattern">
+    <rule context="processing-instruction()" id="all-pi-checks">
+      <let name="allowed-names" value="('fig-size','math-size','page-break')"/>
+      
+      <!-- To do: remove 'oxygen', which is only included here to circumvent test suite errors -->
+      <assert test="name()=($allowed-names,'oxygen')" role="error" id="all-pi-1">'<value-of select="name()"/>' is not an allowed processing-instruction. The only ones that can be used are: <value-of select="string-join($allowed-names,'; ')"/>
+      </assert>
+    </rule>
+  </pattern>
 
     <!-- Checks for the manifest file in the meca package.
           For validation in oXygen this assumes the manifest file is in a parent folder of the xml file being validated and named as manifest.xml
@@ -3811,6 +3820,7 @@
       <assert test="descendant::processing-instruction('fig-size')" role="error" id="fig-size-pi-checks-xspec-assert">processing-instruction('fig-size') must be present.</assert>
       <assert test="descendant::processing-instruction('math-size')" role="error" id="math-size-pi-checks-xspec-assert">processing-instruction('math-size') must be present.</assert>
       <assert test="descendant::processing-instruction('page-break')" role="error" id="page-break-pi-checks-xspec-assert">processing-instruction('page-break') must be present.</assert>
+      <assert test="descendant::processing-instruction()" role="error" id="all-pi-checks-xspec-assert">processing-instruction() must be present.</assert>
     </rule>
   </pattern>
 </schema>

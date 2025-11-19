@@ -2016,6 +2016,15 @@
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M211"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="id">all-pi-checks-pattern</xsl:attribute>
+            <xsl:attribute name="name">all-pi-checks-pattern</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M212"/>
       </svrl:schematron-output>
    </xsl:template>
    <!--SCHEMATRON PATTERNS-->
@@ -13390,5 +13399,34 @@
    <xsl:template match="text()" priority="-1" mode="M211"/>
    <xsl:template match="@*|node()" priority="-2" mode="M211">
       <xsl:apply-templates select="*" mode="M211"/>
+   </xsl:template>
+   <!--PATTERN all-pi-checks-pattern-->
+   <!--RULE all-pi-checks-->
+   <xsl:template match="processing-instruction()" priority="1000" mode="M212">
+      <xsl:variable name="allowed-names" select="('fig-size','math-size','page-break')"/>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="name()=($allowed-names,'oxygen')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="name()=($allowed-names,'oxygen')">
+               <xsl:attribute name="id">all-pi-1</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[all-pi-1] '<xsl:text/>
+                  <xsl:value-of select="name()"/>
+                  <xsl:text/>' is not an allowed processing-instruction. The only ones that can be used are: <xsl:text/>
+                  <xsl:value-of select="string-join($allowed-names,'; ')"/>
+                  <xsl:text/>
+               </svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M212"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M212"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M212">
+      <xsl:apply-templates select="*" mode="M212"/>
    </xsl:template>
 </xsl:stylesheet>

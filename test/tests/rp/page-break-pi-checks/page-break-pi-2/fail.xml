@@ -7,7 +7,7 @@ Message: 'page-break' processing-instructions must be empty. This one has the va
         <body>
             <?page-break dassa?>
             <sec>
-                <?page-break  dwaxsaxsaxe   ?>
+                <?page-break dwaxsaxsaxe?>
                 <boxed-text>
                     <?page-break ek dk?>
                 </boxed-text>

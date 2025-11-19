@@ -6190,5 +6190,17 @@
         <x:expect-not-assert id="page-break-pi-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="all-pi-checks">
+      <x:scenario label="all-pi-1-pass">
+        <x:context href="../tests/rp/all-pi-checks/all-pi-1/pass.xml"/>
+        <x:expect-not-assert id="all-pi-1" role="error"/>
+        <x:expect-not-assert id="all-pi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="all-pi-1-fail">
+        <x:context href="../tests/rp/all-pi-checks/all-pi-1/fail.xml"/>
+        <x:expect-assert id="all-pi-1" role="error"/>
+        <x:expect-not-assert id="all-pi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
   </x:scenario>
 </x:description>

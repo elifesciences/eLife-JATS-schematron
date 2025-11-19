@@ -5,49 +5,49 @@ Message: 'page-break' cannot be placed inside a  element. It should be placed in
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <body>
-            <?page-break?>
+            <?page-break ?>
             <sec>
-                <?page-break?>
+                <?page-break ?>
                 <boxed-text>
-                    <?page-break?>
+                    <?page-break ?>
                 </boxed-text>
                 <list>
                     <list-item/>
-                    <?page-break?>
+                    <?page-break ?>
                     <list-item/>
                 </list>
                 <statement>
-                    <?page-break?>
+                    <?page-break ?>
                 </statement>
             </sec>
         </body>
         <back>
             <ack>
-                <?page-break?>
+                <?page-break ?>
             </ack>
-            <?page-break?>
+            <?page-break ?>
             <glossary>
-                <?page-break?>
+                <?page-break ?>
             </glossary>
             <app-group>
                 <app>
-                    <?page-break?>
+                    <?page-break ?>
                 </app>
             </app-group>
         </back>
         <sub-article>
             <body>
                 <p/>
-                <?page-break?>
+                <?page-break ?>
                 <p/>
                 <disp-quote>
                     <p/>
-                    <?page-break?>
+                    <?page-break ?>
                     <p/>
                 </disp-quote>
             </body>
         </sub-article>
-        <?page-break?>
+        <?page-break ?>
         <sub-article/>
     </article>
 </root>
