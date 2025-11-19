@@ -6146,5 +6146,49 @@
         <x:expect-not-assert id="fig-size-pi-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="math-size-pi-checks">
+      <x:scenario label="math-size-pi-1-pass">
+        <x:context href="../tests/rp/math-size-pi-checks/math-size-pi-1/pass.xml"/>
+        <x:expect-not-assert id="math-size-pi-1" role="error"/>
+        <x:expect-not-assert id="math-size-pi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-size-pi-1-fail">
+        <x:context href="../tests/rp/math-size-pi-checks/math-size-pi-1/fail.xml"/>
+        <x:expect-assert id="math-size-pi-1" role="error"/>
+        <x:expect-not-assert id="math-size-pi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-size-pi-2-pass">
+        <x:context href="../tests/rp/math-size-pi-checks/math-size-pi-2/pass.xml"/>
+        <x:expect-not-assert id="math-size-pi-2" role="error"/>
+        <x:expect-not-assert id="math-size-pi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-size-pi-2-fail">
+        <x:context href="../tests/rp/math-size-pi-checks/math-size-pi-2/fail.xml"/>
+        <x:expect-assert id="math-size-pi-2" role="error"/>
+        <x:expect-not-assert id="math-size-pi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="page-break-pi-checks">
+      <x:scenario label="page-break-pi-1-pass">
+        <x:context href="../tests/rp/page-break-pi-checks/page-break-pi-1/pass.xml"/>
+        <x:expect-not-assert id="page-break-pi-1" role="error"/>
+        <x:expect-not-assert id="page-break-pi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="page-break-pi-1-fail">
+        <x:context href="../tests/rp/page-break-pi-checks/page-break-pi-1/fail.xml"/>
+        <x:expect-assert id="page-break-pi-1" role="error"/>
+        <x:expect-not-assert id="page-break-pi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="page-break-pi-2-pass">
+        <x:context href="../tests/rp/page-break-pi-checks/page-break-pi-2/pass.xml"/>
+        <x:expect-not-assert id="page-break-pi-2" role="error"/>
+        <x:expect-not-assert id="page-break-pi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="page-break-pi-2-fail">
+        <x:context href="../tests/rp/page-break-pi-checks/page-break-pi-2/fail.xml"/>
+        <x:expect-assert id="page-break-pi-2" role="error"/>
+        <x:expect-not-assert id="page-break-pi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
   </x:scenario>
 </x:description>

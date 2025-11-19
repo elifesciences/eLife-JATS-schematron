@@ -2994,6 +2994,19 @@
       <assert test="$next-node-name='fig'" role="error" id="fig-size-pi-1">[fig-size-pi-1] 'fig-size' processing-instructions must be placed directly before a fig element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
       
       <assert test="normalize-space(.)=$supported-values" role="error" id="fig-size-pi-2">[fig-size-pi-2] 'fig-size' processing-instructions must contain one of the following values: <value-of select="string-join($supported-values,'; ')"/>. '<value-of select="."/>' is not supported.</assert>
+    </rule></pattern><pattern id="math-size-pi-checks-pattern"><rule context="processing-instruction('math-size')" id="math-size-pi-checks">
+      <let name="supported-values" value="('0.5', '1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5', '5.5', '6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12')"/>
+      <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
+      
+      <assert test="$next-node-name=('disp-formula','inline-formula')" role="error" id="math-size-pi-1">[math-size-pi-1] 'math-size' processing-instructions must be placed directly before a disp-formula or inline-formula element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
+      
+      <assert test="normalize-space(.)=$supported-values" role="error" id="math-size-pi-2">[math-size-pi-2] 'math-size' processing-instructions must contain one of the following values: <value-of select="string-join($supported-values,'; ')"/>. '<value-of select="."/>' is not supported.</assert>
+    </rule></pattern><pattern id="page-break-pi-checks-pattern"><rule context="processing-instruction('page-break')" id="page-break-pi-checks">
+      <let name="allowed-parents" value="('article','body','back','sec','app','ack','boxed-text','statement','def-list','list','glossary','disp-quote')"/>
+      
+      <assert test="parent::*/name()=$allowed-parents" role="error" id="page-break-pi-1">[page-break-pi-1] 'page-break' cannot be placed inside a <value-of select="parent::*/name()"/> element. It should be placed in one of the following: <value-of select="string-join($allowed-parents,'; ')"/></assert>
+      
+      <assert test="normalize-space(.)=''" role="error" id="page-break-pi-2">[page-break-pi-2] 'page-break' processing-instructions must be empty. This one has the value <value-of select="."/>.</assert>
     </rule></pattern>
 
     <!-- Checks for the manifest file in the meca package.

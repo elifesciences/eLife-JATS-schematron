@@ -1,0 +1,53 @@
+<?oxygen SCHSchema="page-break-pi-1.sch"?>
+<!--Context: processing-instruction('page-break')
+Test: assert    parent::*/name()=$allowed-parents
+Message: 'page-break' cannot be placed inside a  element. It should be placed in one of the following:  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <body>
+            <?page-break?>
+            <sec>
+                <?page-break?>
+                <boxed-text>
+                    <?page-break?>
+                </boxed-text>
+                <list>
+                    <list-item/>
+                    <?page-break?>
+                    <list-item/>
+                </list>
+                <statement>
+                    <?page-break?>
+                </statement>
+            </sec>
+        </body>
+        <back>
+            <ack>
+                <?page-break?>
+            </ack>
+            <?page-break?>
+            <glossary>
+                <?page-break?>
+            </glossary>
+            <app-group>
+                <app>
+                    <?page-break?>
+                </app>
+            </app-group>
+        </back>
+        <sub-article>
+            <body>
+                <p/>
+                <?page-break?>
+                <p/>
+                <disp-quote>
+                    <p/>
+                    <?page-break?>
+                    <p/>
+                </disp-quote>
+            </body>
+        </sub-article>
+        <?page-break?>
+        <sub-article/>
+    </article>
+</root>

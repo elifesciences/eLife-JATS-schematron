@@ -1,0 +1,22 @@
+<?oxygen SCHSchema="page-break-pi-2.sch"?>
+<!--Context: processing-instruction('page-break')
+Test: assert    normalize-space(.)=''
+Message: 'page-break' processing-instructions must be empty. This one has the value . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <body>
+            <?page-break dassa?>
+            <sec>
+                <?page-break  dwaxsaxsaxe   ?>
+                <boxed-text>
+                    <?page-break ek dk?>
+                </boxed-text>
+                <list>
+                    <list-item/>
+                    <?page-break mjodpenpdfjo?>
+                    <list-item/>
+                </list>
+            </sec>
+        </body>
+    </article>
+</root>
