@@ -3341,7 +3341,7 @@
         <name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
         
       <report test="contains(.,'∓')" role="warning" id="broken-unicode-presence-2">
-        <name/> element contains a Minus-or-Plus Sign (∓). Is this intended to be an ampersand (with a missing a in the entity reference - &amp;mp;)? <value-of select="."/>
+        <name/> element contains a Minus-or-Plus Sign (∓). Is this intended to be an ampersand (with a missing 'a' in the entity reference - &amp;mp;)? <value-of select="."/>
       </report>
       
       <report test="contains(.,'&#x9D;')" role="error" id="operating-system-command-presence">

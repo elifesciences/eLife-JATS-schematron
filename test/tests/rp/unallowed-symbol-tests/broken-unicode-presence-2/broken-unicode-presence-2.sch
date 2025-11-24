@@ -1143,7 +1143,7 @@
   </sqf:fixes>
   <pattern id="unallowed-symbol-tests-pattern">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link|ref" id="unallowed-symbol-tests">
-      <report test="contains(.,'∓')" role="warning" id="broken-unicode-presence-2">[broken-unicode-presence-2] <name/> element contains a Minus-or-Plus Sign (∓). Is this intended to be an ampersand (with a missing a in the entity reference - &amp;mp;)? <value-of select="."/>
+      <report test="contains(.,'∓')" role="warning" id="broken-unicode-presence-2">[broken-unicode-presence-2] <name/> element contains a Minus-or-Plus Sign (∓). Is this intended to be an ampersand (with a missing 'a' in the entity reference - &amp;mp;)? <value-of select="."/>
       </report>
     </rule>
   </pattern>

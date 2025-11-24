@@ -10831,6 +10831,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="broken-unicode-presence"><name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
       
+      <report test="contains(.,'&#x02213;')" 
+        role="warning" 
+        id="broken-unicode-presence-2"><name/> element contains a Minus-or-Plus Sign (&#x02213;). Is this intended to be an ampersand (with a missing 'a' in the entity reference - &amp;mp;)? <value-of select="."/></report>
+      
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-extra-full-stop-presence"
         test="not(ancestor::sub-article) and not(local-name()='code') and contains(.,'..') and not(contains(.,'...'))" 
         role="warning" 

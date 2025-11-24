@@ -11973,7 +11973,7 @@
             </xsl:attribute>
             <svrl:text>[broken-unicode-presence-2] <xsl:text/>
                <xsl:value-of select="name(.)"/>
-               <xsl:text/> element contains a Minus-or-Plus Sign (∓). Is this intended to be an ampersand (with a missing a in the entity reference - &amp;mp;)? <xsl:text/>
+               <xsl:text/> element contains a Minus-or-Plus Sign (∓). Is this intended to be an ampersand (with a missing 'a' in the entity reference - &amp;mp;)? <xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>
             </svrl:text>
