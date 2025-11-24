@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="broken-unicode-presence-2.sch"?>
+<!--Context: p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link
+Test: report    contains(.,'∓')
+Message:  element contains a Minus-or-Plus Sign (∓). Is this intended to be an ampersand (with a missing 'a' in the entity reference - &mp;)?  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <p>&amp;</p>
+    </article>
+</root>

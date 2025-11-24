@@ -4332,6 +4332,10 @@
       <report test="matches(.,'&amp;#x\d')" 
         role="warning" 
         id="broken-unicode-presence"><name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
+        
+      <report test="contains(.,'&#x02213;')" 
+        role="warning" 
+        id="broken-unicode-presence-2"><name/> element contains a Minus-or-Plus Sign (&#x02213;). Is this intended to be an ampersand (with a missing 'a' in the entity reference - &amp;mp;)? <value-of select="."/></report>
       
       <report test="contains(.,'&#x9D;')" 
         role="error" 

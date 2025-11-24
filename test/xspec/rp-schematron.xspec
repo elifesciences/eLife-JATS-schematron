@@ -5369,6 +5369,16 @@
         <x:expect-report id="broken-unicode-presence" role="warning"/>
         <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="broken-unicode-presence-2-pass">
+        <x:context href="../tests/rp/unallowed-symbol-tests/broken-unicode-presence-2/pass.xml"/>
+        <x:expect-not-report id="broken-unicode-presence-2" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="broken-unicode-presence-2-fail">
+        <x:context href="../tests/rp/unallowed-symbol-tests/broken-unicode-presence-2/fail.xml"/>
+        <x:expect-report id="broken-unicode-presence-2" role="warning"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="operating-system-command-presence-pass">
         <x:context href="../tests/rp/unallowed-symbol-tests/operating-system-command-presence/pass.xml"/>
         <x:expect-not-report id="operating-system-command-presence" role="error"/>
