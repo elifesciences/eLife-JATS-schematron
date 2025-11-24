@@ -2804,6 +2804,8 @@
       <report test="(name()!='ref') and (some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]'))" role="warning" id="empty-parentheses-presence">[empty-parentheses-presence] <name/> element contains empty parentheses ('[]', or '()'). Is there a missing citation within the parentheses? Or perhaps this is a piece of code that needs formatting?</report>
       
       <report test="matches(.,'&amp;#x\d')" role="warning" id="broken-unicode-presence">[broken-unicode-presence] <name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
+        
+      <report test="contains(.,'∓')" role="warning" id="broken-unicode-presence-2">[broken-unicode-presence-2] <name/> element contains a Minus-or-Plus Sign (∓). Is this intended to be an ampersand (with a missing a in the entity reference - &amp;mp;)? <value-of select="."/></report>
       
       <report test="contains(.,'&#x9D;')" role="error" id="operating-system-command-presence">[operating-system-command-presence] <name/> element contains an operating system command character '&#x9D;' (unicode string: &amp;#x9D;) which should very likely be replaced/removed. - <value-of select="."/></report>
 

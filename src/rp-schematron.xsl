@@ -11963,6 +11963,22 @@
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="contains(.,'∓')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'∓')">
+            <xsl:attribute name="id">broken-unicode-presence-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[broken-unicode-presence-2] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element contains a Minus-or-Plus Sign (∓). Is this intended to be an ampersand (with a missing a in the entity reference - &amp;mp;)? <xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>
+            </svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <!--REPORT error-->
       <xsl:if test="contains(.,'&#x9D;')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'&#x9D;')">
