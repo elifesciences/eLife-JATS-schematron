@@ -919,15 +919,14 @@
     <xsl:param name="arg" as="xs:string?"/>
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
-  <pattern id="article-metadata">
-    <rule context="article-version" id="article-version">
-      <assert test="@article-version-type='publication-state'" role="error" id="article-version-test-2">
-        <name/> must a article-version-type="publication-state" attribute. This one does not.</assert>
+  <pattern id="house-style">
+    <rule context="sec[@sec-type='data-availability' and descendant::element-citation]" id="data-availability-without-extra-p">
+      <assert test="count(p[not(element-citation)]) gt 1" role="error" id="das-without-extra-p">If a data availability section contains data references, then depending on whether the datasets were generated or previously published either the text 'The following previously published dataset(s) were used:' or 'The following previously published dataset(s) were used:', or both should be present.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-version" role="error" id="article-version-xspec-assert">article-version must be present.</assert>
+      <assert test="descendant::sec[@sec-type='data-availability' and descendant::element-citation]" role="error" id="data-availability-without-extra-p-xspec-assert">sec[@sec-type='data-availability' and descendant::element-citation] must be present.</assert>
     </rule>
   </pattern>
 </schema>

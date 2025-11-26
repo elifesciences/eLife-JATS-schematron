@@ -17670,6 +17670,18 @@
         <x:expect-not-assert id="data-availability-extra-p-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="data-availability-without-extra-p">
+      <x:scenario label="das-without-extra-p-pass">
+        <x:context href="../tests/gen/data-availability-without-extra-p/das-without-extra-p/pass.xml"/>
+        <x:expect-not-assert id="das-without-extra-p" role="error"/>
+        <x:expect-not-assert id="data-availability-without-extra-p-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="das-without-extra-p-fail">
+        <x:context href="../tests/gen/data-availability-without-extra-p/das-without-extra-p/fail.xml"/>
+        <x:expect-assert id="das-without-extra-p" role="error"/>
+        <x:expect-not-assert id="data-availability-without-extra-p-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="ethics-info">
       <x:scenario label="ethics-info-conformity-pass">
         <x:context href="../tests/gen/ethics-info/ethics-info-conformity/pass.xml"/>
