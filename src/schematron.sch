@@ -11992,6 +11992,14 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
+    <rule context="sec[@sec-type='data-availability' and descendant::element-citation]" id="data-availability-without-extra-p">
+      
+      <assert test="count(p[not(element-citation)]) gt 1" 
+        role="error" 
+        id="das-without-extra-p">If a data availability section contains data references, then depending on whether the datasets were generated or previously published either the text 'The following previously published dataset(s) were used:' or 'The following previously published dataset(s) were used:', or both should be present.</assert>
+      
+    </rule>
+    
     <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-info">
       
       <assert see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-info-conformity"

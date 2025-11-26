@@ -6002,6 +6002,10 @@
       
       <report test="preceding-sibling::p" role="warning" id="das-extra-p">[das-extra-p] Is this extra p element in the data availability section required? There are no dataset references within the section.</report>
       
+    </rule></pattern><pattern id="data-availability-without-extra-p-pattern"><rule context="sec[@sec-type='data-availability' and descendant::element-citation]" id="data-availability-without-extra-p">
+      
+      <assert test="count(p[not(element-citation)]) gt 1" role="error" id="das-without-extra-p">[das-without-extra-p] If a data availability section contains data references, then depending on whether the datasets were generated or previously published either the text 'The following previously published dataset(s) were used:' or 'The following previously published dataset(s) were used:', or both should be present.</assert>
+      
     </rule></pattern><pattern id="ethics-info-pattern"><rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-info">
       
       <assert see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-info-conformity" test="matches(replace(normalize-space(.),'&quot;',''),'\.$|\?$')" role="error" id="ethics-info-conformity">[ethics-info-conformity] The ethics statement must end with a full stop.</assert>
