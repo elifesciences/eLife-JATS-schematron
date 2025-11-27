@@ -1143,7 +1143,7 @@
   </sqf:fixes>
   <pattern id="preformat-checks-pattern">
     <rule context="preformat" id="preformat-checks">
-      <report test="." role="warning" id="preformat-flag">[preformat-flag] Please check whether the content in this preformat element has been captured crrectly (and is rendered approriately).</report>
+      <report test="." role="warning" id="preformat-flag">[preformat-flag] Please check whether the content in this preformat element has been captured correctly (and is rendered approriately).</report>
     </rule>
   </pattern>
 </schema>

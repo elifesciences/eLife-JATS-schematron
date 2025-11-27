@@ -1143,7 +1143,7 @@
   </sqf:fixes>
   <pattern id="code-checks-pattern">
     <rule context="code" id="code-checks">
-      <report test="." role="warning" id="code-flag">[code-flag] Please check whether the content in this code element has been captured crrectly (and is rendered approriately).</report>
+      <report test="." role="warning" id="code-flag">[code-flag] Please check whether the content in this code element has been captured correctly (and is rendered approriately).</report>
     </rule>
   </pattern>
 </schema>

@@ -2702,15 +2702,21 @@
       </rule></pattern>
 
     <pattern id="preformat-checks-pattern"><rule context="preformat" id="preformat-checks">
-        <report test="." role="warning" id="preformat-flag">[preformat-flag] Please check whether the content in this preformat element has been captured crrectly (and is rendered approriately).</report>
+        <report test="." role="warning" id="preformat-flag">[preformat-flag] Please check whether the content in this preformat element has been captured correctly (and is rendered approriately).</report>
      </rule></pattern>
 
     <pattern id="code-checks-pattern"><rule context="code" id="code-checks">
-        <report test="." role="warning" id="code-flag">[code-flag] Please check whether the content in this code element has been captured crrectly (and is rendered approriately).</report>
+        <report test="." role="warning" id="code-flag">[code-flag] Please check whether the content in this code element has been captured correctly (and is rendered approriately).</report>
      </rule></pattern>
 
     <pattern id="uri-checks-pattern"><rule context="uri" id="uri-checks">
         <report test="." role="error" sqf:fix="replace-to-ext-link" id="uri-flag">[uri-flag] The uri element is not permitted. Instead use ext-link with the attribute link-type="uri".</report>
+     </rule></pattern>
+  
+  <pattern id="disp-quote-checks-pattern"><rule context="disp-quote" id="disp-quote-checks">
+        <assert test="ancestor::sub-article[@article-type='author-comment']" role="warning" id="disp-quote-1">[disp-quote-1] Display quotes are uncommon in eLife content outside the author response. Please check whether this content has been captured correctly (and is rendered approriately).</assert>
+       
+       <report test="ancestor::sub-article[@article-type='author-comment'] and not(@content-type='editor-comment')" role="error" id="disp-quote-2">[disp-quote-2] Display quotes in the author response must have the attribute content-type="editor-comment". This one does not.</report>
      </rule></pattern>
 
     <pattern id="xref-checks-pattern"><rule context="xref" id="xref-checks">
@@ -3002,7 +3008,8 @@
       
       <assert test="$next-node-name=('disp-formula','inline-formula')" role="error" id="math-size-pi-1">[math-size-pi-1] 'math-size' processing-instructions must be placed directly before a disp-formula or inline-formula element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
       
-      <assert test="normalize-space(.)=$supported-values" role="error" id="math-size-pi-2">[math-size-pi-2] 'math-size' processing-instructions must contain one of the following values: <value-of select="string-join($supported-values,'; ')"/>. '<value-of select="."/>' is not supported.</assert>
+      <assert test="matches(normalize-space(.),'^([1-4]?[0-9](\.[5])?|50)$')" role="error" id="math-size-pi-2">[math-size-pi-2] 'math-size' processing-instructions must must be a number greater than 0 and less than 50, 
+      and must be either a whole number (integer) or a half-number (e.g., 1.5, 2.5). <value-of select="normalize-space(.)"/> is not.</assert>
     </rule></pattern><pattern id="page-break-pi-checks-pattern"><rule context="processing-instruction('page-break')" id="page-break-pi-checks">
       <let name="allowed-parents" value="('article','body','back','sec','app','ack','boxed-text','statement','def-list','list','glossary','disp-quote')"/>
       

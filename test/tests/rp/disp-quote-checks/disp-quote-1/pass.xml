@@ -1,0 +1,12 @@
+<?oxygen SCHSchema="disp-quote-1.sch"?>
+<!--Context: disp-quote
+Test: assert    ancestor::sub-article[@article-type='author-comment']
+Message: Display quotes are uncommon in eLife content outside the author response. Please check whether this content has been captured correctly (and is rendered approriately). -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <body/>
+        <sub-article article-type="author-comment">
+            <disp-quote/>
+        </sub-article>    
+    </article>
+</root>

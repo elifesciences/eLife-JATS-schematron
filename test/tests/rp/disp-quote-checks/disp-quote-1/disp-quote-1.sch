@@ -1141,17 +1141,14 @@
       </sqf:replace>
     </sqf:fix>
   </sqf:fixes>
-  <pattern id="math-size-pi-checks-pattern">
-    <rule context="processing-instruction('math-size')" id="math-size-pi-checks">
-      <let name="supported-values" value="('0.5', '1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5', '5.5', '6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12')"/>
-      <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
-      <assert test="matches(normalize-space(.),'^([1-4]?[0-9](\.[5])?|50)$')" role="error" id="math-size-pi-2">[math-size-pi-2] 'math-size' processing-instructions must must be a number greater than 0 and less than 50, 
-      and must be either a whole number (integer) or a half-number (e.g., 1.5, 2.5). <value-of select="normalize-space(.)"/> is not.</assert>
+  <pattern id="disp-quote-checks-pattern">
+    <rule context="disp-quote" id="disp-quote-checks">
+      <assert test="ancestor::sub-article[@article-type='author-comment']" role="warning" id="disp-quote-1">[disp-quote-1] Display quotes are uncommon in eLife content outside the author response. Please check whether this content has been captured correctly (and is rendered approriately).</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::processing-instruction('math-size')" role="error" id="math-size-pi-checks-xspec-assert">processing-instruction('math-size') must be present.</assert>
+      <assert test="descendant::disp-quote" role="error" id="disp-quote-checks-xspec-assert">disp-quote must be present.</assert>
     </rule>
   </pattern>
 </schema>
