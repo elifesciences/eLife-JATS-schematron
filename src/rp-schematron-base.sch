@@ -4116,7 +4116,7 @@
      <rule context="preformat" id="preformat-checks">
         <report test="." 
         role="warning" 
-        id="preformat-flag">Please check whether the content in this preformat element has been captured crrectly (and is rendered approriately).</report>
+        id="preformat-flag">Please check whether the content in this preformat element has been captured correctly (and is rendered approriately).</report>
      </rule>
     </pattern>
 
@@ -4124,7 +4124,7 @@
      <rule context="code" id="code-checks">
         <report test="." 
         role="warning" 
-        id="code-flag">Please check whether the content in this code element has been captured crrectly (and is rendered approriately).</report>
+        id="code-flag">Please check whether the content in this code element has been captured correctly (and is rendered approriately).</report>
      </rule>
     </pattern>
 
@@ -4134,6 +4134,18 @@
         role="error"
         sqf:fix="replace-to-ext-link"
         id="uri-flag">The uri element is not permitted. Instead use ext-link with the attribute link-type="uri".</report>
+     </rule>
+    </pattern>
+  
+  <pattern id="disp-quote">
+     <rule context="disp-quote" id="disp-quote-checks">
+        <assert test="ancestor::sub-article[@article-type='author-comment']" 
+        role="warning" 
+        id="disp-quote-1">Display quotes are uncommon in eLife content outside the author response. Please check whether this content has been captured correctly (and is rendered approriately).</assert>
+       
+       <report test="ancestor::sub-article[@article-type='author-comment'] and not(@content-type='editor-comment')" 
+        role="error" 
+        id="disp-quote-2">Display quotes in the author response must have the attribute content-type="editor-comment". This one does not.</report>
      </rule>
     </pattern>
 

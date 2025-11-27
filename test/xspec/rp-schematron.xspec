@@ -4996,6 +4996,28 @@
         <x:expect-not-assert id="uri-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="disp-quote-checks">
+      <x:scenario label="disp-quote-1-pass">
+        <x:context href="../tests/rp/disp-quote-checks/disp-quote-1/pass.xml"/>
+        <x:expect-not-assert id="disp-quote-1" role="warning"/>
+        <x:expect-not-assert id="disp-quote-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-quote-1-fail">
+        <x:context href="../tests/rp/disp-quote-checks/disp-quote-1/fail.xml"/>
+        <x:expect-assert id="disp-quote-1" role="warning"/>
+        <x:expect-not-assert id="disp-quote-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-quote-2-pass">
+        <x:context href="../tests/rp/disp-quote-checks/disp-quote-2/pass.xml"/>
+        <x:expect-not-report id="disp-quote-2" role="error"/>
+        <x:expect-not-assert id="disp-quote-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-quote-2-fail">
+        <x:context href="../tests/rp/disp-quote-checks/disp-quote-2/fail.xml"/>
+        <x:expect-report id="disp-quote-2" role="error"/>
+        <x:expect-not-assert id="disp-quote-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="xref-checks">
       <x:scenario label="xref-attributes-pass">
         <x:context href="../tests/rp/xref-checks/xref-attributes/pass.xml"/>
