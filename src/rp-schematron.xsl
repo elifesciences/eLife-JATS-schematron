@@ -13349,19 +13349,18 @@
       </xsl:choose>
       <!--ASSERT error-->
       <xsl:choose>
-         <xsl:when test="normalize-space(.)=$supported-values"/>
+         <xsl:when test="matches(normalize-space(.),'^([1-4]?[0-9](\.[5])?|50)$')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=$supported-values">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(normalize-space(.),'^([1-4]?[0-9](\.[5])?|50)$')">
                <xsl:attribute name="id">math-size-pi-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[math-size-pi-2] 'math-size' processing-instructions must contain one of the following values: <xsl:text/>
-                  <xsl:value-of select="string-join($supported-values,'; ')"/>
-                  <xsl:text/>. '<xsl:text/>
-                  <xsl:value-of select="."/>
-                  <xsl:text/>' is not supported.</svrl:text>
+               <svrl:text>[math-size-pi-2] 'math-size' processing-instructions must must be a number greater than 0 and less than 50, 
+      and must be either a whole number (integer) or a half-number (e.g., 1.5, 2.5). <xsl:text/>
+                  <xsl:value-of select="normalize-space(.)"/>
+                  <xsl:text/> is not.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>

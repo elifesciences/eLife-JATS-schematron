@@ -3002,7 +3002,8 @@
       
       <assert test="$next-node-name=('disp-formula','inline-formula')" role="error" id="math-size-pi-1">[math-size-pi-1] 'math-size' processing-instructions must be placed directly before a disp-formula or inline-formula element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
       
-      <assert test="normalize-space(.)=$supported-values" role="error" id="math-size-pi-2">[math-size-pi-2] 'math-size' processing-instructions must contain one of the following values: <value-of select="string-join($supported-values,'; ')"/>. '<value-of select="."/>' is not supported.</assert>
+      <assert test="matches(normalize-space(.),'^([1-4]?[0-9](\.[5])?|50)$')" role="error" id="math-size-pi-2">[math-size-pi-2] 'math-size' processing-instructions must must be a number greater than 0 and less than 50, 
+      and must be either a whole number (integer) or a half-number (e.g., 1.5, 2.5). <value-of select="normalize-space(.)"/> is not.</assert>
     </rule></pattern><pattern id="page-break-pi-checks-pattern"><rule context="processing-instruction('page-break')" id="page-break-pi-checks">
       <let name="allowed-parents" value="('article','body','back','sec','app','ack','boxed-text','statement','def-list','list','glossary','disp-quote')"/>
       

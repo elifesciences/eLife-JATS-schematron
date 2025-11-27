@@ -1,12 +1,111 @@
 <?oxygen SCHSchema="math-size-pi-2.sch"?>
 <!--Context: processing-instruction('math-size')
-Test: assert    normalize-space(.)=$supported-values
-Message: 'math-size' processing-instructions must contain one of the following values: . '' is not supported. -->
+Test: assert    matches(normalize-space(.),'^([1-4]?[0-9](\.[5])?|50)$')
+Message: 'math-size' processing-instructions must must be a number greater than 0 and less than 50, 
+      and must be either a whole number (integer) or a half-number (e.g., 1.5, 2.5).  is not. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <sec>
+            <p>some text <?math-size 0.5?><inline-formula/></p>
+            <p>some text <?math-size 1?><inline-formula/></p>
+            <p>some text <?math-size 1.5?><inline-formula/></p>
+            <p>some text <?math-size 2?><inline-formula/></p>
             <p>some text <?math-size 2.5?><inline-formula/></p>
-            <p>some text <?math-size 12?><disp-formula/></p>
+            <p>some text <?math-size 3?><inline-formula/></p>
+            <p>some text <?math-size 3.5?><inline-formula/></p>
+            <p>some text <?math-size 4?><inline-formula/></p>
+            <p>some text <?math-size 4.5?><inline-formula/></p>
+            <p>some text <?math-size 5?><inline-formula/></p>
+            <p>some text <?math-size 5.5?><inline-formula/></p>
+            <p>some text <?math-size 6?><inline-formula/></p>
+            <p>some text <?math-size 6.5?><inline-formula/></p>
+            <p>some text <?math-size 7?><inline-formula/></p>
+            <p>some text <?math-size 7.5?><inline-formula/></p>
+            <p>some text <?math-size 8?><inline-formula/></p>
+            <p>some text <?math-size 8.5?><inline-formula/></p>
+            <p>some text <?math-size 9?><inline-formula/></p>
+            <p>some text <?math-size 9.5?><inline-formula/></p>
+            <p>some text <?math-size 10?><inline-formula/></p>
+            <p>some text <?math-size 10.5?><inline-formula/></p>
+            <p>some text <?math-size 11?><inline-formula/></p>
+            <p>some text <?math-size 11.5?><inline-formula/></p>
+            <p>some text <?math-size 12?><inline-formula/></p>
+            <p>some text <?math-size 12.5?><inline-formula/></p>
+            <p>some text <?math-size 13?><inline-formula/></p>
+            <p>some text <?math-size 13.5?><inline-formula/></p>
+            <p>some text <?math-size 14?><inline-formula/></p>
+            <p>some text <?math-size 14.5?><inline-formula/></p>
+            <p>some text <?math-size 15?><inline-formula/></p>
+            <p>some text <?math-size 15.5?><inline-formula/></p>
+            <p>some text <?math-size 16?><inline-formula/></p>
+            <p>some text <?math-size 16.5?><inline-formula/></p>
+            <p>some text <?math-size 17?><inline-formula/></p>
+            <p>some text <?math-size 17.5?><inline-formula/></p>
+            <p>some text <?math-size 18?><inline-formula/></p>
+            <p>some text <?math-size 18.5?><inline-formula/></p>
+            <p>some text <?math-size 19?><inline-formula/></p>
+            <p>some text <?math-size 19.5?><inline-formula/></p>
+            <p>some text <?math-size 20?><inline-formula/></p>
+            <p>some text <?math-size 20.5?><inline-formula/></p>
+            <p>some text <?math-size 21?><inline-formula/></p>
+            <p>some text <?math-size 21.5?><inline-formula/></p>
+            <p>some text <?math-size 22?><inline-formula/></p>
+            <p>some text <?math-size 22.5?><inline-formula/></p>
+            <p>some text <?math-size 23?><inline-formula/></p>
+            <p>some text <?math-size 23.5?><inline-formula/></p>
+            <p>some text <?math-size 24?><inline-formula/></p>
+            <p>some text <?math-size 24.5?><inline-formula/></p>
+            <p>some text <?math-size 25?><inline-formula/></p>
+            <p>some text <?math-size 25.5?><inline-formula/></p>
+            <p>some text <?math-size 26?><inline-formula/></p>
+            <p>some text <?math-size 26.5?><inline-formula/></p>
+            <p>some text <?math-size 27?><inline-formula/></p>
+            <p>some text <?math-size 27.5?><inline-formula/></p>
+            <p>some text <?math-size 28?><inline-formula/></p>
+            <p>some text <?math-size 28.5?><inline-formula/></p>
+            <p>some text <?math-size 29?><inline-formula/></p>
+            <p>some text <?math-size 29.5?><inline-formula/></p>
+            <p>some text <?math-size 30?><inline-formula/></p>
+            <p>some text <?math-size 30.5?><inline-formula/></p>
+            <p>some text <?math-size 31?><inline-formula/></p>
+            <p>some text <?math-size 31.5?><inline-formula/></p>
+            <p>some text <?math-size 32?><inline-formula/></p>
+            <p>some text <?math-size 32.5?><inline-formula/></p>
+            <p>some text <?math-size 33?><inline-formula/></p>
+            <p>some text <?math-size 33.5?><inline-formula/></p>
+            <p>some text <?math-size 34?><inline-formula/></p>
+            <p>some text <?math-size 34.5?><inline-formula/></p>
+            <p>some text <?math-size 35?><inline-formula/></p>
+            <p>some text <?math-size 35.5?><inline-formula/></p>
+            <p>some text <?math-size 36?><inline-formula/></p>
+            <p>some text <?math-size 36.5?><inline-formula/></p>
+            <p>some text <?math-size 37?><inline-formula/></p>
+            <p>some text <?math-size 37.5?><inline-formula/></p>
+            <p>some text <?math-size 38?><inline-formula/></p>
+            <p>some text <?math-size 38.5?><inline-formula/></p>
+            <p>some text <?math-size 39?><inline-formula/></p>
+            <p>some text <?math-size 39.5?><inline-formula/></p>
+            <p>some text <?math-size 40?><inline-formula/></p>
+            <p>some text <?math-size 40.5?><inline-formula/></p>
+            <p>some text <?math-size 41?><inline-formula/></p>
+            <p>some text <?math-size 41.5?><inline-formula/></p>
+            <p>some text <?math-size 42?><inline-formula/></p>
+            <p>some text <?math-size 42.5?><inline-formula/></p>
+            <p>some text <?math-size 43?><inline-formula/></p>
+            <p>some text <?math-size 43.5?><inline-formula/></p>
+            <p>some text <?math-size 44?><inline-formula/></p>
+            <p>some text <?math-size 44.5?><inline-formula/></p>
+            <p>some text <?math-size 45?><inline-formula/></p>
+            <p>some text <?math-size 45.5?><inline-formula/></p>
+            <p>some text <?math-size 46?><inline-formula/></p>
+            <p>some text <?math-size 46.5?><inline-formula/></p>
+            <p>some text <?math-size 47?><inline-formula/></p>
+            <p>some text <?math-size 47.5?><inline-formula/></p>
+            <p>some text <?math-size 48?><inline-formula/></p>
+            <p>some text <?math-size 48.5?><inline-formula/></p>
+            <p>some text <?math-size 49?><inline-formula/></p>
+            <p>some text <?math-size 49.5?><inline-formula/></p>
+            <p>some text <?math-size 50?><inline-formula/></p>
         </sec>
     </article>
 </root>

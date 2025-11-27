@@ -1145,7 +1145,8 @@
     <rule context="processing-instruction('math-size')" id="math-size-pi-checks">
       <let name="supported-values" value="('0.5', '1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5', '5.5', '6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12')"/>
       <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
-      <assert test="normalize-space(.)=$supported-values" role="error" id="math-size-pi-2">[math-size-pi-2] 'math-size' processing-instructions must contain one of the following values: <value-of select="string-join($supported-values,'; ')"/>. '<value-of select="."/>' is not supported.</assert>
+      <assert test="matches(normalize-space(.),'^([1-4]?[0-9](\.[5])?|50)$')" role="error" id="math-size-pi-2">[math-size-pi-2] 'math-size' processing-instructions must must be a number greater than 0 and less than 50, 
+      and must be either a whole number (integer) or a half-number (e.g., 1.5, 2.5). <value-of select="normalize-space(.)"/> is not.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
