@@ -1141,16 +1141,16 @@
       </sqf:replace>
     </sqf:fix>
   </sqf:fixes>
-  <pattern id="fig-size-pi-checks-pattern">
-    <rule context="processing-instruction('fig-size')" id="fig-size-pi-checks">
+  <pattern id="fig-class-pi-checks-pattern">
+    <rule context="processing-instruction('fig-class')" id="fig-class-pi-checks">
       <let name="supported-values" value="('full', 'half', 'quarter')"/>
       <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
-      <assert test="normalize-space(.)=$supported-values" role="error" id="fig-size-pi-2">[fig-size-pi-2] 'fig-size' processing-instructions must contain one of the following values: <value-of select="string-join($supported-values,'; ')"/>. '<value-of select="."/>' is not supported.</assert>
+      <assert test="$next-node-name=('fig','table-wrap')" role="error" id="fig-class-pi-1">[fig-class-pi-1] 'fig-class' processing-instructions must be placed directly before a fig or table-wrap element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::processing-instruction('fig-size')" role="error" id="fig-size-pi-checks-xspec-assert">processing-instruction('fig-size') must be present.</assert>
+      <assert test="descendant::processing-instruction('fig-class')" role="error" id="fig-class-pi-checks-xspec-assert">processing-instruction('fig-class') must be present.</assert>
     </rule>
   </pattern>
 </schema>

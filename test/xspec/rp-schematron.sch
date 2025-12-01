@@ -3620,14 +3620,24 @@
       </rule>
   </pattern>
   
-  <pattern id="fig-size-pi-checks-pattern">
-    <rule context="processing-instruction('fig-size')" id="fig-size-pi-checks">
+  <pattern id="fig-class-pi-checks-pattern">
+    <rule context="processing-instruction('fig-class')" id="fig-class-pi-checks">
       <let name="supported-values" value="('full', 'half', 'quarter')"/>
       <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
       
-      <assert test="$next-node-name='fig'" role="error" id="fig-size-pi-1">'fig-size' processing-instructions must be placed directly before a fig element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
+      <assert test="$next-node-name=('fig','table-wrap')" role="error" id="fig-class-pi-1">'fig-class' processing-instructions must be placed directly before a fig or table-wrap element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
       
-      <assert test="normalize-space(.)=$supported-values" role="error" id="fig-size-pi-2">'fig-size' processing-instructions must contain one of the following values: <value-of select="string-join($supported-values,'; ')"/>. '<value-of select="."/>' is not supported.</assert>
+      <assert test="normalize-space(.)=$supported-values" role="error" id="fig-class-pi-2">'fig-class' processing-instructions must contain one of the following values: <value-of select="string-join($supported-values,'; ')"/>. '<value-of select="."/>' is not supported.</assert>
+    </rule>
+  </pattern>
+  <pattern id="fig-width-pi-checks-pattern">
+    <rule context="processing-instruction('fig-width')" id="fig-width-pi-checks">
+      <let name="supported-values" value="for $x in (1 to 12) return concat(string($x * 10),'%')"/>
+      <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
+      
+      <assert test="$next-node-name=('fig','table-wrap')" role="error" id="fig-width-pi-1">'fig-width' processing-instructions must be placed directly before a fig or table-wrap element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
+      
+      <assert test="normalize-space(.)=$supported-values" role="error" id="fig-width-pi-2">'fig-width' processing-instructions must contain a positive percentage value that is a multiple of 10, with 120 being the maximum (e.g. 120%). '<value-of select="."/>' is not supported.</assert>
     </rule>
   </pattern>
   <pattern id="math-size-pi-checks-pattern">
@@ -3653,7 +3663,7 @@
   </pattern>
   <pattern id="all-pi-checks-pattern">
     <rule context="processing-instruction()" id="all-pi-checks">
-      <let name="allowed-names" value="('fig-size','math-size','page-break')"/>
+      <let name="allowed-names" value="('fig-class','fig-width','math-size','page-break')"/>
       
       <!-- To do: remove 'oxygen', which is only included here to circumvent test suite errors -->
       <assert test="name()=($allowed-names,'oxygen')" role="error" id="all-pi-1">'<value-of select="name()"/>' is not an allowed processing-instruction. The only ones that can be used are: <value-of select="string-join($allowed-names,'; ')"/>
@@ -3831,7 +3841,8 @@
       <assert test="descendant::article/front[journal-meta[lower-case(journal-id[1])='ecoevorxiv']]/article-meta/article-id[@pub-id-type='doi']" role="error" id="ecoevorxiv-doi-checks-xspec-assert">article/front[journal-meta[lower-case(journal-id[1])='ecoevorxiv']]/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::article/front/journal-meta[lower-case(journal-id[1])='authorea']" role="error" id="authorea-journal-meta-checks-xspec-assert">article/front/journal-meta[lower-case(journal-id[1])='authorea'] must be present.</assert>
       <assert test="descendant::article/front[journal-meta[lower-case(journal-id[1])='authorea']]/article-meta/article-id[@pub-id-type='doi']" role="error" id="authorea-doi-checks-xspec-assert">article/front[journal-meta[lower-case(journal-id[1])='authorea']]/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
-      <assert test="descendant::processing-instruction('fig-size')" role="error" id="fig-size-pi-checks-xspec-assert">processing-instruction('fig-size') must be present.</assert>
+      <assert test="descendant::processing-instruction('fig-class')" role="error" id="fig-class-pi-checks-xspec-assert">processing-instruction('fig-class') must be present.</assert>
+      <assert test="descendant::processing-instruction('fig-width')" role="error" id="fig-width-pi-checks-xspec-assert">processing-instruction('fig-width') must be present.</assert>
       <assert test="descendant::processing-instruction('math-size')" role="error" id="math-size-pi-checks-xspec-assert">processing-instruction('math-size') must be present.</assert>
       <assert test="descendant::processing-instruction('page-break')" role="error" id="page-break-pi-checks-xspec-assert">processing-instruction('page-break') must be present.</assert>
       <assert test="descendant::processing-instruction()" role="error" id="all-pi-checks-xspec-assert">processing-instruction() must be present.</assert>

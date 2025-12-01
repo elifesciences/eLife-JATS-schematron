@@ -1141,16 +1141,16 @@
       </sqf:replace>
     </sqf:fix>
   </sqf:fixes>
-  <pattern id="all-pi-checks-pattern">
-    <rule context="processing-instruction()" id="all-pi-checks">
-      <let name="allowed-names" value="('fig-class','fig-width','math-size','page-break')"/>
-      <assert test="name()=($allowed-names,'oxygen')" role="error" id="all-pi-1">[all-pi-1] '<value-of select="name()"/>' is not an allowed processing-instruction. The only ones that can be used are: <value-of select="string-join($allowed-names,'; ')"/>
-      </assert>
+  <pattern id="fig-class-pi-checks-pattern">
+    <rule context="processing-instruction('fig-class')" id="fig-class-pi-checks">
+      <let name="supported-values" value="('full', 'half', 'quarter')"/>
+      <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
+      <assert test="normalize-space(.)=$supported-values" role="error" id="fig-class-pi-2">[fig-class-pi-2] 'fig-class' processing-instructions must contain one of the following values: <value-of select="string-join($supported-values,'; ')"/>. '<value-of select="."/>' is not supported.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::processing-instruction()" role="error" id="all-pi-checks-xspec-assert">processing-instruction() must be present.</assert>
+      <assert test="descendant::processing-instruction('fig-class')" role="error" id="fig-class-pi-checks-xspec-assert">processing-instruction('fig-class') must be present.</assert>
     </rule>
   </pattern>
 </schema>

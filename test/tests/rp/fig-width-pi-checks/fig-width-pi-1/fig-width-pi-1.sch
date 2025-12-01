@@ -1141,16 +1141,16 @@
       </sqf:replace>
     </sqf:fix>
   </sqf:fixes>
-  <pattern id="all-pi-checks-pattern">
-    <rule context="processing-instruction()" id="all-pi-checks">
-      <let name="allowed-names" value="('fig-class','fig-width','math-size','page-break')"/>
-      <assert test="name()=($allowed-names,'oxygen')" role="error" id="all-pi-1">[all-pi-1] '<value-of select="name()"/>' is not an allowed processing-instruction. The only ones that can be used are: <value-of select="string-join($allowed-names,'; ')"/>
-      </assert>
+  <pattern id="fig-width-pi-checks-pattern">
+    <rule context="processing-instruction('fig-width')" id="fig-width-pi-checks">
+      <let name="supported-values" value="for $x in (1 to 12) return concat(string($x * 10),'%')"/>
+      <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
+      <assert test="$next-node-name=('fig','table-wrap')" role="error" id="fig-width-pi-1">[fig-width-pi-1] 'fig-width' processing-instructions must be placed directly before a fig or table-wrap element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::processing-instruction()" role="error" id="all-pi-checks-xspec-assert">processing-instruction() must be present.</assert>
+      <assert test="descendant::processing-instruction('fig-width')" role="error" id="fig-width-pi-checks-xspec-assert">processing-instruction('fig-width') must be present.</assert>
     </rule>
   </pattern>
 </schema>
