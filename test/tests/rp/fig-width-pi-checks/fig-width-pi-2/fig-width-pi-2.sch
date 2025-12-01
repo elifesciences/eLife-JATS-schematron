@@ -1141,16 +1141,16 @@
       </sqf:replace>
     </sqf:fix>
   </sqf:fixes>
-  <pattern id="fig-size-pi-checks-pattern">
-    <rule context="processing-instruction('fig-size')" id="fig-size-pi-checks">
-      <let name="supported-values" value="('full', 'half', 'quarter')"/>
+  <pattern id="fig-width-pi-checks-pattern">
+    <rule context="processing-instruction('fig-width')" id="fig-width-pi-checks">
+      <let name="supported-values" value="for $x in (1 to 12) return concat(string($x * 10),'%')"/>
       <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
-      <assert test="$next-node-name='fig'" role="error" id="fig-size-pi-1">[fig-size-pi-1] 'fig-size' processing-instructions must be placed directly before a fig element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
+      <assert test="normalize-space(.)=$supported-values" role="error" id="fig-width-pi-2">[fig-width-pi-2] 'fig-width' processing-instructions must contain a positive percentage value that is a multiple of 10, with 120 being the maximum (e.g. 120%). '<value-of select="."/>' is not supported.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::processing-instruction('fig-size')" role="error" id="fig-size-pi-checks-xspec-assert">processing-instruction('fig-size') must be present.</assert>
+      <assert test="descendant::processing-instruction('fig-width')" role="error" id="fig-width-pi-checks-xspec-assert">processing-instruction('fig-width') must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1,0 +1,32 @@
+<?oxygen SCHSchema="fig-width-pi-2.sch"?>
+<!--Context: processing-instruction('fig-width')
+Test: assert    normalize-space(.)=$supported-values
+Message: 'fig-width' processing-instructions must contain a positive percentage value that is a multiple of 10, with 120 being the maximum (e.g. 120%). '' is not supported. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <?fig-width 10%?>
+        <fig/>
+        <?fig-width 20%?>
+        <fig/>
+        <?fig-width 30%?>
+        <fig/>
+        <?fig-width 40%?>
+        <fig/>
+        <?fig-width 50%?>
+        <fig/>
+        <?fig-width 60%?>
+        <fig/>
+        <?fig-width 70%?>
+        <fig/>
+        <?fig-width 80%?>
+        <fig/>
+        <?fig-width 90%?>
+        <fig/>
+        <?fig-width 100%?>
+        <fig/>
+        <?fig-width 110%?>
+        <fig/>
+        <?fig-width 120%?>
+        <fig/>
+    </article>
+</root>

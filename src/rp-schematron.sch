@@ -2995,13 +2995,20 @@
         <assert test="matches(.,'^10\.22541/au\.\d+\.\d+/v\d$')" role="error" id="authorea-doi-conformance">[authorea-doi-conformance] Authorea preprints must have a &lt;article-id pub-id-type="doi"&gt; element with a value that matches the regex '^10\.22541/au\.\d+\.\d+/v\d$'. In other words, the current DOI listed is not a valid Authorea DOI: '<value-of select="."/>'.</assert>
       </rule></pattern>
   
-  <pattern id="fig-size-pi-checks-pattern"><rule context="processing-instruction('fig-size')" id="fig-size-pi-checks">
+  <pattern id="fig-class-pi-checks-pattern"><rule context="processing-instruction('fig-class')" id="fig-class-pi-checks">
       <let name="supported-values" value="('full', 'half', 'quarter')"/>
       <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
       
-      <assert test="$next-node-name='fig'" role="error" id="fig-size-pi-1">[fig-size-pi-1] 'fig-size' processing-instructions must be placed directly before a fig element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
+      <assert test="$next-node-name=('fig','table-wrap')" role="error" id="fig-class-pi-1">[fig-class-pi-1] 'fig-class' processing-instructions must be placed directly before a fig or table-wrap element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
       
-      <assert test="normalize-space(.)=$supported-values" role="error" id="fig-size-pi-2">[fig-size-pi-2] 'fig-size' processing-instructions must contain one of the following values: <value-of select="string-join($supported-values,'; ')"/>. '<value-of select="."/>' is not supported.</assert>
+      <assert test="normalize-space(.)=$supported-values" role="error" id="fig-class-pi-2">[fig-class-pi-2] 'fig-class' processing-instructions must contain one of the following values: <value-of select="string-join($supported-values,'; ')"/>. '<value-of select="."/>' is not supported.</assert>
+    </rule></pattern><pattern id="fig-width-pi-checks-pattern"><rule context="processing-instruction('fig-width')" id="fig-width-pi-checks">
+      <let name="supported-values" value="for $x in (1 to 12) return concat(string($x * 10),'%')"/>
+      <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
+      
+      <assert test="$next-node-name=('fig','table-wrap')" role="error" id="fig-width-pi-1">[fig-width-pi-1] 'fig-width' processing-instructions must be placed directly before a fig or table-wrap element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
+      
+      <assert test="normalize-space(.)=$supported-values" role="error" id="fig-width-pi-2">[fig-width-pi-2] 'fig-width' processing-instructions must contain a positive percentage value that is a multiple of 10, with 120 being the maximum (e.g. 120%). '<value-of select="."/>' is not supported.</assert>
     </rule></pattern><pattern id="math-size-pi-checks-pattern"><rule context="processing-instruction('math-size')" id="math-size-pi-checks">
       <let name="supported-values" value="('0.5', '1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5', '5.5', '6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12')"/>
       <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
