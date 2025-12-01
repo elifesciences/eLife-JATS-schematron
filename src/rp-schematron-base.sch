@@ -4783,7 +4783,7 @@
     </rule>
     
     <rule context="processing-instruction()" id="all-pi-checks">
-      <let name="allowed-names" value="('fig-size','math-size','page-break')"/>
+      <let name="allowed-names" value="('fig-class','fig-width','math-size','page-break')"/>
       
       <!-- To do: remove 'oxygen', which is only included here to circumvent test suite errors -->
       <assert test="name()=($allowed-names,'oxygen')" 

@@ -3024,7 +3024,7 @@
       
       <assert test="normalize-space(.)=''" role="error" id="page-break-pi-2">[page-break-pi-2] 'page-break' processing-instructions must be empty. This one has the value <value-of select="."/>.</assert>
     </rule></pattern><pattern id="all-pi-checks-pattern"><rule context="processing-instruction()" id="all-pi-checks">
-      <let name="allowed-names" value="('fig-size','math-size','page-break')"/>
+      <let name="allowed-names" value="('fig-class','fig-width','math-size','page-break')"/>
       
       <!-- To do: remove 'oxygen', which is only included here to circumvent test suite errors -->
       <assert test="name()=($allowed-names,'oxygen')" role="error" id="all-pi-1">[all-pi-1] '<value-of select="name()"/>' is not an allowed processing-instruction. The only ones that can be used are: <value-of select="string-join($allowed-names,'; ')"/></assert>

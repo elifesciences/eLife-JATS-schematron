@@ -6,6 +6,7 @@ Message: '' is not an allowed processing-instruction. The only ones that can be 
     <article>
         <?page-break ?>
         <?math-size ?>
-        <?fig-size ?>
+        <?fig-class ?>
+        <?fig-width ?>
     </article>
 </root>

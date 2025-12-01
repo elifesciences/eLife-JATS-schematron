@@ -13514,7 +13514,7 @@
    <!--PATTERN all-pi-checks-pattern-->
    <!--RULE all-pi-checks-->
    <xsl:template match="processing-instruction()" priority="1000" mode="M214">
-      <xsl:variable name="allowed-names" select="('fig-size','math-size','page-break')"/>
+      <xsl:variable name="allowed-names" select="('fig-class','fig-width','math-size','page-break')"/>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="name()=($allowed-names,'oxygen')"/>
