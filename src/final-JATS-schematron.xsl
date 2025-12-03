@@ -18304,7 +18304,7 @@
                </xsl:attribute>
                <svrl:text>[final-app-video-position-test] <xsl:text/>
                   <xsl:value-of select="label"/>
-                  <xsl:text/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <xsl:text/>
+                  <xsl:text/> does not appear in sequence which is incorrect. Relative to the other appendix videos it is placed in position <xsl:text/>
                   <xsl:value-of select="$pos"/>
                   <xsl:text/>.</svrl:text>
             </svrl:failed-assert>
@@ -18335,7 +18335,7 @@
                </xsl:attribute>
                <svrl:text>[final-app-fig-video-position-test] <xsl:text/>
                   <xsl:value-of select="label"/>
-                  <xsl:text/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <xsl:text/>
+                  <xsl:text/> does not appear in sequence which is incorrect. Relative to the other appendix videos it is placed in position <xsl:text/>
                   <xsl:value-of select="$pos"/>
                   <xsl:text/>.</svrl:text>
             </svrl:failed-assert>

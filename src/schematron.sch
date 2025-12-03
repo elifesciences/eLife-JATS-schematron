@@ -5459,11 +5459,11 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="$no = string($pos)" 
         role="warning" 
-        id="pre-app-video-position-test"><value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+        id="pre-app-video-position-test"><value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
       
       <assert test="$no = string($pos)" 
         role="error" 
-        id="final-app-video-position-test"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+        id="final-app-video-position-test"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
     
     <rule context="app//fig-group//media[@mimetype='video']" id="app-fig-video-specific">
@@ -5474,11 +5474,11 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert test="$no = string($pos)" 
         role="warning" 
-        id="pre-app-fig-video-position-test"><value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+        id="pre-app-fig-video-position-test"><value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
       
       <assert test="$no = string($pos)" 
         role="error" 
-        id="final-app-fig-video-position-test"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+        id="final-app-fig-video-position-test"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
     
     <rule context="fig-group/media[@mimetype='video']" id="fig-video-specific">

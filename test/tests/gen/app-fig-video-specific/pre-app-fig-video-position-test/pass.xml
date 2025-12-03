@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="pre-app-fig-video-position-test.sch"?>
 <!--Context: app//fig-group//media[@mimetype='video']
 Test: assert    $no = string($pos)
-Message:  does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position . -->
+Message:  does not appear in sequence which is likely incorrect. Relative to the other appendix videos it is placed in position . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <app>

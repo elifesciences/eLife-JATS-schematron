@@ -3897,10 +3897,10 @@
       <let name="no" value="substring-after(@id,'video')"/>
       
       <assert test="$no = string($pos)" role="warning" id="pre-app-video-position-test">
-        <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+        <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
       
       <assert test="$no = string($pos)" role="error" id="final-app-video-position-test">
-        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
   <pattern id="app-fig-video-specific-pattern">
@@ -3911,10 +3911,10 @@
       <let name="no" value="substring-after(@id,'video')"/>
       
       <assert test="$no = string($pos)" role="warning" id="pre-app-fig-video-position-test">
-        <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+        <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
       
       <assert test="$no = string($pos)" role="error" id="final-app-fig-video-position-test">
-        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
   <pattern id="fig-video-specific-pattern">

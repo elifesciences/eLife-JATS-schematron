@@ -3065,7 +3065,7 @@
       
       
       
-      <assert test="$no = string($pos)" role="error" id="final-app-video-position-test">[final-app-video-position-test] <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+      <assert test="$no = string($pos)" role="error" id="final-app-video-position-test">[final-app-video-position-test] <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule></pattern><pattern id="app-fig-video-specific-pattern"><rule context="app//fig-group//media[@mimetype='video']" id="app-fig-video-specific">
       <let name="fig-id" value="ancestor::fig-group/fig[not(@specific-use='child-fig')]/@id"/>
       <let name="count" value="count(ancestor::fig-group//media[@mimetype='video'])"/>
@@ -3074,7 +3074,7 @@
       
       
       
-      <assert test="$no = string($pos)" role="error" id="final-app-fig-video-position-test">[final-app-fig-video-position-test] <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+      <assert test="$no = string($pos)" role="error" id="final-app-fig-video-position-test">[final-app-fig-video-position-test] <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule></pattern><pattern id="fig-video-specific-pattern"><rule context="fig-group/media[@mimetype='video']" id="fig-video-specific">
       
       <report test="following-sibling::fig" role="error" id="fig-video-position-test-2">[fig-video-position-test-2] <value-of select="replace(label,'\.$','')"/> is placed before <value-of select="following-sibling::fig[1]/label[1]"/> Figure level videos should always be placed after figures and figure supplements in their figure group.</report>
