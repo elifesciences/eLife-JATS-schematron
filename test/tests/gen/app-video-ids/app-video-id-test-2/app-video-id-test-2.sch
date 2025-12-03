@@ -922,7 +922,7 @@
   <pattern id="id-conformance">
     <rule context="article/back//app//media[(@mimetype='video') and not(parent::fig-group)]" id="app-video-ids">
       <let name="id-prefix" value="substring-after(ancestor::app[1]/@id,'-')"/>
-      <assert test="starts-with(@id,concat('app',$id-prefix))" role="error" id="app-video-id-test-2">video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="concat('app',$id-prefix)"/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-id-test-2" test="starts-with(@id,concat('app',$id-prefix))" role="error" id="app-video-id-test-2">video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="concat('app',$id-prefix)"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

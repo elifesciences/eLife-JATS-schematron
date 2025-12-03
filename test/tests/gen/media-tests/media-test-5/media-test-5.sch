@@ -923,7 +923,7 @@
     <rule context="media" id="media-tests">
       <let name="file" value="@mime-subtype"/>
       <let name="link" value="@xlink:href"/>
-      <report test="matches(label[1],'[Aa]nimation') and not(@mime-subtype='gif')" role="error" id="media-test-5">
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-5" test="matches(label[1],'[Aa]nimation') and not(@mime-subtype='gif')" role="error" id="media-test-5">
         <value-of select="label"/> media with animation type label must have a @mime-subtype='gif'.</report>
     </rule>
   </pattern>

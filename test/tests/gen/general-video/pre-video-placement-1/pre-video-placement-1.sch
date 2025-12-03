@@ -928,7 +928,7 @@
       <let name="sec-id" value="ancestor::sec[1]/@id"/>
       <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::caption)][1]"/>
       <let name="xref-sib" value="$xref1/parent::*/following-sibling::*[1]/local-name()"/>
-      <report test="($xrefs//*:match) and ($sec-id != $sec1/@id)" role="warning" id="pre-video-placement-1">
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#pre-video-placement-1" test="($xrefs//*:match) and ($sec-id != $sec1/@id)" role="warning" id="pre-video-placement-1">
         <value-of select="$label"/> does not appear in the same section as where it is first cited (sec with title '<value-of select="$sec1/title"/>'), which is incorrect. If videos are cited out of order, please ensure that this issue is raised with the authors.</report>
     </rule>
   </pattern>

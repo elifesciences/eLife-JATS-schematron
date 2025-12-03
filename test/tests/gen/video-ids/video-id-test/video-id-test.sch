@@ -921,7 +921,7 @@
   </xsl:function>
   <pattern id="id-conformance">
     <rule context="article/body//media[(@mimetype='video') and not(ancestor::boxed-text) and not(parent::fig-group)]" id="video-ids">
-      <assert test="matches(@id,'^video[0-9]{1,3}$')" role="error" id="video-id-test">main video must have an @id in the format video0.  <value-of select="@id"/> does not conform to this.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-id-test" test="matches(@id,'^video[0-9]{1,3}$')" role="error" id="video-id-test">main video must have an @id in the format video0.  <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

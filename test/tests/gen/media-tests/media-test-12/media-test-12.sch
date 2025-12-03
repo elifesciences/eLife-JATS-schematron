@@ -923,7 +923,7 @@
     <rule context="media" id="media-tests">
       <let name="file" value="@mime-subtype"/>
       <let name="link" value="@xlink:href"/>
-      <report test="text()" role="error" id="media-test-12">Media element cannot contain text. This one has <value-of select="string-join(text(),'')"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-12" test="text()" role="error" id="media-test-12">Media element cannot contain text. This one has <value-of select="string-join(text(),'')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

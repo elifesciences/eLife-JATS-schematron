@@ -1684,6 +1684,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$no = string($pos)">
                <xsl:attribute name="id">pre-dl-video-position-test</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -1716,6 +1717,7 @@
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$no = string($pos)">
                <xsl:attribute name="id">pre-ar-video-position-test</xsl:attribute>
                <xsl:attribute name="flag">dl-ar</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>

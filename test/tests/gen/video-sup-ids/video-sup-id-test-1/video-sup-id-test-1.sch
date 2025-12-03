@@ -922,7 +922,7 @@
   <pattern id="id-conformance">
     <rule context="article/body//fig-group/media[(@mimetype='video') and not(ancestor::boxed-text)]" id="video-sup-ids">
       <let name="id-prefix" value="parent::fig-group/fig[1]/@id"/>
-      <assert test="matches(@id,'^fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="video-sup-id-test-1">video supplement must have an @id in the format fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-sup-id-test-1" test="matches(@id,'^fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="video-sup-id-test-1">video supplement must have an @id in the format fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

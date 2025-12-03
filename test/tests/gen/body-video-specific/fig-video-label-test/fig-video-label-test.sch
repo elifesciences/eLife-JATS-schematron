@@ -926,7 +926,7 @@
       <let name="no" value="substring-after(@id,'video')"/>
       <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.$','—')"/>
       <let name="fig-pos" value="count(ancestor::fig-group//media[@mimetype='video'][starts-with(label[1],$fig-label)]) - count(following::media[@mimetype='video'][starts-with(label[1],$fig-label)])"/>
-      <assert test="starts-with(label[1],$fig-label)" role="error" id="fig-video-label-test">
+      <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#fig-video-label-test" test="starts-with(label[1],$fig-label)" role="error" id="fig-video-label-test">
         <value-of select="label"/> does not begin with its parent figure label - <value-of select="$fig-label"/> - which is incorrect.</assert>
     </rule>
   </pattern>

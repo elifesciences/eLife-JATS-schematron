@@ -995,7 +995,7 @@
       <let name="pos" value="$count - count(following::media[@mimetype='video' and ancestor::sub-article/@article-type=('decision-letter','referee-report')])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       
-      <assert test="$no = string($pos)" role="warning" flag="dl-ar" id="pre-dl-video-position-test"><value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other DL videos it is placed in position <value-of select="$pos"/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#" test="$no = string($pos)" role="warning" flag="dl-ar" id="pre-dl-video-position-test"><value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other DL videos it is placed in position <value-of select="$pos"/>.</assert>
       
       
     </rule></pattern><pattern id="ar-video-specific-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body//media[@mimetype='video']" id="ar-video-specific">
@@ -1003,7 +1003,7 @@
       <let name="pos" value="$count - count(following::media[@mimetype='video'])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       
-      <assert test="$no = string($pos)" role="warning" flag="dl-ar" id="pre-ar-video-position-test"><value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#" test="$no = string($pos)" role="warning" flag="dl-ar" id="pre-ar-video-position-test"><value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
       
       
     </rule></pattern>

@@ -923,7 +923,7 @@
     <rule context="article/back//app//media[(@mimetype='video') and (parent::fig-group)]" id="app-video-sup-ids">
       <let name="id-prefix-1" value="substring-after(ancestor::app[1]/@id,'-')"/>
       <let name="id-prefix-2" value="parent::fig-group/fig[1]/@id"/>
-      <assert test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-sup-id-test-1">video supplement must have an @id in the format app0fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-sup-id-test-1" test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-sup-id-test-1">video supplement must have an @id in the format app0fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

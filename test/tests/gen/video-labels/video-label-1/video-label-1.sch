@@ -922,7 +922,7 @@
   <pattern id="video-tests">
     <rule context="media/label[matches(lower-case(.),'^video \d+\.$')]" id="video-labels">
       <let name="number" value="number(replace(.,'[^\d]',''))"/>
-      <report test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))" role="error" id="video-label-1">Video has the label '<value-of select="."/>', but there is no preceding video with the label number <value-of select="$number - 1"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-label-1" test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))" role="error" id="video-label-1">Video has the label '<value-of select="."/>', but there is no preceding video with the label number <value-of select="$number - 1"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

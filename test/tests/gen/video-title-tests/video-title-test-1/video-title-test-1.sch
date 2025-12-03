@@ -923,7 +923,7 @@
     <rule context="media/caption/title" id="video-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
-      <report test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="video-title-test-1">'<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-title-test-1" test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="video-title-test-1">'<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
