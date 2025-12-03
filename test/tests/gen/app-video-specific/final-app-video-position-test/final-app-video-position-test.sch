@@ -925,8 +925,8 @@
       <let name="count" value="count(ancestor::app//media[@mimetype='video'])"/>
       <let name="pos" value="$count - count(following::media[(@mimetype='video') and (ancestor::app/@id = $app-id)])"/>
       <let name="no" value="substring-after(@id,'video')"/>
-      <assert test="$no = string($pos)" role="error" id="final-app-video-position-test">
-        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#final-app-video-position-test" test="$no = string($pos)" role="error" id="final-app-video-position-test">
+        <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

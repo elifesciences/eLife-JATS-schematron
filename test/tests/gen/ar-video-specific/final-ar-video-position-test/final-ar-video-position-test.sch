@@ -924,7 +924,7 @@
       <let name="count" value="count(ancestor::body//media[@mimetype='video'])"/>
       <let name="pos" value="$count - count(following::media[@mimetype='video'])"/>
       <let name="no" value="substring-after(@id,'video')"/>
-      <assert test="$no = string($pos)" role="error" id="final-ar-video-position-test">
+      <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#final-ar-video-position-test" test="$no = string($pos)" role="error" id="final-ar-video-position-test">
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>

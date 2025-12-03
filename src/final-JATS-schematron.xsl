@@ -14420,6 +14420,7 @@
       <xsl:if test="matches(label[1],'[Aa]nimation') and not(@mime-subtype='gif')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(label[1],'[Aa]nimation') and not(@mime-subtype='gif')">
             <xsl:attribute name="id">media-test-5</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-5</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14433,6 +14434,7 @@
       <xsl:if test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and (@mime-subtype='octet-stream')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$') and (@mime-subtype='octet-stream')">
             <xsl:attribute name="id">media-test-6</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-6</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14444,6 +14446,7 @@
       <xsl:if test="if (child::label) then not(matches(label[1],'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Figure \d{1,4}—animation \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—animation \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—animation \d{1,4}\.$|^Animation \d{1,4}\.$|^Decision letter video \d{1,4}\.$|^Review video \d{1,4}\.$|^Author response video \d{1,4}\.$'))         else ()">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (child::label) then not(matches(label[1],'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Figure \d{1,4}—animation \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—animation \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—animation \d{1,4}\.$|^Animation \d{1,4}\.$|^Decision letter video \d{1,4}\.$|^Review video \d{1,4}\.$|^Author response video \d{1,4}\.$')) else ()">
             <xsl:attribute name="id">media-test-7</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-7</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14457,6 +14460,7 @@
       <xsl:if test="if (ancestor::sec[@sec-type='supplementary-material']) then ()         else if (@mimetype='video') then (not(label))         else ()">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="if (ancestor::sec[@sec-type='supplementary-material']) then () else if (@mimetype='video') then (not(label)) else ()">
             <xsl:attribute name="id">media-test-8</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-8</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14479,6 +14483,7 @@
       <xsl:if test="preceding::media/@xlink:href = $link">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="preceding::media/@xlink:href = $link">
             <xsl:attribute name="id">media-test-10</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-10</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14496,6 +14501,7 @@
       <xsl:if test="contains($link,'&amp;')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains($link,'&amp;')">
             <xsl:attribute name="id">media-test-11</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-11</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14511,6 +14517,7 @@
       <xsl:if test="text()">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="text()">
             <xsl:attribute name="id">media-test-12</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-12</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14524,6 +14531,7 @@
       <xsl:if test="not(@mimetype='video') and *">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(@mimetype='video') and *">
             <xsl:attribute name="id">media-test-13</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-13</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14577,6 +14585,7 @@
       <xsl:if test="not(ancestor::sub-article) and not(caption/title)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(ancestor::sub-article) and not(caption/title)">
             <xsl:attribute name="id">final-video-title</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#final-video-title</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -14590,6 +14599,7 @@
       <xsl:if test="ancestor::sub-article and not(caption/title)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::sub-article and not(caption/title)">
             <xsl:attribute name="id">final-video-title-sa</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#final-video-title-sa</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17595,6 +17605,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$xrefs//*:match">
                <xsl:attribute name="id">final-video-cite</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#final-video-cite</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17609,6 +17620,7 @@
       <xsl:if test="($xrefs//*:match) and ($sec-id != $sec1/@id)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($xrefs//*:match) and ($sec-id != $sec1/@id)">
             <xsl:attribute name="id">final-video-placement-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#final-video-placement-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -17624,6 +17636,7 @@
       <xsl:if test="($xref-sib = 'p') and ($xref1//following::media/@id = $id)">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($xref-sib = 'p') and ($xref1//following::media/@id = $id)">
             <xsl:attribute name="id">video-placement-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-placement-2</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -18218,6 +18231,7 @@
       <xsl:if test="not(ancestor::fig-group) and (matches(label[1],'[Vv]ideo')) and ($no != string($pos))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(ancestor::fig-group) and (matches(label[1],'[Vv]ideo')) and ($no != string($pos))">
             <xsl:attribute name="id">final-body-video-position-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#final-body-video-position-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -18235,6 +18249,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(label[1],$fig-label)">
                <xsl:attribute name="id">fig-video-label-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#fig-video-label-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -18251,6 +18266,7 @@
       <xsl:if test="(ancestor::fig-group) and ($no != string($fig-pos))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(ancestor::fig-group) and ($no != string($fig-pos))">
             <xsl:attribute name="id">fig-video-position-test</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#fig-video-position-test</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -18266,6 +18282,7 @@
       <xsl:if test="(not(ancestor::fig-group)) and (descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))])">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(not(ancestor::fig-group)) and (descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))])">
             <xsl:attribute name="id">fig-video-check-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#fig-video-check-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -18298,13 +18315,14 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$no = string($pos)">
                <xsl:attribute name="id">final-app-video-position-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#final-app-video-position-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
                <svrl:text>[final-app-video-position-test] <xsl:text/>
                   <xsl:value-of select="label"/>
-                  <xsl:text/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <xsl:text/>
+                  <xsl:text/> does not appear in sequence which is incorrect. Relative to the other appendix videos it is placed in position <xsl:text/>
                   <xsl:value-of select="$pos"/>
                   <xsl:text/>.</svrl:text>
             </svrl:failed-assert>
@@ -18329,13 +18347,14 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$no = string($pos)">
                <xsl:attribute name="id">final-app-fig-video-position-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#final-app-fig-video-position-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
                <svrl:text>[final-app-fig-video-position-test] <xsl:text/>
                   <xsl:value-of select="label"/>
-                  <xsl:text/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <xsl:text/>
+                  <xsl:text/> does not appear in sequence which is incorrect. Relative to the other appendix videos it is placed in position <xsl:text/>
                   <xsl:value-of select="$pos"/>
                   <xsl:text/>.</svrl:text>
             </svrl:failed-assert>
@@ -18355,6 +18374,7 @@
       <xsl:if test="following-sibling::fig">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="following-sibling::fig">
             <xsl:attribute name="id">fig-video-position-test-2</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#fig-video-position-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -18384,6 +18404,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$no = string($pos)">
                <xsl:attribute name="id">final-dl-video-position-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#final-dl-video-position-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -18414,6 +18435,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$no = string($pos)">
                <xsl:attribute name="id">final-ar-video-position-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#final-ar-video-position-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -18440,6 +18462,7 @@
       <xsl:if test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))">
             <xsl:attribute name="id">video-label-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-label-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -18466,6 +18489,7 @@
       <xsl:if test="$number != 1 and (not(parent::media/preceding-sibling::media/label[contains(.,concat($figure-string,'—video'))]) or (number(parent::media/preceding-sibling::media[label[contains(.,concat($figure-string,'—video'))]][1]/label/replace(substring-after(.,'—'),'[^\d]','')) != ($number - 1)))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$number != 1 and (not(parent::media/preceding-sibling::media/label[contains(.,concat($figure-string,'—video'))]) or (number(parent::media/preceding-sibling::media[label[contains(.,concat($figure-string,'—video'))]][1]/label/replace(substring-after(.,'—'),'[^\d]','')) != ($number - 1)))">
             <xsl:attribute name="id">fig-video-label-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#fig-video-label-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -18491,6 +18515,7 @@
       <xsl:if test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^animation \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^animation \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^animation \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^animation \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))">
             <xsl:attribute name="id">animation-label-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#animation-label-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -18517,6 +18542,7 @@
       <xsl:if test="$number != 1 and (not(parent::media/preceding-sibling::media/label[contains(.,concat($figure-string,'—animation'))]) or (number(parent::media/preceding-sibling::media[label[contains(.,concat($figure-string,'—animation'))]][1]/label/replace(substring-after(.,'—'),'[^\d]','')) != ($number - 1)))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$number != 1 and (not(parent::media/preceding-sibling::media/label[contains(.,concat($figure-string,'—animation'))]) or (number(parent::media/preceding-sibling::media[label[contains(.,concat($figure-string,'—animation'))]][1]/label/replace(substring-after(.,'—'),'[^\d]','')) != ($number - 1)))">
             <xsl:attribute name="id">fig-animation-label-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#fig-animation-label-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -20228,6 +20254,7 @@
       <xsl:if test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')">
             <xsl:attribute name="id">video-title-test-1</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-title-test-1</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -20243,6 +20270,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\.$|\?$')">
                <xsl:attribute name="id">video-title-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-title-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -20257,6 +20285,7 @@
       <xsl:if test="matches(.,' vs\.$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,' vs\.$')">
             <xsl:attribute name="id">video-title-test-3</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-title-test-3</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -20270,6 +20299,7 @@
       <xsl:if test="matches(.,'^\p{Zs}')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'^\p{Zs}')">
             <xsl:attribute name="id">video-title-test-4</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-title-test-4</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -20283,6 +20313,7 @@
       <xsl:if test="string-length(.) gt 250">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="string-length(.) gt 250">
             <xsl:attribute name="id">video-title-test-7</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-title-test-7</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -20296,6 +20327,7 @@
       <xsl:if test="$sentence-count gt 1">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$sentence-count gt 1">
             <xsl:attribute name="id">video-title-test-8</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-title-test-8</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -20311,6 +20343,7 @@
       <xsl:if test="matches(.,'\p{Zs}$')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\p{Zs}$')">
             <xsl:attribute name="id">video-title-test-9</xsl:attribute>
+            <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-title-test-9</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21025,6 +21058,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@id,'^video[0-9]{1,3}$')">
                <xsl:attribute name="id">video-id-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-id-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21051,6 +21085,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@id,'^fig[0-9]{1,3}video[0-9]{1,3}$')">
                <xsl:attribute name="id">video-sup-id-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-sup-id-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21067,6 +21102,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(@id,$id-prefix)">
                <xsl:attribute name="id">video-sup-id-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-sup-id-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21095,6 +21131,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@id,'^app[0-9]{1,3}video[0-9]{1,3}$')">
                <xsl:attribute name="id">app-video-id-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-id-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21111,6 +21148,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(@id,concat('app',$id-prefix))">
                <xsl:attribute name="id">app-video-id-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-id-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21140,6 +21178,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}video[0-9]{1,3}$')">
                <xsl:attribute name="id">app-video-sup-id-test-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-sup-id-test-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21156,6 +21195,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(@id,concat('app',$id-prefix-1))">
                <xsl:attribute name="id">app-video-sup-id-test-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-sup-id-test-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21174,6 +21214,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(@id,$id-prefix-2)">
                <xsl:attribute name="id">app-video-sup-id-test-3</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-sup-id-test-3</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21202,6 +21243,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(@id,'^box[0-9]{1,3}video[0-9]{1,3}$')">
                <xsl:attribute name="id">box-vid-id-1</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#box-vid-id-1</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -21218,6 +21260,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(@id,$box-id)">
                <xsl:attribute name="id">box-vid-id-2</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#box-vid-id-2</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -24924,6 +24967,7 @@
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$parent = ('sec','fig-group','body','boxed-text','app')">
                <xsl:attribute name="id">video-parent-test</xsl:attribute>
+               <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-parent-test</xsl:attribute>
                <xsl:attribute name="role">error</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>

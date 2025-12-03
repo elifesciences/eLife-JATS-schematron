@@ -923,7 +923,7 @@
     <rule context="media" id="media-tests">
       <let name="file" value="@mime-subtype"/>
       <let name="link" value="@xlink:href"/>
-      <report test="contains($link,'&amp;')" role="error" id="media-test-11">Media filename for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> contains an ampersand - <value-of select="tokenize($link,'/')[last()]"/>. Please rename the file so that this ampersand is removed.</report>
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-11" test="contains($link,'&amp;')" role="error" id="media-test-11">Media filename for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> contains an ampersand - <value-of select="tokenize($link,'/')[last()]"/>. Please rename the file so that this ampersand is removed.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

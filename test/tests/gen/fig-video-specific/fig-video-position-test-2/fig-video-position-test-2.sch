@@ -921,7 +921,7 @@
   </xsl:function>
   <pattern id="video-tests">
     <rule context="fig-group/media[@mimetype='video']" id="fig-video-specific">
-      <report test="following-sibling::fig" role="error" id="fig-video-position-test-2">
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#fig-video-position-test-2" test="following-sibling::fig" role="error" id="fig-video-position-test-2">
         <value-of select="replace(label,'\.$','')"/> is placed before <value-of select="following-sibling::fig[1]/label[1]"/> Figure level videos should always be placed after figures and figure supplements in their figure group.</report>
     </rule>
   </pattern>

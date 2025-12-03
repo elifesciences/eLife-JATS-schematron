@@ -928,7 +928,7 @@
       <let name="sec-id" value="ancestor::sec[1]/@id"/>
       <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::caption)][1]"/>
       <let name="xref-sib" value="$xref1/parent::*/following-sibling::*[1]/local-name()"/>
-      <assert test="$xrefs//*:match" role="warning" id="pre-video-cite">There is no citation to <value-of select="$label"/>. Ensure to query the author asking for a citation.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#pre-video-cite" test="$xrefs//*:match" role="warning" id="pre-video-cite">There is no citation to <value-of select="$label"/>. Ensure to query the author asking for a citation.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

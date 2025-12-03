@@ -922,7 +922,7 @@
   <pattern id="parent-tests">
     <rule context="media[@mimetype='video']" id="video-parent-conformance">
       <let name="parent" value="name(..)"/>
-      <assert test="$parent = ('sec','fig-group','body','boxed-text','app')" role="error" id="video-parent-test">
+      <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-parent-test" test="$parent = ('sec','fig-group','body','boxed-text','app')" role="error" id="video-parent-test">
         <value-of select="replace(label[1],'\.$','')"/> is a child of a &lt;<value-of select="$parent"/>&gt; element. It can only be a child of sec, fig-group, body, boxed-text, or app.</assert>
     </rule>
   </pattern>

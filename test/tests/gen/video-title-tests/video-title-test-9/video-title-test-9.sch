@@ -923,7 +923,7 @@
     <rule context="media/caption/title" id="video-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
-      <report test="matches(.,'\p{Zs}$')" role="error" id="video-title-test-9">The title for <value-of select="$label"/> ends with space(s) which is incorrect - '<value-of select="."/>'.</report>
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-title-test-9" test="matches(.,'\p{Zs}$')" role="error" id="video-title-test-9">The title for <value-of select="$label"/> ends with space(s) which is incorrect - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

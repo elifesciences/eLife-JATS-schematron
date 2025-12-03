@@ -923,7 +923,7 @@
     <rule context="media" id="media-tests">
       <let name="file" value="@mime-subtype"/>
       <let name="link" value="@xlink:href"/>
-      <report test="not(@mimetype='video') and *" role="error" id="media-test-13">Media element that is not a mimetype="video" cannot contain elements. This one has the following element(s) <value-of select="string-join(*/name(),'; ')"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-13" test="not(@mimetype='video') and *" role="error" id="media-test-13">Media element that is not a mimetype="video" cannot contain elements. This one has the following element(s) <value-of select="string-join(*/name(),'; ')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

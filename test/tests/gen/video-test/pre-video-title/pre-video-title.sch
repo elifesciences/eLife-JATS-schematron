@@ -921,7 +921,7 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="media[child::label]" id="video-test">
-      <assert test="caption/title" role="warning" id="pre-video-title">
+      <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#pre-video-title" test="caption/title" role="warning" id="pre-video-title">
         <value-of select="replace(label,'\.$,','')"/> does not have a title. Please query the authors for one.</assert>
     </rule>
   </pattern>

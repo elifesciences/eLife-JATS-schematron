@@ -923,7 +923,7 @@
     <rule context="media/caption/title" id="video-title-tests">
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
-      <assert test="matches(.,'\.$|\?$')" role="error" id="video-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-title-test-2" test="matches(.,'\.$|\?$')" role="error" id="video-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

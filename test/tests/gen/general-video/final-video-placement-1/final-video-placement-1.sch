@@ -928,7 +928,7 @@
       <let name="sec-id" value="ancestor::sec[1]/@id"/>
       <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::caption)][1]"/>
       <let name="xref-sib" value="$xref1/parent::*/following-sibling::*[1]/local-name()"/>
-      <report test="($xrefs//*:match) and ($sec-id != $sec1/@id)" role="error" id="final-video-placement-1">
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#final-video-placement-1" test="($xrefs//*:match) and ($sec-id != $sec1/@id)" role="error" id="final-video-placement-1">
         <value-of select="$label"/> does not appear in the same section as where it is first cited (sec with title '<value-of select="$sec1/title"/>'), which is incorrect.</report>
     </rule>
   </pattern>

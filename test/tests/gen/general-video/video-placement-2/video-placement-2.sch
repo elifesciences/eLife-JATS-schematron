@@ -928,7 +928,7 @@
       <let name="sec-id" value="ancestor::sec[1]/@id"/>
       <let name="xref1" value="ancestor::article/descendant::xref[(@rid = $id) and not(ancestor::caption)][1]"/>
       <let name="xref-sib" value="$xref1/parent::*/following-sibling::*[1]/local-name()"/>
-      <report test="($xref-sib = 'p') and ($xref1//following::media/@id = $id)" role="warning" id="video-placement-2">
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-placement-2" test="($xref-sib = 'p') and ($xref1//following::media/@id = $id)" role="warning" id="video-placement-2">
         <value-of select="$label"/> appears after its first citation but not directly after its first citation. Is this correct?</report>
     </rule>
   </pattern>
