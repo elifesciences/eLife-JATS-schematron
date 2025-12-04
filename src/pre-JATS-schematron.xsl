@@ -36069,8 +36069,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT error-->
-      <xsl:if test="matches(.,'PMCID[:]?\p{Zs}?PMC[0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'PMCID[:]?\p{Zs}?PMC[0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)">
+      <xsl:if test="matches(.,'PMCID[:]?\p{Zs}?PMC[0-9][0-9][0-9]+') and (count(ext-link[matches(@xlink:href,'ncbi.nlm.nih.gov/pmc|pmc.ncbi.nlm.nih.gov')]) = 0)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'PMCID[:]?\p{Zs}?PMC[0-9][0-9][0-9]+') and (count(ext-link[matches(@xlink:href,'ncbi.nlm.nih.gov/pmc|pmc.ncbi.nlm.nih.gov')]) = 0)">
             <xsl:attribute name="id">PMCID-link-test</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/tables-3nehcouh#PMCID-link-test</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>

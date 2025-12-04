@@ -12215,7 +12215,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="PMID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMID, but it contains no link pointing to PubMed, which is incorrect.</report>
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#PMCID-link-test" 
-        test="matches(.,'PMCID[:]?\p{Zs}?PMC[0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)" 
+        test="matches(.,'PMCID[:]?\p{Zs}?PMC[0-9][0-9][0-9]+') and (count(ext-link[matches(@xlink:href,'ncbi.nlm.nih.gov/pmc|pmc.ncbi.nlm.nih.gov')]) = 0)" 
         role="error" 
         id="PMCID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect.</report>
       
