@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="PMCID-link-test.sch"?>
 <!--Context: table-wrap[@id='keyresource']//td
-Test: report    matches(.,'PMCID[:]?\p{Zs}?PMC[0-9][0-9][0-9]+') and (count(ext-link[contains(@xlink:href,'www.ncbi.nlm.nih.gov/pmc')]) = 0)
+Test: report    matches(.,'PMCID[:]?\p{Zs}?PMC[0-9][0-9][0-9]+') and (count(ext-link[matches(@xlink:href,'ncbi.nlm.nih.gov/pmc|pmc.ncbi.nlm.nih.gov')]) = 0)
 Message: td element containing - '' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article article-type="research-article">
@@ -19,6 +19,7 @@ Message: td element containing - '' - looks like it contains a PMCID, but it con
         <table-wrap id="keyresource">
           <table>
             <td>PMCID:<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pmc/PMC011111"/>PMC011111</td>
+            <td>PMCID:<ext-link ext-link-type="uri" xlink:href="https://pmc.ncbi.nlm.nih.gov/PMC011111"/>PMC011111</td>
           </table>
         </table-wrap>
       </sec>
