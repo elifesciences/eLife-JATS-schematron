@@ -202,7 +202,7 @@
    </xsl:function>
    <xsl:function xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns:xlink="http://www.w3.org/1999/xlink" name="e:alter-award-id">
       <xsl:param name="award-id-elem" as="xs:string"/>
-      <xsl:param name="funder-id" as="xs:string"/>
+      <xsl:param name="funder-id" as="xs:string*"/>
       <xsl:choose>
          <xsl:when test="$funder-id=$wellcome-funder-ids">
             <xsl:value-of select="if (contains(lower-case($award-id-elem),'/z')) then replace(substring-before(lower-case($award-id-elem),'/z'),'[^\d]','')          else if (contains(lower-case($award-id-elem),'_z')) then replace(substring-before(lower-case($award-id-elem),'_z'),'[^\d]','')         else if (matches($award-id-elem,'[^\d]') and matches($award-id-elem,'\d')) then replace($award-id-elem,'[^\d]','')         else $award-id-elem"/>

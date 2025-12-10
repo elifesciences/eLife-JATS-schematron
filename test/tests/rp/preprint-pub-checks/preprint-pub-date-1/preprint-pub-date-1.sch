@@ -210,7 +210,7 @@
   <let name="grant-doi-exception-funder-ids" value="($wellcome-funder-ids,$known-grant-funder-ids,$eu-horizon-fundref-ids)"/>
   <xsl:function name="e:alter-award-id">
     <xsl:param name="award-id-elem" as="xs:string"/>
-    <xsl:param name="funder-id" as="xs:string"/>
+    <xsl:param name="funder-id" as="xs:string*"/>
     <xsl:choose>
       
       <xsl:when test="$funder-id=$wellcome-funder-ids">

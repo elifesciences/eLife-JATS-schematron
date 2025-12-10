@@ -238,7 +238,7 @@
             this function is an attempt to account for this to better match award ids with grant DOIs -->
    <xsl:function name="e:alter-award-id">
     <xsl:param name="award-id-elem" as="xs:string"/>
-    <xsl:param name="funder-id" as="xs:string"/>
+    <xsl:param name="funder-id" as="xs:string*"/>
     <xsl:choose>
       <!-- Wellcome -->
       <xsl:when test="$funder-id=$wellcome-funder-ids">
