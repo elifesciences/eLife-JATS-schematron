@@ -1188,6 +1188,17 @@
         </award-id>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="label-to-title">
+      <sqf:description>
+        <sqf:title>Change label to title</sqf:title>
+      </sqf:description>
+      <sqf:replace match="label[1]">
+        <title>
+          <xsl:apply-templates select="node()|comment()|processing-instruction()" mode="customCopy"/>
+        </title>
+      </sqf:replace>
+        </sqf:fix>
   </sqf:fixes>
   
 
@@ -2396,6 +2407,8 @@
         <report test="def-list and not(*[not(name()=('label','title','sec-meta','def-list'))])" role="error" id="sec-def-list">sec element only contains a child def-list. This is therefore a glossary, not a sec.</report>
         
         <report test="glossary and not(*[not(name()=('label','title','sec-meta','glossary'))])" role="warning" id="sec-glossary">sec element only contains a child glossary. Is it a redundant sec (which should be deleted)? Or perhaps it indicates the structure/hierarchy has been incorrectly captured.</report>
+        
+        <report test="label and not(title)" role="error" sqf:fix="label-to-title" id="sec-label-no-title">sec element has a label but not title. This is not correct. Please capture the label as the title.</report>
      </rule>
   </pattern>
   <pattern id="top-sec-checks-pattern">
@@ -2432,6 +2445,12 @@
           <sqf:delete match="."/>
         </sqf:fix>
       </rule>
+  </pattern>
+  
+  <pattern id="app-checks-pattern">
+    <rule context="app" id="app-checks">
+      <report test="label and not(title)" role="error" sqf:fix="label-to-title" id="app-label-no-title">app element has a label but not title. This is not correct. Please capture the label as the title.</report>
+    </rule>
   </pattern>
 
     <pattern id="title-checks-pattern">
@@ -3760,6 +3779,7 @@
       <assert test="descendant::sec" role="error" id="sec-checks-xspec-assert">sec must be present.</assert>
       <assert test="descendant::sec[(parent::body or parent::back) and title]" role="error" id="top-sec-checks-xspec-assert">sec[(parent::body or parent::back) and title] must be present.</assert>
       <assert test="descendant::sec/label" role="error" id="sec-label-checks-xspec-assert">sec/label must be present.</assert>
+      <assert test="descendant::app" role="error" id="app-checks-xspec-assert">app must be present.</assert>
       <assert test="descendant::title" role="error" id="title-checks-xspec-assert">title must be present.</assert>
       <assert test="descendant::article/body/sec/title or descendant::article/back/sec/title" role="error" id="title-toc-checks-xspec-assert">article/body/sec/title|article/back/sec/title must be present.</assert>
       <assert test="descendant::p[not(ancestor::sub-article or ancestor::def) and (count(*)=1) and (child::bold or child::italic)]" role="error" id="p-bold-checks-xspec-assert">p[not(ancestor::sub-article or ancestor::def) and (count(*)=1) and (child::bold or child::italic)] must be present.</assert>

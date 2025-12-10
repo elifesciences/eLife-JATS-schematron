@@ -1140,6 +1140,17 @@
         </award-id>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="label-to-title">
+      <sqf:description>
+        <sqf:title>Change label to title</sqf:title>
+      </sqf:description>
+      <sqf:replace match="label[1]">
+        <title>
+          <xsl:apply-templates select="node()|comment()|processing-instruction()" mode="customCopy"/>
+        </title>
+      </sqf:replace>
+        </sqf:fix>
   </sqf:fixes>
   <pattern id="eu-horizon-grant-doi-tests-pattern">
     <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=($eu-horizon-fundref-ids,'https://ror.org/00k4n6c32')]" id="eu-horizon-grant-doi-tests">

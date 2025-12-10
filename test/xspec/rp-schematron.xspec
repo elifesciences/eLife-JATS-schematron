@@ -2861,6 +2861,16 @@
         <x:expect-report id="sec-glossary" role="warning"/>
         <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="sec-label-no-title-pass">
+        <x:context href="../tests/rp/sec-checks/sec-label-no-title/pass.xml"/>
+        <x:expect-not-report id="sec-label-no-title" role="error"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sec-label-no-title-fail">
+        <x:context href="../tests/rp/sec-checks/sec-label-no-title/fail.xml"/>
+        <x:expect-report id="sec-label-no-title" role="error"/>
+        <x:expect-not-assert id="sec-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="top-sec-checks">
       <x:scenario label="top-sec-1-pass">
@@ -2904,6 +2914,18 @@
         <x:context href="../tests/rp/sec-label-checks/sec-label-2/fail.xml"/>
         <x:expect-report id="sec-label-2" role="error"/>
         <x:expect-not-assert id="sec-label-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="app-checks">
+      <x:scenario label="app-label-no-title-pass">
+        <x:context href="../tests/rp/app-checks/app-label-no-title/pass.xml"/>
+        <x:expect-not-report id="app-label-no-title" role="error"/>
+        <x:expect-not-assert id="app-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="app-label-no-title-fail">
+        <x:context href="../tests/rp/app-checks/app-label-no-title/fail.xml"/>
+        <x:expect-report id="app-label-no-title" role="error"/>
+        <x:expect-not-assert id="app-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="title-checks">

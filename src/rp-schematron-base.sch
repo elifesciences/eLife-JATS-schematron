@@ -1202,6 +1202,15 @@
         </award-id>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="label-to-title">
+      <sqf:description>
+        <sqf:title>Change label to title</sqf:title>
+      </sqf:description>
+      <sqf:replace match="label[1]">
+        <title><xsl:apply-templates select="node()|comment()|processing-instruction()" mode="customCopy"/></title>
+      </sqf:replace>
+        </sqf:fix>
   </sqf:fixes>
   
 
@@ -2906,6 +2915,11 @@
         <report test="glossary and not(*[not(name()=('label','title','sec-meta','glossary'))])" 
           role="warning" 
           id="sec-glossary">sec element only contains a child glossary. Is it a redundant sec (which should be deleted)? Or perhaps it indicates the structure/hierarchy has been incorrectly captured.</report>
+        
+        <report test="label and not(title)" 
+          role="error"
+          sqf:fix="label-to-title"
+          id="sec-label-no-title">sec element has a label but not title. This is not correct. Please capture the label as the title.</report>
      </rule>
       
       <rule context="sec[(parent::body or parent::back) and title]" id="top-sec-checks">
@@ -2954,6 +2968,15 @@
         </sqf:fix>
       </rule>
     </pattern>
+  
+  <pattern id="app">
+    <rule context="app" id="app-checks">
+      <report test="label and not(title)" 
+          role="error"
+          sqf:fix="label-to-title"
+          id="app-label-no-title">app element has a label but not title. This is not correct. Please capture the label as the title.</report>
+    </rule>
+  </pattern>
 
     <pattern id="title">
      <rule context="title" id="title-checks">

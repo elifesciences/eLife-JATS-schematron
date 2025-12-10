@@ -1166,6 +1166,15 @@
         </award-id>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="label-to-title">
+      <sqf:description>
+        <sqf:title>Change label to title</sqf:title>
+      </sqf:description>
+      <sqf:replace match="label[1]">
+        <title><xsl:apply-templates select="node()|comment()|processing-instruction()" mode="customCopy"/></title>
+      </sqf:replace>
+        </sqf:fix>
   </sqf:fixes>
   
 
@@ -2100,6 +2109,8 @@
         <report test="def-list and not(*[not(name()=('label','title','sec-meta','def-list'))])" role="error" id="sec-def-list">[sec-def-list] sec element only contains a child def-list. This is therefore a glossary, not a sec.</report>
         
         <report test="glossary and not(*[not(name()=('label','title','sec-meta','glossary'))])" role="warning" id="sec-glossary">[sec-glossary] sec element only contains a child glossary. Is it a redundant sec (which should be deleted)? Or perhaps it indicates the structure/hierarchy has been incorrectly captured.</report>
+        
+        <report test="label and not(title)" role="error" sqf:fix="label-to-title" id="sec-label-no-title">[sec-label-no-title] sec element has a label but not title. This is not correct. Please capture the label as the title.</report>
      </rule></pattern><pattern id="top-sec-checks-pattern"><rule context="sec[(parent::body or parent::back) and title]" id="top-sec-checks">
         <let name="top-sec-phrases" value="('(results?|conclusions?)( (and|&amp;) discussion)?',             'discussion( (and|&amp;) (results?|conclusions?))?')"/>
         <let name="methods-phrases" value="('(materials? (and|&amp;)|experimental)?\s?methods?( details?|summary|(and|&amp;) materials?)?',             '(supplement(al|ary)? )?materials( (and|&amp;) correspondence)?',             '(model|methods?)(( and| &amp;) (results|materials?))?')"/>
@@ -2130,6 +2141,10 @@
           <sqf:delete match="."/>
         </sqf:fix>
       </rule></pattern>
+  
+  <pattern id="app-checks-pattern"><rule context="app" id="app-checks">
+      <report test="label and not(title)" role="error" sqf:fix="label-to-title" id="app-label-no-title">[app-label-no-title] app element has a label but not title. This is not correct. Please capture the label as the title.</report>
+    </rule></pattern>
 
     <pattern id="title-checks-pattern"><rule context="title" id="title-checks">
         <report test="upper-case(.)=." role="warning" sqf:fix="replace-sentence-case" id="title-upper-case">[title-upper-case] Content of &lt;title&gt; element is entirely in upper case: Is that correct? '<value-of select="."/>'</report>
