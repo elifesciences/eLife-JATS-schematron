@@ -238,7 +238,7 @@
             this function is an attempt to account for this to better match award ids with grant DOIs -->
    <xsl:function name="e:alter-award-id">
     <xsl:param name="award-id-elem" as="xs:string"/>
-    <xsl:param name="funder-id" as="xs:string"/>
+    <xsl:param name="funder-id" as="xs:string*"/>
     <xsl:choose>
       <!-- Wellcome -->
       <xsl:when test="$funder-id=$wellcome-funder-ids">
@@ -2580,7 +2580,7 @@
      </rule>
 
      <rule context="fig/*" id="fig-child-checks">
-        <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
+        <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions','attrib')"/>
         <assert test="name()=$supported-fig-children" 
         role="error"
         sqf:fix="delete-elem"
@@ -4442,6 +4442,12 @@
         role="error" 
         id="ed-report-evidence-kwd-1">Keyword contains <value-of select="."/>, but it is in an 'evidence-strength' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/></assert>
     </rule>
+      
+      <rule context="sub-article[@article-type='editor-report']/body" id="ed-report-body-checks">
+        <report test="contains(lower-case(.),'this review article') and not(ancestor::article/@article-type='review-article')"
+        role="warning" 
+        id="ed-report-body-1">eLife Assessment contains the phrase 'This Review Article', but the article-type on the root article element is '<value-of select="ancestor::article[1]/@article-type"/>'. Should the article-type on the article element be changed to 'review-article'?</report>
+      </rule>
 
     <rule context="sub-article[@article-type='editor-report']/body/p[1]//bold" id="ed-report-bold-terms">
       <let name="str-kwds" value="('exceptional', 'compelling', 'convincing', 'convincingly', 'solid', 'incomplete', 'incompletely', 'inadequate', 'inadequately')"/>

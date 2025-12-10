@@ -227,7 +227,7 @@
             this function is an attempt to account for this to better match award ids with grant DOIs -->
    <xsl:function name="e:alter-award-id">
     <xsl:param name="award-id-elem" as="xs:string"/>
-    <xsl:param name="funder-id" as="xs:string"/>
+    <xsl:param name="funder-id" as="xs:string*"/>
     <xsl:choose>
       <!-- Wellcome -->
       <xsl:when test="$funder-id=$wellcome-funder-ids">
@@ -2170,7 +2170,7 @@
   </pattern>
   <pattern id="fig-child-checks-pattern">
     <rule context="fig/*" id="fig-child-checks">
-        <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
+        <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions','attrib')"/>
         <assert test="name()=$supported-fig-children" role="error" sqf:fix="delete-elem" id="fig-child-conformance">
         <name/> is not supported as a child of &lt;fig&gt;.</assert>
      </rule>
@@ -3424,6 +3424,11 @@
       </assert>
     </rule>
   </pattern>
+  <pattern id="ed-report-body-checks-pattern">
+    <rule context="sub-article[@article-type='editor-report']/body" id="ed-report-body-checks">
+        <report test="contains(lower-case(.),'this review article') and not(ancestor::article/@article-type='review-article')" role="warning" id="ed-report-body-1">eLife Assessment contains the phrase 'This Review Article', but the article-type on the root article element is '<value-of select="ancestor::article[1]/@article-type"/>'. Should the article-type on the article element be changed to 'review-article'?</report>
+      </rule>
+  </pattern>
   <pattern id="ed-report-bold-terms-pattern">
     <rule context="sub-article[@article-type='editor-report']/body/p[1]//bold" id="ed-report-bold-terms">
       <let name="str-kwds" value="('exceptional', 'compelling', 'convincing', 'convincingly', 'solid', 'incomplete', 'incompletely', 'inadequate', 'inadequately')"/>
@@ -3819,6 +3824,7 @@
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" role="error" id="ed-report-kwds-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd must be present.</assert>
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" role="error" id="ed-report-claim-kwds-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd must be present.</assert>
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" role="error" id="ed-report-evidence-kwds-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='editor-report']/body" role="error" id="ed-report-body-checks-xspec-assert">sub-article[@article-type='editor-report']/body must be present.</assert>
       <assert test="descendant::sub-article[@article-type='editor-report']/body/p[1]//bold" role="error" id="ed-report-bold-terms-xspec-assert">sub-article[@article-type='editor-report']/body/p[1]//bold must be present.</assert>
       <assert test="descendant::sub-article[@article-type='author-comment']//fig/label" role="error" id="ar-image-labels-xspec-assert">sub-article[@article-type='author-comment']//fig/label must be present.</assert>
       <assert test="descendant::sub-article[@article-type='author-comment']//table-wrap/label" role="error" id="ar-table-labels-xspec-assert">sub-article[@article-type='author-comment']//table-wrap/label must be present.</assert>

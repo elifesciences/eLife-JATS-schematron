@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="ed-report-body-1.sch"?>
+<!--Context: sub-article[@article-type='editor-report']/body
+Test: report    contains(lower-case(.),'this review article') and not(ancestor::article/@article-type='review-article')
+Message: eLife Assessment contains the phrase 'This Review Article', but the article-type on the root article element is ''. Should the article-type on the article element be changed to 'review-article'? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article article-type="review-article">
+        <sub-article article-type="editor-report">
+            <body>
+                <p>This Review Article is ...</p>
+            </body>
+        </sub-article>
+    </article>
+</root>

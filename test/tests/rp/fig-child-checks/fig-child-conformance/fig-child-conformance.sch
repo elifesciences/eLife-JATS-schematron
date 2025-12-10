@@ -210,7 +210,7 @@
   <let name="grant-doi-exception-funder-ids" value="($wellcome-funder-ids,$known-grant-funder-ids,$eu-horizon-fundref-ids)"/>
   <xsl:function name="e:alter-award-id">
     <xsl:param name="award-id-elem" as="xs:string"/>
-    <xsl:param name="funder-id" as="xs:string"/>
+    <xsl:param name="funder-id" as="xs:string*"/>
     <xsl:choose>
       
       <xsl:when test="$funder-id=$wellcome-funder-ids">
@@ -1143,7 +1143,7 @@
   </sqf:fixes>
   <pattern id="fig-child-checks-pattern">
     <rule context="fig/*" id="fig-child-checks">
-      <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
+      <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions','attrib')"/>
       <assert test="name()=$supported-fig-children" role="error" sqf:fix="delete-elem" id="fig-child-conformance">[fig-child-conformance] <name/> is not supported as a child of &lt;fig&gt;.</assert>
     </rule>
   </pattern>

@@ -9,6 +9,7 @@ Message:  is not supported as a child of <fig>. -->
             <caption/>
             <graphic/>
             <permissions/>
+            <attrib/>
             <ext-link/>
         </fig>
     </article>
