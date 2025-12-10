@@ -6697,7 +6697,7 @@
    <!--PATTERN fig-child-checks-pattern-->
    <!--RULE fig-child-checks-->
    <xsl:template match="fig/*" priority="1000" mode="M97">
-      <xsl:variable name="supported-fig-children" select="('label','caption','graphic','alternatives','permissions')"/>
+      <xsl:variable name="supported-fig-children" select="('label','caption','graphic','alternatives','permissions','attrib')"/>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="name()=$supported-fig-children"/>

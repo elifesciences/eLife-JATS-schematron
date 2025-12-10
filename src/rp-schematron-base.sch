@@ -2580,7 +2580,7 @@
      </rule>
 
      <rule context="fig/*" id="fig-child-checks">
-        <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
+        <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions','attrib')"/>
         <assert test="name()=$supported-fig-children" 
         role="error"
         sqf:fix="delete-elem"

@@ -1947,7 +1947,7 @@
     <pattern id="fig-checks-pattern"><rule context="fig" id="fig-checks">
         <assert test="graphic" role="error" id="fig-graphic-conformance">[fig-graphic-conformance] <value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>
      </rule></pattern><pattern id="fig-child-checks-pattern"><rule context="fig/*" id="fig-child-checks">
-        <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions')"/>
+        <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions','attrib')"/>
         <assert test="name()=$supported-fig-children" role="error" sqf:fix="delete-elem" id="fig-child-conformance">[fig-child-conformance] <name/> is not supported as a child of &lt;fig&gt;.</assert>
      </rule></pattern><pattern id="fig-label-checks-pattern"><rule context="fig/label" id="fig-label-checks">
         <report test="normalize-space(.)=''" role="error" sqf:fix="delete-elem" id="fig-wrap-empty">[fig-wrap-empty] Label for fig is empty. Either remove the elment or add the missing content.</report>
