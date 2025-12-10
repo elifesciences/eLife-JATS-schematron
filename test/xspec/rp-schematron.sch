@@ -3424,6 +3424,11 @@
       </assert>
     </rule>
   </pattern>
+  <pattern id="ed-report-body-checks-pattern">
+    <rule context="sub-article[@article-type='editor-report']/body" id="ed-report-body-checks">
+        <report test="contains(lower-case(.),'this review article') and not(ancestor::article/@article-type='review-article')" role="warning" id="ed-report-body-1">eLife Assessment contains the phrase 'This Review Article', but the article-type on the root article element is '<value-of select="ancestor::article[1]/@article-type"/>'. Should the article-type on the article element be changed to 'review-article'?</report>
+      </rule>
+  </pattern>
   <pattern id="ed-report-bold-terms-pattern">
     <rule context="sub-article[@article-type='editor-report']/body/p[1]//bold" id="ed-report-bold-terms">
       <let name="str-kwds" value="('exceptional', 'compelling', 'convincing', 'convincingly', 'solid', 'incomplete', 'incompletely', 'inadequate', 'inadequately')"/>
@@ -3819,6 +3824,7 @@
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" role="error" id="ed-report-kwds-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd must be present.</assert>
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" role="error" id="ed-report-claim-kwds-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd must be present.</assert>
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" role="error" id="ed-report-evidence-kwds-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd must be present.</assert>
+      <assert test="descendant::sub-article[@article-type='editor-report']/body" role="error" id="ed-report-body-checks-xspec-assert">sub-article[@article-type='editor-report']/body must be present.</assert>
       <assert test="descendant::sub-article[@article-type='editor-report']/body/p[1]//bold" role="error" id="ed-report-bold-terms-xspec-assert">sub-article[@article-type='editor-report']/body/p[1]//bold must be present.</assert>
       <assert test="descendant::sub-article[@article-type='author-comment']//fig/label" role="error" id="ar-image-labels-xspec-assert">sub-article[@article-type='author-comment']//fig/label must be present.</assert>
       <assert test="descendant::sub-article[@article-type='author-comment']//table-wrap/label" role="error" id="ar-table-labels-xspec-assert">sub-article[@article-type='author-comment']//table-wrap/label must be present.</assert>

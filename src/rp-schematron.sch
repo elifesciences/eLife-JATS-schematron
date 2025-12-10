@@ -2859,7 +2859,9 @@
       <let name="allowed-vals" value="('Exceptional', 'Compelling', 'Convincing', 'Solid', 'Incomplete', 'Inadequate')"/>
       
       <assert test=".=$allowed-vals" role="error" id="ed-report-evidence-kwd-1">[ed-report-evidence-kwd-1] Keyword contains <value-of select="."/>, but it is in an 'evidence-strength' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/></assert>
-    </rule></pattern><pattern id="ed-report-bold-terms-pattern"><rule context="sub-article[@article-type='editor-report']/body/p[1]//bold" id="ed-report-bold-terms">
+    </rule></pattern><pattern id="ed-report-body-checks-pattern"><rule context="sub-article[@article-type='editor-report']/body" id="ed-report-body-checks">
+        <report test="contains(lower-case(.),'this review article') and not(ancestor::article/@article-type='review-article')" role="warning" id="ed-report-body-1">[ed-report-body-1] eLife Assessment contains the phrase 'This Review Article', but the article-type on the root article element is '<value-of select="ancestor::article[1]/@article-type"/>'. Should the article-type on the article element be changed to 'review-article'?</report>
+      </rule></pattern><pattern id="ed-report-bold-terms-pattern"><rule context="sub-article[@article-type='editor-report']/body/p[1]//bold" id="ed-report-bold-terms">
       <let name="str-kwds" value="('exceptional', 'compelling', 'convincing', 'convincingly', 'solid', 'incomplete', 'incompletely', 'inadequate', 'inadequately')"/>
       <let name="sig-kwds" value="('landmark', 'fundamental', 'important', 'valuable', 'useful')"/>
       <let name="allowed-vals" value="($str-kwds,$sig-kwds)"/>
