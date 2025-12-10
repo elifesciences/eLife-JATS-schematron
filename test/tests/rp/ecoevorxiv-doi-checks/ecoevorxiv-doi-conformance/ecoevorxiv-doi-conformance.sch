@@ -1140,6 +1140,17 @@
         </award-id>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="label-to-title">
+      <sqf:description>
+        <sqf:title>Change label to title</sqf:title>
+      </sqf:description>
+      <sqf:replace match="label[1]">
+        <title>
+          <xsl:apply-templates select="node()|comment()|processing-instruction()" mode="customCopy"/>
+        </title>
+      </sqf:replace>
+        </sqf:fix>
   </sqf:fixes>
   <pattern id="ecoevorxiv-doi-checks-pattern">
     <rule context="article/front[journal-meta[lower-case(journal-id[1])='ecoevorxiv']]/article-meta/article-id[@pub-id-type='doi']" id="ecoevorxiv-doi-checks">

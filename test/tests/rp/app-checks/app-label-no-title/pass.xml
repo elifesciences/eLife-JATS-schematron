@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="app-label-no-title.sch"?>
+<!--Context: app
+Test: report    label and not(title)
+Message: app element has a label but not title. This is not correct. Please capture the label as the title. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <back>
+            <app-group>
+                <app>
+                    <label>1.</label>
+                    <title>Some title</title>
+                </app>
+            </app-group>
+        </back>
+    </article>
+</root>

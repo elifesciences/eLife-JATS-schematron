@@ -1140,6 +1140,17 @@
         </award-id>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="label-to-title">
+      <sqf:description>
+        <sqf:title>Change label to title</sqf:title>
+      </sqf:description>
+      <sqf:replace match="label[1]">
+        <title>
+          <xsl:apply-templates select="node()|comment()|processing-instruction()" mode="customCopy"/>
+        </title>
+      </sqf:replace>
+        </sqf:fix>
   </sqf:fixes>
   <pattern id="ed-report-kwds-pattern">
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" id="ed-report-kwds">

@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="sec-label-no-title.sch"?>
+<!--Context: sec
+Test: report    label and not(title)
+Message: sec element has a label but not title. This is not correct. Please capture the label as the title. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <body>
+            <sec>
+                <label>1.</label>
+                <title>Some title</title>
+            </sec>
+        </body>
+    </article>
+</root>

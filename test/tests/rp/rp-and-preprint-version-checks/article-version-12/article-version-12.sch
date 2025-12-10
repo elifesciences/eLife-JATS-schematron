@@ -1140,6 +1140,17 @@
         </award-id>
       </sqf:replace>
     </sqf:fix>
+    
+    <sqf:fix id="label-to-title">
+      <sqf:description>
+        <sqf:title>Change label to title</sqf:title>
+      </sqf:description>
+      <sqf:replace match="label[1]">
+        <title>
+          <xsl:apply-templates select="node()|comment()|processing-instruction()" mode="customCopy"/>
+        </title>
+      </sqf:replace>
+        </sqf:fix>
   </sqf:fixes>
   <pattern id="rp-and-preprint-version-checks-pattern">
     <rule context="article/front[journal-meta/journal-id='elife']/article-meta[matches(replace(article-id[@specific-use='version'][1],'^.*\.',''),'^\d\d?$') and matches(descendant::article-version[@article-version-type='preprint-version'][1],'^1\.\d+$')]" id="rp-and-preprint-version-checks">
