@@ -2926,10 +2926,12 @@
         <assert test="matches(.,'^10\.7554/eLife\.\d{5,6}\.\d\.sa\d$')" role="error" id="sub-article-doi-check-1">[sub-article-doi-check-1] The DOI for this sub-article does not match the permitted format: <value-of select="."/>.</assert>
         
         <assert test="starts-with(.,$article-version-doi)" role="error" id="sub-article-doi-check-2">[sub-article-doi-check-2] The DOI for this sub-article (<value-of select="."/>) does not start with the version DOI for the Reviewed Preprint (<value-of select="$article-version-doi"/>).</assert>
-      </rule></pattern><pattern id="sub-article-bold-image-checks-pattern"><rule context="sub-article/body//p" id="sub-article-bold-image-checks">
+      </rule></pattern><pattern id="sub-article-p-checks-pattern"><rule context="sub-article/body//p" id="sub-article-p-checks">
         <report test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic or ext-link[inline-graphic or graphic])" role="error" id="sub-article-bold-image-1">[sub-article-bold-image-1] p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs (so that they are correctly processed into fig or table-wrap).</report>
         
         <report test="bold[matches(lower-case(.),'(author response|review) (image|table)')]" role="error" id="sub-article-bold-image-2">[sub-article-bold-image-2] p element contains bold text which looks like a label for an image or table. Since it's not been captured as a figure in the XML, it might either be misformatted in Kotahi/Hypothesis or there's a processing bug.</report>
+        
+        <report test="matches(.,'\$?\$.*?\$\$?')" role="warning" id="sub-article-tex-1">[sub-article-tex-1] sub-article contains what looks like potential latex: <value-of select="string-join(distinct-values(e:analyze-string(.,'\$?\$.*?\$\$?')//*:match),'; ')"/>. If this is maths it should either be represented in plain unicode or as an image.</report>
       </rule></pattern><pattern id="sub-article-ext-links-pattern"><rule context="sub-article/body//ext-link" id="sub-article-ext-links">
         <report test="not(inline-graphic) and matches(lower-case(@*:href),'imgur\.com')" role="warning" id="ext-link-imgur">[ext-link-imgur] ext-link in sub-article directs to imgur.com - <value-of select="@*:href"/>. Is this a figure or table (e.g. Author response image X) that should be captured semantically appropriately in the XML?</report>
         

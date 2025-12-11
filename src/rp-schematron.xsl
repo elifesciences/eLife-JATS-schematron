@@ -1894,8 +1894,8 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">sub-article-bold-image-checks-pattern</xsl:attribute>
-            <xsl:attribute name="name">sub-article-bold-image-checks-pattern</xsl:attribute>
+            <xsl:attribute name="id">sub-article-p-checks-pattern</xsl:attribute>
+            <xsl:attribute name="name">sub-article-p-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M198"/>
@@ -12771,8 +12771,8 @@
    <xsl:template match="@*|node()" priority="-2" mode="M197">
       <xsl:apply-templates select="*" mode="M197"/>
    </xsl:template>
-   <!--PATTERN sub-article-bold-image-checks-pattern-->
-   <!--RULE sub-article-bold-image-checks-->
+   <!--PATTERN sub-article-p-checks-pattern-->
+   <!--RULE sub-article-p-checks-->
    <xsl:template match="sub-article/body//p" priority="1000" mode="M198">
 
 		<!--REPORT error-->
@@ -12795,6 +12795,19 @@
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
             <svrl:text>[sub-article-bold-image-2] p element contains bold text which looks like a label for an image or table. Since it's not been captured as a figure in the XML, it might either be misformatted in Kotahi/Hypothesis or there's a processing bug.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(.,'\$?\$.*?\$\$?')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(.,'\$?\$.*?\$\$?')">
+            <xsl:attribute name="id">sub-article-tex-1</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[sub-article-tex-1] sub-article contains what looks like potential latex: <xsl:text/>
+               <xsl:value-of select="string-join(distinct-values(e:analyze-string(.,'\$?\$.*?\$\$?')//*:match),'; ')"/>
+               <xsl:text/>. If this is maths it should either be represented in plain unicode or as an image.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M198"/>
