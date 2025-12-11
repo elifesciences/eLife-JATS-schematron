@@ -319,6 +319,25 @@
       </xsl:analyze-string>
     </analyze-string-result>
   </xsl:function>
+  <xsl:function name="e:analyze-string" as="element()">
+    <xsl:param name="node"/>
+    <xsl:param name="regex" as="xs:string"/>
+    <xsl:param name="flags" as="xs:string"/>
+    <analyze-string-result>
+      <xsl:analyze-string select="$node" regex="{$regex}" flags="{$flags}">
+        <xsl:matching-substring>
+          <match>
+            <xsl:value-of select="."/>
+          </match>
+        </xsl:matching-substring>
+        <xsl:non-matching-substring>
+          <non-match>
+            <xsl:value-of select="."/>
+          </non-match>
+        </xsl:non-matching-substring>
+      </xsl:analyze-string>
+    </analyze-string-result>
+  </xsl:function>
   <xsl:function name="e:org-conform" as="element()">
     <xsl:param name="node" as="node()"/>
     <result>
@@ -1152,14 +1171,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="sub-article-bold-image-checks-pattern">
-    <rule context="sub-article/body//p" id="sub-article-bold-image-checks">
+  <pattern id="sub-article-p-checks-pattern">
+    <rule context="sub-article/body//p" id="sub-article-p-checks">
       <report test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic or ext-link[inline-graphic or graphic])" role="error" id="sub-article-bold-image-1">[sub-article-bold-image-1] p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs (so that they are correctly processed into fig or table-wrap).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article/body//p" role="error" id="sub-article-bold-image-checks-xspec-assert">sub-article/body//p must be present.</assert>
+      <assert test="descendant::sub-article/body//p" role="error" id="sub-article-p-checks-xspec-assert">sub-article/body//p must be present.</assert>
     </rule>
   </pattern>
 </schema>

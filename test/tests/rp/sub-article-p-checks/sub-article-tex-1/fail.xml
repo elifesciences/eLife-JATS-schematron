@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="sub-article-tex-1.sch"?>
+<!--Context: sub-article/body//p
+Test: report    matches(.,'\$?\$.*?\$\$?')
+Message: sub-article contains what looks like potential latex: . If this is maths it should either be represented in plain unicode or as an image. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article>
+            <body>
+                <p>$x(t+1)<italic>{aug} = A</italic>{aug} * x(t)<italic>{aug} + B</italic>{aug} * u$$</p>
+                <p>We believe that deviation $&lt;\beta{i}^{2} &gt;$s in the variance of diversity in Fig. S16g,h are driven by small deviations in our predictions of the second moment $&lt; (x*ln(x) | N_{m}, \bar{x}{i}, \beta{i}^{2} &gt;$ (Eq. S16).</p>
+            </body>
+        </sub-article>
+    </article>
+</root>
