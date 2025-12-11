@@ -348,22 +348,6 @@
     </analyze-string-result>
   </xsl:function>
   
-  <xsl:function name="e:analyze-string" as="element()">
-    <xsl:param name="node"/>
-    <xsl:param name="regex" as="xs:string"/>
-    <xsl:param name="flags" as="xs:string"/>
-    <analyze-string-result>
-      <xsl:analyze-string select="$node" regex="{$regex}" flags="{$flags}">
-        <xsl:matching-substring>
-          <match><xsl:value-of select="."/></match>
-        </xsl:matching-substring>
-        <xsl:non-matching-substring>
-          <non-match><xsl:value-of select="."/></non-match>
-        </xsl:non-matching-substring>
-      </xsl:analyze-string>
-    </analyze-string-result>
-  </xsl:function>
-  
   <xsl:function name="e:org-conform" as="element()">
     <xsl:param name="node" as="node()"/>
     <result>
@@ -2949,7 +2933,7 @@
         
         <report test="matches(.,'\$?\$.*?\$\$?')" role="warning" id="sub-article-tex-1">[sub-article-tex-1] sub-article contains what looks like potential latex: <value-of select="string-join(distinct-values(e:analyze-string(.,'\$?\$.*?\$\$?')//*:match),'; ')"/>. If this is maths it should either be represented in plain unicode or as an image.</report>
         
-        <report test="matches(.,'(?&lt;!\$[\s\S]*)\\[a-z]+\p{Ps}',';j')" role="warning" id="sub-article-tex-2">[sub-article-tex-2] sub-article contains what looks like potential latex: <value-of select="string-join(distinct-values(e:analyze-string(.,'(?&lt;!\$[\s\S]*)\\[a-z]+\p{Ps}',';j')//*:match),'; ')"/>. If this is maths it should either be represented in plain unicode or as an image.</report>
+        <report test="not(matches(.,'\$?\$.*?\$\$?')) and matches(.,'\\[a-z]+\p{Ps}')" role="warning" id="sub-article-tex-2">[sub-article-tex-2] sub-article contains what looks like potential latex: <value-of select="string-join(distinct-values(e:analyze-string(.,'\\[a-z]+\p{Ps}')//*:match),'; ')"/>. If this is maths it should either be represented in plain unicode or as an image.</report>
       </rule></pattern><pattern id="sub-article-ext-links-pattern"><rule context="sub-article/body//ext-link" id="sub-article-ext-links">
         <report test="not(inline-graphic) and matches(lower-case(@*:href),'imgur\.com')" role="warning" id="ext-link-imgur">[ext-link-imgur] ext-link in sub-article directs to imgur.com - <value-of select="@*:href"/>. Is this a figure or table (e.g. Author response image X) that should be captured semantically appropriately in the XML?</report>
         
