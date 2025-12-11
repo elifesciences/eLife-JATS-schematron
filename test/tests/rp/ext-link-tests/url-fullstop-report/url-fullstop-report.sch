@@ -319,25 +319,6 @@
       </xsl:analyze-string>
     </analyze-string-result>
   </xsl:function>
-  <xsl:function name="e:analyze-string" as="element()">
-    <xsl:param name="node"/>
-    <xsl:param name="regex" as="xs:string"/>
-    <xsl:param name="flags" as="xs:string"/>
-    <analyze-string-result>
-      <xsl:analyze-string select="$node" regex="{$regex}" flags="{$flags}">
-        <xsl:matching-substring>
-          <match>
-            <xsl:value-of select="."/>
-          </match>
-        </xsl:matching-substring>
-        <xsl:non-matching-substring>
-          <non-match>
-            <xsl:value-of select="."/>
-          </non-match>
-        </xsl:non-matching-substring>
-      </xsl:analyze-string>
-    </analyze-string-result>
-  </xsl:function>
   <xsl:function name="e:org-conform" as="element()">
     <xsl:param name="node" as="node()"/>
     <result>
