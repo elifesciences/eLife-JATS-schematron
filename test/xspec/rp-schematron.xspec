@@ -5833,6 +5833,16 @@
         <x:expect-report id="sub-article-tex-1" role="warning"/>
         <x:expect-not-assert id="sub-article-p-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="sub-article-tex-2-pass">
+        <x:context href="../tests/rp/sub-article-p-checks/sub-article-tex-2/pass.xml"/>
+        <x:expect-not-report id="sub-article-tex-2" role="warning"/>
+        <x:expect-not-assert id="sub-article-p-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-article-tex-2-fail">
+        <x:context href="../tests/rp/sub-article-p-checks/sub-article-tex-2/fail.xml"/>
+        <x:expect-report id="sub-article-tex-2" role="warning"/>
+        <x:expect-not-assert id="sub-article-p-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="sub-article-ext-links">
       <x:scenario label="ext-link-imgur-pass">

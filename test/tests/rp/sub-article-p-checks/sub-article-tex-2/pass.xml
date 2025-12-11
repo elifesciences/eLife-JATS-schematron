@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="sub-article-tex-2.sch"?>
+<!--Context: sub-article/body//p
+Test: report    matches(.,'(?<!\$[\s\S]*)\\[a-z]+\p{Ps}',';j')
+Message: sub-article contains what looks like potential latex: . If this is maths it should either be represented in plain unicode or as an image. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sub-article>
+            <body>
+                <p>Some normal text</p>
+            </body>
+        </sub-article>
+    </article>
+</root>
