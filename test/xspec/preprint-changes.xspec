@@ -168,6 +168,14 @@
       <x:context href="../tests/preprint-changes/sec-supplementary/input.xml"/>
       <x:expect label="Testing the template: sec-supplementary" href="../tests/preprint-changes/sec-supplementary/output.xml"/>
     </x:scenario>
+    <x:scenario label="kr-table-sec-fix">
+      <x:context href="../tests/preprint-changes/kr-table-sec-fix/input.xml"/>
+      <x:expect label="Testing the template: kr-table-sec-fix" href="../tests/preprint-changes/kr-table-sec-fix/output.xml"/>
+    </x:scenario>
+    <x:scenario label="kr-table-fix">
+      <x:context href="../tests/preprint-changes/kr-table-fix/input.xml"/>
+      <x:expect label="Testing the template: kr-table-fix" href="../tests/preprint-changes/kr-table-fix/output.xml"/>
+    </x:scenario>
     <x:scenario label="strip-bold-italic-around-xref">
       <x:context href="../tests/preprint-changes/strip-bold-italic-around-xref/input.xml"/>
       <x:expect label="Testing the template: strip-bold-italic-around-xref" href="../tests/preprint-changes/strip-bold-italic-around-xref/output.xml"/>

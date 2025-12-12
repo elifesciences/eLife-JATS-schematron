@@ -2,8 +2,7 @@
 <!--Context: aff
 Test: report    ancestor::contrib-group[@content-type='section'] and not(parent::contrib)
 Message: Editor aff elements should be placed as a direct child of the editor contrib element. This one is a child of . -->
-<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/"
-    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <contrib-group content-type="section">
             <contrib contrib-type="editor">

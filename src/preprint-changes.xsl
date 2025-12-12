@@ -1987,6 +1987,21 @@
             <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
     </xsl:template>
+    
+    <!-- Remove unnecessary sec wrapper around Key resources table -->
+    <xsl:template xml:id="kr-table-sec-fix" match="sec[matches(lower-case(title[1]),'^key resources? table$') and title[1]/following-sibling::*[1][name()='table-wrap' and not(label)]]">
+        <xsl:apply-templates select="*[name()!='title']|text()[not(normalize-space(.)='' and position()=last()) and not(following-sibling::table-wrap)]|comment()|processing-instruction()"/>
+    </xsl:template>
+    
+    <!-- Add missing label to mistagged Key resources table -->
+    <xsl:template xml:id="kr-table-fix" match="sec[matches(lower-case(title[1]),'^key resources? table$') and title[1]/following-sibling::*[1][name()='table-wrap' and not(label)]]/table-wrap[1]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:text>&#xa;</xsl:text>
+            <label>Key resources table</label>
+            <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+        </xsl:copy>
+    </xsl:template>
 
     <!-- Strip unnecessary bolding and italicisation from inside citations -->
     <xsl:template xml:id="strip-bold-italic-around-xref" match="xref/bold[italic[not(xref)]]
