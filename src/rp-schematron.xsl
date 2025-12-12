@@ -3804,6 +3804,19 @@
             <svrl:text>[aff-no-link] Author aff element does not have an xref pointing to it. Either there's a missing link between an author and this affiliation or it should be removed (or changed to an author note if a present address).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="ancestor::contrib-group[@content-type='section'] and not(parent::contrib)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::contrib-group[@content-type='section'] and not(parent::contrib)">
+            <xsl:attribute name="id">editor-aff-placement</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[editor-aff-placement] Editor aff elements should be placed as a direct child of the editor contrib element. This one is a child of <xsl:text/>
+               <xsl:value-of select="parent::*/name()"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" id="pick-aff-ror-1">
          <sqf:description>
             <sqf:title>Pick ROR option 1</sqf:title>

@@ -1524,6 +1524,10 @@
         role="error" 
         id="aff-no-link">Author aff element does not have an xref pointing to it. Either there's a missing link between an author and this affiliation or it should be removed (or changed to an author note if a present address).</report>
       
+      <report test="ancestor::contrib-group[@content-type='section'] and not(parent::contrib)" 
+        role="error" 
+        id="editor-aff-placement">Editor aff elements should be placed as a direct child of the editor contrib element. This one is a child of <value-of select="parent::*/name()"/>.</report>
+      
       <sqf:fix id="pick-aff-ror-1">
         <sqf:description>
           <sqf:title>Pick ROR option 1</sqf:title>
