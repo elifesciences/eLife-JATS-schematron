@@ -5413,6 +5413,16 @@
         <x:expect-report id="junk-character-presence-3" role="error"/>
         <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="junk-character-presence-4-pass">
+        <x:context href="../tests/rp/unallowed-symbol-tests/junk-character-presence-4/pass.xml"/>
+        <x:expect-not-report id="junk-character-presence-4" role="error"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="junk-character-presence-4-fail">
+        <x:context href="../tests/rp/unallowed-symbol-tests/junk-character-presence-4/fail.xml"/>
+        <x:expect-report id="junk-character-presence-4" role="error"/>
+        <x:expect-not-assert id="unallowed-symbol-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="inverterted-question-presence-pass">
         <x:context href="../tests/rp/unallowed-symbol-tests/inverterted-question-presence/pass.xml"/>
         <x:expect-not-report id="inverterted-question-presence" role="warning"/>
