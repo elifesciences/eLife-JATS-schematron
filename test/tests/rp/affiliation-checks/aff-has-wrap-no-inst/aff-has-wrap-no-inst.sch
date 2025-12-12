@@ -1154,6 +1154,7 @@
   </sqf:fixes>
   <pattern id="affiliation-checks-pattern">
     <rule context="aff" id="affiliation-checks">
+      <let name="id" value="@id"/>
       <let name="country-count" value="count(descendant::country)"/>
       <let name="city-count" value="count(descendant::city)"/>
       <report test="institution-wrap[not(institution)]" role="error" id="aff-has-wrap-no-inst">[aff-has-wrap-no-inst] aff contains institution-wrap, but that institution-wrap does not have a child institution.</report>

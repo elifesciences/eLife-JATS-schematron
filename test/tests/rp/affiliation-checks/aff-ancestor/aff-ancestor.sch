@@ -1154,6 +1154,7 @@
   </sqf:fixes>
   <pattern id="affiliation-checks-pattern">
     <rule context="aff" id="affiliation-checks">
+      <let name="id" value="@id"/>
       <let name="country-count" value="count(descendant::country)"/>
       <let name="city-count" value="count(descendant::city)"/>
       <assert test="ancestor::contrib-group" role="error" id="aff-ancestor">[aff-ancestor] aff elements must be a descendant of contrib-group. This one is not.</assert>

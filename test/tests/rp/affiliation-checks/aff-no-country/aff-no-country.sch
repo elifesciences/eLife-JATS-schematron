@@ -1154,6 +1154,7 @@
   </sqf:fixes>
   <pattern id="affiliation-checks-pattern">
     <rule context="aff" id="affiliation-checks">
+      <let name="id" value="@id"/>
       <let name="country-count" value="count(descendant::country)"/>
       <let name="city-count" value="count(descendant::city)"/>
       <report test="$country-count lt 1" role="warning" sqf:fix="add-ror-country" id="aff-no-country">[aff-no-country] Affiliation does not contain a country element: <value-of select="."/>

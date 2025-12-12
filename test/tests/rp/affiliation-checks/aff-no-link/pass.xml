@@ -1,0 +1,21 @@
+<?oxygen SCHSchema="aff-no-link.sch"?>
+<!--Context: aff
+Test: report    parent::contrib-group[not(@content-type) and parent::article-meta and not(descendant::xref[@rid=$id])]
+Message: Author aff element does not have an xref pointing to it. Either there's a missing link between an author and this affiliation or it should be removed (or changed to an author note if a present address). -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <contrib-group>
+                <contrib>
+                    <xref rid="aff1"/>
+                    <xref rid="aff2"/>
+                </contrib>
+                <aff id="aff1"/>
+                <aff id="aff2"/>
+            </contrib-group>
+            <contrib-group content-type="section">
+                <aff/>
+            </contrib-group>
+        </article-meta>
+    </article>
+</root>

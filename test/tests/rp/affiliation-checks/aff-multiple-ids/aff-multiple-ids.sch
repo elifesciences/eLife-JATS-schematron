@@ -1154,6 +1154,7 @@
   </sqf:fixes>
   <pattern id="affiliation-checks-pattern">
     <rule context="aff" id="affiliation-checks">
+      <let name="id" value="@id"/>
       <let name="country-count" value="count(descendant::country)"/>
       <let name="city-count" value="count(descendant::city)"/>
       <report test="count(descendant::institution-id) gt 1" role="error" sqf:fix="pick-aff-ror-1 pick-aff-ror-2 pick-aff-ror-3" id="aff-multiple-ids">[aff-multiple-ids] Affiliation contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/>

@@ -1157,7 +1157,7 @@
       <let name="id" value="@id"/>
       <let name="country-count" value="count(descendant::country)"/>
       <let name="city-count" value="count(descendant::city)"/>
-      <report test="institution-wrap[not(institution-id)] and not(ancestor::contrib-group[@content-type='section']) and not(ancestor::sub-article)" role="error" id="aff-has-wrap-no-id">[aff-has-wrap-no-id] aff contains institution-wrap, but that institution-wrap does not have a child institution-id. institution-wrap should only be used when there is an institution-id for the institution.</report>
+      <report test="parent::contrib-group[not(@content-type) and parent::article-meta and not(descendant::xref[@rid=$id])]" role="error" id="aff-no-link">[aff-no-link] Author aff element does not have an xref pointing to it. Either there's a missing link between an author and this affiliation or it should be removed (or changed to an author note if a present address).</report>
       <sqf:fix id="pick-aff-ror-1">
         <sqf:description>
           <sqf:title>Pick ROR option 1</sqf:title>
