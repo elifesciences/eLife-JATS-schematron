@@ -623,6 +623,36 @@
         <x:expect-report id="present-address-aff" role="error"/>
         <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="aff-id-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-id/pass.xml"/>
+        <x:expect-not-report id="aff-id" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-id-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-id/fail.xml"/>
+        <x:expect-report id="aff-id" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-no-link-pass">
+        <x:context href="../tests/rp/affiliation-checks/aff-no-link/pass.xml"/>
+        <x:expect-not-report id="aff-no-link" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-no-link-fail">
+        <x:context href="../tests/rp/affiliation-checks/aff-no-link/fail.xml"/>
+        <x:expect-report id="aff-no-link" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-aff-placement-pass">
+        <x:context href="../tests/rp/affiliation-checks/editor-aff-placement/pass.xml"/>
+        <x:expect-not-report id="editor-aff-placement" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="editor-aff-placement-fail">
+        <x:context href="../tests/rp/affiliation-checks/editor-aff-placement/fail.xml"/>
+        <x:expect-report id="editor-aff-placement" role="error"/>
+        <x:expect-not-assert id="affiliation-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="country-tests">
       <x:scenario label="gen-country-test-pass">

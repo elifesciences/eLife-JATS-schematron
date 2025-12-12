@@ -1157,7 +1157,7 @@
       <let name="id" value="@id"/>
       <let name="country-count" value="count(descendant::country)"/>
       <let name="city-count" value="count(descendant::city)"/>
-      <report test="institution-wrap[not(institution-id)] and not(ancestor::contrib-group[@content-type='section']) and not(ancestor::sub-article)" role="error" id="aff-has-wrap-no-id">[aff-has-wrap-no-id] aff contains institution-wrap, but that institution-wrap does not have a child institution-id. institution-wrap should only be used when there is an institution-id for the institution.</report>
+      <report test="($id='' or not(@id)) and parent::contrib-group[not(@content-type) and parent::article-meta]" role="error" id="aff-id">[aff-id] aff elements placed within the author contrib-group in article-meta must have an id. This one does not.</report>
       <sqf:fix id="pick-aff-ror-1">
         <sqf:description>
           <sqf:title>Pick ROR option 1</sqf:title>

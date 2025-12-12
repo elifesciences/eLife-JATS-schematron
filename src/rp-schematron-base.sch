@@ -1457,6 +1457,7 @@
 		</rule>
 
     <rule context="aff" id="affiliation-checks">
+      <let name="id" value="@id"/>
       <let name="country-count" value="count(descendant::country)"/>
       <let name="city-count" value="count(descendant::city)"/>
       
@@ -1514,6 +1515,18 @@
       <report test="matches(lower-case(.),'(present|current) (address|institution)')" 
         role="error" 
         id="present-address-aff">There is a present address in this affiliation (<value-of select="."/>), it should be added as a present address in the author-notes section instead.</report>
+      
+      <report test="($id='' or not(@id)) and parent::contrib-group[not(@content-type) and parent::article-meta]" 
+        role="error" 
+        id="aff-id">aff elements placed within the author contrib-group in article-meta must have an id. This one does not.</report>
+      
+      <report test="parent::contrib-group[not(@content-type) and parent::article-meta and not(descendant::xref[@rid=$id])]" 
+        role="error" 
+        id="aff-no-link">Author aff element does not have an xref pointing to it. Either there's a missing link between an author and this affiliation or it should be removed (or changed to an author note if a present address).</report>
+      
+      <report test="ancestor::contrib-group[@content-type='section'] and not(parent::contrib)" 
+        role="error" 
+        id="editor-aff-placement">Editor aff elements should be placed as a direct child of the editor contrib element. This one is a child of <value-of select="parent::*/name()"/>.</report>
       
       <sqf:fix id="pick-aff-ror-1">
         <sqf:description>

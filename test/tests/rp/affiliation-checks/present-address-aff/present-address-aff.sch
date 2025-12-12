@@ -1154,6 +1154,7 @@
   </sqf:fixes>
   <pattern id="affiliation-checks-pattern">
     <rule context="aff" id="affiliation-checks">
+      <let name="id" value="@id"/>
       <let name="country-count" value="count(descendant::country)"/>
       <let name="city-count" value="count(descendant::city)"/>
       <report test="matches(lower-case(.),'(present|current) (address|institution)')" role="error" id="present-address-aff">[present-address-aff] There is a present address in this affiliation (<value-of select="."/>), it should be added as a present address in the author-notes section instead.</report>

@@ -3595,6 +3595,7 @@
    <!--PATTERN affiliation-checks-pattern-->
    <!--RULE affiliation-checks-->
    <xsl:template match="aff" priority="1000" mode="M53">
+      <xsl:variable name="id" select="@id"/>
       <xsl:variable name="country-count" select="count(descendant::country)"/>
       <xsl:variable name="city-count" select="count(descendant::city)"/>
       <!--REPORT warning-->
@@ -3779,6 +3780,41 @@
             <svrl:text>[present-address-aff] There is a present address in this affiliation (<xsl:text/>
                <xsl:value-of select="."/>
                <xsl:text/>), it should be added as a present address in the author-notes section instead.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="($id='' or not(@id)) and parent::contrib-group[not(@content-type) and parent::article-meta]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="($id='' or not(@id)) and parent::contrib-group[not(@content-type) and parent::article-meta]">
+            <xsl:attribute name="id">aff-id</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[aff-id] aff elements placed within the author contrib-group in article-meta must have an id. This one does not.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="parent::contrib-group[not(@content-type) and parent::article-meta and not(descendant::xref[@rid=$id])]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="parent::contrib-group[not(@content-type) and parent::article-meta and not(descendant::xref[@rid=$id])]">
+            <xsl:attribute name="id">aff-no-link</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[aff-no-link] Author aff element does not have an xref pointing to it. Either there's a missing link between an author and this affiliation or it should be removed (or changed to an author note if a present address).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="ancestor::contrib-group[@content-type='section'] and not(parent::contrib)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ancestor::contrib-group[@content-type='section'] and not(parent::contrib)">
+            <xsl:attribute name="id">editor-aff-placement</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[editor-aff-placement] Editor aff elements should be placed as a direct child of the editor contrib element. This one is a child of <xsl:text/>
+               <xsl:value-of select="parent::*/name()"/>
+               <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" id="pick-aff-ror-1">
