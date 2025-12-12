@@ -32345,6 +32345,19 @@
                <xsl:text/> element contains a possible junk character '□'. Unless it's at the end of a mathematical proof, this should be replaced or deleted.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="contains(.,'⍰')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'⍰')">
+            <xsl:attribute name="id">junk-character-presence-4</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[junk-character-presence-4] <xsl:text/>
+               <xsl:value-of select="name(.)"/>
+               <xsl:text/> element contains a junk character '⍰' which should be replaced or deleted.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <!--REPORT warning-->
       <xsl:if test="contains(.,'¿')">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="contains(.,'¿')">

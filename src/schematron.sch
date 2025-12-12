@@ -10871,6 +10871,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="junk-character-presence-3"><name/> element contains a possible junk character '□'. Unless it's at the end of a mathematical proof, this should be replaced or deleted.</report>
       
+      <report test="contains(.,'⍰')" 
+        role="error" 
+        id="junk-character-presence-4"><name/> element contains a junk character '⍰' which should be replaced or deleted.</report>
+      
       <report test="contains(.,'¿')" 
         role="warning" 
         id="inverterted-question-presence"><name/> element contains an inverted question mark '¿' which should very likely be replaced/removed.</report>
