@@ -1994,11 +1994,15 @@
     </xsl:template>
     
     <!-- Add missing label to mistagged Key resources table -->
-    <xsl:template xml:id="kr-table-fix" match="sec[matches(lower-case(title[1]),'^key resources? table$') and title[1]/following-sibling::*[1][name()='table-wrap' and not(label)]]/table-wrap[1]">
+    <xsl:template xml:id="kr-table-fix" match="sec/table-wrap[matches(lower-case(label[1]),'^key resources? table\.?\s*$') and preceding-sibling::*[name()=('label','title')]] | sec[matches(lower-case(title[1]),'^key resources? table$') and title[1]/following-sibling::*[1][name()='table-wrap' and not(label)]]/table-wrap[1]">
         <xsl:copy>
-            <xsl:apply-templates select="@*"/>
-            <xsl:text>&#xa;</xsl:text>
-            <label>Key resources table</label>
+            <xsl:apply-templates select="@*[name()!='position']"/>
+            <!-- Ensure KR tables are float by default -->
+            <xsl:attribute name="position">float</xsl:attribute>
+            <xsl:if test="not(label)">
+                <xsl:text>&#xa;</xsl:text>
+                <label>Key resources table</label>
+            </xsl:if>
             <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
     </xsl:template>
