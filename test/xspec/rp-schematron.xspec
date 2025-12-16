@@ -2259,6 +2259,16 @@
         <x:expect-assert id="fig-graphic-conformance" role="error"/>
         <x:expect-not-assert id="fig-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="fig-sec-wrapper-pass">
+        <x:context href="../tests/rp/fig-checks/fig-sec-wrapper/pass.xml"/>
+        <x:expect-not-report id="fig-sec-wrapper" role="warning"/>
+        <x:expect-not-assert id="fig-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fig-sec-wrapper-fail">
+        <x:context href="../tests/rp/fig-checks/fig-sec-wrapper/fail.xml"/>
+        <x:expect-report id="fig-sec-wrapper" role="warning"/>
+        <x:expect-not-assert id="fig-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="fig-child-checks">
       <x:scenario label="fig-child-conformance-pass">
@@ -2387,6 +2397,16 @@
       <x:scenario label="table-wrap-content-conformance-fail">
         <x:context href="../tests/rp/table-wrap-checks/table-wrap-content-conformance/fail.xml"/>
         <x:expect-assert id="table-wrap-content-conformance" role="error"/>
+        <x:expect-not-assert id="table-wrap-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-wrap-sec-wrapper-pass">
+        <x:context href="../tests/rp/table-wrap-checks/table-wrap-sec-wrapper/pass.xml"/>
+        <x:expect-not-report id="table-wrap-sec-wrapper" role="warning"/>
+        <x:expect-not-assert id="table-wrap-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-wrap-sec-wrapper-fail">
+        <x:context href="../tests/rp/table-wrap-checks/table-wrap-sec-wrapper/fail.xml"/>
+        <x:expect-report id="table-wrap-sec-wrapper" role="warning"/>
         <x:expect-not-assert id="table-wrap-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
