@@ -2184,6 +2184,8 @@
     <rule context="fig" id="fig-checks">
         <assert test="graphic" role="error" id="fig-graphic-conformance">
         <value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>
+       
+       <report test="not(label) and parent::sec and preceding-sibling::title and not(following-sibling::*)" role="warning" id="fig-sec-wrapper">Unlablled figure is entirely wrapped in a sec with a title. Is the sec redundant and the title actually the label (or title) for the figure?</report>
      </rule>
   </pattern>
   <pattern id="fig-child-checks-pattern">
@@ -2233,6 +2235,8 @@
         <!-- adjust when support is added for HTML tables -->
         <assert test="graphic or alternatives[graphic]" role="error" id="table-wrap-content-conformance">
         <value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>
+       
+       <report test="not(label) and parent::sec and preceding-sibling::title and not(following-sibling::*)" role="warning" id="table-wrap-sec-wrapper">Unlablled table is entirely wrapped in a sec with a title. Is the sec redundant and the title actually the label (or title) for the table?</report>
      </rule>
   </pattern>
   <pattern id="table-wrap-child-checks-pattern">

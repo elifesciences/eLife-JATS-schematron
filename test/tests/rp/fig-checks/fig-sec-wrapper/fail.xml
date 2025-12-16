@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="fig-sec-wrapper.sch"?>
+<!--Context: fig
+Test: report    not(label) and parent::sec and preceding-sibling::title and not(following-sibling::*)
+Message: Unlablled figure is entirely wrapped in a sec with a title. Is the sec redundant and the title actually the label (or title) for the figure? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <sec>
+            <label/>
+            <title/>
+            <fig/>
+        </sec>
+    </article>
+</root>

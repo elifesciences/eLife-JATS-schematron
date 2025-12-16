@@ -6752,6 +6752,17 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <!--REPORT warning-->
+      <xsl:if test="not(label) and parent::sec and preceding-sibling::title and not(following-sibling::*)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(label) and parent::sec and preceding-sibling::title and not(following-sibling::*)">
+            <xsl:attribute name="id">fig-sec-wrapper</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[fig-sec-wrapper] Unlablled figure is entirely wrapped in a sec with a title. Is the sec redundant and the title actually the label (or title) for the figure?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M96"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M96"/>
@@ -6968,6 +6979,17 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <!--REPORT warning-->
+      <xsl:if test="not(label) and parent::sec and preceding-sibling::title and not(following-sibling::*)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(label) and parent::sec and preceding-sibling::title and not(following-sibling::*)">
+            <xsl:attribute name="id">table-wrap-sec-wrapper</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[table-wrap-sec-wrapper] Unlablled table is entirely wrapped in a sec with a title. Is the sec redundant and the title actually the label (or title) for the table?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M101"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M101"/>
