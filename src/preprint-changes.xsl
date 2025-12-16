@@ -917,6 +917,14 @@
             </xsl:choose>
         </xsl:copy>
     </xsl:template>
+    
+    <!-- Ensure ORCIDs always use https -->
+    <xsl:template xml:id="orcid-https-fix" match="contrib-id[@contrib-id-type='orcid' and starts-with(.,'http://')]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:value-of select="concat('https://',substring-after(.,'http://'))"/>
+        </xsl:copy>
+    </xsl:template>
 
     <!-- Remove degrees from contrib -->
     <xsl:template xml:id="remove-degrees-from-contrib" match="contrib/degrees"/>
