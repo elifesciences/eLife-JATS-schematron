@@ -2152,7 +2152,7 @@
     <!-- Make unnecessary list item labels semantic -->
     <xsl:template xml:id="fix-list-item-labels" match="list[@list-type='simple' and list-item[label] and not(@continued-from) and not(@prefix-word)]">
         <xsl:variable name="distinct-labels" select="distinct-values(./list-item/label)"/>
-        <xsl:variable name="bullet-variants" select="('○','-','•','▪','◦','–','●','□')"/>
+        <xsl:variable name="bullet-variants" select="('○','‐','-','•','▪','◦','–','●','□')"/>
         <xsl:variable name="clean-labels" select="for $label in $distinct-labels return replace($label,'[^\p{L}\d]','')"/>
         <xsl:variable name="label-type">
             <xsl:choose>
