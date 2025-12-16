@@ -2496,6 +2496,16 @@
       </report>
       </rule>
   </pattern>
+  <pattern id="p-file-ref-checks-pattern">
+    <rule context="article//p[not(ancestor::sub-article) and not(ancestor::ack)]" id="p-file-ref-checks">
+        <let name="text" value="lower-case(string-join(for $x in self::*/(*|text())                                             return if ($x/local-name()='xref') then ()                                                    else if ($x//*:p) then ($x/text())                                                    else string($x),''))"/>
+        <let name="missing-file-regex" value="'\s(fig(\.|ure)?|table|file|movie|video)s?(\s+supp(\.|l[ae]m[ae]nt(ary|al)?)?s?)?\s+s?\d'"/>
+        
+        <report test="matches($text,$missing-file-regex)" role="warning" id="missing-file-in-text-test">
+        <name/> element contains possible unlinked citation to a figure, table or file - search - <value-of select="string-join(e:analyze-string($text,$missing-file-regex)//*:match,'; ')"/>
+      </report>
+      </rule>
+  </pattern>
   
   <pattern id="p-td-th-checks-pattern">
     <rule context="p|td|th" id="p-td-th-checks">
@@ -3804,6 +3814,7 @@
       <assert test="descendant::article/body/sec/title or descendant::article/back/sec/title" role="error" id="title-toc-checks-xspec-assert">article/body/sec/title|article/back/sec/title must be present.</assert>
       <assert test="descendant::p[not(ancestor::sub-article or ancestor::def) and (count(*)=1) and (child::bold or child::italic)]" role="error" id="p-bold-checks-xspec-assert">p[not(ancestor::sub-article or ancestor::def) and (count(*)=1) and (child::bold or child::italic)] must be present.</assert>
       <assert test="descendant::article[descendant::xref[@ref-type='bibr'][matches(.,'\p{L}')]]//p[not(ancestor::sub-article) and not(ancestor::ack)]" role="error" id="p-ref-checks-xspec-assert">article[descendant::xref[@ref-type='bibr'][matches(.,'\p{L}')]]//p[not(ancestor::sub-article) and not(ancestor::ack)] must be present.</assert>
+      <assert test="descendant::article//p[not(ancestor::sub-article) and not(ancestor::ack)]" role="error" id="p-file-ref-checks-xspec-assert">article//p[not(ancestor::sub-article) and not(ancestor::ack)] must be present.</assert>
       <assert test="descendant::p or descendant::td or descendant::th" role="error" id="p-td-th-checks-xspec-assert">p|td|th must be present.</assert>
       <assert test="descendant::article/front/article-meta" role="error" id="general-article-meta-checks-xspec-assert">article/front/article-meta must be present.</assert>
       <assert test="descendant::article/front/article-meta/article-id" role="error" id="general-article-id-checks-xspec-assert">article/front/article-meta/article-id must be present.</assert>
