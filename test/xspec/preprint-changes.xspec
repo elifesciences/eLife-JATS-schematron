@@ -52,6 +52,10 @@
       <x:context href="../tests/preprint-changes/remove-fullstops-from-author-names/input.xml"/>
       <x:expect label="Testing the template: remove-fullstops-from-author-names" href="../tests/preprint-changes/remove-fullstops-from-author-names/output.xml"/>
     </x:scenario>
+    <x:scenario label="orcid-https-fix">
+      <x:context href="../tests/preprint-changes/orcid-https-fix/input.xml"/>
+      <x:expect label="Testing the template: orcid-https-fix" href="../tests/preprint-changes/orcid-https-fix/output.xml"/>
+    </x:scenario>
     <x:scenario label="remove-degrees-from-contrib">
       <x:context href="../tests/preprint-changes/remove-degrees-from-contrib/input.xml"/>
       <x:expect label="Testing the template: remove-degrees-from-contrib" href="../tests/preprint-changes/remove-degrees-from-contrib/output.xml"/>

@@ -1,0 +1,4 @@
+<!--Testing template with id: orcid-https-fix-->
+<contrib xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <contrib-id contrib-id-type="orcid">https://orcid.org/0000-0001-XXXX-XXXX</contrib-id>
+</contrib>
