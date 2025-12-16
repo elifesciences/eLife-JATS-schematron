@@ -3046,6 +3046,18 @@
         <x:expect-not-assert id="p-ref-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="p-file-ref-checks">
+      <x:scenario label="missing-file-in-text-test-pass">
+        <x:context href="../tests/rp/p-file-ref-checks/missing-file-in-text-test/pass.xml"/>
+        <x:expect-not-report id="missing-file-in-text-test" role="warning"/>
+        <x:expect-not-assert id="p-file-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="missing-file-in-text-test-fail">
+        <x:context href="../tests/rp/p-file-ref-checks/missing-file-in-text-test/fail.xml"/>
+        <x:expect-report id="missing-file-in-text-test" role="warning"/>
+        <x:expect-not-assert id="p-file-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="p-td-th-checks">
       <x:scenario label="rrid-test-pass">
         <x:context href="../tests/rp/p-td-th-checks/rrid-test/pass.xml"/>

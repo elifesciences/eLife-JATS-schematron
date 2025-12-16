@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="missing-file-in-text-test.sch"?>
+<!--Context: article//p[not(ancestor::sub-article) and not(ancestor::ack)]
+Test: report    matches($text,$missing-file-regex)
+Message:  element contains possible unlinked citation to a figure, table or file - search -  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <p>text <xref>Figure 1</xref> text</p>
+        <p>text <xref>Figure supplemental 1</xref> text</p>
+        <p>text <xref>Table supplement 1</xref> text</p>
+        <p>text <xref>Video 1</xref> text</p>
+        <p>text <xref>Movie 1</xref> text</p>
+        <p>text <xref>file 1</xref> text</p>
+    </article>
+</root>
