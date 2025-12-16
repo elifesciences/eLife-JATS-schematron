@@ -8,6 +8,11 @@
     xmlns:e="https://elifesciences.org/namespace"
     exclude-result-prefixes="xs xsi e"
     version="3.0">
+    
+    <xsl:function name="e:stripDiacritics" as="xs:string">
+        <xsl:param name="string" as="xs:string"/>
+        <xsl:value-of select="replace(replace(replace(translate(normalize-unicode($string,'NFD'),'ƀȼđɇǥħɨıɉꝁłøɍŧɏƶ','bcdeghiijklortyz'),'[\p{M}’]',''),'æ','ae'),'ß','ss')"/>
+    </xsl:function>
 
     <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="yes" use-character-maps="char-map"/>
     
@@ -418,6 +423,63 @@
                 </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+    
+    <!-- Standardise certain country names -->
+    <xsl:template xml:id="country-standardisation" match="aff//country">
+        <xsl:variable name="lc" select="e:stripDiacritics(replace(lower-case(.),'[\(\)]',''))"/>
+        <xsl:variable name="countries" select="'countries.xml'"/>
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:choose>
+                <xsl:when test="matches($lc,'^(the )?(u\.?s\.?a?\.?|unite[ds] states( of america)?)\.?$')">
+                    <xsl:attribute name="country">US</xsl:attribute>
+                    <xsl:text>United States</xsl:text>
+                </xsl:when>
+                <xsl:when test="matches($lc,'^(the )?(u\.?k\.?|unite[ds] kingdom|england|wales|scotland)\.?$')">
+                    <xsl:attribute name="country">GB</xsl:attribute>
+                    <xsl:text>United Kingdom</xsl:text>
+                </xsl:when>
+                <xsl:when test="matches($lc,'^(the )?([rp]\.?\s?[pr]\.?|(people’?s )?republic( of)?)?\s?china\.?$')">
+                    <xsl:attribute name="country">CN</xsl:attribute>
+                    <xsl:text>China</xsl:text>
+                </xsl:when>
+                <xsl:when test="matches($lc,'^(the )?\s?(holland|netherlands)\.?$')">
+                    <xsl:attribute name="country">NL</xsl:attribute>
+                    <xsl:text>Netherlands</xsl:text>
+                </xsl:when>
+                <xsl:when test="matches($lc,'^(the )?(republic of|south)?\s?korea\.?$')">
+                    <xsl:attribute name="country">KR</xsl:attribute>
+                    <xsl:text>Republic of Korea</xsl:text>
+                </xsl:when>
+                <xsl:when test="matches($lc,'^(the )?\s?(turkiye|turkey)\.?$')">
+                    <xsl:attribute name="country">TR</xsl:attribute>
+                    <xsl:text>Turkiye</xsl:text>
+                </xsl:when>
+                <xsl:when test="matches($lc,'^(the )?\s?russia\.?$')">
+                    <xsl:attribute name="country">RU</xsl:attribute>
+                    <xsl:text>Russian Federation</xsl:text>
+                </xsl:when>
+                <xsl:when test="matches($lc,'^(the )?\s?tanzania\.?$')">
+                    <xsl:attribute name="country">TZ</xsl:attribute>
+                    <xsl:text>United Republic of Tanzania</xsl:text>
+                </xsl:when>
+                <xsl:when test="matches($lc,'^(the )?\s?vietnam\.?$')">
+                    <xsl:attribute name="country">VN</xsl:attribute>
+                    <xsl:text>Viet Nam</xsl:text>
+                </xsl:when>
+                <xsl:when test="document($countries)//*:country[lower-case(.)=$lc]">
+                    <xsl:attribute name="country">
+                        <xsl:value-of select="document($countries)//*:country[lower-case(.)=$lc]/@country"/>
+                    </xsl:attribute>
+                    <xsl:apply-templates select="document($countries)//*:country[lower-case(.)=$lc]/text()"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="*|text()"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:apply-templates select="comment()|processing-instruction()"/>
+        </xsl:copy>
     </xsl:template>
 
 </xsl:stylesheet>
