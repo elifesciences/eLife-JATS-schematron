@@ -7797,6 +7797,19 @@
             <svrl:text>[sec-label-no-title] sec element has a label but not title. This is not correct. Please capture the label as the title.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="(not(@sec-type='supplementary')) and not(sec) and not(p[*[not(name()=('fig','table-wrap'))]]) and (descendant::fig or descendant::table-wrap) and (not(title) or title[1][matches(lower-case(.),'^supplement| supplement')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="(not(@sec-type='supplementary')) and not(sec) and not(p[*[not(name()=('fig','table-wrap'))]]) and (descendant::fig or descendant::table-wrap) and (not(title) or title[1][matches(lower-case(.),'^supplement| supplement')])">
+            <xsl:attribute name="id">sec-supplementary</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[sec-supplementary] sec element <xsl:text/>
+               <xsl:value-of select="if (not(title)) then 'without title' else concat('(',title[1],')')"/>
+               <xsl:text/> only contains figures and tables but it doesn't have a sec-type="supplementary" attribute. Is this correct? (This attribute is used to assist with PDF generation).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M117"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M117"/>

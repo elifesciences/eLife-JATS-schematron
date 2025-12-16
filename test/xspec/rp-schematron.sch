@@ -2416,6 +2416,8 @@
         <report test="glossary and not(*[not(name()=('label','title','sec-meta','glossary'))])" role="warning" id="sec-glossary">sec element only contains a child glossary. Is it a redundant sec (which should be deleted)? Or perhaps it indicates the structure/hierarchy has been incorrectly captured.</report>
         
         <report test="label and not(title)" role="error" sqf:fix="label-to-title" id="sec-label-no-title">sec element has a label but not title. This is not correct. Please capture the label as the title.</report>
+        
+        <report test="(not(@sec-type='supplementary')) and not(sec) and not(p[*[not(name()=('fig','table-wrap'))]]) and (descendant::fig or descendant::table-wrap) and (not(title) or title[1][matches(lower-case(.),'^supplement| supplement')])" role="warning" id="sec-supplementary">sec element <value-of select="if (not(title)) then 'without title' else concat('(',title[1],')')"/> only contains figures and tables but it doesn't have a sec-type="supplementary" attribute. Is this correct? (This attribute is used to assist with PDF generation).</report>
      </rule>
   </pattern>
   <pattern id="top-sec-checks-pattern">
