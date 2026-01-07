@@ -5090,6 +5090,18 @@
         <x:expect-not-assert id="uri-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="inline-media-checks">
+      <x:scenario label="inline-media-flag-pass">
+        <x:context href="../tests/rp/inline-media-checks/inline-media-flag/pass.xml"/>
+        <x:expect-not-report id="inline-media-flag" role="error"/>
+        <x:expect-not-assert id="inline-media-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="inline-media-flag-fail">
+        <x:context href="../tests/rp/inline-media-checks/inline-media-flag/fail.xml"/>
+        <x:expect-report id="inline-media-flag" role="error"/>
+        <x:expect-not-assert id="inline-media-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="disp-quote-checks">
       <x:scenario label="disp-quote-1-pass">
         <x:context href="../tests/rp/disp-quote-checks/disp-quote-1/pass.xml"/>
