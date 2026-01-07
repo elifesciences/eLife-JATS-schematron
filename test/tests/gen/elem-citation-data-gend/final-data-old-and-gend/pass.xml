@@ -5,10 +5,10 @@ Message: Dataset reference  is marked as generated but the year is . Is this cor
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <element-citation publication-type="data" specific-use="isSupplementedBy">
-      <year>2024c</year>
+      <year>2025c</year>
     </element-citation>
     <element-citation publication-type="data" specific-use="generated">
-      <year>2024</year>
+      <year>2025</year>
     </element-citation>
   </article>
 </root>
