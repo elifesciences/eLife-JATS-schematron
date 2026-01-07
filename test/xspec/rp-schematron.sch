@@ -3266,6 +3266,12 @@
      </rule>
   </pattern>
   
+  <pattern id="inline-media-checks-pattern">
+    <rule context="inline-media" id="inline-media-checks">
+        <report test="." role="error" id="inline-media-flag">The inline-media element is not permitted. Instead use inline-graphic for images or supplementary-material for downloadable files.</report>
+     </rule>
+  </pattern>
+  
   <pattern id="disp-quote-checks-pattern">
     <rule context="disp-quote" id="disp-quote-checks">
         <assert test="ancestor::sub-article[@article-type='author-comment']" role="warning" id="disp-quote-1">Display quotes are uncommon in eLife content outside the author response. Please check whether this content has been captured correctly (and is rendered approriately).</assert>

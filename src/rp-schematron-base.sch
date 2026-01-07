@@ -4197,6 +4197,14 @@
      </rule>
     </pattern>
   
+  <pattern id="inline-media">
+     <rule context="inline-media" id="inline-media-checks">
+        <report test="." 
+        role="error"
+        id="inline-media-flag">The inline-media element is not permitted. Instead use inline-graphic for images or supplementary-material for downloadable files.</report>
+     </rule>
+    </pattern>
+  
   <pattern id="disp-quote">
      <rule context="disp-quote" id="disp-quote-checks">
         <assert test="ancestor::sub-article[@article-type='author-comment']" 
