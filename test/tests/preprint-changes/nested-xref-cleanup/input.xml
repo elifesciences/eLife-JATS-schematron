@@ -1,0 +1,5 @@
+<!--Testing template with id: nested-xref-cleanup-->
+<p xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<xref ref-type="bibr" rid="c2"><xref ref-type="bibr" rid="c2">Andreasson et al., 2015</xref></xref>
+<xref ref-type="bibr" rid="c3"><xref ref-type="bibr" rid="c2">Andreasson et al., 2015</xref></xref>
+</p>
