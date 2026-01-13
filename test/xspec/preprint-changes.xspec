@@ -192,6 +192,10 @@
       <x:context href="../tests/preprint-changes/bold-follow-xref-cleanup/input.xml"/>
       <x:expect label="Testing the template: bold-follow-xref-cleanup" href="../tests/preprint-changes/bold-follow-xref-cleanup/output.xml"/>
     </x:scenario>
+    <x:scenario label="nested-xref-cleanup">
+      <x:context href="../tests/preprint-changes/nested-xref-cleanup/input.xml"/>
+      <x:expect label="Testing the template: nested-xref-cleanup" href="../tests/preprint-changes/nested-xref-cleanup/output.xml"/>
+    </x:scenario>
     <x:scenario label="strip-i-tags">
       <x:context href="../tests/preprint-changes/strip-i-tags/input.xml"/>
       <x:expect label="Testing the template: strip-i-tags" href="../tests/preprint-changes/strip-i-tags/output.xml"/>

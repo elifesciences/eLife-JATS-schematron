@@ -2068,6 +2068,21 @@
         </xsl:choose>
     </xsl:template>
     
+    <!-- Fix unnecessary nested xrefs -->
+    <xsl:template xml:id="nested-xref-cleanup" match="xref/xref">
+        <xsl:choose>
+            <!-- Only strip when they point to the same item -->
+            <xsl:when test="@rid = parent::xref/@rid">
+                <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy>
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
     <!-- Strip or convert HTML <i> tags -->
     <xsl:template xml:id="strip-i-tags" match="i">
         <xsl:choose>
