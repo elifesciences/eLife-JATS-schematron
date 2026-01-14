@@ -7247,6 +7247,22 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="@id"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@id">
+               <xsl:attribute name="id">disp-formula-id-conformance</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[disp-formula-id-conformance] <xsl:text/>
+                  <xsl:value-of select="name()"/>
+                  <xsl:text/> does not have a id attribute, which must be incorrect.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates select="*" mode="M108"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M108"/>
@@ -7270,6 +7286,22 @@
                <svrl:text>[inline-formula-content-conformance] <xsl:text/>
                   <xsl:value-of select="name()"/>
                   <xsl:text/> does not have a child inline-graphic element, which must be incorrect.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="@id"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="@id">
+               <xsl:attribute name="id">inline-formula-id-conformance</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[inline-formula-id-conformance] <xsl:text/>
+                  <xsl:value-of select="name()"/>
+                  <xsl:text/> does not have a id attribute, which must be incorrect.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -13684,7 +13716,6 @@
    <!--PATTERN math-size-pi-checks-pattern-->
    <!--RULE math-size-pi-checks-->
    <xsl:template match="processing-instruction('math-size')" priority="1000" mode="M216">
-      <xsl:variable name="supported-values" select="('0.5', '1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5', '5.5', '6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12')"/>
       <xsl:variable name="next-node-name" select="following-sibling::node()[not(self::text())][1]/name()"/>
       <!--ASSERT error-->
       <xsl:choose>
@@ -13712,7 +13743,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>[math-size-pi-2] 'math-size' processing-instructions must must be a number greater than 0 and less than 50, 
+               <svrl:text>[math-size-pi-2] 'math-size' processing-instructions must contain a number greater than 0 and less than 50, 
       and must be either a whole number (integer) or a half-number (e.g., 1.5, 2.5). <xsl:text/>
                   <xsl:value-of select="normalize-space(.)"/>
                   <xsl:text/> is not.</svrl:text>

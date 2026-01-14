@@ -1152,16 +1152,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="math-size-pi-checks-pattern">
-    <rule context="processing-instruction('math-size')" id="math-size-pi-checks">
-      <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
-      <assert test="matches(normalize-space(.),'^([1-4]?[0-9](\.[5])?|50)$')" role="error" id="math-size-pi-2">[math-size-pi-2] 'math-size' processing-instructions must contain a number greater than 0 and less than 50, 
-      and must be either a whole number (integer) or a half-number (e.g., 1.5, 2.5). <value-of select="normalize-space(.)"/> is not.</assert>
+  <pattern id="disp-formula-checks-pattern">
+    <rule context="disp-formula" id="disp-formula-checks">
+      <assert test="@id" role="error" id="disp-formula-id-conformance">[disp-formula-id-conformance] <value-of select="name()"/> does not have a id attribute, which must be incorrect.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::processing-instruction('math-size')" role="error" id="math-size-pi-checks-xspec-assert">processing-instruction('math-size') must be present.</assert>
+      <assert test="descendant::disp-formula" role="error" id="disp-formula-checks-xspec-assert">disp-formula must be present.</assert>
     </rule>
   </pattern>
 </schema>

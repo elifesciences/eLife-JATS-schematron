@@ -2759,6 +2759,10 @@
           <assert test="graphic or alternatives[graphic]" 
           role="error" 
           id="disp-formula-content-conformance"><value-of select="if (label) then concat('Equation ',label) else name()"/> does not have a child graphic element, which must be incorrect.</assert>
+        
+        <assert test="@id" 
+          role="error" 
+          id="disp-formula-id-conformance"><value-of select="name()"/> does not have a id attribute, which must be incorrect.</assert>
       </rule>
       
        <rule context="inline-formula" id="inline-formula-checks">
@@ -2766,6 +2770,10 @@
           <assert test="inline-graphic or alternatives[inline-graphic]" 
           role="error" 
           id="inline-formula-content-conformance"><value-of select="name()"/> does not have a child inline-graphic element, which must be incorrect.</assert>
+         
+         <assert test="@id" 
+          role="error" 
+          id="inline-formula-id-conformance"><value-of select="name()"/> does not have a id attribute, which must be incorrect.</assert>
       </rule>
       
         <rule context="alternatives[parent::disp-formula]" id="disp-equation-alternatives-checks">
@@ -4843,7 +4851,6 @@
     </rule>
     
     <rule context="processing-instruction('math-size')" id="math-size-pi-checks">
-      <let name="supported-values" value="('0.5', '1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5', '5.5', '6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12')"/>
       <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
       
       <assert test="$next-node-name=('disp-formula','inline-formula')" 
@@ -4852,7 +4859,7 @@
       
       <assert test="matches(normalize-space(.),'^([1-4]?[0-9](\.[5])?|50)$')" 
          role="error" 
-         id="math-size-pi-2">'math-size' processing-instructions must must be a number greater than 0 and less than 50, 
+         id="math-size-pi-2">'math-size' processing-instructions must contain a number greater than 0 and less than 50, 
       and must be either a whole number (integer) or a half-number (e.g., 1.5, 2.5). <value-of select="normalize-space(.)"/> is not.</assert>
     </rule>
     
