@@ -2543,6 +2543,16 @@
         <x:expect-assert id="disp-formula-content-conformance" role="error"/>
         <x:expect-not-assert id="disp-formula-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="disp-formula-id-conformance-pass">
+        <x:context href="../tests/rp/disp-formula-checks/disp-formula-id-conformance/pass.xml"/>
+        <x:expect-not-assert id="disp-formula-id-conformance" role="error"/>
+        <x:expect-not-assert id="disp-formula-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-formula-id-conformance-fail">
+        <x:context href="../tests/rp/disp-formula-checks/disp-formula-id-conformance/fail.xml"/>
+        <x:expect-assert id="disp-formula-id-conformance" role="error"/>
+        <x:expect-not-assert id="disp-formula-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="inline-formula-checks">
       <x:scenario label="inline-formula-content-conformance-pass">
@@ -2553,6 +2563,16 @@
       <x:scenario label="inline-formula-content-conformance-fail">
         <x:context href="../tests/rp/inline-formula-checks/inline-formula-content-conformance/fail.xml"/>
         <x:expect-assert id="inline-formula-content-conformance" role="error"/>
+        <x:expect-not-assert id="inline-formula-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="inline-formula-id-conformance-pass">
+        <x:context href="../tests/rp/inline-formula-checks/inline-formula-id-conformance/pass.xml"/>
+        <x:expect-not-assert id="inline-formula-id-conformance" role="error"/>
+        <x:expect-not-assert id="inline-formula-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="inline-formula-id-conformance-fail">
+        <x:context href="../tests/rp/inline-formula-checks/inline-formula-id-conformance/fail.xml"/>
+        <x:expect-assert id="inline-formula-id-conformance" role="error"/>
         <x:expect-not-assert id="inline-formula-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
