@@ -3770,6 +3770,10 @@
       <report test="@award-id-type='doi' and not(matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$'))" 
         role="error" 
         id="award-id-test-12">award-id has the attribute award-id-type="doi" but it does not contain a valid DOI (<value-of select="."/>).</report>
+      
+      <report test="matches(lower-case(.),'grant')" 
+        role="warning" 
+        id="award-id-test-13">award-id contains the phrase 'grant' (<value-of select="."/>). Should it be removed?</report>
     </rule>
       
       <rule context="funding-source//institution-id" id="funding-institution-id-tests">
