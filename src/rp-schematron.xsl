@@ -10335,6 +10335,19 @@
                <xsl:text/>).</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(lower-case(.),'grant')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'grant')">
+            <xsl:attribute name="id">award-id-test-13</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[award-id-test-13] award-id contains the phrase 'grant' (<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>). Should it be removed?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M156"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M156"/>
