@@ -71,7 +71,232 @@
         <xsl:output-character character="Φ" string="&amp;#x3a6;"/>
         <xsl:output-character character="Χ" string="&amp;#x3a7;"/>
         <xsl:output-character character="Ψ" string="&amp;#x3a8;"/>
-        <xsl:output-character character="Ω" string="&amp;#x3a9;"/>  
+        <xsl:output-character character="Ω" string="&amp;#x3a9;"/>
+        
+        <!-- Mathematical Script Capital Letters (U+1D49C-1D4B5) -->
+        <xsl:output-character character="𝒜" string="&amp;#x1D49C;"/>
+        <xsl:output-character character="𝒞" string="&amp;#x1D49E;"/>
+        <xsl:output-character character="𝒟" string="&amp;#x1D49F;"/>
+        <xsl:output-character character="𝒢" string="&amp;#x1D4A2;"/>
+        <xsl:output-character character="𝒥" string="&amp;#x1D4A5;"/>
+        <xsl:output-character character="𝒦" string="&amp;#x1D4A6;"/>
+        <xsl:output-character character="𝒩" string="&amp;#x1D4A9;"/>
+        <xsl:output-character character="𝒪" string="&amp;#x1D4AA;"/>
+        <xsl:output-character character="𝒫" string="&amp;#x1D4AB;"/>
+        <xsl:output-character character="𝒬" string="&amp;#x1D4AC;"/>
+        <xsl:output-character character="𝒮" string="&amp;#x1D4AE;"/>
+        <xsl:output-character character="𝒯" string="&amp;#x1D4AF;"/>
+        <xsl:output-character character="𝒰" string="&amp;#x1D4B0;"/>
+        <xsl:output-character character="𝒱" string="&amp;#x1D4B1;"/>
+        <xsl:output-character character="𝒲" string="&amp;#x1D4B2;"/>
+        <xsl:output-character character="𝒳" string="&amp;#x1D4B3;"/>
+        <xsl:output-character character="𝒴" string="&amp;#x1D4B4;"/>
+        <xsl:output-character character="𝒵" string="&amp;#x1D4B5;"/>
+        
+        <!-- Mathematical Script Small Letters (U+1D4B6-1D4CF) -->
+        <xsl:output-character character="𝒶" string="&amp;#x1D4B6;"/>
+        <xsl:output-character character="𝒷" string="&amp;#x1D4B7;"/>
+        <xsl:output-character character="𝒸" string="&amp;#x1D4B8;"/>
+        <xsl:output-character character="𝒹" string="&amp;#x1D4B9;"/>
+        <xsl:output-character character="𝒺" string="&amp;#x1D4BA;"/>
+        <xsl:output-character character="𝒻" string="&amp;#x1D4BB;"/>
+        <xsl:output-character character="𝒼" string="&amp;#x1D4BC;"/>
+        <xsl:output-character character="𝒽" string="&amp;#x1D4BD;"/>
+        <xsl:output-character character="𝒾" string="&amp;#x1D4BE;"/>
+        <xsl:output-character character="𝒿" string="&amp;#x1D4BF;"/>
+        <xsl:output-character character="𝓀" string="&amp;#x1D4C0;"/>
+        <xsl:output-character character="𝓁" string="&amp;#x1D4C1;"/>
+        <xsl:output-character character="𝓂" string="&amp;#x1D4C2;"/>
+        <xsl:output-character character="𝓃" string="&amp;#x1D4C3;"/>
+        <xsl:output-character character="𝓄" string="&amp;#x1D4C4;"/>
+        <xsl:output-character character="𝓅" string="&amp;#x1D4C5;"/>
+        <xsl:output-character character="𝓆" string="&amp;#x1D4C6;"/>
+        <xsl:output-character character="𝓇" string="&amp;#x1D4C7;"/>
+        <xsl:output-character character="𝓈" string="&amp;#x1D4C8;"/>
+        <xsl:output-character character="𝓉" string="&amp;#x1D4C9;"/>
+        <xsl:output-character character="𝓊" string="&amp;#x1D4CA;"/>
+        <xsl:output-character character="𝓋" string="&amp;#x1D4CB;"/>
+        <xsl:output-character character="𝓌" string="&amp;#x1D4CC;"/>
+        <xsl:output-character character="𝓍" string="&amp;#x1D4CD;"/>
+        <xsl:output-character character="𝓎" string="&amp;#x1D4CE;"/>
+        <xsl:output-character character="𝓏" string="&amp;#x1D4CF;"/>
+        
+        <!-- Mathematical Bold Script Capital Letters (U+1D4D0-1D4E9) -->
+        <xsl:output-character character="𝓐" string="&amp;#x1D4D0;"/>
+        <xsl:output-character character="𝓑" string="&amp;#x1D4D1;"/>
+        <xsl:output-character character="𝓒" string="&amp;#x1D4D2;"/>
+        <xsl:output-character character="𝓓" string="&amp;#x1D4D3;"/>
+        <xsl:output-character character="𝓔" string="&amp;#x1D4D4;"/>
+        <xsl:output-character character="𝓕" string="&amp;#x1D4D5;"/>
+        <xsl:output-character character="𝓖" string="&amp;#x1D4D6;"/>
+        <xsl:output-character character="𝓗" string="&amp;#x1D4D7;"/>
+        <xsl:output-character character="𝓘" string="&amp;#x1D4D8;"/>
+        <xsl:output-character character="𝓙" string="&amp;#x1D4D9;"/>
+        <xsl:output-character character="𝓚" string="&amp;#x1D4DA;"/>
+        <xsl:output-character character="𝓛" string="&amp;#x1D4DB;"/>
+        <xsl:output-character character="𝓜" string="&amp;#x1D4DC;"/>
+        <xsl:output-character character="𝓝" string="&amp;#x1D4DD;"/>
+        <xsl:output-character character="𝓞" string="&amp;#x1D4DE;"/>
+        <xsl:output-character character="𝓟" string="&amp;#x1D4DF;"/>
+        <xsl:output-character character="𝓠" string="&amp;#x1D4E0;"/>
+        <xsl:output-character character="𝓡" string="&amp;#x1D4E1;"/>
+        <xsl:output-character character="𝓢" string="&amp;#x1D4E2;"/>
+        <xsl:output-character character="𝓣" string="&amp;#x1D4E3;"/>
+        <xsl:output-character character="𝓤" string="&amp;#x1D4E4;"/>
+        <xsl:output-character character="𝓥" string="&amp;#x1D4E5;"/>
+        <xsl:output-character character="𝓦" string="&amp;#x1D4E6;"/>
+        <xsl:output-character character="𝓧" string="&amp;#x1D4E7;"/>
+        <xsl:output-character character="𝓨" string="&amp;#x1D4E8;"/>
+        <xsl:output-character character="𝓩" string="&amp;#x1D4E9;"/>
+        
+        <!-- Mathematical Bold Script Small Letters (U+1D4EA-1D503) -->
+        <xsl:output-character character="𝓪" string="&amp;#x1D4EA;"/>
+        <xsl:output-character character="𝓫" string="&amp;#x1D4EB;"/>
+        <xsl:output-character character="𝓬" string="&amp;#x1D4EC;"/>
+        <xsl:output-character character="𝓭" string="&amp;#x1D4ED;"/>
+        <xsl:output-character character="𝓮" string="&amp;#x1D4EE;"/>
+        <xsl:output-character character="𝓯" string="&amp;#x1D4EF;"/>
+        <xsl:output-character character="𝓰" string="&amp;#x1D4F0;"/>
+        <xsl:output-character character="𝓱" string="&amp;#x1D4F1;"/>
+        <xsl:output-character character="𝓲" string="&amp;#x1D4F2;"/>
+        <xsl:output-character character="𝓳" string="&amp;#x1D4F3;"/>
+        <xsl:output-character character="𝓴" string="&amp;#x1D4F4;"/>
+        <xsl:output-character character="𝓵" string="&amp;#x1D4F5;"/>
+        <xsl:output-character character="𝓶" string="&amp;#x1D4F6;"/>
+        <xsl:output-character character="𝓷" string="&amp;#x1D4F7;"/>
+        <xsl:output-character character="𝓸" string="&amp;#x1D4F8;"/>
+        <xsl:output-character character="𝓹" string="&amp;#x1D4F9;"/>
+        <xsl:output-character character="𝓺" string="&amp;#x1D4FA;"/>
+        <xsl:output-character character="𝓻" string="&amp;#x1D4FB;"/>
+        <xsl:output-character character="𝓼" string="&amp;#x1D4FC;"/>
+        <xsl:output-character character="𝓽" string="&amp;#x1D4FD;"/>
+        <xsl:output-character character="𝓾" string="&amp;#x1D4FE;"/>
+        <xsl:output-character character="𝓿" string="&amp;#x1D4FF;"/>
+        <xsl:output-character character="𝔀" string="&amp;#x1D500;"/>
+        <xsl:output-character character="𝔁" string="&amp;#x1D501;"/>
+        <xsl:output-character character="𝔂" string="&amp;#x1D502;"/>
+        <xsl:output-character character="𝔃" string="&amp;#x1D503;"/>
+        
+        <!-- Mathematical Bold Capital Letters (U+1D400–U+1D419) -->
+        <xsl:output-character character="𝐀" string="&amp;#x1D400;"/>
+        <xsl:output-character character="𝐁" string="&amp;#x1D401;"/>
+        <xsl:output-character character="𝐂" string="&amp;#x1D402;"/>
+        <xsl:output-character character="𝐃" string="&amp;#x1D403;"/>
+        <xsl:output-character character="𝐄" string="&amp;#x1D404;"/>
+        <xsl:output-character character="𝐅" string="&amp;#x1D405;"/>
+        <xsl:output-character character="𝐆" string="&amp;#x1D406;"/>
+        <xsl:output-character character="𝐇" string="&amp;#x1D407;"/>
+        <xsl:output-character character="𝐈" string="&amp;#x1D408;"/>
+        <xsl:output-character character="𝐉" string="&amp;#x1D409;"/>
+        <xsl:output-character character="𝐊" string="&amp;#x1D40A;"/>
+        <xsl:output-character character="𝐋" string="&amp;#x1D40B;"/>
+        <xsl:output-character character="𝐌" string="&amp;#x1D40C;"/>
+        <xsl:output-character character="𝐍" string="&amp;#x1D40D;"/>
+        <xsl:output-character character="𝐎" string="&amp;#x1D40E;"/>
+        <xsl:output-character character="𝐏" string="&amp;#x1D40F;"/>
+        <xsl:output-character character="𝐐" string="&amp;#x1D410;"/>
+        <xsl:output-character character="𝐑" string="&amp;#x1D411;"/>
+        <xsl:output-character character="𝐒" string="&amp;#x1D412;"/>
+        <xsl:output-character character="𝐓" string="&amp;#x1D413;"/>
+        <xsl:output-character character="𝐔" string="&amp;#x1D414;"/>
+        <xsl:output-character character="𝐕" string="&amp;#x1D415;"/>
+        <xsl:output-character character="𝐖" string="&amp;#x1D416;"/>
+        <xsl:output-character character="𝐗" string="&amp;#x1D417;"/>
+        <xsl:output-character character="𝐘" string="&amp;#x1D418;"/>
+        <xsl:output-character character="𝐙" string="&amp;#x1D419;"/>
+        
+        <!-- Mathematical Bold Small Letters (U+1D41A–U+1D433) -->
+        <xsl:output-character character="𝐚" string="&amp;#x1D41A;"/>
+        <xsl:output-character character="𝐛" string="&amp;#x1D41B;"/>
+        <xsl:output-character character="𝐜" string="&amp;#x1D41C;"/>
+        <xsl:output-character character="𝐝" string="&amp;#x1D41D;"/>
+        <xsl:output-character character="𝐞" string="&amp;#x1D41E;"/>
+        <xsl:output-character character="𝐟" string="&amp;#x1D41F;"/>
+        <xsl:output-character character="𝐠" string="&amp;#x1D420;"/>
+        <xsl:output-character character="𝐡" string="&amp;#x1D421;"/>
+        <xsl:output-character character="𝐢" string="&amp;#x1D422;"/>
+        <xsl:output-character character="𝐣" string="&amp;#x1D423;"/>
+        <xsl:output-character character="𝐤" string="&amp;#x1D424;"/>
+        <xsl:output-character character="𝐥" string="&amp;#x1D425;"/>
+        <xsl:output-character character="𝐦" string="&amp;#x1D426;"/>
+        <xsl:output-character character="𝐧" string="&amp;#x1D427;"/>
+        <xsl:output-character character="𝐨" string="&amp;#x1D428;"/>
+        <xsl:output-character character="𝐩" string="&amp;#x1D429;"/>
+        <xsl:output-character character="𝐪" string="&amp;#x1D42A;"/>
+        <xsl:output-character character="𝐫" string="&amp;#x1D42B;"/>
+        <xsl:output-character character="𝐬" string="&amp;#x1D42C;"/>
+        <xsl:output-character character="𝐭" string="&amp;#x1D42D;"/>
+        <xsl:output-character character="𝐮" string="&amp;#x1D42E;"/>
+        <xsl:output-character character="𝐯" string="&amp;#x1D42F;"/>
+        <xsl:output-character character="𝐰" string="&amp;#x1D430;"/>
+        <xsl:output-character character="𝐱" string="&amp;#x1D431;"/>
+        <xsl:output-character character="𝐲" string="&amp;#x1D432;"/>
+        <xsl:output-character character="𝐳" string="&amp;#x1D433;"/>
+        
+        <!-- Mathematical Italic Capital Letters (U+1D434–U+1D44D) -->
+        <xsl:output-character character="𝐴" string="&amp;#x1D434;"/>
+        <xsl:output-character character="𝐵" string="&amp;#x1D435;"/>
+        <xsl:output-character character="𝐶" string="&amp;#x1D436;"/>
+        <xsl:output-character character="𝐷" string="&amp;#x1D437;"/>
+        <xsl:output-character character="𝐸" string="&amp;#x1D438;"/>
+        <xsl:output-character character="𝐹" string="&amp;#x1D439;"/>
+        <xsl:output-character character="𝐺" string="&amp;#x1D43A;"/>
+        <xsl:output-character character="𝐻" string="&amp;#x1D43B;"/>
+        <xsl:output-character character="𝐼" string="&amp;#x1D43C;"/>
+        <xsl:output-character character="𝐽" string="&amp;#x1D43D;"/>
+        <xsl:output-character character="𝐾" string="&amp;#x1D43E;"/>
+        <xsl:output-character character="𝐿" string="&amp;#x1D43F;"/>
+        <xsl:output-character character="𝑀" string="&amp;#x1D440;"/>
+        <xsl:output-character character="𝑁" string="&amp;#x1D441;"/>
+        <xsl:output-character character="𝑂" string="&amp;#x1D442;"/>
+        <xsl:output-character character="𝑃" string="&amp;#x1D443;"/>
+        <xsl:output-character character="𝑄" string="&amp;#x1D444;"/>
+        <xsl:output-character character="𝑅" string="&amp;#x1D445;"/>
+        <xsl:output-character character="𝑆" string="&amp;#x1D446;"/>
+        <xsl:output-character character="𝑇" string="&amp;#x1D447;"/>
+        <xsl:output-character character="𝑈" string="&amp;#x1D448;"/>
+        <xsl:output-character character="𝑉" string="&amp;#x1D449;"/>
+        <xsl:output-character character="𝑊" string="&amp;#x1D44A;"/>
+        <xsl:output-character character="𝑋" string="&amp;#x1D44B;"/>
+        <xsl:output-character character="𝑌" string="&amp;#x1D44C;"/>
+        <xsl:output-character character="𝑍" string="&amp;#x1D44D;"/>
+        
+        <!-- Mathematical Italic Small Letters (U+1D44E–U+1D467) -->
+        <xsl:output-character character="𝑎" string="&amp;#x1D44E;"/>
+        <xsl:output-character character="𝑏" string="&amp;#x1D44F;"/>
+        <xsl:output-character character="𝑐" string="&amp;#x1D450;"/>
+        <xsl:output-character character="𝑑" string="&amp;#x1D451;"/>
+        <xsl:output-character character="𝑒" string="&amp;#x1D452;"/>
+        <xsl:output-character character="𝑓" string="&amp;#x1D453;"/>
+        <xsl:output-character character="𝑔" string="&amp;#x1D454;"/>
+        <xsl:output-character character="ℎ" string="&amp;#x1D455;"/>
+        <xsl:output-character character="𝑖" string="&amp;#x1D456;"/>
+        <xsl:output-character character="𝑗" string="&amp;#x1D457;"/>
+        <xsl:output-character character="𝑘" string="&amp;#x1D458;"/>
+        <xsl:output-character character="𝑙" string="&amp;#x1D459;"/>
+        <xsl:output-character character="𝑚" string="&amp;#x1D45A;"/>
+        <xsl:output-character character="𝑛" string="&amp;#x1D45B;"/>
+        <xsl:output-character character="𝑜" string="&amp;#x1D45C;"/>
+        <xsl:output-character character="𝑝" string="&amp;#x1D45D;"/>
+        <xsl:output-character character="𝑞" string="&amp;#x1D45E;"/>
+        <xsl:output-character character="𝑟" string="&amp;#x1D45F;"/>
+        <xsl:output-character character="𝑠" string="&amp;#x1D460;"/>
+        <xsl:output-character character="𝑡" string="&amp;#x1D461;"/>
+        <xsl:output-character character="𝑢" string="&amp;#x1D462;"/>
+        <xsl:output-character character="𝑣" string="&amp;#x1D463;"/>
+        <xsl:output-character character="𝑤" string="&amp;#x1D464;"/>
+        <xsl:output-character character="𝑥" string="&amp;#x1D465;"/>
+        <xsl:output-character character="𝑦" string="&amp;#x1D466;"/>
+        <xsl:output-character character="𝑧" string="&amp;#x1D467;"/>
+        
+        <!-- Blackboard Bold (Double-Struck) Letters -->
+        <xsl:output-character character="ℂ" string="&amp;#x2102;"/>
+        <xsl:output-character character="ℍ" string="&amp;#x210D;"/>
+        <xsl:output-character character="ℕ" string="&amp;#x2115;"/>
+        <xsl:output-character character="ℙ" string="&amp;#x2119;"/>
+        <xsl:output-character character="ℚ" string="&amp;#x211A;"/>
+        <xsl:output-character character="ℝ" string="&amp;#x211D;"/>
+        <xsl:output-character character="ℤ" string="&amp;#x2124;"/>
     </xsl:character-map>
 
      <xsl:template match="*|@*|text()|comment()|processing-instruction()">
