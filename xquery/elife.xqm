@@ -198,6 +198,22 @@ declare function elife:sch2final($sch){
   return $copy3
 };
 
+(:~ 
+ : This removes the API calls pattern from the rp-schematron
+ :)
+declare function elife:strip-oxygen-only-content($sch){
+  copy $copy := $sch
+  modify(
+    let $oxygen-only-patterns := ('api-calls')
+    let $oxygen-only-rules := for $x in ('assessment-api-check') 
+                  return $x||"-pattern"
+    return (
+      delete node $copy//*:pattern[@id=($oxygen-only-patterns,$oxygen-only-rules)]
+    )
+  )
+  return $copy
+};
+
 
 (:~ 
  : Generate 'final-package' version of schematron
