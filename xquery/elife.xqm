@@ -211,7 +211,26 @@ declare function elife:strip-oxygen-only-content($sch){
       delete node $copy//*:pattern[@id=($oxygen-only-patterns,$oxygen-only-rules)]
     )
   )
-  return $copy
+  return elife:strip-namespace($copy,"java:org.elifesciences.validator.ApiCache")
+};
+
+declare function elife:strip-namespace($node as node(), $namespace as xs:string) as node()? {
+  typeswitch($node)
+    case element() return 
+    if ($node/local-name()='ns' and $node/@uri=$namespace) then ()
+    else (
+     element {node-name($node)} {
+        $node/@*,
+        for $prefix in in-scope-prefixes($node)
+        let $uri := namespace-uri-for-prefix($prefix, $node)
+        where not($uri = ("http://purl.oclc.org/dsdl/schematron",$namespace))
+        return namespace {$prefix} {$uri},
+        (: Recursively process children :)
+        for $child in $node/node()
+        return elife:strip-namespace($child, $namespace)
+      }
+    )
+    default return $node
 };
 
 
