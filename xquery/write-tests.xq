@@ -4,7 +4,8 @@ import module namespace schematron = "http://github.com/Schematron/schematron-ba
 import module namespace elife = 'elife' at 'elife.xqm';
 
 let $sch := doc('../src/schematron.sch')
-let $rp-sch := doc('../src/rp-schematron-base.sch')
+(: We cannot easily test the oxygen API call patterns:)
+let $rp-sch := elife:strip-oxygen-only-content(doc('../src/rp-schematron-base.sch'))
 let $preprint-xsl := doc('../src/preprint-changes.xsl')
 let $base-uri := substring-before(base-uri($sch),'/schematron.sch')
 let $root := substring-before($base-uri,'/src')

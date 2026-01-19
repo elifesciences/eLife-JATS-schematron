@@ -6,7 +6,7 @@ declare namespace svrl = "http://purl.oclc.org/dsdl/svrl";
 declare namespace x="http://www.jenitennison.com/xslt/xspec";
 
 declare variable $elife:base := doc('../src/schematron.sch');
-declare variable $elife:rp-base := doc('../src/rp-schematron.sch');
+declare variable $elife:rp-base := elife:strip-oxygen-only-content(doc('../src/rp-schematron.sch')/*);
 
 (:~ Generate schemalet files for unit testing purposes
  :)
@@ -469,7 +469,7 @@ return delete node $x,
      else if ($x/local-name() = ('let','fix','fixes')) then ()
      else delete node $x,
      
-    for $x in $copy2//*:schema
+    for $x in $copy2/descendant-or-self::*:schema
     let $rule := $x//*[@id = $id]/parent::*:rule
     let $test := $rule/@context/string()
     let $q := 
@@ -493,10 +493,13 @@ return delete node $x,
 return copy $copy3 := $copy2
   modify(
     
-    for $x in $copy3//*:schema/text()
+    for $x in $copy3/descendant-or-self::*:schema/text()
     return delete node $x,
     
     for $x in $copy3//*:pattern/text()
+    return delete node $x,
+    
+    for $x in $copy3//*:rule/text()
     return delete node $x,
     
     for $x in $copy3//*:rule/text()
