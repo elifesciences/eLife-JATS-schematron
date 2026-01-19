@@ -10,6 +10,7 @@
     <ns uri="https://elifesciences.org/namespace" prefix="e"/>
     <ns uri="java.io.File" prefix="file"/>
     <ns uri="http://www.java.com/" prefix="java"/>
+    
     <ns uri="http://manuscriptexchange.org" prefix="meca"/>
     
     <xsl:function name="e:is-valid-isbn" as="xs:boolean">
@@ -405,6 +406,51 @@
       </xsl:if>
     </xsl:for-each>
   </xsl:function>
+  
+  <xsl:function name="e:assessment-term-to-number">
+      <xsl:param name="term"/>
+        <xsl:choose>
+          <!-- Strength -->
+          <xsl:when test="lower-case($term) = 'inadequate'">
+            <xsl:sequence select="-2"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'incomplete'">
+            <xsl:sequence select="-1"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'solid'">
+            <xsl:sequence select="1"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'convincing'">
+            <xsl:sequence select="2"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'compelling'">
+            <xsl:sequence select="3"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'exceptional'">
+            <xsl:sequence select="4"/>
+          </xsl:when>
+          <!-- Significance -->
+          <xsl:when test="lower-case($term) = 'useful'">
+            <xsl:sequence select="1"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'valuable'">
+            <xsl:sequence select="2"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'important'">
+            <xsl:sequence select="3"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'fundamental'">
+            <xsl:sequence select="4"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'landmark'">
+            <xsl:sequence select="5"/>
+          </xsl:when>
+          <!-- Default -->
+          <xsl:otherwise>
+            <xsl:sequence select="-9"/>
+          </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
   
   <!-- ===== QUICK FIXES ===== -->
   
@@ -3737,6 +3783,9 @@
       </assert>
     </rule>
   </pattern>
+  
+  <!-- These are purely for oXygen validation -->
+    
 
     <!-- Checks for the manifest file in the meca package.
           For validation in oXygen this assumes the manifest file is in a parent folder of the xml file being validated and named as manifest.xml

@@ -1,2 +1,9 @@
 result.log
 .DS_Store
+**/.DS_Store
+
+# oXygen/Java Extension Build Artifacts
+bin/
+*.class
+
+!lib/api-bridge.jar

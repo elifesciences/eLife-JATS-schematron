@@ -6,7 +6,7 @@ declare namespace svrl = "http://purl.oclc.org/dsdl/svrl";
 declare namespace x="http://www.jenitennison.com/xslt/xspec";
 
 declare variable $elife:base := doc('../src/schematron.sch');
-declare variable $elife:rp-base := doc('../src/rp-schematron.sch');
+declare variable $elife:rp-base := elife:strip-oxygen-only-content(doc('../src/rp-schematron.sch')/*);
 
 (:~ Generate schemalet files for unit testing purposes
  :)
@@ -196,6 +196,41 @@ declare function elife:sch2final($sch){
       return delete node $x
     )
   return $copy3
+};
+
+(:~ 
+ : This removes the API calls pattern from the rp-schematron
+ :)
+declare function elife:strip-oxygen-only-content($sch){
+  copy $copy := $sch
+  modify(
+    let $oxygen-only-patterns := ('api-calls')
+    let $oxygen-only-rules := for $x in ('assessment-api-check') 
+                  return $x||"-pattern"
+    return (
+      delete node $copy//*:pattern[@id=($oxygen-only-patterns,$oxygen-only-rules)]
+    )
+  )
+  return elife:strip-namespace($copy,"java:org.elifesciences.validator.ApiCache")
+};
+
+declare function elife:strip-namespace($node as node(), $namespace as xs:string) as node()? {
+  typeswitch($node)
+    case element() return 
+    if ($node/local-name()='ns' and $node/@uri=$namespace) then ()
+    else (
+     element {node-name($node)} {
+        $node/@*,
+        for $prefix in in-scope-prefixes($node)
+        let $uri := namespace-uri-for-prefix($prefix, $node)
+        where not($uri = ("http://purl.oclc.org/dsdl/schematron",$namespace))
+        return namespace {$prefix} {$uri},
+        (: Recursively process children :)
+        for $child in $node/node()
+        return elife:strip-namespace($child, $namespace)
+      }
+    )
+    default return $node
 };
 
 
@@ -434,7 +469,7 @@ return delete node $x,
      else if ($x/local-name() = ('let','fix','fixes')) then ()
      else delete node $x,
      
-    for $x in $copy2//*:schema
+    for $x in $copy2/descendant-or-self::*:schema
     let $rule := $x//*[@id = $id]/parent::*:rule
     let $test := $rule/@context/string()
     let $q := 
@@ -458,10 +493,13 @@ return delete node $x,
 return copy $copy3 := $copy2
   modify(
     
-    for $x in $copy3//*:schema/text()
+    for $x in $copy3/descendant-or-self::*:schema/text()
     return delete node $x,
     
     for $x in $copy3//*:pattern/text()
+    return delete node $x,
+    
+    for $x in $copy3//*:rule/text()
     return delete node $x,
     
     for $x in $copy3//*:rule/text()

@@ -1,4 +1,4 @@
-<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns:meca="http://manuscriptexchange.org" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:file="java.io.File" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink" queryBinding="xslt2">
+<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:cache="java:org.elifesciences.validator.ApiCache" xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns:meca="http://manuscriptexchange.org" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:file="java.io.File" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink" queryBinding="xslt2">
     
     <title>eLife reviewed preprint schematron</title>
 
@@ -10,6 +10,7 @@
     <ns uri="https://elifesciences.org/namespace" prefix="e"/>
     <ns uri="java.io.File" prefix="file"/>
     <ns uri="http://www.java.com/" prefix="java"/>
+    <ns uri="java:org.elifesciences.validator.ApiCache" prefix="cache"/>
     <ns uri="http://manuscriptexchange.org" prefix="meca"/>
     
     <xsl:function name="e:is-valid-isbn" as="xs:boolean">
@@ -397,6 +398,51 @@
       </xsl:if>
     </xsl:for-each>
   </xsl:function>
+  
+  <xsl:function name="e:assessment-term-to-number">
+      <xsl:param name="term"/>
+        <xsl:choose>
+          <!-- Strength -->
+          <xsl:when test="lower-case($term) = 'inadequate'">
+            <xsl:sequence select="-2"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'incomplete'">
+            <xsl:sequence select="-1"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'solid'">
+            <xsl:sequence select="1"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'convincing'">
+            <xsl:sequence select="2"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'compelling'">
+            <xsl:sequence select="3"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'exceptional'">
+            <xsl:sequence select="4"/>
+          </xsl:when>
+          <!-- Significance -->
+          <xsl:when test="lower-case($term) = 'useful'">
+            <xsl:sequence select="1"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'valuable'">
+            <xsl:sequence select="2"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'important'">
+            <xsl:sequence select="3"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'fundamental'">
+            <xsl:sequence select="4"/>
+          </xsl:when>
+          <xsl:when test="lower-case($term) = 'landmark'">
+            <xsl:sequence select="5"/>
+          </xsl:when>
+          <!-- Default -->
+          <xsl:otherwise>
+            <xsl:sequence select="-9"/>
+          </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
   
   <!-- ===== QUICK FIXES ===== -->
   
@@ -3079,6 +3125,28 @@
       <!-- To do: remove 'oxygen', which is only included here to circumvent test suite errors -->
       <assert test="name()=($allowed-names,'oxygen')" role="error" id="all-pi-1">[all-pi-1] '<value-of select="name()"/>' is not an allowed processing-instruction. The only ones that can be used are: <value-of select="string-join($allowed-names,'; ')"/></assert>
     </rule></pattern>
+  
+  <!-- These are purely for oXygen validation -->
+    <pattern id="assessment-api-check-pattern"><rule context="article[descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']]/sub-article[@article-type='editor-report']/front-stub" flag="local-only" id="assessment-api-check">
+          <let name="article-id" value="ancestor::article//article-meta/article-id[@pub-id-type='publisher-id']"/>
+          <let name="rp-version" value="replace(descendant::article-meta[1]/article-id[@specific-use='version'][1],'^.*\.','')"/>
+          <let name="prev-version" value="if (matches($rp-version,'^\d$')) then number($rp-version) - 1             else 1"/>
+          <let name="epp-response" value="if ($article-id and $prev-version) then parse-json(cache:getRPData($article-id,string($prev-version)))                                           else ()"/>
+          <let name="epp-assessment-data" value="if (exists($epp-response)) then $epp-response?elifeAssessment else ()"/>
+          <let name="prev-strength-terms" value="if (exists($epp-assessment-data)) then $epp-assessment-data?strength?* else ()"/>
+          <let name="prev-strength-rank" value="if (exists($prev-strength-terms)) then sum(for $term in $prev-strength-terms[.!=''] return e:assessment-term-to-number($term))             else ()"/>
+          <let name="prev-significance-terms" value="if (exists($epp-assessment-data)) then $epp-assessment-data?significance?* else ()"/>
+          <let name="prev-significance-rank" value="if (exists($prev-significance-terms)) then sum(for $term in $prev-significance-terms[.!=''] return e:assessment-term-to-number($term))             else ()"/>
+          
+          <let name="curr-strength-terms" value="if (kwd-group[@kwd-group-type='evidence-strength']/kwd) then kwd-group[@kwd-group-type='evidence-strength']/kwd             else '(None)'"/>
+          <let name="curr-strength-rank" value="sum(for $term in $curr-strength-terms             return e:assessment-term-to-number($term))"/>
+          <let name="curr-significance-terms" value="if (kwd-group[@kwd-group-type='claim-importance']/kwd) then kwd-group[@kwd-group-type='claim-importance']/kwd             else '(None)'"/>
+          <let name="curr-significance-rank" value="sum(for $term in $curr-significance-terms             return e:assessment-term-to-number($term))"/>
+          
+          <report test="($prev-strength-rank gt $curr-strength-rank)" role="warning" id="str-kwd-api-check">[str-kwd-api-check] The Assessment strength term(s) in this revised Reviewed Preprint (version <value-of select="$rp-version"/>) are lower than those in the previous version (version <value-of select="$prev-version"/>). Is that correct? Current: <value-of select="string-join($curr-strength-terms,'; ')"/>. Previous: <value-of select="string-join($prev-strength-terms,'; ')"/>.</report>
+          
+          <report test="($prev-significance-rank gt $curr-significance-rank)" role="warning" id="sig-kwd-api-check">[sig-kwd-api-check] The Assessment significance term(s) in this revised Reviewed Preprint (version <value-of select="$rp-version"/>) are lower than those in the previous version (version <value-of select="$prev-version"/>). Is that correct? Current: <value-of select="string-join($curr-significance-terms,'; ')"/>. Previous: <value-of select="string-join($prev-significance-terms,'; ')"/>.</report>
+      </rule></pattern>
 
     <!-- Checks for the manifest file in the meca package.
           For validation in oXygen this assumes the manifest file is in a parent folder of the xml file being validated and named as manifest.xml

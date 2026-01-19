@@ -67,11 +67,12 @@ declare variable $preprint-changes-xsl := doc(concat($outputDir,'/preprint-chang
   for $rp-sch in $rp-sch/sch:schema
   (: schematron for reviewed preprints - every rule has it's own pattern :)
   let $rp-sch-mod := elife:sch2final($rp-sch)
-  let $rp-xsl := schematron:compile($rp-sch-mod)
+  let $rp-sch-for-basex := elife:strip-oxygen-only-content($rp-sch-mod)
+  let $rp-xsl := schematron:compile($rp-sch-for-basex)
   (: schematron for manifest files in meca packages :)
   let $manifest-xsl := schematron:compile($manifest-sch)
   (: Generate xspec specific sch :)
-  let $rp-xspec-sch := elife:sch2xspec-sch($rp-sch)
+  let $rp-xspec-sch := elife:sch2xspec-sch(elife:strip-oxygen-only-content($rp-sch))
   (: Generate xspec file from xspec specific sch :)
   let $rp-xspec := elife:sch2xspec($rp-xspec-sch,'rp')
 
