@@ -1,9 +1,9 @@
 package org.elifesciences.validator;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,9 +11,7 @@ import java.util.Map;
 // endpoint(s) aren't spammed by automatic validation 
 public class ApiCache {
     private static final Map<String, String> cache = new HashMap<>();
-    private static final HttpClient client = HttpClient.newBuilder()
-            .followRedirects(HttpClient.Redirect.NORMAL)
-            .build();
+
     public static String getRPData(String id, String version) {
         if (id == null || version == null) return "missing-parameters";
         String cacheKey = id + "|" + version;
@@ -22,30 +20,30 @@ public class ApiCache {
         }
 
         try {
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.elifesciences.org/reviewed-preprints/" + id + "v" + version))
-                .header("Accept", "application/json")
-                .timeout(java.time.Duration.ofSeconds(2))
-                .GET()
-                .build();
+            URL url = new URL("https://api.elifesciences.org/reviewed-preprints/" + id + "v" + version);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
 
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            int statusCode = response.statusCode();
-            String result;
-
-            if (statusCode == 200) {
-                result = response.body();
-            } else if (statusCode == 404) {
-                result = "NOT_FOUND";
-            } else {
-                result = "SERVER_ERROR: " + statusCode;
+            if (conn.getResponseCode() != 200) {
+                return "{\"error\": \"HTTP Error: " + conn.getResponseCode() + "\"}";
             }
 
-            cache.put(cacheKey, result); 
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String inputLine;
+            StringBuilder content = new StringBuilder();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            in.close();
+            conn.disconnect();
+
+            String result = content.toString();
+            cache.put(cacheKey, result);
             return result;
-            
+
         } catch (Exception e) {
-            return "CONNECTION_FAILURE: " + e.getMessage();
+            return "{\"error\": \"Connection failed: " + e.getMessage() + "\"}";
         }
     }
 }
