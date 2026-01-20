@@ -82,7 +82,6 @@ declare variable $preprint-changes-xsl := doc(concat($outputDir,'/preprint-chang
     elife:unallowed-roles($rp-sch,$roles),
     elife:unallowed-roles($manifest-sch,$roles),
     file:write(($outputDir||'/rp-schematron.sch'),$rp-sch-mod),
-    file:write(($outputDir||'/rp-schematron-for-james.sch'),$rp-sch-for-basex),
     file:write(($outputDir||'/rp-schematron.xsl'),$rp-xsl),
     file:write(($outputDir||'/meca-manifest-schematron.xsl'),$manifest-xsl),
     file:write(($root||'/test/xspec/rp-schematron.sch'),$rp-xspec-sch,map{'indent':'yes'}),
