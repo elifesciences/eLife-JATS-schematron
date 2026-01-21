@@ -4940,7 +4940,7 @@
     <pattern id="api-calls">
         <rule context="article[descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']]/sub-article[@article-type='editor-report']/front-stub" flag="local-only" id="assessment-api-check">
           <let name="article-id" value="ancestor::article//article-meta/article-id[@pub-id-type='publisher-id']"/>
-          <let name="rp-version" value="replace(descendant::article-meta[1]/article-id[@specific-use='version'][1],'^.*\.','')"/>
+          <let name="rp-version" value="replace(ancestor::article//article-meta[1]/article-id[@specific-use='version'][1],'^.*\.','')"/>
           <let name="prev-version" value="if (matches($rp-version,'^\d$')) then number($rp-version) - 1
             else 1"/>
           <let name="epp-response" value="if ($article-id and $prev-version) then parse-json(cache:getRPData($article-id,string($prev-version)))
