@@ -3361,7 +3361,7 @@
       </rule>
 
       <rule context="article/front/article-meta/pub-date[@pub-type='epub']/year" id="preprint-pub-checks">
-        <assert test=".=('2024','2025')" 
+        <assert test=".=('2024','2025','2026')" 
           role="warning" 
           id="preprint-pub-date-1">This preprint version was posted in <value-of select="."/>. Is it the correct version that corresponds to the version submitted to eLife?</assert>
       </rule>

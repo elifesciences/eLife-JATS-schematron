@@ -8997,9 +8997,9 @@
 
 		<!--ASSERT warning-->
       <xsl:choose>
-         <xsl:when test=".=('2024','2025')"/>
+         <xsl:when test=".=('2024','2025','2026')"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".=('2024','2025')">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test=".=('2024','2025','2026')">
                <xsl:attribute name="id">preprint-pub-date-1</xsl:attribute>
                <xsl:attribute name="role">warning</xsl:attribute>
                <xsl:attribute name="location">
