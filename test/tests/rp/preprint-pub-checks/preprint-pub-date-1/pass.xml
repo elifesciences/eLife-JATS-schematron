@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="preprint-pub-date-1.sch"?>
 <!--Context: article/front/article-meta/pub-date[@pub-type='epub']/year
-Test: assert    .=('2024','2025')
+Test: assert    .=('2024','2025','2026')
 Message: This preprint version was posted in . Is it the correct version that corresponds to the version submitted to eLife? -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
