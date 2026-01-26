@@ -922,7 +922,7 @@
   <pattern id="house-style">
     <rule context="article[not(@article-type=($notice-article-types,'article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]" id="p-punctuation">
       <let name="para" value="replace(.,' ',' ')"/>
-      <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-bracket-test" test="matches($para,'([\?:]|\.[\)”&quot;]?)\p{Zs}*$')" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-bracket-test" test="matches($para,'([\?:!]|\.[\)”&quot;]?)\p{Zs}*$')" role="warning" id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

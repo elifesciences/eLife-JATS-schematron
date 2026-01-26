@@ -1,11 +1,16 @@
 <?oxygen SCHSchema="p-bracket-test.sch"?>
 <!--Context: article[not(@article-type=($notice-article-types,'article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]
-Test: assert    matches($para,'([\?:]|\.[\)”"]?)\p{Zs}*$')
+Test: assert    matches($para,'([\?:!]|\.[\)”"]?)\p{Zs}*$')
 Message: paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
     <body>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at mi ullamcorper, tincidunt velit eget, ultrices quam. Curabitur viverra pellentesque.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p>Mauris at mi ullamcorper, tincidunt velit eget, ultrices quam?</p>
+      <p>Curabitur viverra pellentesque!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.)</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.”</p>
     </body>
   </article>
 </root>
