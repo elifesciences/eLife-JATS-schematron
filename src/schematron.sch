@@ -12359,7 +12359,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-bracket-test" 
-        test="matches($para,'([\?:]|\.[\)”&quot;]?)\p{Zs}*$')" 
+        test="matches($para,'([\?:!]|\.[\)”&quot;]?)\p{Zs}*$')" 
         role="warning" 
         id="p-bracket-test">paragraph doesn't end with a full stop, colon, question or exclamation mark - Is this correct?</assert>
       
