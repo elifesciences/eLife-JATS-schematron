@@ -1199,7 +1199,7 @@
   <pattern id="journal-ref-checks-pattern">
     <rule context="mixed-citation[@publication-type='journal']" id="journal-ref-checks">
       <let name="text-regex" value="'^[\p{Z}\p{P}]+((jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\p{Z}?\d?\d?|doi|pmid|epub|vol|no|and|pp?|in|is[sb]n)[:\.]?'"/>
-      <report test="person-group[@person-group-type='editor']" role="warning" id="journal-ref-editor">[journal-ref-editor] This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has an editor person-group. This info isn;t typically included in journal refs. Is it really a journal ref? Does it really contain editors?</report>
+      <report test="person-group[@person-group-type='editor']" role="warning" id="journal-ref-editor">[journal-ref-editor] This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has an editor person-group. This info isn't typically included in journal refs. Is it really a journal ref? Does it really contain editors?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
