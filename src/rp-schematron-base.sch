@@ -1807,7 +1807,7 @@
        
        <report test="person-group[@person-group-type='editor']" 
         role="warning" 
-        id="journal-ref-editor">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has an editor person-group. This info isn;t typically included in journal refs. Is it really a journal ref? Does it really contain editors?</report>
+        id="journal-ref-editor">This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has an editor person-group. This info isn't typically included in journal refs. Is it really a journal ref? Does it really contain editors?</report>
        
        <report test="(fpage or lpage) and elocation-id" 
         role="error" 

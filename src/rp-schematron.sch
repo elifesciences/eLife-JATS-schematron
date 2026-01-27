@@ -1527,7 +1527,7 @@
        
         <report test="text()[matches(.,'\p{L}') and not(matches(lower-case(.),$text-regex))]" role="warning" id="journal-ref-text-content">[journal-ref-text-content] This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has untagged textual content - <value-of select="string-join(text()[matches(.,'\p{L}') and not(matches(lower-case(.),$text-regex))],'; ')"/>. Is it tagged correctly?</report>
        
-       <report test="person-group[@person-group-type='editor']" role="warning" id="journal-ref-editor">[journal-ref-editor] This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has an editor person-group. This info isn;t typically included in journal refs. Is it really a journal ref? Does it really contain editors?</report>
+       <report test="person-group[@person-group-type='editor']" role="warning" id="journal-ref-editor">[journal-ref-editor] This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has an editor person-group. This info isn't typically included in journal refs. Is it really a journal ref? Does it really contain editors?</report>
        
        <report test="(fpage or lpage) and elocation-id" role="error" id="journal-ref-page-elocation-id">[journal-ref-page-elocation-id] This journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has both an elocation-id (<value-of select="elocation-id[1]"/>), and an fpage or lpage (<value-of select="string-join(*[name()=('fpage','lpage')],'; ')"/>), which cannot be correct.</report>
        
