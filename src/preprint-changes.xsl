@@ -2524,6 +2524,22 @@
         </xsl:analyze-string>
     </xsl:template>
     
+    <!-- Introduce semantic tagging for gene sequences -->
+    <xsl:template xml:id="add-gene-sequence-tagging" match="text()[matches(.,'[ACGTacgt]{10,}') and not(ancestor::ref) and not(ancestor::mml:math)]">
+        <xsl:variable name="regex" select="'[ACGTacgt]{10,}'"/>
+        <xsl:analyze-string select="." regex="{$regex}">
+            <xsl:matching-substring>
+                <xsl:element name="named-content">
+                    <xsl:attribute name="content-type">sequence</xsl:attribute>
+                    <xsl:value-of select="."/>
+                </xsl:element>
+            </xsl:matching-substring>
+            <xsl:non-matching-substring>
+                <xsl:value-of select="."/>
+            </xsl:non-matching-substring>
+        </xsl:analyze-string>
+    </xsl:template>
+    
     <!-- collate multiple paragraphs in captions for PDF generation -->
     <xsl:template xml:id="collate-caption-ps" match="caption[(parent::fig or parent::table-wrap) and count(p) gt 1]">
         <xsl:copy>
