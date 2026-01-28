@@ -1,0 +1,5 @@
+<!--Testing template with id: add-gene-sequence-tagging-->
+<sec xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<p>We used the following primers to measure gene expression using RT-qPCR: <italic>Crh</italic>: 5’-<named-content content-type="sequence">GGAATCTCAACAGAAGTCCCGC</named-content>-3’ and 5’-<named-content content-type="sequence">CTGCAGCAACACGCGGAAAAAG</named-content>-3’, <italic>Hrprt</italic>: 5<sup>′</sup>-<named-content content-type="sequence">AACAAAGTCTGGCCTGTATCC</named-content>-3<sup>′</sup> ...</p>
+<p>D701: <bold><named-content content-type="sequence">CAAGCAGAAGAC</named-content></bold><named-content content-type="sequence">GGCATACGAGATC</named-content><underline><named-content content-type="sequence">GAGTAATGTGACTG</named-content></underline><named-content content-type="sequence">GAGTTCAGACGTGTGC</named-content></p>
+</sec>
