@@ -18950,8 +18950,8 @@
    <xsl:template match="permissions[not(parent::article-meta)]" priority="1000" mode="M286">
       <xsl:variable name="label" select="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
       <!--REPORT error-->
-      <xsl:if test="copyright-statement and (not(copyright-year) or not(copyright-holder))">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="copyright-statement and (not(copyright-year) or not(copyright-holder))">
+      <xsl:if test="copyright-statement[lower-case(.)!='copyright undetermined'] and (not(copyright-year) or not(copyright-holder))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="copyright-statement[lower-case(.)!='copyright undetermined'] and (not(copyright-year) or not(copyright-holder))">
             <xsl:attribute name="id">fig-permissions-test-1</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-1</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
