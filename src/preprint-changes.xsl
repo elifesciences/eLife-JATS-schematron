@@ -2754,5 +2754,10 @@
         </xsl:if>
       </xsl:for-each>
     </xsl:template>
+    
+    <!-- Strip unnecessary wrapper tables from maths -->
+    <xsl:template xml:id="mtable-cleaner" match="mml:math/mml:mtable[not(preceding-sibling::*) and not(following-sibling::*) and (count(mml:mlabeledtr) = 1) and (count(mml:mlabeledtr/mml:mtd) = 1)]">
+        <xsl:apply-templates select="mml:mlabeledtr/mml:mtd/*"/>
+    </xsl:template>
 
 </xsl:stylesheet>
