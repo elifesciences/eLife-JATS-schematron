@@ -18053,6 +18053,8 @@
       <xsl:variable name="no" select="substring-after(@id,'video')"/>
       <xsl:variable name="fig-label" select="replace(ancestor::fig-group/fig[1]/label,'\.$','—')"/>
       <xsl:variable name="fig-pos" select="count(ancestor::fig-group//media[@mimetype='video'][starts-with(label[1],$fig-label)]) - count(following::media[@mimetype='video'][starts-with(label[1],$fig-label)])"/>
+      <xsl:variable name="title" select="caption[1]/title[1]"/>
+      <xsl:variable name="is-explainer" select="matches(lower-case($title),'^(author )?explainer video( for figure \d+)?\.$')"/>
       <!--REPORT warning-->
       <xsl:if test="not(ancestor::fig-group) and (matches(label[1],'[Vv]ideo')) and ($no != string($pos))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(ancestor::fig-group) and (matches(label[1],'[Vv]ideo')) and ($no != string($pos))">
@@ -18120,6 +18122,19 @@
                <xsl:text/>, but it is not a captured as a child of that fig. Should it be captured as <xsl:text/>
                <xsl:value-of select="concat(descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1],'—video x')"/>
                <xsl:text/> instead?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="$is-explainer and not(caption/p[matches(lower-case(.),'explainer videos are not peer reviewed')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$is-explainer and not(caption/p[matches(lower-case(.),'explainer videos are not peer reviewed')])">
+            <xsl:attribute name="id">explainer-video-check-1</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[explainer-video-check-1] <xsl:text/>
+               <xsl:value-of select="label"/>
+               <xsl:text/> is an author explainer video, but the caption does not include the text 'Explainer videos are not peer reviewed'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M265"/>

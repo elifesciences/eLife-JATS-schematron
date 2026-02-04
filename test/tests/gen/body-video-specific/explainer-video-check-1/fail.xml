@@ -1,0 +1,27 @@
+<?oxygen SCHSchema="explainer-video-check-1.sch"?>
+<!--Context: article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']
+Test: report    $is-explainer and not(caption/p[matches(lower-case(.),'explainer videos are not peer reviewed')])
+Message:  is an author explainer video, but the caption does not include the text 'Explainer videos are not peer reviewed'. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article article-tyope="research-article">
+    <body>
+        <media mimetype="video">
+            <label>Video 1.</label>
+            <caption>
+                <title>Author explainer video.</title>
+            </caption>
+        </media>
+        <fig-group>
+            <fig id="fig1">
+                <label>Figure 1.</label>
+            </fig>
+            <media mimetype="video">
+                <label>Figure 1-video 1.</label>
+                <caption>
+                    <title>Explainer video for <xref ref-type="fig" rid="fig1">Figure 1</xref>.</title>
+                </caption>
+            </media>
+        </fig-group>
+    </body>
+  </article>
+</root>

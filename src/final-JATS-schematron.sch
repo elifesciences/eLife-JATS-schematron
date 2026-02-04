@@ -3046,6 +3046,8 @@
       <let name="no" value="substring-after(@id,'video')"/>
       <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.$','—')"/>
       <let name="fig-pos" value="count(ancestor::fig-group//media[@mimetype='video'][starts-with(label[1],$fig-label)]) - count(following::media[@mimetype='video'][starts-with(label[1],$fig-label)])"/>
+      <let name="title" value="caption[1]/title[1]"/>
+      <let name="is-explainer" value="matches(lower-case($title),'^(author )?explainer video( for figure \d+)?\.$')"/>
       
       
       
@@ -3056,6 +3058,8 @@
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#fig-video-position-test" test="(ancestor::fig-group) and ($no != string($fig-pos))" role="error" id="fig-video-position-test">[fig-video-position-test] <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other fig-level videos it is placed in position <value-of select="$fig-pos"/>.</report>
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#fig-video-check-1" test="(not(ancestor::fig-group)) and (descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))])" role="warning" id="fig-video-check-1">[fig-video-check-1] <value-of select="label"/> contains a link to <value-of select="descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1]"/>, but it is not a captured as a child of that fig. Should it be captured as <value-of select="concat(descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1],'—video x')"/> instead?</report>
+      
+      <report test="$is-explainer and not(caption/p[matches(lower-case(.),'explainer videos are not peer reviewed')])" role="error" id="explainer-video-check-1">[explainer-video-check-1] <value-of select="label"/> is an author explainer video, but the caption does not include the text 'Explainer videos are not peer reviewed'.</report>
       
     </rule></pattern><pattern id="app-video-specific-pattern"><rule context="app//media[@mimetype='video' and not(ancestor::fig-group)]" id="app-video-specific">
       <let name="app-id" value="ancestor::app/@id"/>
