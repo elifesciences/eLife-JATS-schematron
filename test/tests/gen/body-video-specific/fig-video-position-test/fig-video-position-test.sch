@@ -926,6 +926,8 @@
       <let name="no" value="substring-after(@id,'video')"/>
       <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.$','—')"/>
       <let name="fig-pos" value="count(ancestor::fig-group//media[@mimetype='video'][starts-with(label[1],$fig-label)]) - count(following::media[@mimetype='video'][starts-with(label[1],$fig-label)])"/>
+      <let name="title" value="caption[1]/title[1]"/>
+      <let name="is-explainer" value="matches(lower-case($title),'^(author )?explainer video( for figure \d+)?\.$')"/>
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#fig-video-position-test" test="(ancestor::fig-group) and ($no != string($fig-pos))" role="error" id="fig-video-position-test">
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other fig-level videos it is placed in position <value-of select="$fig-pos"/>.</report>
     </rule>

@@ -920,21 +920,16 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="video-tests">
-    <rule context="article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']" id="body-video-specific">
-      <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')])"/>
-      <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')][ancestor::body])"/>
-      <let name="no" value="substring-after(@id,'video')"/>
-      <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.$','—')"/>
-      <let name="fig-pos" value="count(ancestor::fig-group//media[@mimetype='video'][starts-with(label[1],$fig-label)]) - count(following::media[@mimetype='video'][starts-with(label[1],$fig-label)])"/>
+    <rule context="fig-group/media[@mimetype='video']" id="fig-video-specific">
       <let name="title" value="caption[1]/title[1]"/>
-      <let name="is-explainer" value="matches(lower-case($title),'^(author )?explainer video( for figure \d+)?\.$')"/>
-      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#fig-video-check-1" test="(not(ancestor::fig-group)) and (descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))])" role="warning" id="fig-video-check-1">
-        <value-of select="label"/> contains a link to <value-of select="descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1]"/>, but it is not a captured as a child of that fig. Should it be captured as <value-of select="concat(descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1],'—video x')"/> instead?</report>
+      <let name="is-explainer" value="matches(lower-case($title),'^(author )?explainer video for figure \d+\.$')"/>
+      <report test="$is-explainer and preceding-sibling::fig[@specific-use='child-fig']" role="error" id="fig-video-position-test-3">
+        <value-of select="replace(label,'\.$','')"/> is placed after <value-of select="preceding-sibling::fig[1]/label[1]"/>. Figure level author explainer videos should always be placed directly after the main figure and before any figure supplements in the figure group.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']" role="error" id="body-video-specific-xspec-assert">article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video'] must be present.</assert>
+      <assert test="descendant::fig-group/media[@mimetype='video']" role="error" id="fig-video-specific-xspec-assert">fig-group/media[@mimetype='video'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

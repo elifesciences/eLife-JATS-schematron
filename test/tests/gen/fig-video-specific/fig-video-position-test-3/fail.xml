@@ -1,0 +1,25 @@
+<?oxygen SCHSchema="fig-video-position-test-3.sch"?>
+<!--Context: fig-group/media[@mimetype='video']
+Test: report    $is-explainer and preceding-sibling::fig[@specific-use='child-fig']
+Message:  is placed after . Figure level author explainer videos should always be placed directly after the main figure and before any figure supplements in the figure group. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <fig-group>
+      <fig id="fig1">
+        <label>Figure 1.</label>
+      </fig>
+      <fig id="fig1s1" specific-use="child-fig">
+        <label>Figure 1-figure supplement 1.</label>
+      </fig>
+      <fig id="fig1s2" specific-use="child-fig">
+        <label>Figure 1-figure supplement 2.</label>
+      </fig>
+      <media mimetype="video">
+        <label>Figure 1-video 1.</label>
+          <caption>
+              <title>Explainer video for <xref ref-type="fig" rid="fig1">Figure 1</xref>.</title>
+          </caption>
+      </media>
+    </fig-group>
+  </article>
+</root>
