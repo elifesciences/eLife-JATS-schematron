@@ -18369,10 +18369,11 @@
    <!--PATTERN fig-video-specific-pattern-->
    <!--RULE fig-video-specific-->
    <xsl:template match="fig-group/media[@mimetype='video']" priority="1000" mode="M270">
-
-		<!--REPORT error-->
-      <xsl:if test="following-sibling::fig">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="following-sibling::fig">
+      <xsl:variable name="title" select="caption[1]/title[1]"/>
+      <xsl:variable name="is-explainer" select="matches(lower-case($title),'^(author )?explainer video for figure \d+\.$')"/>
+      <!--REPORT error-->
+      <xsl:if test="not($is-explainer) and following-sibling::fig">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not($is-explainer) and following-sibling::fig">
             <xsl:attribute name="id">fig-video-position-test-2</xsl:attribute>
             <xsl:attribute name="see">https://elifeproduction.slab.com/posts/videos-m0p9ve8m#fig-video-position-test-2</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
@@ -18384,6 +18385,21 @@
                <xsl:text/> is placed before <xsl:text/>
                <xsl:value-of select="following-sibling::fig[1]/label[1]"/>
                <xsl:text/> Figure level videos should always be placed after figures and figure supplements in their figure group.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="$is-explainer and preceding-sibling::fig[@specific-use='child-fig']">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$is-explainer and preceding-sibling::fig[@specific-use='child-fig']">
+            <xsl:attribute name="id">fig-video-position-test-3</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[fig-video-position-test-3] <xsl:text/>
+               <xsl:value-of select="replace(label,'\.$','')"/>
+               <xsl:text/> is placed after <xsl:text/>
+               <xsl:value-of select="preceding-sibling::fig[1]/label[1]"/>
+               <xsl:text/>. Figure level author explainer videos should always be placed directly after the main figure and before any figure supplements in the figure group.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M270"/>

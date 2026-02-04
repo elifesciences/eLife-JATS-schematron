@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="fig-video-position-test-2.sch"?>
 <!--Context: fig-group/media[@mimetype='video']
-Test: report    following-sibling::fig
+Test: report    not($is-explainer) and following-sibling::fig
 Message:  is placed before  Figure level videos should always be placed after figures and figure supplements in their figure group. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
