@@ -18137,6 +18137,19 @@
                <xsl:text/> is an author explainer video, but the caption does not include the text 'Explainer videos are not peer reviewed'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="$is-explainer and not(caption//supplementary-material[contains(label[1],'data')])">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$is-explainer and not(caption//supplementary-material[contains(label[1],'data')])">
+            <xsl:attribute name="id">explainer-video-check-2</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[explainer-video-check-2] <xsl:text/>
+               <xsl:value-of select="label"/>
+               <xsl:text/> is an author explainer video, but it does not have any source data. All author explainer videos should be accompanied by a source data file with a transcript.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M265"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M265"/>

@@ -5476,6 +5476,10 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="explainer-video-check-1"><value-of select="label"/> is an author explainer video, but the caption does not include the text 'Explainer videos are not peer reviewed'.</report>
       
+      <report test="$is-explainer and not(caption//supplementary-material[contains(label[1],'data')])" 
+        role="error" 
+        id="explainer-video-check-2"><value-of select="label"/> is an author explainer video, but it does not have any source data. All author explainer videos should be accompanied by a source data file with a transcript.</report>
+      
     </rule>
     
     <rule context="app//media[@mimetype='video' and not(ancestor::fig-group)]" id="app-video-specific">
