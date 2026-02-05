@@ -1,0 +1,23 @@
+<?oxygen SCHSchema="explainer-video-check-2.sch"?>
+<!--Context: article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']
+Test: report    $is-explainer and not(caption//supplementary-material[contains(label[1],'data')])
+Message:  is an author explainer video, but it does not have any source data. All author explainer videos should be accompanied by a source data file with a transcript. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article article-type="research-article">
+        <body>
+            <media mimetype="video" id="fig1video1">
+            <label>Figure 1&#x2014;video 1.</label>
+            <caption><title>Explainer video for <xref ref-type="fig" rid="fig1">Figure 1</xref>.</title>
+                <p>Explainer videos are not peer reviewed.</p>
+                <p>
+                    <supplementary-material id="fig1video1sdata1">
+                        <label>Figure 1&#x2014;video 1&#x2014;source data 1.</label>
+                        <caption><title>Explainer video transcript.</title></caption>
+                        <media/>
+                    </supplementary-material>
+                </p>
+            </caption>
+            </media>
+        </body>
+    </article>
+</root>
