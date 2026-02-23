@@ -390,7 +390,7 @@
 
      <xsl:template match="*|@*|text()|comment()|processing-instruction()">
         <xsl:copy>
-            <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+            <xsl:apply-templates select="* | @*[not(starts-with(name(),'data-'))] | text() | comment() | processing-instruction()"/>
         </xsl:copy>
     </xsl:template>
 
