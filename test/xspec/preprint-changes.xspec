@@ -236,6 +236,10 @@
       <x:context href="../tests/preprint-changes/rearrange-back/input.xml"/>
       <x:expect label="Testing the template: rearrange-back" href="../tests/preprint-changes/rearrange-back/output.xml"/>
     </x:scenario>
+    <x:scenario label="equation-label-finder">
+      <x:context href="../tests/preprint-changes/equation-label-finder/input.xml"/>
+      <x:expect label="Testing the template: equation-label-finder" href="../tests/preprint-changes/equation-label-finder/output.xml"/>
+    </x:scenario>
     <x:scenario label="mtable-cleaner">
       <x:context href="../tests/preprint-changes/mtable-cleaner/input.xml"/>
       <x:expect label="Testing the template: mtable-cleaner" href="../tests/preprint-changes/mtable-cleaner/output.xml"/>

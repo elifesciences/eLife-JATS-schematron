@@ -2562,14 +2562,11 @@
     </xsl:template>
     
     <!-- Add IDs for equations without them -->
-    <xsl:template xml:id="add-equation-ids" match="inline-formula[not(@id)] | disp-formula[not(@id)]">
-        <xsl:variable name="elem-name" select="name()"/>
-        <xsl:variable name="position" select="count(ancestor::article/descendant::*[name()=$elem-name]) - count(following::*[name()=$elem-name])"/>
-        <xsl:variable name="id-prefix" select="if ($elem-name='inline-formula') then 'inline-eqn-'
-            else 'disp-eqn-'"/>
+    <xsl:template xml:id="add-equation-ids" match="inline-formula[not(@id)]">
+        <xsl:variable name="position" select="count(ancestor::article//inline-formula) - count(following::inline-formula)"/>
         <xsl:copy>
             <xsl:attribute name="id">
-                <xsl:value-of select="concat($id-prefix,$position)"/>
+                <xsl:value-of select="concat('inline-eqn-',$position)"/>
             </xsl:attribute>
             <xsl:apply-templates select="@*|*|text()|comment()|processing-instruction()"/>
         </xsl:copy>
@@ -2755,9 +2752,42 @@
       </xsl:for-each>
     </xsl:template>
     
+    <!-- Tag equation <label> when this is only present in an mlabeledtr -->
+    <xsl:template xml:id="equation-label-finder" match="disp-formula[not(label)]">
+        <xsl:copy>
+            <xsl:if test="not(@id)">
+                <xsl:variable name="position" select="count(ancestor::article//disp-formula) - count(following::disp-formula)"/>
+                <xsl:attribute name="id">
+                    <xsl:value-of select="concat('disp-eqn-',$position)"/>
+                </xsl:attribute>
+            </xsl:if>
+            <xsl:apply-templates select="@*"/>
+            <xsl:if test="descendant::mml:math/mml:mtable[(count(mml:mlabeledtr/mml:mtd) = 2) and mml:mlabeledtr[1]/mml:mtd[1]/mml:mtext[1][normalize-space(.)!=''] and not(preceding-sibling::*) and not(following-sibling::*) and (count(mml:mlabeledtr) = 1)]">
+                <xsl:text>&#xa;</xsl:text>
+                <label>
+                    <xsl:variable name="eqn-no" select="normalize-space(descendant::mml:math[1]/mml:mtable[1]/mml:mlabeledtr[1]/mml:mtd[1]/mml:mtext[1])"/>
+                    <!-- Add missing brackets -->
+                    <xsl:variable name="label" select="if (matches($eqn-no,'^\p{Ps}.*\p{Pe}$')) then $eqn-no 
+                        else concat('(',$eqn-no,')')"/>
+                    <xsl:value-of select="$label"/>
+                </label>
+            </xsl:if>
+            <xsl:apply-templates select="node()|processing-instruction()"/>
+        </xsl:copy>
+    </xsl:template>
+    
     <!-- Strip unnecessary wrapper tables from maths -->
-    <xsl:template xml:id="mtable-cleaner" match="mml:math/mml:mtable[not(preceding-sibling::*) and not(following-sibling::*) and (count(mml:mlabeledtr) = 1) and (count(mml:mlabeledtr/mml:mtd) = 1)]">
-        <xsl:apply-templates select="mml:mlabeledtr/mml:mtd/*"/>
+    <xsl:template xml:id="mtable-cleaner" match="mml:math/mml:mtable[not(preceding-sibling::*) and not(following-sibling::*) and (count(mml:mlabeledtr) = 1)]">
+        <xsl:choose>
+            <!-- fix mistagging -->
+            <xsl:when test="count(mml:mlabeledtr/mml:mtd) = 1">
+                <xsl:apply-templates select="mml:mlabeledtr/mml:mtd/*"/>
+            </xsl:when>
+            <!-- Remove label from MathML -->
+            <xsl:otherwise>
+                <xsl:apply-templates select="mml:mlabeledtr/mml:mtd[2]/*"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
 </xsl:stylesheet>
