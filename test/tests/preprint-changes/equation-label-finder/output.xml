@@ -1,0 +1,11 @@
+<!--Testing template with id: equation-label-finder--><sec xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- has label -->
+<disp-formula id="eqn-1">
+<label>(A.1)</label>
+<mml:math id="math1" display="block"><mml:msub><mml:mi>d</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mi>R</mml:mi><mml:msub><mml:mi>s</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:msub><mml:mi>e</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub></mml:math>
+</disp-formula>
+<!-- Doesn't have label, also no id and includes data- attributes -->
+<disp-formula id="disp-eqn-0">
+<mml:math><mml:msubsup><mml:mrow><mml:mi mathvariant="script">G</mml:mi></mml:mrow><mml:mrow><mml:mrow><mml:mi>pq</mml:mi></mml:mrow></mml:mrow><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msubsup><mml:mrow><mml:mo>/</mml:mo></mml:mrow><mml:msubsup><mml:mi>&#x3c1;</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">p</mml:mi></mml:mrow><mml:mo>,</mml:mo><mml:mi>i</mml:mi></mml:mrow><mml:mrow><mml:mn>0</mml:mn></mml:mrow></mml:msubsup><mml:msubsup><mml:mi>&#x3c1;</mml:mi><mml:mrow><mml:mrow><mml:mi mathvariant="normal">q</mml:mi></mml:mrow></mml:mrow><mml:mrow><mml:mn>0</mml:mn></mml:mrow></mml:msubsup></mml:math>
+</disp-formula>
+</sec>
