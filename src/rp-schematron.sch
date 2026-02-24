@@ -3119,8 +3119,14 @@
       <assert test="parent::*/name()=$allowed-parents" role="error" id="page-break-pi-1">[page-break-pi-1] 'page-break' cannot be placed inside a <value-of select="parent::*/name()"/> element. It should be placed in one of the following: <value-of select="string-join($allowed-parents,'; ')"/></assert>
       
       <assert test="normalize-space(.)=''" role="error" id="page-break-pi-2">[page-break-pi-2] 'page-break' processing-instructions must be empty. This one has the value <value-of select="."/>.</assert>
+    </rule></pattern><pattern id="table-escape-pi-checks-pattern"><rule context="processing-instruction('table-escape')" id="table-escape-pi-checks">
+      <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
+      
+      <assert test="$next-node-name=('table-wrap')" role="error" id="table-escape-pi-1">[table-escape-pi-1] 'table-escape' processing-instructions must be placed directly before a table-wrap element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
+      
+      <assert test="normalize-space(.)=''" role="error" id="table-escape-pi-2">[table-escape-pi-2] 'table-escape' processing-instructions must be empty. This one has the value <value-of select="."/>.</assert>
     </rule></pattern><pattern id="all-pi-checks-pattern"><rule context="processing-instruction()" id="all-pi-checks">
-      <let name="allowed-names" value="('fig-class','fig-width','math-size','page-break')"/>
+      <let name="allowed-names" value="('fig-class','fig-width','math-size','page-break','table-escape')"/>
       
       <!-- To do: remove 'oxygen', which is only included here to circumvent test suite errors -->
       <assert test="name()=($allowed-names,'oxygen')" role="error" id="all-pi-1">[all-pi-1] '<value-of select="name()"/>' is not an allowed processing-instruction. The only ones that can be used are: <value-of select="string-join($allowed-names,'; ')"/></assert>
