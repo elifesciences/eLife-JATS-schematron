@@ -1,0 +1,10 @@
+<?oxygen SCHSchema="table-escape-pi-2.sch"?>
+<!--Context: processing-instruction('table-escape')
+Test: assert    normalize-space(.)=''
+Message: 'table-escape' processing-instructions must be empty. This one has the value . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <?table-escape test?>
+        <table-wrap/>
+    </article>
+</root>

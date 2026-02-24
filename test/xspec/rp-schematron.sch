@@ -3774,9 +3774,18 @@
       <assert test="normalize-space(.)=''" role="error" id="page-break-pi-2">'page-break' processing-instructions must be empty. This one has the value <value-of select="."/>.</assert>
     </rule>
   </pattern>
+  <pattern id="table-escape-pi-checks-pattern">
+    <rule context="processing-instruction('table-escape')" id="table-escape-pi-checks">
+      <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
+      
+      <assert test="$next-node-name=('table-wrap')" role="error" id="table-escape-pi-1">'table-escape' processing-instructions must be placed directly before a table-wrap element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
+      
+      <assert test="normalize-space(.)=''" role="error" id="table-escape-pi-2">'table-escape' processing-instructions must be empty. This one has the value <value-of select="."/>.</assert>
+    </rule>
+  </pattern>
   <pattern id="all-pi-checks-pattern">
     <rule context="processing-instruction()" id="all-pi-checks">
-      <let name="allowed-names" value="('fig-class','fig-width','math-size','page-break')"/>
+      <let name="allowed-names" value="('fig-class','fig-width','math-size','page-break','table-escape')"/>
       
       <!-- To do: remove 'oxygen', which is only included here to circumvent test suite errors -->
       <assert test="name()=($allowed-names,'oxygen')" role="error" id="all-pi-1">'<value-of select="name()"/>' is not an allowed processing-instruction. The only ones that can be used are: <value-of select="string-join($allowed-names,'; ')"/>
@@ -3964,6 +3973,7 @@
       <assert test="descendant::processing-instruction('fig-width')" role="error" id="fig-width-pi-checks-xspec-assert">processing-instruction('fig-width') must be present.</assert>
       <assert test="descendant::processing-instruction('math-size')" role="error" id="math-size-pi-checks-xspec-assert">processing-instruction('math-size') must be present.</assert>
       <assert test="descendant::processing-instruction('page-break')" role="error" id="page-break-pi-checks-xspec-assert">processing-instruction('page-break') must be present.</assert>
+      <assert test="descendant::processing-instruction('table-escape')" role="error" id="table-escape-pi-checks-xspec-assert">processing-instruction('table-escape') must be present.</assert>
       <assert test="descendant::processing-instruction()" role="error" id="all-pi-checks-xspec-assert">processing-instruction() must be present.</assert>
     </rule>
   </pattern>

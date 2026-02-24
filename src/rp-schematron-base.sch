@@ -4926,8 +4926,20 @@
          id="page-break-pi-2">'page-break' processing-instructions must be empty. This one has the value <value-of select="."/>.</assert>
     </rule>
     
+    <rule context="processing-instruction('table-escape')" id="table-escape-pi-checks">
+      <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
+      
+      <assert test="$next-node-name=('table-wrap')" 
+         role="error" 
+         id="table-escape-pi-1">'table-escape' processing-instructions must be placed directly before a table-wrap element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
+      
+      <assert test="normalize-space(.)=''" 
+         role="error" 
+         id="table-escape-pi-2">'table-escape' processing-instructions must be empty. This one has the value <value-of select="."/>.</assert>
+    </rule>
+    
     <rule context="processing-instruction()" id="all-pi-checks">
-      <let name="allowed-names" value="('fig-class','fig-width','math-size','page-break')"/>
+      <let name="allowed-names" value="('fig-class','fig-width','math-size','page-break','table-escape')"/>
       
       <!-- To do: remove 'oxygen', which is only included here to circumvent test suite errors -->
       <assert test="name()=($allowed-names,'oxygen')" 

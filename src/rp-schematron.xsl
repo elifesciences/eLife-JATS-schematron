@@ -2115,11 +2115,20 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
+            <xsl:attribute name="id">table-escape-pi-checks-pattern</xsl:attribute>
+            <xsl:attribute name="name">table-escape-pi-checks-pattern</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M219"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
             <xsl:attribute name="id">all-pi-checks-pattern</xsl:attribute>
             <xsl:attribute name="name">all-pi-checks-pattern</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M219"/>
+         <xsl:apply-templates select="/" mode="M220"/>
       </svrl:schematron-output>
    </xsl:template>
    <!--SCHEMATRON PATTERNS-->
@@ -13855,10 +13864,52 @@
    <xsl:template match="@*|node()" priority="-2" mode="M218">
       <xsl:apply-templates select="*" mode="M218"/>
    </xsl:template>
+   <!--PATTERN table-escape-pi-checks-pattern-->
+   <!--RULE table-escape-pi-checks-->
+   <xsl:template match="processing-instruction('table-escape')" priority="1000" mode="M219">
+      <xsl:variable name="next-node-name" select="following-sibling::node()[not(self::text())][1]/name()"/>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="$next-node-name=('table-wrap')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$next-node-name=('table-wrap')">
+               <xsl:attribute name="id">table-escape-pi-1</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[table-escape-pi-1] 'table-escape' processing-instructions must be placed directly before a table-wrap element. This is placed before a <xsl:text/>
+                  <xsl:value-of select="$next-node-name"/>
+                  <xsl:text/> element.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="normalize-space(.)=''"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="normalize-space(.)=''">
+               <xsl:attribute name="id">table-escape-pi-2</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[table-escape-pi-2] 'table-escape' processing-instructions must be empty. This one has the value <xsl:text/>
+                  <xsl:value-of select="."/>
+                  <xsl:text/>.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M219"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M219"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M219">
+      <xsl:apply-templates select="*" mode="M219"/>
+   </xsl:template>
    <!--PATTERN all-pi-checks-pattern-->
    <!--RULE all-pi-checks-->
-   <xsl:template match="processing-instruction()" priority="1000" mode="M219">
-      <xsl:variable name="allowed-names" select="('fig-class','fig-width','math-size','page-break')"/>
+   <xsl:template match="processing-instruction()" priority="1000" mode="M220">
+      <xsl:variable name="allowed-names" select="('fig-class','fig-width','math-size','page-break','table-escape')"/>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="name()=($allowed-names,'oxygen')"/>
@@ -13878,10 +13929,10 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M219"/>
+      <xsl:apply-templates select="*" mode="M220"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M219"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M219">
-      <xsl:apply-templates select="*" mode="M219"/>
+   <xsl:template match="text()" priority="-1" mode="M220"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M220">
+      <xsl:apply-templates select="*" mode="M220"/>
    </xsl:template>
 </xsl:stylesheet>

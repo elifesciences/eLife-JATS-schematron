@@ -1196,16 +1196,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="all-pi-checks-pattern">
-    <rule context="processing-instruction()" id="all-pi-checks">
-      <let name="allowed-names" value="('fig-class','fig-width','math-size','page-break','table-escape')"/>
-      <assert test="name()=($allowed-names,'oxygen')" role="error" id="all-pi-1">[all-pi-1] '<value-of select="name()"/>' is not an allowed processing-instruction. The only ones that can be used are: <value-of select="string-join($allowed-names,'; ')"/>
-      </assert>
+  <pattern id="table-escape-pi-checks-pattern">
+    <rule context="processing-instruction('table-escape')" id="table-escape-pi-checks">
+      <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
+      <assert test="$next-node-name=('table-wrap')" role="error" id="table-escape-pi-1">[table-escape-pi-1] 'table-escape' processing-instructions must be placed directly before a table-wrap element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::processing-instruction()" role="error" id="all-pi-checks-xspec-assert">processing-instruction() must be present.</assert>
+      <assert test="descendant::processing-instruction('table-escape')" role="error" id="table-escape-pi-checks-xspec-assert">processing-instruction('table-escape') must be present.</assert>
     </rule>
   </pattern>
 </schema>
