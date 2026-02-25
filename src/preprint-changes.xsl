@@ -9,7 +9,7 @@
     exclude-result-prefixes="xs xsi e"
     version="3.0">
 
-    <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="yes" use-character-maps="char-map"/>
+    <xsl:output method="xml" encoding="UTF-8" omit-xml-declaration="yes" cdata-section-elements="tex-math" use-character-maps="char-map"/>
     
     <!-- Force hexadecimal entities for HTML named entities (required by Python XML parser) -->
     <xsl:character-map name="char-map">
@@ -2750,6 +2750,34 @@
           </xsl:if>
         </xsl:if>
       </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template xml:id="tex-finder" match="mml:math[@alttext]">
+        <xsl:variable name="tex-doc-prefix" select="if (ancestor::inline-formula) then '\begin{document}$'
+            else '\begin{document}$$\displaystyle '"/>
+        <xsl:variable name="tex-doc-suffix" select="if (ancestor::inline-formula) then '$\end{document}'
+            else '$$\end{document}'"/>
+        <xsl:variable name="tex" select="concat($tex-doc-prefix,@alttext,$tex-doc-suffix)"/>
+        <xsl:choose>
+            <xsl:when test="parent::alternatives">
+                <xsl:copy>
+                    <xsl:apply-templates select="@*[name()!='alttext'] | * | text() | processing-instruction()"/>
+                </xsl:copy>
+                <xsl:text>&#xa;</xsl:text>
+                <tex-math><xsl:value-of select="$tex"/></tex-math>
+            </xsl:when>
+            <xsl:otherwise>
+                <alternatives>
+                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:copy>
+                        <xsl:apply-templates select="@*[name()!='alttext'] | * | text() | processing-instruction()"/>
+                    </xsl:copy>
+                    <xsl:text>&#xa;</xsl:text>
+                    <tex-math><xsl:value-of select="$tex"/></tex-math>
+                    <xsl:text>&#xa;</xsl:text>
+                </alternatives>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     <!-- Tag equation <label> when this is only present in an mlabeledtr -->
