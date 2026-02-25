@@ -1,0 +1,90 @@
+<!--Testing template with id: tex-finder-->
+<sec xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<p><inline-formula>
+<alternatives>
+<mml:math id="inf33" alttext="a^{2}/D=25">
+<mml:msup>
+<mml:mi>a</mml:mi>
+<mml:mrow class="MJX-TeXAtom-ORD">
+<mml:mn>2</mml:mn>
+</mml:mrow>
+</mml:msup>
+<mml:mrow class="MJX-TeXAtom-ORD">
+<mml:mo>/</mml:mo>
+</mml:mrow>
+<mml:mi>D</mml:mi>
+<mml:mo>=</mml:mo>
+<mml:mn>25</mml:mn>
+</mml:math>
+<graphic/>
+</alternatives>
+</inline-formula></p>
+<disp-formula id="equ1">
+<alternatives>
+<mml:math id="m1" alttext="\text{Pe} \ll 1: {\rm Sh} = 1 + \frac{43}{720}{\rm Pe}^2, \quad\text{Pe}\gg 1: {\rm Sh} = \frac{2}{\sqrt{3\pi}}{\rm Pe}^{\frac{1}{2}}.">
+<mml:mstyle displaystyle="true" scriptlevel="0">
+<mml:mrow>
+<mml:mstyle displaystyle="true" scriptlevel="0">
+<mml:mstyle displaystyle="true" scriptlevel="0">
+<mml:mtext>Pe</mml:mtext>
+<mml:mo>&#x226A;</mml:mo>
+<mml:mn>1</mml:mn>
+<mml:mo>:</mml:mo>
+<mml:mrow>
+<mml:mi mathvariant="normal">S</mml:mi>
+<mml:mi mathvariant="normal">h</mml:mi>
+</mml:mrow>
+<mml:mo>=</mml:mo>
+<mml:mn>1</mml:mn>
+<mml:mo>+</mml:mo>
+<mml:mfrac>
+<mml:mn>43</mml:mn>
+<mml:mn>720</mml:mn>
+</mml:mfrac>
+<mml:msup>
+<mml:mrow>
+<mml:mi mathvariant="normal">P</mml:mi>
+<mml:mi mathvariant="normal">e</mml:mi>
+</mml:mrow>
+<mml:mn>2</mml:mn>
+</mml:msup>
+<mml:mo>,</mml:mo>
+<mml:mspace width="1em"/>
+<mml:mtext>Pe</mml:mtext>
+<mml:mo>&#x226B;</mml:mo>
+<mml:mn>1</mml:mn>
+<mml:mo>:</mml:mo>
+<mml:mrow>
+<mml:mi mathvariant="normal">S</mml:mi>
+<mml:mi mathvariant="normal">h</mml:mi>
+</mml:mrow>
+<mml:mo>=</mml:mo>
+<mml:mfrac>
+<mml:mn>2</mml:mn>
+<mml:msqrt>
+<mml:mn>3</mml:mn>
+<mml:mi>&#x03C0;</mml:mi>
+</mml:msqrt>
+</mml:mfrac>
+<mml:msup>
+<mml:mrow>
+<mml:mi mathvariant="normal">P</mml:mi>
+<mml:mi mathvariant="normal">e</mml:mi>
+</mml:mrow>
+<mml:mrow>
+<mml:mfrac>
+<mml:mn>1</mml:mn>
+<mml:mn>2</mml:mn>
+</mml:mfrac>
+</mml:mrow>
+</mml:msup>
+<mml:mo>.</mml:mo>
+</mml:mstyle>
+</mml:mstyle>
+</mml:mrow>
+</mml:mstyle>
+</mml:math>
+<graphic/>
+</alternatives>
+</disp-formula>
+</sec>
