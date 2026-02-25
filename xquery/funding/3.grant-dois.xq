@@ -28,6 +28,12 @@ let $grants := <grants>{(
                return <grant doi="{$doi}" award="{$award}" funder="{$funder-ror}"/>
            )}</grants>
 
+let $grants-by-funder := map:merge(
+  for $funder-key in distinct-values($grants//*:grant/@funder)
+  return map:entry($funder-key, $grants//*:grant[@funder = $funder-key]),
+   map { "duplicates": "combine" }
+)
+
 let $new-rors := 
   copy $copy := $rors
   modify (
@@ -35,7 +41,8 @@ let $new-rors :=
     let $ror-id := $ror/*:id[@type="ror"]
     return if ($ror/@grant-dois="yes" or $ror-id=$datacite-funder-rors) then (
       let $dois := for $fundref in $ror/*:id[@type="fundref"] return substring-after($fundref,'doi.org/')
-      let $funder-grants := $grants//*:grant[@funder=($dois,$ror-id)]
+      let $funder-grants := for $key in ($dois, $ror-id)
+                            return $grants-by-funder($key)
       return replace node $ror with <ror status="{$ror/@status}" grant-dois="yes">
             {($ror/*,$funder-grants)}
            </ror>
@@ -43,7 +50,7 @@ let $new-rors :=
     else replace node $ror with $ror
   )
   return $copy
- 
+  
 return (
   file:write($src||'rors.xml',$new-rors,map{"indent":"yes"})
 )
