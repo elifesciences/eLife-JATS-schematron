@@ -11470,6 +11470,19 @@
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="$ror='https://ror.org/05t99sp05' and matches(institution-wrap[1]/institution[1]/lower-case(.),'univ(\.|ersity) of california')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$ror='https://ror.org/05t99sp05' and matches(institution-wrap[1]/institution[1]/lower-case(.),'univ(\.|ersity) of california')">
+            <xsl:attribute name="id">aff-ror-cal-coast</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[aff-ror-cal-coast] Affiliation has the ROR id for California Coast University (https://ror.org/05t99sp05), but the institution name contains 'University of California' (or similar) - <xsl:text/>
+               <xsl:value-of select="institution-wrap[1]/institution[1]"/>
+               <xsl:text/>. The ROR id is incorrect.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M154"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M154"/>

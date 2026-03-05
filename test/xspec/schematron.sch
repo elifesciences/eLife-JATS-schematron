@@ -2285,6 +2285,7 @@
       
       <report test="$matching-ror[@status='withdrawn']" role="error" id="aff-ror-status">Affiliation has a ROR id, but the ROR id's status is withdrawn. Withdrawn RORs should not be used. Should one of the following be used instead?: <value-of select="string-join(for $x in $matching-ror/*:relationships/* return concat('(',$x/name(),') ',$x/*:id,' ',$x/*:label),'; ')"/>.</report>
       
+      <report test="$ror='https://ror.org/05t99sp05' and matches(institution-wrap[1]/institution[1]/lower-case(.),'univ(\.|ersity) of california')" role="error" id="aff-ror-cal-coast">Affiliation has the ROR id for California Coast University (https://ror.org/05t99sp05), but the institution name contains 'University of California' (or similar) - <value-of select="institution-wrap[1]/institution[1]"/>. The ROR id is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="addr-line-parent-test-pattern">
