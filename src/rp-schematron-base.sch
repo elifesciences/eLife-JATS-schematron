@@ -2774,6 +2774,22 @@
      </rule>
     </pattern>
   
+  <pattern id="table">
+    <rule context="table" id="table-checks">
+      <report test="descendant::*[name()=('tr','td','th') and @style[contains(.,'background-color')]]"
+        role="warning"
+        id="table-style-test-1"><value-of select="if (ancestor::table-wrap/label) then ancestor::table-wrap/label else 'Unlabelled table'"/> contains some elements with background colour. Is this OK?</report>
+      
+      <report test="descendant::*[name()=('tr','td','th') and @style[contains(.,'border')]]"
+        role="warning"
+        id="table-style-test-2"><value-of select="if (ancestor::table-wrap/label) then ancestor::table-wrap/label else 'Unlabelled table'"/> contains some elements with border styling. Is this really necessary?</report>
+      
+      <report test="descendant::*[name()=('tr','td','th') and @style[not(matches(.,'background-color|border'))]]"
+        role="warning"
+        id="table-style-test-3"><value-of select="if (ancestor::table-wrap/label) then ancestor::table-wrap/label else 'Unlabelled table'"/> contains some elements with some kind of styling (<value-of select="string-join(distinct-values(descendant::*[name()=('tr','td','th') and @style[not(matches(.,'background-color|border'))]]/@style),'; ')"/>). Is this really necessary?</report>
+    </rule>
+  </pattern>
+  
     <pattern id="supplementary-material">
       <rule context="supplementary-material" id="supplementary-material-checks">
         <assert test="ancestor::sec[@sec-type='supplementary-material']"

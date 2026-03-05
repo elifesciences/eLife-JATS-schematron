@@ -2488,6 +2488,38 @@
         <x:expect-not-assert id="table-wrap-title-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="table-checks">
+      <x:scenario label="table-style-test-1-pass">
+        <x:context href="../tests/rp/table-checks/table-style-test-1/pass.xml"/>
+        <x:expect-not-report id="table-style-test-1" role="warning"/>
+        <x:expect-not-assert id="table-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-style-test-1-fail">
+        <x:context href="../tests/rp/table-checks/table-style-test-1/fail.xml"/>
+        <x:expect-report id="table-style-test-1" role="warning"/>
+        <x:expect-not-assert id="table-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-style-test-2-pass">
+        <x:context href="../tests/rp/table-checks/table-style-test-2/pass.xml"/>
+        <x:expect-not-report id="table-style-test-2" role="warning"/>
+        <x:expect-not-assert id="table-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-style-test-2-fail">
+        <x:context href="../tests/rp/table-checks/table-style-test-2/fail.xml"/>
+        <x:expect-report id="table-style-test-2" role="warning"/>
+        <x:expect-not-assert id="table-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-style-test-3-pass">
+        <x:context href="../tests/rp/table-checks/table-style-test-3/pass.xml"/>
+        <x:expect-not-report id="table-style-test-3" role="warning"/>
+        <x:expect-not-assert id="table-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="table-style-test-3-fail">
+        <x:context href="../tests/rp/table-checks/table-style-test-3/fail.xml"/>
+        <x:expect-report id="table-style-test-3" role="warning"/>
+        <x:expect-not-assert id="table-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="supplementary-material-checks">
       <x:scenario label="supplementary-material-temp-test-pass">
         <x:context href="../tests/rp/supplementary-material-checks/supplementary-material-temp-test/pass.xml"/>

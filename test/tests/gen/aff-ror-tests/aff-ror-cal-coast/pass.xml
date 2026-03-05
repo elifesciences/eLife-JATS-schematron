@@ -1,0 +1,16 @@
+<?oxygen SCHSchema="aff-ror-cal-coast.sch"?>
+<!--Context: aff[institution-wrap/institution-id[@institution-id-type='ror']]
+Test: report    $ror='https://ror.org/05t99sp05' and matches(institution-wrap[1]/institution[1]/lower-case(.),'univ(\.|ersity) of california')
+Message: Affiliation has the ROR id for California Coast University (https://ror.org/05t99sp05), but the institution name contains 'University of California' (or similar) - . The ROR id is incorrect. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <aff>
+            <institution-wrap>
+                <institution-id institution-id-type="ror">https://ror.org/05t99sp05</institution-id>
+                <institution>California Coast University</institution>
+            </institution-wrap>
+            <country>United States</country>
+        </aff>
+    </article>
+</root>

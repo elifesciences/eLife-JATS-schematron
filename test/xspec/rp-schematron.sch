@@ -2318,6 +2318,19 @@
      </rule>
   </pattern>
   
+  <pattern id="table-checks-pattern">
+    <rule context="table" id="table-checks">
+      <report test="descendant::*[name()=('tr','td','th') and @style[contains(.,'background-color')]]" role="warning" id="table-style-test-1">
+        <value-of select="if (ancestor::table-wrap/label) then ancestor::table-wrap/label else 'Unlabelled table'"/> contains some elements with background colour. Is this OK?</report>
+      
+      <report test="descendant::*[name()=('tr','td','th') and @style[contains(.,'border')]]" role="warning" id="table-style-test-2">
+        <value-of select="if (ancestor::table-wrap/label) then ancestor::table-wrap/label else 'Unlabelled table'"/> contains some elements with border styling. Is this really necessary?</report>
+      
+      <report test="descendant::*[name()=('tr','td','th') and @style[not(matches(.,'background-color|border'))]]" role="warning" id="table-style-test-3">
+        <value-of select="if (ancestor::table-wrap/label) then ancestor::table-wrap/label else 'Unlabelled table'"/> contains some elements with some kind of styling (<value-of select="string-join(distinct-values(descendant::*[name()=('tr','td','th') and @style[not(matches(.,'background-color|border'))]]/@style),'; ')"/>). Is this really necessary?</report>
+    </rule>
+  </pattern>
+  
     <pattern id="supplementary-material-checks-pattern">
     <rule context="supplementary-material" id="supplementary-material-checks">
         <assert test="ancestor::sec[@sec-type='supplementary-material']" role="warning" id="supplementary-material-temp-test">supplementary-material element is not placed within a &lt;sec sec-type="supplementary-material"&gt;. Is that correct?.</assert>
@@ -3866,6 +3879,7 @@
       <assert test="descendant::table-wrap/label" role="error" id="table-wrap-label-checks-xspec-assert">table-wrap/label must be present.</assert>
       <assert test="descendant::table-wrap/caption" role="error" id="table-wrap-caption-checks-xspec-assert">table-wrap/caption must be present.</assert>
       <assert test="descendant::table-wrap/caption/title" role="error" id="table-wrap-title-checks-xspec-assert">table-wrap/caption/title must be present.</assert>
+      <assert test="descendant::table" role="error" id="table-checks-xspec-assert">table must be present.</assert>
       <assert test="descendant::supplementary-material" role="error" id="supplementary-material-checks-xspec-assert">supplementary-material must be present.</assert>
       <assert test="descendant::supplementary-material/*" role="error" id="supplementary-material-child-checks-xspec-assert">supplementary-material/* must be present.</assert>
       <assert test="descendant::disp-formula" role="error" id="disp-formula-checks-xspec-assert">disp-formula must be present.</assert>

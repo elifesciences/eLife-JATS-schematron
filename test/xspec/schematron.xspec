@@ -3361,6 +3361,16 @@
         <x:expect-report id="aff-ror-status" role="error"/>
         <x:expect-not-assert id="aff-ror-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="aff-ror-cal-coast-pass">
+        <x:context href="../tests/gen/aff-ror-tests/aff-ror-cal-coast/pass.xml"/>
+        <x:expect-not-report id="aff-ror-cal-coast" role="error"/>
+        <x:expect-not-assert id="aff-ror-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="aff-ror-cal-coast-fail">
+        <x:context href="../tests/gen/aff-ror-tests/aff-ror-cal-coast/fail.xml"/>
+        <x:expect-report id="aff-ror-cal-coast" role="error"/>
+        <x:expect-not-assert id="aff-ror-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="addr-line-parent-test">
       <x:scenario label="addr-line-parent-pass">

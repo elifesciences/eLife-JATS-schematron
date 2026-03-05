@@ -8378,7 +8378,7 @@
       <xsl:variable name="inst" select="concat($inst1,'*',$inst2,'*',$inst3,'*',$inst4,'*',$inst5)"/>
       <xsl:variable name="coi-rid" select="xref[starts-with(@rid,'conf')]/@rid"/>
       <xsl:variable name="coi" select="ancestor::article//fn[@id = $coi-rid]/p[1]"/>
-      <xsl:variable name="comp-regex" select="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]|AstraZeneca|Pfizer| R&amp;D'"/>
+      <xsl:variable name="comp-regex" select="' [Ii]nc[.]?(\s|$)| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]|AstraZeneca|Pfizer| R&amp;D'"/>
       <xsl:variable name="fn-rid" select="xref[starts-with(@rid,'fn')]/@rid"/>
       <xsl:variable name="fn" select="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
       <xsl:variable name="name" select="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
@@ -11313,6 +11313,19 @@
             <svrl:text>[aff-ror-status] Affiliation has a ROR id, but the ROR id's status is withdrawn. Withdrawn RORs should not be used. Should one of the following be used instead?: <xsl:text/>
                <xsl:value-of select="string-join(for $x in $matching-ror/*:relationships/* return concat('(',$x/name(),') ',$x/*:id,' ',$x/*:label),'; ')"/>
                <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT error-->
+      <xsl:if test="$ror='https://ror.org/05t99sp05' and matches(institution-wrap[1]/institution[1]/lower-case(.),'univ(\.|ersity) of california')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$ror='https://ror.org/05t99sp05' and matches(institution-wrap[1]/institution[1]/lower-case(.),'univ(\.|ersity) of california')">
+            <xsl:attribute name="id">aff-ror-cal-coast</xsl:attribute>
+            <xsl:attribute name="role">error</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[aff-ror-cal-coast] Affiliation has the ROR id for California Coast University (https://ror.org/05t99sp05), but the institution name contains 'University of California' (or similar) - <xsl:text/>
+               <xsl:value-of select="institution-wrap[1]/institution[1]"/>
+               <xsl:text/>. The ROR id is incorrect.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M152"/>
