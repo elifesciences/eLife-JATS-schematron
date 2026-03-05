@@ -7224,6 +7224,19 @@
                <xsl:text/> contains some elements with background colour. Is this OK?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="descendant::*[name()=('tr','td','th') and @style[contains(.,'border')]]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::*[name()=('tr','td','th') and @style[contains(.,'border')]]">
+            <xsl:attribute name="id">table-style-test-2</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[table-style-test-2] <xsl:text/>
+               <xsl:value-of select="if (ancestor::table-wrap/label) then ancestor::table-wrap/label else 'Unlabelled table'"/>
+               <xsl:text/> contains some elements with border styling. Is this really necessary?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M107"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M107"/>
