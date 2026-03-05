@@ -2100,6 +2100,15 @@
       </rule></pattern><pattern id="inline-equation-alternatives-checks-pattern"><rule context="alternatives[parent::inline-formula]" id="inline-equation-alternatives-checks">
           <assert test="inline-graphic and *:math" role="error" id="inline-equation-alternatives-conformance">[inline-equation-alternatives-conformance] alternatives element within <value-of select="parent::*/name()"/> must have both an inline-graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
       </rule></pattern>
+  
+  <pattern id="math-tests-pattern"><rule context="*:math" id="math-tests">
+      <let name="data" value="replace(normalize-space(.),'\p{Zs}','')"/>
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-1" test="$data = ''" role="error" id="math-test-1">[math-test-1] mml:math must not be empty.</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-2" test="descendant::*:merror" role="error" id="math-test-2">[math-test-2] math contains an mml:merror with '<value-of select="descendant::*:merror[1]/*"/>'. This will almost certainly not render correctly.</report>
+      
+      <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-broken-unicode-test" test="matches(.,'(&amp;|§|§amp;)(#x?\d)?|[^\p{L}\p{N}][gl]t;')" role="warning" id="math-broken-unicode-test">[math-broken-unicode-test] Equation likely contains a broken unicode - <value-of select="."/>.</report>
+    </rule></pattern>
 
     <pattern id="list-checks-pattern"><rule context="list" id="list-checks">
         <let name="supported-list-types" value="('bullet','simple','order','alpha-lower','alpha-upper','roman-lower','roman-upper')"/>
