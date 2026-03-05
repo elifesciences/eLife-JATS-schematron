@@ -1,0 +1,30 @@
+<?oxygen SCHSchema="table-style-test-3.sch"?>
+<!--Context: table
+Test: report    descendant::*[name()=('tr','td','th') and @style[not(matches(.,'background-color|border'))]]
+Message:  contains some elements with some kind of styling (). Is this really necessary? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <table-wrap>
+            <label>Test table 1.</label>
+            <table>
+                <thead>
+                    <tr/>
+                </thead>
+                <tbody>
+                    <tr/>
+                </tbody>
+            </table>
+        </table-wrap>
+        <table-wrap>
+            <label>Test table 2.</label>
+            <table>
+                <thead>
+                    <tr><th/></tr>
+                </thead>
+                <tbody>
+                    <tr/>
+                </tbody>
+            </table>
+        </table-wrap>
+    </article>
+</root>

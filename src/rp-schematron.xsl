@@ -7237,6 +7237,21 @@
                <xsl:text/> contains some elements with border styling. Is this really necessary?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="descendant::*[name()=('tr','td','th') and @style[not(matches(.,'background-color|border'))]]">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="descendant::*[name()=('tr','td','th') and @style[not(matches(.,'background-color|border'))]]">
+            <xsl:attribute name="id">table-style-test-3</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[table-style-test-3] <xsl:text/>
+               <xsl:value-of select="if (ancestor::table-wrap/label) then ancestor::table-wrap/label else 'Unlabelled table'"/>
+               <xsl:text/> contains some elements with some kind of styling (<xsl:text/>
+               <xsl:value-of select="string-join(distinct-values(descendant::*[name()=('tr','td','th') and @style[not(matches(.,'background-color|border'))]]/@style),'; ')"/>
+               <xsl:text/>). Is this really necessary?</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <xsl:apply-templates select="*" mode="M107"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M107"/>
