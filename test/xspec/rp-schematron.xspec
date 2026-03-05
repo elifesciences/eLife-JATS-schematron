@@ -2632,6 +2632,38 @@
         <x:expect-not-assert id="inline-equation-alternatives-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="math-tests">
+      <x:scenario label="math-test-1-pass">
+        <x:context href="../tests/rp/math-tests/math-test-1/pass.xml"/>
+        <x:expect-not-report id="math-test-1" role="error"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-test-1-fail">
+        <x:context href="../tests/rp/math-tests/math-test-1/fail.xml"/>
+        <x:expect-report id="math-test-1" role="error"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-test-2-pass">
+        <x:context href="../tests/rp/math-tests/math-test-2/pass.xml"/>
+        <x:expect-not-report id="math-test-2" role="error"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-test-2-fail">
+        <x:context href="../tests/rp/math-tests/math-test-2/fail.xml"/>
+        <x:expect-report id="math-test-2" role="error"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-broken-unicode-test-pass">
+        <x:context href="../tests/rp/math-tests/math-broken-unicode-test/pass.xml"/>
+        <x:expect-not-report id="math-broken-unicode-test" role="warning"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-broken-unicode-test-fail">
+        <x:context href="../tests/rp/math-tests/math-broken-unicode-test/fail.xml"/>
+        <x:expect-report id="math-broken-unicode-test" role="warning"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="list-checks">
       <x:scenario label="list-type-conformance-pass">
         <x:context href="../tests/rp/list-checks/list-type-conformance/pass.xml"/>
