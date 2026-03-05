@@ -8378,7 +8378,7 @@
       <xsl:variable name="inst" select="concat($inst1,'*',$inst2,'*',$inst3,'*',$inst4,'*',$inst5)"/>
       <xsl:variable name="coi-rid" select="xref[starts-with(@rid,'conf')]/@rid"/>
       <xsl:variable name="coi" select="ancestor::article//fn[@id = $coi-rid]/p[1]"/>
-      <xsl:variable name="comp-regex" select="' [Ii]nc[.]?| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]|AstraZeneca|Pfizer| R&amp;D'"/>
+      <xsl:variable name="comp-regex" select="' [Ii]nc[.]?(\s|$)| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]|AstraZeneca|Pfizer| R&amp;D'"/>
       <xsl:variable name="fn-rid" select="xref[starts-with(@rid,'fn')]/@rid"/>
       <xsl:variable name="fn" select="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
       <xsl:variable name="name" select="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
