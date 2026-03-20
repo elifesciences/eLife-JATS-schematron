@@ -2147,6 +2147,15 @@
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M222"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="id">refinery-comment-checks-pattern</xsl:attribute>
+            <xsl:attribute name="name">refinery-comment-checks-pattern</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M223"/>
       </svrl:schematron-output>
    </xsl:template>
    <!--SCHEMATRON PATTERNS-->
@@ -14053,5 +14062,49 @@
    <xsl:template match="text()" priority="-1" mode="M222"/>
    <xsl:template match="@*|node()" priority="-2" mode="M222">
       <xsl:apply-templates select="*" mode="M222"/>
+   </xsl:template>
+   <!--PATTERN refinery-comment-checks-pattern-->
+   <!--RULE refinery-comment-checks-->
+   <xsl:template match="comment()" priority="1000" mode="M223">
+
+		<!--REPORT warning-->
+      <xsl:if test="matches(lower-case(.),'refinery.*?doi.*?suggested')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'refinery.*?doi.*?suggested')">
+            <xsl:attribute name="id">refinery-doi-suggestion</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[refinery-doi-suggestion] Ref (with id <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>) has a suggested DOI change. Current: <xsl:text/>
+               <xsl:value-of select="ancestor::ref/descendant::pub-id[@pub-id-type='doi'][1]"/>
+               <xsl:text/>; Suggested: <xsl:text/>
+               <xsl:value-of select="normalize-space(substring-after(.,'suggested:'))"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(lower-case(.),'refinery.*?pmid.*?suggested')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'refinery.*?pmid.*?suggested')">
+            <xsl:attribute name="id">refinery-pmid-suggestion</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[refinery-pmid-suggestion] Ref (with id <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>) has a suggested PMID change. Current: <xsl:text/>
+               <xsl:value-of select="ancestor::ref/pub-id[@pub-id-type='pmid'][1]"/>
+               <xsl:text/>; Suggested: <xsl:text/>
+               <xsl:value-of select="normalize-space(substring-after(.,'suggested:'))"/>
+               <xsl:text/>.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <xsl:apply-templates select="*" mode="M223"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M223"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M223">
+      <xsl:apply-templates select="*" mode="M223"/>
    </xsl:template>
 </xsl:stylesheet>

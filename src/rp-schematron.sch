@@ -3149,6 +3149,12 @@
       <assert test="name()=($allowed-names,'oxygen')" role="error" id="all-pi-1">[all-pi-1] '<value-of select="name()"/>' is not an allowed processing-instruction. The only ones that can be used are: <value-of select="string-join($allowed-names,'; ')"/></assert>
     </rule></pattern>
   
+  <pattern id="refinery-comment-checks-pattern"><rule context="comment()" id="refinery-comment-checks">
+      <report test="matches(lower-case(.),'refinery.*?doi.*?suggested')" role="warning" id="refinery-doi-suggestion">[refinery-doi-suggestion] Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested DOI change. Current: <value-of select="ancestor::ref/descendant::pub-id[@pub-id-type='doi'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
+      
+      <report test="matches(lower-case(.),'refinery.*?pmid.*?suggested')" role="warning" id="refinery-pmid-suggestion">[refinery-pmid-suggestion] Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested PMID change. Current: <value-of select="ancestor::ref/pub-id[@pub-id-type='pmid'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
+    </rule></pattern>
+  
   <!-- These are purely for oXygen validation -->
     <pattern id="assessment-api-check-pattern"><rule context="article[descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']]/sub-article[@article-type='editor-report']/front-stub" flag="local-only" id="assessment-api-check">
           <let name="article-id" value="ancestor::article//article-meta/article-id[@pub-id-type='publisher-id']"/>
