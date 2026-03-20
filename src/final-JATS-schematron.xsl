@@ -29804,9 +29804,12 @@
    <!--PATTERN insight-related-article-tests-pattern-->
    <!--RULE insight-related-article-tests-->
    <xsl:template match="article[@article-type='article-commentary']//article-meta/related-article" priority="1000" mode="M504">
+      <xsl:variable name="current-year" select="string(year-from-date(current-date()))"/>
       <xsl:variable name="doi" select="@xlink:href"/>
       <xsl:variable name="text" select="replace(ancestor::article/body/boxed-text[1],' ',' ')"/>
-      <xsl:variable name="citation" select="for $x in ancestor::article//ref-list//element-citation[pub-id[@pub-id-type='doi']=$doi][1]        return replace(concat(        string-join(        for $y in $x/person-group[@person-group-type='author']/*        return if ($y/name()='name') then concat($y/surname,' ', $y/given-names)        else $y        ,', '),        '. ',        replace($x/year,'[^\d]',''),        '. ',        $x/article-title,        '. eLife ',        $x/volume,        ':',        $x/elocation-id,        '. doi: ',        $x/pub-id[@pub-id-type='doi']),' ',' ')"/>
+      <xsl:variable name="related-ref" select="ancestor::article//ref-list//element-citation[pub-id[@pub-id-type='doi']=$doi][1]"/>
+      <xsl:variable name="related-ref-year" select="if ($related-ref/year) then replace($related-ref/year[1],'[^\d]','') else ''"/>
+      <xsl:variable name="citation" select="replace(concat(        string-join(        for $y in $related-ref/person-group[@person-group-type='author']/*        return if ($y/name()='name') then concat($y/surname,' ', $y/given-names)        else $y        ,', '),        '. ',        $related-ref-year,        '. ',        $related-ref/article-title,        '. eLife ',        $related-ref/volume,        ':',        $related-ref/elocation-id,        '. doi: ',        $related-ref/pub-id[@pub-id-type='doi']),' ',' ')"/>
       <!--ASSERT warning-->
       <xsl:choose>
          <xsl:when test="contains($text,$citation)"/>
@@ -29862,6 +29865,23 @@
             <svrl:text>[insight-related-article-test-2] This Insight is related to <xsl:text/>
                <xsl:value-of select="$doi"/>
                <xsl:text/>, but there is no reference in the ref-list with that doi.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="$related-ref-year!='' and not($current-year = $related-ref-year)">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="$related-ref-year!='' and not($current-year = $related-ref-year)">
+            <xsl:attribute name="id">insight-related-article-test-3</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[insight-related-article-test-3] This Insight is related to <xsl:text/>
+               <xsl:value-of select="$doi"/>
+               <xsl:text/>, but the reference in the ref-list with that doi has a year (<xsl:text/>
+               <xsl:value-of select="$related-ref-year"/>
+               <xsl:text/>) which is not the same as the current year (<xsl:text/>
+               <xsl:value-of select="$current-year"/>
+               <xsl:text/>). Is that correct?</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M504"/>

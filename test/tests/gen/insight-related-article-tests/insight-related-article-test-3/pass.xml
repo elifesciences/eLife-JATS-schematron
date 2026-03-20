@@ -1,0 +1,24 @@
+<?oxygen SCHSchema="insight-related-article-test-3.sch"?>
+<!--Context: article[@article-type='article-commentary']//article-meta/related-article
+Test: report    $related-ref-year!='' and not($current-year = $related-ref-year)
+Message: This Insight is related to , but the reference in the ref-list with that doi has a year () which is not the same as the current year (). Is that correct? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article article-type="article-commentary">
+       <article-meta>
+           <related-article related-article-type="commentary-article" ext-link-type="doi" xlink:href="10.7554/eLife.100451" id="ra1"/>
+       </article-meta>
+        <back>
+            <ref-list>
+                <ref>
+                    <ref id="bib4">
+                        <element-citation publication-type="journal">
+                            ...
+                            <year iso-8601-date="2026">2026b</year>
+                            <pub-id pub-id-type="doi">10.7554/eLife.100451</pub-id>
+                        </element-citation>
+                    </ref>
+                </ref>
+            </ref-list>
+        </back>
+    </article>
+</root>
