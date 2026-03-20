@@ -9852,25 +9852,27 @@ else self::*/local-name() = $allowed-p-blocks"
    </rule>
    
    <rule context="article[@article-type='article-commentary']//article-meta/related-article" id="insight-related-article-tests">
+     <let name="current-year" value="string(year-from-date(current-date()))"/>
      <let name="doi" value="@xlink:href"/>
      <let name="text" value="replace(ancestor::article/body/boxed-text[1],' ',' ')"/>
-     <let name="citation" value="for $x in ancestor::article//ref-list//element-citation[pub-id[@pub-id-type='doi']=$doi][1]
-       return replace(concat(
+     <let name="related-ref" value="ancestor::article//ref-list//element-citation[pub-id[@pub-id-type='doi']=$doi][1]"/>
+     <let name="related-ref-year" value="if ($related-ref/year) then replace($related-ref/year[1],'[^\d]','') else ''"></let>
+     <let name="citation" value="replace(concat(
        string-join(
-       for $y in $x/person-group[@person-group-type='author']/*
+       for $y in $related-ref/person-group[@person-group-type='author']/*
        return if ($y/name()='name') then concat($y/surname,' ', $y/given-names)
        else $y
        ,', '),
        '. ',
-       replace($x/year,'[^\d]',''),
+       $related-ref-year,
        '. ',
-       $x/article-title,
+       $related-ref/article-title,
        '. eLife ',
-       $x/volume,
+       $related-ref/volume,
        ':',
-       $x/elocation-id,
+       $related-ref/elocation-id,
        '. doi: ',
-       $x/pub-id[@pub-id-type='doi']),' ',' ')"/>
+       $related-ref/pub-id[@pub-id-type='doi']),' ',' ')"/>
      
      <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#insight-box-test-1"
         test="contains($text,$citation)" 
@@ -9885,6 +9887,10 @@ else self::*/local-name() = $allowed-p-blocks"
      <report test="@related-article-type='commentary-article' and not(ancestor::article//ref-list/ref//pub-id[@pub-id-type]=$doi)" 
         role="error" 
         id="insight-related-article-test-2">This Insight is related to <value-of select="$doi"/>, but there is no reference in the ref-list with that doi.</report>
+     
+     <report test="$related-ref-year!='' and not($current-year = $related-ref-year)" 
+        role="warning" 
+        id="insight-related-article-test-3">This Insight is related to <value-of select="$doi"/>, but the reference in the ref-list with that doi has a year (<value-of select="$related-ref-year"/>) which is not the same as the current year (<value-of select="$current-year"/>). Is that correct?</report>
    </rule>
    
    <rule context="article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//p|
