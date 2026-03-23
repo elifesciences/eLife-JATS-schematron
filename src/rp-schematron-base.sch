@@ -4988,39 +4988,32 @@
     <rule context="ref//comment()" id="refinery-comment-checks">
       <report test="matches(lower-case(.),'refinery:.*?doi.*?suggested')"
         role="warning" 
-        sqf:fix="refinery-update-doi dismiss-refinery"
+        sqf:fix="update-refinery dismiss-refinery"
         id="refinery-doi-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested DOI change. Current: <value-of select="ancestor::ref/descendant::pub-id[@pub-id-type='doi'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
       
       <report test="matches(lower-case(.),'refinery:.*?pmid.*?suggested')"
         role="warning"
-        sqf:fix="refinery-update-pmid dismiss-refinery"
+        sqf:fix="update-refinery dismiss-refinery"
         id="refinery-pmid-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested PMID change. Current: <value-of select="ancestor::ref/pub-id[@pub-id-type='pmid'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
       
-      <sqf:fix id="refinery-update-doi">
+      <sqf:fix id="update-refinery">
         <sqf:description>
-          <sqf:title>Update DOI (with refinery suggestion)</sqf:title>
+          <sqf:title>Accept refinery suggestion</sqf:title>
         </sqf:description>
-        <sqf:replace match="ancestor::ref/descendant::pub-id[@pub-id-type='doi'][1]">
-          <pub-id pub-id-type="doi">
+        <sqf:replace match=".">
+          <pub-id xmlns="">
+            <xsl:attribute xmlns="" name="pub-id-type">
+              <xsl:value-of select="if (contains(.,'DOI')) then 'doi' else 'pmid'"/>
+            </xsl:attribute>
             <xsl:value-of select="normalize-space(substring-after(.,'suggested:'))"/>
           </pub-id>
         </sqf:replace>
-      </sqf:fix>
-      
-      <sqf:fix id="refinery-update-pmid">
-        <sqf:description>
-          <sqf:title>Update PMID (with refinery suggestion)</sqf:title>
-        </sqf:description>
-        <sqf:replace match="ancestor::ref/descendant::pub-id[@pub-id-type='pmid'][1]">
-          <pub-id pub-id-type="doi">
-            <xsl:value-of select="normalize-space(substring-after(.,'suggested:'))"/>
-          </pub-id>
-        </sqf:replace>
+        <sqf:delete match="./preceding-sibling::text()[1]|preceding-sibling::pub-id[1]"/>
       </sqf:fix>
       
       <sqf:fix id="dismiss-refinery">
         <sqf:description>
-          <sqf:title>Dismiss suggestion from refinery</sqf:title>
+          <sqf:title>Dismiss refinery suggestion</sqf:title>
         </sqf:description>
         <sqf:delete match=".|./preceding-sibling::text()[1]"/>
       </sqf:fix>

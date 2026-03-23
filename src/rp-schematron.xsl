@@ -14101,29 +14101,23 @@
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
-      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" id="refinery-update-doi">
+      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" id="update-refinery">
          <sqf:description>
-            <sqf:title>Update DOI (with refinery suggestion)</sqf:title>
+            <sqf:title>Accept refinery suggestion</sqf:title>
          </sqf:description>
-         <sqf:replace match="ancestor::ref/descendant::pub-id[@pub-id-type='doi'][1]">
-            <pub-id pub-id-type="doi">
+         <sqf:replace match=".">
+            <pub-id xmlns="">
+               <xsl:attribute name="pub-id-type">
+                  <xsl:value-of select="if (contains(.,'DOI')) then 'doi' else 'pmid'"/>
+               </xsl:attribute>
                <xsl:value-of select="normalize-space(substring-after(.,'suggested:'))"/>
             </pub-id>
          </sqf:replace>
-      </sqf:fix>
-      <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" id="refinery-update-pmid">
-         <sqf:description>
-            <sqf:title>Update PMID (with refinery suggestion)</sqf:title>
-         </sqf:description>
-         <sqf:replace match="ancestor::ref/descendant::pub-id[@pub-id-type='pmid'][1]">
-            <pub-id pub-id-type="doi">
-               <xsl:value-of select="normalize-space(substring-after(.,'suggested:'))"/>
-            </pub-id>
-         </sqf:replace>
+         <sqf:delete match="./preceding-sibling::text()[1]|preceding-sibling::pub-id[1]"/>
       </sqf:fix>
       <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" id="dismiss-refinery">
          <sqf:description>
-            <sqf:title>Dismiss suggestion from refinery</sqf:title>
+            <sqf:title>Dismiss refinery suggestion</sqf:title>
          </sqf:description>
          <sqf:delete match=".|./preceding-sibling::text()[1]"/>
       </sqf:fix>
