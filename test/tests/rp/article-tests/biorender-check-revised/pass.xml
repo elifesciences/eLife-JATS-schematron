@@ -2,7 +2,7 @@
 <!--Context: article[front/journal-meta/lower-case(journal-id[1])='elife']
 Test: report    $is-revised-rp and matches(lower-case($article-text),'biorend[eo]r')
 Message: Article text contains a reference to bioRender. Any figures created with bioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}". Since this is a revised RP, check to see if the first (or a previous) version had bioRender links. -->
-<article>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/"><article>
     <front>
         <journal-meta>
             <journal-id>eLife</journal-id>
@@ -25,4 +25,4 @@ Message: Article text contains a reference to bioRender. Any figures created wit
             </permissions>
         </fig>
     </body>
-</article>
+</article></root>

@@ -1,10 +1,28 @@
 <organisms>    
+    <organism type="species" regex="actinoposthia\p{Zs}?beklemischevi">Actinoposthia beklemischevi</organism>
+    <organism type="species" regex="a\.\p{Zs}?beklemischevi">A. beklemischevi</organism>
+    <organism type="species" regex="actinoposthia\p{Zs}?biaculeata">Actinoposthia biaculeata</organism>
+    <organism type="species" regex="a\.\p{Zs}?biaculeata">A. biaculeata</organism>
+    <organism type="species" regex="actinoposthia\p{Zs}?caudata">Actinoposthia caudata</organism>
+    <organism type="species" regex="a\.\p{Zs}?caudata">A. caudata</organism>
+    <organism type="species" regex="actinoposthia\p{Zs}?longa">Actinoposthia longa</organism>
+    <organism type="species" regex="a\.\p{Zs}?longa">A. longa</organism>
+    <organism type="species" regex="actinoposthia\p{Zs}?pigmentea">Actinoposthia pigmentea</organism>
+    <organism type="species" regex="a\.\p{Zs}?pigmentea">A. pigmentea</organism>
     <organism type="species" regex="albugo\p{Zs}?candida">Albugo candida</organism>
     <organism type="species" regex="a\.\p{Zs}?candida">A. candida</organism>
     <organism type="species" regex="allobates\p{Zs}?femoralis">Allobates femoralis</organism>
     <organism type="species" regex="a\.\p{Zs}?femoralis">A. femoralis</organism>
     <organism type="species" regex="apis\p{Zs}?mellifera">Apis mellifera</organism>
     <organism type="species" regex="a\.\p{Zs}?mellifera">A. mellifera</organism>
+    <organism type="species" regex="aphanostoma\p{Zs}?adherens">Aphanostoma adherens</organism>
+    <organism type="species" regex="a\.\p{Zs}?adherens">A. adherens</organism>
+    <organism type="species" regex="aphanostoma\p{Zs}?album">Aphanostoma album</organism>
+    <organism type="species" regex="a\.\p{Zs}?album">A. album</organism>
+    <organism type="species" regex="aphanostoma\p{Zs}?aurantiacum">Aphanostoma aurantiacum</organism>
+    <organism type="species" regex="a\.\p{Zs}?aurantiacum">A. aurantiacum</organism>
+    <organism type="species" regex="aphanostoma\p{Zs}?pisae">Aphanostoma pisae</organism>
+    <organism type="species" regex="a\.\p{Zs}?pisae">A. pisae</organism>
     <organism type="species" regex="arabidopsis\p{Zs}?thaliana">Arabidopsis thaliana</organism>
     <organism type="species" regex="a\.\p{Zs}?thaliana">A. thaliana</organism>
     <organism type="species" regex="bacillus\p{Zs}?subtilis">Bacillus subtilis</organism>
@@ -83,14 +101,202 @@
     <organism type="species" regex="c\.\p{Zs}?reinhardtii">C. reinhardtii</organism>
     <organism type="species" regex="ciona\p{Zs}?intestinalis">Ciona intestinalis</organism>
     <organism type="species" regex="c\.\p{Zs}?intestinalis">C. intestinalis</organism>
+    <organism type="species" regex="clytia\p{Zs}?ambigua">Clytia ambigua</organism>
+    <organism type="species" regex="c\.\p{Zs}?ambigua">C. ambigua</organism>
+    <organism type="species" regex="clytia\p{Zs}?arborescens">Clytia arborescens</organism>
+    <organism type="species" regex="c\.\p{Zs}?arborescens">C. arborescens</organism>
+    <organism type="species" regex="clytia\p{Zs}?brevicyatha">Clytia brevicyatha</organism>
+    <organism type="species" regex="c\.\p{Zs}?brevicyatha">C. brevicyatha</organism>
+    <organism type="species" regex="clytia\p{Zs}?brevithecata">Clytia brevithecata</organism>
+    <organism type="species" regex="c\.\p{Zs}?brevithecata">C. brevithecata</organism>
+    <organism type="species" regex="clytia\p{Zs}?brunescens">Clytia brunescens</organism>
+    <organism type="species" regex="c\.\p{Zs}?brunescens">C. brunescens</organism>
+    <organism type="species" regex="clytia\p{Zs}?crenata">Clytia crenata</organism>
+    <organism type="species" regex="c\.\p{Zs}?crenata">C. crenata</organism>
+    <organism type="species" regex="clytia\p{Zs}?delicatula">Clytia delicatula</organism>
+    <organism type="species" regex="c\.\p{Zs}?delicatula">C. delicatula</organism>
+    <organism type="species" regex="clytia\p{Zs}?discoida">Clytia discoida</organism>
+    <organism type="species" regex="c\.\p{Zs}?discoida">C. discoida</organism>
+    <organism type="species" regex="clytia\p{Zs}?edentula">Clytia edentula</organism>
+    <organism type="species" regex="c\.\p{Zs}?edentula">C. edentula</organism>
+    <organism type="species" regex="clytia\p{Zs}?elongata">Clytia elongata</organism>
+    <organism type="species" regex="c\.\p{Zs}?elongata">C. elongata</organism>
+    <organism type="species" regex="clytia\p{Zs}?elsaeoswaldae">Clytia elsaeoswaldae</organism>
+    <organism type="species" regex="c\.\p{Zs}?elsaeoswaldae">C. elsaeoswaldae</organism>
+    <organism type="species" regex="clytia\p{Zs}?exilis">Clytia exilis</organism>
+    <organism type="species" regex="c\.\p{Zs}?exilis">C. exilis</organism>
+    <organism type="species" regex="clytia\p{Zs}?fascicularis">Clytia fascicularis</organism>
+    <organism type="species" regex="c\.\p{Zs}?fascicularis">C. fascicularis</organism>
+    <organism type="species" regex="clytia\p{Zs}?folleata">Clytia folleata</organism>
+    <organism type="species" regex="c\.\p{Zs}?folleata">C. folleata</organism>
+    <organism type="species" regex="clytia\p{Zs}?gelatinosa">Clytia gelatinosa</organism>
+    <organism type="species" regex="c\.\p{Zs}?gelatinosa">C. gelatinosa</organism>
+    <organism type="species" regex="clytia\p{Zs}?globosa">Clytia globosa</organism>
+    <organism type="species" regex="c\.\p{Zs}?globosa">C. globosa</organism>
+    <organism type="species" regex="clytia\p{Zs}?gracilicaulis">Clytia gracilicaulis</organism>
+    <organism type="species" regex="c\.\p{Zs}?gracilicaulis">C. gracilicaulis</organism>
+    <organism type="species" regex="clytia\p{Zs}?gracilis">Clytia gracilis</organism>
+    <organism type="species" regex="c\.\p{Zs}?gracilis">C. gracilis</organism>
+    <organism type="species" regex="clytia\p{Zs}?gregaria">Clytia gregaria</organism>
+    <organism type="species" regex="c\.\p{Zs}?gregaria">C. gregaria</organism>
+    <organism type="species" regex="clytia\p{Zs}?gulangensis">Clytia gulangensis</organism>
+    <organism type="species" regex="c\.\p{Zs}?gulangensis">C. gulangensis</organism>
+    <organism type="species" regex="clytia\p{Zs}?hemisphaerica">Clytia hemisphaerica</organism>
+    <organism type="species" regex="c\.\p{Zs}?hemisphaerica">C. hemisphaerica</organism>
+    <organism type="species" regex="clytia\p{Zs}?hexacanalis">Clytia hexacanalis</organism>
+    <organism type="species" regex="c\.\p{Zs}?hexacanalis">C. hexacanalis</organism>
+    <organism type="species" regex="clytia\p{Zs}?iridescens">Clytia iridescens</organism>
+    <organism type="species" regex="c\.\p{Zs}?iridescens">C. iridescens</organism>
+    <organism type="species" regex="clytia\p{Zs}?irregularis">Clytia irregularis</organism>
+    <organism type="species" regex="c\.\p{Zs}?irregularis">C. irregularis</organism>
+    <organism type="species" regex="clytia\p{Zs}?islandica">Clytia islandica</organism>
+    <organism type="species" regex="c\.\p{Zs}?islandica">C. islandica</organism>
+    <organism type="species" regex="clytia\p{Zs}?joycei">Clytia joycei</organism>
+    <organism type="species" regex="c\.\p{Zs}?joycei">C. joycei</organism>
+    <organism type="species" regex="clytia\p{Zs}?kincaidi">Clytia kincaidi</organism>
+    <organism type="species" regex="c\.\p{Zs}?kincaidi">C. kincaidi</organism>
+    <organism type="species" regex="clytia\p{Zs}?laxa">Clytia laxa</organism>
+    <organism type="species" regex="c\.\p{Zs}?laxa">C. laxa</organism>
+    <organism type="species" regex="clytia\p{Zs}?liguiliformis">Clytia liguiliformis</organism>
+    <organism type="species" regex="c\.\p{Zs}?liguiliformis">C. liguiliformis</organism>
+    <organism type="species" regex="clytia\p{Zs}?linearis">Clytia linearis</organism>
+    <organism type="species" regex="c\.\p{Zs}?linearis">C. linearis</organism>
+    <organism type="species" regex="clytia\p{Zs}?lomae">Clytia lomae</organism>
+    <organism type="species" regex="c\.\p{Zs}?lomae">C. lomae</organism>
+    <organism type="species" regex="clytia\p{Zs}?macrocarpa">Clytia macrocarpa</organism>
+    <organism type="species" regex="c\.\p{Zs}?macrocarpa">C. macrocarpa</organism>
+    <organism type="species" regex="clytia\p{Zs}?macrogonia">Clytia macrogonia</organism>
+    <organism type="species" regex="c\.\p{Zs}?macrogonia">C. macrogonia</organism>
+    <organism type="species" regex="clytia\p{Zs}?macrotheca">Clytia macrotheca</organism>
+    <organism type="species" regex="c\.\p{Zs}?macrotheca">C. macrotheca</organism>
+    <organism type="species" regex="clytia\p{Zs}?malayense">Clytia malayense</organism>
+    <organism type="species" regex="c\.\p{Zs}?malayense">C. malayense</organism>
+    <organism type="species" regex="clytia\p{Zs}?mccradyi">Clytia mccradyi</organism>
+    <organism type="species" regex="c\.\p{Zs}?mccradyi">C. mccradyi</organism>
+    <organism type="species" regex="clytia\p{Zs}?multiannulata">Clytia multiannulata</organism>
+    <organism type="species" regex="c\.\p{Zs}?multiannulata">C. multiannulata</organism>
+    <organism type="species" regex="clytia\p{Zs}?multidentata">Clytia multidentata</organism>
+    <organism type="species" regex="c\.\p{Zs}?multidentata">C. multidentata</organism>
+    <organism type="species" regex="clytia\p{Zs}?noliformis">Clytia noliformis</organism>
+    <organism type="species" regex="c\.\p{Zs}?noliformis">C. noliformis</organism>
+    <organism type="species" regex="clytia\p{Zs}?pacifica">Clytia pacifica</organism>
+    <organism type="species" regex="c\.\p{Zs}?pacifica">C. pacifica</organism>
+    <organism type="species" regex="clytia\p{Zs}?paradoxa">Clytia paradoxa</organism>
+    <organism type="species" regex="c\.\p{Zs}?paradoxa">C. paradoxa</organism>
+    <organism type="species" regex="clytia\p{Zs}?paulensis">Clytia paulensis</organism>
+    <organism type="species" regex="c\.\p{Zs}?paulensis">C. paulensis</organism>
+    <organism type="species" regex="clytia\p{Zs}?pearsonensis">Clytia pearsonensis</organism>
+    <organism type="species" regex="c\.\p{Zs}?pearsonensis">C. pearsonensis</organism>
+    <organism type="species" regex="clytia\p{Zs}?rangiroae">Clytia rangiroae</organism>
+    <organism type="species" regex="c\.\p{Zs}?rangiroae">C. rangiroae</organism>
+    <organism type="species" regex="clytia\p{Zs}?reloncavia">Clytia reloncavia</organism>
+    <organism type="species" regex="c\.\p{Zs}?reloncavia">C. reloncavia</organism>
+    <organism type="species" regex="clytia\p{Zs}?seriata">Clytia seriata</organism>
+    <organism type="species" regex="c\.\p{Zs}?seriata">C. seriata</organism>
+    <organism type="species" regex="clytia\p{Zs}?sibogae">Clytia sibogae</organism>
+    <organism type="species" regex="c\.\p{Zs}?sibogae">C. sibogae</organism>
+    <organism type="species" regex="clytia\p{Zs}?simplex">Clytia simplex</organism>
+    <organism type="species" regex="c\.\p{Zs}?simplex">C. simplex</organism>
+    <organism type="species" regex="clytia\p{Zs}?singulare">Clytia singulare</organism>
+    <organism type="species" regex="c\.\p{Zs}?singulare">C. singulare</organism>
+    <organism type="species" regex="clytia\p{Zs}?stechowi">Clytia stechowi</organism>
+    <organism type="species" regex="c\.\p{Zs}?stechowi">C. stechowi</organism>
+    <organism type="species" regex="clytia\p{Zs}?thornelyi">Clytia thornelyi</organism>
+    <organism type="species" regex="c\.\p{Zs}?thornelyi">C. thornelyi</organism>
+    <organism type="species" regex="clytia\p{Zs}?trigona">Clytia trigona</organism>
+    <organism type="species" regex="c\.\p{Zs}?trigona">C. trigona</organism>
+    <organism type="species" regex="clytia\p{Zs}?uchidai">Clytia uchidai</organism>
+    <organism type="species" regex="c\.\p{Zs}?uchidai">C. uchidai</organism>
+    <organism type="species" regex="clytia\p{Zs}?universitatis">Clytia universitatis</organism>
+    <organism type="species" regex="c\.\p{Zs}?universitatis">C. universitatis</organism>
+    <organism type="species" regex="clytia\p{Zs}?warreni">Clytia warreni</organism>
+    <organism type="species" regex="c\.\p{Zs}?warreni">C. warreni</organism>
+    <organism type="species" regex="clytia\p{Zs}?xiamenensis">Clytia xiamenensis</organism>
+    <organism type="species" regex="c\.\p{Zs}?xiamenensis">C. xiamenensis</organism>    
     <organism type="species" regex="colostethus\p{Zs}?trinitatis">Colostethus trinitatis</organism>
     <organism type="species" regex="c\.\p{Zs}?trinitatis">C. trinitatis</organism>
+    <organism type="species" regex="convolutriloba\p{Zs}?hastifera">Convolutriloba hastifera</organism>
+    <organism type="species" regex="c\.\p{Zs}?hastifera">C. hastifera</organism>
+    <organism type="species" regex="convolutriloba\p{Zs}?longifissura">Convolutriloba longifissura</organism>
+    <organism type="species" regex="c\.\p{Zs}?longifissura">C. longifissura</organism>
+    <organism type="species" regex="convolutriloba\p{Zs}?macropyga">Convolutriloba macropyga</organism>
+    <organism type="species" regex="c\.\p{Zs}?macropyga">C. macropyga</organism>
+    <organism type="species" regex="convolutriloba\p{Zs}?retrogemma">Convolutriloba retrogemma</organism>
+    <organism type="species" regex="c\.\p{Zs}?retrogemma">C. retrogemma</organism>
     <organism type="species" regex="danio\p{Zs}?rerio">Danio rerio</organism>
     <organism type="species" regex="d\.\p{Zs}?rerio">D. rerio</organism>
-    <organism type="species" regex="cendrobates\p{Zs}?histrionicus">Dendrobates histrionicus</organism>
+    <organism type="species" regex="dendrobates\p{Zs}?histrionicus">Dendrobates histrionicus</organism>
     <organism type="species" regex="d\.\p{Zs}?histrionicus">D. histrionicus</organism>
-    <organism type="species" regex="cendrobates\p{Zs}?ventrimaculatus">Dendrobates ventrimaculatus</organism>
+    <organism type="species" regex="dendrobates\p{Zs}?ventrimaculatus">Dendrobates ventrimaculatus</organism>
     <organism type="species" regex="d\.\p{Zs}?histrionicus">D. ventrimaculatus</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?ammophilum">Dictyostelium ammophilum</organism>
+    <organism type="species" regex="d\.\p{Zs}?ammophilum">D. ventrimaculatus</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?aureocephalum">Dictyostelium aureocephalum</organism>
+    <organism type="species" regex="d\.\p{Zs}?aureocephalum">D. aureocephalum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?aureum">Dictyostelium aureum</organism>
+    <organism type="species" regex="d\.\p{Zs}?aureum">D. aureum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?austroandinum">Dictyostelium austroandinum</organism>
+    <organism type="species" regex="d\.\p{Zs}?austroandinum">D. austroandinum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?barbibulus">Dictyostelium barbibulus</organism>
+    <organism type="species" regex="d\.\p{Zs}?barbibulus">D. barbibulus</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?brefeldianum">Dictyostelium brefeldianum</organism>
+    <organism type="species" regex="d\.\p{Zs}?brefeldianum">D. brefeldianum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?brevicaule">Dictyostelium brevicaule</organism>
+    <organism type="species" regex="d\.\p{Zs}?brevicaule">D. brevicaule</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?brunneum">Dictyostelium brunneum</organism>
+    <organism type="species" regex="d\.\p{Zs}?brunneum">D. brunneum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?capitatum">Dictyostelium capitatum</organism>
+    <organism type="species" regex="d\.\p{Zs}?capitatum">D. capitatum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?chordatum">Dictyostelium chordatum</organism>
+    <organism type="species" regex="d\.\p{Zs}?chordatum">D. chordatum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?citrinum">Dictyostelium citrinum</organism>
+    <organism type="species" regex="d\.\p{Zs}?citrinum">D. citrinum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?clavatum">Dictyostelium clavatum</organism>
+    <organism type="species" regex="d\.\p{Zs}?clavatum">D. clavatum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?crassicaule">Dictyostelium crassicaule</organism>
+    <organism type="species" regex="d\.\p{Zs}?crassicaule">D. crassicaule</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?dimigraformum">Dictyostelium dimigraformum</organism>
+    <organism type="species" regex="d\.\p{Zs}?dimigraformum">D. dimigraformum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?discoideum">Dictyostelium discoideum</organism>
+    <organism type="species" regex="d\.\p{Zs}?discoideum">D. discoideum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?firmibasis">Dictyostelium firmibasis</organism>
+    <organism type="species" regex="d\.\p{Zs}?firmibasis">D. firmibasis</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?gargantuum">Dictyostelium gargantuum</organism>
+    <organism type="species" regex="d\.\p{Zs}?gargantuum">D. gargantuum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?giganteum">Dictyostelium giganteum</organism>
+    <organism type="species" regex="d\.\p{Zs}?giganteum">D. giganteum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?implicatum">Dictyostelium implicatum</organism>
+    <organism type="species" regex="d\.\p{Zs}?implicatum">D. implicatum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?intermedium">Dictyostelium intermedium</organism>
+    <organism type="species" regex="d\.\p{Zs}?intermedium">D. intermedium</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?leptosomopsis">Dictyostelium leptosomopsis</organism>
+    <organism type="species" regex="d\.\p{Zs}?leptosomopsis">D. leptosomopsis</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?leptosomum">Dictyostelium leptosomum</organism>
+    <organism type="species" regex="d\.\p{Zs}?leptosomum">D. leptosomum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?longosporum">Dictyostelium longosporum</organism>
+    <organism type="species" regex="d\.\p{Zs}?longosporum">D. longosporum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?macrocephalum">Dictyostelium macrocephalum</organism>
+    <organism type="species" regex="d\.\p{Zs}?macrocephalum">D. macrocephalum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?medium">Dictyostelium medium</organism>
+    <organism type="species" regex="d\.\p{Zs}?medium">D. medium</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?mucoroides">Dictyostelium mucoroides</organism>
+    <organism type="species" regex="d\.\p{Zs}?mucoroides">D. mucoroides</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?pseudobrefeldianum">Dictyostelium pseudobrefeldianum</organism>
+    <organism type="species" regex="d\.\p{Zs}?pseudobrefeldianum">D. pseudobrefeldianum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?purpureum">Dictyostelium purpureum</organism>
+    <organism type="species" regex="d\.\p{Zs}?purpureum">D. purpureum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?quercibrachium">Dictyostelium quercibrachium</organism>
+    <organism type="species" regex="d\.\p{Zs}?quercibrachium">D. quercibrachium</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?robustum">Dictyostelium robustum</organism>
+    <organism type="species" regex="d\.\p{Zs}?robustum">D. robustum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?rosarium">Dictyostelium rosarium</organism>
+    <organism type="species" regex="d\.\p{Zs}?rosarium">D. rosarium</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?septentrionale">Dictyostelium septentrionale</organism>
+    <organism type="species" regex="d\.\p{Zs}?septentrionale">D. septentrionale</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?sphaerocephalum">Dictyostelium sphaerocephalum</organism>
+    <organism type="species" regex="d\.\p{Zs}?sphaerocephalum">D. sphaerocephalum</organism>
+    <organism type="species" regex="dictyostelium\p{Zs}?valdivianum">Dictyostelium valdivianum</organism>
+    <organism type="species" regex="d\.\p{Zs}?valdivianum">D. valdivianum</organism>
     <organism type="species" regex="drosophila\p{Zs}?affinis">Drosophila affinis</organism>
     <organism type="species" regex="d\.\p{Zs}?affinis">D. affinis</organism>
     <organism type="species" regex="drosophila\p{Zs}?immigrans">Drosophila immigrans</organism>
@@ -127,6 +333,16 @@
     <organism type="species" regex="h\.\p{Zs}?griva">H. griva</organism>
     <organism type="species" regex="hemileia\p{Zs}?vastatrix">Hemileia vastatrix</organism>
     <organism type="species" regex="h\.\p{Zs}?vastatrix">H. vastatrix</organism>
+    <organism type="species" regex="hofstenia\p{Zs}?arabiensis">Hofstenia arabiensis</organism>
+    <organism type="species" regex="h\.\p{Zs}?arabiensis">H. arabiensis</organism>
+    <organism type="species" regex="hofstenia\p{Zs}?atroviridis">Hofstenia atroviridis</organism>
+    <organism type="species" regex="h\.\p{Zs}?atroviridis">H. atroviridis</organism>
+    <organism type="species" regex="hofstenia\p{Zs}?beltagii">Hofstenia beltagii</organism>
+    <organism type="species" regex="h\.\p{Zs}?beltagii">H. beltagii</organism>
+    <organism type="species" regex="hofstenia\p{Zs}?miamia">Hofstenia miamia</organism>
+    <organism type="species" regex="h\.\p{Zs}?miamia">H. miamia</organism>
+    <organism type="species" regex="hofstenia\p{Zs}?minuta">Hofstenia minuta</organism>
+    <organism type="species" regex="h\.\p{Zs}?minuta">H. minuta</organism>    
     <organism type="species" regex="homo\p{Zs}?antecessor">Homo antecessor</organism>
     <organism type="species" regex="h\.\p{Zs}?antecessor">H. antecessor</organism>
     <organism type="species" regex="homo\p{Zs}?cepranensis">Homo cepranensis</organism>
@@ -203,6 +419,14 @@
     <organism type="species" regex="m\.\p{Zs}?trossulus">M. trossulus</organism>
     <organism type="species" regex="nematostella\p{Zs}?vectensis">Nematostella vectensis</organism>
     <organism type="species" regex="n\.\p{Zs}?vectensis">N. vectensis</organism>
+    <organism type="species" regex="nemertinoides\p{Zs}?elongatus">Nemertinoides elongatus</organism>
+    <organism type="species" regex="n\.\p{Zs}?elongatus">N. elongatus</organism>
+    <organism type="species" regex="nemertinoides\p{Zs}?glandulosum">Nemertinoides glandulosum</organism>
+    <organism type="species" regex="n\.\p{Zs}?glandulosum">N. glandulosum</organism>
+    <organism type="species" regex="nemertinoides\p{Zs}?wolfgangi">Nemertinoides wolfgangi</organism>
+    <organism type="species" regex="n\.\p{Zs}?wolfgangi">N. wolfgangi</organism>
+    <organism type="species" regex="neochildia\p{Zs}?fusca">Neochildia fusca</organism>
+    <organism type="species" regex="n\.\p{Zs}?fusca">N. fusca</organism>
     <organism type="species" regex="neurospora\p{Zs}?crassa">Neurospora crassa</organism>
     <organism type="species" regex="n\.\p{Zs}?crassa">N. crassa</organism>
     <organism type="species" regex="neurospora\p{Zs}?discreta">Neurospora discreta</organism>
@@ -215,6 +439,18 @@
     <organism type="species" regex="o\.\p{Zs}?fasciatus">O. fasciatus</organism>
     <organism type="species" regex="oophaga\p{Zs}?sylvatica">Oophaga sylvatica</organism>
     <organism type="species" regex="o\.\p{Zs}?sylvatica">O. sylvatica</organism>
+    <organism type="species" regex="otocelis\p{Zs}?luteola">Otocelis luteola</organism>
+    <organism type="species" regex="o\.\p{Zs}?luteola">O. luteola</organism>
+    <organism type="species" regex="otocelis\p{Zs}?phycophilus">Otocelis phycophilus</organism>
+    <organism type="species" regex="o\.\p{Zs}?phycophilus">O. phycophilus</organism>
+    <organism type="species" regex="otocelis\p{Zs}?rubropunctata">Otocelis rubropunctata</organism>
+    <organism type="species" regex="o\.\p{Zs}?rubropunctata">O. rubropunctata</organism>
+    <organism type="species" regex="otocelis\p{Zs}?sachalinensis">Otocelis sachalinensis</organism>
+    <organism type="species" regex="o\.\p{Zs}?sachalinensis">O. sachalinensis</organism>
+    <organism type="species" regex="otocelis\p{Zs}?sandara">Otocelis sandara</organism>
+    <organism type="species" regex="o\.\p{Zs}?sandara">O. sandara</organism>
+    <organism type="species" regex="otocelis\p{Zs}?westbladi">Otocelis westbladi</organism>
+    <organism type="species" regex="o\.\p{Zs}?westbladi">O. westbladi</organism>
     <organism type="species" regex="pan\p{Zs}?paniscus">Pan paniscus</organism>
     <organism type="species" regex="p\.\p{Zs}?paniscus">P. paniscus</organism>
     <organism type="species" regex="pan\p{Zs}?troglodytes">Pan troglodytes</organism>
@@ -225,6 +461,10 @@
     <organism type="species" regex="p\.\p{Zs}?cynocephalus">P. cynocephalus</organism>
     <organism type="species" regex="papio\p{Zs}?hamadryas">Papio hamadryas</organism>
     <organism type="species" regex="p\.\p{Zs}?hamadryas">P. hamadryas</organism>
+    <organism type="species" regex="paratomella\p{Zs}?rubra">Paratomella rubra</organism>
+    <organism type="species" regex="p\.\p{Zs}?rubra">P. hamadryas</organism>
+    <organism type="species" regex="paratomella\p{Zs}?unichaeta">Paratomella unichaeta</organism>
+    <organism type="species" regex="p\.\p{Zs}?unichaeta">P. unichaeta</organism>  
     <organism type="species" regex="phakopsora\p{Zs}?pachyrhizi">Phakopsora pachyrhizi</organism>
     <organism type="species" regex="p\.\p{Zs}?pachyrhizi">P. pachyrhizi</organism>
     <organism type="species" regex="phytophthora\p{Zs}?infestans">Phytophthora infestans</organism>
@@ -247,6 +487,16 @@
     <organism type="species" regex="p\.\p{Zs}?foxii">P. foxii</organism>
     <organism type="species" regex="polacanthus\p{Zs}?foxii">Polacanthus foxii</organism>
     <organism type="species" regex="p\.\p{Zs}?foxii">P. foxii</organism>
+    <organism type="species" regex="polychoerus\p{Zs}?carmelensis">Polychoerus carmelensis</organism>
+    <organism type="species" regex="p\.\p{Zs}?carmelensis">P. carmelensis</organism>
+    <organism type="species" regex="polychoerus\p{Zs}?caudatus">Polychoerus caudatus</organism>
+    <organism type="species" regex="p\.\p{Zs}?caudatus">P. caudatus</organism>
+    <organism type="species" regex="polychoerus\p{Zs}?ebenhochi">Polychoerus ebenhochi</organism>
+    <organism type="species" regex="p\.\p{Zs}?ebenhochi">P. ebenhochi</organism>
+    <organism type="species" regex="polychoerus\p{Zs}?gordoni">Polychoerus gordoni</organism>
+    <organism type="species" regex="p\.\p{Zs}?gordoni">P. gordoni</organism>
+    <organism type="species" regex="polychoerus\p{Zs}?parvus">Polychoerus parvus</organism>
+    <organism type="species" regex="p\.\p{Zs}?parvus">P. parvus</organism>    
     <organism type="species" regex="presbytis\p{Zs}?femoralis">Presbytis femoralis</organism>
     <organism type="species" regex="p\.\p{Zs}?femoralis">P. femoralis</organism>
     <organism type="species" regex="puccinia\p{Zs}?striiformis">Puccinia striiformis</organism>
@@ -255,6 +505,16 @@
     <organism type="species" regex="p\.\p{Zs}?rugosus">P. rugosus</organism>
     <organism type="species" regex="pseudomonas\p{Zs}?aeruginosa">Pseudomonas aeruginosa</organism>
     <organism type="species" regex="p\.\p{Zs}?aeruginosa">P. aeruginosa</organism>
+    <organism type="species" regex="ptychodera\p{Zs}?bahamensis">Ptychodera bahamensis</organism>
+    <organism type="species" regex="p\.\p{Zs}?bahamensis">P. bahamensis</organism>
+    <organism type="species" regex="ptychodera\p{Zs}?ceylonica">Ptychodera ceylonica</organism>
+    <organism type="species" regex="p\.\p{Zs}?ceylonica">P. ceylonica</organism>
+    <organism type="species" regex="ptychodera\p{Zs}?erythrea">Ptychodera erythrea</organism>
+    <organism type="species" regex="p\.\p{Zs}?erythrea">P. erythrea</organism>
+    <organism type="species" regex="ptychodera\p{Zs}?flava">Ptychodera flava</organism>
+    <organism type="species" regex="p\.\p{Zs}?flava">P. flava</organism>
+    <organism type="species" regex="ptychodera\p{Zs}?pelsarti">Ptychodera pelsarti</organism>
+    <organism type="species" regex="p\.\p{Zs}?pelsarti">P. pelsarti</organism>
     <organism type="species" regex="rana\p{Zs}?muscosa">Rana muscosa</organism>
     <organism type="species" regex="r\.\p{Zs}?muscosa">R. muscosa</organism>
     <organism type="species" regex="rana\p{Zs}?pipiens">Rana pipiens</organism>
