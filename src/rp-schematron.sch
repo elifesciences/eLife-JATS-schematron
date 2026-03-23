@@ -3149,6 +3149,41 @@
       <assert test="name()=($allowed-names,'oxygen')" role="error" id="all-pi-1">[all-pi-1] '<value-of select="name()"/>' is not an allowed processing-instruction. The only ones that can be used are: <value-of select="string-join($allowed-names,'; ')"/></assert>
     </rule></pattern>
   
+  <pattern id="refinery-comment-checks-pattern"><rule context="ref//comment()" id="refinery-comment-checks">
+      <report test="matches(lower-case(.),'refinery:.*?doi.*?suggested')" role="warning" sqf:fix="refinery-update-doi dismiss-refinery" id="refinery-doi-suggestion">[refinery-doi-suggestion] Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested DOI change. Current: <value-of select="ancestor::ref/descendant::pub-id[@pub-id-type='doi'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
+      
+      <report test="matches(lower-case(.),'refinery:.*?pmid.*?suggested')" role="warning" sqf:fix="refinery-update-pmid dismiss-refinery" id="refinery-pmid-suggestion">[refinery-pmid-suggestion] Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested PMID change. Current: <value-of select="ancestor::ref/pub-id[@pub-id-type='pmid'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
+      
+      <sqf:fix id="refinery-update-doi">
+        <sqf:description>
+          <sqf:title>Update DOI (with refinery suggestion)</sqf:title>
+        </sqf:description>
+        <sqf:replace match="ancestor::ref/descendant::pub-id[@pub-id-type='doi'][1]">
+          <pub-id pub-id-type="doi">
+            <xsl:value-of select="normalize-space(substring-after(.,'suggested:'))"/>
+          </pub-id>
+        </sqf:replace>
+      </sqf:fix>
+      
+      <sqf:fix id="refinery-update-pmid">
+        <sqf:description>
+          <sqf:title>Update PMID (with refinery suggestion)</sqf:title>
+        </sqf:description>
+        <sqf:replace match="ancestor::ref/descendant::pub-id[@pub-id-type='pmid'][1]">
+          <pub-id pub-id-type="doi">
+            <xsl:value-of select="normalize-space(substring-after(.,'suggested:'))"/>
+          </pub-id>
+        </sqf:replace>
+      </sqf:fix>
+      
+      <sqf:fix id="dismiss-refinery">
+        <sqf:description>
+          <sqf:title>Dismiss suggestion from refinery</sqf:title>
+        </sqf:description>
+        <sqf:delete match=".|./preceding-sibling::text()[1]"/>
+      </sqf:fix>
+    </rule></pattern>
+  
   <!-- These are purely for oXygen validation -->
     <pattern id="assessment-api-check-pattern"><rule context="article[descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']]/sub-article[@article-type='editor-report']/front-stub" flag="local-only" id="assessment-api-check">
           <let name="article-id" value="ancestor::article//article-meta/article-id[@pub-id-type='publisher-id']"/>

@@ -6520,5 +6520,27 @@
         <x:expect-not-assert id="all-pi-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="refinery-comment-checks">
+      <x:scenario label="refinery-doi-suggestion-pass">
+        <x:context href="../tests/rp/refinery-comment-checks/refinery-doi-suggestion/pass.xml"/>
+        <x:expect-not-report id="refinery-doi-suggestion" role="warning"/>
+        <x:expect-not-assert id="refinery-comment-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="refinery-doi-suggestion-fail">
+        <x:context href="../tests/rp/refinery-comment-checks/refinery-doi-suggestion/fail.xml"/>
+        <x:expect-report id="refinery-doi-suggestion" role="warning"/>
+        <x:expect-not-assert id="refinery-comment-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="refinery-pmid-suggestion-pass">
+        <x:context href="../tests/rp/refinery-comment-checks/refinery-pmid-suggestion/pass.xml"/>
+        <x:expect-not-report id="refinery-pmid-suggestion" role="warning"/>
+        <x:expect-not-assert id="refinery-comment-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="refinery-pmid-suggestion-fail">
+        <x:context href="../tests/rp/refinery-comment-checks/refinery-pmid-suggestion/fail.xml"/>
+        <x:expect-report id="refinery-pmid-suggestion" role="warning"/>
+        <x:expect-not-assert id="refinery-comment-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
   </x:scenario>
 </x:description>

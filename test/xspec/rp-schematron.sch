@@ -3817,6 +3817,43 @@
     </rule>
   </pattern>
   
+  <pattern id="refinery-comment-checks-pattern">
+    <rule context="ref//comment()" id="refinery-comment-checks">
+      <report test="matches(lower-case(.),'refinery:.*?doi.*?suggested')" role="warning" sqf:fix="refinery-update-doi dismiss-refinery" id="refinery-doi-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested DOI change. Current: <value-of select="ancestor::ref/descendant::pub-id[@pub-id-type='doi'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
+      
+      <report test="matches(lower-case(.),'refinery:.*?pmid.*?suggested')" role="warning" sqf:fix="refinery-update-pmid dismiss-refinery" id="refinery-pmid-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested PMID change. Current: <value-of select="ancestor::ref/pub-id[@pub-id-type='pmid'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
+      
+      <sqf:fix id="refinery-update-doi">
+        <sqf:description>
+          <sqf:title>Update DOI (with refinery suggestion)</sqf:title>
+        </sqf:description>
+        <sqf:replace match="ancestor::ref/descendant::pub-id[@pub-id-type='doi'][1]">
+          <pub-id pub-id-type="doi">
+            <xsl:value-of select="normalize-space(substring-after(.,'suggested:'))"/>
+          </pub-id>
+        </sqf:replace>
+      </sqf:fix>
+      
+      <sqf:fix id="refinery-update-pmid">
+        <sqf:description>
+          <sqf:title>Update PMID (with refinery suggestion)</sqf:title>
+        </sqf:description>
+        <sqf:replace match="ancestor::ref/descendant::pub-id[@pub-id-type='pmid'][1]">
+          <pub-id pub-id-type="doi">
+            <xsl:value-of select="normalize-space(substring-after(.,'suggested:'))"/>
+          </pub-id>
+        </sqf:replace>
+      </sqf:fix>
+      
+      <sqf:fix id="dismiss-refinery">
+        <sqf:description>
+          <sqf:title>Dismiss suggestion from refinery</sqf:title>
+        </sqf:description>
+        <sqf:delete match=".|./preceding-sibling::text()[1]"/>
+      </sqf:fix>
+    </rule>
+  </pattern>
+  
   <!-- These are purely for oXygen validation -->
     
 
@@ -4001,6 +4038,7 @@
       <assert test="descendant::processing-instruction('page-break')" role="error" id="page-break-pi-checks-xspec-assert">processing-instruction('page-break') must be present.</assert>
       <assert test="descendant::processing-instruction('table-escape')" role="error" id="table-escape-pi-checks-xspec-assert">processing-instruction('table-escape') must be present.</assert>
       <assert test="descendant::processing-instruction()" role="error" id="all-pi-checks-xspec-assert">processing-instruction() must be present.</assert>
+      <assert test="descendant::ref//comment()" role="error" id="refinery-comment-checks-xspec-assert">ref//comment() must be present.</assert>
     </rule>
   </pattern>
 </schema>
