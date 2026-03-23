@@ -1,5 +1,14 @@
 <?oxygen SCHSchema="refinery-pmid-suggestion.sch"?>
 <!--Context: comment()
-Test: report    matches(lower-case(.),'refinery.*?pmid.*?suggested')
+Test: report    matches(lower-case(.),'refinery:.*?pmid.*?suggested')
 Message: Ref (with id ) has a suggested PMID change. Current: ; Suggested: . -->
-<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref-list>
+            <ref>
+                <mixed-citation>
+                    <pub-id pub-id-type="pmid">31908266</pub-id> <!-- refinery: existing PMID may be incorrect; suggested: 31908265 --></mixed-citation>
+            </ref>
+        </ref-list>
+    </article>
+</root>

@@ -14068,8 +14068,8 @@
    <xsl:template match="comment()" priority="1000" mode="M223">
 
 		<!--REPORT warning-->
-      <xsl:if test="matches(lower-case(.),'refinery.*?doi.*?suggested')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'refinery.*?doi.*?suggested')">
+      <xsl:if test="matches(lower-case(.),'refinery:.*?doi.*?suggested')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'refinery:.*?doi.*?suggested')">
             <xsl:attribute name="id">refinery-doi-suggestion</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
@@ -14085,8 +14085,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="matches(lower-case(.),'refinery.*?pmid.*?suggested')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'refinery.*?pmid.*?suggested')">
+      <xsl:if test="matches(lower-case(.),'refinery:.*?pmid.*?suggested')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'refinery:.*?pmid.*?suggested')">
             <xsl:attribute name="id">refinery-pmid-suggestion</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">

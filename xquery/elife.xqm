@@ -380,7 +380,7 @@ declare function elife:new-test-case($file-path,$new-comment){
   return
   copy $copy := $x
   modify(
-    for $comment in $copy//comment()
+    for $comment in $copy//comment()[following-sibling::*:root]
     return replace node $comment with ('&#xa;',$new-comment,'&#xa;')
   )
   return $copy

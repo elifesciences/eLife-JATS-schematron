@@ -1,8 +1,6 @@
-<?oxygen SCHSchema="prc-history-date-test-2.sch"?>
-<!--Context: article-meta[e:is-prc(.)]/history
+<?oxygen SCHSchema="prc-history-date-test-2.sch"?><!--Context: article-meta[e:is-prc(.)]/history
 Test: report    date[@date-type!='sent-for-review' or not(@date-type)]
-Message: PRC articles can only have sent-for-review dates in their history. This one has a  date. -->
-<article>
+Message: PRC articles can only have sent-for-review dates in their history. This one has a  date. --><article>
   <article-meta>
     <history>
       <date date-type="receieved" iso-8601-date="2023-03-20">

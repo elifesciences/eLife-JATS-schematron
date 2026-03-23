@@ -4986,11 +4986,11 @@
   
   <pattern id="refinery-comments">
     <rule context="comment()" id="refinery-comment-checks">
-      <report test="matches(lower-case(.),'refinery.*?doi.*?suggested')"
+      <report test="matches(lower-case(.),'refinery:.*?doi.*?suggested')"
         role="warning" 
         id="refinery-doi-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested DOI change. Current: <value-of select="ancestor::ref/descendant::pub-id[@pub-id-type='doi'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
       
-      <report test="matches(lower-case(.),'refinery.*?pmid.*?suggested')"
+      <report test="matches(lower-case(.),'refinery:.*?pmid.*?suggested')"
         role="warning" 
         id="refinery-pmid-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested PMID change. Current: <value-of select="ancestor::ref/pub-id[@pub-id-type='pmid'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
     </rule>
