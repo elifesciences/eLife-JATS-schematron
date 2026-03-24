@@ -3712,6 +3712,7 @@
         <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-1" 
           test="$grant-matches"
 	         role="warning" 
+	         sqf:fix="add-grant-doi"
 	         id="grant-doi-test-1">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
 
         <!-- If the funder has minted 30+ grant DOIs but there isn't an exact match throw a warning -->
