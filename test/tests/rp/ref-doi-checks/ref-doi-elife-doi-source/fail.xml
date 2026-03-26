@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="ref-doi-elife-doi-source.sch"?>
+<!--Context: ref//pub-id[@pub-id-type='doi']
+Test: report    matches(normalize-space(lower-case(.)),'^10\.7554/elife\.\d{5,6}') and not( parent::mixed-citation/source[normalize-space(lower-case(.)) = 'elife'] or parent::element-citation/source[normalize-space(lower-case(.)) = 'elife'] )
+Message: Ref has an eLife DOI (), but it does not have a source containing 'eLife'. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref>
+            <mixed-citation>
+                <source>bioRxiv</source>
+                <pub-id pub-id-type="doi">10.7554/eLife.012345</pub-id>
+            </mixed-citation>
+        </ref>
+    </article>
+</root>

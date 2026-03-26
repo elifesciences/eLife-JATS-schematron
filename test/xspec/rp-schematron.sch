@@ -1948,9 +1948,22 @@
         <report test="ancestor::mixed-citation[@publication-type='web']" role="error" id="pub-id-check-5">Web reference (with id <value-of select="ancestor::ref/@id"/>) has a <name/> <value-of select="if (@pub-id-type) then concat(' with a pub-id-type ',@pub-id-type) else 'with no pub-id-type'"/> (<value-of select="."/>). This must be incorrect. Either the publication-type for the reference needs changing, or the pub-id should be changed to another element.</report>
         
         <report test="@pub-id-type='doi' and ancestor::mixed-citation[@publication-type=('journal','book','preprint')] and matches(following-sibling::text()[1],'^[\.\s]?[\.\s]?[/&lt;&gt;:\d\+\-]')" role="warning" id="pub-id-check-6">doi in <value-of select="ancestor::mixed-citation/@publication-type"/> ref is followd by text - '<value-of select="following-sibling::text()[1]"/>'. Should that text be part of the DOI or tagged in some other way?</report>
+        
+        <assert test="normalize-space(.) = ." role="error" id="pub-id-check-7">
+        <name/> must contain a value with normalized space. This one has '<value-of select="."/>'.</assert>
 
         <report test="@pub-id-type='doi' and matches(lower-case(.),'file|figure|table')" role="warning" id="doi-superfluous">This DOI (<value-of select="."/>) looks like it relates to supplementary material instead of an overall article. Should this be changed to the article DOI instead?</report>
      </rule>
+  </pattern>
+  <pattern id="ref-doi-checks-pattern">
+    <rule context="ref//pub-id[@pub-id-type='doi']" id="ref-doi-checks">
+        
+        <report test="matches(normalize-space(lower-case(.)),'^10\.7554/elife\.\d{5,6}\.\d{3}$')" role="error" id="ref-doi-elife-component">This DOI (<value-of select="."/>) is an eLife component DOI. It must be changed to the article DOI (i.e. <value-of select="string-join(tokenize(.,'\.')[position()!=last()],'.')"/>).</report>
+        
+        <report test="matches(normalize-space(lower-case(.)),'^10\.7554/elife\.\d{5,6}') and not(           parent::mixed-citation/source[normalize-space(lower-case(.)) = 'elife']           or           parent::element-citation/source[normalize-space(lower-case(.)) = 'elife']           )" role="warning" id="ref-doi-elife-doi-source">Ref has an eLife DOI (<value-of select="."/>), but it does not have a source containing 'eLife'.</report>
+        
+        <report test="matches(normalize-space(lower-case(.)),'^(10\.1101|10\.64898)/') and not(           parent::mixed-citation/source[matches(lower-case(.),'(bio|med)rxiv')]           or           parent::element-citation/source[matches(lower-case(.),'(bio|med)rxiv')]           )" role="warning" id="ref-doi-openrxiv-doi-source">Ref has an openRxiv DOI (<value-of select="."/>), but it does not have a source containing 'bioRxiv' or 'medRxiv'.</report>
+      </rule>
   </pattern>
   <pattern id="isbn-conformity-pattern">
     <rule context="ref//pub-id[@pub-id-type='isbn']|isbn" id="isbn-conformity">
@@ -3895,6 +3908,7 @@
       <assert test="descendant::mixed-citation[person-group]//etal" role="error" id="ref-etal-checks-xspec-assert">mixed-citation[person-group]//etal must be present.</assert>
       <assert test="descendant::comment" role="error" id="ref-comment-checks-xspec-assert">comment must be present.</assert>
       <assert test="descendant::ref//pub-id" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id must be present.</assert>
+      <assert test="descendant::ref//pub-id[@pub-id-type='doi']" role="error" id="ref-doi-checks-xspec-assert">ref//pub-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::ref//pub-id[@pub-id-type='isbn'] or descendant::isbn" role="error" id="isbn-conformity-xspec-assert">ref//pub-id[@pub-id-type='isbn']|isbn must be present.</assert>
       <assert test="descendant::ref//pub-id[@pub-id-type='issn'] or descendant::issn" role="error" id="issn-conformity-xspec-assert">ref//pub-id[@pub-id-type='issn']|issn must be present.</assert>
       <assert test="descendant::ref//person-group" role="error" id="ref-person-group-checks-xspec-assert">ref//person-group must be present.</assert>
