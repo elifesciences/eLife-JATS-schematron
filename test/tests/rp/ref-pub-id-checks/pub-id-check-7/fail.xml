@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="pub-id-check-7.sch"?>
+<!--Context: ref//pub-id
+Test: assert    normalize-space(.) = .
+Message:  must contain a value with normalized space. This one has ''. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref>
+            <pub-id pub-id-type="doi">10.7554/eLife.09560 </pub-id>
+        </ref>
+    </article>
+</root>

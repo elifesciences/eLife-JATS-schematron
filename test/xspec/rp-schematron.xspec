@@ -1653,6 +1653,16 @@
         <x:expect-report id="pub-id-check-6" role="warning"/>
         <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="pub-id-check-7-pass">
+        <x:context href="../tests/rp/ref-pub-id-checks/pub-id-check-7/pass.xml"/>
+        <x:expect-not-assert id="pub-id-check-7" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-id-check-7-fail">
+        <x:context href="../tests/rp/ref-pub-id-checks/pub-id-check-7/fail.xml"/>
+        <x:expect-assert id="pub-id-check-7" role="error"/>
+        <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="doi-superfluous-pass">
         <x:context href="../tests/rp/ref-pub-id-checks/doi-superfluous/pass.xml"/>
         <x:expect-not-report id="doi-superfluous" role="warning"/>
@@ -1662,6 +1672,18 @@
         <x:context href="../tests/rp/ref-pub-id-checks/doi-superfluous/fail.xml"/>
         <x:expect-report id="doi-superfluous" role="warning"/>
         <x:expect-not-assert id="ref-pub-id-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="ref-doi-checks">
+      <x:scenario label="ref-doi-elife-component-pass">
+        <x:context href="../tests/rp/ref-doi-checks/ref-doi-elife-component/pass.xml"/>
+        <x:expect-not-report id="ref-doi-elife-component" role="error"/>
+        <x:expect-not-assert id="ref-doi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-doi-elife-component-fail">
+        <x:context href="../tests/rp/ref-doi-checks/ref-doi-elife-component/fail.xml"/>
+        <x:expect-report id="ref-doi-elife-component" role="error"/>
+        <x:expect-not-assert id="ref-doi-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="isbn-conformity">
