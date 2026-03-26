@@ -1198,7 +1198,7 @@
   </sqf:fixes>
   <pattern id="ref-doi-checks-pattern">
     <rule context="ref//pub-id[@pub-id-type='doi']" id="ref-doi-checks">
-      <report test="matches(normalize-space(lower-case(.)),'^10\.7554/elife\.\d{5,6}\.\d{3}$')" role="error" id="ref-doi-elife-component">[ref-doi-elife-component] This DOI (<value-of select="."/>) is an eLife component DOI. It must be changed to the article DOI (i.e. <value-of select="string-join(tokenize(.,'\.')[position()!=last()],'.')"/>).</report>
+      <report test="matches(normalize-space(lower-case(.)),'^10\.7554/elife\.\d{5,6}') and not(           parent::mixed-citation/source[normalize-space(lower-case(.)) = 'elife']           or           parent::element-citation/source[normalize-space(lower-case(.)) = 'elife']           )" role="warning" id="ref-doi-elife-doi-source">[ref-doi-elife-doi-source] Ref has an eLife DOI (<value-of select="."/>), but it does not have a source containing 'eLife'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

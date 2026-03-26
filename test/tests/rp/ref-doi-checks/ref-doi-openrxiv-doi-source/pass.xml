@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="ref-doi-openrxiv-doi-source.sch"?>
+<!--Context: ref//pub-id[@pub-id-type='doi']
+Test: report    matches(normalize-space(lower-case(.)),'^(10\.1101|10\.64898)/') and not( parent::mixed-citation/source[matches(lower-case(.),'(bio|med)rxiv')] or parent::element-citation/source[matches(lower-case(.),'(bio|med)rxiv')] )
+Message: Ref has an openRxiv DOI (), but it does not have a source containing 'bioRxiv' or 'medRxiv'. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref>
+            <mixed-citation>
+                <source>bioRxiv</source>
+                <pub-id pub-id-type="doi">10.64898/2026.03.24.713940</pub-id>
+            </mixed-citation>
+        </ref>
+        <ref>
+            <mixed-citation>
+                <source>medRxiv</source>
+                <pub-id pub-id-type="doi">10.64898/2026.02.24.710000</pub-id>
+            </mixed-citation>
+        </ref>
+    </article>
+</root>

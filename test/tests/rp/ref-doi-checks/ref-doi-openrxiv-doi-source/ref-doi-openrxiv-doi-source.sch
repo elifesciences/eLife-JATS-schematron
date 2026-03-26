@@ -1198,7 +1198,7 @@
   </sqf:fixes>
   <pattern id="ref-doi-checks-pattern">
     <rule context="ref//pub-id[@pub-id-type='doi']" id="ref-doi-checks">
-      <report test="matches(normalize-space(lower-case(.)),'^10\.7554/elife\.\d{5,6}\.\d{3}$')" role="error" id="ref-doi-elife-component">[ref-doi-elife-component] This DOI (<value-of select="."/>) is an eLife component DOI. It must be changed to the article DOI (i.e. <value-of select="string-join(tokenize(.,'\.')[position()!=last()],'.')"/>).</report>
+      <report test="matches(normalize-space(lower-case(.)),'^(10\.1101|10\.64898)/') and not(           parent::mixed-citation/source[matches(lower-case(.),'(bio|med)rxiv')]           or           parent::element-citation/source[matches(lower-case(.),'(bio|med)rxiv')]           )" role="warning" id="ref-doi-openrxiv-doi-source">[ref-doi-openrxiv-doi-source] Ref has an openRxiv DOI (<value-of select="."/>), but it does not have a source containing 'bioRxiv' or 'medRxiv'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

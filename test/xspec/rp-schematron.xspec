@@ -1685,6 +1685,26 @@
         <x:expect-report id="ref-doi-elife-component" role="error"/>
         <x:expect-not-assert id="ref-doi-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="ref-doi-elife-doi-source-pass">
+        <x:context href="../tests/rp/ref-doi-checks/ref-doi-elife-doi-source/pass.xml"/>
+        <x:expect-not-report id="ref-doi-elife-doi-source" role="warning"/>
+        <x:expect-not-assert id="ref-doi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-doi-elife-doi-source-fail">
+        <x:context href="../tests/rp/ref-doi-checks/ref-doi-elife-doi-source/fail.xml"/>
+        <x:expect-report id="ref-doi-elife-doi-source" role="warning"/>
+        <x:expect-not-assert id="ref-doi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-doi-openrxiv-doi-source-pass">
+        <x:context href="../tests/rp/ref-doi-checks/ref-doi-openrxiv-doi-source/pass.xml"/>
+        <x:expect-not-report id="ref-doi-openrxiv-doi-source" role="warning"/>
+        <x:expect-not-assert id="ref-doi-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ref-doi-openrxiv-doi-source-fail">
+        <x:context href="../tests/rp/ref-doi-checks/ref-doi-openrxiv-doi-source/fail.xml"/>
+        <x:expect-report id="ref-doi-openrxiv-doi-source" role="warning"/>
+        <x:expect-not-assert id="ref-doi-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="isbn-conformity">
       <x:scenario label="isbn-conformity-test-pass">

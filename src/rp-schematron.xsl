@@ -5822,8 +5822,8 @@
    <xsl:template match="ref//pub-id[@pub-id-type='doi']" priority="1000" mode="M80">
 
 		<!--REPORT error-->
-      <xsl:if test="matches(normalize-space(lower-case(.)),'^10.7554/elife\.\d{5,6}\.\d{3}$')">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(normalize-space(lower-case(.)),'^10.7554/elife\.\d{5,6}\.\d{3}$')">
+      <xsl:if test="matches(normalize-space(lower-case(.)),'^10\.7554/elife\.\d{5,6}\.\d{3}$')">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(normalize-space(lower-case(.)),'^10\.7554/elife\.\d{5,6}\.\d{3}$')">
             <xsl:attribute name="id">ref-doi-elife-component</xsl:attribute>
             <xsl:attribute name="role">error</xsl:attribute>
             <xsl:attribute name="location">
@@ -5834,6 +5834,32 @@
                <xsl:text/>) is an eLife component DOI. It must be changed to the article DOI (i.e. <xsl:text/>
                <xsl:value-of select="string-join(tokenize(.,'\.')[position()!=last()],'.')"/>
                <xsl:text/>).</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(normalize-space(lower-case(.)),'^10\.7554/elife\.\d{5,6}') and not(           parent::mixed-citation/source[normalize-space(lower-case(.)) = 'elife']           or           parent::element-citation/source[normalize-space(lower-case(.)) = 'elife']           )">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(normalize-space(lower-case(.)),'^10\.7554/elife\.\d{5,6}') and not( parent::mixed-citation/source[normalize-space(lower-case(.)) = 'elife'] or parent::element-citation/source[normalize-space(lower-case(.)) = 'elife'] )">
+            <xsl:attribute name="id">ref-doi-elife-doi-source</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-doi-elife-doi-source] Ref has an eLife DOI (<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>), but it does not have a source containing 'eLife'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(normalize-space(lower-case(.)),'^(10\.1101|10\.64898)/') and not(           parent::mixed-citation/source[matches(lower-case(.),'(bio|med)rxiv')]           or           parent::element-citation/source[matches(lower-case(.),'(bio|med)rxiv')]           )">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(normalize-space(lower-case(.)),'^(10\.1101|10\.64898)/') and not( parent::mixed-citation/source[matches(lower-case(.),'(bio|med)rxiv')] or parent::element-citation/source[matches(lower-case(.),'(bio|med)rxiv')] )">
+            <xsl:attribute name="id">ref-doi-openrxiv-doi-source</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[ref-doi-openrxiv-doi-source] Ref has an openRxiv DOI (<xsl:text/>
+               <xsl:value-of select="."/>
+               <xsl:text/>), but it does not have a source containing 'bioRxiv' or 'medRxiv'.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M80"/>
