@@ -2293,7 +2293,7 @@
           role="warning" 
           id="ref-doi-elife-doi-source">Ref has an eLife DOI (<value-of select="."/>), but it does not have a source containing 'eLife'.</report>
         
-        <report test="matches(normalize-space(lower-case(.)),'^(10\.1101|10\.64898)/') and not(
+        <report test="matches(normalize-space(lower-case(.)),'^(10\.1101|10\.64898)/(\d{5,6}|20[1-3][0-9]\.)') and not(
           parent::mixed-citation/source[matches(lower-case(.),'(bio|med)rxiv')]
           or
           parent::element-citation/source[matches(lower-case(.),'(bio|med)rxiv')]

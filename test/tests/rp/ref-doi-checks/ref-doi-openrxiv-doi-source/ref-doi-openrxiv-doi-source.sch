@@ -1198,7 +1198,7 @@
   </sqf:fixes>
   <pattern id="ref-doi-checks-pattern">
     <rule context="ref//pub-id[@pub-id-type='doi']" id="ref-doi-checks">
-      <report test="matches(normalize-space(lower-case(.)),'^(10\.1101|10\.64898)/') and not(           parent::mixed-citation/source[matches(lower-case(.),'(bio|med)rxiv')]           or           parent::element-citation/source[matches(lower-case(.),'(bio|med)rxiv')]           )" role="warning" id="ref-doi-openrxiv-doi-source">[ref-doi-openrxiv-doi-source] Ref has an openRxiv DOI (<value-of select="."/>), but it does not have a source containing 'bioRxiv' or 'medRxiv'.</report>
+      <report test="matches(normalize-space(lower-case(.)),'^(10\.1101|10\.64898)/(\d{5,6}|20[1-3][0-9]\.)') and not(           parent::mixed-citation/source[matches(lower-case(.),'(bio|med)rxiv')]           or           parent::element-citation/source[matches(lower-case(.),'(bio|med)rxiv')]           )" role="warning" id="ref-doi-openrxiv-doi-source">[ref-doi-openrxiv-doi-source] Ref has an openRxiv DOI (<value-of select="."/>), but it does not have a source containing 'bioRxiv' or 'medRxiv'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
