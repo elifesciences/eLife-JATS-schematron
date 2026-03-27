@@ -802,9 +802,9 @@
     </xsl:choose>
   </xsl:template>
   <sqf:fixes>
-    <sqf:fix id="delete-elem">
+    <sqf:fix id="delete-node">
       <sqf:description>
-        <sqf:title>Delete element</sqf:title>
+        <sqf:title>Delete node</sqf:title>
       </sqf:description>
       <sqf:delete match="."/>
     </sqf:fix>
@@ -1198,7 +1198,7 @@
   </sqf:fixes>
   <pattern id="supplementary-material-checks-pattern">
     <rule context="supplementary-material" id="supplementary-material-checks">
-      <assert test="media" role="error" sqf:fix="delete-elem" id="supplementary-material-test-1">[supplementary-material-test-1] supplementary-material does not have a child media. It must either have a file or be deleted.</assert>
+      <assert test="media" role="error" sqf:fix="delete-node" id="supplementary-material-test-1">[supplementary-material-test-1] supplementary-material does not have a child media. It must either have a file or be deleted.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

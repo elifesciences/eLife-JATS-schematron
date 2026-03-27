@@ -802,9 +802,9 @@
     </xsl:choose>
   </xsl:template>
   <sqf:fixes>
-    <sqf:fix id="delete-elem">
+    <sqf:fix id="delete-node">
       <sqf:description>
-        <sqf:title>Delete element</sqf:title>
+        <sqf:title>Delete node</sqf:title>
       </sqf:description>
       <sqf:delete match="."/>
     </sqf:fix>
@@ -1199,7 +1199,7 @@
   <pattern id="fig-child-checks-pattern">
     <rule context="fig/*" id="fig-child-checks">
       <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions','attrib')"/>
-      <assert test="name()=$supported-fig-children" role="error" sqf:fix="delete-elem" id="fig-child-conformance">[fig-child-conformance] <name/> is not supported as a child of &lt;fig&gt;.</assert>
+      <assert test="name()=$supported-fig-children" role="error" sqf:fix="delete-node" id="fig-child-conformance">[fig-child-conformance] <name/> is not supported as a child of &lt;fig&gt;.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

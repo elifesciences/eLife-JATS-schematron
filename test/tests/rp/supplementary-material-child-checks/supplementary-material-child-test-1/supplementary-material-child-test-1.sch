@@ -802,9 +802,9 @@
     </xsl:choose>
   </xsl:template>
   <sqf:fixes>
-    <sqf:fix id="delete-elem">
+    <sqf:fix id="delete-node">
       <sqf:description>
-        <sqf:title>Delete element</sqf:title>
+        <sqf:title>Delete node</sqf:title>
       </sqf:description>
       <sqf:delete match="."/>
     </sqf:fix>
@@ -1199,7 +1199,7 @@
   <pattern id="supplementary-material-child-checks-pattern">
     <rule context="supplementary-material/*" id="supplementary-material-child-checks">
       <let name="permitted-children" value="('label','caption','media')"/>
-      <assert test="name()=$permitted-children" role="error" sqf:fix="delete-elem" id="supplementary-material-child-test-1">[supplementary-material-child-test-1] <name/> is not supported as a child of supplementary-material. The only permitted children are: <value-of select="string-join($permitted-children,'; ')"/>.</assert>
+      <assert test="name()=$permitted-children" role="error" sqf:fix="delete-node" id="supplementary-material-child-test-1">[supplementary-material-child-test-1] <name/> is not supported as a child of supplementary-material. The only permitted children are: <value-of select="string-join($permitted-children,'; ')"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

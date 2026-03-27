@@ -802,9 +802,9 @@
     </xsl:choose>
   </xsl:template>
   <sqf:fixes>
-    <sqf:fix id="delete-elem">
+    <sqf:fix id="delete-node">
       <sqf:description>
-        <sqf:title>Delete element</sqf:title>
+        <sqf:title>Delete node</sqf:title>
       </sqf:description>
       <sqf:delete match="."/>
     </sqf:fix>
@@ -1198,7 +1198,7 @@
   </sqf:fixes>
   <pattern id="ack-tests-pattern">
     <rule context="ack" id="ack-tests">
-      <assert test="*[not(name()=('label','title'))]" role="error" sqf:fix="delete-elem" id="ack-no-content">[ack-no-content] Acknowledgements doesn't contain any content. Should it be removed?</assert>
+      <assert test="*[not(name()=('label','title'))]" role="error" sqf:fix="delete-node" id="ack-no-content">[ack-no-content] Acknowledgements doesn't contain any content. Should it be removed?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

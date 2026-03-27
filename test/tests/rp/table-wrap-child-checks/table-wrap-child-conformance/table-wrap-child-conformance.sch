@@ -802,9 +802,9 @@
     </xsl:choose>
   </xsl:template>
   <sqf:fixes>
-    <sqf:fix id="delete-elem">
+    <sqf:fix id="delete-node">
       <sqf:description>
-        <sqf:title>Delete element</sqf:title>
+        <sqf:title>Delete node</sqf:title>
       </sqf:description>
       <sqf:delete match="."/>
     </sqf:fix>
@@ -1199,7 +1199,7 @@
   <pattern id="table-wrap-child-checks-pattern">
     <rule context="table-wrap/*" id="table-wrap-child-checks">
       <let name="supported-table-wrap-children" value="('label','caption','graphic','alternatives','table','permissions','table-wrap-foot')"/>
-      <assert test="name()=$supported-table-wrap-children" role="error" sqf:fix="delete-elem" id="table-wrap-child-conformance">[table-wrap-child-conformance] <value-of select="name()"/> is not supported as a child of &lt;table-wrap&gt;.</assert>
+      <assert test="name()=$supported-table-wrap-children" role="error" sqf:fix="delete-node" id="table-wrap-child-conformance">[table-wrap-child-conformance] <value-of select="name()"/> is not supported as a child of &lt;table-wrap&gt;.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

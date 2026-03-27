@@ -2564,9 +2564,9 @@
       </xsl:choose>
    </xsl:template>
    <sqf:fixes xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
-      <sqf:fix id="delete-elem">
+      <sqf:fix id="delete-node">
          <sqf:description>
-            <sqf:title>Delete element</sqf:title>
+            <sqf:title>Delete node</sqf:title>
          </sqf:description>
          <sqf:delete match="."/>
       </sqf:fix>
@@ -14179,6 +14179,39 @@
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(lower-case(.),'refinery:') and not(matches(lower-case(.),'refinery:.*?(doi|pmid).*?suggested'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'refinery:') and not(matches(lower-case(.),'refinery:.*?(doi|pmid).*?suggested'))">
+            <xsl:attribute name="id">refinery-unknown-suggestion</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[refinery-unknown-suggestion] Ref (with id <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>) has a suggested change '<xsl:text/>
+               <xsl:value-of select="normalize-space(.)"/>
+               <xsl:text/>'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
+      <!--ASSERT error-->
+      <xsl:choose>
+         <xsl:when test="matches(lower-case(.),'refinery:')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'refinery:')">
+               <xsl:attribute name="id">ref-comment-2</xsl:attribute>
+               <xsl:attribute name="role">error</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>[ref-comment-2] Ref (with id <xsl:text/>
+                  <xsl:value-of select="ancestor::ref/@id"/>
+                  <xsl:text/>) has comment node wit the content '<xsl:text/>
+                  <xsl:value-of select="."/>
+                  <xsl:text/>'. Comments should be removed.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
       <sqf:fix xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" id="update-refinery">
          <sqf:description>
             <sqf:title>Accept refinery suggestion</sqf:title>

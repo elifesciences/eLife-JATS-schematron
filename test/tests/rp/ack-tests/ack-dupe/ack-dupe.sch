@@ -802,9 +802,9 @@
     </xsl:choose>
   </xsl:template>
   <sqf:fixes>
-    <sqf:fix id="delete-elem">
+    <sqf:fix id="delete-node">
       <sqf:description>
-        <sqf:title>Delete element</sqf:title>
+        <sqf:title>Delete node</sqf:title>
       </sqf:description>
       <sqf:delete match="."/>
     </sqf:fix>
@@ -1198,7 +1198,7 @@
   </sqf:fixes>
   <pattern id="ack-tests-pattern">
     <rule context="ack" id="ack-tests">
-      <report test="preceding::ack" role="warning" sqf:fix="delete-elem" id="ack-dupe">[ack-dupe] This ack element follows another one. Should there really be more than one Acknowledgements?</report>
+      <report test="preceding::ack" role="warning" sqf:fix="delete-node" id="ack-dupe">[ack-dupe] This ack element follows another one. Should there really be more than one Acknowledgements?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

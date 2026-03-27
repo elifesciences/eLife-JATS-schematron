@@ -802,9 +802,9 @@
     </xsl:choose>
   </xsl:template>
   <sqf:fixes>
-    <sqf:fix id="delete-elem">
+    <sqf:fix id="delete-node">
       <sqf:description>
-        <sqf:title>Delete element</sqf:title>
+        <sqf:title>Delete node</sqf:title>
       </sqf:description>
       <sqf:delete match="."/>
     </sqf:fix>
@@ -1199,7 +1199,7 @@
   <pattern id="article-title-children-checks-pattern">
     <rule context="article-meta/title-group/article-title/*" id="article-title-children-checks">
       <let name="permitted-children" value="('italic','sup','sub')"/>
-      <report test="normalize-space(.)=''" role="error" sqf:fix="delete-elem" id="article-title-children-check-2">[article-title-children-check-2] Child elements of article-title must contain text content. This <name/> element is empty.</report>
+      <report test="normalize-space(.)=''" role="error" sqf:fix="delete-node" id="article-title-children-check-2">[article-title-children-check-2] Child elements of article-title must contain text content. This <name/> element is empty.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

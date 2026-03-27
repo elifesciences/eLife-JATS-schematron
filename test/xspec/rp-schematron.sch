@@ -852,9 +852,9 @@
   </xsl:template>
   
   <sqf:fixes>
-    <sqf:fix id="delete-elem">
+    <sqf:fix id="delete-node">
       <sqf:description>
-        <sqf:title>Delete element</sqf:title>
+        <sqf:title>Delete node</sqf:title>
       </sqf:description>
       <sqf:delete match="."/>
     </sqf:fix>
@@ -1285,10 +1285,10 @@
     <rule context="article-meta/title-group/article-title/*" id="article-title-children-checks">
         <let name="permitted-children" value="('italic','sup','sub')"/>
        
-        <assert test="name()=$permitted-children" role="error" sqf:fix="delete-elem" id="article-title-children-check-1">
+        <assert test="name()=$permitted-children" role="error" sqf:fix="delete-node" id="article-title-children-check-1">
         <name/> is not supported as a child of article title. Please remove this element (and any child content, as appropriate).</assert>
         
-        <report test="normalize-space(.)=''" role="error" sqf:fix="delete-elem" id="article-title-children-check-2">Child elements of article-title must contain text content. This <name/> element is empty.</report>
+        <report test="normalize-space(.)=''" role="error" sqf:fix="delete-node" id="article-title-children-check-2">Child elements of article-title must contain text content. This <name/> element is empty.</report>
      </rule>
   </pattern>
 
@@ -2163,9 +2163,9 @@
   
   <pattern id="ack-tests-pattern">
     <rule context="ack" id="ack-tests">
-       <assert test="*[not(name()=('label','title'))]" role="error" sqf:fix="delete-elem" id="ack-no-content">Acknowledgements doesn't contain any content. Should it be removed?</assert>
+       <assert test="*[not(name()=('label','title'))]" role="error" sqf:fix="delete-node" id="ack-no-content">Acknowledgements doesn't contain any content. Should it be removed?</assert>
         
-        <report test="preceding::ack" role="warning" sqf:fix="delete-elem" id="ack-dupe">This ack element follows another one. Should there really be more than one Acknowledgements?</report>
+        <report test="preceding::ack" role="warning" sqf:fix="delete-node" id="ack-dupe">This ack element follows another one. Should there really be more than one Acknowledgements?</report>
 
         <report test="not(title[1][.='Acknowledgements'])" role="error" id="ack-misspelled">[ack-misspelled] The Acknowledgements section is misspelled, please correct.</report>
       </rule>
@@ -2250,13 +2250,13 @@
   <pattern id="fig-child-checks-pattern">
     <rule context="fig/*" id="fig-child-checks">
         <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions','attrib')"/>
-        <assert test="name()=$supported-fig-children" role="error" sqf:fix="delete-elem" id="fig-child-conformance">
+        <assert test="name()=$supported-fig-children" role="error" sqf:fix="delete-node" id="fig-child-conformance">
         <name/> is not supported as a child of &lt;fig&gt;.</assert>
      </rule>
   </pattern>
   <pattern id="fig-label-checks-pattern">
     <rule context="fig/label" id="fig-label-checks">
-        <report test="normalize-space(.)=''" role="error" sqf:fix="delete-elem" id="fig-wrap-empty">Label for fig is empty. Either remove the elment or add the missing content.</report>
+        <report test="normalize-space(.)=''" role="error" sqf:fix="delete-node" id="fig-wrap-empty">Label for fig is empty. Either remove the elment or add the missing content.</report>
         
         <report test="matches(lower-case(.),'^\s*(video|movie)')" role="warning" id="fig-label-video">Label for figure ('<value-of select="."/>') starts with text that suggests its a video. Should this content be captured as a video instead of a figure?</report>
         
@@ -2301,13 +2301,13 @@
   <pattern id="table-wrap-child-checks-pattern">
     <rule context="table-wrap/*" id="table-wrap-child-checks">
         <let name="supported-table-wrap-children" value="('label','caption','graphic','alternatives','table','permissions','table-wrap-foot')"/>
-        <assert test="name()=$supported-table-wrap-children" role="error" sqf:fix="delete-elem" id="table-wrap-child-conformance">
+        <assert test="name()=$supported-table-wrap-children" role="error" sqf:fix="delete-node" id="table-wrap-child-conformance">
         <value-of select="name()"/> is not supported as a child of &lt;table-wrap&gt;.</assert>
      </rule>
   </pattern>
   <pattern id="table-wrap-label-checks-pattern">
     <rule context="table-wrap/label" id="table-wrap-label-checks">
-        <report test="normalize-space(.)=''" role="error" sqf:fix="delete-elem" id="table-wrap-empty">Label for table is empty. Either remove the elment or add the missing content.</report>
+        <report test="normalize-space(.)=''" role="error" sqf:fix="delete-node" id="table-wrap-empty">Label for table is empty. Either remove the elment or add the missing content.</report>
         
         <report test="matches(lower-case(.),'^\s*fig')" role="warning" id="table-wrap-label-fig">Label for table ('<value-of select="."/>') starts with text that suggests its a figure. Should this content be captured as a figure instead of a table?</report>
      </rule>
@@ -2348,7 +2348,7 @@
     <rule context="supplementary-material" id="supplementary-material-checks">
         <assert test="ancestor::sec[@sec-type='supplementary-material']" role="warning" id="supplementary-material-temp-test">supplementary-material element is not placed within a &lt;sec sec-type="supplementary-material"&gt;. Is that correct?.</assert>
         
-        <assert test="media" role="error" sqf:fix="delete-elem" id="supplementary-material-test-1">supplementary-material does not have a child media. It must either have a file or be deleted.</assert>
+        <assert test="media" role="error" sqf:fix="delete-node" id="supplementary-material-test-1">supplementary-material does not have a child media. It must either have a file or be deleted.</assert>
         
         <report test="count(media) gt 1" role="error" id="supplementary-material-test-2">supplementary-material has <value-of select="count(media)"/> child media elements. Each file must be wrapped in its own supplementary-material.</report>
       </rule>
@@ -2357,7 +2357,7 @@
     <rule context="supplementary-material/*" id="supplementary-material-child-checks">
         <let name="permitted-children" value="('label','caption','media')"/>
         
-        <assert test="name()=$permitted-children" role="error" sqf:fix="delete-elem" id="supplementary-material-child-test-1">
+        <assert test="name()=$permitted-children" role="error" sqf:fix="delete-node" id="supplementary-material-child-test-1">
         <name/> is not supported as a child of supplementary-material. The only permitted children are: <value-of select="string-join($permitted-children,'; ')"/>.</assert>
       </rule>
   </pattern>
@@ -2527,9 +2527,9 @@
   </pattern>
   <pattern id="sec-label-checks-pattern">
     <rule context="sec/label" id="sec-label-checks">
-        <report test="matches(.,'[2-4]D')" role="warning" sqf:fix="move-to-title delete-elem" id="sec-label-1">Label for section contains 2D or similar - '<value-of select="."/>'. Is it really a label? Or just part of the title?</report>
+        <report test="matches(.,'[2-4]D')" role="warning" sqf:fix="move-to-title delete-node" id="sec-label-1">Label for section contains 2D or similar - '<value-of select="."/>'. Is it really a label? Or just part of the title?</report>
         
-        <report test="normalize-space(.)=''" role="error" sqf:fix="delete-elem" id="sec-label-2">Section label is empty. This is not permitted.</report>
+        <report test="normalize-space(.)=''" role="error" sqf:fix="delete-node" id="sec-label-2">Section label is empty. This is not permitted.</report>
         
         <sqf:fix id="move-to-title" use-when="parent::sec/title">
           <sqf:description>
@@ -3079,7 +3079,7 @@
       
       <assert test="@institution-id-type=('ror','FundRef')" role="error" id="funding-institution-id-test-1">institution-id in funding must have the attribute institution-id-type with a value of either "ror" or "FundRef".</assert>
       
-      <assert test="matches(.,'^(https?://ror\.org/[a-z0-9]{9}|http[s]?://d?x?\.?doi.org/10.13039/\d*)$')" role="error" sqf:fix="delete-elem" id="funding-institution-id-test-2">institution-id in funding must a value which is either a valid ROR id or open funder registry DOI. This one has '<value-of select="."/>'.</assert>
+      <assert test="matches(.,'^(https?://ror\.org/[a-z0-9]{9}|http[s]?://d?x?\.?doi.org/10.13039/\d*)$')" role="error" sqf:fix="delete-node" id="funding-institution-id-test-2">institution-id in funding must a value which is either a valid ROR id or open funder registry DOI. This one has '<value-of select="."/>'.</assert>
       
       <report test="*" role="error" id="funding-institution-id-test-3">institution-id in funding cannot contain elements, only text (which is a valid ROR id). This one contains the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>    
       
@@ -3326,9 +3326,9 @@
   
   <pattern id="notes-checks-pattern">
     <rule context="front/notes" id="notes-checks">
-      <report test="fn-group[not(@content-type='summary-of-updates')] or notes[not(@notes-type='disclosures')]" role="warning" sqf:fix="delete-elem" id="notes-check-1">When present, the notes element should only be used to contain an author revision summary (an fn-group with the content-type 'summary-of-updates'). This notes element contains other content. Is it redundant? Or should the content be moved elsewhere? (coi statements should be in author-notes; clinical trial numbers should be included as a related-object in a structured abstract (if it already exists) or as related-object in article-meta; data/code/ethics/funding statements can be included in additional information in new or existing section(s), as appropriate)</report>
+      <report test="fn-group[not(@content-type='summary-of-updates')] or notes[not(@notes-type='disclosures')]" role="warning" sqf:fix="delete-node" id="notes-check-1">When present, the notes element should only be used to contain an author revision summary (an fn-group with the content-type 'summary-of-updates'). This notes element contains other content. Is it redundant? Or should the content be moved elsewhere? (coi statements should be in author-notes; clinical trial numbers should be included as a related-object in a structured abstract (if it already exists) or as related-object in article-meta; data/code/ethics/funding statements can be included in additional information in new or existing section(s), as appropriate)</report>
       
-      <report test="*[not(name()=('fn-group','notes'))]" role="error" sqf:fix="delete-elem" id="notes-check-2">When present, the notes element should only be used to contain an author revision summary (an fn-group with the content-type 'summary-of-updates'). This notes element contains the following element(s): <value-of select="string-join(distinct-values(*[not(name()=('fn-group','notes'))]/name()),'; ')"/>). Are these redundant? Or should the content be moved elsewhere? (coi statements should be in author-notes; clinical trial numbers should be included as a related-object in a structured abstract (if it already exists) or as related-object in article-meta; data/code/ethics/funding statements can be included in additional information in new or existing section(s), as appropriate; anstract shpould be captured as abstracts with the appropriate type)</report>
+      <report test="*[not(name()=('fn-group','notes'))]" role="error" sqf:fix="delete-node" id="notes-check-2">When present, the notes element should only be used to contain an author revision summary (an fn-group with the content-type 'summary-of-updates'). This notes element contains the following element(s): <value-of select="string-join(distinct-values(*[not(name()=('fn-group','notes'))]/name()),'; ')"/>). Are these redundant? Or should the content be moved elsewhere? (coi statements should be in author-notes; clinical trial numbers should be included as a related-object in a structured abstract (if it already exists) or as related-object in article-meta; data/code/ethics/funding statements can be included in additional information in new or existing section(s), as appropriate; anstract shpould be captured as abstracts with the appropriate type)</report>
     </rule>
   </pattern>
 
@@ -3447,7 +3447,7 @@
       
       <report test="not(contains(@*:href,'datadryad.org/review?')) and not(matches(@*:href,'^https?://doi.org/')) and contains(@*:href,'datadryad.org')" role="error" id="ext-link-child-test-6">ext-link points to a dryad dataset, but it is not a DOI - <value-of select="@*:href"/>. Replace this with the Dryad DOI.</report>
 
-    <report test="contains(@*:href,'paperpile.com')" role="error" sqf:fix="delete-elem" id="paper-pile-test">This paperpile hyperlink should be removed: '<value-of select="@*:href"/>' embedded in the text '<value-of select="."/>'.</report>
+    <report test="contains(@*:href,'paperpile.com')" role="error" sqf:fix="delete-node" id="paper-pile-test">This paperpile hyperlink should be removed: '<value-of select="@*:href"/>' embedded in the text '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="ext-link-tests-2-pattern">
@@ -3835,6 +3835,10 @@
       <report test="matches(lower-case(.),'refinery:.*?doi.*?suggested')" role="warning" sqf:fix="update-refinery dismiss-refinery" id="refinery-doi-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested DOI change. Current: <value-of select="ancestor::ref/descendant::pub-id[@pub-id-type='doi'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
       
       <report test="matches(lower-case(.),'refinery:.*?pmid.*?suggested')" role="warning" sqf:fix="update-refinery dismiss-refinery" id="refinery-pmid-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested PMID change. Current: <value-of select="ancestor::ref/pub-id[@pub-id-type='pmid'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
+      
+      <report test="matches(lower-case(.),'refinery:') and not(matches(lower-case(.),'refinery:.*?(doi|pmid).*?suggested'))" role="warning" sqf:fix="dismiss-refinery" id="refinery-unknown-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested change '<value-of select="normalize-space(.)"/>'.</report>
+      
+      <assert test="matches(lower-case(.),'refinery:')" role="error" sqf:fix="delete-node" id="ref-comment-2">Ref (with id <value-of select="ancestor::ref/@id"/>) has comment node wit the content '<value-of select="."/>'. Comments should be removed.</assert>
       
       <sqf:fix id="update-refinery">
         <sqf:description>

@@ -802,9 +802,9 @@
     </xsl:choose>
   </xsl:template>
   <sqf:fixes>
-    <sqf:fix id="delete-elem">
+    <sqf:fix id="delete-node">
       <sqf:description>
-        <sqf:title>Delete element</sqf:title>
+        <sqf:title>Delete node</sqf:title>
       </sqf:description>
       <sqf:delete match="."/>
     </sqf:fix>
@@ -1198,7 +1198,7 @@
   </sqf:fixes>
   <pattern id="sec-label-checks-pattern">
     <rule context="sec/label" id="sec-label-checks">
-      <report test="normalize-space(.)=''" role="error" sqf:fix="delete-elem" id="sec-label-2">[sec-label-2] Section label is empty. This is not permitted.</report>
+      <report test="normalize-space(.)=''" role="error" sqf:fix="delete-node" id="sec-label-2">[sec-label-2] Section label is empty. This is not permitted.</report>
       <sqf:fix id="move-to-title" use-when="parent::sec/title">
           <sqf:description>
             <sqf:title>Move to title</sqf:title>
