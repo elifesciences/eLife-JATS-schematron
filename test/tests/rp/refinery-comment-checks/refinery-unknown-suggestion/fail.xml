@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="refinery-unknown-suggestion.sch"?>
+<!--Context: ref//comment()
+Test: report    matches(lower-case(.),'refinery:') and not(matches(lower-case(.),'refinery:.*?(doi|pmid).*?suggested'))
+Message: Ref (with id ) has a suggested change ''. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref-list>
+            <ref> 
+               <!-- refinery: some unknown comment -->
+            </ref>
+        </ref-list>
+    </article>
+</root>

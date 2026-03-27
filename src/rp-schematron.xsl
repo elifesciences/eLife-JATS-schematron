@@ -14179,6 +14179,21 @@
                <xsl:text/>.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
+      <!--REPORT warning-->
+      <xsl:if test="matches(lower-case(.),'refinery:') and not(matches(lower-case(.),'refinery:.*?(doi|pmid).*?suggested'))">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(lower-case(.),'refinery:') and not(matches(lower-case(.),'refinery:.*?(doi|pmid).*?suggested'))">
+            <xsl:attribute name="id">refinery-unknown-suggestion</xsl:attribute>
+            <xsl:attribute name="role">warning</xsl:attribute>
+            <xsl:attribute name="location">
+               <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+            </xsl:attribute>
+            <svrl:text>[refinery-unknown-suggestion] Ref (with id <xsl:text/>
+               <xsl:value-of select="ancestor::ref/@id"/>
+               <xsl:text/>) has a suggested change '<xsl:text/>
+               <xsl:value-of select="normalize-space(.)"/>
+               <xsl:text/>'.</svrl:text>
+         </svrl:successful-report>
+      </xsl:if>
       <!--ASSERT error-->
       <xsl:choose>
          <xsl:when test="matches(lower-case(.),'refinery:')"/>

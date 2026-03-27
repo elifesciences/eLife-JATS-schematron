@@ -5024,6 +5024,11 @@
         sqf:fix="update-refinery dismiss-refinery"
         id="refinery-pmid-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested PMID change. Current: <value-of select="ancestor::ref/pub-id[@pub-id-type='pmid'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
       
+      <report test="matches(lower-case(.),'refinery:') and not(matches(lower-case(.),'refinery:.*?(doi|pmid).*?suggested'))"
+        role="warning"
+        sqf:fix="dismiss-refinery"
+        id="refinery-unknown-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested change '<value-of select="normalize-space(.)"/>'.</report>
+      
       <assert test="matches(lower-case(.),'refinery:')"
         role="error"
         sqf:fix="delete-node"
