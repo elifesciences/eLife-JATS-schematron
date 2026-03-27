@@ -2564,9 +2564,9 @@
       </xsl:choose>
    </xsl:template>
    <sqf:fixes xmlns:sqf="http://www.schematron-quickfix.com/validator/process" xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
-      <sqf:fix id="delete-elem">
+      <sqf:fix id="delete-node">
          <sqf:description>
-            <sqf:title>Delete element</sqf:title>
+            <sqf:title>Delete node</sqf:title>
          </sqf:description>
          <sqf:delete match="."/>
       </sqf:fix>

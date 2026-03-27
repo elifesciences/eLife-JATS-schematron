@@ -802,9 +802,9 @@
     </xsl:choose>
   </xsl:template>
   <sqf:fixes>
-    <sqf:fix id="delete-elem">
+    <sqf:fix id="delete-node">
       <sqf:description>
-        <sqf:title>Delete element</sqf:title>
+        <sqf:title>Delete node</sqf:title>
       </sqf:description>
       <sqf:delete match="."/>
     </sqf:fix>
@@ -1198,7 +1198,7 @@
   </sqf:fixes>
   <pattern id="ext-link-tests-pattern">
     <rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests">
-      <report test="contains(@*:href,'paperpile.com')" role="error" sqf:fix="delete-elem" id="paper-pile-test">[paper-pile-test] This paperpile hyperlink should be removed: '<value-of select="@*:href"/>' embedded in the text '<value-of select="."/>'.</report>
+      <report test="contains(@*:href,'paperpile.com')" role="error" sqf:fix="delete-node" id="paper-pile-test">[paper-pile-test] This paperpile hyperlink should be removed: '<value-of select="@*:href"/>' embedded in the text '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

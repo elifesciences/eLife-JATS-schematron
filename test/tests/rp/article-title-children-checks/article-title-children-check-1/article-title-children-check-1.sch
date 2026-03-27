@@ -802,9 +802,9 @@
     </xsl:choose>
   </xsl:template>
   <sqf:fixes>
-    <sqf:fix id="delete-elem">
+    <sqf:fix id="delete-node">
       <sqf:description>
-        <sqf:title>Delete element</sqf:title>
+        <sqf:title>Delete node</sqf:title>
       </sqf:description>
       <sqf:delete match="."/>
     </sqf:fix>
@@ -1199,7 +1199,7 @@
   <pattern id="article-title-children-checks-pattern">
     <rule context="article-meta/title-group/article-title/*" id="article-title-children-checks">
       <let name="permitted-children" value="('italic','sup','sub')"/>
-      <assert test="name()=$permitted-children" role="error" sqf:fix="delete-elem" id="article-title-children-check-1">[article-title-children-check-1] <name/> is not supported as a child of article title. Please remove this element (and any child content, as appropriate).</assert>
+      <assert test="name()=$permitted-children" role="error" sqf:fix="delete-node" id="article-title-children-check-1">[article-title-children-check-1] <name/> is not supported as a child of article title. Please remove this element (and any child content, as appropriate).</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
