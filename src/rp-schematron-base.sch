@@ -5024,6 +5024,11 @@
         sqf:fix="update-refinery dismiss-refinery"
         id="refinery-pmid-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested PMID change. Current: <value-of select="ancestor::ref/pub-id[@pub-id-type='pmid'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
       
+      <assert test="matches(lower-case(.),'refinery:')"
+        role="error"
+        sqf:fix="delete-node"
+        id="ref-comment-2">Ref (with id <value-of select="ancestor::ref/@id"/>) has comment node wit the content '<value-of select="."/>'. Comments should be removed.</assert>
+      
       <sqf:fix id="update-refinery">
         <sqf:description>
           <sqf:title>Accept refinery suggestion</sqf:title>
