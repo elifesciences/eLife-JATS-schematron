@@ -5850,8 +5850,8 @@
          </svrl:successful-report>
       </xsl:if>
       <!--REPORT warning-->
-      <xsl:if test="matches(normalize-space(lower-case(.)),'^(10\.1101|10\.64898)/') and not(           parent::mixed-citation/source[matches(lower-case(.),'(bio|med)rxiv')]           or           parent::element-citation/source[matches(lower-case(.),'(bio|med)rxiv')]           )">
-         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(normalize-space(lower-case(.)),'^(10\.1101|10\.64898)/') and not( parent::mixed-citation/source[matches(lower-case(.),'(bio|med)rxiv')] or parent::element-citation/source[matches(lower-case(.),'(bio|med)rxiv')] )">
+      <xsl:if test="matches(normalize-space(lower-case(.)),'^(10\.1101|10\.64898)/(\d{5,6}|20[1-3][0-9]\.)') and not(           parent::mixed-citation/source[matches(lower-case(.),'(bio|med)rxiv')]           or           parent::element-citation/source[matches(lower-case(.),'(bio|med)rxiv')]           )">
+         <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="matches(normalize-space(lower-case(.)),'^(10\.1101|10\.64898)/(\d{5,6}|20[1-3][0-9]\.)') and not( parent::mixed-citation/source[matches(lower-case(.),'(bio|med)rxiv')] or parent::element-citation/source[matches(lower-case(.),'(bio|med)rxiv')] )">
             <xsl:attribute name="id">ref-doi-openrxiv-doi-source</xsl:attribute>
             <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
