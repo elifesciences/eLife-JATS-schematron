@@ -9,7 +9,7 @@ declare variable $elife:rp-base := elife:strip-oxygen-only-content(doc('../src/r
 
 (:~ Compile Schematron to XSLT using schxslt :)
 declare function elife:schematron-compile($sch as item()){
-  let $schxslt := doc('../../schxslt/transpile--v1.9.xsl')
+  let $schxslt := doc('../schxslt/transpile--v1.9.xsl')
   return xslt:transform($sch,$schxslt)
 };
 
