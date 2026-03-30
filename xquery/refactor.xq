@@ -3,7 +3,6 @@
  ~ It also generates the xspec and manipulated version of schematron.sch, as well as updating any schemalet files and writing new test files at the same time, for the purposes of testing. 
  
  :)
-import module namespace schematron = "http://github.com/Schematron/schematron-basex";
 import module namespace elife = 'elife' at 'elife.xqm';
 declare namespace xsl="http://www.w3.org/1999/XSL/Transform";
 declare namespace sch = "http://purl.oclc.org/dsdl/schematron";
@@ -38,9 +37,9 @@ declare variable $preprint-changes-xsl := doc(concat($outputDir,'/preprint-chang
   (: schematron for post-author :)
   let $final-sch := elife:sch2final($sch)
   (:xsl files for validator:)
-  let $pre-xsl := schematron:compile($pre-sch)
-  let $dl-xsl := schematron:compile($dl-sch)
-  let $final-xsl := schematron:compile($final-sch)
+  let $pre-xsl := elife:schematron-compile($pre-sch)
+  let $dl-xsl := elife:schematron-compile($dl-sch)
+  let $final-xsl := elife:schematron-compile($final-sch)
   (: schematron for final-package - niche use :)
   let $final-package-sch := elife:sch2final-package($sch)
   (: Generate xspec specific sch :)
@@ -68,9 +67,9 @@ declare variable $preprint-changes-xsl := doc(concat($outputDir,'/preprint-chang
   (: schematron for reviewed preprints - every rule has it's own pattern :)
   let $rp-sch-mod := elife:sch2final($rp-sch)
   let $rp-sch-for-basex := elife:strip-oxygen-only-content($rp-sch-mod)
-  let $rp-xsl := schematron:compile($rp-sch-for-basex)
+  let $rp-xsl := elife:schematron-compile($rp-sch-for-basex)
   (: schematron for manifest files in meca packages :)
-  let $manifest-xsl := schematron:compile($manifest-sch)
+  let $manifest-xsl := elife:schematron-compile($manifest-sch)
   (: Generate xspec specific sch :)
   let $rp-xspec-sch := elife:sch2xspec-sch(elife:strip-oxygen-only-content($rp-sch))
   (: Generate xspec file from xspec specific sch :)

@@ -1,5 +1,4 @@
 module namespace elife = 'elife';
-import module namespace schematron = "http://github.com/Schematron/schematron-basex";
 declare namespace xsl="http://www.w3.org/1999/XSL/Transform";
 declare namespace sch = "http://purl.oclc.org/dsdl/schematron";
 declare namespace svrl = "http://purl.oclc.org/dsdl/svrl";
@@ -7,6 +6,12 @@ declare namespace x="http://www.jenitennison.com/xslt/xspec";
 
 declare variable $elife:base := doc('../src/schematron.sch');
 declare variable $elife:rp-base := elife:strip-oxygen-only-content(doc('../src/rp-schematron.sch')/*);
+
+(:~ Compile Schematron to XSLT using schxslt :)
+declare function elife:schematron-compile($sch as item()){
+  let $schxslt := doc('../schxslt/transpile--v1.9.xsl')
+  return xslt:transform($sch,$schxslt)
+};
 
 (:~ Generate schemalet files for unit testing purposes
  :)
@@ -83,12 +88,6 @@ return copy $copy3 := $copy2
   
   return $copy3
   
-};
-
-declare function elife:validate($pass-or-fail-path,$sch){
-  if (file:exists($pass-or-fail-path)) then 
-                  schematron:validate(doc($pass-or-fail-path), $sch)
-                  else ('File not found')
 };
 
 
