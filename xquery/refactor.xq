@@ -3,7 +3,6 @@
  ~ It also generates the xspec and manipulated version of schematron.sch, as well as updating any schemalet files and writing new test files at the same time, for the purposes of testing. 
  
  :)
-import module namespace schematron = "http://github.com/Schematron/schematron-basex";
 import module namespace elife = 'elife' at 'elife.xqm';
 declare namespace xsl="http://www.w3.org/1999/XSL/Transform";
 declare namespace sch = "http://purl.oclc.org/dsdl/schematron";

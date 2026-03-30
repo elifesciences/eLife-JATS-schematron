@@ -1,6 +1,5 @@
 (: Initial creation of test files. This can be continuously ran as tests are added since the schemalet files are always overwritten, but the test files are not in instances where they already exist. :)
 
-import module namespace schematron = "http://github.com/Schematron/schematron-basex";
 import module namespace elife = 'elife' at 'elife.xqm';
 
 let $sch := doc('../src/schematron.sch')
