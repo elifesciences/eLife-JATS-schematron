@@ -977,6 +977,16 @@
         <x:expect-report id="err-elem-cit-journal-6-7" role="error"/>
         <x:expect-not-assert id="journal-ref-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="journal-doi-check-pass">
+        <x:context href="../tests/rp/journal-ref-checks/journal-doi-check/pass.xml"/>
+        <x:expect-not-report id="journal-doi-check" role="warning"/>
+        <x:expect-not-assert id="journal-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="journal-doi-check-fail">
+        <x:context href="../tests/rp/journal-ref-checks/journal-doi-check/fail.xml"/>
+        <x:expect-report id="journal-doi-check" role="warning"/>
+        <x:expect-not-assert id="journal-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="journal-source-checks">
       <x:scenario label="journal-source-1-pass">
