@@ -977,6 +977,16 @@
         <x:expect-report id="err-elem-cit-journal-6-7" role="error"/>
         <x:expect-not-assert id="journal-ref-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="journal-doi-check-pass">
+        <x:context href="../tests/rp/journal-ref-checks/journal-doi-check/pass.xml"/>
+        <x:expect-not-report id="journal-doi-check" role="warning"/>
+        <x:expect-not-assert id="journal-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="journal-doi-check-fail">
+        <x:context href="../tests/rp/journal-ref-checks/journal-doi-check/fail.xml"/>
+        <x:expect-report id="journal-doi-check" role="warning"/>
+        <x:expect-not-assert id="journal-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="journal-source-checks">
       <x:scenario label="journal-source-1-pass">
@@ -1131,6 +1141,16 @@
       <x:scenario label="preprint-ref-fpage-elocation-id-fail">
         <x:context href="../tests/rp/preprint-ref-checks/preprint-ref-fpage-elocation-id/fail.xml"/>
         <x:expect-report id="preprint-ref-fpage-elocation-id" role="error"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-doi-check-pass">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-doi-check/pass.xml"/>
+        <x:expect-not-report id="preprint-doi-check" role="warning"/>
+        <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="preprint-doi-check-fail">
+        <x:context href="../tests/rp/preprint-ref-checks/preprint-doi-check/fail.xml"/>
+        <x:expect-report id="preprint-doi-check" role="warning"/>
         <x:expect-not-assert id="preprint-ref-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
