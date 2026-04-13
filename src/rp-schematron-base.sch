@@ -2001,6 +2001,10 @@
        <report test="elocation-id and fpage" 
         role="error" 
         id="preprint-ref-fpage-elocation-id">This preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has both fpage (<value-of select="fpage"/>) and elocation-id (<value-of select="elocation-id"/>) elements which must be wrong.</report>
+       
+       <report test="(source or article-title) and not(pub-id[@pub-id-type='doi'])" 
+        role="warning" 
+        id="preprint-doi-check">Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) doesn't have a DOI. Should it?</report>
      </rule>
       
       <rule context="mixed-citation[@publication-type='preprint']/source" id="preprint-source-checks">
