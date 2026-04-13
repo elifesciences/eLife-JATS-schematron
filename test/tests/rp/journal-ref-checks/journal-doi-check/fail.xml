@@ -1,0 +1,24 @@
+<?oxygen SCHSchema="journal-doi-check.sch"?>
+<!--Context: mixed-citation[@publication-type='journal']
+Test: report    (source or article-title) and not(pub-id[@pub-id-type=('doi','pmid','pmcid')])
+Message: Journal reference () doesn't have a DOI or PMID. Should it? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref id="ref1">
+            <mixed-citation publication-type="journal">
+                <article-title/>
+                <source/>
+            </mixed-citation>
+        </ref>
+        <ref id="ref2">
+            <mixed-citation publication-type="journal">
+                <article-title/>
+            </mixed-citation>
+        </ref>
+        <ref id="ref3">
+            <mixed-citation publication-type="journal">
+                <source/>
+            </mixed-citation>
+        </ref>
+    </article>
+</root>
