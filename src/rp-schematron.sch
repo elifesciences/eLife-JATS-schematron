@@ -3176,21 +3176,25 @@
       
       <report test="matches(lower-case(.),'refinery:.*?pmid.*?suggested')" role="warning" sqf:fix="update-refinery dismiss-refinery" id="refinery-pmid-suggestion">[refinery-pmid-suggestion] Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested PMID change. Current: <value-of select="ancestor::ref/pub-id[@pub-id-type='pmid'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
       
-      <report test="matches(lower-case(.),'refinery:') and not(matches(lower-case(.),'refinery:.*?(doi|pmid).*?suggested'))" role="warning" sqf:fix="dismiss-refinery" id="refinery-unknown-suggestion">[refinery-unknown-suggestion] Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested change '<value-of select="normalize-space(.)"/>'.</report>
+      <report test="matches(lower-case(.),'refinery: existing (doi|pmid) could not be verified')" role="warning" sqf:fix="update-refinery dismiss-refinery" id="refinery-verified-fail">[refinery-verified-fail] Ref (with id <value-of select="ancestor::ref/@id"/>) has a DOI and/or PMID which cannot be verified (<value-of select="string-join(ancestor::ref/pub-id[@pub-id-type=('doi','pmid')],'; ')"/>). Should it be removed?</report>
       
-      <assert test="matches(lower-case(.),'refinery:')" role="error" sqf:fix="delete-node" id="ref-comment-2">[ref-comment-2] Ref (with id <value-of select="ancestor::ref/@id"/>) has comment node wit the content '<value-of select="."/>'. Comments should be removed.</assert>
+      <report test="matches(lower-case(.),'refinery:') and not(matches(lower-case(.),'refinery:.*?(doi|pmid).*?suggested|refinery: existing (doi|pmid) could not be verified'))" role="warning" sqf:fix="dismiss-refinery" id="refinery-unknown-suggestion">[refinery-unknown-suggestion] Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested change '<value-of select="normalize-space(.)"/>'.</report>
+      
+      <assert test="matches(lower-case(.),'refinery:')" role="error" sqf:fix="delete-node" id="ref-comment-2">[ref-comment-2] Ref (with id <value-of select="ancestor::ref/@id"/>) has comment node with the content '<value-of select="."/>'. Comments should be removed.</assert>
       
       <sqf:fix id="update-refinery">
         <sqf:description>
           <sqf:title>Accept refinery suggestion</sqf:title>
         </sqf:description>
         <sqf:replace match=".">
-          <pub-id xmlns="">
+          <xsl:if test="contains(.,'suggested')">
+            <pub-id xmlns="">
             <xsl:attribute name="pub-id-type">
               <xsl:value-of select="if (contains(.,'DOI')) then 'doi' else 'pmid'"/>
             </xsl:attribute>
             <xsl:value-of select="normalize-space(substring-after(.,'suggested:'))"/>
           </pub-id>
+          </xsl:if>
         </sqf:replace>
         <sqf:delete match="./preceding-sibling::text()[1]|preceding-sibling::pub-id[1]"/>
       </sqf:fix>

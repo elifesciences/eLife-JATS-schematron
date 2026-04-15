@@ -1198,18 +1198,20 @@
   </sqf:fixes>
   <pattern id="refinery-comment-checks-pattern">
     <rule context="ref//comment()" id="refinery-comment-checks">
-      <report test="matches(lower-case(.),'refinery:') and not(matches(lower-case(.),'refinery:.*?(doi|pmid).*?suggested'))" role="warning" sqf:fix="dismiss-refinery" id="refinery-unknown-suggestion">[refinery-unknown-suggestion] Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested change '<value-of select="normalize-space(.)"/>'.</report>
+      <report test="matches(lower-case(.),'refinery:') and not(matches(lower-case(.),'refinery:.*?(doi|pmid).*?suggested|refinery: existing (doi|pmid) could not be verified'))" role="warning" sqf:fix="dismiss-refinery" id="refinery-unknown-suggestion">[refinery-unknown-suggestion] Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested change '<value-of select="normalize-space(.)"/>'.</report>
       <sqf:fix id="update-refinery">
         <sqf:description>
           <sqf:title>Accept refinery suggestion</sqf:title>
         </sqf:description>
         <sqf:replace match=".">
-          <pub-id xmlns="">
+          <xsl:if test="contains(.,'suggested')">
+            <pub-id xmlns="">
             <xsl:attribute name="pub-id-type">
               <xsl:value-of select="if (contains(.,'DOI')) then 'doi' else 'pmid'"/>
             </xsl:attribute>
             <xsl:value-of select="normalize-space(substring-after(.,'suggested:'))"/>
           </pub-id>
+          </xsl:if>
         </sqf:replace>
         <sqf:delete match="./preceding-sibling::text()[1]|preceding-sibling::pub-id[1]"/>
       </sqf:fix>

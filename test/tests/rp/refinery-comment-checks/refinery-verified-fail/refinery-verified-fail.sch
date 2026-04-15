@@ -1198,7 +1198,7 @@
   </sqf:fixes>
   <pattern id="refinery-comment-checks-pattern">
     <rule context="ref//comment()" id="refinery-comment-checks">
-      <assert test="matches(lower-case(.),'refinery:')" role="error" sqf:fix="delete-node" id="ref-comment-2">[ref-comment-2] Ref (with id <value-of select="ancestor::ref/@id"/>) has comment node with the content '<value-of select="."/>'. Comments should be removed.</assert>
+      <report test="matches(lower-case(.),'refinery: existing (doi|pmid) could not be verified')" role="warning" sqf:fix="update-refinery dismiss-refinery" id="refinery-verified-fail">[refinery-verified-fail] Ref (with id <value-of select="ancestor::ref/@id"/>) has a DOI and/or PMID which cannot be verified (<value-of select="string-join(ancestor::ref/pub-id[@pub-id-type=('doi','pmid')],'; ')"/>). Should it be removed?</report>
       <sqf:fix id="update-refinery">
         <sqf:description>
           <sqf:title>Accept refinery suggestion</sqf:title>
