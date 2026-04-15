@@ -1,0 +1,19 @@
+<?oxygen SCHSchema="disp-formula-math-conformance.sch"?>
+<!--Context: disp-formula
+Test: assert    *:math or alternatives[*:math]
+Message:  does not have a child mml:math element. Is that correct? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <disp-formula>
+            <label>(1)</label>
+            <mml:math/>
+        </disp-formula>
+        <disp-formula>
+            <label>(2)</label>
+            <alternatives>
+                <mml:math/>
+                <graphic/>
+            </alternatives>
+        </disp-formula>
+    </article>
+</root>
