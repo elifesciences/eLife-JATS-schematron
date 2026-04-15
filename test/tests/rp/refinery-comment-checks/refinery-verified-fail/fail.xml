@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="refinery-verified-fail.sch"?>
+<!--Context: ref//comment()
+Test: report    matches(lower-case(.),'refinery: existing (doi|pmid) could not be verified')
+Message: Ref (with id ) has a DOI and/or PMID which cannot be verified (). Should it be removed? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <ref>
+            <!-- refinery: existing DOI could not be verified -->
+        </ref>
+        <ref>
+            <!-- refinery: existing PMID could not be verified -->
+        </ref>
+    </article>
+</root>
