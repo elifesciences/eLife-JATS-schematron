@@ -2402,6 +2402,15 @@
           <assert test="inline-graphic and *:math" role="error" id="inline-equation-alternatives-conformance">alternatives element within <value-of select="parent::*/name()"/> must have both an inline-graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
       </rule>
   </pattern>
+  <pattern id="equation-alternatives-child-checks-pattern">
+    <rule context="alternatives[parent::inline-formula or parent::disp-formula]/*" id="equation-alternatives-child-checks">
+        <let name="math-elems" value="('mml:math','tex-math')"/>
+        <let name="allowed-elems" value="if (ancestor::disp-formula) then ('graphic', $math-elems)                                          else ('inline-graphic', $math-elems)"/>
+        
+        <assert test="name() = $allowed-elems" role="error" id="equation-alternatives-child-conformance">
+        <value-of select="name()"/> is not supported within alternatives in <value-of select="parent::alternatives/parent::*/name()"/>. Only the following elements are permitted: <value-of select="string-join($allowed-elems,'; ')"/>.</assert>
+      </rule>
+  </pattern>
   
   <pattern id="math-tests-pattern">
     <rule context="*:math" id="math-tests">
@@ -3955,6 +3964,7 @@
       <assert test="descendant::inline-formula" role="error" id="inline-formula-checks-xspec-assert">inline-formula must be present.</assert>
       <assert test="descendant::alternatives[parent::disp-formula]" role="error" id="disp-equation-alternatives-checks-xspec-assert">alternatives[parent::disp-formula] must be present.</assert>
       <assert test="descendant::alternatives[parent::inline-formula]" role="error" id="inline-equation-alternatives-checks-xspec-assert">alternatives[parent::inline-formula] must be present.</assert>
+      <assert test="descendant::alternatives[parent::inline-formula or parent::disp-formula]/*" role="error" id="equation-alternatives-child-checks-xspec-assert">alternatives[parent::inline-formula or parent::disp-formula]/* must be present.</assert>
       <assert test="descendant::*:math" role="error" id="math-tests-xspec-assert">*:math must be present.</assert>
       <assert test="descendant::list" role="error" id="list-checks-xspec-assert">list must be present.</assert>
       <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-checks-xspec-assert">graphic|inline-graphic must be present.</assert>

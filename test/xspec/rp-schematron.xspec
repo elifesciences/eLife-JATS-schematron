@@ -2714,6 +2714,18 @@
         <x:expect-not-assert id="inline-equation-alternatives-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="equation-alternatives-child-checks">
+      <x:scenario label="equation-alternatives-child-conformance-pass">
+        <x:context href="../tests/rp/equation-alternatives-child-checks/equation-alternatives-child-conformance/pass.xml"/>
+        <x:expect-not-assert id="equation-alternatives-child-conformance" role="error"/>
+        <x:expect-not-assert id="equation-alternatives-child-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="equation-alternatives-child-conformance-fail">
+        <x:context href="../tests/rp/equation-alternatives-child-checks/equation-alternatives-child-conformance/fail.xml"/>
+        <x:expect-assert id="equation-alternatives-child-conformance" role="error"/>
+        <x:expect-not-assert id="equation-alternatives-child-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="math-tests">
       <x:scenario label="math-test-1-pass">
         <x:context href="../tests/rp/math-tests/math-test-1/pass.xml"/>
