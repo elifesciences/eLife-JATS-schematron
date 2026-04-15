@@ -6635,6 +6635,16 @@
         <x:expect-report id="refinery-pmid-suggestion" role="warning"/>
         <x:expect-not-assert id="refinery-comment-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="refinery-verified-fail-pass">
+        <x:context href="../tests/rp/refinery-comment-checks/refinery-verified-fail/pass.xml"/>
+        <x:expect-not-report id="refinery-verified-fail" role="warning"/>
+        <x:expect-not-assert id="refinery-comment-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="refinery-verified-fail-fail">
+        <x:context href="../tests/rp/refinery-comment-checks/refinery-verified-fail/fail.xml"/>
+        <x:expect-report id="refinery-verified-fail" role="warning"/>
+        <x:expect-not-assert id="refinery-comment-checks-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="refinery-unknown-suggestion-pass">
         <x:context href="../tests/rp/refinery-comment-checks/refinery-unknown-suggestion/pass.xml"/>
         <x:expect-not-report id="refinery-unknown-suggestion" role="warning"/>

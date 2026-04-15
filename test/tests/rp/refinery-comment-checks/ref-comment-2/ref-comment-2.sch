@@ -1198,7 +1198,7 @@
   </sqf:fixes>
   <pattern id="refinery-comment-checks-pattern">
     <rule context="ref//comment()" id="refinery-comment-checks">
-      <assert test="matches(lower-case(.),'refinery:')" role="error" sqf:fix="delete-node" id="ref-comment-2">[ref-comment-2] Ref (with id <value-of select="ancestor::ref/@id"/>) has comment node wit the content '<value-of select="."/>'. Comments should be removed.</assert>
+      <assert test="matches(lower-case(.),'refinery:')" role="error" sqf:fix="delete-node" id="ref-comment-2">[ref-comment-2] Ref (with id <value-of select="ancestor::ref/@id"/>) has comment node with the content '<value-of select="."/>'. Comments should be removed.</assert>
       <sqf:fix id="update-refinery">
         <sqf:description>
           <sqf:title>Accept refinery suggestion</sqf:title>

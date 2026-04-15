@@ -1198,7 +1198,7 @@
   </sqf:fixes>
   <pattern id="refinery-comment-checks-pattern">
     <rule context="ref//comment()" id="refinery-comment-checks">
-      <report test="matches(lower-case(.),'refinery:') and not(matches(lower-case(.),'refinery:.*?(doi|pmid).*?suggested'))" role="warning" sqf:fix="dismiss-refinery" id="refinery-unknown-suggestion">[refinery-unknown-suggestion] Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested change '<value-of select="normalize-space(.)"/>'.</report>
+      <report test="matches(lower-case(.),'refinery:') and not(matches(lower-case(.),'refinery:.*?(doi|pmid).*?suggested|refinery: existing (doi|pmid) could not be verified'))" role="warning" sqf:fix="dismiss-refinery" id="refinery-unknown-suggestion">[refinery-unknown-suggestion] Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested change '<value-of select="normalize-space(.)"/>'.</report>
       <sqf:fix id="update-refinery">
         <sqf:description>
           <sqf:title>Accept refinery suggestion</sqf:title>
