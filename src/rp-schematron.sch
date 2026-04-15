@@ -2102,10 +2102,14 @@
           <!-- adjust when support is added for mathML -->
           <assert test="graphic or alternatives[graphic]" role="error" id="disp-formula-content-conformance">[disp-formula-content-conformance] <value-of select="if (label) then concat('Equation ',label) else name()"/> does not have a child graphic element, which must be incorrect.</assert>
         
+        <assert test="*:math or alternatives[*:math]" role="warning" id="disp-formula-math-conformance">[disp-formula-math-conformance] <value-of select="if (label) then concat('Equation ',label) else name()"/> does not have a child mml:math element. Is that correct?</assert>
+        
         <assert test="@id" role="error" id="disp-formula-id-conformance">[disp-formula-id-conformance] <value-of select="name()"/> does not have a id attribute, which must be incorrect.</assert>
       </rule></pattern><pattern id="inline-formula-checks-pattern"><rule context="inline-formula" id="inline-formula-checks">
           <!-- adjust when support is added for mathML -->
           <assert test="inline-graphic or alternatives[inline-graphic]" role="error" id="inline-formula-content-conformance">[inline-formula-content-conformance] <value-of select="name()"/> does not have a child inline-graphic element, which must be incorrect.</assert>
+         
+         <assert test="*:math or alternatives[*:math]" role="warning" id="inline-formula-math-conformance">[inline-formula-math-conformance] <value-of select="name()"/> does not have a child mml:math element. Is that correct?</assert>
          
          <assert test="@id" role="error" id="inline-formula-id-conformance">[inline-formula-id-conformance] <value-of select="name()"/> does not have a id attribute, which must be incorrect.</assert>
       </rule></pattern><pattern id="disp-equation-alternatives-checks-pattern"><rule context="alternatives[parent::disp-formula]" id="disp-equation-alternatives-checks">
