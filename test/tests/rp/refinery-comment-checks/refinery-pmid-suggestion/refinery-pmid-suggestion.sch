@@ -1204,12 +1204,14 @@
           <sqf:title>Accept refinery suggestion</sqf:title>
         </sqf:description>
         <sqf:replace match=".">
-          <pub-id xmlns="">
+          <xsl:if test="contains(.,'suggested')">
+            <pub-id xmlns="">
             <xsl:attribute name="pub-id-type">
               <xsl:value-of select="if (contains(.,'DOI')) then 'doi' else 'pmid'"/>
             </xsl:attribute>
             <xsl:value-of select="normalize-space(substring-after(.,'suggested:'))"/>
           </pub-id>
+          </xsl:if>
         </sqf:replace>
         <sqf:delete match="./preceding-sibling::text()[1]|preceding-sibling::pub-id[1]"/>
       </sqf:fix>
