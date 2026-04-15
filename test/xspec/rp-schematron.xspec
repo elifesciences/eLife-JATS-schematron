@@ -2637,6 +2637,16 @@
         <x:expect-assert id="disp-formula-content-conformance" role="error"/>
         <x:expect-not-assert id="disp-formula-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="disp-formula-math-conformance-pass">
+        <x:context href="../tests/rp/disp-formula-checks/disp-formula-math-conformance/pass.xml"/>
+        <x:expect-not-assert id="disp-formula-math-conformance" role="warning"/>
+        <x:expect-not-assert id="disp-formula-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-formula-math-conformance-fail">
+        <x:context href="../tests/rp/disp-formula-checks/disp-formula-math-conformance/fail.xml"/>
+        <x:expect-assert id="disp-formula-math-conformance" role="warning"/>
+        <x:expect-not-assert id="disp-formula-checks-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="disp-formula-id-conformance-pass">
         <x:context href="../tests/rp/disp-formula-checks/disp-formula-id-conformance/pass.xml"/>
         <x:expect-not-assert id="disp-formula-id-conformance" role="error"/>
@@ -2657,6 +2667,16 @@
       <x:scenario label="inline-formula-content-conformance-fail">
         <x:context href="../tests/rp/inline-formula-checks/inline-formula-content-conformance/fail.xml"/>
         <x:expect-assert id="inline-formula-content-conformance" role="error"/>
+        <x:expect-not-assert id="inline-formula-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="inline-formula-math-conformance-pass">
+        <x:context href="../tests/rp/inline-formula-checks/inline-formula-math-conformance/pass.xml"/>
+        <x:expect-not-assert id="inline-formula-math-conformance" role="warning"/>
+        <x:expect-not-assert id="inline-formula-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="inline-formula-math-conformance-fail">
+        <x:context href="../tests/rp/inline-formula-checks/inline-formula-math-conformance/fail.xml"/>
+        <x:expect-assert id="inline-formula-math-conformance" role="warning"/>
         <x:expect-not-assert id="inline-formula-checks-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="inline-formula-id-conformance-pass">
@@ -2692,6 +2712,18 @@
         <x:context href="../tests/rp/inline-equation-alternatives-checks/inline-equation-alternatives-conformance/fail.xml"/>
         <x:expect-assert id="inline-equation-alternatives-conformance" role="error"/>
         <x:expect-not-assert id="inline-equation-alternatives-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="equation-alternatives-child-checks">
+      <x:scenario label="equation-alternatives-child-conformance-pass">
+        <x:context href="../tests/rp/equation-alternatives-child-checks/equation-alternatives-child-conformance/pass.xml"/>
+        <x:expect-not-assert id="equation-alternatives-child-conformance" role="error"/>
+        <x:expect-not-assert id="equation-alternatives-child-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="equation-alternatives-child-conformance-fail">
+        <x:context href="../tests/rp/equation-alternatives-child-checks/equation-alternatives-child-conformance/fail.xml"/>
+        <x:expect-assert id="equation-alternatives-child-conformance" role="error"/>
+        <x:expect-not-assert id="equation-alternatives-child-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="math-tests">

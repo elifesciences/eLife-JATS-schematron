@@ -2858,6 +2858,10 @@
           role="error" 
           id="disp-formula-content-conformance"><value-of select="if (label) then concat('Equation ',label) else name()"/> does not have a child graphic element, which must be incorrect.</assert>
         
+        <assert test="*:math or alternatives[*:math]" 
+          role="warning" 
+          id="disp-formula-math-conformance"><value-of select="if (label) then concat('Equation ',label) else name()"/> does not have a child mml:math element. Is that correct?</assert>
+        
         <assert test="@id" 
           role="error" 
           id="disp-formula-id-conformance"><value-of select="name()"/> does not have a id attribute, which must be incorrect.</assert>
@@ -2868,6 +2872,10 @@
           <assert test="inline-graphic or alternatives[inline-graphic]" 
           role="error" 
           id="inline-formula-content-conformance"><value-of select="name()"/> does not have a child inline-graphic element, which must be incorrect.</assert>
+         
+         <assert test="*:math or alternatives[*:math]" 
+          role="warning" 
+          id="inline-formula-math-conformance"><value-of select="name()"/> does not have a child mml:math element. Is that correct?</assert>
          
          <assert test="@id" 
           role="error" 
@@ -2884,6 +2892,16 @@
           <assert test="inline-graphic and *:math" 
           role="error" 
           id="inline-equation-alternatives-conformance">alternatives element within <value-of select="parent::*/name()"/> must have both an inline-graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
+      </rule>
+      
+      <rule context="alternatives[parent::inline-formula or parent::disp-formula]/*" id="equation-alternatives-child-checks">
+        <let name="math-elems" value="('mml:math','tex-math')"/>
+        <let name="allowed-elems" value="if (ancestor::disp-formula) then ('graphic', $math-elems)
+                                         else ('inline-graphic', $math-elems)"/>
+        
+        <assert test="name() = $allowed-elems" 
+          role="error" 
+          id="equation-alternatives-child-conformance"><value-of select="name()"/> is not supported within alternatives in <value-of select="parent::alternatives/parent::*/name()"/>. Only the following elements are permitted: <value-of select="string-join($allowed-elems,'; ')"/>.</assert>
       </rule>
     </pattern>
   

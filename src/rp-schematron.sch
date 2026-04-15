@@ -2102,16 +2102,25 @@
           <!-- adjust when support is added for mathML -->
           <assert test="graphic or alternatives[graphic]" role="error" id="disp-formula-content-conformance">[disp-formula-content-conformance] <value-of select="if (label) then concat('Equation ',label) else name()"/> does not have a child graphic element, which must be incorrect.</assert>
         
+        <assert test="*:math or alternatives[*:math]" role="warning" id="disp-formula-math-conformance">[disp-formula-math-conformance] <value-of select="if (label) then concat('Equation ',label) else name()"/> does not have a child mml:math element. Is that correct?</assert>
+        
         <assert test="@id" role="error" id="disp-formula-id-conformance">[disp-formula-id-conformance] <value-of select="name()"/> does not have a id attribute, which must be incorrect.</assert>
       </rule></pattern><pattern id="inline-formula-checks-pattern"><rule context="inline-formula" id="inline-formula-checks">
           <!-- adjust when support is added for mathML -->
           <assert test="inline-graphic or alternatives[inline-graphic]" role="error" id="inline-formula-content-conformance">[inline-formula-content-conformance] <value-of select="name()"/> does not have a child inline-graphic element, which must be incorrect.</assert>
+         
+         <assert test="*:math or alternatives[*:math]" role="warning" id="inline-formula-math-conformance">[inline-formula-math-conformance] <value-of select="name()"/> does not have a child mml:math element. Is that correct?</assert>
          
          <assert test="@id" role="error" id="inline-formula-id-conformance">[inline-formula-id-conformance] <value-of select="name()"/> does not have a id attribute, which must be incorrect.</assert>
       </rule></pattern><pattern id="disp-equation-alternatives-checks-pattern"><rule context="alternatives[parent::disp-formula]" id="disp-equation-alternatives-checks">
           <assert test="graphic and *:math" role="error" id="disp-equation-alternatives-conformance">[disp-equation-alternatives-conformance] alternatives element within <value-of select="parent::*/name()"/> must have both a graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
       </rule></pattern><pattern id="inline-equation-alternatives-checks-pattern"><rule context="alternatives[parent::inline-formula]" id="inline-equation-alternatives-checks">
           <assert test="inline-graphic and *:math" role="error" id="inline-equation-alternatives-conformance">[inline-equation-alternatives-conformance] alternatives element within <value-of select="parent::*/name()"/> must have both an inline-graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
+      </rule></pattern><pattern id="equation-alternatives-child-checks-pattern"><rule context="alternatives[parent::inline-formula or parent::disp-formula]/*" id="equation-alternatives-child-checks">
+        <let name="math-elems" value="('mml:math','tex-math')"/>
+        <let name="allowed-elems" value="if (ancestor::disp-formula) then ('graphic', $math-elems)                                          else ('inline-graphic', $math-elems)"/>
+        
+        <assert test="name() = $allowed-elems" role="error" id="equation-alternatives-child-conformance">[equation-alternatives-child-conformance] <value-of select="name()"/> is not supported within alternatives in <value-of select="parent::alternatives/parent::*/name()"/>. Only the following elements are permitted: <value-of select="string-join($allowed-elems,'; ')"/>.</assert>
       </rule></pattern>
   
   <pattern id="math-tests-pattern"><rule context="*:math" id="math-tests">
