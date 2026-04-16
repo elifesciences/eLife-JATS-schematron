@@ -1,0 +1,118 @@
+<!--Testing template with id: mlabeledtr-cleaner-->
+<sec xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <mml:math display="block">
+    <mml:mtable displaystyle="true" columnspacing="1em" rowspacing="3pt">
+        <mml:mlabeledtr>
+            <mml:mtd id="mjx-eqn:8">
+                <mml:mtext>(8)</mml:mtext>
+            </mml:mtd>
+            <mml:mtd>
+                <mml:msub>
+                    <mml:mi>θ</mml:mi>
+                    <mml:mrow data-mjx-texclass="ORD">
+                        <mml:mi>t</mml:mi>
+                        <mml:mo>+</mml:mo>
+                        <mml:mn>1</mml:mn>
+                    </mml:mrow>
+                </mml:msub>
+                <mml:mo>=</mml:mo>
+                <mml:msub>
+                    <mml:mi>θ</mml:mi>
+                    <mml:mrow data-mjx-texclass="ORD">
+                        <mml:mi>t</mml:mi>
+                    </mml:mrow>
+                </mml:msub>
+                <mml:mo>+</mml:mo>
+                <mml:mfrac>
+                    <mml:msub>
+                        <mml:mi>K</mml:mi>
+                        <mml:mrow data-mjx-texclass="ORD">
+                            <mml:mi>p</mml:mi>
+                        </mml:mrow>
+                    </mml:msub>
+                    <mml:msub>
+                        <mml:mi>K</mml:mi>
+                        <mml:mrow data-mjx-texclass="ORD">
+                            <mml:mi>c</mml:mi>
+                        </mml:mrow>
+                    </mml:msub>
+                </mml:mfrac>
+                <mml:msub>
+                    <mml:mrow data-mjx-texclass="ORD">
+                        <mml:mover>
+                            <mml:mi>ω</mml:mi>
+                            <mml:mo stretchy="false">¯</mml:mo>
+                        </mml:mover>
+                    </mml:mrow>
+                    <mml:mrow data-mjx-texclass="ORD">
+                        <mml:mi>t</mml:mi>
+                    </mml:mrow>
+                </mml:msub>
+                <mml:mi mathvariant="normal">Δ</mml:mi>
+                <mml:mi>t</mml:mi>
+            </mml:mtd>
+        </mml:mlabeledtr>
+        <mml:mtr>
+            <mml:mtd>
+                <mml:msub>
+                    <mml:mi>z</mml:mi>
+                    <mml:mrow data-mjx-texclass="ORD">
+                        <mml:mi>t</mml:mi>
+                        <mml:mo>+</mml:mo>
+                        <mml:mn>1</mml:mn>
+                    </mml:mrow>
+                </mml:msub>
+                <mml:mo>=</mml:mo>
+                <mml:msub>
+                    <mml:mi>z</mml:mi>
+                    <mml:mrow data-mjx-texclass="ORD">
+                        <mml:mi>t</mml:mi>
+                    </mml:mrow>
+                </mml:msub>
+                <mml:mo>+</mml:mo>
+                <mml:mi>v</mml:mi>
+                <mml:mi>cos</mml:mi>
+                <mml:mo data-mjx-texclass="NONE">⁡</mml:mo>
+                <mml:msub>
+                    <mml:mi>θ</mml:mi>
+                    <mml:mrow data-mjx-texclass="ORD">
+                        <mml:mi>t</mml:mi>
+                    </mml:mrow>
+                </mml:msub>
+                <mml:mi mathvariant="normal">Δ</mml:mi>
+                <mml:mi>t</mml:mi>
+                <mml:mstyle scriptlevel="0">
+                    <mml:mspace width="1em"/>
+                </mml:mstyle>
+                <mml:msub>
+                    <mml:mi>x</mml:mi>
+                    <mml:mrow data-mjx-texclass="ORD">
+                        <mml:mi>t</mml:mi>
+                        <mml:mo>+</mml:mo>
+                        <mml:mn>1</mml:mn>
+                    </mml:mrow>
+                </mml:msub>
+                <mml:mo>=</mml:mo>
+                <mml:msub>
+                    <mml:mi>x</mml:mi>
+                    <mml:mrow data-mjx-texclass="ORD">
+                        <mml:mi>t</mml:mi>
+                    </mml:mrow>
+                </mml:msub>
+                <mml:mo>+</mml:mo>
+                <mml:mi>v</mml:mi>
+                <mml:mi>sin</mml:mi>
+                <mml:mo data-mjx-texclass="NONE">⁡</mml:mo>
+                <mml:msub>
+                    <mml:mi>θ</mml:mi>
+                    <mml:mrow data-mjx-texclass="ORD">
+                        <mml:mi>t</mml:mi>
+                    </mml:mrow>
+                </mml:msub>
+                <mml:mi mathvariant="normal">Δ</mml:mi>
+                <mml:mi>t</mml:mi>
+            </mml:mtd>
+        </mml:mtr>
+    </mml:mtable>
+</mml:math>
+</sec>
