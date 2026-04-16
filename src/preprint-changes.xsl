@@ -2817,5 +2817,8 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-
+    
+    <!-- Strip unnecessary pretty printing from maths -->
+    <xsl:template xml:id="mathml-space-removal" match="mml:math//text()[matches(.,'^\n\s*$')]"/>
+    
 </xsl:stylesheet>
