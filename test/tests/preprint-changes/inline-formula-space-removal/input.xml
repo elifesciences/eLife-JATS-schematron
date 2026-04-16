@@ -1,0 +1,17 @@
+<!--Testing template with id: inline-formula-space-removal-->
+<p xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <inline-formula id="inline-eqn-13">
+        <alternatives>
+            <mml:math>
+                <mml:mrow>
+                    <mml:mover>
+                        <mml:mi>θ</mml:mi>
+                        <mml:mo stretchy="false">^</mml:mo>
+                    </mml:mover>
+                </mml:mrow>
+            </mml:math>
+            <tex-math>\begin{document}$\hat{\theta}$\end{document}</tex-math>
+            <inline-graphic xlink:href="700857v1_inline13.gif" mimetype="image" mime-subtype="gif"/>
+        </alternatives>
+    </inline-formula>
+</p>
