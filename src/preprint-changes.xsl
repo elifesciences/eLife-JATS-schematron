@@ -2753,6 +2753,7 @@
     </xsl:template>
     
     <xsl:template xml:id="tex-finder" match="mml:math[@alttext]">
+        <xsl:variable name="pretty-print" select="ancestor::disp-formula"/>
         <xsl:variable name="tex-doc-prefix" select="if (ancestor::inline-formula) then '\begin{document}$'
             else '\begin{document}$$\displaystyle '"/>
         <xsl:variable name="tex-doc-suffix" select="if (ancestor::inline-formula) then '$\end{document}'
@@ -2763,18 +2764,26 @@
                 <xsl:copy>
                     <xsl:apply-templates select="@*[name()!='alttext'] | * | text() | processing-instruction()"/>
                 </xsl:copy>
-                <xsl:text>&#xa;</xsl:text>
+                <xsl:if test="$pretty-print">
+                    <xsl:text>&#xa;</xsl:text>
+                </xsl:if>
                 <tex-math><xsl:value-of select="$tex"/></tex-math>
             </xsl:when>
             <xsl:otherwise>
                 <alternatives>
-                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:if test="$pretty-print">
+                        <xsl:text>&#xa;</xsl:text>
+                    </xsl:if>
                     <xsl:copy>
                         <xsl:apply-templates select="@*[name()!='alttext'] | * | text() | processing-instruction()"/>
                     </xsl:copy>
-                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:if test="$pretty-print">
+                        <xsl:text>&#xa;</xsl:text>
+                    </xsl:if>
                     <tex-math><xsl:value-of select="$tex"/></tex-math>
-                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:if test="$pretty-print">
+                        <xsl:text>&#xa;</xsl:text>
+                    </xsl:if>
                 </alternatives>
             </xsl:otherwise>
         </xsl:choose>
@@ -2820,5 +2829,8 @@
     
     <!-- Strip unnecessary pretty printing from maths -->
     <xsl:template xml:id="mathml-space-removal" match="mml:math//text()[matches(.,'^\n\s*$')]"/>
+    
+    <!-- Strip unnecessary pretty printing within inline-formula -->
+    <xsl:template xml:id="inline-formula-space-removal" match="inline-formula/text()[matches(.,'^\n\s*$')] | inline-formula/alternatives/text()[matches(.,'^\n\s*$')]"/>
     
 </xsl:stylesheet>
