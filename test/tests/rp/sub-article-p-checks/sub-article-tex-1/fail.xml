@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="sub-article-tex-1.sch"?>
 <!--Context: sub-article/body//p
-Test: report    matches(.,'\$?\$.*?\$\$?')
+Test: report    not(descendant::tex-math) and matches(.,'\$?\$.*?\$\$?')
 Message: sub-article contains what looks like potential latex: . If this is maths it should either be represented in plain unicode or as an image. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
