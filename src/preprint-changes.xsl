@@ -2814,17 +2814,39 @@
     </xsl:template>
     
     <!-- Strip unnecessary wrapper tables from maths -->
-    <xsl:template xml:id="mtable-cleaner" match="mml:math/mml:mtable[not(preceding-sibling::*) and not(following-sibling::*) and (count(mml:mlabeledtr) = 1)]">
+    <xsl:template xml:id="mtable-cleaner" match="mml:math/mml:mtable[not(preceding-sibling::*) and not(following-sibling::*) and not(mml:mtr) and (count(mml:mlabeledtr) = 1)]">
         <xsl:choose>
             <!-- fix mistagging -->
             <xsl:when test="count(mml:mlabeledtr/mml:mtd) = 1">
                 <xsl:apply-templates select="mml:mlabeledtr/mml:mtd/*"/>
             </xsl:when>
-            <!-- Remove label from MathML -->
-            <xsl:otherwise>
+            <!-- table only exists due to label-->
+            <xsl:when test="count(mml:mlabeledtr/mml:mtd) = 2">
                 <xsl:apply-templates select="mml:mlabeledtr/mml:mtd[2]/*"/>
+            </xsl:when>
+            <!-- mlabeledtr-cleaner removes label from table row -->
+            <xsl:otherwise>
+                <xsl:copy>
+                    <xsl:apply-templates select="@*|*|text()|processing-instruction()"/>
+                </xsl:copy>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+    
+    <!-- Exclude labels from math table rows -->
+    <xsl:template xml:id="mlabeledtr-cleaner" match="mml:mlabeledtr">
+        <mml:mtr>
+            <xsl:apply-templates select="@*"/>
+            <xsl:choose>
+                <!-- There shoudn't only be one - assume this is mistagging -->
+                <xsl:when test="count(mml:mtd) = 1">
+                    <xsl:apply-templates select="mml:mtd"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="mml:mtd[position() gt 1]"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </mml:mtr>
     </xsl:template>
     
     <!-- Strip unnecessary pretty printing from maths -->

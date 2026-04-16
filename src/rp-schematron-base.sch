@@ -4780,11 +4780,11 @@
           role="error" 
           id="sub-article-bold-image-2">p element contains bold text which looks like a label for an image or table. Since it's not been captured as a figure in the XML, it might either be misformatted in Kotahi/Hypothesis or there's a processing bug.</report>
         
-        <report test="matches(.,'\$?\$.*?\$\$?')" 
+        <report test="not(descendant::tex-math) and matches(.,'\$?\$.*?\$\$?')" 
           role="warning" 
           id="sub-article-tex-1">sub-article contains what looks like potential latex: <value-of select="string-join(distinct-values(e:analyze-string(.,'\$?\$.*?\$\$?')//*:match),'; ')"/>. If this is maths it should either be represented in plain unicode or as an image.</report>
         
-        <report test="not(matches(.,'\$?\$.*?\$\$?')) and matches(.,'\\[a-z]+\p{Ps}')" 
+        <report test="not(descendant::tex-math) and not(matches(.,'\$?\$.*?\$\$?')) and matches(.,'\\[a-z]+\p{Ps}')" 
           role="warning" 
           id="sub-article-tex-2">sub-article contains what looks like potential latex: <value-of select="string-join(distinct-values(e:analyze-string(.,'\\[a-z]+\p{Ps}')//*:match),'; ')"/>. If this is maths it should either be represented in plain unicode or as an image.</report>
       </rule>

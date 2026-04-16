@@ -1198,7 +1198,7 @@
   </sqf:fixes>
   <pattern id="sub-article-p-checks-pattern">
     <rule context="sub-article/body//p" id="sub-article-p-checks">
-      <report test="matches(.,'\$?\$.*?\$\$?')" role="warning" id="sub-article-tex-1">[sub-article-tex-1] sub-article contains what looks like potential latex: <value-of select="string-join(distinct-values(e:analyze-string(.,'\$?\$.*?\$\$?')//*:match),'; ')"/>. If this is maths it should either be represented in plain unicode or as an image.</report>
+      <report test="not(descendant::tex-math) and matches(.,'\$?\$.*?\$\$?')" role="warning" id="sub-article-tex-1">[sub-article-tex-1] sub-article contains what looks like potential latex: <value-of select="string-join(distinct-values(e:analyze-string(.,'\$?\$.*?\$\$?')//*:match),'; ')"/>. If this is maths it should either be represented in plain unicode or as an image.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
