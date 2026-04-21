@@ -1198,6 +1198,7 @@
   </sqf:fixes>
   <pattern id="math-empty-child-tests-pattern">
     <rule context="*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover|*:mfrac|*:mroot" id="math-empty-child-tests">
+      <let name="child-count" value="if (local-name()=('msubsup','munderover')) then 3 else 2"/>
       <let name="first-name" value="if (local-name() = 'mfrac') then 'numerator'                                 else if (local-name() = 'mroot') then 'radicand'                                 else 'base'"/>
       <let name="second-name" value="if (local-name() = 'msub') then 'subscript'                                  else if (local-name() = 'msup') then 'superscript'                                  else if (local-name() = 'msubsup') then 'subscript'                                  else if (local-name() = 'munder') then 'underscript'                                  else if (local-name() = 'mover') then 'overscript'                                  else if (local-name() = 'munderover') then 'underscript'                                  else if (local-name() = 'mfrac') then 'denominator'                                  else if (local-name() = 'mroot') then 'index'                                  else 'second'"/>
       <report test="local-name()=('msubsup','munderover') and *[3][matches(.,'^\p{Z}*$')]" role="error" id="math-empty-second-script-check">[math-empty-second-script-check] <name/> element must not have a missing or empty <value-of select="if (local-name()='msubsup') then 'superscript' else 'overscript'"/> expression.</report>

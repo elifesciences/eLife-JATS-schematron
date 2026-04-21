@@ -2931,6 +2931,7 @@
     </rule>
     
     <rule context="*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover|*:mfrac|*:mroot" id="math-empty-child-tests">
+      <let name="child-count" value="if (local-name()=('msubsup','munderover')) then 3 else 2"/>
       <let name="first-name" value="if (local-name() = 'mfrac') then 'numerator'
                                 else if (local-name() = 'mroot') then 'radicand'
                                 else 'base'"/>
@@ -2943,6 +2944,10 @@
                                  else if (local-name() = 'mfrac') then 'denominator'
                                  else if (local-name() = 'mroot') then 'index'
                                  else 'second'"/>
+      
+      <assert test="count(*) = $child-count"
+        role="error"
+        id="math-child-count-check"><name/> element must have <value-of select="$child-count"/> children. This one has <value-of select="count(*)"/>.</assert>
       
       <report test="*[1][matches(.,'^\p{Z}*$')]"
         role="warning"
