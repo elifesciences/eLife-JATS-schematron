@@ -1197,14 +1197,15 @@
         </sqf:fix>
   </sqf:fixes>
   <pattern id="math-empty-child-tests-pattern">
-    <rule context="*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover" id="math-empty-child-tests">
-      <let name="script-name" value="if (./local-name() = 'msub') then 'subscript'                                      else if (./local-name() = 'msup') then 'superscript'                                      else if (./local-name() = 'msubsup') then 'subscript'                                      else if (./local-name() = 'munder') then 'underscript'                                      else if (./local-name() = 'mover') then 'overscript'                                      else if (./local-name() = 'munderover') then 'underscript'                                      else 'second'"/>
-      <report test="*[2][matches(.,'^\p{Z}*$')]" role="error" id="math-empty-script-check">[math-empty-script-check] <name/> element must not have a missing or empty <value-of select="$script-name"/> expression.</report>
+    <rule context="*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover|*:mfrac|*:mroot" id="math-empty-child-tests">
+      <let name="first-name" value="if (local-name() = 'mfrac') then 'numerator'                                 else if (local-name() = 'mroot') then 'radicand'                                 else 'base'"/>
+      <let name="second-name" value="if (local-name() = 'msub') then 'subscript'                                  else if (local-name() = 'msup') then 'superscript'                                  else if (local-name() = 'msubsup') then 'subscript'                                  else if (local-name() = 'munder') then 'underscript'                                  else if (local-name() = 'mover') then 'overscript'                                  else if (local-name() = 'munderover') then 'underscript'                                  else if (local-name() = 'mfrac') then 'denominator'                                  else if (local-name() = 'mroot') then 'index'                                  else 'second'"/>
+      <report test="*[2][matches(.,'^\p{Z}*$')]" role="error" id="math-empty-script-check">[math-empty-script-check] <name/> element must not have a missing or empty <value-of select="$second-name"/> expression.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::*:msub or descendant::*:msup or descendant::*:msubsup or descendant::*:munder or descendant::*:mover or descendant::*:munderover" role="error" id="math-empty-child-tests-xspec-assert">*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover must be present.</assert>
+      <assert test="descendant::*:msub or descendant::*:msup or descendant::*:msubsup or descendant::*:munder or descendant::*:mover or descendant::*:munderover or descendant::*:mfrac or descendant::*:mroot" role="error" id="math-empty-child-tests-xspec-assert">*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover|*:mfrac|*:mroot must be present.</assert>
     </rule>
   </pattern>
 </schema>

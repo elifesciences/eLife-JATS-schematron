@@ -2930,27 +2930,31 @@
         id="math-empty-elem-test"><value-of select="name()"/> cannot be empty. This one in <value-of select="concat(ancestor::*[name()=('disp-formula','inline-formula')][1]/name(),' with id ',ancestor::*[name()=('disp-formula','inline-formula')][1]/@id)"/> is.</report>
     </rule>
     
-    <rule context="*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover" id="math-empty-child-tests">
-      <let name="script-name" value="if (./local-name() = 'msub') then 'subscript'
-                                     else if (./local-name() = 'msup') then 'superscript'
-                                     else if (./local-name() = 'msubsup') then 'subscript'
-                                     else if (./local-name() = 'munder') then 'underscript'
-                                     else if (./local-name() = 'mover') then 'overscript'
-                                     else if (./local-name() = 'munderover') then 'underscript'
-                                     else 'second'"/>
+    <rule context="*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover|*:mfrac|*:mroot" id="math-empty-child-tests">
+      <let name="first-name" value="if (local-name() = 'mfrac') then 'numerator'
+                                else if (local-name() = 'mroot') then 'radicand'
+                                else 'base'"/>
+      <let name="second-name" value="if (local-name() = 'msub') then 'subscript'
+                                 else if (local-name() = 'msup') then 'superscript'
+                                 else if (local-name() = 'msubsup') then 'subscript'
+                                 else if (local-name() = 'munder') then 'underscript'
+                                 else if (local-name() = 'mover') then 'overscript'
+                                 else if (local-name() = 'munderover') then 'underscript'
+                                 else if (local-name() = 'mfrac') then 'denominator'
+                                 else if (local-name() = 'mroot') then 'index'
+                                 else 'second'"/>
       
       <report test="*[1][matches(.,'^\p{Z}*$')]"
         role="warning"
-        id="math-empty-base-check"><name/> element should not have a missing or empty base expression.</report>
+        id="math-empty-base-check"><name/> element should not have a missing or empty <value-of select="$first-name"/> expression.</report>
 
       <report test="*[2][matches(.,'^\p{Z}*$')]"
         role="error"
-        id="math-empty-script-check"><name/> element must not have a missing or empty <value-of select="$script-name"/> expression.</report>
+        id="math-empty-script-check"><name/> element must not have a missing or empty <value-of select="$second-name"/> expression.</report>
 
       <report test="local-name()=('msubsup','munderover') and *[3][matches(.,'^\p{Z}*$')]"
         role="error"
         id="math-empty-second-script-check"><name/> element must not have a missing or empty <value-of select="if (local-name()='msubsup') then 'superscript' else 'overscript'"/> expression.</report>
-      
     </rule>
     
     <rule context="*:mmultiscripts" id="math-multiscripts-tests">
