@@ -2423,7 +2423,7 @@
     </rule>
   </pattern>
   <pattern id="math-content-elems-pattern">
-    <rule context="*:mrow | *:msqrt | *:mstyle | *:mpadded | *:mi | *:mn | *:mo | *:mtext | *:ms | *:mglyph | *:malignmark" id="math-content-elems">
+    <rule context="*:mrow|*:msqrt|*:mstyle|*:mpadded|*:mi|*:mn|*:mo|*:mtext|*:ms|*:mglyph|*:malignmark" id="math-content-elems">
       <report test="not(*) and (normalize-space(.)='')" role="error" id="math-empty-elem-test">
         <value-of select="name()"/> cannot be empty. This one in <value-of select="concat(ancestor::*[name()=('disp-formula','inline-formula')][1]/name(),' with id ',ancestor::*[name()=('disp-formula','inline-formula')][1]/@id)"/> is.</report>
     </rule>
@@ -3991,7 +3991,7 @@
       <assert test="descendant::alternatives[parent::inline-formula]" role="error" id="inline-equation-alternatives-checks-xspec-assert">alternatives[parent::inline-formula] must be present.</assert>
       <assert test="descendant::alternatives[parent::inline-formula or parent::disp-formula]/*" role="error" id="equation-alternatives-child-checks-xspec-assert">alternatives[parent::inline-formula or parent::disp-formula]/* must be present.</assert>
       <assert test="descendant::*:math" role="error" id="math-tests-xspec-assert">*:math must be present.</assert>
-      <assert test="descendant::*:mrow  or descendant:: *:msqrt  or descendant:: *:mstyle  or descendant:: *:mpadded  or descendant:: *:mi  or descendant:: *:mn  or descendant:: *:mo  or descendant:: *:mtext  or descendant:: *:ms  or descendant:: *:mglyph  or descendant:: *:malignmark" role="error" id="math-content-elems-xspec-assert">*:mrow | *:msqrt | *:mstyle | *:mpadded | *:mi | *:mn | *:mo | *:mtext | *:ms | *:mglyph | *:malignmark must be present.</assert>
+      <assert test="descendant::*:mrow or descendant::*:msqrt or descendant::*:mstyle or descendant::*:mpadded or descendant::*:mi or descendant::*:mn or descendant::*:mo or descendant::*:mtext or descendant::*:ms or descendant::*:mglyph or descendant::*:malignmark" role="error" id="math-content-elems-xspec-assert">*:mrow|*:msqrt|*:mstyle|*:mpadded|*:mi|*:mn|*:mo|*:mtext|*:ms|*:mglyph|*:malignmark must be present.</assert>
       <assert test="descendant::*:msub or descendant::*:msup or descendant::*:msubsup or descendant::*:munder or descendant::*:mover or descendant::*:munderover" role="error" id="math-empty-child-tests-xspec-assert">*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover must be present.</assert>
       <assert test="descendant::list" role="error" id="list-checks-xspec-assert">list must be present.</assert>
       <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-checks-xspec-assert">graphic|inline-graphic must be present.</assert>

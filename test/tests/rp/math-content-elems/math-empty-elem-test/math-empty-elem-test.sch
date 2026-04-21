@@ -1197,13 +1197,13 @@
         </sqf:fix>
   </sqf:fixes>
   <pattern id="math-content-elems-pattern">
-    <rule context="*:mrow | *:msqrt | *:mstyle | *:mpadded | *:mi | *:mn | *:mo | *:mtext | *:ms | *:mglyph | *:malignmark" id="math-content-elems">
+    <rule context="*:mrow|*:msqrt|*:mstyle|*:mpadded|*:mi|*:mn|*:mo|*:mtext|*:ms|*:mglyph|*:malignmark" id="math-content-elems">
       <report test="not(*) and (normalize-space(.)='')" role="error" id="math-empty-elem-test">[math-empty-elem-test] <value-of select="name()"/> cannot be empty. This one in <value-of select="concat(ancestor::*[name()=('disp-formula','inline-formula')][1]/name(),' with id ',ancestor::*[name()=('disp-formula','inline-formula')][1]/@id)"/> is.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::*:mrow  or descendant:: *:msqrt  or descendant:: *:mstyle  or descendant:: *:mpadded  or descendant:: *:mi  or descendant:: *:mn  or descendant:: *:mo  or descendant:: *:mtext  or descendant:: *:ms  or descendant:: *:mglyph  or descendant:: *:malignmark" role="error" id="math-content-elems-xspec-assert">*:mrow | *:msqrt | *:mstyle | *:mpadded | *:mi | *:mn | *:mo | *:mtext | *:ms | *:mglyph | *:malignmark must be present.</assert>
+      <assert test="descendant::*:mrow or descendant::*:msqrt or descendant::*:mstyle or descendant::*:mpadded or descendant::*:mi or descendant::*:mn or descendant::*:mo or descendant::*:mtext or descendant::*:ms or descendant::*:mglyph or descendant::*:malignmark" role="error" id="math-content-elems-xspec-assert">*:mrow|*:msqrt|*:mstyle|*:mpadded|*:mi|*:mn|*:mo|*:mtext|*:ms|*:mglyph|*:malignmark must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -2924,7 +2924,7 @@
         id="math-broken-unicode-test">Equation likely contains a broken unicode - <value-of select="."/>.</report>
     </rule>
     
-    <rule context="*:mrow | *:msqrt | *:mstyle | *:mpadded | *:mi | *:mn | *:mo | *:mtext | *:ms | *:mglyph | *:malignmark" id="math-content-elems">
+    <rule context="*:mrow|*:msqrt|*:mstyle|*:mpadded|*:mi|*:mn|*:mo|*:mtext|*:ms|*:mglyph|*:malignmark" id="math-content-elems">
       <report test="not(*) and (normalize-space(.)='')" 
         role="error" 
         id="math-empty-elem-test"><value-of select="name()"/> cannot be empty. This one in <value-of select="concat(ancestor::*[name()=('disp-formula','inline-formula')][1]/name(),' with id ',ancestor::*[name()=('disp-formula','inline-formula')][1]/@id)"/> is.</report>
