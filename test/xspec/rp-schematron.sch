@@ -2443,6 +2443,22 @@
       
     </rule>
   </pattern>
+  <pattern id="math-multiscripts-tests-pattern">
+    <rule context="*:mmultiscripts" id="math-multiscripts-tests">
+      <!-- REVIST: should we allow mml:none here? -->
+      <let name="empty-exceptions" value="('mprescripts','mrow','none')"/>    
+
+      <assert test="count(*) ge 3" role="error" id="math-multiscripts-check-1">
+        <name/> element must at least 3 child elements. This one has <value-of select="count(*)"/>.</assert>
+
+      <report test="*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)='']" role="error" id="math-multiscripts-check-2">
+        <name/> element must not have an empty child element (with the following exceptions: <value-of select="string-join($empty-exceptions,'; ')"/>). This <name/> has <value-of select="count(*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)=''])"/> empty child elements - <value-of select="string-join(distinct-values(*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)='']/name()),';')"/>.</report>
+
+      <assert test="*:mprescripts" role="error" id="math-multiscripts-check-3">
+        <name/> element must have a child mml:mprescripts element. If the expressions are all correct, then a more conventional math element (e.g. mml:msub) should be used to capture this content.</assert>
+
+    </rule>
+  </pattern>
 
     <pattern id="list-checks-pattern">
     <rule context="list" id="list-checks">
@@ -3993,6 +4009,7 @@
       <assert test="descendant::*:math" role="error" id="math-tests-xspec-assert">*:math must be present.</assert>
       <assert test="descendant::*:mrow or descendant::*:msqrt or descendant::*:mstyle or descendant::*:mpadded or descendant::*:mi or descendant::*:mn or descendant::*:mo or descendant::*:mtext or descendant::*:ms or descendant::*:mglyph or descendant::*:malignmark" role="error" id="math-content-elems-xspec-assert">*:mrow|*:msqrt|*:mstyle|*:mpadded|*:mi|*:mn|*:mo|*:mtext|*:ms|*:mglyph|*:malignmark must be present.</assert>
       <assert test="descendant::*:msub or descendant::*:msup or descendant::*:msubsup or descendant::*:munder or descendant::*:mover or descendant::*:munderover" role="error" id="math-empty-child-tests-xspec-assert">*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover must be present.</assert>
+      <assert test="descendant::*:mmultiscripts" role="error" id="math-multiscripts-tests-xspec-assert">*:mmultiscripts must be present.</assert>
       <assert test="descendant::list" role="error" id="list-checks-xspec-assert">list must be present.</assert>
       <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-checks-xspec-assert">graphic|inline-graphic must be present.</assert>
       <assert test="descendant::graphic" role="error" id="graphic-placement-xspec-assert">graphic must be present.</assert>

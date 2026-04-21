@@ -2952,6 +2952,24 @@
         id="math-empty-second-script-check"><name/> element must not have a missing or empty <value-of select="if (local-name()='msubsup') then 'superscript' else 'overscript'"/> expression.</report>
       
     </rule>
+    
+    <rule context="*:mmultiscripts" id="math-multiscripts-tests">
+      <!-- REVIST: should we allow mml:none here? -->
+      <let name="empty-exceptions" value="('mprescripts','mrow','none')"/>    
+
+      <assert test="count(*) ge 3"
+        role="error"
+        id="math-multiscripts-check-1"><name/> element must at least 3 child elements. This one has <value-of select="count(*)"/>.</assert>
+
+      <report test="*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)='']"
+        role="error"
+        id="math-multiscripts-check-2"><name/> element must not have an empty child element (with the following exceptions: <value-of select="string-join($empty-exceptions,'; ')"/>). This <name/> has <value-of select="count(*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)=''])"/> empty child elements - <value-of select="string-join(distinct-values(*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)='']/name()),';')"/>.</report>
+
+      <assert test="*:mprescripts"
+        role="error"
+        id="math-multiscripts-check-3"><name/> element must have a child mml:mprescripts element. If the expressions are all correct, then a more conventional math element (e.g. mml:msub) should be used to capture this content.</assert>
+
+    </rule>
   </pattern>
 
     <pattern id="list">
