@@ -553,6 +553,48 @@
     </xsl:if>
   </xsl:function>
   
+  <xsl:function name="e:tex-arrays-without-spacing" as="xs:string*">
+    <xsl:param name="text" as="xs:string"/>
+    <xsl:variable name="marked" select="replace(       replace($text, '\\begin[{]array[}][^}]*[}]', '|__BEGIN__|'),       '\\end[{]array[}]', '|__END__|'       )"/>
+    <xsl:sequence select="e:walk-tex-arrays(tokenize($marked, '\|'), 0, '')"/>
+  </xsl:function>
+  
+  <xsl:function name="e:walk-tex-arrays" as="xs:string*">
+    <xsl:param name="tokens" as="xs:string*"/>
+    <xsl:param name="depth" as="xs:integer"/>
+    <xsl:param name="current" as="xs:string"/>
+
+    <xsl:choose>
+      <xsl:when test="empty($tokens)">
+        <xsl:sequence select="()"/>
+      </xsl:when>
+      <xsl:when test="$tokens[1] = '__BEGIN__'">
+        <xsl:sequence select="e:walk-tex-arrays(           tail($tokens),           $depth + 1,           if ($depth gt 0) then concat($current, $tokens[1]) else ''         )"/>
+      </xsl:when>
+      <xsl:when test="$tokens[1] = '__END__'">
+        <xsl:choose>
+          <xsl:when test="$depth eq 1">
+            <xsl:variable name="trimmed" select="replace($current, '\\\\$', '')"/>
+            <xsl:choose>
+              <xsl:when test="not(contains($trimmed, '\\') or contains($trimmed, '&amp;'))">
+                <xsl:sequence select="($current, e:walk-tex-arrays(tail($tokens), 0, ''))"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:sequence select="e:walk-tex-arrays(tail($tokens), 0, '')"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:sequence select="e:walk-tex-arrays(               tail($tokens),               $depth - 1,               concat($current, $tokens[1])             )"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="e:walk-tex-arrays(           tail($tokens),           $depth,           if ($depth gt 0) then concat($current, $tokens[1]) else $current         )"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  
   <xsl:function name="e:analyze-string" as="element()">
     <xsl:param name="node"/>
     <xsl:param name="regex" as="xs:string"/>
@@ -2665,6 +2707,8 @@
       <let name="document-stripped-text" value="replace(.,'^\\begin\{document.|\\end\{document.$','')"/>
       <!-- Remove the formula commands to find the actual expression -->
       <let name="formula-text" value="replace($document-stripped-text,'^\$\$|\$\$$','')"/>
+      <!-- Find arrays in tex-math that do not have spacing chars -->
+      <let name="arrays-without-spaces" value="e:tex-arrays-without-spacing($formula-text)"/>
       
       <assert test="parent::alternatives" role="error" id="tex-math-test-1">[tex-math-test-1] <name/> element is not allowed as a child of <value-of select="parent::*/name()"/>. It can only be captured as a child of alternatives.</assert>
       
@@ -2680,7 +2724,7 @@
       
       <report test="ancestor::inline-formula and contains($formula-text,'\displaystyle')" role="warning" id="tex-math-test-7">[tex-math-test-7] <name/> element is in an inline-formula, and yet it contains the \displaystyle command. Is that correct? - <value-of select="."/></report>
       
-      <report test="tokenize($formula-text,'\\?\\?\\(begin|end).array.')[.!='' and (position() mod 2 = 0) and not(contains(.,'\\') or contains(.,'&amp;'))]" role="warning" id="tex-math-test-8">[tex-math-test-8] <name/> contains an array without horizontal or vertical spacing - <value-of select="string-join(tokenize($formula-text,'\\?\\?\\(begin|end).array.')[.!='' and (position() mod 2 = 0) and not(contains(.,'\\') or contains(.,'&amp;'))],' ---- ')"/></report>
+      <report test="exists($arrays-without-spaces)" role="warning" id="tex-math-test-8">[tex-math-test-8] <name/> contains array(s) without horizontal or vertical spacing - <value-of select="string-join($arrays-without-spaces,' ---- ')"/></report>
     </rule></pattern><pattern id="disp-formula-child-tests-pattern"><rule context="disp-formula/*" id="disp-formula-child-tests">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1" test="not(local-name()=('label','math','alternatives'))" role="error" id="disp-formula-child-test-1">[disp-formula-child-test-1] <name/> element is not allowed as a child of disp-formula.</report>

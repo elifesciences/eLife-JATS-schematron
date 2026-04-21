@@ -513,6 +513,46 @@
       </xsl:choose>
     </xsl:if>
   </xsl:function>
+  <xsl:function name="e:tex-arrays-without-spacing" as="xs:string*">
+    <xsl:param name="text" as="xs:string"/>
+    <xsl:variable name="marked" select="replace(       replace($text, '\\begin[{]array[}][^}]*[}]', '|__BEGIN__|'),       '\\end[{]array[}]', '|__END__|'       )"/>
+    <xsl:sequence select="e:walk-tex-arrays(tokenize($marked, '\|'), 0, '')"/>
+  </xsl:function>
+  <xsl:function name="e:walk-tex-arrays" as="xs:string*">
+    <xsl:param name="tokens" as="xs:string*"/>
+    <xsl:param name="depth" as="xs:integer"/>
+    <xsl:param name="current" as="xs:string"/>
+
+    <xsl:choose>
+      <xsl:when test="empty($tokens)">
+        <xsl:sequence select="()"/>
+      </xsl:when>
+      <xsl:when test="$tokens[1] = '__BEGIN__'">
+        <xsl:sequence select="e:walk-tex-arrays(           tail($tokens),           $depth + 1,           if ($depth gt 0) then concat($current, $tokens[1]) else ''         )"/>
+      </xsl:when>
+      <xsl:when test="$tokens[1] = '__END__'">
+        <xsl:choose>
+          <xsl:when test="$depth eq 1">
+            <xsl:variable name="trimmed" select="replace($current, '\\\\$', '')"/>
+            <xsl:choose>
+              <xsl:when test="not(contains($trimmed, '\\') or contains($trimmed, '&amp;'))">
+                <xsl:sequence select="($current, e:walk-tex-arrays(tail($tokens), 0, ''))"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:sequence select="e:walk-tex-arrays(tail($tokens), 0, '')"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:sequence select="e:walk-tex-arrays(               tail($tokens),               $depth - 1,               concat($current, $tokens[1])             )"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="e:walk-tex-arrays(           tail($tokens),           $depth,           if ($depth gt 0) then concat($current, $tokens[1]) else $current         )"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
   <xsl:function name="e:analyze-string" as="element()">
     <xsl:param name="node"/>
     <xsl:param name="regex" as="xs:string"/>
@@ -923,6 +963,7 @@
     <rule context="tex-math" id="tex-math-tests">
       <let name="document-stripped-text" value="replace(.,'^\\begin\{document.|\\end\{document.$','')"/>
       <let name="formula-text" value="replace($document-stripped-text,'^\$\$|\$\$$','')"/>
+      <let name="arrays-without-spaces" value="e:tex-arrays-without-spacing($formula-text)"/>
       <assert test="starts-with(.,'\begin{document}')" role="error" id="tex-math-test-2">Content of <name/> element must start with '\begin{document}'. This one doesn't - <value-of select="."/>
       </assert>
     </rule>
