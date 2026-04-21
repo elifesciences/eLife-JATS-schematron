@@ -1,0 +1,41 @@
+<?oxygen SCHSchema="math-empty-elem-test.sch"?>
+<!--Context: *:mrow | *:msqrt | *:mstyle | *:mpadded | *:mi | *:mn | *:mo | *:mtext | *:ms | *:mglyph | *:malignmark
+Test: report    not(*) and (normalize-space(.)='')
+Message:  cannot be empty. This one in  is. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mml:math>
+            <mml:msub>
+                <mml:mrow>
+                    <mml:mtext>odds</mml:mtext>
+                </mml:mrow>
+                <mml:mrow>
+                    <mml:mi>t</mml:mi>
+                </mml:mrow>
+            </mml:msub>
+            <mml:mo>=</mml:mo>
+            <mml:mfrac>
+                <mml:msub>
+                    <mml:mi>p</mml:mi>
+                    <mml:mrow>
+                        <mml:mi>B</mml:mi>
+                        <mml:mo>,</mml:mo>
+                        <mml:mi>t</mml:mi>
+                    </mml:mrow>
+                </mml:msub>
+                <mml:mrow>
+                    <mml:mn>1</mml:mn>
+                    <mml:mo>−</mml:mo>
+                    <mml:msub>
+                        <mml:mi>p</mml:mi>
+                        <mml:mrow>
+                            <mml:mi>B</mml:mi>
+                            <mml:mo>,</mml:mo>
+                            <mml:mi>t</mml:mi>
+                        </mml:mrow>
+                    </mml:msub>
+                </mml:mrow>
+            </mml:mfrac>
+        </mml:math>
+    </article>
+</root>
