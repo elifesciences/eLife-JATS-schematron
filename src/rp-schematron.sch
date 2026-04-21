@@ -2130,6 +2130,8 @@
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-2" test="descendant::*:merror" role="error" id="math-test-2">[math-test-2] math contains an mml:merror with '<value-of select="descendant::*:merror[1]/*"/>'. This will almost certainly not render correctly.</report>
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-broken-unicode-test" test="matches(.,'(&amp;|§|§amp;)(#x?\d)?|[^\p{L}\p{N}][gl]t;')" role="warning" id="math-broken-unicode-test">[math-broken-unicode-test] Equation likely contains a broken unicode - <value-of select="."/>.</report>
+    </rule></pattern><pattern id="math-content-elems-pattern"><rule context="*:mrow | *:msqrt | *:mstyle | *:mpadded | *:mi | *:mn | *:mo | *:mtext | *:ms | *:mglyph | *:malignmark" id="math-content-elems">
+      <report test="not(*) and (normalize-space(.)='')" role="error" id="math-empty-elem-test">[math-empty-elem-test] <value-of select="name()"/> cannot be empty. This one in <value-of select="concat(ancestor::*[name()=('disp-formula','inline-formula')][1]/name(),' with id ',ancestor::*[name()=('disp-formula','inline-formula')][1]/@id)"/> is.</report>
     </rule></pattern>
 
     <pattern id="list-checks-pattern"><rule context="list" id="list-checks">
