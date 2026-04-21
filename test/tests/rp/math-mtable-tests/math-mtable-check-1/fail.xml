@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="math-mtable-check-1.sch"?>
+<!--Context: *:mtable
+Test: assert    *:mtr or *:mlabeledtr
+Message:  element must have either a child mml:mtr or mml:mlabeledtr element. This one has neither. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mml:mtable>
+            <mml:mfrac/>
+        </mml:mtable>
+    </article>
+</root>
