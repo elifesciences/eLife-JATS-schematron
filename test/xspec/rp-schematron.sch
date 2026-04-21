@@ -2463,6 +2463,12 @@
 
     </rule>
   </pattern>
+  <pattern id="math-mtable-tests-pattern">
+    <rule context="*:mtable" id="math-mtable-tests">
+      <assert test="*:mtr or *:mlabeledtr" role="error" id="math-mtable-check-1">
+        <name/> element must have either a child mml:mtr or mml:mlabeledtr element. This one has neither.</assert>
+    </rule>
+  </pattern>
 
     <pattern id="list-checks-pattern">
     <rule context="list" id="list-checks">
@@ -4014,6 +4020,7 @@
       <assert test="descendant::*:mrow or descendant::*:msqrt or descendant::*:mstyle or descendant::*:mpadded or descendant::*:mi or descendant::*:mn or descendant::*:mo or descendant::*:mtext or descendant::*:ms or descendant::*:mglyph or descendant::*:malignmark" role="error" id="math-content-elems-xspec-assert">*:mrow|*:msqrt|*:mstyle|*:mpadded|*:mi|*:mn|*:mo|*:mtext|*:ms|*:mglyph|*:malignmark must be present.</assert>
       <assert test="descendant::*:msub or descendant::*:msup or descendant::*:msubsup or descendant::*:munder or descendant::*:mover or descendant::*:munderover or descendant::*:mfrac or descendant::*:mroot" role="error" id="math-empty-child-tests-xspec-assert">*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover|*:mfrac|*:mroot must be present.</assert>
       <assert test="descendant::*:mmultiscripts" role="error" id="math-multiscripts-tests-xspec-assert">*:mmultiscripts must be present.</assert>
+      <assert test="descendant::*:mtable" role="error" id="math-mtable-tests-xspec-assert">*:mtable must be present.</assert>
       <assert test="descendant::list" role="error" id="list-checks-xspec-assert">list must be present.</assert>
       <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-checks-xspec-assert">graphic|inline-graphic must be present.</assert>
       <assert test="descendant::graphic" role="error" id="graphic-placement-xspec-assert">graphic must be present.</assert>

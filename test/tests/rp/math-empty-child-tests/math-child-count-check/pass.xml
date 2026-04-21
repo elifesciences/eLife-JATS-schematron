@@ -2,8 +2,7 @@
 <!--Context: *:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover|*:mfrac|*:mroot
 Test: assert    count(*) = $child-count
 Message:  element must have  children. This one has . -->
-<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/"
-    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <mml:math>
             <mml:msub>
@@ -21,11 +20,11 @@ Message:  element must have  children. This one has . -->
             </mml:msubsup>
             <mml:munder>
                 <mml:mi>x</mml:mi>
-                <mml:mo>&#x23DF;</mml:mo>
+                <mml:mo>⏟</mml:mo>
             </mml:munder>
             <mml:mover>
                 <mml:mi>x</mml:mi>
-                <mml:mo>&#x23DE;</mml:mo>
+                <mml:mo>⏞</mml:mo>
             </mml:mover>
             <mml:munderover>
                 <mml:mi>x</mml:mi>

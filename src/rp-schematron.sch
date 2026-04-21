@@ -2154,6 +2154,8 @@
 
       <assert test="*:mprescripts" role="error" id="math-multiscripts-check-3">[math-multiscripts-check-3] <name/> element must have a child mml:mprescripts element. If the expressions are all correct, then a more conventional math element (e.g. mml:msub) should be used to capture this content.</assert>
 
+    </rule></pattern><pattern id="math-mtable-tests-pattern"><rule context="*:mtable" id="math-mtable-tests">
+      <assert test="*:mtr or *:mlabeledtr" role="error" id="math-mtable-check-1">[math-mtable-check-1] <name/> element must have either a child mml:mtr or mml:mlabeledtr element. This one has neither.</assert>
     </rule></pattern>
 
     <pattern id="list-checks-pattern"><rule context="list" id="list-checks">
