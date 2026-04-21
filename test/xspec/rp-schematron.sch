@@ -2422,6 +2422,53 @@
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-broken-unicode-test" test="matches(.,'(&amp;|§|§amp;)(#x?\d)?|[^\p{L}\p{N}][gl]t;')" role="warning" id="math-broken-unicode-test">Equation likely contains a broken unicode - <value-of select="."/>.</report>
     </rule>
   </pattern>
+  <pattern id="math-content-elems-pattern">
+    <rule context="*:mrow|*:msqrt|*:mstyle|*:mpadded|*:mi|*:mn|*:mo|*:mtext|*:ms|*:mglyph|*:malignmark" id="math-content-elems">
+      <report test="not(*) and (normalize-space(.)='')" role="error" id="math-empty-elem-test">
+        <value-of select="name()"/> cannot be empty. This one in <value-of select="concat(ancestor::*[name()=('disp-formula','inline-formula')][1]/name(),' with id ',ancestor::*[name()=('disp-formula','inline-formula')][1]/@id)"/> is.</report>
+    </rule>
+  </pattern>
+  <pattern id="math-empty-child-tests-pattern">
+    <rule context="*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover|*:mfrac|*:mroot" id="math-empty-child-tests">
+      <let name="child-count" value="if (local-name()=('msubsup','munderover')) then 3 else 2"/>
+      <let name="first-name" value="if (local-name() = 'mfrac') then 'numerator'                                 else if (local-name() = 'mroot') then 'radicand'                                 else 'base'"/>
+      <let name="second-name" value="if (local-name() = 'msub') then 'subscript'                                  else if (local-name() = 'msup') then 'superscript'                                  else if (local-name() = 'msubsup') then 'subscript'                                  else if (local-name() = 'munder') then 'underscript'                                  else if (local-name() = 'mover') then 'overscript'                                  else if (local-name() = 'munderover') then 'underscript'                                  else if (local-name() = 'mfrac') then 'denominator'                                  else if (local-name() = 'mroot') then 'index'                                  else 'second'"/>
+      
+      <assert test="count(*) = $child-count" role="error" id="math-child-count-check">
+        <name/> element must have <value-of select="$child-count"/> children. This one has <value-of select="count(*)"/>.</assert>
+      
+      <report test="*[1][matches(.,'^\p{Z}*$')]" role="warning" id="math-empty-base-check">
+        <name/> element should not have a missing or empty <value-of select="$first-name"/> expression.</report>
+
+      <report test="*[2][matches(.,'^\p{Z}*$')]" role="error" id="math-empty-script-check">
+        <name/> element must not have a missing or empty <value-of select="$second-name"/> expression.</report>
+
+      <report test="local-name()=('msubsup','munderover') and *[3][matches(.,'^\p{Z}*$')]" role="error" id="math-empty-second-script-check">
+        <name/> element must not have a missing or empty <value-of select="if (local-name()='msubsup') then 'superscript' else 'overscript'"/> expression.</report>
+    </rule>
+  </pattern>
+  <pattern id="math-multiscripts-tests-pattern">
+    <rule context="*:mmultiscripts" id="math-multiscripts-tests">
+      <!-- REVIST: should we allow mml:none here? -->
+      <let name="empty-exceptions" value="('mprescripts','mrow','none')"/>    
+
+      <assert test="count(*) ge 3" role="error" id="math-multiscripts-check-1">
+        <name/> element must at least 3 child elements. This one has <value-of select="count(*)"/>.</assert>
+
+      <report test="*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)='']" role="error" id="math-multiscripts-check-2">
+        <name/> element must not have an empty child element (with the following exceptions: <value-of select="string-join($empty-exceptions,'; ')"/>). This <name/> has <value-of select="count(*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)=''])"/> empty child elements - <value-of select="string-join(distinct-values(*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)='']/name()),';')"/>.</report>
+
+      <assert test="*:mprescripts" role="error" id="math-multiscripts-check-3">
+        <name/> element must have a child mml:mprescripts element. If the expressions are all correct, then a more conventional math element (e.g. mml:msub) should be used to capture this content.</assert>
+
+    </rule>
+  </pattern>
+  <pattern id="math-mtable-tests-pattern">
+    <rule context="*:mtable" id="math-mtable-tests">
+      <assert test="*:mtr or *:mlabeledtr" role="error" id="math-mtable-check-1">
+        <name/> element must have either a child mml:mtr or mml:mlabeledtr element. This one has neither.</assert>
+    </rule>
+  </pattern>
 
     <pattern id="list-checks-pattern">
     <rule context="list" id="list-checks">
@@ -3970,6 +4017,10 @@
       <assert test="descendant::alternatives[parent::inline-formula]" role="error" id="inline-equation-alternatives-checks-xspec-assert">alternatives[parent::inline-formula] must be present.</assert>
       <assert test="descendant::alternatives[parent::inline-formula or parent::disp-formula]/*" role="error" id="equation-alternatives-child-checks-xspec-assert">alternatives[parent::inline-formula or parent::disp-formula]/* must be present.</assert>
       <assert test="descendant::*:math" role="error" id="math-tests-xspec-assert">*:math must be present.</assert>
+      <assert test="descendant::*:mrow or descendant::*:msqrt or descendant::*:mstyle or descendant::*:mpadded or descendant::*:mi or descendant::*:mn or descendant::*:mo or descendant::*:mtext or descendant::*:ms or descendant::*:mglyph or descendant::*:malignmark" role="error" id="math-content-elems-xspec-assert">*:mrow|*:msqrt|*:mstyle|*:mpadded|*:mi|*:mn|*:mo|*:mtext|*:ms|*:mglyph|*:malignmark must be present.</assert>
+      <assert test="descendant::*:msub or descendant::*:msup or descendant::*:msubsup or descendant::*:munder or descendant::*:mover or descendant::*:munderover or descendant::*:mfrac or descendant::*:mroot" role="error" id="math-empty-child-tests-xspec-assert">*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover|*:mfrac|*:mroot must be present.</assert>
+      <assert test="descendant::*:mmultiscripts" role="error" id="math-multiscripts-tests-xspec-assert">*:mmultiscripts must be present.</assert>
+      <assert test="descendant::*:mtable" role="error" id="math-mtable-tests-xspec-assert">*:mtable must be present.</assert>
       <assert test="descendant::list" role="error" id="list-checks-xspec-assert">list must be present.</assert>
       <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-checks-xspec-assert">graphic|inline-graphic must be present.</assert>
       <assert test="descendant::graphic" role="error" id="graphic-placement-xspec-assert">graphic must be present.</assert>

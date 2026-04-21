@@ -1,0 +1,26 @@
+<?oxygen SCHSchema="math-empty-second-script-check.sch"?>
+<!--Context: *:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover|*:mfrac|*:mroot
+Test: report    local-name()=('msubsup','munderover') and *[3][matches(.,'^\p{Z}*$')]
+Message:  element must not have a missing or empty  expression. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mml:msubsup>
+            <mml:mi>X</mml:mi>
+            <mml:mi>sub</mml:mi>
+        </mml:msubsup>
+        <mml:msubsup>
+            <mml:mi>X</mml:mi>
+            <mml:mi>sub</mml:mi>
+            <mml:mi/>
+        </mml:msubsup>
+        <mml:munderover>
+            <mml:mi>X</mml:mi>
+            <mml:mi>under</mml:mi>
+        </mml:munderover>
+        <mml:munderover>
+            <mml:mi>X</mml:mi>
+            <mml:mi>under</mml:mi>
+            <mml:mi/>
+        </mml:munderover>
+    </article>
+</root>
