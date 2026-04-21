@@ -2770,6 +2770,38 @@
         <x:expect-not-assert id="math-content-elems-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="math-empty-child-tests">
+      <x:scenario label="math-empty-base-check-pass">
+        <x:context href="../tests/rp/math-empty-child-tests/math-empty-base-check/pass.xml"/>
+        <x:expect-not-report id="math-empty-base-check" role="warning"/>
+        <x:expect-not-assert id="math-empty-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-empty-base-check-fail">
+        <x:context href="../tests/rp/math-empty-child-tests/math-empty-base-check/fail.xml"/>
+        <x:expect-report id="math-empty-base-check" role="warning"/>
+        <x:expect-not-assert id="math-empty-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-empty-script-check-pass">
+        <x:context href="../tests/rp/math-empty-child-tests/math-empty-script-check/pass.xml"/>
+        <x:expect-not-report id="math-empty-script-check" role="error"/>
+        <x:expect-not-assert id="math-empty-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-empty-script-check-fail">
+        <x:context href="../tests/rp/math-empty-child-tests/math-empty-script-check/fail.xml"/>
+        <x:expect-report id="math-empty-script-check" role="error"/>
+        <x:expect-not-assert id="math-empty-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-empty-second-script-check-pass">
+        <x:context href="../tests/rp/math-empty-child-tests/math-empty-second-script-check/pass.xml"/>
+        <x:expect-not-report id="math-empty-second-script-check" role="error"/>
+        <x:expect-not-assert id="math-empty-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-empty-second-script-check-fail">
+        <x:context href="../tests/rp/math-empty-child-tests/math-empty-second-script-check/fail.xml"/>
+        <x:expect-report id="math-empty-second-script-check" role="error"/>
+        <x:expect-not-assert id="math-empty-child-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="list-checks">
       <x:scenario label="list-type-conformance-pass">
         <x:context href="../tests/rp/list-checks/list-type-conformance/pass.xml"/>

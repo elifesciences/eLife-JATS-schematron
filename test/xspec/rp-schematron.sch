@@ -2428,6 +2428,21 @@
         <value-of select="name()"/> cannot be empty. This one in <value-of select="concat(ancestor::*[name()=('disp-formula','inline-formula')][1]/name(),' with id ',ancestor::*[name()=('disp-formula','inline-formula')][1]/@id)"/> is.</report>
     </rule>
   </pattern>
+  <pattern id="math-empty-child-tests-pattern">
+    <rule context="*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover" id="math-empty-child-tests">
+      <let name="script-name" value="if (./local-name() = 'msub') then 'subscript'                                      else if (./local-name() = 'msup') then 'superscript'                                      else if (./local-name() = 'msubsup') then 'subscript'                                      else if (./local-name() = 'munder') then 'underscript'                                      else if (./local-name() = 'mover') then 'overscript'                                      else if (./local-name() = 'munderover') then 'underscript'                                      else 'second'"/>
+      
+      <report test="*[1][matches(.,'^\p{Z}*$')]" role="warning" id="math-empty-base-check">
+        <name/> element should not have a missing or empty base expression.</report>
+
+      <report test="*[2][matches(.,'^\p{Z}*$')]" role="error" id="math-empty-script-check">
+        <name/> element must not have a missing or empty <value-of select="$script-name"/> expression.</report>
+
+      <report test="local-name()=('msubsup','munderover') and *[3][matches(.,'^\p{Z}*$')]" role="error" id="math-empty-second-script-check">
+        <name/> element must not have a missing or empty <value-of select="if (local-name()='msubsup') then 'superscript' else 'overscript'"/> expression.</report>
+      
+    </rule>
+  </pattern>
 
     <pattern id="list-checks-pattern">
     <rule context="list" id="list-checks">
@@ -3977,6 +3992,7 @@
       <assert test="descendant::alternatives[parent::inline-formula or parent::disp-formula]/*" role="error" id="equation-alternatives-child-checks-xspec-assert">alternatives[parent::inline-formula or parent::disp-formula]/* must be present.</assert>
       <assert test="descendant::*:math" role="error" id="math-tests-xspec-assert">*:math must be present.</assert>
       <assert test="descendant::*:mrow  or descendant:: *:msqrt  or descendant:: *:mstyle  or descendant:: *:mpadded  or descendant:: *:mi  or descendant:: *:mn  or descendant:: *:mo  or descendant:: *:mtext  or descendant:: *:ms  or descendant:: *:mglyph  or descendant:: *:malignmark" role="error" id="math-content-elems-xspec-assert">*:mrow | *:msqrt | *:mstyle | *:mpadded | *:mi | *:mn | *:mo | *:mtext | *:ms | *:mglyph | *:malignmark must be present.</assert>
+      <assert test="descendant::*:msub or descendant::*:msup or descendant::*:msubsup or descendant::*:munder or descendant::*:mover or descendant::*:munderover" role="error" id="math-empty-child-tests-xspec-assert">*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover must be present.</assert>
       <assert test="descendant::list" role="error" id="list-checks-xspec-assert">list must be present.</assert>
       <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-checks-xspec-assert">graphic|inline-graphic must be present.</assert>
       <assert test="descendant::graphic" role="error" id="graphic-placement-xspec-assert">graphic must be present.</assert>
