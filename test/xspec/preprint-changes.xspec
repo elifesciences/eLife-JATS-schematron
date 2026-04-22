@@ -252,6 +252,10 @@
       <x:context href="../tests/preprint-changes/mlabeledtr-cleaner/input.xml"/>
       <x:expect label="Testing the template: mlabeledtr-cleaner" href="../tests/preprint-changes/mlabeledtr-cleaner/output.xml"/>
     </x:scenario>
+    <x:scenario label="mtext-space">
+      <x:context href="../tests/preprint-changes/mtext-space/input.xml"/>
+      <x:expect label="Testing the template: mtext-space" href="../tests/preprint-changes/mtext-space/output.xml"/>
+    </x:scenario>
     <x:scenario label="mathml-space-removal">
       <x:context href="../tests/preprint-changes/mathml-space-removal/input.xml"/>
       <x:expect label="Testing the template: mathml-space-removal" href="../tests/preprint-changes/mathml-space-removal/output.xml"/>
