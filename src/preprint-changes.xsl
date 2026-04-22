@@ -2849,6 +2849,22 @@
         </mml:mtr>
     </xsl:template>
     
+    <!-- Fix boundary spaces for mtext -->
+    <xsl:template xml:id="mtext-space" match="mml:mtext[matches(., '^\s|\s$')]">
+        <xsl:if test="matches(., '^\s')">
+            <mml:mspace width="0.25em"/>
+        </xsl:if>
+        
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:value-of select="replace(., '^\s+|\s+$', '')"/>
+        </xsl:copy>
+        
+        <xsl:if test="matches(., '\s$')">
+            <mml:mspace width="0.25em"/>
+        </xsl:if>
+    </xsl:template>
+    
     <!-- Strip unnecessary pretty printing from maths -->
     <xsl:template xml:id="mathml-space-removal" match="mml:math//text()[matches(.,'^\n\s*$')]"/>
     
