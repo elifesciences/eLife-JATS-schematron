@@ -2851,16 +2851,21 @@
     
     <!-- Fix boundary spaces for mtext -->
     <xsl:template xml:id="mtext-space" match="mml:mtext[matches(., '^\s|\s$')]">
-        <xsl:if test="matches(., '^\s')">
+        <xsl:variable name="strict-parent" select="parent::*[
+            name() = ('mml:mfrac', 'mml:msub', 'mml:msup', 'mml:msubsup', 'mml:munder', 
+                      'mml:mover', 'mml:munderover', 'mml:mroot', 'mml:mmultiscripts',
+                      'mml:mtable', 'mml:mtr', 'mml:mlabeledtr')]"/>
+        
+        <xsl:if test="matches(., '^\s') and not($strict-parent)">
             <mml:mspace width="0.25em"/>
         </xsl:if>
         
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
-            <xsl:value-of select="replace(., '^\s+|\s+$', '')"/>
+            <xsl:value-of select="if ($strict-parent) then . else replace(., '^\s+|\s+$', '')"/>
         </xsl:copy>
         
-        <xsl:if test="matches(., '\s$')">
+        <xsl:if test="matches(., '\s$') and not($strict-parent)">
             <mml:mspace width="0.25em"/>
         </xsl:if>
     </xsl:template>
