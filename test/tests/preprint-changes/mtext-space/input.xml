@@ -1,4 +1,12 @@
 <!--Testing template with id: mtext-space-->
-<disp-formula xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<sec xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<disp-formula>
 <mml:math display="block"><mml:mtext> Species </mml:mtext><mml:mi>k</mml:mi><mml:mtext> present in: </mml:mtext><mml:mrow><mml:mo>{</mml:mo><mml:mtable columnalign="center center" columnspacing="1em" rowspacing="4pt"><mml:mtr><mml:mtd><mml:mtext> alternating sets of </mml:mtext><mml:msup><mml:mn>2</mml:mn><mml:mrow><mml:mi>k</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mtext> rows </mml:mtext></mml:mtd><mml:mtd><mml:mtext> if </mml:mtext><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mn>2</mml:mn><mml:mo>,</mml:mo><mml:mn>3</mml:mn></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mtext> alternating sets of </mml:mtext><mml:msup><mml:mn>2</mml:mn><mml:mrow><mml:mi>k</mml:mi><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msup><mml:mtext> columns </mml:mtext></mml:mtd><mml:mtd><mml:mtext> if </mml:mtext><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>4</mml:mn><mml:mo>,</mml:mo><mml:mn>5</mml:mn><mml:mo>,</mml:mo><mml:mo>⋯</mml:mo><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math>
 </disp-formula>
+<disp-formula id="eqns1">
+<alternatives>
+<mml:math display="block"><mml:mfrac><mml:mtext> protons </mml:mtext><mml:mi>g</mml:mi></mml:mfrac><mml:mo>=</mml:mo><mml:mfrac><mml:msub><mml:mrow><mml:mi mathvariant="normal">N</mml:mi></mml:mrow><mml:mrow><mml:mrow><mml:mi mathvariant="normal">a</mml:mi></mml:mrow></mml:mrow></mml:msub><mml:mrow><mml:mi>M</mml:mi><mml:mi>W</mml:mi></mml:mrow></mml:mfrac><mml:mo>×</mml:mo><mml:mfrac><mml:mtext> protons </mml:mtext><mml:mtext> molecule </mml:mtext></mml:mfrac></mml:math>
+<tex-math>\begin{document}$$\displaystyle \frac{\text { protons }}{g}=\frac{\mathrm{N}_{\mathrm{a}}}{M W} \times \frac{\text { protons }}{\text { molecule }}$$\end{document}</tex-math>
+</alternatives>
+</disp-formula>    
+</sec>
