@@ -1393,6 +1393,9 @@
 	     <assert test="matches(.,'^http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]$')" role="error" id="orcid-test-2">contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'</assert>
 	  
 	     <assert test="e:is-valid-orcid(.)" role="error" id="orcid-test-4">contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL. <value-of select="."/> is not a valid ORCID URL.</assert>
+       
+       <report test="following-sibling::contrib-id[@contrib-id-type='orcid']" role="error" id="orcid-test-5">
+        <value-of select="parent::*/name()"/> <value-of select="if (parent::*/name) then concat('for ',e:get-name(parent::*/name[1])) else ''"/> has two or more ORCID IDs. An author should only have one ORCID ID. Please check which is correct, remove any incorrect or duplicate ORCID IDs and (if appropriate) preference the authenticated ORCID ID.</report>
 		
 		</rule>
   </pattern>

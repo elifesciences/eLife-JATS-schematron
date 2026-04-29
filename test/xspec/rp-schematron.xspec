@@ -491,6 +491,16 @@
         <x:expect-assert id="orcid-test-4" role="error"/>
         <x:expect-not-assert id="orcid-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="orcid-test-5-pass">
+        <x:context href="../tests/rp/orcid-tests/orcid-test-5/pass.xml"/>
+        <x:expect-not-report id="orcid-test-5" role="error"/>
+        <x:expect-not-assert id="orcid-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="orcid-test-5-fail">
+        <x:context href="../tests/rp/orcid-tests/orcid-test-5/fail.xml"/>
+        <x:expect-report id="orcid-test-5" role="error"/>
+        <x:expect-not-assert id="orcid-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="affiliation-checks">
       <x:scenario label="aff-no-country-pass">
