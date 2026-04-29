@@ -1,0 +1,26 @@
+<?oxygen SCHSchema="orcid-test-5.sch"?>
+<!--Context: contrib-id[@contrib-id-type='orcid']
+Test: report    following-sibling::contrib-id[@contrib-id-type='orcid']
+Message:   has two or more ORCID IDs. An author should only have one ORCID ID. Please check which is correct, remove any incorrect or duplicate ORCID IDs and (if appropriate) preference the authenticated ORCID ID. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <contrib>
+            <name>
+                <surname>Claus</surname>
+                <given-names>Santa</given-names>
+            </name>
+            <contrib-id contrib-id-type="orcid">https://orcid.org/0000-0000-0000-000X</contrib-id>
+            <contrib-id contrib-id-type="orcid">https://orcid.org/0000-0000-0000-0001</contrib-id>
+        </contrib>
+        <contrib>
+            <name>
+                <surname>Zoolander</surname>
+                <given-names>Derek</given-names>
+            </name>
+            <contrib-id contrib-id-type="orcid">https://orcid.org/0000-0000-0000-0002</contrib-id>
+            <contrib-id contrib-id-type="orcid">https://orcid.org/0000-0000-0000-0003</contrib-id>
+            <contrib-id contrib-id-type="orcid">https://orcid.org/0000-0000-0000-0004</contrib-id>
+            <contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0000-0000-0005</contrib-id>
+        </contrib>
+    </article>
+</root>
