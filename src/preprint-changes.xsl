@@ -2860,12 +2860,21 @@
             <mml:mspace width="0.25em"/>
         </xsl:if>
         
-        <xsl:copy>
-            <xsl:apply-templates select="@*"/>
-            <xsl:value-of select="if ($strict-parent) then . else replace(., '^\s+|\s+$', '')"/>
-        </xsl:copy>
+        <xsl:if test="matches(.,'\S')">
+            <xsl:copy>
+                <xsl:apply-templates select="@*"/>
+                <xsl:choose>
+                    <xsl:when test="not($strict-parent)">
+                        <xsl:value-of select="replace(., '^\s+|\s+$', '')"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:apply-templates select="node()"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:copy>
+        </xsl:if>
         
-        <xsl:if test="matches(., '\s$') and not($strict-parent)">
+        <xsl:if test="matches(., '.\s$') and not($strict-parent)">
             <mml:mspace width="0.25em"/>
         </xsl:if>
     </xsl:template>
