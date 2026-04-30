@@ -5114,12 +5114,12 @@
       <report test="matches(lower-case(.),'refinery:.*?pmid.*?suggested')"
         role="warning"
         sqf:fix="update-refinery dismiss-refinery"
-        id="refinery-pmid-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested PMID change. Current: <value-of select="ancestor::ref/pub-id[@pub-id-type='pmid'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
+        id="refinery-pmid-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested PMID change. Current: <value-of select="ancestor::ref/descendant::pub-id[@pub-id-type='pmid'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
       
       <report test="matches(lower-case(.),'refinery: existing (doi|pmid) could not be verified')"
         role="warning"
         sqf:fix="update-refinery dismiss-refinery"
-        id="refinery-verified-fail">Ref (with id <value-of select="ancestor::ref/@id"/>) has a DOI and/or PMID which cannot be verified (<value-of select="string-join(ancestor::ref/pub-id[@pub-id-type=('doi','pmid')],'; ')"/>). Should it be removed?</report>
+        id="refinery-verified-fail">Ref (with id <value-of select="ancestor::ref/@id"/>) has a DOI and/or PMID which cannot be verified (<value-of select="string-join(ancestor::ref//pub-id[@pub-id-type=('doi','pmid')],'; ')"/>). Should it be removed?</report>
       
       <report test="matches(lower-case(.),'refinery:') and not(matches(lower-case(.),'refinery:.*?(doi|pmid).*?suggested|refinery: existing (doi|pmid) could not be verified'))"
         role="warning"
