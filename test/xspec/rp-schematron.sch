@@ -2302,7 +2302,7 @@
         <assert test="graphic or alternatives[graphic]" role="error" id="table-wrap-content-conformance">
         <value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>
        
-       <report test="not(label) and parent::sec and preceding-sibling::title and not(following-sibling::*)" role="warning" id="table-wrap-sec-wrapper">Unlablled table is entirely wrapped in a sec with a title. Is the sec redundant and the title actually the label (or title) for the table?</report>
+       <report test="not(label) and parent::sec and not(following-sibling::*) and          (preceding-sibling::*[1][name()=('title','label') and parent::sec] or          preceding-sibling::*[1][name()='p'][preceding-sibling::*[1][name()=('title','label') and parent::sec]])" role="warning" id="table-wrap-sec-wrapper">Unlablled table is entirely wrapped in a sec with a title. Is the sec redundant and the title actually the label (or title) for the table?</report>
      </rule>
   </pattern>
   <pattern id="table-wrap-child-checks-pattern">
@@ -3903,9 +3903,9 @@
     <rule context="ref//comment()" id="refinery-comment-checks">
       <report test="matches(lower-case(.),'refinery:.*?doi.*?suggested')" role="warning" sqf:fix="update-refinery dismiss-refinery" id="refinery-doi-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested DOI change. Current: <value-of select="ancestor::ref/descendant::pub-id[@pub-id-type='doi'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
       
-      <report test="matches(lower-case(.),'refinery:.*?pmid.*?suggested')" role="warning" sqf:fix="update-refinery dismiss-refinery" id="refinery-pmid-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested PMID change. Current: <value-of select="ancestor::ref/pub-id[@pub-id-type='pmid'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
+      <report test="matches(lower-case(.),'refinery:.*?pmid.*?suggested')" role="warning" sqf:fix="update-refinery dismiss-refinery" id="refinery-pmid-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested PMID change. Current: <value-of select="ancestor::ref/descendant::pub-id[@pub-id-type='pmid'][1]"/>; Suggested: <value-of select="normalize-space(substring-after(.,'suggested:'))"/>.</report>
       
-      <report test="matches(lower-case(.),'refinery: existing (doi|pmid) could not be verified')" role="warning" sqf:fix="update-refinery dismiss-refinery" id="refinery-verified-fail">Ref (with id <value-of select="ancestor::ref/@id"/>) has a DOI and/or PMID which cannot be verified (<value-of select="string-join(ancestor::ref/pub-id[@pub-id-type=('doi','pmid')],'; ')"/>). Should it be removed?</report>
+      <report test="matches(lower-case(.),'refinery: existing (doi|pmid) could not be verified')" role="warning" sqf:fix="update-refinery dismiss-refinery" id="refinery-verified-fail">Ref (with id <value-of select="ancestor::ref/@id"/>) has a DOI and/or PMID which cannot be verified (<value-of select="string-join(ancestor::ref//pub-id[@pub-id-type=('doi','pmid')],'; ')"/>). Should it be removed?</report>
       
       <report test="matches(lower-case(.),'refinery:') and not(matches(lower-case(.),'refinery:.*?(doi|pmid).*?suggested|refinery: existing (doi|pmid) could not be verified'))" role="warning" sqf:fix="dismiss-refinery" id="refinery-unknown-suggestion">Ref (with id <value-of select="ancestor::ref/@id"/>) has a suggested change '<value-of select="normalize-space(.)"/>'.</report>
       

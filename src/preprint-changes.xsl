@@ -2799,7 +2799,7 @@
                 </xsl:attribute>
             </xsl:if>
             <xsl:apply-templates select="@*"/>
-            <xsl:if test="descendant::mml:math/mml:mtable[(count(mml:mlabeledtr/mml:mtd) = 2) and mml:mlabeledtr[1]/mml:mtd[1]/mml:mtext[1][normalize-space(.)!=''] and not(preceding-sibling::*) and not(following-sibling::*) and (count(mml:mlabeledtr) = 1)]">
+            <xsl:if test="descendant::mml:math/mml:mtable[not(preceding-sibling::*) and not(following-sibling::*) and (count(mml:mlabeledtr) = 1) and (count(mml:mlabeledtr/mml:mtd) gt 1) and mml:mlabeledtr[1]/mml:mtd[1]/mml:mtext[1][normalize-space(.) != '']]">
                 <xsl:text>&#xa;</xsl:text>
                 <label>
                     <xsl:variable name="eqn-no" select="normalize-space(descendant::mml:math[1]/mml:mtable[1]/mml:mlabeledtr[1]/mml:mtd[1]/mml:mtext[1])"/>
@@ -2860,12 +2860,21 @@
             <mml:mspace width="0.25em"/>
         </xsl:if>
         
-        <xsl:copy>
-            <xsl:apply-templates select="@*"/>
-            <xsl:value-of select="if ($strict-parent) then . else replace(., '^\s+|\s+$', '')"/>
-        </xsl:copy>
+        <xsl:if test="matches(.,'\S')">
+            <xsl:copy>
+                <xsl:apply-templates select="@*"/>
+                <xsl:choose>
+                    <xsl:when test="not($strict-parent)">
+                        <xsl:value-of select="replace(., '^\s+|\s+$', '')"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:apply-templates select="node()"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:copy>
+        </xsl:if>
         
-        <xsl:if test="matches(., '\s$') and not($strict-parent)">
+        <xsl:if test="matches(., '.\s$') and not($strict-parent)">
             <mml:mspace width="0.25em"/>
         </xsl:if>
     </xsl:template>
