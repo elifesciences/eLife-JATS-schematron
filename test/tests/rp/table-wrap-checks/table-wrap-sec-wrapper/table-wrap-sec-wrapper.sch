@@ -1198,7 +1198,7 @@
   </sqf:fixes>
   <pattern id="table-wrap-checks-pattern">
     <rule context="table-wrap" id="table-wrap-checks">
-      <report test="not(label) and parent::sec and preceding-sibling::title and not(following-sibling::*)" role="warning" id="table-wrap-sec-wrapper">[table-wrap-sec-wrapper] Unlablled table is entirely wrapped in a sec with a title. Is the sec redundant and the title actually the label (or title) for the table?</report>
+      <report test="not(label) and parent::sec and not(following-sibling::*) and          (preceding-sibling::*[1][name()=('title','label') and parent::sec] or          preceding-sibling::*[1][name()='p'][preceding-sibling::*[1][name()=('title','label') and parent::sec]])" role="warning" id="table-wrap-sec-wrapper">[table-wrap-sec-wrapper] Unlablled table is entirely wrapped in a sec with a title. Is the sec redundant and the title actually the label (or title) for the table?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
