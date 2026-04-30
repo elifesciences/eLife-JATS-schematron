@@ -2799,7 +2799,7 @@
                 </xsl:attribute>
             </xsl:if>
             <xsl:apply-templates select="@*"/>
-            <xsl:if test="descendant::mml:math/mml:mtable[(count(mml:mlabeledtr/mml:mtd) = 2) and mml:mlabeledtr[1]/mml:mtd[1]/mml:mtext[1][normalize-space(.)!=''] and not(preceding-sibling::*) and not(following-sibling::*) and (count(mml:mlabeledtr) = 1)]">
+            <xsl:if test="descendant::mml:math/mml:mtable[not(preceding-sibling::*) and not(following-sibling::*) and (count(mml:mlabeledtr) = 1) and (count(mml:mlabeledtr/mml:mtd) gt 1) and mml:mlabeledtr[1]/mml:mtd[1]/mml:mtext[1][normalize-space(.) != '']]">
                 <xsl:text>&#xa;</xsl:text>
                 <label>
                     <xsl:variable name="eqn-no" select="normalize-space(descendant::mml:math[1]/mml:mtable[1]/mml:mlabeledtr[1]/mml:mtd[1]/mml:mtext[1])"/>
