@@ -3338,7 +3338,9 @@
       <let name="article-license" value="ancestor::article//article-meta//permissions//ali:license_ref"/>
       <let name="label" value="if (ancestor::permissions[1]/parent::*/label[1]) then replace(ancestor::permissions[1]/parent::*/label[1],'\.$','') else ancestor::permissions[1]/parent::*/local-name()"/>
       
-      <report test=".=$article-license" role="error" id="block-permish-ali-license">[block-permish-ali-license] ali:license_ref in permissions for <value-of select="$label"/> is the same as the license link for the article - <value-of select="."/> - which is incorrect.</report>
+      <report test="replace(.,'^https?|/$','')=replace($article-license,'^https?|/$','')" role="error" id="block-permish-ali-license">[block-permish-ali-license] ali:license_ref in permissions for <value-of select="$label"/> is the same as the license link for the article - <value-of select="."/> - which is incorrect.</report>
+      
+      <assert test="contains(.,'creativecommons.org')" role="error" id="block-permish-ali-license-2">[block-permish-ali-license-2] ali:license_ref should only contain creativecommons.org licenses. This one in permissions for <value-of select="$label"/> is not a creative commons link - <value-of select="."/> - which is incorrect.</assert>
       
     </rule></pattern><pattern id="permissions-3b-pattern"><rule context="permissions[not(parent::article-meta)]//license-p//ext-link" id="permissions-3b">
       <let name="article-license" value="ancestor::article//article-meta//permissions//ali:license_ref"/>

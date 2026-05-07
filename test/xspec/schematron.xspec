@@ -8133,6 +8133,16 @@
         <x:expect-report id="block-permish-ali-license" role="error"/>
         <x:expect-not-assert id="permissions-3a-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="block-permish-ali-license-2-pass">
+        <x:context href="../tests/gen/permissions-3a/block-permish-ali-license-2/pass.xml"/>
+        <x:expect-not-assert id="block-permish-ali-license-2" role="error"/>
+        <x:expect-not-assert id="permissions-3a-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="block-permish-ali-license-2-fail">
+        <x:context href="../tests/gen/permissions-3a/block-permish-ali-license-2/fail.xml"/>
+        <x:expect-assert id="block-permish-ali-license-2" role="error"/>
+        <x:expect-not-assert id="permissions-3a-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="permissions-3b">
       <x:scenario label="block-permish-license-p-link-pass">
