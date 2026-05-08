@@ -1201,7 +1201,7 @@
       <let name="link" value="lower-case(@*:href)"/>
       <let name="file" value="tokenize($link,'\.')[last()]"/>
       <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
-      <report test="ancestor::sub-article and (preceding::graphic/@*:href/lower-case(.) = $link or preceding::inline-graphic/@*:href/lower-case(.) = $link)" role="warning" id="graphic-test-9">[graphic-test-9] Image file in sub-article for <value-of select="name()"/> (<value-of select="@*:href"/>) is the same as the one used for another graphic or inline-graphic. Is that correct?</report>
+      <report test="not(ancestor::sub-article) and not(ancestor::*[name()=('fig','table-wrap','disp-formula','inline-formula')]) and (preceding::graphic/@*:href/lower-case(.) = $link or preceding::inline-graphic/@*:href/lower-case(.) = $link)" role="warning" id="graphic-test-6-unknown">[graphic-test-6-unknown] Image file for <value-of select="name()"/> (<value-of select="@*:href"/>) is the same as the one used for another graphic or inline-graphic. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

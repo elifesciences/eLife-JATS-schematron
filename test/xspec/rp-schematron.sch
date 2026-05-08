@@ -2512,7 +2512,9 @@
         
         <report test="not(ancestor::sub-article) and (ancestor::disp-formula or ancestor::inline-formula) and (preceding::graphic/@*:href/lower-case(.) = $link or preceding::inline-graphic/@*:href/lower-case(.) = $link)" role="warning" id="graphic-test-6-equ">Image file for <value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> (<value-of select="@*:href"/>) is the same as the one used for another graphic or inline-graphic. Is this correct?</report>
         
-        <report test="ancestor::sub-article and (preceding::graphic/@*:href/lower-case(.) = $link or preceding::inline-graphic/@*:href/lower-case(.) = $link)" role="warning" id="graphic-test-9">Image file in sub-article for <value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/> (<value-of select="@*:href"/>) is the same as the one used for another graphic or inline-graphic. Is that correct?</report>
+        <report test="not(ancestor::sub-article) and not(ancestor::*[name()=('fig','table-wrap','disp-formula','inline-formula')]) and (preceding::graphic/@*:href/lower-case(.) = $link or preceding::inline-graphic/@*:href/lower-case(.) = $link)" role="warning" id="graphic-test-6-unknown">Image file for <value-of select="name()"/> (<value-of select="@*:href"/>) is the same as the one used for another graphic or inline-graphic. Is this correct?</report>
+        
+        <report test="ancestor::sub-article and (preceding::graphic/@*:href/lower-case(.) = $link or preceding::inline-graphic/@*:href/lower-case(.) = $link)" role="warning" id="graphic-test-9">Image file in sub-article for <value-of select="name()"/> (<value-of select="@*:href"/>) is the same as the one used for another graphic or inline-graphic. Is that correct?</report>
         
         <report test="@mime-subtype='gif' and $file!='gif'" role="error" id="graphic-test-7">
         <name/> has gif mime-subtype but filename does not end with '.gif'. This cannot be correct.</report>
