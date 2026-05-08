@@ -3036,9 +3036,13 @@
          role="error" 
          id="graphic-test-5"><name/> has png mime-subtype but filename does not end with '.png'. This cannot be correct.</report>
         
-        <report test="not(ancestor::sub-article) and (preceding::graphic/@*:href/lower-case(.) = $link or preceding::inline-graphic/@*:href/lower-case(.) = $link)" 
+        <report test="not(ancestor::sub-article) and (not(ancestor::disp-formula or ancestor::inline-formula) and ancestor::fig or ancestor::table-wrap) and (preceding::graphic/@*:href/lower-case(.) = $link or preceding::inline-graphic/@*:href/lower-case(.) = $link)" 
+          role="error" 
+          id="graphic-test-6">Image file for <value-of select="if (ancestor::*[name()=('fig','table-wrap')]/label) then ancestor::*[name()=('fig','table-wrap')]/label else 'graphic'"/> (<value-of select="@*:href"/>) is the same as the one used for another graphic or inline-graphic. This must be incorrect.</report>
+        
+        <report test="not(ancestor::sub-article) and (ancestor::disp-formula or ancestor::inline-formula) and (preceding::graphic/@*:href/lower-case(.) = $link or preceding::inline-graphic/@*:href/lower-case(.) = $link)" 
           role="warning" 
-          id="graphic-test-6">Image file for <value-of select="if (parent::fig/label) then parent::fig/label else 'graphic'"/> (<value-of select="@*:href"/>) is the same as the one used for another graphic or inline-graphic. This is only acceptable when an equation is repeated.</report>
+          id="graphic-test-6-equ">Image file for <value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> (<value-of select="@*:href"/>) is the same as the one used for another graphic or inline-graphic. Is this correct?</report>
         
         <report test="ancestor::sub-article and (preceding::graphic/@*:href/lower-case(.) = $link or preceding::inline-graphic/@*:href/lower-case(.) = $link)" 
           role="warning" 

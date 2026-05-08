@@ -2951,12 +2951,22 @@
       </x:scenario>
       <x:scenario label="graphic-test-6-pass">
         <x:context href="../tests/rp/graphic-checks/graphic-test-6/pass.xml"/>
-        <x:expect-not-report id="graphic-test-6" role="warning"/>
+        <x:expect-not-report id="graphic-test-6" role="error"/>
         <x:expect-not-assert id="graphic-checks-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="graphic-test-6-fail">
         <x:context href="../tests/rp/graphic-checks/graphic-test-6/fail.xml"/>
-        <x:expect-report id="graphic-test-6" role="warning"/>
+        <x:expect-report id="graphic-test-6" role="error"/>
+        <x:expect-not-assert id="graphic-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="graphic-test-6-equ-pass">
+        <x:context href="../tests/rp/graphic-checks/graphic-test-6-equ/pass.xml"/>
+        <x:expect-not-report id="graphic-test-6-equ" role="warning"/>
+        <x:expect-not-assert id="graphic-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="graphic-test-6-equ-fail">
+        <x:context href="../tests/rp/graphic-checks/graphic-test-6-equ/fail.xml"/>
+        <x:expect-report id="graphic-test-6-equ" role="warning"/>
         <x:expect-not-assert id="graphic-checks-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="graphic-test-9-pass">
