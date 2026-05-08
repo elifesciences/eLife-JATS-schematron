@@ -2,8 +2,7 @@
 <!--Context: permissions[not(parent::article-meta)]//ali:license_ref
 Test: assert    contains(.,'creativecommons.org')
 Message: ali:license_ref should only contain creativecommons.org licenses. This one in permissions for  is not a creative commons link -  - which is incorrect. -->
-<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/"
-    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <fig>
             <permissions>
