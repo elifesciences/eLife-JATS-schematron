@@ -2101,12 +2101,13 @@
       </rule></pattern>
 
     <pattern id="disp-formula-checks-pattern"><rule context="disp-formula" id="disp-formula-checks">
-          <!-- adjust when support is added for mathML -->
           <assert test="graphic or alternatives[graphic]" role="error" id="disp-formula-content-conformance">[disp-formula-content-conformance] <value-of select="if (label) then concat('Equation ',label) else name()"/> does not have a child graphic element, which must be incorrect.</assert>
         
         <assert test="*:math or alternatives[*:math]" role="warning" id="disp-formula-math-conformance">[disp-formula-math-conformance] <value-of select="if (label) then concat('Equation ',label) else name()"/> does not have a child mml:math element. Is that correct?</assert>
         
         <assert test="@id" role="error" id="disp-formula-id-conformance">[disp-formula-id-conformance] <value-of select="name()"/> does not have a id attribute, which must be incorrect.</assert>
+      </rule></pattern><pattern id="disp-formula-label-checks-pattern"><rule context="disp-formula/label" id="disp-formula-label-checks">
+        <assert test="matches(.,'\d')" role="warning" id="disp-formula-label-digit">[disp-formula-label-digit] disp-formula has a label that does not contain a digit: '<value-of select="label"/>'. Is that correct?</assert>
       </rule></pattern><pattern id="inline-formula-checks-pattern"><rule context="inline-formula" id="inline-formula-checks">
           <!-- adjust when support is added for mathML -->
           <assert test="inline-graphic or alternatives[inline-graphic]" role="error" id="inline-formula-content-conformance">[inline-formula-content-conformance] <value-of select="name()"/> does not have a child inline-graphic element, which must be incorrect.</assert>

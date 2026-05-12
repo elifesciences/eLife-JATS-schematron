@@ -2371,7 +2371,6 @@
 
     <pattern id="disp-formula-checks-pattern">
     <rule context="disp-formula" id="disp-formula-checks">
-          <!-- adjust when support is added for mathML -->
           <assert test="graphic or alternatives[graphic]" role="error" id="disp-formula-content-conformance">
         <value-of select="if (label) then concat('Equation ',label) else name()"/> does not have a child graphic element, which must be incorrect.</assert>
         
@@ -2380,6 +2379,11 @@
         
         <assert test="@id" role="error" id="disp-formula-id-conformance">
         <value-of select="name()"/> does not have a id attribute, which must be incorrect.</assert>
+      </rule>
+  </pattern>
+  <pattern id="disp-formula-label-checks-pattern">
+    <rule context="disp-formula/label" id="disp-formula-label-checks">
+        <assert test="matches(.,'\d')" role="warning" id="disp-formula-label-digit">disp-formula has a label that does not contain a digit: '<value-of select="label"/>'. Is that correct?</assert>
       </rule>
   </pattern>
   <pattern id="inline-formula-checks-pattern">
@@ -4019,6 +4023,7 @@
       <assert test="descendant::supplementary-material" role="error" id="supplementary-material-checks-xspec-assert">supplementary-material must be present.</assert>
       <assert test="descendant::supplementary-material/*" role="error" id="supplementary-material-child-checks-xspec-assert">supplementary-material/* must be present.</assert>
       <assert test="descendant::disp-formula" role="error" id="disp-formula-checks-xspec-assert">disp-formula must be present.</assert>
+      <assert test="descendant::disp-formula/label" role="error" id="disp-formula-label-checks-xspec-assert">disp-formula/label must be present.</assert>
       <assert test="descendant::inline-formula" role="error" id="inline-formula-checks-xspec-assert">inline-formula must be present.</assert>
       <assert test="descendant::alternatives[parent::disp-formula]" role="error" id="disp-equation-alternatives-checks-xspec-assert">alternatives[parent::disp-formula] must be present.</assert>
       <assert test="descendant::alternatives[parent::inline-formula]" role="error" id="inline-equation-alternatives-checks-xspec-assert">alternatives[parent::inline-formula] must be present.</assert>

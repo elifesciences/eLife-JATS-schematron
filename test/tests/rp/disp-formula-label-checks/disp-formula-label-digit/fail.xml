@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="disp-formula-label-digit.sch"?>
+<!--Context: disp-formula/label
+Test: assert    matches(.,'\d')
+Message: disp-formula has a label that does not contain a digit: ''. Is that correct? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <disp-formula>
+            <label>Eq.</label>
+        </disp-formula>
+        <disp-formula>
+            <label>()</label>
+        </disp-formula>
+        <disp-formula>
+            <label>Equation</label>
+        </disp-formula>
+        <disp-formula>
+            <label>.</label>
+        </disp-formula>
+    </article>
+</root>
