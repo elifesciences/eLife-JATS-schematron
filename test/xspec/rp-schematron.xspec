@@ -2680,6 +2680,18 @@
         <x:expect-not-assert id="disp-formula-label-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="global-disp-formula-checks">
+      <x:scenario label="disp-formula-label-sanity-pass">
+        <x:context href="../tests/rp/global-disp-formula-checks/disp-formula-label-sanity/pass.xml"/>
+        <x:expect-not-assert id="disp-formula-label-sanity" role="warning"/>
+        <x:expect-not-assert id="global-disp-formula-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="disp-formula-label-sanity-fail">
+        <x:context href="../tests/rp/global-disp-formula-checks/disp-formula-label-sanity/fail.xml"/>
+        <x:expect-assert id="disp-formula-label-sanity" role="warning"/>
+        <x:expect-not-assert id="global-disp-formula-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="inline-formula-checks">
       <x:scenario label="inline-formula-content-conformance-pass">
         <x:context href="../tests/rp/inline-formula-checks/inline-formula-content-conformance/pass.xml"/>

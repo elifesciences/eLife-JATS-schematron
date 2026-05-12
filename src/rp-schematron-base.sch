@@ -483,6 +483,116 @@
         </xsl:choose>
     </xsl:function>
   
+  <!-- === Equation label check functions === -->
+  
+  <xsl:function name="e:equ-major" as="xs:integer">
+    <xsl:param name="n" as="xs:string"/>
+    <xsl:variable name="part" select="if (contains($n, '.')) then substring-before($n, '.') else $n"/>
+    <xsl:value-of select="if ($part castable as xs:integer) then xs:integer($part) else -1"/>
+  </xsl:function>
+  
+  <xsl:function name="e:equ-minor" as="xs:integer">
+    <xsl:param name="n" as="xs:string"/>
+    <xsl:variable name="part" select="if (contains($n, '.')) then substring-after($n, '.') else '0'"/>
+    <xsl:value-of select="if ($part castable as xs:integer) then xs:integer($part) else 0"/>
+  </xsl:function>
+  
+  <xsl:function name="e:equ-group-index" as="xs:integer*">
+    <xsl:param name="labels" as="xs:string*"/>
+    <xsl:param name="prev-maj" as="xs:integer"/>
+    <xsl:param name="prev-min" as="xs:integer"/>
+    <xsl:param name="prev-hier" as="xs:boolean"/>
+    <xsl:param name="current-group" as="xs:integer"/>
+    <xsl:choose>
+      <xsl:when test="empty($labels)"/>
+      <xsl:otherwise>
+        <xsl:variable name="n" select="$labels[1]"/>
+        <xsl:variable name="maj" select="e:equ-major($n)"/>
+        <xsl:variable name="min" select="e:equ-minor($n)"/>
+        <xsl:variable name="hier" select="contains($n,'.')"/>
+        <xsl:variable name="reset" as="xs:boolean" select="
+          ($hier != $prev-hier)
+          or ($maj lt $prev-maj)
+          or ($maj eq $prev-maj and $min le $prev-min)"/>
+        <xsl:variable name="g" select="if ($reset) then $current-group + 1 else $current-group"/>
+        <xsl:sequence select="$g"/>
+        <xsl:sequence select="e:equ-group-index(subsequence($labels, 2), $maj, $min, $hier, $g)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  
+  <xsl:function name="e:equ-all-groups" as="xs:integer*">
+    <xsl:param name="labels" as="xs:string*"/>
+    <xsl:if test="exists($labels)">
+      <xsl:sequence select="(
+        1,
+        e:equ-group-index(
+          subsequence($labels, 2),
+          e:equ-major($labels[1]),
+          e:equ-minor($labels[1]),
+          contains($labels[1],'.'),
+          1)
+      )"/>
+    </xsl:if>
+  </xsl:function>
+  
+  <xsl:function name="e:equ-flat-gaps" as="xs:string*">
+    <xsl:param name="g-labels" as="xs:string*"/>
+    <xsl:variable name="majors" as="xs:integer*" select="sort(distinct-values(for $n in $g-labels return e:equ-major($n)))"/>
+    <xsl:for-each select="2 to count($majors)">
+      <xsl:variable name="i"    select="."/>
+      <xsl:variable name="prev" select="$majors[$i - 1]"/>
+      <xsl:variable name="curr" select="$majors[$i]"/>
+      <xsl:if test="$curr - $prev gt 1">
+        <xsl:sequence select="for $m in (($prev + 1) to ($curr - 1))
+          return concat('(', $m, ')')"/>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:function>
+
+  <xsl:function name="e:equ-hier-gaps" as="xs:string*">
+    <xsl:param name="g-labels" as="xs:string*"/>
+    <xsl:variable name="tuples" as="element()*">
+      <xsl:for-each select="$g-labels">
+        <t maj="{e:equ-major(.)}" min="{e:equ-minor(.)}"/>
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:for-each-group select="$tuples" group-by="@maj">
+      <xsl:variable name="maj" select="current-grouping-key()"/>
+      <xsl:variable name="minors" as="xs:integer*" select="sort(distinct-values(for $t in current-group() return xs:integer($t/@min)))"/>
+      <xsl:for-each select="2 to count($minors)">
+        <xsl:variable name="i" select="."/>
+        <xsl:variable name="prev" select="$minors[$i - 1]"/>
+        <xsl:variable name="curr" select="$minors[$i]"/>
+        <xsl:if test="$curr - $prev gt 1">
+          <xsl:sequence select="for $m in (($prev + 1) to ($curr - 1))
+            return concat('(', $maj, '.', $m, ')')"/>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:for-each-group>
+  </xsl:function>
+
+  <xsl:function name="e:equation-label-gaps" as="xs:string*">
+    <xsl:param name="labels" as="xs:string*"/>
+    <xsl:variable name="groups" select="e:equ-all-groups($labels)"/>
+    <xsl:for-each select="1 to (if (empty($groups)) then 0 else max($groups))">
+      <xsl:variable name="g" select="."/>
+      <xsl:variable name="g-labels" as="xs:string*" select="
+        for $i in 1 to count($labels)
+        return
+          if ($groups[$i] = $g) then $labels[$i]
+          else ()"/>
+      <xsl:choose>
+        <xsl:when test="not(contains($g-labels[1],'.'))">
+          <xsl:sequence select="e:equ-flat-gaps($g-labels)"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:sequence select="e:equ-hier-gaps($g-labels)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:function>
+  
   <!-- ===== QUICK FIXES ===== -->
   
   <!-- Excludes namespace(s) -->
@@ -2876,6 +2986,14 @@
         <assert test="matches(.,'\d')" 
           role="warning" 
           id="disp-formula-label-digit">disp-formula has a label that does not contain a digit: '<value-of select="label"/>'. Is that correct?</assert>
+      </rule>
+      
+      <rule context="article" id="global-disp-formula-checks">
+        <let name="raw-equ-labels" value="descendant::disp-formula/label/replace(normalize-space(.),'[^\d\.]','')[not(. = ('','.'))]"/>
+        <let name="equ-label-gaps" value="e:equation-label-gaps($raw-equ-labels)"/>
+        <assert test="empty($equ-label-gaps)"
+          role="warning"
+          id="disp-formula-label-sanity">Equation numbering has gaps. Missing label values are: <value-of select="string-join($equ-label-gaps, '; ')"/>. Is that correct?</assert>
       </rule>
       
        <rule context="inline-formula" id="inline-formula-checks">
