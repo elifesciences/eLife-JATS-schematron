@@ -26,7 +26,7 @@ let $new-rors :=
     replace node $copy//*:ror[*:id[@type="ror"]='https://ror.org/00k4n6c32'] with
       <ror status="{$target-ror/@status}" grant-dois="yes">
         {(
-          $target-ror/*:id,
+          $target-ror/(*:id|*:name|*:city|*:country),
           for $id in $horizon-dois return <id type="fundref" preferred="no">{'http://dx.doi.org/'||$id}</id>,
           $deduped-grants
         )}
