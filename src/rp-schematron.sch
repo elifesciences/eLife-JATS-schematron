@@ -220,7 +220,7 @@
   <let name="rors" value="'rors.xml'"/>
   <!-- Grant DOI enabling -->
   <let name="wellcome-funder-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440','https://ror.org/029chgv08')"/>
-  <let name="known-grant-funder-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968','https://ror.org/006wxqw41','https://ror.org/00097mb19','https://ror.org/03dy4aq19','https://ror.org/013tf3c58','https://ror.org/013kjyp64')"/>
+  <let name="known-grant-funder-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968','http://dx.doi.org/10.13039/100004412','https://ror.org/006wxqw41','https://ror.org/00097mb19','https://ror.org/03dy4aq19','https://ror.org/013tf3c58','https://ror.org/013kjyp64','https://ror.org/02ebx7v45')"/>
   <let name="eu-horizon-fundref-ids" value="('http://dx.doi.org/10.13039/100018693','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100018695','http://dx.doi.org/10.13039/100018696','http://dx.doi.org/10.13039/100018697','http://dx.doi.org/10.13039/100018698','http://dx.doi.org/10.13039/100018699','http://dx.doi.org/10.13039/100018700','http://dx.doi.org/10.13039/100018701','http://dx.doi.org/10.13039/100018702','http://dx.doi.org/10.13039/100018703','http://dx.doi.org/10.13039/100018704','http://dx.doi.org/10.13039/100018705','http://dx.doi.org/10.13039/100018706','http://dx.doi.org/10.13039/100018707','http://dx.doi.org/10.13039/100019180','http://dx.doi.org/10.13039/100019185','http://dx.doi.org/10.13039/100019186','http://dx.doi.org/10.13039/100019187','http://dx.doi.org/10.13039/100019188')"/>
   <let name="grant-doi-exception-funder-ids" value="($wellcome-funder-ids,$known-grant-funder-ids,$eu-horizon-fundref-ids)"/>  
   
@@ -258,6 +258,11 @@
       <xsl:when test="$funder-id=('http://dx.doi.org/10.13039/100000968','https://ror.org/013kjyp64')">
         <!-- ASF grant DOIs are registered in many ways: 24CDA1264317, 23SCEFIA1157994, 24POST1187422 -->
         <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\([A-Z\d]+\)')) then substring-before(substring-after($award-id-elem,'('),')')         else $award-id-elem"/>
+      </xsl:when>
+      <!-- Human Frontier Science Program -->
+      <xsl:when test="$funder-id=('http://dx.doi.org/10.13039/100004412','https://ror.org/02ebx7v45')">
+        <!-- HSFP grant DOIs are registered in many ways: RGP0027/2013, LT000376/2014-L, RG00088/1999-M -->
+        <xsl:value-of select="replace($award-id-elem,'\s','')"/>
       </xsl:when>
       <!-- Fundação para a Ciência e a Tecnologia -->
       <xsl:when test="$funder-id=('http://dx.doi.org/10.13039/100000968','https://ror.org/013kjyp64')">
