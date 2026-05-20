@@ -2655,6 +2655,8 @@
         
         <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-6" test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">[award-group-test-6] Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one.</report>
         
+        <report test="funding-source//institution[normalize-space(.)!=''] and count(funding-source//institution-id) = 0" role="warning" id="award-group-test-7">[award-group-test-7] &lt;award-group id="<value-of select="@id"/>"&gt; does not have an ID for it's funder <value-of select="funding-source/institution-wrap/institution[normalize-space(.)!=''][1]"/>. Is that correct?</report>
+        
         <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-8" test="count(funding-source/institution-wrap/institution) gt 1" role="error" id="award-group-test-8">[award-group-test-8] Every piece of funding must only have 1 institution. &lt;award-group id="<value-of select="@id"/>"&gt; has <value-of select="count(funding-source/institution-wrap/institution)"/> - <value-of select="string-join(funding-source/institution-wrap/institution,', ')"/>.</report>
         
         <report test="count(funding-source/institution-wrap/institution-id) gt 1" role="error" sqf:fix="pick-funding-ror-1 pick-funding-ror-2 pick-funding-ror-3" id="award-group-multiple-ids">[award-group-multiple-ids] Funding contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/></report>

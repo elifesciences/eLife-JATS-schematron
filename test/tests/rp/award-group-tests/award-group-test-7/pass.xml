@@ -1,0 +1,20 @@
+<?oxygen SCHSchema="award-group-test-7.sch"?>
+<!--Context: funding-group/award-group
+Test: report    funding-source//institution[normalize-space(.)!=''] and count(funding-source//institution-id) = 0
+Message: <award-group id=""> does not have an ID for it's funder . Is that correct? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <funding-group>
+            <award-group id="par-2">
+                <funding-source>
+                    <institution-wrap>
+                        <institution-id institution-id-type="ror">https://ror.org/043z4tv69</institution-id>
+                        <institution>National Institute of Allergy and Infectious Diseases (NIAID)</institution>
+                    </institution-wrap>
+                </funding-source>
+                <award-id/>
+                <principal-award-recipient/>
+            </award-group>
+        </funding-group>
+    </article>
+</root>
