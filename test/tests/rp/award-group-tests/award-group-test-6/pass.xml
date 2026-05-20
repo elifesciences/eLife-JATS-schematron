@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="award-group-test-6.sch"?>
 <!--Context: funding-group/award-group
-Test: report    count(funding-source/institution-wrap/institution) = 0
+Test: report    count(funding-source//institution[normalize-space(.)!='']) = 0
 Message: Every piece of funding must have an institution. <award-group id=""> does not have one. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>

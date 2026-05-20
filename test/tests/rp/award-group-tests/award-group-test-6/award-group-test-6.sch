@@ -205,7 +205,7 @@
   <let name="org-regex" value="string-join(($species-regex,$genus-regex),'|')"/>
   <let name="rors" value="'../../../../../src/rors.xml'"/>
   <let name="wellcome-funder-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440','https://ror.org/029chgv08')"/>
-  <let name="known-grant-funder-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968','https://ror.org/006wxqw41','https://ror.org/00097mb19','https://ror.org/03dy4aq19','https://ror.org/013tf3c58','https://ror.org/013kjyp64')"/>
+  <let name="known-grant-funder-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968','http://dx.doi.org/10.13039/100004412','https://ror.org/006wxqw41','https://ror.org/00097mb19','https://ror.org/03dy4aq19','https://ror.org/013tf3c58','https://ror.org/013kjyp64','https://ror.org/02ebx7v45')"/>
   <let name="eu-horizon-fundref-ids" value="('http://dx.doi.org/10.13039/100018693','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100018695','http://dx.doi.org/10.13039/100018696','http://dx.doi.org/10.13039/100018697','http://dx.doi.org/10.13039/100018698','http://dx.doi.org/10.13039/100018699','http://dx.doi.org/10.13039/100018700','http://dx.doi.org/10.13039/100018701','http://dx.doi.org/10.13039/100018702','http://dx.doi.org/10.13039/100018703','http://dx.doi.org/10.13039/100018704','http://dx.doi.org/10.13039/100018705','http://dx.doi.org/10.13039/100018706','http://dx.doi.org/10.13039/100018707','http://dx.doi.org/10.13039/100019180','http://dx.doi.org/10.13039/100019185','http://dx.doi.org/10.13039/100019186','http://dx.doi.org/10.13039/100019187','http://dx.doi.org/10.13039/100019188')"/>
   <let name="grant-doi-exception-funder-ids" value="($wellcome-funder-ids,$known-grant-funder-ids,$eu-horizon-fundref-ids)"/>
   <xsl:function name="e:alter-award-id">
@@ -240,6 +240,11 @@
       <xsl:when test="$funder-id=('http://dx.doi.org/10.13039/100000968','https://ror.org/013kjyp64')">
         
         <xsl:value-of select="if (matches($award-id-elem,'[a-z]\s+\([A-Z\d]+\)')) then substring-before(substring-after($award-id-elem,'('),')')         else $award-id-elem"/>
+      </xsl:when>
+      
+      <xsl:when test="$funder-id=('http://dx.doi.org/10.13039/100004412','https://ror.org/02ebx7v45')">
+        
+        <xsl:value-of select="replace($award-id-elem,'\s','')"/>
       </xsl:when>
       
       <xsl:when test="$funder-id=('http://dx.doi.org/10.13039/100000968','https://ror.org/013kjyp64')">
@@ -1282,7 +1287,7 @@
   </sqf:fixes>
   <pattern id="award-group-tests-pattern">
     <rule context="funding-group/award-group" id="award-group-tests">
-      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-6" test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">[award-group-test-6] Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one.</report>
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-6" test="count(funding-source//institution[normalize-space(.)!='']) = 0" role="error" id="award-group-test-6">[award-group-test-6] Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one.</report>
       <sqf:fix id="pick-funding-ror-1">
         <sqf:description>
           <sqf:title>Pick ROR option 1</sqf:title>
