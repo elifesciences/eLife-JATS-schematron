@@ -2382,8 +2382,8 @@
         <report test="upper-case(.)=." role="warning" sqf:fix="replace-sentence-case" id="title-upper-case">[title-upper-case] Content of &lt;title&gt; element is entirely in upper case: Is that correct? '<value-of select="."/>'</report>
 
         <report test="lower-case(.)=." role="warning" sqf:fix="replace-sentence-case" id="title-lower-case">[title-lower-case] Content of &lt;title&gt; element is entirely in lower-case case: Is that correct? '<value-of select="."/>'</report>
-     </rule></pattern><pattern id="title-toc-checks-pattern"><rule context="article/body/sec/title|article/back/sec/title" id="title-toc-checks">
-        <report test="xref" role="error" id="toc-title-contains-citation">[toc-title-contains-citation] <name/> element contains a citation and will appear within the table of contents on EPP. This will cause images not to load. Please either remove the citaiton or make it plain text.</report>
+     </rule></pattern><pattern id="title-toc-checks-pattern"><rule context="article/body/sec/title | article/back/sec/title | article/back/app/title | article/back/app-group/app/title" id="title-toc-checks">
+        <report test="xref" role="error" id="toc-title-contains-citation">[toc-title-contains-citation] <name/> element contains a citation and will appear within the table of contents on EPP. This will cause images not to load. Please either remove the citation or make it plain text.</report>
       </rule></pattern>
 
     <pattern id="p-bold-checks-pattern"><rule context="p[not(ancestor::sub-article or ancestor::def) and (count(*)=1) and (child::bold or child::italic)]" id="p-bold-checks">

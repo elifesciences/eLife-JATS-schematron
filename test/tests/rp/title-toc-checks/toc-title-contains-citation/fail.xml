@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="toc-title-contains-citation.sch"?>
-<!--Context: article/body/sec/title|article/back/sec/title
+<!--Context: article/body/sec/title | article/back/sec/title | article/back/app/title | article/back/app-group/app/title
 Test: report    xref
-Message:  element contains a citation and will appear within the table of contents on EPP. This will cause images not to load. Please either remove the citaiton or make it plain text. -->
+Message:  element contains a citation and will appear within the table of contents on EPP. This will cause images not to load. Please either remove the citation or make it plain text. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <body>
@@ -13,6 +13,17 @@ Message:  element contains a citation and will appear within the table of conten
             <sec>
                 <title>Methods <xref ref-type="fig">Figure Y</xref></title>
             </sec>
+            <app-group>
+                <app>
+                    <title>Appendix 1 <xref ref-type="fig">Figure Z</xref></title>
+                </app>
+                <app>
+                    <title>Appendix 2 <xref ref-type="bibr">Smith et al.</xref></title>
+                </app>
+            </app-group>
+            <app>
+                <title>Supplement <xref ref-type="bibr">Smurf et al.</xref></title>
+            </app>
         </back>
     </article>
 </root>
