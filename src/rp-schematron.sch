@@ -2653,7 +2653,7 @@
         
         <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-5" test="funding-source/institution-wrap" role="error" id="award-group-test-5">[award-group-test-5] funding-source must contain an institution-wrap.</assert>
         
-        <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-6" test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">[award-group-test-6] Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one.</report>
+        <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-6" test="count(funding-source//institution[normalize-space(.)!='']) = 0" role="error" id="award-group-test-6">[award-group-test-6] Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one.</report>
         
         <report test="funding-source//institution[normalize-space(.)!=''] and count(funding-source//institution-id) = 0" role="warning" id="award-group-test-7">[award-group-test-7] &lt;award-group id="<value-of select="@id"/>"&gt; does not have an ID for it's funder <value-of select="funding-source/institution-wrap/institution[normalize-space(.)!=''][1]"/>. Is that correct?</report>
         

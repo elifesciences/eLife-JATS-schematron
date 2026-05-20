@@ -1287,7 +1287,7 @@
   </sqf:fixes>
   <pattern id="award-group-tests-pattern">
     <rule context="funding-group/award-group" id="award-group-tests">
-      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-6" test="count(funding-source/institution-wrap/institution) = 0" role="error" id="award-group-test-6">[award-group-test-6] Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one.</report>
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-6" test="count(funding-source//institution[normalize-space(.)!='']) = 0" role="error" id="award-group-test-6">[award-group-test-6] Every piece of funding must have an institution. &lt;award-group id="<value-of select="@id"/>"&gt; does not have one.</report>
       <sqf:fix id="pick-funding-ror-1">
         <sqf:description>
           <sqf:title>Pick ROR option 1</sqf:title>
