@@ -2740,9 +2740,9 @@
      </rule>
   </pattern>
   <pattern id="title-toc-checks-pattern">
-    <rule context="article/body/sec/title|article/back/sec/title" id="title-toc-checks">
+    <rule context="article/body/sec/title | article/back/sec/title | article/back/app/title | article/back/app-group/app/title" id="title-toc-checks">
         <report test="xref" role="error" id="toc-title-contains-citation">
-        <name/> element contains a citation and will appear within the table of contents on EPP. This will cause images not to load. Please either remove the citaiton or make it plain text.</report>
+        <name/> element contains a citation and will appear within the table of contents on EPP. This will cause images not to load. Please either remove the citation or make it plain text.</report>
       </rule>
   </pattern>
 
@@ -4144,7 +4144,7 @@
       <assert test="descendant::sec/label" role="error" id="sec-label-checks-xspec-assert">sec/label must be present.</assert>
       <assert test="descendant::app" role="error" id="app-checks-xspec-assert">app must be present.</assert>
       <assert test="descendant::title" role="error" id="title-checks-xspec-assert">title must be present.</assert>
-      <assert test="descendant::article/body/sec/title or descendant::article/back/sec/title" role="error" id="title-toc-checks-xspec-assert">article/body/sec/title|article/back/sec/title must be present.</assert>
+      <assert test="descendant::article/body/sec/title  or descendant:: article/back/sec/title  or descendant:: article/back/app/title  or descendant:: article/back/app-group/app/title" role="error" id="title-toc-checks-xspec-assert">article/body/sec/title | article/back/sec/title | article/back/app/title | article/back/app-group/app/title must be present.</assert>
       <assert test="descendant::p[not(ancestor::sub-article or ancestor::def) and (count(*)=1) and (child::bold or child::italic)]" role="error" id="p-bold-checks-xspec-assert">p[not(ancestor::sub-article or ancestor::def) and (count(*)=1) and (child::bold or child::italic)] must be present.</assert>
       <assert test="descendant::article[descendant::xref[@ref-type='bibr'][matches(.,'\p{L}')]]//p[not(ancestor::sub-article) and not(ancestor::ack)]" role="error" id="p-ref-checks-xspec-assert">article[descendant::xref[@ref-type='bibr'][matches(.,'\p{L}')]]//p[not(ancestor::sub-article) and not(ancestor::ack)] must be present.</assert>
       <assert test="descendant::article//p[not(ancestor::sub-article) and not(ancestor::ack)]" role="error" id="p-file-ref-checks-xspec-assert">article//p[not(ancestor::sub-article) and not(ancestor::ack)] must be present.</assert>
