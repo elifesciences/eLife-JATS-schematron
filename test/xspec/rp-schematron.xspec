@@ -469,6 +469,16 @@
         <x:expect-assert id="duplicate-orcid-test" role="error"/>
         <x:expect-not-assert id="orcid-name-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="missing-orcid-test-pass">
+        <x:context href="../tests/rp/orcid-name-checks/missing-orcid-test/pass.xml"/>
+        <x:expect-not-report id="missing-orcid-test" role="error"/>
+        <x:expect-not-assert id="orcid-name-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="missing-orcid-test-fail">
+        <x:context href="../tests/rp/orcid-name-checks/missing-orcid-test/fail.xml"/>
+        <x:expect-report id="missing-orcid-test" role="error"/>
+        <x:expect-not-assert id="orcid-name-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="orcid-tests">
       <x:scenario label="orcid-test-2-pass">
