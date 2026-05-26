@@ -1,0 +1,21 @@
+<?oxygen SCHSchema="missing-orcid-test.sch"?>
+<!--Context: article/front/article-meta/contrib-group[1]
+Test: report    empty($orcids) and contrib[@contrib-type='author' and (name or string-name)]
+Message: There are no ORCID IDs in this author contrib-group, which must be incorrect given eLife's requirements around corresponding authors needing an ORCID to login/submit. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <front>
+           <article-meta>
+               <contrib-group>
+                   <contrib contrib-type="author">
+                       <contrib-id contrib-id-type="orcid"/>
+                       <name/>
+                   </contrib>
+                   <contrib contrib-type="author">
+                       <name/>
+                   </contrib>
+               </contrib-group>
+           </article-meta> 
+        </front>
+    </article>
+</root>

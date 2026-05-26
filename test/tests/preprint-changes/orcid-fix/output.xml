@@ -1,0 +1,11 @@
+<!--Testing template with id: orcid-fix--><contrib-group xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<contrib>
+</contrib>
+<contrib>
+<contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0002-XXXX-XXXX</contrib-id>
+</contrib>
+<contrib>
+<contrib-id contrib-id-type="orcid">https://orcid.org/0000-0003-XXXX-XXXX</contrib-id>
+<contrib-id contrib-id-type="orcid" authenticated="true">https://orcid.org/0000-0004-XXXX-XXXX</contrib-id>
+</contrib>
+</contrib-group>
