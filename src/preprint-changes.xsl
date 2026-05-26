@@ -1143,12 +1143,29 @@
         </xsl:copy>
     </xsl:template>
     
-    <!-- Ensure ORCIDs always use https -->
-    <xsl:template xml:id="orcid-https-fix" match="contrib-id[@contrib-id-type='orcid' and starts-with(.,'http://')]">
-        <xsl:copy>
-            <xsl:apply-templates select="@*"/>
-            <xsl:value-of select="concat('https://',substring-after(.,'http://'))"/>
-        </xsl:copy>
+    <!-- Remove unathenticated ORCIDs (and always use https) -->
+    <xsl:template xml:id="orcid-fix" match="contrib-id[@contrib-id-type='orcid']">
+        <xsl:variable name="val" select="."/>
+        <!-- Only retain unathenticated ORCIDs if the authenticated in eJP differs -->
+        <xsl:variable name="suppress" select="(not(@authenticated) or @authenticated!='true') and not(parent::*/contrib-id[@contrib-id-type='orcid' and @authenticated='true' and not(.=$val)])"/>
+        <xsl:if test="not($suppress)">
+            <xsl:copy>
+                <xsl:apply-templates select="@*"/>
+                <xsl:value-of select="if (starts-with(.,'http://')) then concat('https://',substring-after(.,'http://'))
+                else ."/>
+            </xsl:copy>
+        </xsl:if>
+    </xsl:template>
+    
+    <!-- Handle whitespace from orcid-fix -->
+    <xsl:template match="text()[normalize-space()=''][preceding-sibling::*[1][self::contrib-id[@contrib-id-type='orcid']]]">
+        <xsl:variable name="contrib" select="preceding-sibling::contrib-id[@contrib-id-type='orcid'][1]"/>
+        <xsl:variable name="val" select="$contrib"/>
+        <xsl:variable name="suppress" select="(not($contrib/@authenticated) or $contrib/@authenticated!='true')
+        and not($contrib/parent::*/contrib-id[@contrib-id-type='orcid' and @authenticated='true' and not(.=$val)])"/>
+        <xsl:if test="not($suppress)">
+            <xsl:value-of select="."/>
+        </xsl:if>
     </xsl:template>
 
     <!-- Remove degrees from contrib -->
