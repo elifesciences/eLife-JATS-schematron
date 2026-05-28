@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="ext-link-mailto-check.sch"?>
+<!--Context: ext-link[@ext-link-type='uri']
+Test: report    matches(@xlink:href,'^mailto:')
+Message: Embedded URL within text starts with the mailto prefix - . This will fail ingestion at PMC. Remove this link (the text can remain). -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <p><ext-link ext-link-type="uri" xlink:href="https://someone@example.org">email here</ext-link></p>
+    </article>
+</root>
