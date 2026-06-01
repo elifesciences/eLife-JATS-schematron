@@ -1793,6 +1793,20 @@
         id="final-collab-cont-test-2-v2"><value-of select="e:get-surname(.)"/> has no CRediT contributions. Is that correct?</report>
     </rule>
     
+    <rule context="article[@dtd-version ge '1.4']//collab"
+      id="collab-checks">
+      <let name="dtd" value="ancestor::article/@dtd-version"/>
+      
+      <report test="ancestor::contrib" 
+        role="error"
+        id="collab-contrib-dtd">The collab element is deprecated in JATS version <value-of select="$dtd"/>. In &lt;contrib> use &lt;collab-wrap> instead.</report>
+      
+      <assert test="ancestor::contrib" 
+        role="error"
+        id="collab-non-contrib-dtd">The collab element is deprecated in JATS version <value-of select="$dtd"/>. Use &lt;collab-name> instead.</assert>
+      
+    </rule>
+    
     <rule context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']" id="duplicated-cont-tests-v2">
       <let name="roles" value="for $x in role return lower-case($x)"/>
       <let name="indistinct-conts" value="for $role in distinct-values($roles) return $role[count($roles[. = $role]) gt 1]"/>

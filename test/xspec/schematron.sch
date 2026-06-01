@@ -1501,6 +1501,16 @@
         <value-of select="e:get-surname(.)"/> has no CRediT contributions. Is that correct?</report>
     </rule>
   </pattern>
+  <pattern id="collab-checks-pattern">
+    <rule context="article[@dtd-version ge '1.4']//collab" id="collab-checks">
+      <let name="dtd" value="ancestor::article/@dtd-version"/>
+      
+      <report test="ancestor::contrib" role="error" id="collab-contrib-dtd">The collab element is deprecated in JATS version <value-of select="$dtd"/>. In &lt;contrib&gt; use &lt;collab-wrap&gt; instead.</report>
+      
+      <assert test="ancestor::contrib" role="error" id="collab-non-contrib-dtd">The collab element is deprecated in JATS version <value-of select="$dtd"/>. Use &lt;collab-name&gt; instead.</assert>
+      
+    </rule>
+  </pattern>
   <pattern id="duplicated-cont-tests-v2-pattern">
     <rule context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']" id="duplicated-cont-tests-v2">
       <let name="roles" value="for $x in role return lower-case($x)"/>
@@ -8860,6 +8870,7 @@
       <assert test="descendant::article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and not(collab or collab-wrap) and not(ancestor::collab or ancestor::collab-wrap)]" role="error" id="auth-cont-tests-v2-xspec-assert">article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and not(collab or collab-wrap) and not(ancestor::collab or ancestor::collab-wrap)] must be present.</assert>
       <assert test="descendant::article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and *[name()=('collab','collab-wrap')]]" role="error" id="collab-cont-tests-xspec-assert">article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and *[name()=('collab','collab-wrap')]] must be present.</assert>
       <assert test="descendant::article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and (collab or collab-wrap)]" role="error" id="collab-cont-tests-v2-xspec-assert">article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and (collab or collab-wrap)] must be present.</assert>
+      <assert test="descendant::article[@dtd-version ge '1.4']//collab" role="error" id="collab-checks-xspec-assert">article[@dtd-version ge '1.4']//collab must be present.</assert>
       <assert test="descendant::article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']" role="error" id="duplicated-cont-tests-v2-xspec-assert">article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author'] must be present.</assert>
       <assert test="descendant::article//article-meta/contrib-group[1]/contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group" role="error" id="collab-tests-xspec-assert">article//article-meta/contrib-group[1]/contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group must be present.</assert>
       <assert test="descendant::article//article-meta/contrib-group[1][contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group]" role="error" id="collab-tests-2-xspec-assert">article//article-meta/contrib-group[1][contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group] must be present.</assert>

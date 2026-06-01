@@ -1218,6 +1218,28 @@
         <x:expect-not-assert id="collab-cont-tests-v2-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="collab-checks">
+      <x:scenario label="collab-contrib-dtd-pass">
+        <x:context href="../tests/gen/collab-checks/collab-contrib-dtd/pass.xml"/>
+        <x:expect-not-report id="collab-contrib-dtd" role="error"/>
+        <x:expect-not-assert id="collab-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-contrib-dtd-fail">
+        <x:context href="../tests/gen/collab-checks/collab-contrib-dtd/fail.xml"/>
+        <x:expect-report id="collab-contrib-dtd" role="error"/>
+        <x:expect-not-assert id="collab-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-non-contrib-dtd-pass">
+        <x:context href="../tests/gen/collab-checks/collab-non-contrib-dtd/pass.xml"/>
+        <x:expect-not-assert id="collab-non-contrib-dtd" role="error"/>
+        <x:expect-not-assert id="collab-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-non-contrib-dtd-fail">
+        <x:context href="../tests/gen/collab-checks/collab-non-contrib-dtd/fail.xml"/>
+        <x:expect-assert id="collab-non-contrib-dtd" role="error"/>
+        <x:expect-not-assert id="collab-checks-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="duplicated-cont-tests-v2">
       <x:scenario label="dupe-cont-test-v2-pass">
         <x:context href="../tests/gen/duplicated-cont-tests-v2/dupe-cont-test-v2/pass.xml"/>
