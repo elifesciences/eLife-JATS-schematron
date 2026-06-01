@@ -959,9 +959,12 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="event" id="event-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="date" value="date[1]/@iso-8601-date"/>
-      <assert test="self-uri" role="error" id="event-test-3">
-        <name/> must contain a self-uri element. This one does not.</assert>
+      <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
+      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
+      <report test="not(date[@date-type='sent-for-review']) and not(self-uri)" role="error" id="event-test-3">
+        <name/> must contain a self-uri element. This one does not.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

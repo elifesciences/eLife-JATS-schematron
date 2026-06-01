@@ -2400,9 +2400,9 @@
         role="error" 
         id="event-test-2"><name/> must contain a date element with a date-type attribute with one of the following values: <value-of select="string-join($date-type-vals,'; ')"/>. This one does not.</assert>
       
-      <assert test="self-uri" 
+      <report test="not(date[@date-type='sent-for-review']) and not(self-uri)" 
         role="error" 
-        id="event-test-3"><name/> must contain a self-uri element. This one does not.</assert>
+        id="event-test-3"><name/> must contain a self-uri element. This one does not.</report>
         
         <report test="following-sibling::event[date[@iso-8601-date lt $date]]" 
           role="error" 
