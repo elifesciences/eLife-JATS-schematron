@@ -969,8 +969,7 @@
       <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
       <let name="is-prc" value="e:is-prc(.)"/>
       <let name="dtd" value="ancestor::article/@dtd-version"/>
-      <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#test-permissions-presence" test="count(permissions) = 1" role="error" id="test-permissions-presence">There must be one and only one permissions element in the article-meta. Currently there are <value-of select="count(permissions)"/>
-      </assert>
+      <report test="not($article-type = ($notice-article-types,'article-commentary','editorial')) and ($dtd ge '1.4') and count(history) != 0" role="error" id="test-history-presence-dtd">The history element is deprecated in JATS version <value-of select="$dtd"/>. Remove it.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

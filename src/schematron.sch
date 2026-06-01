@@ -1283,6 +1283,7 @@
     <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
     <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
     <let name="is-prc" value="e:is-prc(.)"/>
+    <let name="dtd" value="ancestor::article/@dtd-version"/>
     
 	<assert test="matches($article-id,'^\d{5,6}$')" 
         role="error" 
@@ -1332,9 +1333,13 @@
         role="error" 
         id="test-self-uri-pdf-2">self-uri does not conform.</report>
 		
-    <report test="not($article-type = ($notice-article-types,'article-commentary','editorial')) and count(history) != 1" 
+    <report test="not($article-type = ($notice-article-types,'article-commentary','editorial')) and ($dtd le '1.3') and count(history) != 1" 
         role="error" 
         id="test-history-presence">There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/></report>
+    
+    <report test="not($article-type = ($notice-article-types,'article-commentary','editorial')) and ($dtd ge '1.4') and count(history) != 0" 
+        role="error" 
+        id="test-history-presence-dtd">The history element is deprecated in JATS version <value-of select="$dtd"/>. Remove it.</report>
     
     <!-- Add this once all history is removed from insights
       

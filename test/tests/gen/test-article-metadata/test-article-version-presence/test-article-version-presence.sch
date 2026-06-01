@@ -968,6 +968,7 @@
       <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
       <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
       <let name="is-prc" value="e:is-prc(.)"/>
+      <let name="dtd" value="ancestor::article/@dtd-version"/>
       <assert test="count(article-version) = 1" role="error" id="test-article-version-presence">There must be one article-version element in the article-meta. Currently there are <value-of select="count(article-version)"/>
       </assert>
     </rule>
