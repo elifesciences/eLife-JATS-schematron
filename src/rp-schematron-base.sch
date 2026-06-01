@@ -148,34 +148,12 @@
     <xsl:choose>
       <xsl:when test="$author-count lt 1"/>
       <xsl:when test="$author-count = 1">
-        <xsl:choose>
-          <xsl:when test="$contrib-group/contrib[@contrib-type='author']/collab">
-            <xsl:value-of select="$contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1]"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="$contrib-group/contrib[@contrib-type='author']/name[1]/surname[1]"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:value-of select="e:get-surname($contrib-group/contrib[@contrib-type='author'][1])"/>
       </xsl:when>
       <xsl:when test="$author-count = 2">
-        <xsl:choose>
-          <xsl:when test="$contrib-group/contrib[@contrib-type='author']/collab">
-            <xsl:choose>
-              <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab and $contrib-group/contrib[@contrib-type='author'][2]/collab">
-                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1],' &amp; ',$contrib-group/contrib[@contrib-type='author']/collab[2]/text()[1])"/>
-              </xsl:when>
-              <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab">
-                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/collab[1]/text()[1],' &amp; ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' &amp; ',$contrib-group/contrib[@contrib-type='author'][2]/collab[1]/text()[1])"/>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' &amp; ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:value-of select="string-join(
+          for $auth in $contrib-group/contrib[@contrib-type='author'] return e:get-surname($auth)
+          ,' and ')"/>
       </xsl:when>
       <!-- author count is 3+ -->
       <xsl:otherwise>
@@ -190,13 +168,39 @@
   <xsl:function name="e:get-surname" as="text()">
     <xsl:param name="contrib"/>
     <xsl:choose>
-      <xsl:when test="$contrib/collab">
-        <xsl:value-of select="$contrib/collab[1]/text()[1]"/>
+      <xsl:when test="$contrib/*[name()=('collab','collab-wrap')]">
+        <xsl:value-of select="e:get-collab($contrib/*[name()=('collab','collab-wrap')])"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$contrib//name[1]/surname[1]"/>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:function>
+  
+  <xsl:function name="e:get-collab" as="xs:string">
+    <xsl:param name="node"/>
+    <xsl:variable name="result">
+      <xsl:choose>
+        <xsl:when test="$node/self::collab-name">
+          <xsl:value-of select="$node"/>
+        </xsl:when>
+        <xsl:when test="$node/self::collab-wrap">
+          <xsl:value-of select="$node/collab-name"/>
+        </xsl:when>
+        <xsl:when test="$node/self::collab">
+          <xsl:for-each select="$node/(*|text())">
+            <xsl:choose>
+              <xsl:when test="./name()='contrib-group' or normalize-space(.)=''"/>
+              <xsl:otherwise>
+                <xsl:value-of select="."/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise/>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:value-of select="string($result)"/>
   </xsl:function>
   
   <xsl:function name="e:get-ordinal" as="xs:string">
@@ -1449,7 +1453,7 @@
     </pattern>
 
     <pattern id="author-checks">      
-     <rule context="article-meta/contrib-group/contrib[@contrib-type='author' and not(collab)]" id="author-contrib-checks">
+     <rule context="article-meta/contrib-group/contrib[@contrib-type='author' and not(collab or collab-wrap)]" id="author-contrib-checks">
         <assert test="xref[@ref-type='aff']" 
         role="error" 
         id="author-contrb-no-aff-xref">Author <value-of select="e:get-name(name[1])"/> has no affiliation.</assert>
@@ -2304,30 +2308,30 @@
     </pattern>
 
     <pattern id="collab">
-      <rule context="collab" id="collab-checks">
+      <rule context="collab | collab-name" id="collab-checks">
         <report test="matches(.,'^\p{Z}+')" 
         role="error" 
         sqf:fix="replace-normalize-space"
-        id="collab-check-1">collab element cannot start with space(s). This one does: <value-of select="."/></report>
+        id="collab-check-1"><name/> element cannot start with space(s). This one does: <value-of select="."/></report>
 
         <report test="matches(.,'\p{Z}+$')" 
         role="error" 
         sqf:fix="replace-normalize-space"
-        id="collab-check-2">collab element cannot end with space(s). This one does: <value-of select="."/></report>
+        id="collab-check-2"><name/> element cannot end with space(s). This one does: <value-of select="."/></report>
 
         <assert test="normalize-space(.)=." 
         role="warning" 
         sqf:fix="replace-normalize-space"
-        id="collab-check-3">collab element seems to contain odd spacing. Is it correct? '<value-of select="."/>'</assert>
+        id="collab-check-3"><name/> element seems to contain odd spacing. Is it correct? '<value-of select="."/>'</assert>
         
         <report test="matches(.,'^[\p{Z}\p{N}\p{P}]*$')" 
         role="warning" 
-        id="collab-check-4">collab element consists only of spaces, punctuation and/or numbers (or is empty) - '<value-of select="."/>'. Is it really a collab?</report>
+        id="collab-check-4"><name/> element consists only of spaces, punctuation and/or numbers (or is empty) - '<value-of select="."/>'. Is it really a <name/>?</report>
         
         <report test="contains(.,',') and contains(.,'.') or count(tokenize(.,',')) gt 2" 
         role="warning" 
         sqf:fix="replace-collab-to-string-name"
-        id="collab-check-5">collab element contains '<value-of select="."/>'. Is it really a collab?</report>
+        id="collab-check-5"><name/> element contains '<value-of select="."/>'. Is it really a collab?</report>
         
         <sqf:fix id="replace-collab-to-string-name">
           <sqf:description>
@@ -2466,9 +2470,9 @@
           role="warning" 
           id="ref-person-group-type-other">This <name/> inside a <value-of select="ancestor::mixed-citation/@publication-type"/> reference has the person-group-type '<value-of select="@person-group-type"/>'. Is that correct?</report>
         
-        <assert test="collab or string-name or name" 
+        <assert test="collab or collab-name or string-name or name" 
           role="error" 
-          id="ref-person-group-type-content"><name/> must contain at least one collab, string-name or name element. This one (within reference id=<value-of select="ancestor::ref/@id"/>) does not.</assert>
+          id="ref-person-group-type-content"><name/> must contain at least one collab, collab-name, string-name or name element. This one (within reference id=<value-of select="ancestor::ref/@id"/>) does not.</assert>
      </rule>
     </pattern>
   
@@ -2611,7 +2615,7 @@
     <pattern id="mixed-citation">
       <rule context="mixed-citation" id="mixed-citation-checks">
         <let name="publication-type-values" value="('journal', 'book', 'data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')"/>
-        <let name="name-elems" value="('name','string-name','collab','on-behalf-of','etal')"/>
+        <let name="name-elems" value="('name','string-name','collab', 'collab-name','on-behalf-of','etal')"/>
         
         <report test="normalize-space(.)=('','.')" 
           role="error" 

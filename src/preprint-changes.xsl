@@ -313,18 +313,44 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-
+    
     <xsl:function name="e:get-surname" as="text()">
         <xsl:param name="contrib"/>
         <xsl:choose>
-            <xsl:when test="$contrib/collab">
-                <xsl:value-of select="$contrib/collab[1]/text()[1]"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="$contrib//name[1]/surname[1]"/>
-            </xsl:otherwise>
+          <xsl:when test="$contrib/*[name()=('collab','collab-wrap')]">
+            <xsl:value-of select="e:get-collab($contrib/*[name()=('collab','collab-wrap')])"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$contrib//name[1]/surname[1]"/>
+          </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
+    
+    <xsl:function name="e:get-collab" as="xs:string">
+        <xsl:param name="node"/>
+        <xsl:variable name="result">
+          <xsl:choose>
+            <xsl:when test="$node/self::collab-name">
+              <xsl:value-of select="$node"/>
+            </xsl:when>
+            <xsl:when test="$node/self::collab-wrap">
+              <xsl:value-of select="$node/collab-name"/>
+            </xsl:when>
+            <xsl:when test="$node/self::collab">
+              <xsl:for-each select="$node/(*|text())">
+                <xsl:choose>
+                  <xsl:when test="./name()='contrib-group' or normalize-space(.)=''"/>
+                  <xsl:otherwise>
+                    <xsl:value-of select="."/>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise/>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:value-of select="string($result)"/>
+  </xsl:function>
 
     <xsl:function name="e:stripDiacritics" as="xs:string">
         <xsl:param name="string" as="xs:string"/>
