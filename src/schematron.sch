@@ -2354,6 +2354,7 @@
     </rule>
     
     <rule context="pub-history" id="pub-history-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <assert test="parent::article-meta" 
         role="error" 
@@ -2378,18 +2379,26 @@
       <report test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) gt 3" 
         role="warning" 
         id="pub-history-events-4"><name/> has <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint event elements, which is unusual. Is this correct?</report>
+      
+      <report test="e:is-prc(.) and ($dtd-version ge '1.4') and count(event/date[@date-type='sent-for-review']) != 1" 
+        role="error" 
+        id="pub-history-events-5"><name/> has <value-of select="count(event/date[@date-type='sent-for-review'])"/> sent for review event elements. Under JATS version <value-of select="$dtd-version"/> this must be captured in pub-history.</report>
     </rule>
     
     <rule context="event" id="event-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="date" value="date[1]/@iso-8601-date"/>
+      <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
+      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')
+        else $default-date-type-vals"/>
       
       <assert test="event-desc" 
         role="error" 
         id="event-test-1"><name/> must contain an event-desc element. This one does not.</assert>
       
-      <assert test="date[@date-type=('preprint','reviewed-preprint')]" 
+      <assert test="date[@date-type=$date-type-vals]" 
         role="error" 
-        id="event-test-2"><name/> must contain a date element with the attribute date-type="preprint" or date-type="reviewed-preprint". This one does not.</assert>
+        id="event-test-2"><name/> must contain a date element with a date-type attribute with one of the following values: <value-of select="string-join($date-type-vals,'; ')"/>. This one does not.</assert>
       
       <assert test="self-uri" 
         role="error" 

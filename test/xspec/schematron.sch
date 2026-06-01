@@ -1887,6 +1887,7 @@
   </pattern>
   <pattern id="pub-history-tests-pattern">
     <rule context="pub-history" id="pub-history-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <assert test="parent::article-meta" role="error" id="pub-history-parent">
         <name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
@@ -1905,6 +1906,9 @@
       
       <report test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) gt 3" role="warning" id="pub-history-events-4">
         <name/> has <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint event elements, which is unusual. Is this correct?</report>
+      
+      <report test="e:is-prc(.) and ($dtd-version ge '1.4') and count(event/date[@date-type='sent-for-review']) != 1" role="error" id="pub-history-events-5">
+        <name/> has <value-of select="count(event/date[@date-type='sent-for-review'])"/> sent for review event elements. Under JATS version <value-of select="$dtd-version"/> this must be captured in pub-history.</report>
     </rule>
   </pattern>
   <pattern id="event-tests-pattern">

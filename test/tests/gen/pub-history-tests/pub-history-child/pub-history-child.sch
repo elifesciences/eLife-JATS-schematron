@@ -959,6 +959,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="pub-history" id="pub-history-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <report test="not(e:is-prc(.)) and count(event) gt 1" role="error" id="pub-history-child">
         <name/> must have one, and only one, event element in non-PRC content. This one has <value-of select="count(event)"/>.</report>
     </rule>

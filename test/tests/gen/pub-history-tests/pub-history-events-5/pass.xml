@@ -1,0 +1,29 @@
+<?oxygen SCHSchema="pub-history-events-5.sch"?>
+<!--Context: pub-history
+Test: report    e:is-prc(.) and ($dtd-version ge '1.4') and count(event/date[@date-type='sent-for-review']) != 1
+Message:  has  sent for review event elements. Under JATS version  this must be captured in pub-history. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article dtd-version="1.4">
+    <front>
+      <article-meta>
+        <pub-history>
+          <event>
+            <self-uri content-type="preprint"/>
+          </event>
+            <event>
+            <date date-type="sent-for-review"/>
+          </event>
+          <event>
+            <self-uri content-type="reviewed-preprint"/>
+          </event>
+        </pub-history>
+        <custom-meta-group>
+          <custom-meta specific-use="meta-only">
+            <meta-name>publishing-route</meta-name>
+            <meta-value>prc</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      </article-meta>
+    </front>
+    </article>
+</root>

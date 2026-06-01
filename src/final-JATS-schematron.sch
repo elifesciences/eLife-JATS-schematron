@@ -1650,6 +1650,7 @@
       <report test="e:get-weekday($date) != 2" role="warning" id="press-pub-date-check">[press-pub-date-check] The publication date for this article is in the future (<value-of select="$date"/>), but the day of publication is not a Tuesday (for Press). Is that correct?</report>
       
     </rule></pattern><pattern id="pub-history-tests-pattern"><rule context="pub-history" id="pub-history-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <assert test="parent::article-meta" role="error" id="pub-history-parent">[pub-history-parent] <name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
       
@@ -1662,6 +1663,8 @@
       <report test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) lt 1" role="error" id="pub-history-events-3">[pub-history-events-3] <name/> in PRC articles must have at least one event element for reviewed preprint publication (an event with a self-uri[@content-type='reviewed-preprint'] element). This one has none.</report>
       
       <report test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) gt 3" role="warning" id="pub-history-events-4">[pub-history-events-4] <name/> has <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint event elements, which is unusual. Is this correct?</report>
+      
+      <report test="e:is-prc(.) and ($dtd-version ge '1.4') and count(event/date[@date-type='sent-for-review']) != 1" role="error" id="pub-history-events-5">[pub-history-events-5] <name/> has <value-of select="count(event/date[@date-type='sent-for-review'])"/> sent for review event elements. Under JATS version <value-of select="$dtd-version"/> this must be captured in pub-history.</report>
     </rule></pattern><pattern id="event-tests-pattern"><rule context="event" id="event-tests">
       <let name="date" value="date[1]/@iso-8601-date"/>
       

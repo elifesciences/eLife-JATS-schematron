@@ -959,6 +959,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="pub-history" id="pub-history-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <report test="e:is-prc(.) and count(event) le 1" role="error" id="pub-history-events-1">
         <name/> in PRC articles must have more than one event element, at least one for the preprint, and at least one for the reviewed preprint (there may be numerous reviewed preprint events). This one has <value-of select="count(event)"/> event elements.</report>
     </rule>
