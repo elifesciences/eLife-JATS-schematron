@@ -1812,11 +1812,11 @@
       
       <assert test="empty($indistinct-names)" 
         role="warning" 
-        id="duplicate-member-test">There is more than one member of the group author <value-of select="e:get-collab(parent::collab or parent::collab-wrap)"/> with the following name(s) - <value-of select="if (count($indistinct-names) gt 1) then concat(string-join($indistinct-names[position() != last()],', '),' and ',$indistinct-names[last()]) else $indistinct-names"/> - which is very likely incorrect.</assert>
+        id="duplicate-member-test">There is more than one member of the group author <value-of select="e:get-collab(parent::*)"/> with the following name(s) - <value-of select="if (count($indistinct-names) gt 1) then concat(string-join($indistinct-names[position() != last()],', '),' and ',$indistinct-names[last()]) else $indistinct-names"/> - which is very likely incorrect.</assert>
       
       <assert test="empty($indistinct-orcids)" 
         role="error" 
-        id="duplicate-member-orcid-test">There is more than one member of the group author <value-of select="e:get-collab(parent::collab or parent::collab-wrap)"/> with the following ORCiD(s) - <value-of select="if (count($indistinct-orcids) gt 1) then concat(string-join($indistinct-orcids[position() != last()],', '),' and ',$indistinct-orcids[last()]) else $indistinct-orcids"/> - which must be incorrect.</assert>
+        id="duplicate-member-orcid-test">There is more than one member of the group author <value-of select="e:get-collab(parent::*)"/> with the following ORCiD(s) - <value-of select="if (count($indistinct-orcids) gt 1) then concat(string-join($indistinct-orcids[position() != last()],', '),' and ',$indistinct-orcids[last()]) else $indistinct-orcids"/> - which must be incorrect.</assert>
     </rule>
     
     <rule context="article//article-meta/contrib-group[1][contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group]" 
