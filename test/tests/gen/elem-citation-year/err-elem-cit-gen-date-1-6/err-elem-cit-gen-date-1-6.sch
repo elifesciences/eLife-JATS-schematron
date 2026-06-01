@@ -255,8 +255,11 @@
   <xsl:function name="e:get-collab-or-surname" as="xs:string?">
     <xsl:param name="collab-or-name"/>
     <xsl:choose>
-      <xsl:when test="$collab-or-name/name()='collab'">
+      <xsl:when test="$collab-or-name/name()=('collab','collab-name')">
         <xsl:value-of select="e:stripDiacritics(replace(lower-case($collab-or-name),'\.',''))"/>
+      </xsl:when>
+      <xsl:when test="$collab-or-name/name()='collab-wrap' and $collab-or-name/collab-name">
+        <xsl:value-of select="e:stripDiacritics(replace(lower-case($collab-or-name/collab-name),'\.',''))"/>
       </xsl:when>
       <xsl:when test="$collab-or-name/surname">
         <xsl:value-of select="e:stripDiacritics(replace(lower-case($collab-or-name/surname[1]),'[-‐‑–—]','-'))"/>
@@ -270,23 +273,23 @@
       <xsl:when test="(count($person-group/*) = 1) and $person-group/name">
         <xsl:value-of select="$person-group/name/surname[1]"/>
       </xsl:when>
-      <xsl:when test="(count($person-group/*) = 1) and $person-group/collab">
-        <xsl:value-of select="$person-group/collab"/>
+      <xsl:when test="(count($person-group/*) = 1) and ($person-group/collab or $person-group/collab-name)">
+        <xsl:value-of select="$person-group/*[name()=('collab','collab-name')][1]"/>
       </xsl:when>
-      <xsl:when test="(count($person-group/*) = 2) and (count($person-group/name) = 1) and $person-group/*[1]/local-name() = 'collab'">
-        <xsl:value-of select="concat($person-group/collab,' and ',$person-group/name/surname[1])"/>
+      <xsl:when test="(count($person-group/*) = 2) and (count($person-group/name) = 1) and $person-group/*[1]/name()=('collab','collab-name')">
+        <xsl:value-of select="concat($person-group/*[name()=('collab','collab-name')][1],' and ',$person-group/name/surname[1])"/>
       </xsl:when>
       <xsl:when test="(count($person-group/*) = 2) and (count($person-group/name) = 1) and $person-group/*[1]/local-name() = 'name'">
-        <xsl:value-of select="concat($person-group/name/surname[1],' and ',$person-group/collab)"/>
+        <xsl:value-of select="concat($person-group/name/surname[1],' and ',$person-group/*[name()=('collab','collab-name')])"/>
       </xsl:when>
       <xsl:when test="(count($person-group/*) = 2) and (count($person-group/name) = 2)">
         <xsl:value-of select="concat($person-group/name[1]/surname[1],' and ',$person-group/name[2]/surname[1])"/>
       </xsl:when>
-      <xsl:when test="(count($person-group/*) = 2) and (count($person-group/collab) = 2)">
-        <xsl:value-of select="concat($person-group/collab[1],' and ',$person-group/collab[2])"/>
+      <xsl:when test="(count($person-group/*) = 2) and (count($person-group/*[name()=('collab','collab-name')]) = 2)">
+        <xsl:value-of select="concat($person-group/*[name()=('collab','collab-name')][1],' and ',$person-group/*[name()=('collab','collab-name')][2])"/>
       </xsl:when>
-      <xsl:when test="(count($person-group/*) ge 2) and $person-group/*[1]/local-name() = 'collab'">
-        <xsl:value-of select="concat($person-group/collab[1], ' et al.')"/>
+      <xsl:when test="(count($person-group/*) ge 2) and $person-group/*[1]/name()=('collab','collab-name')">
+        <xsl:value-of select="concat($person-group/*[name()=('collab','collab-name')][1], ' et al.')"/>
       </xsl:when>
       <xsl:when test="(count($person-group/*) ge 2) and $person-group/*[1]/local-name() = 'name'">
         <xsl:value-of select="concat($person-group/name[1]/surname[1], ' et al.')"/>
@@ -403,16 +406,30 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <xsl:function name="e:get-collab">
-    <xsl:param name="collab"/>
-    <xsl:for-each select="$collab/(*|text())">
+  <xsl:function name="e:get-collab" as="xs:string">
+    <xsl:param name="node"/>
+    <xsl:variable name="result">
       <xsl:choose>
-        <xsl:when test="./name()='contrib-group'"/>
-        <xsl:otherwise>
-          <xsl:value-of select="."/>
-        </xsl:otherwise>
+        <xsl:when test="$node/self::collab-name">
+          <xsl:value-of select="$node"/>
+        </xsl:when>
+        <xsl:when test="$node/self::collab-wrap">
+          <xsl:value-of select="$node/collab-name"/>
+        </xsl:when>
+        <xsl:when test="$node/self::collab">
+          <xsl:for-each select="$node/(*|text())">
+            <xsl:choose>
+              <xsl:when test="./name()='contrib-group' or normalize-space(.)=''"/>
+              <xsl:otherwise>
+                <xsl:value-of select="."/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise/>
       </xsl:choose>
-    </xsl:for-each>
+    </xsl:variable>
+    <xsl:value-of select="string($result)"/>
   </xsl:function>
   <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
@@ -726,34 +743,10 @@
     <xsl:choose>
       <xsl:when test="$author-count lt 1"/>
       <xsl:when test="$author-count = 1">
-        <xsl:choose>
-          <xsl:when test="$contrib-group/contrib[@contrib-type='author']/collab">
-            <xsl:value-of select="$contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1]"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="$contrib-group/contrib[@contrib-type='author']/name[1]/surname[1]"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:value-of select="e:get-surname($contrib-group/contrib[@contrib-type='author'][1])"/>
       </xsl:when>
       <xsl:when test="$author-count = 2">
-        <xsl:choose>
-          <xsl:when test="$contrib-group/contrib[@contrib-type='author']/collab">
-            <xsl:choose>
-              <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab and $contrib-group/contrib[@contrib-type='author'][2]/collab">
-                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1],' and ',$contrib-group/contrib[@contrib-type='author']/collab[2]/text()[1])"/>
-              </xsl:when>
-              <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab">
-                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/collab[1]/text()[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/collab[1]/text()[1])"/>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:value-of select="string-join(           for $auth in $contrib-group/contrib[@contrib-type='author'] return e:get-surname($auth)           ,' and ')"/>
       </xsl:when>
       
       <xsl:otherwise>
@@ -791,8 +784,8 @@
   <xsl:function name="e:get-surname" as="text()">
     <xsl:param name="contrib"/>
     <xsl:choose>
-      <xsl:when test="$contrib/collab">
-        <xsl:value-of select="$contrib/collab[1]/text()[1]"/>
+      <xsl:when test="$contrib/*[name()=('collab','collab-wrap')]">
+        <xsl:value-of select="e:get-collab($contrib/*[name()=('collab','collab-wrap')])"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$contrib//name[1]/surname[1]"/>
@@ -969,7 +962,7 @@
       <let name="YYYY" value="substring(normalize-space(.), 1, 4)"/>
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="citation" value="e:citation-format1(parent::element-citation)"/>
-      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-date-1-6" test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and         (some $y in //element-citation/descendant::year         satisfies (normalize-space($y) = concat($YYYY,'b'))         and (ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[-‐–—]','-') = $y/ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[-‐–—]','-')         or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1]         )))" role="error" id="err-elem-cit-gen-date-1-6">If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with the same first author surname (or collab) with a letter "b" after the year. Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-date-1-6" test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and         (some $y in //element-citation/descendant::year         satisfies (normalize-space($y) = concat($YYYY,'b'))         and (ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[-‐–—]','-') = $y/ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[-‐–—]','-')         or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1]         or ancestor::element-citation/person-group[1]/collab-name[1] = $y/ancestor::element-citation/person-group[1]/collab-name[1]         )))" role="error" id="err-elem-cit-gen-date-1-6">If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with the same first author surname (or collab-name) with a letter "b" after the year. Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

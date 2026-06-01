@@ -1,8 +1,8 @@
 <?oxygen SCHSchema="err-elem-cit-gen-name-3-2.sch"?>
-<!--Context: element-citation/person-group/collab
+<!--Context: element-citation/person-group/collab | element-citation/person-group/collab-name
 Test: assert    count(*) = count(italic | sub | sup)
 Message: [err-elem-cit-gen-name-3-2]
-        A <collab> element in a reference may contain characters and <italic>, <sub>, and <sup>. 
+        A <> element in a reference may contain characters and <italic>, <sub>, and <sup>. 
         No other elements are allowed.
         Reference '' contains additional elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

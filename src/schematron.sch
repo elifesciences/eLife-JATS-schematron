@@ -320,8 +320,11 @@
   <xsl:function name="e:get-collab-or-surname" as="xs:string?">
     <xsl:param name="collab-or-name"/>
     <xsl:choose>
-      <xsl:when test="$collab-or-name/name()='collab'">
+      <xsl:when test="$collab-or-name/name()=('collab','collab-name')">
         <xsl:value-of select="e:stripDiacritics(replace(lower-case($collab-or-name),'\.',''))"/>
+      </xsl:when>
+      <xsl:when test="$collab-or-name/name()='collab-wrap' and $collab-or-name/collab-name">
+        <xsl:value-of select="e:stripDiacritics(replace(lower-case($collab-or-name/collab-name),'\.',''))"/>
       </xsl:when>
       <xsl:when test="$collab-or-name/surname">
         <xsl:value-of select="e:stripDiacritics(replace(lower-case($collab-or-name/surname[1]),'[&#x002D;&#x2010;&#x2011;&#x2013;&#x2014;]','-'))"/>
@@ -336,23 +339,23 @@
       <xsl:when test="(count($person-group/*) = 1) and $person-group/name">
         <xsl:value-of select="$person-group/name/surname[1]"/>
       </xsl:when>
-      <xsl:when test="(count($person-group/*) = 1) and $person-group/collab">
-        <xsl:value-of select="$person-group/collab"/>
+      <xsl:when test="(count($person-group/*) = 1) and ($person-group/collab or $person-group/collab-name)">
+        <xsl:value-of select="$person-group/*[name()=('collab','collab-name')][1]"/>
       </xsl:when>
-      <xsl:when test="(count($person-group/*) = 2) and (count($person-group/name) = 1) and $person-group/*[1]/local-name() = 'collab'">
-        <xsl:value-of select="concat($person-group/collab,' and ',$person-group/name/surname[1])"/>
+      <xsl:when test="(count($person-group/*) = 2) and (count($person-group/name) = 1) and $person-group/*[1]/name()=('collab','collab-name')">
+        <xsl:value-of select="concat($person-group/*[name()=('collab','collab-name')][1],' and ',$person-group/name/surname[1])"/>
       </xsl:when>
       <xsl:when test="(count($person-group/*) = 2) and (count($person-group/name) = 1) and $person-group/*[1]/local-name() = 'name'">
-        <xsl:value-of select="concat($person-group/name/surname[1],' and ',$person-group/collab)"/>
+        <xsl:value-of select="concat($person-group/name/surname[1],' and ',$person-group/*[name()=('collab','collab-name')])"/>
       </xsl:when>
       <xsl:when test="(count($person-group/*) = 2) and (count($person-group/name) = 2)">
         <xsl:value-of select="concat($person-group/name[1]/surname[1],' and ',$person-group/name[2]/surname[1])"/>
       </xsl:when>
-      <xsl:when test="(count($person-group/*) = 2) and (count($person-group/collab) = 2)">
-        <xsl:value-of select="concat($person-group/collab[1],' and ',$person-group/collab[2])"/>
+      <xsl:when test="(count($person-group/*) = 2) and (count($person-group/*[name()=('collab','collab-name')]) = 2)">
+        <xsl:value-of select="concat($person-group/*[name()=('collab','collab-name')][1],' and ',$person-group/*[name()=('collab','collab-name')][2])"/>
       </xsl:when>
-      <xsl:when test="(count($person-group/*) ge 2) and $person-group/*[1]/local-name() = 'collab'">
-        <xsl:value-of select="concat($person-group/collab[1], ' et al.')"/>
+      <xsl:when test="(count($person-group/*) ge 2) and $person-group/*[1]/name()=('collab','collab-name')">
+        <xsl:value-of select="concat($person-group/*[name()=('collab','collab-name')][1], ' et al.')"/>
       </xsl:when>
       <xsl:when test="(count($person-group/*) ge 2) and $person-group/*[1]/local-name() = 'name'">
         <xsl:value-of select="concat($person-group/name[1]/surname[1], ' et al.')"/>
@@ -475,16 +478,30 @@
     </xsl:choose>
   </xsl:function>
   
-  <xsl:function name="e:get-collab">
-    <xsl:param name="collab"/>
-    <xsl:for-each select="$collab/(*|text())">
+  <xsl:function name="e:get-collab" as="xs:string">
+    <xsl:param name="node"/>
+    <xsl:variable name="result">
       <xsl:choose>
-        <xsl:when test="./name()='contrib-group'"/>
-        <xsl:otherwise>
-          <xsl:value-of select="."/>
-        </xsl:otherwise>
+        <xsl:when test="$node/self::collab-name">
+          <xsl:value-of select="$node"/>
+        </xsl:when>
+        <xsl:when test="$node/self::collab-wrap">
+          <xsl:value-of select="$node/collab-name"/>
+        </xsl:when>
+        <xsl:when test="$node/self::collab">
+          <xsl:for-each select="$node/(*|text())">
+            <xsl:choose>
+              <xsl:when test="./name()='contrib-group' or normalize-space(.)=''"/>
+              <xsl:otherwise>
+                <xsl:value-of select="."/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise/>
       </xsl:choose>
-    </xsl:for-each>
+    </xsl:variable>
+    <xsl:value-of select="string($result)"/>
   </xsl:function>
   
   <xsl:function name="e:is-valid-isbn" as="xs:boolean">
@@ -826,34 +843,12 @@
     <xsl:choose>
       <xsl:when test="$author-count lt 1"/>
       <xsl:when test="$author-count = 1">
-        <xsl:choose>
-          <xsl:when test="$contrib-group/contrib[@contrib-type='author']/collab">
-            <xsl:value-of select="$contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1]"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="$contrib-group/contrib[@contrib-type='author']/name[1]/surname[1]"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:value-of select="e:get-surname($contrib-group/contrib[@contrib-type='author'][1])"/>
       </xsl:when>
       <xsl:when test="$author-count = 2">
-        <xsl:choose>
-          <xsl:when test="$contrib-group/contrib[@contrib-type='author']/collab">
-            <xsl:choose>
-              <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab and $contrib-group/contrib[@contrib-type='author'][2]/collab">
-                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author']/collab[1]/text()[1],' and ',$contrib-group/contrib[@contrib-type='author']/collab[2]/text()[1])"/>
-              </xsl:when>
-              <xsl:when test="$contrib-group/contrib[@contrib-type='author'][1]/collab">
-                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/collab[1]/text()[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/collab[1]/text()[1])"/>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="concat($contrib-group/contrib[@contrib-type='author'][1]/name[1]/surname[1],' and ',$contrib-group/contrib[@contrib-type='author'][2]/name[1]/surname[1])"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:value-of select="string-join(
+          for $auth in $contrib-group/contrib[@contrib-type='author'] return e:get-surname($auth)
+          ,' and ')"/>
       </xsl:when>
       <!-- author count is 3+ -->
       <xsl:otherwise>
@@ -896,8 +891,8 @@
   <xsl:function name="e:get-surname" as="text()">
     <xsl:param name="contrib"/>
     <xsl:choose>
-      <xsl:when test="$contrib/collab">
-        <xsl:value-of select="$contrib/collab[1]/text()[1]"/>
+      <xsl:when test="$contrib/*[name()=('collab','collab-wrap')]">
+        <xsl:value-of select="e:get-collab($contrib/*[name()=('collab','collab-wrap')])"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$contrib//name[1]/surname[1]"/>
@@ -1738,7 +1733,7 @@
       
     </rule>
     
-    <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and not(child::collab) and not(ancestor::collab)]" id="auth-cont-tests">
+    <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and not(collab or collab-wrap) and not(ancestor::collab or ancestor::collab-wrap)]" id="auth-cont-tests">
       
       <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" 
         role="warning" 
@@ -1756,10 +1751,10 @@
       <assert test="empty($indistinct-conts)" 
         role="error"
         flag="version-1"
-        id="dupe-cont-test-1">Author <value-of select="if (name) then e:get-name(name[1]) else if (collab) then (e:get-collab(collab[1])) else ('with no name')"/> has duplicated contributions which is incorrect. The indistinct contributions are: <value-of select="string-join($indistinct-conts,'; ')"/>.</assert>
+        id="dupe-cont-test-1">Author <value-of select="if (name) then e:get-name(name[1]) else if (collab or collab-wrap) then e:get-surname(.) else ('with no name')"/> has duplicated contributions which is incorrect. The indistinct contributions are: <value-of select="string-join($indistinct-conts,'; ')"/>.</assert>
     </rule>
     
-    <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and not(child::collab) and not(ancestor::collab)]" id="auth-cont-tests-v2">
+    <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and not(collab or collab-wrap) and not(ancestor::collab or ancestor::collab-wrap)]" id="auth-cont-tests-v2">
       
       <assert test="role" 
         role="warning" 
@@ -1772,30 +1767,30 @@
         id="auth-cont-test-2-v2"><value-of select="e:get-name(name[1])"/> has no CRediT contributions. Is that correct?</report>
     </rule>
     
-    <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and child::collab]" id="collab-cont-tests">
+    <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and *[name()=('collab','collab-wrap')]]" id="collab-cont-tests">
       
       <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" 
         role="warning" 
         flag="version-1"
-        id="collab-cont-test-1"><value-of select="e:get-collab(child::collab[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
+        id="collab-cont-test-1"><value-of select="e:get-surname(.)"/> has no contributions. Please ensure to query this with the authors.</assert>
     </rule>
     
-    <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and child::collab]" id="collab-cont-tests-v2">
+    <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and (collab or collab-wrap)]" id="collab-cont-tests-v2">
       
       <assert test="role" 
         role="warning" 
         flag="version-2"
-        id="pre-collab-cont-test-1-v2"><value-of select="e:get-collab(child::collab[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
+        id="pre-collab-cont-test-1-v2"><value-of select="e:get-surname(.)"/> has no contributions. Please ensure to query this with the authors.</assert>
       
       <assert test="role" 
         role="error" 
         flag="version-2"
-        id="final-collab-cont-test-1-v2"><value-of select="e:get-collab(child::collab[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
+        id="final-collab-cont-test-1-v2"><value-of select="e:get-surname(.)"/> has no contributions. Please ensure to query this with the authors.</assert>
       
       <report test="role and not(role[@vocab='credit'])" 
         role="warning" 
         flag="version-2"
-        id="final-collab-cont-test-2-v2"><value-of select="e:get-collab(child::collab[1])"/> has no CRediT contributions. Is that correct?</report>
+        id="final-collab-cont-test-2-v2"><value-of select="e:get-surname(.)"/> has no CRediT contributions. Is that correct?</report>
     </rule>
     
     <rule context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']" id="duplicated-cont-tests-v2">
@@ -1804,11 +1799,11 @@
      
       <assert test="empty($indistinct-conts)" 
         role="error" 
-        id="dupe-cont-test-v2">Author <value-of select="if (name) then e:get-name(name[1]) else if (collab) then (e:get-collab(collab[1])) else ('with no name')"/> has duplicated contributions - <value-of select="$indistinct-conts"/> - which is incorrect.</assert>
+        id="dupe-cont-test-v2">Author <value-of select="if (name) then e:get-name(name[1]) else if (collab or collab-wrap) then e:get-surname(.) else ('with no name')"/> has duplicated contributions - <value-of select="$indistinct-conts"/> - which is incorrect.</assert>
       
     </rule>
     
-    <rule context="article//article-meta/contrib-group[1]/contrib[@contrib-type='author']/collab/contrib-group" 
+    <rule context="article//article-meta/contrib-group[1]/contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group" 
       id="collab-tests">
       <let name="names" value="for $name in contrib[@contrib-type='author']/name[1] return e:get-name($name)"/>
       <let name="indistinct-names" value="for $name in distinct-values($names) return $name[count($names[. = $name]) gt 1]"/>
@@ -1817,17 +1812,17 @@
       
       <assert test="empty($indistinct-names)" 
         role="warning" 
-        id="duplicate-member-test">There is more than one member of the group author <value-of select="e:get-collab(parent::collab)"/> with the following name(s) - <value-of select="if (count($indistinct-names) gt 1) then concat(string-join($indistinct-names[position() != last()],', '),' and ',$indistinct-names[last()]) else $indistinct-names"/> - which is very likely incorrect.</assert>
+        id="duplicate-member-test">There is more than one member of the group author <value-of select="e:get-collab(parent::collab or parent::collab-wrap)"/> with the following name(s) - <value-of select="if (count($indistinct-names) gt 1) then concat(string-join($indistinct-names[position() != last()],', '),' and ',$indistinct-names[last()]) else $indistinct-names"/> - which is very likely incorrect.</assert>
       
       <assert test="empty($indistinct-orcids)" 
         role="error" 
-        id="duplicate-member-orcid-test">There is more than one member of the group author <value-of select="e:get-collab(parent::collab)"/> with the following ORCiD(s) - <value-of select="if (count($indistinct-orcids) gt 1) then concat(string-join($indistinct-orcids[position() != last()],', '),' and ',$indistinct-orcids[last()]) else $indistinct-orcids"/> - which must be incorrect.</assert>
+        id="duplicate-member-orcid-test">There is more than one member of the group author <value-of select="e:get-collab(parent::collab or parent::collab-wrap)"/> with the following ORCiD(s) - <value-of select="if (count($indistinct-orcids) gt 1) then concat(string-join($indistinct-orcids[position() != last()],', '),' and ',$indistinct-orcids[last()]) else $indistinct-orcids"/> - which must be incorrect.</assert>
     </rule>
     
-    <rule context="article//article-meta/contrib-group[1][contrib[@contrib-type='author']/collab/contrib-group]" 
+    <rule context="article//article-meta/contrib-group[1][contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group]" 
       id="collab-tests-2">
       <let name="top-names" value="for $name in contrib[@contrib-type='author']/name[1] return e:get-name($name)"/>
-      <let name="members" value="for $member in contrib[@contrib-type='author']/collab/contrib-group/contrib[@contrib-type='author']/name[1]
+      <let name="members" value="for $member in contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group/contrib[@contrib-type='author']/name[1]
         return e:get-name($member)"/>
       <let name="auth-and-member" value="$top-names[.=$members]"/>
       
@@ -2009,13 +2004,12 @@
 	  <let name="comp-regex" value="' [Ii]nc[.]?(\s|$)| LLC| Ltd| [Ll]imited| [Cc]ompanies| [Cc]ompany| [Cc]o\.| Pharmaceutical[s]| [Pp][Ll][Cc]|AstraZeneca|Pfizer| R&amp;D'"/>
 	  <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
 	  <let name="fn" value="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
-	  <let name="name" value="if (child::collab[1]) then collab else if (child::name[1]) then e:get-name(child::name[1]) else ()"/>
+	  <let name="name" value="if (child::name[1]) then e:get-name(child::name[1]) else if (collab or collab-wrap) then e:get-surname(*[name()=('collab','collab-wrap')][1]) else ()"/>
 		
 		<!-- Subject to change depending of the affiliation markup of group authors and editors. Currently fires for individual group contributors and editors who do not have either a child aff or a child xref pointing to an aff.  -->
     	<report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjuk3-contrib-test-1" 
     	  test="if ($subj-type = $notice-display-types) then ()
-    	  else if (collab) then ()
-    	  else if (ancestor::collab) then ()
+    	  else if (collab or collab-wrap or ancestor::*[name()=('collab','collab-wrap')]) then ()
     	  else if ($type != 'author') then ()
     	  else count(xref[@ref-type='aff']) = 0" 
         role="error" 
@@ -2023,8 +2017,8 @@
 	  
 	  <report test="if ($subj-type = $notice-display-types) then ()      
 	    else if ($type != 'author') then ()      
-	    else if (collab) then ()      
-	    else if (ancestor::collab) then (count(xref[@ref-type='aff']) + count(aff) = 0)      
+	    else if (collab or collab-wrap) then ()      
+	    else if (ancestor::*[name()=('collab','collab-wrap')]) then (count(xref[@ref-type='aff']) + count(aff) = 0)      
 	    else ()" 
         role="warning" 
         id="contrib-test-5">Group author members should likely have an affiliation. <value-of select="$name"/> does not. Is this OK?</report>
@@ -2039,20 +2033,20 @@
         role="error" 
         id="contrib-test-4">The <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP output, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</report>
 	  
-	     <report test="name and collab" 
+	     <report test="name and (collab or collab-wrap)" 
         role="error" 
-        id="contrib-test-3">author contains both a child name and a child collab. This is not correct.</report>
+        id="contrib-test-3">author contains both a child name element and a child collab-wrap (or collab) element. This is not correct.</report>
 	  
-	     <report test="if (collab) then ()
+	     <report test="if (collab or collab-wrap) then ()
 	       else count(name) != 1" 
         role="error" 
-        id="name-test">Contrib contains no collab but has <value-of select="count(name)"/> name(s). This is not correct.</report>
+        id="name-test">Contrib contains no collab-wrap but has <value-of select="count(name)"/> name(s). This is not correct.</report>
 	  
 	     <report test="self::*[@corresp='yes'][not(child::*:email)]" 
         role="error" 
         id="contrib-email-1">Corresponding authors must have an email.</report>
 	  
-	  <report test="not(@corresp='yes') and (not(ancestor::collab/parent::contrib[@corresp='yes'])) and (child::email)" 
+	  <report test="not(@corresp='yes') and (not(ancestor::*[name()=('collab','collab-wrap')]/parent::contrib[@corresp='yes'])) and (child::email)" 
         role="error" 
         id="contrib-email-2">Non-corresponding authors must not have an email.</report>
 	  
@@ -2086,11 +2080,11 @@
 		<rule context="article[e:get-version(.)='1']//article-meta//contrib[@contrib-type='author']/*" id="author-children-tests">
 		  <let name="article-type" value="ancestor::article/@article-type"/> 
 		  <let name="template" value="ancestor::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
-			<let name="allowed-contrib-blocks" value="('name', 'collab', 'contrib-id', 'email', 'xref')"/>
+			<let name="allowed-contrib-blocks" value="('name', 'collab', 'collab-wrap', 'contrib-id', 'email', 'xref')"/>
 		  <let name="allowed-contrib-blocks-features" value="($allowed-contrib-blocks, 'bio')"/>
 		
 		  <!-- Exception included for group authors -->
-		  <assert test="if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]
+		  <assert test="if (ancestor::collab or ancestor::collab-wrap) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]
 		    else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features]
 		    else if ($article-type = ($features-article-types,'expression-of-concern')) then self::*[local-name() = $allowed-contrib-blocks-features]
 		    else self::*[local-name() = $allowed-contrib-blocks]" 
@@ -2103,11 +2097,11 @@
     <rule context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/*" id="author-children-tests-v2">
       <let name="article-type" value="ancestor::article/@article-type"/> 
       <let name="template" value="ancestor::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
-      <let name="allowed-contrib-blocks" value="('name', 'collab', 'contrib-id', 'email', 'xref','role')"/>
+      <let name="allowed-contrib-blocks" value="('name', 'collab', 'collab-wrap', 'contrib-id', 'email', 'xref','role')"/>
       <let name="allowed-contrib-blocks-features" value="($allowed-contrib-blocks, 'bio')"/>
       
       <!-- Exception included for group authors -->
-      <assert test="if (ancestor::collab) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]
+      <assert test="if (ancestor::collab or ancestor::collab-wrap) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]
         else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features]
         else if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features]
         else self::*[local-name() = $allowed-contrib-blocks]" 
@@ -3369,12 +3363,12 @@
     <rule context="funding-group//principal-award-recipient" id="par-tests">
       <let name="authors" value="for $x in ancestor::article//article-meta/contrib-group[1]/contrib[@contrib-type='author']
         return if ($x/name) then e:get-name($x/name[1])
-        else if ($x/collab) then e:get-collab($x/collab[1])
+        else if ($x/collab or $x/collab-name) then e:get-collab($x/*[name()=('collab','collab-name')][1])
         else ''"/>
       <let name="par-text" value="if (name) then e:get-name(name[1])
         else if (string-name) then string-name
         else if (institution) then institution
-        else e:get-collab(collab[1])"/>
+        else e:get-collab(*[name()=('collab','collab-name')][1])"/>
       
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#par-test-1" 
         test="normalize-space(.)='' and not(*)"
@@ -7849,15 +7843,15 @@ else self::*/local-name() = $allowed-p-blocks"
         flag="dl-ar"
         id="sub-article-contrib-test-1">contrib inside sub-article with article-type '<value-of select="ancestor::sub-article/@article-type"/>' must have the attribute contrib-type='author'.</assert>
       
-      <assert test="name or anonymous or collab" 
+      <assert test="name or anonymous or collab or collab-wrap" 
         role="error" 
         flag="dl-ar"
         id="sub-article-contrib-test-2">sub-article contrib must have either a child name or a child anonymous element.</assert>
       
-      <report test="(name and anonymous) or (collab and anonymous) or (name and collab)" 
+      <report test="(name and anonymous) or ((collab or collab-wrap) and anonymous) or (name and (collab or collab-wrap))" 
         role="error" 
         flag="dl-ar"
-        id="sub-article-contrib-test-3">sub-article contrib can only have a child name element or a child anonymous element or a child collab element (with descendant group members as required), it cannot have more than one of these elements. This has <value-of select="string-join(for $x in *[name()=('name','anonymous','collab')] return concat('a ',$x/name()),' and ')"/>.</report>
+        id="sub-article-contrib-test-3">sub-article contrib can only have a child name element or a child anonymous element or a child collab element (with descendant group members as required), it cannot have more than one of these elements. This has <value-of select="string-join(for $x in *[name()=('name','anonymous','collab','collab-wrap')] return concat('a ',$x/name()),' and ')"/>.</report>
       
       <assert test="role" 
         role="error" 
@@ -7961,9 +7955,9 @@ else self::*/local-name() = $allowed-p-blocks"
       id="prc-reviewer-tests">
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#prc-reviewer-test-1"
-        test="name or collab"
+        test="name or collab or collab-wrap"
         role="error" 
-        id="prc-reviewer-test-1">A reviewer contrib in a PRC article cannot have a child <value-of select="*[name()=('name','collab')]/name()"/> element, since all reviewers are captured as anonymous. They must have an anonymous element instead.</report>
+        id="prc-reviewer-test-1">A reviewer contrib in a PRC article cannot have a child <value-of select="*[name()=('name','collab','collab-wrap')]/name()"/> element, since all reviewers are captured as anonymous. They must have an anonymous element instead.</report>
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#prc-reviewer-test-2"
         test="anonymous"
@@ -8132,22 +8126,22 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="element-citation/person-group" id="elem-citation-gen-name-3-1">
       
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-name-3-1"
-        test=".[not (name or collab)]" 
+        test=".[not (name or collab or collab-name)]" 
         role="error" 
         id="err-elem-cit-gen-name-3-1">[err-elem-cit-gen-name-3-1]
         Each &lt;person-group&gt; element in a reference must contain at least one
-        &lt;name&gt; or, if allowed, &lt;collab&gt; element. 
+        &lt;name&gt; or, if allowed, a &lt;collab-name&gt; or &lt;collab&gt; element. 
         Reference '<value-of select="ancestor::ref/@id"/>' does not.</report>
       
     </rule>
     
-    <rule context="element-citation/person-group/collab" id="elem-citation-gen-name-3-2">
+    <rule context="element-citation/person-group/collab | element-citation/person-group/collab-name" id="elem-citation-gen-name-3-2">
       
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-name-3-2"
         test="count(*) = count(italic | sub | sup)" 
         role="error" 
         id="err-elem-cit-gen-name-3-2">[err-elem-cit-gen-name-3-2]
-        A &lt;collab&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
+        A &lt;<name/>&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
         No other elements are allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' contains additional elements.</assert>
       
@@ -8202,9 +8196,10 @@ else self::*/local-name() = $allowed-p-blocks"
         satisfies (normalize-space($y) = concat($YYYY,'b'))
         and (ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[&#x002D;&#x2010;&#x2013;&#x2014;]','-') = $y/ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[&#x002D;&#x2010;&#x2013;&#x2014;]','-')
         or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1]
+        or ancestor::element-citation/person-group[1]/collab-name[1] = $y/ancestor::element-citation/person-group[1]/collab-name[1]
         )))" 
         role="error" 
-        id="err-elem-cit-gen-date-1-6">If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with the same first author surname (or collab) with a letter "b" after the year. Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>
+        id="err-elem-cit-gen-date-1-6">If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with the same first author surname (or collab-name) with a letter "b" after the year. Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-date-1-7"
         test="not(starts-with(.,$YYYY) and matches(normalize-space(.),('\d{4}[b-z]'))) or
@@ -8213,11 +8208,12 @@ else self::*/local-name() = $allowed-p-blocks"
         'abcdefghijklmnopqrstuvwxy')))
         and (ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[&#x002D;&#x2010;&#x2013;&#x2014;]','-') = $y/ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[&#x002D;&#x2010;&#x2013;&#x2014;]','-')
         or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1]
+        or ancestor::element-citation/person-group[1]/collab-name[1] = $y/ancestor::element-citation/person-group[1]/collab-name[1]
         ))" 
         role="error" 
         id="err-elem-cit-gen-date-1-7">[err-elem-cit-gen-date-1-7]
         If the &lt;year&gt; element contains any letter other than 'a' after the digits, there must be another 
-        reference with the same first author surname (or collab) with the preceding letter after the year. 
+        reference with the same first author surname (or collab-name) with the preceding letter after the year. 
         Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>
       
     </rule>
@@ -8245,11 +8241,11 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="ref/element-citation//collab" id="collab-content">
+    <rule context="ref/element-citation//collab | ref/element-citation//collab-name" id="collab-content">
       
       <report test="matches(.,'[\[\]\(\)]')" 
         role="warning" 
-        id="collab-brackets">collab in reference '<value-of select="ancestor::ref/@id"/>' contains brackets - <value-of select="."/>. Are the brackets necessary?</report>
+        id="collab-brackets"><name/> in reference '<value-of select="ancestor::ref/@id"/>' contains brackets - <value-of select="."/>. Are the brackets necessary?</report>
       
     </rule>
     
@@ -9351,12 +9347,12 @@ else self::*/local-name() = $allowed-p-blocks"
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
-      <assert test="count(descendant::collab)=0" 
+      <assert test="(count(descendant::collab) + count(descendant::collab-name)) = 0" 
         role="error" 
         id="err-elem-cit-thesis-3">[err-elem-cit-thesis-3]
-        No &lt;collab&gt; elements are allowed in thesis citations.
+        No &lt;collab&gt; or &lt;collab-name&gt; elements are allowed in thesis citations.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
-        <value-of select="count(collab)"/> &lt;collab&gt; elements.</assert>
+        <value-of select="count(descendant::collab) + count(descendant::collab-name)"/>.</assert>
       
       <assert test="count(descendant::etal)=0" 
         role="error" 
@@ -9480,12 +9476,12 @@ else self::*/local-name() = $allowed-p-blocks"
         id="das-elem-person-group-2">The reference in position <value-of select="$pos"/> of the data availability has <value-of select="count(person-group)"/> person-group elements, which is incorrect.</report>
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-elem-person-1" 
-        test="(count(person-group[@person-group-type='author']/name)=0) and (count(person-group[@person-group-type='author']/collab)=0)" 
+        test="(count(person-group[@person-group-type='author']/name)=0) and (count(person-group[@person-group-type='author']/collab)=0) and (count(person-group[@person-group-type='author']/collab-name)=0)" 
         role="warning" 
         id="pre-das-elem-person-1">The reference in position <value-of select="$pos"/> of the data availability section does not have any authors. Please ensure to add them in or query the authors asking for the author list.</report>
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-elem-person-1" 
-        test="(count(person-group[@person-group-type='author']/name)=0) and (count(person-group[@person-group-type='author']/collab)=0)" 
+        test="(count(person-group[@person-group-type='author']/name)=0) and (count(person-group[@person-group-type='author']/collab)=0) and (count(person-group[@person-group-type='author']/collab-name)=0)" 
         role="error" 
         id="final-das-elem-person-1">The reference in position <value-of select="$pos"/> of the data availability section does not have any authors (person-group[@person-group-type='author']). Please ensure to add them in.</report>
       
@@ -9792,7 +9788,7 @@ else self::*/local-name() = $allowed-p-blocks"
    <rule context="article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']" id="feature-author-tests">
      
      <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-author-test-1"
-       test="collab or ancestor::collab or bio" 
+       test="bio or collab or ancestor::collab or collab-wrap or ancestor::collab-wrap" 
         role="error" 
         id="feature-author-test-1">Author must contain child bio in feature content.</assert>
    </rule>
@@ -11526,14 +11522,14 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="lc" value="lower-case(data-title[1])"/>
       
       <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#r-test-1" 
-        test="matches($lc,'r: a language and environment for statistical computing') and not(matches(person-group[@person-group-type='author']/collab[1],'^R Development Core Team$'))" 
+        test="matches($lc,'r: a language and environment for statistical computing') and not(matches(person-group[@person-group-type='author']/*[name()=('collab','collab-name')][1],'^R Development Core Team$'))" 
         role="error" 
-        id="R-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it does not have one collab element containing 'R Development Core Team'.</report>
+        id="R-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it does not have one collab-name element containing 'R Development Core Team'.</report>
       
       <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#r-test-2" 
-        test="matches($lc,'r: a language and environment for statistical computing') and (count(person-group[@person-group-type='author']/collab) != 1)" 
+        test="matches($lc,'r: a language and environment for statistical computing') and (count(person-group[@person-group-type='author']/*[name()=('collab','collab-name')]) != 1)" 
         role="error" 
-        id="R-test-2">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it has <value-of select="count(person-group[@person-group-type='author']/collab)"/> collab element(s).</report>
+        id="R-test-2">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it has <value-of select="count(person-group[@person-group-type='author']/*[name()=('collab','collab-name')])"/> collab-name element(s).</report>
       
       <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#r-test-3" 
         test="matches($lc,'r: a language and environment for statistical computing') and (count((publisher-loc[text() = 'Vienna, Austria'])) != 1)" 
@@ -11991,12 +11987,12 @@ else self::*/local-name() = $allowed-p-blocks"
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#all-caps-surname"
         test="matches(surname[1],'^[A-Z]*$')" 
         role="warning" 
-        id="all-caps-surname">surname in ref '<value-of select="ancestor::ref/@id"/>' is composed of only capitalised letters - <value-of select="surname[1]"/>. Should this be captured as a collab? If not, Should it be - <value-of select="concat(substring(surname[1],1,1),lower-case(substring(surname[1],2)))"/>?</report>
+        id="all-caps-surname">surname in ref '<value-of select="ancestor::ref/@id"/>' is composed of only capitalised letters - <value-of select="surname[1]"/>. Should this be captured as a collab-name? If not, Should it be - <value-of select="concat(substring(surname[1],1,1),lower-case(substring(surname[1],2)))"/>?</report>
       
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#surname-number-check"
         test="matches(.,'[0-9]')" 
         role="warning" 
-        id="surname-number-check">name in ref '<value-of select="ancestor::ref/@id"/>' contains numbers - <value-of select="."/>. Should this be captured as a collab?</report>
+        id="surname-number-check">name in ref '<value-of select="ancestor::ref/@id"/>' contains numbers - <value-of select="."/>. Should this be captured as a collab-name?</report>
       
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#surname-ellipsis-check"
         test="matches(surname[1],'^\p{Zs}*?…|^\p{Zs}*?\.\p{Zs}?\.\p{Zs}?\.')" 
@@ -13513,6 +13509,8 @@ else self::*/local-name() = $allowed-p-blocks"
         'chapter-title',
         'code',
         'collab',
+        'collab-name',
+        'collab-wrap',
         'comment',
         'conf-date',
         'conf-loc',

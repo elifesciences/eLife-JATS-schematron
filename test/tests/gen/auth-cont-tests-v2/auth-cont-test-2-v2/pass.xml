@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="auth-cont-test-2-v2.sch"?>
-<!--Context: article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and not(child::collab) and not(ancestor::collab)]
+<!--Context: article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and not(collab or collab-wrap) and not(ancestor::collab or ancestor::collab-wrap)]
 Test: report    role and not(role[@vocab='credit'])
 Message:  has no CRediT contributions. Is that correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
