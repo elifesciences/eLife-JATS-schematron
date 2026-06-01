@@ -2344,6 +2344,19 @@
           </sqf:replace>
         </sqf:fix>
      </rule>
+      
+      <rule context="article[@dtd-version ge '1.4']//collab"
+      id="collab-dtd-checks">
+        <let name="dtd" value="ancestor::article/@dtd-version"/>
+        
+        <report test="ancestor::contrib" 
+          role="error"
+          id="collab-contrib-dtd">The collab element is deprecated in JATS version <value-of select="$dtd"/>. In &lt;contrib> use &lt;collab-wrap> instead.</report>
+        
+        <assert test="ancestor::contrib" 
+          role="error"
+          id="collab-non-contrib-dtd">The collab element is deprecated in JATS version <value-of select="$dtd"/>. Use &lt;collab-name> instead.</assert>
+    </rule>
     </pattern>
 
     <pattern id="ref-etal">

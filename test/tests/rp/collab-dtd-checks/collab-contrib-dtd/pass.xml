@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="collab-contrib-dtd.sch"?>
+<!--Context: article[@dtd-version ge '1.4']//collab
+Test: report    ancestor::contrib
+Message: The collab element is deprecated in JATS version . In <contrib> use <collab-wrap> instead. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article dtd-version="1.4">
+        <contrib contrib-type="author">
+            <collab-wrap>
+                <collab-name>Group author name</collab-name>
+            </collab-wrap>
+        </contrib>
+        <collab/>
+    </article>
+</root>

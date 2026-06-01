@@ -1878,7 +1878,13 @@
             </xsl:call-template>
           </sqf:replace>
         </sqf:fix>
-     </rule></pattern>
+     </rule></pattern><pattern id="collab-dtd-checks-pattern"><rule context="article[@dtd-version ge '1.4']//collab" id="collab-dtd-checks">
+        <let name="dtd" value="ancestor::article/@dtd-version"/>
+        
+        <report test="ancestor::contrib" role="error" id="collab-contrib-dtd">[collab-contrib-dtd] The collab element is deprecated in JATS version <value-of select="$dtd"/>. In &lt;contrib&gt; use &lt;collab-wrap&gt; instead.</report>
+        
+        <assert test="ancestor::contrib" role="error" id="collab-non-contrib-dtd">[collab-non-contrib-dtd] The collab element is deprecated in JATS version <value-of select="$dtd"/>. Use &lt;collab-name&gt; instead.</assert>
+    </rule></pattern>
 
     <pattern id="ref-etal-checks-pattern"><rule context="mixed-citation[person-group]//etal" id="ref-etal-checks">
         <assert test="parent::person-group" role="error" id="ref-etal-1">[ref-etal-1] If the etal element is included in a reference, and that reference has a person-group element, then the etal should also be included in the person-group element. But this one is a child of <value-of select="parent::*/name()"/>.</assert>

@@ -2022,6 +2022,15 @@
         </sqf:fix>
      </rule>
   </pattern>
+  <pattern id="collab-dtd-checks-pattern">
+    <rule context="article[@dtd-version ge '1.4']//collab" id="collab-dtd-checks">
+        <let name="dtd" value="ancestor::article/@dtd-version"/>
+        
+        <report test="ancestor::contrib" role="error" id="collab-contrib-dtd">The collab element is deprecated in JATS version <value-of select="$dtd"/>. In &lt;contrib&gt; use &lt;collab-wrap&gt; instead.</report>
+        
+        <assert test="ancestor::contrib" role="error" id="collab-non-contrib-dtd">The collab element is deprecated in JATS version <value-of select="$dtd"/>. Use &lt;collab-name&gt; instead.</assert>
+    </rule>
+  </pattern>
 
     <pattern id="ref-etal-checks-pattern">
     <rule context="mixed-citation[person-group]//etal" id="ref-etal-checks">
@@ -4105,6 +4114,7 @@
       <assert test="descendant::mixed-citation//name  or descendant:: mixed-citation//string-name" role="error" id="ref-name-checks-xspec-assert">mixed-citation//name | mixed-citation//string-name must be present.</assert>
       <assert test="descendant::mixed-citation//given-names  or descendant:: mixed-citation//surname" role="error" id="ref-name-space-checks-xspec-assert">mixed-citation//given-names | mixed-citation//surname must be present.</assert>
       <assert test="descendant::collab  or descendant:: collab-name" role="error" id="collab-checks-xspec-assert">collab | collab-name must be present.</assert>
+      <assert test="descendant::article[@dtd-version ge '1.4']//collab" role="error" id="collab-dtd-checks-xspec-assert">article[@dtd-version ge '1.4']//collab must be present.</assert>
       <assert test="descendant::mixed-citation[person-group]//etal" role="error" id="ref-etal-checks-xspec-assert">mixed-citation[person-group]//etal must be present.</assert>
       <assert test="descendant::comment" role="error" id="ref-comment-checks-xspec-assert">comment must be present.</assert>
       <assert test="descendant::ref//pub-id" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id must be present.</assert>
