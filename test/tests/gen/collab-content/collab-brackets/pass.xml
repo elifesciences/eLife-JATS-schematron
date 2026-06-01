@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="collab-brackets.sch"?>
-<!--Context: ref/element-citation//collab
+<!--Context: ref/element-citation//collab | ref/element-citation//collab-name
 Test: report    matches(.,'[\[\]\(\)]')
-Message: collab in reference '' contains brackets - . Are the brackets necessary? -->
+Message:  in reference '' contains brackets - . Are the brackets necessary? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <back>
