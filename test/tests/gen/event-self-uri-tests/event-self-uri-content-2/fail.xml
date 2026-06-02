@@ -1,0 +1,53 @@
+<?oxygen SCHSchema="event-self-uri-content-2.sch"?>
+<!--Context: event/self-uri
+Test: report    @content-type='editor-report' and (* or not(matches(.,'^eLife [Aa]ssessment$')))
+Message:  with the content-type  must not have any child elements, and contain the text 'eLife Assessment'. This one does not. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <article-meta>
+      <history>
+        <date date-type="sent-for-review" iso-8601-date="2022-11-01">
+          <day>01</day>
+          <month>11</month>
+          <year>2022</year>
+        </date>
+      </history>
+      <pub-history>
+        <event>
+          <event-desc>Preprint posted</event-desc>
+          <date date-type="preprint" iso-8601-date="2022-11-01">
+            <day>01</day>
+            <month>11</month>
+            <year>2022</year>
+          </date>
+          <self-uri content-type="preprint" xlink:href="https://doi.org/10.1101/2022.11.01.514717"/>
+        </event>
+        <event>
+          <event-desc>Reviewed preprint v1</event-desc>
+          <date date-type="reviewed-preprint" iso-8601-date="2022-12-01">
+            <day>01</day>
+            <month>12</month>
+            <year>2022</year>
+          </date>
+          <self-uri content-type="reviewed-preprint" xlink:href="https://doi.org/10.7554/eLife.100527.1"/>
+          <self-uri content-type="editor-report" xlink:href="https://doi.org/10.7554/eLife.100527.1.sa2">eLife ass</self-uri>
+          <self-uri content-type="referee-report" xlink:href="https://doi.org/10.7554/eLife.100527.1.sa1">Reviewer #1 (Public Review):</self-uri>
+          <self-uri content-type="referee-report" xlink:href="https://doi.org/10.7554/eLife.100527.1.sa0">Reviewer #2 (Public Review):</self-uri>
+        </event>
+        <event>
+          <event-desc>Reviewed preprint v2</event-desc>
+          <date date-type="reviewed-preprint" iso-8601-date="2023-01-01">
+            <day>01</day>
+            <month>01</month>
+            <year>2023</year>
+          </date>
+          <self-uri content-type="reviewed-preprint" xlink:href="https://doi.org/10.7554/eLife.100527.2"/>
+          <self-uri content-type="editor-report" xlink:href="https://doi.org/10.7554/eLife.100527.2.sa3">eLifes</self-uri>
+          <self-uri content-type="referee-report" xlink:href="https://doi.org/10.7554/eLife.100527.2.sa2">Reviewer #1 (Public review):</self-uri>
+          <self-uri content-type="referee-report" xlink:href="https://doi.org/10.7554/eLife.100527.2.sa1">Reviewer #2 (Public review):</self-uri>
+          <self-uri content-type="author-comment" xlink:href="https://doi.org/10.7554/eLife.100527.2.sa0">Author response:</self-uri>
+        </event>
+      </pub-history>
+    </article-meta>
+  </article>
+</root>

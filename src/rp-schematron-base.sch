@@ -3875,7 +3875,7 @@
       <let name="allowed-content-vals" value="('preprint','reviewed-preprint','editor-report','referee-report','author-comment')"/>
       <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
       
-      <assert test="@content-type=('preprint','reviewed-preprint','editor-report','referee-report','author-comment')" 
+      <assert test="@content-type=$allowed-content-vals" 
         role="error" 
         id="event-self-uri-content-type"><name/> in event must have the attribute content-type with one of the following values: <value-of select="string-join($allowed-content-vals,'; ')"/>. This one does not.</assert>
       

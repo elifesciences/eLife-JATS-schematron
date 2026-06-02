@@ -961,8 +961,8 @@
     <rule context="event/self-uri" id="event-self-uri-tests">
       <let name="allowed-content-vals" value="('preprint','reviewed-preprint','editor-report','referee-report','author-comment')"/>
       <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
-      <report test="@content-type='reviewed-preprint' and not(matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]$'))" role="error" id="event-self-uri-href-4">
-        <name/> in event has the attribute content-type="reviewed-preprint", but the xlink:href attribute does not contain an eLife version specific DOI - <value-of select="@xlink:href"/>.</report>
+      <report test="@content-type=('preprint','reviewed-preprint') and (* or normalize-space(.)!='')" role="error" id="event-self-uri-content-1">
+        <name/> with the content-type <value-of select="@content-type"/> must not have any child elements or text. This one does.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
