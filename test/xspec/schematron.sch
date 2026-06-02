@@ -3015,9 +3015,10 @@
   </pattern>
   <pattern id="graphic-tests-pattern">
     <rule context="graphic|inline-graphic" id="graphic-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
-      <let name="mime-subtype" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
+      <let name="mime-subtype" value="if ($dtd-version le '1.3') then @mime-subtype else substring-after(@mimetype,'/')"/>
       
       <report test="contains($mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))" role="error" id="graphic-test-1">
         <name/> has tif mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
@@ -3029,8 +3030,11 @@
         <name/> has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
       
       <!-- Should this just be image? application included because during proofing stages non-web image files are referenced, e.g postscript -->
-      <assert test="@mimetype=('image','application')" role="error" id="graphic-test-4">
-        <name/> must have a @mimetype='image' or 'application'.</assert>
+      <report test="$dtd-version le '1.3' and not(@mimetype=('image','application'))" role="error" id="graphic-test-4">
+        <name/> must have a @mimetype='image' or 'application'.</report>
+      
+      <report test="$dtd-version ge '1.4' and not(matches(@mimetype,'^(image|application)/'))" role="error" id="graphic-test-4a">
+        <name/> must have a mimetype that starts with 'image'. This one is '<value-of select="@mimetype"/>'.</report>
       
       <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" role="error" id="graphic-test-5">
         <name/> must have an @xlink:href which contains a file reference.</assert>

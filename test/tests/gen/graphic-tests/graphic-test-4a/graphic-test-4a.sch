@@ -963,8 +963,8 @@
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
       <let name="mime-subtype" value="if ($dtd-version le '1.3') then @mime-subtype else substring-after(@mimetype,'/')"/>
-      <report test="contains($mime-subtype,'postscript') and not(ends-with($file,'.eps'))" role="error" id="graphic-test-2">
-        <name/> has postscript mime-subtype but filename does not end with '.eps'. This cannot be correct.</report>
+      <report test="$dtd-version ge '1.4' and not(matches(@mimetype,'^(image|application)/'))" role="error" id="graphic-test-4a">
+        <name/> must have a mimetype that starts with 'image'. This one is '<value-of select="@mimetype"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

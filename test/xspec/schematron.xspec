@@ -5217,12 +5217,22 @@
       </x:scenario>
       <x:scenario label="graphic-test-4-pass">
         <x:context href="../tests/gen/graphic-tests/graphic-test-4/pass.xml"/>
-        <x:expect-not-assert id="graphic-test-4" role="error"/>
+        <x:expect-not-report id="graphic-test-4" role="error"/>
         <x:expect-not-assert id="graphic-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="graphic-test-4-fail">
         <x:context href="../tests/gen/graphic-tests/graphic-test-4/fail.xml"/>
-        <x:expect-assert id="graphic-test-4" role="error"/>
+        <x:expect-report id="graphic-test-4" role="error"/>
+        <x:expect-not-assert id="graphic-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="graphic-test-4a-pass">
+        <x:context href="../tests/gen/graphic-tests/graphic-test-4a/pass.xml"/>
+        <x:expect-not-report id="graphic-test-4a" role="error"/>
+        <x:expect-not-assert id="graphic-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="graphic-test-4a-fail">
+        <x:context href="../tests/gen/graphic-tests/graphic-test-4a/fail.xml"/>
+        <x:expect-report id="graphic-test-4a" role="error"/>
         <x:expect-not-assert id="graphic-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="graphic-test-5-pass">
