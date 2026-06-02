@@ -1,0 +1,10 @@
+<?oxygen SCHSchema="media-test-1a.sch"?>
+<!--Context: media
+Test: report    ($dtd-version ge '1.4') and not(matches(@mimetype,'^(video|application|text|image|audio|chemical)/'))
+Message: media must have @mimetype, the value of which has to start with one of 'video','application','text','image', or 'audio', 'chemical'. This one has ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
+  <article dtd-version="1.4">
+    <media/>
+    <media mimetype="chemical/nofnjofnof"/>
+  </article>
+</root>

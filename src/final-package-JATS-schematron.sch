@@ -2511,7 +2511,9 @@
       <let name="file" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <let name="link" value="@xlink:href"/>
       
-      <assert test="@mimetype=('video','application','text','image', 'audio','chemical')" role="error" id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'.</assert>
+      <report test="($dtd-version le '1.3') and not(@mimetype=('video','application','text','image', 'audio','chemical'))" role="error" id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'. This one has '<value-of select="@mimetype"/>'.</report>
+      
+      <report test="($dtd-version ge '1.4') and not(matches(@mimetype,'^(video|application|text|image|audio|chemical)/'))" role="error" id="media-test-1a">media must have @mimetype, the value of which has to start with one of 'video','application','text','image', or 'audio', 'chemical'. This one has '<value-of select="@mimetype"/>'.</report>
       
       <report test="($dtd-version le '1.3') and not(@mime-subtype)" role="error" id="media-test-2">media must have @mime-subtype.</report>
       
@@ -2537,7 +2539,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-12" test="text()" role="error" id="media-test-12">Media element cannot contain text. This one has <value-of select="string-join(text(),'')"/>.</report>
       
-      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-13" test="not(@mimetype='video') and *" role="error" id="media-test-13">Media element that is not a mimetype="video" cannot contain elements. This one has the following element(s) <value-of select="string-join(*/name(),'; ')"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-13" test="not(starts-with(@mimetype,'video/') or @mimetype='video') and *" role="error" id="media-test-13">Media element that is not a mimetype="video" cannot contain elements. This one has the following element(s) <value-of select="string-join(*/name(),'; ')"/>.</report>
     </rule></pattern><pattern id="file-extension-tests-pattern"><rule context="graphic[@xlink:href]|media[@xlink:href]" id="file-extension-tests">
       
       <assert test="matches(@xlink:href,'\.[a-z0-9]+$')" role="error" id="file-extension-conformance">The file extenstion for a file must be in lower case. This <name/> element has an xlink:href which does not end with a lowercase file extension (<value-of select="tokenize(@xlink:href,'\.')[last()]"/> in <value-of select="@xlink:href"/>).</assert>
