@@ -1286,18 +1286,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="event-tests-pattern">
-    <rule context="event" id="event-tests">
-      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
-      <let name="date" value="date[1]/@iso-8601-date"/>
-      <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
-      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
-      <report test="not(date[@date-type='sent-for-review']) and not(self-uri)" role="error" id="event-test-3">[event-test-3] <name/> must contain a self-uri element. This one does not.</report>
+  <pattern id="event-child-tests-pattern">
+    <rule context="event/*" id="event-child-tests">
+      <let name="allowed-elems" value="('event-desc','date','self-uri')"/>
+      <report test="self::self-uri and parent::event/date[@date-type='sent-for-review']" role="error" id="sent-for-review-event-test-1">[sent-for-review-event-test-1] <name/> is not allowed in a sent for review event element. The only permitted children of that event type are <value-of select="string-join($allowed-elems[.!='self-uri'],', ')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event" role="error" id="event-tests-xspec-assert">event must be present.</assert>
+      <assert test="descendant::event/*" role="error" id="event-child-tests-xspec-assert">event/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

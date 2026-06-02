@@ -3774,9 +3774,9 @@
         role="error" 
         id="event-test-2"><name/> must contain a date element with a date-type attribute with one of the following values: <value-of select="string-join($date-type-vals,'; ')"/>. This one does not.</assert>
       
-      <assert test="not(date[@date-type='sent-for-review']) and not(self-uri)" 
+      <report test="not(date[@date-type='sent-for-review']) and not(self-uri)" 
         role="error" 
-        id="event-test-3"><name/> must contain a self-uri element. This one does not.</assert>
+        id="event-test-3"><name/> must contain a self-uri element. This one does not.</report>
         
         <report test="following-sibling::event[date[@iso-8601-date lt $date]]" 
           role="error" 
@@ -3793,6 +3793,10 @@
       <assert test="name()=$allowed-elems" 
         role="error" 
         id="event-child"><name/> is not allowed in an event element. The only permitted children of event are <value-of select="string-join($allowed-elems,', ')"/>.</assert>
+        
+      <report test="self::self-uri and parent::event/date[@date-type='sent-for-review']" 
+        role="error" 
+        id="sent-for-review-event-test-1"><name/> is not allowed in a sent for review event element. The only permitted children of that event type are <value-of select="string-join($allowed-elems[.!='self-uri'],', ')"/>.</report>
     </rule>
       
       <rule context="event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" id="rp-event-tests">
