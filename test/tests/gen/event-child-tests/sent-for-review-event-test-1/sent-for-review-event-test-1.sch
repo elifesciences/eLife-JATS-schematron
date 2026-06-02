@@ -958,18 +958,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="event/date" id="event-date-tests">
-      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
-      <let name="date" value="date[1]/@iso-8601-date"/>
-      <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
-      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
-      <assert test="@date-type=$date-type-vals" role="error" id="event-date-type">
-        <name/> in event must have a date-type attribute with one of the following values: <value-of select="string-join($date-type-vals,'; ')"/>.</assert>
+    <rule context="event/*" id="event-child-tests">
+      <let name="allowed-elems" value="('event-desc','date','self-uri')"/>
+      <report test="self::self-uri and parent::event/date[@date-type='sent-for-review']" role="error" id="sent-for-review-event-test-1">
+        <name/> is not allowed in a sent for review event element. The only permitted children of that event type are <value-of select="string-join($allowed-elems[.!='self-uri'],', ')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event/date" role="error" id="event-date-tests-xspec-assert">event/date must be present.</assert>
+      <assert test="descendant::event/*" role="error" id="event-child-tests-xspec-assert">event/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1,0 +1,13 @@
+<?oxygen SCHSchema="sent-for-review-event-test-1.sch"?>
+<!--Context: event/*
+Test: report    self::self-uri and parent::event/date[@date-type='sent-for-review']
+Message:  is not allowed in a sent for review event element. The only permitted children of that event type are . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <event>
+            <event-desc/>
+            <date date-type="sent-for-review"/>
+            <self-uri/>
+        </event>
+    </article>
+</root>

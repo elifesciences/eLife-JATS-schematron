@@ -2443,6 +2443,10 @@
       <assert test="name()=$allowed-elems" 
         role="error" 
         id="event-child"><name/> is not allowed in an event element. The only permitted children of event are <value-of select="string-join($allowed-elems,', ')"/>.</assert>
+      
+      <report test="self::self-uri and parent::event/date[@date-type='sent-for-review']" 
+        role="error" 
+        id="sent-for-review-event-test-1"><name/> is not allowed in a sent for review event element. The only permitted children of that event type are <value-of select="string-join($allowed-elems[.!='self-uri'],', ')"/>.</report>
     </rule>
     
     <rule context="event-desc" id="event-desc-tests">
@@ -2462,14 +2466,19 @@
     </rule>
     
     <rule context="event/date" id="event-date-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
+      <let name="date" value="date[1]/@iso-8601-date"/>
+      <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
+      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')
+        else $default-date-type-vals"/>
       
       <assert test="day and month and year" 
         role="error" 
         id="event-date-child"><name/> in event must have a day, month and year element. This one does not.</assert>
       
-      <assert test="@date-type=('preprint','reviewed-preprint')" 
+      <assert test="@date-type=$date-type-vals" 
         role="error" 
-        id="event-date-type"><name/> in event must have a date-type attribute with the value 'preprint' or 'reviewed-preprint'.</assert>
+        id="event-date-type"><name/> in event must have a date-type attribute with one of the following values: <value-of select="string-join($date-type-vals,'; ')"/>.</assert>
     </rule>
     
     <rule context="event/self-uri" id="event-self-uri-tests">
