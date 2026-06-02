@@ -3045,7 +3045,7 @@
       <let name="rp-link" value="self-uri[@content-type='reviewed-preprint']/@*:href"/>
       <let name="rp-version" value="replace($rp-link,'^.*\.','')"/>
       <let name="rp-pub-date" value="date[@date-type='reviewed-preprint']/@iso-8601-date"/>
-      <let name="sent-for-review-date" value="ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date"/>
+      <let name="sent-for-review-date" value="(ancestor::pub-history/event/date[@date-type='sent-for-review']/@iso-8601-date | ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date)[1]"/>
       <let name="preprint-pub-date" value="parent::pub-history/event/date[@date-type='preprint']/@iso-8601-date"/>
       <let name="later-rp-events" value="parent::pub-history/event[date[@date-type='reviewed-preprint'] and replace(self-uri[@content-type='reviewed-preprint'][1]/@*:href,'^.*\.','') gt $rp-version]"/>
       
@@ -3092,7 +3092,7 @@
       <assert test="@content-type=('preprint','reviewed-preprint','editor-report','referee-report','author-comment')" role="error" id="event-self-uri-content-type">
         <name/> in event must have the attribute content-type with one of the following values: <value-of select="string-join($allowed-content-vals,'; ')"/>. This one does not.</assert>
       
-      <report test="@content-type=$allowed-content-vals and (* or normalize-space(.)!='')" role="error" id="event-self-uri-content-1">
+      <report test="@content-type=('preprint','reviewed-preprint') and (* or normalize-space(.)!='')" role="error" id="event-self-uri-content-1">
         <name/> with the content-type <value-of select="@content-type"/> must not have any child elements or text. This one does.</report>
         
       <report test="@content-type='editor-report' and (* or not(matches(.,'^eLife [Aa]ssessment$')))" role="error" id="event-self-uri-content-2">

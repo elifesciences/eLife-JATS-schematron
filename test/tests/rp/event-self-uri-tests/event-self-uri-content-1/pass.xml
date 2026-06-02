@@ -1,6 +1,6 @@
 <?oxygen SCHSchema="event-self-uri-content-1.sch"?>
 <!--Context: event/self-uri
-Test: report    @content-type=$allowed-content-vals and (* or normalize-space(.)!='')
+Test: report    @content-type=('preprint','reviewed-preprint') and (* or normalize-space(.)!='')
 Message:  with the content-type  must not have any child elements or text. This one does. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
