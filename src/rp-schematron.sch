@@ -2623,11 +2623,12 @@
       
       <assert test="@date-type=('preprint','reviewed-preprint')" role="error" id="event-date-type">[event-date-type] <name/> in event must have a date-type attribute with the value 'preprint' or 'reviewed-preprint'.</assert>
     </rule></pattern><pattern id="event-self-uri-tests-pattern"><rule context="event/self-uri" id="event-self-uri-tests">
+      <let name="allowed-content-vals" value="('preprint','reviewed-preprint','editor-report','referee-report','author-comment')"/>
       <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
       
-      <assert test="@content-type=('preprint','reviewed-preprint','editor-report','referee-report','author-comment')" role="error" id="event-self-uri-content-type">[event-self-uri-content-type] <name/> in event must have the attribute content-type="preprint" or content-type="reviewed-preprint". This one does not.</assert>
+      <assert test="@content-type=('preprint','reviewed-preprint','editor-report','referee-report','author-comment')" role="error" id="event-self-uri-content-type">[event-self-uri-content-type] <name/> in event must have the attribute content-type with one of the following values: <value-of select="string-join($allowed-content-vals,'; ')"/>. This one does not.</assert>
       
-      <report test="@content-type=('preprint','reviewed-preprint') and (* or normalize-space(.)!='')" role="error" id="event-self-uri-content-1">[event-self-uri-content-1] <name/> with the content-type <value-of select="@content-type"/> must not have any child elements or text. This one does.</report>
+      <report test="@content-type=$allowed-content-vals and (* or normalize-space(.)!='')" role="error" id="event-self-uri-content-1">[event-self-uri-content-1] <name/> with the content-type <value-of select="@content-type"/> must not have any child elements or text. This one does.</report>
         
       <report test="@content-type='editor-report' and (* or not(matches(.,'^eLife [Aa]ssessment$')))" role="error" id="event-self-uri-content-2">[event-self-uri-content-2] <name/> with the content-type <value-of select="@content-type"/> must not have any child elements, and contain the text 'eLife Assessment'. This one does not.</report>
         

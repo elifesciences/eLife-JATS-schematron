@@ -1288,6 +1288,7 @@
   </sqf:fixes>
   <pattern id="event-self-uri-tests-pattern">
     <rule context="event/self-uri" id="event-self-uri-tests">
+      <let name="allowed-content-vals" value="('preprint','reviewed-preprint','editor-report','referee-report','author-comment')"/>
       <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
       <report test="@content-type='referee-report' and (* or .='')" role="error" id="event-self-uri-content-3">[event-self-uri-content-3] <name/> with the content-type <value-of select="@content-type"/> must not have any child elements, and contain the title of the public review as text. This self-uri either has child elements or it is empty.</report>
     </rule>

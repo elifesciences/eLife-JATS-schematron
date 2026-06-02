@@ -1288,6 +1288,7 @@
   </sqf:fixes>
   <pattern id="event-self-uri-tests-pattern">
     <rule context="event/self-uri" id="event-self-uri-tests">
+      <let name="allowed-content-vals" value="('preprint','reviewed-preprint','editor-report','referee-report','author-comment')"/>
       <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
       <assert test="matches(@*:href,'https?://(dx.doi.org|doi.org)/')" role="warning" id="event-self-uri-href-3">[event-self-uri-href-3] <name/> in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. This one is not a doi - <value-of select="@*:href"/>. Please check whether there is a doi that can be used instead.</assert>
     </rule>
