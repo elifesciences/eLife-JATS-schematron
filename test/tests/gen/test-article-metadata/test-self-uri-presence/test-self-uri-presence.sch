@@ -968,6 +968,7 @@
       <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
       <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
       <let name="is-prc" value="e:is-prc(.)"/>
+      <let name="dtd" value="ancestor::article/@dtd-version"/>
       <report test="not($article-type = $notice-article-types) and not(self-uri)" role="error" id="test-self-uri-presence">There must be a child self-uri in article-meta.</report>
     </rule>
   </pattern>

@@ -1112,6 +1112,7 @@
     <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
     <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
     <let name="is-prc" value="e:is-prc(.)"/>
+    <let name="dtd" value="ancestor::article/@dtd-version"/>
     
 	<assert test="matches($article-id,'^\d{5,6}$')" role="error" id="test-article-id">article-id must consist only of 5 or 6 digits. Currently it is <value-of select="article-id[@pub-id-type='publisher-id']"/></assert>
     
@@ -1137,7 +1138,9 @@
     
     <report test="not($article-type = $notice-article-types) and not(self-uri[matches(@xlink:href, '^elife-[\d]{5,6}\.pdf$|^elife-[\d]{5,6}-v[0-9]{1,2}\.pdf$')])" role="error" id="test-self-uri-pdf-2">self-uri does not conform.</report>
 		
-    <report test="not($article-type = ($notice-article-types,'article-commentary','editorial')) and count(history) != 1" role="error" id="test-history-presence">There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/></report>
+    <report test="not($article-type = ($notice-article-types,'article-commentary','editorial')) and ($dtd le '1.3') and count(history) != 1" role="error" id="test-history-presence">There must be one and only one history element in the article-meta. Currently there are <value-of select="count(history)"/></report>
+    
+    <report test="not($article-type = ($notice-article-types,'article-commentary','editorial')) and ($dtd ge '1.4') and count(history) != 0" role="error" id="test-history-presence-dtd">The history element is deprecated in JATS version <value-of select="$dtd"/>. Remove it.</report>
     
     <!-- Add this once all history is removed from insights
       
@@ -1653,6 +1656,7 @@
       <report test="e:get-weekday($date) != 2" role="warning" id="press-pub-date-check">The publication date for this article is in the future (<value-of select="$date"/>), but the day of publication is not a Tuesday (for Press). Is that correct?</report>
       
     </rule></pattern><pattern id="pub-history-tests-pattern"><rule context="pub-history" id="pub-history-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <assert test="parent::article-meta" role="error" id="pub-history-parent"><name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
       
@@ -1665,14 +1669,19 @@
       <report test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) lt 1" role="error" id="pub-history-events-3"><name/> in PRC articles must have at least one event element for reviewed preprint publication (an event with a self-uri[@content-type='reviewed-preprint'] element). This one has none.</report>
       
       <report test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) gt 3" role="warning" id="pub-history-events-4"><name/> has <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint event elements, which is unusual. Is this correct?</report>
+      
+      <report test="e:is-prc(.) and ($dtd-version ge '1.4') and count(event/date[@date-type='sent-for-review']) != 1" role="error" id="pub-history-events-5"><name/> has <value-of select="count(event/date[@date-type='sent-for-review'])"/> sent for review event elements. Under JATS version <value-of select="$dtd-version"/> this must be captured in pub-history.</report>
     </rule></pattern><pattern id="event-tests-pattern"><rule context="event" id="event-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="date" value="date[1]/@iso-8601-date"/>
+      <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
+      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
       
       <assert test="event-desc" role="error" id="event-test-1"><name/> must contain an event-desc element. This one does not.</assert>
       
-      <assert test="date[@date-type=('preprint','reviewed-preprint')]" role="error" id="event-test-2"><name/> must contain a date element with the attribute date-type="preprint" or date-type="reviewed-preprint". This one does not.</assert>
+      <assert test="date[@date-type=$date-type-vals]" role="error" id="event-test-2"><name/> must contain a date element with a date-type attribute with one of the following values: <value-of select="string-join($date-type-vals,'; ')"/>. This one does not.</assert>
       
-      <assert test="self-uri" role="error" id="event-test-3"><name/> must contain a self-uri element. This one does not.</assert>
+      <report test="not(date[@date-type='sent-for-review']) and not(self-uri)" role="error" id="event-test-3"><name/> must contain a self-uri element. This one does not.</report>
         
         <report test="following-sibling::event[date[@iso-8601-date lt $date]]" role="error" id="event-test-4">Events in pub-history must be ordered chronologically in descending order. This event has a date (<value-of select="$date"/>) which is later than the date of a following event (<value-of select="preceding-sibling::event[date[@iso-8601-date lt $date]][1]"/>).</report>
       
@@ -1681,7 +1690,7 @@
       <let name="rp-link" value="self-uri[@content-type='reviewed-preprint']/@xlink:href"/>
       <let name="rp-version" value="replace($rp-link,'^.*\.','')"/>
       <let name="rp-pub-date" value="date[@date-type='reviewed-preprint']/@iso-8601-date"/>
-      <let name="sent-for-review-date" value="ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date"/>
+      <let name="sent-for-review-date" value="(ancestor::pub-history/event/date[@date-type='sent-for-review']/@iso-8601-date | ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date)[1]"/>
       <let name="preprint-pub-date" value="parent::pub-history/event/date[@date-type='preprint']/@iso-8601-date"/>
       <let name="later-rp-events" value="parent::pub-history/event[date[@date-type='reviewed-preprint'] and replace(self-uri[@content-type='reviewed-preprint'][1]/@xlink:href,'^.*\.','') gt $rp-version]"/>
       
@@ -1695,25 +1704,40 @@
       <let name="allowed-elems" value="('event-desc','date','self-uri')"/>
       
       <assert test="name()=$allowed-elems" role="error" id="event-child"><name/> is not allowed in an event element. The only permitted children of event are <value-of select="string-join($allowed-elems,', ')"/>.</assert>
+      
+      <report test="self::self-uri and parent::event/date[@date-type='sent-for-review']" role="error" id="sent-for-review-event-test-1"><name/> is not allowed in a sent for review event element. The only permitted children of that event type are <value-of select="string-join($allowed-elems[.!='self-uri'],', ')"/>.</report>
     </rule></pattern><pattern id="event-desc-tests-pattern"><rule context="event-desc" id="event-desc-tests">
       
-      <report test="not(matches(parent::event/self-uri[1]/@xlink:href,'elifesciences\.org|10.7554/e[lL]ife')) and not(starts-with(.,'This manuscript was published as a preprint at ') or .='This manuscript was published as a preprint.')" role="error" id="event-desc-content"><name/> that's a child of an event without an eLife DOI must contain the text 'This manuscript was published as a preprint at ' followed by the preprint server name. This one does not.</report>
+      <report test="(parent::event/date[@date-type='preprint'] or (self-uri and not(matches(parent::event/self-uri[1]/@xlink:href,'elifesciences\.org|10.7554/e[lL]ife')))) and not(.='Preprint posted' or starts-with(.,'This manuscript was published as a preprint at ') or .='This manuscript was published as a preprint.')" role="error" id="event-desc-content"><name/> that's a child of an event without an eLife DOI must contain the text 'This manuscript was published as a preprint at ' followed by the preprint server name. This one has '<value-of select="."/>'.</report>
       
-      <report test="matches(parent::event/self-uri[1]/@xlink:href,'elifesciences\.org|10.7554/e[lL]ife') and not(.=('This manuscript was published as a reviewed preprint.','The reviewed preprint was revised.'))" role="error" id="event-desc-content-2"><name/> that's a child of an event with an eLife DOI must contain the text 'This manuscript was published as a reviewed preprint.' or 'The reviewed preprint was revised.'</report>
+      <report test="matches(parent::event/self-uri[1]/@xlink:href,'elifesciences\.org|10.7554/e[lL]ife') and not(matches(.,'^Reviewed preprint v\d$') or .=('This manuscript was published as a reviewed preprint.','The reviewed preprint was revised.'))" role="error" id="event-desc-content-2"><name/> that's a child of an event with an eLife DOI must contain the text 'Reviewed preprint v0' (or in older content 'This manuscript was published as a reviewed preprint.' or 'The reviewed preprint was revised.'). This one has '<value-of select="."/>'.</report>
+      
+      <report test="parent::event/date[@date-type='sent-for-review'] and not(.='Sent for review')" role="error" id="event-desc-content-3"><name/> that's a child of a sent for review event must contain the text 'Sent for review'. This one has '<value-of select="."/>'.</report>
       
       <report test="*" role="error" id="event-desc-elems"><name/> cannot contain elements. This one has the following: <value-of select="string-join(distinct-values(*/name()),', ')"/>.</report>
       
     </rule></pattern><pattern id="event-date-tests-pattern"><rule context="event/date" id="event-date-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
+      <let name="date" value="date[1]/@iso-8601-date"/>
+      <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
+      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
       
       <assert test="day and month and year" role="error" id="event-date-child"><name/> in event must have a day, month and year element. This one does not.</assert>
       
-      <assert test="@date-type=('preprint','reviewed-preprint')" role="error" id="event-date-type"><name/> in event must have a date-type attribute with the value 'preprint' or 'reviewed-preprint'.</assert>
+      <assert test="@date-type=$date-type-vals" role="error" id="event-date-type"><name/> in event must have a date-type attribute with one of the following values: <value-of select="string-join($date-type-vals,'; ')"/>.</assert>
     </rule></pattern><pattern id="event-self-uri-tests-pattern"><rule context="event/self-uri" id="event-self-uri-tests">
+      <let name="allowed-content-vals" value="('preprint','reviewed-preprint','editor-report','referee-report','author-comment')"/>
       <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
       
-      <assert test="@content-type=('preprint','reviewed-preprint')" role="error" id="event-self-uri-content-type"><name/> in event must have the attribute content-type="preprint" or content-type="reviewed-preprint". This one does not.</assert>
+      <assert test="@content-type=$allowed-content-vals" role="error" id="event-self-uri-content-type"><name/> in event must have the attribute content-type with one of the following values: <value-of select="string-join($allowed-content-vals,'; ')"/>. This one does not.</assert>
       
-      <assert test="not(*) and normalize-space(.)=''" role="error" id="event-self-uri-content"><name/> in event must be empty. This one contains elements and/or text.</assert>
+      <report test="@content-type=('preprint','reviewed-preprint') and (* or normalize-space(.)!='')" role="error" id="event-self-uri-content-1"><name/> with the content-type <value-of select="@content-type"/> must not have any child elements or text. This one does.</report>
+      
+      <report test="@content-type='editor-report' and (* or not(matches(.,'^eLife [Aa]ssessment$')))" role="error" id="event-self-uri-content-2"><name/> with the content-type <value-of select="@content-type"/> must not have any child elements, and contain the text 'eLife Assessment'. This one does not.</report>
+        
+      <report test="@content-type='referee-report' and (* or .='')" role="error" id="event-self-uri-content-3"><name/> with the content-type <value-of select="@content-type"/> must not have any child elements, and contain the title of the public review as text. This self-uri either has child elements or it is empty.</report>
+        
+      <report test="@content-type='author-comment' and (* or not(matches(.,'^Author [Rr]esponse:?\s?$')))" role="error" id="event-self-uri-content-4"><name/> with the content-type <value-of select="@content-type"/> must not have any child elements, and contain the title of the text 'Author response'. This one does not.</report>
       
       <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$')" role="error" id="event-self-uri-href-1"><name/> in event must have an xlink:href attribute containing a link to the preprint. This one does not have a valid URI - <value-of select="@xlink:href"/>.</assert>
       
@@ -1726,6 +1750,8 @@
       <report test="(@content-type!='reviewed-preprint' or not(@content-type)) and matches(@xlink:href,'^https://doi.org/10.7554/eLife.\d+\.\d$')" role="error" id="event-self-uri-href-5"><name/> in event does not have the attribute content-type="reviewed-preprint", but the xlink:href attribute contains an eLife version specific DOI - <value-of select="@xlink:href"/>. If it's a preprint event, the link should be to a preprint. If it's an event for reviewed preprint publication, then it should have the attribute content-type!='reviewed-preprint'.</report>
       
       <report test="@content-type='reviewed-preprint' and not(contains(@xlink:href,$article-id))" role="error" id="event-self-uri-href-6"><name/> in event the attribute content-type="reviewed-preprint", but the xlink:href attribute value (<value-of select="@xlink:href"/>) does not contain the article id (<value-of select="$article-id"/>) which must be incorrect, since this should be the version DOI for the reviewed preprint version.</report>
+      
+      <report test="@content-type=('editor-report','referee-report','author-comment') and not(matches(@*:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]\.sa\d+$'))" role="error" id="event-self-uri-href-7"><name/> in event has the attribute content-type="<value-of select="@content-type"/>", but the xlink:href attribute does not contain an eLife peer review DOI - <value-of select="@*:href"/>.</report>
     </rule></pattern><pattern id="front-permissions-tests-pattern"><rule context="front//permissions" id="front-permissions-tests">
 	  <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
 	  <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
@@ -2461,12 +2487,13 @@
     </rule></pattern><pattern id="graphic-tests-pattern"><rule context="graphic|inline-graphic" id="graphic-tests">
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
+      <let name="mime-subtype" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       
-      <report test="contains(@mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))" role="error" id="graphic-test-1"><name/> has tif mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
+      <report test="contains($mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))" role="error" id="graphic-test-1"><name/> has tif mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
       
-      <report test="contains(@mime-subtype,'postscript') and not(ends-with($file,'.eps'))" role="error" id="graphic-test-2"><name/> has postscript mime-subtype but filename does not end with '.eps'. This cannot be correct.</report>
+      <report test="contains($mime-subtype,'postscript') and not(ends-with($file,'.eps'))" role="error" id="graphic-test-2"><name/> has postscript mime-subtype but filename does not end with '.eps'. This cannot be correct.</report>
       
-      <report test="contains(@mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))" role="error" id="graphic-test-3"><name/> has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
+      <report test="contains($mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))" role="error" id="graphic-test-3"><name/> has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
       
       <!-- Should this just be image? application included because during proofing stages non-web image files are referenced, e.g postscript -->
       <assert test="@mimetype=('image','application')" role="error" id="graphic-test-4"><name/> must have a @mimetype='image' or 'application'.</assert>
@@ -2477,20 +2504,23 @@
       
       <report test="contains($link,'&amp;')" role="error" id="graphic-test-8">Image file-name for <value-of select="if (name()='inline-graphic') then 'inline-graphic' else replace(parent::fig/label,'\.','')"/> contains an ampersand - <value-of select="tokenize($link,'/')[last()]"/>. Please rename the file so that this ampersand is removed.</report>
     </rule></pattern><pattern id="media-tests-pattern"><rule context="media" id="media-tests">
-      <let name="file" value="@mime-subtype"/>
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
+      <let name="file" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <let name="link" value="@xlink:href"/>
       
       <assert test="@mimetype=('video','application','text','image', 'audio','chemical')" role="error" id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'.</assert>
       
-      <assert test="@mime-subtype" role="error" id="media-test-2">media must have @mime-subtype.</assert>
+      <report test="($dtd-version le '1.3') and not(@mime-subtype)" role="error" id="media-test-2">media must have @mime-subtype.</report>
+      
+      <report test="($dtd-version ge '1.4') and @mime-subtype" role="error" id="media-test-2a">media has a mime-subtype attribute, but this is depcreated in JATS v<value-of select="$dtd-version"/>. Add it to the existing mimetype, i.e. <value-of select="concat(@mimetype,'/',@mime-subtype)"/></report>
       
       <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,15}$')" role="error" id="media-test-3">media must have an @xlink:href which contains a file reference.</assert>
       
-      <report test="if ($file='octet-stream') then ()         else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))         else if ($file = 'gif') then not(matches(@xlink:href,'\.mp4$|\.gif$'))         else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))         else if ($file='x-m') then not(ends-with(@xlink:href,'.m'))         else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv'))         else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))         else if ($file='tiff') then not(matches(@xlink:href,'\.tiff?$'))         else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))         else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex'))         else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz'))         else if ($file='html') then not(ends-with(@xlink:href,'.html'))         else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav'))         else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff'))         else if ($file='x-macbinary') then not(ends-with(@xlink:href,'.bin'))         else if ($file='x-pdb') then not(ends-with(@xlink:href,'.pdb'))         else if ($file='fasta') then not(ends-with(@xlink:href,'.fasta'))         else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))         else not(ends-with(@xlink:href,concat('.',$file)))" role="warning" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
+      <report test="if ($file='octet-stream') then ()         else if ($file = 'msword') then not(matches(@xlink:href,'\.doc[x]?$'))         else if ($file = 'gif') then not(matches(@xlink:href,'\.mp4$|\.gif$'))         else if ($file = 'excel') then not(matches(@xlink:href,'\.xl[s|t|m][x|m|b]?$'))         else if ($file='x-m') then not(ends-with(@xlink:href,'.m'))         else if ($file='tab-separated-values') then not(ends-with(@xlink:href,'.tsv'))         else if ($file='jpeg') then not(matches(@xlink:href,'\.[Jj][Pp][Gg]$'))         else if ($file='tiff') then not(matches(@xlink:href,'\.tiff?$'))         else if ($file='postscript') then not(matches(@xlink:href,'\.[Aa][Ii]$|\.[Pp][Ss]$'))         else if ($file='x-tex') then not(ends-with(@xlink:href,'.tex'))         else if ($file='x-gzip') then not(ends-with(@xlink:href,'.gz'))         else if ($file='html') then not(ends-with(@xlink:href,'.html'))         else if ($file='x-wav') then not(ends-with(@xlink:href,'.wav'))         else if ($file='x-aiff') then not(ends-with(@xlink:href,'.aiff'))         else if ($file='x-macbinary') then not(ends-with(@xlink:href,'.bin'))         else if ($file='x-pdb') then not(ends-with(@xlink:href,'.pdb'))         else if ($file='fasta') then not(ends-with(@xlink:href,'.fasta'))         else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))         else not(ends-with(@xlink:href,concat('.',$file)))" role="warning" id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its mime-subtype.</report>      
       
-      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-5" test="matches(label[1],'[Aa]nimation') and not(@mime-subtype='gif')" role="error" id="media-test-5"><value-of select="label"/> media with animation type label must have a @mime-subtype='gif'.</report>    
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-5" test="matches(label[1],'[Aa]nimation') and not($file='gif')" role="error" id="media-test-5"><value-of select="label"/> media with animation type label must have a mime-subtype='gif'.</report>    
       
-      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-6" test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and (@mime-subtype='octet-stream')" role="warning" id="media-test-6">media has @mime-subtype='octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>      
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-6" test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and ($file='octet-stream')" role="warning" id="media-test-6">media has the mime-subtype 'octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>      
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-7" test="if (child::label) then not(matches(label[1],'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Figure \d{1,4}—animation \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—animation \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—animation \d{1,4}\.$|^Animation \d{1,4}\.$|^Decision letter video \d{1,4}\.$|^Review video \d{1,4}\.$|^Author response video \d{1,4}\.$'))         else ()" role="error" id="media-test-7">media label does not conform to eLife's usual label format - <value-of select="label[1]"/>.</report>
       

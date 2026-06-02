@@ -1291,6 +1291,7 @@
       <let name="link" value="lower-case(@*:href)"/>
       <let name="file" value="tokenize($link,'\.')[last()]"/>
       <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
+      <let name="mime-subtype" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <assert test="normalize-space(@*:href)!=''" role="error" id="graphic-check-1">[graphic-check-1] <name/> must have an xlink:href attribute. This one does not.</assert>
     </rule>
   </pattern>

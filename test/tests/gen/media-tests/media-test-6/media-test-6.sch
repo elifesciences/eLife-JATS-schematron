@@ -959,9 +959,10 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="media" id="media-tests">
-      <let name="file" value="@mime-subtype"/>
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
+      <let name="file" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <let name="link" value="@xlink:href"/>
-      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-6" test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and (@mime-subtype='octet-stream')" role="warning" id="media-test-6">media has @mime-subtype='octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-6" test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and ($file='octet-stream')" role="warning" id="media-test-6">media has the mime-subtype 'octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

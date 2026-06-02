@@ -959,6 +959,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="pub-history" id="pub-history-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <assert test="parent::article-meta" role="error" id="pub-history-parent">
         <name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
     </rule>

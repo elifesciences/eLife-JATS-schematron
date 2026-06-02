@@ -961,7 +961,8 @@
     <rule context="graphic|inline-graphic" id="graphic-tests">
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
-      <report test="contains(@mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))" role="error" id="graphic-test-3">
+      <let name="mime-subtype" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
+      <report test="contains($mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))" role="error" id="graphic-test-3">
         <name/> has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
     </rule>
   </pattern>

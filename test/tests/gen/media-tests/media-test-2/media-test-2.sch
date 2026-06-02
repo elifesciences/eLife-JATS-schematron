@@ -959,9 +959,10 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="media" id="media-tests">
-      <let name="file" value="@mime-subtype"/>
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
+      <let name="file" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <let name="link" value="@xlink:href"/>
-      <assert test="@mime-subtype" role="error" id="media-test-2">media must have @mime-subtype.</assert>
+      <report test="($dtd-version le '1.3') and not(@mime-subtype)" role="error" id="media-test-2">media must have @mime-subtype.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

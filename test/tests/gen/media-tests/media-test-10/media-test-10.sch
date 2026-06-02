@@ -959,7 +959,8 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="media" id="media-tests">
-      <let name="file" value="@mime-subtype"/>
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
+      <let name="file" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <let name="link" value="@xlink:href"/>
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-10" test="preceding::media/@xlink:href = $link" role="error" id="media-test-10">Media file for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/@mimetype='video') then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')         else replace(preceding::media[@xlink:href=$link][1]/parent::*/label,'\.','')"/>.</report>
     </rule>

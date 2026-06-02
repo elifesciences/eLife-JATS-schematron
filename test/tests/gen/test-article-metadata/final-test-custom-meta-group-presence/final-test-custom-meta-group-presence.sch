@@ -968,6 +968,7 @@
       <let name="abs-standard-count" value="count(abstract[not(@abstract-type)])"/>
       <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
       <let name="is-prc" value="e:is-prc(.)"/>
+      <let name="dtd" value="ancestor::article/@dtd-version"/>
       <report test="if ($subj-type = $exceptions) then ()       else count(custom-meta-group) != 1" role="error" id="final-test-custom-meta-group-presence">One custom-meta-group should be present in article-meta for all article types except Insights, Retractions, Corrections and Expressions of Concern.</report>
     </rule>
   </pattern>

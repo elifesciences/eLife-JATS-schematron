@@ -959,6 +959,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="pub-history" id="pub-history-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <report test="count(event[self-uri[@content-type='preprint']]) != 1" role="error" id="pub-history-events-2">
         <name/> must contain one, and only one preprint event (an event with a self-uri[@content-type='preprint'] element). This one has <value-of select="count(event[self-uri[@content-type='preprint']])"/> preprint event elements.</report>
     </rule>

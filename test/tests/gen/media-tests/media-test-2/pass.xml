@@ -1,9 +1,9 @@
 <?oxygen SCHSchema="media-test-2.sch"?>
 <!--Context: media
-Test: assert    @mime-subtype
+Test: report    ($dtd-version le '1.3') and not(@mime-subtype)
 Message: media must have @mime-subtype. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article>
+  <article dtd-version="1.3">
     <media mimetype="video" mime-subtype="mp4"/>
   </article>
 </root>

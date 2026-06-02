@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="event-date-type.sch"?>
 <!--Context: event/date
-Test: assert    @date-type=('preprint','reviewed-preprint')
-Message:  in event must have a date-type attribute with the value 'preprint' or 'reviewed-preprint'. -->
+Test: assert    @date-type=$date-type-vals
+Message:  in event must have a date-type attribute with one of the following values: . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <article-meta>

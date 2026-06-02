@@ -959,6 +959,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="event/self-uri" id="event-self-uri-tests">
+      <let name="allowed-content-vals" value="('preprint','reviewed-preprint','editor-report','referee-report','author-comment')"/>
       <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
       <assert test="matches(@xlink:href,'https?://(dx.doi.org|doi.org)/')" role="warning" id="event-self-uri-href-3">
         <name/> in event must have an xlink:href attribute containing a link to the preprint. Where possible this should be a doi. This one is not a doi - <value-of select="@xlink:href"/>. Please check whether there is a doi that can be used instead.</assert>

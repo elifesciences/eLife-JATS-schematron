@@ -2612,6 +2612,7 @@
         <let name="link" value="lower-case(@*:href)"/>
         <let name="file" value="tokenize($link,'\.')[last()]"/>
         <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
+        <let name="mime-subtype" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
         
         <assert test="normalize-space(@*:href)!=''" role="error" id="graphic-check-1">
         <name/> must have an xlink:href attribute. This one does not.</assert>
@@ -2619,19 +2620,19 @@
         <assert test="$file=$image-file-types" role="error" id="graphic-check-2">
         <name/> must have an xlink:href attribute that ends with an image file type extension. <value-of select="if ($file!='') then $file else @*:href"/> is not one of <value-of select="string-join($image-file-types,', ')"/>.</assert>
         
-        <report test="contains(@mime-subtype,'tiff') and not($file=('tif','tiff'))" role="error" id="graphic-test-1">
+        <report test="contains($mime-subtype,'tiff') and not($file=('tif','tiff'))" role="error" id="graphic-test-1">
         <name/> has tiff mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
         
-        <assert test="normalize-space(@mime-subtype)!=''" role="error" id="graphic-test-2">
-        <name/> must have a mime-subtype attribute.</assert>
+        <assert test="normalize-space($mime-subtype)!=''" role="error" id="graphic-test-2">
+        <name/> must have a mime-subtype.</assert>
       
-        <report test="contains(@mime-subtype,'jpeg') and not($file=('jpg','jpeg'))" role="error" id="graphic-test-3">
+        <report test="contains($mime-subtype,'jpeg') and not($file=('jpg','jpeg'))" role="error" id="graphic-test-3">
         <name/> has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
         
         <assert test="@mimetype='image'" role="error" id="graphic-test-4">
         <name/> must have a @mimetype='image'.</assert>
         
-        <report test="@mime-subtype='png' and $file!='png'" role="error" id="graphic-test-5">
+        <report test="$mime-subtype='png' and $file!='png'" role="error" id="graphic-test-5">
         <name/> has png mime-subtype but filename does not end with '.png'. This cannot be correct.</report>
         
         <report test="not(ancestor::sub-article) and (not(ancestor::disp-formula or ancestor::inline-formula) and ancestor::fig or ancestor::table-wrap) and (preceding::graphic/@*:href/lower-case(.) = $link or preceding::inline-graphic/@*:href/lower-case(.) = $link)" role="error" id="graphic-test-6">Image file for <value-of select="if (ancestor::*[name()=('fig','table-wrap')]/label) then ancestor::*[name()=('fig','table-wrap')]/label else 'graphic'"/> (<value-of select="@*:href"/>) is the same as the one used for another graphic or inline-graphic. This must be incorrect.</report>
@@ -2642,7 +2643,7 @@
         
         <report test="ancestor::sub-article and (preceding::graphic/@*:href/lower-case(.) = $link or preceding::inline-graphic/@*:href/lower-case(.) = $link)" role="warning" id="graphic-test-9">Image file in sub-article for <value-of select="name()"/> (<value-of select="@*:href"/>) is the same as the one used for another graphic or inline-graphic. Is that correct?</report>
         
-        <report test="@mime-subtype='gif' and $file!='gif'" role="error" id="graphic-test-7">
+        <report test="$mime-subtype='gif' and $file!='gif'" role="error" id="graphic-test-7">
         <name/> has gif mime-subtype but filename does not end with '.gif'. This cannot be correct.</report>
      </rule>
   </pattern>
@@ -2822,6 +2823,7 @@
         <let name="distinct-email-count" value="count($distinct-emails)"/>
         <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
         <let name="corresp-author-count" value="count($corresp-authors)"/>
+        <let name="dtd" value="ancestor::article/@dtd-version"/>
         
         <assert test="article-id[@pub-id-type='doi']" role="error" id="article-id">article-meta must contain at least one DOI - a &lt;article-id pub-id-type="doi"&gt; element.</assert>
 
@@ -2850,6 +2852,8 @@
         <report test="$is-reviewed-preprint and not(count(history)=1)" role="error" id="history-presence">Reviewed preprints must have (and only one) history. This one has <value-of select="count(history)"/>.</report>
         
         <report test="$is-reviewed-preprint and not(count(pub-history)=1)" role="error" id="pub-history-presence">Reviewed preprints must have (and only one) pub-history. This one has <value-of select="count(pub-history)"/>.</report>
+        
+        <report test="($dtd ge '1.4') and count(history) != 0" role="error" id="test-history-presence-dtd">The history element is deprecated in JATS version <value-of select="$dtd"/>. Remove it (and move any sent for review dates to pub-history).</report>
       </rule>
   </pattern>
   <pattern id="general-article-id-checks-pattern">
@@ -3016,16 +3020,19 @@
   </pattern>
   <pattern id="event-tests-pattern">
     <rule context="event" id="event-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="date" value="date[1]/@iso-8601-date"/>
+      <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
+      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
       
       <assert test="event-desc" role="error" id="event-test-1">
         <name/> must contain an event-desc element. This one does not.</assert>
       
-      <assert test="date[@date-type=('preprint','reviewed-preprint')]" role="error" id="event-test-2">
-        <name/> must contain a date element with the attribute date-type="preprint" or date-type="reviewed-preprint". This one does not.</assert>
+      <assert test="date[@date-type=$date-type-vals]" role="error" id="event-test-2">
+        <name/> must contain a date element with a date-type attribute with one of the following values: <value-of select="string-join($date-type-vals,'; ')"/>. This one does not.</assert>
       
-      <assert test="self-uri" role="error" id="event-test-3">
-        <name/> must contain a self-uri element. This one does not.</assert>
+      <report test="not(date[@date-type='sent-for-review']) and not(self-uri)" role="error" id="event-test-3">
+        <name/> must contain a self-uri element. This one does not.</report>
         
         <report test="following-sibling::event[date[@iso-8601-date lt $date]]" role="error" id="event-test-4">Events in pub-history must be ordered chronologically in descending order. This event has a date (<value-of select="$date"/>) which is later than the date of a following event (<value-of select="preceding-sibling::event[date[@iso-8601-date lt $date]][1]"/>).</report>
       
@@ -3038,6 +3045,9 @@
       
       <assert test="name()=$allowed-elems" role="error" id="event-child">
         <name/> is not allowed in an event element. The only permitted children of event are <value-of select="string-join($allowed-elems,', ')"/>.</assert>
+        
+      <report test="self::self-uri and parent::event/date[@date-type='sent-for-review']" role="error" id="sent-for-review-event-test-1">
+        <name/> is not allowed in a sent for review event element. The only permitted children of that event type are <value-of select="string-join($allowed-elems[.!='self-uri'],', ')"/>.</report>
     </rule>
   </pattern>
   <pattern id="rp-event-tests-pattern">
@@ -3045,7 +3055,7 @@
       <let name="rp-link" value="self-uri[@content-type='reviewed-preprint']/@*:href"/>
       <let name="rp-version" value="replace($rp-link,'^.*\.','')"/>
       <let name="rp-pub-date" value="date[@date-type='reviewed-preprint']/@iso-8601-date"/>
-      <let name="sent-for-review-date" value="ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date"/>
+      <let name="sent-for-review-date" value="(ancestor::pub-history/event/date[@date-type='sent-for-review']/@iso-8601-date | ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date)[1]"/>
       <let name="preprint-pub-date" value="parent::pub-history/event/date[@date-type='preprint']/@iso-8601-date"/>
       <let name="later-rp-events" value="parent::pub-history/event[date[@date-type='reviewed-preprint'] and replace(self-uri[@content-type='reviewed-preprint'][1]/@*:href,'^.*\.','') gt $rp-version]"/>
       
@@ -3068,6 +3078,9 @@
       
       <report test="parent::event/self-uri[1][@content-type='reviewed-preprint'] and .!=concat('Reviewed preprint v',replace(parent::event[1]/self-uri[1][@content-type='reviewed-preprint']/@*:href,'^.*\.',''))" role="error" id="event-desc-content-2">
         <name/> that's a child of a Reviewed preprint event must contain the text 'Reviewed preprint v' followwd by the verison number for that Reviewed preprint version. This one does not (<value-of select="."/> != <value-of select="concat('Reviewed preprint v',replace(parent::event[1]/self-uri[1][@content-type='reviewed-preprint']/@*:href,'^.*\.',''))"/>).</report>
+        
+      <report test="parent::event/date[@date-type='sent-for-review'] and not(.='Sent for review')" role="error" id="event-desc-content-3">
+        <name/> that's a child of a sent for review event must contain the text 'Sent for review'. This one has '<value-of select="."/>'.</report>
       
       <report test="*" role="error" id="event-desc-elems">
         <name/> cannot contain elements. This one has the following: <value-of select="string-join(distinct-values(*/name()),', ')"/>.</report>
@@ -3076,20 +3089,25 @@
   </pattern>
   <pattern id="event-date-tests-pattern">
     <rule context="event/date" id="event-date-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
+      <let name="date" value="date[1]/@iso-8601-date"/>
+      <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
+      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
       
       <assert test="day and month and year" role="error" id="event-date-child">
         <name/> in event must have a day, month and year element. This one does not.</assert>
       
-      <assert test="@date-type=('preprint','reviewed-preprint')" role="error" id="event-date-type">
-        <name/> in event must have a date-type attribute with the value 'preprint' or 'reviewed-preprint'.</assert>
+      <assert test="@date-type=$date-type-vals" role="error" id="event-date-type">
+        <name/> in event must have a date-type attribute with one of the following values: <value-of select="string-join($date-type-vals,'; ')"/>.</assert>
     </rule>
   </pattern>
   <pattern id="event-self-uri-tests-pattern">
     <rule context="event/self-uri" id="event-self-uri-tests">
+      <let name="allowed-content-vals" value="('preprint','reviewed-preprint','editor-report','referee-report','author-comment')"/>
       <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
       
-      <assert test="@content-type=('preprint','reviewed-preprint','editor-report','referee-report','author-comment')" role="error" id="event-self-uri-content-type">
-        <name/> in event must have the attribute content-type="preprint" or content-type="reviewed-preprint". This one does not.</assert>
+      <assert test="@content-type=$allowed-content-vals" role="error" id="event-self-uri-content-type">
+        <name/> in event must have the attribute content-type with one of the following values: <value-of select="string-join($allowed-content-vals,'; ')"/>. This one does not.</assert>
       
       <report test="@content-type=('preprint','reviewed-preprint') and (* or normalize-space(.)!='')" role="error" id="event-self-uri-content-1">
         <name/> with the content-type <value-of select="@content-type"/> must not have any child elements or text. This one does.</report>

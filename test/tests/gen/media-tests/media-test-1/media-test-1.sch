@@ -959,7 +959,8 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="media" id="media-tests">
-      <let name="file" value="@mime-subtype"/>
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
+      <let name="file" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <let name="link" value="@xlink:href"/>
       <assert test="@mimetype=('video','application','text','image', 'audio','chemical')" role="error" id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'.</assert>
     </rule>

@@ -1293,6 +1293,7 @@
       <let name="distinct-email-count" value="count($distinct-emails)"/>
       <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
       <let name="corresp-author-count" value="count($corresp-authors)"/>
+      <let name="dtd" value="ancestor::article/@dtd-version"/>
       <assert test="article-id[@pub-id-type='doi']" role="error" id="article-id">[article-id] article-meta must contain at least one DOI - a &lt;article-id pub-id-type="doi"&gt; element.</assert>
     </rule>
   </pattern>

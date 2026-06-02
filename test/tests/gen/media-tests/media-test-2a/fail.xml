@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="media-test-2a.sch"?>
+<!--Context: media
+Test: report    ($dtd-version ge '1.4') and @mime-subtype
+Message: media has a mime-subtype attribute, but this is depcreated in JATS v. Add it to the existing mimetype, i.e.  -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article dtd-version="1.4">
+        <media mimetype="video" mime-subtype="mp4"/>
+    </article>
+</root>

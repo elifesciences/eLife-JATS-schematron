@@ -959,7 +959,8 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="media" id="media-tests">
-      <let name="file" value="@mime-subtype"/>
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
+      <let name="file" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <let name="link" value="@xlink:href"/>
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-8" test="if (ancestor::sec[@sec-type='supplementary-material']) then ()         else if (@mimetype='video') then (not(label))         else ()" role="error" id="media-test-8">video does not contain a label, which is incorrect.</report>
     </rule>

@@ -3155,6 +3155,7 @@
         <let name="link" value="lower-case(@*:href)"/>
         <let name="file" value="tokenize($link,'\.')[last()]"/>
         <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
+        <let name="mime-subtype" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
         
         <assert test="normalize-space(@*:href)!=''" 
           role="error" 
@@ -3164,15 +3165,15 @@
           role="error" 
           id="graphic-check-2"><name/> must have an xlink:href attribute that ends with an image file type extension. <value-of select="if ($file!='') then $file else @*:href"/> is not one of <value-of select="string-join($image-file-types,', ')"/>.</assert>
         
-        <report test="contains(@mime-subtype,'tiff') and not($file=('tif','tiff'))" 
+        <report test="contains($mime-subtype,'tiff') and not($file=('tif','tiff'))" 
           role="error" 
           id="graphic-test-1"><name/> has tiff mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
         
-        <assert test="normalize-space(@mime-subtype)!=''" 
+        <assert test="normalize-space($mime-subtype)!=''" 
          role="error" 
-         id="graphic-test-2"><name/> must have a mime-subtype attribute.</assert>
+         id="graphic-test-2"><name/> must have a mime-subtype.</assert>
       
-        <report test="contains(@mime-subtype,'jpeg') and not($file=('jpg','jpeg'))" 
+        <report test="contains($mime-subtype,'jpeg') and not($file=('jpg','jpeg'))" 
          role="error" 
          id="graphic-test-3"><name/> has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
         
@@ -3180,7 +3181,7 @@
           role="error" 
           id="graphic-test-4"><name/> must have a @mimetype='image'.</assert>
         
-        <report test="@mime-subtype='png' and $file!='png'" 
+        <report test="$mime-subtype='png' and $file!='png'" 
          role="error" 
          id="graphic-test-5"><name/> has png mime-subtype but filename does not end with '.png'. This cannot be correct.</report>
         
@@ -3200,7 +3201,7 @@
           role="warning" 
           id="graphic-test-9">Image file in sub-article for <value-of select="name()"/> (<value-of select="@*:href"/>) is the same as the one used for another graphic or inline-graphic. Is that correct?</report>
         
-        <report test="@mime-subtype='gif' and $file!='gif'" 
+        <report test="$mime-subtype='gif' and $file!='gif'" 
          role="error" 
          id="graphic-test-7"><name/> has gif mime-subtype but filename does not end with '.gif'. This cannot be correct.</report>
      </rule>
@@ -3467,6 +3468,7 @@
         <let name="distinct-email-count" value="count($distinct-emails)"/>
         <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
         <let name="corresp-author-count" value="count($corresp-authors)"/>
+        <let name="dtd" value="ancestor::article/@dtd-version"/>
         
         <assert test="article-id[@pub-id-type='doi']"
         role="error" 
@@ -3523,6 +3525,10 @@
         <report test="$is-reviewed-preprint and not(count(pub-history)=1)" 
           role="error" 
           id="pub-history-presence">Reviewed preprints must have (and only one) pub-history. This one has <value-of select="count(pub-history)"/>.</report>
+        
+        <report test="($dtd ge '1.4') and count(history) != 0" 
+          role="error" 
+          id="test-history-presence-dtd">The history element is deprecated in JATS version <value-of select="$dtd"/>. Remove it (and move any sent for review dates to pub-history).</report>
       </rule>
 
          <rule context="article/front/article-meta/article-id" id="general-article-id-checks">
@@ -3759,20 +3765,24 @@
         id="pub-history-events-4"><name/> has <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint event elements, which is unusual. Is this correct?</report>
     </rule>
       
-      <rule context="event" id="event-tests">
+    <rule context="event" id="event-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="date" value="date[1]/@iso-8601-date"/>
+      <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
+      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')
+        else $default-date-type-vals"/>
       
       <assert test="event-desc" 
         role="error" 
         id="event-test-1"><name/> must contain an event-desc element. This one does not.</assert>
       
-      <assert test="date[@date-type=('preprint','reviewed-preprint')]" 
+      <assert test="date[@date-type=$date-type-vals]" 
         role="error" 
-        id="event-test-2"><name/> must contain a date element with the attribute date-type="preprint" or date-type="reviewed-preprint". This one does not.</assert>
+        id="event-test-2"><name/> must contain a date element with a date-type attribute with one of the following values: <value-of select="string-join($date-type-vals,'; ')"/>. This one does not.</assert>
       
-      <assert test="self-uri" 
+      <report test="not(date[@date-type='sent-for-review']) and not(self-uri)" 
         role="error" 
-        id="event-test-3"><name/> must contain a self-uri element. This one does not.</assert>
+        id="event-test-3"><name/> must contain a self-uri element. This one does not.</report>
         
         <report test="following-sibling::event[date[@iso-8601-date lt $date]]" 
           role="error" 
@@ -3789,13 +3799,17 @@
       <assert test="name()=$allowed-elems" 
         role="error" 
         id="event-child"><name/> is not allowed in an event element. The only permitted children of event are <value-of select="string-join($allowed-elems,', ')"/>.</assert>
+        
+      <report test="self::self-uri and parent::event/date[@date-type='sent-for-review']" 
+        role="error" 
+        id="sent-for-review-event-test-1"><name/> is not allowed in a sent for review event element. The only permitted children of that event type are <value-of select="string-join($allowed-elems[.!='self-uri'],', ')"/>.</report>
     </rule>
       
       <rule context="event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" id="rp-event-tests">
       <let name="rp-link" value="self-uri[@content-type='reviewed-preprint']/@*:href"/>
       <let name="rp-version" value="replace($rp-link,'^.*\.','')"/>
       <let name="rp-pub-date" value="date[@date-type='reviewed-preprint']/@iso-8601-date"/>
-      <let name="sent-for-review-date" value="ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date"/>
+      <let name="sent-for-review-date" value="(ancestor::pub-history/event/date[@date-type='sent-for-review']/@iso-8601-date | ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date)[1]"/>
       <let name="preprint-pub-date" value="parent::pub-history/event/date[@date-type='preprint']/@iso-8601-date"/>
       <let name="later-rp-events" value="parent::pub-history/event[date[@date-type='reviewed-preprint'] and replace(self-uri[@content-type='reviewed-preprint'][1]/@*:href,'^.*\.','') gt $rp-version]"/>
       
@@ -3831,6 +3845,10 @@
       <report test="parent::event/self-uri[1][@content-type='reviewed-preprint'] and .!=concat('Reviewed preprint v',replace(parent::event[1]/self-uri[1][@content-type='reviewed-preprint']/@*:href,'^.*\.',''))" 
         role="error" 
         id="event-desc-content-2"><name/> that's a child of a Reviewed preprint event must contain the text 'Reviewed preprint v' followwd by the verison number for that Reviewed preprint version. This one does not (<value-of select="."/> != <value-of select="concat('Reviewed preprint v',replace(parent::event[1]/self-uri[1][@content-type='reviewed-preprint']/@*:href,'^.*\.',''))"/>).</report>
+        
+      <report test="parent::event/date[@date-type='sent-for-review'] and not(.='Sent for review')" 
+        role="error" 
+        id="event-desc-content-3"><name/> that's a child of a sent for review event must contain the text 'Sent for review'. This one has '<value-of select="."/>'.</report>
       
       <report test="*" 
         role="error" 
@@ -3839,22 +3857,28 @@
     </rule>
       
       <rule context="event/date" id="event-date-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
+      <let name="date" value="date[1]/@iso-8601-date"/>
+      <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
+      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')
+        else $default-date-type-vals"/>
       
       <assert test="day and month and year" 
         role="error" 
         id="event-date-child"><name/> in event must have a day, month and year element. This one does not.</assert>
       
-      <assert test="@date-type=('preprint','reviewed-preprint')" 
+      <assert test="@date-type=$date-type-vals" 
         role="error" 
-        id="event-date-type"><name/> in event must have a date-type attribute with the value 'preprint' or 'reviewed-preprint'.</assert>
+        id="event-date-type"><name/> in event must have a date-type attribute with one of the following values: <value-of select="string-join($date-type-vals,'; ')"/>.</assert>
     </rule>
       
-      <rule context="event/self-uri" id="event-self-uri-tests">
+    <rule context="event/self-uri" id="event-self-uri-tests">
+      <let name="allowed-content-vals" value="('preprint','reviewed-preprint','editor-report','referee-report','author-comment')"/>
       <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
       
-      <assert test="@content-type=('preprint','reviewed-preprint','editor-report','referee-report','author-comment')" 
+      <assert test="@content-type=$allowed-content-vals" 
         role="error" 
-        id="event-self-uri-content-type"><name/> in event must have the attribute content-type="preprint" or content-type="reviewed-preprint". This one does not.</assert>
+        id="event-self-uri-content-type"><name/> in event must have the attribute content-type with one of the following values: <value-of select="string-join($allowed-content-vals,'; ')"/>. This one does not.</assert>
       
       <report test="@content-type=('preprint','reviewed-preprint') and (* or normalize-space(.)!='')" 
         role="error" 

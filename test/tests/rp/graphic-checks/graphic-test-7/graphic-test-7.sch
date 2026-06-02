@@ -1291,7 +1291,8 @@
       <let name="link" value="lower-case(@*:href)"/>
       <let name="file" value="tokenize($link,'\.')[last()]"/>
       <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
-      <report test="@mime-subtype='gif' and $file!='gif'" role="error" id="graphic-test-7">[graphic-test-7] <name/> has gif mime-subtype but filename does not end with '.gif'. This cannot be correct.</report>
+      <let name="mime-subtype" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
+      <report test="$mime-subtype='gif' and $file!='gif'" role="error" id="graphic-test-7">[graphic-test-7] <name/> has gif mime-subtype but filename does not end with '.gif'. This cannot be correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

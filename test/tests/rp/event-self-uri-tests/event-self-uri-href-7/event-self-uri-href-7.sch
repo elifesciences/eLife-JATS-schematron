@@ -1288,6 +1288,7 @@
   </sqf:fixes>
   <pattern id="event-self-uri-tests-pattern">
     <rule context="event/self-uri" id="event-self-uri-tests">
+      <let name="allowed-content-vals" value="('preprint','reviewed-preprint','editor-report','referee-report','author-comment')"/>
       <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
       <report test="@content-type=('editor-report','referee-report','author-comment') and not(matches(@*:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]\.sa\d+$'))" role="error" id="event-self-uri-href-7">[event-self-uri-href-7] <name/> in event has the attribute content-type="<value-of select="@content-type"/>", but the xlink:href attribute does not contain an eLife peer review DOI - <value-of select="@*:href"/>.</report>
     </rule>

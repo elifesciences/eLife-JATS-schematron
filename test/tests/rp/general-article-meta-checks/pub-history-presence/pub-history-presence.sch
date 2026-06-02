@@ -1293,6 +1293,7 @@
       <let name="distinct-email-count" value="count($distinct-emails)"/>
       <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
       <let name="corresp-author-count" value="count($corresp-authors)"/>
+      <let name="dtd" value="ancestor::article/@dtd-version"/>
       <report test="$is-reviewed-preprint and not(count(pub-history)=1)" role="error" id="pub-history-presence">[pub-history-presence] Reviewed preprints must have (and only one) pub-history. This one has <value-of select="count(pub-history)"/>.</report>
     </rule>
   </pattern>
