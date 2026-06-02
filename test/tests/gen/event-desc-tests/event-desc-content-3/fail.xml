@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="event-desc-content-3.sch"?>
+<!--Context: event-desc
+Test: report    parent::event/date[@date-type='sent-for-review'] and not(.='Sent for review')
+Message:  that's a child of a sent for review event must contain the text 'Sent for review'. This one has ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article>
+    <pub-history>
+      <event>
+        <event-desc>Accepted</event-desc>
+        <date date-type="sent-for-review" iso-8601-date="2021-03-02">
+          <day>02</day>
+          <month>03</month>
+          <year>2021</year>
+        </date>
+      </event>
+    </pub-history>
+  </article>
+</root>

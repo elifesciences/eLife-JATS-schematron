@@ -960,7 +960,7 @@
   <pattern id="article-metadata">
     <rule context="event-desc" id="event-desc-tests">
       <report test="matches(parent::event/self-uri[1]/@xlink:href,'elifesciences\.org|10.7554/e[lL]ife') and not(matches(.,'^Reviewed preprint v\d$') or .=('This manuscript was published as a reviewed preprint.','The reviewed preprint was revised.'))" role="error" id="event-desc-content-2">
-        <name/> that's a child of an event with an eLife DOI must contain the text 'Reviewed preprint v0' (or in older content 'This manuscript was published as a reviewed preprint.' or 'The reviewed preprint was revised.').</report>
+        <name/> that's a child of an event with an eLife DOI must contain the text 'Reviewed preprint v0' (or in older content 'This manuscript was published as a reviewed preprint.' or 'The reviewed preprint was revised.'). This one has '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

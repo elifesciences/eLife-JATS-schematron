@@ -959,8 +959,8 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="event-desc" id="event-desc-tests">
-      <report test="(parent::event/date[@date-type='preprint'] or (self-uri and not(matches(parent::event/self-uri[1]/@xlink:href,'elifesciences\.org|10.7554/e[lL]ife')))) and not(.='Preprint posted' or starts-with(.,'This manuscript was published as a preprint at ') or .='This manuscript was published as a preprint.')" role="error" id="event-desc-content">
-        <name/> that's a child of an event without an eLife DOI must contain the text 'This manuscript was published as a preprint at ' followed by the preprint server name. This one has '<value-of select="."/>'.</report>
+      <report test="parent::event/date[@date-type='sent-for-review'] and not(.='Sent for review')" role="error" id="event-desc-content-3">
+        <name/> that's a child of a sent for review event must contain the text 'Sent for review'. This one has '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
