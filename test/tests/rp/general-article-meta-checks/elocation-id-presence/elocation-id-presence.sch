@@ -1293,6 +1293,7 @@
       <let name="distinct-email-count" value="count($distinct-emails)"/>
       <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
       <let name="corresp-author-count" value="count($corresp-authors)"/>
+      <let name="dtd" value="ancestor::article/@dtd-version"/>
       <report test="$is-reviewed-preprint and not(count(elocation-id)=1)" role="error" id="elocation-id-presence">[elocation-id-presence] Reviewed preprints must have (and only one) elocation-id. This one has <value-of select="count(elocation-id)"/>.</report>
     </rule>
   </pattern>

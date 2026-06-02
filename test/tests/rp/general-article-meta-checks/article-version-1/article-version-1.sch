@@ -1293,6 +1293,7 @@
       <let name="distinct-email-count" value="count($distinct-emails)"/>
       <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
       <let name="corresp-author-count" value="count($corresp-authors)"/>
+      <let name="dtd" value="ancestor::article/@dtd-version"/>
       <report test="not($is-reviewed-preprint) and not(count(article-version)=1)" role="error" id="article-version-1">[article-version-1] article-meta in preprints must contain one (and only one) &lt;article-version&gt; element.</report>
     </rule>
   </pattern>

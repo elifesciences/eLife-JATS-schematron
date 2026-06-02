@@ -3603,6 +3603,16 @@
         <x:expect-report id="pub-history-presence" role="error"/>
         <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="test-history-presence-dtd-pass">
+        <x:context href="../tests/rp/general-article-meta-checks/test-history-presence-dtd/pass.xml"/>
+        <x:expect-not-report id="test-history-presence-dtd" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="test-history-presence-dtd-fail">
+        <x:context href="../tests/rp/general-article-meta-checks/test-history-presence-dtd/fail.xml"/>
+        <x:expect-report id="test-history-presence-dtd" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="general-article-id-checks">
       <x:scenario label="article-id-3-pass">

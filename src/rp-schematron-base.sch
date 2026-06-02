@@ -3467,6 +3467,7 @@
         <let name="distinct-email-count" value="count($distinct-emails)"/>
         <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
         <let name="corresp-author-count" value="count($corresp-authors)"/>
+        <let name="dtd" value="ancestor::article/@dtd-version"/>
         
         <assert test="article-id[@pub-id-type='doi']"
         role="error" 
@@ -3523,6 +3524,10 @@
         <report test="$is-reviewed-preprint and not(count(pub-history)=1)" 
           role="error" 
           id="pub-history-presence">Reviewed preprints must have (and only one) pub-history. This one has <value-of select="count(pub-history)"/>.</report>
+        
+        <report test="($dtd ge '1.4') and count(history) != 0" 
+          role="error" 
+          id="test-history-presence-dtd">The history element is deprecated in JATS version <value-of select="$dtd"/>. Remove it (and move any sent for review dates to pub-history).</report>
       </rule>
 
          <rule context="article/front/article-meta/article-id" id="general-article-id-checks">

@@ -1294,7 +1294,7 @@
       <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
       <let name="corresp-author-count" value="count($corresp-authors)"/>
       <let name="dtd" value="ancestor::article/@dtd-version"/>
-      <assert test="article-id[@pub-id-type='doi']" role="error" id="article-id">[article-id] article-meta must contain at least one DOI - a &lt;article-id pub-id-type="doi"&gt; element.</assert>
+      <report test="($dtd ge '1.4') and count(history) != 0" role="error" id="test-history-presence-dtd">[test-history-presence-dtd] The history element is deprecated in JATS version <value-of select="$dtd"/>. Remove it (and move any sent for review dates to pub-history).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
