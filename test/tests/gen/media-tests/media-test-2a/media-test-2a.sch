@@ -962,7 +962,8 @@
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="file" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <let name="link" value="@xlink:href"/>
-      <assert test="@mimetype=('video','application','text','image', 'audio','chemical')" role="error" id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'.</assert>
+      <report test="($dtd-version ge '1.4') and @mime-subtype" role="error" id="media-test-2a">media has a mime-subtype attribute, but this is depcreated in JATS v<value-of select="$dtd-version"/>. Add it to the existing mimetype, i.e. <value-of select="concat(@mimetype,'/',@mime-subtype)"/>
+      </report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

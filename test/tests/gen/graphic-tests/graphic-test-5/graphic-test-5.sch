@@ -961,6 +961,7 @@
     <rule context="graphic|inline-graphic" id="graphic-tests">
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
+      <let name="mime-subtype" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" role="error" id="graphic-test-5">
         <name/> must have an @xlink:href which contains a file reference.</assert>
     </rule>

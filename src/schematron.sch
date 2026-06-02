@@ -4147,16 +4147,17 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="graphic|inline-graphic" id="graphic-tests">
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
+      <let name="mime-subtype" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       
-      <report test="contains(@mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))" 
+      <report test="contains($mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))" 
         role="error" 
         id="graphic-test-1"><name/> has tif mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
       
-      <report test="contains(@mime-subtype,'postscript') and not(ends-with($file,'.eps'))" 
+      <report test="contains($mime-subtype,'postscript') and not(ends-with($file,'.eps'))" 
         role="error" 
         id="graphic-test-2"><name/> has postscript mime-subtype but filename does not end with '.eps'. This cannot be correct.</report>
       
-      <report test="contains(@mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))" 
+      <report test="contains($mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))" 
         role="error" 
         id="graphic-test-3"><name/> has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
       
@@ -4179,16 +4180,21 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="media" id="media-tests">
-      <let name="file" value="@mime-subtype"/>
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
+      <let name="file" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <let name="link" value="@xlink:href"/>
       
       <assert test="@mimetype=('video','application','text','image', 'audio','chemical')" 
         role="error" 
         id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'.</assert>
       
-      <assert test="@mime-subtype" 
+      <report test="($dtd-version le '1.3') and not(@mime-subtype)" 
         role="error" 
-        id="media-test-2">media must have @mime-subtype.</assert>
+        id="media-test-2">media must have @mime-subtype.</report>
+      
+      <report test="($dtd-version ge '1.4') and @mime-subtype" 
+        role="error" 
+        id="media-test-2a">media has a mime-subtype attribute, but this is depcreated in JATS v<value-of select="$dtd-version"/>. Add it to the existing mimetype, i.e. <value-of select="concat(@mimetype,'/',@mime-subtype)"/></report>
       
       <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,15}$')" 
         role="error" 
@@ -4214,17 +4220,17 @@ else self::*/local-name() = $allowed-p-blocks"
         else if (@mimetype='text') then not(matches(@xlink:href,'\.txt$|\.py$|\.xml$|\.sh$|\.rtf$|\.c$|\.for$|\.pl$'))
         else not(ends-with(@xlink:href,concat('.',$file)))" 
         role="warning" 
-        id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its @mime-subtype.</report>      
+        id="media-test-4">media must have a file reference in @xlink:href which is equivalent to its mime-subtype.</report>      
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-5"
-        test="matches(label[1],'[Aa]nimation') and not(@mime-subtype='gif')" 
+        test="matches(label[1],'[Aa]nimation') and not($file='gif')" 
         role="error" 
-        id="media-test-5"><value-of select="label"/> media with animation type label must have a @mime-subtype='gif'.</report>    
+        id="media-test-5"><value-of select="label"/> media with animation type label must have a mime-subtype='gif'.</report>    
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-6"
-        test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and (@mime-subtype='octet-stream')" 
+        test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and ($file='octet-stream')" 
         role="warning" 
-        id="media-test-6">media has @mime-subtype='octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>      
+        id="media-test-6">media has the mime-subtype 'octet-stream', but the file reference ends with a recognised mime-type. Is this correct?</report>      
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-7"
         test="if (child::label) then not(matches(label[1],'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Figure \d{1,4}—animation \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—animation \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—animation \d{1,4}\.$|^Animation \d{1,4}\.$|^Decision letter video \d{1,4}\.$|^Review video \d{1,4}\.$|^Author response video \d{1,4}\.$'))

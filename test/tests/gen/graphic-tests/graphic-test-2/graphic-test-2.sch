@@ -961,7 +961,8 @@
     <rule context="graphic|inline-graphic" id="graphic-tests">
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
-      <report test="contains(@mime-subtype,'postscript') and not(ends-with($file,'.eps'))" role="error" id="graphic-test-2">
+      <let name="mime-subtype" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
+      <report test="contains($mime-subtype,'postscript') and not(ends-with($file,'.eps'))" role="error" id="graphic-test-2">
         <name/> has postscript mime-subtype but filename does not end with '.eps'. This cannot be correct.</report>
     </rule>
   </pattern>
