@@ -1291,6 +1291,7 @@
       <let name="link" value="lower-case(@*:href)"/>
       <let name="file" value="tokenize($link,'\.')[last()]"/>
       <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
+      <let name="mime-subtype" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <report test="not(ancestor::sub-article) and (ancestor::disp-formula or ancestor::inline-formula) and (preceding::graphic/@*:href/lower-case(.) = $link or preceding::inline-graphic/@*:href/lower-case(.) = $link)" role="warning" id="graphic-test-6-equ">[graphic-test-6-equ] Image file for <value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> (<value-of select="@*:href"/>) is the same as the one used for another graphic or inline-graphic. Is this correct?</report>
     </rule>
   </pattern>

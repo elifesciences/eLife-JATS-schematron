@@ -2612,6 +2612,7 @@
         <let name="link" value="lower-case(@*:href)"/>
         <let name="file" value="tokenize($link,'\.')[last()]"/>
         <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
+        <let name="mime-subtype" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
         
         <assert test="normalize-space(@*:href)!=''" role="error" id="graphic-check-1">
         <name/> must have an xlink:href attribute. This one does not.</assert>
@@ -2619,19 +2620,19 @@
         <assert test="$file=$image-file-types" role="error" id="graphic-check-2">
         <name/> must have an xlink:href attribute that ends with an image file type extension. <value-of select="if ($file!='') then $file else @*:href"/> is not one of <value-of select="string-join($image-file-types,', ')"/>.</assert>
         
-        <report test="contains(@mime-subtype,'tiff') and not($file=('tif','tiff'))" role="error" id="graphic-test-1">
+        <report test="contains($mime-subtype,'tiff') and not($file=('tif','tiff'))" role="error" id="graphic-test-1">
         <name/> has tiff mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
         
-        <assert test="normalize-space(@mime-subtype)!=''" role="error" id="graphic-test-2">
-        <name/> must have a mime-subtype attribute.</assert>
+        <assert test="normalize-space($mime-subtype)!=''" role="error" id="graphic-test-2">
+        <name/> must have a mime-subtype.</assert>
       
-        <report test="contains(@mime-subtype,'jpeg') and not($file=('jpg','jpeg'))" role="error" id="graphic-test-3">
+        <report test="contains($mime-subtype,'jpeg') and not($file=('jpg','jpeg'))" role="error" id="graphic-test-3">
         <name/> has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
         
         <assert test="@mimetype='image'" role="error" id="graphic-test-4">
         <name/> must have a @mimetype='image'.</assert>
         
-        <report test="@mime-subtype='png' and $file!='png'" role="error" id="graphic-test-5">
+        <report test="$mime-subtype='png' and $file!='png'" role="error" id="graphic-test-5">
         <name/> has png mime-subtype but filename does not end with '.png'. This cannot be correct.</report>
         
         <report test="not(ancestor::sub-article) and (not(ancestor::disp-formula or ancestor::inline-formula) and ancestor::fig or ancestor::table-wrap) and (preceding::graphic/@*:href/lower-case(.) = $link or preceding::inline-graphic/@*:href/lower-case(.) = $link)" role="error" id="graphic-test-6">Image file for <value-of select="if (ancestor::*[name()=('fig','table-wrap')]/label) then ancestor::*[name()=('fig','table-wrap')]/label else 'graphic'"/> (<value-of select="@*:href"/>) is the same as the one used for another graphic or inline-graphic. This must be incorrect.</report>
@@ -2642,7 +2643,7 @@
         
         <report test="ancestor::sub-article and (preceding::graphic/@*:href/lower-case(.) = $link or preceding::inline-graphic/@*:href/lower-case(.) = $link)" role="warning" id="graphic-test-9">Image file in sub-article for <value-of select="name()"/> (<value-of select="@*:href"/>) is the same as the one used for another graphic or inline-graphic. Is that correct?</report>
         
-        <report test="@mime-subtype='gif' and $file!='gif'" role="error" id="graphic-test-7">
+        <report test="$mime-subtype='gif' and $file!='gif'" role="error" id="graphic-test-7">
         <name/> has gif mime-subtype but filename does not end with '.gif'. This cannot be correct.</report>
      </rule>
   </pattern>

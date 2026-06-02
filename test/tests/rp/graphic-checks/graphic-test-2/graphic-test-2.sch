@@ -1291,7 +1291,8 @@
       <let name="link" value="lower-case(@*:href)"/>
       <let name="file" value="tokenize($link,'\.')[last()]"/>
       <let name="image-file-types" value="('tif','tiff','gif','jpg','jpeg','png')"/>
-      <assert test="normalize-space(@mime-subtype)!=''" role="error" id="graphic-test-2">[graphic-test-2] <name/> must have a mime-subtype attribute.</assert>
+      <let name="mime-subtype" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
+      <assert test="normalize-space($mime-subtype)!=''" role="error" id="graphic-test-2">[graphic-test-2] <name/> must have a mime-subtype.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
