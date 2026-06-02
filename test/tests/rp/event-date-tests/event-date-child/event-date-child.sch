@@ -1288,6 +1288,10 @@
   </sqf:fixes>
   <pattern id="event-date-tests-pattern">
     <rule context="event/date" id="event-date-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
+      <let name="date" value="date[1]/@iso-8601-date"/>
+      <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
+      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
       <assert test="day and month and year" role="error" id="event-date-child">[event-date-child] <name/> in event must have a day, month and year element. This one does not.</assert>
     </rule>
   </pattern>

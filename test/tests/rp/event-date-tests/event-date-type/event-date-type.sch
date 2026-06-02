@@ -1288,7 +1288,11 @@
   </sqf:fixes>
   <pattern id="event-date-tests-pattern">
     <rule context="event/date" id="event-date-tests">
-      <assert test="@date-type=('preprint','reviewed-preprint')" role="error" id="event-date-type">[event-date-type] <name/> in event must have a date-type attribute with the value 'preprint' or 'reviewed-preprint'.</assert>
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
+      <let name="date" value="date[1]/@iso-8601-date"/>
+      <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
+      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
+      <assert test="@date-type=$date-type-vals" role="error" id="event-date-type">[event-date-type] <name/> in event must have a date-type attribute with one of the following values: <value-of select="string-join($date-type-vals,'; ')"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
