@@ -958,15 +958,17 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="xref" id="xref-target-tests">
-      <let name="rid" value="tokenize(@rid,' ')[1]"/>
-      <let name="target" value="self::*/ancestor::article//*[@id = $rid]"/>
-      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-target-test" test="(@ref-type='video') and (($target/local-name() != 'media') or not(starts-with($target/@mimetype,'video')))" role="error" id="vid-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' must point to a media[@mimetype="video"] element. Either this links to the incorrect location or the xref/@ref-type is incorrect.</report>
+    <rule context="media" id="media-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
+      <let name="file" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
+      <let name="link" value="@xlink:href"/>
+      <report test="matches(label[1],'[Aa]nimation') and not(starts-with(@mimetype,'video'))" role="error" id="media-test-5a">
+        <value-of select="label"/> media with animation type label must have a mimetype containing 'video'. This one has '<value-of select="@mimetype"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref" role="error" id="xref-target-tests-xspec-assert">xref must be present.</assert>
+      <assert test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="media-test-5a.sch"?>
+<!--Context: media
+Test: report    matches(label[1],'[Aa]nimation') and not(starts-with(@mimetype,'video'))
+Message:  media with animation type label must have a mimetype containing 'video'. This one has ''. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <media mimetype="application/gif">
+            <label>Animation 1</label>
+        </media>
+        <media mimetype="animation" mime-subtype="gif">
+            <label>Animation 2</label>
+        </media>
+    </article>
+</root>

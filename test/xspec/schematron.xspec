@@ -5337,6 +5337,16 @@
         <x:expect-report id="media-test-5" role="error"/>
         <x:expect-not-assert id="media-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="media-test-5a-pass">
+        <x:context href="../tests/gen/media-tests/media-test-5a/pass.xml"/>
+        <x:expect-not-report id="media-test-5a" role="error"/>
+        <x:expect-not-assert id="media-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="media-test-5a-fail">
+        <x:context href="../tests/gen/media-tests/media-test-5a/fail.xml"/>
+        <x:expect-report id="media-test-5a" role="error"/>
+        <x:expect-not-assert id="media-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="media-test-6-pass">
         <x:context href="../tests/gen/media-tests/media-test-6/pass.xml"/>
         <x:expect-not-report id="media-test-6" role="warning"/>

@@ -3812,7 +3812,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="fig-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-target-test"
-        test="(@ref-type='video') and (($target/local-name() != 'media') or not($target/@mimetype='video'))" 
+        test="(@ref-type='video') and (($target/local-name() != 'media') or not(starts-with($target/@mimetype,'video')))" 
         role="error" 
         id="vid-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' must point to a media[@mimetype="video"] element. Either this links to the incorrect location or the xref/@ref-type is incorrect.</report>
       
@@ -4234,7 +4234,11 @@ else self::*/local-name() = $allowed-p-blocks"
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-5"
         test="matches(label[1],'[Aa]nimation') and not($file='gif')" 
         role="error" 
-        id="media-test-5"><value-of select="label"/> media with animation type label must have a mime-subtype='gif'.</report>    
+        id="media-test-5"><value-of select="label"/> media with animation type label must have a mimetype ending with 'gif' (or mime-subtype='gif'). This one has '<value-of select="$file"/>'.</report>
+      
+      <report test="matches(label[1],'[Aa]nimation') and not(starts-with(@mimetype,'video'))" 
+        role="error" 
+        id="media-test-5a"><value-of select="label"/> media with animation type label must have a mimetype containing 'video'. This one has '<value-of select="@mimetype"/>'.</report>
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-6"
         test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and ($file='octet-stream')" 
