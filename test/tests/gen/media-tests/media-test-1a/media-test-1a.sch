@@ -958,18 +958,16 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="graphic|inline-graphic" id="graphic-tests">
+    <rule context="media" id="media-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
+      <let name="file" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <let name="link" value="@xlink:href"/>
-      <let name="file" value="lower-case($link)"/>
-      <let name="mime-subtype" value="if ($dtd-version le '1.3') then @mime-subtype else substring-after(@mimetype,'/')"/>
-      <report test="contains($mime-subtype,'postscript') and not(ends-with($file,'.eps'))" role="error" id="graphic-test-2">
-        <name/> has postscript mime-subtype but filename does not end with '.eps'. This cannot be correct.</report>
+      <report test="($dtd-version ge '1.4') and not(matches(@mimetype,'^(video|application|text|image|audio|chemical)/'))" role="error" id="media-test-1a">media must have @mimetype, the value of which has to start with one of 'video','application','text','image', or 'audio', 'chemical'. This one has '<value-of select="@mimetype"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-tests-xspec-assert">graphic|inline-graphic must be present.</assert>
+      <assert test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
     </rule>
   </pattern>
 </schema>

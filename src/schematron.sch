@@ -3812,7 +3812,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="fig-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-target-test"
-        test="(@ref-type='video') and (($target/local-name() != 'media') or not($target/@mimetype='video'))" 
+        test="(@ref-type='video') and (($target/local-name() != 'media') or not(starts-with($target/@mimetype,'video')))" 
         role="error" 
         id="vid-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' must point to a media[@mimetype="video"] element. Either this links to the incorrect location or the xref/@ref-type is incorrect.</report>
       
@@ -4145,9 +4145,10 @@ else self::*/local-name() = $allowed-p-blocks"
     </rule>
     
     <rule context="graphic|inline-graphic" id="graphic-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
-      <let name="mime-subtype" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
+      <let name="mime-subtype" value="if ($dtd-version le '1.3') then @mime-subtype else substring-after(@mimetype,'/')"/>
       
       <report test="contains($mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))" 
         role="error" 
@@ -4162,9 +4163,13 @@ else self::*/local-name() = $allowed-p-blocks"
         id="graphic-test-3"><name/> has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
       
       <!-- Should this just be image? application included because during proofing stages non-web image files are referenced, e.g postscript -->
-      <assert test="@mimetype=('image','application')" 
+      <report test="$dtd-version le '1.3' and not(@mimetype=('image','application'))" 
         role="error" 
-        id="graphic-test-4"><name/> must have a @mimetype='image' or 'application'.</assert>
+        id="graphic-test-4"><name/> must have a @mimetype='image' or 'application'.</report>
+      
+      <report test="$dtd-version ge '1.4' and not(matches(@mimetype,'^(image|application)/'))" 
+        role="error" 
+        id="graphic-test-4a"><name/> must have a mimetype that starts with 'image'. This one is '<value-of select="@mimetype"/>'.</report>
       
       <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" 
         role="error" 
@@ -4184,9 +4189,13 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="file" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <let name="link" value="@xlink:href"/>
       
-      <assert test="@mimetype=('video','application','text','image', 'audio','chemical')" 
+      <report test="($dtd-version le '1.3') and not(@mimetype=('video','application','text','image', 'audio','chemical'))" 
         role="error" 
-        id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'.</assert>
+        id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'. This one has '<value-of select="@mimetype"/>'.</report>
+      
+      <report test="($dtd-version ge '1.4') and not(matches(@mimetype,'^(video|application|text|image|audio|chemical)/'))" 
+        role="error" 
+        id="media-test-1a">media must have @mimetype, the value of which has to start with one of 'video','application','text','image', or 'audio', 'chemical'. This one has '<value-of select="@mimetype"/>'.</report>
       
       <report test="($dtd-version le '1.3') and not(@mime-subtype)" 
         role="error" 
@@ -4225,7 +4234,11 @@ else self::*/local-name() = $allowed-p-blocks"
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-5"
         test="matches(label[1],'[Aa]nimation') and not($file='gif')" 
         role="error" 
-        id="media-test-5"><value-of select="label"/> media with animation type label must have a mime-subtype='gif'.</report>    
+        id="media-test-5"><value-of select="label"/> media with animation type label must have a mimetype ending with 'gif' (or mime-subtype='gif'). This one has '<value-of select="$file"/>'.</report>
+      
+      <report test="matches(label[1],'[Aa]nimation') and not(starts-with(@mimetype,'video'))" 
+        role="error" 
+        id="media-test-5a"><value-of select="label"/> media with animation type label must have a mimetype containing 'video'. This one has '<value-of select="@mimetype"/>'.</report>
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-6"
         test="matches(@xlink:href,'\.doc[x]?$|\.pdf$|\.xlsx$|\.xml$|\.xlsx$|\.mp4$|\.gif$')  and ($file='octet-stream')" 
@@ -4266,7 +4279,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="media-test-12">Media element cannot contain text. This one has <value-of select="string-join(text(),'')"/>.</report>
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-13"
-        test="not(@mimetype='video') and *" 
+        test="not(starts-with(@mimetype,'video/') or @mimetype='video') and *" 
         role="error" 
         id="media-test-13">Media element that is not a mimetype="video" cannot contain elements. This one has the following element(s) <value-of select="string-join(*/name(),'; ')"/>.</report>
     </rule>

@@ -962,7 +962,7 @@
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="file" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <let name="link" value="@xlink:href"/>
-      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-13" test="not(@mimetype='video') and *" role="error" id="media-test-13">Media element that is not a mimetype="video" cannot contain elements. This one has the following element(s) <value-of select="string-join(*/name(),'; ')"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-13" test="not(starts-with(@mimetype,'video/') or @mimetype='video') and *" role="error" id="media-test-13">Media element that is not a mimetype="video" cannot contain elements. This one has the following element(s) <value-of select="string-join(*/name(),'; ')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

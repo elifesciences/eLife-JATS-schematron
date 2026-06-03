@@ -959,11 +959,12 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="graphic|inline-graphic" id="graphic-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
-      <let name="mime-subtype" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
-      <assert test="@mimetype=('image','application')" role="error" id="graphic-test-4">
-        <name/> must have a @mimetype='image' or 'application'.</assert>
+      <let name="mime-subtype" value="if ($dtd-version le '1.3') then @mime-subtype else substring-after(@mimetype,'/')"/>
+      <report test="$dtd-version le '1.3' and not(@mimetype=('image','application'))" role="error" id="graphic-test-4">
+        <name/> must have a @mimetype='image' or 'application'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

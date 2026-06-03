@@ -959,9 +959,10 @@
   </xsl:function>
   <pattern id="content-containers">
     <rule context="graphic|inline-graphic" id="graphic-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
-      <let name="mime-subtype" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
+      <let name="mime-subtype" value="if ($dtd-version le '1.3') then @mime-subtype else substring-after(@mimetype,'/')"/>
       <report test="contains($link,'&amp;')" role="error" id="graphic-test-8">Image file-name for <value-of select="if (name()='inline-graphic') then 'inline-graphic' else replace(parent::fig/label,'\.','')"/> contains an ampersand - <value-of select="tokenize($link,'/')[last()]"/>. Please rename the file so that this ampersand is removed.</report>
     </rule>
   </pattern>

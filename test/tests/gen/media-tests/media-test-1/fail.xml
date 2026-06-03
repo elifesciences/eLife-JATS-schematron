@@ -1,9 +1,9 @@
 <?oxygen SCHSchema="media-test-1.sch"?>
 <!--Context: media
-Test: assert    @mimetype=('video','application','text','image', 'audio','chemical')
-Message: media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'. -->
+Test: report    ($dtd-version le '1.3') and not(@mimetype=('video','application','text','image', 'audio','chemical'))
+Message: media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'. This one has ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
-  <article>
+  <article dtd-version="1.3">
     <media/>
     <media mimetype="chemical"/>
   </article>

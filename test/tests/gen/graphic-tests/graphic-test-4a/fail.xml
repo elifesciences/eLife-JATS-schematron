@@ -1,0 +1,14 @@
+<?oxygen SCHSchema="graphic-test-4a.sch"?>
+<!--Context: graphic|inline-graphic
+Test: report    $dtd-version ge '1.4' and not(matches(@mimetype,'^(image|application)/'))
+Message:  must have a mimetype that starts with 'image'. This one is ''. -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article dtd-version="1.4">
+    <fig>
+      <graphic mimetype="text/xml" xlink:href="elife-00000-fig7-v2.xml"/>
+    </fig>
+    <fig>
+      <graphic mimetype="image/jpeg" xlink:href="elife-00000-fig7-v2.jpg"/>
+    </fig>
+  </article>
+</root>

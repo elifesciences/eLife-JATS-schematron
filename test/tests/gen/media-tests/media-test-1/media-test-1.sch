@@ -962,7 +962,7 @@
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="file" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <let name="link" value="@xlink:href"/>
-      <assert test="@mimetype=('video','application','text','image', 'audio','chemical')" role="error" id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'.</assert>
+      <report test="($dtd-version le '1.3') and not(@mimetype=('video','application','text','image', 'audio','chemical'))" role="error" id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'. This one has '<value-of select="@mimetype"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
