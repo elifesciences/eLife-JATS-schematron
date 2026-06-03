@@ -207,6 +207,7 @@
   <let name="rors" value="'../../../../../src/rors.xml'"/>
   <let name="wellcome-funder-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440','https://ror.org/029chgv08')"/>
   <let name="known-grant-funder-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968','http://dx.doi.org/10.13039/100004412','https://ror.org/006wxqw41','https://ror.org/00097mb19','https://ror.org/03dy4aq19','https://ror.org/013tf3c58','https://ror.org/013kjyp64','https://ror.org/02ebx7v45')"/>
+  <let name="eu-ror-ids" value="('https://ror.org/0472cxd90','https://ror.org/00k4n6c32')"/>
   <let name="eu-horizon-fundref-ids" value="('http://dx.doi.org/10.13039/100018693','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100018695','http://dx.doi.org/10.13039/100018696','http://dx.doi.org/10.13039/100018697','http://dx.doi.org/10.13039/100018698','http://dx.doi.org/10.13039/100018699','http://dx.doi.org/10.13039/100018700','http://dx.doi.org/10.13039/100018701','http://dx.doi.org/10.13039/100018702','http://dx.doi.org/10.13039/100018703','http://dx.doi.org/10.13039/100018704','http://dx.doi.org/10.13039/100018705','http://dx.doi.org/10.13039/100018706','http://dx.doi.org/10.13039/100018707','http://dx.doi.org/10.13039/100019180','http://dx.doi.org/10.13039/100019185','http://dx.doi.org/10.13039/100019186','http://dx.doi.org/10.13039/100019187','http://dx.doi.org/10.13039/100019188')"/>
   <let name="grant-doi-exception-funder-ids" value="($wellcome-funder-ids,$known-grant-funder-ids,$eu-horizon-fundref-ids)"/>
   <xsl:function name="e:alter-award-id">
@@ -253,7 +254,7 @@
         <xsl:value-of select="if (contains(upper-case($award-id-elem),'2020')) then concat('2020',replace(substring-after($award-id-elem,'2020'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2021')) then concat('2021',replace(substring-after($award-id-elem,'2021'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2022')) then concat('2022',replace(substring-after($award-id-elem,'2022'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2023')) then concat('2023',replace(substring-after($award-id-elem,'2023'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'2024')) then concat('2024',replace(substring-after($award-id-elem,'2024'),'[^A-Z0-9\.]',''))         else if (contains(upper-case($award-id-elem),'CEEC')) then concat('CEEC',replace(substring-after(upper-case($award-id-elem),'CEEC'),'[^A-Z0-9/]',''))         else if (contains(upper-case($award-id-elem),'PTDC/')) then concat('PTDC/',replace(substring-after(upper-case($award-id-elem),'PTDC/'),'[^A-Z0-9/\-]',''))         else if (contains(upper-case($award-id-elem),'DL 57/')) then concat('DL 57/',replace(substring-after(upper-case($award-id-elem),'DL 57/'),'[^A-Z0-9/\-]',''))         else $award-id-elem"/>
       </xsl:when>
       
-      <xsl:when test="$funder-id=('https://ror.org/0472cxd90','https://ror.org/00k4n6c32',$eu-horizon-fundref-ids,'http://dx.doi.org/10.13039/100010663','http://dx.doi.org/10.13039/100010665','http://dx.doi.org/10.13039/100010669','http://dx.doi.org/10.13039/100010675','http://dx.doi.org/10.13039/100010677','http://dx.doi.org/10.13039/100010679','http://dx.doi.org/10.13039/100010680','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100019180')">
+      <xsl:when test="$funder-id=($eu-ror-ids,$eu-horizon-fundref-ids,'http://dx.doi.org/10.13039/100010663','http://dx.doi.org/10.13039/100010665','http://dx.doi.org/10.13039/100010669','http://dx.doi.org/10.13039/100010675','http://dx.doi.org/10.13039/100010677','http://dx.doi.org/10.13039/100010679','http://dx.doi.org/10.13039/100010680','http://dx.doi.org/10.13039/100018694','http://dx.doi.org/10.13039/100019180')">
         
         <xsl:value-of select="replace($award-id-elem,'\D','')"/>
       </xsl:when>
@@ -1287,10 +1288,9 @@
         </sqf:fix>
   </sqf:fixes>
   <pattern id="eu-horizon-grant-doi-tests-pattern">
-    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=($eu-horizon-fundref-ids,'https://ror.org/00k4n6c32')]" id="eu-horizon-grant-doi-tests">
-      <let name="eu-comission-ror-id" value="'https://ror.org/00k4n6c32'"/>
+    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=($eu-ror-ids,$eu-horizon-fundref-ids)]" id="eu-horizon-grant-doi-tests">
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
-      <let name="grants" value="document($rors)//*:ror[*:id[@type='ror']=$eu-comission-ror-id]/*:grant"/>
+      <let name="grants" value="document($rors)//*:ror[*:id[@type='ror']=$eu-ror-ids]/*:grant"/>
       <let name="award-id" value="e:alter-award-id(award-id[1],$funder-id)"/>
       <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
       <report test="$grant-matches" role="warning" sqf:fix="add-grant-doi" id="eu-horizon-grant-doi-test-1">[eu-horizon-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="award-id[1]"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
@@ -1298,7 +1298,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=($eu-horizon-fundref-ids,'https://ror.org/00k4n6c32')]" role="error" id="eu-horizon-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=($eu-horizon-fundref-ids,'https://ror.org/00k4n6c32')] must be present.</assert>
+      <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=($eu-ror-ids,$eu-horizon-fundref-ids)]" role="error" id="eu-horizon-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=($eu-ror-ids,$eu-horizon-fundref-ids)] must be present.</assert>
     </rule>
   </pattern>
 </schema>
