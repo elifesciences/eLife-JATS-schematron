@@ -33,7 +33,7 @@ while [ -n "$next_url" ]; do
         fi
 
     else
-    echo "API request failed. Check the error and try again."
+        echo "API request failed. Check the error and try again."
     break
   fi
 done
@@ -43,7 +43,7 @@ echo "all DataCite data retrieved"
 echo "Retrieving Crossref grant data"
 
 cursor="*"
-crossrefApi="https://api.crossref.org/works?filter=type:grant&rows=1000"
+crossrefApi="https://api.crossref.org/works?filter=type:grant&rows=1000&mailto=f.atherden@elifesciences.org"
 counter=1
 
 while true; do
@@ -67,7 +67,7 @@ while true; do
         # Increment the counter for the next filename
         ((counter++))
     else
-    echo "API request failed. Check the error and try again."
+        echo "API request failed. Check the error and try again."
     break
   fi
 done
