@@ -1339,6 +1339,14 @@
       <let name="auth-and-member" value="$top-names[.=$members]"/>
       
       <assert test="empty($auth-and-member)" role="warning" id="auth-and-member-test">[auth-and-member-test] Top level author(s) <value-of select="if (count($auth-and-member) gt 1) then concat(string-join($auth-and-member[position() != last()],', '),' and ',$auth-and-member[last()]) else $auth-and-member"/> are also a member of a group author. Is this correct?</assert>
+    </rule></pattern><pattern id="collab-name-tests-pattern"><rule context="collab-name" id="collab-name-tests">
+      
+      <report test="ancestor::article-meta and not(parent::collab-wrap)" role="error" id="collab-name-test-1">[collab-name-test-1] <name/> that is a descendant of article-meta must be captured as a child of collab-wrap. This one has the parent <value-of select="parent::*/name()"/>.</report>
+      
+      <report test="ancestor::ref and not(parent::person-group)" role="error" id="collab-name-test-2">[collab-name-test-2] <name/> that is a descendant of ref must be captured as a child of person-group. This one has the parent <value-of select="parent::*/name()"/>.</report>
+      
+      <report test="not(ancestor::ref) and not(ancestor::article-meta)" role="error" id="collab-name-test-3">[collab-name-test-3] <name/> must only be captured ass a descendant of ref or article-meta. This one is not.</report>
+      
     </rule></pattern><pattern id="author-xref-tests-pattern"><rule context="article-meta//contrib[@contrib-type='author']/xref" id="author-xref-tests">
       
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hzwb3-author-xref-test-1" test="(@ref-type='aff') and preceding-sibling::xref[not(@ref-type='aff')]" role="error" id="author-xref-test-1">[author-xref-test-1] Affiliation footnote links (xrefs) from authors must be the first type of link to be listed. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their affiliation link - <value-of select="."/> - appears after another non-affiliation link, when it should appear before it.</report>
