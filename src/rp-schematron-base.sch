@@ -2358,6 +2358,22 @@
           role="error"
           id="collab-non-contrib-dtd">The collab element is deprecated in JATS version <value-of select="$dtd"/>. Use &lt;collab-name> instead.</assert>
     </rule>
+      
+    <rule context="collab-name" id="collab-name-tests">
+      
+      <report test="ancestor::article-meta and not(parent::collab-wrap)" 
+        role="error" 
+        id="collab-name-test-1"><name/> that is a descendant of article-meta must be captured as a child of collab-wrap. This one has the parent <value-of select="parent::*/name()"/>.</report>
+      
+      <report test="ancestor::ref and not(parent::person-group)" 
+        role="error" 
+        id="collab-name-test-2"><name/> that is a descendant of ref must be captured as a child of person-group. This one has the parent <value-of select="parent::*/name()"/>.</report>
+      
+      <report test="not(ancestor::ref) and not(ancestor::article-meta)" 
+        role="error" 
+        id="collab-name-test-3"><name/> must only be captured ass a descendant of ref or article-meta. This one is not.</report>
+      
+    </rule>
     </pattern>
 
     <pattern id="ref-etal">

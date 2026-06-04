@@ -1590,6 +1590,38 @@
         <x:expect-not-assert id="collab-dtd-checks-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="collab-name-tests">
+      <x:scenario label="collab-name-test-1-pass">
+        <x:context href="../tests/rp/collab-name-tests/collab-name-test-1/pass.xml"/>
+        <x:expect-not-report id="collab-name-test-1" role="error"/>
+        <x:expect-not-assert id="collab-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-name-test-1-fail">
+        <x:context href="../tests/rp/collab-name-tests/collab-name-test-1/fail.xml"/>
+        <x:expect-report id="collab-name-test-1" role="error"/>
+        <x:expect-not-assert id="collab-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-name-test-2-pass">
+        <x:context href="../tests/rp/collab-name-tests/collab-name-test-2/pass.xml"/>
+        <x:expect-not-report id="collab-name-test-2" role="error"/>
+        <x:expect-not-assert id="collab-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-name-test-2-fail">
+        <x:context href="../tests/rp/collab-name-tests/collab-name-test-2/fail.xml"/>
+        <x:expect-report id="collab-name-test-2" role="error"/>
+        <x:expect-not-assert id="collab-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-name-test-3-pass">
+        <x:context href="../tests/rp/collab-name-tests/collab-name-test-3/pass.xml"/>
+        <x:expect-not-report id="collab-name-test-3" role="error"/>
+        <x:expect-not-assert id="collab-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="collab-name-test-3-fail">
+        <x:context href="../tests/rp/collab-name-tests/collab-name-test-3/fail.xml"/>
+        <x:expect-report id="collab-name-test-3" role="error"/>
+        <x:expect-not-assert id="collab-name-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="ref-etal-checks">
       <x:scenario label="ref-etal-1-pass">
         <x:context href="../tests/rp/ref-etal-checks/ref-etal-1/pass.xml"/>

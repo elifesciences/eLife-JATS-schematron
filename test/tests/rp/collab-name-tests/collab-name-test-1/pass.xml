@@ -1,0 +1,17 @@
+<?oxygen SCHSchema="collab-name-test-1.sch"?>
+<!--Context: collab-name
+Test: report    ancestor::article-meta and not(parent::collab-wrap)
+Message:  that is a descendant of article-meta must be captured as a child of collab-wrap. This one has the parent . -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <contrib-group>
+                <contrib>
+                    <collab-wrap>
+                        <collab-name/>
+                    </collab-wrap>
+                </contrib>
+            </contrib-group>
+        </article-meta>
+    </article>
+</root>

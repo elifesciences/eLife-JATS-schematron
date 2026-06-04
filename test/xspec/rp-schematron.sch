@@ -2032,6 +2032,20 @@
         <assert test="ancestor::contrib" role="error" id="collab-non-contrib-dtd">The collab element is deprecated in JATS version <value-of select="$dtd"/>. Use &lt;collab-name&gt; instead.</assert>
     </rule>
   </pattern>
+  <pattern id="collab-name-tests-pattern">
+    <rule context="collab-name" id="collab-name-tests">
+      
+      <report test="ancestor::article-meta and not(parent::collab-wrap)" role="error" id="collab-name-test-1">
+        <name/> that is a descendant of article-meta must be captured as a child of collab-wrap. This one has the parent <value-of select="parent::*/name()"/>.</report>
+      
+      <report test="ancestor::ref and not(parent::person-group)" role="error" id="collab-name-test-2">
+        <name/> that is a descendant of ref must be captured as a child of person-group. This one has the parent <value-of select="parent::*/name()"/>.</report>
+      
+      <report test="not(ancestor::ref) and not(ancestor::article-meta)" role="error" id="collab-name-test-3">
+        <name/> must only be captured ass a descendant of ref or article-meta. This one is not.</report>
+      
+    </rule>
+  </pattern>
 
     <pattern id="ref-etal-checks-pattern">
     <rule context="mixed-citation[person-group]//etal" id="ref-etal-checks">
@@ -4133,6 +4147,7 @@
       <assert test="descendant::mixed-citation//given-names  or descendant:: mixed-citation//surname" role="error" id="ref-name-space-checks-xspec-assert">mixed-citation//given-names | mixed-citation//surname must be present.</assert>
       <assert test="descendant::collab  or descendant:: collab-name" role="error" id="collab-checks-xspec-assert">collab | collab-name must be present.</assert>
       <assert test="descendant::article[@dtd-version ge '1.4']//collab" role="error" id="collab-dtd-checks-xspec-assert">article[@dtd-version ge '1.4']//collab must be present.</assert>
+      <assert test="descendant::collab-name" role="error" id="collab-name-tests-xspec-assert">collab-name must be present.</assert>
       <assert test="descendant::mixed-citation[person-group]//etal" role="error" id="ref-etal-checks-xspec-assert">mixed-citation[person-group]//etal must be present.</assert>
       <assert test="descendant::comment" role="error" id="ref-comment-checks-xspec-assert">comment must be present.</assert>
       <assert test="descendant::ref//pub-id" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id must be present.</assert>
