@@ -2150,7 +2150,7 @@
         <xsl:choose>
             <xsl:when test="./@mime-subtype">
                 <xsl:copy>
-                    <xsl:apply-templates select="@*[name()!='mimetype']"/>
+                    <xsl:apply-templates select="@*[not(name()=('mimetype','mime-subtype'))]"/>
                     <xsl:attribute name="mimetype">
                         <xsl:value-of select="concat('image/',@mime-subtype)"/>
                     </xsl:attribute>
