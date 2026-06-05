@@ -435,7 +435,7 @@
         </xsl:copy>
     </xsl:template>
 
-    <!-- Update dtd-version attribute to 1.3
+    <!-- Update dtd-version attribute to 1.4
          remove specific-use attribute
          change article-type to conform with VORs
          add namespace definitions to root element if missing -->
@@ -450,7 +450,7 @@
                     <xsl:attribute name="article-type">research-article</xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
-            <xsl:attribute name="dtd-version">1.3</xsl:attribute>
+            <xsl:attribute name="dtd-version">1.4</xsl:attribute>
             <xsl:apply-templates select="@*[not(name()=('dtd-version','specific-use','article-type'))]"/>
             <!-- If ali, mml and xlink namespaces are missing on root -->
             <xsl:if test="empty(namespace::mml)">
