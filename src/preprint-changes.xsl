@@ -2145,13 +2145,15 @@
         </xsl:copy>
     </xsl:template>
     
-    <!-- introduce mimetype and mime-subtype when missing -->
+    <!-- introduce mimetype when missing -->
     <xsl:template xml:id="graphics" match="graphic|inline-graphic">
         <xsl:choose>
             <xsl:when test="./@mime-subtype">
                 <xsl:copy>
                     <xsl:apply-templates select="@*[name()!='mimetype']"/>
-                    <xsl:attribute name="mimetype">image</xsl:attribute>
+                    <xsl:attribute name="mimetype">
+                        <xsl:value-of select="concat('image/',@mime-subtype)"/>
+                    </xsl:attribute>
                     <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
                 </xsl:copy>
             </xsl:when>
@@ -2177,8 +2179,9 @@
                     <xsl:when test="$mime-subtype!='unknown'">
                         <xsl:copy>
                             <xsl:apply-templates select="@*[name()!='mimetype']"/>
-                            <xsl:attribute name="mimetype">image</xsl:attribute>
-                            <xsl:attribute name="mime-subtype"><xsl:value-of select="$mime-subtype"/></xsl:attribute>
+                            <xsl:attribute name="mimetype">
+                                <xsl:value-of select="concat('image/',$mime-subtype)"/>
+                            </xsl:attribute>
                             <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
                         </xsl:copy>
                     </xsl:when>
