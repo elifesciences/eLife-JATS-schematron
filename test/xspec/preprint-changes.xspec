@@ -264,5 +264,9 @@
       <x:context href="../tests/preprint-changes/inline-formula-space-removal/input.xml"/>
       <x:expect label="Testing the template: inline-formula-space-removal" href="../tests/preprint-changes/inline-formula-space-removal/output.xml"/>
     </x:scenario>
+    <x:scenario label="collab-deprecated">
+      <x:context href="../tests/preprint-changes/collab-deprecated/input.xml"/>
+      <x:expect label="Testing the template: collab-deprecated" href="../tests/preprint-changes/collab-deprecated/output.xml"/>
+    </x:scenario>
   </x:scenario>
 </x:description>

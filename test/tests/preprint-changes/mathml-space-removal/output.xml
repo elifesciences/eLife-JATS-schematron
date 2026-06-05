@@ -5,7 +5,7 @@
 <alternatives>
 <mml:math display="block"><mml:mi mathvariant="normal">Δ</mml:mi><mml:msub><mml:mi>z</mml:mi><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>z</mml:mi><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>z</mml:mi><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>,</mml:mo></mml:math>
 <tex-math>\begin{document}$$\displaystyle \begin{equation*} \Delta z_{t}=z_{t}-z_{t-1}, \tag{2} \end{equation*}$$\end{document}</tex-math>
-<graphic xlink:href="700857v1_eqn2.gif" mimetype="image" mime-subtype="gif"/>
+<graphic xlink:href="700857v1_eqn2.gif" mimetype="image/gif"/>
 </alternatives>
 </disp-formula>
 </sec>
