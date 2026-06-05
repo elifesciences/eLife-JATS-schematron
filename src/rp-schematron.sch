@@ -2525,6 +2525,8 @@
         <report test="@fn-type='financial-disclosure' and preceding-sibling::fn[@fn-type='coi-statement']" role="warning" id="author-fn-8">[author-fn-8] footnote with id <value-of select="$id"/> has the fn-type '<value-of select="@fn-type"/>', but there's another footnote with the type 'coi-statement'. Are two separate notes necessary? Are they duplicates?</report>
         
         <report test="label[matches(.,'[\d\p{L}]')]" role="warning" id="author-fn-9">[author-fn-9] footnote with id <value-of select="$id"/> has a label that contains a letter or number '<value-of select="label[1]"/>'. If they are part of a sequence that also includes affiliation labels this will look odd on EPP (as affiliation labels are not rendered). Should they be replaced with symbols? eLife's style is to follow this sequence: *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc.</report>
+        
+        <report test="p[matches(.,'^\s*:')]" role="error" id="author-fn-10">[author-fn-10] footnote with id <value-of select="$id"/> has a p element that starts with a colon. The colon is unnecessary and should be removed - '<value-of select="p[matches(.,'^\s*:')]"/>'</report>
      </rule></pattern><pattern id="article-version-checks-pattern"><rule context="article/front/article-meta//article-version" id="article-version-checks">
         
         <report test="parent::article-meta and not(@article-version-type) and not(matches(.,'^1\.\d+$'))" role="error" id="article-version-2">[article-version-2] article-version must be in the format 1.x (e.g. 1.11). This one is '<value-of select="."/>'.</report>
