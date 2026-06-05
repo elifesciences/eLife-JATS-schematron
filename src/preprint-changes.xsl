@@ -294,8 +294,6 @@
         <xsl:output-character character="ℤ" string="&amp;#x2124;"/>
     </xsl:character-map>
 
-    <xsl:variable name="name-elems" select="('string-name','collab','on-behalf-of','etal')"/>
-
     <xsl:function name="e:get-copyright-holder">
         <xsl:param name="contrib-group"/>
         <xsl:variable name="author-count" select="count($contrib-group/contrib[@contrib-type = 'author'])"/>
@@ -1748,7 +1746,7 @@
 
     <!-- Introduces author person-groups into refs when they are missing-->
     <xsl:template xml:id="add-person-group" mode="mixed-citation-round-1" match="mixed-citation">
-        <xsl:variable name="name-elems" select="('name','string-name','collab','on-behalf-of','etal')"/>
+        <xsl:variable name="name-elems" select="('name','string-name','collab','collab-name','on-behalf-of','etal')"/>
         <xsl:copy>
             <xsl:choose>
                 <!-- Handling edited collection refs -->
@@ -2927,5 +2925,44 @@
     
     <!-- Strip unnecessary pretty printing within inline-formula -->
     <xsl:template xml:id="inline-formula-space-removal" match="inline-formula/text()[matches(.,'^\n\s*$')] | inline-formula/alternatives/text()[matches(.,'^\n\s*$')]"/>
+    
+    <!-- collab to collab-wrap/collab-name -->
+    <xsl:template xml:id="collab-deprecated" match="collab">
+        <xsl:choose>
+            <xsl:when test="ancestor::ref or ancestor::mixed-citation or ancestor::element-citation">
+                <collab-name>
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                </collab-name>
+            </xsl:when>
+            <xsl:when test="parent::contrib">
+                <collab-wrap>
+                    <xsl:apply-templates select="@*"/>
+                    <xsl:choose>
+                        <xsl:when test="./contrib-group">
+                            <xsl:if test="./contrib-group/preceding-sibling::text()[normalize-space(.)!='']">
+                                <xsl:text>&#xa;</xsl:text>
+                                <collab-name>
+                                    <xsl:value-of select="./contrib-group/preceding-sibling::text()[normalize-space(.)!='']/normalize-space(.)"/>
+                                </collab-name>
+                            </xsl:if>
+                            <xsl:text>&#xa;</xsl:text>
+                            <xsl:apply-templates select="*|text()[not(following-sibling::contrib-group)]|comment()|processing-instruction()"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <collab-name>
+                                <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+                            </collab-name>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </collab-wrap>
+            </xsl:when>
+            <!-- No idea what's going on, let's retain it -->
+            <xsl:otherwise>
+                <xsl:copy>
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
     
 </xsl:stylesheet>
