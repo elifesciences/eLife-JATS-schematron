@@ -3648,6 +3648,10 @@
         <report test="p[matches(.,'^\s*:')]" 
           role="error" 
           id="author-fn-10">footnote with id <value-of select="$id"/> has a p element that starts with a colon. The colon is unnecessary and should be removed - '<value-of select="p[matches(.,'^\s*:')]"/>'</report>
+        
+        <report test="p[matches(.,'^\s*[^\p{L}:]')]" 
+          role="warning" 
+          id="author-fn-11">footnote with id <value-of select="$id"/> has a p element that starts with a symbol or character that should likely be placed in a label element - '<value-of select="p"/>'</report>
      </rule>
 
       <rule context="article/front/article-meta//article-version" id="article-version-checks">
