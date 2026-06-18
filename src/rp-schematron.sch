@@ -139,7 +139,7 @@
         <xsl:value-of select="e:get-surname($contrib-group/contrib[@contrib-type='author'][1])"/>
       </xsl:when>
       <xsl:when test="$author-count = 2">
-        <xsl:value-of select="string-join(           for $auth in $contrib-group/contrib[@contrib-type='author'] return e:get-surname($auth)           ,' and ')"/>
+        <xsl:value-of select="string-join(           for $auth in $contrib-group/contrib[@contrib-type='author'] return e:get-surname($auth)           ,' &amp; ')"/>
       </xsl:when>
       <!-- author count is 3+ -->
       <xsl:otherwise>
@@ -3182,7 +3182,9 @@
       <report test="(lower-case(.)=$allowed-vals) and matches($preceding-text,'\smore\s*$')" role="warning" id="ed-report-bold-terms-4">[ed-report-bold-terms-4] Assessment keyword (<value-of select="."/>) is preceded by 'more'. Has the keyword been deployed correctly?</report>
       
       <report test="(lower-case(.)=$str-kwds) and matches($preceding-text,'\spotentially\s*$')" role="warning" id="ed-report-bold-terms-5">[ed-report-bold-terms-5] Assessment strength keyword (<value-of select="."/>) is preceded by 'potentially'. Has the keyword been deployed correctly?</report>
-    </rule></pattern>
+    </rule></pattern><pattern id="ed-report-body-links-pattern"><rule context="sub-article[@article-type='editor-report']/body/p//ext-link" id="ed-report-body-links">
+        <report test="matches(@*:href,'\p{Pe}\s*$')" role="warning" id="ed-report-body-links-1">[ed-report-body-links-1] Link in eLife Assessment ends with closing punctuation - '<value-of select="@*:href"/>'. Is that deliberate?</report>
+      </rule></pattern>
 
     <pattern id="ar-image-labels-pattern"><rule context="sub-article[@article-type='author-comment']//fig/label" id="ar-image-labels">
         <assert test="matches(.,'^Author response image \d\d?\.$')" role="error" id="ar-image-label-1">[ar-image-label-1] Label for figures in the author response must be in the format 'Author response image 0.' This one is not: '<value-of select="."/>'</assert>

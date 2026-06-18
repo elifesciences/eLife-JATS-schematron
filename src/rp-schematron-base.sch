@@ -153,7 +153,7 @@
       <xsl:when test="$author-count = 2">
         <xsl:value-of select="string-join(
           for $auth in $contrib-group/contrib[@contrib-type='author'] return e:get-surname($auth)
-          ,' and ')"/>
+          ,' &amp; ')"/>
       </xsl:when>
       <!-- author count is 3+ -->
       <xsl:otherwise>
@@ -4974,6 +4974,12 @@
         role="warning" 
         id="ed-report-bold-terms-5">Assessment strength keyword (<value-of select="."/>) is preceded by 'potentially'. Has the keyword been deployed correctly?</report>
     </rule>
+      
+      <rule context="sub-article[@article-type='editor-report']/body/p//ext-link" id="ed-report-body-links">
+        <report test="matches(@*:href,'\p{Pe}\s*$')"
+          role="warning" 
+          id="ed-report-body-links-1">Link in eLife Assessment ends with closing punctuation - '<value-of select="@*:href"/>'. Is that deliberate?</report>
+      </rule>
 
     </pattern>
 
