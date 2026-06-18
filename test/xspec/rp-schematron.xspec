@@ -6226,6 +6226,18 @@
         <x:expect-not-assert id="ed-report-bold-terms-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="ed-report-body-links">
+      <x:scenario label="ed-report-body-links-1-pass">
+        <x:context href="../tests/rp/ed-report-body-links/ed-report-body-links-1/pass.xml"/>
+        <x:expect-not-report id="ed-report-body-links-1" role="warning"/>
+        <x:expect-not-assert id="ed-report-body-links-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="ed-report-body-links-1-fail">
+        <x:context href="../tests/rp/ed-report-body-links/ed-report-body-links-1/fail.xml"/>
+        <x:expect-report id="ed-report-body-links-1" role="warning"/>
+        <x:expect-not-assert id="ed-report-body-links-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="ar-image-labels">
       <x:scenario label="ar-image-label-1-pass">
         <x:context href="../tests/rp/ar-image-labels/ar-image-label-1/pass.xml"/>
