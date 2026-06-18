@@ -130,7 +130,7 @@
         <xsl:value-of select="e:get-surname($contrib-group/contrib[@contrib-type='author'][1])"/>
       </xsl:when>
       <xsl:when test="$author-count = 2">
-        <xsl:value-of select="string-join(           for $auth in $contrib-group/contrib[@contrib-type='author'] return e:get-surname($auth)           ,' and ')"/>
+        <xsl:value-of select="string-join(           for $auth in $contrib-group/contrib[@contrib-type='author'] return e:get-surname($auth)           ,' &amp; ')"/>
       </xsl:when>
       
       <xsl:otherwise>
