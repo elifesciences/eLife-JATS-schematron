@@ -219,7 +219,10 @@
   <let name="genus-regex" value="string-join(doc($research-organisms)//*:organism[@type='genus']/@regex,'|')"/>
   <let name="org-regex" value="string-join(($species-regex,$genus-regex),'|')"/>
   
-  <let name="rors" value="'rors.xml'"/>
+  <let name="rors-doc" value="document('rors.xml')"/>
+  <xsl:key name="ror-by-any-id" match="*:ror" use="*:id"/>
+  <xsl:key name="ror-by-ror-id" match="*:ror" use="*:id[@type='ror']"/>
+  <xsl:key name="ror-by-fundref" match="*:ror" use="*:id[@type='fundref']"/>
   <!-- Grant DOI enabling -->
   <let name="wellcome-funder-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440','https://ror.org/029chgv08')"/>
   <let name="known-grant-funder-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968','http://dx.doi.org/10.13039/100004412','https://ror.org/006wxqw41','https://ror.org/00097mb19','https://ror.org/03dy4aq19','https://ror.org/013tf3c58','https://ror.org/013kjyp64','https://ror.org/02ebx7v45')"/>
@@ -1309,7 +1312,7 @@
         <xsl:variable name="funder-id" select="parent::award-group/funding-source/institution-wrap/institution-id"/>
         <xsl:variable name="award-id" select="e:alter-award-id(.,$funder-id)"/>
         <award-id xmlns="" award-id-type="doi">
-          <xsl:value-of select="document('rors.xml')//*:ror[*:id=$funder-id]/*:grant[@award=$award-id][1]/@doi"/>              
+          <xsl:value-of select="$rors-doc//*:ror[*:id=$funder-id]/*:grant[@award=$award-id][1]/@doi"/>              
         </award-id>
       </sqf:replace>
     </sqf:fix>
@@ -1507,7 +1510,7 @@
         </sqf:description>
         <sqf:replace match="institution-wrap/following-sibling::text()[1]" use-when="institution-wrap[1]/institution-id[@institution-id-type='ror']">
           <xsl:variable name="ror" select="ancestor::aff/institution-wrap[1]/institution-id[@institution-id-type='ror']"/>
-          <xsl:variable name="ror-record-city" select="document('rors.xml')//*:ror[*:id=$ror]/*:city/data()"/>
+          <xsl:variable name="ror-record-city" select="$rors-doc//*:ror[*:id=$ror]/*:city/data()"/>
           <xsl:text>, </xsl:text>
           <city xmlns=""><xsl:value-of select="$ror-record-city"/></city>
           <xsl:text>, </xsl:text>
@@ -1520,7 +1523,7 @@
         </sqf:description>
         <sqf:add match="." position="last-child" use-when="institution-wrap[1]/institution-id[@institution-id-type='ror']">
           <xsl:variable name="ror" select="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
-          <xsl:variable name="ror-record-country" select="document('rors.xml')//*:ror[*:id=$ror]/*:country[1]"/>
+          <xsl:variable name="ror-record-country" select="$rors-doc//*:ror[*:id=$ror]/*:country[1]"/>
           <xsl:if test="not(ends-with(.,', '))">
             <xsl:text>, </xsl:text>
           </xsl:if>
@@ -1583,9 +1586,8 @@
           <sqf:add target="institution-id-type" node-type="attribute">ror</sqf:add>
         </sqf:fix>
       </rule></pattern><pattern id="aff-ror-tests-pattern"><rule context="aff[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" id="aff-ror-tests">
-      <let name="rors" value="'rors.xml'"/>
       <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
-      <let name="matching-ror" value="document($rors)//*:ror[*:id=$ror]"/>
+      <let name="matching-ror" value="key('ror-by-any-id', $ror, $rors-doc)"/>
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content','city','country'))],', ')"/>
       
       <assert test="exists($matching-ror)" role="error" id="aff-ror">[aff-ror] Affiliation (<value-of select="$display"/>) has a ROR id - <value-of select="$ror"/> - but it does not look like a correct one.</assert>
@@ -2722,49 +2724,52 @@
       </rule></pattern><pattern id="general-grant-doi-tests-pattern"><rule context="funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap[count(institution-id)=1]/institution-id[not(.=$grant-doi-exception-funder-ids)]]" id="general-grant-doi-tests">
         <let name="award-id" value="award-id"/>
         <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
-        <let name="funder-entry" value="document($rors)//*:ror[*:id[@type='ror']=$funder-id]"/>
+        <let name="funder-entry" value="key('ror-by-any-id', $funder-id, $rors-doc)"/>
         <let name="mints-grant-dois" value="$funder-entry/@grant-dois='yes'"/>
         <!-- Consider alternatives to exact match as this is no better than simply using Crossref's API -->
         <let name="grant-matches" value="if (not($mints-grant-dois)) then ()           else $funder-entry//*:grant[@award=$award-id]"/>
 	  
-        <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-1" test="$grant-matches" role="warning" sqf:fix="add-grant-doi" id="grant-doi-test-1">[grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
+        <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-1" test="$grant-matches" role="warning" sqf:fix="add-grant-doi" id="grant-doi-test-1">[grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(distinct-values(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi)),'; ')"/>.</report>
 
         <!-- If the funder has minted 30+ grant DOIs but there isn't an exact match throw a warning -->
         <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-2" test="$mints-grant-dois and (count($funder-entry//*:grant) gt 29) and not($grant-matches)" role="warning" id="grant-doi-test-2">[grant-doi-test-2] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</report>
       
 	   </rule></pattern><pattern id="general-funding-no-award-id-tests-pattern"><rule context="funding-group/award-group[not(award-id) and funding-source/institution-wrap[count(institution-id)=1]/institution-id]" id="general-funding-no-award-id-tests">
         <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
-        <let name="funder-entry" value="document($rors)//*:ror[*:id[@type='ror']=$funder-id]"/>
+        <let name="funder-entry" value="key('ror-by-ror-id', $funder-id, $rors-doc)"/>
         <let name="grant-doi-count" value="count($funder-entry//*:grant)"/>
       
         <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-3" test="$grant-doi-count gt 29" role="warning" id="grant-doi-test-3">[grant-doi-test-3] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has no award-id, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Is there a missing grant DOI or award ID for this funding?</report>
       </rule></pattern><pattern id="wellcome-grant-doi-tests-pattern"><rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-funder-ids]" id="wellcome-grant-doi-tests">
-      <let name="grants" value="document($rors)//*:ror[*:id=$wellcome-funder-ids]/*:grant"/>
+      <let name="funder-entries" value="key('ror-by-any-id', $wellcome-funder-ids, $rors-doc)"/>
+      <let name="grants" value="$funder-entries/*:grant"/>
       <let name="award-id-elem" value="award-id"/>
       <let name="award-id" value="e:alter-award-id($award-id-elem,$wellcome-funder-ids[last()])"/> 
       <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
       
-      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-grant-doi-test-1" test="$grant-matches" role="warning" sqf:fix="add-grant-doi" id="wellcome-grant-doi-test-1">[wellcome-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-grant-doi-test-1" test="$grant-matches" role="warning" sqf:fix="add-grant-doi" id="wellcome-grant-doi-test-1">[wellcome-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(distinct-values(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi)),'; ')"/>.</report>
 
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-grant-doi-test-2" test="$grant-matches" role="warning" id="wellcome-grant-doi-test-2">[wellcome-grant-doi-test-2] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
     </rule></pattern><pattern id="eu-horizon-grant-doi-tests-pattern"><rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=($eu-ror-ids,$eu-horizon-fundref-ids)]" id="eu-horizon-grant-doi-tests">
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
-      <let name="grants" value="document($rors)//*:ror[*:id[@type='ror']=$eu-ror-ids]/*:grant"/>
+      <let name="funder-entries" value="key('ror-by-any-id', ($eu-ror-ids,$eu-horizon-fundref-ids), $rors-doc)"/>
+      <let name="grants" value="$funder-entries/*:grant"/>
       <let name="award-id" value="e:alter-award-id(award-id[1],$funder-id)"/> 
       <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
       
-      <report test="$grant-matches" role="warning" sqf:fix="add-grant-doi" id="eu-horizon-grant-doi-test-1">[eu-horizon-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="award-id[1]"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
+      <report test="$grant-matches" role="warning" sqf:fix="add-grant-doi" id="eu-horizon-grant-doi-test-1">[eu-horizon-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="award-id[1]"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(distinct-values(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi)),'; ')"/>.</report>
 
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-grant-doi-test-2" test="$grant-matches" role="warning" id="eu-horizon-grant-doi-test-2">[eu-horizon-grant-doi-test-2] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="award-id[1]"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
     </rule></pattern><pattern id="known-grant-funder-grant-doi-tests-pattern"><rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-ids]" id="known-grant-funder-grant-doi-tests">
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
-      <let name="grants" value="document($rors)//*:ror[*:id[@type=('ror','fundref')]=$funder-id]/*:grant"/>
+      <let name="funder-entry" value="key('ror-by-any-id', $funder-id, $rors-doc)"/>
+      <let name="grants" value="$funder-entry/*:grant"/>
       <let name="award-id-elem" value="award-id"/>
       <!-- Make use of custom function to try and account for variations within funder conventions -->
       <let name="award-id" value="e:alter-award-id($award-id-elem,$funder-id)"/>
       <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
     
-      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#known-grant-funder-grant-doi-test-1" test="$grant-matches" role="warning" sqf:fix="add-grant-doi" id="known-grant-funder-grant-doi-test-1">[known-grant-funder-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi),'; ')"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#known-grant-funder-grant-doi-test-1" test="$grant-matches" role="warning" sqf:fix="add-grant-doi" id="known-grant-funder-grant-doi-test-1">[known-grant-funder-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(distinct-values(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi)),'; ')"/>.</report>
 
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#known-grant-funder-grant-doi-test-2" test="$grant-matches" role="warning" id="known-grant-funder-grant-doi-test-2">[known-grant-funder-grant-doi-test-2] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
 
@@ -2811,9 +2816,8 @@
       <report test="count(institution-id)=1 and (normalize-space(string-join(text(),''))!='' or comment())" role="error" id="funding-institution-wrap-test-3">[funding-institution-wrap-test-3] institution-wrap cannot contain text content or comments. It can only contain elements and whitespace.</report>  
         
     </rule></pattern><pattern id="funding-ror-tests-pattern"><rule context="funding-source[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" id="funding-ror-tests">
-      <let name="rors" value="'rors.xml'"/>
       <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
-      <let name="matching-ror" value="document($rors)//*:ror[*:id=$ror]"/>
+      <let name="matching-ror" value="key('ror-by-ror-id', $ror, $rors-doc)"/>
       
       <assert test="exists($matching-ror)" role="error" id="funding-ror">[funding-ror] Funding (<value-of select="institution-wrap[1]/institution[1]"/>) has a ROR id - <value-of select="$ror"/> - but it does not look like a correct one.</assert>
         

@@ -31,8 +31,7 @@
   
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Immunology and Inflammation', 'Medicine' , 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Physiology', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
   
-  <let name="rors" value="'rors.xml'"/>
-  <let name="rors-doc" value="document($rors)"/>
+  <let name="rors-doc" value="document('rors.xml')"/>
   <xsl:key name="ror-by-any-id" match="*:ror" use="*:id"/>
   <xsl:key name="ror-by-ror-id" match="*:ror" use="*:id[@type='ror']"/>
   <xsl:key name="ror-by-fundref" match="*:ror" use="*:id[@type='fundref']"/>

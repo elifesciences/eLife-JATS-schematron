@@ -204,7 +204,10 @@
   <let name="species-regex" value="string-join(doc($research-organisms)//*:organism[@type='species']/@regex,'|')"/>
   <let name="genus-regex" value="string-join(doc($research-organisms)//*:organism[@type='genus']/@regex,'|')"/>
   <let name="org-regex" value="string-join(($species-regex,$genus-regex),'|')"/>
-  <let name="rors" value="'../../../../../src/rors.xml'"/>
+  <let name="rors-doc" value="document('rors.xml')"/>
+  <xsl:key name="ror-by-any-id" match="*:ror" use="*:id"/>
+  <xsl:key name="ror-by-ror-id" match="*:ror" use="*:id[@type='ror']"/>
+  <xsl:key name="ror-by-fundref" match="*:ror" use="*:id[@type='fundref']"/>
   <let name="wellcome-funder-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440','https://ror.org/029chgv08')"/>
   <let name="known-grant-funder-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968','http://dx.doi.org/10.13039/100004412','https://ror.org/006wxqw41','https://ror.org/00097mb19','https://ror.org/03dy4aq19','https://ror.org/013tf3c58','https://ror.org/013kjyp64','https://ror.org/02ebx7v45')"/>
   <let name="eu-ror-ids" value="('https://ror.org/0472cxd90','https://ror.org/00k4n6c32')"/>
@@ -1271,7 +1274,7 @@
         <xsl:variable name="funder-id" select="parent::award-group/funding-source/institution-wrap/institution-id"/>
         <xsl:variable name="award-id" select="e:alter-award-id(.,$funder-id)"/>
         <award-id xmlns="" award-id-type="doi">
-          <xsl:value-of select="document('rors.xml')//*:ror[*:id=$funder-id]/*:grant[@award=$award-id][1]/@doi"/>              
+          <xsl:value-of select="$rors-doc//*:ror[*:id=$funder-id]/*:grant[@award=$award-id][1]/@doi"/>              
         </award-id>
       </sqf:replace>
     </sqf:fix>
@@ -1291,7 +1294,7 @@
     <rule context="funding-group/award-group[award-id[not(@award-id-type='doi') and normalize-space(.)!=''] and funding-source/institution-wrap[count(institution-id)=1]/institution-id[not(.=$grant-doi-exception-funder-ids)]]" id="general-grant-doi-tests">
       <let name="award-id" value="award-id"/>
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
-      <let name="funder-entry" value="document($rors)//*:ror[*:id[@type='ror']=$funder-id]"/>
+      <let name="funder-entry" value="key('ror-by-any-id', $funder-id, $rors-doc)"/>
       <let name="mints-grant-dois" value="$funder-entry/@grant-dois='yes'"/>
       <let name="grant-matches" value="if (not($mints-grant-dois)) then ()           else $funder-entry//*:grant[@award=$award-id]"/>
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-2" test="$mints-grant-dois and (count($funder-entry//*:grant) gt 29) and not($grant-matches)" role="warning" id="grant-doi-test-2">[grant-doi-test-2] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</report>

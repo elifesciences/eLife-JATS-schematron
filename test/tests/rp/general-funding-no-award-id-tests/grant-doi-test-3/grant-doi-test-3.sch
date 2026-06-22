@@ -204,7 +204,10 @@
   <let name="species-regex" value="string-join(doc($research-organisms)//*:organism[@type='species']/@regex,'|')"/>
   <let name="genus-regex" value="string-join(doc($research-organisms)//*:organism[@type='genus']/@regex,'|')"/>
   <let name="org-regex" value="string-join(($species-regex,$genus-regex),'|')"/>
-  <let name="rors" value="'../../../../../src/rors.xml'"/>
+  <let name="rors-doc" value="document('rors.xml')"/>
+  <xsl:key name="ror-by-any-id" match="*:ror" use="*:id"/>
+  <xsl:key name="ror-by-ror-id" match="*:ror" use="*:id[@type='ror']"/>
+  <xsl:key name="ror-by-fundref" match="*:ror" use="*:id[@type='fundref']"/>
   <let name="wellcome-funder-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440','https://ror.org/029chgv08')"/>
   <let name="known-grant-funder-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968','http://dx.doi.org/10.13039/100004412','https://ror.org/006wxqw41','https://ror.org/00097mb19','https://ror.org/03dy4aq19','https://ror.org/013tf3c58','https://ror.org/013kjyp64','https://ror.org/02ebx7v45')"/>
   <let name="eu-ror-ids" value="('https://ror.org/0472cxd90','https://ror.org/00k4n6c32')"/>
@@ -1271,7 +1274,7 @@
         <xsl:variable name="funder-id" select="parent::award-group/funding-source/institution-wrap/institution-id"/>
         <xsl:variable name="award-id" select="e:alter-award-id(.,$funder-id)"/>
         <award-id xmlns="" award-id-type="doi">
-          <xsl:value-of select="document('rors.xml')//*:ror[*:id=$funder-id]/*:grant[@award=$award-id][1]/@doi"/>              
+          <xsl:value-of select="$rors-doc//*:ror[*:id=$funder-id]/*:grant[@award=$award-id][1]/@doi"/>              
         </award-id>
       </sqf:replace>
     </sqf:fix>
@@ -1290,7 +1293,7 @@
   <pattern id="general-funding-no-award-id-tests-pattern">
     <rule context="funding-group/award-group[not(award-id) and funding-source/institution-wrap[count(institution-id)=1]/institution-id]" id="general-funding-no-award-id-tests">
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
-      <let name="funder-entry" value="document($rors)//*:ror[*:id[@type='ror']=$funder-id]"/>
+      <let name="funder-entry" value="key('ror-by-ror-id', $funder-id, $rors-doc)"/>
       <let name="grant-doi-count" value="count($funder-entry//*:grant)"/>
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-3" test="$grant-doi-count gt 29" role="warning" id="grant-doi-test-3">[grant-doi-test-3] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has no award-id, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Is there a missing grant DOI or award ID for this funding?</report>
     </rule>
