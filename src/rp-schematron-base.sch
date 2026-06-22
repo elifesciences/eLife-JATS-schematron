@@ -1367,8 +1367,9 @@
       <sqf:replace match="award-id[1]">
         <xsl:variable name="funder-id" select="parent::award-group/funding-source/institution-wrap/institution-id"/>
         <xsl:variable name="award-id" select="e:alter-award-id(.,$funder-id)"/>
+        <xsl:variable name="matching-ror" select="key('ror-by-any-id', $funder-id, $rors-doc)"/>
         <award-id xmlns="" award-id-type="doi">
-          <xsl:value-of select="$rors-doc//*:ror[*:id=$funder-id]/*:grant[@award=$award-id][1]/@doi"/>              
+          <xsl:value-of select="$matching-ror/*:grant[@award=$award-id][1]/@doi"/>              
         </award-id>
       </sqf:replace>
     </sqf:fix>
@@ -1738,7 +1739,8 @@
         </sqf:description>
         <sqf:replace match="institution-wrap/following-sibling::text()[1]" use-when="institution-wrap[1]/institution-id[@institution-id-type='ror']">
           <xsl:variable name="ror" select="ancestor::aff/institution-wrap[1]/institution-id[@institution-id-type='ror']"/>
-          <xsl:variable name="ror-record-city" select="$rors-doc//*:ror[*:id=$ror]/*:city/data()"/>
+          <xsl:variable name="funder-entry" select="key('ror-by-any-id', $ror, $rors-doc)"/>
+          <xsl:variable name="ror-record-city" select="$funder-entry/*:city/data()"/>
           <xsl:text>, </xsl:text>
           <city xmlns=""><xsl:value-of select="$ror-record-city"/></city>
           <xsl:text>, </xsl:text>
@@ -1751,7 +1753,8 @@
         </sqf:description>
         <sqf:add match="." position="last-child" use-when="institution-wrap[1]/institution-id[@institution-id-type='ror']">
           <xsl:variable name="ror" select="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
-          <xsl:variable name="ror-record-country" select="$rors-doc//*:ror[*:id=$ror]/*:country[1]"/>
+          <xsl:variable name="funder-entry" select="key('ror-by-any-id', $ror, $rors-doc)"/>
+          <xsl:variable name="ror-record-country" select="$funder-entry/*:country[1]"/>
           <xsl:if test="not(ends-with(.,', '))">
             <xsl:text>, </xsl:text>
           </xsl:if>

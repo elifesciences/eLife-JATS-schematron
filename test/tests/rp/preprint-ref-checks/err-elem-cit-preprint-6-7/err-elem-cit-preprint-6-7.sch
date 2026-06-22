@@ -1273,8 +1273,9 @@
       <sqf:replace match="award-id[1]">
         <xsl:variable name="funder-id" select="parent::award-group/funding-source/institution-wrap/institution-id"/>
         <xsl:variable name="award-id" select="e:alter-award-id(.,$funder-id)"/>
+        <xsl:variable name="matching-ror" select="key('ror-by-any-id', $funder-id, $rors-doc)"/>
         <award-id xmlns="" award-id-type="doi">
-          <xsl:value-of select="$rors-doc//*:ror[*:id=$funder-id]/*:grant[@award=$award-id][1]/@doi"/>              
+          <xsl:value-of select="$matching-ror/*:grant[@award=$award-id][1]/@doi"/>              
         </award-id>
       </sqf:replace>
     </sqf:fix>
