@@ -19,7 +19,10 @@
   <let name="allowed-article-types" value="('research-article','review-article',$features-article-types, $notice-article-types)"/>
   <let name="allowed-disp-subj" value="($research-subj, $features-subj,$notice-display-types)"/>
   <let name="MSAs" value="('Biochemistry and Chemical Biology', 'Cancer Biology', 'Cell Biology', 'Chromosomes and Gene Expression', 'Computational and Systems Biology', 'Developmental Biology', 'Ecology', 'Epidemiology and Global Health', 'Evolutionary Biology', 'Genetics and Genomics', 'Immunology and Inflammation', 'Medicine' , 'Microbiology and Infectious Disease', 'Neuroscience', 'Physics of Living Systems', 'Physiology', 'Plant Biology', 'Stem Cells and Regenerative Medicine', 'Structural Biology and Molecular Biophysics')"/>
-  <let name="rors" value="'../../../../../src/rors.xml'"/>
+  <let name="rors-doc" value="document('rors.xml')"/>
+  <xsl:key name="ror-by-any-id" match="*:ror" use="*:id"/>
+  <xsl:key name="ror-by-ror-id" match="*:ror" use="*:id[@type='ror']"/>
+  <xsl:key name="ror-by-fundref" match="*:ror" use="*:id[@type='fundref']"/>
   <let name="wellcome-funder-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440','https://ror.org/029chgv08')"/>
   <let name="known-grant-funder-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968','http://dx.doi.org/10.13039/100004412','https://ror.org/006wxqw41','https://ror.org/00097mb19','https://ror.org/03dy4aq19','https://ror.org/013tf3c58','https://ror.org/013kjyp64','https://ror.org/02ebx7v45')"/>
   <let name="eu-ror-ids" value="('https://ror.org/0472cxd90','https://ror.org/00k4n6c32')"/>
@@ -961,7 +964,7 @@
   <pattern id="article-metadata">
     <rule context="aff[institution-wrap/institution-id[@institution-id-type='ror']]" id="aff-ror-tests">
       <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
-      <let name="matching-ror" value="document($rors)//*:ror[*:id[@type='ror']=$ror]"/>
+      <let name="matching-ror" value="key('ror-by-ror-id', $ror, $rors-doc)"/>
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
       <report test="$matching-ror[@status='withdrawn']" role="error" id="aff-ror-status">Affiliation has a ROR id, but the ROR id's status is withdrawn. Withdrawn RORs should not be used. Should one of the following be used instead?: <value-of select="string-join(for $x in $matching-ror/*:relationships/* return concat('(',$x/name(),') ',$x/*:id,' ',$x/*:label),'; ')"/>.</report>
     </rule>
