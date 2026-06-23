@@ -294,8 +294,6 @@
         <xsl:output-character character="ℤ" string="&amp;#x2124;"/>
     </xsl:character-map>
 
-    <xsl:variable name="name-elems" select="('string-name','collab','on-behalf-of','etal')"/>
-
     <xsl:function name="e:get-copyright-holder">
         <xsl:param name="contrib-group"/>
         <xsl:variable name="author-count" select="count($contrib-group/contrib[@contrib-type = 'author'])"/>
@@ -437,7 +435,7 @@
         </xsl:copy>
     </xsl:template>
 
-    <!-- Update dtd-version attribute to 1.3
+    <!-- Update dtd-version attribute to 1.4
          remove specific-use attribute
          change article-type to conform with VORs
          add namespace definitions to root element if missing -->
@@ -452,7 +450,7 @@
                     <xsl:attribute name="article-type">research-article</xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
-            <xsl:attribute name="dtd-version">1.3</xsl:attribute>
+            <xsl:attribute name="dtd-version">1.4</xsl:attribute>
             <xsl:apply-templates select="@*[not(name()=('dtd-version','specific-use','article-type'))]"/>
             <!-- If ali, mml and xlink namespaces are missing on root -->
             <xsl:if test="empty(namespace::mml)">
@@ -1145,7 +1143,7 @@
     </xsl:template>
 
     <!-- Strip full stops from author names -->
-    <xsl:template xml:id="remove-fullstops-from-author-names" match="contrib[@contrib-type='author']/name/given-names|article-meta//contrib[@contrib-type='author']/name/surname">
+    <xsl:template xml:id="remove-fullstops-from-author-names" match="contrib[@contrib-type='author']/name/given-names | article-meta//contrib[@contrib-type='author']/name/surname | mixed-citation//given-names| element-citation//given-names">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:choose>
@@ -1748,7 +1746,7 @@
 
     <!-- Introduces author person-groups into refs when they are missing-->
     <xsl:template xml:id="add-person-group" mode="mixed-citation-round-1" match="mixed-citation">
-        <xsl:variable name="name-elems" select="('name','string-name','collab','on-behalf-of','etal')"/>
+        <xsl:variable name="name-elems" select="('name','string-name','collab','collab-name','on-behalf-of','etal')"/>
         <xsl:copy>
             <xsl:choose>
                 <!-- Handling edited collection refs -->
@@ -2147,13 +2145,15 @@
         </xsl:copy>
     </xsl:template>
     
-    <!-- introduce mimetype and mime-subtype when missing -->
+    <!-- introduce mimetype when missing -->
     <xsl:template xml:id="graphics" match="graphic|inline-graphic">
         <xsl:choose>
             <xsl:when test="./@mime-subtype">
                 <xsl:copy>
-                    <xsl:apply-templates select="@*[name()!='mimetype']"/>
-                    <xsl:attribute name="mimetype">image</xsl:attribute>
+                    <xsl:apply-templates select="@*[not(name()=('mimetype','mime-subtype'))]"/>
+                    <xsl:attribute name="mimetype">
+                        <xsl:value-of select="concat('image/',@mime-subtype)"/>
+                    </xsl:attribute>
                     <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
                 </xsl:copy>
             </xsl:when>
@@ -2179,8 +2179,9 @@
                     <xsl:when test="$mime-subtype!='unknown'">
                         <xsl:copy>
                             <xsl:apply-templates select="@*[name()!='mimetype']"/>
-                            <xsl:attribute name="mimetype">image</xsl:attribute>
-                            <xsl:attribute name="mime-subtype"><xsl:value-of select="$mime-subtype"/></xsl:attribute>
+                            <xsl:attribute name="mimetype">
+                                <xsl:value-of select="concat('image/',$mime-subtype)"/>
+                            </xsl:attribute>
                             <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
                         </xsl:copy>
                     </xsl:when>
@@ -2927,5 +2928,44 @@
     
     <!-- Strip unnecessary pretty printing within inline-formula -->
     <xsl:template xml:id="inline-formula-space-removal" match="inline-formula/text()[matches(.,'^\n\s*$')] | inline-formula/alternatives/text()[matches(.,'^\n\s*$')]"/>
+    
+    <!-- collab to collab-wrap/collab-name -->
+    <xsl:template xml:id="collab-deprecated" match="collab">
+        <xsl:choose>
+            <xsl:when test="ancestor::ref or ancestor::mixed-citation or ancestor::element-citation">
+                <collab-name>
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                </collab-name>
+            </xsl:when>
+            <xsl:when test="parent::contrib">
+                <collab-wrap>
+                    <xsl:apply-templates select="@*"/>
+                    <xsl:choose>
+                        <xsl:when test="./contrib-group">
+                            <xsl:if test="./contrib-group/preceding-sibling::text()[normalize-space(.)!='']">
+                                <xsl:text>&#xa;</xsl:text>
+                                <collab-name>
+                                    <xsl:value-of select="./contrib-group/preceding-sibling::text()[normalize-space(.)!='']/normalize-space(.)"/>
+                                </collab-name>
+                            </xsl:if>
+                            <xsl:text>&#xa;</xsl:text>
+                            <xsl:apply-templates select="*|text()[not(following-sibling::contrib-group)]|comment()|processing-instruction()"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <collab-name>
+                                <xsl:apply-templates select="*|text()|comment()|processing-instruction()"/>
+                            </collab-name>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </collab-wrap>
+            </xsl:when>
+            <!-- No idea what's going on, let's retain it -->
+            <xsl:otherwise>
+                <xsl:copy>
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
     
 </xsl:stylesheet>
