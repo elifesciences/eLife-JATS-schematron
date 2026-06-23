@@ -3199,7 +3199,7 @@
          role="error" 
          id="graphic-test-3"><name/> has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
         
-        <assert test="@mimetype='image'" 
+        <assert test="starts-with(@mimetype,'image/') or @mimetype='image'" 
           role="error" 
           id="graphic-test-4"><name/> must have a @mimetype='image'.</assert>
         
