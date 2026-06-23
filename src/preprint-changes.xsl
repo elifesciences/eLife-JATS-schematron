@@ -1213,6 +1213,7 @@
                 <xsl:text>&#xa;</xsl:text>
             </event>
             <xsl:apply-templates select="event[date/@iso-8601-date gt $sent-for-review-iso-date]|event[date/@iso-8601-date gt $sent-for-review-iso-date]/preceding-sibling::text()[.!='' and normalize-space(.)=''][1]"/>
+            <xsl:text>&#xa;</xsl:text>
         </xsl:copy>
     </xsl:template>
         
