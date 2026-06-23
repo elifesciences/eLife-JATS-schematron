@@ -1143,7 +1143,7 @@
     </xsl:template>
 
     <!-- Strip full stops from author names -->
-    <xsl:template xml:id="remove-fullstops-from-author-names" match="contrib[@contrib-type='author']/name/given-names|article-meta//contrib[@contrib-type='author']/name/surname">
+    <xsl:template xml:id="remove-fullstops-from-author-names" match="contrib[@contrib-type='author']/name/given-names | article-meta//contrib[@contrib-type='author']/name/surname | mixed-citation//given-names| element-citation//given-names">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:choose>
