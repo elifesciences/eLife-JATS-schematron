@@ -60,6 +60,14 @@
       <x:context href="../tests/preprint-changes/remove-degrees-from-contrib/input.xml"/>
       <x:expect label="Testing the template: remove-degrees-from-contrib" href="../tests/preprint-changes/remove-degrees-from-contrib/output.xml"/>
     </x:scenario>
+    <x:scenario label="strip-history">
+      <x:context href="../tests/preprint-changes/strip-history/input.xml"/>
+      <x:expect label="Testing the template: strip-history" href="../tests/preprint-changes/strip-history/output.xml"/>
+    </x:scenario>
+    <x:scenario label="sent-for-review-in-pub-history">
+      <x:context href="../tests/preprint-changes/sent-for-review-in-pub-history/input.xml"/>
+      <x:expect label="Testing the template: sent-for-review-in-pub-history" href="../tests/preprint-changes/sent-for-review-in-pub-history/output.xml"/>
+    </x:scenario>
     <x:scenario label="strip-counts">
       <x:context href="../tests/preprint-changes/strip-counts/input.xml"/>
       <x:expect label="Testing the template: strip-counts" href="../tests/preprint-changes/strip-counts/output.xml"/>

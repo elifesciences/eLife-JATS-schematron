@@ -1,0 +1,21 @@
+<!--Testing template with id: sent-for-review-in-pub-history-->
+<article-meta xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<history>
+<date date-type="sent-for-review" iso-8601-date="2026-03-27">
+<day>27</day>
+<month>03</month>
+<year>2026</year>
+</date>
+</history>
+<pub-history>
+<event>
+<event-desc>Preprint posted</event-desc>
+<date date-type="preprint" iso-8601-date="2026-03-31">
+<day>31</day>
+<month>03</month>
+<year>2026</year>
+</date>
+<self-uri content-type="preprint" xlink:href="https://doi.org/10.1101/2025.05.13.653501"/>
+</event>
+</pub-history>
+</article-meta>
