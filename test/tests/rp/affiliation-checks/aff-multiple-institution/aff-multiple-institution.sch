@@ -130,7 +130,7 @@
         <xsl:value-of select="e:get-surname($contrib-group/contrib[@contrib-type='author'][1])"/>
       </xsl:when>
       <xsl:when test="$author-count = 2">
-        <xsl:value-of select="string-join(           for $auth in $contrib-group/contrib[@contrib-type='author'] return e:get-surname($auth)           ,' and ')"/>
+        <xsl:value-of select="string-join(           for $auth in $contrib-group/contrib[@contrib-type='author'] return e:get-surname($auth)           ,' &amp; ')"/>
       </xsl:when>
       
       <xsl:otherwise>
@@ -204,7 +204,10 @@
   <let name="species-regex" value="string-join(doc($research-organisms)//*:organism[@type='species']/@regex,'|')"/>
   <let name="genus-regex" value="string-join(doc($research-organisms)//*:organism[@type='genus']/@regex,'|')"/>
   <let name="org-regex" value="string-join(($species-regex,$genus-regex),'|')"/>
-  <let name="rors" value="'../../../../../src/rors.xml'"/>
+  <let name="rors-doc" value="document('rors.xml')"/>
+  <xsl:key name="ror-by-any-id" match="*:ror" use="*:id"/>
+  <xsl:key name="ror-by-ror-id" match="*:ror" use="*:id[@type='ror']"/>
+  <xsl:key name="ror-by-fundref" match="*:ror" use="*:id[@type='fundref']"/>
   <let name="wellcome-funder-ids" value="('http://dx.doi.org/10.13039/100010269','http://dx.doi.org/10.13039/100004440','https://ror.org/029chgv08')"/>
   <let name="known-grant-funder-ids" value="('http://dx.doi.org/10.13039/100000936','http://dx.doi.org/10.13039/501100002241','http://dx.doi.org/10.13039/100000913','http://dx.doi.org/10.13039/501100002428','http://dx.doi.org/10.13039/100000968','http://dx.doi.org/10.13039/100004412','https://ror.org/006wxqw41','https://ror.org/00097mb19','https://ror.org/03dy4aq19','https://ror.org/013tf3c58','https://ror.org/013kjyp64','https://ror.org/02ebx7v45')"/>
   <let name="eu-ror-ids" value="('https://ror.org/0472cxd90','https://ror.org/00k4n6c32')"/>
@@ -1270,8 +1273,9 @@
       <sqf:replace match="award-id[1]">
         <xsl:variable name="funder-id" select="parent::award-group/funding-source/institution-wrap/institution-id"/>
         <xsl:variable name="award-id" select="e:alter-award-id(.,$funder-id)"/>
+        <xsl:variable name="matching-ror" select="key('ror-by-any-id', $funder-id, $rors-doc)"/>
         <award-id xmlns="" award-id-type="doi">
-          <xsl:value-of select="document('rors.xml')//*:ror[*:id=$funder-id]/*:grant[@award=$award-id][1]/@doi"/>              
+          <xsl:value-of select="$matching-ror/*:grant[@award=$award-id][1]/@doi"/>              
         </award-id>
       </sqf:replace>
     </sqf:fix>
@@ -1318,7 +1322,8 @@
         </sqf:description>
         <sqf:replace match="institution-wrap/following-sibling::text()[1]" use-when="institution-wrap[1]/institution-id[@institution-id-type='ror']">
           <xsl:variable name="ror" select="ancestor::aff/institution-wrap[1]/institution-id[@institution-id-type='ror']"/>
-          <xsl:variable name="ror-record-city" select="document('rors.xml')//*:ror[*:id=$ror]/*:city/data()"/>
+          <xsl:variable name="funder-entry" select="key('ror-by-any-id', $ror, $rors-doc)"/>
+          <xsl:variable name="ror-record-city" select="$funder-entry/*:city/data()"/>
           <xsl:text>, </xsl:text>
           <city xmlns="">
             <xsl:value-of select="$ror-record-city"/>
@@ -1332,7 +1337,8 @@
         </sqf:description>
         <sqf:add match="." position="last-child" use-when="institution-wrap[1]/institution-id[@institution-id-type='ror']">
           <xsl:variable name="ror" select="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
-          <xsl:variable name="ror-record-country" select="document('rors.xml')//*:ror[*:id=$ror]/*:country[1]"/>
+          <xsl:variable name="funder-entry" select="key('ror-by-any-id', $ror, $rors-doc)"/>
+          <xsl:variable name="ror-record-country" select="$funder-entry/*:country[1]"/>
           <xsl:if test="not(ends-with(.,', '))">
             <xsl:text>, </xsl:text>
           </xsl:if>
