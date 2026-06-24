@@ -1,15 +1,14 @@
-<?oxygen SCHSchema="history-presence.sch"?>
+<?oxygen SCHSchema="history-absence.sch"?>
 <!--Context: article/front/article-meta
-Test: report    $is-reviewed-preprint and ($dtd le '1.3') and not(count(history)=1)
-Message: Reviewed preprints (dtd version ) must have (and only one) history. This one has . -->
+Test: report    $is-reviewed-preprint and ($dtd ge '1.4') and history
+Message: Reviewed preprints (dtd version ) must not have a history element. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
-  <article dtd-version="1.3">
+  <article dtd-version="1.4">
     <front>
       <journal-meta>
         <journal-id>eLife</journal-id>
       </journal-meta>
      <article-meta>
-      
       <pub-history/>
     </article-meta>
     </front>

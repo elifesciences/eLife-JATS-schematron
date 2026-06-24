@@ -2869,7 +2869,9 @@
         
         <report test="$is-reviewed-preprint and not(count(elocation-id)=1)" role="error" id="elocation-id-presence">Reviewed preprints must have (and only one) elocation-id. This one has <value-of select="count(elocation-id)"/>.</report>
         
-        <report test="$is-reviewed-preprint and not(count(history)=1)" role="error" id="history-presence">Reviewed preprints must have (and only one) history. This one has <value-of select="count(history)"/>.</report>
+        <report test="$is-reviewed-preprint and ($dtd le '1.3') and not(count(history)=1)" role="error" id="history-presence">Reviewed preprints (dtd version <value-of select="$dtd"/>) must have (and only one) history. This one has <value-of select="count(history)"/>.</report>
+        
+        <report test="$is-reviewed-preprint and ($dtd ge '1.4') and history" role="error" id="history-absence">Reviewed preprints (dtd version <value-of select="$dtd"/>) must not have a history element.</report>
         
         <report test="$is-reviewed-preprint and not(count(pub-history)=1)" role="error" id="pub-history-presence">Reviewed preprints must have (and only one) pub-history. This one has <value-of select="count(pub-history)"/>.</report>
         

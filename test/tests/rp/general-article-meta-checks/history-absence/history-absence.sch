@@ -1299,7 +1299,7 @@
       <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
       <let name="corresp-author-count" value="count($corresp-authors)"/>
       <let name="dtd" value="ancestor::article/@dtd-version"/>
-      <report test="$is-reviewed-preprint and ($dtd le '1.3') and not(count(history)=1)" role="error" id="history-presence">[history-presence] Reviewed preprints (dtd version <value-of select="$dtd"/>) must have (and only one) history. This one has <value-of select="count(history)"/>.</report>
+      <report test="$is-reviewed-preprint and ($dtd ge '1.4') and history" role="error" id="history-absence">[history-absence] Reviewed preprints (dtd version <value-of select="$dtd"/>) must not have a history element.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
