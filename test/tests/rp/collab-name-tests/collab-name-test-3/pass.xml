@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="collab-name-test-3.sch"?>
 <!--Context: collab-name
-Test: report    not(ancestor::ref) and not(ancestor::article-meta)
-Message:  must only be captured ass a descendant of ref or article-meta. This one is not. -->
+Test: report    not(ancestor::ref) and not(ancestor::article-meta) and not(ancestor::front-stub)
+Message:  must only be captured ass a descendant of ref or article-meta or front-stub. This one is not. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
         <article-meta>
@@ -15,4 +15,15 @@ Message:  must only be captured ass a descendant of ref or article-meta. This on
         </article-meta>
         <ref><person-group><collab-name/></person-group></ref>
     </article>
+    <sub-article>
+        <front-stub>
+            <contrib-group>
+                <contrib>
+                    <collab-wrap>
+                        <collab-name/>
+                    </collab-wrap>
+                </contrib>
+            </contrib-group>
+        </front-stub>
+    </sub-article>
 </root>

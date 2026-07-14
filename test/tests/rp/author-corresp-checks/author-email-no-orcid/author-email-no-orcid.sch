@@ -1291,14 +1291,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="collab-name-tests-pattern">
-    <rule context="collab-name" id="collab-name-tests">
-      <report test="not(ancestor::ref) and not(ancestor::article-meta) and not(ancestor::front-stub)" role="error" id="collab-name-test-3">[collab-name-test-3] <name/> must only be captured ass a descendant of ref or article-meta or front-stub. This one is not.</report>
+  <pattern id="author-corresp-checks-pattern">
+    <rule context="contrib[@contrib-type='author']" id="author-corresp-checks">
+      <report test="@corresp='yes' and not(contrib-id[@contrib-id-type='orcid'])" role="warning" id="author-email-no-orcid">[author-email-no-orcid] Author <value-of select="e:get-name(name[1])"/> is a corresponding author (corresp="yes"), but they do not have an ORCID ID. Is that correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::collab-name" role="error" id="collab-name-tests-xspec-assert">collab-name must be present.</assert>
+      <assert test="descendant::contrib[@contrib-type='author']" role="error" id="author-corresp-checks-xspec-assert">contrib[@contrib-type='author'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

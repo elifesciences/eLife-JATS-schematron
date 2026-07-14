@@ -1041,7 +1041,7 @@
   <pattern id="covid-prologue-pattern">
     <rule context="article[front/article-meta//article-title[matches(lower-case(.),'sars-cov-2|covid-19|coronavirus')]]" id="covid-prologue">
       
-      <assert test="preceding::processing-instruction('covid-19-tdm')" role="warning" id="covid-processing-instruction">The article title (<value-of select="front/article-meta//article-title"/>) suggests that this article should probably have the covid processing instruction - '&lt;?covid-19-tdm?&gt;' - but it does not. Should it?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/article-content-house-style-k617122o#h1vp1-covid-processing-instruction" test="preceding::processing-instruction('covid-19-tdm')" role="warning" id="covid-processing-instruction">The article title (<value-of select="front/article-meta//article-title"/>) suggests that this article should probably have the covid processing instruction - '&lt;?covid-19-tdm?&gt;' - but it does not. Should it?</assert>
       
     </rule>
   </pattern>
