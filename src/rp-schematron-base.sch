@@ -1473,6 +1473,10 @@
           role="error" 
           id="author-email-no-corresp">Author <value-of select="e:get-name(name[1])"/> does not have the attribute corresp="yes", but they have a child email element or an xref with the attribute ref-type="corresp".</report>
         
+        <report test="@corresp='yes' and not(contrib-id[@contrib-id-type='orcid'])" 
+          role="warning" 
+          id="author-email-no-orcid">Author <value-of select="e:get-name(name[1])"/> is a corresponding author (corresp="yes"), but they do not have an ORCID ID. Is that correct?</report>
+        
         <report test="(xref/@rid = ancestor::article-meta/author-notes/fn[@fn-type='equal']/@id) and not(@equal-contrib='yes')" 
           role="error" 
           id="author-equal-contrib-1">Author <value-of select="e:get-name(name[1])"/> does not have the attribute equal-contrib="yes", but they have a child xref element that points to a footnote with the fn-type 'equal'.</report>

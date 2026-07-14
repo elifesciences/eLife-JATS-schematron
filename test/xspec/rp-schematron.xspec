@@ -159,6 +159,16 @@
         <x:expect-report id="author-email-no-corresp" role="error"/>
         <x:expect-not-assert id="author-corresp-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="author-email-no-orcid-pass">
+        <x:context href="../tests/rp/author-corresp-checks/author-email-no-orcid/pass.xml"/>
+        <x:expect-not-report id="author-email-no-orcid" role="warning"/>
+        <x:expect-not-assert id="author-corresp-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="author-email-no-orcid-fail">
+        <x:context href="../tests/rp/author-corresp-checks/author-email-no-orcid/fail.xml"/>
+        <x:expect-report id="author-email-no-orcid" role="warning"/>
+        <x:expect-not-assert id="author-corresp-checks-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="author-equal-contrib-1-pass">
         <x:context href="../tests/rp/author-corresp-checks/author-equal-contrib-1/pass.xml"/>
         <x:expect-not-report id="author-equal-contrib-1" role="error"/>
