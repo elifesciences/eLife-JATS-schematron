@@ -15,6 +15,9 @@
 <abstract abstract-type="graphical">
 <fig/>
 </abstract>
+<abstract>
+<p>The first paragraph. The <italic>second</italic> paragraph. The <bold>third</bold> paragraph. The <underline>fourth</underline> paragraph.</p>
+</abstract>
 <abstract abstract-type="structured">
 <sec>
 <title>Background</title>

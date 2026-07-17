@@ -1393,7 +1393,24 @@
                         <xsl:text>&#xa;</xsl:text>
                         <xsl:apply-templates select="title[1]"/>
                     </xsl:if>
-                    <xsl:apply-templates select="*[not(name()=('title','label'))]|text()[not(following-sibling::*[1]/name()=('title','label'))]|comment()|processing-instruction()"/>
+                    <xsl:choose>
+                        <xsl:when test="not(*[not(name()=('title','label','p'))]) and (count(p) gt 1)">
+                            <xsl:text>&#xa;</xsl:text>
+                            <xsl:element name="p">
+                                <xsl:for-each select="p">
+                                    <xsl:apply-templates select="./node()"/>
+                                    <xsl:if test="position() != last()">
+                                        <xsl:text> </xsl:text>
+                                    </xsl:if>
+                                </xsl:for-each>
+                            </xsl:element>
+                            <xsl:apply-templates select="comment()|processing-instruction()"/>
+                            <xsl:text>&#xa;</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:apply-templates select="*[not(name()=('title','label'))]|text()[not(following-sibling::*[1]/name()=('title','label'))]|comment()|processing-instruction()"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>

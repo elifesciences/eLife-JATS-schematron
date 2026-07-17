@@ -16,6 +16,13 @@
 </abstract>
 <abstract>
 <title>Abstract</title>
+<p>The first paragraph.</p>
+<p>The <italic>second</italic> paragraph.</p>
+<p>The <bold>third</bold> paragraph.</p>
+<p>The <underline>fourth</underline> paragraph.</p>
+</abstract>
+<abstract>
+<title>Abstract</title>
 <sec>
 <title>Background</title>
 <p>Due to the limitations in specificity of current diagnostic methods for prostate cancer (PCa), more reliable biomarkers are needed to explore for improving early detection. Plasma proteins represent a promising source of biomarkers, therefore understanding the causal relationships between specific plasma proteins and PCa could be conductive to identify novel biomarkers and therapeutic targets for PCa prevention and treatment.</p>
