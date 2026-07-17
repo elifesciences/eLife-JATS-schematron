@@ -1716,7 +1716,9 @@
             <xsl:when test="not(./*) and normalize-space(.)=''"/>
             <xsl:when test="normalize-space(.)!='' and not(./institution) and not(./name) and not(./string-name)">
                 <xsl:copy>
+                    <xsl:text>&#xa;</xsl:text>
                     <xsl:apply-templates select="text()"/>
+                    <xsl:text>&#xa;</xsl:text>
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
@@ -1733,7 +1735,9 @@
             <xsl:when test="normalize-space(.)=''"/>
             <xsl:when test="contains(.,', ')">
                 <xsl:for-each select="tokenize(.,', ')">
-                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:if test="position() gt 1">
+                        <xsl:text>&#xa;</xsl:text>
+                    </xsl:if>
                     <name>
                         <xsl:text>&#xa;</xsl:text>
                         <xsl:choose>
@@ -1757,7 +1761,6 @@
                 </xsl:for-each>
             </xsl:when>
             <xsl:when test="matches(.,'\s')">
-                <xsl:text>&#xa;</xsl:text>
                 <name>
                     <xsl:text>&#xa;</xsl:text>
                     <surname>
@@ -1769,10 +1772,8 @@
                     </given-names>
                     <xsl:text>&#xa;</xsl:text>
                 </name>
-                <xsl:text>&#xa;</xsl:text>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:text>&#xa;</xsl:text>
                 <name>
                     <xsl:text>&#xa;</xsl:text>
                     <surname>
@@ -1780,7 +1781,6 @@
                     </surname>
                     <xsl:text>&#xa;</xsl:text>
                 </name>
-                <xsl:text>&#xa;</xsl:text>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
