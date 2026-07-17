@@ -1614,44 +1614,59 @@
     
     <!-- Fixes award-group tagging -->
     <xsl:template xml:id="fix-award-group" match="funding-group/award-group">
-         <xsl:copy>
-             <xsl:apply-templates select="@*"/>
-             <xsl:text>&#xa;</xsl:text>
-             <xsl:apply-templates select="funding-source"/>
-             <xsl:if test="award-id">
-                 <xsl:text>&#xa;</xsl:text>
-                <xsl:apply-templates select="award-id[1]"/>
-             </xsl:if>
-             <xsl:if test="principal-award-recipient">
-                 <xsl:text>&#xa;</xsl:text>
-                 <xsl:apply-templates select="principal-award-recipient"/>
-             </xsl:if>
-             <xsl:text>&#xa;</xsl:text>
-         </xsl:copy>
-        <xsl:if test="count(award-id) gt 1">
-            <xsl:for-each select="award-id[position() gt 1]">
-                <xsl:variable name="pos" select="position()"/>
-                <xsl:text>&#xa;</xsl:text>
-                <xsl:element name="award-group">
-                    <xsl:attribute name="id">
-                        <xsl:value-of select="concat(parent::award-group/@id,
-                            codepoints-to-string(xs:integer(96 + number($pos)))
-                            )"/>
-                    </xsl:attribute>
+        <xsl:variable name="funding-source" select="./funding-source"/>
+        <xsl:variable name="award-id" select="./award-id"/>
+        <xsl:choose>
+            <xsl:when test="(count(./award-id) le 1) and principal-award-recipient and preceding-sibling::award-group[1][./funding-source = $funding-source and ((not(./award-id) and empty($award-id)) or (./award-id = $award-id))]"/>
+            <xsl:otherwise>
+                <xsl:copy>
+                    <xsl:apply-templates select="@*"/>
                     <xsl:text>&#xa;</xsl:text>
-                    <xsl:apply-templates select="parent::award-group/funding-source"/>
-                    <xsl:text>&#xa;</xsl:text>
-                    <xsl:copy>
-                        <xsl:value-of select="."/>
-                    </xsl:copy>
-                    <xsl:if test="parent::award-group/principal-award-recipient">
+                    <xsl:apply-templates select="./funding-source"/>
+                    <xsl:if test="./award-id">
                         <xsl:text>&#xa;</xsl:text>
-                        <xsl:apply-templates select="parent::award-group/principal-award-recipient"/>
+                       <xsl:apply-templates select="./award-id[1]"/>
+                    </xsl:if>
+                    <xsl:if test="principal-award-recipient">
+                        <xsl:text>&#xa;</xsl:text>
+                        <xsl:element name="principal-award-recipient">
+                            <xsl:text>&#xa;</xsl:text>
+                            <xsl:apply-templates select="principal-award-recipient/(*|text()[normalize-space(.)!=''])"/>
+                            <xsl:for-each select="following-sibling::award-group[(count(./award-id) le 1) and principal-award-recipient and ./funding-source = $funding-source and ((not(./award-id) and empty($award-id)) or (./award-id = $award-id))]">
+                                <xsl:text>&#xa;</xsl:text>
+                                <xsl:apply-templates select="./principal-award-recipient/(*|text()[normalize-space(.)!=''])"/>
+                            </xsl:for-each>
+                            <xsl:text>&#xa;</xsl:text>
+                        </xsl:element>
                     </xsl:if>
                     <xsl:text>&#xa;</xsl:text>
-                </xsl:element>
-            </xsl:for-each>
-        </xsl:if>
+                </xsl:copy>
+                <xsl:if test="count(./award-id) gt 1">
+                    <xsl:for-each select="./award-id[position() gt 1]">
+                        <xsl:variable name="pos" select="position()"/>
+                        <xsl:text>&#xa;</xsl:text>
+                        <xsl:element name="award-group">
+                            <xsl:attribute name="id">
+                                <xsl:value-of select="concat(parent::award-group/@id,
+                                    codepoints-to-string(xs:integer(96 + number($pos)))
+                                    )"/>
+                            </xsl:attribute>
+                            <xsl:text>&#xa;</xsl:text>
+                            <xsl:apply-templates select="parent::award-group/funding-source"/>
+                            <xsl:text>&#xa;</xsl:text>
+                            <xsl:copy>
+                                <xsl:value-of select="."/>
+                            </xsl:copy>
+                            <xsl:if test="parent::award-group/principal-award-recipient">
+                                <xsl:text>&#xa;</xsl:text>
+                                <xsl:apply-templates select="parent::award-group/principal-award-recipient"/>
+                            </xsl:if>
+                            <xsl:text>&#xa;</xsl:text>
+                        </xsl:element>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     <!-- Fixes funding-source tagging -->
@@ -1696,43 +1711,33 @@
         </xsl:copy>
     </xsl:template>
     
-    <!-- Add missing tagging in principal-award-recipient -->
     <xsl:template xml:id="fix-principal-award-recipient" match="award-group/principal-award-recipient">
         <xsl:choose>
             <xsl:when test="not(./*) and normalize-space(.)=''"/>
             <xsl:when test="normalize-space(.)!='' and not(./institution) and not(./name) and not(./string-name)">
                 <xsl:copy>
-                    <xsl:choose>
-                        <xsl:when test="contains(.,', ')">
-                            <xsl:for-each select="tokenize(.,', ')">
-                                <xsl:text>&#xa;</xsl:text>
-                                <name>
-                                    <xsl:text>&#xa;</xsl:text>
-                                    <xsl:choose>
-                                        <xsl:when test="matches(.,'\s')">
-                                            <surname>
-                                                <xsl:value-of select="replace(tokenize(.,'\s+')[last()],'\.','')"/>
-                                            </surname>
-                                            <xsl:text>&#xa;</xsl:text>
-                                            <given-names>
-                                                <xsl:value-of select="replace(string-join(tokenize(.,'\s+')[position() != last()],' '),'\.','')"/>
-                                            </given-names>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <surname>
-                                                <xsl:value-of select="replace(.,'\.','')"/>
-                                            </surname>
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-                                    <xsl:text>&#xa;</xsl:text>
-                                </name>
-                            </xsl:for-each>
-                            <xsl:text>&#xa;</xsl:text>
-                        </xsl:when>
-                        <xsl:when test="matches(.,'\s')">
-                            <xsl:text>&#xa;</xsl:text>
-                            <name>
-                                <xsl:text>&#xa;</xsl:text>
+                    <xsl:apply-templates select="text()"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy>
+                    <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <!-- Add missing tagging in principal-award-recipient -->
+    <xsl:template xml:id="fix-principal-award-recipient-helper" match="award-group/principal-award-recipient/text()">
+        <xsl:choose>
+            <xsl:when test="normalize-space(.)=''"/>
+            <xsl:when test="contains(.,', ')">
+                <xsl:for-each select="tokenize(.,', ')">
+                    <xsl:text>&#xa;</xsl:text>
+                    <name>
+                        <xsl:text>&#xa;</xsl:text>
+                        <xsl:choose>
+                            <xsl:when test="matches(.,'\s')">
                                 <surname>
                                     <xsl:value-of select="replace(tokenize(.,'\s+')[last()],'\.','')"/>
                                 </surname>
@@ -1740,30 +1745,44 @@
                                 <given-names>
                                     <xsl:value-of select="replace(string-join(tokenize(.,'\s+')[position() != last()],' '),'\.','')"/>
                                 </given-names>
-                                <xsl:text>&#xa;</xsl:text>
-                            </name>
-                            <xsl:text>&#xa;</xsl:text>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text>&#xa;</xsl:text>
-                             <name>
-                                 <xsl:text>&#xa;</xsl:text>
-                                 <surname>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <surname>
                                     <xsl:value-of select="replace(.,'\.','')"/>
                                 </surname>
-                                 <xsl:text>&#xa;</xsl:text>
-                             </name>
-                            <xsl:text>&#xa;</xsl:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                    </xsl:copy>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:copy>
-                        <xsl:apply-templates select="*|@*|text()|comment()|processing-instruction()"/>
-                    </xsl:copy>
-                </xsl:otherwise>
-            </xsl:choose>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:text>&#xa;</xsl:text>
+                    </name>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:when test="matches(.,'\s')">
+                <xsl:text>&#xa;</xsl:text>
+                <name>
+                    <xsl:text>&#xa;</xsl:text>
+                    <surname>
+                        <xsl:value-of select="replace(tokenize(.,'\s+')[last()],'\.','')"/>
+                    </surname>
+                    <xsl:text>&#xa;</xsl:text>
+                    <given-names>
+                        <xsl:value-of select="replace(string-join(tokenize(.,'\s+')[position() != last()],' '),'\.','')"/>
+                    </given-names>
+                    <xsl:text>&#xa;</xsl:text>
+                </name>
+                <xsl:text>&#xa;</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>&#xa;</xsl:text>
+                <name>
+                    <xsl:text>&#xa;</xsl:text>
+                    <surname>
+                        <xsl:value-of select="replace(.,'\.','')"/>
+                    </surname>
+                    <xsl:text>&#xa;</xsl:text>
+                </name>
+                <xsl:text>&#xa;</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     <!-- wrapper for mixed-citation templates run in sequence -->
