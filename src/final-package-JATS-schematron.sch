@@ -1764,6 +1764,8 @@
       <report test="@content-type='reviewed-preprint' and not(contains(@xlink:href,$article-id))" role="error" id="event-self-uri-href-6"><name/> in event the attribute content-type="reviewed-preprint", but the xlink:href attribute value (<value-of select="@xlink:href"/>) does not contain the article id (<value-of select="$article-id"/>) which must be incorrect, since this should be the version DOI for the reviewed preprint version.</report>
       
       <report test="@content-type=('editor-report','referee-report','author-comment') and not(matches(@*:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]\.sa\d+$'))" role="error" id="event-self-uri-href-7"><name/> in event has the attribute content-type="<value-of select="@content-type"/>", but the xlink:href attribute does not contain an eLife peer review DOI - <value-of select="@*:href"/>.</report>
+      
+      <report test="@content-type=('editor-report','referee-report','author-comment') and not(starts-with(@*:href, preceding-sibling::self-uri[@content-type='reviewed-preprint'][1]/@xlink:href))" role="error" id="event-self-uri-href-8"><name/> in event has the attribute content-type="<value-of select="@content-type"/>", but the xlink:href attribute contains '<value-of select="@*:href"/>', which is not an extension of the reviewed preprint doi listed under this event - '<value-of select="preceding-sibling::self-uri[@content-type='reviewed-preprint'][1]/@xlink:href"/>'.</report>
     </rule></pattern><pattern id="front-permissions-tests-pattern"><rule context="front//permissions" id="front-permissions-tests">
 	  <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
 	  <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
