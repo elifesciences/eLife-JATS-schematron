@@ -2557,6 +2557,10 @@
       <report test="@content-type=('editor-report','referee-report','author-comment') and not(matches(@*:href,'^https://doi.org/10.7554/eLife.\d+\.[1-9]\.sa\d+$'))" 
         role="error" 
         id="event-self-uri-href-7"><name/> in event has the attribute content-type="<value-of select="@content-type"/>", but the xlink:href attribute does not contain an eLife peer review DOI - <value-of select="@*:href"/>.</report>
+      
+      <report test="@content-type=('editor-report','referee-report','author-comment') and not(starts-with(@*:href, preceding-sibling::self-uri[@content-type='reviewed-preprint'][1]/@xlink:href))" 
+        role="error" 
+        id="event-self-uri-href-8"><name/> in event has the attribute content-type="<value-of select="@content-type"/>", but the xlink:href attribute contains '<value-of select="@*:href"/>', which is not an extension of the reviewed preprint doi listed under this event - '<value-of select="preceding-sibling::self-uri[@content-type='reviewed-preprint'][1]/@xlink:href"/>'.</report>
     </rule>
 	
 	<!-- All license types -->

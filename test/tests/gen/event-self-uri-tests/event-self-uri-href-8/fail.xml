@@ -1,0 +1,21 @@
+<?oxygen SCHSchema="event-self-uri-href-8.sch"?>
+<!--Context: event/self-uri
+Test: report    @content-type=('editor-report','referee-report','author-comment') and not(starts-with(@*:href, preceding-sibling::self-uri[@content-type='reviewed-preprint'][1]/@xlink:href))
+Message:  in event has the attribute content-type="", but the xlink:href attribute contains '', which is not an extension of the reviewed preprint doi listed under this event - ''. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <pub-history>
+            <event>
+                <event-desc>The reviewed preprint was revised.</event-desc>
+                <date date-type="reviewed-preprint" iso-8601-date="2026-04-27">
+                    <day>27</day>
+                    <month>04</month>
+                    <year>2026</year>
+                </date>
+                <self-uri content-type="reviewed-preprint" xlink:href="https://doi.org/10.7554/eLife.1234321.2"/>
+                <self-uri content-type="referee-report" xlink:href="https://doi.org/10.7554/eLife.1234321.1.sa1">Reviewer #1 (Public review):</self-uri>
+                <self-uri content-type="author-comment" xlink:href="https://doi.org/10.7554/eLife.124321.2.sa2">Author response</self-uri>
+            </event>
+        </pub-history>
+    </article>
+</root>
