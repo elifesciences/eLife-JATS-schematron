@@ -1347,7 +1347,7 @@
         - remove titles from common/garden abstracts
         - capture additional content within asbtract as additional, sibling abstract(s) with JATS4R compliant abstract-type -->
     <xsl:template xml:id="abstract-types" match="article-meta/abstract">
-        <xsl:variable name="known-types-regex" select="'digest|statement|summary|teaser|highlight|importance|significance|graphic'"/>
+        <xsl:variable name="known-types-regex" select="'digest|statement|summary|teaser|highlight|importance|significance|graphic|key points'"/>
         <xsl:choose>
             <xsl:when test="not(@abstract-type) and sec[title[1]/matches(lower-case(.),$known-types-regex) or descendant::*[name()=('fig','media')]]">
                 <xsl:copy>
@@ -1373,7 +1373,7 @@
                             <xsl:when test="not(./sec) and matches(./lower-case(title[1]),'statement|summary|teaser')">
                                 <xsl:attribute name="abstract-type">teaser</xsl:attribute>
                             </xsl:when>
-                            <xsl:when test="not(./sec) and (matches(./lower-case(title[1]),'highlight|importance|significance') or ./list)">
+                            <xsl:when test="not(./sec) and (matches(./lower-case(title[1]),'highlight|importance|significance|key points') or ./list)">
                                 <xsl:attribute name="abstract-type">summary</xsl:attribute>
                             </xsl:when>
                             <xsl:when test="./fig or matches(./lower-case(title[1]),'graphic')">

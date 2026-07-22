@@ -1,0 +1,21 @@
+<?oxygen SCHSchema="abstract-test-11.sch"?>
+<!--Context: abstract[parent::article-meta]
+Test: report    not(@abstract-type) and not(@xml:lang) and sec[preceding-sibling::p]
+Message: abstract has a section that is preceded by content. Should the section be captured as a different abstract (with an appropriate abstract-type)? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <article-meta>
+            <abstract>
+                <p/>
+                <sec/>
+            </abstract>
+            <abstract>
+                <p/>
+                <sec>
+                    <title/>
+                    <p/>
+                </sec>
+            </abstract>
+        </article-meta>
+    </article>
+</root>

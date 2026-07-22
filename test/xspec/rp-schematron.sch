@@ -3378,6 +3378,8 @@
         <report test="@abstract-type='teaser' and count(p) gt 1" role="error" id="abstract-test-9">abstract has the abstract-type 'teaser', meaning it is equivalent to an impact statement, but it has <value-of select="count(p)"/> paragraphs (whereas an impact statement would have only one paragraph).</report>
         
         <report test="@abstract-type='video' and not(descendant::*[name()=('ext-link','media','supplementary-file')])" role="error" id="abstract-test-10">abstract has the abstract-type 'video', but it does not have a media, supplementary-material or ext-link element. The abstract-type must be incorrect.</report>
+        
+        <report test="not(@abstract-type) and not(@xml:lang) and sec[preceding-sibling::p]" role="warning" id="abstract-test-11">abstract has a section that is preceded by content. Should the section be captured as a different abstract (with an appropriate abstract-type)?</report>
       </rule>
   </pattern>
   <pattern id="abstract-child-checks-pattern">
