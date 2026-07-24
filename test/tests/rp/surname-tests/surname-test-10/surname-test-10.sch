@@ -1293,7 +1293,7 @@
   </sqf:fixes>
   <pattern id="surname-tests-pattern">
     <rule context="contrib-group//name/surname" id="surname-tests">
-      <report test="matches(.,'\s') and not(matches(lower-case(.),'^de[lrn]? |^v[ao]n |^el |^te[rn] |^l[ae] |^zur |^d[ia] '))" role="warning" id="surname-test-10">[surname-test-10] surname contains space(s) - '<value-of select="."/>'. Has it been captured correctly? Should any name be moved to given-names?</report>
+      <report test="matches(.,'\s') and not(matches(lower-case(.),'^de[lrn]? |^v[ao]n |^el |^te[rn] |^l[ae] |^zur |^d[ia] |^dos '))" role="warning" id="surname-test-10">[surname-test-10] surname contains space(s) - '<value-of select="."/>'. Has it been captured correctly? Should any name be moved to given-names?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
