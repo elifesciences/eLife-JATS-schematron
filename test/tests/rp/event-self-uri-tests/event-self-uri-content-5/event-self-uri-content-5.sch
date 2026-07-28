@@ -1291,20 +1291,17 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="rp-event-tests-pattern">
-    <rule context="event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" id="rp-event-tests">
-      <let name="rp-link" value="self-uri[@content-type='reviewed-preprint'][1]/@*:href"/>
-      <let name="rp-version" value="replace($rp-link,'^.*\.','')"/>
-      <let name="rp-pub-date" value="date[@date-type='reviewed-preprint']/@iso-8601-date"/>
-      <let name="sent-for-review-date" value="(ancestor::pub-history/event/date[@date-type='sent-for-review']/@iso-8601-date | ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date)[1]"/>
-      <let name="preprint-pub-date" value="parent::pub-history/event/date[@date-type='preprint']/@iso-8601-date"/>
-      <let name="later-rp-events" value="parent::pub-history/event[date[@date-type='reviewed-preprint'] and replace(self-uri[@content-type='reviewed-preprint'][1]/@*:href,'^.*\.','') gt $rp-version]"/>
-      <report test="$later-rp-events/date/@iso-8601-date = $rp-pub-date" role="error" id="rp-event-test-3">[rp-event-test-3] Reviewed preprint publication date (<value-of select="$rp-pub-date"/>) in the publication history (for RP version <value-of select="$rp-version"/>) is the same or an earlier date than publication date for a later reviewed preprint version date (<value-of select="$later-rp-events/date/@iso-8601-date[. = $rp-pub-date]"/> for version(s) <value-of select="$later-rp-events/self-uri[@content-type='reviewed-preprint'][1]/@*:href/replace(.,'^.*\.','')"/>). This must be incorrect.</report>
+  <pattern id="event-self-uri-tests-pattern">
+    <rule context="event/self-uri" id="event-self-uri-tests">
+      <let name="allowed-content-vals" value="('preprint','reviewed-preprint','editor-report','referee-report','author-comment')"/>
+      <let name="content-type" value="@content-type"/>
+      <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
+      <report test="not($content-type=('referee-report')) and preceding-sibling::self-uri[@content-type=$content-type]" role="error" id="event-self-uri-content-5">[event-self-uri-content-5] <name/> with the content-type <value-of select="@content-type"/> is preceded by self-uri(s) with the same content-type. This only permitted for self-uri elements with @content-type="referee-report" within the same event.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" role="error" id="rp-event-tests-xspec-assert">event[date[@date-type='reviewed-preprint']/@iso-8601-date != ''] must be present.</assert>
+      <assert test="descendant::event/self-uri" role="error" id="event-self-uri-tests-xspec-assert">event/self-uri must be present.</assert>
     </rule>
   </pattern>
 </schema>
