@@ -1294,7 +1294,7 @@
   <pattern id="article-dois-pattern">
     <rule context="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']" id="article-dois">
       <let name="article-id" value="parent::article-meta[1]/article-id[@pub-id-type='publisher-id'][1]"/>
-      <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint']/@*:href"/>
+      <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint'][1]/@*:href"/>
       <let name="latest-rp-doi-version" value="if ($latest-rp-doi) then replace($latest-rp-doi,'^.*\.','')                                                else '0'"/>
       <assert test="starts-with(.,'10.7554/eLife.')" role="error" id="prc-article-dois-1">[prc-article-dois-1] Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="."/>
       </assert>
