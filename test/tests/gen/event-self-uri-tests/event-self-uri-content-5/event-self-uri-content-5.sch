@@ -966,8 +966,8 @@
       <let name="allowed-content-vals" value="('preprint','reviewed-preprint','editor-report','referee-report','author-comment')"/>
       <let name="content-type" value="@content-type"/>
       <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
-      <report test="@content-type='author-comment' and (* or not(matches(.,'^Author [Rr]esponse:?\s?$')))" role="error" id="event-self-uri-content-4">
-        <name/> with the content-type <value-of select="@content-type"/> must not have any child elements, and contain the title of the text 'Author response'. This one does not.</report>
+      <report test="not($content-type=('referee-report')) and preceding-sibling::self-uri[@content-type=$content-type]" role="error" id="event-self-uri-content-5">
+        <name/> with the content-type <value-of select="@content-type"/> is preceded by self-uri(s) with the same content-type. This only permitted for self-uri elements with @content-type="referee-report" within the same event.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

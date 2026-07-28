@@ -964,6 +964,7 @@
   <pattern id="article-metadata">
     <rule context="event/self-uri" id="event-self-uri-tests">
       <let name="allowed-content-vals" value="('preprint','reviewed-preprint','editor-report','referee-report','author-comment')"/>
+      <let name="content-type" value="@content-type"/>
       <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
       <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$')" role="error" id="event-self-uri-href-1">
         <name/> in event must have an xlink:href attribute containing a link to the preprint. This one does not have a valid URI - <value-of select="@xlink:href"/>.</assert>

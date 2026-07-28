@@ -1733,6 +1733,7 @@
       <assert test="@date-type=$date-type-vals" role="error" id="event-date-type">[event-date-type] <name/> in event must have a date-type attribute with one of the following values: <value-of select="string-join($date-type-vals,'; ')"/>.</assert>
     </rule></pattern><pattern id="event-self-uri-tests-pattern"><rule context="event/self-uri" id="event-self-uri-tests">
       <let name="allowed-content-vals" value="('preprint','reviewed-preprint','editor-report','referee-report','author-comment')"/>
+      <let name="content-type" value="@content-type"/>
       <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
       
       <assert test="@content-type=$allowed-content-vals" role="error" id="event-self-uri-content-type">[event-self-uri-content-type] <name/> in event must have the attribute content-type with one of the following values: <value-of select="string-join($allowed-content-vals,'; ')"/>. This one does not.</assert>
@@ -1744,6 +1745,8 @@
       <report test="@content-type='referee-report' and (* or .='')" role="error" id="event-self-uri-content-3">[event-self-uri-content-3] <name/> with the content-type <value-of select="@content-type"/> must not have any child elements, and contain the title of the public review as text. This self-uri either has child elements or it is empty.</report>
         
       <report test="@content-type='author-comment' and (* or not(matches(.,'^Author [Rr]esponse:?\s?$')))" role="error" id="event-self-uri-content-4">[event-self-uri-content-4] <name/> with the content-type <value-of select="@content-type"/> must not have any child elements, and contain the title of the text 'Author response'. This one does not.</report>
+      
+      <report test="not($content-type=('referee-report')) and preceding-sibling::self-uri[@content-type=$content-type]" role="error" id="event-self-uri-content-5">[event-self-uri-content-5] <name/> with the content-type <value-of select="@content-type"/> is preceded by self-uri(s) with the same content-type. This only permitted for self-uri elements with @content-type="referee-report" within the same event.</report>
       
       <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;&lt;&gt;//=]*)$')" role="error" id="event-self-uri-href-1">[event-self-uri-href-1] <name/> in event must have an xlink:href attribute containing a link to the preprint. This one does not have a valid URI - <value-of select="@xlink:href"/>.</assert>
       

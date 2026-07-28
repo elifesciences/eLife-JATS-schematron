@@ -1,0 +1,5 @@
+<?oxygen SCHSchema="event-self-uri-content-5.sch"?>
+<!--Context: event/self-uri
+Test: report    not($content-type=('referee-report')) and preceding-sibling::self-uri[@content-type=$content-type]
+Message:  with the content-type  is preceded by self-uri(s) with the same content-type. This only permitted for self-uri elements with @content-type="referee-report" within the same event. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink"><article/></root>
