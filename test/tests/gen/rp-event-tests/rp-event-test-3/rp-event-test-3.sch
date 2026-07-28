@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" id="rp-event-tests">
-      <let name="rp-link" value="self-uri[@content-type='reviewed-preprint']/@xlink:href"/>
+      <let name="rp-link" value="self-uri[@content-type='reviewed-preprint'][1]/@xlink:href"/>
       <let name="rp-version" value="replace($rp-link,'^.*\.','')"/>
       <let name="rp-pub-date" value="date[@date-type='reviewed-preprint']/@iso-8601-date"/>
       <let name="sent-for-review-date" value="(ancestor::pub-history/event/date[@date-type='sent-for-review']/@iso-8601-date | ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date)[1]"/>

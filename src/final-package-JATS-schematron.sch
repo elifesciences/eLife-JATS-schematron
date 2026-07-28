@@ -1699,7 +1699,7 @@
       
       <report test="date and self-uri and date[1]/@date-type != self-uri[1]/@content-type" role="error" id="event-test-5">This event in pub-history has a date with the date-type <value-of select="date[1]/@date-type"/>, but a self-uri with the content-type <value-of select="self-uri[1]/@content-type"/>. These values should be the same, so one (or both of them) are incorrect.</report>
     </rule></pattern><pattern id="rp-event-tests-pattern"><rule context="event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" id="rp-event-tests">
-      <let name="rp-link" value="self-uri[@content-type='reviewed-preprint']/@xlink:href"/>
+      <let name="rp-link" value="self-uri[@content-type='reviewed-preprint'][1]/@xlink:href"/>
       <let name="rp-version" value="replace($rp-link,'^.*\.','')"/>
       <let name="rp-pub-date" value="date[@date-type='reviewed-preprint']/@iso-8601-date"/>
       <let name="sent-for-review-date" value="(ancestor::pub-history/event/date[@date-type='sent-for-review']/@iso-8601-date | ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date)[1]"/>
