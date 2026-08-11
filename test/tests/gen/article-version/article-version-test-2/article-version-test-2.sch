@@ -964,7 +964,7 @@
   <pattern id="article-metadata">
     <rule context="article-version" id="article-version">
       <assert test="@article-version-type='publication-state'" role="error" id="article-version-test-2">
-        <name/> must a article-version-type="publication-state" attribute. This one does not.</assert>
+        <name/> must have an article-version-type="publication-state" attribute. This one does not.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

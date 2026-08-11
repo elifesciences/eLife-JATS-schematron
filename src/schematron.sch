@@ -1465,7 +1465,7 @@
       
       <report test="@specific-use and number(substring-after(.,concat($article-id,'.'))) != (number($latest-rp-doi-version)+1)" 
         role="error" 
-        id="final-prc-article-dois-8">The version DOI for the VOR needs to end with a number that is one more than whatever number the latest reviewed preprint version DOI ends with. The VOR version DOI ends with <value-of select="substring-after(.,concat($article-id,'.'))"/> (<value-of select="."/>), whereas the latest reviewed preprint DOI in the publicaiton history ends with <value-of select="$latest-rp-doi-version"/> (<value-of select="$latest-rp-doi"/>). Either there is a missing reviewed preprint publication event in the publication history, or the VOR version DOI is incorrect.</report>
+        id="final-prc-article-dois-8">The version DOI for the VOR needs to end with a number that is one more than whatever number the latest reviewed preprint version DOI ends with. The VOR version DOI ends with <value-of select="substring-after(.,concat($article-id,'.'))"/> (<value-of select="."/>), whereas the latest reviewed preprint DOI in the publication history ends with <value-of select="$latest-rp-doi-version"/> (<value-of select="$latest-rp-doi"/>). Either there is a missing reviewed preprint publication event in the publication history, or the VOR version DOI is incorrect.</report>
       
     </rule>
    
@@ -1505,7 +1505,7 @@
       
       <assert test="@article-version-type='publication-state'" 
         role="error" 
-        id="article-version-test-2"><name/> must a article-version-type="publication-state" attribute. This one does not.</assert>
+        id="article-version-test-2"><name/> must have an article-version-type="publication-state" attribute. This one does not.</assert>
       
       <report test="@*[name()!='article-version-type']" 
         role="error" 
@@ -2454,7 +2454,7 @@
       
       <report test="$later-rp-events/date/@iso-8601-date = $rp-pub-date"
         role="error" 
-        id="rp-event-test-3">Reviewed preprint publication date (<value-of select="$rp-pub-date"/>) in the publication history (for RP version <value-of select="$rp-version"/>) is the same or an earlier date than publication date for a later reviewed preprint version date (<value-of select="$later-rp-events/date/@iso-8601-date[. = $rp-pub-date]"/> for version(s) <value-of select="$later-rp-events/self-uri[@content-type='reviewed-preprint'][1]/@xlink:href/replace(.,'^.*\.','')"/>). This must be incorrect.</report>
+        id="rp-event-test-3">Reviewed preprint publication date (<value-of select="$rp-pub-date"/>) in the publication history (for RP version <value-of select="$rp-version"/>) is the same or chronologically later date than the publication date for a later reviewed preprint version (<value-of select="$later-rp-events/date/@iso-8601-date[. = $rp-pub-date]"/> for version(s) <value-of select="$later-rp-events/self-uri[@content-type='reviewed-preprint'][1]/@xlink:href/replace(.,'^.*\.','')"/>). This must be incorrect.</report>
       
     </rule>
     
@@ -2474,7 +2474,7 @@
       
       <report test="(parent::event/date[@date-type='preprint'] or (self-uri and not(matches(parent::event/self-uri[1]/@xlink:href,'elifesciences\.org|10.7554/e[lL]ife')))) and not(.='Preprint posted' or starts-with(.,'This manuscript was published as a preprint at ') or .='This manuscript was published as a preprint.')" 
         role="error" 
-        id="event-desc-content"><name/> that's a child of an event without an eLife DOI must contain the text 'This manuscript was published as a preprint at ' followed by the preprint server name. This one has '<value-of select="."/>'.</report>
+        id="event-desc-content"><name/> that's a child of an event without an eLife DOI must contain the text 'Preprint posted'. This one has '<value-of select="."/>'.</report>
       
       <report test="matches(parent::event/self-uri[1]/@xlink:href,'elifesciences\.org|10.7554/e[lL]ife') and not(matches(.,'^Reviewed preprint v\d$') or .=('This manuscript was published as a reviewed preprint.','The reviewed preprint was revised.'))" 
         role="error" 
@@ -2627,7 +2627,7 @@
       <assert see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-6" 
         test="copyright-year = $authoritative-year" 
         role="error" 
-        id="permissions-test-6">copyright-year must match the year of first reviewed preprint publication under the new model or first publicaiton date in the old model. For this <value-of select="if ($is-prc) then 'new' else 'old'"/> model paper, currently copyright-year=<value-of select="copyright-year"/> and authoritative pub-date=<value-of select="$authoritative-year"/>.</assert>
+        id="permissions-test-6">copyright-year must match the year of first reviewed preprint publication under the new model or first publication date in the old model. For this <value-of select="if ($is-prc) then 'new' else 'old'"/> model paper, currently copyright-year=<value-of select="copyright-year"/> and authoritative pub-date=<value-of select="$authoritative-year"/>.</assert>
       
       <assert see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-7" 
         test="copyright-holder = $copyright-holder" 
@@ -6351,23 +6351,28 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="specifics" value="('Replication Study','Registered Report',$notice-display-types)"/>
       <let name="count" value="string-length(.)"/>
       
-      <report test="($type = $specifics) and not(starts-with(.,e:article-type2title($type)))" 
+      <report see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#article-type-title-test-1" 
+        test="($type = $specifics) and not(starts-with(.,e:article-type2title($type)))" 
         role="error" 
         id="article-type-title-test-1">title of a '<value-of select="$type"/>' must start with '<value-of select="e:article-type2title($type)"/>'.</report>
       
-      <report test="($type = 'Scientific Correspondence') and not(matches(.,'^Comment on|^Response to comment on'))" 
+      <report see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#article-type-title-test-2" 
+        test="($type = 'Scientific Correspondence') and not(matches(.,'^Comment on|^Response to comment on'))" 
         role="error" 
         id="article-type-title-test-2">title of a '<value-of select="$type"/>' must start with 'Comment on' or 'Response to comment on', but this starts with something else - <value-of select="."/>.</report>
       
-      <report test="($type = 'Scientific Correspondence') and matches(.,'^Comment on “|^Response to comment on “')" 
+      <report see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#sc-title-test-1" 
+        test="($type = 'Scientific Correspondence') and matches(.,'^Comment on “|^Response to comment on “')" 
         role="error" 
         id="sc-title-test-1">title of a '<value-of select="$type"/>' contains a left double quotation mark. The original article title must be surrounded by a single roman apostrophe - <value-of select="."/>.</report>
       
-      <report test="($type = 'Scientific Correspondence') and matches(.,'”')" 
+      <report see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#sc-title-test-2" 
+        test="($type = 'Scientific Correspondence') and matches(.,'”')" 
         role="warning" 
         id="sc-title-test-2">title of a '<value-of select="$type"/>' contains a right double quotation mark. Is this correct? The original article title must be surrounded by a single roman apostrophe - <value-of select="."/>.</report>
       
-      <report test="$count gt 255" 
+      <report see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#absolute-title-length-restriction" 
+        test="$count gt 255" 
         role="error" 
         id="absolute-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the current absolute limit for Continuum is 255.</report>
     </rule>
@@ -6642,7 +6647,8 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="title/*" id="title-child-tests">
       <let name="allowed-elems" value="('sub','xref','sup','bold','italic','inline-formula','underline','sc','ext-link','monospace','mml:math')"/>
      
-      <assert test="name()=$allowed-elems" 
+      <assert see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#title-child-conformance"
+        test="name()=$allowed-elems" 
         role="error" 
         id="title-child-conformance"><name/> is not allowed in a title element. The only permitted elements are <value-of select="string-join($allowed-elems,', ')"/>.</assert>
       

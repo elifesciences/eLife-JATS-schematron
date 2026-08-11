@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="final-prc-article-dois-8.sch"?>
 <!--Context: article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']
 Test: report    @specific-use and number(substring-after(.,concat($article-id,'.'))) != (number($latest-rp-doi-version)+1)
-Message: The version DOI for the VOR needs to end with a number that is one more than whatever number the latest reviewed preprint version DOI ends with. The VOR version DOI ends with  (), whereas the latest reviewed preprint DOI in the publicaiton history ends with  (). Either there is a missing reviewed preprint publication event in the publication history, or the VOR version DOI is incorrect. -->
+Message: The version DOI for the VOR needs to end with a number that is one more than whatever number the latest reviewed preprint version DOI ends with. The VOR version DOI ends with  (), whereas the latest reviewed preprint DOI in the publication history ends with  (). Either there is a missing reviewed preprint publication event in the publication history, or the VOR version DOI is incorrect. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <front>

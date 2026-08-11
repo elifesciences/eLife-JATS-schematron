@@ -966,7 +966,7 @@
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="specifics" value="('Replication Study','Registered Report',$notice-display-types)"/>
       <let name="count" value="string-length(.)"/>
-      <report test="($type = $specifics) and not(starts-with(.,e:article-type2title($type)))" role="error" id="article-type-title-test-1">title of a '<value-of select="$type"/>' must start with '<value-of select="e:article-type2title($type)"/>'.</report>
+      <report see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#article-type-title-test-1" test="($type = $specifics) and not(starts-with(.,e:article-type2title($type)))" role="error" id="article-type-title-test-1">title of a '<value-of select="$type"/>' must start with '<value-of select="e:article-type2title($type)"/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
