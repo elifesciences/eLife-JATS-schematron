@@ -6351,23 +6351,28 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="specifics" value="('Replication Study','Registered Report',$notice-display-types)"/>
       <let name="count" value="string-length(.)"/>
       
-      <report test="($type = $specifics) and not(starts-with(.,e:article-type2title($type)))" 
+      <report see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#article-type-title-test-1" 
+        test="($type = $specifics) and not(starts-with(.,e:article-type2title($type)))" 
         role="error" 
         id="article-type-title-test-1">title of a '<value-of select="$type"/>' must start with '<value-of select="e:article-type2title($type)"/>'.</report>
       
-      <report test="($type = 'Scientific Correspondence') and not(matches(.,'^Comment on|^Response to comment on'))" 
+      <report see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#article-type-title-test-2" 
+        test="($type = 'Scientific Correspondence') and not(matches(.,'^Comment on|^Response to comment on'))" 
         role="error" 
         id="article-type-title-test-2">title of a '<value-of select="$type"/>' must start with 'Comment on' or 'Response to comment on', but this starts with something else - <value-of select="."/>.</report>
       
-      <report test="($type = 'Scientific Correspondence') and matches(.,'^Comment on “|^Response to comment on “')" 
+      <report see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#sc-title-test-1" 
+        test="($type = 'Scientific Correspondence') and matches(.,'^Comment on “|^Response to comment on “')" 
         role="error" 
         id="sc-title-test-1">title of a '<value-of select="$type"/>' contains a left double quotation mark. The original article title must be surrounded by a single roman apostrophe - <value-of select="."/>.</report>
       
-      <report test="($type = 'Scientific Correspondence') and matches(.,'”')" 
+      <report see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#sc-title-test-2" 
+        test="($type = 'Scientific Correspondence') and matches(.,'”')" 
         role="warning" 
         id="sc-title-test-2">title of a '<value-of select="$type"/>' contains a right double quotation mark. Is this correct? The original article title must be surrounded by a single roman apostrophe - <value-of select="."/>.</report>
       
-      <report test="$count gt 255" 
+      <report see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#absolute-title-length-restriction" 
+        test="$count gt 255" 
         role="error" 
         id="absolute-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the current absolute limit for Continuum is 255.</report>
     </rule>
@@ -6642,7 +6647,8 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="title/*" id="title-child-tests">
       <let name="allowed-elems" value="('sub','xref','sup','bold','italic','inline-formula','underline','sc','ext-link','monospace','mml:math')"/>
      
-      <assert test="name()=$allowed-elems" 
+      <assert see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#title-child-conformance"
+        test="name()=$allowed-elems" 
         role="error" 
         id="title-child-conformance"><name/> is not allowed in a title element. The only permitted elements are <value-of select="string-join($allowed-elems,', ')"/>.</assert>
       
