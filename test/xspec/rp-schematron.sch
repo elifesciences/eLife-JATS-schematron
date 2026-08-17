@@ -15,7 +15,7 @@
     
     <xsl:function name="e:is-reviewed-preprint" as="xs:boolean">
       <xsl:param name="node" as="node()"/>
-      <xsl:value-of select="$node/ancestor-or-self::article/front/journal-meta/journal-id[1]='elife'"/>
+      <xsl:sequence select="exists($node/ancestor-or-self::article/front/journal-meta/journal-id[1][lower-case(.)='elife'])"/>
     </xsl:function>
     
     <xsl:function name="e:is-valid-isbn" as="xs:boolean">
