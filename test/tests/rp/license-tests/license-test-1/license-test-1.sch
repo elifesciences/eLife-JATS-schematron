@@ -9,6 +9,10 @@
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
   <ns uri="http://manuscriptexchange.org" prefix="meca"/>
+  <xsl:function name="e:is-reviewed-preprint" as="xs:boolean">
+      <xsl:param name="node" as="node()"/>
+      <xsl:value-of select="$node/ancestor-or-self::article/front/journal-meta/journal-id[1]='elife'"/>
+    </xsl:function>
   <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -1292,13 +1296,13 @@
         </sqf:fix>
   </sqf:fixes>
   <pattern id="license-tests-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license" id="license-tests">
+    <rule context="front[e:is-reviewed-preprint(.)]//permissions/license" id="license-tests">
       <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#license-test-1" test="*:license_ref" role="error" id="license-test-1">[license-test-1] license must contain ali:license_ref.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license" role="error" id="license-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license must be present.</assert>
+      <assert test="descendant::front[e:is-reviewed-preprint(.)]//permissions/license" role="error" id="license-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//permissions/license must be present.</assert>
     </rule>
   </pattern>
 </schema>

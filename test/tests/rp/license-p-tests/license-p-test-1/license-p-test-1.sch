@@ -9,6 +9,10 @@
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
   <ns uri="http://manuscriptexchange.org" prefix="meca"/>
+  <xsl:function name="e:is-reviewed-preprint" as="xs:boolean">
+      <xsl:param name="node" as="node()"/>
+      <xsl:value-of select="$node/ancestor-or-self::article/front/journal-meta/journal-id[1]='elife'"/>
+    </xsl:function>
   <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -1292,7 +1296,7 @@
         </sqf:fix>
   </sqf:fixes>
   <pattern id="license-p-tests-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license/license-p" id="license-p-tests">
+    <rule context="front[e:is-reviewed-preprint(.)]//permissions/license/license-p" id="license-p-tests">
       <let name="license-link" value="parent::license/@*:href"/>
       <let name="license-type" value="if (contains($license-link,'//creativecommons.org/publicdomain/zero/1.0/')) then 'cc0' else if (contains($license-link,'//creativecommons.org/licenses/by/4.0/')) then 'ccby' else ('unknown')"/>
       <let name="cc0-text" value="'This is an open-access article, free of all copyright, and may be freely reproduced, distributed, transmitted, modified, built upon, or otherwise used by anyone for any lawful purpose. The work is made available under the Creative Commons CC0 public domain dedication.'"/>
@@ -1302,7 +1306,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license/license-p" role="error" id="license-p-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license/license-p must be present.</assert>
+      <assert test="descendant::front[e:is-reviewed-preprint(.)]//permissions/license/license-p" role="error" id="license-p-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//permissions/license/license-p must be present.</assert>
     </rule>
   </pattern>
 </schema>

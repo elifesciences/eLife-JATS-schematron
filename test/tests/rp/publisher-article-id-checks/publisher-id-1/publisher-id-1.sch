@@ -9,6 +9,10 @@
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
   <ns uri="http://manuscriptexchange.org" prefix="meca"/>
+  <xsl:function name="e:is-reviewed-preprint" as="xs:boolean">
+      <xsl:param name="node" as="node()"/>
+      <xsl:value-of select="$node/ancestor-or-self::article/front/journal-meta/journal-id[1]='elife'"/>
+    </xsl:function>
   <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -1292,13 +1296,13 @@
         </sqf:fix>
   </sqf:fixes>
   <pattern id="publisher-article-id-checks-pattern">
-    <rule context="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='publisher-id']" id="publisher-article-id-checks">
+    <rule context="article[e:is-reviewed-preprint(.)]/front/article-meta/article-id[@pub-id-type='publisher-id']" id="publisher-article-id-checks">
       <assert test="matches(.,'^1?\d{5}$')" role="error" id="publisher-id-1">[publisher-id-1] article-id with the attribute pub-id-type="publisher-id" must contain the 5 or 6 digit manuscript tracking number. This one contains <value-of select="."/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='publisher-id']" role="error" id="publisher-article-id-checks-xspec-assert">article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='publisher-id'] must be present.</assert>
+      <assert test="descendant::article[e:is-reviewed-preprint(.)]/front/article-meta/article-id[@pub-id-type='publisher-id']" role="error" id="publisher-article-id-checks-xspec-assert">article[e:is-reviewed-preprint(.)]/front/article-meta/article-id[@pub-id-type='publisher-id'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

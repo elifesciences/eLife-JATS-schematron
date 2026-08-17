@@ -9,6 +9,10 @@
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
   <ns uri="http://manuscriptexchange.org" prefix="meca"/>
+  <xsl:function name="e:is-reviewed-preprint" as="xs:boolean">
+      <xsl:param name="node" as="node()"/>
+      <xsl:value-of select="$node/ancestor-or-self::article/front/journal-meta/journal-id[1]='elife'"/>
+    </xsl:function>
   <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -1292,14 +1296,14 @@
         </sqf:fix>
   </sqf:fixes>
   <pattern id="cc-0-permissions-tests-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@*:href,'creativecommons.org/publicdomain/zero')]" id="cc-0-permissions-tests">
+    <rule context="front[e:is-reviewed-preprint(.)]//permissions[contains(license[1]/@*:href,'creativecommons.org/publicdomain/zero')]" id="cc-0-permissions-tests">
       <let name="license-type" value="license/@*:href"/>
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#cc-0-test-2" test="copyright-year" role="error" id="cc-0-test-2">[cc-0-test-2] This is a CC0 licensed article (<value-of select="$license-type"/>), but there is a copyright-year (<value-of select="copyright-year"/>) which is not correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@*:href,'creativecommons.org/publicdomain/zero')]" role="error" id="cc-0-permissions-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@*:href,'creativecommons.org/publicdomain/zero')] must be present.</assert>
+      <assert test="descendant::front[e:is-reviewed-preprint(.)]//permissions[contains(license[1]/@*:href,'creativecommons.org/publicdomain/zero')]" role="error" id="cc-0-permissions-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//permissions[contains(license[1]/@*:href,'creativecommons.org/publicdomain/zero')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

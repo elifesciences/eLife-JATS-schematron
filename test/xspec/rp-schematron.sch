@@ -13,6 +13,11 @@
     
     <ns uri="http://manuscriptexchange.org" prefix="meca"/>
     
+    <xsl:function name="e:is-reviewed-preprint" as="xs:boolean">
+      <xsl:param name="node" as="node()"/>
+      <xsl:value-of select="$node/ancestor-or-self::article/front/journal-meta/journal-id[1]='elife'"/>
+    </xsl:function>
+    
     <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -1354,7 +1359,7 @@
   
 
      <pattern id="article-tests-pattern">
-    <rule context="article[front/journal-meta/lower-case(journal-id[1])='elife']" id="article-tests">
+    <rule context="article[e:is-reviewed-preprint(.)]" id="article-tests">
       <!-- exclude ref list and figures from this check -->
       <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
       <let name="is-revised-rp" value="if (descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
@@ -1377,6 +1382,11 @@
         <report test="count(sub-article[@article-type='editor-report']) gt 1" role="error" id="assessment-2">A Reviewed Preprint cannot have more than one eLife Assessment. This one has <value-of select="count(sub-article[@article-type='author-comment'])"/>.</report>
 
       </rule>
+  </pattern>
+  <pattern id="all-article-tests-pattern">
+    <rule context="article" id="all-article-tests">
+         <report test="not(e:is-reviewed-preprint(.)) and sub-article" role="error" id="sub-article-no-elife-journal-meta">article has a child sub-article element, but the journal-meta does not have a journal-id containing 'eLife'. Either the journal-meta is incorrect, or the sub-article has been incorrectly included.</report>
+       </rule>
   </pattern>
 
     <pattern id="article-title-checks-pattern">
@@ -1408,7 +1418,7 @@
         
         <report test="not(@corresp='yes') and (email or xref[@ref-type='corresp'])" role="error" id="author-email-no-corresp">Author <value-of select="e:get-name(name[1])"/> does not have the attribute corresp="yes", but they have a child email element or an xref with the attribute ref-type="corresp".</report>
         
-        <report test="@corresp='yes' and not(contrib-id[@contrib-id-type='orcid'])" role="warning" id="author-email-no-orcid">Author <value-of select="e:get-name(name[1])"/> is a corresponding author (corresp="yes"), but they do not have an ORCID ID. Is that correct?</report>
+        <report test="e:is-reviewed-preprint(.) and @corresp='yes' and not(contrib-id[@contrib-id-type='orcid'])" role="warning" id="author-email-no-orcid">Author <value-of select="e:get-name(name[1])"/> is a corresponding author (corresp="yes"), but they do not have an ORCID ID. Is that correct?</report>
         
         <report test="(xref/@rid = ancestor::article-meta/author-notes/fn[@fn-type='equal']/@id) and not(@equal-contrib='yes')" role="error" id="author-equal-contrib-1">Author <value-of select="e:get-name(name[1])"/> does not have the attribute equal-contrib="yes", but they have a child xref element that points to a footnote with the fn-type 'equal'.</report>
         
@@ -1492,7 +1502,7 @@
       
       <assert test="empty($indistinct-orcids)" role="error" id="duplicate-orcid-test">There is more than one author with the following ORCiD(s) - <value-of select="if (count($indistinct-orcids) gt 1) then concat(string-join($indistinct-orcids[position() != last()],', '),' and ',$indistinct-orcids[last()]) else $indistinct-orcids"/> - which must be incorrect.</assert>
       
-      <report test="empty($orcids) and contrib[@contrib-type='author' and (name or string-name)]" role="error" id="missing-orcid-test">There are no ORCID IDs in this author contrib-group, which must be incorrect given eLife's requirements around corresponding authors needing an ORCID to login/submit.</report>
+      <report test="e:is-reviewed-preprint(.) and empty($orcids) and contrib[@contrib-type='author' and (name or string-name)]" role="error" id="missing-orcid-test">There are no ORCID IDs in this author contrib-group, which must be incorrect given eLife's requirements around corresponding authors needing an ORCID to login/submit.</report>
     </rule>
   </pattern>
   <pattern id="orcid-tests-pattern">
@@ -1519,7 +1529,7 @@
       <report test="$country-count gt 1" role="error" id="aff-multiple-country">Affiliation contains more than one country element: <value-of select="string-join(descendant::country,'; ')"/> in <value-of select="."/>
       </report>
       
-      <report test="(count(descendant::institution-id) le 1) and $city-count lt 1" role="warning" sqf:fix="add-ror-city" id="aff-no-city">Affiliation does not contain a city element: <value-of select="."/>
+      <report test="e:is-reviewed-preprint(.) and (count(descendant::institution-id) le 1) and $city-count lt 1" role="warning" sqf:fix="add-ror-city" id="aff-no-city">Affiliation does not contain a city element: <value-of select="."/>
       </report>
 
       <report test="$city-count gt 1" role="error" id="aff-city-country">Affiliation contains more than one city element: <value-of select="string-join(descendant::country,'; ')"/> in <value-of select="."/>
@@ -1531,7 +1541,7 @@
       <report test="count(descendant::institution-id) gt 1" role="error" sqf:fix="pick-aff-ror-1 pick-aff-ror-2 pick-aff-ror-3" id="aff-multiple-ids">Affiliation contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/>
       </report>
       
-      <report test="ancestor::article//journal-meta/lower-case(journal-id[1])='elife' and count(institution-wrap) = 0" role="warning" id="aff-no-wrap">Affiliation doesn't have an institution-wrap element (the container for institution name and id). Is that correct?</report>
+      <report test="e:is-reviewed-preprint(.) and count(institution-wrap) = 0" role="warning" id="aff-no-wrap">Affiliation doesn't have an institution-wrap element (the container for institution name and id). Is that correct?</report>
       
       <report test="institution-wrap[not(institution-id)] and not(ancestor::contrib-group[@content-type='section']) and not(ancestor::sub-article)" role="error" id="aff-has-wrap-no-id">aff contains institution-wrap, but that institution-wrap does not have a child institution-id. institution-wrap should only be used when there is an institution-id for the institution.</report>
       
@@ -1611,7 +1621,7 @@
     </rule>
   </pattern>
   <pattern id="country-tests-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//aff/country" id="country-tests">
+    <rule context="front[e:is-reviewed-preprint(.)]//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'countries.xml'"/>
       <let name="city" value="parent::aff/descendant::city[1]"/>
@@ -1736,7 +1746,7 @@
        
        <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-6-7" test="count(fpage) gt 1 or count(lpage) gt 1 or count(elocation-id) gt 1 or count(comment) gt 1" role="error" id="err-elem-cit-journal-6-7">The following elements may not occur more than once in a &lt;mixed-citation&gt;: &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, and &lt;comment&gt;In press&lt;/comment&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(fpage)"/> &lt;fpage&gt;, <value-of select="count(lpage)"/> &lt;lpage&gt;, <value-of select="count(elocation-id)"/> &lt;elocation-id&gt;, and <value-of select="count(comment)"/> &lt;comment&gt; elements.</report>
        
-       <report test="(source or article-title) and not(pub-id[@pub-id-type=('doi','pmid','pmcid')])" role="warning" id="journal-doi-check">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) doesn't have a DOI or PMID. Should it?</report>
+       <report test="e:is-reviewed-preprint(.) and (source or article-title) and not(pub-id[@pub-id-type=('doi','pmid','pmcid')])" role="warning" id="journal-doi-check">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) doesn't have a DOI or PMID. Should it?</report>
      </rule>
   </pattern>
   <pattern id="journal-source-checks-pattern">
@@ -2840,7 +2850,7 @@
 
     <pattern id="general-article-meta-checks-pattern">
     <rule context="article/front/article-meta" id="general-article-meta-checks">
-        <let name="is-reviewed-preprint" value="parent::front/journal-meta/lower-case(journal-id[1])='elife'"/>
+        <let name="is-reviewed-preprint" value="e:is-reviewed-preprint(.)"/>
         <let name="distinct-emails" value="distinct-values((descendant::contrib[@contrib-type='author']/email, author-notes/corresp/email))"/>
         <let name="distinct-email-count" value="count($distinct-emails)"/>
         <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
@@ -2886,12 +2896,12 @@
          </rule>
   </pattern>
   <pattern id="publisher-article-id-checks-pattern">
-    <rule context="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='publisher-id']" id="publisher-article-id-checks">
+    <rule context="article[e:is-reviewed-preprint(.)]/front/article-meta/article-id[@pub-id-type='publisher-id']" id="publisher-article-id-checks">
         <assert test="matches(.,'^1?\d{5}$')" role="error" id="publisher-id-1">article-id with the attribute pub-id-type="publisher-id" must contain the 5 or 6 digit manuscript tracking number. This one contains <value-of select="."/>.</assert>
       </rule>
   </pattern>
   <pattern id="article-dois-pattern">
-    <rule context="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']" id="article-dois">
+    <rule context="article[e:is-reviewed-preprint(.)]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois">
       <let name="article-id" value="parent::article-meta[1]/article-id[@pub-id-type='publisher-id'][1]"/>
       <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint'][1]/@*:href"/>
       <let name="latest-rp-doi-version" value="if ($latest-rp-doi) then replace($latest-rp-doi,'^.*\.','')                                                else '0'"/>
@@ -3001,7 +3011,7 @@
       </rule>
   </pattern>
   <pattern id="volume-test-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/volume" id="volume-test">
+    <rule context="front[e:is-reviewed-preprint(.)]/article-meta/volume" id="volume-test">
         <let name="is-first-version" value="if (ancestor::article-meta/article-id[@specific-use='version' and ends-with(.,'.1')]) then true()                                           else if (not(ancestor::article-meta/pub-history[event[date[@date-type='reviewed-preprint']]])) then true()                                           else false()"/>
         <let name="pub-date" value=" if (not($is-first-version)) then parent::article-meta/pub-history[1]/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]          else if (ancestor::article-meta/pub-date[@date-type='publication' and @publication-format='electronic']) then ancestor::article-meta/pub-date[@date-type='publication' and @publication-format='electronic'][1]/year[1]          else string(year-from-date(current-date()))"/>
       
@@ -3009,7 +3019,7 @@
       </rule>
   </pattern>
   <pattern id="elocation-id-test-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id" id="elocation-id-test">
+    <rule context="front[e:is-reviewed-preprint(.)]/article-meta/elocation-id" id="elocation-id-test">
         <let name="msid" value="parent::article-meta/article-id[@pub-id-type='publisher-id']"/>
         
         <assert test="matches(.,'^RP\d{5,6}$')" role="error" id="elocation-id-test-1">The content of elocation-id must 'RP' followed by a 5 or 6 digit MSID. This is not in that format: <value-of select="."/>.</assert>
@@ -3018,7 +3028,7 @@
       </rule>
   </pattern>
   <pattern id="history-tests-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/history" id="history-tests">
+    <rule context="front[e:is-reviewed-preprint(.)]/article-meta/history" id="history-tests">
       
         <assert test="count(date[@date-type='sent-for-review']) = 1" role="error" id="prc-history-date-test-1">history must contain one (and only one) date[@date-type='sent-for-review'] in Reviewed preprints.</assert>
       
@@ -3027,7 +3037,7 @@
     </rule>
   </pattern>
   <pattern id="pub-history-tests-pattern">
-    <rule context="article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history" id="pub-history-tests">
+    <rule context="article[e:is-reviewed-preprint(.)]//pub-history" id="pub-history-tests">
         <let name="version-from-doi" value="replace(ancestor::article-meta[1]/article-id[@pub-id-type='doi' and @specific-use='version'][1],'^.*\.','')"/>
         <let name="is-revised-rp" value="if ($version-from-doi=('','1')) then false() else true()"/>
       
@@ -3406,7 +3416,7 @@
   </pattern>
 
     <pattern id="front-permissions-tests-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions" id="front-permissions-tests">
+    <rule context="front[e:is-reviewed-preprint(.)]//permissions" id="front-permissions-tests">
 	  <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
 	  <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
 	  <let name="license-type" value="license/@*:href"/>
@@ -3423,7 +3433,7 @@
 	</rule>
   </pattern>
   <pattern id="cc-by-permissions-tests-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@*:href,'creativecommons.org/licenses/by/')]" id="cc-by-permissions-tests">
+    <rule context="front[e:is-reviewed-preprint(.)]//permissions[contains(license[1]/@*:href,'creativecommons.org/licenses/by/')]" id="cc-by-permissions-tests">
       <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
       <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
       <let name="license-type" value="license/@*:href"/>
@@ -3452,7 +3462,7 @@
     </rule>
   </pattern>
   <pattern id="cc-0-permissions-tests-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@*:href,'creativecommons.org/publicdomain/zero')]" id="cc-0-permissions-tests">
+    <rule context="front[e:is-reviewed-preprint(.)]//permissions[contains(license[1]/@*:href,'creativecommons.org/publicdomain/zero')]" id="cc-0-permissions-tests">
       <let name="license-type" value="license/@*:href"/>
       
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#cc-0-test-1" test="copyright-statement" role="error" id="cc-0-test-1">This is a CC0 licensed article (<value-of select="$license-type"/>), but there is a copyright-statement (<value-of select="copyright-statement"/>) which is not correct.</report>
@@ -3464,7 +3474,7 @@
     </rule>
   </pattern>
   <pattern id="license-tests-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license" id="license-tests">
+    <rule context="front[e:is-reviewed-preprint(.)]//permissions/license" id="license-tests">
 	
 	  <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#license-test-1" test="*:license_ref" role="error" id="license-test-1">license must contain ali:license_ref.</assert>
 	
@@ -3473,7 +3483,7 @@
 	</rule>
   </pattern>
   <pattern id="license-p-tests-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license/license-p" id="license-p-tests">
+    <rule context="front[e:is-reviewed-preprint(.)]//permissions/license/license-p" id="license-p-tests">
       <let name="license-link" value="parent::license/@*:href"/>
       <let name="license-type" value="if (contains($license-link,'//creativecommons.org/publicdomain/zero/1.0/')) then 'cc0' else if (contains($license-link,'//creativecommons.org/licenses/by/4.0/')) then 'ccby' else ('unknown')"/>
       
@@ -4138,7 +4148,8 @@
     
 <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[front/journal-meta/lower-case(journal-id[1])='elife']" role="error" id="article-tests-xspec-assert">article[front/journal-meta/lower-case(journal-id[1])='elife'] must be present.</assert>
+      <assert test="descendant::article[e:is-reviewed-preprint(.)]" role="error" id="article-tests-xspec-assert">article[e:is-reviewed-preprint(.)] must be present.</assert>
+      <assert test="descendant::article" role="error" id="all-article-tests-xspec-assert">article must be present.</assert>
       <assert test="descendant::article-meta/title-group/article-title" role="error" id="article-title-checks-xspec-assert">article-meta/title-group/article-title must be present.</assert>
       <assert test="descendant::article-meta/title-group/article-title/*" role="error" id="article-title-children-checks-xspec-assert">article-meta/title-group/article-title/* must be present.</assert>
       <assert test="descendant::article-meta/contrib-group/contrib[@contrib-type='author' and not(collab or collab-wrap)]" role="error" id="author-contrib-checks-xspec-assert">article-meta/contrib-group/contrib[@contrib-type='author' and not(collab or collab-wrap)] must be present.</assert>
@@ -4150,7 +4161,7 @@
       <assert test="descendant::article/front/article-meta/contrib-group[1]" role="error" id="orcid-name-checks-xspec-assert">article/front/article-meta/contrib-group[1] must be present.</assert>
       <assert test="descendant::contrib-id[@contrib-id-type='orcid']" role="error" id="orcid-tests-xspec-assert">contrib-id[@contrib-id-type='orcid'] must be present.</assert>
       <assert test="descendant::aff" role="error" id="affiliation-checks-xspec-assert">aff must be present.</assert>
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']//aff/country" role="error" id="country-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']//aff/country must be present.</assert>
+      <assert test="descendant::front[e:is-reviewed-preprint(.)]//aff/country" role="error" id="country-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//aff/country must be present.</assert>
       <assert test="descendant::aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap" role="error" id="aff-institution-wrap-tests-xspec-assert">aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap must be present.</assert>
       <assert test="descendant::aff//institution-id" role="error" id="aff-institution-id-tests-xspec-assert">aff//institution-id must be present.</assert>
       <assert test="descendant::aff[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" role="error" id="aff-ror-tests-xspec-assert">aff[count(institution-wrap/institution-id[@institution-id-type='ror'])=1] must be present.</assert>
@@ -4235,8 +4246,8 @@
       <assert test="descendant::p or descendant::td or descendant::th" role="error" id="p-td-th-checks-xspec-assert">p|td|th must be present.</assert>
       <assert test="descendant::article/front/article-meta" role="error" id="general-article-meta-checks-xspec-assert">article/front/article-meta must be present.</assert>
       <assert test="descendant::article/front/article-meta/article-id" role="error" id="general-article-id-checks-xspec-assert">article/front/article-meta/article-id must be present.</assert>
-      <assert test="descendant::article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='publisher-id']" role="error" id="publisher-article-id-checks-xspec-assert">article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='publisher-id'] must be present.</assert>
-      <assert test="descendant::article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']" role="error" id="article-dois-xspec-assert">article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
+      <assert test="descendant::article[e:is-reviewed-preprint(.)]/front/article-meta/article-id[@pub-id-type='publisher-id']" role="error" id="publisher-article-id-checks-xspec-assert">article[e:is-reviewed-preprint(.)]/front/article-meta/article-id[@pub-id-type='publisher-id'] must be present.</assert>
+      <assert test="descendant::article[e:is-reviewed-preprint(.)]/front/article-meta/article-id[@pub-id-type='doi']" role="error" id="article-dois-xspec-assert">article[e:is-reviewed-preprint(.)]/front/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::article/front/article-meta/author-notes" role="error" id="author-notes-checks-xspec-assert">article/front/article-meta/author-notes must be present.</assert>
       <assert test="descendant::article/front/article-meta/author-notes/fn" role="error" id="author-notes-fn-checks-xspec-assert">article/front/article-meta/author-notes/fn must be present.</assert>
       <assert test="descendant::article/front/article-meta//article-version" role="error" id="article-version-checks-xspec-assert">article/front/article-meta//article-version must be present.</assert>
@@ -4244,10 +4255,10 @@
       <assert test="descendant::article/front[journal-meta/journal-id='elife']/article-meta[matches(replace(article-id[@specific-use='version'][1],'^.*\.',''),'^\d\d?$') and matches(descendant::article-version[@article-version-type='preprint-version'][1],'^1\.\d+$')]" role="error" id="rp-and-preprint-version-checks-xspec-assert">article/front[journal-meta/journal-id='elife']/article-meta[matches(replace(article-id[@specific-use='version'][1],'^.*\.',''),'^\d\d?$') and matches(descendant::article-version[@article-version-type='preprint-version'][1],'^1\.\d+$')] must be present.</assert>
       <assert test="descendant::article/front/article-meta/pub-date[@pub-type='epub']/year" role="error" id="preprint-pub-checks-xspec-assert">article/front/article-meta/pub-date[@pub-type='epub']/year must be present.</assert>
       <assert test="descendant::article/front/article-meta/contrib-group/contrib" role="error" id="contrib-checks-xspec-assert">article/front/article-meta/contrib-group/contrib must be present.</assert>
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/volume" role="error" id="volume-test-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/volume must be present.</assert>
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id" role="error" id="elocation-id-test-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id must be present.</assert>
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/history" role="error" id="history-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/history must be present.</assert>
-      <assert test="descendant::article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history must be present.</assert>
+      <assert test="descendant::front[e:is-reviewed-preprint(.)]/article-meta/volume" role="error" id="volume-test-xspec-assert">front[e:is-reviewed-preprint(.)]/article-meta/volume must be present.</assert>
+      <assert test="descendant::front[e:is-reviewed-preprint(.)]/article-meta/elocation-id" role="error" id="elocation-id-test-xspec-assert">front[e:is-reviewed-preprint(.)]/article-meta/elocation-id must be present.</assert>
+      <assert test="descendant::front[e:is-reviewed-preprint(.)]/article-meta/history" role="error" id="history-tests-xspec-assert">front[e:is-reviewed-preprint(.)]/article-meta/history must be present.</assert>
+      <assert test="descendant::article[e:is-reviewed-preprint(.)]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[e:is-reviewed-preprint(.)]//pub-history must be present.</assert>
       <assert test="descendant::event" role="error" id="event-tests-xspec-assert">event must be present.</assert>
       <assert test="descendant::event/*" role="error" id="event-child-tests-xspec-assert">event/* must be present.</assert>
       <assert test="descendant::event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" role="error" id="rp-event-tests-xspec-assert">event[date[@date-type='reviewed-preprint']/@iso-8601-date != ''] must be present.</assert>
@@ -4268,11 +4279,11 @@
       <assert test="descendant::abstract[parent::article-meta]" role="error" id="abstract-checks-xspec-assert">abstract[parent::article-meta] must be present.</assert>
       <assert test="descendant::abstract[parent::article-meta]/*" role="error" id="abstract-child-checks-xspec-assert">abstract[parent::article-meta]/* must be present.</assert>
       <assert test="descendant::abstract[@xml:lang]" role="error" id="abstract-lang-checks-xspec-assert">abstract[@xml:lang] must be present.</assert>
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']//permissions" role="error" id="front-permissions-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']//permissions must be present.</assert>
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@*:href,'creativecommons.org/licenses/by/')]" role="error" id="cc-by-permissions-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@*:href,'creativecommons.org/licenses/by/')] must be present.</assert>
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@*:href,'creativecommons.org/publicdomain/zero')]" role="error" id="cc-0-permissions-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@*:href,'creativecommons.org/publicdomain/zero')] must be present.</assert>
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license" role="error" id="license-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license must be present.</assert>
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license/license-p" role="error" id="license-p-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license/license-p must be present.</assert>
+      <assert test="descendant::front[e:is-reviewed-preprint(.)]//permissions" role="error" id="front-permissions-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//permissions must be present.</assert>
+      <assert test="descendant::front[e:is-reviewed-preprint(.)]//permissions[contains(license[1]/@*:href,'creativecommons.org/licenses/by/')]" role="error" id="cc-by-permissions-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//permissions[contains(license[1]/@*:href,'creativecommons.org/licenses/by/')] must be present.</assert>
+      <assert test="descendant::front[e:is-reviewed-preprint(.)]//permissions[contains(license[1]/@*:href,'creativecommons.org/publicdomain/zero')]" role="error" id="cc-0-permissions-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//permissions[contains(license[1]/@*:href,'creativecommons.org/publicdomain/zero')] must be present.</assert>
+      <assert test="descendant::front[e:is-reviewed-preprint(.)]//permissions/license" role="error" id="license-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//permissions/license must be present.</assert>
+      <assert test="descendant::front[e:is-reviewed-preprint(.)]//permissions/license/license-p" role="error" id="license-p-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//permissions/license/license-p must be present.</assert>
       <assert test="descendant::permissions/license[@*:href]/license-p" role="error" id="license-link-tests-xspec-assert">permissions/license[@*:href]/license-p must be present.</assert>
       <assert test="descendant::permissions/license[*:license_ref]/license-p" role="error" id="license-ali-ref-link-tests-xspec-assert">permissions/license[*:license_ref]/license-p must be present.</assert>
       <assert test="descendant::fig[not(descendant::permissions)] or descendant::media[@mimetype='video' and not(descendant::permissions)] or descendant::table-wrap[not(descendant::permissions)] or descendant::supplementary-material[not(descendant::permissions)]" role="error" id="fig-permissions-check-xspec-assert">fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)] must be present.</assert>

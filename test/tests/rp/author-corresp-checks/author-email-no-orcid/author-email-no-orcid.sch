@@ -9,6 +9,10 @@
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
   <ns uri="http://manuscriptexchange.org" prefix="meca"/>
+  <xsl:function name="e:is-reviewed-preprint" as="xs:boolean">
+      <xsl:param name="node" as="node()"/>
+      <xsl:value-of select="$node/ancestor-or-self::article/front/journal-meta/journal-id[1]='elife'"/>
+    </xsl:function>
   <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -1293,7 +1297,7 @@
   </sqf:fixes>
   <pattern id="author-corresp-checks-pattern">
     <rule context="contrib[@contrib-type='author']" id="author-corresp-checks">
-      <report test="@corresp='yes' and not(contrib-id[@contrib-id-type='orcid'])" role="warning" id="author-email-no-orcid">[author-email-no-orcid] Author <value-of select="e:get-name(name[1])"/> is a corresponding author (corresp="yes"), but they do not have an ORCID ID. Is that correct?</report>
+      <report test="e:is-reviewed-preprint(.) and @corresp='yes' and not(contrib-id[@contrib-id-type='orcid'])" role="warning" id="author-email-no-orcid">[author-email-no-orcid] Author <value-of select="e:get-name(name[1])"/> is a corresponding author (corresp="yes"), but they do not have an ORCID ID. Is that correct?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

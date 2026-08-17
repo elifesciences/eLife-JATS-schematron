@@ -9,6 +9,10 @@
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
   <ns uri="http://manuscriptexchange.org" prefix="meca"/>
+  <xsl:function name="e:is-reviewed-preprint" as="xs:boolean">
+      <xsl:param name="node" as="node()"/>
+      <xsl:value-of select="$node/ancestor-or-self::article/front/journal-meta/journal-id[1]='elife'"/>
+    </xsl:function>
   <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -1292,7 +1296,7 @@
         </sqf:fix>
   </sqf:fixes>
   <pattern id="country-tests-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//aff/country" id="country-tests">
+    <rule context="front[e:is-reviewed-preprint(.)]//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'../../../../../src/countries.xml'"/>
       <let name="city" value="parent::aff/descendant::city[1]"/>
@@ -1302,7 +1306,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']//aff/country" role="error" id="country-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']//aff/country must be present.</assert>
+      <assert test="descendant::front[e:is-reviewed-preprint(.)]//aff/country" role="error" id="country-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//aff/country must be present.</assert>
     </rule>
   </pattern>
 </schema>

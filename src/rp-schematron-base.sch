@@ -24,6 +24,11 @@
     <ns uri="java:org.elifesciences.validator.ApiCache" prefix="cache"/>
     <ns uri="http://manuscriptexchange.org" prefix="meca"/>
     
+    <xsl:function name="e:is-reviewed-preprint" as="xs:boolean">
+      <xsl:param name="node" as="node()"/>
+      <xsl:value-of select="$node/ancestor-or-self::article/front/journal-meta/journal-id[1]='elife'"/>
+    </xsl:function>
+    
     <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -1386,7 +1391,7 @@
   
 
      <pattern id="article">
-      <rule context="article[front/journal-meta/lower-case(journal-id[1])='elife']" id="article-tests">
+      <rule context="article[e:is-reviewed-preprint(.)]" id="article-tests">
       <!-- exclude ref list and figures from this check -->
       <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*
           return
@@ -1429,6 +1434,12 @@
         id="assessment-2">A Reviewed Preprint cannot have more than one eLife Assessment. This one has <value-of select="count(sub-article[@article-type='author-comment'])"/>.</report>
 
       </rule>
+       
+       <rule context="article" id="all-article-tests">
+         <report test="not(e:is-reviewed-preprint(.)) and sub-article" 
+          role="error" 
+          id="sub-article-no-elife-journal-meta">article has a child sub-article element, but the journal-meta does not have a journal-id containing 'eLife'. Either the journal-meta is incorrect, or the sub-article has been incorrectly included.</report>
+       </rule>
     </pattern>
 
     <pattern id="article-title">
@@ -1473,7 +1484,7 @@
           role="error" 
           id="author-email-no-corresp">Author <value-of select="e:get-name(name[1])"/> does not have the attribute corresp="yes", but they have a child email element or an xref with the attribute ref-type="corresp".</report>
         
-        <report test="@corresp='yes' and not(contrib-id[@contrib-id-type='orcid'])" 
+        <report test="e:is-reviewed-preprint(.) and @corresp='yes' and not(contrib-id[@contrib-id-type='orcid'])" 
           role="warning" 
           id="author-email-no-orcid">Author <value-of select="e:get-name(name[1])"/> is a corresponding author (corresp="yes"), but they do not have an ORCID ID. Is that correct?</report>
         
@@ -1617,7 +1628,7 @@
         role="error" 
         id="duplicate-orcid-test">There is more than one author with the following ORCiD(s) - <value-of select="if (count($indistinct-orcids) gt 1) then concat(string-join($indistinct-orcids[position() != last()],', '),' and ',$indistinct-orcids[last()]) else $indistinct-orcids"/> - which must be incorrect.</assert>
       
-      <report test="empty($orcids) and contrib[@contrib-type='author' and (name or string-name)]" 
+      <report test="e:is-reviewed-preprint(.) and empty($orcids) and contrib[@contrib-type='author' and (name or string-name)]" 
         role="error" 
         id="missing-orcid-test">There are no ORCID IDs in this author contrib-group, which must be incorrect given eLife's requirements around corresponding authors needing an ORCID to login/submit.</report>
     </rule>
@@ -1652,7 +1663,7 @@
         role="error" 
         id="aff-multiple-country">Affiliation contains more than one country element: <value-of select="string-join(descendant::country,'; ')"/> in <value-of select="."/></report>
       
-      <report test="(count(descendant::institution-id) le 1) and $city-count lt 1" 
+      <report test="e:is-reviewed-preprint(.) and (count(descendant::institution-id) le 1) and $city-count lt 1" 
         role="warning" 
         sqf:fix="add-ror-city"
         id="aff-no-city">Affiliation does not contain a city element: <value-of select="."/></report>
@@ -1670,7 +1681,7 @@
         sqf:fix="pick-aff-ror-1 pick-aff-ror-2 pick-aff-ror-3"
         id="aff-multiple-ids">Affiliation contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/></report>
       
-      <report test="ancestor::article//journal-meta/lower-case(journal-id[1])='elife' and count(institution-wrap) = 0" 
+      <report test="e:is-reviewed-preprint(.) and count(institution-wrap) = 0" 
         role="warning" 
         id="aff-no-wrap">Affiliation doesn't have an institution-wrap element (the container for institution name and id). Is that correct?</report>
       
@@ -1772,7 +1783,7 @@
       </sqf:fix>
     </rule>
       
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//aff/country" id="country-tests">
+    <rule context="front[e:is-reviewed-preprint(.)]//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'countries.xml'"/>
       <let name="city" value="parent::aff/descendant::city[1]"/>
@@ -1954,7 +1965,7 @@
         role="error" 
         id="err-elem-cit-journal-6-7">The following elements may not occur more than once in a &lt;mixed-citation&gt;: &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, and &lt;comment&gt;In press&lt;/comment&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(fpage)"/> &lt;fpage&gt;, <value-of select="count(lpage)"/> &lt;lpage&gt;, <value-of select="count(elocation-id)"/> &lt;elocation-id&gt;, and <value-of select="count(comment)"/> &lt;comment&gt; elements.</report>
        
-       <report test="(source or article-title) and not(pub-id[@pub-id-type=('doi','pmid','pmcid')])" 
+       <report test="e:is-reviewed-preprint(.) and (source or article-title) and not(pub-id[@pub-id-type=('doi','pmid','pmcid')])" 
         role="warning" 
         id="journal-doi-check">Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) doesn't have a DOI or PMID. Should it?</report>
      </rule>
@@ -3489,7 +3500,7 @@
 
     <pattern id="article-metadata">
       <rule context="article/front/article-meta" id="general-article-meta-checks">
-        <let name="is-reviewed-preprint" value="parent::front/journal-meta/lower-case(journal-id[1])='elife'"/>
+        <let name="is-reviewed-preprint" value="e:is-reviewed-preprint(.)"/>
         <let name="distinct-emails" value="distinct-values((descendant::contrib[@contrib-type='author']/email, author-notes/corresp/email))"/>
         <let name="distinct-email-count" value="count($distinct-emails)"/>
         <let name="corresp-authors" value="distinct-values(for $name in descendant::contrib[@contrib-type='author' and @corresp='yes']/name[1] return e:get-name($name))"/>
@@ -3567,13 +3578,13 @@
               id="article-id-3">article-id must have a pub-id-type with a value of 'publisher-id' or 'doi'. This one has <value-of select="if (@publisher-id) then @publisher-id else 'no publisher-id attribute'"/>.</assert>
          </rule>
       
-      <rule context="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='publisher-id']" id="publisher-article-id-checks">
+      <rule context="article[e:is-reviewed-preprint(.)]/front/article-meta/article-id[@pub-id-type='publisher-id']" id="publisher-article-id-checks">
         <assert test="matches(.,'^1?\d{5}$')" 
           role="error" 
           id="publisher-id-1">article-id with the attribute pub-id-type="publisher-id" must contain the 5 or 6 digit manuscript tracking number. This one contains <value-of select="."/>.</assert>
       </rule>
       
-      <rule context="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']" id="article-dois">
+      <rule context="article[e:is-reviewed-preprint(.)]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois">
       <let name="article-id" value="parent::article-meta[1]/article-id[@pub-id-type='publisher-id'][1]"/>
       <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint'][1]/@*:href"/>
       <let name="latest-rp-doi-version" value="if ($latest-rp-doi) then replace($latest-rp-doi,'^.*\.','')
@@ -3741,7 +3752,7 @@
           id="contrib-4">The second contrib-group in article-meta should (only) contain Reviewing and Senior Editors. This contrib is placed in that group, but it has the contrib-type <value-of select="@contrib-type"/>.</report>
       </rule>
       
-      <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/volume" id="volume-test">
+      <rule context="front[e:is-reviewed-preprint(.)]/article-meta/volume" id="volume-test">
         <let name="is-first-version" value="if (ancestor::article-meta/article-id[@specific-use='version' and ends-with(.,'.1')]) then true()
                                           else if (not(ancestor::article-meta/pub-history[event[date[@date-type='reviewed-preprint']]])) then true()
                                           else false()"/>
@@ -3754,7 +3765,7 @@
           id="volume-test-1">volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</report>
       </rule>
       
-      <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id" id="elocation-id-test">
+      <rule context="front[e:is-reviewed-preprint(.)]/article-meta/elocation-id" id="elocation-id-test">
         <let name="msid" value="parent::article-meta/article-id[@pub-id-type='publisher-id']"/>
         
         <assert test="matches(.,'^RP\d{5,6}$')" 
@@ -3766,7 +3777,7 @@
           id="elocation-id-test-2">The content of elocation-id must 'RP' followed by the 5 or 6 digit MSID (<value-of select="$msid"/>). This is not in that format (<value-of select="."/> != <value-of select="concat('RP',$msid)"/>).</report>
       </rule>
       
-      <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/history" id="history-tests">
+      <rule context="front[e:is-reviewed-preprint(.)]/article-meta/history" id="history-tests">
       
         <assert test="count(date[@date-type='sent-for-review']) = 1" 
           role="error" 
@@ -3778,7 +3789,7 @@
       
     </rule>
       
-      <rule context="article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history" id="pub-history-tests">
+      <rule context="article[e:is-reviewed-preprint(.)]//pub-history" id="pub-history-tests">
         <let name="version-from-doi" value="replace(ancestor::article-meta[1]/article-id[@pub-id-type='doi' and @specific-use='version'][1],'^.*\.','')"/>
         <let name="is-revised-rp" value="if ($version-from-doi=('','1')) then false() else true()"/>
       
@@ -4324,7 +4335,7 @@
 
     <pattern id="permissions">
       <!-- All license types -->
-	<rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions" id="front-permissions-tests">
+	<rule context="front[e:is-reviewed-preprint(.)]//permissions" id="front-permissions-tests">
 	  <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
 	  <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
 	  <let name="license-type" value="license/@*:href"/>
@@ -4355,7 +4366,7 @@
 	</rule>
     
     <!-- CC BY licenses -->
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@*:href,'creativecommons.org/licenses/by/')]" id="cc-by-permissions-tests">
+    <rule context="front[e:is-reviewed-preprint(.)]//permissions[contains(license[1]/@*:href,'creativecommons.org/licenses/by/')]" id="cc-by-permissions-tests">
       <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
       <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
       <let name="license-type" value="license/@*:href"/>
@@ -4410,7 +4421,7 @@
     </rule>
     
     <!-- CC0 licenses -->
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions[contains(license[1]/@*:href,'creativecommons.org/publicdomain/zero')]" id="cc-0-permissions-tests">
+    <rule context="front[e:is-reviewed-preprint(.)]//permissions[contains(license[1]/@*:href,'creativecommons.org/publicdomain/zero')]" id="cc-0-permissions-tests">
       <let name="license-type" value="license/@*:href"/>
       
       <report see ="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#cc-0-test-1" 
@@ -4430,7 +4441,7 @@
       
     </rule>
 	
-	<rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license" id="license-tests">
+	<rule context="front[e:is-reviewed-preprint(.)]//permissions/license" id="license-tests">
 	
 	  <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#license-test-1" 
 	      test="*:license_ref" 
@@ -4444,7 +4455,7 @@
 	
 	</rule>
     
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']//permissions/license/license-p" id="license-p-tests">
+    <rule context="front[e:is-reviewed-preprint(.)]//permissions/license/license-p" id="license-p-tests">
       <let name="license-link" value="parent::license/@*:href"/>
       <let name="license-type" value="if (contains($license-link,'//creativecommons.org/publicdomain/zero/1.0/')) then 'cc0' else if (contains($license-link,'//creativecommons.org/licenses/by/4.0/')) then 'ccby' else ('unknown')"/>
       

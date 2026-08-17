@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="pub-history-parent.sch"?>
-<!--Context: article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history
+<!--Context: article[e:is-reviewed-preprint(.)]//pub-history
 Test: assert    parent::article-meta
 Message:  is only allowed to be captured as a child of article-meta. This one is a child of . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

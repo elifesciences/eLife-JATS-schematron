@@ -9,6 +9,10 @@
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
   <ns uri="http://manuscriptexchange.org" prefix="meca"/>
+  <xsl:function name="e:is-reviewed-preprint" as="xs:boolean">
+      <xsl:param name="node" as="node()"/>
+      <xsl:value-of select="$node/ancestor-or-self::article/front/journal-meta/journal-id[1]='elife'"/>
+    </xsl:function>
   <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -1292,7 +1296,7 @@
         </sqf:fix>
   </sqf:fixes>
   <pattern id="article-dois-pattern">
-    <rule context="article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']" id="article-dois">
+    <rule context="article[e:is-reviewed-preprint(.)]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois">
       <let name="article-id" value="parent::article-meta[1]/article-id[@pub-id-type='publisher-id'][1]"/>
       <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint'][1]/@*:href"/>
       <let name="latest-rp-doi-version" value="if ($latest-rp-doi) then replace($latest-rp-doi,'^.*\.','')                                                else '0'"/>
@@ -1302,7 +1306,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi']" role="error" id="article-dois-xspec-assert">article/front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
+      <assert test="descendant::article[e:is-reviewed-preprint(.)]/front/article-meta/article-id[@pub-id-type='doi']" role="error" id="article-dois-xspec-assert">article[e:is-reviewed-preprint(.)]/front/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

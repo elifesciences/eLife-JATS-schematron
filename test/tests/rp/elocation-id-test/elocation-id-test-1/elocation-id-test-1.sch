@@ -9,6 +9,10 @@
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
   <ns uri="http://manuscriptexchange.org" prefix="meca"/>
+  <xsl:function name="e:is-reviewed-preprint" as="xs:boolean">
+      <xsl:param name="node" as="node()"/>
+      <xsl:value-of select="$node/ancestor-or-self::article/front/journal-meta/journal-id[1]='elife'"/>
+    </xsl:function>
   <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -1292,14 +1296,14 @@
         </sqf:fix>
   </sqf:fixes>
   <pattern id="elocation-id-test-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id" id="elocation-id-test">
+    <rule context="front[e:is-reviewed-preprint(.)]/article-meta/elocation-id" id="elocation-id-test">
       <let name="msid" value="parent::article-meta/article-id[@pub-id-type='publisher-id']"/>
       <assert test="matches(.,'^RP\d{5,6}$')" role="error" id="elocation-id-test-1">[elocation-id-test-1] The content of elocation-id must 'RP' followed by a 5 or 6 digit MSID. This is not in that format: <value-of select="."/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id" role="error" id="elocation-id-test-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id must be present.</assert>
+      <assert test="descendant::front[e:is-reviewed-preprint(.)]/article-meta/elocation-id" role="error" id="elocation-id-test-xspec-assert">front[e:is-reviewed-preprint(.)]/article-meta/elocation-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -9,6 +9,10 @@
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
   <ns uri="http://manuscriptexchange.org" prefix="meca"/>
+  <xsl:function name="e:is-reviewed-preprint" as="xs:boolean">
+      <xsl:param name="node" as="node()"/>
+      <xsl:value-of select="$node/ancestor-or-self::article/front/journal-meta/journal-id[1]='elife'"/>
+    </xsl:function>
   <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -1297,7 +1301,7 @@
       <let name="indistinct-names" value="for $name in distinct-values($names) return $name[count($names[. = $name]) gt 1]"/>
       <let name="orcids" value="for $x in contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid'] return substring-after($x,'orcid.org/')"/>
       <let name="indistinct-orcids" value="for $orcid in distinct-values($orcids) return $orcid[count($orcids[. = $orcid]) gt 1]"/>
-      <report test="empty($orcids) and contrib[@contrib-type='author' and (name or string-name)]" role="error" id="missing-orcid-test">[missing-orcid-test] There are no ORCID IDs in this author contrib-group, which must be incorrect given eLife's requirements around corresponding authors needing an ORCID to login/submit.</report>
+      <report test="e:is-reviewed-preprint(.) and empty($orcids) and contrib[@contrib-type='author' and (name or string-name)]" role="error" id="missing-orcid-test">[missing-orcid-test] There are no ORCID IDs in this author contrib-group, which must be incorrect given eLife's requirements around corresponding authors needing an ORCID to login/submit.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

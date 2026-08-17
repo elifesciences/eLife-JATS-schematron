@@ -9,6 +9,10 @@
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
   <ns uri="http://manuscriptexchange.org" prefix="meca"/>
+  <xsl:function name="e:is-reviewed-preprint" as="xs:boolean">
+      <xsl:param name="node" as="node()"/>
+      <xsl:value-of select="$node/ancestor-or-self::article/front/journal-meta/journal-id[1]='elife'"/>
+    </xsl:function>
   <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -1296,7 +1300,7 @@
       <let name="id" value="@id"/>
       <let name="country-count" value="count(descendant::country)"/>
       <let name="city-count" value="count(descendant::city)"/>
-      <report test="ancestor::article//journal-meta/lower-case(journal-id[1])='elife' and count(institution-wrap) = 0" role="warning" id="aff-no-wrap">[aff-no-wrap] Affiliation doesn't have an institution-wrap element (the container for institution name and id). Is that correct?</report>
+      <report test="e:is-reviewed-preprint(.) and count(institution-wrap) = 0" role="warning" id="aff-no-wrap">[aff-no-wrap] Affiliation doesn't have an institution-wrap element (the container for institution name and id). Is that correct?</report>
       <sqf:fix id="pick-aff-ror-1">
         <sqf:description>
           <sqf:title>Pick ROR option 1</sqf:title>

@@ -9,6 +9,10 @@
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
   <ns uri="http://manuscriptexchange.org" prefix="meca"/>
+  <xsl:function name="e:is-reviewed-preprint" as="xs:boolean">
+      <xsl:param name="node" as="node()"/>
+      <xsl:value-of select="$node/ancestor-or-self::article/front/journal-meta/journal-id[1]='elife'"/>
+    </xsl:function>
   <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -1296,7 +1300,7 @@
       <let name="id" value="@id"/>
       <let name="country-count" value="count(descendant::country)"/>
       <let name="city-count" value="count(descendant::city)"/>
-      <report test="(count(descendant::institution-id) le 1) and $city-count lt 1" role="warning" sqf:fix="add-ror-city" id="aff-no-city">[aff-no-city] Affiliation does not contain a city element: <value-of select="."/>
+      <report test="e:is-reviewed-preprint(.) and (count(descendant::institution-id) le 1) and $city-count lt 1" role="warning" sqf:fix="add-ror-city" id="aff-no-city">[aff-no-city] Affiliation does not contain a city element: <value-of select="."/>
       </report>
       <sqf:fix id="pick-aff-ror-1">
         <sqf:description>

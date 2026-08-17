@@ -9,6 +9,10 @@
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
   <ns uri="http://manuscriptexchange.org" prefix="meca"/>
+  <xsl:function name="e:is-reviewed-preprint" as="xs:boolean">
+      <xsl:param name="node" as="node()"/>
+      <xsl:value-of select="$node/ancestor-or-self::article/front/journal-meta/journal-id[1]='elife'"/>
+    </xsl:function>
   <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -1292,7 +1296,7 @@
         </sqf:fix>
   </sqf:fixes>
   <pattern id="article-tests-pattern">
-    <rule context="article[front/journal-meta/lower-case(journal-id[1])='elife']" id="article-tests">
+    <rule context="article[e:is-reviewed-preprint(.)]" id="article-tests">
       <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
       <let name="is-revised-rp" value="if (descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
       <let name="rp-version" value="replace(descendant::article-meta[1]/article-id[@specific-use='version'][1],'^.*\.','')"/>
@@ -1301,7 +1305,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[front/journal-meta/lower-case(journal-id[1])='elife']" role="error" id="article-tests-xspec-assert">article[front/journal-meta/lower-case(journal-id[1])='elife'] must be present.</assert>
+      <assert test="descendant::article[e:is-reviewed-preprint(.)]" role="error" id="article-tests-xspec-assert">article[e:is-reviewed-preprint(.)] must be present.</assert>
     </rule>
   </pattern>
 </schema>
