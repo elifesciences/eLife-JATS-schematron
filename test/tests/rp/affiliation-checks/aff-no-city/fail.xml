@@ -1,9 +1,14 @@
 <?oxygen SCHSchema="aff-no-city.sch"?>
 <!--Context: aff
-Test: report    (count(descendant::institution-id) le 1) and $city-count lt 1
+Test: report    e:is-reviewed-preprint(.) and (count(descendant::institution-id) le 1) and $city-count lt 1
 Message: Affiliation does not contain a city element:  -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
+        <front>
+            <journal-meta>
+                <journal-id>eLife</journal-id>
+            </journal-meta>
+        </front>
         <aff id="a3"><label>3</label><institution>Nintendo Co., Ltd</institution>, Kyoto, <country>Japan</country></aff>
     </article>
 </root>

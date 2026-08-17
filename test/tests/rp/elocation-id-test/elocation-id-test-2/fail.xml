@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="elocation-id-test-2.sch"?>
-<!--Context: front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/elocation-id
+<!--Context: front[e:is-reviewed-preprint(.)]/article-meta/elocation-id
 Test: report    $msid and not(.=concat('RP',$msid))
 Message: The content of elocation-id must 'RP' followed by the 5 or 6 digit MSID (). This is not in that format ( != ). -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">

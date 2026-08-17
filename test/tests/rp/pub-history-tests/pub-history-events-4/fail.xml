@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="pub-history-events-4.sch"?>
-<!--Context: article[front[journal-meta/lower-case(journal-id[1])='elife']]//pub-history
+<!--Context: article[e:is-reviewed-preprint(.)]//pub-history
 Test: report    count(event[self-uri[@content-type='reviewed-preprint']]) gt 3
 Message:  has  reviewed preprint event elements, which is unusual. Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

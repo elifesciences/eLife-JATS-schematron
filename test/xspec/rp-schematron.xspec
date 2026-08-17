@@ -82,6 +82,18 @@
         <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="all-article-tests">
+      <x:scenario label="sub-article-no-elife-journal-meta-pass">
+        <x:context href="../tests/rp/all-article-tests/sub-article-no-elife-journal-meta/pass.xml"/>
+        <x:expect-not-report id="sub-article-no-elife-journal-meta" role="error"/>
+        <x:expect-not-assert id="all-article-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="sub-article-no-elife-journal-meta-fail">
+        <x:context href="../tests/rp/all-article-tests/sub-article-no-elife-journal-meta/fail.xml"/>
+        <x:expect-report id="sub-article-no-elife-journal-meta" role="error"/>
+        <x:expect-not-assert id="all-article-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="article-title-checks">
       <x:scenario label="article-title-all-caps-pass">
         <x:context href="../tests/rp/article-title-checks/article-title-all-caps/pass.xml"/>

@@ -9,6 +9,10 @@
   <ns uri="java.io.File" prefix="file"/>
   <ns uri="http://www.java.com/" prefix="java"/>
   <ns uri="http://manuscriptexchange.org" prefix="meca"/>
+  <xsl:function name="e:is-reviewed-preprint" as="xs:boolean">
+      <xsl:param name="node" as="node()"/>
+      <xsl:sequence select="exists($node/ancestor-or-self::article/front/journal-meta/journal-id[1][lower-case(.)='elife'])"/>
+    </xsl:function>
   <xsl:function name="e:is-valid-isbn" as="xs:boolean">
     <xsl:param name="s" as="xs:string"/>
     <xsl:choose>
@@ -1292,13 +1296,13 @@
         </sqf:fix>
   </sqf:fixes>
   <pattern id="history-tests-pattern">
-    <rule context="front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/history" id="history-tests">
+    <rule context="front[e:is-reviewed-preprint(.)]/article-meta/history" id="history-tests">
       <report test="date[@date-type!='sent-for-review' or not(@date-type)]" role="error" id="prc-history-date-test-2">[prc-history-date-test-2] Reviewed preprints can only have sent-for-review dates in their history. This one has a <value-of select="if (date[@date-type!='sent-for-review']) then date[@date-type!='sent-for-review']/@date-type else 'undefined'"/> date.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/history" role="error" id="history-tests-xspec-assert">front[journal-meta/lower-case(journal-id[1])='elife']/article-meta/history must be present.</assert>
+      <assert test="descendant::front[e:is-reviewed-preprint(.)]/article-meta/history" role="error" id="history-tests-xspec-assert">front[e:is-reviewed-preprint(.)]/article-meta/history must be present.</assert>
     </rule>
   </pattern>
 </schema>
