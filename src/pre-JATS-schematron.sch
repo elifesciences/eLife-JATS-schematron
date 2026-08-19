@@ -1611,7 +1611,13 @@
       
       <assert test="parent::article-meta" role="error" id="pub-history-parent">[pub-history-parent] <name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
       
-      <report test="not(e:is-prc(.)) and count(event) gt 1" role="error" id="pub-history-child">[pub-history-child] <name/> must have one, and only one, event element in non-PRC content. This one has <value-of select="count(event)"/>.</report>
+      <report test="not(e:is-prc(.)) and ($dtd-version le '1.3') and count(event) gt 1" role="error" id="pub-history-child">[pub-history-child] <name/> must have one, and only one, event element in in JATS 1.3 (or lower) non-PRC content. This one has <value-of select="count(event)"/>.</report>
+      
+      <report test="not(e:is-prc(.)) and ($dtd-version ge '1.4') and count(event) gt 3" role="error" id="pub-history-child-1.4">[pub-history-child-1.4] <name/> cannot have more than 3 event elements in JATS 1.4 (or later) non-PRC content. This one has <value-of select="count(event)"/>.</report>
+      
+      <report test="not(e:is-prc(.)) and ($dtd-version ge '1.4') and not(event[date[@date-type='received']])" role="error" id="pub-history-recieved">[pub-history-recieved] In legacy model content tagged in JATS 1.4 (or later) <name/> must contain a recieved date (an event containing a date with the date-type 'received'). This one does not.</report>
+      
+      <report test="not(e:is-prc(.)) and ($dtd-version ge '1.4') and not(event[date[@date-type='accepted']])" role="error" id="pub-history-accepted">[pub-history-accepted] In legacy model content tagged in JATS 1.4 (or later) <name/> must contain an accepted date (an event containing a date with the date-type 'accepted'). This one does not.</report>
       
       <report test="e:is-prc(.) and count(event) le 1" role="error" id="pub-history-events-1">[pub-history-events-1] <name/> in PRC articles must have more than one event element, at least one for the preprint, and at least one for the reviewed preprint (there may be numerous reviewed preprint events). This one has <value-of select="count(event)"/> event elements.</report>
       

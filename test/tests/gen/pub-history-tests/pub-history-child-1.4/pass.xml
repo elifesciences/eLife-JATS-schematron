@@ -1,0 +1,35 @@
+<?oxygen SCHSchema="pub-history-child-1.4.sch"?>
+<!--Context: pub-history
+Test: report    not(e:is-prc(.)) and ($dtd-version ge '1.4') and count(event) gt 3
+Message:  cannot have more than 3 event elements in JATS 1.4 (or later) non-PRC content. This one has . -->
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+    <article dtd-version="1.4">
+        <pub-history>
+            <event>
+                <event-desc>This manuscript was published as a preprint at bioRxiv.</event-desc>
+                <date date-type="preprint" iso-8601-date="2021-03-02">
+                    <day>02</day>
+                    <month>03</month>
+                    <year>2021</year>
+                </date>
+                <self-uri content-type="preprint" xlink:href="https://doi.org/10.1101/2021.03.01.433461"/>
+            </event>
+            <event>
+                <event-desc>Received</event-desc>
+                <date date-type="received" iso-8601-date="2022-12-14">
+                    <day>14</day>
+                    <month>12</month>
+                    <year>2022</year>
+                </date>
+            </event>
+            <event>
+                <event-desc>Accepted</event-desc>
+                <date date-type="accepted" iso-8601-date="2026-04-08">
+                    <day>08</day>
+                    <month>04</month>
+                    <year>2026</year>
+                </date>
+            </event>
+        </pub-history>
+    </article>
+</root>

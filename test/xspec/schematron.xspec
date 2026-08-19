@@ -2227,6 +2227,36 @@
         <x:expect-report id="pub-history-child" role="error"/>
         <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="pub-history-child-1.4-pass">
+        <x:context href="../tests/gen/pub-history-tests/pub-history-child-1.4/pass.xml"/>
+        <x:expect-not-report id="pub-history-child-1.4" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-child-1.4-fail">
+        <x:context href="../tests/gen/pub-history-tests/pub-history-child-1.4/fail.xml"/>
+        <x:expect-report id="pub-history-child-1.4" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-recieved-pass">
+        <x:context href="../tests/gen/pub-history-tests/pub-history-recieved/pass.xml"/>
+        <x:expect-not-report id="pub-history-recieved" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-recieved-fail">
+        <x:context href="../tests/gen/pub-history-tests/pub-history-recieved/fail.xml"/>
+        <x:expect-report id="pub-history-recieved" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-accepted-pass">
+        <x:context href="../tests/gen/pub-history-tests/pub-history-accepted/pass.xml"/>
+        <x:expect-not-report id="pub-history-accepted" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-accepted-fail">
+        <x:context href="../tests/gen/pub-history-tests/pub-history-accepted/fail.xml"/>
+        <x:expect-report id="pub-history-accepted" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="pub-history-events-1-pass">
         <x:context href="../tests/gen/pub-history-tests/pub-history-events-1/pass.xml"/>
         <x:expect-not-report id="pub-history-events-1" role="error"/>
