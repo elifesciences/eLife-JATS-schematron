@@ -1687,13 +1687,13 @@
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="date" value="date[1]/@iso-8601-date"/>
       <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
-      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
+      <let name="date-type-vals" value="         if ($dtd-version ge '1.4' and not(e:is-prc(.))) then ($default-date-type-vals, 'received','accepted')         else if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
       
       <assert test="event-desc" role="error" id="event-test-1">[event-test-1] <name/> must contain an event-desc element. This one does not.</assert>
       
       <assert test="date[@date-type=$date-type-vals]" role="error" id="event-test-2">[event-test-2] <name/> must contain a date element with a date-type attribute with one of the following values: <value-of select="string-join($date-type-vals,'; ')"/>. This one does not.</assert>
       
-      <report test="not(date[@date-type='sent-for-review']) and not(self-uri)" role="error" id="event-test-3">[event-test-3] <name/> must contain a self-uri element. This one does not.</report>
+      <report test="not(date[@date-type=('received','accepted','sent-for-review')]) and not(self-uri)" role="error" id="event-test-3">[event-test-3] <name/> must contain a self-uri element. This one does not.</report>
         
         <report test="following-sibling::event[date[@iso-8601-date lt $date]]" role="error" id="event-test-4">[event-test-4] Events in pub-history must be ordered chronologically in descending order. This event has a date (<value-of select="$date"/>) which is later than the date of a following event (<value-of select="preceding-sibling::event[date[@iso-8601-date lt $date]][1]"/>).</report>
       
@@ -1732,7 +1732,7 @@
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="date" value="date[1]/@iso-8601-date"/>
       <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
-      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
+      <let name="date-type-vals" value="         if ($dtd-version ge '1.4' and not(e:is-prc(.))) then ($default-date-type-vals, 'received','accepted')         else if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
       
       <assert test="day and month and year" role="error" id="event-date-child">[event-date-child] <name/> in event must have a day, month and year element. This one does not.</assert>
       
