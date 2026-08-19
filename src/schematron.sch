@@ -2230,26 +2230,36 @@
 	</rule>
 	
 	<rule context="article-meta[not(e:is-prc(.))]/history" id="history-tests">
+	   <let name="dtd-version" value="ancestor::article/@dtd-version"/>
 	  
-    	<assert test="date[@date-type='received']" 
+    	<report test="($dtd-version le '1.3') and not(date[@date-type='received'])" 
         role="error" 
-        id="history-date-test-1">history must contain date[@date-type='received']</assert>
+        id="history-date-test-1">history in JATS version <value-of select="$dtd-version"/> must contain date[@date-type='received']</report>
 		
-    	<assert test="date[@date-type='accepted']" 
+    	<report test="($dtd-version le '1.3') and not(date[@date-type='accepted'])" 
         role="error" 
-        id="history-date-test-2">history must contain date[@date-type='accepted']</assert>
+        id="history-date-test-2">history in JATS version <value-of select="$dtd-version"/> must contain date[@date-type='accepted']</report>
+	  
+	  <report test="($dtd-version ge '1.4')" 
+        role="error" 
+        id="history-1.4-test-1">history in article-meta is deprecated in JATS version <value-of select="$dtd-version"/>. Please move the items to pub-history and remove the history element.</report>
 	  
 	</rule>
     
     <rule context="article-meta[e:is-prc(.)]/history" id="prc-history-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
-      <assert test="date[@date-type='sent-for-review']" 
+      <report test="($dtd-version le '1.3') and not(date[@date-type='sent-for-review'])" 
         role="error" 
-        id="prc-history-date-test-1">history must contain date[@date-type='sent-for-review'] in PRC articles.</assert>
+        id="prc-history-date-test-1">history must contain date[@date-type='sent-for-review'] in PRC articles tagged in JATS version <value-of select="$dtd-version"/>.</report>
       
-      <report test="date[@date-type!='sent-for-review' or not(@date-type)]" 
+      <report test="($dtd-version le '1.3') and date[@date-type!='sent-for-review' or not(@date-type)]" 
         role="error" 
         id="prc-history-date-test-2">PRC articles can only have sent-for-review dates in their history. This one has a <value-of select="if (date[@date-type!='sent-for-review']) then date[@date-type!='sent-for-review']/@date-type else 'undefined'"/> date.</report>
+      
+      <report test="($dtd-version ge '1.4')" 
+        role="error" 
+        id="history-1.4-test-2">history in article-meta is deprecated in JATS version <value-of select="$dtd-version"/>. Please move the items to pub-history and remove the history element.</report>
       
     </rule>
 	

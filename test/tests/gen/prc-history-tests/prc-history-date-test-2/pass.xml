@@ -1,8 +1,9 @@
 <?oxygen SCHSchema="prc-history-date-test-2.sch"?>
 <!--Context: article-meta[e:is-prc(.)]/history
-Test: report    date[@date-type!='sent-for-review' or not(@date-type)]
+Test: report    ($dtd-version le '1.3') and date[@date-type!='sent-for-review' or not(@date-type)]
 Message: PRC articles can only have sent-for-review dates in their history. This one has a  date. -->
-<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/"><article>
+<root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
+  <article dtd-version="1.3">
   <article-meta>
     <history>
       <date date-type="sent-for-review" iso-8601-date="2023-03-20">

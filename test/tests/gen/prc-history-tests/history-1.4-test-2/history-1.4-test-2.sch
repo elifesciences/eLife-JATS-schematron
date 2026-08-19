@@ -962,14 +962,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article-meta[not(e:is-prc(.))]/history" id="history-tests">
+    <rule context="article-meta[e:is-prc(.)]/history" id="prc-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
-      <report test="($dtd-version le '1.3') and not(date[@date-type='received'])" role="error" id="history-date-test-1">history in JATS version <value-of select="$dtd-version"/> must contain date[@date-type='received']</report>
+      <report test="($dtd-version ge '1.4')" role="error" id="history-1.4-test-2">history in article-meta is deprecated in JATS version <value-of select="$dtd-version"/>. Please move the items to pub-history and remove the history element.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta[not(e:is-prc(.))]/history" role="error" id="history-tests-xspec-assert">article-meta[not(e:is-prc(.))]/history must be present.</assert>
+      <assert test="descendant::article-meta[e:is-prc(.)]/history" role="error" id="prc-history-tests-xspec-assert">article-meta[e:is-prc(.)]/history must be present.</assert>
     </rule>
   </pattern>
 </schema>
