@@ -962,18 +962,15 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="event/date" id="event-date-tests">
+    <rule context="pub-history" id="pub-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
-      <let name="date" value="date[1]/@iso-8601-date"/>
-      <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
-      <let name="date-type-vals" value="         if ($dtd-version ge '1.4' and not(e:is-prc(.))) then ($default-date-type-vals, 'received','accepted')         else if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
-      <assert test="day and month and year" role="error" id="event-date-child">
-        <name/> in event must have a day, month and year element. This one does not.</assert>
+      <report test="not(e:is-prc(.)) and ($dtd-version ge '1.4') and count(event) gt 3" role="error" id="pub-history-child-1.4">
+        <name/> cannot have more than 3 event elements in JATS 1.4 (or later) non-PRC content. This one has <value-of select="count(event)"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event/date" role="error" id="event-date-tests-xspec-assert">event/date must be present.</assert>
+      <assert test="descendant::pub-history" role="error" id="pub-history-tests-xspec-assert">pub-history must be present.</assert>
     </rule>
   </pattern>
 </schema>

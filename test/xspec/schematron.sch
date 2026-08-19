@@ -1800,19 +1800,25 @@
   </pattern>
   <pattern id="history-tests-pattern">
     <rule context="article-meta[not(e:is-prc(.))]/history" id="history-tests">
+	   <let name="dtd-version" value="ancestor::article/@dtd-version"/>
 	  
-    	<assert test="date[@date-type='received']" role="error" id="history-date-test-1">history must contain date[@date-type='received']</assert>
+    	<report test="($dtd-version le '1.3') and not(date[@date-type='received'])" role="error" id="history-date-test-1">history in JATS version <value-of select="$dtd-version"/> must contain date[@date-type='received']</report>
 		
-    	<assert test="date[@date-type='accepted']" role="error" id="history-date-test-2">history must contain date[@date-type='accepted']</assert>
+    	<report test="($dtd-version le '1.3') and not(date[@date-type='accepted'])" role="error" id="history-date-test-2">history in JATS version <value-of select="$dtd-version"/> must contain date[@date-type='accepted']</report>
+	  
+	  <report test="($dtd-version ge '1.4')" role="error" id="history-1.4-test-1">history in article-meta is deprecated in JATS version <value-of select="$dtd-version"/>. Please move the items to pub-history and remove the history element.</report>
 	  
 	</rule>
   </pattern>
   <pattern id="prc-history-tests-pattern">
     <rule context="article-meta[e:is-prc(.)]/history" id="prc-history-tests">
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
-      <assert test="date[@date-type='sent-for-review']" role="error" id="prc-history-date-test-1">history must contain date[@date-type='sent-for-review'] in PRC articles.</assert>
+      <report test="($dtd-version le '1.3') and not(date[@date-type='sent-for-review'])" role="error" id="prc-history-date-test-1">history must contain date[@date-type='sent-for-review'] in PRC articles tagged in JATS version <value-of select="$dtd-version"/>.</report>
       
-      <report test="date[@date-type!='sent-for-review' or not(@date-type)]" role="error" id="prc-history-date-test-2">PRC articles can only have sent-for-review dates in their history. This one has a <value-of select="if (date[@date-type!='sent-for-review']) then date[@date-type!='sent-for-review']/@date-type else 'undefined'"/> date.</report>
+      <report test="($dtd-version le '1.3') and date[@date-type!='sent-for-review' or not(@date-type)]" role="error" id="prc-history-date-test-2">PRC articles can only have sent-for-review dates in their history. This one has a <value-of select="if (date[@date-type!='sent-for-review']) then date[@date-type!='sent-for-review']/@date-type else 'undefined'"/> date.</report>
+      
+      <report test="($dtd-version ge '1.4')" role="error" id="history-1.4-test-2">history in article-meta is deprecated in JATS version <value-of select="$dtd-version"/>. Please move the items to pub-history and remove the history element.</report>
       
     </rule>
   </pattern>
@@ -1910,8 +1916,15 @@
       <assert test="parent::article-meta" role="error" id="pub-history-parent">
         <name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
       
-      <report test="not(e:is-prc(.)) and count(event) gt 1" role="error" id="pub-history-child">
-        <name/> must have one, and only one, event element in non-PRC content. This one has <value-of select="count(event)"/>.</report>
+      <report test="not(e:is-prc(.)) and ($dtd-version le '1.3') and count(event) gt 1" role="error" id="pub-history-child">
+        <name/> must have one, and only one, event element in in JATS 1.3 (or lower) non-PRC content. This one has <value-of select="count(event)"/>.</report>
+      
+      <report test="not(e:is-prc(.)) and ($dtd-version ge '1.4') and count(event) gt 3" role="error" id="pub-history-child-1.4">
+        <name/> cannot have more than 3 event elements in JATS 1.4 (or later) non-PRC content. This one has <value-of select="count(event)"/>.</report>
+      
+      <report test="not(e:is-prc(.)) and ($dtd-version ge '1.4') and not(event[date[@date-type='received']])" role="error" id="pub-history-recieved">In legacy model content tagged in JATS 1.4 (or later) <name/> must contain a recieved date (an event containing a date with the date-type 'received'). This one does not.</report>
+      
+      <report test="not(e:is-prc(.)) and ($dtd-version ge '1.4') and not(event[date[@date-type='accepted']])" role="error" id="pub-history-accepted">In legacy model content tagged in JATS 1.4 (or later) <name/> must contain an accepted date (an event containing a date with the date-type 'accepted'). This one does not.</report>
       
       <report test="e:is-prc(.) and count(event) le 1" role="error" id="pub-history-events-1">
         <name/> in PRC articles must have more than one event element, at least one for the preprint, and at least one for the reviewed preprint (there may be numerous reviewed preprint events). This one has <value-of select="count(event)"/> event elements.</report>
@@ -1934,7 +1947,7 @@
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="date" value="date[1]/@iso-8601-date"/>
       <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
-      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
+      <let name="date-type-vals" value="         if ($dtd-version ge '1.4' and not(e:is-prc(.))) then ($default-date-type-vals, 'received','accepted')         else if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
       
       <assert test="event-desc" role="error" id="event-test-1">
         <name/> must contain an event-desc element. This one does not.</assert>
@@ -1942,7 +1955,7 @@
       <assert test="date[@date-type=$date-type-vals]" role="error" id="event-test-2">
         <name/> must contain a date element with a date-type attribute with one of the following values: <value-of select="string-join($date-type-vals,'; ')"/>. This one does not.</assert>
       
-      <report test="not(date[@date-type='sent-for-review']) and not(self-uri)" role="error" id="event-test-3">
+      <report test="not(date[@date-type=('received','accepted','sent-for-review')]) and not(self-uri)" role="error" id="event-test-3">
         <name/> must contain a self-uri element. This one does not.</report>
         
         <report test="following-sibling::event[date[@iso-8601-date lt $date]]" role="error" id="event-test-4">Events in pub-history must be ordered chronologically in descending order. This event has a date (<value-of select="$date"/>) which is later than the date of a following event (<value-of select="preceding-sibling::event[date[@iso-8601-date lt $date]][1]"/>).</report>
@@ -2000,7 +2013,7 @@
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="date" value="date[1]/@iso-8601-date"/>
       <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
-      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
+      <let name="date-type-vals" value="         if ($dtd-version ge '1.4' and not(e:is-prc(.))) then ($default-date-type-vals, 'received','accepted')         else if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
       
       <assert test="day and month and year" role="error" id="event-date-child">
         <name/> in event must have a day, month and year element. This one does not.</assert>

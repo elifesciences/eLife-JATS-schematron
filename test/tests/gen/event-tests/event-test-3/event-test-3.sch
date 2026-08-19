@@ -966,8 +966,8 @@
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="date" value="date[1]/@iso-8601-date"/>
       <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
-      <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
-      <report test="not(date[@date-type='sent-for-review']) and not(self-uri)" role="error" id="event-test-3">
+      <let name="date-type-vals" value="         if ($dtd-version ge '1.4' and not(e:is-prc(.))) then ($default-date-type-vals, 'received','accepted')         else if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
+      <report test="not(date[@date-type=('received','accepted','sent-for-review')]) and not(self-uri)" role="error" id="event-test-3">
         <name/> must contain a self-uri element. This one does not.</report>
     </rule>
   </pattern>

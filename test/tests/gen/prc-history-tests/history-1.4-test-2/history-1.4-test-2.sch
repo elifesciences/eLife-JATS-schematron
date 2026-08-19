@@ -962,18 +962,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="event/date" id="event-date-tests">
+    <rule context="article-meta[e:is-prc(.)]/history" id="prc-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
-      <let name="date" value="date[1]/@iso-8601-date"/>
-      <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
-      <let name="date-type-vals" value="         if ($dtd-version ge '1.4' and not(e:is-prc(.))) then ($default-date-type-vals, 'received','accepted')         else if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
-      <assert test="day and month and year" role="error" id="event-date-child">
-        <name/> in event must have a day, month and year element. This one does not.</assert>
+      <report test="($dtd-version ge '1.4')" role="error" id="history-1.4-test-2">history in article-meta is deprecated in JATS version <value-of select="$dtd-version"/>. Please move the items to pub-history and remove the history element.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event/date" role="error" id="event-date-tests-xspec-assert">event/date must be present.</assert>
+      <assert test="descendant::article-meta[e:is-prc(.)]/history" role="error" id="prc-history-tests-xspec-assert">article-meta[e:is-prc(.)]/history must be present.</assert>
     </rule>
   </pattern>
 </schema>

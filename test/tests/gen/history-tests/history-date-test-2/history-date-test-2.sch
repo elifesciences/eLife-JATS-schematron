@@ -963,7 +963,8 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta[not(e:is-prc(.))]/history" id="history-tests">
-      <assert test="date[@date-type='accepted']" role="error" id="history-date-test-2">history must contain date[@date-type='accepted']</assert>
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
+      <report test="($dtd-version le '1.3') and not(date[@date-type='accepted'])" role="error" id="history-date-test-2">history in JATS version <value-of select="$dtd-version"/> must contain date[@date-type='accepted']</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

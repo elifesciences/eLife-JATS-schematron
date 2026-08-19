@@ -963,7 +963,8 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta[e:is-prc(.)]/history" id="prc-history-tests">
-      <report test="date[@date-type!='sent-for-review' or not(@date-type)]" role="error" id="prc-history-date-test-2">PRC articles can only have sent-for-review dates in their history. This one has a <value-of select="if (date[@date-type!='sent-for-review']) then date[@date-type!='sent-for-review']/@date-type else 'undefined'"/> date.</report>
+      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
+      <report test="($dtd-version le '1.3') and date[@date-type!='sent-for-review' or not(@date-type)]" role="error" id="prc-history-date-test-2">PRC articles can only have sent-for-review dates in their history. This one has a <value-of select="if (date[@date-type!='sent-for-review']) then date[@date-type!='sent-for-review']/@date-type else 'undefined'"/> date.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
