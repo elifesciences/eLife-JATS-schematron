@@ -962,14 +962,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="house-style">
-    <rule context="article[e:get-version(.)='1']//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use='isSupplementedBy']]]" id="data-availability-generated-p">
-      <let name="ref-count" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@specific-use='isSupplementedBy'])"/>
+    <rule context="article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]]" id="data-availability-generated-p">
+      <let name="ref-count" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@specific-use=('isSupplementedBy','generated')])"/>
       <report test="($ref-count gt 1) and not(matches(.,'^The following datasets were generated:\s?$'))" role="error" id="das-generated-p-2">p element before generated datasets in data availability sections that contain more than 1 generated dataset should contain 'The following datasets were generated:', but this one contains '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[e:get-version(.)='1']//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use='isSupplementedBy']]]" role="error" id="data-availability-generated-p-xspec-assert">article[e:get-version(.)='1']//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use='isSupplementedBy']]] must be present.</assert>
+      <assert test="descendant::article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]]" role="error" id="data-availability-generated-p-xspec-assert">article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]] must be present.</assert>
     </rule>
   </pattern>
 </schema>

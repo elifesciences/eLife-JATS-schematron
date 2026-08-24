@@ -964,7 +964,8 @@
   <pattern id="das-element-citation-tests">
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']" id="gen-das-tests">
       <let name="pos" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@publication-type='data']) - count(following::element-citation[@publication-type='data' and ancestor::sec[@sec-type='data-availability']])"/>
-      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-cit-2" test="@specific-use and not(@specific-use=('isSupplementedBy','references'))" role="error" id="das-elem-cit-2">The reference in position <value-of select="$pos"/> of the data availability section has a @specific-use value of <value-of select="@specific-use"/>, which is not allowed. It must be 'isSupplementedBy' or 'references'.</report>
+      <let name="specific-use-vals" value="('isSupplementedBy','references','generated','analyzed')"/>
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-cit-2" test="@specific-use and not(@specific-use=$specific-use-vals)" role="error" id="das-elem-cit-2">The reference in position <value-of select="$pos"/> of the data availability section has a @specific-use value of <value-of select="@specific-use"/>, which is not allowed. It must be one of <value-of select="string-join($specific-use-vals,'; ')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -964,6 +964,7 @@
   <pattern id="das-element-citation-tests">
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']" id="gen-das-tests">
       <let name="pos" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@publication-type='data']) - count(following::element-citation[@publication-type='data' and ancestor::sec[@sec-type='data-availability']])"/>
+      <let name="specific-use-vals" value="('isSupplementedBy','references','generated','analyzed')"/>
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-person-group-2" test="count(person-group) gt 1" role="error" id="das-elem-person-group-2">The reference in position <value-of select="$pos"/> of the data availability has <value-of select="count(person-group)"/> person-group elements, which is incorrect.</report>
     </rule>
   </pattern>

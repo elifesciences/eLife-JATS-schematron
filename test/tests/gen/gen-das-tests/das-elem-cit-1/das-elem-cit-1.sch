@@ -964,6 +964,7 @@
   <pattern id="das-element-citation-tests">
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']" id="gen-das-tests">
       <let name="pos" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@publication-type='data']) - count(following::element-citation[@publication-type='data' and ancestor::sec[@sec-type='data-availability']])"/>
+      <let name="specific-use-vals" value="('isSupplementedBy','references','generated','analyzed')"/>
       <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-cit-1" test="@specific-use" role="error" id="das-elem-cit-1">Every reference in the data availability section must have an @specific-use. The reference in position <value-of select="$pos"/> does not.</assert>
     </rule>
   </pattern>
