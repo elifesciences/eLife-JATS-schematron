@@ -6034,7 +6034,7 @@
     </rule>
   </pattern>
   <pattern id="elem-citation-data-gend-pattern">
-    <rule context="element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','references','generated','analyzed')]" id="elem-citation-data-gend">
+    <rule context="element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','generated')]" id="elem-citation-data-gend">
       <let name="year" value="replace(year[1],'[^\d]','')"/>
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="diff" value="number($current-year) - number($year)"/>
@@ -9315,7 +9315,7 @@
       <assert test="descendant::element-citation[@publication-type='data']/person-group" role="error" id="elem-citation-data-person-group-xspec-assert">element-citation[@publication-type='data']/person-group must be present.</assert>
       <assert test="descendant::ref/element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']" role="error" id="elem-citation-data-pub-id-doi-xspec-assert">ref/element-citation[@publication-type='data']/pub-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::ref/element-citation[@publication-type='data']/pub-id" role="error" id="elem-citation-data-pub-id-xspec-assert">ref/element-citation[@publication-type='data']/pub-id must be present.</assert>
-      <assert test="descendant::element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','references','generated','analyzed')]" role="error" id="elem-citation-data-gend-xspec-assert">element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','references','generated','analyzed')] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','generated')]" role="error" id="elem-citation-data-gend-xspec-assert">element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','generated')] must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='patent']" role="error" id="elem-citation-patent-xspec-assert">element-citation[@publication-type='patent'] must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='patent']/article-title" role="error" id="elem-citation-patent-article-title-xspec-assert">element-citation[@publication-type='patent']/article-title must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='patent']/source" role="error" id="elem-citation-patent-source-xspec-assert">element-citation[@publication-type='patent']/source must be present.</assert>

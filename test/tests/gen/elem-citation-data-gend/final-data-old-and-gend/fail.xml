@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="final-data-old-and-gend.sch"?>
-<!--Context: element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','references','generated','analyzed')]
+<!--Context: element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','generated')]
 Test: report    ($diff gt 1) or ($diff lt -1)
 Message: Dataset reference  is marked as generated but the year is . Is this correct? -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
