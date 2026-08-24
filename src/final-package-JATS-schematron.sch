@@ -4578,7 +4578,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#err-elem-cit-data-14-1" test="if (@pub-id-type != 'doi') then not(@xlink:href) else ()" role="error" id="err-elem-cit-data-14-1">If the pub-id is of any pub-id-type except doi, it must have an @xlink:href. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with type '<value-of select="@pub-id-type"/>' but no @xlink-href.</report>
       
-    </rule></pattern><pattern id="elem-citation-data-gend-pattern"><rule context="element-citation[@publication-type='data' and year and @specific-use=('generated','isSupplementedBy')]" id="elem-citation-data-gend">
+    </rule></pattern><pattern id="elem-citation-data-gend-pattern"><rule context="element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','references','generated','analyzed')]" id="elem-citation-data-gend">
       <let name="year" value="replace(year[1],'[^\d]','')"/>
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="diff" value="number($current-year) - number($year)"/>
@@ -4977,7 +4977,8 @@
     </rule></pattern>
   
   <pattern id="gen-das-tests-pattern"><rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']" id="gen-das-tests">
-      <let name="pos" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@publication-type='data']) - count(following::element-citation[@publication-type='data' and ancestor::sec[@sec-type='data-availability']])"/> 
+      <let name="pos" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@publication-type='data']) - count(following::element-citation[@publication-type='data' and ancestor::sec[@sec-type='data-availability']])"/>
+      <let name="specific-use-vals" value="('isSupplementedBy','references','generated','analyzed')"/>
       
       
       
@@ -5011,7 +5012,7 @@
       
       <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-cit-1" test="@specific-use" role="error" id="das-elem-cit-1">Every reference in the data availability section must have an @specific-use. The reference in position <value-of select="$pos"/> does not.</assert>
       
-      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-cit-2" test="@specific-use and not(@specific-use=('isSupplementedBy','references'))" role="error" id="das-elem-cit-2">The reference in position <value-of select="$pos"/> of the data availability section has a @specific-use value of <value-of select="@specific-use"/>, which is not allowed. It must be 'isSupplementedBy' or 'references'.</report>
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-cit-2" test="@specific-use and not(@specific-use=$specific-use-vals)" role="error" id="das-elem-cit-2">The reference in position <value-of select="$pos"/> of the data availability section has a @specific-use value of <value-of select="@specific-use"/>, which is not allowed. It must be one of <value-of select="string-join($specific-use-vals,'; ')"/>.</report>
       
       
       
@@ -6128,15 +6129,15 @@
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-p-conformity-1" test="normalize-space(replace(.,' ',''))=''" role="error" id="final-das-p-conformity-1">p element in data availability section contains no content. It must be removed.</report>
       
-    </rule></pattern><pattern id="data-availability-generated-p-pattern"><rule context="article[e:get-version(.)='1']//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use='isSupplementedBy']]]" id="data-availability-generated-p">
-      <let name="ref-count" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@specific-use='isSupplementedBy'])"/>
+    </rule></pattern><pattern id="data-availability-generated-p-pattern"><rule context="article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]]" id="data-availability-generated-p">
+      <let name="ref-count" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@specific-use=('isSupplementedBy','generated')])"/>
       
       <report test="$ref-count = 1 and not(matches(.,'^The following dataset was generated:\s?$'))" role="error" id="das-generated-p-1">p element before generated datasets in data availability sections that contain 1 generated dataset should contain 'The following dataset was generated:', but this one contains '<value-of select="."/>'.</report>
       
       <report test="($ref-count gt 1) and not(matches(.,'^The following datasets were generated:\s?$'))" role="error" id="das-generated-p-2">p element before generated datasets in data availability sections that contain more than 1 generated dataset should contain 'The following datasets were generated:', but this one contains '<value-of select="."/>'.</report>
       
-    </rule></pattern><pattern id="data-availability-used-p-pattern"><rule context="article[e:get-version(.)='1']//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use='isSupplementedBy']]) and following-sibling::p[element-citation[@specific-use='references']]]" id="data-availability-used-p">
-      <let name="ref-count" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@specific-use='references'])"/>
+    </rule></pattern><pattern id="data-availability-used-p-pattern"><rule context="article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]) and following-sibling::p[element-citation[@specific-use=('references','analyzed')]]]" id="data-availability-used-p">
+      <let name="ref-count" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@specific-use=('references','analyzed')])"/>
       
       <report test="$ref-count = 1 and not(matches(.,'^The following previously published dataset was used:\s?$'))" role="error" id="das-used-p-1">p element before used datasets in data availability sections that contain 1 used dataset should contain 'The following previously published dataset was used:', but this one contains '<value-of select="."/>'.</report>
       

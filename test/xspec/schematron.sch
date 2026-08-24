@@ -6034,7 +6034,7 @@
     </rule>
   </pattern>
   <pattern id="elem-citation-data-gend-pattern">
-    <rule context="element-citation[@publication-type='data' and year and @specific-use=('generated','isSupplementedBy')]" id="elem-citation-data-gend">
+    <rule context="element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','references','generated','analyzed')]" id="elem-citation-data-gend">
       <let name="year" value="replace(year[1],'[^\d]','')"/>
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="diff" value="number($current-year) - number($year)"/>
@@ -6530,7 +6530,8 @@
   
   <pattern id="gen-das-tests-pattern">
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']" id="gen-das-tests">
-      <let name="pos" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@publication-type='data']) - count(following::element-citation[@publication-type='data' and ancestor::sec[@sec-type='data-availability']])"/> 
+      <let name="pos" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@publication-type='data']) - count(following::element-citation[@publication-type='data' and ancestor::sec[@sec-type='data-availability']])"/>
+      <let name="specific-use-vals" value="('isSupplementedBy','references','generated','analyzed')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-elem-person-group-1" test="count(person-group[@person-group-type='author'])=1" role="warning" id="pre-das-elem-person-group-1">The reference in position <value-of select="$pos"/> of the data availability section does not have any authors (no person-group[@person-group-type='author']). Please ensure to add them in or query the authors asking for the author list.</assert>
       
@@ -6564,7 +6565,7 @@
       
       <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-cit-1" test="@specific-use" role="error" id="das-elem-cit-1">Every reference in the data availability section must have an @specific-use. The reference in position <value-of select="$pos"/> does not.</assert>
       
-      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-cit-2" test="@specific-use and not(@specific-use=('isSupplementedBy','references'))" role="error" id="das-elem-cit-2">The reference in position <value-of select="$pos"/> of the data availability section has a @specific-use value of <value-of select="@specific-use"/>, which is not allowed. It must be 'isSupplementedBy' or 'references'.</report>
+      <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-cit-2" test="@specific-use and not(@specific-use=$specific-use-vals)" role="error" id="das-elem-cit-2">The reference in position <value-of select="$pos"/> of the data availability section has a @specific-use value of <value-of select="@specific-use"/>, which is not allowed. It must be one of <value-of select="string-join($specific-use-vals,'; ')"/>.</report>
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-elem-cit-3" test="pub-id[1]/@xlink:href = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]/@xlink:href" role="warning" id="pre-das-elem-cit-3">The reference in position <value-of select="$pos"/> of the data availability section has a link (<value-of select="pub-id[1]/@xlink:href"/>) which is the same as another dataset reference in that section. Dataset reference links should be distinct.</report>
       
@@ -7995,8 +7996,8 @@
     </rule>
   </pattern>
   <pattern id="data-availability-generated-p-pattern">
-    <rule context="article[e:get-version(.)='1']//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use='isSupplementedBy']]]" id="data-availability-generated-p">
-      <let name="ref-count" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@specific-use='isSupplementedBy'])"/>
+    <rule context="article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]]" id="data-availability-generated-p">
+      <let name="ref-count" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@specific-use=('isSupplementedBy','generated')])"/>
       
       <report test="$ref-count = 1 and not(matches(.,'^The following dataset was generated:\s?$'))" role="error" id="das-generated-p-1">p element before generated datasets in data availability sections that contain 1 generated dataset should contain 'The following dataset was generated:', but this one contains '<value-of select="."/>'.</report>
       
@@ -8005,8 +8006,8 @@
     </rule>
   </pattern>
   <pattern id="data-availability-used-p-pattern">
-    <rule context="article[e:get-version(.)='1']//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use='isSupplementedBy']]) and following-sibling::p[element-citation[@specific-use='references']]]" id="data-availability-used-p">
-      <let name="ref-count" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@specific-use='references'])"/>
+    <rule context="article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]) and following-sibling::p[element-citation[@specific-use=('references','analyzed')]]]" id="data-availability-used-p">
+      <let name="ref-count" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@specific-use=('references','analyzed')])"/>
       
       <report test="$ref-count = 1 and not(matches(.,'^The following previously published dataset was used:\s?$'))" role="error" id="das-used-p-1">p element before used datasets in data availability sections that contain 1 used dataset should contain 'The following previously published dataset was used:', but this one contains '<value-of select="."/>'.</report>
       
@@ -9314,7 +9315,7 @@
       <assert test="descendant::element-citation[@publication-type='data']/person-group" role="error" id="elem-citation-data-person-group-xspec-assert">element-citation[@publication-type='data']/person-group must be present.</assert>
       <assert test="descendant::ref/element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']" role="error" id="elem-citation-data-pub-id-doi-xspec-assert">ref/element-citation[@publication-type='data']/pub-id[@pub-id-type='doi'] must be present.</assert>
       <assert test="descendant::ref/element-citation[@publication-type='data']/pub-id" role="error" id="elem-citation-data-pub-id-xspec-assert">ref/element-citation[@publication-type='data']/pub-id must be present.</assert>
-      <assert test="descendant::element-citation[@publication-type='data' and year and @specific-use=('generated','isSupplementedBy')]" role="error" id="elem-citation-data-gend-xspec-assert">element-citation[@publication-type='data' and year and @specific-use=('generated','isSupplementedBy')] must be present.</assert>
+      <assert test="descendant::element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','references','generated','analyzed')]" role="error" id="elem-citation-data-gend-xspec-assert">element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','references','generated','analyzed')] must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='patent']" role="error" id="elem-citation-patent-xspec-assert">element-citation[@publication-type='patent'] must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='patent']/article-title" role="error" id="elem-citation-patent-article-title-xspec-assert">element-citation[@publication-type='patent']/article-title must be present.</assert>
       <assert test="descendant::element-citation[@publication-type='patent']/source" role="error" id="elem-citation-patent-source-xspec-assert">element-citation[@publication-type='patent']/source must be present.</assert>
@@ -9412,8 +9413,8 @@
       <assert test="descendant::article[e:get-version(.)!='1']//sec[@sec-type='data-availability']" role="error" id="data-availability-version-2-xspec-assert">article[e:get-version(.)!='1']//sec[@sec-type='data-availability'] must be present.</assert>
       <assert test="descendant::article[e:get-version(.)!='1']//sec[@sec-type='data-availability']/*" role="error" id="data-availability-child-version-2-xspec-assert">article[e:get-version(.)!='1']//sec[@sec-type='data-availability']/* must be present.</assert>
       <assert test="descendant::sec[@sec-type='data-availability']/p[not(*)]" role="error" id="data-availability-p-xspec-assert">sec[@sec-type='data-availability']/p[not(*)] must be present.</assert>
-      <assert test="descendant::article[e:get-version(.)='1']//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use='isSupplementedBy']]]" role="error" id="data-availability-generated-p-xspec-assert">article[e:get-version(.)='1']//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use='isSupplementedBy']]] must be present.</assert>
-      <assert test="descendant::article[e:get-version(.)='1']//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use='isSupplementedBy']]) and following-sibling::p[element-citation[@specific-use='references']]]" role="error" id="data-availability-used-p-xspec-assert">article[e:get-version(.)='1']//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use='isSupplementedBy']]) and following-sibling::p[element-citation[@specific-use='references']]] must be present.</assert>
+      <assert test="descendant::article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]]" role="error" id="data-availability-generated-p-xspec-assert">article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]] must be present.</assert>
+      <assert test="descendant::article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]) and following-sibling::p[element-citation[@specific-use=('references','analyzed')]]]" role="error" id="data-availability-used-p-xspec-assert">article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]) and following-sibling::p[element-citation[@specific-use=('references','analyzed')]]] must be present.</assert>
       <assert test="descendant::sec[@sec-type='data-availability' and not(descendant::element-citation)]/p" role="error" id="data-availability-extra-p-xspec-assert">sec[@sec-type='data-availability' and not(descendant::element-citation)]/p must be present.</assert>
       <assert test="descendant::sec[@sec-type='data-availability' and descendant::element-citation]" role="error" id="data-availability-without-extra-p-xspec-assert">sec[@sec-type='data-availability' and descendant::element-citation] must be present.</assert>
       <assert test="descendant::fn-group[@content-type='ethics-information']/fn" role="error" id="ethics-info-xspec-assert">fn-group[@content-type='ethics-information']/fn must be present.</assert>

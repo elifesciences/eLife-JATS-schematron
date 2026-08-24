@@ -964,6 +964,7 @@
   <pattern id="das-element-citation-tests">
     <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']" id="gen-das-tests">
       <let name="pos" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@publication-type='data']) - count(following::element-citation[@publication-type='data' and ancestor::sec[@sec-type='data-availability']])"/>
+      <let name="specific-use-vals" value="('isSupplementedBy','references','generated','analyzed')"/>
       <report test="pub-id and ext-link" role="error" id="das-elem-cit-6">The reference in position <value-of select="$pos"/> of the data availability section has both a pub-id (<value-of select="pub-id[1]"/>) and an ext-link (<value-of select="ext-link[1]"/>), which is not allowed.</report>
     </rule>
   </pattern>
