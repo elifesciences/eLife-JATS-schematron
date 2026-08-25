@@ -4572,7 +4572,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#err-elem-cit-data-14-1" test="if (@pub-id-type != 'doi') then not(@xlink:href) else ()" role="error" id="err-elem-cit-data-14-1">[err-elem-cit-data-14-1] If the pub-id is of any pub-id-type except doi, it must have an @xlink:href. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with type '<value-of select="@pub-id-type"/>' but no @xlink-href.</report>
       
-    </rule></pattern><pattern id="elem-citation-data-gend-pattern"><rule context="element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','references','generated','analyzed')]" id="elem-citation-data-gend">
+    </rule></pattern><pattern id="elem-citation-data-gend-pattern"><rule context="element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','generated')]" id="elem-citation-data-gend">
       <let name="year" value="replace(year[1],'[^\d]','')"/>
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="diff" value="number($current-year) - number($year)"/>

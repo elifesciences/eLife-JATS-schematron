@@ -8882,7 +8882,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','references','generated','analyzed')]" id="elem-citation-data-gend">
+    <rule context="element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','generated')]" id="elem-citation-data-gend">
       <let name="year" value="replace(year[1],'[^\d]','')"/>
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="diff" value="number($current-year) - number($year)"/>
