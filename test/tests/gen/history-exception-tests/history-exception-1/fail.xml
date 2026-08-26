@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="history-exception-1.sch"?>
+<!--Context: history
+Test: report    ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)
+Message:  is not permitted in articles with the article-type . Either correct the article type if it is wrong or remove the  element. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article article-type="article-commentary">
+        <history/>
+    </article>
+</root>

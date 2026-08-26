@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="pub-history-child-1.4.sch"?>
-<!--Context: pub-history
+<!--Context: article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history
 Test: report    not(e:is-prc(.)) and ($dtd-version ge '1.4') and count(event) gt 3
 Message:  cannot have more than 3 event elements in JATS 1.4 (or later) non-PRC content. This one has . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

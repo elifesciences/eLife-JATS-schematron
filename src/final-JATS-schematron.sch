@@ -1588,7 +1588,11 @@
 		
     	<assert test="matches(upper-case(.),'^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]+$')" role="error" id="email-test">[email-test] email element must contain a valid email address. Currently it is <value-of select="self::*"/>.</assert>
 		
-	</rule></pattern><pattern id="history-tests-pattern"><rule context="article-meta[not(e:is-prc(.))]/history" id="history-tests">
+	</rule></pattern><pattern id="history-exception-tests-pattern"><rule context="history" id="history-exception-tests">
+      
+      <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" role="error" id="history-exception-1">[history-exception-1] <name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the <name/> element.</report>
+      
+    </rule></pattern><pattern id="history-tests-pattern"><rule context="article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]//article-meta/history" id="history-tests">
 	   <let name="dtd-version" value="ancestor::article/@dtd-version"/>
 	  
     	<report test="($dtd-version le '1.3') and not(date[@date-type='received'])" role="error" id="history-date-test-1">[history-date-test-1] history in JATS version <value-of select="$dtd-version"/> must contain date[@date-type='received']</report>
@@ -1597,7 +1601,7 @@
 	  
 	  <report test="($dtd-version ge '1.4')" role="error" id="history-1.4-test-1">[history-1.4-test-1] history in article-meta is deprecated in JATS version <value-of select="$dtd-version"/>. Please move the items to pub-history and remove the history element.</report>
 	  
-	</rule></pattern><pattern id="prc-history-tests-pattern"><rule context="article-meta[e:is-prc(.)]/history" id="prc-history-tests">
+	</rule></pattern><pattern id="prc-history-tests-pattern"><rule context="article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]//article-meta/history" id="prc-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <report test="($dtd-version le '1.3') and not(date[@date-type='sent-for-review'])" role="error" id="prc-history-date-test-1">[prc-history-date-test-1] history must contain date[@date-type='sent-for-review'] in PRC articles tagged in JATS version <value-of select="$dtd-version"/>.</report>
@@ -1667,7 +1671,11 @@
       
       <report test="e:get-weekday($date) != 2" role="warning" id="press-pub-date-check">[press-pub-date-check] The publication date for this article is in the future (<value-of select="$date"/>), but the day of publication is not a Tuesday (for Press). Is that correct?</report>
       
-    </rule></pattern><pattern id="pub-history-tests-pattern"><rule context="pub-history" id="pub-history-tests">
+    </rule></pattern><pattern id="pub-history-exception-tests-pattern"><rule context="pub-history" id="pub-history-exception-tests">
+      
+      <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" role="error" id="pub-history-exception-1">[pub-history-exception-1] <name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the <name/> element.</report>
+      
+    </rule></pattern><pattern id="pub-history-tests-pattern"><rule context="article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <assert test="parent::article-meta" role="error" id="pub-history-parent">[pub-history-parent] <name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
@@ -1682,7 +1690,9 @@
       
       <report test="e:is-prc(.) and count(event) le 1" role="error" id="pub-history-events-1">[pub-history-events-1] <name/> in PRC articles must have more than one event element, at least one for the preprint, and at least one for the reviewed preprint (there may be numerous reviewed preprint events). This one has <value-of select="count(event)"/> event elements.</report>
       
-      <report test="count(event[self-uri[@content-type='preprint']]) != 1" role="error" id="pub-history-events-2">[pub-history-events-2] <name/> must contain one, and only one preprint event (an event with a self-uri[@content-type='preprint'] element). This one has <value-of select="count(event[self-uri[@content-type='preprint']])"/> preprint event elements.</report>
+      <report test="e:is-prc(.) and count(event[self-uri[@content-type='preprint']]) != 1" role="error" id="pub-history-events-2">[pub-history-events-2] <name/> must contain one, and only one preprint event (an event with a self-uri[@content-type='preprint'] element). This one has <value-of select="count(event[self-uri[@content-type='preprint']])"/> preprint event elements.</report>
+      
+      <report test="e:is-prc(.) and count(event[date[@date-type='preprint']]) != 1" role="error" id="pub-history-events-2a">[pub-history-events-2a] <name/> must contain one, and only one preprint event (an event with a date[@date-type='preprint'] element). This one has <value-of select="count(event[date[@date-type='preprint']])"/> preprint event elements.</report>
       
       <report test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) lt 1" role="error" id="pub-history-events-3">[pub-history-events-3] <name/> in PRC articles must have at least one event element for reviewed preprint publication (an event with a self-uri[@content-type='reviewed-preprint'] element). This one has none.</report>
       
@@ -1708,8 +1718,8 @@
       <let name="rp-link" value="self-uri[@content-type='reviewed-preprint'][1]/@xlink:href"/>
       <let name="rp-version" value="replace($rp-link,'^.*\.','')"/>
       <let name="rp-pub-date" value="date[@date-type='reviewed-preprint']/@iso-8601-date"/>
-      <let name="sent-for-review-date" value="(ancestor::pub-history/event/date[@date-type='sent-for-review']/@iso-8601-date | ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date)[1]"/>
-      <let name="preprint-pub-date" value="parent::pub-history/event/date[@date-type='preprint']/@iso-8601-date"/>
+      <let name="sent-for-review-date" value="(ancestor::pub-history/event[date[@date-type='sent-for-review']][1]/date[@date-type='sent-for-review']/@iso-8601-date | ancestor::article-meta/history/date[@date-type='sent-for-review'][1]/@iso-8601-date)[1]"/>
+      <let name="preprint-pub-date" value="ancestor::pub-history/event[date[@date-type='preprint']][1]/date[@date-type='preprint']/@iso-8601-date"/>
       <let name="later-rp-events" value="parent::pub-history/event[date[@date-type='reviewed-preprint'] and replace(self-uri[@content-type='reviewed-preprint'][1]/@xlink:href,'^.*\.','') gt $rp-version]"/>
       
       <report test="($preprint-pub-date and $preprint-pub-date != '') and         $preprint-pub-date ge $rp-pub-date" role="error" id="rp-event-test-1">[rp-event-test-1] Reviewed preprint publication date (<value-of select="$rp-pub-date"/>) in the publication history (for RP version <value-of select="$rp-version"/>) is the same or an earlier date than the preprint posted date (<value-of select="$preprint-pub-date"/>), which must be incorrect.</report>

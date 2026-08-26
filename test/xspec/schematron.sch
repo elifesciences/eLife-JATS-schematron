@@ -1798,8 +1798,16 @@
 		
 	</rule>
   </pattern>
+  <pattern id="history-exception-tests-pattern">
+    <rule context="history" id="history-exception-tests">
+      
+      <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" role="error" id="history-exception-1">
+        <name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the <name/> element.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="history-tests-pattern">
-    <rule context="article-meta[not(e:is-prc(.))]/history" id="history-tests">
+    <rule context="article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]//article-meta/history" id="history-tests">
 	   <let name="dtd-version" value="ancestor::article/@dtd-version"/>
 	  
     	<report test="($dtd-version le '1.3') and not(date[@date-type='received'])" role="error" id="history-date-test-1">history in JATS version <value-of select="$dtd-version"/> must contain date[@date-type='received']</report>
@@ -1811,7 +1819,7 @@
 	</rule>
   </pattern>
   <pattern id="prc-history-tests-pattern">
-    <rule context="article-meta[e:is-prc(.)]/history" id="prc-history-tests">
+    <rule context="article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]//article-meta/history" id="prc-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <report test="($dtd-version le '1.3') and not(date[@date-type='sent-for-review'])" role="error" id="prc-history-date-test-1">history must contain date[@date-type='sent-for-review'] in PRC articles tagged in JATS version <value-of select="$dtd-version"/>.</report>
@@ -1909,8 +1917,16 @@
       
     </rule>
   </pattern>
+  <pattern id="pub-history-exception-tests-pattern">
+    <rule context="pub-history" id="pub-history-exception-tests">
+      
+      <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" role="error" id="pub-history-exception-1">
+        <name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the <name/> element.</report>
+      
+    </rule>
+  </pattern>
   <pattern id="pub-history-tests-pattern">
-    <rule context="pub-history" id="pub-history-tests">
+    <rule context="article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <assert test="parent::article-meta" role="error" id="pub-history-parent">
@@ -1929,8 +1945,11 @@
       <report test="e:is-prc(.) and count(event) le 1" role="error" id="pub-history-events-1">
         <name/> in PRC articles must have more than one event element, at least one for the preprint, and at least one for the reviewed preprint (there may be numerous reviewed preprint events). This one has <value-of select="count(event)"/> event elements.</report>
       
-      <report test="count(event[self-uri[@content-type='preprint']]) != 1" role="error" id="pub-history-events-2">
+      <report test="e:is-prc(.) and count(event[self-uri[@content-type='preprint']]) != 1" role="error" id="pub-history-events-2">
         <name/> must contain one, and only one preprint event (an event with a self-uri[@content-type='preprint'] element). This one has <value-of select="count(event[self-uri[@content-type='preprint']])"/> preprint event elements.</report>
+      
+      <report test="e:is-prc(.) and count(event[date[@date-type='preprint']]) != 1" role="error" id="pub-history-events-2a">
+        <name/> must contain one, and only one preprint event (an event with a date[@date-type='preprint'] element). This one has <value-of select="count(event[date[@date-type='preprint']])"/> preprint event elements.</report>
       
       <report test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) lt 1" role="error" id="pub-history-events-3">
         <name/> in PRC articles must have at least one event element for reviewed preprint publication (an event with a self-uri[@content-type='reviewed-preprint'] element). This one has none.</report>
@@ -1968,8 +1987,8 @@
       <let name="rp-link" value="self-uri[@content-type='reviewed-preprint'][1]/@xlink:href"/>
       <let name="rp-version" value="replace($rp-link,'^.*\.','')"/>
       <let name="rp-pub-date" value="date[@date-type='reviewed-preprint']/@iso-8601-date"/>
-      <let name="sent-for-review-date" value="(ancestor::pub-history/event/date[@date-type='sent-for-review']/@iso-8601-date | ancestor::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date)[1]"/>
-      <let name="preprint-pub-date" value="parent::pub-history/event/date[@date-type='preprint']/@iso-8601-date"/>
+      <let name="sent-for-review-date" value="(ancestor::pub-history/event[date[@date-type='sent-for-review']][1]/date[@date-type='sent-for-review']/@iso-8601-date | ancestor::article-meta/history/date[@date-type='sent-for-review'][1]/@iso-8601-date)[1]"/>
+      <let name="preprint-pub-date" value="ancestor::pub-history/event[date[@date-type='preprint']][1]/date[@date-type='preprint']/@iso-8601-date"/>
       <let name="later-rp-events" value="parent::pub-history/event[date[@date-type='reviewed-preprint'] and replace(self-uri[@content-type='reviewed-preprint'][1]/@xlink:href,'^.*\.','') gt $rp-version]"/>
       
       <report test="($preprint-pub-date and $preprint-pub-date != '') and         $preprint-pub-date ge $rp-pub-date" role="error" id="rp-event-test-1">Reviewed preprint publication date (<value-of select="$rp-pub-date"/>) in the publication history (for RP version <value-of select="$rp-version"/>) is the same or an earlier date than the preprint posted date (<value-of select="$preprint-pub-date"/>), which must be incorrect.</report>
@@ -8976,8 +8995,9 @@
       <assert test="descendant::article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[not(@vocab='credit')]" role="error" id="author-role-tests-2-xspec-assert">article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[not(@vocab='credit')] must be present.</assert>
       <assert test="descendant::contrib-id[@contrib-id-type='orcid']" role="error" id="orcid-tests-xspec-assert">contrib-id[@contrib-id-type='orcid'] must be present.</assert>
       <assert test="descendant::article-meta//email" role="error" id="email-tests-xspec-assert">article-meta//email must be present.</assert>
-      <assert test="descendant::article-meta[not(e:is-prc(.))]/history" role="error" id="history-tests-xspec-assert">article-meta[not(e:is-prc(.))]/history must be present.</assert>
-      <assert test="descendant::article-meta[e:is-prc(.)]/history" role="error" id="prc-history-tests-xspec-assert">article-meta[e:is-prc(.)]/history must be present.</assert>
+      <assert test="descendant::history" role="error" id="history-exception-tests-xspec-assert">history must be present.</assert>
+      <assert test="descendant::article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]//article-meta/history" role="error" id="history-tests-xspec-assert">article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]//article-meta/history must be present.</assert>
+      <assert test="descendant::article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]//article-meta/history" role="error" id="prc-history-tests-xspec-assert">article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]//article-meta/history must be present.</assert>
       <assert test="descendant::date" role="error" id="date-tests-xspec-assert">date must be present.</assert>
       <assert test="descendant::day[not(parent::string-date)]" role="error" id="day-tests-xspec-assert">day[not(parent::string-date)] must be present.</assert>
       <assert test="descendant::month[not(parent::string-date)]" role="error" id="month-tests-xspec-assert">month[not(parent::string-date)] must be present.</assert>
@@ -8986,7 +9006,8 @@
       <assert test="descendant::pub-date" role="error" id="pub-date-tests-xspec-assert">pub-date must be present.</assert>
       <assert test="descendant::pub-date/*" role="error" id="pub-date-child-tests-xspec-assert">pub-date/* must be present.</assert>
       <assert test="descendant::pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')]" role="error" id="press-pub-date-xspec-assert">pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')] must be present.</assert>
-      <assert test="descendant::pub-history" role="error" id="pub-history-tests-xspec-assert">pub-history must be present.</assert>
+      <assert test="descendant::pub-history" role="error" id="pub-history-exception-tests-xspec-assert">pub-history must be present.</assert>
+      <assert test="descendant::article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history must be present.</assert>
       <assert test="descendant::event" role="error" id="event-tests-xspec-assert">event must be present.</assert>
       <assert test="descendant::event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" role="error" id="rp-event-tests-xspec-assert">event[date[@date-type='reviewed-preprint']/@iso-8601-date != ''] must be present.</assert>
       <assert test="descendant::event/*" role="error" id="event-child-tests-xspec-assert">event/* must be present.</assert>

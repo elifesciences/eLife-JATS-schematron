@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="history-1.4-test-1.sch"?>
-<!--Context: article-meta[not(e:is-prc(.))]/history
+<!--Context: article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]//article-meta/history
 Test: report    ($dtd-version ge '1.4')
 Message: history in article-meta is deprecated in JATS version . Please move the items to pub-history and remove the history element. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
