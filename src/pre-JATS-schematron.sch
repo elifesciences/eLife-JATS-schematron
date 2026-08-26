@@ -2411,7 +2411,7 @@
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-child-test-1" test="local-name() = ('fig','media')" role="error" id="fig-group-child-test-1">[fig-group-child-test-1] <name/> is not allowed as a child of fig-group.</assert>
       
-      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-child-test-2" test="(local-name() = 'media') and not(@mimetype='video')" role="error" id="fig-group-child-test-2">[fig-group-child-test-2] <name/> which is a child of fig-group, must have an @mimetype='video' - i.e. only video type media is allowed as a child of fig-group.</report>
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-child-test-2" test="(local-name() = 'media') and not(contains(@mimetype,'video'))" role="error" id="fig-group-child-test-2">[fig-group-child-test-2] <name/> which is a child of fig-group, must have an @mimetype containing 'video' - i.e. only video type media is allowed as a child of fig-group.</report>
       
     </rule></pattern><pattern id="fig-tests-pattern"><rule context="fig[not(ancestor::sub-article)]" id="fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>

@@ -4100,9 +4100,9 @@ else self::*/local-name() = $allowed-p-blocks"
         id="fig-group-child-test-1"><name/> is not allowed as a child of fig-group.</assert>
       
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-child-test-2" 
-        test="(local-name() = 'media') and not(@mimetype='video')" 
+        test="(local-name() = 'media') and not(contains(@mimetype,'video'))" 
         role="error" 
-        id="fig-group-child-test-2"><name/> which is a child of fig-group, must have an @mimetype='video' - i.e. only video type media is allowed as a child of fig-group.</report>
+        id="fig-group-child-test-2"><name/> which is a child of fig-group, must have an @mimetype containing 'video' - i.e. only video type media is allowed as a child of fig-group.</report>
       
     </rule>
     
