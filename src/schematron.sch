@@ -2237,7 +2237,7 @@
       
     </rule>
 	
-	<rule context="artricle[[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]]//article-meta/history" id="history-tests">
+	<rule context="article[[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]]//article-meta/history" id="history-tests">
 	   <let name="dtd-version" value="ancestor::article/@dtd-version"/>
 	  
     	<report test="($dtd-version le '1.3') and not(date[@date-type='received'])" 
