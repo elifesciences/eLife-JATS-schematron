@@ -2415,6 +2415,10 @@
         role="error" 
         id="pub-history-events-2"><name/> must contain one, and only one preprint event (an event with a self-uri[@content-type='preprint'] element). This one has <value-of select="count(event[self-uri[@content-type='preprint']])"/> preprint event elements.</report>
       
+      <report test="count(event[date[@date-type='preprint']]) != 1" 
+        role="error" 
+        id="pub-history-events-2a"><name/> must contain one, and only one preprint event (an event with a date[@date-type='preprint'] element). This one has <value-of select="count(event[date[@date-type='preprint']])"/> preprint event elements.</report>
+      
       <report test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) lt 1" 
         role="error" 
         id="pub-history-events-3"><name/> in PRC articles must have at least one event element for reviewed preprint publication (an event with a self-uri[@content-type='reviewed-preprint'] element). This one has none.</report>

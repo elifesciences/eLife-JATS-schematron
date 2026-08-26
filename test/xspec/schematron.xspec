@@ -2297,6 +2297,16 @@
         <x:expect-report id="pub-history-events-2" role="error"/>
         <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="pub-history-events-2a-pass">
+        <x:context href="../tests/gen/pub-history-tests/pub-history-events-2a/pass.xml"/>
+        <x:expect-not-report id="pub-history-events-2a" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-events-2a-fail">
+        <x:context href="../tests/gen/pub-history-tests/pub-history-events-2a/fail.xml"/>
+        <x:expect-report id="pub-history-events-2a" role="error"/>
+        <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="pub-history-events-3-pass">
         <x:context href="../tests/gen/pub-history-tests/pub-history-events-3/pass.xml"/>
         <x:expect-not-report id="pub-history-events-3" role="error"/>
