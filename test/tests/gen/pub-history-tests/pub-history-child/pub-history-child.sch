@@ -962,7 +962,7 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="pub-history" id="pub-history-tests">
+    <rule context="article[@article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <report test="not(e:is-prc(.)) and ($dtd-version le '1.3') and count(event) gt 1" role="error" id="pub-history-child">
         <name/> must have one, and only one, event element in in JATS 1.3 (or lower) non-PRC content. This one has <value-of select="count(event)"/>.</report>
@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::pub-history" role="error" id="pub-history-tests-xspec-assert">pub-history must be present.</assert>
+      <assert test="descendant::article[@article-type=('research-article','review-article','discussion','')]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[@article-type=('research-article','review-article','discussion','')]//pub-history must be present.</assert>
     </rule>
   </pattern>
 </schema>

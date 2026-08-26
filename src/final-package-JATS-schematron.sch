@@ -1673,7 +1673,7 @@
       
       <report test="e:get-weekday($date) != 2" role="warning" id="press-pub-date-check">The publication date for this article is in the future (<value-of select="$date"/>), but the day of publication is not a Tuesday (for Press). Is that correct?</report>
       
-    </rule></pattern><pattern id="pub-history-tests-pattern"><rule context="pub-history" id="pub-history-tests">
+    </rule></pattern><pattern id="pub-history-tests-pattern"><rule context="article[@article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <assert test="parent::article-meta" role="error" id="pub-history-parent"><name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>

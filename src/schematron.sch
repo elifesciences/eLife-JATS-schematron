@@ -2384,7 +2384,7 @@
       
     </rule>
     
-    <rule context="pub-history" id="pub-history-tests">
+    <rule context="article[@article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <assert test="parent::article-meta" 

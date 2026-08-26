@@ -962,7 +962,7 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="pub-history" id="pub-history-tests">
+    <rule context="article[@article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <report test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) lt 1" role="error" id="pub-history-events-3">
         <name/> in PRC articles must have at least one event element for reviewed preprint publication (an event with a self-uri[@content-type='reviewed-preprint'] element). This one has none.</report>
@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::pub-history" role="error" id="pub-history-tests-xspec-assert">pub-history must be present.</assert>
+      <assert test="descendant::article[@article-type=('research-article','review-article','discussion','')]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[@article-type=('research-article','review-article','discussion','')]//pub-history must be present.</assert>
     </rule>
   </pattern>
 </schema>

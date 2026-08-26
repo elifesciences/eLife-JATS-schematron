@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="pub-history-events-5.sch"?>
-<!--Context: pub-history
+<!--Context: article[@article-type=('research-article','review-article','discussion','')]//pub-history
 Test: report    e:is-prc(.) and ($dtd-version ge '1.4') and count(event/date[@date-type='sent-for-review']) != 1
 Message:  has  sent for review event elements. Under JATS version  this must be captured in pub-history. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">

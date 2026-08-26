@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="pub-history-child.sch"?>
-<!--Context: pub-history
+<!--Context: article[@article-type=('research-article','review-article','discussion','')]//pub-history
 Test: report    not(e:is-prc(.)) and ($dtd-version le '1.3') and count(event) gt 1
 Message:  must have one, and only one, event element in in JATS 1.3 (or lower) non-PRC content. This one has . -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

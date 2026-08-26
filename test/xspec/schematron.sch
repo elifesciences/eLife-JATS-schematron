@@ -1910,7 +1910,7 @@
     </rule>
   </pattern>
   <pattern id="pub-history-tests-pattern">
-    <rule context="pub-history" id="pub-history-tests">
+    <rule context="article[@article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <assert test="parent::article-meta" role="error" id="pub-history-parent">
@@ -8989,7 +8989,7 @@
       <assert test="descendant::pub-date" role="error" id="pub-date-tests-xspec-assert">pub-date must be present.</assert>
       <assert test="descendant::pub-date/*" role="error" id="pub-date-child-tests-xspec-assert">pub-date/* must be present.</assert>
       <assert test="descendant::pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')]" role="error" id="press-pub-date-xspec-assert">pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')] must be present.</assert>
-      <assert test="descendant::pub-history" role="error" id="pub-history-tests-xspec-assert">pub-history must be present.</assert>
+      <assert test="descendant::article[@article-type=('research-article','review-article','discussion','')]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[@article-type=('research-article','review-article','discussion','')]//pub-history must be present.</assert>
       <assert test="descendant::event" role="error" id="event-tests-xspec-assert">event must be present.</assert>
       <assert test="descendant::event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" role="error" id="rp-event-tests-xspec-assert">event[date[@date-type='reviewed-preprint']/@iso-8601-date != ''] must be present.</assert>
       <assert test="descendant::event/*" role="error" id="event-child-tests-xspec-assert">event/* must be present.</assert>
