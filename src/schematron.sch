@@ -2384,7 +2384,7 @@
       
     </rule>
     
-    <rule context="article[@article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
+    <rule context="article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <assert test="parent::article-meta" 
@@ -2430,6 +2430,14 @@
       <report test="e:is-prc(.) and ($dtd-version ge '1.4') and count(event/date[@date-type='sent-for-review']) != 1" 
         role="error" 
         id="pub-history-events-5"><name/> has <value-of select="count(event/date[@date-type='sent-for-review'])"/> sent for review event elements. Under JATS version <value-of select="$dtd-version"/> this must be captured in pub-history.</report>
+    </rule>
+    
+    <rule context="pub-history" id="pub-history-exception-tests">
+      
+      <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" 
+        role="error" 
+        id="pub-history-exception-1"><name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the pub-history element.</report>
+      
     </rule>
     
     <rule context="event" id="event-tests">

@@ -1910,7 +1910,7 @@
     </rule>
   </pattern>
   <pattern id="pub-history-tests-pattern">
-    <rule context="article[@article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
+    <rule context="article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <assert test="parent::article-meta" role="error" id="pub-history-parent">
@@ -1943,6 +1943,14 @@
       
       <report test="e:is-prc(.) and ($dtd-version ge '1.4') and count(event/date[@date-type='sent-for-review']) != 1" role="error" id="pub-history-events-5">
         <name/> has <value-of select="count(event/date[@date-type='sent-for-review'])"/> sent for review event elements. Under JATS version <value-of select="$dtd-version"/> this must be captured in pub-history.</report>
+    </rule>
+  </pattern>
+  <pattern id="pub-history-exception-tests-pattern">
+    <rule context="pub-history" id="pub-history-exception-tests">
+      
+      <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" role="error" id="pub-history-exception-1">
+        <name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the pub-history element.</report>
+      
     </rule>
   </pattern>
   <pattern id="event-tests-pattern">
@@ -8989,7 +8997,8 @@
       <assert test="descendant::pub-date" role="error" id="pub-date-tests-xspec-assert">pub-date must be present.</assert>
       <assert test="descendant::pub-date/*" role="error" id="pub-date-child-tests-xspec-assert">pub-date/* must be present.</assert>
       <assert test="descendant::pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')]" role="error" id="press-pub-date-xspec-assert">pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')] must be present.</assert>
-      <assert test="descendant::article[@article-type=('research-article','review-article','discussion','')]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[@article-type=('research-article','review-article','discussion','')]//pub-history must be present.</assert>
+      <assert test="descendant::article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history must be present.</assert>
+      <assert test="descendant::pub-history" role="error" id="pub-history-exception-tests-xspec-assert">pub-history must be present.</assert>
       <assert test="descendant::event" role="error" id="event-tests-xspec-assert">event must be present.</assert>
       <assert test="descendant::event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" role="error" id="rp-event-tests-xspec-assert">event[date[@date-type='reviewed-preprint']/@iso-8601-date != ''] must be present.</assert>
       <assert test="descendant::event/*" role="error" id="event-child-tests-xspec-assert">event/* must be present.</assert>

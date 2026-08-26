@@ -962,15 +962,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
-      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
-      <report test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) gt 3" role="warning" id="pub-history-events-4">
-        <name/> has <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint event elements, which is unusual. Is this correct?</report>
+    <rule context="pub-history" id="pub-history-exception-tests">
+      <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" role="error" id="pub-history-exception-1">
+        <name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the pub-history element.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history must be present.</assert>
+      <assert test="descendant::pub-history" role="error" id="pub-history-exception-tests-xspec-assert">pub-history must be present.</assert>
     </rule>
   </pattern>
 </schema>

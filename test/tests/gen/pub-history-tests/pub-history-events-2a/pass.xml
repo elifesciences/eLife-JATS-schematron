@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="pub-history-events-2a.sch"?>
-<!--Context: article[@article-type=('research-article','review-article','discussion','')]//pub-history
+<!--Context: article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history
 Test: report    e:is-prc(.) and count(event[date[@date-type='preprint']]) != 1
 Message:  must contain one, and only one preprint event (an event with a date[@date-type='preprint'] element). This one has  preprint event elements. -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">

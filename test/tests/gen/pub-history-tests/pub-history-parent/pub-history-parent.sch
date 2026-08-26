@@ -962,7 +962,7 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article[@article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
+    <rule context="article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <assert test="parent::article-meta" role="error" id="pub-history-parent">
         <name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type=('research-article','review-article','discussion','')]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[@article-type=('research-article','review-article','discussion','')]//pub-history must be present.</assert>
+      <assert test="descendant::article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history must be present.</assert>
     </rule>
   </pattern>
 </schema>

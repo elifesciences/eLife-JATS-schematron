@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="pub-history-events-1.sch"?>
-<!--Context: article[@article-type=('research-article','review-article','discussion','')]//pub-history
+<!--Context: article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history
 Test: report    e:is-prc(.) and count(event) le 1
 Message:  in PRC articles must have more than one event element, at least one for the preprint, and at least one for the reviewed preprint (there may be numerous reviewed preprint events). This one has  event elements. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

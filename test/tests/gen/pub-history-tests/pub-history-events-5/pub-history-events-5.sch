@@ -962,7 +962,7 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article[@article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
+    <rule context="article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <report test="e:is-prc(.) and ($dtd-version ge '1.4') and count(event/date[@date-type='sent-for-review']) != 1" role="error" id="pub-history-events-5">
         <name/> has <value-of select="count(event/date[@date-type='sent-for-review'])"/> sent for review event elements. Under JATS version <value-of select="$dtd-version"/> this must be captured in pub-history.</report>
@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type=('research-article','review-article','discussion','')]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[@article-type=('research-article','review-article','discussion','')]//pub-history must be present.</assert>
+      <assert test="descendant::article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history must be present.</assert>
     </rule>
   </pattern>
 </schema>

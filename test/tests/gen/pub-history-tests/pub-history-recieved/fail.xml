@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="pub-history-recieved.sch"?>
-<!--Context: article[@article-type=('research-article','review-article','discussion','')]//pub-history
+<!--Context: article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history
 Test: report    not(e:is-prc(.)) and ($dtd-version ge '1.4') and not(event[date[@date-type='received']])
 Message: In legacy model content tagged in JATS 1.4 (or later)  must contain a recieved date (an event containing a date with the date-type 'received'). This one does not. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
