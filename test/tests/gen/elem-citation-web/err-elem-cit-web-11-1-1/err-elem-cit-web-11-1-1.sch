@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="element-citation-web-tests">
     <rule context="element-citation[@publication-type='web']" id="elem-citation-web">
-      <report test="count(date-in-citation) gt 1" role="error" id="err-elem-cit-web-11-1-1">Web Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(date-in-citation)"/> &lt;date-in-citation&gt; elements. One and only one &lt;date-in-citation&gt; element is required.</report>
+      <report see="https://elifeproduction.slab.com/posts/website-references-ua2hs8qo#err-elem-cit-web-11-1-1" test="count(date-in-citation) gt 1" role="error" id="err-elem-cit-web-11-1-1">Web Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(date-in-citation)"/> &lt;date-in-citation&gt; elements. One and only one &lt;date-in-citation&gt; element is required.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

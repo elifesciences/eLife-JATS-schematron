@@ -964,7 +964,7 @@
   <pattern id="element-citation-web-tests">
     <rule context="element-citation[@publication-type='web']/date-in-citation" id="elem-citation-web-date-in-citation">
       <let name="date-regex" value="'^[12][0-9][0-9][0-9]\-0[13578]\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-0[13578]\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-0[13578]\-3[01]$|         ^[12][0-9][0-9][0-9]\-02\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-02\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-0[469]\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-0[469]\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-0[469]\-30$|         ^[12][0-9][0-9][0-9]\-[1-2][02]\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-[1-2][02]\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-[1-2][02]\-3[01]$|         ^[12][0-9][0-9][0-9]\-11\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-11\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-11\-30$'"/>
-      <assert test="(matches(@iso-8601-date,replace($date-regex,'\p{Zs}','')))" role="error" id="err-elem-cit-web-11-5">
+      <assert see="https://elifeproduction.slab.com/posts/website-references-ua2hs8qo#err-elem-cit-web-11-5" test="(matches(@iso-8601-date,replace($date-regex,'\p{Zs}','')))" role="error" id="err-elem-cit-web-11-5">
         The @iso-8601-date value on accessed date must be a valid date value. <value-of select="@iso-8601-date"/> in reference '<value-of select="ancestor::ref/@id"/>' is not valid.</assert>
     </rule>
   </pattern>

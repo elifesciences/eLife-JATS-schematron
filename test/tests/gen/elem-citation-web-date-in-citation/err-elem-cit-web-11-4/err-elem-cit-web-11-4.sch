@@ -964,7 +964,7 @@
   <pattern id="element-citation-web-tests">
     <rule context="element-citation[@publication-type='web']/date-in-citation" id="elem-citation-web-date-in-citation">
       <let name="date-regex" value="'^[12][0-9][0-9][0-9]\-0[13578]\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-0[13578]\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-0[13578]\-3[01]$|         ^[12][0-9][0-9][0-9]\-02\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-02\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-0[469]\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-0[469]\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-0[469]\-30$|         ^[12][0-9][0-9][0-9]\-[1-2][02]\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-[1-2][02]\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-[1-2][02]\-3[01]$|         ^[12][0-9][0-9][0-9]\-11\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-11\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-11\-30$'"/>
-      <report test="if (matches(@iso-8601-date,replace($date-regex,'\p{Zs}',''))) then format-date(xs:date(@iso-8601-date), '[MNn] [D], [Y]')!=.         else ()" role="error" id="err-elem-cit-web-11-4">
+      <report see="https://elifeproduction.slab.com/posts/website-references-ua2hs8qo#err-elem-cit-web-11-4" test="if (matches(@iso-8601-date,replace($date-regex,'\p{Zs}',''))) then format-date(xs:date(@iso-8601-date), '[MNn] [D], [Y]')!=.         else ()" role="error" id="err-elem-cit-web-11-4">
         The Accessed date value must match the @iso-8601-date value in the format 'January 1, 2020'.
         Reference '<value-of select="ancestor::ref/@id"/>' has element content of 
         <value-of select="."/> but an @iso-8601-date value of 

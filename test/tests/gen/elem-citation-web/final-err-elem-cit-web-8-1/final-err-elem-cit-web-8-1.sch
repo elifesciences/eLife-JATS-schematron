@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="element-citation-web-tests">
     <rule context="element-citation[@publication-type='web']" id="elem-citation-web">
-      <assert test="count(article-title)=1" role="error" id="final-err-elem-cit-web-8-1">Each  &lt;element-citation&gt; of type 'web' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/website-references-ua2hs8qo#final-err-elem-cit-web-8-1" test="count(article-title)=1" role="error" id="final-err-elem-cit-web-8-1">Each  &lt;element-citation&gt; of type 'web' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
