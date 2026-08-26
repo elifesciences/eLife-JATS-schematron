@@ -964,7 +964,7 @@
   <pattern id="article-metadata">
     <rule context="pub-history" id="pub-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
-      <report test="count(event[date[@date-type='preprint']]) != 1" role="error" id="pub-history-events-2a">
+      <report test="e:is-prc(.) and count(event[date[@date-type='preprint']]) != 1" role="error" id="pub-history-events-2a">
         <name/> must contain one, and only one preprint event (an event with a date[@date-type='preprint'] element). This one has <value-of select="count(event[date[@date-type='preprint']])"/> preprint event elements.</report>
     </rule>
   </pattern>
