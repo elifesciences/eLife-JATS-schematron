@@ -1936,6 +1936,18 @@
         <x:expect-not-assert id="email-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="history-exception-tests">
+      <x:scenario label="history-exception-1-pass">
+        <x:context href="../tests/gen/history-exception-tests/history-exception-1/pass.xml"/>
+        <x:expect-not-report id="history-exception-1" role="error"/>
+        <x:expect-not-assert id="history-exception-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="history-exception-1-fail">
+        <x:context href="../tests/gen/history-exception-tests/history-exception-1/fail.xml"/>
+        <x:expect-report id="history-exception-1" role="error"/>
+        <x:expect-not-assert id="history-exception-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="history-tests">
       <x:scenario label="history-date-test-1-pass">
         <x:context href="../tests/gen/history-tests/history-date-test-1/pass.xml"/>
@@ -2226,6 +2238,18 @@
         <x:expect-not-assert id="press-pub-date-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="pub-history-exception-tests">
+      <x:scenario label="pub-history-exception-1-pass">
+        <x:context href="../tests/gen/pub-history-exception-tests/pub-history-exception-1/pass.xml"/>
+        <x:expect-not-report id="pub-history-exception-1" role="error"/>
+        <x:expect-not-assert id="pub-history-exception-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="pub-history-exception-1-fail">
+        <x:context href="../tests/gen/pub-history-exception-tests/pub-history-exception-1/fail.xml"/>
+        <x:expect-report id="pub-history-exception-1" role="error"/>
+        <x:expect-not-assert id="pub-history-exception-tests-xspec-assert" role="error"/>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="pub-history-tests">
       <x:scenario label="pub-history-parent-pass">
         <x:context href="../tests/gen/pub-history-tests/pub-history-parent/pass.xml"/>
@@ -2336,18 +2360,6 @@
         <x:context href="../tests/gen/pub-history-tests/pub-history-events-5/fail.xml"/>
         <x:expect-report id="pub-history-events-5" role="error"/>
         <x:expect-not-assert id="pub-history-tests-xspec-assert" role="error"/>
-      </x:scenario>
-    </x:scenario>
-    <x:scenario label="pub-history-exception-tests">
-      <x:scenario label="pub-history-exception-1-pass">
-        <x:context href="../tests/gen/pub-history-exception-tests/pub-history-exception-1/pass.xml"/>
-        <x:expect-not-report id="pub-history-exception-1" role="error"/>
-        <x:expect-not-assert id="pub-history-exception-tests-xspec-assert" role="error"/>
-      </x:scenario>
-      <x:scenario label="pub-history-exception-1-fail">
-        <x:context href="../tests/gen/pub-history-exception-tests/pub-history-exception-1/fail.xml"/>
-        <x:expect-report id="pub-history-exception-1" role="error"/>
-        <x:expect-not-assert id="pub-history-exception-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
     <x:scenario label="event-tests">

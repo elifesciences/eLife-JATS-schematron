@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="history-date-test-1.sch"?>
-<!--Context: article-meta[not(e:is-prc(.))]/history
+<!--Context: article-meta[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]/history
 Test: report    ($dtd-version le '1.3') and not(date[@date-type='received'])
 Message: history in JATS version  must contain date[@date-type='received'] -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">

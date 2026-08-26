@@ -964,7 +964,7 @@
   <pattern id="article-metadata">
     <rule context="pub-history" id="pub-history-exception-tests">
       <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" role="error" id="pub-history-exception-1">
-        <name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the pub-history element.</report>
+        <name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the <name/> element.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -2228,8 +2228,16 @@
         id="email-test">email element must contain a valid email address. Currently it is <value-of select="self::*"/>.</assert>
 		
 	</rule>
+    
+    <rule context="history" id="history-exception-tests">
+      
+      <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" 
+        role="error" 
+        id="history-exception-1"><name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the <name/> element.</report>
+      
+    </rule>
 	
-	<rule context="article-meta[not(e:is-prc(.))]/history" id="history-tests">
+	<rule context="article-meta[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]/history" id="history-tests">
 	   <let name="dtd-version" value="ancestor::article/@dtd-version"/>
 	  
     	<report test="($dtd-version le '1.3') and not(date[@date-type='received'])" 
@@ -2246,7 +2254,7 @@
 	  
 	</rule>
     
-    <rule context="article-meta[e:is-prc(.)]/history" id="prc-history-tests">
+    <rule context="article-meta[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]/history" id="prc-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <report test="($dtd-version le '1.3') and not(date[@date-type='sent-for-review'])" 
@@ -2384,6 +2392,14 @@
       
     </rule>
     
+    <rule context="pub-history" id="pub-history-exception-tests">
+      
+      <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" 
+        role="error" 
+        id="pub-history-exception-1"><name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the <name/> element.</report>
+      
+    </rule>
+    
     <rule context="article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
@@ -2430,14 +2446,6 @@
       <report test="e:is-prc(.) and ($dtd-version ge '1.4') and count(event/date[@date-type='sent-for-review']) != 1" 
         role="error" 
         id="pub-history-events-5"><name/> has <value-of select="count(event/date[@date-type='sent-for-review'])"/> sent for review event elements. Under JATS version <value-of select="$dtd-version"/> this must be captured in pub-history.</report>
-    </rule>
-    
-    <rule context="pub-history" id="pub-history-exception-tests">
-      
-      <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" 
-        role="error" 
-        id="pub-history-exception-1"><name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the pub-history element.</report>
-      
     </rule>
     
     <rule context="event" id="event-tests">

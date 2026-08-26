@@ -962,14 +962,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="article-metadata">
-    <rule context="article-meta[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]/history" id="prc-history-tests">
-      <let name="dtd-version" value="ancestor::article/@dtd-version"/>
-      <report test="($dtd-version ge '1.4')" role="error" id="history-1.4-test-2">history in article-meta is deprecated in JATS version <value-of select="$dtd-version"/>. Please move the items to pub-history and remove the history element.</report>
+    <rule context="history" id="history-exception-tests">
+      <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" role="error" id="history-exception-1">
+        <name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the <name/> element.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]/history" role="error" id="prc-history-tests-xspec-assert">article-meta[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]/history must be present.</assert>
+      <assert test="descendant::history" role="error" id="history-exception-tests-xspec-assert">history must be present.</assert>
     </rule>
   </pattern>
 </schema>

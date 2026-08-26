@@ -1594,7 +1594,11 @@
 		
     	<assert test="matches(upper-case(.),'^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]+$')" role="error" id="email-test">email element must contain a valid email address. Currently it is <value-of select="self::*"/>.</assert>
 		
-	</rule></pattern><pattern id="history-tests-pattern"><rule context="article-meta[not(e:is-prc(.))]/history" id="history-tests">
+	</rule></pattern><pattern id="history-exception-tests-pattern"><rule context="history" id="history-exception-tests">
+      
+      <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" role="error" id="history-exception-1"><name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the <name/> element.</report>
+      
+    </rule></pattern><pattern id="history-tests-pattern"><rule context="article-meta[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]/history" id="history-tests">
 	   <let name="dtd-version" value="ancestor::article/@dtd-version"/>
 	  
     	<report test="($dtd-version le '1.3') and not(date[@date-type='received'])" role="error" id="history-date-test-1">history in JATS version <value-of select="$dtd-version"/> must contain date[@date-type='received']</report>
@@ -1603,7 +1607,7 @@
 	  
 	  <report test="($dtd-version ge '1.4')" role="error" id="history-1.4-test-1">history in article-meta is deprecated in JATS version <value-of select="$dtd-version"/>. Please move the items to pub-history and remove the history element.</report>
 	  
-	</rule></pattern><pattern id="prc-history-tests-pattern"><rule context="article-meta[e:is-prc(.)]/history" id="prc-history-tests">
+	</rule></pattern><pattern id="prc-history-tests-pattern"><rule context="article-meta[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]/history" id="prc-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <report test="($dtd-version le '1.3') and not(date[@date-type='sent-for-review'])" role="error" id="prc-history-date-test-1">history must contain date[@date-type='sent-for-review'] in PRC articles tagged in JATS version <value-of select="$dtd-version"/>.</report>
@@ -1673,6 +1677,10 @@
       
       <report test="e:get-weekday($date) != 2" role="warning" id="press-pub-date-check">The publication date for this article is in the future (<value-of select="$date"/>), but the day of publication is not a Tuesday (for Press). Is that correct?</report>
       
+    </rule></pattern><pattern id="pub-history-exception-tests-pattern"><rule context="pub-history" id="pub-history-exception-tests">
+      
+      <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" role="error" id="pub-history-exception-1"><name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the <name/> element.</report>
+      
     </rule></pattern><pattern id="pub-history-tests-pattern"><rule context="article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
@@ -1697,10 +1705,6 @@
       <report test="e:is-prc(.) and count(event[self-uri[@content-type='reviewed-preprint']]) gt 3" role="warning" id="pub-history-events-4"><name/> has <value-of select="count(event[self-uri[@content-type='reviewed-preprint']])"/> reviewed preprint event elements, which is unusual. Is this correct?</report>
       
       <report test="e:is-prc(.) and ($dtd-version ge '1.4') and count(event/date[@date-type='sent-for-review']) != 1" role="error" id="pub-history-events-5"><name/> has <value-of select="count(event/date[@date-type='sent-for-review'])"/> sent for review event elements. Under JATS version <value-of select="$dtd-version"/> this must be captured in pub-history.</report>
-    </rule></pattern><pattern id="pub-history-exception-tests-pattern"><rule context="pub-history" id="pub-history-exception-tests">
-      
-      <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" role="error" id="pub-history-exception-1"><name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the pub-history element.</report>
-      
     </rule></pattern><pattern id="event-tests-pattern"><rule context="event" id="event-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="date" value="date[1]/@iso-8601-date"/>
