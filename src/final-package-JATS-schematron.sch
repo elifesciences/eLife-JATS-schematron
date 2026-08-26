@@ -1598,7 +1598,7 @@
       
       <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" role="error" id="history-exception-1"><name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the <name/> element.</report>
       
-    </rule></pattern><pattern id="history-tests-pattern"><rule context="article-meta[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]/history" id="history-tests">
+    </rule></pattern><pattern id="history-tests-pattern"><rule context="artricle[[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]]//article-meta/history" id="history-tests">
 	   <let name="dtd-version" value="ancestor::article/@dtd-version"/>
 	  
     	<report test="($dtd-version le '1.3') and not(date[@date-type='received'])" role="error" id="history-date-test-1">history in JATS version <value-of select="$dtd-version"/> must contain date[@date-type='received']</report>
@@ -1607,7 +1607,7 @@
 	  
 	  <report test="($dtd-version ge '1.4')" role="error" id="history-1.4-test-1">history in article-meta is deprecated in JATS version <value-of select="$dtd-version"/>. Please move the items to pub-history and remove the history element.</report>
 	  
-	</rule></pattern><pattern id="prc-history-tests-pattern"><rule context="article-meta[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]/history" id="prc-history-tests">
+	</rule></pattern><pattern id="prc-history-tests-pattern"><rule context="article[[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]]//article-meta/history" id="prc-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <report test="($dtd-version le '1.3') and not(date[@date-type='sent-for-review'])" role="error" id="prc-history-date-test-1">history must contain date[@date-type='sent-for-review'] in PRC articles tagged in JATS version <value-of select="$dtd-version"/>.</report>

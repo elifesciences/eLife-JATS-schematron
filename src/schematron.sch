@@ -2237,7 +2237,7 @@
       
     </rule>
 	
-	<rule context="article-meta[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]/history" id="history-tests">
+	<rule context="artricle[[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]]//article-meta/history" id="history-tests">
 	   <let name="dtd-version" value="ancestor::article/@dtd-version"/>
 	  
     	<report test="($dtd-version le '1.3') and not(date[@date-type='received'])" 
@@ -2254,7 +2254,7 @@
 	  
 	</rule>
     
-    <rule context="article-meta[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]/history" id="prc-history-tests">
+    <rule context="article[[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]]//article-meta/history" id="prc-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <report test="($dtd-version le '1.3') and not(date[@date-type='sent-for-review'])" 
