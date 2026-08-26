@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="element-citation-thesis-tests">
     <rule context="element-citation[@publication-type='thesis']/article-title" id="elem-citation-thesis-article-title">
-      <assert test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-thesis-8-2">[err-elem-cit-thesis-8-2]
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-8-2" test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-thesis-8-2">[err-elem-cit-thesis-8-2]
         An &lt;article-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
         No other elements are allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>

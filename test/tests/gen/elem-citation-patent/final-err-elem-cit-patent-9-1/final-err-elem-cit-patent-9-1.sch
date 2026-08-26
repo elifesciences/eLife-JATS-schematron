@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="element-citation-patent-tests">
     <rule context="element-citation[@publication-type='patent']" id="elem-citation-patent">
-      <assert test="count(source)=1" role="error" id="final-err-elem-cit-patent-9-1">Each &lt;element-citation&gt; of type 'patent' must contain one and only one &lt;source&gt; elements. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/patent-references-qcd31iv5#final-err-elem-cit-patent-9-1" test="count(source)=1" role="error" id="final-err-elem-cit-patent-9-1">Each &lt;element-citation&gt; of type 'patent' must contain one and only one &lt;source&gt; elements. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

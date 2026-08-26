@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="element-citation-thesis-tests">
     <rule context="element-citation[@publication-type='thesis']" id="elem-citation-thesis">
-      <assert test="(count(descendant::collab) + count(descendant::collab-name)) = 0" role="error" id="err-elem-cit-thesis-3">[err-elem-cit-thesis-3]
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-3" test="(count(descendant::collab) + count(descendant::collab-name)) = 0" role="error" id="err-elem-cit-thesis-3">[err-elem-cit-thesis-3]
         No &lt;collab&gt; or &lt;collab-name&gt; elements are allowed in thesis citations.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(descendant::collab) + count(descendant::collab-name)"/>.</assert>

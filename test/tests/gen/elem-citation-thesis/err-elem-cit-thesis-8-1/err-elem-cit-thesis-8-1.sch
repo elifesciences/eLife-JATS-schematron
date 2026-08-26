@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="element-citation-thesis-tests">
     <rule context="element-citation[@publication-type='thesis']" id="elem-citation-thesis">
-      <assert test="count(article-title)=1" role="error" id="err-elem-cit-thesis-8-1">[err-elem-cit-thesis-8-1]
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-8-1" test="count(article-title)=1" role="error" id="err-elem-cit-thesis-8-1">[err-elem-cit-thesis-8-1]
         Each  &lt;element-citation&gt; of type 'thesis' must contain one and
         only one &lt;article-title&gt; element.
         Reference '<value-of select="ancestor::ref/@id"/>' has 

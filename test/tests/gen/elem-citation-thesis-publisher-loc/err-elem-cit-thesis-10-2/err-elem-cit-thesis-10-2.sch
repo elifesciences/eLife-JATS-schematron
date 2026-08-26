@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="element-citation-thesis-tests">
     <rule context="element-citation[@publication-type='thesis']/publisher-loc" id="elem-citation-thesis-publisher-loc">
-      <assert test="count(*)=0" role="error" id="err-elem-cit-thesis-10-2">[err-elem-cit-thesis-10-2]
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-10-2" test="count(*)=0" role="error" id="err-elem-cit-thesis-10-2">[err-elem-cit-thesis-10-2]
         No elements are allowed inside &lt;publisher-loc&gt;.
         Reference '<value-of select="ancestor::ref/@id"/>' has child elements within the
         &lt;publisher-loc&gt; element.</assert>

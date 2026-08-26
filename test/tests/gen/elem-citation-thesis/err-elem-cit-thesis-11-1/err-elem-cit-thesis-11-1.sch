@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="element-citation-thesis-tests">
     <rule context="element-citation[@publication-type='thesis']" id="elem-citation-thesis">
-      <assert test="count(pub-id) le 1" role="error" id="err-elem-cit-thesis-11-1">[err-elem-cit-thesis-11-1]
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-11-1" test="count(pub-id) le 1" role="error" id="err-elem-cit-thesis-11-1">[err-elem-cit-thesis-11-1]
         A maximum of one &lt;pub-id&gt; element is allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/>
         &lt;pub-id&gt; elements.</assert>

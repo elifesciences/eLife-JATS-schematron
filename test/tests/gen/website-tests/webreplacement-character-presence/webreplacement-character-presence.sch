@@ -964,7 +964,7 @@
   <pattern id="house-style">
     <rule context="element-citation[@publication-type='web']" id="website-tests">
       <let name="link" value="lower-case(ext-link[1])"/>
-      <report test="matches(.,'�')" role="error" id="webreplacement-character-presence">web citation contains the replacement character '�' which is unallowed - <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/website-references-ua2hs8qo#webreplacement-character-presence" test="matches(.,'�')" role="error" id="webreplacement-character-presence">web citation contains the replacement character '�' which is unallowed - <value-of select="."/>
       </report>
     </rule>
   </pattern>

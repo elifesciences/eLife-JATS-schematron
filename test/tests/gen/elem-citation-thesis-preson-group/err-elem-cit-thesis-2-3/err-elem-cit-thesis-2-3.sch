@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="element-citation-thesis-tests">
     <rule context="element-citation[@publication-type='thesis']/person-group" id="elem-citation-thesis-preson-group">
-      <assert test="count(name)=1" role="error" id="err-elem-cit-thesis-2-3">[err-elem-cit-thesis-2-3]
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-2-3" test="count(name)=1" role="error" id="err-elem-cit-thesis-2-3">[err-elem-cit-thesis-2-3]
         Each thesis citation must have one and only one author.
         Reference '<value-of select="ancestor::ref/@id"/>' has a thesis citation 
         with <value-of select="count(name)"/> authors.</assert>

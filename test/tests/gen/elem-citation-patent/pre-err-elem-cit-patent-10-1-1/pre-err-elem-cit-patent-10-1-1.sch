@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="element-citation-patent-tests">
     <rule context="element-citation[@publication-type='patent']" id="elem-citation-patent">
-      <assert test="patent" role="warning" id="pre-err-elem-cit-patent-10-1-1">The  &lt;patent&gt; element is required. Reference '<value-of select="ancestor::ref/@id"/>' has no &lt;patent&gt; elements. If you are unable to determine this yourself, please add an author query asking for this.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/patent-references-qcd31iv5#pre-err-elem-cit-patent-10-1-1" test="patent" role="warning" id="pre-err-elem-cit-patent-10-1-1">The  &lt;patent&gt; element is required. Reference '<value-of select="ancestor::ref/@id"/>' has no &lt;patent&gt; elements. If you are unable to determine this yourself, please add an author query asking for this.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
