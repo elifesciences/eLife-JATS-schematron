@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="element-citation-thesis-tests">
     <rule context="element-citation[@publication-type='thesis']/pub-id" id="elem-citation-thesis-pub-id">
-      <assert test="@pub-id-type='doi'" role="error" id="err-elem-cit-thesis-11-2">[err-elem-cit-thesis-11-2]
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-11-2" test="@pub-id-type='doi'" role="error" id="err-elem-cit-thesis-11-2">[err-elem-cit-thesis-11-2]
         The only allowed pub-id type is 'doi'.
         Reference '<value-of select="ancestor::ref/@id"/>' has a pub-id type of 
         '<value-of select="@pub-id-type"/>'.</assert>

@@ -9536,28 +9536,32 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='thesis']" id="elem-citation-thesis"> 
       
-      <assert test="count(person-group)=1" 
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-2-1"
+        test="count(person-group)=1" 
         role="error" 
         id="err-elem-cit-thesis-2-1">[err-elem-cit-thesis-2-1]
         One and only one person-group element is allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
-      <assert test="(count(descendant::collab) + count(descendant::collab-name)) = 0" 
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-3"
+        test="(count(descendant::collab) + count(descendant::collab-name)) = 0" 
         role="error" 
         id="err-elem-cit-thesis-3">[err-elem-cit-thesis-3]
         No &lt;collab&gt; or &lt;collab-name&gt; elements are allowed in thesis citations.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(descendant::collab) + count(descendant::collab-name)"/>.</assert>
       
-      <assert test="count(descendant::etal)=0" 
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-6"
+        test="count(descendant::etal)=0" 
         role="error" 
         id="err-elem-cit-thesis-6">[err-elem-cit-thesis-6]
         No &lt;etal&gt; elements are allowed in thesis citations.
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(etal)"/> &lt;etal&gt; elements.</assert>
       
-      <assert test="count(article-title)=1" 
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-8-1"
+        test="count(article-title)=1" 
         role="error" 
         id="err-elem-cit-thesis-8-1">[err-elem-cit-thesis-8-1]
         Each  &lt;element-citation&gt; of type 'thesis' must contain one and
@@ -9565,21 +9569,24 @@ else self::*/local-name() = $allowed-p-blocks"
         Reference '<value-of select="ancestor::ref/@id"/>' has 
         <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
       
-      <assert test="count(publisher-name)=1" 
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-9-1"
+        test="count(publisher-name)=1" 
         role="error" 
         id="err-elem-cit-thesis-9-1">[err-elem-cit-thesis-9-1]
         &lt;publisher-name&gt; is required.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(publisher-name)"/>
         &lt;publisher-name&gt; elements.</assert>
       
-      <assert test="count(pub-id) le 1" 
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-11-1"
+        test="count(pub-id) le 1" 
         role="error" 
         id="err-elem-cit-thesis-11-1">[err-elem-cit-thesis-11-1]
         A maximum of one &lt;pub-id&gt; element is allowed.
         Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/>
         &lt;pub-id&gt; elements.</assert>
       
-      <assert test="count(*) = count(person-group | article-title | year| source | publisher-loc | publisher-name | ext-link | pub-id)" 
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-13"
+        test="count(*) = count(person-group | article-title | year| source | publisher-loc | publisher-name | ext-link | pub-id)" 
         role="error" 
         id="err-elem-cit-thesis-13">[err-elem-cit-thesis-13]
         The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="thesis" are:
@@ -9591,14 +9598,16 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='thesis']/person-group" id="elem-citation-thesis-preson-group">
       
-      <assert test="@person-group-type='author'" 
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-2-2"
+        test="@person-group-type='author'" 
         role="error" 
         id="err-elem-cit-thesis-2-2">[err-elem-cit-thesis-2-2]
         Each &lt;person-group&gt; must have a @person-group-type attribute of type 'author'.
         Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; 
         element with @person-group-type attribute '<value-of select="@person-group-type"/>'.</assert>
       
-      <assert test="count(name)=1" 
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-2-3"
+        test="count(name)=1" 
         role="error" 
         id="err-elem-cit-thesis-2-3">[err-elem-cit-thesis-2-3]
         Each thesis citation must have one and only one author.
@@ -9608,7 +9617,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='thesis']/article-title" id="elem-citation-thesis-article-title">
       
-      <assert test="count(*) = count(sub|sup|italic)" 
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-8-2"
+        test="count(*) = count(sub|sup|italic)" 
         role="error" 
         id="err-elem-cit-thesis-8-2">[err-elem-cit-thesis-8-2]
         An &lt;article-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
@@ -9619,7 +9629,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='thesis']/publisher-name" id="elem-citation-thesis-publisher-name">
       
-      <assert test="count(*)=0" 
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-9-2"
+        test="count(*)=0" 
         role="error" 
         id="err-elem-cit-thesis-9-2">[err-elem-cit-thesis-9-2]
         No elements are allowed inside &lt;publisher-name&gt;.
@@ -9630,7 +9641,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='thesis']/publisher-loc" id="elem-citation-thesis-publisher-loc">
       
-      <assert test="count(*)=0" 
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-10-2"
+        test="count(*)=0" 
         role="error" 
         id="err-elem-cit-thesis-10-2">[err-elem-cit-thesis-10-2]
         No elements are allowed inside &lt;publisher-loc&gt;.
@@ -9641,7 +9653,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="element-citation[@publication-type='thesis']/pub-id" id="elem-citation-thesis-pub-id">
       
-      <assert test="@pub-id-type='doi'" 
+      <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-11-2"
+        test="@pub-id-type='doi'" 
         role="error" 
         id="err-elem-cit-thesis-11-2">[err-elem-cit-thesis-11-2]
         The only allowed pub-id type is 'doi'.
