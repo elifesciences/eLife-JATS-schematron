@@ -962,12 +962,12 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="video-tests">
-    <rule context="article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']" id="body-video-specific">
-      <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')])"/>
-      <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')][ancestor::body])"/>
+    <rule context="article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')]" id="body-video-specific">
+      <let name="count" value="count(ancestor::body//media[starts-with(@mimetype,'video')][matches(label[1],'^Video [\d]+\.$')])"/>
+      <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video')][matches(label[1],'^Video [\d]+\.$')][ancestor::body])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.$','—')"/>
-      <let name="fig-pos" value="count(ancestor::fig-group//media[@mimetype='video'][starts-with(label[1],$fig-label)]) - count(following::media[@mimetype='video'][starts-with(label[1],$fig-label)])"/>
+      <let name="fig-pos" value="count(ancestor::fig-group//media[starts-with(@mimetype,'video')][starts-with(label[1],$fig-label)]) - count(following::media[starts-with(@mimetype,'video')][starts-with(label[1],$fig-label)])"/>
       <let name="title" value="caption[1]/title[1]"/>
       <let name="is-explainer" value="matches(lower-case($title),'^(author )?explainer video( for figure \d+)?\.$')"/>
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#fig-video-check-1" test="(not(ancestor::fig-group)) and (descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))])" role="warning" id="fig-video-check-1">
@@ -976,7 +976,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']" role="error" id="body-video-specific-xspec-assert">article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video'] must be present.</assert>
+      <assert test="descendant::article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')]" role="error" id="body-video-specific-xspec-assert">article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -962,7 +962,7 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="parent-tests">
-    <rule context="media[@mimetype='video']" id="video-parent-conformance">
+    <rule context="media[starts-with(@mimetype,'video')]" id="video-parent-conformance">
       <let name="parent" value="name(..)"/>
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-parent-test" test="$parent = ('sec','fig-group','body','boxed-text','app')" role="error" id="video-parent-test">
         <value-of select="replace(label[1],'\.$','')"/> is a child of a &lt;<value-of select="$parent"/>&gt; element. It can only be a child of sec, fig-group, body, boxed-text, or app.</assert>
@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media[@mimetype='video']" role="error" id="video-parent-conformance-xspec-assert">media[@mimetype='video'] must be present.</assert>
+      <assert test="descendant::media[starts-with(@mimetype,'video')]" role="error" id="video-parent-conformance-xspec-assert">media[starts-with(@mimetype,'video')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

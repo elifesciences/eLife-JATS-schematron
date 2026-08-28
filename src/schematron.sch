@@ -4106,7 +4106,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="fig-group-test-1">fig-group must have one and only one main figure.</assert>
       
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-test-2" 
-        test="not(child::fig[@specific-use='child-fig']) and not(descendant::media[@mimetype='video'])" 
+        test="not(child::fig[@specific-use='child-fig']) and not(descendant::media[starts-with(@mimetype,'video')])" 
         role="error" 
         id="fig-group-test-2">fig-group does not contain a figure supplement or a figure-level video, which must be incorrect.</report>
       
@@ -4330,7 +4330,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-8"
         test="if (ancestor::sec[@sec-type='supplementary-material']) then ()
-        else if (@mimetype='video') then (not(label))
+        else if (starts-with(@mimetype,'video')) then (not(label))
         else ()" 
         role="error" 
         id="media-test-8">video does not contain a label, which is incorrect.</report>
@@ -4342,13 +4342,13 @@ else self::*/local-name() = $allowed-p-blocks"
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-10"
         test="preceding::media/@xlink:href = $link" 
         role="error" 
-        id="media-test-10">Media file for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/@mimetype='video') then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')
+        id="media-test-10">Media file for <value-of select="if (starts-with(@mimetype,'video')) then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/starts-with(@mimetype,'video')) then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')
         else replace(preceding::media[@xlink:href=$link][1]/parent::*/label,'\.','')"/>.</report>
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-11"
         test="contains($link,'&amp;')" 
         role="error" 
-        id="media-test-11">Media filename for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> contains an ampersand - <value-of select="tokenize($link,'/')[last()]"/>. Please rename the file so that this ampersand is removed.</report>
+        id="media-test-11">Media filename for <value-of select="if (starts-with(@mimetype,'video')) then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> contains an ampersand - <value-of select="tokenize($link,'/')[last()]"/>. Please rename the file so that this ampersand is removed.</report>
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-12"
         test="text()" 
@@ -4431,7 +4431,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="supplementary-material-test-6">supplementary-material label (<value-of select="label"/>) does not conform to eLife's usual label format.</assert>
       
       <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-7"
-        test="(ancestor::sec[@sec-type='supplementary-material']) and (media[@mimetype='video'])" 
+        test="(ancestor::sec[@sec-type='supplementary-material']) and (media[starts-with(@mimetype,'video')])" 
         role="error" 
         id="supplementary-material-test-7">supplementary-material in additional files sections cannot have a media element with the attribute mimetype='video'. This should be mimetype='application'</report>
       
@@ -5436,7 +5436,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="list-item-test-1">list-item begins with a single lowercase letter, is this correct? - <value-of select="."/></report>
     </rule>
     
-    <rule context="media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]" id="general-video">
+    <rule context="media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')]" id="general-video">
       <let name="label" value="replace(label,'\.$','')"/>
       <let name="id" value="@id"/>
       <let name="xrefs" value="e:get-xrefs(ancestor::article,$id,'video')"/>
@@ -5619,7 +5619,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)]" id="app-content-tests">
+    <rule context="app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[starts-with(@mimetype,'video')] or descendant::disp-formula)]" id="app-content-tests">
       
       <report test="count(descendant::p) = (0,1)" 
         role="warning" 
@@ -5658,12 +5658,12 @@ else self::*/local-name() = $allowed-p-blocks"
   
   <pattern id="video-tests">
     
-    <rule context="article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']" id="body-video-specific">
-      <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')])"/>
-      <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')][ancestor::body])"/>
+    <rule context="article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')]" id="body-video-specific">
+      <let name="count" value="count(ancestor::body//media[starts-with(@mimetype,'video')][matches(label[1],'^Video [\d]+\.$')])"/>
+      <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video')][matches(label[1],'^Video [\d]+\.$')][ancestor::body])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.$','—')"/>
-      <let name="fig-pos" value="count(ancestor::fig-group//media[@mimetype='video'][starts-with(label[1],$fig-label)]) - count(following::media[@mimetype='video'][starts-with(label[1],$fig-label)])"/>
+      <let name="fig-pos" value="count(ancestor::fig-group//media[starts-with(@mimetype,'video')][starts-with(label[1],$fig-label)]) - count(following::media[starts-with(@mimetype,'video')][starts-with(label[1],$fig-label)])"/>
       <let name="title" value="caption[1]/title[1]"/>
       <let name="is-explainer" value="matches(lower-case($title),'^(author )?explainer video( for figure \d+)?\.$')"/>
       
@@ -5702,10 +5702,10 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="app//media[@mimetype='video' and not(ancestor::fig-group)]" id="app-video-specific">
+    <rule context="app//media[starts-with(@mimetype,'video') and not(ancestor::fig-group)]" id="app-video-specific">
       <let name="app-id" value="ancestor::app/@id"/>
-      <let name="count" value="count(ancestor::app//media[@mimetype='video'])"/>
-      <let name="pos" value="$count - count(following::media[(@mimetype='video') and (ancestor::app/@id = $app-id)])"/>
+      <let name="count" value="count(ancestor::app//media[starts-with(@mimetype,'video')])"/>
+      <let name="pos" value="$count - count(following::media[(starts-with(@mimetype,'video')) and (ancestor::app/@id = $app-id)])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#pre-app-video-position-test"
@@ -5719,10 +5719,10 @@ else self::*/local-name() = $allowed-p-blocks"
         id="final-app-video-position-test"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
     
-    <rule context="app//fig-group//media[@mimetype='video']" id="app-fig-video-specific">
+    <rule context="app//fig-group//media[starts-with(@mimetype,'video')]" id="app-fig-video-specific">
       <let name="fig-id" value="ancestor::fig-group/fig[not(@specific-use='child-fig')]/@id"/>
-      <let name="count" value="count(ancestor::fig-group//media[@mimetype='video'])"/>
-      <let name="pos" value="$count - count(following::media[(@mimetype='video') and (ancestor::fig-group/fig[not(@specific-use='child-fig')]/@id = $fig-id)])"/>
+      <let name="count" value="count(ancestor::fig-group//media[starts-with(@mimetype,'video')])"/>
+      <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video') and (ancestor::fig-group/fig[not(@specific-use='child-fig')]/@id = $fig-id)])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#pre-app-fig-video-position-test"
@@ -5736,7 +5736,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="final-app-fig-video-position-test"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
     
-    <rule context="fig-group/media[@mimetype='video']" id="fig-video-specific">
+    <rule context="fig-group/media[starts-with(@mimetype,'video')]" id="fig-video-specific">
       <let name="title" value="caption[1]/title[1]"/>
       <let name="is-explainer" value="matches(lower-case($title),'^(author )?explainer video for figure \d+\.$')"/>
       
@@ -5751,9 +5751,9 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//media[@mimetype='video']" id="dl-video-specific">
-      <let name="count" value="count(ancestor::body//media[@mimetype='video'])"/>
-      <let name="pos" value="$count - count(following::media[@mimetype='video' and ancestor::sub-article/@article-type=('decision-letter','referee-report')])"/>
+    <rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//media[starts-with(@mimetype,'video')]" id="dl-video-specific">
+      <let name="count" value="count(ancestor::body//media[starts-with(@mimetype,'video')])"/>
+      <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video') and ancestor::sub-article/@article-type=('decision-letter','referee-report')])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#"
@@ -5768,9 +5768,9 @@ else self::*/local-name() = $allowed-p-blocks"
         id="final-dl-video-position-test"><value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other DL videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
     
-    <rule context="sub-article[@article-type=('reply','author-comment')]/body//media[@mimetype='video']" id="ar-video-specific">
-      <let name="count" value="count(ancestor::body//media[@mimetype='video'])"/>
-      <let name="pos" value="$count - count(following::media[@mimetype='video'])"/>
+    <rule context="sub-article[@article-type=('reply','author-comment')]/body//media[starts-with(@mimetype,'video')]" id="ar-video-specific">
+      <let name="count" value="count(ancestor::body//media[starts-with(@mimetype,'video')])"/>
+      <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video')])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#"
@@ -6800,7 +6800,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="article/body//media[(@mimetype='video') and not(ancestor::boxed-text) and not(parent::fig-group)]" id="video-ids">
+    <rule context="article/body//media[starts-with(@mimetype,'video') and not(ancestor::boxed-text) and not(parent::fig-group)]" id="video-ids">
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-id-test"
         test="matches(@id,'^video[0-9]{1,3}$')" 
@@ -6808,7 +6808,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="video-id-test">main video must have an @id in the format video0.  <value-of select="@id"/> does not conform to this.</assert>
     </rule>
     
-    <rule context="article/body//fig-group/media[(@mimetype='video') and not(ancestor::boxed-text)]" id="video-sup-ids">
+    <rule context="article/body//fig-group/media[starts-with(@mimetype,'video') and not(ancestor::boxed-text)]" id="video-sup-ids">
       <let name="id-prefix" value="parent::fig-group/fig[1]/@id"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-sup-id-test-1"
@@ -6822,7 +6822,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="video-sup-id-test-2">video supplement must have an @id which begins with the id of its parent fig. <value-of select="@id"/> does not start with <value-of select="$id-prefix"/>.</assert>
     </rule>
     
-    <rule context="article/back//app//media[(@mimetype='video') and not(parent::fig-group)]" id="app-video-ids">
+    <rule context="article/back//app//media[starts-with(@mimetype,'video') and not(parent::fig-group)]" id="app-video-ids">
       <let name="id-prefix" value="substring-after(ancestor::app[1]/@id,'-')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-id-test-1"
@@ -6836,7 +6836,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="app-video-id-test-2">video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="concat('app',$id-prefix)"/>.</assert>
     </rule>
     
-    <rule context="article/back//app//media[(@mimetype='video') and (parent::fig-group)]" id="app-video-sup-ids">
+    <rule context="article/back//app//media[starts-with(@mimetype,'video') and (parent::fig-group)]" id="app-video-sup-ids">
       <let name="id-prefix-1" value="substring-after(ancestor::app[1]/@id,'-')"/>
       <let name="id-prefix-2" value="parent::fig-group/fig[1]/@id"/>
       
@@ -6856,7 +6856,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="app-video-sup-id-test-3">video supplement must have an @id which begins with the id of its ancestor appendix, followed by id of its parent fig. <value-of select="@id"/> does not start with <value-of select="$id-prefix-2"/>.</assert>
     </rule>
     
-    <rule context="article/body//boxed-text//media[(@mimetype='video')]" id="box-vid-ids">
+    <rule context="article/body//boxed-text//media[starts-with(@mimetype,'video')]" id="box-vid-ids">
       <let name="box-id" value="ancestor::boxed-text/@id"/> 
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#box-vid-id-1"
@@ -8250,7 +8250,7 @@ else self::*/local-name() = $allowed-p-blocks"
   
   <pattern id="parent-tests">
     
-    <rule context="media[@mimetype='video']" id="video-parent-conformance">
+    <rule context="media[starts-with(@mimetype,'video')]" id="video-parent-conformance">
       <let name="parent" value="name(..)"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-parent-test"
@@ -10702,7 +10702,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="vid-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-4"
-        test="(ancestor::media[@mimetype='video']/@id = $rids)" 
+        test="(ancestor::media[starts-with(@mimetype,'video')]/@id = $rids)" 
         role="warning" 
         id="vid-xref-test-4"><value-of select="."/> - video citation is in the caption of the video that it links to. Is it correct or necessary?</report>
       
@@ -12850,7 +12850,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="final-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
     </rule>
     
-    <rule context="fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]" id="fig-permissions-check">
+    <rule context="fig[not(descendant::permissions)]|media[starts-with(@mimetype,'video') and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]" id="fig-permissions-check">
       <let name="label" value="replace(label[1],'\.','')"/>
       
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-1" 

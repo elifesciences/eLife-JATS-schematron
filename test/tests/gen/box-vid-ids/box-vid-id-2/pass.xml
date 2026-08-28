@@ -1,5 +1,5 @@
 <?oxygen SCHSchema="box-vid-id-2.sch"?>
-<!--Context: article/body//boxed-text//media[(@mimetype='video')]
+<!--Context: article/body//boxed-text//media[starts-with(@mimetype,'video')]
 Test: assert    starts-with(@id,$box-id)
 Message: video id does not start with its ancestor boxed-text id. Please ensure the first part of the id contains ''. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">

@@ -962,9 +962,9 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="video-tests">
-    <rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//media[@mimetype='video']" id="dl-video-specific">
-      <let name="count" value="count(ancestor::body//media[@mimetype='video'])"/>
-      <let name="pos" value="$count - count(following::media[@mimetype='video' and ancestor::sub-article/@article-type=('decision-letter','referee-report')])"/>
+    <rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//media[starts-with(@mimetype,'video')]" id="dl-video-specific">
+      <let name="count" value="count(ancestor::body//media[starts-with(@mimetype,'video')])"/>
+      <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video') and ancestor::sub-article/@article-type=('decision-letter','referee-report')])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#final-dl-video-position-test" test="$no = string($pos)" role="error" id="final-dl-video-position-test">
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other DL videos it is placed in position <value-of select="$pos"/>.</assert>
@@ -972,7 +972,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type=('decision-letter','referee-report')]/body//media[@mimetype='video']" role="error" id="dl-video-specific-xspec-assert">sub-article[@article-type=('decision-letter','referee-report')]/body//media[@mimetype='video'] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('decision-letter','referee-report')]/body//media[starts-with(@mimetype,'video')]" role="error" id="dl-video-specific-xspec-assert">sub-article[@article-type=('decision-letter','referee-report')]/body//media[starts-with(@mimetype,'video')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -962,14 +962,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="id-conformance">
-    <rule context="article/back//app//media[(@mimetype='video') and not(parent::fig-group)]" id="app-video-ids">
+    <rule context="article/back//app//media[starts-with(@mimetype,'video') and not(parent::fig-group)]" id="app-video-ids">
       <let name="id-prefix" value="substring-after(ancestor::app[1]/@id,'-')"/>
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-id-test-1" test="matches(@id,'^app[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-id-test-1">video in appendix must have an @id in the format app0video0. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/back//app//media[(@mimetype='video') and not(parent::fig-group)]" role="error" id="app-video-ids-xspec-assert">article/back//app//media[(@mimetype='video') and not(parent::fig-group)] must be present.</assert>
+      <assert test="descendant::article/back//app//media[starts-with(@mimetype,'video') and not(parent::fig-group)]" role="error" id="app-video-ids-xspec-assert">article/back//app//media[starts-with(@mimetype,'video') and not(parent::fig-group)] must be present.</assert>
     </rule>
   </pattern>
 </schema>
