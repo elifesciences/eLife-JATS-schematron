@@ -962,14 +962,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="id-conformance">
-    <rule context="article/body//boxed-text//media[(@mimetype='video')]" id="box-vid-ids">
+    <rule context="article/body//boxed-text//media[starts-with(@mimetype,'video')]" id="box-vid-ids">
       <let name="box-id" value="ancestor::boxed-text/@id"/>
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#box-vid-id-1" test="matches(@id,'^box[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="box-vid-id-1">video must have @id in the format box0video0.  <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body//boxed-text//media[(@mimetype='video')]" role="error" id="box-vid-ids-xspec-assert">article/body//boxed-text//media[(@mimetype='video')] must be present.</assert>
+      <assert test="descendant::article/body//boxed-text//media[starts-with(@mimetype,'video')]" role="error" id="box-vid-ids-xspec-assert">article/body//boxed-text//media[starts-with(@mimetype,'video')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

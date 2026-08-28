@@ -962,7 +962,7 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="video-tests">
-    <rule context="fig-group/media[@mimetype='video']" id="fig-video-specific">
+    <rule context="fig-group/media[starts-with(@mimetype,'video')]" id="fig-video-specific">
       <let name="title" value="caption[1]/title[1]"/>
       <let name="is-explainer" value="matches(lower-case($title),'^(author )?explainer video for figure \d+\.$')"/>
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#fig-video-position-test-2" test="not($is-explainer) and following-sibling::fig" role="error" id="fig-video-position-test-2">
@@ -971,7 +971,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig-group/media[@mimetype='video']" role="error" id="fig-video-specific-xspec-assert">fig-group/media[@mimetype='video'] must be present.</assert>
+      <assert test="descendant::fig-group/media[starts-with(@mimetype,'video')]" role="error" id="fig-video-specific-xspec-assert">fig-group/media[starts-with(@mimetype,'video')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -962,14 +962,14 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)]" id="app-content-tests">
+    <rule context="app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[starts-with(@mimetype,'video')] or descendant::disp-formula)]" id="app-content-tests">
       <report test="count(descendant::p) = (0,1)" role="warning" id="app-little-content">
         <value-of select="title"/> has no sibling appendices, contains no assets (figures, tables, videos, or display formula), and only has one paragraph. Does it need to be an appendix?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)]" role="error" id="app-content-tests-xspec-assert">app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)] must be present.</assert>
+      <assert test="descendant::app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[starts-with(@mimetype,'video')] or descendant::disp-formula)]" role="error" id="app-content-tests-xspec-assert">app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[starts-with(@mimetype,'video')] or descendant::disp-formula)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

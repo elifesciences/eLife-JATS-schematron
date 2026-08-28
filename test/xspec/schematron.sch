@@ -3005,7 +3005,7 @@
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-test-1" test="count(child::fig[not(@specific-use='child-fig')]) = 1" role="error" id="fig-group-test-1">fig-group must have one and only one main figure.</assert>
       
-      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-test-2" test="not(child::fig[@specific-use='child-fig']) and not(descendant::media[@mimetype='video'])" role="error" id="fig-group-test-2">fig-group does not contain a figure supplement or a figure-level video, which must be incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-test-2" test="not(child::fig[@specific-use='child-fig']) and not(descendant::media[starts-with(@mimetype,'video')])" role="error" id="fig-group-test-2">fig-group does not contain a figure supplement or a figure-level video, which must be incorrect.</report>
       
     </rule>
   </pattern>
@@ -3131,13 +3131,13 @@
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-7" test="if (child::label) then not(matches(label[1],'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Figure \d{1,4}—animation \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—animation \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—animation \d{1,4}\.$|^Animation \d{1,4}\.$|^Decision letter video \d{1,4}\.$|^Review video \d{1,4}\.$|^Author response video \d{1,4}\.$'))         else ()" role="error" id="media-test-7">media label does not conform to eLife's usual label format - <value-of select="label[1]"/>.</report>
       
-      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-8" test="if (ancestor::sec[@sec-type='supplementary-material']) then ()         else if (@mimetype='video') then (not(label))         else ()" role="error" id="media-test-8">video does not contain a label, which is incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-8" test="if (ancestor::sec[@sec-type='supplementary-material']) then ()         else if (starts-with(@mimetype,'video')) then (not(label))         else ()" role="error" id="media-test-8">video does not contain a label, which is incorrect.</report>
       
       <report test="matches(lower-case(@xlink:href),'\.xml$|\.html$|\.json$')" role="error" id="media-test-9">media points to an xml, html or json file. This cannot be handled by Kriya currently. Please download the file, place it in a zip and replace the file with this zip (otherwise the file will be erroneously overwritten before publication).</report>
       
-      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-10" test="preceding::media/@xlink:href = $link" role="error" id="media-test-10">Media file for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/@mimetype='video') then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')         else replace(preceding::media[@xlink:href=$link][1]/parent::*/label,'\.','')"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-10" test="preceding::media/@xlink:href = $link" role="error" id="media-test-10">Media file for <value-of select="if (starts-with(@mimetype,'video')) then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/starts-with(@mimetype,'video')) then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')         else replace(preceding::media[@xlink:href=$link][1]/parent::*/label,'\.','')"/>.</report>
       
-      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-11" test="contains($link,'&amp;')" role="error" id="media-test-11">Media filename for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> contains an ampersand - <value-of select="tokenize($link,'/')[last()]"/>. Please rename the file so that this ampersand is removed.</report>
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-11" test="contains($link,'&amp;')" role="error" id="media-test-11">Media filename for <value-of select="if (starts-with(@mimetype,'video')) then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> contains an ampersand - <value-of select="tokenize($link,'/')[last()]"/>. Please rename the file so that this ampersand is removed.</report>
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-12" test="text()" role="error" id="media-test-12">Media element cannot contain text. This one has <value-of select="string-join(text(),'')"/>.</report>
       
@@ -3190,7 +3190,7 @@
       
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-6" test="matches(label[1],'^Inclusion in global research form$|^MDAR checklist$|^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$|^Audio file \d{1,4}\.$|^Box \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$')" role="error" id="supplementary-material-test-6">supplementary-material label (<value-of select="label"/>) does not conform to eLife's usual label format.</assert>
       
-      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-7" test="(ancestor::sec[@sec-type='supplementary-material']) and (media[@mimetype='video'])" role="error" id="supplementary-material-test-7">supplementary-material in additional files sections cannot have a media element with the attribute mimetype='video'. This should be mimetype='application'</report>
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-7" test="(ancestor::sec[@sec-type='supplementary-material']) and (media[starts-with(@mimetype,'video')])" role="error" id="supplementary-material-test-7">supplementary-material in additional files sections cannot have a media element with the attribute mimetype='video'. This should be mimetype='application'</report>
       
       <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-8" test="matches(label[1],'^Inclusion in global research form$|^MDAR checklist$|^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])" role="error" id="supplementary-material-test-8">
         <value-of select="label"/> has an article level label but it is not captured in the additional files section - This must be incorrect.</report>
@@ -3847,7 +3847,7 @@
     </rule>
   </pattern>
   <pattern id="general-video-pattern">
-    <rule context="media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]" id="general-video">
+    <rule context="media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')]" id="general-video">
       <let name="label" value="replace(label,'\.$','')"/>
       <let name="id" value="@id"/>
       <let name="xrefs" value="e:get-xrefs(ancestor::article,$id,'video')"/>
@@ -3992,7 +3992,7 @@
     </rule>
   </pattern>
   <pattern id="app-content-tests-pattern">
-    <rule context="app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)]" id="app-content-tests">
+    <rule context="app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[starts-with(@mimetype,'video')] or descendant::disp-formula)]" id="app-content-tests">
       
       <report test="count(descendant::p) = (0,1)" role="warning" id="app-little-content">
         <value-of select="title"/> has no sibling appendices, contains no assets (figures, tables, videos, or display formula), and only has one paragraph. Does it need to be an appendix?</report>
@@ -4025,12 +4025,12 @@
   </pattern>
   
   <pattern id="body-video-specific-pattern">
-    <rule context="article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']" id="body-video-specific">
-      <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')])"/>
-      <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')][ancestor::body])"/>
+    <rule context="article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')]" id="body-video-specific">
+      <let name="count" value="count(ancestor::body//media[starts-with(@mimetype,'video')][matches(label[1],'^Video [\d]+\.$')])"/>
+      <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video')][matches(label[1],'^Video [\d]+\.$')][ancestor::body])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.$','—')"/>
-      <let name="fig-pos" value="count(ancestor::fig-group//media[@mimetype='video'][starts-with(label[1],$fig-label)]) - count(following::media[@mimetype='video'][starts-with(label[1],$fig-label)])"/>
+      <let name="fig-pos" value="count(ancestor::fig-group//media[starts-with(@mimetype,'video')][starts-with(label[1],$fig-label)]) - count(following::media[starts-with(@mimetype,'video')][starts-with(label[1],$fig-label)])"/>
       <let name="title" value="caption[1]/title[1]"/>
       <let name="is-explainer" value="matches(lower-case($title),'^(author )?explainer video( for figure \d+)?\.$')"/>
       
@@ -4058,10 +4058,10 @@
     </rule>
   </pattern>
   <pattern id="app-video-specific-pattern">
-    <rule context="app//media[@mimetype='video' and not(ancestor::fig-group)]" id="app-video-specific">
+    <rule context="app//media[starts-with(@mimetype,'video') and not(ancestor::fig-group)]" id="app-video-specific">
       <let name="app-id" value="ancestor::app/@id"/>
-      <let name="count" value="count(ancestor::app//media[@mimetype='video'])"/>
-      <let name="pos" value="$count - count(following::media[(@mimetype='video') and (ancestor::app/@id = $app-id)])"/>
+      <let name="count" value="count(ancestor::app//media[starts-with(@mimetype,'video')])"/>
+      <let name="pos" value="$count - count(following::media[(starts-with(@mimetype,'video')) and (ancestor::app/@id = $app-id)])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#pre-app-video-position-test" test="$no = string($pos)" role="warning" id="pre-app-video-position-test">
@@ -4072,10 +4072,10 @@
     </rule>
   </pattern>
   <pattern id="app-fig-video-specific-pattern">
-    <rule context="app//fig-group//media[@mimetype='video']" id="app-fig-video-specific">
+    <rule context="app//fig-group//media[starts-with(@mimetype,'video')]" id="app-fig-video-specific">
       <let name="fig-id" value="ancestor::fig-group/fig[not(@specific-use='child-fig')]/@id"/>
-      <let name="count" value="count(ancestor::fig-group//media[@mimetype='video'])"/>
-      <let name="pos" value="$count - count(following::media[(@mimetype='video') and (ancestor::fig-group/fig[not(@specific-use='child-fig')]/@id = $fig-id)])"/>
+      <let name="count" value="count(ancestor::fig-group//media[starts-with(@mimetype,'video')])"/>
+      <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video') and (ancestor::fig-group/fig[not(@specific-use='child-fig')]/@id = $fig-id)])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#pre-app-fig-video-position-test" test="$no = string($pos)" role="warning" id="pre-app-fig-video-position-test">
@@ -4086,7 +4086,7 @@
     </rule>
   </pattern>
   <pattern id="fig-video-specific-pattern">
-    <rule context="fig-group/media[@mimetype='video']" id="fig-video-specific">
+    <rule context="fig-group/media[starts-with(@mimetype,'video')]" id="fig-video-specific">
       <let name="title" value="caption[1]/title[1]"/>
       <let name="is-explainer" value="matches(lower-case($title),'^(author )?explainer video for figure \d+\.$')"/>
       
@@ -4099,9 +4099,9 @@
     </rule>
   </pattern>
   <pattern id="dl-video-specific-pattern">
-    <rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//media[@mimetype='video']" id="dl-video-specific">
-      <let name="count" value="count(ancestor::body//media[@mimetype='video'])"/>
-      <let name="pos" value="$count - count(following::media[@mimetype='video' and ancestor::sub-article/@article-type=('decision-letter','referee-report')])"/>
+    <rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//media[starts-with(@mimetype,'video')]" id="dl-video-specific">
+      <let name="count" value="count(ancestor::body//media[starts-with(@mimetype,'video')])"/>
+      <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video') and ancestor::sub-article/@article-type=('decision-letter','referee-report')])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#" test="$no = string($pos)" role="warning" flag="dl-ar" id="pre-dl-video-position-test">
@@ -4112,9 +4112,9 @@
     </rule>
   </pattern>
   <pattern id="ar-video-specific-pattern">
-    <rule context="sub-article[@article-type=('reply','author-comment')]/body//media[@mimetype='video']" id="ar-video-specific">
-      <let name="count" value="count(ancestor::body//media[@mimetype='video'])"/>
-      <let name="pos" value="$count - count(following::media[@mimetype='video'])"/>
+    <rule context="sub-article[@article-type=('reply','author-comment')]/body//media[starts-with(@mimetype,'video')]" id="ar-video-specific">
+      <let name="count" value="count(ancestor::body//media[starts-with(@mimetype,'video')])"/>
+      <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video')])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#" test="$no = string($pos)" role="warning" flag="dl-ar" id="pre-ar-video-position-test">
@@ -4775,13 +4775,13 @@
     </rule>
   </pattern>
   <pattern id="video-ids-pattern">
-    <rule context="article/body//media[(@mimetype='video') and not(ancestor::boxed-text) and not(parent::fig-group)]" id="video-ids">
+    <rule context="article/body//media[starts-with(@mimetype,'video') and not(ancestor::boxed-text) and not(parent::fig-group)]" id="video-ids">
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-id-test" test="matches(@id,'^video[0-9]{1,3}$')" role="error" id="video-id-test">main video must have an @id in the format video0.  <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
   <pattern id="video-sup-ids-pattern">
-    <rule context="article/body//fig-group/media[(@mimetype='video') and not(ancestor::boxed-text)]" id="video-sup-ids">
+    <rule context="article/body//fig-group/media[starts-with(@mimetype,'video') and not(ancestor::boxed-text)]" id="video-sup-ids">
       <let name="id-prefix" value="parent::fig-group/fig[1]/@id"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-sup-id-test-1" test="matches(@id,'^fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="video-sup-id-test-1">video supplement must have an @id in the format fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
@@ -4790,7 +4790,7 @@
     </rule>
   </pattern>
   <pattern id="app-video-ids-pattern">
-    <rule context="article/back//app//media[(@mimetype='video') and not(parent::fig-group)]" id="app-video-ids">
+    <rule context="article/back//app//media[starts-with(@mimetype,'video') and not(parent::fig-group)]" id="app-video-ids">
       <let name="id-prefix" value="substring-after(ancestor::app[1]/@id,'-')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-id-test-1" test="matches(@id,'^app[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-id-test-1">video in appendix must have an @id in the format app0video0. <value-of select="@id"/> does not conform to this.</assert>
@@ -4799,7 +4799,7 @@
     </rule>
   </pattern>
   <pattern id="app-video-sup-ids-pattern">
-    <rule context="article/back//app//media[(@mimetype='video') and (parent::fig-group)]" id="app-video-sup-ids">
+    <rule context="article/back//app//media[starts-with(@mimetype,'video') and (parent::fig-group)]" id="app-video-sup-ids">
       <let name="id-prefix-1" value="substring-after(ancestor::app[1]/@id,'-')"/>
       <let name="id-prefix-2" value="parent::fig-group/fig[1]/@id"/>
       
@@ -4811,7 +4811,7 @@
     </rule>
   </pattern>
   <pattern id="box-vid-ids-pattern">
-    <rule context="article/body//boxed-text//media[(@mimetype='video')]" id="box-vid-ids">
+    <rule context="article/body//boxed-text//media[starts-with(@mimetype,'video')]" id="box-vid-ids">
       <let name="box-id" value="ancestor::boxed-text/@id"/> 
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#box-vid-id-1" test="matches(@id,'^box[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="box-vid-id-1">video must have @id in the format box0video0.  <value-of select="@id"/> does not conform to this.</assert>
@@ -5670,7 +5670,7 @@
   </pattern>
   
   <pattern id="video-parent-conformance-pattern">
-    <rule context="media[@mimetype='video']" id="video-parent-conformance">
+    <rule context="media[starts-with(@mimetype,'video')]" id="video-parent-conformance">
       <let name="parent" value="name(..)"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-parent-test" test="$parent = ('sec','fig-group','body','boxed-text','app')" role="error" id="video-parent-test">
@@ -7112,7 +7112,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-3" test="not(parent::*[name()=('td','th')] and following-sibling::node()[1]/name()='break') and matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="vid-xref-test-3">There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-4" test="(ancestor::media[@mimetype='video']/@id = $rids)" role="warning" id="vid-xref-test-4">
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-4" test="(ancestor::media[starts-with(@mimetype,'video')]/@id = $rids)" role="warning" id="vid-xref-test-4">
         <value-of select="."/> - video citation is in the caption of the video that it links to. Is it correct or necessary?</report>
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-5" test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="vid-xref-test-5">
@@ -8354,7 +8354,7 @@
     </rule>
   </pattern>
   <pattern id="fig-permissions-check-pattern">
-    <rule context="fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]" id="fig-permissions-check">
+    <rule context="fig[not(descendant::permissions)]|media[starts-with(@mimetype,'video') and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]" id="fig-permissions-check">
       <let name="label" value="replace(label[1],'\.','')"/>
       
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-1" test="matches(caption[1],'[Rr]eproduced from')" role="warning" id="reproduce-test-1">The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
@@ -9135,7 +9135,7 @@
       <assert test="descendant::fn[@id][not(@fn-type='other') and not(ancestor::table-wrap)]" role="error" id="fn-tests-xspec-assert">fn[@id][not(@fn-type='other') and not(ancestor::table-wrap)] must be present.</assert>
       <assert test="descendant::list" role="error" id="list-tests-xspec-assert">list must be present.</assert>
       <assert test="descendant::list-item" role="error" id="list-item-tests-xspec-assert">list-item must be present.</assert>
-      <assert test="descendant::media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]" role="error" id="general-video-xspec-assert">media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')] must be present.</assert>
+      <assert test="descendant::media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')]" role="error" id="general-video-xspec-assert">media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')] must be present.</assert>
       <assert test="descendant::code" role="error" id="code-tests-xspec-assert">code must be present.</assert>
       <assert test="descendant::p[count(code) gt 1]/code[2]" role="error" id="code-tests-2-xspec-assert">p[count(code) gt 1]/code[2] must be present.</assert>
       <assert test="descendant::p[count(code) = 1]/code" role="error" id="code-tests-3-xspec-assert">p[count(code) = 1]/code must be present.</assert>
@@ -9146,15 +9146,15 @@
       <assert test="descendant::p[matches(.,'[\(\)\[\]]')] or descendant::th[matches(.,'[\(\)\[\]]')] or descendant::td[matches(.,'[\(\)\[\]]')] or descendant::title[matches(.,'[\(\)\[\]]')]" role="error" id="bracket-tests-xspec-assert">p[matches(.,'[\(\)\[\]]')]|th[matches(.,'[\(\)\[\]]')]|td[matches(.,'[\(\)\[\]]')]|title[matches(.,'[\(\)\[\]]')] must be present.</assert>
       <assert test="descendant::article/body//boxed-text[not(parent::body) or preceding-sibling::*]" role="error" id="body-box-tests-xspec-assert">article/body//boxed-text[not(parent::body) or preceding-sibling::*] must be present.</assert>
       <assert test="descendant::app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))]" role="error" id="app-box-tests-xspec-assert">app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))] must be present.</assert>
-      <assert test="descendant::app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)]" role="error" id="app-content-tests-xspec-assert">app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)] must be present.</assert>
+      <assert test="descendant::app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[starts-with(@mimetype,'video')] or descendant::disp-formula)]" role="error" id="app-content-tests-xspec-assert">app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[starts-with(@mimetype,'video')] or descendant::disp-formula)] must be present.</assert>
       <assert test="descendant::attrib" role="error" id="attrib-tests-xspec-assert">attrib must be present.</assert>
       <assert test="descendant::attrib/*" role="error" id="attrib-child-tests-xspec-assert">attrib/* must be present.</assert>
-      <assert test="descendant::article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']" role="error" id="body-video-specific-xspec-assert">article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video'] must be present.</assert>
-      <assert test="descendant::app//media[@mimetype='video' and not(ancestor::fig-group)]" role="error" id="app-video-specific-xspec-assert">app//media[@mimetype='video' and not(ancestor::fig-group)] must be present.</assert>
-      <assert test="descendant::app//fig-group//media[@mimetype='video']" role="error" id="app-fig-video-specific-xspec-assert">app//fig-group//media[@mimetype='video'] must be present.</assert>
-      <assert test="descendant::fig-group/media[@mimetype='video']" role="error" id="fig-video-specific-xspec-assert">fig-group/media[@mimetype='video'] must be present.</assert>
-      <assert test="descendant::sub-article[@article-type=('decision-letter','referee-report')]/body//media[@mimetype='video']" role="error" id="dl-video-specific-xspec-assert">sub-article[@article-type=('decision-letter','referee-report')]/body//media[@mimetype='video'] must be present.</assert>
-      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body//media[@mimetype='video']" role="error" id="ar-video-specific-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body//media[@mimetype='video'] must be present.</assert>
+      <assert test="descendant::article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')]" role="error" id="body-video-specific-xspec-assert">article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')] must be present.</assert>
+      <assert test="descendant::app//media[starts-with(@mimetype,'video') and not(ancestor::fig-group)]" role="error" id="app-video-specific-xspec-assert">app//media[starts-with(@mimetype,'video') and not(ancestor::fig-group)] must be present.</assert>
+      <assert test="descendant::app//fig-group//media[starts-with(@mimetype,'video')]" role="error" id="app-fig-video-specific-xspec-assert">app//fig-group//media[starts-with(@mimetype,'video')] must be present.</assert>
+      <assert test="descendant::fig-group/media[starts-with(@mimetype,'video')]" role="error" id="fig-video-specific-xspec-assert">fig-group/media[starts-with(@mimetype,'video')] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('decision-letter','referee-report')]/body//media[starts-with(@mimetype,'video')]" role="error" id="dl-video-specific-xspec-assert">sub-article[@article-type=('decision-letter','referee-report')]/body//media[starts-with(@mimetype,'video')] must be present.</assert>
+      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body//media[starts-with(@mimetype,'video')]" role="error" id="ar-video-specific-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body//media[starts-with(@mimetype,'video')] must be present.</assert>
       <assert test="descendant::media/label[matches(lower-case(.),'^video \d+\.$')]" role="error" id="video-labels-xspec-assert">media/label[matches(lower-case(.),'^video \d+\.$')] must be present.</assert>
       <assert test="descendant::media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')]" role="error" id="fig-video-labels-xspec-assert">media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')] must be present.</assert>
       <assert test="descendant::media/label[matches(lower-case(.),'^animation \d+\.$')]" role="error" id="animation-labels-xspec-assert">media/label[matches(lower-case(.),'^animation \d+\.$')] must be present.</assert>
@@ -9210,11 +9210,11 @@
       <assert test="descendant::article/back//app//fig[@specific-use='child-fig']" role="error" id="app-fig-sup-ids-xspec-assert">article/back//app//fig[@specific-use='child-fig'] must be present.</assert>
       <assert test="descendant::sub-article//fig[not(@specific-use='child-fig')]" role="error" id="rep-fig-ids-xspec-assert">sub-article//fig[not(@specific-use='child-fig')] must be present.</assert>
       <assert test="descendant::sub-article//fig[@specific-use='child-fig']" role="error" id="rep-fig-sup-ids-xspec-assert">sub-article//fig[@specific-use='child-fig'] must be present.</assert>
-      <assert test="descendant::article/body//media[(@mimetype='video') and not(ancestor::boxed-text) and not(parent::fig-group)]" role="error" id="video-ids-xspec-assert">article/body//media[(@mimetype='video') and not(ancestor::boxed-text) and not(parent::fig-group)] must be present.</assert>
-      <assert test="descendant::article/body//fig-group/media[(@mimetype='video') and not(ancestor::boxed-text)]" role="error" id="video-sup-ids-xspec-assert">article/body//fig-group/media[(@mimetype='video') and not(ancestor::boxed-text)] must be present.</assert>
-      <assert test="descendant::article/back//app//media[(@mimetype='video') and not(parent::fig-group)]" role="error" id="app-video-ids-xspec-assert">article/back//app//media[(@mimetype='video') and not(parent::fig-group)] must be present.</assert>
-      <assert test="descendant::article/back//app//media[(@mimetype='video') and (parent::fig-group)]" role="error" id="app-video-sup-ids-xspec-assert">article/back//app//media[(@mimetype='video') and (parent::fig-group)] must be present.</assert>
-      <assert test="descendant::article/body//boxed-text//media[(@mimetype='video')]" role="error" id="box-vid-ids-xspec-assert">article/body//boxed-text//media[(@mimetype='video')] must be present.</assert>
+      <assert test="descendant::article/body//media[starts-with(@mimetype,'video') and not(ancestor::boxed-text) and not(parent::fig-group)]" role="error" id="video-ids-xspec-assert">article/body//media[starts-with(@mimetype,'video') and not(ancestor::boxed-text) and not(parent::fig-group)] must be present.</assert>
+      <assert test="descendant::article/body//fig-group/media[starts-with(@mimetype,'video') and not(ancestor::boxed-text)]" role="error" id="video-sup-ids-xspec-assert">article/body//fig-group/media[starts-with(@mimetype,'video') and not(ancestor::boxed-text)] must be present.</assert>
+      <assert test="descendant::article/back//app//media[starts-with(@mimetype,'video') and not(parent::fig-group)]" role="error" id="app-video-ids-xspec-assert">article/back//app//media[starts-with(@mimetype,'video') and not(parent::fig-group)] must be present.</assert>
+      <assert test="descendant::article/back//app//media[starts-with(@mimetype,'video') and (parent::fig-group)]" role="error" id="app-video-sup-ids-xspec-assert">article/back//app//media[starts-with(@mimetype,'video') and (parent::fig-group)] must be present.</assert>
+      <assert test="descendant::article/body//boxed-text//media[starts-with(@mimetype,'video')]" role="error" id="box-vid-ids-xspec-assert">article/body//boxed-text//media[starts-with(@mimetype,'video')] must be present.</assert>
       <assert test="descendant::related-article" role="error" id="related-articles-ids-xspec-assert">related-article must be present.</assert>
       <assert test="descendant::aff[not(parent::contrib)]" role="error" id="aff-ids-xspec-assert">aff[not(parent::contrib)] must be present.</assert>
       <assert test="descendant::fn" role="error" id="fn-ids-xspec-assert">fn must be present.</assert>
@@ -9303,7 +9303,7 @@
       <assert test="descendant::article[@article-type='expression-of-concern']//article-meta" role="error" id="eoc-test-xspec-assert">article[@article-type='expression-of-concern']//article-meta must be present.</assert>
       <assert test="descendant::article[@article-type='research-article']//related-article" role="error" id="research-article-ra-test-xspec-assert">article[@article-type='research-article']//related-article must be present.</assert>
       <assert test="descendant::related-article" role="error" id="related-articles-conformance-xspec-assert">related-article must be present.</assert>
-      <assert test="descendant::media[@mimetype='video']" role="error" id="video-parent-conformance-xspec-assert">media[@mimetype='video'] must be present.</assert>
+      <assert test="descendant::media[starts-with(@mimetype,'video')]" role="error" id="video-parent-conformance-xspec-assert">media[starts-with(@mimetype,'video')] must be present.</assert>
       <assert test="descendant::element-citation" role="error" id="elem-citation-general-xspec-assert">element-citation must be present.</assert>
       <assert test="descendant::element-citation/person-group" role="error" id="elem-citation-gen-name-3-1-xspec-assert">element-citation/person-group must be present.</assert>
       <assert test="descendant::element-citation/person-group/collab  or descendant:: element-citation/person-group/collab-name" role="error" id="elem-citation-gen-name-3-2-xspec-assert">element-citation/person-group/collab | element-citation/person-group/collab-name must be present.</assert>
@@ -9458,7 +9458,7 @@
       <assert test="descendant::table-wrap//ext-link[(contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov')) and not(ancestor::sub-article)]" role="error" id="pubmed-link-2-xspec-assert">table-wrap//ext-link[(contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov')) and not(ancestor::sub-article)] must be present.</assert>
       <assert test="descendant::ext-link[contains(lower-case(@xlink:href),'identifiers.org/rrid') and not(ancestor::sub-article)]" role="error" id="rrid-link-xspec-assert">ext-link[contains(lower-case(@xlink:href),'identifiers.org/rrid') and not(ancestor::sub-article)] must be present.</assert>
       <assert test="descendant::ref-list/ref" role="error" id="ref-link-mandate-xspec-assert">ref-list/ref must be present.</assert>
-      <assert test="descendant::fig[not(descendant::permissions)] or descendant::media[@mimetype='video' and not(descendant::permissions)] or descendant::table-wrap[not(descendant::permissions)] or descendant::supplementary-material[not(descendant::permissions)]" role="error" id="fig-permissions-check-xspec-assert">fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)] must be present.</assert>
+      <assert test="descendant::fig[not(descendant::permissions)] or descendant::media[starts-with(@mimetype,'video') and not(descendant::permissions)] or descendant::table-wrap[not(descendant::permissions)] or descendant::supplementary-material[not(descendant::permissions)]" role="error" id="fig-permissions-check-xspec-assert">fig[not(descendant::permissions)]|media[starts-with(@mimetype,'video') and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)] must be present.</assert>
       <assert test="descendant::xref[not(@ref-type='bibr')]" role="error" id="xref-formatting-xspec-assert">xref[not(@ref-type='bibr')] must be present.</assert>
       <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-formatting-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
       <assert test="descendant::article" role="error" id="code-fork-xspec-assert">article must be present.</assert>

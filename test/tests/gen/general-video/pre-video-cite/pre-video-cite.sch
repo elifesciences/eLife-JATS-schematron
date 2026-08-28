@@ -962,7 +962,7 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="content-containers">
-    <rule context="media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]" id="general-video">
+    <rule context="media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')]" id="general-video">
       <let name="label" value="replace(label,'\.$','')"/>
       <let name="id" value="@id"/>
       <let name="xrefs" value="e:get-xrefs(ancestor::article,$id,'video')"/>
@@ -975,7 +975,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]" role="error" id="general-video-xspec-assert">media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')] must be present.</assert>
+      <assert test="descendant::media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')]" role="error" id="general-video-xspec-assert">media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

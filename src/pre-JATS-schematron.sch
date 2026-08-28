@@ -2415,7 +2415,7 @@
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-test-1" test="count(child::fig[not(@specific-use='child-fig')]) = 1" role="error" id="fig-group-test-1">[fig-group-test-1] fig-group must have one and only one main figure.</assert>
       
-      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-test-2" test="not(child::fig[@specific-use='child-fig']) and not(descendant::media[@mimetype='video'])" role="error" id="fig-group-test-2">[fig-group-test-2] fig-group does not contain a figure supplement or a figure-level video, which must be incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-test-2" test="not(child::fig[@specific-use='child-fig']) and not(descendant::media[starts-with(@mimetype,'video')])" role="error" id="fig-group-test-2">[fig-group-test-2] fig-group does not contain a figure supplement or a figure-level video, which must be incorrect.</report>
       
     </rule></pattern><pattern id="fig-group-child-tests-pattern"><rule context="fig-group/*" id="fig-group-child-tests">
       
@@ -2510,13 +2510,13 @@
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-7" test="if (child::label) then not(matches(label[1],'^Video \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}\.$|^Figure \d{1,4}—animation \d{1,4}\.$|^Table \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—video \d{1,4}\.$|^Appendix \d{1,4}—animation \d{1,4}\.$|^Appendix \d{1,4}—figure \d{1,4}—animation \d{1,4}\.$|^Animation \d{1,4}\.$|^Decision letter video \d{1,4}\.$|^Review video \d{1,4}\.$|^Author response video \d{1,4}\.$'))         else ()" role="error" id="media-test-7">[media-test-7] media label does not conform to eLife's usual label format - <value-of select="label[1]"/>.</report>
       
-      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-8" test="if (ancestor::sec[@sec-type='supplementary-material']) then ()         else if (@mimetype='video') then (not(label))         else ()" role="error" id="media-test-8">[media-test-8] video does not contain a label, which is incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-8" test="if (ancestor::sec[@sec-type='supplementary-material']) then ()         else if (starts-with(@mimetype,'video')) then (not(label))         else ()" role="error" id="media-test-8">[media-test-8] video does not contain a label, which is incorrect.</report>
       
       <report test="matches(lower-case(@xlink:href),'\.xml$|\.html$|\.json$')" role="error" id="media-test-9">[media-test-9] media points to an xml, html or json file. This cannot be handled by Kriya currently. Please download the file, place it in a zip and replace the file with this zip (otherwise the file will be erroneously overwritten before publication).</report>
       
-      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-10" test="preceding::media/@xlink:href = $link" role="error" id="media-test-10">[media-test-10] Media file for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/@mimetype='video') then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')         else replace(preceding::media[@xlink:href=$link][1]/parent::*/label,'\.','')"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-10" test="preceding::media/@xlink:href = $link" role="error" id="media-test-10">[media-test-10] Media file for <value-of select="if (starts-with(@mimetype,'video')) then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/starts-with(@mimetype,'video')) then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')         else replace(preceding::media[@xlink:href=$link][1]/parent::*/label,'\.','')"/>.</report>
       
-      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-11" test="contains($link,'&amp;')" role="error" id="media-test-11">[media-test-11] Media filename for <value-of select="if (@mimetype='video') then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> contains an ampersand - <value-of select="tokenize($link,'/')[last()]"/>. Please rename the file so that this ampersand is removed.</report>
+      <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-11" test="contains($link,'&amp;')" role="error" id="media-test-11">[media-test-11] Media filename for <value-of select="if (starts-with(@mimetype,'video')) then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> contains an ampersand - <value-of select="tokenize($link,'/')[last()]"/>. Please rename the file so that this ampersand is removed.</report>
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-12" test="text()" role="error" id="media-test-12">[media-test-12] Media element cannot contain text. This one has <value-of select="string-join(text(),'')"/>.</report>
       
@@ -2552,7 +2552,7 @@
       
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-6" test="matches(label[1],'^Inclusion in global research form$|^MDAR checklist$|^Transparent reporting form$|^Figure \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}—source data \d{1,4}\.$|^Table \d{1,4}—source data \d{1,4}\.$|^Video \d{1,4}—source data \d{1,4}\.$|^Figure \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Figure \d{1,4}—video \d{1,4}—source code \d{1,4}\.$|^Table \d{1,4}—source code \d{1,4}\.$|^Video \d{1,4}—source code \d{1,4}\.$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source data \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—figure \d{1,4}—figure supplement \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—table \d{1,4}—source code \d{1,4}\.$|^Appendix \d{1,3}—video \d{1,4}—source code \d{1,4}\.$|^Audio file \d{1,4}\.$|^Box \d{1,3}—figure \d{1,4}—source data \d{1,4}\.$')" role="error" id="supplementary-material-test-6">[supplementary-material-test-6] supplementary-material label (<value-of select="label"/>) does not conform to eLife's usual label format.</assert>
       
-      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-7" test="(ancestor::sec[@sec-type='supplementary-material']) and (media[@mimetype='video'])" role="error" id="supplementary-material-test-7">[supplementary-material-test-7] supplementary-material in additional files sections cannot have a media element with the attribute mimetype='video'. This should be mimetype='application'</report>
+      <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-7" test="(ancestor::sec[@sec-type='supplementary-material']) and (media[starts-with(@mimetype,'video')])" role="error" id="supplementary-material-test-7">[supplementary-material-test-7] supplementary-material in additional files sections cannot have a media element with the attribute mimetype='video'. This should be mimetype='application'</report>
       
       <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-8" test="matches(label[1],'^Inclusion in global research form$|^MDAR checklist$|^Transparent reporting form$|^Supplementary file \d{1,4}\.$|^Source data \d{1,4}\.$|^Source code \d{1,4}\.$|^Reporting standard \d{1,4}\.$') and not(ancestor::sec[@sec-type='supplementary-material'])" role="error" id="supplementary-material-test-8">[supplementary-material-test-8] <value-of select="label"/> has an article level label but it is not captured in the additional files section - This must be incorrect.</report>
       
@@ -3003,7 +3003,7 @@
       <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h9cfo-simple-test-5" test="($type='simple') and matches(.,'^\p{Zs}?(I|II|III|IV|V|VI|VII|VIII|IX|X)[\.|\)]? ')" role="warning" id="simple-test-5">[simple-test-5] list-item is part of a simple list, but it begins with a single roman-upper letter. Should the list-type be updated to 'roman-upper' and this first letter removed? <value-of select="."/></report>
       
       <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hd4i0-list-item-test-1" test="matches(.,'^\p{Zs}?\p{Ll}[\p{Zs}\)\.]')" role="warning" id="list-item-test-1">[list-item-test-1] list-item begins with a single lowercase letter, is this correct? - <value-of select="."/></report>
-    </rule></pattern><pattern id="general-video-pattern"><rule context="media[@mimetype='video'][matches(@id,'^video[0-9]{1,3}$')]" id="general-video">
+    </rule></pattern><pattern id="general-video-pattern"><rule context="media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')]" id="general-video">
       <let name="label" value="replace(label,'\.$','')"/>
       <let name="id" value="@id"/>
       <let name="xrefs" value="e:get-xrefs(ancestor::article,$id,'video')"/>
@@ -3093,7 +3093,7 @@
       
       <assert test="starts-with(label[1],$app-title)" role="error" id="app-box-label-test-2">[app-box-label-test-2] <name/> label must start with the title for the appendix it sits in, <value-of select="$app-title"/>. This one does not - "<value-of select="label[1]"/>".</assert>
       
-    </rule></pattern><pattern id="app-content-tests-pattern"><rule context="app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[@mimetype='video'] or descendant::disp-formula)]" id="app-content-tests">
+    </rule></pattern><pattern id="app-content-tests-pattern"><rule context="app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[starts-with(@mimetype,'video')] or descendant::disp-formula)]" id="app-content-tests">
       
       <report test="count(descendant::p) = (0,1)" role="warning" id="app-little-content">[app-little-content] <value-of select="title"/> has no sibling appendices, contains no assets (figures, tables, videos, or display formula), and only has one paragraph. Does it need to be an appendix?</report>
       
@@ -3114,12 +3114,12 @@
       
     </rule></pattern>
   
-  <pattern id="body-video-specific-pattern"><rule context="article[not(@article-type = $notice-article-types)]/body//media[@mimetype='video']" id="body-video-specific">
-      <let name="count" value="count(ancestor::body//media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')])"/>
-      <let name="pos" value="$count - count(following::media[@mimetype='video'][matches(label[1],'^Video [\d]+\.$')][ancestor::body])"/>
+  <pattern id="body-video-specific-pattern"><rule context="article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')]" id="body-video-specific">
+      <let name="count" value="count(ancestor::body//media[starts-with(@mimetype,'video')][matches(label[1],'^Video [\d]+\.$')])"/>
+      <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video')][matches(label[1],'^Video [\d]+\.$')][ancestor::body])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       <let name="fig-label" value="replace(ancestor::fig-group/fig[1]/label,'\.$','—')"/>
-      <let name="fig-pos" value="count(ancestor::fig-group//media[@mimetype='video'][starts-with(label[1],$fig-label)]) - count(following::media[@mimetype='video'][starts-with(label[1],$fig-label)])"/>
+      <let name="fig-pos" value="count(ancestor::fig-group//media[starts-with(@mimetype,'video')][starts-with(label[1],$fig-label)]) - count(following::media[starts-with(@mimetype,'video')][starts-with(label[1],$fig-label)])"/>
       <let name="title" value="caption[1]/title[1]"/>
       <let name="is-explainer" value="matches(lower-case($title),'^(author )?explainer video( for figure \d+)?\.$')"/>
       
@@ -3137,25 +3137,25 @@
       
       <report test="$is-explainer and not(caption//supplementary-material[contains(label[1],'data')])" role="error" id="explainer-video-check-2">[explainer-video-check-2] <value-of select="label"/> is an author explainer video, but it does not have any source data. All author explainer videos should be accompanied by a source data file with a transcript.</report>
       
-    </rule></pattern><pattern id="app-video-specific-pattern"><rule context="app//media[@mimetype='video' and not(ancestor::fig-group)]" id="app-video-specific">
+    </rule></pattern><pattern id="app-video-specific-pattern"><rule context="app//media[starts-with(@mimetype,'video') and not(ancestor::fig-group)]" id="app-video-specific">
       <let name="app-id" value="ancestor::app/@id"/>
-      <let name="count" value="count(ancestor::app//media[@mimetype='video'])"/>
-      <let name="pos" value="$count - count(following::media[(@mimetype='video') and (ancestor::app/@id = $app-id)])"/>
+      <let name="count" value="count(ancestor::app//media[starts-with(@mimetype,'video')])"/>
+      <let name="pos" value="$count - count(following::media[(starts-with(@mimetype,'video')) and (ancestor::app/@id = $app-id)])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#pre-app-video-position-test" test="$no = string($pos)" role="warning" id="pre-app-video-position-test">[pre-app-video-position-test] <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
       
       
-    </rule></pattern><pattern id="app-fig-video-specific-pattern"><rule context="app//fig-group//media[@mimetype='video']" id="app-fig-video-specific">
+    </rule></pattern><pattern id="app-fig-video-specific-pattern"><rule context="app//fig-group//media[starts-with(@mimetype,'video')]" id="app-fig-video-specific">
       <let name="fig-id" value="ancestor::fig-group/fig[not(@specific-use='child-fig')]/@id"/>
-      <let name="count" value="count(ancestor::fig-group//media[@mimetype='video'])"/>
-      <let name="pos" value="$count - count(following::media[(@mimetype='video') and (ancestor::fig-group/fig[not(@specific-use='child-fig')]/@id = $fig-id)])"/>
+      <let name="count" value="count(ancestor::fig-group//media[starts-with(@mimetype,'video')])"/>
+      <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video') and (ancestor::fig-group/fig[not(@specific-use='child-fig')]/@id = $fig-id)])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#pre-app-fig-video-position-test" test="$no = string($pos)" role="warning" id="pre-app-fig-video-position-test">[pre-app-fig-video-position-test] <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
       
       
-    </rule></pattern><pattern id="fig-video-specific-pattern"><rule context="fig-group/media[@mimetype='video']" id="fig-video-specific">
+    </rule></pattern><pattern id="fig-video-specific-pattern"><rule context="fig-group/media[starts-with(@mimetype,'video')]" id="fig-video-specific">
       <let name="title" value="caption[1]/title[1]"/>
       <let name="is-explainer" value="matches(lower-case($title),'^(author )?explainer video for figure \d+\.$')"/>
       
@@ -3163,17 +3163,17 @@
       
       <report test="$is-explainer and preceding-sibling::fig[@specific-use='child-fig']" role="error" id="fig-video-position-test-3">[fig-video-position-test-3] <value-of select="replace(label,'\.$','')"/> is placed after <value-of select="preceding-sibling::fig[1]/label[1]"/>. Figure level author explainer videos should always be placed directly after the main figure and before any figure supplements in the figure group.</report>
       
-    </rule></pattern><pattern id="dl-video-specific-pattern"><rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//media[@mimetype='video']" id="dl-video-specific">
-      <let name="count" value="count(ancestor::body//media[@mimetype='video'])"/>
-      <let name="pos" value="$count - count(following::media[@mimetype='video' and ancestor::sub-article/@article-type=('decision-letter','referee-report')])"/>
+    </rule></pattern><pattern id="dl-video-specific-pattern"><rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//media[starts-with(@mimetype,'video')]" id="dl-video-specific">
+      <let name="count" value="count(ancestor::body//media[starts-with(@mimetype,'video')])"/>
+      <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video') and ancestor::sub-article/@article-type=('decision-letter','referee-report')])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#" test="$no = string($pos)" role="warning" flag="dl-ar" id="pre-dl-video-position-test">[pre-dl-video-position-test] <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other DL videos it is placed in position <value-of select="$pos"/>.</assert>
       
       
-    </rule></pattern><pattern id="ar-video-specific-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body//media[@mimetype='video']" id="ar-video-specific">
-      <let name="count" value="count(ancestor::body//media[@mimetype='video'])"/>
-      <let name="pos" value="$count - count(following::media[@mimetype='video'])"/>
+    </rule></pattern><pattern id="ar-video-specific-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body//media[starts-with(@mimetype,'video')]" id="ar-video-specific">
+      <let name="count" value="count(ancestor::body//media[starts-with(@mimetype,'video')])"/>
+      <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video')])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#" test="$no = string($pos)" role="warning" flag="dl-ar" id="pre-ar-video-position-test">[pre-ar-video-position-test] <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
@@ -3643,22 +3643,22 @@
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#resp-fig-sup-id-test" test="matches(@id,'^respfig[0-9]{1,3}s[0-9]{1,3}$|^sa[0-9]{1}fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" flag="dl-ar" id="resp-fig-sup-id-test">[resp-fig-sup-id-test] figure supplement in decision letter/author response must have @id in the format respfig0s0 or sa0fig0s0. <value-of select="@id"/> does not conform to this.</assert>
       
-    </rule></pattern><pattern id="video-ids-pattern"><rule context="article/body//media[(@mimetype='video') and not(ancestor::boxed-text) and not(parent::fig-group)]" id="video-ids">
+    </rule></pattern><pattern id="video-ids-pattern"><rule context="article/body//media[starts-with(@mimetype,'video') and not(ancestor::boxed-text) and not(parent::fig-group)]" id="video-ids">
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-id-test" test="matches(@id,'^video[0-9]{1,3}$')" role="error" id="video-id-test">[video-id-test] main video must have an @id in the format video0.  <value-of select="@id"/> does not conform to this.</assert>
-    </rule></pattern><pattern id="video-sup-ids-pattern"><rule context="article/body//fig-group/media[(@mimetype='video') and not(ancestor::boxed-text)]" id="video-sup-ids">
+    </rule></pattern><pattern id="video-sup-ids-pattern"><rule context="article/body//fig-group/media[starts-with(@mimetype,'video') and not(ancestor::boxed-text)]" id="video-sup-ids">
       <let name="id-prefix" value="parent::fig-group/fig[1]/@id"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-sup-id-test-1" test="matches(@id,'^fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="video-sup-id-test-1">[video-sup-id-test-1] video supplement must have an @id in the format fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-sup-id-test-2" test="starts-with(@id,$id-prefix)" role="error" id="video-sup-id-test-2">[video-sup-id-test-2] video supplement must have an @id which begins with the id of its parent fig. <value-of select="@id"/> does not start with <value-of select="$id-prefix"/>.</assert>
-    </rule></pattern><pattern id="app-video-ids-pattern"><rule context="article/back//app//media[(@mimetype='video') and not(parent::fig-group)]" id="app-video-ids">
+    </rule></pattern><pattern id="app-video-ids-pattern"><rule context="article/back//app//media[starts-with(@mimetype,'video') and not(parent::fig-group)]" id="app-video-ids">
       <let name="id-prefix" value="substring-after(ancestor::app[1]/@id,'-')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-id-test-1" test="matches(@id,'^app[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-id-test-1">[app-video-id-test-1] video in appendix must have an @id in the format app0video0. <value-of select="@id"/> does not conform to this.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-id-test-2" test="starts-with(@id,concat('app',$id-prefix))" role="error" id="app-video-id-test-2">[app-video-id-test-2] video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="concat('app',$id-prefix)"/>.</assert>
-    </rule></pattern><pattern id="app-video-sup-ids-pattern"><rule context="article/back//app//media[(@mimetype='video') and (parent::fig-group)]" id="app-video-sup-ids">
+    </rule></pattern><pattern id="app-video-sup-ids-pattern"><rule context="article/back//app//media[starts-with(@mimetype,'video') and (parent::fig-group)]" id="app-video-sup-ids">
       <let name="id-prefix-1" value="substring-after(ancestor::app[1]/@id,'-')"/>
       <let name="id-prefix-2" value="parent::fig-group/fig[1]/@id"/>
       
@@ -3667,7 +3667,7 @@
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-sup-id-test-2" test="starts-with(@id,concat('app',$id-prefix-1))" role="error" id="app-video-sup-id-test-2">[app-video-sup-id-test-2] video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="concat('app',$id-prefix-1)"/>.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-sup-id-test-3" test="starts-with(@id,$id-prefix-2)" role="error" id="app-video-sup-id-test-3">[app-video-sup-id-test-3] video supplement must have an @id which begins with the id of its ancestor appendix, followed by id of its parent fig. <value-of select="@id"/> does not start with <value-of select="$id-prefix-2"/>.</assert>
-    </rule></pattern><pattern id="box-vid-ids-pattern"><rule context="article/body//boxed-text//media[(@mimetype='video')]" id="box-vid-ids">
+    </rule></pattern><pattern id="box-vid-ids-pattern"><rule context="article/body//boxed-text//media[starts-with(@mimetype,'video')]" id="box-vid-ids">
       <let name="box-id" value="ancestor::boxed-text/@id"/> 
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#box-vid-id-1" test="matches(@id,'^box[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="box-vid-id-1">[box-vid-id-1] video must have @id in the format box0video0.  <value-of select="@id"/> does not conform to this.</assert>
@@ -4244,7 +4244,7 @@
       <report test="contains(@xlink:href,$article-doi)" role="error" id="related-articles-test-11">[related-articles-test-11] An article cannot contain a related-article link to itself - please delete the related article link to <value-of select="@xlink:href"/>.</report>
     </rule></pattern>
   
-  <pattern id="video-parent-conformance-pattern"><rule context="media[@mimetype='video']" id="video-parent-conformance">
+  <pattern id="video-parent-conformance-pattern"><rule context="media[starts-with(@mimetype,'video')]" id="video-parent-conformance">
       <let name="parent" value="name(..)"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-parent-test" test="$parent = ('sec','fig-group','body','boxed-text','app')" role="error" id="video-parent-test">[video-parent-test] <value-of select="replace(label[1],'\.$','')"/> is a child of a &lt;<value-of select="$parent"/>&gt; element. It can only be a child of sec, fig-group, body, boxed-text, or app.</assert>
@@ -5378,7 +5378,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-3" test="not(parent::*[name()=('td','th')] and following-sibling::node()[1]/name()='break') and matches($post-text,'^[\p{L}\p{N}\p{M}\p{Ps}]')" role="warning" id="vid-xref-test-3">[vid-xref-test-3] There is no space between citation and the following text - <value-of select="concat(.,substring($post-text,1,15))"/> - Is this correct?</report>
       
-      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-4" test="(ancestor::media[@mimetype='video']/@id = $rids)" role="warning" id="vid-xref-test-4">[vid-xref-test-4] <value-of select="."/> - video citation is in the caption of the video that it links to. Is it correct or necessary?</report>
+      <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-4" test="(ancestor::media[starts-with(@mimetype,'video')]/@id = $rids)" role="warning" id="vid-xref-test-4">[vid-xref-test-4] <value-of select="."/> - video citation is in the caption of the video that it links to. Is it correct or necessary?</report>
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-5" test="(matches($post-text,'^ in $|^ from $|^ of $')) and (following-sibling::*[1]/@ref-type='bibr')" role="error" id="vid-xref-test-5">[vid-xref-test-5] <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Video citation is in a reference to a video from a different paper, and therefore must be unlinked.</report>
       
@@ -6298,7 +6298,7 @@
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-ref-link-presence" test="ancestor::article//xref[@rid = $id]" role="warning" id="pre-ref-link-presence">[pre-ref-link-presence] '<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
       
       
-    </rule></pattern><pattern id="fig-permissions-check-pattern"><rule context="fig[not(descendant::permissions)]|media[@mimetype='video' and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]" id="fig-permissions-check">
+    </rule></pattern><pattern id="fig-permissions-check-pattern"><rule context="fig[not(descendant::permissions)]|media[starts-with(@mimetype,'video') and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]" id="fig-permissions-check">
       <let name="label" value="replace(label[1],'\.','')"/>
       
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-1" test="matches(caption[1],'[Rr]eproduced from')" role="warning" id="reproduce-test-1">[reproduce-test-1] The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>

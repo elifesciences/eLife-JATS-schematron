@@ -962,10 +962,10 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="video-tests">
-    <rule context="app//media[@mimetype='video' and not(ancestor::fig-group)]" id="app-video-specific">
+    <rule context="app//media[starts-with(@mimetype,'video') and not(ancestor::fig-group)]" id="app-video-specific">
       <let name="app-id" value="ancestor::app/@id"/>
-      <let name="count" value="count(ancestor::app//media[@mimetype='video'])"/>
-      <let name="pos" value="$count - count(following::media[(@mimetype='video') and (ancestor::app/@id = $app-id)])"/>
+      <let name="count" value="count(ancestor::app//media[starts-with(@mimetype,'video')])"/>
+      <let name="pos" value="$count - count(following::media[(starts-with(@mimetype,'video')) and (ancestor::app/@id = $app-id)])"/>
       <let name="no" value="substring-after(@id,'video')"/>
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#pre-app-video-position-test" test="$no = string($pos)" role="warning" id="pre-app-video-position-test">
         <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
@@ -973,7 +973,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::app//media[@mimetype='video' and not(ancestor::fig-group)]" role="error" id="app-video-specific-xspec-assert">app//media[@mimetype='video' and not(ancestor::fig-group)] must be present.</assert>
+      <assert test="descendant::app//media[starts-with(@mimetype,'video') and not(ancestor::fig-group)]" role="error" id="app-video-specific-xspec-assert">app//media[starts-with(@mimetype,'video') and not(ancestor::fig-group)] must be present.</assert>
     </rule>
   </pattern>
 </schema>
