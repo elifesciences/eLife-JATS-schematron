@@ -3570,6 +3570,10 @@
         <report test="($dtd ge '1.4') and count(history) != 0" 
           role="error" 
           id="test-history-presence-dtd">The history element is deprecated in JATS version <value-of select="$dtd"/>. Remove it (and move any sent for review dates to pub-history).</report>
+        
+        <assert test="abstract[not(@abstract-type)]"
+          role="error" 
+          id="test-abstract-presence">There must be one main abstract (with no abstract-type attribute) present in article-meta.</assert>
       </rule>
 
          <rule context="article/front/article-meta/article-id" id="general-article-id-checks">
@@ -4269,7 +4273,7 @@
         <let name="word-count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
         <report test="preceding::abstract[not(@abstract-type) and not(@xml:lang)] and not(@abstract-type) and not(@xml:lang)" 
           role="error" 
-          id="abstract-test-1">There should only be one abstract without an abstract-type attribute (for the common-garden abstract) or xml:lang attirbute (for common-garden abstract in a language other than english). This asbtract does not have an abstract-type, but there is also a preceding abstract without an abstract-type or xml:lang. One of these needs to be given an abstract-type with the allowed values ('structured' for a syrctured abstract with sections; 'plain-language-summary' for a digest or author provided plain summary; 'teaser' for an impact statement; 'summary' for a general summary that's in addition to the common-garden abstract; 'graphical' for a graphical abstract).</report>
+          id="abstract-test-1">There should only be one abstract without an abstract-type attribute (for the common-garden abstract) or xml:lang attirbute (for common-garden abstract in a language other than english). This asbtract does not have an abstract-type, but there is also a preceding abstract without an abstract-type or xml:lang. One of these needs to be given an abstract-type with the allowed values ('structured' for a structured abstract with sections; 'plain-language-summary' for a digest or author provided plain summary; 'teaser' for an impact statement; 'summary' for a general summary that's in addition to the common-garden abstract; 'graphical' for a graphical abstract).</report>
 
         <report test="@abstract-type and not(@abstract-type=$allowed-types)" 
           role="error" 
