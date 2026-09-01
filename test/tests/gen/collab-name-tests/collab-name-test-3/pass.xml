@@ -13,6 +13,6 @@ Message:  must only be captured as a descendant of ref or article-meta. This one
                 </contrib>
             </contrib-group>
         </article-meta>
-        <ref><person-group><collab-name/></person-group></ref>
+        <ref><element-citation><person-group><collab-name/></person-group></element-citation></ref>
     </article>
 </root>
