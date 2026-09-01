@@ -963,8 +963,8 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="collab-name" id="collab-name-tests">
-      <report test="not(ancestor::ref) and not(ancestor::article-meta)" role="error" id="collab-name-test-3">
-        <name/> must only be captured ass a descendant of ref or article-meta. This one is not.</report>
+      <report test="not(ancestor::element-citation) and not(ancestor::article-meta)" role="error" id="collab-name-test-3">
+        <name/> must only be captured as a descendant of ref or article-meta. This one is not.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
