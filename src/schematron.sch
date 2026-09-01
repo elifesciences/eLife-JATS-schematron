@@ -1865,9 +1865,9 @@
         role="error" 
         id="collab-name-test-2"><name/> that is a descendant of ref must be captured as a child of person-group. This one has the parent <value-of select="parent::*/name()"/>.</report>
       
-      <report test="not(ancestor::ref) and not(ancestor::article-meta)" 
+      <report test="not(ancestor::element-citation) and not(ancestor::article-meta)" 
         role="error" 
-        id="collab-name-test-3"><name/> must only be captured ass a descendant of ref or article-meta. This one is not.</report>
+        id="collab-name-test-3"><name/> must only be captured as a descendant of ref or article-meta. This one is not.</report>
       
     </rule>
     
