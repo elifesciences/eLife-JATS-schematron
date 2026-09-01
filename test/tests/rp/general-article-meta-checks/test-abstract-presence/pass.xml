@@ -1,0 +1,18 @@
+<?oxygen SCHSchema="test-abstract-presence.sch"?>
+<!--Context: article/front/article-meta
+Test: assert    abstract[not(@abstract-type)]
+Message: There must be one main abstract (with no abstract-type attribute) present in article-meta. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <front>
+            <article-meta>
+                <abstract/>
+                <abstract abstract-type="structured"/>
+                <abstract abstract-type="plain-language-summary"/>
+                <abstract abstract-type="teaser"/>
+                <abstract abstract-type="summary"/>
+                <abstract abstract-type="graphical"/>
+            </article-meta>
+        </front>
+    </article>
+</root>

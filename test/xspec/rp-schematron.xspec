@@ -3677,6 +3677,16 @@
         <x:expect-report id="test-history-presence-dtd" role="error"/>
         <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="test-abstract-presence-pass">
+        <x:context href="../tests/rp/general-article-meta-checks/test-abstract-presence/pass.xml"/>
+        <x:expect-not-assert id="test-abstract-presence" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="test-abstract-presence-fail">
+        <x:context href="../tests/rp/general-article-meta-checks/test-abstract-presence/fail.xml"/>
+        <x:expect-assert id="test-abstract-presence" role="error"/>
+        <x:expect-not-assert id="general-article-meta-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="general-article-id-checks">
       <x:scenario label="article-id-3-pass">
