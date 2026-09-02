@@ -4314,20 +4314,24 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="file" value="lower-case($link)"/>
       <let name="mime-subtype" value="if ($dtd-version le '1.3') then @mime-subtype else substring-after(@mimetype,'/')"/>
       
-      <report test="contains($mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))" 
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#graphic-test-1"
+        test="contains($mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))" 
         role="error" 
         id="graphic-test-1"><name/> has tif mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
       
-      <report test="contains($mime-subtype,'postscript') and not(ends-with($file,'.eps'))" 
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#graphic-test-2"
+        test="contains($mime-subtype,'postscript') and not(ends-with($file,'.eps'))" 
         role="error" 
         id="graphic-test-2"><name/> has postscript mime-subtype but filename does not end with '.eps'. This cannot be correct.</report>
       
-      <report test="contains($mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))" 
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#graphic-test-3"
+        test="contains($mime-subtype,'jpeg') and not(matches($file,'\.jpg$|\.jpeg$'))" 
         role="error" 
         id="graphic-test-3"><name/> has jpeg mime-subtype but filename does not end with '.jpg' or '.jpeg'. This cannot be correct.</report>
       
       <!-- Should this just be image? application included because during proofing stages non-web image files are referenced, e.g postscript -->
-      <report test="$dtd-version le '1.3' and not(@mimetype=('image','application'))" 
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#graphic-test-4"
+        test="$dtd-version le '1.3' and not(@mimetype=('image','application'))" 
         role="error" 
         id="graphic-test-4"><name/> must have a @mimetype='image' or 'application'.</report>
       
@@ -4335,11 +4339,13 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="graphic-test-4a"><name/> must have a mimetype that starts with 'image'. This one is '<value-of select="@mimetype"/>'.</report>
       
-      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" 
+      <assert see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#graphic-test-5"
+        test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" 
         role="error" 
         id="graphic-test-5"><name/> must have an @xlink:href which contains a file reference.</assert>
       
-      <report test="preceding::graphic/@xlink:href = $link" 
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#graphic-test-6"
+        test="preceding::graphic/@xlink:href = $link" 
         role="error" 
         id="graphic-test-6">Image file for <value-of select="if (name()='inline-graphic') then 'inline-graphic' else replace(parent::fig/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="replace(preceding::graphic[@xlink:href=$link][1]/parent::fig/label,'\.','')"/>.</report>
       
@@ -5601,11 +5607,13 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="label-fig-group-conformance-1"><value-of select="$label"/> is not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
       
-      <report test="not(ancestor::fig-group) and parent::media and matches(.,'[Ff]igure')" 
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#label-fig-group-conformance-2"
+        test="not(ancestor::fig-group) and parent::media and matches(.,'[Ff]igure')" 
         role="error" 
         id="label-fig-group-conformance-2"><value-of select="$label"/> contains the string 'Figure' but it's not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
       
-      <report test="some $x in preceding::label satisfies (replace($x,'\p{P}','') = $label-2)" 
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#distinct-label-conformance"
+        test="some $x in preceding::label satisfies (replace($x,'\p{P}','') = $label-2)" 
         role="error" 
         id="distinct-label-conformance">Duplicated labels - <value-of select="$label"/> is present more than once in the text.</report>
       
@@ -10764,7 +10772,8 @@ else self::*/local-name() = $allowed-p-blocks"
         else if ($x/local-name() = 'xref') then ()
         else $x/text(),'')"/>
       
-      <report test="matches(lower-case($article-text),lower-case($regex))" 
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#text-v-object-cite-test"
+        test="matches(lower-case($article-text),lower-case($regex))" 
         role="warning" 
         id="text-v-object-cite-test"><value-of select="$cite1"/> has possible unlinked citations in the text.</report>
       
@@ -11258,11 +11267,13 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="refs-presence"><name/> element contains 'Refs.' which is either incorrect or unnecessary.</report>
       
-      <report test="contains(.,'�')" 
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#replacement-character-presence"
+        test="contains(.,'�')" 
         role="error" 
         id="replacement-character-presence"><name/> element contains the replacement character '�' which is not allowed.</report>
       
-      <report test="contains(.,'')" 
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#junk-character-presence"
+        test="contains(.,'')" 
         role="error" 
         id="junk-character-presence"><name/> element contains a junk character '' which should be replaced.</report>
       
@@ -11278,15 +11289,18 @@ else self::*/local-name() = $allowed-p-blocks"
         role="error" 
         id="junk-character-presence-4"><name/> element contains a junk character '⍰' which should be replaced or deleted.</report>
       
-      <report test="contains(.,'¿')" 
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#inverterted-question-presence"
+        test="contains(.,'¿')" 
         role="warning" 
         id="inverterted-question-presence"><name/> element contains an inverted question mark '¿' which should very likely be replaced/removed.</report>
       
-      <report test="some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]')" 
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#empty-parentheses-presence"
+        test="some $x in self::*[not(local-name() = ('monospace','code'))]/text() satisfies matches($x,'\(\)|\[\]')" 
         role="warning" 
         id="empty-parentheses-presence"><name/> element contains empty parentheses ('[]', or '()'). Is there a missing citation within the parentheses? Or perhaps this is a piece of code that needs formatting?</report>
       
-      <report test="matches(.,'&amp;#x\d')" 
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#broken-unicode-presence"
+        test="matches(.,'&amp;#x\d')" 
         role="warning" 
         id="broken-unicode-presence"><name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
       
@@ -11304,7 +11318,8 @@ else self::*/local-name() = $allowed-p-blocks"
         role="warning" 
         id="extra-space-presence"><name/> element contains two or more spaces right next to each other - it is very likely that only 1 space is necessary - <value-of select="."/>.</report>
       
-      <report test="contains(.,'&#x9D;')" 
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#operating-system-command-presence"
+        test="contains(.,'&#x9D;')" 
         role="error" 
         id="operating-system-command-presence"><name/> element contains an operating system command character '&#x9D;' (unicode string: &amp;#x9D;) which should very likely be replaced/removed. - <value-of select="."/></report>
 
