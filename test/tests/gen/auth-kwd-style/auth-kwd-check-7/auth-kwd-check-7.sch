@@ -967,7 +967,7 @@
       <let name="lower" value="lower-case(.)"/>
       <let name="kwd-regex" value="concat('\. ',replace(.,'\+','\\+'))"/>
       <let name="t" value="replace($article-text,$kwd-regex,'')"/>
-      <report test="not(italic) and matches($lower,$org-regex)" role="warning" id="auth-kwd-check-7">Keyword contains an organism name which is not in italics - <value-of select="."/>. Please italicise the organism name in the keyword.</report>
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-7" test="not(italic) and matches($lower,$org-regex)" role="warning" id="auth-kwd-check-7">Keyword contains an organism name which is not in italics - <value-of select="."/>. Please italicise the organism name in the keyword.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

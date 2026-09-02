@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
-      <report test="contains(.,'¿')" role="warning" id="inverterted-question-presence">
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#inverterted-question-presence" test="contains(.,'¿')" role="warning" id="inverterted-question-presence">
         <name/> element contains an inverted question mark '¿' which should very likely be replaced/removed.</report>
     </rule>
   </pattern>

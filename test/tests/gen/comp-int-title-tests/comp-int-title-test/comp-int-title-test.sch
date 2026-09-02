@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="title-conformance">
     <rule context="fn-group[@content-type='competing-interest']" id="comp-int-title-tests">
-      <assert test="title = 'Competing interests'" role="error" id="comp-int-title-test">fn-group[@content-type='competing-interests'] must have a title that contains 'Competing interests'. Currently it is '<value-of select="title"/>'.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-title-test" test="title = 'Competing interests'" role="error" id="comp-int-title-test">fn-group[@content-type='competing-interests'] must have a title that contains 'Competing interests'. Currently it is '<value-of select="title"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

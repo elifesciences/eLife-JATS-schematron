@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and *[name()=('collab','collab-wrap')]]" id="collab-cont-tests">
-      <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" role="warning" flag="version-1" id="collab-cont-test-1">
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#collab-cont-test-1" test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" role="warning" flag="version-1" id="collab-cont-test-1">
         <value-of select="e:get-surname(.)"/> has no contributions. Please ensure to query this with the authors.</assert>
     </rule>
   </pattern>

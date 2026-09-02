@@ -966,7 +966,7 @@
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="author-count" value="count(ancestor::article//article-meta//contrib[@contrib-type='author'])"/>
       <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', $notice-article-types)"/>
-      <report test="if (e:get-version(.)='1' and $article-type = ('research-article','review-article')) then (not(fn-group[@content-type='author-contribution']))         else ()" role="warning" id="pre-additional-info-test-3">Missing author contributions. Please ensure that this is raised with eLife staff/the authors. (This type of sec in research content must have a child fn-group[@content-type='author-contribution']).</report>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#pre-additional-info-test-3" test="if (e:get-version(.)='1' and $article-type = ('research-article','review-article')) then (not(fn-group[@content-type='author-contribution']))         else ()" role="warning" id="pre-additional-info-test-3">Missing author contributions. Please ensure that this is raised with eLife staff/the authors. (This type of sec in research content must have a child fn-group[@content-type='author-contribution']).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

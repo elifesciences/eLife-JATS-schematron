@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="contrib-group//name/surname" id="surname-tests">
-      <report test="normalize-space(.)=''" role="error" id="surname-test-2">surname must not be empty.</report>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#surname-test-2" test="normalize-space(.)=''" role="error" id="surname-test-2">surname must not be empty.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

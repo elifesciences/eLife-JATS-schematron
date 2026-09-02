@@ -964,7 +964,7 @@
   <pattern id="attribute-pattern">
     <rule context="contrib[@contrib-type]" id="contrib-id-attribute-test">
       <let name="allowed-values" value="('author','senior_editor','editor','reviewer')"/>
-      <assert test="@contrib-type=$allowed-values" role="error" id="contrib-id-value-conformance">'<value-of select="@contrib-type"/>' is not a permitted value for a <name/> element. The only permitted values are 'author','senior_editor','editor', and 'reviewer'.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-id-value-conformance" test="@contrib-type=$allowed-values" role="error" id="contrib-id-value-conformance">'<value-of select="@contrib-type"/>' is not a permitted value for a <name/> element. The only permitted values are 'author','senior_editor','editor', and 'reviewer'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

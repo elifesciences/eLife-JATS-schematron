@@ -982,7 +982,7 @@
       <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
       <let name="fn" value="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
       <let name="name" value="if (child::name[1]) then e:get-name(child::name[1]) else if (collab or collab-wrap) then e:get-surname(*[name()=('collab','collab-wrap')][1]) else ()"/>
-      <report test="if ($subj-type = $notice-display-types) then ()            else if ($type != 'author') then ()            else if (collab or collab-wrap) then ()            else if (ancestor::*[name()=('collab','collab-wrap')]) then (count(xref[@ref-type='aff']) + count(aff) = 0)            else ()" role="warning" id="contrib-test-5">Group author members should likely have an affiliation. <value-of select="$name"/> does not. Is this OK?</report>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-test-5" test="if ($subj-type = $notice-display-types) then ()            else if ($type != 'author') then ()            else if (collab or collab-wrap) then ()            else if (ancestor::*[name()=('collab','collab-wrap')]) then (count(xref[@ref-type='aff']) + count(aff) = 0)            else ()" role="warning" id="contrib-test-5">Group author members should likely have an affiliation. <value-of select="$name"/> does not. Is this OK?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -969,7 +969,7 @@
       <let name="indistinct-orcids" value="for $orcid in distinct-values($orcids) return $orcid[count($orcids[. = $orcid]) gt 1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', $notice-article-types)"/>
-      <assert test="contrib[@contrib-type='author' and @corresp='yes']" role="error" id="corresp-presence-test">There must be at least one corresponding author (a contrib[@contrib-type='author' and @corresp='yes'] in the first contrib-group).</assert>
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#corresp-presence-test" test="contrib[@contrib-type='author' and @corresp='yes']" role="error" id="corresp-presence-test">There must be at least one corresponding author (a contrib[@contrib-type='author' and @corresp='yes'] in the first contrib-group).</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -968,7 +968,7 @@
       <let name="cont-fn" value="ancestor::article//back//fn[@id=$cont-rid]/p"/>
       <let name="con-vals" value="for $x in tokenize(string-join($cont-fn,', '),', ') return replace(lower-case($x),'\p{Zs}$|^\p{Zs}','')"/>
       <let name="indistinct-conts" value="for $val in distinct-values($con-vals)[matches(.,$credit-regex)] return $val[count($con-vals[. = $val]) gt 1]"/>
-      <assert test="empty($indistinct-conts)" role="error" flag="version-1" id="dupe-cont-test-1">Author <value-of select="if (name) then e:get-name(name[1]) else if (collab or collab-wrap) then e:get-surname(.) else ('with no name')"/> has duplicated contributions which is incorrect. The indistinct contributions are: <value-of select="string-join($indistinct-conts,'; ')"/>.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#dupe-cont-test-1" test="empty($indistinct-conts)" role="error" flag="version-1" id="dupe-cont-test-1">Author <value-of select="if (name) then e:get-name(name[1]) else if (collab or collab-wrap) then e:get-surname(.) else ('with no name')"/> has duplicated contributions which is incorrect. The indistinct contributions are: <value-of select="string-join($indistinct-conts,'; ')"/>.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

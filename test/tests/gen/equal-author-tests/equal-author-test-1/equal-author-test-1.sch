@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="equal-author-checks">
     <rule context="article-meta//contrib[@contrib-type='author']" id="equal-author-tests">
-      <report test="@equal-contrib='yes' and not(xref[matches(@rid,'^equal-contrib[0-9]$')])" role="error" id="equal-author-test-1">Equal authors must contain an xref[@ref-type='fn'] with an @rid that starts with 'equal-contrib' and ends in a digit.</report>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#equal-author-test-1" test="@equal-contrib='yes' and not(xref[matches(@rid,'^equal-contrib[0-9]$')])" role="error" id="equal-author-test-1">Equal authors must contain an xref[@ref-type='fn'] with an @rid that starts with 'equal-contrib' and ends in a digit.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

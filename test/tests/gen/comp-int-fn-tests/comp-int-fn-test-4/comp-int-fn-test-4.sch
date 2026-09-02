@@ -964,7 +964,7 @@
   <pattern id="back">
     <rule context="fn-group[@content-type='competing-interest']/fn" id="comp-int-fn-tests">
       <let name="lower-case" value="lower-case(.)"/>
-      <report test="matches(.,'\.\p{Zs}*$')" role="error" id="comp-int-fn-test-4">Competing interests footnote ends with full stop - <value-of select="."/> - Please remove the full stop.</report>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-fn-test-4" test="matches(.,'\.\p{Zs}*$')" role="error" id="comp-int-fn-test-4">Competing interests footnote ends with full stop - <value-of select="."/> - Please remove the full stop.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

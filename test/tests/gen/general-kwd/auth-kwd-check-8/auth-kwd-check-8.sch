@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="kwd" id="general-kwd">
-      <report test="contains(.,', ')" role="warning" id="auth-kwd-check-8">Keyword contains a comma - '<value-of select="."/>'. Should this be split into multiple keywords?</report>
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-8" test="contains(.,', ')" role="warning" id="auth-kwd-check-8">Keyword contains a comma - '<value-of select="."/>'. Should this be split into multiple keywords?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

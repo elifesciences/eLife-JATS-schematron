@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="kwd" id="general-kwd">
-      <report test="matches(.,'[”“‘’&quot;]')" role="warning" id="auth-kwd-check-9">Keyword contains a quotation mark - '<value-of select="."/>'. Should this be removed and/or should the keyword be split into multiple keywords?</report>
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-9" test="matches(.,'[”“‘’&quot;]')" role="warning" id="auth-kwd-check-9">Keyword contains a quotation mark - '<value-of select="."/>'. Should this be removed and/or should the keyword be split into multiple keywords?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

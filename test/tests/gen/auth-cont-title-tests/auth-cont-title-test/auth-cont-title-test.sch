@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="title-conformance">
     <rule context="fn-group[@content-type='author-contribution']" id="auth-cont-title-tests">
-      <assert test="title = 'Author contributions'" role="error" id="auth-cont-title-test">fn-group[@content-type='author-contribution'] must have a title that contains 'Author contributions'. Currently it is '<value-of select="title"/>'.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#auth-cont-title-test" test="title = 'Author contributions'" role="error" id="auth-cont-title-test">fn-group[@content-type='author-contribution'] must have a title that contains 'Author contributions'. Currently it is '<value-of select="title"/>'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

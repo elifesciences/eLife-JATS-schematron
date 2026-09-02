@@ -982,7 +982,7 @@
       <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
       <let name="fn" value="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
       <let name="name" value="if (child::name[1]) then e:get-name(child::name[1]) else if (collab or collab-wrap) then e:get-surname(*[name()=('collab','collab-wrap')][1]) else ()"/>
-      <report test="if (collab or collab-wrap) then ()         else count(name) != 1" role="error" id="name-test">Contrib contains no collab-wrap but has <value-of select="count(name)"/> name(s). This is not correct.</report>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#name-test" test="if (collab or collab-wrap) then ()         else count(name) != 1" role="error" id="name-test">Contrib contains no collab-wrap but has <value-of select="count(name)"/> name(s). This is not correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

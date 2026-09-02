@@ -967,7 +967,7 @@
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
       <let name="mime-subtype" value="if ($dtd-version le '1.3') then @mime-subtype else substring-after(@mimetype,'/')"/>
-      <assert test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" role="error" id="graphic-test-5">
+      <assert see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#graphic-test-5" test="matches(@xlink:href,'\.[\p{L}\p{N}]{1,6}$')" role="error" id="graphic-test-5">
         <name/> must have an @xlink:href which contains a file reference.</assert>
     </rule>
   </pattern>

@@ -966,7 +966,7 @@
       <let name="top-names" value="for $name in contrib[@contrib-type='author']/name[1] return e:get-name($name)"/>
       <let name="members" value="for $member in contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group/contrib[@contrib-type='author']/name[1]         return e:get-name($member)"/>
       <let name="auth-and-member" value="$top-names[.=$members]"/>
-      <assert test="empty($auth-and-member)" role="warning" id="auth-and-member-test">Top level author(s) <value-of select="if (count($auth-and-member) gt 1) then concat(string-join($auth-and-member[position() != last()],', '),' and ',$auth-and-member[last()]) else $auth-and-member"/> are also a member of a group author. Is this correct?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#auth-and-member-test" test="empty($auth-and-member)" role="warning" id="auth-and-member-test">Top level author(s) <value-of select="if (count($auth-and-member) gt 1) then concat(string-join($auth-and-member[position() != last()],', '),' and ',$auth-and-member[last()]) else $auth-and-member"/> are also a member of a group author. Is this correct?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

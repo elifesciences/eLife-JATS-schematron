@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/kwd-group[@kwd-group-type='research-organism']/kwd" id="ro-kwd-tests">
-      <report test="preceding-sibling::kwd = ." role="error" id="kwd-dupe-test">research-organism keywords must be distinct. This one containing <value-of select="."/> is not.</report>
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#kwd-dupe-test" test="preceding-sibling::kwd = ." role="error" id="kwd-dupe-test">research-organism keywords must be distinct. This one containing <value-of select="."/> is not.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="contrib-group//name/*" id="name-child-tests">
-      <assert test="local-name() = ('surname','given-names','suffix')" role="error" id="disallowed-child-assert">
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#disallowed-child-assert" test="local-name() = ('surname','given-names','suffix')" role="error" id="disallowed-child-assert">
         <value-of select="local-name()"/> is not allowed as a child of name.</assert>
     </rule>
   </pattern>

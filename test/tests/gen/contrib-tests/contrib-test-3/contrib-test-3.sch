@@ -982,7 +982,7 @@
       <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
       <let name="fn" value="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
       <let name="name" value="if (child::name[1]) then e:get-name(child::name[1]) else if (collab or collab-wrap) then e:get-surname(*[name()=('collab','collab-wrap')][1]) else ()"/>
-      <report test="name and (collab or collab-wrap)" role="error" id="contrib-test-3">author contains both a child name element and a child collab-wrap (or collab) element. This is not correct.</report>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-test-3" test="name and (collab or collab-wrap)" role="error" id="contrib-test-3">author contains both a child name element and a child collab-wrap (or collab) element. This is not correct.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

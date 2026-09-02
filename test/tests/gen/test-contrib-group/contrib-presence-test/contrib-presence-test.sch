@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article/front/article-meta/contrib-group" id="test-contrib-group">
-      <assert test="contrib" role="error" id="contrib-presence-test">contrib-group must contain at least one contrib.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-presence-test" test="contrib" role="error" id="contrib-presence-test">contrib-group must contain at least one contrib.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

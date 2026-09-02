@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="back">
     <rule context="fn-group[@content-type='competing-interest']" id="comp-int-fn-group-tests">
-      <assert test="ancestor::back" role="error" id="comp-int-fn-group-test-1">This fn-group must be a descendant of back.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-fn-group-test-1" test="ancestor::back" role="error" id="comp-int-fn-group-test-1">This fn-group must be a descendant of back.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

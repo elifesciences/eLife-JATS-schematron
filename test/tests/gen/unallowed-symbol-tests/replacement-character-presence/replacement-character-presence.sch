@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
-      <report test="contains(.,'�')" role="error" id="replacement-character-presence">
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#replacement-character-presence" test="contains(.,'�')" role="error" id="replacement-character-presence">
         <name/> element contains the replacement character '�' which is not allowed.</report>
     </rule>
   </pattern>

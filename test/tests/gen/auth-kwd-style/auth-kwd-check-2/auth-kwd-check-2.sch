@@ -967,7 +967,7 @@
       <let name="lower" value="lower-case(.)"/>
       <let name="kwd-regex" value="concat('\. ',replace(.,'\+','\\+'))"/>
       <let name="t" value="replace($article-text,$kwd-regex,'')"/>
-      <report test="matches(.,'&amp;#x\d')" role="warning" id="auth-kwd-check-2">Keyword contains what looks like a broken unicode - <value-of select="."/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-2" test="matches(.,'&amp;#x\d')" role="warning" id="auth-kwd-check-2">Keyword contains what looks like a broken unicode - <value-of select="."/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

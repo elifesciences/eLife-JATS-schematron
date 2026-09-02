@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta//contrib[@contrib-type='author']/xref" id="author-xref-tests">
-      <report test="contains(@rid,'dataset')" role="error" id="author-xref-test-4">Author footnote links to datasets are not needed. Please remove this - &lt;xref <value-of select="string-join(for $x in self::*/@* return concat($x/name(),'=&quot;',$x,'&quot;'),' ')"/>/&gt;</report>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#author-xref-test-4" test="contains(@rid,'dataset')" role="error" id="author-xref-test-4">Author footnote links to datasets are not needed. Please remove this - &lt;xref <value-of select="string-join(for $x in self::*/@* return concat($x/name(),'=&quot;',$x,'&quot;'),' ')"/>/&gt;</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -965,7 +965,7 @@
     <rule context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[not(@vocab='credit')]" id="author-role-tests-2">
       <let name="vocab-term" value="@vocab-term"/>
       <let name="vocab-term-id" value="lower-case(@vocab-term-identifier)"/>
-      <report test="matches(lower-case(.),'^\p{Zs}*(conceptuali[sz]ation|data\p{Zs}+curation|formal\p{Zs}+analysis|funding\p{Zs}+acquisition|investigation|methodology|project\p{Zs}+administration|resources|software|supervision|validation|visualization|writing\p{Zs}+[-–—]\p{Zs}+original\p{Zs}+draft|writing\p{Zs}+[-–—]\p{Zs}+review(ing)?\p{Zs}+(&amp;|and)\p{Zs}+editing)\p{Zs}*$')" role="error" flag="version-2" id="author-role-check-2">role with content '<value-of select="."/>' exactly matches one of the CRediT taxonomy terms, but it does not have a vocab="credit" attribute.</report>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#author-role-check-2" test="matches(lower-case(.),'^\p{Zs}*(conceptuali[sz]ation|data\p{Zs}+curation|formal\p{Zs}+analysis|funding\p{Zs}+acquisition|investigation|methodology|project\p{Zs}+administration|resources|software|supervision|validation|visualization|writing\p{Zs}+[-–—]\p{Zs}+original\p{Zs}+draft|writing\p{Zs}+[-–—]\p{Zs}+review(ing)?\p{Zs}+(&amp;|and)\p{Zs}+editing)\p{Zs}*$')" role="error" flag="version-2" id="author-role-check-2">role with content '<value-of select="."/>' exactly matches one of the CRediT taxonomy terms, but it does not have a vocab="credit" attribute.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -982,7 +982,7 @@
       <let name="fn-rid" value="xref[starts-with(@rid,'fn')]/@rid"/>
       <let name="fn" value="string-join(ancestor::article-meta//author-notes/fn[@id = $fn-rid]/p,'')"/>
       <let name="name" value="if (child::name[1]) then e:get-name(child::name[1]) else if (collab or collab-wrap) then e:get-surname(*[name()=('collab','collab-wrap')][1]) else ()"/>
-      <report test="not(@corresp='yes') and (not(ancestor::*[name()=('collab','collab-wrap')]/parent::contrib[@corresp='yes'])) and (child::email)" role="error" id="contrib-email-2">Non-corresponding authors must not have an email.</report>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-email-2" test="not(@corresp='yes') and (not(ancestor::*[name()=('collab','collab-wrap')]/parent::contrib[@corresp='yes'])) and (child::email)" role="error" id="contrib-email-2">Non-corresponding authors must not have an email.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
