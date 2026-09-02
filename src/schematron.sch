@@ -1384,21 +1384,25 @@
       role="error" 
       id="final-test-custom-meta-group-presence">One custom-meta-group should be present in article-meta for all article types except Insights, Retractions, Corrections and Expressions of Concern.</report>
 	   
-    <report test="if ($subj-type = $notice-display-types) then ()
+    <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#test-auth-kwd-group-presence-1"
+        test="if ($subj-type = $notice-display-types) then ()
       else count(kwd-group[@kwd-group-type='author-keywords']) != 1" 
         role="error" 
         id="test-auth-kwd-group-presence-1">One author keyword group must be present in article-meta.</report>
     
-    <report test="if ($subj-type = $notice-display-types) then (count(kwd-group[@kwd-group-type='author-keywords']) != 0)
+    <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#test-auth-kwd-group-presence-2"
+        test="if ($subj-type = $notice-display-types) then (count(kwd-group[@kwd-group-type='author-keywords']) != 0)
       else ()" 
         role="error" 
         id="test-auth-kwd-group-presence-2"><value-of select="$subj-type"/> articles must not have any author keywords</report>
     
-    <report test="count(kwd-group[@kwd-group-type='research-organism']) gt 1" 
+    <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#test-ro-kwd-group-presence-1"
+        test="count(kwd-group[@kwd-group-type='research-organism']) gt 1" 
         role="error" 
         id="test-ro-kwd-group-presence-1">More than 1 Research organism keyword group is present in article-meta. This is incorrect.</report>
     
-    <report test="if ($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication'))
+    <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#test-ro-kwd-group-presence-2"
+        test="if ($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication'))
       then (count(kwd-group[@kwd-group-type='research-organism']) = 0)
       else ()" 
         role="warning" 
@@ -3616,22 +3620,26 @@
     
     <rule context="article-meta/kwd-group[not(@kwd-group-type='research-organism')]" id="kwd-group-tests">
       
-      <assert test="@kwd-group-type='author-keywords'" 
+      <assert see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#kwd-group-type"
+        test="@kwd-group-type='author-keywords'" 
         role="error" 
         id="kwd-group-type">kwd-group must have a @kwd-group-type 'research-organism', or 'author-keywords'.</assert>
       
-      <assert test="kwd" 
+      <assert see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#non-ro-kwd-presence-test"
+        test="kwd" 
         role="warning" 
         id="non-ro-kwd-presence-test">kwd-group must contain at least one kwd</assert>
     </rule>
     
     <rule context="article-meta/kwd-group[@kwd-group-type='research-organism']" id="ro-kwd-group-tests">
 	  
-      <assert test="title = 'Research organism'" 
+      <assert see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#kwd-group-title"
+        test="title = 'Research organism'" 
         role="error" 
         id="kwd-group-title">kwd-group title is <value-of select="title"/>, which is wrong. It should be 'Research organism'.</assert>
       
-      <assert test="kwd" 
+      <assert see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#ro-kwd-presence-test"
+        test="kwd" 
         role="warning" 
         id="ro-kwd-presence-test">kwd-group must contain at least one kwd</assert>
 	
@@ -3639,15 +3647,18 @@
     
     <rule context="article-meta/kwd-group[@kwd-group-type='research-organism']/kwd" id="ro-kwd-tests">
       
-      <assert test="substring(.,1,1) = upper-case(substring(.,1,1))" 
+      <assert see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#kwd-upper-case"
+        test="substring(.,1,1) = upper-case(substring(.,1,1))" 
         role="error" 
         id="kwd-upper-case">research-organism kwd elements should start with an upper-case letter.</assert>
       
-      <report test="*[local-name() != 'italic']" 
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#kwd-child-test"
+        test="*[local-name() != 'italic']" 
         role="error" 
         id="kwd-child-test">research-organism keywords cannot have child elements such as <value-of select="*/local-name()"/>.</report>
       
-      <report test="preceding-sibling::kwd = ." 
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#kwd-dupe-test"
+        test="preceding-sibling::kwd = ." 
         role="error" 
         id="kwd-dupe-test">research-organism keywords must be distinct. This one containing <value-of select="."/> is not.</report>
       
@@ -13042,42 +13053,51 @@ else self::*/local-name() = $allowed-p-blocks"
       <let name="kwd-regex" value="concat('\. ',replace(.,'\+','\\+'))"/>
       <let name="t" value="replace($article-text,$kwd-regex,'')"/>
       
-      <report test="not(matches(.,'RNA|[Cc]ryoEM|[34]D')) and (. != $lower) and not(contains($t,.))" 
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check"
+        test="not(matches(.,'RNA|[Cc]ryoEM|[34]D')) and (. != $lower) and not(contains($t,.))" 
         role="warning" 
         id="auth-kwd-check">Keyword - '<value-of select="."/>' - does not appear in the article text with this capitalisation. Should it be <value-of select="$lower"/> instead?</report>
       
-      <report test="matches(.,'&amp;#x\d')" 
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-2"
+        test="matches(.,'&amp;#x\d')" 
         role="warning" 
         id="auth-kwd-check-2">Keyword contains what looks like a broken unicode - <value-of select="."/>.</report>
       
-      <report test="contains(.,'&lt;') or contains(.,'&gt;')" 
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-3"
+        test="contains(.,'&lt;') or contains(.,'&gt;')" 
         role="error" 
         id="auth-kwd-check-3">Keyword contains markup captured as text - <value-of select="."/>. Please remove it and ensure that it is marked up properly (if necessary).</report>
       
-      <report test="matches(.,'[\(\)\[\]]') or contains(.,'{') or contains(.,'}')" 
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-4"
+        test="matches(.,'[\(\)\[\]]') or contains(.,'{') or contains(.,'}')" 
         role="warning" 
         id="auth-kwd-check-4">Keyword contains brackets - <value-of select="."/>. These should either simply be removed, or added as two keywords (with the brackets still removed).</report>
       
-      <report test="contains($lower,' and ')" 
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-5"
+        test="contains($lower,' and ')" 
         role="warning" 
         id="auth-kwd-check-5">Keyword contains 'and' - <value-of select="."/>. These should be split out into two keywords.</report>
       
-      <report test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\p{Zs}')) gt 4" 
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-6"
+        test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\p{Zs}')) gt 4" 
         role="warning" 
         id="auth-kwd-check-6">Keyword contains more than 4 words - <value-of select="."/>. Should these be split out into separate keywords?</report>
       
-      <report test="not(italic) and matches($lower,$org-regex)" 
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-7"
+        test="not(italic) and matches($lower,$org-regex)" 
         role="warning" 
         id="auth-kwd-check-7">Keyword contains an organism name which is not in italics - <value-of select="."/>. Please italicise the organism name in the keyword.</report>
     </rule>
     
     <rule context="kwd" id="general-kwd">
       
-      <report test="contains(.,', ')" 
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-8"
+        test="contains(.,', ')" 
         role="warning" 
         id="auth-kwd-check-8">Keyword contains a comma - '<value-of select="."/>'. Should this be split into multiple keywords?</report>
       
-      <report test="matches(.,'[”“‘’&quot;]')" 
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-9"
+        test="matches(.,'[”“‘’&quot;]')" 
         role="warning" 
         id="auth-kwd-check-9">Keyword contains a quotation mark - '<value-of select="."/>'. Should this be removed and/or should the keyword be split into multiple keywords?</report>
     </rule>
